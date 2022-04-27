@@ -22,6 +22,7 @@ import locale
 import json
 import logging
 import requests
+
 _logger = logging.getLogger(__name__)
 PPG = 20  # Products Per Page
 PPR = 4  # Products Per Row
@@ -56,7 +57,8 @@ class Website(Home):
         last_ville = request.env['session.ville'].sudo().search(
             [('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville desc', limit=1)
         list_villes = request.env['session.ville'].sudo().search(
-            [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville asc')
+            [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)],
+            order='name_ville asc')
         values = {
             'list_villes': list_villes,
             'last_ville': last_ville
@@ -72,7 +74,8 @@ class Website(Home):
         promo = False
         user_connected = request.env.user
         user_connected.partner_from = False
-        if (request.website.id == 2 and partenaire in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']):
+        if (request.website.id == 2 and partenaire in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                       'coursier2roues']):
             user_connected.partner_from = str(partenaire)
             promo = request.env['product.pricelist'].sudo().search(
                 [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
@@ -118,7 +121,8 @@ class Website(Home):
             values['last_ville'] = last_ville
         if list_villes:
             values['list_villes'] = list_villes
-        if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues'] and request.website.id == 2):
+        if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                           'coursier2roues'] and request.website.id == 2):
             values['partenaire'] = partenaire
             if (promo):
                 values['promo'] = promo
@@ -208,7 +212,7 @@ class Routes_Site(http.Controller):
         vals['street2'] = kw.get("street2")
         vals['phone'] = kw.get("phone")
         vals['street'] = kw.get("num_voie") + " " + \
-            kw.get("voie") + " " + kw.get("nom_voie")
+                         kw.get("voie") + " " + kw.get("nom_voie")
         user_id = request.uid
         partner = request.env['res.users'].sudo().search(
             [('id', "=", user_id)]).partner_id
@@ -445,13 +449,14 @@ class Routes_Site(http.Controller):
                                  ('survey_id', '=', survey.id)],
                                 order='create_date asc', limit=1)
                             if not survey_user:
-                                url = '/survey/start/'+str(survey.access_token)
+                                url = '/survey/start/' + str(survey.access_token)
                                 return werkzeug.utils.redirect(url, 301)
                             if survey_user and survey_user.state == 'new':
-                                url = '/survey/start/'+str(survey.access_token)
+                                url = '/survey/start/' + str(survey.access_token)
                                 return werkzeug.utils.redirect(url, 301)
                             if survey_user and survey_user.state == 'skip':
-                                return werkzeug.utils.redirect(str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
+                                return werkzeug.utils.redirect(
+                                    str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
                             if survey_user and survey_user.state == 'done':
                                 if not survey_user.quizz_passed:
                                     return werkzeug.utils.redirect('/bolt', 301)
@@ -565,12 +570,16 @@ class Routes_Site(http.Controller):
                         slugname = (product_id.name).strip().strip(
                             '-').replace(' ', '-').lower()
                         if str(slugname) != str(product):
-                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo',
+                                                                                  'coursierjob', 'box2home',
+                                                                                  'coursier2roues']:
                                 return request.redirect("/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/felicitations/" % (slugname))
                         else:
-                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo',
+                                                                                  'coursierjob', 'box2home',
+                                                                                  'coursier2roues']:
                                 return request.redirect("/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
                     else:
                         return request.redirect("/felicitations")
@@ -583,12 +592,14 @@ class Routes_Site(http.Controller):
                                 [('company_id', '=', 2), ('name', "=", str(partenaire))])
                             if not pricelist:
                                 pricelist_id = order.pricelist_id
-                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                         'coursier2roues']:
                                     return request.redirect("/%s/%s/felicitations/" % (slugname, pricelist_id.name))
                                 else:
                                     return request.redirect("/%s/felicitations/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                      'coursier2roues']:
                                     return request.redirect(
                                         "/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
                                 else:
@@ -604,7 +615,8 @@ class Routes_Site(http.Controller):
                                 else:
                                     return request.redirect("/%s/felicitations/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                      'coursier2roues']:
                                     if pricelist.name != order.pricelist_id.name:
                                         return request.redirect(
                                             "/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
@@ -613,7 +625,8 @@ class Routes_Site(http.Controller):
                     else:
                         pricelist = request.env['product.pricelist'].sudo().search(
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
-                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                            'coursier2roues']:
                             return request.redirect("/%s" % (pricelist.name))
                         else:
                             return request.redirect("/felicitations")
@@ -632,7 +645,7 @@ class Routes_Site(http.Controller):
         # Étape suivante est documents
         documents = request.env['documents.document'].sudo().search(
             [('partner_id', '=', partner.id)])
-        if not documents :
+        if not documents:
             partner.step = "document"
         else:
             partner.step = "financement"
@@ -711,7 +724,7 @@ class Routes_Site(http.Controller):
             if survey:
                 survey_user = request.env['survey.user_input'].sudo().search(
                     [('partner_id', "=", request.env.user.partner_id.id),
-                     ('survey_id', '=', survey.id),('state',"=",'done')],
+                     ('survey_id', '=', survey.id), ('state', "=", 'done')],
                     order='create_date asc', limit=1)
                 if not survey_user:
                     exam_state = 'exam_not_passed'
@@ -750,6 +763,21 @@ class Routes_Site(http.Controller):
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_bolt", values)
+
+    """ get data of new contact from jotform using webhook """
+
+    @http.route(['/webhook_contact_form'], type='http', auth="public", csrf=False)
+    def create_contact_from_jotform_webhook(self, **kw):
+        _logger.info("webhoook contact jotform %s" % (kw))
+        rawRequest = kw['rawRequest']
+        _logger.info("rawRequest : %s" % (rawRequest))
+        return True
+
+    @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
+    def webhook_integration_examen(self, **kw):
+        rawRequest = kw['rawRequest']
+        _logger.info("%%%%%%%%%%% rawRequest examen blanc %%%%%%%%%: %s" % (rawRequest))
+        return True
 
     @http.route('/formation-taxi-Paris', type='http', auth='public', website=True)
     def taxi_paris(self):
@@ -1263,8 +1291,8 @@ class WebsiteSale(WebsiteSale):
                     order.partner_invoice_id = partner_id
                     if not kw.get('use_same'):
                         kw['callback'] = kw.get('callback') or \
-                            (not order.only_services and (
-                                mode[0] == 'edit' and '/shop/checkout' or '/shop/address'))
+                                         (not order.only_services and (
+                                                 mode[0] == 'edit' and '/shop/checkout' or '/shop/address'))
                 elif mode[1] == 'shipping':
                     order.partner_shipping_id = partner_id
 
@@ -1312,7 +1340,7 @@ class WebsiteSale(WebsiteSale):
             'field_required') or '').split(',') if f]
         # Required fields from mandatory field function
         required_fields += mode[
-            1] == 'shipping' and self._get_mandatory_shipping_fields() or self._get_mandatory_billing_fields()
+                               1] == 'shipping' and self._get_mandatory_shipping_fields() or self._get_mandatory_billing_fields()
         # Check if state required
         country = request.env['res.country']
         if data.get('country_id'):
@@ -1433,7 +1461,9 @@ class Payment3x(http.Controller):
         return True
 
     """Route est appelé quand Pole emploi dans panier est coché """
-    @http.route(['/shop/cart/update_pole_emploi'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
+
+    @http.route(['/shop/cart/update_pole_emploi'], type='json', auth="public", methods=['POST'], website=True,
+                csrf=False)
     def cart_update_pole_emploi(self, pole_emploi_state):
         order = request.website.sale_get_order(force_create=1)
         print('order:', order, 'pole_emploi_state:', pole_emploi_state)
@@ -1444,7 +1474,8 @@ class Payment3x(http.Controller):
             order.partner_id.is_pole_emploi = pole_emploi_state
         return pole_emploi_state
 
-    @http.route(['/shop/payment/update_cartebleu'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
+    @http.route(['/shop/payment/update_cartebleu'], type='json', auth="public", methods=['POST'], website=True,
+                csrf=False)
     def cart_update_cartebleu(self, cartebleu):
         order = request.website.sale_get_order(force_create=1)
         if cartebleu and order.partner_id.statut != 'won':
@@ -1483,7 +1514,8 @@ class Conditions(http.Controller):
                 order.partner_id.renounce_request = False
         return True
 
-    @http.route(['/shop/payment/update_failures_not_signed'], type='json', auth="public", methods=['POST'], website=True)
+    @http.route(['/shop/payment/update_failures_not_signed'], type='json', auth="public", methods=['POST'],
+                website=True)
     def cart_update_failures_not_signed(self, failures, token):
         """This route is called when changing failures in contract not signed."""
         order = request.env['sale.order'].sudo().search(
@@ -1688,7 +1720,7 @@ class CustomerPortal(CustomerPortal):
         values = super(CustomerPortal, self)._prepare_portal_layout_values()
         invoice_count = request.env['account.move'].search_count([
             ('type', 'in', ('out_invoice', 'in_invoice',
-             'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
+                            'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
             ('type_facture', '=', 'web')
         ])
         values['invoice_count'] = invoice_count
@@ -1701,7 +1733,7 @@ class CustomerPortal(CustomerPortal):
         values = super(CustomerPortal, self)._prepare_home_portal_values()
         invoice_count = request.env['account.move'].search_count([
             ('type', 'in', ('out_invoice', 'in_invoice',
-             'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
+                            'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
             ('type_facture', '=', 'web')
         ]) if request.env['account.move'].check_access_rights('read', raise_exception=False) else 0
         values['invoice_count'] = invoice_count
@@ -1723,7 +1755,7 @@ class CustomerPortal(CustomerPortal):
 
         domain = [
             ('type', 'in', ('out_invoice', 'out_refund',
-             'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')),
+                            'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')),
             ('type_facture', '=', 'web')]
 
         searchbar_sortings = {
@@ -1855,10 +1887,3 @@ class MCM_SIGNUP(http.Controller):
                 payment.post()
 
                 return True
-
-    @http.route(['/contact-examen-blan'], type='json', auth="public", methods=['POST'], csrf=False)
-    def webhook_integration_examen(self, **kw):
-        webhook_examen_blan = json.loads(http.request.httprequest.data)
-        _logger.info("webhook integration examen blan %s" % str(webhook_examen_blan))
-        return True
-
