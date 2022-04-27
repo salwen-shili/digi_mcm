@@ -1,3 +1,5 @@
+from unidecode import unidecode
+
 from odoo import http
 from odoo.http import request
 from odoo.addons.http_routing.models.ir_http import slug
@@ -860,9 +862,10 @@ class Routes_Site(http.Controller):
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
     def webhook_integration_examen(self, **kw):
-        rawRequest = kw['rawRequest']
-        q114_resultatExamen = int(rawRequest['rawRequest']['q114_resultatExamen'])
-        slug = int(rawRequest['rawRequest']['slug'])
+        rawRequest = unidecode(kw['rawRequest'])
+        #res = unidecode(rawRequest)
+        q114_resultatExamen = rawRequest['rawRequest']['q114_resultatExamen']
+        slug = rawRequest['rawRequest']['slug']
         _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
         _logger.info("SLUG Webhoook examen blanc %s" % (slug))
         #_logger.info("rawRequest examen blanc : %s" % (rawRequest))
