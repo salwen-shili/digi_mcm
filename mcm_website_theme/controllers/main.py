@@ -862,13 +862,15 @@ class Routes_Site(http.Controller):
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
     def webhook_integration_examen(self, **kw):
-        rawRequest = unidecode(kw['rawRequest'])
-        #res = unidecode(rawRequest)
-        q114_resultatExamen = rawRequest['rawRequest']['q114_resultatExamen']
-        slug = rawRequest['rawRequest']['slug']
+        rawRequest = kw['rawRequest']
+        rawRequest = json.loads(rawRequest)
+        _logger.info("RESULTAT Webhoook examen blanc %s" % (rawRequest))
+        # res = unidecode(rawRequest)
+        q114_resultatExamen = rawRequest['q114_resultatExamen']
+        slug = rawRequest['slug']
         _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
         _logger.info("SLUG Webhoook examen blanc %s" % (slug))
-        #_logger.info("rawRequest examen blanc : %s" % (rawRequest))
+        # _logger.info("rawRequest examen blanc : %s" % (rawRequest))
         return True
 
     @http.route('/formation-taxi-Paris', type='http', auth='public', website=True)
