@@ -819,7 +819,7 @@ function hideAlertDate() {
 function sessionIsAccessible(prop) {
   hideAlertDate();
    if (window.location.href.includes('lourd')){
-  alert('lourd');
+  return
   }
   // alert(new Date(prop));
   const toDay = new Date();
