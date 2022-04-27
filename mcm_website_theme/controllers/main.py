@@ -872,7 +872,7 @@ class Routes_Site(http.Controller):
         _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
         if request.website.is_public_user():
             users = request.env['res.users'].sudo().search(
-                [('slug', "=", slug), ('email', "=", 'premier')], order='date_exam desc',
+                [('submissionID', "=", submissionID)], order='date_exam desc',
                 limit=1)
         return True
 
