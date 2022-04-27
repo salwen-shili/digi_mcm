@@ -548,7 +548,7 @@ class AccountMove(models.Model):
                     ('billingState', 'paid'),
                     ('certificationState', 'all'),
                     ('sort', 'lastUpdate'),
-                    ('limit', '100')
+                    ('limit', '1000')
                 )
                 headers = {
                     'accept': 'application/json',
@@ -587,7 +587,8 @@ class AccountMove(models.Model):
                             date_paiement = datetime.strptime(trdateform, "%d/%m/%Y")
                             print("paiement", external, date_paiement)
                         """chercher la facture par numero cpf"""
-                        move =self.env['account.move'].sudo().search([('numero_cpf',"=",external)],limit=1)
+                        move =self.env['account.move'].sudo().search([('numero_cpf',"=",external),
+                                                                      ("methodes_payment","=","cpf")],limit=1)
                         if move and move.invoice_payment_state != "paid":
                             journal_id = move.journal_id.id
                             """Effectuer  un payement de montant restant  de la formation pour digimoov"""
@@ -612,10 +613,9 @@ class AccountMove(models.Model):
 
     """Modifier les anicennes factures cpf avec les informations récupéré à partir de wedof """
     def invoice_update(self):
-        companies = self.env['res.company'].sudo().search([])
+        companies = self.env['res.company'].sudo().search([('id',"=",2)])
         if companies:
-            for company in companies:
-                api_key = company.wedof_api_key
+                api_key = companies.wedof_api_key
                 params_wedof = (
                     ('order', 'desc'),
                     ('type', 'all'),
@@ -640,8 +640,8 @@ class AccountMove(models.Model):
                     ('order', 'desc'),
                     ('type', 'bill'),
                     ('state', 'issued'),
-                    ('sort', 'lastUpdate'),
-                    ('limit', '1000')
+                    ('limit', '1000'),
+                    ('since','2022-01-03')
                 )
 
                 response_paiement = requests.get('https://www.wedof.fr/api/payments/', headers=headers,
@@ -658,33 +658,30 @@ class AccountMove(models.Model):
                         newformat = "%d/%m/%Y"
                         trdateform = trdate.strftime(newformat)
                         trans_date = datetime.strptime(trdateform, "%d/%m/%Y")
-                        _logger.info("paiement %s" % str(paiement))
-                        print('externalId',externalId)
+                        _logger.info("externalId %s" % str(externalId))
                         invoices=self.env['account.move'].sudo().search([("numero_cpf","=",externalId),
+                                                                         ("methodes_payment","=","cpf"),
                                                                          ("invoice_payment_state","!=","paid")])
                         for invoice in invoices :
-                            print("invoice",invoice.name)
-                            # journal_id = invoice.journal_id.id
-                            # """Effectuer  un payement de montant restant  de la formation pour digimoov"""
-                            # payment_method = self.env['account.payment.method'].sudo().search(
-                            #     [('code', 'ilike', 'electronic')])
-                            # payment = self.env['account.payment'].sudo().create(
-                            #     {'payment_type': 'inbound',
-                            #      'payment_method_id': payment_method.id,
-                            #      'partner_type': 'customer',
-                            #      'partner_id': invoice.partner_id.id,
-                            #      'amount': invoice.amount_residual,
-                            #      'currency_id': invoice.currency_id.id,
-                            #      'payment_date': trans_date if trans_date else date.today(),
-                            #      'journal_id': journal_id,
-                            #      'communication': False,
-                            #      'payment_token_id': False,
-                            #      'invoice_ids': [(6, 0, invoice.ids)],
-                            #      })
-                            # print("paiement", payment)
-                            #
-                            # payment.post()
-                            print("invoice",invoice.name)
+                            _logger.info("invoice %s" %str(invoice.name))
+                            journal_id = invoice.journal_id.id
+                            """Effectuer  un payement de montant restant  de la formation pour digimoov"""
+                            payment_method = self.env['account.payment.method'].sudo().search(
+                                [('code', 'ilike', 'electronic')])
+                            payment = self.env['account.payment'].sudo().create(
+                                {'payment_type': 'inbound',
+                                 'payment_method_id': payment_method.id,
+                                 'partner_type': 'customer',
+                                 'partner_id': invoice.partner_id.id,
+                                 'amount': invoice.amount_residual,
+                                 'currency_id': invoice.currency_id.id,
+                                 'payment_date': trans_date if trans_date else date.today(),
+                                 'journal_id': journal_id,
+                                 'communication': False,
+                                 'payment_token_id': False,
+                                 'invoice_ids': [(6, 0, invoice.ids)],
+                                 })
+                            payment.post()
 
 
 
