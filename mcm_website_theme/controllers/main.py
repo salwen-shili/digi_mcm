@@ -1858,6 +1858,7 @@ class MCM_SIGNUP(http.Controller):
 
     @http.route(['/contact-examen-blan'], type='json', auth="public", methods=['POST'], csrf=False)
     def webhook_integration_examen(self, **kw):
-        webhook_examen_blan = json.loads(request.httprequest.data)
+        webhook_examen_blan = json.loads(http.request.httprequest.data)
         _logger.info("webhook integration examen blan %s" % str(webhook_examen_blan))
         return True
+
