@@ -50,7 +50,7 @@ class Website(Website):
             raise werkzeug.exceptions.NotFound()
 
     @http.route('/test-form', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises(self, **kw, ):
+    def test_form(self, **kw, ):
         if request.website.id == 2:
             return request.render("digimoov_website_templates.digimoov_template_test_form")
         else:
