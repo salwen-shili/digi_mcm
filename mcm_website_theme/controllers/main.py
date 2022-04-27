@@ -771,12 +771,100 @@ class Routes_Site(http.Controller):
         _logger.info("webhoook contact jotform %s" % (kw))
         rawRequest = kw['rawRequest']
         _logger.info("rawRequest : %s" % (rawRequest))
+        firstname = rawRequest['q53_nom']['first']
+        lastName = rawRequest['q53_nom']['last']
+        tel = str(rawRequest['q59_numeroDe']['area']) + str(rawRequest['q59_numeroDe']['phone'])
+        email = (rawRequest['q54_email']).replace(' ', '').lower()
+        street = rawRequest['q82_adresse']['addr_line1']
+        street2 = rawRequest['q82_adresse']['addr_line2']
+        city = rawRequest['q82_adresse']['city']
+        state = rawRequest['q82_adresse']['state']
+        zipcode = rawRequest['q82_adresse']['postal']
+        res_user = request.env['res.users']
+        odoo_contact = res_user.search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+        if not odoo_contact:
+            if tel:
+                odoo_contact = request.env["res.users"].sudo().search(
+                    [("phone", "=", str(tel))], limit=1)
+                if not odoo_contact:
+                    phone_number = str(tel).replace(' ', '')
+                    if '+33' not in str(phone_number):  # check if jotform webhook send the number of client with +33
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' not in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 33xxxxxxx)
+                            phone = '+' + str(tel)
+                            odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not odoo_contact:
+                                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[
+                                                                                                              8:10] + ' ' + phone[
+                                                                                                                            10:]
+                                odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 33 x xx xx xx)
+                            phone = '+' + str(tel)
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' not in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 07xxxxxx)
+                            odoo_contact = request.env["res.users"].sudo().search([("phone", "=", str(tel))], limit=1)
+                            print('odoo_contact5 :', odoo_contact.partner_id.name)
+                            if not odoo_contact:
+                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[8:]
+                                odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 07 xx xx xx)
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", str(tel)), str(tel).replace(' ', '')], limit=1)
+                    else:  # check if jotform webhook send the number of client with+33
+                        if ' ' not in str(tel):
+                            phone = str(tel)
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
+                                                                                                                8:10] + ' ' + phone[
+                                                                                                                              10:]
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                [("phone", "=", phone)], limit=1)
+                        if not odoo_contact:
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                            if not odoo_contact:
+                                phone = str(phone_number)
+                                phone = phone[3:]
+                                phone = '0' + str(phone)
+                                odoo_contact = request.env["res.users"].sudo().search(
+                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
+        if not odoo_contact:
+            odoo_contact = request.env['res.users'].sudo().create({
+                'name': str(firstname) + " " + str(lastName),
+                'firstname': str(firstname),
+                'lastName': str(lastName),
+                'login': str(email),
+                'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
+                'email': email,
+                'phone': tel,
+                'notification_type': 'email',
+                'website_id': 1,
+                'company_ids': [1, 2],
+                'company_id': 1
+            })
+        if odoo_contact:
+            odoo_contact.street = street if street else ""
+            odoo_contact.street2 = street2 if street else ""
+            odoo_contact.city = city if city else ""
+            odoo_contact.zip = zip if zip else ""
         return True
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
     def webhook_integration_examen(self, **kw):
         rawRequest = kw['rawRequest']
-        _logger.info("webhoook contact jotform %s" % (kw))
+        q114_resultatExamen = int(rawRequest['rawRequest']['q114_resultatExamen'])
+        slug = int(rawRequest['rawRequest']['slug'])
+        _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
+        _logger.info("SLUG Webhoook examen blanc %s" % (slug))
         #_logger.info("rawRequest examen blanc : %s" % (rawRequest))
         return True
 
@@ -1721,7 +1809,7 @@ class CustomerPortal(CustomerPortal):
         values = super(CustomerPortal, self)._prepare_portal_layout_values()
         invoice_count = request.env['account.move'].search_count([
             ('type', 'in', ('out_invoice', 'in_invoice',
-                            'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
+             'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
             ('type_facture', '=', 'web')
         ])
         values['invoice_count'] = invoice_count
@@ -1734,7 +1822,7 @@ class CustomerPortal(CustomerPortal):
         values = super(CustomerPortal, self)._prepare_home_portal_values()
         invoice_count = request.env['account.move'].search_count([
             ('type', 'in', ('out_invoice', 'in_invoice',
-                            'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
+             'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
             ('type_facture', '=', 'web')
         ]) if request.env['account.move'].check_access_rights('read', raise_exception=False) else 0
         values['invoice_count'] = invoice_count
@@ -1756,7 +1844,7 @@ class CustomerPortal(CustomerPortal):
 
         domain = [
             ('type', 'in', ('out_invoice', 'out_refund',
-                            'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')),
+             'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')),
             ('type_facture', '=', 'web')]
 
         searchbar_sortings = {
@@ -1888,3 +1976,4 @@ class MCM_SIGNUP(http.Controller):
                 payment.post()
 
                 return True
+
