@@ -865,15 +865,14 @@ class Routes_Site(http.Controller):
         rawRequest = json.loads(kw['rawRequest'])
         submissionID = json.loads(kw['submissionID'])
         _logger.info("RawRequest Webhoook examen blanc %s" % (rawRequest))
-        # res = unidecode(rawRequest)
-        submissionID = submissionID['submissionID']
-        _logger.info("submissionID Webhoook %s" % (slug))
         q114_resultatExamen = rawRequest['q114_resultatExamen']
         _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
-        users = request.env['res.users'].sudo().search(
-            [('submissionID', "=", submissionID)], order='date_exam desc',
-            limit=1)
-
+        user = request.env['res.users'].sudo().search(
+            [('submissionID', "=", submissionID)], limit=1)
+        if user:
+            multiplication_note_exam_blan = q114_resultatExamen * 5
+            user.note_exam = multiplication_note_exam_blan
+            _logger.info("user.note_exam SUR LA FICHE CLIENT %s" % (user.note_exam))
         return True
 
     @http.route('/formation-taxi-Paris', type='http', auth='public', website=True)
