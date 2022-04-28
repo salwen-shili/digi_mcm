@@ -173,7 +173,7 @@
                                         <br />
                                     </p>
                                     <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                        <a href="#pricing" class="btn btn-success btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip663312"> Je m'inscris&amp;nbsp;maintenant ! </a>
+                                        <a href="/inscription-bolt" class="btn btn-success btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip663312"> Je m'inscris&amp;nbsp;maintenant ! </a>
                                     </div>
 
                                 </div>
