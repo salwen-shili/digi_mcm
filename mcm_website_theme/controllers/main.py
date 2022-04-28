@@ -1,5 +1,3 @@
-from unidecode import unidecode
-
 from odoo import http
 from odoo.http import request
 from odoo.addons.http_routing.models.ir_http import slug
@@ -76,8 +74,7 @@ class Website(Home):
         promo = False
         user_connected = request.env.user
         user_connected.partner_from = False
-        if (request.website.id == 2 and partenaire in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                       'coursier2roues']):
+        if (request.website.id == 2 and partenaire in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']):
             user_connected.partner_from = str(partenaire)
             promo = request.env['product.pricelist'].sudo().search(
                 [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
@@ -123,8 +120,7 @@ class Website(Home):
             values['last_ville'] = last_ville
         if list_villes:
             values['list_villes'] = list_villes
-        if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                           'coursier2roues'] and request.website.id == 2):
+        if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues'] and request.website.id == 2):
             values['partenaire'] = partenaire
             if (promo):
                 values['promo'] = promo
@@ -773,6 +769,7 @@ class Routes_Site(http.Controller):
         _logger.info("webhoook contact jotform %s" % (kw))
         rawRequest = kw['rawRequest']
         _logger.info("rawRequest : %s" % (rawRequest))
+        rawRequest = json.loads(rawRequest)
         firstname = rawRequest['q53_nom']['first']
         lastName = rawRequest['q53_nom']['last']
         tel = str(rawRequest['q59_numeroDe']['area']) + str(rawRequest['q59_numeroDe']['phone'])
@@ -782,6 +779,7 @@ class Routes_Site(http.Controller):
         city = rawRequest['q82_adresse']['city']
         state = rawRequest['q82_adresse']['state']
         zipcode = rawRequest['q82_adresse']['postal']
+        submissionID = json.loads(kw['submissionID'])
         res_user = request.env['res.users']
         odoo_contact = res_user.search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
         if not odoo_contact:
@@ -858,6 +856,8 @@ class Routes_Site(http.Controller):
             odoo_contact.street2 = street2 if street else ""
             odoo_contact.city = city if city else ""
             odoo_contact.zip = zip if zip else ""
+            odoo_contact.bolt = True
+            odoo_contact.submissionID = submissionID
         return True
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
@@ -870,10 +870,10 @@ class Routes_Site(http.Controller):
         _logger.info("submissionID Webhoook %s" % (slug))
         q114_resultatExamen = rawRequest['q114_resultatExamen']
         _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
-        if request.website.is_public_user():
-            users = request.env['res.users'].sudo().search(
-                [('submissionID', "=", submissionID)], order='date_exam desc',
-                limit=1)
+        users = request.env['res.users'].sudo().search(
+            [('submissionID', "=", submissionID)], order='date_exam desc',
+            limit=1)
+
         return True
 
     @http.route('/formation-taxi-Paris', type='http', auth='public', website=True)
