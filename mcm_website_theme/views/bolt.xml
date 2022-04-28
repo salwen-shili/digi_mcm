@@ -568,7 +568,7 @@
                         Je m'inscris
                                             </a> -->
                                                         <!-- onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;"-->
-                                                        <a href="/inscription-bolt" target="_blank" class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
+                                                        <a href="/inscription-bolt" target="_blank" class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369">
                                                              Je m'inscris
                                                           </a>
                                                     </div>
