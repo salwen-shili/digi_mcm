@@ -779,7 +779,7 @@ class Routes_Site(http.Controller):
         state = rawRequest['q82_adresse']['state']
         zipcode = rawRequest['q82_adresse']['postal']
         ipjotform = json.loads(kw['ip'])
-        _logger.info("PI IP IP IP IP IP IP IP of webhook_contact_form : %s" % (ipjotform))
+        _logger.info("IP of webhook_contact_form : %s" % (ipjotform))
         res_user = request.env['res.users']
         odoo_contact = res_user.search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
         if not odoo_contact:
@@ -849,14 +849,15 @@ class Routes_Site(http.Controller):
                 'notification_type': 'email',
                 'website_id': 1,
                 'company_ids': [1, 2],
-                'company_id': 1
+                'company_id': 1,
+                'step': "financement",
+                'street': street if street else "",
+                'street2': street2 if street else "",
+                'city': city if city else "",
+                'zip': zip if zip else "",
+                'bolt': True,
             })
         if odoo_contact:
-            odoo_contact.street = street if street else ""
-            odoo_contact.street2 = street2 if street else ""
-            odoo_contact.city = city if city else ""
-            odoo_contact.zip = zip if zip else ""
-            odoo_contact.bolt = True
             odoo_contact.ipjotform = ipjotform
         return True
 
@@ -870,10 +871,11 @@ class Routes_Site(http.Controller):
         q114_resultatExamen = rawRequest['q114_resultatExamen']
         _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
         user = request.env['res.users'].sudo().search(
-            [('ipjotform', "=", ipjotform)], limit=1)
+            [('ipjotform', "=", str(ipjotform))], limit=1)
+        _logger.info("user SUR LA FICHE CLIENT %s" % (user.note_exam))
         if user:
-            multiplication_note_exam_blan = q114_resultatExamen * 5
-            user.note_exam = multiplication_note_exam_blan
+            multiplication_note_exam_blan = int(q114_resultatExamen) * 5
+            user.note_exam = int(multiplication_note_exam_blan)
             _logger.info("user.note_exam SUR LA FICHE CLIENT %s" % (user.note_exam))
         return True
 
