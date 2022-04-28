@@ -28,7 +28,9 @@ class partner(models.Model):
                              required=True, default='en_attente')
 
     mooc_dernier_coonx = fields.Date()
-    mooc_temps_passe = fields.Float()
+    mooc_temps_passe_heure = fields.Integer()
+    mooc_temps_passe_min = fields.Integer()
+    mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
 
     # desinscrire les cours de formation  VTC a l'apprenant

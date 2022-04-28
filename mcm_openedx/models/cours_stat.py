@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 from odoo import models, fields, api
 
@@ -14,11 +14,9 @@ class Cours_stat(models.Model):
     idcour = fields.Char(string="ID Cours")
     jour = fields.Date(string="Jour")
     temppasse = fields.Char(string="Temps passés")
-
     seconde = fields.Float(string="Temps passés (sec)")
-    temppassetotale = fields.Float(string="Temps passés (sec)")
-    attendees_count = fields.Integer(
-        string="Temps passée", compute='_get_attendees_count', store=True)
+    temppassetotale = fields.Integer(string="Temps Totale")
+    attendees_count = fields.Integer(string="Temps passée", compute='_get_attendees_count', store=True)
     partner = fields.Many2one('res.partner')
 
     @api.depends('temppasse')
@@ -28,7 +26,6 @@ class Cours_stat(models.Model):
 
     def recherche(self):
         temppassetotale = 0
-        totale = 0
         # chercher dans la partie cour le mail et calculer le temps passer sur moocit
         for exist in self.env['mcm_openedx.course_stat'].sudo().search(
                 [('email', "=", self.email)]):
@@ -36,21 +33,31 @@ class Cours_stat(models.Model):
 
             if (exist):
                 print(exist.seconde)
-                totale = exist.seconde + totale
-                print("totale22", totale)
-                q, s = divmod(totale, 60)
+                temppassetotale = exist.seconde + temppassetotale
+                print("totale22", temppassetotale)
+                q, s = divmod(temppassetotale, 60)
                 h, m = divmod(q, 60)
+            print("%d:%d:%d" % (h, m, s))
+            heure = int((temppassetotale / 3600))
 
+            minute = int((temppassetotale - (3600 * heure)) / 60)
+
+            secondes = int(temppassetotale - (3600 * heure) - (60 * minute))
+
+            timee = (heure, minute, secondes)
+            print("timmmmme", minute)
 
             # chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
             for apprenant in self.env['res.partner'].sudo().search([
                 ('company_id', '!=', 2),
                 ('email', 'ilike', exist.email)]):
                 apprenant.date_imortation_stat = date.today()
-                apprenant.mooc_temps_passe = exist.temppassetotale
+                apprenant.mooc_temps_passe_heure = heure
+                apprenant.mooc_temps_passe_min = minute
+                apprenant.mooc_temps_passe_seconde = secondes
+
                 apprenant.mooc_dernier_coonx = exist.jour
                 exist.partner = apprenant.id
                 self.partner = exist.partner
-        print("%d:%d:%d" % (h, m, s))
 
 # self.sudo().with_context(key=existt.id).sudo().unlink()

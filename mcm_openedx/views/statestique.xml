@@ -7,13 +7,9 @@
         <field name="model">mcm_openedx.course_stat</field>
         <field name="arch" type="xml">
             <search>
-                <field name="email"
-                       filter_domain="[('email','ilike',self)]"></field>
-          <field name="nomutilisateur"
-                       filter_domain="[('nomutilisateur','ilike',self)]"></field>
-
-                <filter name="group_email" string="Email" icon="terp-partner"
-                        context="{'group_by':'email'}"/>
+                <field name="email" filter_domain="[('email','ilike',self)]"/>
+                <field name="nomutilisateur" filter_domain="[('nomutilisateur','ilike',self)]"/>
+                <filter name="group_email" string="Email" icon="terp-partner" context="{'group_by':'email'}"/>
             </search>
         </field>
     </record>
@@ -24,8 +20,7 @@
             <form string="Course Form">
                 <xpath expr="//form//sheet" position="before">
                     <header>
-                        <button name="recherche" string="chercher client"
-                                type="object"></button>
+                        <button name="recherche" string="chercher client" type="object"/>
                     </header>
                 </xpath>
                 <sheet>
@@ -37,6 +32,7 @@
                         <field name="nomutilisateur"/>
                         <field name="idcour"/>
                         <field name="temppasse"/>
+                        <field name="seconde"/>
                         <field name="jour"/>
 
 
@@ -54,10 +50,9 @@
             <tree string="Statetstique">
                 <field name="email"/>
                 <field name="partner"/>
-                <field name="temppassetotale"/>
+
                 <field name="nomutilisateur"/>
-                <field name="idcour"/>
-                <field name="temppasse"/>
+
                 <field name="jour"/>
             </tree>
         </field>

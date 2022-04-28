@@ -9,8 +9,7 @@
             <search>
                 <field name="name"></field>
                 <filter name="name" string="MCM Academy"
-                        domain="[('company_id','=',1)]"
-                />
+                        domain="[('company_id','=',1)]"  />
                 <filter name="group_company_id" string="Societé" icon="terp-partner"
                         context="{'group_by':'company_id'}"/>
             </search>
@@ -24,12 +23,8 @@
         <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"></field>
         <field name="arch" type="xml">
             <header>
-                <button name="test_coach" string="Test"
-
-                        type="object"></button>
-
+                <button name="test_coach" string="Test" type="object"></button>
             </header>
-
         </field>
     </record>
 

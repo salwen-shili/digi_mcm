@@ -104,15 +104,41 @@
                                 </span>
                             </div>
                             <div>
+
                                 <span>
-                                    <i class="fa fa-clock-o"/>
-                                </span>
-                                <span class="o_stat_text">
-                                    Temps passé par Heure
-                                </span>
-                                <br/>
-                                <span class="o_stat_text">
-                                    <field name="mooc_temps_passe"></field>
+                                    <span>
+                                        <i class="fa fa-clock-o"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Temps passé par Heure
+                                    </span>
+                                    <br/>
+                                    <span class="o_stat_text">
+                                        <field name="mooc_temps_passe_heure"></field>
+                                    </span>
+                                    <br/>
+                                    <span>
+                                        <i class="fa fa-clock-o"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Temps passé par Minute
+                                    </span>
+                                    <br/>
+                                    <span class="o_stat_text">
+                                        <field name="mooc_temps_passe_min"></field>
+                                    </span>
+                                    <br/>
+                                    <span>
+                                        <i class="fa fa-clock-o"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Temps passé par Seconde
+                                    </span>
+                                    <br/>
+                                    <span class="o_stat_text">
+                                        <field name="mooc_temps_passe_seconde"></field>
+                                    </span>
+
                                 </span>
 
                             </div>
@@ -167,9 +193,9 @@
     <!-- top level menu: no parent -->
     <menuitem id="main_mcm_openedx_menu" name="MCM_OpenEdx"/>
     <menuitem id="mcm_apprennat_menu" name="Apprenants" parent="main_mcm_openedx_menu" action="contact_list_action"/>
-     <menuitem id="mcm_courses_menu" name="MOOCIT" parent="main_mcm_openedx_menu"/>
+    <menuitem id="mcm_courses_menu" name="MOOCIT" parent="main_mcm_openedx_menu"/>
     <menuitem id="mcm_session_menu" name="Session" parent="mcm_courses_menu" action="session_list_action"/>
-     <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
-     <menuitem id="coach_menu" name="Coaches" parent="main_mcm_openedx_menu" action="coach_list_action"/>
+    <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
+    <menuitem id="coach_menu" name="Coaches" parent="main_mcm_openedx_menu" action="coach_list_action"/>
 
 </odoo>
