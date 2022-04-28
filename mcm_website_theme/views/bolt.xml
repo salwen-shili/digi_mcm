@@ -10,7 +10,7 @@
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
-                <script type="text/javascript" src="/mcm_website_theme/static/src/js/popup_page_bolt.js" />
+                <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/popup_page_bolt.js" /> -->
 
                 <style>
                     .body{
@@ -71,168 +71,129 @@
                 </div>
 
                 <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px; word-break: break-word; position: relative; z-index: 0;">
-                    <section id="sh_corpomate_theme_section_315" class="sh_animation_part bg-epsilon pb72" data-name="Image_Text Snippet 13" style="word-break: break-word; position: relative; z-index: 0;">
+
+
+                    <section class="s_text_image pt32 pb32" data-name="Image - Text">
                         <div class="container">
-                            <div class="sh_image_text_13">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                                        <div class="left_image">
-                                            <div class="behind_img js-scroll slide-left ">
-                                                <img src="/web/image/261931/formation-vtc-mcm-bolt.png" alt="formation vtc code promo bolt" data-original-title="" title="" aria-describedby="tooltip525337" />
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 pt0 pb0">
+                                    <img src="/mcm_website_theme/static/src/img/bolt/BOLT 6.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip143371" />
+                                </div>
+                                <div class="col-lg-6 pt16 pb16 bg-gamma" style="border-style: none; border-width: 0px;">
+                                    <h2>
+                                        <div style="text-align: center;">
+                                            <b style="font-size: 1.60rem;">
+                                                <font style="color: rgb(253, 209, 5);">Formation&amp;nbsp;VTC</font>
+                                                <font class="text-epsilon"> +&amp;nbsp;</font>
+                                                <font style="color: rgb(253, 209, 5);">Examen&amp;nbsp;VTC</font>
+                                                <font class="text-epsilon"> à</font>
+                                                &amp;nbsp;
+                                                <font style="color: rgb(253, 209, 5);">20 €</font>
+                                            </b>
+                                        </div>
+                                        <b>
+                                            <div style="text-align: center;">
+                                                <b style="font-size: 1.60rem;">
+                                                    <font style="font-size: 24px;">au lieu de 706 euros&amp;nbsp;</font>
+                                                </b>
                                             </div>
-                                            <div class="front_img_bottom js-scroll slide-right "></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12 bg-black" style="margin-top: 21px; border-style: none; border-width: 0px;">
-                                        <div class="js-scroll right_text  slide-right" style="margin: 12px 12px 41px 12px">
-                                            <h2 style="font-size: 21px; font-weight: bold; color: #fff">
-                                                Jusqu'au&amp;nbsp;
-                                                <span style="color: #24f0a0; font-weight: 600">25/05&amp;nbsp;</span>
-                                                profitez de notre&amp;nbsp;
-                                                <span style="color: #24f0a0; font-weight: 600">OFFRE SPÉCIALE &amp;nbsp;</span>
-                                                En collaboration avec
-                                                <span style="color: rgb(36, 240, 160);">BOLT&amp;nbsp;</span>
-                                                <span style="" class="text-epsilon">&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</span>
-                                            </h2>
-                                            <h2 style="font-size: 32px; font-weight: bold; color: #fff">
-                                                <span style="color: #24f0a0; font-weight: 600">FORMATION VTC + EXAMEN
-                                                    VTC&amp;nbsp;</span>
-                                                à&amp;nbsp;
-                                                <span style="color: #24f0a0; font-weight: 600">20 €&amp;nbsp;</span>
-                                                <font style="font-size: 24px;">au lieu de</font>
-                                                <font style="font-size: 24px;" class="text-epsilon">708.50€</font>
-                                            </h2>
-                                            <p style="">
-                                                <span style="font-size: 16px;" />
-                                                <span style="font-size: 16px;" class="text-epsilon">
-                                                    Une formation de 70 heures dont 40 heures de Live avec un expert métier pour une préparation optimale de votre examen théorique !&amp;nbsp;
-                                                    <br />
-                                                    Pour profiter de cette offre, vous devrez passer un &amp;nbsp;examen blanc de 30 min afin de tester vos connaissances en français&amp;nbsp;.
-                                                    <br />
-                                                </span>
-                                            </p>
-                                            <a href="/inscription-bolt" class="_viewmore btn btn-warning btn-lg" style="                         word-break: break-word;                         position: relative;                         z-index: 0;                       " data-original-title="" title="" aria-describedby="tooltip467674" spellcheck="false" data-mci-spellchecked="true" lang="merciapp">
-                                                <b> Je m'inscris ! </b>
-                                            </a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="sh_corpomate_theme_section_2" class="" data-name="Key Points">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4 sh_disable_hover_part" style="border-style: none; border-width: 0px">
-                                    <section class="icon-bx-1 p-20 box-services m-b30 sh_animation_part" style="height: 290px;">
-                                        <div class="icon-md m-b20">
-                                            <a href="#" class="icon-cell">
-                                                <span class="fa fa-whatsapp "></span>
-                                            </a>
-                                        </div>
-                                        <div class="icon-content">
-                                            <h5 class="tilte o_default_snippet_text">Un accompagnement</h5>
-                                            <p class="m-b0 o_default_snippet_text">
-                                                De l’inscription à l’examen à l’inscription sur Bolt. Une aide dans toutes
-              les démarches administratives grâce à notre partenaire
-                                                <b>La Maison du Chauffeur VTC.</b>
-                                            </p>
-                                        </div>
-                                        <span class="fa fa-whatsapp"></span>
-                                    </section>
-                                </div>
-                                <div class="col-md-4">
-                                    <section class="icon-bx-1 p-20 box-services m-b30 sh_animation_part" style="height: 290px;">
-                                        <div class="icon-md m-b20">
-                                            <a href="#" class="icon-cell">
-                                                <span class="fa fa-star-o"></span>
-                                            </a>
-                                        </div>
-                                        <div class="icon-content">
-                                            <h5 class="tilte o_default_snippet_text">
-                                                Des
-                                                <b>tarifs préférentiels</b>
-                                            </h5>
-                                            <p class="m-b0 o_default_snippet_text">
-              Sur la préparation et l’inscription à l’examen théorique (20€ au lieu de
-              706€) La location du véhicule pour l’examen pratique (20€ au lieu de 200€)
-              Un remboursement de la carte VTC (57,60€).
-            </p>
-                                        </div>
-                                        <span class="fa fa-star-o"></span>
-                                    </section>
-                                </div>
-                                <div class="col-md-4">
-                                    <section class="icon-bx-1 p-20 box-services m-b30 sh_animation_part" style="height: 290px;">
-                                        <div class="icon-md m-b20">
-                                            <a href="#" class="icon-cell">
-                                                <span class="fa fa-lightbulb-o"></span>
-                                            </a>
-                                        </div>
-                                        <div class="icon-content">
-                                            <h5 class="tilte o_default_snippet_text">Club Bolt</h5>
-                                            <p class="m-b0 o_default_snippet_text" style="
-    margin-bottom: 19px;
-">Un accès aux meilleures offres avec</p>
-                                            <p class="m-b0">
-                                                <span style="font-weight: 700">
-                                                    <a href="https://www.club.bolt.eu/" class="btn btn-success" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" lang="merciapp">Le Club Bolt</a>
-                                                </span>
-                                                <br />
-                                                <span style="font-weight: 700"></span>
-                                                <br />
-                                            </p>
-                                        </div>
-                                        <span class="fa fa-lightbulb-o"></span>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-
-                    <section class="s_picture bg-200 pt48 pb0" data-name="Picture">
-                        <div class="container">
-                            <div class="row s_nb_column_fixed">
-                                <div class="col-lg-12 s_title pt16 pb16">
-                                    <h2 style="text-align: center; ">
-                                        <span style="font-weight: 700;">
-                                            <font style="font-size: 36px;">Plus qu'une formation !&amp;nbsp;</font>
-                                        </span>
+                                            <font style="font-size: 18px;" class="text-epsilon">
+                                                <div style="text-align: center;">
+                                                    <b style="font-size: 1.60rem;">
+                                                        <font style="font-size: 18px;" class="text-epsilon">Offre </font>
+                                                        <font style="color: rgb(253, 209, 5); font-size: 18px;">valable&amp;nbsp;jusqu'au 25/05 (places limitées)</font>
+                                                    </b>
+                                                </div>
+                                            </font>
+                                        </b>
                                     </h2>
-                                </div>
-                                <div class="col-lg-12 pt16 pb16">
-                                    <p style="text-align: center;">
-                                        <span style="color: rgb(0, 0, 0); font-size: 16px; text-align: left;">Nous offrons à nos futurs conducteurs de VTC une formation à suivre à distance, à votre rythme sur notre plateforme e-learning. Les cours sont présentés sous forme de vidéos interactives, de Live avec nos formateurs, de QCM et d’examens blancs, soigneusement concoctés par nos experts métiers afin de mieux vous préparer à l’examen final.&amp;nbsp;</span>
+                                    <h2>
+                                        <div style="text-align: center;">
+                                            <b style="font-size: 1.60rem;">
+                                                <font style="font-size: 18px;" class="text-epsilon">En partenariat avec
+                    </font>
+                                                <font style="color: rgb(36, 240, 160); font-size: 18px;">&amp;nbsp;BOLT
+                  
+                
+                </font>
+                                            </b>
+                                        </div>
+                                        <br />
+                                        <font style="font-size: 18px;">Une formation de
+                </font>
+                                        <font style="color: rgb(239, 198, 49); font-size: 18px;" />
+                                        <font style="color: rgb(253, 209, 5); font-size: 18px;">70 heures
+                </font>
+                                        <font style="font-size: 18px;"> dont 40 heures de Live avec un expert métier pour une préparation optimale de votre examen théorique ! Pour profiter de cette offre, vous devrez passer et réussir un 
+                </font>
+                                        <font style="color: rgb(253, 209, 5); font-size: 18px;">examen blanc de 30 min
+                </font>
+                                        <font style="color: rgb(36, 240, 160); font-size: 18px;" />
+                                        <font style="font-size: 18px;" class="text-epsilon">
+                                            afin de prouver votre maîtrise de la langue française.&amp;nbsp;
+                                            <br />
+                                            <br />
+                                        </font>
+                                        <font style="font-size: 24px;" class="text-epsilon">
+                                            <div style="text-align: center;">
+                                                <b>Ce qu'on vous offre !
+                  
+                
+              </b>
+                                            </div>
+                                        </font>
+                                    </h2>
+                                    <p>
+                                        <font style="font-size: 18px;" class="text-epsilon">- Un </font>
+                                        <font style="font-size: 18px;" class="text-epsilon">accompagnement</font>
+                                        <font style="color: rgb(36, 240, 160); font-size: 18px;" />
+                                        <font style="font-size: 18px;" class="text-epsilon">de l’inscription à l’examen à l’inscription sur Bolt.</font>
+                                    </p>
+                                    <p>
+                                        <font style="font-size: 18px;" class="text-epsilon">- Des tarifs préférentiels</font>
+                                        <font style="color: rgb(239, 198, 49);">&amp;nbsp;</font>
+                                        <font style="font-size: 18px;">&amp;nbsp;sur la préparation, l’inscription à l’examen théorique&amp;nbsp;</font>
+                                        <font style="color: rgb(253, 209, 5); font-size: 18px;">(20€ au lieu de 706€)</font>
+                                        <font style="font-size: 18px;">&amp;nbsp;</font>
+                                        <font style="font-size: 18px;">et la location du véhicule pour l’examen&amp;nbsp;</font>
+                                        <font style="color: rgb(253, 209, 5); font-size: 18px;">(20€ au lieu de 200€)</font>
+                                        <span style="font-size: 18px;">.</span>
+                                    </p>
+                                    <p>
+                                        <font style="font-size: 18px;">- Un</font>
+                                        <font style="color: rgb(36, 240, 160); font-size: 18px;" />
+                                        <font style="color: rgb(253, 209, 5); font-size: 18px;">remboursement de la carte VTC (57,60€)</font>
+                                        <font style="font-size: 18px;">&amp;nbsp;lors de l’inscription sur Bolt.&amp;nbsp;</font>
+                                        <br />
+                                        <font style="font-size: 18px;">- Un accès aux meilleures offres avec</font>
+                                        <font style="color: rgb(36, 240, 160); font-size: 18px;">&amp;nbsp;</font>
+                                        <font style="color: rgb(36, 240, 160); font-size: 18px;">
+                                            <a href="https://www.club.bolt.eu/" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip304049" lang="merciapp" class="btn btn-success btn-sm"> Le Club Bolt</a>
+                                        </font>
                                         <br />
                                     </p>
-                                </div>
-                                <div class="col-lg-8 offset-lg-2 pb0">
-                                    <figure class="figure">
-                                        <img src="/web/image/260644/1%20MCM.png" class="figure-img img-fluid rounded img-thumbnail padding-large" alt="Odoo • une photo avec une légende" data-original-title="" title="" aria-describedby="tooltip708200" />
-                                        <figcaption class="figure-caption py-3 text-center">
-                                            <br />
-                                        </figcaption>
-                                    </figure>
+                                    <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                        <a href="/pricing" class="btn btn-success btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip663312"> Je m'inscris&amp;nbsp;maintenant ! </a>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </section>
+
                     <section id="sh_corpomate_theme_section_76" style="margin: 3rem 0rem 4rem 0rem">
                         <div class="container">
-                            <h2 class="fade-in-bottom js-scroll text-center ">LES DÉMARCHES À SUIVRE</h2>
-                            <div class="row js-scroll fade-in-bottom  ">
-                                <div class="col-md-3">
+                            <h2 class="fade-in-bottom js-scroll text-center scrolled">LES DÉMARCHES À SUIVRE</h2>
+                            <div class="row js-scroll fade-in-bottom scrolled">
+                                <div class="col-md-3" style="border-style: none; border-width: 0px;">
                                     <div class="sh_content">
                                         <div class="sh_num_icon">
                                             <section class="sh_num o_default_snippet_text">1</section>
-                                            <span class="bg-gamma fa fa-calendar sh_icon" />
+                                            <span class="bg-gamma fa sh_icon fa-sign-in fa-calendar" />
                                         </div>
                                         <h4 class="o_default_snippet_text" />
                                         <p>
-                                            Inscrivez-vous à notre formation et complétez vos documents.
+                                            Je m'inscris à la formation VTC, et j'insère les documents demandés.
                                             <br />
                                         </p>
                                     </div>
@@ -241,11 +202,11 @@
                                     <div class="sh_content sh_second_content">
                                         <div class="sh_num_icon">
                                             <section class="sh_num o_default_snippet_text">2</section>
-                                            <span class="sh_icon fa fa-folder-open-o" />
+                                            <span class="sh_icon fa fa-edit" />
                                         </div>
                                         <h4 class="o_default_snippet_text" />
                                         <p>
-                                            Vous allez passer un examen blanc pour tester vos connaissances en français.
+                                            Je passe un petit examen blanc pour tester mes connaissances en français.
                                             <br />
                                         </p>
                                     </div>
@@ -254,16 +215,16 @@
                                     <div class="sh_content">
                                         <div class="sh_num_icon">
                                             <section class="sh_num o_default_snippet_text">3</section>
-                                            <span class="sh_icon fa fa-calendar" />
+                                            <span class="sh_icon fa fa-credit-card" />
                                         </div>
                                         <h4 class="o_default_snippet_text" />
                                         <p>
-                                            Nous nous occuperons de votre inscription à l'examen à la chambre des métiers.
+                                            Je paye la formation et l'examen 20 €. MCM ACADEMY s'occupera de mon inscription à la CMA .
                                             <br />
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="border-style: none; border-width: 0px;">
                                     <div class="sh_content sh_last_content">
                                         <div class="sh_num_icon">
                                             <section class="sh_num o_default_snippet_text">4</section>
@@ -271,7 +232,7 @@
                                         </div>
                                         <h4 class="o_default_snippet_text" />
                                         <p>
-                                            Vous allez pouvoir suivre la formation VTC sur notre plateforme e-learning.
+                                            &amp;nbsp;J'aurais mon accès à plateforme en ligne pour commencer ma formation VTC.
                                             <br />
                                         </p>
                                     </div>
@@ -279,7 +240,6 @@
                             </div>
                         </div>
                     </section>
-
 
                     <section id="sh_corpomate_theme_section_257" class="sh_animation_part" data-name="text img">
                         <div class="container">
@@ -335,12 +295,14 @@
                                 </div>
                                 <div class="col-lg-5 col-md-5 sh_animation_part" style="border-style: none; border-width: 0px;">
                                     <div class="sh_img">
-                                        <img src="/web/image/259094/formation-taxi-%C3%A0-distance-Lyon.png" />
+                                        <img src="/mcm_website_theme/static/src/img/bolt/formation-taxi-à-distance-Lyon.png" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
+
+
                     <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0">
                         <div class="container">
                             <div class="row align-items-center">
@@ -364,6 +326,33 @@
                             </div>
                         </div>
                     </section>
+
+                    <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left scrolled">
+                                    <h2>
+                                        <b>Plus qu'une formation !&amp;nbsp;</b>
+                                    </h2>
+                                    <p class="para">
+                                        Nous offrons à nos futurs conducteurs de VTC une formation à
+                  suivre à distance, à votre rythme sur notre plateforme
+                  e-learning. Les cours sont présentés sous forme de vidéos
+                  interactives, de Live avec nos formateurs, de QCM et d’examens
+                  blancs, soigneusement concoctés par nos experts métiers afin
+                                        de mieux vous préparer à l’examen final.
+                                        <span id="scroll">&amp;nbsp;</span>
+                                        <br />
+                                    </p>
+                                </div>
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
+                                    <img class="img img-fluid mx-auto" alt="candidats formation taxi vtc" src="/mcm_website_theme/static/src/img/comment-s'inscrire-au-registre-VTC.png" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- -->
                     <style>#sh_corpomate_theme_section_76 .sh_content p:after {
                         width: 83%;
                         left: 65%;
@@ -375,6 +364,7 @@
                         -webkit-line-clamp: 5 !important;
                         }
                     </style>
+
                     <section class="s_text_image pt32 pb32" data-name="Text - Image">
                         <div class="container">
                             <div class="row align-items-center">
@@ -428,6 +418,7 @@
                             </div>
                         </div>
                     </section>
+
                     <section class="s_text_image pt32 pb32 bg-100" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0">
                         <div class="container" style="border-style: none; border-width: 0px">
                             <div class="row align-items-center">
@@ -462,6 +453,7 @@
                             </div>
                         </div>
                     </section>
+
                     <section id="sh_corpomate_theme_section_155" class="pb24 bg-100 pt16">
                         <div class="container">
                             <div class="row js-scroll fade-in-top ">
@@ -499,6 +491,96 @@
                             </div>
                         </div>
                     </section>
+
+                    <div id="pricing" class="js-scroll fade-in-top">
+                        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+                        <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
+                            <div class="container">
+                                <div class="sh_title mt48">
+                                    <h2>
+                                        <b>Inscrivez-vous dès maintenant !</b>
+                                        <br />
+                                    </h2>
+                                    <!-- <h4 style="
+                    margin-top: 20px;
+                    margin-bottom: 0.5rem;
+                    font-size: 18px;
+                  ">
+                  Choisissez le pack qui vous convient&amp;nbsp;
+                </h4> -->
+                                    <p>
+                                        <br />
+                                    </p>
+                                </div>
+                                <div class="row" style="justify-content: center !important">
+                                    <div class="col-md-5 sh_animation_part" style="border-style: none; border-width: 0px">
+                                        <div class="sh_pricing">
+                                            <t t-if="bolt_product.default_code=='vtc_bolt'">
+                                                <form action="/shop/cart/update" method="post" id="form-1-1">
+                                                    <input type="hidden" class="product_id" name="product_id" id="bolt_product" t-att-value="bolt_product.id" />
+                                                    <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                    <h4>PACK VTC</h4>
+                                                    <h4>
+                                                        <span class="pricebar" t-esc="round(vtc_product.list_price)" />
+                                                        <span style="color: #fdd105" t-esc="vtc_product.currency_id.symbol" />
+                                                    </h4>
+                                                    <ul class="" style="word-break: break-word; position: relative; z-index: 0;">
+                                                        <li>Formation 40h ( En direct )</li>
+                                                        <li>Formation 30h ( 100% à distance )</li>
+                                                        <li>Accès à + de 12 examens d'entraînement</li>
+                                                        <li>Assistance par mail</li>
+                                                        <li>Assistance&amp;nbsp;par téléphone</li>
+                                                        <li>
+                                                            Lives&amp;nbsp;avec les formateurs pour explications
+                                                            <br />
+                                                        </li>
+                                                        <li>
+                                                            Assistance&amp;nbsp;par visioconférence
+                                                            <br />
+                                                            <br />
+                                                        </li>
+                                                        <li>
+                                                            <span style="font-weight: 700;">
+                                                                Examen en présentiel à la CMA de l'
+                                                                <span style="color: rgb(0, 0, 0); font-family: Roboto, sans-serif; font-size: 16.8px; text-align: start;">Î</span>
+                                                                le de France
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <br />
+                                                        </li>
+                                                    </ul>
+                                                    <t t-if="promo and promo.name=='bolt'">
+                                                        <p class="text-center font-weight-bolder text-secondary">
+                                                            <b style="font-size: 80%">
+                                                                <t>avec le code</t>
+                                                                <t style="color: #24f0a0" t-esc="promo.code" />
+                                                            </b>
+                                                        </p>
+                                                    </t>
+                                                    <h4>
+                                                        <span t-esc="round(bolt_product.list_price)" />
+                                                        <span style="color: #fdd105" t-esc="bolt_product.currency_id.symbol" />
+                                                    </h4>
+                                                    <br />
+                                                    <div class="sh_btn">
+                                                        <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
+                        Je m'inscris
+                                            </a> -->
+                                                        <!-- onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;"-->
+                                                        <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
+                        Je m'inscris
+                                            </a>
+                                                    </div>
+                                                </form>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
                     <section class="clients s_references bg-200 pt16 pb32 js-scroll fade-in-top " data-name="References">
                         <div class="container text-center">
                             <div class="center-logo">
@@ -520,6 +602,7 @@
                             </div>
                         </div>
                     </section>
+
                 </div>
             </div>
         </t>
