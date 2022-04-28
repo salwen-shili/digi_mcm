@@ -1988,3 +1988,16 @@ class MCM_SIGNUP(http.Controller):
 
                 return True
 
+    @http.route('/inscription-bolt', type='http', auth='public', website=True)
+    def inscription_bolt_jotform(self, **kw, ):
+        if request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_bolt_inscirption")
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/examen-blanc', type='http', auth='public', website=True)
+    def documents_bolt_jotform(self, **kw, ):
+        if request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_bolt_documents")
+        else:
+            raise werkzeug.exceptions.NotFound()

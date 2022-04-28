@@ -49,13 +49,6 @@ class Website(Website):
         else:
             raise werkzeug.exceptions.NotFound()
 
-    @http.route('/test-form', type='http', auth='public', website=True)
-    def test_form(self, **kw, ):
-        if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_test_form")
-        else:
-            raise werkzeug.exceptions.NotFound()
-
     # Page de destination Paris
 
     @http.route('/devenir-coursier-paris', type='http', auth='public', website=True)
