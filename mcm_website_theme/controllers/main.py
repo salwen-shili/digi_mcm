@@ -22,7 +22,6 @@ import locale
 import json
 import logging
 import requests
-
 _logger = logging.getLogger(__name__)
 PPG = 20  # Products Per Page
 PPR = 4  # Products Per Row
@@ -779,7 +778,8 @@ class Routes_Site(http.Controller):
         city = rawRequest['q82_adresse']['city']
         state = rawRequest['q82_adresse']['state']
         zipcode = rawRequest['q82_adresse']['postal']
-        submissionID = json.loads(kw['submissionID'])
+        ipjotform = json.loads(kw['ip'])
+        _logger.info("PI IP IP IP IP IP IP IP of webhook_contact_form : %s" % (ipjotform))
         res_user = request.env['res.users']
         odoo_contact = res_user.search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
         if not odoo_contact:
@@ -857,18 +857,20 @@ class Routes_Site(http.Controller):
             odoo_contact.city = city if city else ""
             odoo_contact.zip = zip if zip else ""
             odoo_contact.bolt = True
-            odoo_contact.submissionID = submissionID
+            odoo_contact.ipjotform = ipjotform
         return True
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
     def webhook_integration_examen(self, **kw):
         rawRequest = json.loads(kw['rawRequest'])
-        submissionID = json.loads(kw['submissionID'])
+        ipjotform = json.loads(kw['ip'])
+        _logger.info("kw kw kw kw kw kw kw: %s" % (kw))
+        _logger.info("submissionID of webhook_integration_examen: %s" % (ipjotform))
         _logger.info("RawRequest Webhoook examen blanc %s" % (rawRequest))
         q114_resultatExamen = rawRequest['q114_resultatExamen']
         _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
         user = request.env['res.users'].sudo().search(
-            [('submissionID', "=", submissionID)], limit=1)
+            [('ipjotform', "=", ipjotform)], limit=1)
         if user:
             multiplication_note_exam_blan = q114_resultatExamen * 5
             user.note_exam = multiplication_note_exam_blan
