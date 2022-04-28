@@ -404,7 +404,11 @@ class partner(models.Model):
                     new_format = '%d/%m/%Y'
                     # Changer format de date et la mettre en majuscule
                     date_ajout = today.strftime(new_format)
-                    partner.date_creation = date_ajout
+                    # partner.date_creation = date_ajout
+                    """Remplir champs date_creation  """
+                    self._cr.execute(
+                        """UPDATE res_partner SET date_creation = %s WHERE id=%s""", (date_ajout, partner.id,))
+                    self._cr.commit()
                     _logger.info('date_inscrit %s' % str(partner.date_creation))
 
                     # Affecter i-One to groupe digimoov-bienvenue
