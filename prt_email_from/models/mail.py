@@ -72,15 +72,15 @@ class MailMessage(models.Model):
         return formataddr((name_from, email))
 
     # -- Create
-    @api.model
-    def create(self, vals):
-        # Use regular flow if not set
-        if not self.env.user.company_id.use_company_email:
-            return super(MailMessage, self).create(vals)
-        # Compose "email_from" if template is not used
-        if not self._context.get("default_use_template", False):
-            vals.update({"email_from": self._get_default_from()})
-        return super(MailMessage, self).create(vals)
+    # @api.model
+    # def create(self, vals):
+    #     # Use regular flow if not set
+    #     if not self.env.user.company_id.use_company_email:
+    #         return super(MailMessage, self).create(vals)
+    #     # Compose "email_from" if template is not used
+    #     if not self._context.get("default_use_template", False):
+    #         vals.update({"email_from": self._get_default_from()})
+    #     return super(MailMessage, self).create(vals)
 
 
 ###############
