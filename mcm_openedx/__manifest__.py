@@ -28,7 +28,7 @@
     'depends': ['base',
                 'mail',
                 'mcm_session',
-                'crm_marketing_automation'],
+                'crm_marketing_automation','calendly_api_integration'],
 
     # always loaded
     'data': [

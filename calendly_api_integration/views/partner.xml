@@ -6,8 +6,9 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="before">
-                <group attrs="{'invisible': [('company_id', '=', 2)]}">
-                    <group string="Pré-requis" name="calendly" attrs="{'invisible': [('company_id', '=', 2)]}">
+                <group attrs="{'invisible': ['|',('company_id', '=', 2),('est_coach','=',True)]}">
+                    <group string="Pré-requis" name="calendly"
+                           attrs="{'invisible': ['|',('company_id', '=', 2),('est_coach','=',True)]}">
                         <field name="driver_licence"/>
                         <field name="license_suspension"/>
                         <field name="criminal_record"/>
@@ -24,7 +25,7 @@
     <record id="res_partner_view_button_rendezvous" model="ir.ui.view">
         <field name="name">res.partner.view.buttons.rendezvous</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="priority" eval="1"/>
         <field name="arch" type="xml">
             <div name="button_box" position="inside">

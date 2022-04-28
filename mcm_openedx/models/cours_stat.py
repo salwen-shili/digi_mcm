@@ -55,7 +55,6 @@ class Cours_stat(models.Model):
                 apprenant.mooc_temps_passe_heure = heure
                 apprenant.mooc_temps_passe_min = minute
                 apprenant.mooc_temps_passe_seconde = secondes
-
                 apprenant.mooc_dernier_coonx = exist.jour
                 exist.partner = apprenant.id
                 self.partner = exist.partner
