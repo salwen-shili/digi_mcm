@@ -56,7 +56,8 @@ class Website(Home):
         last_ville = request.env['session.ville'].sudo().search(
             [('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville desc', limit=1)
         list_villes = request.env['session.ville'].sudo().search(
-            [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville asc')
+            [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)],
+            order='name_ville asc')
         values = {
             'list_villes': list_villes,
             'last_ville': last_ville
@@ -208,7 +209,7 @@ class Routes_Site(http.Controller):
         vals['street2'] = kw.get("street2")
         vals['phone'] = kw.get("phone")
         vals['street'] = kw.get("num_voie") + " " + \
-            kw.get("voie") + " " + kw.get("nom_voie")
+                         kw.get("voie") + " " + kw.get("nom_voie")
         user_id = request.uid
         partner = request.env['res.users'].sudo().search(
             [('id', "=", user_id)]).partner_id
@@ -445,13 +446,14 @@ class Routes_Site(http.Controller):
                                  ('survey_id', '=', survey.id)],
                                 order='create_date asc', limit=1)
                             if not survey_user:
-                                url = '/survey/start/'+str(survey.access_token)
+                                url = '/survey/start/' + str(survey.access_token)
                                 return werkzeug.utils.redirect(url, 301)
                             if survey_user and survey_user.state == 'new':
-                                url = '/survey/start/'+str(survey.access_token)
+                                url = '/survey/start/' + str(survey.access_token)
                                 return werkzeug.utils.redirect(url, 301)
                             if survey_user and survey_user.state == 'skip':
-                                return werkzeug.utils.redirect(str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
+                                return werkzeug.utils.redirect(
+                                    str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
                             if survey_user and survey_user.state == 'done':
                                 if not survey_user.quizz_passed:
                                     return werkzeug.utils.redirect('/bolt', 301)
@@ -565,12 +567,16 @@ class Routes_Site(http.Controller):
                         slugname = (product_id.name).strip().strip(
                             '-').replace(' ', '-').lower()
                         if str(slugname) != str(product):
-                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo',
+                                                                                  'coursierjob', 'box2home',
+                                                                                  'coursier2roues']:
                                 return request.redirect("/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/felicitations/" % (slugname))
                         else:
-                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo',
+                                                                                  'coursierjob', 'box2home',
+                                                                                  'coursier2roues']:
                                 return request.redirect("/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
                     else:
                         return request.redirect("/felicitations")
@@ -583,12 +589,14 @@ class Routes_Site(http.Controller):
                                 [('company_id', '=', 2), ('name', "=", str(partenaire))])
                             if not pricelist:
                                 pricelist_id = order.pricelist_id
-                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                         'coursier2roues']:
                                     return request.redirect("/%s/%s/felicitations/" % (slugname, pricelist_id.name))
                                 else:
                                     return request.redirect("/%s/felicitations/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                      'coursier2roues']:
                                     return request.redirect(
                                         "/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
                                 else:
@@ -604,7 +612,8 @@ class Routes_Site(http.Controller):
                                 else:
                                     return request.redirect("/%s/felicitations/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                      'coursier2roues']:
                                     if pricelist.name != order.pricelist_id.name:
                                         return request.redirect(
                                             "/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
@@ -613,7 +622,8 @@ class Routes_Site(http.Controller):
                     else:
                         pricelist = request.env['product.pricelist'].sudo().search(
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
-                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                            'coursier2roues']:
                             return request.redirect("/%s" % (pricelist.name))
                         else:
                             return request.redirect("/felicitations")
@@ -632,7 +642,7 @@ class Routes_Site(http.Controller):
         # Étape suivante est documents
         documents = request.env['documents.document'].sudo().search(
             [('partner_id', '=', partner.id)])
-        if not documents :
+        if not documents:
             partner.step = "document"
         else:
             partner.step = "financement"
@@ -711,7 +721,7 @@ class Routes_Site(http.Controller):
             if survey:
                 survey_user = request.env['survey.user_input'].sudo().search(
                     [('partner_id', "=", request.env.user.partner_id.id),
-                     ('survey_id', '=', survey.id),('state',"=",'done')],
+                     ('survey_id', '=', survey.id), ('state', "=", 'done')],
                     order='create_date asc', limit=1)
                 if not survey_user:
                     exam_state = 'exam_not_passed'
@@ -750,6 +760,122 @@ class Routes_Site(http.Controller):
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_bolt", values)
+
+    """ get data of new contact from jotform using webhook """
+
+    @http.route(['/webhook_contact_form'], type='http', auth="public", csrf=False)
+    def create_contact_from_jotform_webhook(self, **kw):
+        _logger.info("webhoook contact jotform %s" % (kw))
+        rawRequest = kw['rawRequest']
+        _logger.info("rawRequest : %s" % (rawRequest))
+        rawRequest = json.loads(rawRequest)
+        firstname = rawRequest['q53_nom']['first']
+        lastName = rawRequest['q53_nom']['last']
+        tel = str(rawRequest['q59_numeroDe']['area']) + str(rawRequest['q59_numeroDe']['phone'])
+        email = (rawRequest['q54_email']).replace(' ', '').lower()
+        street = rawRequest['q82_adresse']['addr_line1']
+        street2 = rawRequest['q82_adresse']['addr_line2']
+        city = rawRequest['q82_adresse']['city']
+        state = rawRequest['q82_adresse']['state']
+        zipcode = rawRequest['q82_adresse']['postal']
+        ipjotform = json.loads(kw['ip'])
+        _logger.info("PI IP IP IP IP IP IP IP of webhook_contact_form : %s" % (ipjotform))
+        res_user = request.env['res.users']
+        odoo_contact = res_user.search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+        if not odoo_contact:
+            if tel:
+                odoo_contact = request.env["res.users"].sudo().search(
+                    [("phone", "=", str(tel))], limit=1)
+                if not odoo_contact:
+                    phone_number = str(tel).replace(' ', '')
+                    if '+33' not in str(phone_number):  # check if jotform webhook send the number of client with +33
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' not in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 33xxxxxxx)
+                            phone = '+' + str(tel)
+                            odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not odoo_contact:
+                                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[
+                                                                                                              8:10] + ' ' + phone[
+                                                                                                                            10:]
+                                odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 33 x xx xx xx)
+                            phone = '+' + str(tel)
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' not in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 07xxxxxx)
+                            odoo_contact = request.env["res.users"].sudo().search([("phone", "=", str(tel))], limit=1)
+                            print('odoo_contact5 :', odoo_contact.partner_id.name)
+                            if not odoo_contact:
+                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[8:]
+                                odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 07 xx xx xx)
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", str(tel)), str(tel).replace(' ', '')], limit=1)
+                    else:  # check if jotform webhook send the number of client with+33
+                        if ' ' not in str(tel):
+                            phone = str(tel)
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
+                                                                                                                8:10] + ' ' + phone[
+                                                                                                                              10:]
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                [("phone", "=", phone)], limit=1)
+                        if not odoo_contact:
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                            if not odoo_contact:
+                                phone = str(phone_number)
+                                phone = phone[3:]
+                                phone = '0' + str(phone)
+                                odoo_contact = request.env["res.users"].sudo().search(
+                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
+        if not odoo_contact:
+            odoo_contact = request.env['res.users'].sudo().create({
+                'name': str(firstname) + " " + str(lastName),
+                'firstname': str(firstname),
+                'lastName': str(lastName),
+                'login': str(email),
+                'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
+                'email': email,
+                'phone': tel,
+                'notification_type': 'email',
+                'website_id': 1,
+                'company_ids': [1, 2],
+                'company_id': 1
+            })
+        if odoo_contact:
+            odoo_contact.street = street if street else ""
+            odoo_contact.street2 = street2 if street else ""
+            odoo_contact.city = city if city else ""
+            odoo_contact.zip = zip if zip else ""
+            odoo_contact.bolt = True
+            odoo_contact.ipjotform = ipjotform
+        return True
+
+    @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
+    def webhook_integration_examen(self, **kw):
+        rawRequest = json.loads(kw['rawRequest'])
+        ipjotform = json.loads(kw['ip'])
+        _logger.info("kw kw kw kw kw kw kw: %s" % (kw))
+        _logger.info("submissionID of webhook_integration_examen: %s" % (ipjotform))
+        _logger.info("RawRequest Webhoook examen blanc %s" % (rawRequest))
+        q114_resultatExamen = rawRequest['q114_resultatExamen']
+        _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
+        user = request.env['res.users'].sudo().search(
+            [('ipjotform', "=", ipjotform)], limit=1)
+        if user:
+            multiplication_note_exam_blan = q114_resultatExamen * 5
+            user.note_exam = multiplication_note_exam_blan
+            _logger.info("user.note_exam SUR LA FICHE CLIENT %s" % (user.note_exam))
+        return True
 
     @http.route('/formation-taxi-Paris', type='http', auth='public', website=True)
     def taxi_paris(self):
@@ -1263,8 +1389,8 @@ class WebsiteSale(WebsiteSale):
                     order.partner_invoice_id = partner_id
                     if not kw.get('use_same'):
                         kw['callback'] = kw.get('callback') or \
-                            (not order.only_services and (
-                                mode[0] == 'edit' and '/shop/checkout' or '/shop/address'))
+                                         (not order.only_services and (
+                                                 mode[0] == 'edit' and '/shop/checkout' or '/shop/address'))
                 elif mode[1] == 'shipping':
                     order.partner_shipping_id = partner_id
 
@@ -1312,7 +1438,7 @@ class WebsiteSale(WebsiteSale):
             'field_required') or '').split(',') if f]
         # Required fields from mandatory field function
         required_fields += mode[
-            1] == 'shipping' and self._get_mandatory_shipping_fields() or self._get_mandatory_billing_fields()
+                               1] == 'shipping' and self._get_mandatory_shipping_fields() or self._get_mandatory_billing_fields()
         # Check if state required
         country = request.env['res.country']
         if data.get('country_id'):
@@ -1433,7 +1559,9 @@ class Payment3x(http.Controller):
         return True
 
     """Route est appelé quand Pole emploi dans panier est coché """
-    @http.route(['/shop/cart/update_pole_emploi'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
+
+    @http.route(['/shop/cart/update_pole_emploi'], type='json', auth="public", methods=['POST'], website=True,
+                csrf=False)
     def cart_update_pole_emploi(self, pole_emploi_state):
         order = request.website.sale_get_order(force_create=1)
         print('order:', order, 'pole_emploi_state:', pole_emploi_state)
@@ -1444,7 +1572,8 @@ class Payment3x(http.Controller):
             order.partner_id.is_pole_emploi = pole_emploi_state
         return pole_emploi_state
 
-    @http.route(['/shop/payment/update_cartebleu'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
+    @http.route(['/shop/payment/update_cartebleu'], type='json', auth="public", methods=['POST'], website=True,
+                csrf=False)
     def cart_update_cartebleu(self, cartebleu):
         order = request.website.sale_get_order(force_create=1)
         if cartebleu and order.partner_id.statut != 'won':
@@ -1483,7 +1612,8 @@ class Conditions(http.Controller):
                 order.partner_id.renounce_request = False
         return True
 
-    @http.route(['/shop/payment/update_failures_not_signed'], type='json', auth="public", methods=['POST'], website=True)
+    @http.route(['/shop/payment/update_failures_not_signed'], type='json', auth="public", methods=['POST'],
+                website=True)
     def cart_update_failures_not_signed(self, failures, token):
         """This route is called when changing failures in contract not signed."""
         order = request.env['sale.order'].sudo().search(
@@ -1855,3 +1985,4 @@ class MCM_SIGNUP(http.Controller):
                 payment.post()
 
                 return True
+
