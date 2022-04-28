@@ -778,7 +778,7 @@ class Routes_Site(http.Controller):
         city = rawRequest['q82_adresse']['city']
         state = rawRequest['q82_adresse']['state']
         zipcode = rawRequest['q82_adresse']['postal']
-        ipjotform = json.loads(kw['ip'])
+        ipjotform = str(kw['ip'])
         _logger.info("IP of webhook_contact_form : %s" % (ipjotform))
         res_user = request.env['res.users']
         odoo_contact = res_user.search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
@@ -864,7 +864,7 @@ class Routes_Site(http.Controller):
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
     def webhook_integration_examen(self, **kw):
         rawRequest = json.loads(kw['rawRequest'])
-        ipjotform = json.loads(kw['ip'])
+        ipjotform = str(kw['ip'])
         _logger.info("kw kw kw kw kw kw kw: %s" % (kw))
         _logger.info("submissionID of webhook_integration_examen: %s" % (ipjotform))
         _logger.info("RawRequest Webhoook examen blanc %s" % (rawRequest))
