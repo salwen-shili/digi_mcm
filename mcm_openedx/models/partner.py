@@ -100,6 +100,7 @@ class partner(models.Model):
                        'course-v1:Digimoov+sec_rout_02+2,'
                        'course-v1:Digimoov+ges02+2,'
                        'course-v1:Digimoov+angl_01+1,'
+                       'course-v1:DIGIMOOV+CN02+2022,'
                        'course-v1:Digimoov+fr_02+2',
             'identifiers': self.email,
         }
@@ -113,6 +114,7 @@ class partner(models.Model):
         print(response.text)
 
     # ajouter les cours de formation taxi a l'apprenant
+    # ajouter cour connaisance locale 2022 pour les autres departements
     def inscriteTaxi(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -122,10 +124,11 @@ class partner(models.Model):
             'courses':
                 'course-v1:Digimoov+ges02+2,'
                 'course-v1:Digimoov+angl_01+1,'
+                'course-v1:DIGIMOOV+CN02+2022,'
                 'course-v1:Digimoov+reg_taxi_02+2,'
                 'course-v1:Digimoov+sec_rout_02+2,'
                 'course-v1:Digimoov+t3p_02+2,'
-                # 'course-v1:DIGIMOOV+CN02+2022,' probleme avec id de cour 2022
+                'course-v1:DIGIMOOV+CN02+2022,'
                 'course-v1:Digimoov+fr_02+2',
             'identifiers': self.email,
         }

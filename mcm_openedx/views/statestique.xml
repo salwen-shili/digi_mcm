@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-<!--
 
     <record id="session_course_view" model="ir.ui.view">
         <field name="name">courses</field>
@@ -10,6 +9,8 @@
             <search>
                 <field name="email"
                        filter_domain="[('email','ilike',self)]"></field>
+          <field name="nomutilisateur"
+                       filter_domain="[('nomutilisateur','ilike',self)]"></field>
 
                 <filter name="group_email" string="Email" icon="terp-partner"
                         context="{'group_by':'email'}"/>
@@ -35,6 +36,7 @@
                         <field name="temppassetotale"/>
                         <field name="nomutilisateur"/>
                         <field name="idcour"/>
+                        <field name="temppasse"/>
                         <field name="jour"/>
 
 
@@ -55,6 +57,7 @@
                 <field name="temppassetotale"/>
                 <field name="nomutilisateur"/>
                 <field name="idcour"/>
+                <field name="temppasse"/>
                 <field name="jour"/>
             </tree>
         </field>
@@ -73,7 +76,7 @@
                                                   oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
 
                             <div class="oe_dropdown_kanban">
-                                &lt;!&ndash; dropdown menu &ndash;&gt;
+                                <!-- dropdown menu -->
                                 <div class="oe_dropdown_toggle">
                                     <i class="fa fa-bars fa-lg"/>
                                     <ul class="oe_dropdown_menu">
@@ -89,7 +92,7 @@
                                 <div class="oe_clear"></div>
                             </div>
                             <div t-attf-class="oe_kanban_content">
-                                &lt;!&ndash; title &ndash;&gt;
+                                <!-- title -->
                                 Nom Utilisateur
                                 <field name="nomutilisateur"/>
 
@@ -143,6 +146,5 @@
 
     </record>
 
--->
 
 </odoo>
