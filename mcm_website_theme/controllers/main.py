@@ -854,7 +854,7 @@ class Routes_Site(http.Controller):
                 'street': street if street else "",
                 'street2': street2 if street else "",
                 'city': city if city else "",
-                'zip': zip if zip else "",
+                'zip': zipcode if zipcode else "",
                 'bolt': True,
             })
         if odoo_contact:
