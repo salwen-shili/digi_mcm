@@ -15,4 +15,4 @@ class Partner(models.Model):
     # Ce champ est utilisé pour l'espace client
     # À chaque fois que l'on termine une étape, le champ step prends la valeur de l'étape suivante
     step = fields.Char("step")
-    submissionID = fields.Char(string="submissionID Jotform")
+    ipjotform = fields.Char(string="IP Jotform")
