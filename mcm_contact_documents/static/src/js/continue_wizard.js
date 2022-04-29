@@ -194,36 +194,39 @@ document.addEventListener('DOMContentLoaded', function () {
       // we will treat exam state of bolt here any way
       //Bolt exam state : exam_not_passed, in_process, success, failed
       if (document.getElementById('cartIsEmpty').value == 'False') {
-        if (isBoltState == 'True') {
-          if (document.getElementById('exam_state')) {
-            switch (document.getElementById('exam_state').value) {
-              case 'exam_not_passed':
-                btnContinuer.setAttribute('href', messageAction.boltExamen.notpassed.url);
-                textDescription.innerHTML = messageAction.boltExamen.notpassed.message;
-                break;
-              // case 'in_process':
-              //   btnContinuer.setAttribute(
-              //     'href',
-              //     messageAction.boltExamen.inProcess.url
-              //   );
-              //   textDescription.innerHTML =
-              //     messageAction.boltExamen.inProcess.message;
-              //   break;
-              case 'success':
-                btnContinuer.setAttribute('href', messageAction.boltExamen.succed.url);
-                textDescription.innerHTML = messageAction.boltExamen.succed.message;
-                break;
-              case 'failed':
-                btnContinuer.setAttribute('href', messageAction.boltExamen.failed.url);
-                textDescription.innerHTML = messageAction.boltExamen.failed.message;
-                break;
-            }
-          }
-        } else {
-          // coordonnees
-          btnContinuer.setAttribute('href', messageAction.coordonnees.url);
-          textDescription.innerHTML = messageAction.coordonnees.message;
-        }
+        //
+        // if (isBoltState == 'True') {
+        //   if (document.getElementById('exam_state')) {
+        //     switch (document.getElementById('exam_state').value) {
+        //       case 'exam_not_passed':
+        //         btnContinuer.setAttribute('href', messageAction.boltExamen.notpassed.url);
+        //         textDescription.innerHTML = messageAction.boltExamen.notpassed.message;
+        //         break;
+        //       // case 'in_process':
+        //       //   btnContinuer.setAttribute(
+        //       //     'href',
+        //       //     messageAction.boltExamen.inProcess.url
+        //       //   );
+        //       //   textDescription.innerHTML =
+        //       //     messageAction.boltExamen.inProcess.message;
+        //       //   break;
+        //       case 'success':
+        //         btnContinuer.setAttribute('href', messageAction.boltExamen.succed.url);
+        //         textDescription.innerHTML = messageAction.boltExamen.succed.message;
+        //         break;
+        //       case 'failed':
+        //         btnContinuer.setAttribute('href', messageAction.boltExamen.failed.url);
+        //         textDescription.innerHTML = messageAction.boltExamen.failed.message;
+        //         break;
+        //     }
+        //   }
+        // }
+        //else{}
+        //
+
+        // coordonnees
+        btnContinuer.setAttribute('href', messageAction.coordonnees.url);
+        textDescription.innerHTML = messageAction.coordonnees.message;
       }
 
       break;
@@ -277,6 +280,32 @@ document.addEventListener('DOMContentLoaded', function () {
       //he has paid so he must has a contract
       //we recheck if we have an url
       if (document.getElementById('cartIsEmpty').value == 'False') {
+        if (isBoltState == 'True') {
+          if (document.getElementById('exam_state')) {
+            switch (document.getElementById('exam_state').value) {
+              case 'exam_not_passed':
+                btnContinuer.setAttribute('href', messageAction.boltExamen.notpassed.url);
+                textDescription.innerHTML = messageAction.boltExamen.notpassed.message;
+                break;
+              // case 'in_process':
+              //   btnContinuer.setAttribute(
+              //     'href',
+              //     messageAction.boltExamen.inProcess.url
+              //   );
+              //   textDescription.innerHTML =
+              //     messageAction.boltExamen.inProcess.message;
+              //   break;
+              case 'success':
+                btnContinuer.setAttribute('href', messageAction.boltExamen.succed.url);
+                textDescription.innerHTML = messageAction.boltExamen.succed.message;
+                break;
+              case 'failed':
+                btnContinuer.setAttribute('href', messageAction.boltExamen.failed.url);
+                textDescription.innerHTML = messageAction.boltExamen.failed.message;
+                break;
+            }
+          }
+        }
         if (document.getElementById('bolt_contract_uri').value !== 'False') {
           bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
 
