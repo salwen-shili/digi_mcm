@@ -1,6 +1,6 @@
 var message = {
   False: '',
-  exam_not_passed: 'Vous pouvez passer votre examen blanc en cliquant sur le bouton.',
+  exam_not_passed: 'Vous pouvez passer votre examen blanc en cliquant sur continuer.',
   in_process: `La correction de votre examen est en cours. Vous recevrez votre résultat dans 24 heures.`,
   success:
     'Félicitations, vous avez réussi votre examen. Cliquez sur continuer pour finaliser votre inscription.',
