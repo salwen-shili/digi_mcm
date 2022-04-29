@@ -13,38 +13,38 @@
                 <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/popup_page_bolt.js" /> -->
 
                 <style>
-                    .body{
-                    scroll-behavior: smooth;
-                    }
-                    #sh_corpomate_theme_section_257 .sh_content p {
-                    color: #6c6a6a;
-                    margin-bottom: 20px;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 5;
-                    -webkit-box-orient: vertical;
-                    font-size: 16px;
-                    overflow: hidden;
-                    }
-                    #sh_corpomate_theme_section_257 .sh_content p {
-                    font-size: 16px;
-                    color: #6c6a6a !important;
-                    }
-                    pricebar::after {
-                    content: ' ';
-                    display: block;
-                    width: 100%;
-                    border-top: 3px solid red;
-                    height: 12px;
-                    position: absolute;
-                    bottom: 9px;
-                    left: 2px;
-                    transform: rotate(310deg);
-                    }
-                    #sh_corpomate_theme_section_315 {
-    padding: 70px 0px;
-    margin-bottom: 40px;
-}
-                </style>
+    .body {
+      scroll-behavior: smooth;
+    }
+    #sh_corpomate_theme_section_257 .sh_content p {
+      color: #6c6a6a;
+      margin-bottom: 20px;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      font-size: 16px;
+      overflow: hidden;
+    }
+    #sh_corpomate_theme_section_257 .sh_content p {
+      font-size: 16px;
+      color: #6c6a6a !important;
+    }
+    pricebar::after {
+      content: ' ';
+      display: block;
+      width: 100%;
+      border-top: 3px solid red;
+      height: 12px;
+      position: absolute;
+      bottom: 9px;
+      left: 2px;
+      transform: rotate(310deg);
+    }
+    #sh_corpomate_theme_section_315 {
+      padding: 70px 0px;
+      margin-bottom: 40px;
+    }
+  </style>
                 <!-- popup-->
                 <input t-att-value="exam_state" id="exam_state" name="exam_state" type="hidden" />
                 <input id="cartIsEmpty" type="hidden" t-att-value="cartIsEmpty" />
@@ -70,112 +70,116 @@
                     </div>
                 </div>
 
-                <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px; word-break: break-word; position: relative; z-index: 0;">
-
-
+                <div id="wrap" class="oe_structure" style="
+      border-style: none;
+      border-width: 0px;
+      word-break: break-word;
+      position: relative;
+      z-index: 0;
+    ">
                     <section class="s_text_image pt32 pb32" data-name="Image - Text">
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-lg-6 pt0 pb0">
                                     <img src="/mcm_website_theme/static/src/img/bolt/BOLT 6.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip143371" />
                                 </div>
-                                <div class="col-lg-6 pt16 pb16 bg-gamma" style="border-style: none; border-width: 0px;">
+                                <div class="col-lg-6 pt16 pb16 bg-gamma" style="border-style: none; border-width: 0px">
                                     <h2>
-                                        <div style="text-align: center;">
-                                            <b style="font-size: 1.60rem;">
-                                                <font style="color: rgb(253, 209, 5);">Formation&amp;nbsp;VTC</font>
-                                                <font class="text-epsilon"> +&amp;nbsp;</font>
-                                                <font style="color: rgb(253, 209, 5);">Examen&amp;nbsp;VTC</font>
+                                        <div style="text-align: center">
+                                            <b style="font-size: 1.6rem">
+                                                <font style="color: rgb(253, 209, 5)">Formation VTC</font>
+                                                <font class="text-epsilon"> + </font>
+                                                <font style="color: rgb(253, 209, 5)">Examen VTC</font>
                                                 <font class="text-epsilon"> à</font>
-                                                &amp;nbsp;
-                                                <font style="color: rgb(253, 209, 5);">20 €</font>
+
+                                                <font style="color: rgb(253, 209, 5)">20 €</font>
                                             </b>
                                         </div>
                                         <b>
-                                            <div style="text-align: center;">
-                                                <b style="font-size: 1.60rem;">
-                                                    <font style="font-size: 24px;">au lieu de 706 euros&amp;nbsp;</font>
+                                            <div style="text-align: center">
+                                                <b style="font-size: 1.6rem">
+                                                    <font style="font-size: 24px">au lieu de 706 euros </font>
                                                 </b>
                                             </div>
-                                            <font style="font-size: 18px;" class="text-epsilon">
-                                                <div style="text-align: center;">
-                                                    <b style="font-size: 1.60rem;">
-                                                        <font style="font-size: 18px;" class="text-epsilon">Offre </font>
-                                                        <font style="color: rgb(253, 209, 5); font-size: 18px;">valable&amp;nbsp;jusqu'au 25/05 (places limitées)</font>
+                                            <font style="font-size: 18px" class="text-epsilon">
+                                                <div style="text-align: center">
+                                                    <b style="font-size: 1.6rem">
+                                                        <font style="font-size: 18px" class="text-epsilon">Offre </font>
+                                                        <font style="color: rgb(253, 209, 5); font-size: 18px">valable jusqu'au 25/05 (places limitées)</font>
                                                     </b>
                                                 </div>
                                             </font>
                                         </b>
                                     </h2>
                                     <h2>
-                                        <div style="text-align: center;">
-                                            <b style="font-size: 1.60rem;">
-                                                <font style="font-size: 18px;" class="text-epsilon">En partenariat avec
-                    </font>
-                                                <font style="color: rgb(36, 240, 160); font-size: 18px;">&amp;nbsp;BOLT
-                  
-                
-                </font>
+                                        <div style="text-align: center">
+                                            <b style="font-size: 1.6rem">
+                                                <font style="font-size: 18px" class="text-epsilon">En partenariat avec
+                  </font>
+                                                <font style="color: rgb(36, 240, 160); font-size: 18px"> BOLT </font>
                                             </b>
                                         </div>
                                         <br />
-                                        <font style="font-size: 18px;">Une formation de
-                </font>
-                                        <font style="color: rgb(239, 198, 49); font-size: 18px;" />
-                                        <font style="color: rgb(253, 209, 5); font-size: 18px;">70 heures
-                </font>
-                                        <font style="font-size: 18px;"> dont 40 heures de Live avec un expert métier pour une préparation optimale de votre examen théorique ! Pour profiter de cette offre, vous devrez passer et réussir un 
-                </font>
-                                        <font style="color: rgb(253, 209, 5); font-size: 18px;">examen blanc de 30 min
-                </font>
-                                        <font style="color: rgb(36, 240, 160); font-size: 18px;" />
-                                        <font style="font-size: 18px;" class="text-epsilon">
-                                            afin de prouver votre maîtrise de la langue française.&amp;nbsp;
+                                        <font style="font-size: 18px">Une formation de </font>
+                                        <font style="color: rgb(239, 198, 49); font-size: 18px" />
+                                        <font style="color: rgb(253, 209, 5); font-size: 18px">70 heures </font>
+                                        <font style="font-size: 18px">
+                dont 40 heures de Live avec un expert métier pour une préparation optimale
+                de votre examen théorique ! Pour profiter de cette offre, vous devrez
+                passer et réussir un
+              </font>
+                                        <font style="color: rgb(253, 209, 5); font-size: 18px">examen blanc de 30 min
+              </font>
+                                        <font style="color: rgb(36, 240, 160); font-size: 18px" />
+                                        <font style="font-size: 18px" class="text-epsilon">
+                                            afin de prouver votre maîtrise de la langue française.
                                             <br />
                                             <br />
                                         </font>
-                                        <font style="font-size: 24px;" class="text-epsilon">
-                                            <div style="text-align: center;">
-                                                <b>Ce qu'on vous offre !
-                  
-                
-              </b>
+                                        <font style="font-size: 24px" class="text-epsilon">
+                                            <div style="text-align: center">
+                                                <b>Ce qu'on vous offre ! </b>
                                             </div>
                                         </font>
                                     </h2>
                                     <p>
-                                        <font style="font-size: 18px;" class="text-epsilon">- Un </font>
-                                        <font style="font-size: 18px;" class="text-epsilon">accompagnement</font>
-                                        <font style="color: rgb(36, 240, 160); font-size: 18px;" />
-                                        <font style="font-size: 18px;" class="text-epsilon">de l’inscription à l’examen à l’inscription sur Bolt.</font>
+                                        <font style="font-size: 18px" class="text-epsilon">- Un </font>
+                                        <font style="font-size: 18px" class="text-epsilon">accompagnement</font>
+                                        <font style="color: rgb(36, 240, 160); font-size: 18px" />
+                                        <font style="font-size: 18px" class="text-epsilon">de l’inscription à l’examen à l’inscription sur Bolt.</font>
                                     </p>
                                     <p>
-                                        <font style="font-size: 18px;" class="text-epsilon">- Des tarifs préférentiels</font>
-                                        <font style="color: rgb(239, 198, 49);">&amp;nbsp;</font>
-                                        <font style="font-size: 18px;">&amp;nbsp;sur la préparation, l’inscription à l’examen théorique&amp;nbsp;</font>
-                                        <font style="color: rgb(253, 209, 5); font-size: 18px;">(20€ au lieu de 706€)</font>
-                                        <font style="font-size: 18px;">&amp;nbsp;</font>
-                                        <font style="font-size: 18px;">et la location du véhicule pour l’examen&amp;nbsp;</font>
-                                        <font style="color: rgb(253, 209, 5); font-size: 18px;">(20€ au lieu de 200€)</font>
-                                        <span style="font-size: 18px;">.</span>
+                                        <font style="font-size: 18px" class="text-epsilon">- Des tarifs préférentiels</font>
+                                        <font style="color: rgb(239, 198, 49)"></font>
+                                        <font style="font-size: 18px">
+                sur la préparation, l’inscription à l’examen théorique
+              </font>
+                                        <font style="color: rgb(253, 209, 5); font-size: 18px">(20€ au lieu de 706€)</font>
+                                        <font style="font-size: 18px"></font>
+                                        <font style="font-size: 18px">et la location du véhicule pour l’examen
+              </font>
+                                        <font style="color: rgb(253, 209, 5); font-size: 18px">(20€ au lieu de 200€)</font>
+                                        <span style="font-size: 18px">.</span>
                                     </p>
                                     <p>
-                                        <font style="font-size: 18px;">- Un</font>
-                                        <font style="color: rgb(36, 240, 160); font-size: 18px;" />
-                                        <font style="color: rgb(253, 209, 5); font-size: 18px;">remboursement de la carte VTC (57,60€)</font>
-                                        <font style="font-size: 18px;">&amp;nbsp;lors de l’inscription sur Bolt.&amp;nbsp;</font>
+                                        <font style="font-size: 18px">- Un</font>
+                                        <font style="color: rgb(36, 240, 160); font-size: 18px" />
+                                        <font style="color: rgb(253, 209, 5); font-size: 18px">remboursement de la carte VTC (57,60€)</font>
+                                        <font style="font-size: 18px"> lors de l’inscription sur Bolt. </font>
                                         <br />
-                                        <font style="font-size: 18px;">- Un accès aux meilleures offres avec</font>
-                                        <font style="color: rgb(36, 240, 160); font-size: 18px;">&amp;nbsp;</font>
-                                        <font style="color: rgb(36, 240, 160); font-size: 18px;">
-                                            <a href="https://www.club.bolt.eu/" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip304049" lang="merciapp" class="btn btn-success btn-sm"> Le Club Bolt</a>
+                                        <font style="font-size: 18px">- Un accès aux meilleures offres avec</font>
+                                        <font style="color: rgb(36, 240, 160); font-size: 18px"></font>
+                                        <font style="color: rgb(36, 240, 160); font-size: 18px">
+                                            <a href="https://www.club.bolt.eu/" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" data-original-title="" title="" aria-describedby="tooltip304049" lang="merciapp" class="btn btn-success btn-sm">
+                  Le Club Bolt</a>
                                         </font>
                                         <br />
                                     </p>
                                     <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                        <a href="/inscription-bolt" class="btn btn-success btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip663312"> Je m'inscris&amp;nbsp;maintenant ! </a>
+                                        <a href="/inscription-bolt" class="btn btn-success btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip663312">
+                Je m'inscris maintenant !
+              </a>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -183,9 +187,11 @@
 
                     <section id="sh_corpomate_theme_section_76" style="margin: 3rem 0rem 4rem 0rem">
                         <div class="container">
-                            <h2 class="fade-in-bottom js-scroll text-center scrolled">LES DÉMARCHES À SUIVRE</h2>
+                            <h2 class="fade-in-bottom js-scroll text-center scrolled">
+          LES DÉMARCHES À SUIVRE
+        </h2>
                             <div class="row js-scroll fade-in-bottom scrolled">
-                                <div class="col-md-3" style="border-style: none; border-width: 0px;">
+                                <div class="col-md-3" style="border-style: none; border-width: 0px">
                                     <div class="sh_content">
                                         <div class="sh_num_icon">
                                             <section class="sh_num o_default_snippet_text">1</section>
@@ -198,7 +204,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col-md-3" style="border-style: none; border-width: 0px;">
+                                <div class="col-md-3" style="border-style: none; border-width: 0px">
                                     <div class="sh_content sh_second_content">
                                         <div class="sh_num_icon">
                                             <section class="sh_num o_default_snippet_text">2</section>
@@ -219,12 +225,13 @@
                                         </div>
                                         <h4 class="o_default_snippet_text" />
                                         <p>
-                                            Je paye la formation et l'examen 20 €. MCM ACADEMY s'occupera de mon inscription à la CMA .
+                                            Je paye la formation et l'examen 20 €. MCM ACADEMY s'occupera de mon
+                inscription à la CMA .
                                             <br />
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col-md-3" style="border-style: none; border-width: 0px;">
+                                <div class="col-md-3" style="border-style: none; border-width: 0px">
                                     <div class="sh_content sh_last_content">
                                         <div class="sh_num_icon">
                                             <section class="sh_num o_default_snippet_text">4</section>
@@ -232,7 +239,7 @@
                                         </div>
                                         <h4 class="o_default_snippet_text" />
                                         <p>
-                                            &amp;nbsp;J'aurais mon accès à plateforme en ligne pour commencer ma formation VTC.
+                                            J'aurais mon accès à plateforme en ligne pour commencer ma formation VTC.
                                             <br />
                                         </p>
                                     </div>
@@ -248,17 +255,17 @@
                                     <div class="sh_content">
                                         <div class="sh_title">
                                             <h3>
-                                                <b>Ce que vous devez savoir sur notre examen blanc&amp;nbsp;</b>
+                                                <b>Ce que vous devez savoir sur notre examen blanc </b>
                                             </h3>
                                         </div>
                                         <p>
                                             Pour que vous puissiez profiter de notre offre en partenariat avec BOLT,
-                                            vous devez passer un examen blanc afin d'évaluer vos connaissances en langue
-                                            française.
+                vous devez passer un examen blanc afin d'évaluer vos connaissances en
+                langue française.
                                             <br />
                                             L'objet de cet examen est de mesurer votre degré d'assimilation des cours
-                                            qui vous seront attribués lors de la formation. Passer cette étape,
-                                            nécessite que vous répondiez à ces deux conditions :
+                qui vous seront attribués lors de la formation. Passer cette étape,
+                nécessite que vous répondiez à ces deux conditions :
                                             <br />
                                         </p>
                                         <div class="row">
@@ -267,9 +274,9 @@
                                                     <h4>1. Réussir l'examen !</h4>
                                                     <p>
                                                         L’examen dure 30 minutes, sous formes de 7 questions à choix
-                                                        multiples et 3 questions à réponses ouvertes. Pour le réussir,
-                                                        il faut obtenir une note supérieure ou égale à 8/20 ( soit 40%
-                                                        de l'examen).
+                      multiples et 3 questions à réponses ouvertes. Pour le réussir, il
+                      faut obtenir une note supérieure ou égale à 8/20 ( soit 40% de
+                      l'examen).
                                                         <br />
                                                     </p>
                                                 </div>
@@ -280,10 +287,10 @@
                                                     <p>
                                                         - Un permis de conduire de plus de 3 ans
                                                         <br />
-                                                        -&amp;nbsp;
-                                                        <span style="font-size: 0.875rem;">
-                                                            Ne pas avoir eu de retrait définitif du permis ces 10
-                                                            dernières années.
+                                                        -
+                                                        <span style="font-size: 0.875rem">
+                                                            Ne pas avoir eu de retrait définitif du permis ces 10 dernières
+                        années.
                                                             <br />
                                                         </span>
                                                         - Avoir un casier judiciaire vierge B2.
@@ -293,7 +300,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-5 col-md-5 sh_animation_part" style="border-style: none; border-width: 0px;">
+                                <div class="col-lg-5 col-md-5 sh_animation_part" style="border-style: none; border-width: 0px">
                                     <div class="sh_img">
                                         <img src="/mcm_website_theme/static/src/img/bolt/formation-taxi-à-distance-Lyon.png" />
                                     </div>
@@ -302,25 +309,23 @@
                         </div>
                     </section>
 
-
                     <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
                                     <img data-src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp" data-srcsafari="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.png" class="img img-fluid mx-auto" alt="candidats centre de formation vtc" src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp" />
                                 </div>
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
                                     <h2>
                                         <b>Faisons connaissance…</b>
                                     </h2>
                                     <p class="para">
-                                        Créée en 2015, MCM Academy est une structure spécialisée dans
-                                        la formation des métiers de chauffeurs de taxi, VTC et de taxi
-                                        moto.
+                                        Créée en 2015, MCM Academy est une structure spécialisée dans la formation
+              des métiers de chauffeurs de taxi, VTC et de taxi moto.
                                         <br />
                                         Doté d'une expérience de plus de 10 ans, nous comptons aujourd'hui parmi les
-                                        leaders du marché de la formation en ligne des métiers de TAXIS et VTC en
-                                        France.
+              leaders du marché de la formation en ligne des métiers de TAXIS et VTC en
+              France.
                                     </p>
                                 </div>
                             </div>
@@ -332,16 +337,15 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-6 pt16 pb16 js-scroll slide-left scrolled">
                                     <h2>
-                                        <b>Plus qu'une formation !&amp;nbsp;</b>
+                                        <b>Plus qu'une formation ! </b>
                                     </h2>
                                     <p class="para">
-                                        Nous offrons à nos futurs conducteurs de VTC une formation à
-                  suivre à distance, à votre rythme sur notre plateforme
-                  e-learning. Les cours sont présentés sous forme de vidéos
-                  interactives, de Live avec nos formateurs, de QCM et d’examens
-                  blancs, soigneusement concoctés par nos experts métiers afin
-                                        de mieux vous préparer à l’examen final.
-                                        <span id="scroll">&amp;nbsp;</span>
+                                        Nous offrons à nos futurs conducteurs de VTC une formation à suivre à
+              distance, à votre rythme sur notre plateforme e-learning. Les cours sont
+              présentés sous forme de vidéos interactives, de Live avec nos formateurs, de
+              QCM et d’examens blancs, soigneusement concoctés par nos experts métiers
+              afin de mieux vous préparer à l’examen final.
+                                        <span id="scroll"></span>
                                         <br />
                                     </p>
                                 </div>
@@ -353,22 +357,23 @@
                     </section>
 
                     <!-- -->
-                    <style>#sh_corpomate_theme_section_76 .sh_content p:after {
-                        width: 83%;
-                        left: 65%;
-                        top: 75px;
-                        }
-                        #sh_corpomate_theme_section_76 .sh_content p {
-                        padding: 0 !important;
+                    <style>
+      #sh_corpomate_theme_section_76 .sh_content p:after {
+        width: 83%;
+        left: 65%;
+        top: 75px;
+      }
+      #sh_corpomate_theme_section_76 .sh_content p {
+        padding: 0 !important;
 
-                        -webkit-line-clamp: 5 !important;
-                        }
-                    </style>
+        -webkit-line-clamp: 5 !important;
+      }
+    </style>
 
                     <section class="s_text_image pt32 pb32" data-name="Text - Image">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-md-6 sh_animation_part js-scroll slide-left ">
+                                <div class="col-md-6 sh_animation_part js-scroll slide-left">
                                     <div class="sh_content_right">
                                         <div class="sh_img">
                                             <div class="media_iframe_video" data-oe-expression="https://www.youtube.com/embed/GrsLyNnmghE?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1">
@@ -379,24 +384,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
                                     <h2>
                                         <b>S'inscrire à l'examen VTC</b>
                                     </h2>
                                     <p class="para">
                                         Pour passer l’
-                                        <b>examen du certificat de capacité
-                                            professionnelle&amp;nbsp;
-                                        </b>
-                                        pour&amp;nbsp;
+                                        <b>examen du certificat de capacité professionnelle </b>
+                                        pour
                                         <b>devenir chauffeur de VTC,</b>
-                                        &amp;nbsp;vous devez respecter certains prérequis à savoir :
-                                        Être titulaire d'un&amp;nbsp;
+                                        vous devez respecter certains prérequis à savoir : Être titulaire d'un
                                         <b>permis de conduire B</b>
                                         depuis plus de 3 ans , d’une
                                         <b>attestation médicale</b>
-                                        que vous obtiendrez auprès du médecin de la Préfecture de
-                                        votre ville et d’un
+                                        que vous obtiendrez auprès du médecin de la Préfecture de votre ville et
+              d’un
                                         <b>casier</b>
                                         judiciaire
                                         <b>vierge.</b>
@@ -407,10 +409,10 @@
                                         et
                                         <b>
                                             <a class="hyper-link" href="https://www.examentaxivtc.fr/" target="_blank">
-                                                l'inscription
-                                            </a>
+                  l'inscription
+                </a>
                                         </b>
-                                        se fait&amp;nbsp;
+                                        se fait
                                         <b>en ligne</b>
                                         sur le site de la chambre des métiers et de l'artisanat.
                                     </p>
@@ -422,32 +424,32 @@
                     <section class="s_text_image pt32 pb32 bg-100" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0">
                         <div class="container" style="border-style: none; border-width: 0px">
                             <div class="row align-items-center">
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left " style="border-style: none; border-width: 0px;">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left" style="border-style: none; border-width: 0px">
                                     <h3>
                                         <b>Déroulement de l'examen VTC</b>
                                     </h3>
                                     <p class="para">
                                         L'examen se passera au centre d'examen de la chambre des métiers et de
-                                        l'artisanat de l
+              l'artisanat de l
                                         <b>'</b>
-                                        <span style="font-family: Roboto, sans-serif; font-size: 16.8px;">
+                                        <span style="font-family: Roboto, sans-serif; font-size: 16.8px">
                                             <b>Île de France</b>
                                             ,il
                                         </span>
-                                        &amp;nbsp;sera composé de
+                                        sera composé de
                                         <b>deux épreuves</b>
                                         : une épreuve théorique d'
                                         <b>admissibilité</b>
                                         sous forme de QCM axée sur les réglementations du transport et du VTC, la
-                                        gestion des entreprises , le développement commercial, les langues et la
-                                        sécurité. Et une épreuve pratique d’admission, sous forme d'un parcours de 20
-                                        min pour tester les connaissances du candidat sur le territoire parcouru, la
-                                        qualité de son accueil vis-à-vis des clients, et sa maîtrise de la lecture d'une
-                                        carte, de l'établissement d'un devis et d'une facture.
+              gestion des entreprises , le développement commercial, les langues et la
+              sécurité. Et une épreuve pratique d’admission, sous forme d'un parcours de
+              20 min pour tester les connaissances du candidat sur le territoire parcouru,
+              la qualité de son accueil vis-à-vis des clients, et sa maîtrise de la
+              lecture d'une carte, de l'établissement d'un devis et d'une facture.
                                     </p>
                                     <p />
                                 </div>
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
                                     <img data-src="/mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.webp" data-srcsafari="mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.png" class="img img-fluid mx-auto" alt="inscription-à-l’examen-taxi-vtc" src="/mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.webp" />
                                 </div>
                             </div>
@@ -456,33 +458,33 @@
 
                     <section id="sh_corpomate_theme_section_155" class="pb24 bg-100 pt16">
                         <div class="container">
-                            <div class="row js-scroll fade-in-top ">
+                            <div class="row js-scroll fade-in-top">
                                 <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
                                     <img class="img-fluid" data-src="/mcm_website_theme/static/src/img/avis_google.webp" data-srcsafari="/mcm_website_theme/static/src/img/avis_google.png" alt="avis google MCM ACADEMY" title="Google" style="width: 182px" src="/mcm_website_theme/static/src/img/avis_google.webp" />
                                 </div>
                                 <div class="col-md-9 col-sm-12 s_title pt16 pb0 text-center">
                                     <div class="text-left">
                                         <span class="bold-desc">
-                                            - Le nombre de stagiaires formés depuis l'ouverture de
-                                            centre et jusqu'à Septembre 2021
+                                            - Le nombre de stagiaires formés depuis l'ouverture de centre et jusqu'à
+                Septembre 2021
                                             <br />
                                         </span>
                                         <span class="bold-desc">
                                             - Selon l'avis de la majorité de nos apprenants sur Google.
                                             <a style="color: #2d74f7" href="https://www.google.com/search?q=mcm+academy&amp;rlz=1C1CHBF_frTN911TN916&amp;sxsrf=AOaemvLXgPjmp_LUdcBr_VYoZZbfCUXnQQ%3A1632154532783&amp;ei=pLNIYZv4LoTDlwT8z6igCw&amp;oq=mcm+a&amp;gs_lcp=Cgdnd3Mtd2l6EAMYADIECCMQJzIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQsAMQJzoHCAAQRxCwAzoQCC4QxwEQ0QMQyAMQsAMQQzoHCAAQsQMQQzoECAAQQzoKCAAQsQMQgwEQQzoLCAAQgAQQsQMQgwE6CAgAEIAEELEDOgoILhDHARDRAxBDOgQILhBDOg4ILhCABBCxAxDHARDRAzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOgUILhCABEoFCDgSATFKBAhBGABQpOQLWIbqC2Dc8AtoAXACeACAAcMBiAGbBpIBAzAuNZgBAKABAcgBC8ABAQ&amp;sclient=gws-wiz#lrd=0x47c2d584b3f426a3:0x8c9722c8da9f4da3,1,,,">
-                                                Cliquez ici pour lire les avis
-                                            </a>
+                  Cliquez ici pour lire les avis
+                </a>
                                             .
                                             <br />
                                         </span>
                                         <span class="bold-desc">- Moyenne de taux de réussite de</span>
                                         <span class="bold-desc">Novembre 2020 à juillet 2021 ( VTC : 71%, ).</span>
                                         <span class="bold-desc">
-                                            Pour connaître les statistiques détaillées (données brutes
-                                            et formules de calcul),
+                                            Pour connaître les statistiques détaillées (données brutes et formules de
+                calcul),
                                             <a href="https://www.mcm-academy.fr/service-clientele" target="_blank">
-                                                contactez-nous
-                                            </a>
+                  contactez-nous
+                </a>
                                             .
                                         </span>
                                     </div>
@@ -502,12 +504,12 @@
                                         <br />
                                     </h2>
                                     <!-- <h4 style="
-                    margin-top: 20px;
-                    margin-bottom: 0.5rem;
-                    font-size: 18px;
-                  ">
-                  Choisissez le pack qui vous convient&amp;nbsp;
-                </h4> -->
+          margin-top: 20px;
+          margin-bottom: 0.5rem;
+          font-size: 18px;
+         ">
+         Choisissez le pack qui vous convient 
+        </h4> -->
                                     <p>
                                         <br />
                                     </p>
@@ -524,25 +526,30 @@
                                                         <span class="pricebar" t-esc="round(vtc_product.list_price)" />
                                                         <span style="color: #fdd105" t-esc="vtc_product.currency_id.symbol" />
                                                     </h4>
-                                                    <ul class="" style="word-break: break-word; position: relative; z-index: 0;">
+                                                    <ul class="" style="word-break: break-word; position: relative; z-index: 0">
                                                         <li>Formation 40h ( En direct )</li>
                                                         <li>Formation 30h ( 100% à distance )</li>
                                                         <li>Accès à + de 12 examens d'entraînement</li>
                                                         <li>Assistance par mail</li>
-                                                        <li>Assistance&amp;nbsp;par téléphone</li>
+                                                        <li>Assistance par téléphone</li>
                                                         <li>
-                                                            Lives&amp;nbsp;avec les formateurs pour explications
+                                                            Lives avec les formateurs pour explications
                                                             <br />
                                                         </li>
                                                         <li>
-                                                            Assistance&amp;nbsp;par visioconférence
+                                                            Assistance par visioconférence
                                                             <br />
                                                             <br />
                                                         </li>
                                                         <li>
-                                                            <span style="font-weight: 700;">
+                                                            <span style="font-weight: 700">
                                                                 Examen en présentiel à la CMA de l'
-                                                                <span style="color: rgb(0, 0, 0); font-family: Roboto, sans-serif; font-size: 16.8px; text-align: start;">Î</span>
+                                                                <span style="
+                              color: rgb(0, 0, 0);
+                              font-family: Roboto, sans-serif;
+                              font-size: 16.8px;
+                              text-align: start;
+                            ">Î</span>
                                                                 le de France
                                                             </span>
                                                         </li>
@@ -565,12 +572,12 @@
                                                     <br />
                                                     <div class="sh_btn">
                                                         <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
-                        Je m'inscris
-                                            </a> -->
+            Je m'inscris
+                      </a> -->
                                                         <!-- onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;"-->
                                                         <a href="/inscription-bolt" target="_blank" class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369">
-                                                             Je m'inscris
-                                                          </a>
+                        Je m'inscris
+                      </a>
                                                     </div>
                                                 </form>
                                             </t>
@@ -581,7 +588,7 @@
                         </section>
                     </div>
 
-                    <section class="clients s_references bg-200 pt16 pb32 js-scroll fade-in-top " data-name="References">
+                    <section class="clients s_references bg-200 pt16 pb32 js-scroll fade-in-top" data-name="References">
                         <div class="container text-center">
                             <div class="center-logo">
                                 <div>
@@ -602,7 +609,6 @@
                             </div>
                         </div>
                     </section>
-
                 </div>
             </div>
         </t>
