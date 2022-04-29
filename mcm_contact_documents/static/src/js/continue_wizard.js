@@ -175,9 +175,37 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('cartIsEmpty').value == 'True' &&
     document.getElementById('bolt_contract_uri').value == 'False'
   ) {
+    //=============================REMOVE COMMENT AFTER CORRECTING CONTRACT URI===========================================
     //bolt user with empty cart
-    btnContinuer.setAttribute('href', messageAction.cartIsEmpty.bolt.url);
-    textDescription.innerHTML = messageAction.cartIsEmpty.bolt.message;
+    // btnContinuer.setAttribute('href', messageAction.cartIsEmpty.bolt.url);
+    // textDescription.innerHTML = messageAction.cartIsEmpty.bolt.message;
+    //=========================================================================
+
+    if (document.getElementById('exam_state')) {
+      switch (document.getElementById('exam_state').value) {
+        case 'exam_not_passed':
+          btnContinuer.setAttribute('href', messageAction.boltExamen.notpassed.url);
+          textDescription.innerHTML = messageAction.boltExamen.notpassed.message;
+          break;
+        // case 'in_process':
+        //   btnContinuer.setAttribute(
+        //     'href',
+        //     messageAction.boltExamen.inProcess.url
+        //   );
+        //   textDescription.innerHTML =
+        //     messageAction.boltExamen.inProcess.message;
+        //   break;
+        case 'success':
+          btnContinuer.setAttribute('href', messageAction.boltExamen.succed.url);
+          textDescription.innerHTML = messageAction.boltExamen.succed.message;
+          break;
+        case 'failed':
+          btnContinuer.setAttribute('href', messageAction.boltExamen.failed.url);
+          textDescription.innerHTML = messageAction.boltExamen.failed.message;
+          break;
+      }
+    }
+
     return;
   } else if (
     document.getElementById('cartIsEmpty').value == 'True' &&
@@ -280,32 +308,6 @@ document.addEventListener('DOMContentLoaded', function () {
       //he has paid so he must has a contract
       //we recheck if we have an url
       if (document.getElementById('cartIsEmpty').value == 'False') {
-        if (isBoltState == 'True') {
-          if (document.getElementById('exam_state')) {
-            switch (document.getElementById('exam_state').value) {
-              case 'exam_not_passed':
-                btnContinuer.setAttribute('href', messageAction.boltExamen.notpassed.url);
-                textDescription.innerHTML = messageAction.boltExamen.notpassed.message;
-                break;
-              // case 'in_process':
-              //   btnContinuer.setAttribute(
-              //     'href',
-              //     messageAction.boltExamen.inProcess.url
-              //   );
-              //   textDescription.innerHTML =
-              //     messageAction.boltExamen.inProcess.message;
-              //   break;
-              case 'success':
-                btnContinuer.setAttribute('href', messageAction.boltExamen.succed.url);
-                textDescription.innerHTML = messageAction.boltExamen.succed.message;
-                break;
-              case 'failed':
-                btnContinuer.setAttribute('href', messageAction.boltExamen.failed.url);
-                textDescription.innerHTML = messageAction.boltExamen.failed.message;
-                break;
-            }
-          }
-        }
         if (document.getElementById('bolt_contract_uri').value !== 'False') {
           bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
 
