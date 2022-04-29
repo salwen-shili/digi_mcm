@@ -28,20 +28,14 @@ function setPopup() {
     //   return;
     // } else
     console.log(condition.value == 'in_process' && cartIsEmpty.value == 'True');
-    if (condition.value == 'in_process' && !(cartIsEmpty.value == 'True')) {
-      notifMessage.innerHTML = message['in_process'];
-      btnContiner.addEventListener('click', function () {
-        closePopup();
-      });
-      openPopup();
-    } else if (condition.value == 'success' && !(cartIsEmpty.value == 'True')) {
+    if (condition.value == 'success') {
       notifMessage.innerHTML = message['success'];
       openPopup();
       btnContiner.addEventListener('click', function () {
         closePopup();
         window.location.href = '/my/home';
       });
-    } else if (condition.value == 'failed' && !(cartIsEmpty.value == 'True')) {
+    } else if (condition.value == 'failed') {
       notifMessage.innerHTML = message['failed'];
       openPopup();
 
@@ -49,6 +43,36 @@ function setPopup() {
         closePopup();
       });
     } else return;
+
+    //***************** */
+    //***************** */
+    //*****************Old process */
+    //***************** */
+    // if (condition.value == 'in_process' && !(cartIsEmpty.value == 'True')) {
+    //   notifMessage.innerHTML = message['in_process'];
+    //   btnContiner.addEventListener('click', function () {
+    //     closePopup();
+    //   });
+    //   openPopup();
+    // } else if (condition.value == 'success' && !(cartIsEmpty.value == 'True')) {
+    //   notifMessage.innerHTML = message['success'];
+    //   openPopup();
+    //   btnContiner.addEventListener('click', function () {
+    //     closePopup();
+    //     window.location.href = '/my/home';
+    //   });
+    // } else if (condition.value == 'failed' && !(cartIsEmpty.value == 'True')) {
+    //   notifMessage.innerHTML = message['failed'];
+    //   openPopup();
+
+    //   btnContiner.addEventListener('click', function () {
+    //     closePopup();
+    //   });
+    // } else return;
+    //***************** */
+    //***************** End old process*/
+    //***************** */
+    //***************** */
   }
 
   return;

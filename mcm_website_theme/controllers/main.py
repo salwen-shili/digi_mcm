@@ -739,6 +739,15 @@ class Routes_Site(http.Controller):
                             exam_state = 'success'
                         else:
                             exam_state = 'failed'
+            if request.env.user.partner_id.bolt:
+                if not request.env.user.partner_id.note_exam:
+                    exam_state = 'exam_not_passed'
+                else:
+                    note_exam = request.env.user.partner_id.note_exam
+                    if int(note_exam) < 40:
+                        exam_state = 'failed'
+                    else:
+                        exam_state = 'success'
         cartIsEmpty = "False"
         order = request.website.sale_get_order()
         if not order:
