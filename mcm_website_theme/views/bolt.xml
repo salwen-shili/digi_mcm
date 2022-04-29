@@ -594,4 +594,11 @@
         </t>
 
     </template>
+    <record id="bolt_page" model="website.page">
+        <field name="website_published">True</field>
+        <field name="website_indexed">True</field>
+        <field name="website_id">1</field>
+        <field name="url">/bolt</field>
+        <field name="view_id" ref="mcm_website_theme.mcm_bolt" />
+    </record>
 </odoo>
