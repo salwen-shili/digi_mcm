@@ -22,6 +22,7 @@ import locale
 import json
 import logging
 import requests
+
 _logger = logging.getLogger(__name__)
 PPG = 20  # Products Per Page
 PPR = 4  # Products Per Row
@@ -73,7 +74,8 @@ class Website(Home):
         promo = False
         user_connected = request.env.user
         user_connected.partner_from = False
-        if (request.website.id == 2 and partenaire in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']):
+        if (request.website.id == 2 and partenaire in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                       'coursier2roues']):
             user_connected.partner_from = str(partenaire)
             promo = request.env['product.pricelist'].sudo().search(
                 [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
@@ -119,7 +121,8 @@ class Website(Home):
             values['last_ville'] = last_ville
         if list_villes:
             values['list_villes'] = list_villes
-        if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues'] and request.website.id == 2):
+        if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                           'coursier2roues'] and request.website.id == 2):
             values['partenaire'] = partenaire
             if (promo):
                 values['promo'] = promo
@@ -863,16 +866,16 @@ class Routes_Site(http.Controller):
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
     def webhook_integration_examen(self, **kw):
+        """ Récuprer et multiplier * 5 la note de l'examen blanc de jotform.
+            Afficher la note multiplier sur la fiche client apres une recherche basé sur email"""
         rawRequest = json.loads(kw['rawRequest'])
-        ipjotform = str(kw['ip'])
-        _logger.info("kw kw kw kw kw kw kw: %s" % (kw))
-        _logger.info("submissionID of webhook_integration_examen: %s" % (ipjotform))
+        q169_email = str(rawRequest['q169_email'])
+        _logger.info("q169_email of webhook_integration_examen: %s" % (q169_email))
         _logger.info("RawRequest Webhoook examen blanc %s" % (rawRequest))
         q114_resultatExamen = rawRequest['q114_resultatExamen']
         _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
         user = request.env['res.users'].sudo().search(
-            [('ipjotform', "=", str(ipjotform))], limit=1)
-        _logger.info("user SUR LA FICHE CLIENT %s" % (user.note_exam))
+            [('email', "=", str(q169_email))], limit=1)
         if user:
             multiplication_note_exam_blan = int(q114_resultatExamen) * 5
             user.note_exam = int(multiplication_note_exam_blan)
@@ -1820,7 +1823,7 @@ class CustomerPortal(CustomerPortal):
         values = super(CustomerPortal, self)._prepare_portal_layout_values()
         invoice_count = request.env['account.move'].search_count([
             ('type', 'in', ('out_invoice', 'in_invoice',
-             'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
+                            'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
             ('type_facture', '=', 'web')
         ])
         values['invoice_count'] = invoice_count
@@ -1833,7 +1836,7 @@ class CustomerPortal(CustomerPortal):
         values = super(CustomerPortal, self)._prepare_home_portal_values()
         invoice_count = request.env['account.move'].search_count([
             ('type', 'in', ('out_invoice', 'in_invoice',
-             'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
+                            'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
             ('type_facture', '=', 'web')
         ]) if request.env['account.move'].check_access_rights('read', raise_exception=False) else 0
         values['invoice_count'] = invoice_count
@@ -1855,7 +1858,7 @@ class CustomerPortal(CustomerPortal):
 
         domain = [
             ('type', 'in', ('out_invoice', 'out_refund',
-             'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')),
+                            'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')),
             ('type_facture', '=', 'web')]
 
         searchbar_sortings = {
