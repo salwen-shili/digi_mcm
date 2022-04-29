@@ -44,7 +44,7 @@
       padding: 70px 0px;
       margin-bottom: 40px;
     }
-  </style>
+                </style>
                 <!-- popup-->
                 <input t-att-value="exam_state" id="exam_state" name="exam_state" type="hidden" />
                 <input id="cartIsEmpty" type="hidden" t-att-value="cartIsEmpty" />
@@ -115,7 +115,7 @@
                                         <div style="text-align: center">
                                             <b style="font-size: 1.6rem">
                                                 <font style="font-size: 18px" class="text-epsilon">En partenariat avec
-                  </font>
+                                                </font>
                                                 <font style="color: rgb(36, 240, 160); font-size: 18px"> BOLT </font>
                                             </b>
                                         </div>
@@ -127,9 +127,9 @@
                 dont 40 heures de Live avec un expert métier pour une préparation optimale
                 de votre examen théorique ! Pour profiter de cette offre, vous devrez
                 passer et réussir un
-              </font>
+                                        </font>
                                         <font style="color: rgb(253, 209, 5); font-size: 18px">examen blanc de 30 min
-              </font>
+                                        </font>
                                         <font style="color: rgb(36, 240, 160); font-size: 18px" />
                                         <font style="font-size: 18px" class="text-epsilon">
                                             afin de prouver votre maîtrise de la langue française.
@@ -138,12 +138,26 @@
                                         </font>
                                         <font style="font-size: 24px" class="text-epsilon">
                                             <div style="text-align: center">
-                                                <b>Ce qu'on vous offre ! </b>
+                                                <b>Ce qu'on vous offre !</b>
                                             </div>
                                         </font>
                                     </h2>
                                     <p>
-                                        <font style="font-size: 18px" class="text-epsilon">- Un </font>
+                                        <ul>
+                                            <li>Formation théorique avec 70h de formation en ligne sur 3 semaines et un coaching personnalisé à distance
+                                            </li>
+                                            <li>Formation pratique à 20€ au lieu de 200€ avec fourniture du véhicule double commande le jour de l’examen
+                                            </li>
+                                            <li>Examen blanc théorique et pratique dans les conditions réelles
+                                            </li>
+                                            <li>Le remboursement des frais de la carte VTC (57€) dès inscription sur l’application Bolt
+                                            </li>
+                                            <li>Accompagnement administratif pour bien commencer votre activité
+                                            </li>
+                                            <li>Un accès aux meilleurs offres négociées sur le club bolt
+                                            </li>
+                                        </ul>
+                                        <!-- <font style="font-size: 18px" class="text-epsilon">- Un </font>
                                         <font style="font-size: 18px" class="text-epsilon">accompagnement</font>
                                         <font style="color: rgb(36, 240, 160); font-size: 18px" />
                                         <font style="font-size: 18px" class="text-epsilon">de l’inscription à l’examen à l’inscription sur Bolt.</font>
@@ -173,12 +187,12 @@
                                             <a href="https://www.club.bolt.eu/" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" data-original-title="" title="" aria-describedby="tooltip304049" lang="merciapp" class="btn btn-success btn-sm">
                   Le Club Bolt</a>
                                         </font>
-                                        <br />
+                                        <br /> -->
                                     </p>
                                     <div class="s_btn text-center pt16 pb16" data-name="Button">
                                         <a href="/inscription-bolt" class="btn btn-success btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip663312">
                 Je m'inscris maintenant !
-              </a>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +203,7 @@
                         <div class="container">
                             <h2 class="fade-in-bottom js-scroll text-center scrolled">
           LES DÉMARCHES À SUIVRE
-        </h2>
+                            </h2>
                             <div class="row js-scroll fade-in-bottom scrolled">
                                 <div class="col-md-3" style="border-style: none; border-width: 0px">
                                     <div class="sh_content">
@@ -368,7 +382,7 @@
 
         -webkit-line-clamp: 5 !important;
       }
-    </style>
+                    </style>
 
                     <section class="s_text_image pt32 pb32" data-name="Text - Image">
                         <div class="container">
@@ -410,7 +424,7 @@
                                         <b>
                                             <a class="hyper-link" href="https://www.examentaxivtc.fr/" target="_blank">
                   l'inscription
-                </a>
+                                            </a>
                                         </b>
                                         se fait
                                         <b>en ligne</b>
@@ -473,7 +487,7 @@
                                             - Selon l'avis de la majorité de nos apprenants sur Google.
                                             <a style="color: #2d74f7" href="https://www.google.com/search?q=mcm+academy&amp;rlz=1C1CHBF_frTN911TN916&amp;sxsrf=AOaemvLXgPjmp_LUdcBr_VYoZZbfCUXnQQ%3A1632154532783&amp;ei=pLNIYZv4LoTDlwT8z6igCw&amp;oq=mcm+a&amp;gs_lcp=Cgdnd3Mtd2l6EAMYADIECCMQJzIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQsAMQJzoHCAAQRxCwAzoQCC4QxwEQ0QMQyAMQsAMQQzoHCAAQsQMQQzoECAAQQzoKCAAQsQMQgwEQQzoLCAAQgAQQsQMQgwE6CAgAEIAEELEDOgoILhDHARDRAxBDOgQILhBDOg4ILhCABBCxAxDHARDRAzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOgUILhCABEoFCDgSATFKBAhBGABQpOQLWIbqC2Dc8AtoAXACeACAAcMBiAGbBpIBAzAuNZgBAKABAcgBC8ABAQ&amp;sclient=gws-wiz#lrd=0x47c2d584b3f426a3:0x8c9722c8da9f4da3,1,,,">
                   Cliquez ici pour lire les avis
-                </a>
+                                            </a>
                                             .
                                             <br />
                                         </span>
@@ -484,7 +498,7 @@
                 calcul),
                                             <a href="https://www.mcm-academy.fr/service-clientele" target="_blank">
                   contactez-nous
-                </a>
+                                            </a>
                                             .
                                         </span>
                                     </div>
@@ -577,7 +591,7 @@
                                                         <!-- onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;"-->
                                                         <a href="/inscription-bolt" target="_blank" class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369">
                         Je m'inscris
-                      </a>
+                                                        </a>
                                                     </div>
                                                 </form>
                                             </t>
