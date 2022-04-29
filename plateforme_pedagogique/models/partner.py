@@ -379,11 +379,8 @@ class partner(models.Model):
                     partner.password360 = user.password360
                     password=str(user.password360.encode('utf-8'))
                     email=partner.email
-                    position=email.index('@')
-                    new_email=email[:position] +'#digimoov'+ email[position:]
-                    print("new email",new_email)
                     # Ajouter i-One to table user
-                    data_user = '{"mail":"' + new_email + '" , "password":"' + password + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
+                    data_user = '{"mail":"' + partner.email + '" , "password":"' + password + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     _logger.info('data_user %s' %str(data_user))
                     respo = str(json.loads(resp.text))
@@ -396,7 +393,7 @@ class partner(models.Model):
                 # Désactiver les notifications par email
                 data_email = json.dumps({
                     "usersEmails": [
-                        new_email
+                        partner.email
                     ]
                 })
                 resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
@@ -541,6 +538,36 @@ class partner(models.Model):
                             if not ticket:
                                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
                                     vals)
+                            """Si message d'erreur "unavailableEmails" on ajoute #digimoov à l'email pour qu'il sera ajouté sur la plateforme 360"""
+                            email = partner.email
+                            position = email.index('@')
+                            new_email = email[:position] + '#digimoov' + email[position:]
+                            print("new email", new_email)
+                            partner.email=new_email
+                            if self.partner_id.phone:
+                                phone = str(self.partner_id.phone.replace(' ', ''))[-9:]
+                                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                            3:5] + ' ' + phone[
+                                                                                                         5:7] + ' ' + phone[
+                                                                                                                      7:]
+                                self.partner_id.phone = phone
+                            body = "DIGIMOOV. Afin d'accéder à notre formation vous devez vous inscrire à l'examen auprès de la CMA de votre région via le lien suivant : %s" % (
+                                url)
+                            if body:
+                                composer = self.env['sms.composer'].with_context(
+                                    default_res_model='res.partner',
+                                    default_res_id=self.partner_id.id,
+                                    default_composition_mode='comment',
+                                ).sudo().create({
+                                    'body': body,
+                                    'mass_keep_log': True,
+                                    'mass_force_send': False,
+                                    'use_active_domain': False,
+                                })
+                                composer.action_send_sms()  # we send sms to client contains link to register in cma.
+                                if self.partner_id.phone:
+                                    self.partner_id.phone = '0' + str(self.partner_id.phone.replace(' ', ''))[
+                                                                  -9:]
 
                         # else:
 
