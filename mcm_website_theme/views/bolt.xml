@@ -2,6 +2,7 @@
 <odoo>
     <template id="mcm_website_theme.mcm_bolt" name="MCM ACADEMY - BOLT">
 
+
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0">
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
@@ -42,7 +43,7 @@
       margin-bottom: 40px;
     }
                 </style>
-                <!-- popup-->
+                <!-- popup t-att-value="exam_state"-->
                 <input t-att-value="exam_state" id="exam_state" name="exam_state" type="hidden" />
                 <input id="cartIsEmpty" type="hidden" t-att-value="cartIsEmpty" />
                 <div id="popup1" class="overlay">
@@ -265,12 +266,22 @@
                             </div>
                         </div>
                     </section>
-                    <section id="sh_corpomate_theme_section_257" class="sh_animation_part" data-name="text img">
-                        <div class="container">
+                    <section id="sh_corpomate_theme_section_257" class="sh_animation_part" data-name="text img" style="word-break: break-word; position: relative; z-index: 0;">
+                        <div class="container" style="border-style: none; border-width: 0px;">
                             <div class="row">
-                                <div class="col-lg-7 col-md-7 sh_animation_part">
+                                <div class="col-lg-7 col-md-7 sh_animation_part" style="border-style: none; border-width: 0px;">
                                     <div class="sh_content">
                                         <div class="sh_title">
+                                            <h3>
+                                                <b>
+                                                    <br />
+                                                </b>
+                                            </h3>
+                                            <h3>
+                                                <b>
+                                                    <br />
+                                                </b>
+                                            </h3>
                                             <h3>
                                                 <b>Ce que vous devez savoir sur notre examen blanc </b>
                                             </h3>
@@ -374,7 +385,7 @@
                                     <p class="para">
                                         Pour passer l’
                                         <b>examen du certificat de capacité professionnelle</b>
-                                        pour
+                                        et&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                         <b>devenir chauffeur de VTC</b>
                                         , vous devez respecter certains prérequis à savoir :
                                         <br />

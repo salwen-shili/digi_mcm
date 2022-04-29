@@ -1,6 +1,6 @@
 var message = {
   False: '',
-  exam_not_passed: '',
+  exam_not_passed: 'Vous pouvez passer votre examen blanc en cliquant sur le bouton.',
   in_process: `La correction de votre examen est en cours. Vous recevrez votre résultat dans 24 heures.`,
   success:
     'Félicitations, vous avez réussi votre examen. Cliquez sur continuer pour finaliser votre inscription.',
@@ -33,7 +33,7 @@ function setPopup() {
       openPopup();
       btnContiner.addEventListener('click', function () {
         closePopup();
-        window.location.href = '/my/home';
+        // window.location.href = '/my/home';
       });
     } else if (condition.value == 'failed') {
       notifMessage.innerHTML = message['failed'];
@@ -41,6 +41,13 @@ function setPopup() {
 
       btnContiner.addEventListener('click', function () {
         closePopup();
+      });
+    } else if (condition.value == 'exam_not_passed') {
+      notifMessage.innerHTML = message['exam_not_passed'];
+      openPopup();
+
+      btnContiner.addEventListener('click', function () {
+        window.location.href = '/examen-blanc';
       });
     } else return;
 
