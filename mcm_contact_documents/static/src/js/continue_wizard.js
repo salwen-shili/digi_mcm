@@ -50,16 +50,16 @@ const messageAction = {
   boltExamen: {
     inProcess: {
       message: `La correction de votre examen est en cours. Vous recevrez votre résultat dans 24 heures.`,
-      url: `/coordonnees?${Math.floor(Math.random() * 100)}`,
+      url: `/examen-blanc`,
     },
     notpassed: {
       message: `<b>Félicitations!</b> Vous avez terminé la première étape de votre inscription. Cliquez sur <b>continuer</b> pour passer votre <b> examen blanc<b/>. `,
-      url: `/coordonnees?${Math.floor(Math.random() * 100)}`,
+      url: `/examen-blanc`,
     },
     succed: {
       message:
         'Félicitations, vous avez réussi votre examen. Cliquez sur continuer pour finaliser votre inscription.',
-      url: `/coordonnees?${Math.floor(Math.random() * 100)}`,
+      url: `/examen-blanc`,
     },
     failed: {
       message: "Malheureusement vous n'avez pas réussi votre examen.",
@@ -198,36 +198,24 @@ document.addEventListener('DOMContentLoaded', function () {
           if (document.getElementById('exam_state')) {
             switch (document.getElementById('exam_state').value) {
               case 'exam_not_passed':
-                btnContinuer.setAttribute(
-                  'href',
-                  messageAction.boltExamen.notpassed.url
-                );
-                textDescription.innerHTML =
-                  messageAction.boltExamen.notpassed.message;
+                btnContinuer.setAttribute('href', messageAction.boltExamen.notpassed.url);
+                textDescription.innerHTML = messageAction.boltExamen.notpassed.message;
                 break;
-              case 'in_process':
-                btnContinuer.setAttribute(
-                  'href',
-                  messageAction.boltExamen.inProcess.url
-                );
-                textDescription.innerHTML =
-                  messageAction.boltExamen.inProcess.message;
-                break;
+              // case 'in_process':
+              //   btnContinuer.setAttribute(
+              //     'href',
+              //     messageAction.boltExamen.inProcess.url
+              //   );
+              //   textDescription.innerHTML =
+              //     messageAction.boltExamen.inProcess.message;
+              //   break;
               case 'success':
-                btnContinuer.setAttribute(
-                  'href',
-                  messageAction.boltExamen.succed.url
-                );
-                textDescription.innerHTML =
-                  messageAction.boltExamen.succed.message;
+                btnContinuer.setAttribute('href', messageAction.boltExamen.succed.url);
+                textDescription.innerHTML = messageAction.boltExamen.succed.message;
                 break;
               case 'failed':
-                btnContinuer.setAttribute(
-                  'href',
-                  messageAction.boltExamen.failed.url
-                );
-                textDescription.innerHTML =
-                  messageAction.boltExamen.failed.message;
+                btnContinuer.setAttribute('href', messageAction.boltExamen.failed.url);
+                textDescription.innerHTML = messageAction.boltExamen.failed.message;
                 break;
             }
           }
@@ -290,12 +278,10 @@ document.addEventListener('DOMContentLoaded', function () {
       //we recheck if we have an url
       if (document.getElementById('cartIsEmpty').value == 'False') {
         if (document.getElementById('bolt_contract_uri').value !== 'False') {
-          bolt_contract_uri =
-            document.getElementById('bolt_contract_uri').value;
+          bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
 
           if (document.getElementById('btn-action')) {
-            textDescription.textContent =
-              messageDescription[isNotSignedMessage];
+            textDescription.textContent = messageDescription[isNotSignedMessage];
             btnAction = document.getElementById('btn-action');
             btnAction.innerText = 'Signer mon contrat';
             btnAction.addEventListener('click', function () {
@@ -320,30 +306,44 @@ document.addEventListener('DOMContentLoaded', function () {
       if (document.getElementById('cartIsEmpty').value == 'False') {
         if (isBoltState == 'True') {
           if (isSignedState == 'True') {
+            //********************* New process with Jotform*/
+            //********************* */
+            //********************* */
+            finished.innerHTML = finishBolt['rdv'];
+            //********************* End New process with Jotform */
+            //********************* */
+            //********************* */
+
+            //*****************************//
+            //*****************************//
+            //************** Old Process     *******************//
             //Client bolt + contrat is signed
             //check if he has reserved an appointment
-            if (rdvIsBooked == 'True') {
-              //has reserved => he will wait for his call
-              finished.innerHTML = finishBolt['rdv'];
-              console.log("rdvIsBooked == 'True'", rdvIsBooked == 'True');
-            } else {
-              console.log("else rdvIsBooked == 'True'", rdvIsBooked == 'True');
-              // has to reserve appointment
-              //  => Show bolt calendly
-              finished.innerHTML = finishBolt['noRdv'];
-              setTimeout(function () {
-                Calendly.initBadgeWidget({
-                  url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
-                  prefill: {
-                    name: user_name,
-                    email: user_email,
-                  },
-                  text: "Inscription à l'examen VTC",
-                  color: '#1A1A1A',
-                  textColor: '#FFFFFF',
-                });
-              }, 1500);
-            }
+            // if (rdvIsBooked == 'True') {
+            //   //has reserved => he will wait for his call
+            //   finished.innerHTML = finishBolt['rdv'];
+            //   console.log("rdvIsBooked == 'True'", rdvIsBooked == 'True');
+            // } else {
+            //   console.log("else rdvIsBooked == 'True'", rdvIsBooked == 'True');
+            //   // has to reserve appointment
+            //   //  => Show bolt calendly
+            //   finished.innerHTML = finishBolt['noRdv'];
+            //   setTimeout(function () {
+            //     Calendly.initBadgeWidget({
+            //       url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
+            //       prefill: {
+            //         name: user_name,
+            //         email: user_email,
+            //       },
+            //       text: "Inscription à l'examen VTC",
+            //       color: '#1A1A1A',
+            //       textColor: '#FFFFFF',
+            //     });
+            //   }, 1500);
+            // }
+            //************** End Old Process ****************//
+            //*****************************//
+            //*****************************//
           }
         } else {
           // his not bolt
@@ -402,6 +402,5 @@ function activateStep(stepValue) {
 
   var progressBarValue = step * 25;
   //console.log(step);
-  document.getElementsByClassName('progress-bar')[0].style.width =
-    progressBarValue + '%';
+  document.getElementsByClassName('progress-bar')[0].style.width = progressBarValue + '%';
 }

@@ -3,15 +3,12 @@
     <template id="mcm_website_theme.mcm_bolt" name="MCM ACADEMY - BOLT">
 
         <t t-call="website.layout">
-
-
             <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0">
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
-                <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/popup_page_bolt.js" /> -->
-
+                <script type="text/javascript" src="/mcm_website_theme/static/src/js/popup_page_bolt.js" />
                 <style>
     .body {
       scroll-behavior: smooth;
@@ -48,7 +45,6 @@
                 <!-- popup-->
                 <input t-att-value="exam_state" id="exam_state" name="exam_state" type="hidden" />
                 <input id="cartIsEmpty" type="hidden" t-att-value="cartIsEmpty" />
-
                 <div id="popup1" class="overlay">
                     <div class="popup">
                         <h2 class="text-left">
@@ -69,7 +65,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div id="wrap" class="oe_structure" style="       border-style: none;       border-width: 0px;       word-break: break-word;       position: relative;       z-index: 0;     ">
                     <section class="s_text_image pt32 pb32" data-name="Image - Text">
                         <div class="container">
@@ -85,7 +80,6 @@
                                                 <font class="text-epsilon"> + </font>
                                                 <font style="color: rgb(253, 209, 5)">Examen VTC</font>
                                                 <font class="text-epsilon"> à</font>
-
                                                 <font style="color: rgb(253, 209, 5)">20€</font>
                                             </b>
                                         </div>
@@ -136,7 +130,6 @@
                                             </div>
                                         </font>
                                     </h2>
-
                                     <ul style="font-size:16px;">
                                         <li>
                                             Une formation théorique avec 70h de
@@ -160,7 +153,7 @@
                                             VTC (57€) dès inscription sur l’application Bolt
                                         </li>
                                         <li>Un accompagnement administratif pour bien commencer votre activité
-                                            </li>
+                                        </li>
                                         <li>
                                             Et un accès aux
                                             <b style="color:#fdd105">meilleurs offres négociées</b>
@@ -225,7 +218,7 @@
                                         </div>
                                         <h4 class="o_default_snippet_text" />
                                         <p>
-                                            Je m'inscris à la formation VTC, et j'insère les documents demandés.
+                                            Je m'inscris à la formation VTC, et j'importe les documents demandés.
                                             <br />
                                         </p>
                                     </div>
@@ -251,8 +244,7 @@
                                         </div>
                                         <h4 class="o_default_snippet_text" />
                                         <p>
-                                            Je paye la formation et l'examen 20 €. MCM ACADEMY s'occupera de mon
-                inscription à la CMA .
+                                            Je paye 20€ pour la formation théorique et l’inscription à l’examen officiel.
                                             <br />
                                         </p>
                                     </div>
@@ -265,7 +257,7 @@
                                         </div>
                                         <h4 class="o_default_snippet_text" />
                                         <p>
-                                            J'aurais mon accès à plateforme en ligne pour commencer ma formation VTC.
+                                            j’accède à la plateforme de formation en ligne et je commence ma formation.
                                             <br />
                                         </p>
                                     </div>
@@ -273,7 +265,6 @@
                             </div>
                         </div>
                     </section>
-
                     <section id="sh_corpomate_theme_section_257" class="sh_animation_part" data-name="text img">
                         <div class="container">
                             <div class="row">
@@ -285,45 +276,15 @@
                                             </h3>
                                         </div>
                                         <p>
-                                            Pour que vous puissiez profiter de notre offre en partenariat avec BOLT,
-                vous devez passer un examen blanc afin d'évaluer vos connaissances en
-                langue française.
+                                            Pour profiter de notre offre en partenariat avec BOLT, vous devez passer un examen blanc afin d'évaluer vos connaissances en langue française et assurer ainsi l'assimilation des cours que vous suiverez lors dela formation.
                                             <br />
-                                            L'objet de cet examen est de mesurer votre degré d'assimilation des cours
-                qui vous seront attribués lors de la formation. Passer cette étape,
-                nécessite que vous répondiez à ces deux conditions :
+                                            L’examen dure 30 minutes, sous formes de 10 questions à choix multiples .
+                                            <br />
+                                            Pour le réussir, il faut obtenir une note supérieure ou égale à 8/20 ( soit 40% de l'examen)
+                                            <br />
+                                            L'objet de cet examen est de mesurer votre degré d'
                                             <br />
                                         </p>
-                                        <div class="row">
-                                            <div class="col-md-6 sh_animation_part">
-                                                <div class="sh_column">
-                                                    <h4>1. Réussir l'examen !</h4>
-                                                    <p>
-                                                        L’examen dure 30 minutes, sous formes de 7 questions à choix
-                      multiples et 3 questions à réponses ouvertes. Pour le réussir, il
-                      faut obtenir une note supérieure ou égale à 8/20 ( soit 40% de
-                      l'examen).
-                                                        <br />
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 sh_animation_part">
-                                                <div class="sh_column">
-                                                    <h4>2. Avoir ces prérequis :</h4>
-                                                    <p>
-                                                        - Un permis de conduire de plus de 3 ans
-                                                        <br />
-                                                        -
-                                                        <span style="font-size: 0.875rem">
-                                                            Ne pas avoir eu de retrait définitif du permis ces 10 dernières
-                        années.
-                                                            <br />
-                                                        </span>
-                                                        - Avoir un casier judiciaire vierge B2.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-5 col-md-5 sh_animation_part" style="border-style: none; border-width: 0px">
@@ -334,7 +295,6 @@
                             </div>
                         </div>
                     </section>
-
                     <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0">
                         <div class="container">
                             <div class="row align-items-center">
@@ -357,7 +317,6 @@
                             </div>
                         </div>
                     </section>
-
                     <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0">
                         <div class="container">
                             <div class="row align-items-center">
@@ -381,7 +340,6 @@
                             </div>
                         </div>
                     </section>
-
                     <!-- -->
                     <style>
       #sh_corpomate_theme_section_76 .sh_content p:after {
@@ -395,11 +353,10 @@
         -webkit-line-clamp: 5 !important;
       }
                     </style>
-
-                    <section class="s_text_image pt32 pb32" data-name="Text - Image">
+                    <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0;">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-md-6 sh_animation_part js-scroll slide-left">
+                                <div class="col-md-6 sh_animation_part js-scroll slide-left scrolled">
                                     <div class="sh_content_right">
                                         <div class="sh_img">
                                             <div class="media_iframe_video" data-oe-expression="https://www.youtube.com/embed/GrsLyNnmghE?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1">
@@ -410,31 +367,36 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
                                     <h2>
                                         <b>S'inscrire à l'examen VTC</b>
                                     </h2>
                                     <p class="para">
                                         Pour passer l’
-                                        <b>examen du certificat de capacité professionnelle </b>
+                                        <b>examen du certificat de capacité professionnelle</b>
                                         pour
-                                        <b>devenir chauffeur de VTC,</b>
-                                        vous devez respecter certains prérequis à savoir : Être titulaire d'un
-                                        <b>permis de conduire B</b>
-                                        depuis plus de 3 ans , d’une
-                                        <b>attestation médicale</b>
-                                        que vous obtiendrez auprès du médecin de la Préfecture de votre ville et
-              d’un
-                                        <b>casier</b>
-                                        judiciaire
-                                        <b>vierge.</b>
+                                        <b>devenir chauffeur de VTC</b>
+                                        , vous devez respecter certains prérequis à savoir :
+                                        <br />
+                                        - Être européen ou avoir un titre de séjour lui permettant d'exercer en France.
+                                        <br />
+                                        - Être titulaire d'un permis B depuis au moins 3 ans et non soumis à une période probatoire.
+                                        <br />
+                                        - Être en capacité physique de devenir chauffeur professionnel.
+                                        <br />
+                                        - Et ayant un PSC1.
+                                        <br />
+                                    </p>
+                                    <p class="para">
+                                 
+                                        Nul ne peut s’inscrire à l’examen si : Il a fait objet dans les dix ans qui précèdent sa demande d’un retrait définitif de sa carte professionnelle ou s'il a fait objet dans les cinq ans qui précèdent sa demande, d’une exclusion pour fraude lors d’une session à l’un des examens des professions du transport public particulier de personnes.
                                     </p>
                                     <p class="para">
                                         L’examen est organisé par
                                         <b>la chambre des métiers et de l’artisanat</b>
                                         et
                                         <b>
-                                            <a class="hyper-link" href="https://www.examentaxivtc.fr/" target="_blank">
+                                            <a class="hyper-link" href="https://www.examentaxivtc.fr/" target="_blank" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;">
                   l'inscription
                                             </a>
                                         </b>
@@ -442,11 +404,11 @@
                                         <b>en ligne</b>
                                         sur le site de la chambre des métiers et de l'artisanat.
                                     </p>
+                                    <mci-extension data-role="overlay" />
                                 </div>
                             </div>
                         </div>
                     </section>
-
                     <section class="s_text_image pt32 pb32 bg-100" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0">
                         <div class="container" style="border-style: none; border-width: 0px">
                             <div class="row align-items-center">
@@ -481,7 +443,6 @@
                             </div>
                         </div>
                     </section>
-
                     <section id="sh_corpomate_theme_section_155" class="pb24 bg-100 pt16">
                         <div class="container">
                             <div class="row js-scroll fade-in-top">
@@ -519,7 +480,6 @@
                             </div>
                         </div>
                     </section>
-
                     <div id="pricing" class="js-scroll fade-in-top">
                         <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                         <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
@@ -570,7 +530,8 @@
                                                         <li>
                                                             <span style="font-weight: 700">
                                                                 Examen en présentiel à la CMA de l'
-                                                                <span style="color: rgb(0, 0, 0);font-family: Roboto, sans-serif;font-size: 16.8px;text-align: start;">Île de France</span>
+                                                                <span style="                               color: rgb(0, 0, 0);                               font-family: Roboto, sans-serif;                               font-size: 16.8px;                               text-align: start;                             ">Î</span>
+                                                                le de France
                                                             </span>
                                                         </li>
                                                         <li>
@@ -607,7 +568,6 @@
                             </div>
                         </section>
                     </div>
-
                     <section class="clients s_references bg-200 pt16 pb32 js-scroll fade-in-top" data-name="References">
                         <div class="container text-center">
                             <div class="center-logo">
