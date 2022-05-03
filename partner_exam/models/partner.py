@@ -5,6 +5,9 @@ from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class resComapny(models.Model):
@@ -100,7 +103,13 @@ class resComapny(models.Model):
         for rec in self:
             if rec.birthday:
                 dt = rec.birthday
+                _logger.info('date of birth--------------------------------------- %s', dt)
                 print("dt", dt)
                 today = date.today()
                 rd = relativedelta(today, dt)
+                _logger.info('relativedelta date of birth--------------------------------------- %s', rd)
                 rec.age = str(rd.years)
+                _logger.info('rec.age date of birth-------------11111111111111111111-------- %s', rec.age)
+            rec.age = str(rd.years)
+            _logger.info('rec.age date of birth-------------222222222222-------- %s', rec.age)
+
