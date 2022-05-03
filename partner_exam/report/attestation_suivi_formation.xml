@@ -102,7 +102,6 @@
                                         <t t-if="o.display_name">
                                             <span t-esc="o.display_name"/>
                                         </t>
-
                                         <t t-else="">
                                             <span>........</span>
                                         </t>
@@ -181,7 +180,6 @@
                                                 <t t-else="">
                                                     <span>........</span>
                                                 </t>
-
                                             </strong>
                                         </t>
                                     </t>
@@ -193,9 +191,6 @@
                                             <strong>
                                                 <span t-esc="o.display_name"/>
                                             </strong>
-                                            <t t-else="">
-                                                <span>........</span>
-                                            </t>
                                             <t t-if="val_2[-1].presence == 'absence_justifiee'">
                                                 a une <b>absence justifiée</b> au deuxième examen.
                                             </t>
@@ -216,6 +211,9 @@
                                                 </t>
                                             </t>
                                         </t>
+                                    </t>
+                                    <t t-else="">
+                                        <span>........</span>
                                     </t>
                                     <center>
                                         <strong>
@@ -265,75 +263,76 @@
                                     par le préfet de la région
                                     <t t-if="val_3">
                                         <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                        <strong>
-                                            <t t-if="o.company_id.region">
-                                                <strong>
-                                                    <span t-raw=" '%s' % o.company_id.region"/>
-                                                </strong>
-                                            </t>
-                                        </strong>
-                                    </t>
+                                            <strong>
+                                                <t t-if="o.company_id.region">
+                                                    <strong>
+                                                        <span t-raw=" '%s' % o.company_id.region"/>
+                                                    </strong>
+                                                </t>
+                                            </strong>
+                                        </t>
                                     </t>
                                     <br/>
                                     (n° d’agrément <strong>IDF 2019-0110</strong>),
                                     déclare que M/Mme
                                     <t t-if="val_3">
                                         <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                        <strong>
-                                            <span t-esc="o.display_name"/>
-                                        </strong>
-                                    </t>
+                                            <strong>
+                                                <span t-esc="o.display_name"/>
+                                            </strong>
+                                        </t>
                                     </t>
                                     <t t-else="">
                                         <span>........</span>
                                     </t>
                                     <t t-if="val_3">
                                         <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                        <t t-if="val_3[-1].presence == 'absence_justifiee'">
-                                            a une <b>absence justifiée</b> au troisième examen.
-                                        </t>
-                                        <t t-else="">
-                                            <t t-if="len(o.note_exam_id) &gt; 2">
-                                                <t t-if="val_3[-1].presence == 'present'">
-                                                    <span>a passé</span>
-                                                    <strong>
-                                                        <span t-field="val_3[-1].etat"/>
-                                                    </strong>
-                                                    <span>le troisième examen.</span>
-                                                </t>
-                                                <t t-else="val_3[-1].presence == 'Absent'">
-                                                    <span>a été</span>
-                                                    <strong>
-                                                        <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[val_3[-1].presence]"></t>
-                                                    </strong>
-                                                    <span>au troisième examen.</span>
+                                            <t t-if="val_3[-1].presence == 'absence_justifiee'">
+                                                a une <b>absence justifiée</b> au troisième examen.
+                                            </t>
+                                            <t t-else="">
+                                                <t t-if="len(o.note_exam_id) &gt; 2">
+                                                    <t t-if="val_3[-1].presence == 'present'">
+                                                        <span>a passé</span>
+                                                        <strong>
+                                                            <span t-field="val_3[-1].etat"/>
+                                                        </strong>
+                                                        <span>le troisième examen.</span>
+                                                    </t>
+                                                    <t t-else="val_3[-1].presence == 'Absent'">
+                                                        <span>a été</span>
+                                                        <strong>
+                                                            <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[val_3[-1].presence]"></t>
+                                                        </strong>
+                                                        <span>au troisième examen.</span>
+                                                    </t>
                                                 </t>
                                             </t>
                                         </t>
-                                    </t>
                                     </t>
                                     <center>
                                         <strong>
                                             Date :
                                             <t t-if="val_3">
-                                        <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                                <span t-esc="((val_3[-1].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
+                                                <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
+                                                    <span t-esc="((val_3[-1].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span>........</span>
+                                                </t>
                                             </t>
-                                            <t t-else="">
-                                                <span>........</span>
-                                            </t></t>
                                             &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
                                             &amp;nbsp;&amp;nbsp;
                                             Signature
                                         </strong>
                                         <t t-if="val_3">
-                                        <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                            <img src='/partner_exam/static/src/img/signature_suivi.png'
-                                                 style="height:200px; width:300px;"/>
-                                        </t>
-                                        <t t-else="">
-                                            <span>........</span>
-                                        </t>
+                                            <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
+                                                <img src='/partner_exam/static/src/img/signature_suivi.png'
+                                                     style="height:200px; width:300px;"/>
+                                            </t>
+                                            <t t-else="">
+                                                <span>........</span>
+                                            </t>
                                         </t>
                                     </center>
                                     <img src='/partner_exam/static/src/img/footer_attestation_r.png'
