@@ -28,7 +28,7 @@
     'depends': ['base',
                 'mail',
                 'mcm_session',
-                'crm_marketing_automation','calendly_api_integration'],
+                'crm_marketing_automation', 'calendly_api_integration'],
 
     # always loaded
     'data': [
@@ -40,6 +40,7 @@
         "views/session.xml",
         "views/coach.xml",
         'data/mail_data.xml',
+        'reports.xml',
 
     ],
     # only loaded in demonstration mode

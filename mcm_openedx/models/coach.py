@@ -4,12 +4,16 @@ from odoo import models, fields, api
 
 class Coach(models.Model):
     _name = 'mcm_openedx.coach'
+
     _description = "coaches module en va affecter pour chaque coach sa liste des apprennats"
+    name = fields.Char(string="Coaches")
     nombre_apprenant = fields.Integer()
     coach_name = fields.Many2one('res.partner', string="Tuteur", domain=[('est_coach', '=', True)])
     apprenant_name = fields.Many2many('res.partner', domain=[('est_coach', '=', False)])
     seats = fields.Integer(string="nombre de places")
     taken_seats = fields.Float(string="nombre des places ocuppé ", compute='_taken_seats')
+    commentaire = fields.Char(string="Commentaires")
+
 
     @api.depends('seats', 'apprenant_name')
     def _taken_seats(self):

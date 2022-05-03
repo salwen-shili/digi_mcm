@@ -536,17 +536,20 @@ class partner(models.Model):
 
     # supprimer ione le desinscrire des cours sur la platfrom moocit
     def supprimer_IOne_MCM(self):
-        departement = self.state_id.code
-        _logger.info(departement)
-        for rec in self:
-            self.write({'state': 'supprimé'})
-        if (self.module_id.product_id.default_code == "taxi"):
-            self.desinscriteTaxi(self)
-        elif (self.module_id.product_id.default_code == "vtc"):
-            self.desinscriteVTC(self)
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
 
-        elif (self.module_id.product_id.default_code == "vtc_bolt"):
-            self.desinscriteVTC(self)
+            departement = self.state_id.code
+            _logger.info(departement)
+            for rec in self:
+                self.write({'state': 'supprimé'})
+            if (self.module_id.product_id.default_code == "taxi"):
+                self.desinscriteTaxi(self)
+            elif (self.module_id.product_id.default_code == "vtc"):
+                self.desinscriteVTC(self)
+
+            elif (self.module_id.product_id.default_code == "vtc_bolt"):
+                self.desinscriteVTC(self)
 
     # affecter la date de suppression apres l'ajout de 6 mois
 
@@ -570,19 +573,21 @@ class partner(models.Model):
     # supprimer ione  automatique le desinscrire des cours sur la platfrom moocit
 
     def supprimer_automatique(self):
-        # chercher dans res.partner la liste de apprennats puis verifier la
-        for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                              ('company_id', '=', 1),
-                                                              ('email', "=", 'vikada3017@topyte.com'),
-                                                              ('statut_cpf', "!=", "canceled")
-                                                              ]):
-            if (partner.supprimerdemoocit == date.today()):
-                if (partner.module_id.product_id.default_code == "taxi"):
-                    self.desinscriteTaxi(self)
-                elif (partner.module_id.product_id.default_code == "vtc"):
-                    self.desinscriteVTC(self)
-                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                    self.desinscriteVTC(self)
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+            # chercher dans res.partner la liste de apprennats puis verifier la
+            for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
+                                                                  ('company_id', '=', 1),
+                                                                  ('email', "=", 'vikada3017@topyte.com'),
+                                                                  ('statut_cpf', "!=", "canceled")
+                                                                  ]):
+                if (partner.supprimerdemoocit == date.today()):
+                    if (partner.module_id.product_id.default_code == "taxi"):
+                        self.desinscriteTaxi(self)
+                    elif (partner.module_id.product_id.default_code == "vtc"):
+                        self.desinscriteVTC(self)
+                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                        self.desinscriteVTC(self)
 
     def convertir_date_inscription(self):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""

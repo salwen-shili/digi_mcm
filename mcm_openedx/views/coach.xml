@@ -42,7 +42,11 @@
                         <page string="Liste des Apprennats">
                             <field name="apprenant_name"></field>
                         </page>
-                        <page string="Sessions">
+                        <page string="Commentaire">
+
+
+                            <field name="commentaire"></field>
+
 
                         </page>
                     </notebook>
@@ -51,14 +55,16 @@
 
         </field>
     </record>
+
     <record model="ir.ui.view" id="coach_tree_view">
         <field name="name">Coaches</field>
         <field name="model">mcm_openedx.coach</field>
         <field name="arch" type="xml">
-            <tree>
+       <tree  decoration-bf="coach_name" decoration-success="seats &lt; 'nombre_apprenant'" default_order="seats">
                 <field name="coach_name"/>
                 <field name="nombre_apprenant"/>
                 <field name="seats"/>
+
             </tree>
         </field>
     </record>
@@ -79,7 +85,6 @@
         <field name="view_mode">tree,form,graph</field>
 
     </record>
-
 
 
 </odoo>

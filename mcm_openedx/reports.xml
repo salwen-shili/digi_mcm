@@ -1,0 +1,30 @@
+<odoo>
+
+    <report
+        id="report_session"
+        model="mcm_openedx.coach"
+        string="Session Report"
+        name="mcm_openedx.report_session_view"
+        file="mcm_openedx.report_session"
+        report_type="qweb-pdf" />
+
+    <template id="report_session_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 t-field="doc.name"/>
+                        <p>From <span t-field="doc.start_date"/> to <span t-field="doc.end_date"/></p>
+                        <h3>Attendees:</h3>
+                        <ul>
+                            <t t-foreach="doc.apprenant_name" t-as="attendee">
+                                <li><span t-field="coach-name"/></li>
+                            </t>
+                        </ul>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

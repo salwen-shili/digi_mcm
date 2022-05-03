@@ -7,10 +7,10 @@ from odoo import models, fields, api
 class Cours_stat(models.Model):
     _name = 'mcm_openedx.course_stat'
     _description = "importer les listes des cours pour calculer les statestiques"
-
+    name = fields.Char()
     nomutilisateur = fields.Char(string="Nom Utilisateur")
     email = fields.Char(string="Email")
-    color = fields.Char(string="Email")
+    color = fields.Char(string="color")
     idcour = fields.Char(string="ID Cours")
     jour = fields.Date(string="Jour")
     temppasse = fields.Char(string="Temps passés")
@@ -39,14 +39,10 @@ class Cours_stat(models.Model):
                 h, m = divmod(q, 60)
             print("%d:%d:%d" % (h, m, s))
             heure = int((temppassetotale / 3600))
-
             minute = int((temppassetotale - (3600 * heure)) / 60)
-
             secondes = int(temppassetotale - (3600 * heure) - (60 * minute))
-
             timee = (heure, minute, secondes)
             print("timmmmme", minute)
-
             # chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
             for apprenant in self.env['res.partner'].sudo().search([
                 ('company_id', '!=', 2),
@@ -58,5 +54,4 @@ class Cours_stat(models.Model):
                 apprenant.mooc_dernier_coonx = exist.jour
                 exist.partner = apprenant.id
                 self.partner = exist.partner
-
-# self.sudo().with_context(key=existt.id).sudo().unlink()
+                # self.sudo().with_context(key=existt.id).sudo().unlink()

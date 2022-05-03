@@ -76,7 +76,7 @@
                 <attribute name="attrs">{'invisible': [('est_coach', '=', True)]}</attribute>
             </xpath>
 
-            <xpath expr="//page[@name='internal_notes']" position="after">
+            <xpath expr="//page[@name='internal_notes']" position="before">
                 <page string="Statistiques  MOOCit" name="mcm_plateforme"
                       attrs="{'invisible': [('company_id', '=', 2)]}">
                     <group>

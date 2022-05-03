@@ -15,101 +15,7 @@
                     </div>
                 </div>
             </xpath>
-            <xpath expr="//page[@name='internal_notes']" position="after">
-                <page string="Statistiques sur MOOCit" name="mcm_plateforme"
-                      attrs="{'invisible': [('company_id', '=', 2)]}">
-                    <group>
-                        <group col="12">
-                        </group>
-                        <group col="8" colspan="4" string="Géneral">
-                            <div>
-                                <span class="o_stat_text">
-                                    <!--                                    <field name="averageScore" widget="percentpie"/>-->
-                                </span>
-                            </div>
-                            <div>
-                                <span class="o_stat_text">
-                                    <i class="fa fa-check"/>
-                                    Dernière Connexion
-                                </span>
-                                <br/>
-                                <span>
-                                    <!--                                    <field name="last_login"/>-->
-                                </span>
-                            </div>
-                            <div>
-                                <span>
-                                    <i class="fa fa-clock-o"/>
-                                </span>
-                                <span class="o_stat_text">
-                                    Temps passé par minute
-                                </span>
-                                <br/>
-                                <span class="o_stat_text">
-                                    <!--                                    <field name="totalTimeSpentInMinutes"></field>-->
-                                </span>
-                                <span class="o_stat_text">
-                                    <!--                                    <field name="temps_minute" class="oe_edit_only"/>-->
-                                </span>
-                            </div>
-                            <div>
-                                <span>
-                                    <i class="fa fa-sign-in" style="align:center"/>
-                                </span>
-                                <span class="o_stat_text">
-                                    Date d'inscription
-                                </span>
-                                <br/>
-                                <span>
-                                    <field name="inscrit_mcm"></field>
-                                </span>
-                            </div>
-                        </group>
-                        <group col="8" colspan="4" string="Participation">
-                            <div>
-                                <span class="o_stat_text">
-                                    <i class="fa fa-comment"/>
-                                    Messages Postés
-                                </span>
-                                <br/>
-                                <span class="o_stat_value">
-                                    <!--                                    <field name="messages"/>-->
-                                </span>
-                            </div>
-                            <div>
-                                <span class="o_stat_text">
-                                    <i class="fa fa-comments"/>
-                                    Commentaires Postés
-                                </span>
-                                <br/>
-                                <span class="o_stat_value">
-                                    <!--                                    <field name="comments"/>-->
-                                </span>
-                            </div>
-                            <div>
-                                <span class="o_stat_text">
-                                    <i class="fa fa-thumbs-up"/>
-                                    Réactions
-                                </span>
-                                <br/>
-                                <span class="o_stat_value">
-                                    <!--                                    <field name="reactions"/>-->
-                                </span>
-                            </div>
-                            <div>
-                                <span class="o_stat_text">
-                                    <i class="fa fa-tasks"/>
-                                    Cours/Programmes publiés
-                                </span>
-                                <br/>
-                                <span class="o_stat_value">
-                                    <!--                                    <field name="publications"/>-->
-                                </span>
-                            </div>
-                        </group>
-                    </group>
-                </page>
-            </xpath>
+
         </field>
     </record>
     <record model="ir.ui.view" id="partner_mcm_form_view">
@@ -128,10 +34,10 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="crm.view_partners_form_crm1"></field>
         <field name="arch" type="xml">
-           <xpath expr="//button[@class='oe_stat_button o_res_partner_tip_opp']" position="attributes">
+            <xpath expr="//button[@class='oe_stat_button o_res_partner_tip_opp']" position="attributes">
                 <attribute name="groups">base.group_user</attribute>
                 <attribute name="groups"></attribute>
-           </xpath>
+            </xpath>
         </field>
     </record>
 </odoo>
