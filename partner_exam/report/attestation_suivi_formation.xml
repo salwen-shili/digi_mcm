@@ -177,11 +177,11 @@
                                                         <span t-raw=" '%s' % o.company_id.region"/>
                                                     </strong>
                                                 </t>
-                                                <t t-else="">
-                                                    <span>........</span>
-                                                </t>
                                             </strong>
                                         </t>
+                                    </t>
+                                    <t t-else="">
+                                        <span>........</span>
                                     </t>
                                     <br/>
                                     (n° d’agrément <strong>IDF 2019-0110</strong>),
