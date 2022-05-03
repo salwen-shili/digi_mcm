@@ -101,7 +101,6 @@ class resComapny(models.Model):
             if rec.birthday:
                 dt = rec.birthday
                 print("dt", dt)
-            #d1 = datetime.strptime(dt, "%Y-%m-%d").date()
-            d2 = date.today()
-        rd = relativedelta(d2, dt)
-        rec.age = str(rd.years) + ' years'
+                today = date.today()
+                rd = relativedelta(today, dt)
+                rec.age = str(rd.years)
