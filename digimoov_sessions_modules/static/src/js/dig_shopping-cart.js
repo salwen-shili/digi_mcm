@@ -904,6 +904,44 @@ function setAvailableDate(sessionDate) {
   } else return;
 }
 
+// verification of exam date
+function verify_date_exam(isAccessible) {
+  if (!document.getElementById('options-date')) return;
+  var center = false;
+  var exam_date = document.getElementById('options-date');
+  var center = document.getElementById('centre_examen').value;
+  var exam_date_id = false;
+
+  if (exam_date) {
+    var exam = document.getElementById('options-date').value;
+    if (exam == 'all') {
+      var error = document.getElementById('error_exam_date');
+      if (error && exam_date.style.display == 'inline-block') {
+        error.style.display = 'inline-block';
+      }
+    } else {
+      var error = document.getElementById('error_exam_date');
+      if (error) {
+        error.style.display = 'none';
+      }
+    }
+  }
+
+  if (exam_date) {
+    exam_date_id = exam_date.options[exam_date.selectedIndex].getAttribute('id');
+  }
+  // if (center && exam_date) {
+  //   if (center == 'all' || exam_date.value == 'all') {
+  //     var pm_button = document.getElementById('pm_shop_check');
+  //     var pm_button_checkout = document.getElementById('pm_shop_checkout');
+  //   }
+  // }
+  //post request to /shop/cart/update_exam_date
+  console.log('exam_date_id:', exam_date_id);
+  updateExamDate(exam_date_id, isAccessible);
+}
+
+//post request to /shop/cart/update_exam_date
 const updateExamDate = (props) => {
   sendHttpRequest('POST', '/shop/cart/update_exam_date', {
     params: {
