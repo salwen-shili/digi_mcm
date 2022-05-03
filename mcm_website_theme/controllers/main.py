@@ -775,6 +775,7 @@ class Routes_Site(http.Controller):
 
     """ get data of new contact from jotform using webhook """
 
+
     @http.route(['/webhook_contact_form'], type='http', auth="public", csrf=False)
     def create_contact_from_jotform_webhook(self, **kw):
         _logger.info("webhoook contact jotform %s" % (kw))
@@ -792,8 +793,12 @@ class Routes_Site(http.Controller):
         zipcode = rawRequest['q82_adresse']['postal']
         ipjotform = str(kw['ip'])
         _logger.info("IP of webhook_contact_form : %s" % (ipjotform))
+        _logger.info("email: %s" % (email))
+        _logger.info("tel: %s" % (tel))
         res_user = request.env['res.users']
-        odoo_contact = res_user.search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+        odoo_contact = res_user.sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+        _logger.info("user founded using email : %s" % (odoo_contact))
+
         if not odoo_contact:
             if tel:
                 odoo_contact = request.env["res.users"].sudo().search(
@@ -849,6 +854,8 @@ class Routes_Site(http.Controller):
                                 phone = '0' + str(phone)
                                 odoo_contact = request.env["res.users"].sudo().search(
                                     [("phone", "like", phone.replace(' ', ''))], limit=1)
+
+        _logger.info("user founded using tel  : %s" % (odoo_contact))
         if not odoo_contact:
             odoo_contact = request.env['res.users'].sudo().create({
                 'name': str(firstname) + " " + str(lastName),
@@ -867,10 +874,10 @@ class Routes_Site(http.Controller):
                 'street2': street2 if street else "",
                 'city': city if city else "",
                 'zip': zipcode if zipcode else "",
-                'bolt': True,
             })
         if odoo_contact:
             odoo_contact.ipjotform = ipjotform
+            odoo_contact.bolt = True
         return True
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
