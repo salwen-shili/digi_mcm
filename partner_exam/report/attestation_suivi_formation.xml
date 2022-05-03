@@ -80,7 +80,7 @@
                                         <br/>
                                         Lieu et date de l’examen :
                                         <t t-set="val" t-value="o.note_exam_id.filtered(lambda nbrp: nbrp.nombre_de_passage == 'premier')"/>
-                                        <t t-if="val[-1].session_id[-1].session_adresse_examen">
+                                        <t t-if="val[-1].session_id.session_adresse_examen">
                                             <strong>
                                                 <span t-raw="'%s' % val[-1].session_id[0].session_adresse_examen.adresse_centre_examen if val[-1].session_id[0].session_adresse_examen else ''"/>
                                                 -
