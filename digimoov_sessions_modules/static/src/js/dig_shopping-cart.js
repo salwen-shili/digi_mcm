@@ -223,7 +223,10 @@ function onChangeCheckButton() {
       // get selected option and show/hide alert for session >4 months
       const sel = document.getElementById('options-date');
 
-      sessionIsAccessible(sel.options[sel.selectedIndex].getAttribute('data'));
+      sessionIsAccessible({
+        session: sel.options[sel.selectedIndex].getAttribute('data'),
+        id: sel.options[sel.selectedIndex].getAttribute('id'),
+      });
     }
   } else {
     document.getElementById('pm_shop_checkout').setAttribute('disabled', 'true');
@@ -818,12 +821,13 @@ function hideAlertDate() {
 // This function substract 4 months from date session,
 function sessionIsAccessible(prop) {
   hideAlertDate();
-   if (window.location.href.includes('lourd')){
-  return
+
+  if (window.location.href.includes('lourd')) {
+    return;
   }
   // alert(new Date(prop));
   const toDay = new Date();
-  const sessionDate = new Date(prop);
+  const sessionDate = new Date(prop.session);
   console.log('sessionDate :', sessionDate);
   const months = monthDiff(toDay, sessionDate);
 
@@ -842,6 +846,11 @@ function sessionIsAccessible(prop) {
   } else if (months < 4) {
     isAccessible = true;
   }
+  //send exam date (session and write into client file)
+  updateExamDate({
+    exam_date_id: prop.id,
+    status: isAccessible,
+  });
 
   console.log('isAccessible :', isAccessible);
   if (!isAccessible) {
@@ -894,3 +903,14 @@ function setAvailableDate(sessionDate) {
     document.getElementById('available-date').innerHTML = availableDate(sessionDate);
   } else return;
 }
+
+const updateExamDate = (props) => {
+  sendHttpRequest('POST', '/shop/cart/update_exam_date', {
+    params: {
+      exam_date_id: props.exam_date_id,
+      status: props.status,
+    },
+  })
+    .then((responseData) => {})
+    .catch((err) => {});
+};
