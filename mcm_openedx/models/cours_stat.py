@@ -31,16 +31,17 @@ class Cours_stat(models.Model):
         for exist in self.env['mcm_openedx.course_stat'].sudo().search([('email', "=", self.email)]):
             listcourduplicated = []
             for existee in exist:
-                if existee.idcour and existee.jour not in listcourduplicated:
+                if existee.jour not in listcourduplicated:
                     duplicates = self.env['mcm_openedx.course_stat'].search(
-                        [('email', "=", existee.email), ('idcour', '=', existee.idcour),('jour','=',existee.jour)])
+                        [('email', "=", existee.email), ('idcour', '=', existee.idcour), ('jour', '=', existee.jour)])
 
                     print(existee.jour)
                     for dup in duplicates:
-                        listcourduplicated.append(dup.id)
+                        listcourduplicated.append(dup.jour)
                         print("duuppp", dup.jour)
                         print("duuppp", dup.idcour)
-            self.browse(listcourduplicated).unlink()
+            if(existee.jour == exist.jour):
+                self.browse(listcourduplicated).unlink()
 
         # if (exist):
         #     print(exist.seconde)

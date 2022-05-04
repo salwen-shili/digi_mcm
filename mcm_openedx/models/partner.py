@@ -27,11 +27,11 @@ class partner(models.Model):
     state = fields.Selection([('en_attente', 'En attente'), ('en_formation', 'En Formation'), ('supprimé', 'Supprimé')],
                              required=True, default='en_attente')
 
-    mooc_dernier_coonx = fields.Date()
-    mooc_temps_passe_heure = fields.Integer()
-    mooc_temps_passe_min = fields.Integer()
-    mooc_temps_passe_seconde = fields.Integer()
-    date_imortation_stat = fields.Date()
+    # mooc_dernier_coonx = fields.Date()
+    # mooc_temps_passe_heure = fields.Integer()
+    # mooc_temps_passe_min = fields.Integer()
+    # mooc_temps_passe_seconde = fields.Integer()
+    # date_imortation_stat = fields.Date()
 
     # desinscrire les cours de formation  VTC a l'apprenant
 
@@ -449,7 +449,7 @@ class partner(models.Model):
 
             _logger.info('user %s' % str(payload))
             _logger.info('existantttttt dejaa %s')
-            if (response.status_code == 409):
+            if (response.status_code == 200):
                 for rec in self:
                     self.write({'state': 'en_formation'})
                 self.inscrit_mcm = date.today()
@@ -503,7 +503,7 @@ class partner(models.Model):
                         self.inscriteVTC(self)
                         self.supprimer_sixmoins(self)
 
-            elif (response.status_code == 200):
+            elif (response.status_code == 409):
                 _logger.info('existantttttt dejaa %s')
 
     # envoit d'un sms

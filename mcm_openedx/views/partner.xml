@@ -82,6 +82,7 @@
                     <group>
                         <group col="12">
                         </group>
+<!--
                         <group col="8" colspan="4" string="Géneral">
                             <div>
                                 <span class="o_stat_text">
@@ -156,6 +157,7 @@
                                 </span>
                             </div>
                         </group>
+-->
                     </group>
                 </page>
             </xpath>
@@ -193,10 +195,12 @@
     <!-- top level menu: no parent -->
     <menuitem id="main_mcm_openedx_menu" name="MCM_OpenEdx"/>
     <menuitem id="mcm_apprennat_menu" name="Apprenants" parent="main_mcm_openedx_menu" action="contact_list_action"/>
+<!--
     <menuitem id="mcm_courses_menu" name="MOOCIT" parent="main_mcm_openedx_menu"/>
     <menuitem id="mcm_session_menu" name="Session" parent="mcm_courses_menu" action="session_list_action"/>
     <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
     <menuitem id="coach_menu" name="Coaches" parent="main_mcm_openedx_menu" action="coach_list_action"/>
 
+-->
 
 </odoo>
