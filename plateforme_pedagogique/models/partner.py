@@ -324,8 +324,10 @@ class partner(models.Model):
                             self.ajouter_iOne(partner)
 
     def ajouter_iOne(self, partner):
+        new_email=""
         # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
         # du compte dans odoo
+        self.env.user.lang ='fr_FR'
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
         company = str(partner.module_id.company_id.id)
         product_name = partner.module_id.product_id.name
@@ -361,7 +363,6 @@ class partner(models.Model):
                 company_id = '56f5520e11d423f46884d593'
                 api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
                 urluser = 'https://app.360learning.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
-                urlgroup_Bienvenue = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                 url_groups = 'https://app.360learning.com/api/v1/groups'
                 url_unsubscribeToEmailNotifications = 'https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
                 headers = CaseInsensitiveDict()
@@ -378,7 +379,7 @@ class partner(models.Model):
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
                     password=str(user.password360.encode('utf-8'))
-
+                    email=partner.email
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + password + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
@@ -412,6 +413,8 @@ class partner(models.Model):
                     _logger.info('date_inscrit %s' % str(partner.date_creation))
 
                     # Affecter i-One to groupe digimoov-bienvenue
+                    urlgroup_Bienvenue = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + new_email + '?company=' + company_id + '&apiKey=' + api_key
+
                     respgroupe = requests.put(urlgroup_Bienvenue, headers=headers, data=data_group)
                     print('bienvenue ', respgroupe.status_code, partner.date_creation)
                     partner.apprenant = True
@@ -432,14 +435,14 @@ class partner(models.Model):
                         if (company == '2'):
                             if (nom_groupe == digimoov_examen.upper()):
                                 id_Digimoov_Examen_Attestation = id_groupe
-                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + new_email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
 
                                 # Affecter à un pack solo
                             packsolo = "Digimoov - Pack Solo"
                             if (("solo" in product_name) and (nom_groupe == packsolo.upper())):
                                 print(partner.module_id.name)
-                                urlgrp_solo = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_solo = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + new_email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_solo = requests.put(urlgrp_solo, headers=headers, data=data_group)
                                 print('affecté à solo', respgrp_solo.status_code)
 
@@ -447,26 +450,26 @@ class partner(models.Model):
                             pack_pro = "Digimoov - Pack Pro"
                             if (("pro" in product_name) and (nom_groupe == pack_pro.upper())):
                                 print(partner.module_id.name)
-                                urlgrp_pro = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_pro = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + new_email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_pro = requests.put(urlgrp_pro, headers=headers, data=data_group)
                             # Affecter à unpremium
                             packprem = "Digimoov - Pack Premium"
                             if (("premium" in product_name) and (nom_groupe == packprem.upper())):
                                 print(partner.module_id.name)
-                                urlgrp_prim = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_prim = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + new_email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_prim = requests.put(urlgrp_prim, headers=headers, data=data_group)
 
                             # Affecter apprenant à Digimoov-Révision
                             revision = "Digimoov - Pack Repassage Examen"
                             if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
-                                urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + new_email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
 
                             # Affecter apprenant à une session d'examen
                             print('date, ville', ville, date_session)
                             if (ville in nom_groupe) and (date_session in nom_groupe):
                                 existe = True
-                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + new_email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
 
 
@@ -489,7 +492,7 @@ class partner(models.Model):
                             # Affecter apprenant à la nouvelle session d'examen
                             if (ville in nom_groupe) and (date_session in nom_groupe):
                                 existe = True
-                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + new_email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
                     if self.env.su:
@@ -536,6 +539,39 @@ class partner(models.Model):
                             if not ticket:
                                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
                                     vals)
+                            """Si message d'erreur "unavailableEmails" on ajoute #digimoov à l'email pour qu'il sera ajouté sur la plateforme 360"""
+                            email = partner.email
+                            position = email.index('@')
+                            new_email = email[:position] + '#digimoov' + email[position:]
+                            _logger.info("new email %s" % new_email)
+                            partner.email=new_email
+                            """Changer format du numero de tel pour envoyer le sms """
+                            # if self.partner_id.phone:
+                            #     phone = str(self.partner_id.phone.replace(' ', ''))[-9:]
+                            #     phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                            #                                                                 3:5] + ' ' + phone[
+                            #                                                                              5:7] + ' ' + phone[
+                            #                                                                                           7:]
+                            #     self.partner_id.phone = phone
+                            """envoyer SMS pour informer l'apprenant de sa nouvelle adresse email """
+                            new_login=partner.email
+                            # body = "DIGIMOOV. Afin d'accéder à notre formation vous devez vous connecter avec votre nouvelle adresse email : %s" % (
+                            #     new_login)
+                            # if body:
+                            #     composer = self.env['sms.composer'].with_context(
+                            #         default_res_model='res.partner',
+                            #         default_res_id=self.partner_id.id,
+                            #         default_composition_mode='comment',
+                            #     ).sudo().create({
+                            #         'body': body,
+                            #         'mass_keep_log': True,
+                            #         'mass_force_send': False,
+                            #         'use_active_domain': False,
+                            #     })
+                            #     composer.action_send_sms()  # we send sms to client contains link to register in cma.
+                            #     if self.partner_id.phone:
+                            #         self.partner_id.phone = '0' + str(self.partner_id.phone.replace(' ', ''))[
+                            #                                       -9:]
 
                         # else:
 
@@ -1766,6 +1802,8 @@ class partner(models.Model):
             print(date_debut,datetime.today())
         if date_debut <= datetime.today():
             print('else' )
+
+
 
 
 
