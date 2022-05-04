@@ -26,7 +26,7 @@ class WebsiteSale(WebsiteSale):
 
     @http.route(
         ['''/<string:product>/<string:partenaire>/shop/cart''',
-            '''/<string:product>/shop/cart''', '''/shop/cart'''],
+         '''/<string:product>/shop/cart''', '''/shop/cart'''],
         type='http', auth="user", website=True, sitemap=False)
     def cart(self, access_token=None, product=None, revive='', partenaire=None, **post):
         """
@@ -83,29 +83,32 @@ class WebsiteSale(WebsiteSale):
                         mail_compose_message.fetch_sendinblue_template()
                         template_id = request.env['mail.template'].sudo().search(
                             [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
-                             ('model_id', "=", 'res.partner')], limit=1)  # if product of bolt in shop cart we send mail contains link of exam to client. we get the mail template from sendinblue
+                             ('model_id', "=", 'res.partner')],
+                            limit=1)  # if product of bolt in shop cart we send mail contains link of exam to client. we get the mail template from sendinblue
                         if template_id:
                             message = request.env['mail.message'].sudo().search(
                                 [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
                                  ('model', "=", 'res.partner'), ('res_id', "=", request.env.user.partner_id.id)],
                                 limit=1)
                             if not message:  # check if we have already sent the email
-                                request.env.user.partner_id.with_context(force_send=True).message_post_with_template(template_id.id,
-                                                                                                                     composition_mode='comment',
-                                                                                                                     )  # send the email to client
+                                request.env.user.partner_id.with_context(force_send=True).message_post_with_template(
+                                    template_id.id,
+                                    composition_mode='comment',
+                                )  # send the email to client
                         if request.env.user.partner_id.phone:
                             phone = str(
                                 request.env.user.partner_id.phone.replace(' ', ''))[-9:]
                             phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                5:7] + ' ' + phone[
-                                7:]
+                                                                                                           5:7] + ' ' + phone[
+                                                                                                                        7:]
                             request.env.user.partner_id.phone = phone
                         url = 'https://tinyurl.com/mtw2tv8z'
                         body = "Cher %s, Pour profiter de la formation VTC à 20 euros vous devez passer un test d'entré de 30 min.Commencez ici : %s" % (
                             request.env.user.partner_id.name, url)
                         if body:
                             sms = request.env['mail.message'].sudo().search(
-                                [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", request.env.user.partner_id.id)])
+                                [("body", "=", body), ("message_type", "=", 'sms'),
+                                 ("res_id", "=", request.env.user.partner_id.id)])
                             if not sms:
                                 survey = request.env['survey.survey'].sudo().search(
                                     [('title', "=", 'Examen blanc Français')],
@@ -131,8 +134,8 @@ class WebsiteSale(WebsiteSale):
                                         composer.action_send_sms()  # send sms of exam inscription
                             if request.env.user.partner_id.phone:
                                 request.env.user.partner_id.phone = '0' + \
-                                    str(request.env.user.partner_id.phone.replace(
-                                        ' ', ''))[-9:]
+                                                                    str(request.env.user.partner_id.phone.replace(
+                                                                        ' ', ''))[-9:]
                 if default_code_bolt:
                     survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
                                                                         limit=1)
@@ -146,11 +149,11 @@ class WebsiteSale(WebsiteSale):
                             order='create_date asc', limit=1)
                         _logger.info('survey_user : %s' % (str(survey_user)))
                         if not survey_user:
-                            url = '/survey/start/'+str(survey.access_token)
+                            url = '/survey/start/' + str(survey.access_token)
                             return werkzeug.utils.redirect(url, 301)
                         if survey_user and survey_user.state == 'new':
                             # check if client has not yet passed the exam , we redirect him to the exam
-                            url = '/survey/start/'+str(survey.access_token)
+                            url = '/survey/start/' + str(survey.access_token)
                             return werkzeug.utils.redirect(url, 301)
                         if survey_user and survey_user.state == 'skip':
                             return werkzeug.utils.redirect(
@@ -262,12 +265,16 @@ class WebsiteSale(WebsiteSale):
                     slugname = (product_id.name).strip().strip(
                         '-').replace(' ', '-').lower()
                     if str(slugname) != str(product):
-                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
+                                                                              'box2home', 'coursier2roues',
+                                                                              'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                         else:
                             return request.redirect("/%s/shop/cart/" % (slugname))
                     else:
-                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
+                                                                              'box2home', 'coursier2roues',
+                                                                              'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                 else:
                     return request.redirect("/pricing")
@@ -280,12 +287,14 @@ class WebsiteSale(WebsiteSale):
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
                         if not pricelist:
                             pricelist_id = order.pricelist_id
-                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                     'coursier2roues', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/cart/" % (slugname, pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/cart/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',
+                                                  'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/cart/" % (slugname))
@@ -295,12 +304,14 @@ class WebsiteSale(WebsiteSale):
 
                         if not pricelist:
                             pricelist_id = order.pricelist_id
-                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                     'coursier2roues', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/cart/" % (slugname, pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/cart/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',
+                                                  'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 if pricelist.name != order.pricelist_id.name:
                                     return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                             else:
@@ -308,7 +319,9 @@ class WebsiteSale(WebsiteSale):
                 else:
                     pricelist = request.env['product.pricelist'].sudo().search(
                         [('company_id', '=', 2), ('name', "=", str(partenaire))])
-                    if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
+                    if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                        'coursier2roues', 'habilitation-electrique', 'eco-conduite',
+                                                        'transport-routier']:
                         return request.redirect("/%s" % (pricelist.name))
                     else:
                         return request.redirect("/pricing")
@@ -373,7 +386,7 @@ class WebsiteSale(WebsiteSale):
                 'Content-Type': 'application/json',
                 'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
             }
-            response = requests.get('https://www.wedof.fr/api/registrationFolders/'+numero_cpf, headers=headers,
+            response = requests.get('https://www.wedof.fr/api/registrationFolders/' + numero_cpf, headers=headers,
                                     params=params_wedof)
             registration = response.json()
             print('registration',
@@ -491,6 +504,7 @@ class WebsiteSale(WebsiteSale):
     #                 return request.redirect('/shop/cart')
     #     return redirection
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
+
     @http.route(['/shop/cpf_accepted'], type='json', auth="user", methods=['POST'], website=True)
     def accepted_cpf(self):
         partner = request.env.user.partner_id
@@ -725,7 +739,7 @@ class WebsiteSale(WebsiteSale):
                             limit=1).id,
                     }
                     description = "CPF: vérifier la date et ville de " + \
-                        str(partner.name)
+                                  str(partner.name)
                     ticket = request.env['helpdesk.ticket'].sudo().search(
                         [("description", "=", description)])
                     if not ticket:
@@ -743,7 +757,7 @@ class WebsiteSale(WebsiteSale):
                             limit=1).id,
                     }
                     description = 'CPF: id module edof ' + \
-                        str(training_id) + ' non trouvé'
+                                  str(training_id) + ' non trouvé'
                     ticket = request.env['helpdesk.ticket'].sudo().search(
                         [('description', 'ilike', description)])
                     if not ticket:
@@ -752,6 +766,7 @@ class WebsiteSale(WebsiteSale):
         return {'state': 'finished', }
 
     """ajouter l'apprenant sur 360 par api360"""
+
     @http.route(['/shop/adduser_plateform'], type='json', auth="user", methods=['POST'], website=True)
     def add_partner_plateforme(self):
 
@@ -769,13 +784,15 @@ class WebsiteSale(WebsiteSale):
 
             """Vérifier la presence d'apprenant sur 360 """
             url_user = 'https://app.360learning.com/api/v1/users/' + \
-                partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                       partner.email + '?company=' + company_id + '&apiKey=' + api_key
             resp = requests.get(url_user, headers=headers)
             """s'il est présent on lui envoie le lien pour se connecter si non on lui ajoute """
             print('get user', resp.status_code)
             if resp.status_code == 200:
 
-                return {'ajout': 'Vous êtes déja sur la plateforme,\nveuillez cliquer sur continuer et entrez vos identifiants de connexion que vous utilisez sur notre site web.', 'url': 'https://digimoov.360learning.com'}
+                return {
+                    'ajout': 'Vous êtes déja sur la plateforme,\nveuillez cliquer sur continuer et entrez vos identifiants de connexion que vous utilisez sur notre site web.',
+                    'url': 'https://digimoov.360learning.com'}
             else:
                 print('if parnter adddddddddd')
                 # chercher son contrat
@@ -833,17 +850,21 @@ class WebsiteSale(WebsiteSale):
                             if user.company_id.id == 1:
                                 "si créer envoyer le lien de la plateforme + suppression de panier  si non false"
                                 sale_order = request.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-                                                                                      ('session_id', '=', partner.mcm_session_id.id),
-                                                                                      ('module_id', '=', partner.module_id.id),
+                                                                                      ('session_id', '=',
+                                                                                       partner.mcm_session_id.id),
+                                                                                      ('module_id', '=',
+                                                                                       partner.module_id.id),
                                                                                       ('state', '=',
                                                                                        'draft'),
-                                                                                      ('session_id.date_exam', '>', date.today())],
+                                                                                      ('session_id.date_exam', '>',
+                                                                                       date.today())],
                                                                                      limit=1, order="id desc")
                                 if sale_order:
                                     sale_order.unlink()
                                 print("*******************MCM")
-                                return {'ajout': "Félicitations! Vous pouvez dés maintenant accéder à notre plateforme de formation,\nPour ce faire, veuillez cliquer sur continuer et créer votre compte client.\nLes cours seront ajoutés dans les 24 heures",
-                                        'url': "https://formation.mcm-academy.fr/register?next=/dashboard"}
+                                return {
+                                    'ajout': "Félicitations! Vous pouvez dés maintenant accéder à notre plateforme de formation,\nPour ce faire, veuillez cliquer sur continuer et créer votre compte client.\nLes cours seront ajoutés dans les 24 heures",
+                                    'url': "https://formation.mcm-academy.fr/register?next=/dashboard"}
                         if not partner.renounce_request:
                             print("Renonce")
                             """créer ticket pour service client"""
@@ -856,13 +877,14 @@ class WebsiteSale(WebsiteSale):
                                     limit=1).id,
                             }
                             description = "CPF: Apprenant non ajouté sur 360 " + \
-                                str(partner.name)
+                                          str(partner.name)
                             ticket = request.env['helpdesk.ticket'].sudo().search(
                                 [("description", "=", description)])
                             if not ticket:
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
-                            return {'ajout': 'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'}
+                            return {
+                                'ajout': 'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'}
 
                         # if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
                         #     self.ajouter_iOne(partner)
@@ -879,13 +901,14 @@ class WebsiteSale(WebsiteSale):
                                 limit=1).id,
                         }
                         description = "CPF: Apprenant non ajouté sur 360 " + \
-                            str(partner.name)
+                                      str(partner.name)
                         ticket = request.env['helpdesk.ticket'].sudo().search(
                             [("description", "=", description)])
                         if not ticket:
                             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                 vals)
-                        return {'ajout': "Le chargement de vos documents a été effectué avec succès ! Notre service clientèle se chargera de les valider, et de vous contacter dans les 24h pour poursuivre l'inscription."}
+                        return {
+                            'ajout': "Le chargement de vos documents a été effectué avec succès ! Notre service clientèle se chargera de les valider, et de vous contacter dans les 24h pour poursuivre l'inscription."}
 
     def ajouter_iOne(self, partner):
 
@@ -933,12 +956,12 @@ class WebsiteSale(WebsiteSale):
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
                 id_Digimoov_Examen_Attestation = '5f9af8dae5769d1a2c9d5047'
                 urluser = 'https://app.360learning.com/api/v1/users?company=' + \
-                    company_id + '&apiKey=' + api_key
+                          company_id + '&apiKey=' + api_key
                 urlgroup_Bienvenue = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + \
-                    '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                     '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                 url_groups = 'https://app.360learning.com/api/v1/groups'
                 url_unsubscribeToEmailNotifications = 'https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + \
-                    company_id + '&apiKey=' + api_key
+                                                      company_id + '&apiKey=' + api_key
                 invit = False
                 create = False
                 responce_api = False
@@ -954,8 +977,8 @@ class WebsiteSale(WebsiteSale):
 
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + \
-                        '", "lastName":"' + partner.lastName + '", "phone":"' + \
-                        partner.phone + '", "lang":"fr","sendCredentials":"true"}'
+                                '", "lastName":"' + partner.lastName + '", "phone":"' + \
+                                partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(
                         urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
@@ -1003,7 +1026,7 @@ class WebsiteSale(WebsiteSale):
                             if (nom_groupe == digimoov_examen.upper()):
                                 id_Digimoov_Examen_Attestation = id_groupe
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + \
-                                    '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                             '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(
                                     urlsession, headers=headers, data=data_group)
                                 if respsession.status_code == 200:
@@ -1014,7 +1037,7 @@ class WebsiteSale(WebsiteSale):
                             if (("solo" in product_name) and (nom_groupe == packsolo.upper())):
                                 print(partner.module_id.name)
                                 urlgrp_solo = 'https://app.360learning.com/api/v1/groups/' + id_groupe + \
-                                    '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                              '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_solo = requests.put(
                                     urlgrp_solo, headers=headers, data=data_group)
                                 print('affecté à solo',
@@ -1025,7 +1048,7 @@ class WebsiteSale(WebsiteSale):
                             if (("pro" in product_name) and (nom_groupe == pack_pro.upper())):
                                 print(partner.module_id.name)
                                 urlgrp_pro = 'https://app.360learning.com/api/v1/groups/' + id_groupe + \
-                                    '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                             '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_pro = requests.put(
                                     urlgrp_pro, headers=headers, data=data_group)
                             # Affecter à unpremium
@@ -1033,7 +1056,7 @@ class WebsiteSale(WebsiteSale):
                             if (("premium" in product_name) and (nom_groupe == packprem.upper())):
                                 print(partner.module_id.name)
                                 urlgrp_prim = 'https://app.360learning.com/api/v1/groups/' + id_groupe + \
-                                    '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                              '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_prim = requests.put(
                                     urlgrp_prim, headers=headers, data=data_group)
 
@@ -1041,7 +1064,7 @@ class WebsiteSale(WebsiteSale):
                             revision = "Digimoov - Pack Repassage Examen"
                             if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
                                 urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + \
-                                    '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                                  '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_revision = requests.put(
                                     urlgrp_revision, headers=headers, data=data_group)
 
@@ -1050,7 +1073,7 @@ class WebsiteSale(WebsiteSale):
                             if (ville in nom_groupe) and (date_session in nom_groupe):
                                 existe = True
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + \
-                                    '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                             '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(
                                     urlsession, headers=headers, data=data_group)
 
@@ -1061,9 +1084,9 @@ class WebsiteSale(WebsiteSale):
                         nomgroupe = unidecode(nom)
                         print(nomgroupe)
                         urlgroups = 'https://app.360learning.com/api/v1/groups?company=' + \
-                            company_id + '&apiKey=' + api_key
+                                    company_id + '&apiKey=' + api_key
                         data_session = '{"name":"' + nomgroupe + '","parent":"' + \
-                            id_Digimoov_Examen_Attestation + '"  , "public":"false" }'
+                                       id_Digimoov_Examen_Attestation + '"  , "public":"false" }'
                         create_session = requests.post(
                             urlgroups, headers=headers, data=data_session)
                         print('creer  une session', create_session.status_code)
@@ -1078,7 +1101,7 @@ class WebsiteSale(WebsiteSale):
                             if (ville in nom_groupe) and (date_session in nom_groupe):
                                 existe = True
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + \
-                                    '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                             '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(
                                     urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session',
@@ -1086,7 +1109,8 @@ class WebsiteSale(WebsiteSale):
                     "si créer envoyer le lien de la plateforme + suppression de panier  si non false"
                     sale_order = request.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
                                                                           (
-                                                                          'session_id', '=', partner.mcm_session_id.id),
+                                                                              'session_id', '=',
+                                                                              partner.mcm_session_id.id),
                                                                           ('module_id', '=',
                                                                            partner.module_id.id),
                                                                           ('state', '=',
@@ -1117,8 +1141,8 @@ class WebsiteSale(WebsiteSale):
                     if partner.phone:
                         phone = str(partner.phone.replace(' ', ''))[-9:]
                         phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                            5:7] + ' ' + phone[
-                            7:]
+                                                                                                       5:7] + ' ' + phone[
+                                                                                                                    7:]
                         partner.phone = phone
                     url = 'https://digimoov.360learning.com/'
                     body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par Digimoov à commencer votre formation via ce lien : %s .Vos identifiants sont identiques que sur le site web Digimoov.fr" % (
@@ -1141,8 +1165,10 @@ class WebsiteSale(WebsiteSale):
                             composer.action_send_sms()
                         if partner.phone:
                             partner.phone = '0' + \
-                                str(partner.phone.replace(' ', ''))[-9:]
-                    return {'ajout': 'Félicitations! Vous pouvez dés maintenant accéder à notre plateforme de formation,\nPour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.', 'url': 'https://digimoov.360learning.com'}
+                                            str(partner.phone.replace(' ', ''))[-9:]
+                    return {
+                        'ajout': 'Félicitations! Vous pouvez dés maintenant accéder à notre plateforme de formation,\nPour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.',
+                        'url': 'https://digimoov.360learning.com'}
 
                 if not (create):
                     if str(responce_api) == "{'error': 'unavailableEmails'}":
@@ -1156,13 +1182,14 @@ class WebsiteSale(WebsiteSale):
                                 limit=1).id,
                         }
                         description = "CPF: Apprenant non ajouté sur 360 " + \
-                            str(partner.name)
+                                      str(partner.name)
                         ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description),
                                                                                ("team_id.name", 'like', 'Client')])
                         if not ticket:
                             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                 vals)
-                        return {'ajout': "Une erreur est survenue lors de votre connexion. Vous serez contacté par notre service client dans les 24h pour faciliter votre accès à notre plateforme."}
+                        return {
+                            'ajout': "Une erreur est survenue lors de votre connexion. Vous serez contacté par notre service client dans les 24h pour faciliter votre accès à notre plateforme."}
 
                     else:
 
@@ -1174,7 +1201,7 @@ class WebsiteSale(WebsiteSale):
                                 limit=1).id,
                         }
                         description = "CPF: Apprenant non ajouté sur 360 " + \
-                            str(partner.name) + str(responce_api)
+                                      str(partner.name) + str(responce_api)
                         ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description),
                                                                                ("team_id.name", 'like', 'IT')])
 
@@ -1190,13 +1217,15 @@ class WebsiteSale(WebsiteSale):
                                 limit=1).id,
                         }
                         description_client = "CPF: Apprenant non ajouté sur 360 " + \
-                            str(partner.name) + str(responce_api)
-                        ticket_client = request.env['helpdesk.ticket'].sudo().search([("description", "=", description_client),
-                                                                                      ("team_id.name", 'like', 'Client')])
+                                             str(partner.name) + str(responce_api)
+                        ticket_client = request.env['helpdesk.ticket'].sudo().search(
+                            [("description", "=", description_client),
+                             ("team_id.name", 'like', 'Client')])
                         if not ticket_client:
                             new_ticket_client = request.env['helpdesk.ticket'].sudo().create(
                                 vals_client)
-                        return {'ajout': "Une erreur est survenue lors de votre connexion. Vous serez contacté par notre service client dans les 24h pour faciliter votre accès à notre plateforme."}
+                        return {
+                            'ajout': "Une erreur est survenue lors de votre connexion. Vous serez contacté par notre service client dans les 24h pour faciliter votre accès à notre plateforme."}
 
     # Extraire firstName et lastName à partir du champs name
 
@@ -1240,10 +1269,10 @@ class WebsiteSale(WebsiteSale):
                              ('survey_id', '=', survey.id)],
                             order='create_date asc', limit=1)
                         if not survey_user:
-                            url = '/survey/start/'+str(survey.access_token)
+                            url = '/survey/start/' + str(survey.access_token)
                             return werkzeug.utils.redirect(url, 301)
                         if survey_user and survey_user.state == 'new':
-                            url = '/survey/start/'+str(survey.access_token)
+                            url = '/survey/start/' + str(survey.access_token)
                             return werkzeug.utils.redirect(url, 301)
                         if survey_user and survey_user.state == 'skip':
                             return werkzeug.utils.redirect(
@@ -1330,12 +1359,16 @@ class WebsiteSale(WebsiteSale):
                     slugname = (product_id.name).strip().strip(
                         '-').replace(' ', '-').lower()
                     if str(slugname) != str(product):
-                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
+                                                                              'box2home', 'coursier2roues',
+                                                                              'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
                         else:
                             return request.redirect("/%s/shop/payment/" % (slugname))
                     else:
-                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
+                                                                              'box2home', 'coursier2roues',
+                                                                              'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
                 else:
                     return request.redirect("/pricing")
@@ -1348,12 +1381,14 @@ class WebsiteSale(WebsiteSale):
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
                         if not pricelist:
                             pricelist_id = order.pricelist_id
-                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                     'coursier2roues', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/payment/" % (slugname, pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/payment/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',
+                                                  'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/payment/" % (slugname))
@@ -1363,12 +1398,14 @@ class WebsiteSale(WebsiteSale):
 
                         if not pricelist:
                             pricelist_id = order.pricelist_id
-                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                     'coursier2roues', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/payment/" % (slugname, pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/payment/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',
+                                                  'eco-conduite', 'transport-routier']:
                                 if pricelist.name != order.pricelist_id.name:
                                     return request.redirect(
                                         "/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
@@ -1378,7 +1415,7 @@ class WebsiteSale(WebsiteSale):
                     pricelist = request.env['product.pricelist'].sudo().search(
                         [('company_id', '=', 2), ('name', "=", str(partenaire))])
                     if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                        'coursier2roues',  'eco-conduite', 'transport-routier']:
+                                                        'coursier2roues', 'eco-conduite', 'transport-routier']:
                         return request.redirect("/%s" % (pricelist.name))
                     else:
                         return request.redirect("/pricing")
@@ -1391,8 +1428,9 @@ class WebsiteSale(WebsiteSale):
     def payment_confirmation(self, partenaire=None, product=None, state=None, **post):
         order_id = request.session.get('sale_last_order_id')
         if not order_id:
-            last_order = request.env['sale.order'].sudo().search([("partner_id", "=", request.env.user.partner_id.id), ("state", "=", "sent")],
-                                                                 order='id desc', limit=1)
+            last_order = request.env['sale.order'].sudo().search(
+                [("partner_id", "=", request.env.user.partner_id.id), ("state", "=", "sent")],
+                order='id desc', limit=1)
             if last_order:
                 order_id = last_order.id
         order = request.env['sale.order'].sudo().search(
@@ -1492,14 +1530,18 @@ class WebsiteSale(WebsiteSale):
                             '-').replace(' ', '-').lower()
                         if str(slugname) != str(product):
                             if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo',
-                                                                                  'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                                                                                  'coursierjob', 'box2home',
+                                                                                  'coursier2roues', 'eco-conduite',
+                                                                                  'transport-routier']:
                                 return request.redirect(
                                     "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/confirmation/" % (slugname))
                         else:
                             if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo',
-                                                                                  'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                                                                                  'coursierjob', 'box2home',
+                                                                                  'coursier2roues', 'eco-conduite',
+                                                                                  'transport-routier']:
                                 return request.redirect(
                                     "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
                     else:
@@ -1515,12 +1557,14 @@ class WebsiteSale(WebsiteSale):
                                 [('company_id', '=', 2), ('name', "=", str(partenaire))])
                             if not pricelist:
                                 pricelist_id = order.pricelist_id
-                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                         'coursier2roues', 'eco-conduite', 'transport-routier']:
                                     return request.redirect("/%s/%s/shop/confirmation/" % (slugname, pricelist_id.name))
                                 else:
                                     return request.redirect("/%s/shop/confirmation/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                      'coursier2roues', 'eco-conduite', 'transport-routier']:
                                     return request.redirect(
                                         "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
                                 else:
@@ -1531,12 +1575,14 @@ class WebsiteSale(WebsiteSale):
 
                             if not pricelist:
                                 pricelist_id = order.pricelist_id
-                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                         'coursier2roues', 'eco-conduite', 'transport-routier']:
                                     return request.redirect("/%s/%s/shop/confirmation/" % (slugname, pricelist_id.name))
                                 else:
                                     return request.redirect("/%s/shop/confirmation/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                      'coursier2roues', 'eco-conduite', 'transport-routier']:
                                     if pricelist.name != order.pricelist_id.name:
                                         return request.redirect(
                                             "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
@@ -1545,7 +1591,8 @@ class WebsiteSale(WebsiteSale):
                     else:
                         pricelist = request.env['product.pricelist'].sudo().search(
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
-                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues',  'eco-conduite', 'transport-routier']:
+                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                                                            'coursier2roues', 'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s" % (pricelist.name))
                         else:
                             return request.redirect("/pricing")
@@ -1596,29 +1643,47 @@ class Date_Examen(http.Controller):
         if exam_date_id and exam_date_id != 'all':
             module = request.env['mcmacademy.module'].sudo().search(
                 [('id', '=', exam_date_id)], limit=1)
-            if module and order:
-                check_partner_in_future_session = False
-                futures_sessions = request.env['mcmacademy.session'].sudo().search(
-                    [('date_exam', '>=', date.today())])
-                if futures_sessions:
-                    for session in futures_sessions:
-                        for client in session.client_ids:
-                            if client.id == order.partner_id.id:
-                                check_partner_in_future_session = True
-                if not check_partner_in_future_session:
-                    order.partner_id.statut = 'indecis'
+            if status:
+                if module and order:
+                    check_partner_in_future_session = False
+                    futures_sessions = request.env['mcmacademy.session'].sudo().search(
+                        [('date_exam', '>=', date.today())])
                     if futures_sessions:
                         for session in futures_sessions:
-                            session.write(
-                                {'prospect_ids': [(3, order.partner_id.id)]})
-                    module.session_id.write(
-                        {'prospect_ids': [(4, order.partner_id.id)]})
-                order.module_id = module
-                order.session_id = module.session_id
-                # if order.company_id.id == 1:
-                order.partner_id.date_examen_edof = module.date_exam
-                order.partner_id.session_ville_id = module.session_ville_id
-
+                            for client in session.client_ids:
+                                if client.id == order.partner_id.id:
+                                    check_partner_in_future_session = True
+                    if not check_partner_in_future_session:
+                        order.partner_id.statut = 'indecis'
+                        if futures_sessions:
+                            for session in futures_sessions:
+                                session.write(
+                                    {'prospect_ids': [(3, order.partner_id.id)]})
+                        module.session_id.write(
+                            {'prospect_ids': [(4, order.partner_id.id)]})
+                    order.module_id = module
+                    order.session_id = module.session_id
+                    # if order.company_id.id == 1:
+                    order.partner_id.date_examen_edof = module.date_exam
+                    order.partner_id.session_ville_id = module.session_ville_id
+            else:
+                subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mt_note')
+                if order and order.partner_id:
+                    body = "Le candidat n'a pas pu réserver la date %s à %s pour l'examen car celle-ci dépassera 4 mois de formation.Le candidat peut reprendre l'inscription pour la même date à partir de %s." % (
+                    str(module.date_exam), str(module.session_ville_id.name_ville), str(availableDate))
+                    message = request.env['mail.message'].sudo().search(
+                        [('body', "=", body), ('model', "=", 'res.partner'), ('res_id', "=", order.partner_id.id)],
+                        limit=1)
+                    if not message:
+                        message = request.env['mail.message'].sudo().create({
+                            'subject': 'Date dépassera 4 mois',
+                            'model': 'res.partner',
+                            'res_id': order.partner_id.id,
+                            'message_type': 'notification',
+                            'subtype_id': subtype_id,
+                            'body': "Le candidat n'a pas pu réserver la session %s à %s car celle-ci dépassera 4 mois de formation.Le candidat peut reprendre l'inscription pour la même date à partir de %s." % (
+                            str(module.date_exam), str(module.session_ville_id.name_ville), str(availableDate)),
+                        })
         if exam_date_id and exam_date_id == 'all':
             if order:
                 order.module_id = False
