@@ -1587,9 +1587,10 @@ class Centre_Examen(http.Controller):
 
 class Date_Examen(http.Controller):
     @http.route(['/shop/cart/update_exam_date'], type='json', auth="public", methods=['POST'], website=True)
-    def cart_update_exam_date(self, exam_date_id, status):
+    def cart_update_exam_date(self, exam_date_id, status, availableDate):
         """Added status to know if session is blocked due to the 4 Months conditions"""
-        print("exam_date_id : ", exam_date_id, "status :", status)
+        print("exam_date_id : ", exam_date_id, "status :",
+              status, 'availableDate: ', availableDate)
         order = request.website.sale_get_order()
 
         if exam_date_id and exam_date_id != 'all':

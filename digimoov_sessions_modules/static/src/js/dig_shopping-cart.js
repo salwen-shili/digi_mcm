@@ -847,21 +847,33 @@ function sessionIsAccessible(prop) {
     isAccessible = true;
   }
   console.log('=========================================', sessionDate);
-  //send exam date (session and write into client file)
-  if (sessionDate != 'all') {
-    updateExamDate({
-      exam_date_id: prop.id,
-      status: isAccessible,
-    });
-  }
+  // if (sessionDate != 'all') {
+  //   updateExamDate({
+  //     exam_date_id: prop.id,
+  //     status: isAccessible,
+  //     availableDate: availableDate(sessionDate),
+  //   });
+  // }
 
-  console.log('isAccessible :', isAccessible);
+  // console.log('isAccessible :', isAccessible);
   if (!isAccessible) {
     showAlertDate();
     disablePaymentButton();
     setAvailableDate(sessionDate);
+    updateExamDate({
+      exam_date_id: prop.id,
+      status: isAccessible,
+      availableDate: availableDate(sessionDate),
+    });
   } else {
     hideAlertDate();
+    //send exam date (session and write into client file)
+
+    updateExamDate({
+      exam_date_id: prop.id,
+      status: isAccessible,
+      availableDate: availableDate(sessionDate),
+    });
     return;
   }
 }
@@ -900,7 +912,7 @@ function availableDate(sessionDate) {
 
   return formatDateFR(sessionDate);
 }
-
+// set available date input and return it
 function setAvailableDate(sessionDate) {
   if (document.getElementById('available-date')) {
     document.getElementById('available-date').innerHTML = availableDate(sessionDate);
@@ -913,6 +925,7 @@ const updateExamDate = (props) => {
     params: {
       exam_date_id: props.exam_date_id,
       status: props.status,
+      availableDate: props.availableDate,
     },
   })
     .then((responseData) => {})
