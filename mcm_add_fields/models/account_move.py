@@ -461,7 +461,8 @@ class AccountMove(models.Model):
                                     so.unlink()
 
                     """Facturer le dossier cpf par l'api en utilisant la référence de la facture odoo """
-
+                    _logger.info("billig state %s " %str(dossier['billingState']))
+                    _logger.info("billig state %s " % str(bill_num.isdigit()))
                     if bill_num.isdigit() and dossier['billingState'] =="toBill":
                         _logger.info("bill num %s" %bill_num)
                         data = '{"billNumber":"' + bill_num + '"}'
