@@ -73,6 +73,7 @@
         <field name="inherit_id" ref="base.view_partner_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//tree/field[@name='email']" position="after">
+                <field name="age" optional="hide"/>
                 <field name="num_departement" optional="hide"/>
                 <field name="date_creation" string="Inscription sur 360" optional="hide"/>
             </xpath>
@@ -104,6 +105,17 @@
             <xpath expr="//page/group[@name='session']/group/field[@name='mcm_session_id']" position="attributes">
                 <attribute name="attrs">{'readonly': [('report', '=', False)]}</attribute>
             </xpath>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='view_res_partner_filter'>
+        <field name='name'>res..partner.filter</field>
+        <field name='model'>res.partner</field>
+        <field name='inherit_id' ref='base.view_res_partner_filter'/>
+        <field name='arch' type='xml'>
+            <filter name="type_person" position="before">
+                <filter name="age" string="Age 25 ans" domain="[('age', '&lt;', '26')]"/>
+            </filter>
         </field>
     </record>
 </odoo>
