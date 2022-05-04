@@ -158,7 +158,7 @@ class AccountMove(models.Model):
                     ('order', 'desc'),
                     ('type', 'all'),
                     ('state', 'all'),
-                    ('billingState', 'billed,toBill'),
+                    ('billingState', 'toBill'),
                     ('certificationState', 'all'),
                     ('sort', 'lastUpdate'),
                     ('limit', '100')
@@ -235,7 +235,7 @@ class AccountMove(models.Model):
                                  ('session_id.number_places_available', '>', 0)], limit=1)
                             print('before if modulee', module_id.name)
                             if module_id:
-                                print('if modulee', module_id)
+                                _logger.info('if modulee %s'%str( module_id))
                                 product_id = self.env['product.product'].sudo().search(
                                     [('product_tmpl_id', '=', module_id.product_id.id)])
                                 self.env.user.company_id = 2
@@ -284,17 +284,17 @@ class AccountMove(models.Model):
                                     #     payment.post()
                                     num = invoice.name
                                     invoice.module_id=user.module_id
-                                    print('if invoice********',invoice.module_id.name,user.name)
+                                    _logger.info('if invoice******** %s ' % str(invoice.module_id.name))
                                     bill_num = num.replace('FA', '')
                                     bill_num = bill_num.replace('-', '')
                                 if not invoice:
-                                    print('if  not invoice digi ')
+                                    _logger.info('if  not invoice digi ')
                                     so = self.env['sale.order'].sudo().create({
                                         'partner_id': user.id,
                                         'company_id': 2,
                                     })
                                     so.module_id = user.module_id
-                                    print("SO module id ",so.module_id.name, user.name)
+                                    _logger.info("SO module id %s "% str(so.module_id.name) )
                                     so.session_id = user.session_id
                                     """Créer une ligne de vente avec le montant CGU récupéré depuis cpf"""
                                     so_line = self.env['sale.order.line'].sudo().create({
@@ -366,7 +366,7 @@ class AccountMove(models.Model):
                                                  'payment_date': date_acompte,
                                                  'invoice_ids': [(6, 0, move.ids)],
                                                  })
-                                            print("paiement", payment)
+                                            _logger.info("paiement %s"%str(payment))
 
                                             payment.post()
 
