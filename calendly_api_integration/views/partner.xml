@@ -6,9 +6,9 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="before">
-                <group attrs="{'invisible': ['|',('company_id', '=', 2),('est_coach','=',True)]}">
+                <group attrs="{'invisible': ['|',('company_id', '=', 2)]}">
                     <group string="Pré-requis" name="calendly"
-                           attrs="{'invisible': ['|',('company_id', '=', 2),('est_coach','=',True)]}">
+                           attrs="{'invisible': ['|',('company_id', '=', 2)]}">
                         <field name="driver_licence"/>
                         <field name="license_suspension"/>
                         <field name="criminal_record"/>

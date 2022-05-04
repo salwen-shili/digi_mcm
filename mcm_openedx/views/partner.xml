@@ -103,7 +103,7 @@
                                     <field name="mooc_dernier_coonx"/>
                                 </span>
                             </div>
-                            <div>
+        <!--                    <div>
 
                                 <span>
                                     <span>
@@ -141,7 +141,7 @@
 
                                 </span>
 
-                            </div>
+                            </div>-->
                             <div>
                                 <span>
                                     <i class="fa fa-sign-in" style="align:center"/>

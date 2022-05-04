@@ -36,11 +36,11 @@
         # 'security/security.xml',
         "views/partner.xml",
         "views/gerer_user_ir_cron.xml",
-        "views/statestique.xml",
-        "views/session.xml",
-        "views/coach.xml",
-        'data/mail_data.xml',
-        'reports.xml',
+        # "views/statestique.xml",
+        # "views/session.xml",
+        # "views/coach.xml",
+        # 'data/mail_data.xml',
+        # 'reports.xml',
 
     ],
     # only loaded in demonstration mode
