@@ -2,7 +2,13 @@ window.onload = function () {
   var url = window.location.pathname;
 
   if (
-    !(url.includes('/web') || url.includes('/reset_password') || url.includes('/bolt'))
+    !(
+      url.includes('/web') ||
+      url.includes('/reset_password') ||
+      url.includes('/bolt') ||
+      url.includes('/inscription-bolt') ||
+      url.includes('/examen-blanc')
+    )
   ) {
     Calendly.initBadgeWidget({
       url: 'https://calendly.com/mcm-academy/taxi-vtc-taxi_moto',
