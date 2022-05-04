@@ -1670,11 +1670,12 @@ class Date_Examen(http.Controller):
                 subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mt_note')
                 if order and order.partner_id:
                     body = "Le candidat n'a pas pu réserver la date %s à %s pour l'examen car celle-ci dépassera 4 mois de formation.Le candidat peut reprendre l'inscription pour la même date à partir de %s." % (
-                    str(module.date_exam), str(module.session_ville_id.name_ville), str(availableDate))
+                        str(module.date_exam), str(module.session_ville_id.name_ville), str(availableDate))
                     message = request.env['mail.message'].sudo().search(
                         [('body', "=", body), ('model', "=", 'res.partner'), ('res_id', "=", order.partner_id.id)],
-                        limit=1)
+                        limit=1)  # check if we have already create note for client with same description ( date et ville )
                     if not message:
+                        # create new note for client ( dépassement du date 4mois )
                         message = request.env['mail.message'].sudo().create({
                             'subject': 'Date dépassera 4 mois',
                             'model': 'res.partner',
