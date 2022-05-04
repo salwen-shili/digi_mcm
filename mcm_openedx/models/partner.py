@@ -578,7 +578,7 @@ class partner(models.Model):
             # chercher dans res.partner la liste de apprennats puis verifier la
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                                   ('company_id', '=', 1),
-                                                                  ('email', "=", 'vikada3017@topyte.com'),
+                                                                  ('email', "=", 'dimopes981@bunlets.comgit staut'),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
                 if (partner.supprimerdemoocit == date.today()):

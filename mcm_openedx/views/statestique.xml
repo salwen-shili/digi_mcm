@@ -1,9 +1,10 @@
+<!--
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
 
     <record id="session_course_view" model="ir.ui.view">
-        <field name="name">courses</field>
+        <field name="name">Courses</field>
         <field name="model">mcm_openedx.course_stat</field>
         <field name="arch" type="xml">
             <search>
@@ -13,8 +14,8 @@
             </search>
         </field>
     </record>
-    <record model="ir.ui.view" id="course_form_view">
-        <field name="name">course.form</field>
+    <record model="ir.ui.view" id="course_stat_form_view">
+        <field name="name">mcm_openedx.course_stat.form</field>
         <field name="model">mcm_openedx.course_stat</field>
         <field name="arch" type="xml">
             <form string="Course Form">
@@ -43,16 +44,14 @@
         </field>
     </record>
     <record model="ir.ui.view" id="course_tree_view">
-        <field name="name">course.tree</field>
+        <field name="name">mcm_openedx.course_stat.tree</field>
         <field name="model">mcm_openedx.course_stat</field>
         <field name="arch" type="xml">
 
             <tree string="Statetstique">
                 <field name="email"/>
                 <field name="partner"/>
-
                 <field name="nomutilisateur"/>
-
                 <field name="jour"/>
             </tree>
         </field>
@@ -71,7 +70,7 @@
                                                   oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
 
                             <div class="oe_dropdown_kanban">
-                                <!-- dropdown menu -->
+                                &lt;!&ndash; dropdown menu &ndash;&gt;
                                 <div class="oe_dropdown_toggle">
                                     <i class="fa fa-bars fa-lg"/>
                                     <ul class="oe_dropdown_menu">
@@ -84,10 +83,10 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="oe_clear"></div>
+                                <div class="oe_clear"/>
                             </div>
                             <div t-attf-class="oe_kanban_content">
-                                <!-- title -->
+                                &lt;!&ndash; title &ndash;&gt;
                                 Nom Utilisateur
                                 <field name="nomutilisateur"/>
 
@@ -142,4 +141,4 @@
     </record>
 
 
-</odoo>
+</odoo>-->
