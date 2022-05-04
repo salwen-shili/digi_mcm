@@ -114,7 +114,7 @@
         <field name='inherit_id' ref='base.view_res_partner_filter'/>
         <field name='arch' type='xml'>
             <filter name="type_person" position="before">
-                <filter name="age" string="Age 25 ans" domain="[('age', '=', '25')]"/>
+                <filter name="age" string="Age 25 ans" domain="[('age', '<=', '25')]"/>
             </filter>
         </field>
     </record>
