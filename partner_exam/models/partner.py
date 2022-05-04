@@ -96,20 +96,12 @@ class resComapny(models.Model):
             if info_exam:
                 info_exam.mode_de_financement = dict(self._fields['mode_de_financement'].selection).get(
                     self.mode_de_financement)
+        """ Calculer âge pour faire le filtrage avec âge dans la fiche client en utilisant relativedelta"""
+        if 'birthday' in values:
+            dt = self.birthday
+            today = date.today()
+            rd = relativedelta(today, dt).years
+            self.age = rd # Affectation de l'age au champ age dans res.partner
+            _logger.info('rec.age date of birth-------------11111111111111111111-------- %s', self.age)
         return session
-
-    @api.onchange('birthday')
-    def set_age(self):
-        for rec in self:
-            if rec.birthday:
-                dt = rec.birthday
-                _logger.info('date of birth--------------------------------------- %s', dt)
-                print("dt", dt)
-                today = date.today()
-                rd = relativedelta(today, dt)
-                _logger.info('relativedelta date of birth--------------------------------------- %s', rd)
-                rec.age = str(rd.years)
-                _logger.info('rec.age date of birth-------------11111111111111111111-------- %s', rec.age)
-            rec.age = str(rd.years)
-            _logger.info('rec.age date of birth-------------222222222222-------- %s', rec.age)
 
