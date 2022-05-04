@@ -8,8 +8,9 @@
         <field name="arch" type="xml">
             <search>
                 <field name="email" filter_domain="[('email','ilike',self)]"/>
-                <field name="nomutilisateur" filter_domain="[('nomutilisateur','ilike',self)]"/>
+                <field name="name" filter_domain="[('name','ilike',self)]"/>
                 <filter name="group_email" string="Email" icon="terp-partner" context="{'group_by':'email'}"/>
+                <filter name="group_idcour" string="IDcour" icon="terp-partner" context="{'group_by':'idcour'}"/>
             </search>
         </field>
     </record>
@@ -29,7 +30,7 @@
                         <field name="email"/>
                         <field name="partner"/>
                         <field name="temppassetotale"/>
-                        <field name="nomutilisateur"/>
+                        <field name="name"/>
                         <field name="idcour"/>
                         <field name="temppasse"/>
                         <field name="seconde"/>
@@ -50,8 +51,10 @@
             <tree string="Statetstique">
                 <field name="email"/>
                 <field name="partner"/>
-                <field name="nomutilisateur"/>
+                <field name="name"/>
                 <field name="jour"/>
+                <field name="idcour"/>
+
             </tree>
         </field>
     </record>
@@ -86,7 +89,7 @@
                             <div t-attf-class="oe_kanban_content">
 
                                 Nom Utilisateur
-                                <field name="nomutilisateur"/>
+                                <field name="name"/>
 
                                 <br/>
 
@@ -133,7 +136,7 @@
         <field name="name">Courses</field>
         <field name="res_model">mcm_openedx.course_stat</field>
         <field name="view_mode">tree,form,kanban,graph</field>
-        <field name="context">{'search_default_group_email': 1}</field>
+        <field name="context">{'search_default_group_email': 1, 'search_default_group_idcour':1}</field>
 
 
     </record>
