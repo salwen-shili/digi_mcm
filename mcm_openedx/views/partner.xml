@@ -83,7 +83,7 @@
                         <group col="12">
                         </group>
                         <group col="8" colspan="4" string="Géneral">
-                            <div>
+                   <!--            <div>
                                 <span class="o_stat_text">
                                     <i class="fa fa-download"/>
                                     Dernier importation
@@ -103,7 +103,7 @@
                                     <field name="mooc_dernier_coonx"/>
                                 </span>
                             </div>
-        <!--                    <div>
+                         <div>
 
                                 <span>
                                     <span>
