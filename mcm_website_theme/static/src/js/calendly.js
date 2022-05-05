@@ -21,9 +21,10 @@ window.onload = function () {
     url.includes('/examen-blanc') ||
     url.includes('/bolt')
   ) {
+    //calendly bolt
     Calendly.initBadgeWidget({
       url: 'https://calendly.com/academie-bolt/rdv-academie-bolt',
-      text: 'Planifier du temps avec moi',
+      text: 'Je souhaite être assisté(e)',
       color: '#1A1A1A',
       textColor: '#FFFFFF',
     });
