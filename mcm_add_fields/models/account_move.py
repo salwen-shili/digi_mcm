@@ -233,7 +233,7 @@ class AccountMove(models.Model):
                                 [('company_id', "=", 2), ('session_ville_id', "=", user.session_ville_id.id),
                                  ('date_exam', "=", user.date_examen_edof), ('product_id', "=", product_id.id),
                                  ('session_id.number_places_available', '>', 0)], limit=1)
-                            print('before if modulee', module_id.name)
+                            _logger.info('before if modulee %s' %str(module_id.name))
                             if module_id:
                                 _logger.info('if modulee %s'%str( module_id))
                                 product_id = self.env['product.product'].sudo().search(
@@ -285,10 +285,12 @@ class AccountMove(models.Model):
                                     num = invoice.name
                                     invoice.module_id=user.module_id
                                     _logger.info('if invoice******** %s ' % str(invoice.module_id.name))
+                                    _logger.info('if invoice******** %s ' % str(invoice.name))
+
                                     bill_num = num.replace('FA', '')
                                     bill_num = bill_num.replace('-', '')
                                 if not invoice:
-                                    _logger.info('if  not invoice digi ')
+                                    _logger.info('if  not invoice digi %s')
                                     so = self.env['sale.order'].sudo().create({
                                         'partner_id': user.id,
                                         'company_id': 2,
@@ -367,6 +369,7 @@ class AccountMove(models.Model):
                                                  'invoice_ids': [(6, 0, move.ids)],
                                                  })
                                             _logger.info("paiement %s"%str(payment))
+                                            _logger.info('if not invoice %s ' % str(move.name))
 
                                             payment.post()
 
