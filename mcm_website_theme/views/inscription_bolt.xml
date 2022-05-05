@@ -135,7 +135,7 @@ function receiveMessage(event) {
     </t>
   </template>
 
-  <template id="mcm_website_theme.mcm_bolt_documents" name="Charger_mes_documents">
+  <template id="mcm_website_theme.mcm_bolt_documents" name="Examen blanc | Formation VTC MCM_BOLT">
     <t t-call="website.layout">
       <!-- https://form.jotform.com/221072492423045?nom[first]={nom:first}&nom[last]={nom:last}-->
       <div id="wrap" class="oe_empty oe_structure">
