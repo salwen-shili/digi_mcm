@@ -904,13 +904,14 @@ function formatDateFR(date) {
 }
 
 function availableDate(sessionDate) {
-  const month = sessionDate.getMonth();
-  sessionDate.setMonth(sessionDate.getMonth() - 4);
-  while (sessionDate.getMonth() === month) {
-    sessionDate.setDate(sessionDate.getDate() - 1);
+  const futureDate = new Date(sessionDate);
+  const month = futureDate.getMonth();
+  futureDate.setMonth(futureDate.getMonth() - 4);
+  while (futureDate.getMonth() === month) {
+    futureDate.setDate(futureDate.getDate() - 1);
   }
 
-  return formatDateFR(sessionDate);
+  return formatDateFR(futureDate);
 }
 // set available date input and return it
 function setAvailableDate(sessionDate) {
