@@ -41,7 +41,7 @@
                                         Remplissez tous les champs du formulaire pour
                                         passer à l'étape suivante
                                     </p>
-                                    <link href="/fl_auth_signup/static/css/password-check.css" rel="stylesheet" />
+                                    <link href="/fl_auth_signup/static/css/password-check.min.css" rel="stylesheet" />
 
 
                                     <!-- progressbar -->
@@ -250,7 +250,7 @@
 ">
                                                     <div class="nivTxt">
                                                         Sécurité
-                                                        <span class="nivLevel">faible</span>
+                                                        <span class="nivLevel niv-level-1">faible</span>
                                                     </div>
                                                 </div>
                                                 <div class="">
@@ -280,7 +280,7 @@
                                                 <li class="">
                                                     <span class="eight-character">
                                                         <i class="fa fa-check-circle fa-uncheck"></i>
-                                                        Au minimum 6 caractères
+                                                        Au minimum 8 caractères
                                                     </span>
                                                 </li>
                                                 <li class="">

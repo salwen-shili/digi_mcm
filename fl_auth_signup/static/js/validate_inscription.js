@@ -104,7 +104,7 @@ $(document).ready(function () {
 
   function checkPassword(value) {
     if (value.length > 0) {
-      if (value.length < 6)
+      if (value.length < 9)
         return 'Votre mot de passe doit contenir au minimum 6 caractères';
       else return false;
       // else {
@@ -511,7 +511,7 @@ function checkStrength(password) {
     specialChar.classList.remove('fa-check');
   }
   //If password is greater than 5
-  if (password.length > 5) {
+  if (password.length > 7) {
     strength += 1;
 
     eightChar.classList.add('fa-check');
@@ -570,7 +570,7 @@ function checkStrength(password) {
 }
 function hidePasswordPopover() {
   const password = $('#password').val();
-  if (password.length > 5) {
+  if (password.length > 7) {
     document.getElementById('popover-password').classList.add('hide');
   }
 }
