@@ -41,10 +41,13 @@
                                         Remplissez tous les champs du formulaire pour
                                         passer à l'étape suivante
                                     </p>
+                                    <link href="/fl_auth_signup/static/css/password-check.css" rel="stylesheet" />
+
 
                                     <!-- progressbar -->
                                     <t t-if="request.website.id == 1">
                                         <link href="/mcm_website_theme/static/src/css/register_form.css" rel="stylesheet" />
+
 
                                         <link href="/mcm_website_theme/static/src/css/material_form.css" rel="stylesheet" />
 
@@ -215,9 +218,9 @@
                                             </div>
                                         </div>
                                         <br t-if="not name or not last_login" />
-
+                                        <!-- password signup-->
                                         <div class="outlined-input-field bg-c" id="password_container">
-                                            <input type="password" id="password" class="outlined-text-field" autocomplete="off" required="required" name="password" />
+                                            <input type="password" id="password" class="outlined-text-field" autocomplete="off" required="required" name="password" onfocus="showPasswordPopover()" />
                                             <label for="password">Mot de passe *</label>
                                             <i class="toggle-password material-icons visibility " style="
                                                 display: initial;
@@ -227,11 +230,83 @@
                                                 cursor:pointer;
                                             ">visibility
                                             </i>
-
-                                            <div class="text-left helper-text bg-c" id="password_helper">
+                                            <div class="helper-text bg-c" id="password_helper">
                                                 <span></span>
                                             </div>
+
+
                                         </div>
+                                        <!-- -->
+                                        <div id="popover-password" class="hide">
+                                            <div class="" style="
+    clear: both;
+    overflow: hidden;
+    margin-block-start:10px;
+">
+                                                <div class="" style="
+    float: left;
+    font-weight: bold;
+    width: 35%;
+">
+                                                    <div class="nivTxt">
+                                                        Sécurité
+                                                        <span class="nivLevel">faible</span>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="progress" style="
+                                                                margin-top: 5px;
+
+                                                                float: right;
+                                                            
+                                                                width: 65%;
+                                                            ">
+                                                        <div id="password-strength" class="" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 10%;display: block;height: 100%;border-radius: 5px;/* width: 0%; */"></div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                            <p>
+                                                <span id="result"></span>
+                                            </p>
+
+
+                                            <div style="color: #000000d6; margin-block-end: 5px;">
+                                                Pour votre sécurité, utilisez un mot de passe contenant :
+                                            </div>
+                                            <ul class="list-unstyled">
+                                                <li class="">
+                                                    <span class="eight-character">
+                                                        <i class="fa fa-check-circle fa-uncheck"></i>
+                                                        Au minimum 6 caractères
+                                                    </span>
+                                                </li>
+                                                <li class="">
+                                                    <span class="low-upper-case">
+                                                        <i class="fa fa-check-circle fa-uncheck"></i>
+                                                        1 lettre minuscule et 1 lettre majuscule
+                                                    </span>
+                                                </li>
+                                                <li class="">
+                                                    <span class="one-number">
+                                                        <i class="fa fa-check-circle fa-uncheck"></i>
+                                                        1 chiffre (0-9)
+                                                    </span>
+                                                </li>
+                                                <li class="">
+                                                    <span class="one-special-char">
+                                                        <i class="fa fa-check-circle fa-uncheck"></i>
+                                                        Caractère spécial (!@#$%^*)
+                                                    </span>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+
+
+                                        <!-- -->
 
                                         <br t-if="not name or not last_login" />
                                         <br t-if="name" />
