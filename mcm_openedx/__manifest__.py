@@ -40,7 +40,7 @@
         # "views/session.xml",
         # "views/coach.xml",
         'data/mail_data.xml',
-        'reports.xml',
+        #'reports.xml',
 
     ],
     # only loaded in demonstration mode
