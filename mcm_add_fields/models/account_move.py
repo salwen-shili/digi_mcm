@@ -184,13 +184,14 @@ class AccountMove(models.Model):
                         email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
                     print('dossier', dossier)
                     idform = dossier['trainingActionInfo']['externalId']
+                    _logger.info('dossier %s' % str(dossier))
                     training_id = ""
                     if "_" in idform:
                         idforma = idform.split("_", 1)
                         if idforma:
                             training_id = idforma[1]
                     state = dossier['state']
-                    print('training', training_id)
+                    _logger.info('training %s'%str(training_id) )
 
                     user = self.env['res.partner'].sudo().search([('numero_cpf', "=", externalId)],limit=1)
                     params_ = (
