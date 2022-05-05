@@ -83,6 +83,7 @@ class resComapny(models.Model):
                 sessions.sudo().create({
                     'client_id': self.id,
                     'session_id': self.mcm_session_id.id,
+                    'module_id': self.module_id.id,
                 })
             # Reset fields
             self.report = False

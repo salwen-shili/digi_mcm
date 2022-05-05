@@ -14,21 +14,14 @@ class resPartnerSessions(models.Model):
 
     client_id = fields.Many2one('res.partner', 'Client')
     session_id = fields.Many2one('mcmacademy.session', 'Session', track_visibility='always')
-    theoretic = fields.Selection(selection=[
-        ('adjourned', 'Ajourné'),
-        ('admitted', 'Admis'),
-    ], string='Théorique')
-    practical = fields.Selection(selection=[
-        ('adjourned', 'Ajourné'),
-        ('admitted', 'Admis'),
-    ], string='Pratique')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     # Add new field pour la justification de report
     justification = fields.Boolean(string="Absence justifié", track_visibility='always')
     paiement = fields.Boolean(string="Changement de ville", track_visibility='always')
-    attachment_ids = fields.Many2many('ir.attachment', string="Attachment", required=True)
+    attachment_ids = fields.Many2many('ir.attachment', string="Attachment", required=True, track_visibility='always')
     autre_raison = fields.Text(track_visibility='always')
     date_exam = fields.Date(related="session_id.date_exam")
+    module_id = fields.Many2one('mcmacademy.module', track_visibility='always')
 
     def remove_double_session_same_session(self):
         """ Add this function to remove duplicate

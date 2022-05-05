@@ -11,8 +11,7 @@
                         <group>
                             <field name="client_id" string="Client"/>
                             <field name="session_id" string="Session"/>
-                            <field name="theoretic" string="Théorique"/>
-                            <field name="practical" string="Pratique"/>
+                            <field name="module_id" string="Module"/>
                             <field name="company_id"/>
                             <field name="justification" string="Absence justifié"
                                    attrs="{'invisible': [('paiement', '=', True)]}"/>
