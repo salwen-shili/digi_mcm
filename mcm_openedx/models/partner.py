@@ -183,8 +183,8 @@ class partner(models.Model):
 
     # ajouter les apprenants manuellemnt a partire de  la fiche Client
     def ajoutMoocit_automatique(self):
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        # base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                                   ('company_id', '=', 1),
                                                                   ('email', "=", 'vikada3017@topyte.com'),
@@ -271,8 +271,8 @@ class partner(models.Model):
 
     # ajouter les apprenants manuellemnt a partire de  la fiche Client
     def ajoutMoocit_manuelle(self):
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        # base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             # ajout manuelle  des utilsateur sur MOOCit
             # verifier staut de sale
             sale_order = self.env['sale.order'].sudo().search(
@@ -348,6 +348,7 @@ class partner(models.Model):
                             self.mcm_session_id.date_exam > date.today()):
                         if (self.renounce_request):
                             self.ajouter_IOne_MCM(self)
+                            _logger.info(' Doneeeee %s' )
                     if not (self.renounce_request) and self.numero_cpf:
                         """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
                         headers = {

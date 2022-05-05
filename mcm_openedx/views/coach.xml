@@ -2,89 +2,89 @@
 <odoo>
 
 
-<!--    <record model="ir.ui.view" id="coach_form_view">-->
-<!--        <field name="name">Coaches</field>-->
-<!--        <field name="model">mcm_openedx.coach</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <form string="Coaches">-->
+    <record model="ir.ui.view" id="coach_form_view">
+        <field name="name">Coaches</field>
+        <field name="model">mcm_openedx.coach</field>
+        <field name="arch" type="xml">
+            <form string="Coaches">
 
 
-<!--                <sheet>-->
-<!--                    <div class="oe_button_box" name="button_box">-->
-<!--                        <button class="oe_stat_button" type="object" name="test_coach"-->
-<!--                                icon="fa-user-circle">-->
-<!--                            <field string="seats" name="seats"/>-->
-<!--                        </button>-->
-<!--                        <button class="oe_stat_button" type="object" name="test_coach"-->
-<!--                                icon="fa-spinner fa-spin fa-3x fa-fw">-->
-<!--                            <field string="nombre_apprenants" name="nombre_apprenant"/>-->
-<!--                        </button>-->
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="test_coach"
+                                icon="fa-user-circle">
+                            <field string="seats" name="seats"/>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="test_coach"
+                                icon="fa-spinner fa-spin fa-3x fa-fw">
+                            <field string="nombre_apprenants" name="nombre_apprenant"/>
+                        </button>
 
-<!--                    </div>-->
+                    </div>
 
-<!--                    <group>-->
-<!--                        <group>-->
-<!--                            <a href="https://app.intercom.com/a/apps/ekqg4dck/inbox/inbox/all/conversations/186275800000486-->
-<!--">-->
-<!--                                <widget name="web_ribbon" text="Coach"/>-->
-<!--                            </a>-->
-<!--                            <field name="coach_name"/>-->
-<!--                            <field name="nombre_apprenant"/>-->
-<!--                            <field name="seats"/>-->
+                    <group>
+                        <group>
+                            <a href="https://app.intercom.com/a/apps/ekqg4dck/inbox/inbox/all/conversations/186275800000486
+">
+                                <widget name="web_ribbon" text="Coach"/>
+                            </a>
+                            <field name="coach_name"/>
+                            <field name="nombre_apprenant"/>
+                            <field name="seats"/>
 
-<!--                            <field name="taken_seats" widget="progressbar"/>-->
+                            <field name="taken_seats" widget="progressbar"/>
 
-<!--                        </group>-->
+                        </group>
 
-<!--                    </group>-->
-<!--                    <notebook>-->
+                    </group>
+                    <notebook>
 
-<!--                        <page string="Liste des Apprennats">-->
-<!--                            <field name="apprenant_name"></field>-->
-<!--                        </page>-->
-<!--                        <page string="Commentaire">-->
-
-
-<!--                            <field name="commentaire"></field>-->
+                        <page string="Liste des Apprennats">
+                            <field name="apprenant_name"></field>
+                        </page>
+                        <page string="Commentaire">
 
 
-<!--                        </page>-->
-<!--                    </notebook>-->
-<!--                </sheet>-->
-<!--            </form>-->
+                            <field name="commentaire"></field>
 
-<!--        </field>-->
-<!--    </record>-->
 
-<!--    <record model="ir.ui.view" id="coach_tree_view">-->
-<!--        <field name="name">Coaches</field>-->
-<!--        <field name="model">mcm_openedx.coach</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--       <tree  decoration-bf="coach_name" decoration-success="seats &lt; 'nombre_apprenant'" default_order="seats">-->
-<!--                <field name="coach_name"/>-->
-<!--                <field name="nombre_apprenant"/>-->
-<!--                <field name="seats"/>-->
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
 
-<!--            </tree>-->
-<!--        </field>-->
-<!--    </record>-->
-<!--    <record model="ir.ui.view" id="mcm_openedx_coach_graph_view">-->
-<!--        <field name="name">mcm_openedx.coach.graph</field>-->
-<!--        <field name="model">mcm_openedx.coach</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <graph string="Participations by Courses">-->
-<!--                <field name="coach_name"/>-->
-<!--                <field name="nombre_apprenant" type="measure"/>-->
-<!--            </graph>-->
-<!--        </field>-->
-<!--    </record>-->
+        </field>
+    </record>
 
-<!--    <record model="ir.actions.act_window" id="coach_list_action">-->
-<!--        <field name="name">Coaches</field>-->
-<!--        <field name="res_model">mcm_openedx.coach</field>-->
-<!--        <field name="view_mode">tree,form,graph</field>-->
+    <record model="ir.ui.view" id="coach_tree_view">
+        <field name="name">Coaches</field>
+        <field name="model">mcm_openedx.coach</field>
+        <field name="arch" type="xml">
+       <tree  decoration-bf="coach_name" decoration-success="seats &lt; 'nombre_apprenant'" default_order="seats">
+                <field name="coach_name"/>
+                <field name="nombre_apprenant"/>
+                <field name="seats"/>
 
-<!--    </record>-->
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="mcm_openedx_coach_graph_view">
+        <field name="name">mcm_openedx.coach.graph</field>
+        <field name="model">mcm_openedx.coach</field>
+        <field name="arch" type="xml">
+            <graph string="Participations by Courses">
+                <field name="coach_name"/>
+                <field name="nombre_apprenant" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="coach_list_action">
+        <field name="name">Coaches</field>
+        <field name="res_model">mcm_openedx.coach</field>
+        <field name="view_mode">tree,form,graph</field>
+
+    </record>
 
 
 </odoo>
