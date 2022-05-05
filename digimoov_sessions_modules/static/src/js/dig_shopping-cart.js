@@ -811,11 +811,13 @@ function enablePaymentButton() {
 
 // show a warning message for session > 4 months
 function showAlertDate() {
-  document.getElementById('error_choix_date_4').style.display = 'inline-block';
+  if (document.getElementById('error_choix_date_4'))
+    document.getElementById('error_choix_date_4').style.display = 'inline-block';
 }
 // hide the warning message for session > 4 months
 function hideAlertDate() {
-  document.getElementById('error_choix_date_4').style.display = 'none';
+  if (document.getElementById('error_choix_date_4'))
+    document.getElementById('error_choix_date_4').style.display = 'none';
 }
 
 // This function substract 4 months from date session,
