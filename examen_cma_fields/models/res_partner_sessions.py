@@ -3,6 +3,7 @@
 
 from odoo import api, fields, models
 import logging
+
 _logger = logging.getLogger(__name__)
 
 
@@ -21,6 +22,7 @@ class resPartnerSessions(models.Model):
     attachment_ids = fields.Many2many('ir.attachment', string="Attachment", required=True, track_visibility='always')
     autre_raison = fields.Text(track_visibility='always')
     date_exam = fields.Date(related="session_id.date_exam")
+    # Ajouter module lors de créations d'une nouvelle session avec la traçabilité lors de changements de champ module
     module_id = fields.Many2one('mcmacademy.module', track_visibility='always')
 
     def remove_double_session_same_session(self):

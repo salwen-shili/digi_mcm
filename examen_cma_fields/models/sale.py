@@ -16,6 +16,7 @@ class SaleOrder(models.Model):
                 sessions.sudo().create({
                     'client_id': self.partner_id.id,
                     'session_id': self.session_id.id,
+                    'module_id': self.module_id.id,
                     'company_id': self.company_id.id
                 })
         return order

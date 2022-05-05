@@ -1631,6 +1631,7 @@ class partner(models.Model):
                                         new_history = self.env['partner.sessions'].sudo().create({
                                             'client_id': user.partner_id.id,
                                             'session_id': module_id.session_id.id,
+                                            'module_id': module_id.id,
                                             'company_id': 2,
                                         })
 
@@ -1708,6 +1709,7 @@ class partner(models.Model):
                                         new_history = self.env['partner.sessions'].sudo().create({
                                             'client_id': user.partner_id.id,
                                             'session_id': module_id.session_id.id,
+                                            'module_id': module_id.id,
                                             'company_id': 1,
                                         })
 
