@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
+<!--
 
     <record id="session_search_view" model="ir.ui.view">
         <field name="name">Sessions</field>
@@ -36,6 +37,7 @@
         <field name="context">{'search_default_group_company_id': 1}</field>
 
     </record>
+-->
 
 
 </odoo>

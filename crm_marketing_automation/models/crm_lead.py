@@ -5,12 +5,13 @@ from odoo import api, fields, models, _
 import calendar
 from datetime import date, datetime
 import logging
+
 _logger = logging.getLogger(__name__)
 
 
 class CRM(models.Model):
     _inherit = "crm.lead"
-    num_dossier = fields.Char(string="numéro de dossier",)
+    num_dossier = fields.Char(string="numéro de dossier", )
     num_tel = fields.Char(string="numéro de téléphone")
     email = fields.Char(string="email")
     nom = fields.Char(string="Nom")
@@ -24,7 +25,7 @@ class CRM(models.Model):
     module_id = fields.Many2one('mcmacademy.module')
     mcm_session_id = fields.Many2one('mcmacademy.session')
     numero_action = fields.Char(string="Identifiant interne d'action")
-    motif=fields.Char(string="Motif de l'archivage")
+    motif = fields.Char(string="Motif de l'archivage")
 
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
