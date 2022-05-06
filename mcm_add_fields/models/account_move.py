@@ -211,19 +211,20 @@ class AccountMove(models.Model):
                         """Changer format date"""
                         date_acompte = ""
                         acompte_amount = paiement['amount']
+                        _logger.info("paiement %s" % str(paiement))
+
                         if 'transactionDate' in paiement:
                             transaction_date = paiement['transactionDate']
                             trdate = datetime.strptime(transaction_date, '%Y-%m-%dT%H:%M:%S.%fz')
                             newformat = "%d/%m/%Y"
                             trdateform = trdate.strftime(newformat)
                             date_acompte = datetime.strptime(trdateform, "%d/%m/%Y")
-                            print("paiement", externalId, date_acompte)
+                            _logger.info("paiement %s" %str(acompte_amount))
                         product_id = ""
                         if 'digimoov' in str(training_id):
                             product_id = self.env['product.product'].sudo().search(
                                 [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
                             _logger.info('if digi %s' %str(product_id))
-                            _logger.info('if not digi %s' % str(product_id))
                             _logger.info('edof %s' % str(user.id_edof))
                             _logger.info('date %s' % str(user.date_examen_edof))
                             _logger.info('ville %s' % str(user.session_ville_id))
