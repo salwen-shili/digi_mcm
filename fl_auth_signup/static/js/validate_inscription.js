@@ -104,8 +104,8 @@ $(document).ready(function () {
 
   function checkPassword(value) {
     if (value.length > 0) {
-      if (value.length < 9)
-        return 'Votre mot de passe doit contenir au minimum 6 caractères';
+      if (value.length < 8)
+        return 'Votre mot de passe doit contenir au minimum 8 caractères';
       else return false;
       // else {
       //   const pattern =
