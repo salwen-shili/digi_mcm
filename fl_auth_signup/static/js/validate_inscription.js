@@ -478,7 +478,7 @@ let password = document.getElementById('password');
 let passwordStrength = document.getElementById('password-strength');
 let lowUpperCase = document.querySelector('.low-upper-case i');
 let number = document.querySelector('.one-number i');
-let specialChar = document.querySelector('.one-special-char i');
+// let specialChar = document.querySelector('.one-special-char i');
 let eightChar = document.querySelector('.eight-character i');
 let nivLevel = document.querySelector('.nivLevel');
 
@@ -503,13 +503,13 @@ function checkStrength(password) {
     number.classList.remove('fa-check');
   }
   //If it has one special character
-  if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
-    strength += 1;
+  // if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
+  //   strength += 1;
 
-    specialChar.classList.add('fa-check');
-  } else {
-    specialChar.classList.remove('fa-check');
-  }
+  //   specialChar.classList.add('fa-check');
+  // } else {
+  //   specialChar.classList.remove('fa-check');
+  // }
   //If password is greater than 5
   if (password.length > 7) {
     strength += 1;
@@ -541,24 +541,15 @@ function checkStrength(password) {
     nivLevel.classList.remove('niv-level-3');
     nivLevel.classList.remove('niv-level-2');
   } else if (strength == 2) {
-    passwordStrength.classList.remove('progress-bar-warning');
-    passwordStrength.classList.remove('progress-bar-success');
-    passwordStrength.classList.add('progress-bar-danger');
-    passwordStrength.style = 'width: 50%';
-    nivLevel.innerHTML = 'faible';
-    nivLevel.classList.remove('niv-level-2');
-    nivLevel.classList.remove('niv-level-3');
-    nivLevel.classList.add('niv-level-1');
-  } else if (strength == 3) {
     passwordStrength.classList.remove('progress-bar-success');
     passwordStrength.classList.remove('progress-bar-danger');
     passwordStrength.classList.add('progress-bar-warning');
-    passwordStrength.style = 'width: 75%';
+    passwordStrength.style = 'width: 55%';
     nivLevel.innerHTML = 'moyenne';
     nivLevel.classList.add('niv-level-2');
     nivLevel.classList.remove('niv-level-1');
     nivLevel.classList.remove('niv-level-3');
-  } else if (strength == 4) {
+  } else if (strength == 3) {
     passwordStrength.classList.remove('progress-bar-warning');
     passwordStrength.classList.remove('progress-bar-danger');
     passwordStrength.classList.add('progress-bar-success');
