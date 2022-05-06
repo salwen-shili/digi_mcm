@@ -592,12 +592,13 @@ function onchangeTextButton() {
 
       displayInstalmentPayment(); //hide instalment
       displayPromo(); //hide promo
-      if (order_instalment) {
-        order_instalment.style.display = 'none'; //hide instalment
-        order_instalment_number.style.display = 'none';
+
+      if (document.getElementById('order_instalment')) {
+        document.getElementById('order_instalment').style.display = 'none'; //hide instalment
+        document.getElementById('order_instalment_number').style.display = 'none';
       }
-      if (order_amount_to_pay) {
-        order_amount_to_pay.style.display = 'none';
+      if (document.getElementById('order_amount_to_pay')) {
+        document.getElementById('order_amount_to_pay').style.display = 'none';
       }
     }
   }
