@@ -27,11 +27,11 @@ class partner(models.Model):
     state = fields.Selection([('en_attente', 'En attente'), ('en_formation', 'En Formation'), ('supprimé', 'Supprimé')],
                              required=True, default='en_attente')
 
-    # mooc_dernier_coonx = fields.Date()
-    # mooc_temps_passe_heure = fields.Integer()
-    # mooc_temps_passe_min = fields.Integer()
-    # mooc_temps_passe_seconde = fields.Integer()
-    # date_imortation_stat = fields.Date()
+    mooc_dernier_coonx = fields.Date()
+    mooc_temps_passe_heure = fields.Integer()
+    mooc_temps_passe_min = fields.Integer()
+    mooc_temps_passe_seconde = fields.Integer()
+    date_imortation_stat = fields.Date()
 
     # desinscrire les cours de formation  VTC a l'apprenant
 
@@ -192,8 +192,7 @@ class partner(models.Model):
                                                                   ]):
                 _logger.info(partner.name)
                 _logger.info(partner.module_id.id)
-                today = datetime.today()
-
+                today = date.today()
                 # ajout automatique  des utilsateur sur MOOCit
                 # verifier staut de sale
                 sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
@@ -507,33 +506,33 @@ class partner(models.Model):
             elif (response.status_code == 409):
                 _logger.info('existantttttt dejaa %s')
 
-    # envoit d'un sms
-    def testsms(self, partner):
-        if partner.phone:
-            phone = str(partner.phone.replace(' ', ''))[-9:]
-            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                           5:7] + ' ' + phone[
-                                                                                                        7:]
-            partner.phone = phone
-            _logger.info(partner.phone)
-        body = "Bonjour %s,  Bienvenu Chez MCM ACADEMY" % (
-            partner.name)
-        if body:
-            sms = self.env['mail.message'].sudo().search(
-                [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
-            if not sms:
-                composer = self.env['sms.composer'].with_context(
-                    default_res_model='res.partner',
-                    default_res_ids=partner.id,
-                    default_composition_mode='mass',
-                ).sudo().create({
-                    'body': body,
-                    'mass_keep_log': True,
-                    'mass_force_send': True,
-                })
-                composer.action_send_sms()  # send sms of end of exam and waiting for result
-            if partner.phone:
-                partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
+    # # envoit d'un sms
+    # def testsms(self, partner):
+    #     if partner.phone:
+    #         phone = str(partner.phone.replace(' ', ''))[-9:]
+    #         phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+    #                                                                                        5:7] + ' ' + phone[
+    #                                                                                                     7:]
+    #         partner.phone = phone
+    #         _logger.info(partner.phone)
+    #     body = "Bonjour %s,  Bienvenu Chez MCM ACADEMY" % (
+    #         partner.name)
+    #     if body:
+    #         sms = self.env['mail.message'].sudo().search(
+    #             [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
+    #         if not sms:
+    #             composer = self.env['sms.composer'].with_context(
+    #                 default_res_model='res.partner',
+    #                 default_res_ids=partner.id,
+    #                 default_composition_mode='mass',
+    #             ).sudo().create({
+    #                 'body': body,
+    #                 'mass_keep_log': True,
+    #                 'mass_force_send': True,
+    #             })
+    #             composer.action_send_sms()  # send sms of end of exam and waiting for result
+    #         if partner.phone:
+    #             partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
 
     # supprimer ione le desinscrire des cours sur la platfrom moocit
     def supprimer_IOne_MCM(self):

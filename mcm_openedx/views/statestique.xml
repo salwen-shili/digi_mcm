@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-<!--
 
     <record id="session_course_view" model="ir.ui.view">
         <field name="name">Courses</field>
@@ -141,7 +140,6 @@
 
 
     </record>
--->
 
 
 </odoo>
