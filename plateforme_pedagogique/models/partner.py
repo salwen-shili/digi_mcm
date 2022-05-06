@@ -1441,7 +1441,7 @@ class partner(models.Model):
 
     def change_statut_accepte(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost"  not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
             companies = self.env['res.company'].sudo().search([])
             if companies:
                 for company in companies:
@@ -1631,6 +1631,7 @@ class partner(models.Model):
                                         new_history = self.env['partner.sessions'].sudo().create({
                                             'client_id': user.partner_id.id,
                                             'session_id': module_id.session_id.id,
+                                            'module_id': module_id.id,
                                             'company_id': 2,
                                         })
 
@@ -1708,6 +1709,7 @@ class partner(models.Model):
                                         new_history = self.env['partner.sessions'].sudo().create({
                                             'client_id': user.partner_id.id,
                                             'session_id': module_id.session_id.id,
+                                            'module_id': module_id.id,
                                             'company_id': 1,
                                         })
 
