@@ -268,12 +268,8 @@
 
                                             </div>
 
-                                            <p>
-                                                <span id="result"></span>
-                                            </p>
 
-
-                                            <div style="color: #000000d6; margin-block-end: 5px;">
+                                            <div style="color: #000000d6; margin: 5px 0;">
                                                 Pour votre sécurité, utilisez un mot de passe contenant :
                                             </div>
                                             <ul class="list-unstyled">

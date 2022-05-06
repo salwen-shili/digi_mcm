@@ -50,13 +50,14 @@ $(document).ready(function () {
     if (value.length > 0) {
       if (value.length < 8)
         return 'Votre mot de passe doit contenir au minimum 8 caractères';
-      else {
-        const pattern =
-          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!/+/='":;(){}[|@$ %^&*-]).{8,}$/;
-        if (value.match(pattern)) return false;
-        else
-          return `Votre mot de passe doit contenir une combinaison de chiffres, caractères spéciaux, lettres majuscules et minuscules!`;
-      }
+      else return false;
+      // else {
+      //   const pattern =
+      //     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!/+/='":;(){}[|@$ %^&*-]).{8,}$/;
+      //   if (value.match(pattern)) return false;
+      //   else
+      //     return `Votre mot de passe doit contenir une combinaison de chiffres, caractères spéciaux, lettres majuscules et minuscules!`;
+      // }
     } else return 'Ce champs est obligatoire!';
   }
   //Validate Address
