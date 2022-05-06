@@ -568,6 +568,7 @@ function checkStrength(password) {
     nivLevel.classList.remove('niv-level-2');
   }
 }
+//Hide password poover
 function hidePasswordPopover() {
   const password = $('#password').val();
   if (password.length > 7) {
