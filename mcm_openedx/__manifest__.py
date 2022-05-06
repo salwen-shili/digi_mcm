@@ -40,8 +40,11 @@
         "views/session.xml",
         "views/coach.xml",
         'data/mail_data.xml',
-        # 'reports.xml',
 
+    ],
+
+    'qweb': [
+        'static/src/xml/btn.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
