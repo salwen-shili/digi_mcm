@@ -529,6 +529,7 @@ function checkStrength(password) {
     nivLevel.classList.remove('niv-level-3');
 
     nivLevel.classList.add('niv-level-1');
+    nivLevel.innerHTML = 'faible';
   }
   if (strength == 1) {
     passwordStrength.classList.remove('progress-bar-warning');
