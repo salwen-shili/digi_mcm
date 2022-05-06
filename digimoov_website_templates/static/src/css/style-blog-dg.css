@@ -130,8 +130,11 @@
 
 /* <a href="#" class="btn-wiggle button button-wiggle">test</a> */
 
+.blog-article-prototype {
+  font-family: 'Roboto', 'Odoo Unicode Support Noto', sans-serif !important;
+}
 .website_blog .o_wblog_read {
-  max-width: 930px;
+  max-width: 930px !important;
 }
 
 .blog-article-prototype > h1 {
@@ -150,14 +153,17 @@
   color: #202647;
 }
 .blog-article-prototype > p {
-  font-size: 18px !important;
+  /* font-size: 18px !important;
   line-height: 1.5 !important;
   font-weight: normal !important;
-  color: #3f474c !important;
+  color: #000 !important;
   font-weight: 500;
-  letter-spacing: 0.5px !important;
-  text-align: justify;
-  font-family: none !important;
+  letter-spacing: 0.5px !important; */
+  line-height: 28px !important;
+  font-weight: 300 !important;
+  color: rgb(0, 0, 0) !important;
+  font-size: 18px !important;
+  text-align: justify !important;
 }
 
 .blog-color-yellow {
@@ -168,15 +174,11 @@
 }
 .blog-article-prototype ul,
 li > li {
-  font: inherit;
-  margin-block-end: 5px;
-  line-height: 1.45 !important;
-  font-weight: normal !important;
-  color: #3f474c !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.5px !important;
-  font-family: none !important;
-  font-size: 18px;
+  line-height: 28px !important;
+  font-weight: 300 !important;
+  color: rgb(0, 0, 0) !important;
+  font-size: 18px !important;
+  text-align: justify !important;
 }
 .blog-article-prototype > a {
   font-size: 17.5px !important;
