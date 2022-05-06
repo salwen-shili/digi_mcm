@@ -10,50 +10,52 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
       selector: '#centre_date_examen',
       events: _.extend({}, VariantMixin.events || {}, {
         'change select[name="centre_examen"]': 'verify_centre',
-        'change select[name="date_examen"]': 'verify_date_exam',
+        //'change select[name="date_examen"]': 'verify_date_exam',
         // 'change input[id="checkbox_conditions"]': "verify_conditions",
       }),
 
-      verify_date_exam: function (ev) {
-        var self = this;
-        var center = false;
-        var exam_date = document.getElementById('options-date');
-        var center = document.getElementById('centre_examen').value;
-        var exam_date_id = false;
+      //verify_date_exam function is in dig_shopping_cart file
 
-        if (exam_date) {
-          var exam = document.getElementById('options-date').value;
-          if (exam == 'all') {
-            var error = document.getElementById('error_exam_date');
-            if (error && exam_date.style.display == 'inline-block') {
-              error.style.display = 'inline-block';
-            }
-          } else {
-            var error = document.getElementById('error_exam_date');
-            if (error) {
-              error.style.display = 'none';
-            }
-          }
-        }
+      // verify_date_exam: function (ev) {
+      //   var self = this;
+      //   var center = false;
+      //   var exam_date = document.getElementById('options-date');
+      //   var center = document.getElementById('centre_examen').value;
+      //   var exam_date_id = false;
 
-        if (exam_date) {
-          var exam_date_id = exam_date.options[exam_date.selectedIndex].id;
-        }
-        if (center && exam_date) {
-          if (center == 'all' || exam_date.value == 'all') {
-            var pm_button = document.getElementById('pm_shop_check');
-            var pm_button_checkout = document.getElementById('pm_shop_checkout');
-          }
-        }
-        this._rpc({
-          route: '/shop/cart/update_exam_date',
-          params: {
-            exam_date_id: exam_date_id,
-          },
-        }).then(function () {
-          return true;
-        });
-      },
+      //   if (exam_date) {
+      //     var exam = document.getElementById('options-date').value;
+      //     if (exam == 'all') {
+      //       var error = document.getElementById('error_exam_date');
+      //       if (error && exam_date.style.display == 'inline-block') {
+      //         error.style.display = 'inline-block';
+      //       }
+      //     } else {
+      //       var error = document.getElementById('error_exam_date');
+      //       if (error) {
+      //         error.style.display = 'none';
+      //       }
+      //     }
+      //   }
+
+      //   if (exam_date) {
+      //     var exam_date_id = exam_date.options[exam_date.selectedIndex].id;
+      //   }
+      //   if (center && exam_date) {
+      //     if (center == 'all' || exam_date.value == 'all') {
+      //       var pm_button = document.getElementById('pm_shop_check');
+      //       var pm_button_checkout = document.getElementById('pm_shop_checkout');
+      //     }
+      //   }
+      //   this._rpc({
+      //     route: '/shop/cart/update_exam_date',
+      //     params: {
+      //       exam_date_id: exam_date_id,
+      //     },
+      //   }).then(function () {
+      //     return true;
+      //   });
+      // },
 
       verify_centre: function (ev) {
         var datenb = 0;
