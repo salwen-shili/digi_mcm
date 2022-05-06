@@ -28,7 +28,7 @@ ListController.include({
         var active_id = this.model.get(this.handle).getContext()['active_ids'];
         var model_name = this.model.get(this.handle).getContext()['active_model'];
             this._rpc({
-                    model: 'mcm_openedx.course_stat',
+                    model: 'course_stat',
                     method: 'recherche',
                     args: ["", model_name, active_id],
                 }).then(function (result) {

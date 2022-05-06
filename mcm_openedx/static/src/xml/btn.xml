@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template xml:space="preserve">
  <t t-extend="ListView.buttons">
- <t t-jquery="button.o_list_button_add" t-operation="replace">
- <button t-if="widget.modelName == 'mcm_openedx.course_stat'" class="btn btn-primary o_list_tender_button_create"
-         type="button">Supprimer Duplication</button>
-     <button t-if="widget.modelName != 'mcm_openedx.course_stat'" class="btn btn-primary o_list_button_add"
-             type="button">Create</button>
+ <t t-jquery="button.o_list_button_add" t-operation="before">
+ <button t-if="widget.modelName == 'mcm_openedx.course_stat'"
+         class="btn btn-primary oe_action_button"
+         type="button">Supprimer Doublon</button>
+
  </t>
  </t>
  </template>

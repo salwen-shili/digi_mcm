@@ -23,54 +23,46 @@ class Cours_stat(models.Model):
         for r in self:
             r.attendees_count = r.temppassetotale
 
-    def statestique(self):
-        temppassetotale = 0
-        # chercher dans la partie cour le mail et calculer le temps passer sur moocit
-        countdup = 0
-        countexist = 0
-        listcourduplicated = []
-        for exist in self.env['mcm_openedx.course_stat'].sudo().search(
-                []):
-            if (exist):
-                temppassetotale = exist.seconde + temppassetotale
-
-
-                heure = int((temppassetotale / 3600))
-                minute = int((temppassetotale - (3600 * heure)) / 60)
-                secondes = int(temppassetotale - (3600 * heure) - (60 * minute))
-                timee = (heure, minute, secondes)
-
-                # chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
-                for apprenant in self.env['res.partner'].sudo().search([
-                    ('company_id', '!=', 2),
-                    ('email', 'ilike', exist.email)]):
-                    apprenant.date_imortation_stat = date.today()
-                    apprenant.mooc_temps_passe_heure = heure
-                    apprenant.mooc_temps_passe_min = minute
-                    apprenant.mooc_temps_passe_seconde = secondes
-                    apprenant.mooc_dernier_coonx = exist.jour
-                    exist.partner = apprenant.id
-                    self.partner = exist.partner
 
     def recherche(self):
+        # cree une  liste pour stocker les duplication
         temppassetotale = 0
-        # chercher dans la partie cour le mail et calculer le temps passer sur moocit
-        countdup = 0
-        countexist = 0
+
         listcourduplicated = []
+        # chercher tout personne ayant un mail existant
         for exist in self.env['mcm_openedx.course_stat'].sudo().search(
                 [('email', "=", self.email)]):
+            # verifier si la personne ayant les meme information
             if exist.id not in listcourduplicated:
+                # chercher mail ,idcour,jour,id
                 duplicates = self.env['mcm_openedx.course_stat'].search(
                     [('email', "=", exist.email), ('idcour', '=', exist.idcour), ('jour', "=", exist.jour),
                      ('id', '!=', exist.id)
                      ])
+                # parcourir la liste de duplication
                 for dup in duplicates:
+                    # ajouter les duplicant a la liste
                     listcourduplicated.append(dup.id)
                     print(listcourduplicated)
                     print("okok", dup.idcour)
                     print("okokok", dup.jour)
-        print(listcourduplicated)
-
+        # supprimer duplication
         self.browse(listcourduplicated).sudo().unlink()
-        #self.statestique()
+        temppassetotale = exist.seconde + temppassetotale
+
+        heure = int((temppassetotale / 3600))
+        minute = int((temppassetotale - (3600 * heure)) / 60)
+        secondes = int(temppassetotale - (3600 * heure) - (60 * minute))
+        timee = (heure, minute, secondes)
+
+        # chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
+        for apprenant in self.env['res.partner'].sudo().search([
+            ('company_id', '!=', 2),
+            ('email', 'ilike', exist.email)]):
+            apprenant.date_imortation_stat = date.today()
+            apprenant.mooc_temps_passe_heure = heure
+            apprenant.mooc_temps_passe_min = minute
+            apprenant.mooc_temps_passe_seconde = secondes
+            apprenant.mooc_dernier_coonx = exist.jour
+            exist.partner = apprenant.id
+            self.partner = exist.partner
