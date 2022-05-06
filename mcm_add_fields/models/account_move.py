@@ -220,13 +220,24 @@ class AccountMove(models.Model):
                             print("paiement", externalId, date_acompte)
                         product_id = ""
                         if 'digimoov' in str(training_id):
-
                             product_id = self.env['product.product'].sudo().search(
                                 [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
+                            _logger.info('if digi %s' %str(product_id))
+                            _logger.info('if not digi %s' % str(product_id))
+                            _logger.info('edof %s' % str(user.id_edof))
+                            _logger.info('date %s' % str(user.date_examen_edof))
+                            _logger.info('ville %s' % str(user.session_ville_id))
+
                         else:
                             print('if digi ', product_id)
                             product_id = self.env['product.product'].sudo().search(
                                 [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
+                            _logger.info('if not digi %s' %str(product_id))
+                            _logger.info('edof %s' %str(user.id_edof))
+                            _logger.info('date %s' %str(user.date_examen_edof))
+                            _logger.info('ville %s' %str(user.session_ville_id))
+
+
 
                         if user and product_id and product_id.company_id.id == 2 and user.id_edof and user.date_examen_edof and user.session_ville_id:
                             _logger.info("userrrr******** %s" %user.numero_cpf)
@@ -386,7 +397,7 @@ class AccountMove(models.Model):
                                  ('session_id.number_places_available', '>', 0)], limit=1)
                             print('before if modulee', module_id)
                             if module_id:
-                                print('if modulee', module_id)
+                                _logger.info('if modulee %s' %str(module_id))
                                 product_id = self.env['product.product'].sudo().search(
                                     [('product_tmpl_id', '=', module_id.product_id.id)])
                                 self.env.user.company_id = 1
