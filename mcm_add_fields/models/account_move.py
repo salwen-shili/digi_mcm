@@ -483,14 +483,14 @@ class AccountMove(models.Model):
                     _logger.info("billig state %s " % str(bill_num.isdigit()))
                     if bill_num.isdigit() and dossier['billingState'] =="toBill":
                         _logger.info("bill num %s" %bill_num)
-                        # data = '{"billNumber":"' + bill_num + '"}'
-                        # facturer_dossier = requests.post(
-                        #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/billing', headers=headers,
-                        #     data=data)
-                        # content = json.loads(facturer_dossier.content)
-                        # _logger.info("post facture %s" % str(content))
-                        # if str(facturer_dossier.status_code) == "200":
-                        #     _logger.info("post success facture %s" % str(facturer_dossier.status_code))
+                        data = '{"billNumber":"' + bill_num + '"}'
+                        facturer_dossier = requests.post(
+                            'https://www.wedof.fr/api/registrationFolders/' + externalId + '/billing', headers=headers,
+                            data=data)
+                        content = json.loads(facturer_dossier.content)
+                        _logger.info("post facture %s" % str(content))
+                        if str(facturer_dossier.status_code) == "200":
+                            _logger.info("post success facture %s" % str(facturer_dossier.status_code))
 
     def get_acompte(self):
         companies = self.env['res.company'].sudo().search([])
