@@ -39,6 +39,7 @@
         "views/statestique.xml",
         "views/session.xml",
         "views/coach.xml",
+        "views/coach.xml",
         'data/mail_data.xml',
 
     ],

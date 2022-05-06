@@ -59,7 +59,7 @@ class Cours_stat(models.Model):
         countexist = 0
         listcourduplicated = []
         for exist in self.env['mcm_openedx.course_stat'].sudo().search(
-                [('email', "!=", False)]):
+                [('email', "=", self.email)]):
             if exist.id not in listcourduplicated:
                 duplicates = self.env['mcm_openedx.course_stat'].search(
                     [('email', "=", exist.email), ('idcour', '=', exist.idcour), ('jour', "=", exist.jour),
