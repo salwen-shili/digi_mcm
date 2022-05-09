@@ -1963,7 +1963,7 @@ class MCM_SIGNUP(http.Controller):
             return 0
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_register_form")
-
+    """Récupérer le paiement de stripe en cas de succès"""
     @http.route(['/webhook_testing'], type='json', auth="public", methods=['POST'])
     def stripe_event(self):
         event = None
@@ -1974,11 +1974,17 @@ class MCM_SIGNUP(http.Controller):
         object = dataa.get('data', []).get('object')
         if event == 'payment_intent.succeeded':
             _logger.info('teeeeeeest %s' % str(object))
+            """Cas de paiement une seule fois : Mettre à jour l'état de transaction de paiement liée"""
+            acquirer=object['id']
+            trans = request.env['payment.transaction'].sudo().search([('acquirer_reference', "=", acquirer)])
+
         if event == 'invoice.paid':
             _logger.info('teeeeeeest invoice %s' % str(object))
+            
             subsciption = object.get('subscription')
             customer = object.get('customer')
             amount = int(object.get('amount_paid') / 100)
+            """Cas de paiement sur plusieur fois : Mettre à jour la facture lié à l'abonnement sur stripe """
             invoice = request.env['account.move'].sudo().search(
                 [("stripe_sub_reference", "=", subsciption)], limit=1)
             _logger.info('invoice %s' % str(invoice.name))
@@ -1986,10 +1992,11 @@ class MCM_SIGNUP(http.Controller):
                          str(invoice.stripe_sub_reference))
             payment_method = request.env['account.payment.method'].sudo().search(
                 [('code', 'ilike', 'electronic')])
-
+            journal_id=request.env['account.journal'].search([
+                ('type', '=', 'bank'),
+                ('company_id', '=', invoice.company_id.id),
+            ], limit=1)
             if invoice:
-                journal_id = invoice.journal_id.id
-
                 payment = request.env['account.payment'].sudo().create({'payment_type': 'inbound',
                                                                         'payment_method_id': payment_method.id,
                                                                         'partner_type': 'customer',
@@ -2004,8 +2011,9 @@ class MCM_SIGNUP(http.Controller):
                                                                         })
 
                 payment.post()
-
+                
                 return True
+
 
     @http.route('/inscription-bolt', type='http', auth='public', website=True)
     def inscription_bolt_jotform(self, **kw, ):

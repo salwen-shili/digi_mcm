@@ -38,6 +38,7 @@ class PaymentTransaction(models.Model):
 
     def _reconcile_after_transaction_done(self):
         transaction=super(PaymentTransaction,self)._reconcile_after_transaction_done()
+        
         invoices = self.mapped('invoice_ids')
         template = self.env['mail.template'].sudo().search([('model', '=', 'account.move')])
         if self.reference:
