@@ -11,14 +11,15 @@
                     <div class="container" style="border-style: none; border-width: 0px;">
                         <div class="row">
                             <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
-                                <h2>
-                                    <text class="h1-title">
+                                <h2 class="h1-title">
+                                    
                                         <font style="color: rgb(198, 123, 165);">Formation attestation de</font>
 
 
-                                    </text>
+                                    
                                     <font style="color: rgb(0, 0, 0);">capacité de transport</font>
-                                    <font style="color: rgb(198, 123, 165);"> léger de marchandises</font>
+                                    <font style="color: rgb(198, 123, 165);">léger de marchandises</font>
+                             
 
                                 </h2>
                                 <p class="paratext">
@@ -200,9 +201,9 @@ En cas de réussite, le préfet de région vous octroie une attestation de fin d
                                     </div>
                                     <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
                                         <div class="aboutus-content">
-                                            <h2>
-                                                Ce que nous vous offrons chez&amp;nbsp;
-                                                <font style="color: rgb(57, 132, 198);">Digimoov</font>
+                                            <h2 class="h2-title">
+                                                Ce que nous vous offrons chez
+                                                <text style="color: rgb(57, 132, 198);">Digimoov</text>
                                             </h2>
                                             <p>
                                                 <b>Digimoov</b>
@@ -247,12 +248,12 @@ En cas de réussite, le préfet de région vous octroie une attestation de fin d
                         <div class="container" style="border-style: none; border-width: 0px;">
                             <div class="row align-items-center">
                                 <div class="col-lg-6 pb16 pt16" style="border-style: none; border-width: 0px">
-                                    <h2>
-                                        <text class="h1-title">
-                                            <font color="#000000">Comment se déroule la </font>
-                                            <font color="#000000" style="color: rgb(156, 0, 255);">formation capacité de transport</font>
+                                    <h2  class="h2-title">
+                                      
+                                            Comment se déroule la
+                                            <text color="#000000" style="color: rgb(156, 0, 255);">formation capacité de transport</text>
                                             ?
-                                        </text>
+                                    
                                     </h2>
                                     <blockquote>
                                         <font style="font-size: 18px;">En adhérant à notre formation en ligne vous aurez accès à notre plateforme de formation, sur laquelle vous aurez à votre disposition nos cours en modes PDF et en Vidéos .</font>
@@ -307,13 +308,15 @@ En cas de réussite, le préfet de région vous octroie une attestation de fin d
                                 <img src="/digimoov_website_templates/static/src/img/attestation_de_capacité_de_transport léger_de_marchandises/5.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip74951" />
                             </div>
                             <div class="col-lg-6 pb16 pt16" style="border-style: none; border-width: 0px;">
-                                <h4>
-                                    <b>
-                                        <font style="font-size: 48px;">Comment </font>
-                                        <font style="color: rgb(156, 0, 255); font-size: 48px;">financer ma formation</font>
-                                        <font style="font-size: 48px;">?</font>
-                                    </b>
-                                </h4>
+                                  <h2  class="h2-title">
+                                      
+                                            Comment
+                                              <text style="color: rgb(156, 0, 255); font-size: 48px;">financer ma formation</text>
+                                            ?
+                                    
+                                    </h2>
+
+                           
                                 <blockquote>
                                     <font style="font-size: 18px;">Pour ce faire, vous devez suivre les étapes suivantes:</font>
                                     <br />
@@ -374,143 +377,392 @@ En cas de réussite, le préfet de région vous octroie une attestation de fin d
      
       
             </style>
-                <div class="row justify-content-center rmmp" style="justify-content: center;">
-                    <div class="col-md-8 text-center col-lg-11 rmmp">
-                        <h2 style="margin-bottom: 19px; font-weight:500 !important ;font-size:30px !important">
-                            LET'S GO !
-                            <br />
-                            Inscrivez-vous dès maintenant !
-                        </h2>
-                        <h3 class="subtitle" style="    margin: 0 !important;">
+           
+                <!-- Pricing table-->
+                    <div id="pricing-table-trustpilot-partner">
+                        <div id="pricing" class="row justify-content-center">
+                            <div class="col-md-8 text-center col-lg-11">
+                                <h2 class="text-beta title-pricing "  style="    margin: 12px 0!important;">
+                                    LET'S GO !
+                                    <br />
+                                    Inscrivez-vous dès maintenant !
+                                </h2>
+                              
                             <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
                                 <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
                             </div>
-                        </h3>
-                    </div>
-                </div>
-                <div class="container pb32" id="pricing">
-                    <div class="row" style="place-content: center;">
-                        <div class="col-lg-5 col-md-8 col-sm-12">
-                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                <div class="text-center text-white border-0" style="
-                                    background-color: #6e209f;
-                                    border-top-left-radius: 25px;
-                                    border-top-right-radius: 25px;
-                                ">
-                                    <br />
+                     
 
-                                    <p>
-                                        <strong style="color: white">
-                                            <font style="font-size: 30px">SOLO</font>
-                                        </strong>
-                                    </p>
-                                    <p class="blink-soft">
-                                        <b>Paiement en 2 fois</b>
-                                    </p>
-                                    <br />
-                                </div>
-                                <t t-foreach="digimoov_products" t-as="product">
-                                    <t t-if="product.default_code=='basique'">
-                                        <form action="/shop/cart/update" method="post" id="form-1-1">
-                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
-                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                            <div class="card-body" style="background-color: white">
-                                                <ul class="list-unstyled">
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Formation 102h (100% en ligne)</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Accès à 5 examens d'entraînement</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Assistance par téléphone</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Assistance par mail</b>
-                                                    </li>
-
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
-                                                        Livre d’entraînement version électronique
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Séances en Live avec les formateurs
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Séance en Live avec un expert métier
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Révision du programme avant l'examen
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>  &amp;nbsp;Examen final en présentiel 
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Séance en Live pour corriger l’examen &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;</b>
-                                                    </li>
-                                                    <li>
-                                                        <i />
-                                                    </li>
-                                                </ul>
-                                                <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
-                                                    <font>
-                                                        <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="not promo">
-                                                            <span style="font-size: 3.5rem;" t-esc="round(product.list_price)" />
-                                                            <span style="font-size: 3.5rem;" t-esc="product.currency_id.symbol" />
-
-                                                        </p>
-                                                        <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="promo">
-                                                            <t t-foreach="promo.item_ids" t-as="item">
-                                                                <t t-if="item.product_id.id==product.id">
-                                                                    <span t-esc="round(item.fixed_price)" />
-                                                                    <span t-esc="product.currency_id.symbol" />
-                                                                </t>
-                                                            </t>
-                                                        </p>
-                                                    </font>
-                                                </p>
-                                                <t t-if="promo and promo.name!='box2home'">
-                                                    <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
-                                                        <b style="font-size: 80%">
-                                                            <t>avec le code</t>
-                                                            <t t-esc="promo.code" />
-                                                        </b>
-                                                    </p>
-                                                </t>
-                                                <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important" t-if="not partenaire or partenaire==''">
-                                                            Paiement 1 ou 2 fois
-                                                        </p>
-
-
-                                                <br />
-                                                <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                                                            Je m'inscris
-                                                            </button>
-                                            </div>
-                                        </form>
-                                    </t>
-                                </t>
                             </div>
                         </div>
+                        <div class="container">
+                            <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+
+                            <div class="row content-center">
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="card border-0 shadow border-pricing">
+                                        <div class="text-center text-white border-0 pack-wrap ">
+                                            <br />
+                                            <p>
+                                                <strong class="pack-name"> SOLO </strong>
+                                            </p>
+                                            <p class="blink-soft">
+                                                <t t-if="not promo">
+                                                    <b>Paiement en 2 fois</b>
+                                                </t>
+                                                <b> &amp;nbsp; &amp;nbsp;</b>
+
+                                            </p>
+                                            <br />
+                                        </div>
+                                        <t t-foreach="digimoov_products" t-as="product">
+                                            <t t-if="product.default_code=='basique'">
+                                                <form action="/shop/cart/update" method="post" id="form-1-1">
+                                                    <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                                    <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                    <div class="card-body">
+                                                        <ul class="list-unstyled">
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Formation 102h (100% en ligne)</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Accès à 5 examens d'entraînement</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Assistance par téléphone</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Assistance par mail</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
+                                                                Livre d'entraînement version électronique
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                                Séances en Live avec les formateurs
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                                Séance en Live avec un expert métier
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                                Révision du programme avant l'examen
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>
+                        &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp;&amp;nbsp;</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Séance en Live pour corriger l'examen &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
+                                                            </li>
+                                                            <li>
+                                                                <i />
+                                                            </li>
+                                                        </ul>
+                                                        <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+
+                                                            <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0" t-if="not promo">
+                                                                <span t-esc="round(product.list_price)" />
+                                                                <span t-esc="product.currency_id.symbol" />
+                                                            </p>
+                                                            <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0" t-if="promo">
+                                                                <t t-foreach="promo.item_ids" t-as="item">
+                                                                    <t t-if="item.product_id.id==product.id">
+                                                                        <span t-esc="round(item.fixed_price)" />
+                                                                        <span t-esc="product.currency_id.symbol" />
+                                                                    </t>
+                                                                </t>
+                                                            </p>
+
+                                                        </p>
+                                                        <t t-if="promo and promo.name!='box2home'">
+                                                            <p class="text-center font-weight-bolder text-secondary" style="margin-top:68px">
+                                                                <b class="promo-code">
+                                                                    <t>avec le code</t>
+                                                                    <t t-esc="promo.code" />
+                                                                </b>
+                                                            </p>
+                                                        </t>
+                                                        <p class="medium text-center font-weight-bolder text-secondary paiement" t-if="not partenaire or partenaire==''">
+                    Paiement 1 ou 2 fois
+                                            </p>
+                                                        <br />
+                                                        <button class="btn btn-block text-white btn-inscription" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();">
+                    Je m'inscris
+                                            </button>
+                                                    </div>
+                                                </form>
+                                            </t>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="card border-0 shadow border-pricing">
+                                        <!-- <div class="text-center text-white border-0" style="
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                            <br />
+                                            <p>
+                                                <strong style="color: white">
+                                                    <font style="font-size: 30px">PRO</font>
+                                                </strong>
+                                            </p>
+                                            <p>
+                                                <b></b>
+                                            </p>
+                                            <br />
+                                        </div> -->
+                                        <div class="text-center text-white border-0 pack-wrap">
+                                            <br />
+
+                                            <p>
+                                                <strong class="pack-name"> PRO </strong>
+                                            </p>
+
+                                            <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
+                                            <p class="blink-soft">
+                                                <b>Éligible au CPF</b>
+                                            </p>
+                                            <br />
+                                        </div>
+                                        <t t-foreach="digimoov_products" t-as="product">
+                                            <t t-if="product.default_code=='avancee'">
+                                                <form action="/shop/cart/update" method="post" id="form-2-1">
+                                                    <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                                    <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                    <div class="card-body car-body-c">
+                                                        <ul class="list-unstyled">
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Formation 102h (100% en ligne)</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b> Livre d’entraînement version électronique</b>
+                                                                <!-- <i class="fa fa-info-circle info"></i>
+                                                                <span class="additional-info">additional info</span> -->
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b> Accès à 10 examens d'entraînement</b>
+                                                                <!-- <i class="fa fa-info-circle info"></i>
+                                                                <span class="additional-info">additional info</span> -->
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
+                                                                <b>Assistance par téléphone</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Assistance par mail</b>
+                                                            </li>
+
+                                                            <li class="mb-4">
+                                                                <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip96053" />
+                                                                <b>Séances de groupe en Live avec les formateurs</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <span class="desc-size fa fa-lg fa-times-circle text-danger mr-2" data-original-title="" title="" aria-describedby="tooltip288722" />
+                                                                Séance en Live avec un expert métier
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle text-danger mr-2" />
+                                                                Révision du programme avant l'examen
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>
+                        &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp;&amp;nbsp;</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Séance en Live pour corriger l’examen &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
+                                                            </li>
+
+                                                            <li>
+                                                                <i />
+                                                            </li>
+                                                        </ul>
+                                                        <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+
+                                                            <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+                                                                <span t-esc="round(product.list_price)" />
+
+                                                                <span t-esc="product.currency_id.symbol" />
+                                                            </p>
+
+                                                        </p>
+                                                        <t t-if="promo and promo.name!='box2home'">
+                                                            <p class="text-center font-weight-bolder text-secondary">
+                                                                <b class="promo-code">
+                                                                    <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                                </b>
+                                                            </p>
+                                                        </t>
+                                                        <p class="paiement medium text-center font-weight-bolder text-secondary">
+                    Paiement 1 ou 2 fois
+                                            </p>
+
+                                                        <br />
+                                                        <div style="max-width:95%;">
+                                                            <button class="btn-inscription btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();">
+                    Je m'inscris
+                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </t>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="card border-0 shadow border-pricing">
+                                        <!-- <div class="text-center text-white border-0" style="
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                            <br />
+                                            <h2>
+                                                <strong style="color: white">PREMIUM</strong>
+                                            </h2>
+                                            <p>
+                                                <b></b>
+                                            </p>
+                                            <br />
+                                        </div> -->
+                                        <div class="text-center text-white border-0 pack-wrap">
+                                            <br />
+
+                                            <p>
+                                                <strong class="pack-name"> PREMIUM </strong>
+                                            </p>
+                                            <p class="blink-soft">
+                                                <b>Éligible au CPF</b>
+                                            </p>
+                                            <br />
+                                        </div>
+                                        <t t-foreach="digimoov_products" t-as="product">
+                                            <t t-if="product.default_code=='premium'">
+                                                <form action="/shop/cart/update" method="post" id="form-3-1">
+                                                    <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                                    <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                    <div class="card-body">
+                                                        <ul class="list-unstyled">
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Formation 102h (100% en ligne)</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Livre d’entraînement version électronique</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Accès à 14+ examens d'entraînement</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Assistance par téléphone</b>
+                                                                <br />
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Assistance par mail</b>
+                                                                <br />
+                                                            </li>
+
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Séances en Live avec un tuteur dédié</b>
+                                                                <br />
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Séance en Live avec un expert métier </b>
+                                                                <b>&amp;nbsp;</b>
+                                                                <br />
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Révision du programme avant l'examen</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Examen final en présentiel</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-lg fa-check-circle mr-2 text-success" />
+                                                                <b>Séance en Live pour corriger l’examen</b>
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                      &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                      &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
+                                                            </li>
+                                                            <li>
+                                                                <i />
+                                                            </li>
+                                                        </ul>
+                                                        <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+
+                                                            <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+                                                                <span t-esc="round(product.list_price)" />
+                                                                <span t-esc="product.currency_id.symbol" />
+                                                            </p>
+
+                                                        </p>
+                                                        <t t-if="promo">
+                                                            <p class="text-center font-weight-bolder text-secondary">
+                                                                <b class="promo-code">
+                                                                    <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                                </b>
+                                                            </p>
+                                                        </t>
+                                                        <p class="paiement medium text-center font-weight-bolder text-secondary">
+                    Paiement 1 ou 3 fois
+                                            </p>
+
+                                                        <br />
+                                                        <button class="btn-inscription btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();">
+                    Je m'inscris
+                                            </button>
+                                                    </div>
+                                                </form>
+                                            </t>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End pricing table-->
+
+
                     </div>
-                </div>
+
+
+
+
                 <section class="bg-200 bg-light-1 s_estate_logo_partners" data-name="Partners with logos and paragraph" style="">
                     <div class="feature14 spacer">
                         <div class="container">
