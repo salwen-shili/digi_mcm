@@ -48,5 +48,3 @@ class resPartnerSessions(models.Model):
                     duplicate_sessions.append(dup.id)
                     print("duplicate_sessions", duplicate_sessions)
         self.browse(duplicate_sessions).unlink()
-
-
