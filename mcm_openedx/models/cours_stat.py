@@ -70,3 +70,4 @@ class Cours_stat(models.Model):
                     print("okokok", dup.jour)
         # supprimer duplication
         self.browse(listcourduplicated).sudo().unlink()
+
