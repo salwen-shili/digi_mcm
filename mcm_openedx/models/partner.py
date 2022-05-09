@@ -581,7 +581,7 @@ class partner(models.Model):
 
                                                               ]):
             if (partner):
-                print(partner.mcm_session_id.date_exam )
+                print(partner.mcm_session_id.date_exam)
                 for rec in partner:
                     if (partner.state == "en_attente"):
                         partner.sudo().write({'state': 'en_formation'})
@@ -590,22 +590,47 @@ class partner(models.Model):
 
     # supprimer ione  automatique le desinscrire des cours sur la platfrom moocit
 
-    def supprimer_automatique(self):
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            # chercher dans res.partner la liste de apprennats puis verifier la
-            for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                                  ('company_id', '=', 1),
-                                                                  ('email', "=", 'dimopes981@bunlets.comgit staut'),
-                                                                  ('statut_cpf', "!=", "canceled")
-                                                                  ]):
-                if (partner.supprimerdemoocit == date.today()):
-                    if (partner.module_id.product_id.default_code == "taxi"):
-                        self.desinscriteTaxi(self)
-                    elif (partner.module_id.product_id.default_code == "vtc"):
-                        self.desinscriteVTC(self)
-                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                        self.desinscriteVTC(self)
+    # def supprimer_automatique(self):
+    #     base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+    #     if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+    #         # chercher dans res.partner la liste de apprennats puis verifier la
+    #         for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
+    #                                                               ('company_id', '=', 1),
+    #                                                               ('email', "=", 'dimopes981@bunlets.comgit staut'),
+    #                                                               ('statut_cpf', "!=", "canceled")
+    #                                                               ]):
+    #             if (partner.supprimerdemoocit == date.today()):
+    #                 if (partner.module_id.product_id.default_code == "taxi"):
+    #                     self.desinscriteTaxi(self)
+    #                 elif (partner.module_id.product_id.default_code == "vtc"):
+    #                     self.desinscriteVTC(self)
+    #                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+    #                     self.desinscriteVTC(self)
+
+    def update_suppresion_old_apprenats(self):
+        datee = datetime.today()
+        print(datee.year)
+        count =0
+
+        list_nonsupprimer = ['marionduja@icloud.com', 'jessica.massee.g@gmail.com', 'djamel.hamrani@gmail.com']
+        for partner in self.env['res.partner'].sudo().search([('company_id', '!=', 2),
+                                                              ('mcm_session_id.date_fin', '!=', False)]):
+            year_session = partner.mcm_session_id.date_fin.year
+            if (year_session < datee.year):
+                if (partner.email not in list_nonsupprimer):
+                    print("nononon", partner.mcm_session_id.date_fin.year)
+                    print("nononon", partner.mcm_session_id.name)
+                    print(partner.email)
+                    count = count +1
+
+                    #                 if (partner.module_id.product_id.default_code == "taxi"):
+                    #                     self.desinscriteTaxi(self)
+                    #                 elif (partner.module_id.product_id.default_code == "vtc"):
+                    #                     self.desinscriteVTC(self)
+                    #                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                    #                     self.desinscriteVTC(self)
+
+        print("Nombre de personne a supprimer",count)
 
     def convertir_date_inscription(self):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""

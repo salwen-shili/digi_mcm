@@ -30,7 +30,7 @@ ListController.include({
             this._rpc({
                     model: 'mcm_openedx.course_stat',
                     method: 'supprimer_duplicatio',
-                    args: ["", model_name, active_id],
+                    args: [""],
                 }).then(function (result) {
                     self.do_action(result);
                 });
