@@ -18,8 +18,6 @@
     'author': "Khouloudachour",
     'website': "https://www.mcm-academy.fr/",
 
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
     'category': 'Test',
     'version': '0.1',
@@ -30,6 +28,10 @@
                 'mcm_session',
                 'crm_marketing_automation', 'calendly_api_integration'],
 
+    'qweb': [
+        'static/src/xml/btn.xml',
+    ],
+
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
@@ -39,14 +41,10 @@
         "views/statestique.xml",
         "views/session.xml",
         "views/coach.xml",
-        "views/coach.xml",
         'data/mail_data.xml',
 
     ],
 
-    'qweb': [
-        'static/src/xml/btn.xml',
-    ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',

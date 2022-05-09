@@ -21,7 +21,8 @@
             <form string="Course Form">
                 <xpath expr="//form//sheet" position="before">
                     <header>
-                        <button name="recherche" string="chercher client" type="object"/>
+                        <button name="supprimer_duplicatio" string="supprimer_duplicatiot" type="object"/>
+                        <button name="calcul_temps_total" string="calcul_temps_total" type="object"/>
                     </header>
                 </xpath>
                 <sheet>

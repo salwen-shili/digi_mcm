@@ -1,4 +1,4 @@
-odoo.define('invoice.action_button', function (require) {
+odoo.define('mcm_openedx.action_button', function (require) {
 "use strict";
 /**
  * Button 'Create' is replaced by Custom Button
@@ -10,7 +10,7 @@ ListController.include({
    renderButtons: function($node) {
    this._super.apply(this, arguments);
        if (this.$buttons) {
-         this.$buttons.find('.o_list_tender_button_create').click(this.proxy('action_def'));
+         this.$buttons.find('.oe_action_button').click(this.proxy('action_def'));
        }
     },
 
@@ -28,8 +28,8 @@ ListController.include({
         var active_id = this.model.get(this.handle).getContext()['active_ids'];
         var model_name = this.model.get(this.handle).getContext()['active_model'];
             this._rpc({
-                    model: 'course_stat',
-                    method: 'recherche',
+                    model: 'mcm_openedx.course_stat',
+                    method: 'supprimer_duplicatio',
                     args: ["", model_name, active_id],
                 }).then(function (result) {
                     self.do_action(result);
