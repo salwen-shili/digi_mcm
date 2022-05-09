@@ -247,5 +247,17 @@ li > li {
 
 .cta-action h2 {
   color: #343996;
+  font-size: 28px !important;
+  font-weight: 700;
 }
+.cta-action > div {
+  color: #343996;
+  font-size: 28px !important;
+  font-weight: 700;
+}
+.cta-action > p {
+  font-size: 17px !important;
+  margin-top: 20px;
+}
+
 /* text Animation */
