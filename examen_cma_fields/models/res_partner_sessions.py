@@ -24,6 +24,14 @@ class resPartnerSessions(models.Model):
     date_exam = fields.Date(related="session_id.date_exam")
     # Ajouter module lors de créations d'une nouvelle session avec la traçabilité lors de changements de champ module
     module_id = fields.Many2one('mcmacademy.module', track_visibility='always')
+    # Ajouter des champs pour garder l'historique de la partie statestique 360 dans l'historique de session
+    stat_funding = fields.Char()
+    funding_method = fields.Char()
+    average_score = fields.Integer()
+    last_login = fields.Char()
+    totalTimeSpentInMinutes = fields.Char()
+    date_creation = fields.Char()
+    reactions = fields.Char()
 
     def remove_double_session_same_session(self):
         """ Add this function to remove duplicate
@@ -40,3 +48,5 @@ class resPartnerSessions(models.Model):
                     duplicate_sessions.append(dup.id)
                     print("duplicate_sessions", duplicate_sessions)
         self.browse(duplicate_sessions).unlink()
+
+
