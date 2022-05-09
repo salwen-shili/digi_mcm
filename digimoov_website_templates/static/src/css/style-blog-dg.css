@@ -141,16 +141,22 @@
   font-size: 40px !important;
   font-weight: 700;
   color: #202647;
+  margin-top: 30px;
+  margin-block-end: 23px;
 }
 .blog-article-prototype > h2 {
   font-size: 28px !important;
   font-weight: 700;
   color: #202647;
+  margin-top: 30px;
+  margin-block-end: 23px;
 }
 .blog-article-prototype > h3 {
   font-size: 23px !important;
   font-weight: 700;
   color: #202647;
+  margin-top: 25px;
+  margin-block-end: 19px;
 }
 .blog-article-prototype > p {
   /* font-size: 18px !important;
