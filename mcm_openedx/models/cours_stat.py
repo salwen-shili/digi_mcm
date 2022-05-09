@@ -37,22 +37,22 @@ class Cours_stat(models.Model):
             secondes = int(temppassetotale - (3600 * heure) - (60 * minute))
             timee = (heure, minute, secondes)
 
-            print(existt.jour)
             listjour.append(existt.jour)
-            df2 = listjour.agg(Minimum_Date=('Date', np.min), Maximum_Date=('Date', np.max))
-            print(df2)
+        listjour.sort()
+        print("lowwww", listjour[0])
+        print("highhh", listjour[-1])
 
-            # chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
-            # for apprenant in self.env['res.partner'].sudo().search([
-            #     ('company_id', '!=', 2),
-            #     ('email', 'ilike', existt.email)]):
-            #     apprenant.date_imortation_stat = date.today()
-            #     apprenant.mooc_temps_passe_heure = heure
-            #     apprenant.mooc_temps_passe_min = minute
-            #     apprenant.mooc_temps_passe_seconde = secondes
-            #     apprenant.mooc_dernier_coonx = existt.jour
-            #     existt.partner = apprenant.id
-            #     self.partner = existt.partner
+        #chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
+        for apprenant in self.env['res.partner'].sudo().search([
+            ('company_id', '!=', 2),
+            ('email', 'ilike', existt.email)]):
+            apprenant.date_imortation_stat = date.today()
+            apprenant.mooc_temps_passe_heure = heure
+            apprenant.mooc_temps_passe_min = minute
+            apprenant.mooc_temps_passe_seconde = secondes
+            apprenant.mooc_dernier_coonx = listjour[-1]
+            existt.partner = apprenant.id
+            self.partner = existt.partner
 
     def supprimer_duplicatio(self):
         # cree une  liste pour stocker les duplication
@@ -60,7 +60,7 @@ class Cours_stat(models.Model):
         print("tacheeee supppppppppppp")
         # chercher tout personne ayant un mail existant
         for exist in self.env['mcm_openedx.course_stat'].sudo().search(
-                [('email', "=", self.email)]):
+                [('email', "!=", False)]):
             # verifier si la personne ayant les meme information
             if exist.id not in listcourduplicated:
                 # chercher mail ,idcour,jour,id
