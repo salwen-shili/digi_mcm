@@ -158,6 +158,13 @@
   margin-top: 25px;
   margin-block-end: 19px;
 }
+.blog-article-prototype > h4 {
+  font-size: 19px !important;
+  font-weight: 700;
+  color: #202647;
+  margin-top: 17px;
+  margin-block-end: 8px;
+}
 .blog-article-prototype > p {
   /* font-size: 18px !important;
   line-height: 1.5 !important;
@@ -186,10 +193,10 @@ li > li {
   font-size: 18px !important;
   text-align: justify !important;
 }
-.blog-article-prototype > a {
+.blog-article-prototype > p > a {
   font-size: 17.5px !important;
   line-height: 1.5 !important;
-  color: #00375e !important;
+  color: #153eae !important;
   text-decoration: underline !important;
   font-weight: 700;
 }
