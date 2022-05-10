@@ -9,6 +9,7 @@
                 <form string="Historique Client Sessions ">
                     <sheet>
                         <group>
+                        <group>
                             <field name="client_id" string="Client"/>
                             <field name="session_id" string="Session"/>
                             <field name="module_id" string="Module"/>
@@ -20,7 +21,18 @@
                             <field name="attachment_ids" string="Justificatif" widget="many2many_binary" nolabel="1"
                                    attrs="{'invisible': [('justification', '=', False)]}"/>
                             <field name="autre_raison"
-                                   attrs="{'invisible': ['|',('justification', '=', True), ('paiement', '=', True)]}" string="Notes"/>
+                                   attrs="{'invisible': ['|',('justification', '=', True), ('paiement', '=', True)]}"
+                                   string="Notes"/>
+                        </group>
+                            <group string="Statistiques sur 360 Learning">
+                                <field name="stat_funding" string="Financement"/>
+                                <field name="funding_method" string="Mode de financement"/>
+                                <field name="average_score" string="Score Moyen"/>
+                                <field name="last_login" string="Dernière Connexion"/>
+                                <field name="totalTimeSpentInMinutes" string="Temps passé par minute"/>
+                                <field name="date_creation" string="Date d'inscription"/>
+                                <field name="reactions" string="Réactions"/>
+                            </group>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -45,6 +57,13 @@
                     <field name="paiement" string="Changement de ville"/>
                     <field name="attachment_ids" string="Justificatif" widget="many2many_binary"/>
                     <field name="autre_raison" string="Notes"/>
+                    <field name="stat_funding" string="Financement" optional="show"/>
+                    <field name="funding_method" string="Mode de financement" optional="show"/>
+                    <field name="average_score" string="Score Moyen" optional="hide"/>
+                    <field name="last_login" string="Dernière Connexion" optional="hide"/>
+                    <field name="totalTimeSpentInMinutes" string="Temps passé par minute" optional="show"/>
+                    <field name="date_creation" string="Date d'inscription" optional="show"/>
+                    <field name="reactions" string="Réactions" optional="hide"/>
                 </tree>
             </field>
         </record>
