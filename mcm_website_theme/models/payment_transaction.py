@@ -2,7 +2,9 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 import time
 from odoo import api, fields, models, _, SUPERUSER_ID
-
+import logging
+import requests
+_logger = logging.getLogger(__name__)
 
 class PaymentTransaction(models.Model):
     _inherit = "payment.transaction"
@@ -38,7 +40,7 @@ class PaymentTransaction(models.Model):
 
     def _reconcile_after_transaction_done(self):
         transaction=super(PaymentTransaction,self)._reconcile_after_transaction_done()
-        
+        _logger.info("***************after transaction done")
         invoices = self.mapped('invoice_ids')
         template = self.env['mail.template'].sudo().search([('model', '=', 'account.move')])
         if self.reference:

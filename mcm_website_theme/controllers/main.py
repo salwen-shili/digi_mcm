@@ -1976,8 +1976,12 @@ class MCM_SIGNUP(http.Controller):
             _logger.info('teeeeeeest %s' % str(object))
             """Cas de paiement une seule fois : Mettre à jour l'état de transaction de paiement liée"""
             acquirer=object['id']
+            _logger.info("acquirer %s" %str(acquirer))
             trans = request.env['payment.transaction'].sudo().search([('acquirer_reference', "=", acquirer)])
-
+            if trans:
+                _logger.info('state before  %s' % str(tans.state))
+                trans.state=done
+                _logger.info('state %s' % str(tans.state))
         if event == 'invoice.paid':
             _logger.info('teeeeeeest invoice %s' % str(object))
             
