@@ -200,6 +200,13 @@ li > li {
   text-decoration: underline !important;
   font-weight: 700;
 }
+.blog-article-prototype > ul > li > a {
+  font-size: 17.5px !important;
+  line-height: 1.5 !important;
+  color: #153eae !important;
+  text-decoration: underline !important;
+  font-weight: 700;
+}
 .blog-footer-title {
   font-size: 22px;
   margin-block-end: 10px;
