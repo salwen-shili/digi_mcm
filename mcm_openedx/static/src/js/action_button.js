@@ -14,6 +14,7 @@ ListController.include({
        }
     },
 
+
     //--------------------------------------------------------------------------
     // Define Handler for new Custom Button
     // code ===> https://www.odoo.com/fr_FR/forum/aide-1/add-button-on-top-of-tree-view-32006
@@ -35,5 +36,4 @@ ListController.include({
                     self.do_action(result);
                 });
    },
-});
-});
+

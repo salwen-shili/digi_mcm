@@ -36,6 +36,9 @@
                         <field name="temppasse"/>
                         <field name="seconde"/>
                         <field name="jour"/>
+                        <field name="mooc_temps_passe_heure"/>
+                        <field name="mooc_temps_passe_min"/>
+                        <field name="mooc_temps_passe_seconde"/>
 
 
                     </group>
@@ -55,6 +58,7 @@
                 <field name="name"/>
                 <field name="jour"/>
                 <field name="idcour"/>
+
 
             </tree>
         </field>
@@ -115,7 +119,10 @@
                                 <br/>
                                 Partner:
                                 <field name="partner"/>
-
+                                <br/>
+                                <field name="mooc_temps_passe_heure"/>
+                                <field name="mooc_temps_passe_min"/>
+                                <field name="mooc_temps_passe_seconde"/>
                             </div>
                         </div>
                     </t>

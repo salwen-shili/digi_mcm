@@ -12,3 +12,6 @@ import locale
 
 class Session(models.Model):
     _inherit = 'mcmacademy.session'
+
+
+

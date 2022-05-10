@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 
 class partner(models.Model):
     _inherit = 'res.partner'
-    # ajouter champs au modele partner par defaut res.partner ne sont pas des instructors
+    # ajouter champs au modeule partner par defaut res.partner ne sont pas des instructors
     supprimerdemoocit = fields.Date("Date de suppression")
     departement = fields.Many2one('res.country.state')
     date_ajout_surMOOCIT = fields.Date(string="Date ajout moocit")
@@ -480,28 +480,36 @@ class partner(models.Model):
                     _logger.info("formation valide")
                     if (departement == "59"):
                         self.inscriteTaxi(self)
+                        self.testsms(self)
                         self.ajoutconnaisancelocalNord(self)
                         self.supprimer_apres_dateexman(self)
                         _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
 
                     elif (departement == "62"):
                         self.inscriteTaxi(self)
+                        self.testsms(self)
                         self.ajoutconnaisancelocalpasdecalais(self)
                         self.supprimer_apres_dateexman(self)
                     else:
                         self.inscriteTaxi(self)
+                        self.testsms(self)
+
 
                 # Formation à distance VTC-BOLT je doit l'ajouter
                 elif (partner.module_id.product_id.default_code == "vtc"):
                     _logger.info("client Bolt Formation VTC")
                     self.inscriteVTC(self)
                     self.supprimer_apres_dateexman(self)
+                    self.testsms(self)
+
 
                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                     if (bolt == True):
                         _logger.info("client Bolt Formation VTC")
                         self.inscriteVTC(self)
                         self.supprimer_apres_dateexman(self)
+                        self.testsms(self)
+
 
 
             elif (response.status_code == 409):
@@ -516,8 +524,8 @@ class partner(models.Model):
                                                                                                         7:]
             partner.phone = phone
             _logger.info(partner.phone)
-        body = "Bonjour %s,  Bienvenu Chez MCM ACADEMY" % (
-            partner.name)
+        body = "Bonjour Cher(e) %s,  Bienvenu Chez MCM ACADEMY vous pouver commencer Votre ,%s" % (
+            partner.name, partner.module_id.name)
         if body:
             sms = self.env['mail.message'].sudo().search(
                 [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
@@ -537,6 +545,8 @@ class partner(models.Model):
 
     # supprimer ione le desinscrire des cours sur la platfrom moocit
     def supprimer_IOne_MCM(self):
+
+
         self.supprimerdemoocit = self.mcm_session_id.date_exam + timedelta(days=5)
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
@@ -591,22 +601,22 @@ class partner(models.Model):
 
     # supprimer ione  automatique le desinscrire des cours sur la platfrom moocit
 
-    # def supprimer_automatique(self):
-    #     base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-    #     if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-    #         # chercher dans res.partner la liste de apprennats puis verifier la
-    #         for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
-    #                                                               ('company_id', '=', 1),
-    #                                                               ('email', "=", 'dimopes981@bunlets.comgit staut'),
-    #                                                               ('statut_cpf', "!=", "canceled")
-    #                                                               ]):
-    #             if (partner.supprimerdemoocit == date.today()):
-    #                 if (partner.module_id.product_id.default_code == "taxi"):
-    #                     self.desinscriteTaxi(self)
-    #                 elif (partner.module_id.product_id.default_code == "vtc"):
-    #                     self.desinscriteVTC(self)
-    #                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-    #                     self.desinscriteVTC(self)
+    def supprimer_automatique(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+            # chercher dans res.partner la liste de apprennats puis verifier la
+            for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
+                                                                  ('company_id', '=', 1),
+                                                                  ('email', "=", 'dimopes981@bunlets.comgit staut'),
+                                                                  ('statut_cpf', "!=", "canceled")
+                                                                  ]):
+                if (partner.supprimerdemoocit == date.today()):
+                    if (partner.module_id.product_id.default_code == "taxi"):
+                        self.desinscriteTaxi(partner)
+                    elif (partner.module_id.product_id.default_code == "vtc"):
+                        self.desinscriteVTC(partner)
+                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                        self.desinscriteVTC(partner)
 
     def update_suppresion_old_apprenats(self):
         datee = datetime.today()
@@ -625,14 +635,13 @@ class partner(models.Model):
                     count = count +1
 
                     #                 if (partner.module_id.product_id.default_code == "taxi"):
-                    #                     self.desinscriteTaxi(self)
+                    #                     self.desinscriteTaxi(partner)
                     #                 elif (partner.module_id.product_id.default_code == "vtc"):
-                    #                     self.desinscriteVTC(self)
+                    #                     self.desinscriteVTC(partner)
                     #                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                    #                     self.desinscriteVTC(self)
+                    #                     self.desinscriteVTC(partner)
 
         print("Nombre de personne a supprimer",count)
-        self.testsms(partner)
 
     def convertir_date_inscription(self):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""

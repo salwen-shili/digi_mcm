@@ -18,6 +18,9 @@ class Cours_stat(models.Model):
     temppassetotale = fields.Integer(string="Temps Totale")
     attendees_count = fields.Integer(string="Temps passée", compute='_get_attendees_count', store=True)
     partner = fields.Many2one('res.partner')
+    mooc_temps_passe_heure = fields.Integer(string="temps passé en heure")
+    mooc_temps_passe_min = fields.Integer(string="temps passé en minute")
+    mooc_temps_passe_seconde = fields.Integer(string="temps passé en Seconde")
 
     @api.depends('temppasse')
     def _get_attendees_count(self):
@@ -25,8 +28,6 @@ class Cours_stat(models.Model):
             r.attendees_count = r.temppassetotale
 
     def calcul_temps_total(self):
-        temppassetotale = 0
-
         temppassetotale = 0
         listjour = []
         for existt in self.env['mcm_openedx.course_stat'].sudo().search(
@@ -38,11 +39,12 @@ class Cours_stat(models.Model):
             timee = (heure, minute, secondes)
 
             listjour.append(existt.jour)
-        listjour.sort()
+            # affecter les jours a une liste pour faire le tri et extraire la derniere et la premiere date de connexion
+            listjour.sort()
         print("lowwww", listjour[0])
         print("highhh", listjour[-1])
 
-        #chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
+        # chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
         for apprenant in self.env['res.partner'].sudo().search([
             ('company_id', '!=', 2),
             ('email', 'ilike', existt.email)]):
@@ -51,8 +53,14 @@ class Cours_stat(models.Model):
             apprenant.mooc_temps_passe_min = minute
             apprenant.mooc_temps_passe_seconde = secondes
             apprenant.mooc_dernier_coonx = listjour[-1]
+            if (apprenant.inscrit_mcm == False):
+                apprenant.inscrit_mcm = listjour[0]
+
             existt.partner = apprenant.id
             self.partner = existt.partner
+            self.mooc_temps_passe_heure = heure
+            self.mooc_temps_passe_min = minute
+            self.mooc_temps_passe_seconde = secondes
 
     def supprimer_duplicatio(self):
         # cree une  liste pour stocker les duplication
@@ -60,7 +68,7 @@ class Cours_stat(models.Model):
         print("tacheeee supppppppppppp")
         # chercher tout personne ayant un mail existant
         for exist in self.env['mcm_openedx.course_stat'].sudo().search(
-                [('email', "!=", False)]):
+                [('email', "!=", self.email)]):
             # verifier si la personne ayant les meme information
             if exist.id not in listcourduplicated:
                 # chercher mail ,idcour,jour,id
@@ -72,8 +80,5 @@ class Cours_stat(models.Model):
                 for dup in duplicates:
                     # ajouter les duplicant a la liste
                     listcourduplicated.append(dup.id)
-                    print(listcourduplicated)
-                    print("okok", dup.idcour)
-                    print("okokok", dup.jour)
         # supprimer duplication
         self.browse(listcourduplicated).sudo().unlink()

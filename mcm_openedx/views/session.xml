@@ -9,7 +9,7 @@
             <search>
                 <field name="name"></field>
                 <filter name="name" string="MCM Academy"
-                        domain="[('company_id','=',1)]"  />
+                        domain="[('company_id','=',1)]"/>
                 <filter name="group_company_id" string="Societé" icon="terp-partner"
                         context="{'group_by':'company_id'}"/>
             </search>
@@ -17,17 +17,18 @@
     </record>
 
 
-    <record model="ir.ui.view" id="session_form_view">
+    <record model="ir.ui.view" id="session_tree_view">
         <field name="name">Sessions</field>
         <field name="model">mcmacademy.session</field>
-        <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"></field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_session_tree_view"></field>
         <field name="arch" type="xml">
-            <header>
-                <button name="test_coach" string="Test" type="object"></button>
-            </header>
+
+            <field name="diplome_vise" position="replace">
+                <field name="date_debut"/>
+                <field name="date_fin"/>
+            </field>
         </field>
     </record>
-
 
     <record model="ir.actions.act_window" id="session_list_action">
         <field name="name">Les Sessions</field>
