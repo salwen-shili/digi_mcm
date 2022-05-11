@@ -339,7 +339,7 @@
             <div class="container">
               <div class="row align-items-center">
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/formation-en-ligne-chauffeur-taxi.png" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.png" class="img img-fluid mx-auto lazy" alt="chauffeur taxi vtc" title="chauffeur taxi vtc" />
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/formation-passerelle-vtc-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/formation-passerelle-vtc-taxi.png" class="img img-fluid mx-auto lazy" alt="chauffeur taxi vtc" title="chauffeur taxi vtc" />
                 </div>
                 <div class="col-lg-6 js-scroll slide-right ">
                   <h3>FORMATION PASSERELLE VTC TAXI</h3>
@@ -394,7 +394,7 @@
                   </p>
                 </div>
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
-                  <img data-src="/mcm_website_theme/static/src/img/homepage/Chauffeur vtc femme-mcm-academy.png" data-srcsafari="/mcm_website_theme/static/src/img/homepage/Chauffeur vtc femme-mcm-academy.png" class="img img-fluid mx-auto lazy" alt="Chauffeur vtc femme mcm academy" />
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.png" class="img img-fluid mx-auto lazy" alt="Chauffeur vtc femme mcm academy" />
                 </div>
               </div>
             </div>

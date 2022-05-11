@@ -185,7 +185,7 @@
                             </div>
                             <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
                                 <br />
-                                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.png" data-srcSafari="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.webp" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Taxi chauffeur" style="text-align: center" />
+                                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.png" data-srcSafari="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.webp" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Taxi chauffeur" style="text-align: center; width:60%" />
                             </div>
                         </div>
                     </div>
@@ -790,7 +790,7 @@
                                                         <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                                                     </div>
                                                     <div class="sh_text">
-                                                        <h3>Omar Saadaoui</h3>
+                                                        <h3>Omar S.</h3>
                                                         <h6>Nov 2020</h6>
                                                     </div>
                                                 </div>
@@ -813,7 +813,7 @@
                                                         <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png" />
                                                     </div>
                                                     <div class="sh_text">
-                                                        <h3>Henry Serda</h3>
+                                                        <h3>Henry S.</h3>
                                                         <h6>Nov 2020</h6>
                                                     </div>
                                                 </div>
@@ -862,7 +862,7 @@
                                                         <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                                                     </div>
                                                     <div class="sh_text">
-                                                        <h3>Omar Saadaoui</h3>
+                                                        <h3>Omar S.</h3>
                                                         <h6>Nov 2020</h6>
                                                     </div>
                                                 </div>
@@ -911,7 +911,7 @@
                                                         <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                                                     </div>
                                                     <div class="sh_text">
-                                                        <h3>Omar Saadaoui</h3>
+                                                        <h3>Omar S.</h3>
                                                         <h6>Nov 2020</h6>
                                                     </div>
                                                 </div>
@@ -934,7 +934,7 @@
                                                         <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png" />
                                                     </div>
                                                     <div class="sh_text">
-                                                        <h3>Henry Serda</h3>
+                                                        <h3>Henry S.</h3>
                                                         <h6>Nov 2020</h6>
                                                     </div>
                                                 </div>
@@ -958,7 +958,7 @@
                                                         <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                                                     </div>
                                                     <div class="sh_text">
-                                                        <h3>Omar Saadaoui</h3>
+                                                        <h3>Omar S.</h3>
                                                         <h6>Nov 2020</h6>
                                                     </div>
                                                 </div>
@@ -981,7 +981,7 @@
                                                         <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png" />
                                                     </div>
                                                     <div class="sh_text">
-                                                        <h3>Henry Serda</h3>
+                                                        <h3>Henry S.</h3>
                                                         <h6>Nov 2020</h6>
                                                     </div>
                                                 </div>
@@ -1030,7 +1030,7 @@
                                                         <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                                                     </div>
                                                     <div class="sh_text">
-                                                        <h3>Omar Saadaoui</h3>
+                                                        <h3>Omar S.</h3>
                                                         <h6>Nov 2020</h6>
                                                     </div>
                                                 </div>

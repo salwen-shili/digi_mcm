@@ -33,14 +33,14 @@
 
       <t t-if="request.website.is_public_user()==True">
 
-        <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot.js" />
+        <!-- <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot.js" /> -->
         <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot-config.js" />
         <!-- Début de widget de badge Calendly -->
         <link rel="stylesheet" href="/digimoov_website_templates/static/src/css/widget_calendly.min.css" />
 
         <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
         <script type="text/javascript">
-          window.onload = function () {
+         window.onload = function () {
             var url = window.location.pathname;
             if (!url.includes('/web/login')||!url.includes('/reset_password') ) {
                 Calendly.initBadgeWidget({
@@ -51,7 +51,13 @@
                   branding: false,
                 });
               }
+           if (url.includes('/examen-capacite-transport-marchandises') || url.includes('/mon-compte-de-formation-cpf') ) {
+                window.intercomSettings = {
+  app_id: "waw4riyk",
+};
+              }
           };
+        
         </script>
         <!-- Fin de widget de badge Calendly -->
       </t>

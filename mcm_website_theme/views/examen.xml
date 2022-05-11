@@ -41,7 +41,7 @@
                 </div>
               </div>
               <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
-                <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.png" class="img img-fluid mx-auto lazy text-center" alt="candidat à l’examen taxi vtc" title="homme pointant du doigt pour montrer comment devenir chauffeur taxi vtc moto-taxi" />
+                <img data-src="/mcm_website_theme/static/src/img/examen/examen-taxi-vtc-vmdtr.webp" data-srcsafari="/mcm_website_theme/static/src/img/examen/examen-taxi-vtc-vmdtr.png" class="img img-fluid mx-auto lazy text-center" alt="candidat à l’examen taxi vtc" style="width:80%" title="homme pointant du doigt pour montrer comment devenir chauffeur taxi vtc moto-taxi" />
               </div>
             </div>
           </div>
@@ -433,5 +433,6 @@
 
       </div>
     </t>
+
   </template>
 </odoo>
