@@ -181,7 +181,7 @@ class partner(models.Model):
         }
         resp = requests.request("POST", url, headers=header, data=payload)
 
-    # ajouter les apprenants manuellemnt a partire de  la fiche Client
+    # ajouter les apprenants    automatiquememnt a partire de  la fiche Client
     def ajoutMoocit_automatique(self):
         # base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
@@ -318,14 +318,19 @@ class partner(models.Model):
                     # Vérifier si contrat signé ou non
 
                     if (sale_order.state == 'sale') and (sale_order.signature):
+                        _logger.info('sale order et signature valide %s')
+
                         # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
                         if (self.renounce_request):
                             self.ajouter_IOne_MCM(self)
+                            _logger.info('doooooooooooooooooooone %s')
 
                         # si non il doit attendre 14jours pour etre ajouté a la platform*
                         today = date.today()
                         if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
                             self.ajouter_IOne_MCM(self)
+                            _logger.info('doooooooooooooooooooone %s')
+
 
 
 
@@ -345,7 +350,10 @@ class partner(models.Model):
                 _logger.info(' date exman %s' % str(self.mcm_session_id.date_exam))
                 if (document_valide) and (self.mcm_session_id.date_exam) and (
                         self.mcm_session_id.date_exam > date.today()):
+                    _logger.info('document valide , date exlan > datetoday %s')
+
                     if (self.renounce_request):
+
                         self.ajouter_IOne_MCM(self)
                         _logger.info(' Doneeeee %s')
                 if not (self.renounce_request) and self.numero_cpf:
@@ -546,26 +554,42 @@ class partner(models.Model):
     # supprimer ione le desinscrire des cours sur la platfrom moocit
     def supprimer_IOne_MCM(self):
 
-
         self.supprimerdemoocit = self.mcm_session_id.date_exam + timedelta(days=5)
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             # ajouter une condition sur suppresion manuelle pour ne pas supprimer lapprenat que si
             # la date est egale a la date today
             # comparer la date avec la date Today si elle est différente afficher une notification
-            if (date.today() == self.supprimerdemoocit):
+           # if (date.today() == self.supprimerdemoocit):
                 departement = self.state_id.code
                 _logger.info(departement)
                 self.write({'state': 'supprimé'})
                 # supprimer l'apprenats en verifiant le module choisit
                 if (self.module_id.product_id.default_code == "taxi"):
                     self.desinscriteTaxi(self)
+                    self.write({'state': 'supprimé'})
+                    _logger.info('state: supprimé')
+
+                    if (partner.state != False):
+                        partner.sudo().write({'state': 'supprimé'})
+
+
                 elif (self.module_id.product_id.default_code == "vtc"):
                     self.desinscriteVTC(self)
+                    self.write({'state': 'supprimé'})
+                    _logger.info('state: supprimé')
+
+                    if (partner.state != False):
+                        partner.sudo().write({'state': 'supprimé'})
+
 
                 elif (self.module_id.product_id.default_code == "vtc_bolt"):
                     self.desinscriteVTC(self)
-            else:
+                    _logger.info('state: supprimé')
+                    if (partner.state != False):
+                        partner.sudo().write({'state': 'supprimé'})
+
+        else:
                 return {
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
@@ -621,7 +645,7 @@ class partner(models.Model):
     def update_suppresion_old_apprenats(self):
         datee = datetime.today()
         print(datee.year)
-        count =0
+        count = 0
 
         list_nonsupprimer = ['marionduja@icloud.com', 'jessica.massee.g@gmail.com', 'djamel.hamrani@gmail.com']
         for partner in self.env['res.partner'].sudo().search([('company_id', '!=', 2),
@@ -632,7 +656,7 @@ class partner(models.Model):
                     print("nononon", partner.mcm_session_id.date_fin.year)
                     print("nononon", partner.mcm_session_id.name)
                     print(partner.email)
-                    count = count +1
+                    count = count + 1
 
                     #                 if (partner.module_id.product_id.default_code == "taxi"):
                     #                     self.desinscriteTaxi(partner)
@@ -641,7 +665,7 @@ class partner(models.Model):
                     #                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                     #                     self.desinscriteVTC(partner)
 
-        print("Nombre de personne a supprimer",count)
+        print("Nombre de personne a supprimer", count)
 
     def convertir_date_inscription(self):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""

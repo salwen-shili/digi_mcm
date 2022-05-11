@@ -6,8 +6,8 @@
         <field name="model">res.partner</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name"
-                       filter_domain="[('name','ilike',self)]"></field>
+                <field name="name" filter_domain="[('name','ilike',self)]"></field>
+                <field name="email" filter_domain="[('email','ilike',self)]"></field>
                 <filter name="company"/>
                 <filter name="company" string="MCM Academy"
                         domain="[('company_id','=',1)]"

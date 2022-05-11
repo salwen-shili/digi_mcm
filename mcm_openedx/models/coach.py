@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import models, fields, api, SUPERUSER_ID
 
 
 class Coach(models.Model):
@@ -13,7 +13,6 @@ class Coach(models.Model):
     seats = fields.Integer(string="nombre de places")
     taken_seats = fields.Float(string="nombre des places ocuppé ", compute='_taken_seats')
     commentaire = fields.Char(string="Commentaires")
-
 
     @api.depends('seats', 'apprenant_name')
     def _taken_seats(self):
@@ -51,6 +50,7 @@ class Coach(models.Model):
             # si le partner est un coach alors en va verifier si il existe deja dans la liste des coach pour lui affecter les apprenants
 
             if (coach):
+
                 coach_name = coach.name
                 print("coachs names", coach_name)
                 # verfier dans la class Coach si il existe un coach ayant le meme nom que le coach affecter pour les apprenants
@@ -79,6 +79,8 @@ class Coach(models.Model):
     # chercher les nombre des apprennats qui n'on pas des coach et
     # chercher le nombre d'apprennats par  coach pour voir la differance et affecter les apprenat aux coach qui a le nombre inferieur aux autres
     def egalité(self):
+        self.test_coach()
+
         listcoach = []
         nombre_coach = 0
         sanscoach = 0
@@ -107,13 +109,52 @@ class Coach(models.Model):
             for apprenat in self.env['res.partner'].sudo().search(
                     [('statut', "=", "won"), ('coach_peda', '=', False), ('company_id', '=', 1)],
                     limit=limit[0]):
+                a = coach.coach_peda.id
+                team = self.env['helpdesk.team'].sudo().search([('name', "=", 'Coach_team')], limit=1)
+                print("team", team)
+                email = coach.coach_name.email
+                vals = {
+                    'partner_email': email,
+                    'partner_id': False,
+                    'email_cc': "khouloudachour.97@gmail.com",
+                    'user_id': a,
+                    'description': 'new apprenat assgned to youuuuu',
+                    'name': 'Ticket coach: new apprenat assigned to youuuuu ',
+                    'team_id': team.id,
+                }
+                print("vals", vals)
+                coach_ticket = self.env['helpdesk.ticket'].sudo().create(
+                    vals)
+                print("coach_ticket", coach_ticket)
+                # send mail
+
+                # coach.coach_name.lang = 'fr_FR'
+                # if self.env.su:
+                #     # sending mail in sudo was meant for it being sent from superuser
+                #     selff = self.with_user(SUPERUSER_ID)
+                #     template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                #         'mcm_openedx.mail_coach'))
+                #     template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                #     if not template_id:
+                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                #             'mcm_openedx.mail_coach',
+                #             raise_if_not_found=False)
+                #     if not template_id:
+                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                #             'mcm_openedx.email_coach',
+                #             raise_if_not_found=False)
+                #     if template_id:
+                #         coach.coach_name.self.with_context(force_send=True).message_post_with_template(template_id,
+                #                                                                                        composition_mode='comment', )
+
                 print("tesssssssssssssssstttttttttt", coach.coach_name.name)
                 listexiste = []
                 listexiste.append(coach.apprenant_name)
 
-        if apprenat.id not in listexiste:
-            print("app", apprenat.id)
-            print(coach.coach_name)
-            apprenat.coach_peda = coach.coach_name
-         # appeler la fonction pour affecter les apprenats aux coach
+                if apprenat.id not in listexiste:
+                    print("app", apprenat.id)
+                    print(coach.coach_name)
+                    apprenat.coach_peda = coach.coach_name
+
+                # appeler la fonction pour affecter les apprenats aux coach
         self.test_coach()
