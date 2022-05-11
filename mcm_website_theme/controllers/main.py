@@ -1975,7 +1975,7 @@ class MCM_SIGNUP(http.Controller):
         object = dataa.get('data', []).get('object')
         if event == 'payment_intent.succeeded':
             _logger.info('teeeeeeest %s' % str(object))
-            """Cas de paiement une seule fois : Mettre à jour l'état de transaction de paiement liée"""
+            """Cas de paiement une seule fois : créer une facture lié à ce paiement """
             acquirer=object['id']
             receipt_email=object['receipt_email']
             amount = int(object.get('amount') / 100)
@@ -1995,6 +1995,11 @@ class MCM_SIGNUP(http.Controller):
                 _logger.info('state before  %s' % str(tans.state))
                 trans.state=done
                 _logger.info('state %s' % str(tans.state))
+            if not invoice and not trans :
+                """create invoive"""
+                print("create invoice")
+
+
         if event == 'invoice.paid':
             _logger.info('teeeeeeest invoice %s' % str(object))
             subsciption = object.get('subscription')
