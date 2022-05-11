@@ -17,6 +17,7 @@ from odoo.exceptions import ValidationError
 from odoo import fields, http, SUPERUSER_ID, tools, _
 from odoo.osv import expression
 from datetime import datetime, date
+from dateutil.relativedelta import relativedelta
 import werkzeug
 import locale
 import json
@@ -1976,7 +1977,19 @@ class MCM_SIGNUP(http.Controller):
             _logger.info('teeeeeeest %s' % str(object))
             """Cas de paiement une seule fois : Mettre à jour l'état de transaction de paiement liée"""
             acquirer=object['id']
+            receipt_email=object['receipt_email']
+            amount = int(object.get('amount') / 100)
             _logger.info("acquirer %s" %str(acquirer))
+            _logger.info("amount %s" % str(amount))
+            one_months_before = date.today() - relativedelta(months=1)
+            invoice = request.env['account.move'].sudo().search(
+                [("stripe_sub_reference", "=", False),
+                 ("partner_id.email","=",receipt_email),
+                 ("module_id.product_id.list_price","=",amount),
+                 ("methodes_payment","=","cartebleu"),
+                 ("create_date",">=",one_months_before)])
+            if invoice:
+                _logger.info('paiement invoice %s' % str(invoice.name))
             trans = request.env['payment.transaction'].sudo().search([('acquirer_reference', "=", acquirer)])
             if trans:
                 _logger.info('state before  %s' % str(tans.state))
@@ -1984,7 +1997,6 @@ class MCM_SIGNUP(http.Controller):
                 _logger.info('state %s' % str(tans.state))
         if event == 'invoice.paid':
             _logger.info('teeeeeeest invoice %s' % str(object))
-            
             subsciption = object.get('subscription')
             customer = object.get('customer')
             amount = int(object.get('amount_paid') / 100)
@@ -1995,11 +2007,12 @@ class MCM_SIGNUP(http.Controller):
             _logger.info('invoice ************* %s' %
                          str(invoice.stripe_sub_reference))
             payment_method = request.env['account.payment.method'].sudo().search(
-                [('code', 'ilike', 'electronic')])
-            journal_id=request.env['account.journal'].search([
-                ('type', '=', 'bank'),
-                ('company_id', '=', invoice.company_id.id),
-            ], limit=1)
+                [('code', 'ilike', 'electronic')],limit=1)
+            journal_id = invoice.journal_id.id
+            acquirer = request.env['payment.acquirer'].sudo().search(
+                [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
+            if acquirer:
+                journal_id = acquirer.journal_id.id
             if invoice:
                 payment = request.env['account.payment'].sudo().create({'payment_type': 'inbound',
                                                                         'payment_method_id': payment_method.id,
