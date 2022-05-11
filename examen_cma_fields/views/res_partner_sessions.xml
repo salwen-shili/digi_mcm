@@ -32,6 +32,7 @@
                                 <field name="totalTimeSpentInMinutes" string="Temps passé par minute"/>
                                 <field name="date_creation" string="Date d'inscription"/>
                                 <field name="reactions" string="Réactions"/>
+                                <field name="folder_number_cpf" string="N° de Dossier CPF"/>
                             </group>
                         </group>
                     </sheet>
@@ -64,6 +65,7 @@
                     <field name="totalTimeSpentInMinutes" string="Temps passé par minute" optional="show"/>
                     <field name="date_creation" string="Date d'inscription" optional="show"/>
                     <field name="reactions" string="Réactions" optional="hide"/>
+                    <field name="folder_number_cpf" string="N° de Dossier CPF" optional="hide"/>
                 </tree>
             </field>
         </record>
