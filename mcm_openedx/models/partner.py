@@ -62,6 +62,7 @@ class partner(models.Model):
         response = requests.request("POST", url, headers=header, data=payload)
         print(response.text)
         print(payload, 'user', response.status_code)
+        _logger.info('response.status_code %s' % str(response.status_code))
 
     # ajouter les cours de formation taxi a l'apprenant
 
@@ -87,6 +88,7 @@ class partner(models.Model):
         }
         response = requests.request("POST", url, headers=header, data=payload)
         print(response.text)
+        _logger.info('response.status_code %s' % str(response.status_code))
 
     # desinscrire les cours de formation taxi a l'apprenant
 
@@ -115,6 +117,7 @@ class partner(models.Model):
         }
         response = requests.request("POST", url, headers=header, data=payload)
         print(response.text)
+        _logger.info('response.status_code %s' % str(response.status_code))
 
     # ajouter les cours de formation taxi a l'apprenant
     # ajouter cour connaisance locale 2022 pour les autres departements
@@ -143,6 +146,7 @@ class partner(models.Model):
         }
         response = requests.request("POST", url, headers=header, data=payload)
         print(response.text)
+        _logger.info('response.status_code %s' % str(response.status_code))
 
     # ajouter les cours de la conaissance local pour le choix de departement
     def ajoutconnaisancelocalpasdecalais(self, partner):
@@ -162,6 +166,7 @@ class partner(models.Model):
         }
         response = requests.request("POST", url, headers=header, data=payload)
         print(response.text)
+        _logger.info('response.status_code %s' % str(response.status_code))
 
     # ajouter les cours de la conaissance local pour le choix de departement
     def ajoutconnaisancelocalNord(self, partner):
@@ -180,6 +185,7 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         resp = requests.request("POST", url, headers=header, data=payload)
+        _logger.info('response.status_code %s' % str(resp.status_code))
 
     # ajouter les apprenants    automatiquememnt a partire de  la fiche Client
     def ajoutMoocit_automatique(self):
@@ -199,6 +205,7 @@ class partner(models.Model):
                                                                ('session_id', '=', partner.mcm_session_id.id),
                                                                ('module_id', '=', partner.module_id.id),
                                                                ('state', '=', 'sale'),
+                                                               ('session_id.date_exam', '>', date.today()),
                                                                ], limit=1, order="id desc")
             _logger.info(sale_order.name)
             # Récupérer les documents et vérifier si ils sont validés ou non
@@ -311,25 +318,29 @@ class partner(models.Model):
             # defenir le mode de financement
             if self.mode_de_financement == "particulier":
                 _logger.info('mode_de_financement %s' % str(self.mode_de_financement))
-
                 # verifier si le sale et les documents et satut sont valides
                 if ((sale_order) and (document_valide) and (self.statut == "won")):
                     _logger.info('document et sale valide Condition 1 validee %s')
                     # Vérifier si contrat signé ou non
-
                     if (sale_order.state == 'sale') and (sale_order.signature):
                         _logger.info('sale order et signature valide %s')
 
                         # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
                         if (self.renounce_request):
                             self.ajouter_IOne_MCM(self)
+                            self.write({'state': 'en_formation'})
+
                             _logger.info('doooooooooooooooooooone %s')
 
                         # si non il doit attendre 14jours pour etre ajouté a la platform*
                         today = date.today()
                         if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
                             self.ajouter_IOne_MCM(self)
+                            self.write({'state': 'en_formation'})
+
                             _logger.info('doooooooooooooooooooone %s')
+                            self.write({'state': 'en_formation'})
+
 
 
 
@@ -353,9 +364,10 @@ class partner(models.Model):
                     _logger.info('document valide , date exlan > datetoday %s')
 
                     if (self.renounce_request):
-
                         self.ajouter_IOne_MCM(self)
                         _logger.info(' Doneeeee %s')
+                        self.write({'state': 'en_formation'})
+
                 if not (self.renounce_request) and self.numero_cpf:
                     """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
                     headers = {
@@ -386,6 +398,8 @@ class partner(models.Model):
                         if dateDebutSession <= datetime.today():
                             _logger.info(' Donnnnnnne %s')
                             self.ajouter_IOne_MCM(self)
+                            self.write({'state': 'en_formation'})
+
 
 
                     else:
@@ -400,9 +414,6 @@ class partner(models.Model):
                                 'className': 'bg-danger'
                             }
                         }
-
-
-
 
         else:
             # si les document ne sont  pas valide une notif appartient sur odoo
@@ -454,12 +465,11 @@ class partner(models.Model):
                 'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
             }
             response = requests.request("POST", url, headers=headers, data=payload)
+            _logger.info('response.status_code %s' % str(response.status_code))
 
             _logger.info('user %s' % str(payload))
             _logger.info('existantttttt dejaa %s')
             if (response.status_code == 200):
-                for rec in self:
-                    self.write({'state': 'en_formation'})
                 self.inscrit_mcm = date.today()
                 partner.lang = 'fr_FR'
                 if self.env.su:
@@ -479,6 +489,8 @@ class partner(models.Model):
                     if template_id:
                         partner.with_context(force_send=True).message_post_with_template(template_id,
                                                                                          composition_mode='comment', )
+
+                        print("mail envoyeé")
 
                 bolt = self.bolt
                 evalbox = self.numero_evalbox
@@ -555,53 +567,45 @@ class partner(models.Model):
     def supprimer_IOne_MCM(self):
 
         self.supprimerdemoocit = self.mcm_session_id.date_exam + timedelta(days=5)
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            # ajouter une condition sur suppresion manuelle pour ne pas supprimer lapprenat que si
-            # la date est egale a la date today
-            # comparer la date avec la date Today si elle est différente afficher une notification
-           # if (date.today() == self.supprimerdemoocit):
-                departement = self.state_id.code
-                _logger.info(departement)
-                self.write({'state': 'supprimé'})
-                # supprimer l'apprenats en verifiant le module choisit
-                if (self.module_id.product_id.default_code == "taxi"):
-                    self.desinscriteTaxi(self)
-                    self.write({'state': 'supprimé'})
-                    _logger.info('state: supprimé')
-
-                    if (partner.state != False):
-                        partner.sudo().write({'state': 'supprimé'})
+        # base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        #     # ajouter une condition sur suppresion manuelle pour ne pas supprimer lapprenat que si
+        # la date est egale a la date today
+        # comparer la date avec la date Today si elle est différente afficher une notification
+        # if (date.today() == self.supprimerdemoocit):
+        departement = self.state_id.code
+        _logger.info(departement)
+        self.write({'state': 'supprimé'})
+        # supprimer l'apprenats en verifiant le module choisit
+        if (self.module_id.product_id.default_code == "taxi"):
+            self.desinscriteTaxi(self)
+            self.write({'state': 'supprimé'})
+            _logger.info('state: supprimé')
 
 
-                elif (self.module_id.product_id.default_code == "vtc"):
-                    self.desinscriteVTC(self)
-                    self.write({'state': 'supprimé'})
-                    _logger.info('state: supprimé')
-
-                    if (partner.state != False):
-                        partner.sudo().write({'state': 'supprimé'})
+        elif (self.module_id.product_id.default_code == "vtc"):
+            self.desinscriteVTC(self)
+            self.write({'state': 'supprimé'})
+            _logger.info('state: supprimé')
 
 
-                elif (self.module_id.product_id.default_code == "vtc_bolt"):
-                    self.desinscriteVTC(self)
-                    _logger.info('state: supprimé')
-                    if (partner.state != False):
-                        partner.sudo().write({'state': 'supprimé'})
+        elif (self.module_id.product_id.default_code == "vtc_bolt"):
+            self.desinscriteVTC(self)
+            _logger.info('state: supprimé')
 
         else:
-                return {
-                    'type': 'ir.actions.client',
-                    'tag': 'display_notification',
-                    'params': {
-                        'title': _('La date de suppression n_est pas valide il va etre supprimer le:🤓 🤓  '),
-                        'message': _(self.supprimerdemoocit),
-                        'sticky': True,
-                        'className': 'bg-danger'
-                    }
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('La date de suppression n_est pas valide il va etre supprimer le:🤓 🤓  '),
+                    'message': _(self.supprimerdemoocit),
+                    'sticky': True,
+                    'className': 'bg-danger'
                 }
+            }
 
-        # affecter la date de suppression apres l'ajout de 6 mois
+    # affecter la date de suppression apres l'ajout de 6 mois
 
     def supprimer_apres_dateexman(self, partner):
         partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
@@ -634,6 +638,7 @@ class partner(models.Model):
                                                                   ('email', "=", 'dimopes981@bunlets.comgit staut'),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
+                self.write({'state': 'supprimé'})
                 if (partner.supprimerdemoocit == date.today()):
                     if (partner.module_id.product_id.default_code == "taxi"):
                         self.desinscriteTaxi(partner)
