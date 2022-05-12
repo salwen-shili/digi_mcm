@@ -60,6 +60,8 @@
                                 <field name="presence_mcm"/>
                                 <field name="state_theorique"/>
                                 <field name="state_pratique"/>
+                                <field name="date_resultat_officiel"/>
+
                             </group>
                             <group name="statuts" string="Statut" attrs="{'invisible': [('company_id', '!=', 2)]}">
                                 <field name="presence"/>
