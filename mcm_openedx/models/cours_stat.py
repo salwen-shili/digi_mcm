@@ -68,7 +68,7 @@ class Cours_stat(models.Model):
         print("tacheeee supppppppppppp")
         # chercher tout personne ayant un mail existant
         for exist in self.env['mcm_openedx.course_stat'].sudo().search(
-                [('email', "!=", self.email)]):
+                [('email', "!=", False)]):
             # verifier si la personne ayant les meme information
             if exist.id not in listcourduplicated:
                 # chercher mail ,idcour,jour,id

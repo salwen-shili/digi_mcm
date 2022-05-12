@@ -88,15 +88,11 @@
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="True"/>
         </record>
-
-    </data>
-
-    <data noupdate="0">
         <record id="mail_coach" model="mail.template">
             <field name="name">Contact : ajouter apprenant à la platforme</field>
             <field name="model_id" ref="model_mcm_openedx_coach"/>
-            <field name="subject">Bienvenue chez MCM Academy</field>
-            <field name="email_from">${object.company_id.email}</field>
+            <field name="subject">New Partner add to coach list</field>
+            <field name="email_from">${object.coach_name.company_id.email}</field>
             <field name="partner_to">${object.id}</field>
             <field name="body_html" type="html">
                 <div>
@@ -119,7 +115,7 @@
                              width="60%"
                              src="https://i.gifer.com/1zyM.gif"/>
                     </div>
-                    <h2>Le nouvel(le) apprenants ${object.apprenat.name} est ajouter a votre Liste des apprenants ,
+                    <h2>Le nouvel(le) apprenants ${object.apprenat} est ajouter a votre Liste des apprenants ,
                         nous comptons sur vos pour garantir le sucée de notre apprenant .
                     </h2>
                 </div>
@@ -128,9 +124,8 @@
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="True"/>
         </record>
+
     </data>
 
 
-
-
-        </odoo>
+</odoo>

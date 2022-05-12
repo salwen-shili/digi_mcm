@@ -76,6 +76,25 @@ class Coach(models.Model):
 
                 print("nombre d'apprenant par coach ", coach_name, nombre_apprenant)
 
+                # exist.coach_name.lang = 'fr_FR'
+                # if self.env.su:
+                #     # sending mail in sudo was meant for it being sent from superuser
+                #     selff = self.with_user(SUPERUSER_ID)
+                #     template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                #         'mcm_openedx.mail_coach'))
+                #     template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                #     if not template_id:
+                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                #             'mcm_openedx.mail_coach',
+                #             raise_if_not_found=False)
+                #     if not template_id:
+                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                #             'mcm_openedx.email_coach',
+                #             raise_if_not_found=False)
+                #     if template_id:
+                #         exist.coach_name.self.with_context(force_send=True).message_post_with_template(template_id,
+                #                                                                                        composition_mode='comment', )
+
     # chercher les nombre des apprennats qui n'on pas des coach et
     # chercher le nombre d'apprennats par  coach pour voir la differance et affecter les apprenat aux coach qui a le nombre inferieur aux autres
     def egalité(self):
@@ -98,56 +117,34 @@ class Coach(models.Model):
             sanscoach = sanscoach + 1
             # listaffecter.append()
         print("nb sans coach", sanscoach)
-
         limit = divmod(sanscoach, nombre_coach)
         print("div", limit[0])
         print("Rest", limit[1])
-
         for coach in self.env['mcm_openedx.coach'].sudo().search(
                 [('coach_name', '!=', ''), ('nombre_apprenant', '=', listcoach[0])], limit=1):
             i = 0
             for apprenat in self.env['res.partner'].sudo().search(
                     [('statut', "=", "won"), ('coach_peda', '=', False), ('company_id', '=', 1)],
                     limit=limit[0]):
-                a = coach.coach_peda.id
-                team = self.env['helpdesk.team'].sudo().search([('name', "=", 'Coach_team')], limit=1)
-                print("team", team)
-                email = coach.coach_name.email
-                vals = {
-                    'partner_email': email,
-                    'partner_id': False,
-                    'email_cc': "khouloudachour.97@gmail.com",
-                    'user_id': a,
-                    'description': 'new apprenat assgned to youuuuu',
-                    'name': 'Ticket coach: new apprenat assigned to youuuuu ',
-                    'team_id': team.id,
-                }
-                print("vals", vals)
-                coach_ticket = self.env['helpdesk.ticket'].sudo().create(
-                    vals)
-                print("coach_ticket", coach_ticket)
-                # send mail
-
-                # coach.coach_name.lang = 'fr_FR'
-                # if self.env.su:
-                #     # sending mail in sudo was meant for it being sent from superuser
-                #     selff = self.with_user(SUPERUSER_ID)
-                #     template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                #         'mcm_openedx.mail_coach'))
-                #     template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-                #     if not template_id:
-                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                #             'mcm_openedx.mail_coach',
-                #             raise_if_not_found=False)
-                #     if not template_id:
-                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                #             'mcm_openedx.email_coach',
-                #             raise_if_not_found=False)
-                #     if template_id:
-                #         coach.coach_name.self.with_context(force_send=True).message_post_with_template(template_id,
-                #                                                                                        composition_mode='comment', )
-
-                print("tesssssssssssssssstttttttttt", coach.coach_name.name)
+                # a = apprenat.coach_peda.id
+                # team = self.env['helpdesk.team'].sudo().search([('name', "=", 'Coach_team')], limit=1)
+                # print("team", team)
+                # vals = {
+                #     'partner_email': coach.coach_name.email,
+                #     'partner_id': False,
+                #     'email_cc': "khouloudachour.97@gmail.com",
+                #     'user_id': a,
+                #     'description': 'new apprenat assgned to youuuuu',
+                #     'name': 'Ticket coach: new apprenat assigned to youuuuu ',
+                #     'team_id': team.id,
+                # }
+                # print("vals", vals)
+                # coach_ticket = self.env['helpdesk.ticket'].sudo().create(
+                #     vals)
+                # print("coach_ticket", coach_ticket)
+                # # send mail
+                #
+                # print("tesssssssssssssssstttttttttt", coach.coach_name.name)
                 listexiste = []
                 listexiste.append(coach.apprenant_name)
 
