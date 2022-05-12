@@ -463,12 +463,12 @@ class NOSCENTRES(http.Controller):
         else:
             return request.redirect("/nos-centres-examen")
 
-    @http.route('/partenaires', type='http', auth='public', website=True)
-    def partenaires(self, **kw, ):
-        if request.website.id == 1:
-            return request.render("website.partenaires-1", {})
-        else:
-            return request.redirect("/pricing")
+    # @http.route('/partenaires', type='http', auth='public', website=True)
+    # def partenaires(self, **kw, ):
+    #     if request.website.id == 1:
+    #         return request.render("website.partenaires-1", {})
+    #     else:
+    #         return request.redirect("/pricing")
 
 
 class Conditions(http.Controller):
