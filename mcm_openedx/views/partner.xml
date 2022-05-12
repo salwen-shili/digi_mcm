@@ -84,6 +84,82 @@
                         </group>
 
 
+                        <group col="8" colspan="4" string="Géneral">
+                            <div>
+                                <span class="o_stat_text">
+                                    <i class="fa fa-download"/>
+                                    Dernier importation
+                                </span>
+                                <br/>
+                                <span>
+                                    <field name="date_imortation_stat"/>
+                                </span>
+                            </div>
+                            <div>
+                                <span class="o_stat_text">
+                                    <i class="fa fa-check"/>
+                                    Dernière Connexion
+                                </span>
+                                <br/>
+                                <span>
+                                    <field name="mooc_dernier_coonx"/>
+                                </span>
+                            </div>
+                            <div>
+
+                                <span>
+                                    <span>
+                                        <i class="fa fa-clock-o"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Temps passé par Heure
+                                    </span>
+                                    <br/>
+                                    <span class="o_stat_text">
+                                        <field name="mooc_temps_passe_heure"></field>
+                                    </span>
+                                    <br/>
+                                    <span>
+                                        <i class="fa fa-clock-o"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Temps passé par Minute
+                                    </span>
+                                    <br/>
+                                    <span class="o_stat_text">
+                                        <field name="mooc_temps_passe_min"></field>
+                                    </span>
+                                    <br/>
+                                    <span>
+                                        <i class="fa fa-clock-o"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Temps passé par Seconde
+                                    </span>
+                                    <br/>
+                                    <span class="o_stat_text">
+                                        <field name="mooc_temps_passe_seconde"></field>
+                                    </span>
+
+                                </span>
+
+                            </div>
+                            <div>
+                                <span>
+                                    <i class="fa fa-sign-in" style="align:center"/>
+                                </span>
+                                <span class="o_stat_text">
+                                    Date d'inscription :
+
+                                </span>
+                                <br/>
+                                <span>
+                                    <field name="inscrit_mcm"></field>
+                                </span>
+                            </div>
+                        </group>
+
+
                     </group>
                 </page>
             </xpath>
