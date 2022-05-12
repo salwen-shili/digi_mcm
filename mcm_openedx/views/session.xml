@@ -26,11 +26,11 @@
             <field name="diplome_vise" position="replace">
                 <field name="date_debut"/>
                 <field name="date_fin"/>
+
             </field>
         </field>
     </record>
-
-    <record model="ir.actions.act_window" id="session_list_action">
+     <record model="ir.actions.act_window" id="session_list_action">
         <field name="name">Les Sessions</field>
         <field name="res_model">mcmacademy.session</field>
         <field name="view_mode">tree,form</field>

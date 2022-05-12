@@ -25,11 +25,12 @@ class Cours_stat(models.Model):
     @api.depends('temppasse')
     def _get_attendees_count(self):
         for r in self:
-            r.attendees_count = r.temppassetotale
+            r.attendees_count = r.mooc_temps_passe_heure
 
     def calcul_temps_total(self):
         temppassetotale = 0
         listjour = []
+
         for existt in self.env['mcm_openedx.course_stat'].sudo().search(
                 [('email', "=", self.email)]):
             temppassetotale = existt.seconde + temppassetotale

@@ -13,6 +13,8 @@ class Coach(models.Model):
     seats = fields.Integer(string="nombre de places")
     taken_seats = fields.Float(string="nombre des places ocuppé ", compute='_taken_seats')
     commentaire = fields.Char(string="Commentaires")
+    color = fields.Integer()
+
 
     @api.depends('seats', 'apprenant_name')
     def _taken_seats(self):

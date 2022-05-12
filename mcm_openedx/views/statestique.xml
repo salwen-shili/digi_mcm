@@ -130,7 +130,7 @@
             </kanban>
         </field>
     </record>
-    <record model="ir.ui.view" id="mcm_openedx_session_graph_view">
+    <record model="ir.ui.view" id="mcm_openedx_stat_graph_view">
         <field name="name">mcm_openedx.course_stat.graph</field>
         <field name="model">mcm_openedx.course_stat</field>
         <field name="arch" type="xml">
