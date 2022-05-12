@@ -891,7 +891,7 @@ class Routes_Site(http.Controller):
         q114_resultatExamen = rawRequest['q114_resultatExamen']
         _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
         user = request.env['res.users'].sudo().search(
-            [('email', "=", str(q169_email))], limit=1)
+            [('email', "=", str(q169_email).lower().replace(' ', ''))], limit=1)
         if user:
             multiplication_note_exam_blan = int(q114_resultatExamen) * 5
             user.note_exam = int(multiplication_note_exam_blan)
