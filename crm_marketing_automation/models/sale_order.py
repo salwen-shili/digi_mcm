@@ -26,7 +26,7 @@ class Sale(models.Model):
         partner_id = vals['partner_id']
         partner = self.env['res.partner'].sudo().search([('id', '=', partner_id)], limit=1)
         print('partner', partner)
-        if partner:
+        if partner and not partner.bolt:
             self.change_stage_lead("Prospection", partner)
             # for so in self.order_line:
             print("order line",self.pricelist_id.name)
