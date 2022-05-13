@@ -87,6 +87,8 @@ class NoteExamen(models.Model):
         ('Absent', 'Absent'),
         ('absence_justifiee', 'Absence justifiée')],
         string="Présence")
+    
+    date_resultat_officiel=fields.Date("Date Résultat officiel")
 
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):

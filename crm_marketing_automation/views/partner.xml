@@ -57,11 +57,11 @@
                                     <i class="fa fa-sign-in" style="align:center"/>
                                 </span>
                                 <span class="o_stat_text">
-                                    Date d'inscription
+                                    Date formation MCM
                                 </span>
                                 <br/>
                                 <span>
-                                    <field name="inscrit_mcm"></field>
+                                    <field name="inscrit_mcm" string="Date formation MCM"></field>
                                 </span>
                             </div>
                         </group>

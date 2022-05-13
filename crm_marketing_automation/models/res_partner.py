@@ -12,9 +12,10 @@ _logger = logging.getLogger(__name__)
 class Partner(models.Model):
     _inherit = 'res.partner'
     bolt=fields.Boolean('Client Bolt')
-    inscrit_mcm=fields.Date("Date d'inscription")
+    inscrit_mcm=fields.Date("Date formation MCM")
     eval_box=fields.Boolean('Eval Box')
     numero_evalbox=fields.Char('Numéro de dossier Evalbox')
+
    
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
