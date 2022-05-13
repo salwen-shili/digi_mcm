@@ -51,7 +51,7 @@
                   branding: false,
                 });
               }
-           if (url.includes('/examen-capacite-transport-marchandises') || url.includes('/mon-compte-de-formation-cpf') ) {
+           if (url.includes('/examen-capacite-transport-marchandises') || url.includes('/mon-compte-de-formation-cpf') || url === "https://www.digimoov.fr/" ) {
                 window.intercomSettings = {
   app_id: "waw4riyk",
 };
@@ -150,6 +150,8 @@
         .fa-google-plus:hover {
           background-color: hsl(7, 71%, 55%);
         }
+
+
 
         .fa-linkedin {
           color: hsl(199, 85%, 36%);
