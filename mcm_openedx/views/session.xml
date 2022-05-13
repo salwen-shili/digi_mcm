@@ -16,7 +16,21 @@
         </field>
     </record>
 
-
+    <!-- Vue Form session-->
+    <record model="ir.ui.view" id="learning_session_form_view">
+        <field name="name">Session</field>
+        <field name="model">mcmacademy.session</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"/>
+        <field name="arch" type="xml">
+            <header>
+                <button name="tes" string="Tessssssssssst"
+                        type="object">
+                </button>
+            </header>
+            <data>
+            </data>
+        </field>
+    </record>
     <record model="ir.ui.view" id="session_tree_view">
         <field name="name">Sessions</field>
         <field name="model">mcmacademy.session</field>
@@ -30,7 +44,7 @@
             </field>
         </field>
     </record>
-     <record model="ir.actions.act_window" id="session_list_action">
+    <record model="ir.actions.act_window" id="session_list_action">
         <field name="name">Les Sessions</field>
         <field name="res_model">mcmacademy.session</field>
         <field name="view_mode">tree,form</field>

@@ -4,6 +4,9 @@ from odoo import models, fields, api, SUPERUSER_ID
 
 class Coach(models.Model):
     _name = 'mcm_openedx.coach'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
+
 
     _description = "coaches module en va affecter pour chaque coach sa liste des apprennats"
     name = fields.Char(string="Coaches")
@@ -78,28 +81,11 @@ class Coach(models.Model):
 
                 print("nombre d'apprenant par coach ", coach_name, nombre_apprenant)
 
-                # exist.coach_name.lang = 'fr_FR'
-                # if self.env.su:
-                #     # sending mail in sudo was meant for it being sent from superuser
-                #     selff = self.with_user(SUPERUSER_ID)
-                #     template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                #         'mcm_openedx.mail_coach'))
-                #     template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-                #     if not template_id:
-                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                #             'mcm_openedx.mail_coach',
-                #             raise_if_not_found=False)
-                #     if not template_id:
-                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                #             'mcm_openedx.email_coach',
-                #             raise_if_not_found=False)
-                #     if template_id:
-                #         exist.coach_name.self.with_context(force_send=True).message_post_with_template(template_id,
-                #                                                                                        composition_mode='comment', )
 
     # chercher les nombre des apprennats qui n'on pas des coach et
     # chercher le nombre d'apprennats par  coach pour voir la differance et affecter les apprenat aux coach qui a le nombre inferieur aux autres
     def egalité(self):
+        #ctrlf8
         self.test_coach()
 
         listcoach = []
@@ -149,6 +135,24 @@ class Coach(models.Model):
                 # print("tesssssssssssssssstttttttttt", coach.coach_name.name)
                 listexiste = []
                 listexiste.append(coach.apprenant_name)
+                coach.coach_name.lang = 'fr_FR'
+                if self.env.su:
+                    # sending mail in sudo was meant for it being sent from superuser
+                    selff = self.with_user(SUPERUSER_ID)
+                    template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                        'mcm_openedx.mail_coach'))
+                    template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                    if not template_id:
+                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                            'mcm_openedx.mail_coach',
+                            raise_if_not_found=False)
+                    if not template_id:
+                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                            'mcm_openedx.email_coach',
+                            raise_if_not_found=False)
+                    if template_id:
+                        coach.with_context(force_send=True).message_post_with_template(template_id,composition_mode='comment', )
+
 
                 if apprenat.id not in listexiste:
                     print("app", apprenat.id)
