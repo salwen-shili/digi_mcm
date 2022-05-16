@@ -9,12 +9,12 @@ _logger = logging.getLogger(__name__)
 class PaymentTransaction(models.Model):
     _inherit = "payment.transaction"
     """Créer une facture lorsque l'etat de transaction sera done"""
-    # def write(self, vals):
-    #     result = super(PaymentTransaction, self).write(vals)
-    #     if 'state' in vals:
-    #         if vals['state'] == "done":
-    #             self._reconcile_after_transaction_done()
-    #     return result
+    def write(self, vals):
+        result = super(PaymentTransaction, self).write(vals)
+        if 'state' in vals:
+            if vals['state'] == "done":
+                self._reconcile_after_transaction_done()
+        return result
     def _set_transaction_done(self):
         transaction = super(PaymentTransaction, self)._set_transaction_done()
         if self.reference:
