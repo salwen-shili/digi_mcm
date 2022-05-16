@@ -295,9 +295,10 @@
 }
 
 .amazon-para {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
   margin-block-end: 16px;
+  color: #000;
 }
 .amazon-banner {
   margin: 55px 0;
