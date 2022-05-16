@@ -340,6 +340,10 @@ class AccountMove(models.Model):
                                         bill_num = num.replace('FA', '')
                                         bill_num = bill_num.replace('-', '')
                                         journal_id = move.journal_id.id
+                                        acquirer = self.env['payment.acquirer'].sudo().search(
+                                            [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
+                                        if acquirer:
+                                            journal_id = acquirer.journal_id.id
                                         """ si acompte versé sur cpf effectuer  un payement de 25% de montant total de la formation pour digimoov"""
                                         params_ = (
                                             ('order', 'desc'),
@@ -610,6 +614,10 @@ class AccountMove(models.Model):
                                                                       ("methodes_payment","=","cpf")],limit=1)
                         if move and move.invoice_payment_state != "paid":
                             journal_id = move.journal_id.id
+                            acquirer = self.env['payment.acquirer'].sudo().search(
+                                [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
+                            if acquirer:
+                                journal_id = acquirer.journal_id.id
                             """Effectuer  un payement de montant restant  de la formation pour digimoov"""
                             payment_method = self.env['account.payment.method'].sudo().search(
                                 [('code', 'ilike', 'electronic')])
@@ -684,6 +692,10 @@ class AccountMove(models.Model):
                         for invoice in invoices :
                             _logger.info("invoice %s" %str(invoice.name))
                             journal_id = invoice.journal_id.id
+                            acquirer =self.env['payment.acquirer'].sudo().search(
+                                [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
+                            if acquirer:
+                                journal_id = acquirer.journal_id.id
                             """Effectuer  un payement de montant restant  de la formation pour digimoov"""
                             payment_method = self.env['account.payment.method'].sudo().search(
                                 [('code', 'ilike', 'electronic')])

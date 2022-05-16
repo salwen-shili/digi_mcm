@@ -177,6 +177,10 @@ class WebhookInvoiceController(http.Controller):
                                     bill_num = num.replace('FA', '')
                                     bill_num = bill_num.replace('-', '')
                                     journal_id = move.journal_id.id
+                                    acquirer = request.env['payment.acquirer'].sudo().search(
+                                        [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
+                                    if acquirer:
+                                        journal_id = acquirer.journal_id.id
                                     """Effectuer  un payement de 25% de montant total de la formation pour digimoov"""
                                     payment_method = request.env['account.payment.method'].sudo().search(
                                         [('code', 'ilike', 'electronic')])
@@ -400,6 +404,10 @@ class WebhookInvoiceController(http.Controller):
                     move =request.env['account.move'].sudo().search([('numero_cpf',"=",external)],limit=1)
                     if move and move.invoice_payment_state != "paid":
                         journal_id = move.journal_id.id
+                        acquirer = request.env['payment.acquirer'].sudo().search(
+                            [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
+                        if acquirer:
+                            journal_id = acquirer.journal_id.id
                         """Effectuer  un payement de montant restant  de la formation pour digimoov"""
                         payment_method = request.env['account.payment.method'].sudo().search(
                             [('code', 'ilike', 'electronic')])
