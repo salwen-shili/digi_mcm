@@ -1996,9 +1996,8 @@ class MCM_SIGNUP(http.Controller):
                 trans.state=done
                 _logger.info('state %s' % str(tans.state))
             if not invoice and not trans :
-                """create invoive"""
-                print("create invoice")
-
+                """if not invoive"""
+                _logger.info("if not invoice")
 
         if event == 'invoice.paid':
             _logger.info('teeeeeeest invoice %s' % str(object))
