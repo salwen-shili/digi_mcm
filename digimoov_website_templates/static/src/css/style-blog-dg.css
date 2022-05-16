@@ -276,3 +276,29 @@
 }
 
 /* text Animation */
+
+/* amazon banner */
+.amazon-title {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: 0.6px;
+  margin-block-end: 22px;
+}
+.amazon-title-1 {
+  color: #0c2039;
+}
+.partner {
+  color: #000;
+  font-weight: 600;
+}
+
+.amazon-para {
+  font-size: 18px;
+  font-weight: 400;
+  margin-block-end: 16px;
+}
+.amazon-banner {
+  margin: 55px 0;
+}

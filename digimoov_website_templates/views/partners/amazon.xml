@@ -19,22 +19,19 @@
                   <span style="-webkit-font-smoothing: antialiased">
                     <text style="color: rgb(156, 0, 255); font-size: 58px">
                       <span style="">
-                        <b>
-                          Digimoov
-                          <br />
-                        </b>
+                        <b> Digimoov </b>
                       </span>
                     </text>
                     <text style="font-size: 58px" class="text-beta">
                       <b style="">en partenariat avec&amp;nbsp;</b>
-                      <b style="">Amazon,</b>
+                      <b style="">
+                        Amazon,&amp;nbsp;
+                        <br />
+                      </b>
                     </text>
                     <span style="">
                       <b>
-                        <text class="text-beta" style="">
-                          <br />
-                          vous ouvrent les portes de la réussite !
-                        </text>
+                        <text class="text-beta" style="">vous ouvrent les portes de la réussite ! </text>
                       </b>
                     </span>
                   </span>
@@ -49,7 +46,9 @@
                   Obtenez votre attestation de capacité de transport léger de marchandises avec Digimoov, et
                   <span style="position: relative; z-index: 0;">inscrivez-vous au programme "Devenir Partenaire de livraison avec Amazon",</span>
                   un programme qui vise à recruter les nouveaux capacitaires souhaitant lancer ou développer leurs entreprises de transport dans leurs régions, et ce, en leur offrant la possibilité de devenir partenaires Amazon.
-                  <br />
+                </p>
+                <p class="paragraphe-landing">
+
                   <span style="font-weight: bolder;">
                     Vous aussi&amp;nbsp;inscrivez-vous à notre formation en ligne.
                     <br />
@@ -58,15 +57,17 @@
                   <br />
                 </p>
                 <p />
-                <div class="row">
-                  <div class="col-lg-6 col-md-6 col-sm-12 pb16 pt16 s_btn text-center" data-name="Button">
-                    <a target="_blank" href="#pricing" class="btn btn-outline-alpha" spellcheck="false" style="223.59px !important; word-break: break-word; " data-original-title="" title="" aria-describedby="tooltip171084" data-mci-spellchecked="true" lang="merciapp">Je m'inscris à la formation </a>
+                <div class="row justify-content-center">
+                  <div class="pb16 pt16 s_btn " style="margin-left: 9px;margin-right: 9px" data-name="Button">
+                    <a target="_blank" href="#pricing" class="btn btn-beta" spellcheck="false" style="word-break: break-word; width: 223.59px !important; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip171084" data-mci-spellchecked="true" lang="merciapp">Je m'inscris à la formation </a>
                   </div>
-                  <div class="col-lg-6 col-md-6 col-sm-12 pb16 pt16 s_btn text-center" data-name="Button">
-                    <a target="_blank" href="https://register.gotowebinar.com/rt/2091095616512307982" class="btn btn-outline-alpha" spellcheck="false" style="word-break: break-word; " data-original-title="" title="" aria-describedby="tooltip171084" data-mci-spellchecked="true" lang="merciapp">Session d'informations Amazon</a>
+                  <div class="pb16 pt16 s_btn " style="margin-left: 9px;margin-left: 9px" data-name="Button">
+                    <a target="_blank" href="https://digimoov.splashthat.com/" class="btn btn-beta" spellcheck="false" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip171084" data-mci-spellchecked="true" lang="merciapp">Session d'informations Amazon</a>
                   </div>
                 </div>
-
+                <mci-extension data-role="overlay" />
+                <mci-extension data-role="overlay" />
+                <mci-extension data-role="overlay" />
               </div>
             </div>
           </div>
@@ -107,9 +108,13 @@
                   multiples choix et à des examens blancs</b>
                   .
                 </p>
+                <p class="paragraphe-landing">
+                  <br />
+                </p>
                 <div class="s_btn text-center pt16 pb16" data-name="Button">
-                  <a target="_blank" href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" data-original-title="" title="" aria-describedby="tooltip758603" lang="merciapp">Télécharger le programme de formation</a>
+                  <a target="_blank" href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-beta" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" data-original-title="" title="" aria-describedby="tooltip758603" lang="merciapp">Télécharger le programme de formation</a>
                 </div>
+                <mci-extension data-role="overlay" />
               </div>
               <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
                 <img src="/digimoov_website_templates/static/img/partners/ILLU 4.png" class="img img-fluid mx-auto" alt="Formation en capacité de transport léger de marchandises -3.5T" data-original-title="" title="candidat en formation capacité de transport" aria-describedby="tooltip463406" />
@@ -127,17 +132,19 @@
               </div>
               <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
                 <h2 class="font-bold text-beta title" style="text-align: left">
-                  <text style="font-size: 48px">Comment devenir partenaire&amp;nbsp;</text>
+                  <text style="font-size: 48px">Comment devenir partenaire</text>
                   <text style="color: rgb(0, 168, 225); font-size: 48px">Amazon</text>
-                  <text style="font-size: 48px" class="text-beta">&amp;nbsp;?
+                  <text style="font-size: 48px" class="text-beta">?
               </text>
                 </h2>
                 <div>
                   <div style="text-align: left">
                     <span style="color: rgb(66, 66, 66); font-size: 1rem">
-                      Pour devenir partenaire de livraison avec amazon, vous devez
-                    disposer d’une&amp;nbsp;
-                      <b>attestation en capacité de transport léger de marchandises.</b>
+                      Pour devenir partenaire de livraison avec Amazon, vous devez disposer d’une&amp;nbsp;
+                      <b>
+                        <a href="https://www.digimoov.fr/blog/a-quoi-sert-l-attestation-de-capacite-en-transport-leger">attestation en capacité de transport léger de marchandises</a>
+                        .
+                      </b>
                     </span>
                   </div>
                   <span style="color: black; font-size: 1rem">
@@ -154,10 +161,11 @@
                     Une fois votre licence de transport obtenue, vous pourrez bénéficier d'un accompagnement personnalisé concernant toutes les étapes de création de votre entreprise, en déposant votre candidature au programme "Devenir partenaire de livraison" lancé par Amazon.
                     <br />
                     Pour en savoir plus,
-                    <a target="_blank" href="https://register.gotowebinar.com/#rt/2091095616512307982">inscrivez-vous</a>
+                    <a target="_blank" href="https://digimoov.splashthat.com/" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" lang="merciapp">inscrivez-vous</a>
                     à la session d'informations proposée par Amazon.
                   </span>
                 </div>
+                <mci-extension data-role="overlay" />
               </div>
             </div>
           </div>
@@ -174,11 +182,7 @@
                     <br />
                   </text>
                   <text style="color: rgb(0, 168, 225); font-size: 48px">
-                    <b>Devenir</b>
-                  </text>
-                  &amp;nbsp;
-                  <text style="color: rgb(0, 168, 225); font-size: 48px">
-                    <b>Partenaire de livraison Amazon
+                    <b>Devenir Partenaire de livraison Amazon
                 </b>
                   </text>
                 </h2>
@@ -196,8 +200,10 @@
                   </div>
                 </div>
                 <div class="s_btn text-left pt16 pb16" data-name="Button">
-                  <a target="_blank" href="https://www.digimoov.fr/blog/comment-devenir-partenaire-de-livraison-amazon" class="btn btn-outline-beta" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip376939">En savoir plus</a>
+                  <a target="_blank" href="https://www.digimoov.fr/blog/comment-devenir-partenaire-de-livraison-amazon" class="btn btn-outline-beta" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip376939">En savoir plus sur les avantages du programme</a>
                 </div>
+                <mci-extension data-role="overlay" />
+                <mci-extension data-role="overlay" />
                 <mci-extension data-role="overlay" />
                 <mci-extension data-role="overlay" />
                 <mci-extension data-role="overlay" />
@@ -287,9 +293,14 @@
                   <p class="paragraphe-landing">
                     <strong class="pack-name"> SOLO </strong>
                   </p>
-                  <p class="blink-soft">
+                  <style>
+                                            .solo-non-cpf{
+                                                animation: unset !important;
+                                            }
+                                        </style>
+                  <p class="blink-soft solo-non-cpf">
                     <t t-if="not promo">
-                      <b>Paiement en 2 fois</b>
+                      <b>NON ELIGIBLE AU CPF</b>
                     </t>
                     <b> &amp;nbsp; &amp;nbsp;</b>
                   </p>
