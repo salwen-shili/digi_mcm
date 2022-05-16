@@ -188,11 +188,17 @@
                                     <div class="card border-0 shadow border-pricing">
                                         <div class="text-center text-white border-0 pack-wrap">
                                             <br />
+                                            <style>
+                                            .solo-non-cpf{
+                                                animation: unset !important;
+                                            }
+                                        </style>
                                             <p>
                                                 <strong class="pack-name"> SOLO </strong>
                                             </p>
-                                            <p class="blink-soft">
-                                                <b>Paiement en 2 fois</b>
+
+                                            <p class="blink-soft solo-non-cpf">
+                                                <b>NON ELIGIBLE AU CPF</b>
                                             </p>
                                             <br />
                                         </div>

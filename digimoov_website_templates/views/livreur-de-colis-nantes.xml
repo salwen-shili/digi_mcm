@@ -185,8 +185,8 @@
                                         <p>
                                             <strong class="pack-name"> SOLO </strong>
                                         </p>
-                                        <p class="blink-soft">
-                                            <b>Paiement en 2 fois</b>
+                                        <p class="blink-soft solo-non-cpf">
+                                            <b>NON ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
                                     </div>
@@ -578,6 +578,6 @@
         <field name="website_indexed">False</field>
         <field name="website_id">2</field>
         <field name="url">/livreur-de-colis-nantes</field>
-        <field name="view_id" ref="digimoov_website_templates.livreur_de_colis_nantes"/>
+        <field name="view_id" ref="digimoov_website_templates.livreur_de_colis_nantes" />
     </record>
 </odoo>

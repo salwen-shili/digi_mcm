@@ -1537,6 +1537,9 @@ figure.snip1256.hover figcaption {
   text-transform: uppercase;
   font-size: 21px;
 }
+.solo-non-cpf {
+  animation: unset !important;
+}
 @keyframes blinker {
   50% {
     opacity: 0.1;
