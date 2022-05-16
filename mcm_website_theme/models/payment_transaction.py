@@ -14,6 +14,7 @@ class PaymentTransaction(models.Model):
         if 'state' in vals:
             if vals['state'] == "done":
                 self._reconcile_after_transaction_done()
+        return result
     def _set_transaction_done(self):
         transaction = super(PaymentTransaction, self)._set_transaction_done()
         if self.reference:
