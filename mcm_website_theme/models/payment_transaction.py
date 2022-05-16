@@ -10,7 +10,7 @@ class PaymentTransaction(models.Model):
     _inherit = "payment.transaction"
     """Créer une facture lorsque l'etat de transaction sera done"""
     def write(self, vals):
-        result = super(PaymentAcquirer, self).write(vals)
+        result = super(PaymentTransaction, self).write(vals)
         if 'state' in vals:
             if vals['state'] == "done":
                 self._reconcile_after_transaction_done()
