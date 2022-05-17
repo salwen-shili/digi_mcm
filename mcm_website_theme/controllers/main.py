@@ -23,7 +23,10 @@ import locale
 import json
 import logging
 import requests
-
+import random
+import string
+import odoo
+from odoo.addons.auth_signup.controllers.main import AuthSignupHome
 _logger = logging.getLogger(__name__)
 PPG = 20  # Products Per Page
 PPR = 4  # Products Per Row
@@ -773,113 +776,6 @@ class Routes_Site(http.Controller):
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_bolt", values)
-
-    """ get data of new contact from jotform using webhook """
-
-
-    @http.route(['/webhook_contact_form'], type='http', auth="public", csrf=False)
-    def create_contact_from_jotform_webhook(self, **kw):
-        _logger.info("webhoook contact jotform %s" % (kw))
-        rawRequest = kw['rawRequest']
-        _logger.info("rawRequest : %s" % (rawRequest))
-        rawRequest = json.loads(rawRequest)
-        firstname = rawRequest['q53_nom']['first']
-        lastName = rawRequest['q53_nom']['last']
-        tel = str(rawRequest['q93_numeroDe93'])
-        email = (rawRequest['q54_email']).replace(' ', '').lower()
-        street = rawRequest['q82_adresse']['addr_line1']
-        street2 = rawRequest['q82_adresse']['addr_line2']
-        city = rawRequest['q82_adresse']['city']
-        state = rawRequest['q82_adresse']['state']
-        zipcode = rawRequest['q82_adresse']['postal']
-        ipjotform = str(kw['ip'])
-        _logger.info("IP of webhook_contact_form : %s" % (ipjotform))
-        _logger.info("email: %s" % (email))
-        _logger.info("tel: %s" % (tel))
-        res_user = request.env['res.users']
-        odoo_contact = res_user.sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
-        _logger.info("user founded using email : %s" % (odoo_contact))
-
-        if not odoo_contact:
-            if tel:
-                odoo_contact = request.env["res.users"].sudo().search(
-                    [("phone", "=", str(tel))], limit=1)
-                if not odoo_contact:
-                    phone_number = str(tel).replace(' ', '')
-                    if '+33' not in str(phone_number):  # check if jotform webhook send the number of client with +33
-                        phone = phone_number[0:2]
-                        if str(phone) == '33' and ' ' not in str(
-                                tel):  # check if jotform webhook send the number of client in this format (number_format: 33xxxxxxx)
-                            phone = '+' + str(tel)
-                            odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
-                            if not odoo_contact:
-                                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
-                                                                                                 6:8] + ' ' + phone[
-                                                                                                              8:10] + ' ' + phone[
-                                                                                                                            10:]
-                                odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
-                        phone = phone_number[0:2]
-                        if str(phone) == '33' and ' ' in str(
-                                tel):  # check if jotform webhook send the number of client in this format (number_format: 33 x xx xx xx)
-                            phone = '+' + str(tel)
-                            odoo_contact = request.env["res.users"].sudo().search(
-                                ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
-                        phone = phone_number[0:2]
-                        if str(phone) in ['06', '07'] and ' ' not in str(
-                                tel):  # check if jotform webhook send the number of client in this format (number_format: 07xxxxxx)
-                            odoo_contact = request.env["res.users"].sudo().search([("phone", "=", str(tel))], limit=1)
-                            print('odoo_contact5 :', odoo_contact.partner_id.name)
-                            if not odoo_contact:
-                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
-                                                                                                 6:8] + ' ' + phone[8:]
-                                odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
-                        phone = phone_number[0:2]
-                        if str(phone) in ['06', '07'] and ' ' in str(
-                                tel):  # check if jotform webhook send the number of client in this format (number_format: 07 xx xx xx)
-                            odoo_contact = request.env["res.users"].sudo().search(
-                                ['|', ("phone", "=", str(tel)), str(tel).replace(' ', '')], limit=1)
-                    else:  # check if jotform webhook send the number of client with+33
-                        if ' ' not in str(tel):
-                            phone = str(tel)
-                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
-                                                                                                                8:10] + ' ' + phone[
-                                                                                                                              10:]
-                            odoo_contact = request.env["res.users"].sudo().search(
-                                [("phone", "=", phone)], limit=1)
-                        if not odoo_contact:
-                            odoo_contact = request.env["res.users"].sudo().search(
-                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
-                            if not odoo_contact:
-                                phone = str(phone_number)
-                                phone = phone[3:]
-                                phone = '0' + str(phone)
-                                odoo_contact = request.env["res.users"].sudo().search(
-                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
-
-        _logger.info("user founded using tel  : %s" % (odoo_contact))
-        if not odoo_contact:
-            odoo_contact = request.env['res.users'].sudo().create({
-                'name': str(firstname) + " " + str(lastName),
-                'firstname': str(firstname),
-                'lastName': str(lastName),
-                'login': str(email),
-                'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
-                'email': email,
-                'phone': tel,
-                'notification_type': 'email',
-                'website_id': 1,
-                'company_ids': [1, 2],
-                'company_id': 1,
-                'step': "financement",
-                'street': street if street else "",
-                'street2': street2 if street else "",
-                'city': city if city else "",
-                'zip': zipcode if zipcode else "",
-            })
-        if odoo_contact:
-            odoo_contact.ipjotform = ipjotform
-            odoo_contact.bolt = True
-        return True
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
     def webhook_integration_examen(self, **kw):
@@ -2158,3 +2054,152 @@ class MCM_SIGNUP(http.Controller):
             return request.render("mcm_website_theme.mcm_bolt_documents")
         else:
             raise werkzeug.exceptions.NotFound()
+
+
+class AuthSignupHome(AuthSignupHome):
+
+    #generate random password with letters and digits
+    def get_random_string(self, length):
+        letters = list(string.ascii_letters + string.digits)
+        result_str = ''.join(random.choice(letters) for i in range(length))
+        return result_str
+
+    @http.route(['/webhook_contact_form'], type='http', auth="public", csrf=False)
+    def create_contact_from_jotform_webhook(self, **kw):
+        _logger.info("webhoook contact jotform %s" % (kw))
+        rawRequest = kw['rawRequest']
+        _logger.info("rawRequest : %s" % (rawRequest))
+        rawRequest = json.loads(rawRequest) #convert response of webhook to json format
+        firstname = rawRequest['q53_nom']['first']
+        lastName = rawRequest['q53_nom']['last']
+        tel = str(rawRequest['q93_numeroDe93'])
+        email = (rawRequest['q54_email']).replace(' ', '').lower()
+        street = rawRequest['q82_adresse']['addr_line1']
+        street2 = rawRequest['q82_adresse']['addr_line2']
+        city = rawRequest['q82_adresse']['city']
+        state = rawRequest['q82_adresse']['state']
+        zipcode = rawRequest['q82_adresse']['postal']
+        ipjotform = str(kw['ip'])
+        #get datas of contact from the response of the webhook
+        _logger.info("IP of webhook_contact_form : %s" % (ipjotform))
+        _logger.info("email: %s" % (email))
+        _logger.info("tel: %s" % (tel))
+        res_user = request.env['res.users']
+        odoo_contact = res_user.sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1) #search contact using email
+        _logger.info("user founded using email : %s" % (odoo_contact))
+
+        if not odoo_contact:
+            if tel:
+                odoo_contact = request.env["res.users"].sudo().search(
+                    [("phone", "=", str(tel))], limit=1) #search contact using phone
+                if not odoo_contact:
+                    phone_number = str(tel).replace(' ', '')
+                    if '+33' not in str(phone_number):  # check if jotform webhook send the number of client with +33
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' not in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 33xxxxxxx)
+                            phone = '+' + str(tel)
+                            odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not odoo_contact:
+                                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[
+                                                                                                              8:10] + ' ' + phone[
+                                                                                                                            10:]
+                                odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 33 x xx xx xx)
+                            phone = '+' + str(tel)
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' not in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 07xxxxxx)
+                            odoo_contact = request.env["res.users"].sudo().search([("phone", "=", str(tel))], limit=1)
+                            print('odoo_contact5 :', odoo_contact.partner_id.name)
+                            if not odoo_contact:
+                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[8:]
+                                odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 07 xx xx xx)
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", str(tel)), str(tel).replace(' ', '')], limit=1)
+                    else:  # check if jotform webhook send the number of client with+33
+                        if ' ' not in str(tel):
+                            phone = str(tel)
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
+                                                                                                                8:10] + ' ' + phone[
+                                                                                                                              10:]
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                [("phone", "=", phone)], limit=1)
+                        if not odoo_contact:
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                            if not odoo_contact:
+                                phone = str(phone_number)
+                                phone = phone[3:]
+                                phone = '0' + str(phone)
+                                odoo_contact = request.env["res.users"].sudo().search(
+                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
+
+        _logger.info("user founded using tel  : %s" % (odoo_contact))
+        if not odoo_contact:
+            qcontext = {}
+            password = self.get_random_string(8)
+            qcontext['login'] = email
+            qcontext['email'] = email
+            qcontext['phone'] = tel
+            qcontext['token'] = None
+            qcontext['firstname'] = firstname
+            qcontext['lastName'] = lastName
+            qcontext['zip'] = zipcode if zipcode else False
+            qcontext['city'] = city if city else False
+            qcontext['street'] = street if street else False
+            qcontext['password'] = password
+            qcontext['name'] = str(firstname) + ' ' + str(lastName)
+            request.uid = odoo.SUPERUSER_ID
+            self.do_signup(qcontext)
+            odoo_contact = res_user.sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+            if odoo_contact:
+                odoo_contact.street = street if street else False
+                odoo_contact.step = "financement"
+                if odoo_contact.phone:
+                    phone = str(odoo_contact.phone.replace(' ', ''))[
+                            -9:]  # change phone to this format to be accepted in sms +33XXXXXXXXX
+                    phone = '+33' + phone
+                    odoo_contact.phone = phone
+                    url = "https://www.mcm-academy.fr/web/login"
+                    link_tracker = request.env['link.tracker'].sudo().search([('url', "=", url)])
+                    if not link_tracker:
+                        # generate short link using module of link tracker
+                        link_tracker = request.env['link.tracker'].sudo().create({
+                            'title': 'Website login %s' % (odoo_contact.name),
+                            'url': url,
+                        })
+                    short_url = url
+                    if link_tracker:
+                        short_url = link_tracker.short_url
+                    body = "Vous pouvez se connecter via ce lien %s en utilisant votre adresse email %s avec ce mot de passe %s" % (
+                        short_url, odoo_contact.email, password)
+                    if body:
+                        composer = request.env['sms.composer'].with_context(
+                            default_res_model='res.partner',
+                            default_res_id=odoo_contact.partner_id.id,
+                            default_composition_mode='comment',
+                        ).sudo().create({
+                            'body': body,
+                            'mass_keep_log': True,
+                            'mass_force_send': False,
+                            'use_active_domain': True,
+                            'active_domain': [('id', 'in', odoo_contact.partner_id.ids)]
+                        })
+                        composer = composer.with_user(SUPERUSER_ID)
+                        composer._action_send_sms()  # we send sms to client contains link of reset password.
+                        if odoo_contact.phone:
+                            odoo_contact.phone = '0' + str(odoo_contact.phone.replace(' ', ''))[-9:]
+        odoo_contact = res_user.sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+        odoo_contact.ipjotform = ipjotform
+        odoo_contact.bolt = True
+        return True
