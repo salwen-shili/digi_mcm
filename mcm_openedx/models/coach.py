@@ -34,6 +34,7 @@ class Coach(models.Model):
         for apprenant in self.env['res.partner'].sudo().search([('statut', "=", "won"), ('company_id', '=', 1)]):
             count_apprennat = count_apprennat + 1
 
+
         # definir si le partner et coach
         for coach in self.env['res.partner'].sudo().search(
                 [('est_coach', '=', 'True')]):
@@ -151,28 +152,27 @@ class Coach(models.Model):
                     if template_id:
                         coach.with_context(force_send=True).message_post_with_template(template_id,
                                                                                        composition_mode='comment', )
+                        # ajouter une fonction pour connaitre l'utilisateur connecter et lui notifier si il a un nouveau apprenant
+                        context = self._context
+                        current_uid = context.get('uid')
+                        user = self.env['res.users'].browse(current_uid)
+                        print("emaillllllllllll", user.email)
+                        if (user.email == coach.coach_name.email):
+                            return {
+                                'type': 'ir.actions.client',
+                                'tag': 'display_notification',
+                                'params': {
+                                    'title': (' You have a new Mail🤓 🤓  '),
+                                    'message': ('consulter votre boite  maill'),
+                                    'sticky': True,
+                                    'className': 'bg-danger'
+                                }
+                            }
 
-                    # ajouter une fonction pour connaitre l'utilisateur connecter et lui notifier si il a un nouveau apprenant
-                context = self._context
-                current_uid = context.get('uid')
-                user = self.env['res.users'].browse(current_uid)
-                print("emaillllllllllll", user.email)
-                if (user.email == coach.coach_name.email):
-                    return {
-                        'type': 'ir.actions.client',
-                        'tag': 'display_notification',
-                        'params': {
-                            'title': (' You have a new Mail🤓 🤓  '),
-                            'message': ('consulter votre boite  maill'),
-                            'sticky': True,
-                            'className': 'bg-danger'
-                        }
-                    }
+                if apprenat.id not in listexiste:
+                    print("app", apprenat.id)
+                    print(coach.coach_name)
+                    apprenat.coach_peda = coach.coach_name
 
-            if apprenat.id not in listexiste:
-                print("app", apprenat.id)
-                print(coach.coach_name)
-                apprenat.coach_peda = coach.coach_name
-
-            # appeler la fonction pour affecter les apprenats aux coach
-        self.test_coach()
+                # appeler la fonction pour affecter les apprenats aux coach
+            self.test_coach()
