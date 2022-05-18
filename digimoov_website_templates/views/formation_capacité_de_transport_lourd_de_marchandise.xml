@@ -12,12 +12,11 @@
                 </style>
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
                 <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" />
-
                 <section class="centric_template home-banner banner_padding pt80">
                     <div class="container">
                         <div class="row">
                             <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
-                                <h1 style="text-align: center; ">FORMATION CAPACITÉ TRANSPORT LOURD +3.5 t </h1>
+                                <h1 style="text-align: center; ">FORMATION CAPACITÉ DE TRANSPORT POIDS LOURD +3.5 t </h1>
                                 <p class="para text-center">
                                     Optez pour notre formation 100 % en ligne sur la capacité de transport lourd de marchandises !
                                     
@@ -159,7 +158,7 @@
                                             ?&amp;nbsp;
                                         </h2>
                                         <p class="para ">
-                                            L’attestation de capacité de transport est un document obligatoire pour 
+                                            L’attestation de capacité de transport poids loud est un document obligatoire pour 
                                             toute personne souhaitant 
                                             devenir capacitaire.
                                        </p>
@@ -187,7 +186,7 @@
                         <div class="row align-items-center">
                             <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
                                 <h2>
-                                    Formation capacité transport routier :
+                                    Formation capacité transport routier poids lourd:
                                    
                                 </h2>
                                 <p class="para">
@@ -331,16 +330,15 @@
                         </div>
                     </div>
                 </section>
-                <section class="s_text_image pt32 pb0" style="word-break: break-word; position: relative; z-index: 0;">
+                <section class="s_text_image pt32 pb0">
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-6 pt16 pb0" style="border-style: none; border-width: 0px">
-                                <h2>
-                                    Comment financer ma formation ?</h2>
+                                <h2> Comment financer ma formation capacité de transport poids lourd ?</h2>
                                 <h4 />
                                 <h4>
-                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline;">A</span>
-                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">fin de faciliter votre démarche, Digimoov vous offre la possibilité de facilité de paiement en 5 fois sans frais.</span>
+                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline;">Afin de</span>
+                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;"> faciliter votre démarche, Digimoov vous offre la possibilité de facilité de paiement en 5 fois sans frais.</span>
                                 </h4>
                                 <div class="s_btn text-center pt16 pb16" data-name="Button">
                                     <a target="_blank" rel="noopener" href="/contact" class="btn btn-primary" alt="transport lourd en savoir plus">En savoir plus</a>
