@@ -24,9 +24,11 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base',
-                'mail','board',
+                'mail',
+                'board',
                 'mcm_session',
-                'crm_marketing_automation', 'calendly_api_integration'],
+                'crm_marketing_automation',
+                'calendly_api_integration'],
 
     'qweb': [
         'static/src/xml/btn.xml',

@@ -745,6 +745,8 @@ class partner(models.Model):
             lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
             if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi") and (
                     dateFormation <= today):
+                """si l'apprenant est sur moocit
+                                            on change le statut de son dossier sur wedof """
                 for partner in self.env['mcm_openedx.course_stat'].search(
                         [('email', "=", email)
                          ]):
@@ -759,4 +761,4 @@ class partner(models.Model):
                         #     headers=headers, data=data)
                         # _logger.info('response post %s' % str(response_post.text))
                         # print('response post', str(response_post.text))
-
+                        #
