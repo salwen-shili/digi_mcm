@@ -764,6 +764,11 @@ class Routes_Site(http.Controller):
             for line in order.order_line:
                 if order.partner_id.bolt == True and line.product_id.default_code != "vtc_bolt":
                     boltWrongProduct = "True"
+        partner = request.env.user.partner_id
+        partner =json.dumps(res)
+        print(partner)
+        # partner = json.dumps([{"email":partner.email,"name":partner.name}])
+        # print("partner",partner)
         values = {
             'bolt_product': bolt_product,
             'vtc_product': vtc_product,
@@ -771,7 +776,7 @@ class Routes_Site(http.Controller):
             'exam_state': exam_state,
             'cartIsEmpty': cartIsEmpty,
             'boltWrongProduct': boltWrongProduct,
-            'partner': request.env.user.partner_id,
+            'partner': partner,
         }
 
         if request.website.id == 2:
@@ -779,6 +784,14 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_bolt", values)
 
+    @http.route('/get_data_user_connected', type='json', auth="user", methods=['POST'], website=True)
+    def get_data_user_connected(self):
+        partner = request.env.user.partner_id
+        res = {'response': []}
+        res['response'] += [{'id': partner.id, 'name': partner.name,'fisrtname': partner.firstname,'lastName': partner.lastName, 'email': partner.email, 'phone': partner.phone,'street': partner.street,'city': partner.city,'zip': partner.zip, 'email': partner.email,
+                             'note_exam': partner.note_exam, 'ipJotForm': partner.ipjotform}]
+        partner = json.dumps(res)
+        return partner
     @http.route('/formation-taxi-Paris', type='http', auth='public', website=True)
     def taxi_paris(self):
 
@@ -2086,7 +2099,9 @@ class AuthSignupHome(AuthSignupHome):
         rawRequest = json.loads(kw['rawRequest'])
         q169_email = str(rawRequest['q169_email'])
         tel = str(rawRequest['q172_numeroDe172'])
-
+        firstname = rawRequest['q99_nom']['first']
+        lastName = rawRequest['q99_nom']['last']
+        name = str(firstname)+' ' + str(lastName)
         _logger.info("q169_email of webhook_integration_examen: %s" % (q169_email))
         _logger.info("RawRequest Webhoook examen blanc %s" % (rawRequest))
         q114_resultatExamen = rawRequest['q114_resultatExamen']
@@ -2154,8 +2169,20 @@ class AuthSignupHome(AuthSignupHome):
                                 phone = '0' + str(phone)
                                 user = request.env["res.users"].sudo().search(
                                     [("phone", "like", phone.replace(' ', ''))], limit=1)
-        # if not user :
-
+        if not user :
+            qcontext = {}
+            password = self.get_random_string(8)
+            qcontext['login'] = q169_email
+            qcontext['email'] = q169_email
+            qcontext['phone'] = tel
+            qcontext['token'] = None
+            qcontext['firstname'] = firstname
+            qcontext['lastName'] = lastName
+            qcontext['password'] = password
+            qcontext['name'] = str(firstname) + ' ' + str(lastName)
+            request.uid = odoo.SUPERUSER_ID
+            self.do_signup(qcontext)
+            odoo_contact = res_user.sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
         if user:
             multiplication_note_exam_blan = int(q114_resultatExamen) * 5
             user.note_exam = int(multiplication_note_exam_blan)
