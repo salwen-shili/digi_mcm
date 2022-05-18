@@ -4,7 +4,7 @@
 {
     'name': 'Digimoov sessions',
     'description': " Personaliser la vue session de digimoov",
-    'author': "Houssem",
+    'author': "SALWEN",
     'maintainer': 'DIGIMOOV',
     'category': 'Session',
     'sequence': 15,

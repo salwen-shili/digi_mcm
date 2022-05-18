@@ -28,29 +28,29 @@
     iusto dicta molestias beatae minima et ipsum. Impedit sed ad sint?
   </p>
 
-            <div>
-                <h2>Titre 2</h2>
-                <p>
+
+            <h2>Titre 2</h2>
+            <p>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut molestiae hic dicta
     dignissimos! Recusandae amet quasi accusantium voluptas. Impedit natus officiis quam
     sequi neque, sapiente earum nobis saepe autem possimus.
   </p>
-                <h3>Titre 3</h3>
-                <p>Lorem ipsum dolor sit amet.</p>
-                <h3>Titre 3</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt, asperiores.</p>
-                <h4>Titre 4</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, ex?</p>
-                <h4>Titre 4</h4>
-                <p>
+            <h3>Titre 3</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <h3>Titre 3</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt, asperiores.</p>
+            <h4>Titre 4</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, ex?</p>
+            <h4>Titre 4</h4>
+            <p>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, Lorem ipsum dolor
     sit amet.?
   </p>
-            </div>
-            <div>
-                <h3>Titre 3</h3>
-                <p>Lorem ipsum dolor sit amet.</p>
-            </div>
+
+
+            <h3>Titre 3</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+
         </section>
 
 
