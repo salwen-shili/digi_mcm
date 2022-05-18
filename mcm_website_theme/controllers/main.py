@@ -765,10 +765,6 @@ class Routes_Site(http.Controller):
                 if order.partner_id.bolt == True and line.product_id.default_code != "vtc_bolt":
                     boltWrongProduct = "True"
         partner = request.env.user.partner_id
-        partner =json.dumps(res)
-        print(partner)
-        # partner = json.dumps([{"email":partner.email,"name":partner.name}])
-        # print("partner",partner)
         values = {
             'bolt_product': bolt_product,
             'vtc_product': vtc_product,
