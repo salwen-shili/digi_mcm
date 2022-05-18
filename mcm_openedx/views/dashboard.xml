@@ -45,7 +45,17 @@
         </field>
     </record>
 
-    <!--My Dashboard Action-->
+    <!--My Dashboard Action  add thiscode in costum _saveDashboard: function () {
+        var board = this.renderer.getBoard();
+        var arch = QWeb.render('DashBoard.xml', _.extend({}, board));
+        return this._rpc({
+                route: '/web/view/edit_custom',
+                params: {
+                    custom_id: this.customViewID != null? this.customViewID:'',
+                    arch: arch,
+                }
+            }).then(dataManager.invalidate.bind(dataManager));
+    },-->
     <record model="ir.actions.act_window" id="open_board_my_dash_action">
         <field name="name">My Dashboard</field>
         <field name="res_model">board.board</field>
