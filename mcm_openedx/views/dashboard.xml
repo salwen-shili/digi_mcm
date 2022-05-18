@@ -1,0 +1,40 @@
+<odoo>
+
+
+<!--    <record id="session" model="ir.actions.act_window">-->
+<!--        <field name="name">Sessions</field>-->
+<!--        <field name="res_model">mcm_openedx.coach</field>-->
+<!--        <field name="view_mode">kanban</field>-->
+<!--        <field name="view_id" ref="mcm_openedx.coach_list_action"/>-->
+
+<!--    </record>-->
+
+
+<!--    <record model="ir.ui.view" id="coach_form_view">-->
+<!--        <field name="name">Coaches</field>-->
+<!--        <field name="model">mcm_openedx.coach</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Coaches">-->
+
+<!--                <board>-->
+<!--                    <column>-->
+<!--                        <action string="Session"-->
+<!--                                name="%(mcm_openedx.coach)"/>-->
+<!--                    </column>-->
+<!--                </board>-->
+<!--            </form>-->
+
+<!--        </field>-->
+<!--    </record>-->
+
+
+<!--    <record model="ir.actions.act_window" id="mcm_dashbord">-->
+<!--        <field name="name">Dashbord</field>-->
+<!--        <field name="res_model">board.board</field>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="view_id" ref="coach_form_view"></field>-->
+
+
+<!--    </record>-->
+    <menuitem id="main_dashbord" name="Dashbord" parent="main_mcm_openedx_menu"  sequence="1"/>
+</odoo>

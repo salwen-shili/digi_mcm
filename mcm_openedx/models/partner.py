@@ -239,12 +239,14 @@ class partner(models.Model):
                         if (sale_order.state == 'sale') and (sale_order.signature):
                             # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
                             if (partner.renounce_request):
-                                self.ajouter_IOne_MCM(partner)
+                                # self.ajouter_IOne_MCM(partner)
+                                _logger.info(' Doneeeee %s')
 
                             # si non il doit attendre 14jours pour etre ajouté a la platform
                             if not partner.renounce_request and (
                                     sale_order.signed_on + timedelta(days=14)) <= today:
-                                self.ajouter_IOne_MCM(partner)
+                                # self.ajouter_IOne_MCM(partner)
+                                _logger.info(' Doneeeee %s')
 
                 if partner.mode_de_financement == "cpf":
                     _logger.info(partner.mode_de_financement)
@@ -255,7 +257,9 @@ class partner(models.Model):
                             partner.mcm_session_id.date_exam > date.today()):
 
                         if (partner.renounce_request):
-                            self.ajouter_IOne_MCM(partner)
+                            # self.ajouter_IOne_MCM(partner)
+                            _logger.info(' Doneeeee %s')
+
                         if not (partner.renounce_request) and partner.numero_cpf:
                             """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
                             headers = {
@@ -273,7 +277,8 @@ class partner(models.Model):
                                 dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
                                 dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
                                 if dateDebutSession <= datetime.today():
-                                    self.ajouter_IOne_MCM(partner)
+                                    # self.ajouter_IOne_MCM(partner)
+                                    _logger.info(' Doneeeee %s')
 
     # ajouter les apprenants manuellemnt a partire de  la fiche Client
     def ajoutMoocit_manuelle(self):
@@ -327,7 +332,7 @@ class partner(models.Model):
 
                         # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
                         if (self.renounce_request):
-                            self.ajouter_IOne_MCM(self)
+                            # self.ajouter_IOne_MCM(self)
                             self.write({'state': 'en_formation'})
 
                             _logger.info('doooooooooooooooooooone %s')
@@ -335,7 +340,7 @@ class partner(models.Model):
                         # si non il doit attendre 14jours pour etre ajouté a la platform*
                         today = date.today()
                         if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
-                            self.ajouter_IOne_MCM(self)
+                            # self.ajouter_IOne_MCM(self)
                             self.write({'state': 'en_formation'})
 
                             _logger.info('doooooooooooooooooooone %s')
@@ -364,7 +369,7 @@ class partner(models.Model):
                     _logger.info('document valide , date exlan > datetoday %s')
 
                     if (self.renounce_request):
-                        self.ajouter_IOne_MCM(self)
+                        # self.ajouter_IOne_MCM(self)
                         _logger.info(' Doneeeee %s')
                         self.write({'state': 'en_formation'})
 
@@ -397,8 +402,8 @@ class partner(models.Model):
                         print(datetime.today())
                         if dateDebutSession <= datetime.today():
                             _logger.info(' Donnnnnnne %s')
-                            self.ajouter_IOne_MCM(self)
-                            self.write({'state': 'en_formation'})
+                            # self.ajouter_IOne_MCM(self)
+                            # self.write({'state': 'en_formation'})
 
 
 
@@ -545,7 +550,7 @@ class partner(models.Model):
             partner.phone = phone
             _logger.info(partner.phone)
         body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez désormais commencer votre formation  ,%s  en utilisant les mêmes identifiants que sur notre site web." % (
-        partner.name, partner.module_id.name)
+            partner.name, partner.module_id.name)
         if body:
             sms = self.env['mail.message'].sudo().search(
                 [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
@@ -686,3 +691,72 @@ class partner(models.Model):
             if rec.supprimerdemoocit:
                 new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
                 rec.supprimerdemoocit = new_date_format
+
+    """recuperer les dossier avec état accepté apartir d'api wedof,
+        puis faire le parcours pour chaque dossier,
+        si tout les conditions sont vérifiés on Passe le dossier dans l'état 'en formation'"""
+
+    def wedof_api_integration_moocit(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+
+        companies = self.env['res.company'].sudo().search([('id', "=", 2)])
+        print(companies)
+        api_key = ""
+        if companies:
+            api_key = companies.wedof_api_key
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-API-KEY': api_key,
+        }
+        params_wedof = (
+            ('order', 'desc'),
+            ('type', 'all'),
+            ('state', 'accepted'),
+            ('billingState', 'all'),
+            ('certificationState', 'all'),
+            ('sort', 'lastUpdate'),
+        )
+
+        data = '{}'
+        response = requests.get('https://www.wedof.fr/api/registrationFolders', headers=headers,
+                                params=params_wedof)
+
+        registrations = response.json()
+
+        for dossier in registrations:
+            externalId = dossier['externalId']
+            diplome = dossier['trainingActionInfo']['title']
+            email = dossier['attendee']['email']
+            certificat = dossier['_links']['certification']['name']
+            certificat_info = dossier['_links']['certification']['certifInfo']
+            date_formation = dossier['trainingActionInfo']['sessionStartDate']
+            """convertir date de formation """
+            date_split = date_formation[0:10]
+            date_ = datetime.strptime(date_split, "%Y-%m-%d")
+            dateFormation = date_.date()
+            idform = dossier['trainingActionInfo']['externalId']
+
+            today = date.today()
+            lastupdatestr = str(dossier['lastUpdate'])
+            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+            newformat = "%d/%m/%Y %H:%M:%S"
+            lastupdateform = lastupdate.strftime(newformat)
+            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+            if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi") and (
+                    dateFormation <= today):
+                for partner in self.env['mcm_openedx.course_stat'].search(
+                        [('email', "=", email)
+                         ]):
+                    if (partner.email == dossier['attendee']['email']):
+                        print("okokkookkokookokokko")
+                        print('dateeeeeeeeee', today, dateFormation, certificat, idform)
+                        print('wedooooffffff %s' % certificat)
+                        print('dateformation %s' % dateFormation)
+                        print('email %s' % email)
+                        # response_post = requests.post(
+                        #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                        #     headers=headers, data=data)
+                        # _logger.info('response post %s' % str(response_post.text))
+                        # print('response post', str(response_post.text))
+

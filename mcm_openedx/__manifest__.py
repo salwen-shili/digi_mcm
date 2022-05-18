@@ -43,6 +43,7 @@
         "views/coach.xml",
         "views/assets.xml",
         'data/mail_data.xml',
+        'views/dashboard.xml',
 
     ],
 
