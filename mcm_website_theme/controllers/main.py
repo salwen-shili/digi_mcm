@@ -759,6 +759,7 @@ class Routes_Site(http.Controller):
         if order and not order.order_line:
             cartIsEmpty = "True"
         boltWrongProduct = "False"
+        request.env.user.partner_id.bolt = True
         if order and order.order_line:
             for line in order.order_line:
                 if order.partner_id.bolt == True and line.product_id.default_code != "vtc_bolt":
