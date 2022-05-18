@@ -860,11 +860,12 @@
                         </div>
                         <!-- End pricing table-->
                     </div>
+
                     <section class="bg-200 clients p-m-0 pb16 pt16 s_references" data-name="References">
                         <div class="row-res">
                             <div>
                                 <a href="https://www.mcm-academy.fr/" target="_blank" rel="noopener">
-                                    <img data-src="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.png" class="img img-fluid lazy mcm-icon" alt="Logo partenaire MCM ACADEMY" title="MCM ACADEMY" />
+                                    <img data-src="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.png" class="img img-fluid lazy mcm-icon" alt="Logo partenaire MCM ACADEMY" title="Centre de formation VTC-TAXI" />
                                 </a>
                             </div>
                             <div t-if="partenaire=='' or partenaire=='ubereats'">
@@ -899,11 +900,12 @@
                             </div>
                             <div>
                                 <a href="https://prev-easy.com/">
-                                    <img width="150" height="100" data-src="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" data-srcsafari="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" class="img img-fluid lazy prev-easy-icon" alt="preveasy partenaire digimoov" />
+                                    <img width="150" height="100" data-src="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" data-srcsafari="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" class="img img-fluid lazy prev-easy-icon" alt="preveasy partenaire digimoov" title="Cabinet de consulting - Création et développement d'entreprises" />
                                 </a>
                             </div>
                         </div>
                     </section>
+
                     <section class="s_faq_collapse pt48 pb32" data-name="Accordion">
                         <div class="container">
                             <div class="row s_col_no_bgcolor">

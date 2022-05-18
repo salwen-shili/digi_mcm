@@ -133,6 +133,10 @@ const finishBolt = {
 document.addEventListener('DOMContentLoaded', function () {
   const finished = document.getElementById('finished');
   const documents = document.getElementById('personal');
+  // IP address useful for BOLT. (received from JOTFORM)
+  const adresseIP = document.getElementById('adresseIP');
+  // Exam note. (received from Backend)
+  const examNote = document.getElementById('examNote');
   //calendly inputs
   if (document.getElementById('rdvIsBooked')) {
     rdvIsBooked = document.getElementById('rdvIsBooked').value;
