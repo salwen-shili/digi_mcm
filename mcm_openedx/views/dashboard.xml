@@ -6,12 +6,12 @@
         <field name="view_id"
                ref="mcm_openedx.view_openacad_session_kanban"/>
     </record>
-    <record model="ir.actions.act_window" id="act_session_graph">
+    <record model="ir.actions.act_window" id="act_session_kanban">
         <field name="name">Session</field>
         <field name="res_model">mcmacademy.session</field>
-        <field name="view_mode">tree</field>
+        <field name="view_mode">kanban</field>
         <field name="view_id"
-               ref="mcm_session.mcmacademy_session_tree_view"/>
+               ref="mcm_session.view_mcmacademy_session_kanban"/>
     </record>
     <!--My Dashboard-->
     <record model="ir.ui.view" id="mcm_openedx_dashbord">
@@ -29,7 +29,7 @@
 
                         <action
                                 string="Session"
-                                name="%(act_session_graph)d"
+                                name="%(act_session_kanban)d"
                                 height="150"
                                 width="510"/>
                     </column>
@@ -62,6 +62,7 @@
         <field name="view_mode">form</field>
         <field name="usage">menu</field>
         <field name="view_id" ref="mcm_openedx_dashbord"/>
+
     </record>
 
     <menuitem id="main_dashbord" name="Dashbord" parent="main_mcm_openedx_menu" action="open_board_my_dash_action"
