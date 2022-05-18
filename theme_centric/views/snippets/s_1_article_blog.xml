@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="s_article_blog_digimoov" name="Article">
+        <link href="/digimoov_website_templates/static/src/css/style-blog-dg.min.css" rel="stylesheet" />
+
+        <section class="blog-article-prototype">
+
+            <h1>Titre 1</h1>
+            <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut molestiae hic dicta
+    dignissimos! Recusandae amet quasi accusantium voluptas. Impedit natus officiis quam
+    sequi neque, sapiente earum nobis saepe autem possimus.
+  </p>
+            <ul>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+            </ul>
+            <p>
+    Lorem ipsum dolor sit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+    Obcaecati, aperiam. Totam dolor aut cupiditate adipisci omnis doloribus, consequatur
+  </p>
+            <p>
+    autem repellendus illo exercitationem, maxime ex asperiores non. Quos porro
+    blanditiis, nesciunt quia sapiente voluptatum rem nam totam, tempora commodi odio
+    iusto dicta molestias beatae minima et ipsum. Impedit sed ad sint?
+  </p>
+
+            <div>
+                <h2>Titre 2</h2>
+                <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut molestiae hic dicta
+    dignissimos! Recusandae amet quasi accusantium voluptas. Impedit natus officiis quam
+    sequi neque, sapiente earum nobis saepe autem possimus.
+  </p>
+                <h3>Titre 3</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+                <h3>Titre 3</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt, asperiores.</p>
+                <h4>Titre 4</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, ex?</p>
+                <h4>Titre 4</h4>
+                <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, Lorem ipsum dolor
+    sit amet.?
+  </p>
+            </div>
+            <div>
+                <h3>Titre 3</h3>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+        </section>
+
+
+    </template>
+
+    <template id="s_article_blog_digimoov_title_1" name="Article_title_1">
+
+        <section class="blog-article-prototype">
+            <h1>Titre 1 : Lorem ipsum dolor sit amet.</h1>
+            <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut molestiae hic dicta
+    dignissimos! Recusandae amet quasi accusantium voluptas. Impedit natus officiis quam
+    sequi neque, sapiente earum nobis saepe autem possimus.
+  </p>
+        </section>
+
+
+    </template>
+
+    <template id="s_article_blog_digimoov_title_2" name="Article_title_2">
+        <section class="blog-article-prototype">
+            <h2>Titre 2 : Lorem ipsum dolor sit amet.</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, quasi. Aliquam repudiandae explicabo, delectus ipsam fugit reiciendis voluptatum totam aliquid soluta, molestiae consequatur error sunt, necessitatibus accusantium odit itaque amet.</p>
+        </section>
+    </template>
+
+    <template id="s_article_blog_digimoov_title_3" name="Article_title_3">
+        <section class="blog-article-prototype">
+            <h3>Titre 3 : Lorem ipsum dolor sit amet.</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, quasi. Aliquam repudiandae explicabo, delectus ipsam fugit reiciendis voluptatum totam aliquid soluta, molestiae consequatur error sunt, necessitatibus accusantium odit itaque amet.</p>
+        </section>
+    </template>
+
+    <template id="s_article_blog_digimoov_title_4" name="Article_title_4">
+        <section class="blog-article-prototype">
+            <h4>Titre 4 : Lorem ipsum dolor sit amet.</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, quasi. Aliquam repudiandae explicabo, delectus ipsam fugit reiciendis voluptatum totam aliquid soluta, molestiae consequatur error sunt, necessitatibus accusantium odit itaque amet.</p>
+        </section>
+    </template>
+
+    <template id="s_article_blog_digimoov_bloc_text" name="Article_bloc_text">
+        <section class="blog-article-prototype">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, quasi. Aliquam repudiandae explicabo, delectus ipsam fugit reiciendis voluptatum totam aliquid soluta, molestiae consequatur error sunt, necessitatibus accusantium odit itaque amet.</p>
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, quasi. Aliquam repudiandae explicabo, delectus ipsam fugit reiciendis voluptatum totam aliquid soluta, molestiae consequatur error sunt, necessitatibus accusantium odit itaque amet.</p>
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, quasi. Aliquam repudiandae explicabo, delectus ipsam fugit reiciendis voluptatum totam aliquid soluta, molestiae consequatur error sunt, necessitatibus accusantium odit itaque amet.</p>
+        </section>
+    </template>
+
+    <template id="s_article_blog_digimoov_cta" name="Article_CTA">
+        <section>
+            <div class="row justify-content-center">
+                <div class="cta-action col-md-7 text-center pb16 col-lg-8">
+                    <div>Besoin d'obtenir votre capacité de transport léger ?</div>
+                    <p style="color: #000">
+        Inscrivez-vous à la formation 100% en ligne chez DIGIMOOV dès maintenant et soyez
+        prêts pour l'examen final. Formation éligible au financement par Pôle emploi !
+      </p>
+                    <a class="btn-wiggle button button-wiggle" href="http://bit.ly/trackblogbanners">
+                        Je m'inscris
+                        <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="s_article_blog_digimoov_img_center" name="Article_img_Center">
+        <section class="blog-article-prototype">
+
+            <div class="text-center">
+                <img class="img-fluid o_we_custom_image" width="500" height="400" src="https://www.digimoov.fr/web/image/219095/1%20%281%29.png?access_token=e8b9c9ae-f582-44de-8505-796eb59bd2cc" />
+            </div>
+        </section>
+
+    </template>
+
+    <template id="s_article_blog_digimoov_img_right" name="Article_img_right">
+        <section class="blog-article-prototype">
+
+            <img class="img-fluid o_we_custom_image float-right" width="500" height="500" src="https://www.digimoov.fr/web/image/285723/Transport-l%C3%A9ger-marchandise.png?access_token=913ebccd-015f-4684-8a76-07b5674ce670" alt="impact de la crise sur le secteur des taxis et VTC" />
+        </section>
+    </template>
+
+    <template id="s_article_blog_digimoov_ul" name="Article_Unordered_list">
+        <section class="blog-article-prototype">
+
+
+            <ul>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+            </ul>
+
+        </section>
+    </template>
+    <template id="s_article_blog_digimoov_ol" name="Article_Ordred_list">
+        <section class="blog-article-prototype">
+
+
+            <ol>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+            </ol>
+
+        </section>
+    </template>
+
+
+    <template id="place_into_bar" inherit_id="website.snippets" name="Place into bar">
+        <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="inside">
+            <!-- <t t-snippet="theme_centric.s_article_blog_digimoov" t-thumbnail="/theme_centric/static/src/img/soft/snippet.png" /> -->
+            <t t-snippet="theme_centric.s_article_blog_digimoov_title_1" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+
+            <t t-snippet="theme_centric.s_article_blog_digimoov_title_2" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="theme_centric.s_article_blog_digimoov_title_3" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="theme_centric.s_article_blog_digimoov_title_4" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="theme_centric.s_article_blog_digimoov_bloc_text" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="theme_centric.s_article_blog_digimoov_cta" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="theme_centric.s_article_blog_digimoov_img_center" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="theme_centric.s_article_blog_digimoov_img_right" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="theme_centric.s_article_blog_digimoov_ol" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="theme_centric.s_article_blog_digimoov_ul" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+
+
+        </xpath>
+    </template>
+</odoo>
