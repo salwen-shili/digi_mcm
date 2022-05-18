@@ -23,8 +23,10 @@
                                         <h1 class="title-1 type-write" t-if="partenaire=='' or partenaire!='box2home'">
                                             FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE
                                             <text class="stabiloblue">MARCHANDISES</text>
-                                            POUR DEVENIR LIVREUR EN
-                                            <text class="typewrite" data-period="2000" data-type='[ "SCOOTER", "VOITURE", "CAMIONNETTE"]' />
+                                            &amp;nbsp;MOINS 3T5 POUR DEVENIR LIVREUR EN
+                                            <text class="typewrite" data-period="2000" data-type="[ &quot;SCOOTER&quot;, &quot;VOITURE&quot;, &quot;CAMIONNETTE&quot;]">
+                                                <span class="wrap" />
+                                            </text>
                                         </h1>
                                     </t>
                                     <t t-if="partenaire=='box2home'">
@@ -34,7 +36,7 @@
                                             <b>POUR DEVENIR LIVREUR EN
                 </b>
                                             <b>
-                                                <text class="typewrite" data-period="2000" data-type='[ "PARTENARIAT AVEC BOX2HOME" ]'>
+                                                <text class="typewrite" data-period="2000" data-type="[ &quot;PARTENARIAT AVEC BOX2HOME&quot; ]">
                                                     <text class="wrap">PARTENARIAT AVEC BOX2HOME</text>
                                                 </text>
                                             </b>
@@ -211,7 +213,7 @@
                                         </b>
                                         ou toute autre ville,
                                         <b>Digimoov</b>
-                                        vous accompagne pour obtenir votre attestation en capacité de transport léger de marchandises.
+                                        vous accompagne pour obtenir votre attestation en capacité de transport léger de marchandises moins de 3t5.
                                     </h2>
                                 </div>
                             </div>
@@ -248,12 +250,10 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-5 col-md-5 ">
                                         <img data-src="/digimoov_website_templates/static/img/compressed/formation en ligne.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/formation en ligne.jpg" alt="Apprenant en formation à distance" class="img-responsive img img-fluid lazy pos-formation" title="formation en ligne" />
                                     </div>
                                 </div>
-
                                 <!--2 L'examen de l'attestation de capacité de transport-->
                                 <div class="row wrap-feature-26 m-t-40 p-t-30">
                                     <div class="col-md-6 col-md-6 ">
@@ -261,9 +261,7 @@
                                     </div>
                                     <div class="col-md-6 align-self-center">
                                         <div class="max-box">
-                                            <h3 class="title m-t-20 text-beta fs-30">
-                L'examen de l'attestation de capacité de transport
-                                            </h3>
+                                            <h3 class="fs-30 m-t-20 text-beta title"> L'examen de l'attestation de capacité de transport de marchandise moins de 3t5&amp;nbsp;</h3>
                                             <p class="custom_p m-t-30 black-v fs-18 lheight24">
                                                 Après avoir terminé la formation, vous devez passer un examen de
                 3 heures en présentiel. Les questions de l'examen sont proposées
@@ -389,7 +387,7 @@
                                         <br />
                                     </p>
                                     <div class="s_btn text-left pt16 pb16" data-name="Button">
-                                        <a href="/amazon" class="btn btn-outline-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip733359">En savoir plus</a>
+                                        <a href="/amazon" class="btn btn-outline-primary" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip733359">En savoir plus</a>
                                     </div>
                                     <mci-extension data-role="overlay" />
                                 </div>
@@ -464,7 +462,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="col-md-4 wrap-feature7-box">
                                         <img class="rounded img-responsive lazy voiture-pos" data-src="/digimoov_website_templates/static/img/Transport léger  sur voiture.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger  sur voiture.png" alt="Voiture pour Transport léger de marchandise" title="Transport léger  sur voiture" />
                                         <div class="m-t-30">
@@ -479,8 +476,6 @@
                   </p>
                                         </div>
                                     </div>
-
-
                                     <div class="col-md-4 wrap-feature7-box">
                                         <img class="rounded img-responsive lazy camionnette-pos" data-src="/digimoov_website_templates/static/img/Transport léger sur camionnette 3,5t.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger sur camionnette 3,5t.png" alt="camionnette pour transport -3.5t PTAC" title="Transport léger sur camionnette 3,5t" />
                                         <div class="m-t-30">
@@ -494,12 +489,10 @@
                   </p>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </section>
-
                     <!-- TrustBox widget - Carousel -->
                     <!-- TrustBox widget - Carousel -->
                     <section class="mt96 mb48">
@@ -509,9 +502,7 @@
                             </div>
                         </div>
                     </section>
-
                     <!-- End TrustBox widget -->
-
                     <!-- End TrustBox widget -->
                     <!-- Pricing table-->
                     <div id="pricing-table-trustpilot-partner">
@@ -522,12 +513,10 @@
                                     <br />
                                     Inscrivez-vous dès maintenant !
                                 </h2>
-
                             </div>
                         </div>
                         <div class="container">
                             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
                             <div class="row content-center">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="card border-0 shadow border-pricing">
@@ -536,13 +525,11 @@
                                             <p>
                                                 <strong class="pack-name"> SOLO </strong>
                                             </p>
-
                                             <p class="blink-soft solo-non-cpf">
                                                 <t t-if="not promo">
                                                     <b>NON ELIGIBLE AU CPF</b>
                                                 </t>
                                                 <b> &amp;nbsp; &amp;nbsp;</b>
-
                                             </p>
                                             <br />
                                         </div>
@@ -605,7 +592,6 @@
                                                             </li>
                                                         </ul>
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
-
                                                             <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0" t-if="not promo">
                                                                 <span t-esc="round(product.list_price)" />
                                                                 <span t-esc="product.currency_id.symbol" />
@@ -618,7 +604,6 @@
                                                                     </t>
                                                                 </t>
                                                             </p>
-
                                                         </p>
                                                         <t t-if="promo and promo.name!='box2home'">
                                                             <p class="text-center font-weight-bolder text-secondary" style="margin-top:68px">
@@ -661,11 +646,9 @@
                                         </div> -->
                                         <div class="text-center text-white border-0 pack-wrap">
                                             <br />
-
                                             <p>
                                                 <strong class="pack-name"> PRO </strong>
                                             </p>
-
                                             <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
                                             <p class="blink-soft">
                                                 <b>Éligible au CPF</b>
@@ -703,7 +686,6 @@
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Assistance par mail</b>
                                                             </li>
-
                                                             <li class="mb-4">
                                                                 <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip96053" />
                                                                 <b>Séances de groupe en Live avec les formateurs</b>
@@ -731,19 +713,15 @@
                         &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                         &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
                                                             </li>
-
                                                             <li>
                                                                 <i />
                                                             </li>
                                                         </ul>
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
-
                                                             <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
                                                                 <span t-esc="round(product.list_price)" />
-
                                                                 <span t-esc="product.currency_id.symbol" />
                                                             </p>
-
                                                         </p>
                                                         <t t-if="promo and promo.name!='box2home'">
                                                             <p class="text-center font-weight-bolder text-secondary">
@@ -755,7 +733,6 @@
                                                         <p class="paiement medium text-center font-weight-bolder text-secondary">
                     Paiement 1 ou 2 fois
                                             </p>
-
                                                         <br />
                                                         <div style="max-width:95%;">
                                                             <button class="btn-inscription btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();">
@@ -786,7 +763,6 @@
                                         </div> -->
                                         <div class="text-center text-white border-0 pack-wrap">
                                             <br />
-
                                             <p>
                                                 <strong class="pack-name"> PREMIUM </strong>
                                             </p>
@@ -824,7 +800,6 @@
                                                                 <b>Assistance par mail</b>
                                                                 <br />
                                                             </li>
-
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Séances en Live avec un tuteur dédié</b>
@@ -856,12 +831,10 @@
                                                             </li>
                                                         </ul>
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
-
                                                             <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
                                                                 <span t-esc="round(product.list_price)" />
                                                                 <span t-esc="product.currency_id.symbol" />
                                                             </p>
-
                                                         </p>
                                                         <t t-if="promo">
                                                             <p class="text-center font-weight-bolder text-secondary">
@@ -873,7 +846,6 @@
                                                         <p class="paiement medium text-center font-weight-bolder text-secondary">
                     Paiement 1 ou 3 fois
                                             </p>
-
                                                         <br />
                                                         <button class="btn-inscription btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();">
                     Je m'inscris
@@ -887,10 +859,7 @@
                             </div>
                         </div>
                         <!-- End pricing table-->
-
-
                     </div>
-
                     <section class="bg-200 clients p-m-0 pb16 pt16 s_references" data-name="References">
                         <div class="row-res">
                             <div>
@@ -928,7 +897,6 @@
                                     <img width="100" height="100" data-src="/digimoov_website_templates/static/img/partners/Amazon.png" data-srcsafari="/digimoov_website_templates/static/img/partners/Amazon.png" style="width:176px" class="img img-fluid lazy joel-icon" alt="Logo partenaire amazon" title="Amazon partenaire Digimoov" />
                                 </a>
                             </div>
-
                             <div>
                                 <a href="https://prev-easy.com/">
                                     <img width="150" height="100" data-src="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" data-srcsafari="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" class="img img-fluid lazy prev-easy-icon" alt="preveasy partenaire digimoov" />
@@ -936,7 +904,6 @@
                             </div>
                         </div>
                     </section>
-
                     <section class="s_faq_collapse pt48 pb32" data-name="Accordion">
                         <div class="container">
                             <div class="row s_col_no_bgcolor">
@@ -1015,8 +982,6 @@
                         </div>
                     </section>
                 </div>
-
-
                 <!-- page coursier2roues-->
                 <div id="coursier2roues" t-if="partenaire=='coursier2roues'">
                     <style>
@@ -1253,19 +1218,10 @@
                         <div class="row" style="place-content: center">
                             <div class="col-lg-6 col-md-8 col-sm-12">
                                 <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                    <div class="text-center text-white border-0" style="
-                background-color: #6e209f;
-                border-top-left-radius: 25px;
-                border-top-right-radius: 25px;
-                padding-bottom: 14px;
-              ">
+                                    <div class="text-center text-white border-0" style="                 background-color: #6e209f;                 border-top-left-radius: 25px;                 border-top-right-radius: 25px;                 padding-bottom: 14px;               ">
                                         <br />
                                         <p>
-                                            <span style="
-                    font-size: 30px;
-                    font-weight: 700;
-                    padding-bottom: 10px;
-                  ">SOLO</span>
+                                            <span style="                     font-size: 30px;                     font-weight: 700;                     padding-bottom: 10px;                   ">SOLO</span>
                                         </p>
                                         <br />
                                     </div>
@@ -1388,9 +1344,9 @@
                         </div>
                     </section>
                 </div>
-
-
             </div>
         </xpath>
+
+
     </template>
 </odoo>
