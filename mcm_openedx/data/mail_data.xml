@@ -111,11 +111,7 @@
                     </style>
 
                     <h1>Bonjour coach ${object.coach_name.name}</h1>
-                    <div style="text-align: center;">
-                        <img class="img-email"
-                             width="30%"
-                             src="https://media.giphy.com/media/bSMLwVLkZV2CkRXfhr/giphy.gif"/>
-                    </div>
+
                     <h2>
 
                         Ton équipe s’agrandit 💪!
@@ -126,6 +122,11 @@
                         Bon travail ! ✨
 
                     </h2>
+                    <div style="text-align: center;">
+                        <img class="img-email"
+                             width="30%"
+                             src="https://media.giphy.com/media/Jir7AUookJHIVb5aYM/giphy.gif"/>
+                    </div>
                 </div>
             </field>
             <field name="lang">${object.lang}</field>
