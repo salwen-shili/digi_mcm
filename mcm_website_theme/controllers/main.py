@@ -2153,7 +2153,7 @@ class AuthSignupHome(AuthSignupHome):
                                 phone = '0' + str(phone)
                                 user = request.env["res.users"].sudo().search(
                                     [("phone", "like", phone.replace(' ', ''))], limit=1)
-        if not user :
+        # if not user :
 
         if user:
             multiplication_note_exam_blan = int(q114_resultatExamen) * 5
