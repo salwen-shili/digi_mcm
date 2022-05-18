@@ -770,139 +770,13 @@ class Routes_Site(http.Controller):
             'exam_state': exam_state,
             'cartIsEmpty': cartIsEmpty,
             'boltWrongProduct': boltWrongProduct,
+            'partner': request.env.user.partner_id,
         }
 
         if request.website.id == 2:
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_bolt", values)
-
-    @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
-    def webhook_integration_examen(self, **kw):
-        """ Récuprer et multiplier * 5 la note de l'examen blanc de jotform.
-            Afficher la note multiplier sur la fiche client apres une recherche basé sur email"""
-        rawRequest = json.loads(kw['rawRequest'])
-        q169_email = str(rawRequest['q169_email'])
-        _logger.info("q169_email of webhook_integration_examen: %s" % (q169_email))
-        _logger.info("RawRequest Webhoook examen blanc %s" % (rawRequest))
-        q114_resultatExamen = rawRequest['q114_resultatExamen']
-        _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
-        user = request.env['res.users'].sudo().search(
-            [('email', "=", str(q169_email).lower().replace(' ', ''))], limit=1)
-        if user:
-            multiplication_note_exam_blan = int(q114_resultatExamen) * 5
-            user.note_exam = int(multiplication_note_exam_blan)
-            _logger.info("user.note_exam SUR LA FICHE CLIENT %s" % (user.note_exam))
-
-            if 'q96_mesProduits' in rawRequest:
-                _logger.info("True Condition")
-                intent_id = str(rawRequest['q96_mesProduits']['intent_id'])
-                acquirer = request.env['payment.acquirer'].sudo().search(
-                    [('name', 'ilike', 'stripe'), ('company_id', "=", 1)])
-                _logger.info("acquirer : %s" % (str(acquirer)))
-                if acquirer:
-                    _logger.info("acquirer : %s" % (str(acquirer.stripe_secret_key)))
-                    response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (intent_id),
-                                            auth=(str(acquirer.stripe_secret_key), ''))
-                    json_data = json.loads(response.text)
-                    _logger.info("json_data : %s" % (json_data))
-                    succeed = False
-                    if 'status' in json_data:
-                        if json_data['status'] == 'succeeded':
-                            succeed = True
-                    ville = str(rawRequest['q154_selectionnezVotre'])
-                    date_exam = str(rawRequest['q156_datesExamen'])
-                    date_exam = datetime.strptime(date_exam, '%d/%m/%Y').date()
-                    _logger.info("date_exam : %s" % (str(date_exam)))
-                    ville_id = request.env['session.ville'].sudo().search(
-                        [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1)
-                    product_id = request.env['product.product'].sudo().search(
-                        [('default_code', "=", 'vtc_bolt')], limit=1)
-                    module_id = False
-                    if ville_id and date_exam and product_id:
-                        module_id = request.env['mcmacademy.module'].sudo().search(
-                            [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
-                             ('date_exam', "=", date_exam), ('product_id', "=", product_id.id),
-                             ('session_id.number_places_available', '>', 0)], limit=1)
-                    _logger.info("succeed : %s" % (str(succeed)))
-                    _logger.info("module_id : %s" % (str(module_id.name)))
-                    if succeed:
-                        partner = user.partner_id
-                        so = request.env['sale.order'].sudo().create({
-                            'partner_id': partner.id,
-                            'company_id': 1,
-                            'website_id': 1,
-                        })
-                        request.env['sale.order.line'].sudo().create({
-                            'name': product_id.name,
-                            'product_id': product_id.id,
-                            'product_uom_qty': 1,
-                            'product_uom': product_id.uom_id.id,
-                            'price_unit': product_id.list_price,
-                            'order_id': so.id,
-                            'tax_id': product_id.taxes_id,
-                            'company_id': 1
-                        })
-                        pricelist = request.env['product.pricelist'].sudo().search(
-                            [('company_id', '=', 1), ('name', "=", 'bolt')])
-                        if pricelist:
-                            so.pricelist_id = pricelist.id
-                        so.action_confirm()
-                        if module_id:
-                            so.partner_id.session_ville_id = module_id.session_ville_id
-                            so.partner_id.date_examen_edof = module_id.date_exam
-                            so.module_id = module_id.id
-                            so.session_id = module_id.session_id.id
-                        moves = so._create_invoices(final=True)
-                        for move in moves:
-                            _logger.info("webhook_stripe_move : %s" % (str(move)))
-                            move.type_facture = 'web'
-                            move.module_id = so.module_id.id
-                            move.session_id = so.session_id.id
-                            move.post()
-                            journal_id = move.journal_id.id
-                            acquirer = request.env['payment.acquirer'].sudo().search(
-                                [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
-                            if acquirer:
-                                journal_id = acquirer.journal_id.id
-                            payment_method = request.env['account.payment.method'].sudo().search(
-                                [('code', 'ilike', 'electronic')], limit=1)
-                            payment = request.env['account.payment'].sudo().create(
-                                {'payment_type': 'inbound',
-                                 'payment_method_id': payment_method.id,
-                                 'partner_type': 'customer',
-                                 'partner_id': move.partner_id.id,
-                                 'amount': so.amount_total,
-                                 'currency_id': move.currency_id.id,
-                                 'payment_date': move.create_date,
-                                 'journal_id': journal_id,
-                                 'communication': False,
-                                 'payment_token_id': False,
-                                 'invoice_ids': [(6, 0, move.ids)],
-                                 })
-                        so.action_cancel()
-                        so.sale_action_sent()
-                        so.partner_id.sudo().write({
-                            'mcm_session_id': module_id.session_id.id,
-                            'module_id': module_id.id,
-                        })
-                        so.partner_id.statut = 'won'
-                        list = []
-                        for partner in module_id.session_id.client_ids:
-                            list.append(partner.id)
-                            list.append(so.partner_id.id)
-                            module_id.session_id.write({'client_ids': [(6, 0, list)]})
-                        _logger.info("so : %s" % (str(so.id)))
-                        if so.env.su:
-                            # sending mail in sudo was meant for it being sent from superuser
-                            so = so.with_user(SUPERUSER_ID)
-                        template_id = so._find_mail_template(force_confirmation_template=True)
-                        if template_id and so:
-                            so.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                        composition_mode='comment',
-                                                                                        email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
-                        return werkzeug.utils.redirect(str(rawRequest['q96_mesProduits']['return_url']), 301)
-        return True
 
     @http.route('/formation-taxi-Paris', type='http', auth='public', website=True)
     def taxi_paris(self):
@@ -2181,7 +2055,7 @@ class AuthSignupHome(AuthSignupHome):
                     short_url = url
                     if link_tracker:
                         short_url = link_tracker.short_url
-                    body = "Vous pouvez se connecter via ce lien %s en utilisant votre adresse email %s avec ce mot de passe %s" % (
+                    body = "Bonjour %s voici les identifiants de connexion pour vous connecter sur le site de MCM Academy. login " % (
                         short_url, odoo_contact.email, password)
                     if body:
                         composer = request.env['sms.composer'].with_context(
@@ -2202,4 +2076,196 @@ class AuthSignupHome(AuthSignupHome):
         odoo_contact = res_user.sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
         odoo_contact.ipjotform = ipjotform
         odoo_contact.bolt = True
+        return True
+
+    @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
+    def webhook_integration_examen(self, **kw):
+        """ Récuprer et multiplier * 5 la note de l'examen blanc de jotform.
+            Afficher la note multiplier sur la fiche client apres une recherche basé sur email"""
+        rawRequest = json.loads(kw['rawRequest'])
+        q169_email = str(rawRequest['q169_email'])
+        tel = str(rawRequest['q172_numeroDe172'])
+
+        _logger.info("q169_email of webhook_integration_examen: %s" % (q169_email))
+        _logger.info("RawRequest Webhoook examen blanc %s" % (rawRequest))
+        q114_resultatExamen = rawRequest['q114_resultatExamen']
+        _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
+        user = request.env['res.users'].sudo().search(
+            [('email', "=", str(q169_email).lower().replace(' ', ''))], limit=1)
+        if not user :
+            if tel:
+                user = request.env["res.users"].sudo().search(
+                    [("phone", "=", str(tel))], limit=1)  # search contact using phone
+                if not user:
+                    phone_number = str(tel).replace(' ', '')
+                    if '+33' not in str(
+                            phone_number):  # check if jotform webhook send the number of client with +33
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' not in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 33xxxxxxx)
+                            phone = '+' + str(tel)
+                            user = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not user:
+                                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[
+                                                                                                              8:10] + ' ' + phone[
+                                                                                                                            10:]
+                                user = request.env["res.users"].sudo().search([("phone", "=", phone)],
+                                                                                      limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 33 x xx xx xx)
+                            phone = '+' + str(tel)
+                            user = request.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' not in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 07xxxxxx)
+                            user = request.env["res.users"].sudo().search([("phone", "=", str(tel))],
+                                                                                  limit=1)
+                            print('user5 :', user.partner_id.name)
+                            if not user:
+                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[
+                                                                                                              8:]
+                                user = request.env["res.users"].sudo().search([("phone", "=", phone)],
+                                                                                      limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' in str(
+                                tel):  # check if jotform webhook send the number of client in this format (number_format: 07 xx xx xx)
+                            user = request.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", str(tel)), str(tel).replace(' ', '')], limit=1)
+                    else:  # check if jotform webhook send the number of client with+33
+                        if ' ' not in str(tel):
+                            phone = str(tel)
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                             6:8] + ' ' + phone[
+                                                                                                          8:10] + ' ' + phone[
+                                                                                                                        10:]
+                            user = request.env["res.users"].sudo().search(
+                                [("phone", "=", phone)], limit=1)
+                        if not user:
+                            user = request.env["res.users"].sudo().search(
+                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                            if not user:
+                                phone = str(phone_number)
+                                phone = phone[3:]
+                                phone = '0' + str(phone)
+                                user = request.env["res.users"].sudo().search(
+                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
+        if not user :
+
+        if user:
+            multiplication_note_exam_blan = int(q114_resultatExamen) * 5
+            user.note_exam = int(multiplication_note_exam_blan)
+            _logger.info("user.note_exam SUR LA FICHE CLIENT %s" % (user.note_exam))
+
+            if 'q96_mesProduits' in rawRequest:
+                _logger.info("True Condition")
+                intent_id = str(rawRequest['q96_mesProduits']['intent_id'])
+                acquirer = request.env['payment.acquirer'].sudo().search(
+                    [('name', 'ilike', 'stripe'), ('company_id', "=", 1)])
+                _logger.info("acquirer : %s" % (str(acquirer)))
+                if acquirer:
+                    _logger.info("acquirer : %s" % (str(acquirer.stripe_secret_key)))
+                    response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (intent_id),
+                                            auth=(str(acquirer.stripe_secret_key), ''))
+                    json_data = json.loads(response.text)
+                    _logger.info("json_data : %s" % (json_data))
+                    succeed = False
+                    if 'status' in json_data:
+                        if json_data['status'] == 'succeeded':
+                            succeed = True
+                    ville = str(rawRequest['q154_selectionnezVotre'])
+                    date_exam = str(rawRequest['q156_datesExamen'])
+                    date_exam = datetime.strptime(date_exam, '%d/%m/%Y').date()
+                    _logger.info("date_exam : %s" % (str(date_exam)))
+                    ville_id = request.env['session.ville'].sudo().search(
+                        [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1)
+                    product_id = request.env['product.product'].sudo().search(
+                        [('default_code', "=", 'vtc_bolt')], limit=1)
+                    module_id = False
+                    if ville_id and date_exam and product_id:
+                        module_id = request.env['mcmacademy.module'].sudo().search(
+                            [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
+                             ('date_exam', "=", date_exam), ('product_id', "=", product_id.id),
+                             ('session_id.number_places_available', '>', 0)], limit=1)
+                    _logger.info("succeed : %s" % (str(succeed)))
+                    _logger.info("module_id : %s" % (str(module_id.name)))
+                    if succeed:
+                        partner = user.partner_id
+                        so = request.env['sale.order'].sudo().create({
+                            'partner_id': partner.id,
+                            'company_id': 1,
+                            'website_id': 1,
+                        })
+                        request.env['sale.order.line'].sudo().create({
+                            'name': product_id.name,
+                            'product_id': product_id.id,
+                            'product_uom_qty': 1,
+                            'product_uom': product_id.uom_id.id,
+                            'price_unit': product_id.list_price,
+                            'order_id': so.id,
+                            'tax_id': product_id.taxes_id,
+                            'company_id': 1
+                        })
+                        pricelist = request.env['product.pricelist'].sudo().search(
+                            [('company_id', '=', 1), ('name', "=", 'bolt')])
+                        if pricelist:
+                            so.pricelist_id = pricelist.id
+                        so.action_confirm()
+                        if module_id:
+                            so.partner_id.session_ville_id = module_id.session_ville_id
+                            so.partner_id.date_examen_edof = module_id.date_exam
+                            so.module_id = module_id.id
+                            so.session_id = module_id.session_id.id
+                        moves = so._create_invoices(final=True)
+                        for move in moves:
+                            _logger.info("webhook_stripe_move : %s" % (str(move)))
+                            move.type_facture = 'web'
+                            move.module_id = so.module_id.id
+                            move.session_id = so.session_id.id
+                            move.post()
+                            journal_id = move.journal_id.id
+                            acquirer = request.env['payment.acquirer'].sudo().search(
+                                [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
+                            if acquirer:
+                                journal_id = acquirer.journal_id.id
+                            payment_method = request.env['account.payment.method'].sudo().search(
+                                [('code', 'ilike', 'electronic')], limit=1)
+                            payment = request.env['account.payment'].sudo().create(
+                                {'payment_type': 'inbound',
+                                 'payment_method_id': payment_method.id,
+                                 'partner_type': 'customer',
+                                 'partner_id': move.partner_id.id,
+                                 'amount': so.amount_total,
+                                 'currency_id': move.currency_id.id,
+                                 'payment_date': move.create_date,
+                                 'journal_id': journal_id,
+                                 'communication': False,
+                                 'payment_token_id': False,
+                                 'invoice_ids': [(6, 0, move.ids)],
+                                 })
+                        so.action_cancel()
+                        so.sale_action_sent()
+                        so.partner_id.sudo().write({
+                            'mcm_session_id': module_id.session_id.id,
+                            'module_id': module_id.id,
+                        })
+                        so.partner_id.statut = 'won'
+                        list = []
+                        for partner in module_id.session_id.client_ids:
+                            list.append(partner.id)
+                            list.append(so.partner_id.id)
+                            module_id.session_id.write({'client_ids': [(6, 0, list)]})
+                        _logger.info("so : %s" % (str(so.id)))
+                        if so.env.su:
+                            # sending mail in sudo was meant for it being sent from superuser
+                            so = so.with_user(SUPERUSER_ID)
+                        template_id = so._find_mail_template(force_confirmation_template=True)
+                        if template_id and so:
+                            so.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                        composition_mode='comment',
+                                                                                        email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
+                        return werkzeug.utils.redirect(str(rawRequest['q96_mesProduits']['return_url']), 301)
         return True
