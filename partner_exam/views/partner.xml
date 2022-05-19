@@ -18,7 +18,7 @@
                     </div>
                     <div attrs="{'invisible': [('company_id', '=', 2)]}">
                         <label for="note_exam" string="Note d'examen blanc :">Note d'examen blanc</label>
-                        <field name="note_exam"/>
+                        <field name="note_exam"/><span>/100</span>
                     </div>
                 </div>
             </xpath>
