@@ -785,7 +785,7 @@ class Routes_Site(http.Controller):
         partner = request.env.user.partner_id
         res = {'response': []}
         res['response'] += [{'id': partner.id, 'name': partner.name,'fisrtname': partner.firstname,'lastName': partner.lastName, 'email': partner.email, 'phone': partner.phone,'street': partner.street,'city': partner.city,'zip': partner.zip, 'email': partner.email,
-                             'note_exam': partner.note_exam, 'ipJotForm': partner.ipjotform}]
+                             'note_exam': partner.note_exam, 'ipJotForm': partner.ipjotform,'evalbox':partner.numero_evalbox}]
         partner = json.dumps(res)
         return partner
     @http.route('/formation-taxi-Paris', type='http', auth='public', website=True)
