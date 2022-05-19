@@ -418,6 +418,7 @@ class NoteExamen(models.Model):
             self.update_boolean_values()
         return res
 
+    @api.model
     def create(self, values):
         res = super(NoteExamen, self).create(values)
         res.compute_moyenne_generale()
