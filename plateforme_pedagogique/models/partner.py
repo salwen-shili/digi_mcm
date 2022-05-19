@@ -45,7 +45,7 @@ class partner(models.Model):
     toDeactivateAt = fields.Char("Date de suppression")
     passage_exam = fields.Boolean("Examen passé", default=False)
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
-    second_email= fields.Char(string='Email secondaire')
+    second_email= fields.Char(string='Email secondaire',track_visibility='always')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
     is_pole_emploi=fields.Boolean(string="Pole Emploi") #champ pour distinguer le mode de financement cpf+pole emploi
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
@@ -502,7 +502,6 @@ class partner(models.Model):
                     if not partner.lang :
                         partner.lang = 'fr_FR'
                     _logger.info('avant email %s' % str(partner.name))
-
                     template_id = int(self.env['ir.config_parameter'].sudo().get_param(
                         'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
                     template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
@@ -540,39 +539,61 @@ class partner(models.Model):
                                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
                                     vals)
                             """Si message d'erreur "unavailableEmails" on ajoute #digimoov à l'email pour qu'il sera ajouté sur la plateforme 360"""
-                            email = partner.email
-                            position = email.index('@')
-                            new_email = email[:position] + '#digimoov' + email[position:]
+                            old_email = partner.email
+                            position = old_email.index('@')
+                            new_email = old_email[:position] + '#digimoov' + old_email[position:]
                             _logger.info("new email %s" % new_email)
                             partner.email=new_email
+                            partner.second_email=new_email
                             """Changer format du numero de tel pour envoyer le sms """
-                            # if self.partner_id.phone:
-                            #     phone = str(self.partner_id.phone.replace(' ', ''))[-9:]
-                            #     phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
-                            #                                                                 3:5] + ' ' + phone[
-                            #                                                                              5:7] + ' ' + phone[
-                            #                                                                                           7:]
-                            #     self.partner_id.phone = phone
-                            """envoyer SMS pour informer l'apprenant de sa nouvelle adresse email """
-                            new_login=partner.email
-                            # body = "DIGIMOOV. Afin d'accéder à notre formation vous devez vous connecter avec votre nouvelle adresse email : %s" % (
-                            #     new_login)
-                            # if body:
-                            #     composer = self.env['sms.composer'].with_context(
-                            #         default_res_model='res.partner',
-                            #         default_res_id=self.partner_id.id,
-                            #         default_composition_mode='comment',
-                            #     ).sudo().create({
-                            #         'body': body,
-                            #         'mass_keep_log': True,
-                            #         'mass_force_send': False,
-                            #         'use_active_domain': False,
-                            #     })
-                            #     composer.action_send_sms()  # we send sms to client contains link to register in cma.
-                            #     if self.partner_id.phone:
-                            #         self.partner_id.phone = '0' + str(self.partner_id.phone.replace(' ', ''))[
-                            #                                       -9:]
-
+                            if "#" in partner.email:
+                                _logger.info("send mail and sms %s" %str(partner.email))
+                                if partner.phone:
+                                    phone = str(partner.phone.replace(' ', ''))[-9:]
+                                    phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                                3:5] + ' ' + phone[
+                                                                                                             5:7] + ' ' + phone[
+                                                                                                                          7:]
+                                    partner.phone = phone
+                                """envoyer SMS pour informer l'apprenant de sa nouvelle adresse email """
+                                new_login=partner.email
+                                name=partner.name
+                                body = "DIGIMOOV. Cher(e) %s, nous vous informons que nous avons procédé pour des raisons de sécurité au changement de votre adresse email. Pour plus d'infos, veuillez consulter votre boite mail. " % (
+                                    name)
+                                if body:
+                                    composer = self.env['sms.composer'].with_context(
+                                        default_res_model='res.partner',
+                                        default_res_id=partner.id,
+                                        default_composition_mode='comment',
+                                    ).sudo().create({
+                                        'body': body,
+                                        'mass_keep_log': True,
+                                        'mass_force_send': False,
+                                        'use_active_domain': False,
+                                    })
+                                    composer.action_send_sms()  # we send sms to client contains link to register in cma.
+                                    if partner.phone:
+                                        partner.phone = '0' + str(partner.phone.replace(' ', ''))[
+                                                                      -9:]
+                                """envoyer email pour informer l'apprenant de sa nouvelle adresse email """
+                                # partner.email=old_email
+                                mail_compose_message = self.env['mail.compose.message']
+                                mail_compose_message.fetch_sendinblue_template()
+                                template_id = self.env['mail.template'].sudo().search(
+                                    [('subject', "=", "Avis de changement de Login"),
+                                     ('model_id', "=", 'res.partner')],
+                                    limit=1)  #we get the mail template from sendinblue
+                                if template_id:
+                                    message = self.env['mail.message'].sudo().search(
+                                        [('subject', "=", "Avis de changement de Login"),
+                                         ('model', "=", 'res.partner'), ('res_id', "=", partner.id)],
+                                        limit=1)  #check if we have already sent the email
+                                    if not message:
+                                        partner.with_context(force_send=True).message_post_with_template(
+                                            template_id.id,
+                                            composition_mode='comment',
+                                            )  # send the email to client
+                                    partner.email=partner.second_email
                         # else:
 
                             # vals = {
@@ -1804,6 +1825,82 @@ class partner(models.Model):
             print(date_debut,datetime.today())
         if date_debut <= datetime.today():
             print('else' )
+
+    def test_email(self):
+        partner=self.env['res.partner'].sudo().search([('email',"=","tmejri@digimoov.fr")],limit=1)
+        """Si message d'erreur "unavailableEmails" on ajoute #digimoov à l'email pour qu'il sera ajouté sur la plateforme 360"""
+        print('partner',partner)
+        old_email = partner.email
+        position = old_email.index('@')
+        new_email = old_email[:position] + '#digimoov' + old_email[position:]
+        _logger.info("new email %s" % new_email)
+        partner.email = new_email
+        partner.second_email = new_email
+        """Changer format du numero de tel pour envoyer le sms """
+        if "#" in partner.email:
+            _logger.info("send mail and sms %s" % str(partner.email))
+            if partner.phone:
+                phone = str(partner.phone.replace(' ', ''))[-9:]
+                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                            3:5] + ' ' + phone[
+                                                                                         5:7] + ' ' + phone[
+                                                                                                      7:]
+                partner.phone = phone
+            """envoyer SMS pour informer l'apprenant de sa nouvelle adresse email """
+            new_login = partner.email
+            name = partner.name
+            body = "DIGIMOOV. Cher(e) %s, nous vous informons que nous avons procédé pour des raisons de sécurité au changement de votre adresse email. Pour plus d'infos, veuillez consulter votre boite mail. " % (
+                name)
+            if body:
+                sms=self.env['mail.message'].sudo().search([('partner_ids','in',partner.id),
+                                                            ('message_type','=',"sms"),
+                                                            ('body','=',body)])
+                state=False
+                if sms:
+                    print('sms')
+                    for motification_id in sms.notification_ids:
+                        if notification_id.notification_status=="sent":
+                            state=True
+                if not state:
+                    print('sms false ')
+                    composer = self.env['sms.composer'].with_context(
+                        default_res_model='res.partner',
+                        default_res_id=partner.id,
+                        default_composition_mode='comment',
+                    ).sudo().create({
+                        'body': body,
+                        'mass_keep_log': True,
+                        'mass_force_send': False,
+                        'use_active_domain': False,
+                    })
+                    composer.action_send_sms()  # we send sms to client contains link to register in cma.
+            if partner.phone:
+                partner.phone = '0' + str(partner.phone.replace(' ', ''))[
+                                      -9:]
+            """envoyer email pour informer l'apprenant de sa nouvelle adresse email """
+            # partner.email = old_email
+            print('partttttt',partner.email,old_email)
+            mail_compose_message = self.env['mail.compose.message']
+            mail_compose_message.fetch_sendinblue_template()
+            template_id = self.env['mail.template'].sudo().search(
+                [('subject', "=", "Avis de changement de Login"),
+                 ('model_id', "=", 'res.partner')],
+                limit=1)  # we get the mail template from sendinblue
+            if template_id:
+                print("template",template_id)
+                message = self.env['mail.message'].sudo().search(
+                    [('subject', "=", "Avis de changement de Login"),
+                     ('model', "=", 'res.partner'), ('res_id', "=", partner.id)],
+                    limit=1)  # check if we have already sent the email
+                if not message:
+                    print('hiiii')
+                    partner.with_context(force_send=True).message_post_with_template(
+                        template_id.id,
+                        composition_mode='comment',
+                    )  # send the email to client
+                # partner.email = new_email
+
+    
 
 
 
