@@ -4,10 +4,12 @@ window.onload = function () {
   if (
     !(
       url.includes('/web') ||
+      url.includes('/my/home') ||
       url.includes('/reset_password') ||
       url.includes('/bolt') ||
       url.includes('/inscription-bolt') ||
-      url.includes('/examen-blanc')
+      url.includes('/examen-blanc') ||
+      url.includes('/my/orders/')
     )
   ) {
     Calendly.initBadgeWidget({

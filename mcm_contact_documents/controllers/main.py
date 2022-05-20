@@ -124,6 +124,7 @@ class CustomerPortal(CustomerPortal):
             'bolt_contract_uri': bolt_contract_uri,
             'exam_state': exam_state,
             'boltWrongProduct': boltWrongProduct,
+            'partner': request.env.user.partner_id,
         })
         return values
 
