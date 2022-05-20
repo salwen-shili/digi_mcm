@@ -11,9 +11,6 @@ const financement = document.getElementById('payment');
 const financementUrl = `/shop/cart?${Math.floor(Math.random() * 100)}`;
 const validation = document.getElementById('confirm');
 const validationUrl = `/validation?${Math.floor(Math.random() * 100)}`;
-const btnContinuer = document.getElementById('button-continuer');
-
-const textDescription = document.getElementById('textDescription');
 
 const messageAction = {
   coordonnees: {
@@ -142,6 +139,7 @@ const finishBolt = {
 document.addEventListener('DOMContentLoaded', function () {
   const finished = document.getElementById('finished');
   const documents = document.getElementById('personal');
+
   //calendly inputs
   if (document.getElementById('rdvIsBooked')) {
     rdvIsBooked = document.getElementById('rdvIsBooked').value;
@@ -308,10 +306,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // textDescription.innerHTML = p.note_exam + p.exam_state;
             break;
           case 'failed':
-            btnContinuer.setAttribute(
-              'href',
-              `/inscription-bolt?nom[first]=${p.fisrtname}&nom[last]=${p.lastName}&email=${p.email}&numeroDe93=${p.phone}&adresse=${p.street}&adresse[city]=${p.city}&adresse[postal]=${p.zip}`
-            );
+            btnContinuer.setAttribute('href', `https://www.lamaisonduchauffeurvtc.fr/`);
             btnContinuer.innerHTML = `\n <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
                                             <i class="material-icons right">send</i>
                                             voir l'offre
