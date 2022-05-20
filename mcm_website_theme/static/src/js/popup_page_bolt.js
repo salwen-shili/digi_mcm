@@ -130,7 +130,7 @@ function setPopup() {
           );
           textDescription.innerHTML =
             'Vous pouvez charger vos documents en cliquant sur continuer.';
-        } else if (p.ipJotForm == true) {
+        } else if (p.ipJotForm != false) {
           // bolt client has an account completed with jotform and need to pass his exam
           btnContinuer.setAttribute(
             'href',
