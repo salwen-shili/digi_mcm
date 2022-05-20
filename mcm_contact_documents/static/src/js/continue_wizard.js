@@ -34,7 +34,7 @@ const messageAction = {
   },
   boltIsSigned: {
     isSignedBolt_registredCMA: {
-      message: `Bravo ! Votre inscription à la formation et à l'examen est complète, vous pouvons commencez votre formation en cliquant sur le bouton suivant.`,
+      message: `Bravo ! Votre inscription à la formation et à l'examen est complète, vous pouvez commencer votre formation en cliquant sur le bouton suivant.`,
       url: '/',
     },
     isSignedBolt_notRegistredCMA: {

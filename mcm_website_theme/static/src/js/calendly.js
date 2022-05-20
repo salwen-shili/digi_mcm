@@ -8,7 +8,8 @@ window.onload = function () {
       url.includes('/reset_password') ||
       url.includes('/bolt') ||
       url.includes('/inscription-bolt') ||
-      url.includes('/examen-blanc')
+      url.includes('/examen-blanc') ||
+      url.includes('/my/orders/')
     )
   ) {
     Calendly.initBadgeWidget({
