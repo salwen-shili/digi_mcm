@@ -110,12 +110,15 @@ class partner(models.Model):
 
             print('user date supp', table_user['toDeactivateAt'])
             times = ''
+            time=0
             # Ecrire le temps récupéré de 360 sous forme d'heures et minutes
             if 'totalTimeSpentInMinutes' in table_user:
                 time = int(table_user['totalTimeSpentInMinutes'])
                 heure = time // 60
                 minute = time % 60
                 times = str(heure) + 'h' + str(minute) + 'min'
+                _logger.info("heuurs %s" %str(times))
+
                 if (heure == 0):
                     times = str(minute) + 'min'
                     print(times)
@@ -593,7 +596,7 @@ class partner(models.Model):
                                             template_id.id,
                                             composition_mode='comment',
                                             )  # send the email to client
-                                    partner.email=partner.second_email
+
                         # else:
 
                             # vals = {
@@ -1900,6 +1903,46 @@ class partner(models.Model):
                     )  # send the email to client
                 # partner.email = new_email
 
+    def test_api(self):
+
+        company_id = '56f5520e11d423f46884d593'
+        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+        headers = CaseInsensitiveDict()
+        headers["Accept"] = "*/*"
+        params = (
+            ('company', '56f5520e11d423f46884d593'),
+            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+        )
+        get_custom_fields=requests.get("https://digimoov.staging.360learning-dev.com/api/v1/customfields?company="+company_id+"&apiKey="+api_key,headers=headers)
+        response=get_custom_fields.json()
+        for field in response:
+
+            print('geeeett',field,field['_id'])
+            id=field['_id']
+            if field['name']=="Pack" :
+                response = requests.get('https://digimoov.staging.360learning-dev.com/api/v1/users', params=params)
+                users = response.json()
+                # Faire un parcours sur chaque user et extraire ses statistiques
+                for user in users:
+                    iduser = user['_id']
+                    email = user['mail']
+                    response_user = requests.get('https://digimoov.staging.360learning-dev.com/api/v1/users/' + iduser, params=params)
+                    table_user = response_user.json()
+                    if email == "ilahmar#test@digimoov.fr" :
+                        payload = json.dumps({
+                            "values": [
+                                {
+                                    "customFieldId": id,
+                                    "value": "Formation premium"
+                                }
+                            ]
+                        })
+                        response_post=requests.put("https://digimoov.staging.360learning-dev.com/api/v1/users/"+iduser+"/customfields?company="+company_id+"&apiKey="+api_key,data=payload,headers=headers)
+                        print('response json',response_post.json())
+                        response_user = requests.get(
+                            'https://digimoov.staging.360learning-dev.com/api/v1/users/' + iduser, params=params)
+                        table_user = response_user.json()
+                        print("user info",table_user)
     
 
 
