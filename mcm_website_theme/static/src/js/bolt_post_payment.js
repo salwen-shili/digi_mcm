@@ -13,7 +13,7 @@ var isSigned;
 function setPopup() {
   if (document.getElementById('notifMessage')) {
     notifMessage = document.getElementById('notifMessage');
-    isBolt = document.getElementById('bolt').value == 'bolt' ? true : false;
+    isBolt = document.getElementById('bolt').value == 'True' ? true : false;
     isSigned = document.getElementById('issigned').value == 'sent' ? false : true;
 
     console.log('isSigned', isSigned, isBolt);

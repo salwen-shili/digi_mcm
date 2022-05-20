@@ -4,7 +4,7 @@
         <xpath expr="//div[@id='sidebar_content']" position="inside">
             <!-- <script t-if="sale_order" type="text/javascript" src="/digimoov_website_templates/static/src/js/contract_notif.js"></script> -->
             <input type="hidden" id='issigned' t-if="sale_order" t-att-value='sale_order.state'></input>
-            <input type="hidden" id='bolt' t-if="sale_order" t-att-value='sale_order.pricelist_id.name'></input>
+            <input type="hidden" id='bolt' t-if="sale_order" t-att-value='request.env.user.partner_id.bolt'></input>
             <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
             <script t-if="sale_order" type="text/javascript" src="/mcm_website_theme/static/src/js/bolt_post_payment.js"></script>
 
