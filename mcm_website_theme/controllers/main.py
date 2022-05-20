@@ -2194,7 +2194,7 @@ class AuthSignupHome(AuthSignupHome):
 
             if 'q96_mesProduits' in rawRequest:
                 _logger.info("True Condition")
-                q96_mesProduits = raw['q96_mesProduits']
+                q96_mesProduits = rawRequest['q96_mesProduits']
                 if 'intent_id' in q96_mesProduits:
                     _logger.info("q96_mesProduits with intent : %s" % (rawRequest['q96_mesProduits']))
                     intent_id = str(rawRequest['q96_mesProduits']['intent_id'])
