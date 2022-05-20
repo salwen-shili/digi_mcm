@@ -32,7 +32,16 @@ const messageAction = {
     message: `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.`,
     url: '',
   },
-
+  boltIsSigned: {
+    isSignedBolt_registredCMA: {
+      message: `Bravo ! Votre inscription à la formation et à l'examen est complète, vous pouvons commencez votre formation en cliquant sur le bouton suivant.`,
+      url: '/',
+    },
+    isSignedBolt_notRegistredCMA: {
+      message: `Vos documents sont en cours de vérification, dès qu'ils seront validés, nous vous inscrirons à l'examen VTC auprès de la chambre des métiers.`,
+      url: '/',
+    },
+  },
   cartIsEmpty: {
     bolt: {
       message: `Votre panier est vide. Vous devez choisir votre formation en cliquant sur continuer.`,
@@ -165,46 +174,160 @@ document.addEventListener('DOMContentLoaded', function () {
   const textDescription = document.getElementById('textDescription');
   activateStep(current.value);
   //console.log('step', current.value);
+
+  //===================================================================================================================
+  //
+  //                           All Dashboard conditions starts here
+  //
+  //====================================================================================================================
+
   if (isBoltState == 'True' && boltWrongProduct == 'True') {
-    //bolt user with a wrong cart (other than bolt-vtc)
+    //bolt user with a wrong cart (other than bolt-vtc) [old process]
     btnContinuer.setAttribute('href', messageAction.boltWrongProduct.url);
     textDescription.innerHTML = messageAction.boltWrongProduct.message;
     return;
   } else if (
     isBoltState == 'True' &&
-    document.getElementById('cartIsEmpty').value == 'True' &&
-    document.getElementById('bolt_contract_uri').value == 'False'
+    document.getElementById('cartIsEmpty').value == 'True'
   ) {
     //=============================REMOVE COMMENT AFTER CORRECTING CONTRACT URI===========================================
     //bolt user with empty cart
     // btnContinuer.setAttribute('href', messageAction.cartIsEmpty.bolt.url);
     // textDescription.innerHTML = messageAction.cartIsEmpty.bolt.message;
-    //=========================================================================
+    //====================================================================================================================
 
-    if (document.getElementById('exam_state')) {
-      switch (document.getElementById('exam_state').value) {
-        case 'exam_not_passed':
-          btnContinuer.setAttribute('href', messageAction.boltExamen.notpassed.url);
+    //===================================================================================================================
+    //
+    //                          Old process => exam state replaced with note.
+    //
+    //====================================================================================================================
+    // if (document.getElementById('exam_state')) {
+    //   switch (document.getElementById('exam_state').value) {
+    //     case 'exam_not_passed':
+    //       btnContinuer.setAttribute('href', messageAction.boltExamen.notpassed.url);
+    //       textDescription.innerHTML = messageAction.boltExamen.notpassed.message;
+
+    //       break;
+    //     // case 'in_process':
+    //     //   btnContinuer.setAttribute(
+    //     //     'href',
+    //     //     messageAction.boltExamen.inProcess.url
+    //     //   );
+    //     //   textDescription.innerHTML =
+    //     //     messageAction.boltExamen.inProcess.message;
+    //     //   break;
+    //     case 'success':
+    //       btnContinuer.setAttribute('href', messageAction.boltExamen.succed.url);
+    //       textDescription.innerHTML = messageAction.boltExamen.succed.message;
+    //       break;
+    //     case 'failed':
+    //       btnContinuer.setAttribute('href', messageAction.boltExamen.failed.url);
+    //       textDescription.innerHTML = messageAction.boltExamen.failed.message;
+    //       break;
+    //   }
+    // }
+
+    const partner = partnerInformation();
+    partner.then((p) => {
+      //const url = `/inscription-bolt?nom[first]=${p.fisrtname}&nom[last]=${lastName}&email=${email}&numeroDe93=${phone}&adresse=${street}&adresse[city]=${p.city}&adresse[postal]=${zip}`;
+      console.log(p);
+
+      if (p.note_exam == false) {
+        if (p.ipJotForm == false) {
+          // bolt redirect to inscription (Old users generally)
+          btnContinuer.setAttribute(
+            'href',
+            `/inscription-bolt?nom[first]=${p.fisrtname}&nom[last]=${p.lastName}&email=${p.email}&numeroDe93=${p.phone}&adresse=${p.street}&adresse[city]=${p.city}&adresse[postal]=${p.zip}`
+          );
+          textDescription.innerHTML =
+            'Vous pouvez charger vos documents en cliquant sur continuer.';
+        } else if (p.ipJotForm == true) {
+          // bolt client has an account completed with jotform and need to pass his exam
+          btnContinuer.setAttribute(
+            'href',
+            `/examen-blanc?nom[first]=${p.fisrtname}&nom[last]=${p.lastName}&email=${p.email}&numeroDe172=${p.phone}&adresse=${p.street}&adresse[city]=${p.city}&adresse[postal]=${p.zip}`
+          );
           textDescription.innerHTML = messageAction.boltExamen.notpassed.message;
-          break;
-        // case 'in_process':
-        //   btnContinuer.setAttribute(
-        //     'href',
-        //     messageAction.boltExamen.inProcess.url
-        //   );
-        //   textDescription.innerHTML =
-        //     messageAction.boltExamen.inProcess.message;
-        //   break;
-        case 'success':
-          btnContinuer.setAttribute('href', messageAction.boltExamen.succed.url);
-          textDescription.innerHTML = messageAction.boltExamen.succed.message;
-          break;
-        case 'failed':
-          btnContinuer.setAttribute('href', messageAction.boltExamen.failed.url);
-          textDescription.innerHTML = messageAction.boltExamen.failed.message;
-          break;
+        }
+      } else if (p.note_exam != false) {
+        //bolt client has passed his exam
+        switch (p.exam_state) {
+          case 'success':
+            //Testing contract signed or not
+            console.log('isSignedState', isSignedState);
+            bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
+            console.log(bolt_contract_uri);
+            if (isSignedState == 'True') {
+              // testing is registred to CMA or not with evalbox true or false
+
+              if (p.evalbox == false) {
+                //not registred in CMA
+                textDescription.innerHTML =
+                  messageAction.boltIsSigned.isSignedBolt_notRegistredCMA.message;
+                btnContinuer.setAttribute(
+                  'href',
+                  messageAction.boltIsSigned.isSignedBolt_notRegistredCMA.url
+                );
+
+                btnContinuer.innerHTML = ``;
+              } else {
+                //is registred in CMA
+                textDescription.innerHTML =
+                  messageAction.boltIsSigned.isSignedBolt_registredCMA.message;
+                btnContinuer.setAttribute(
+                  'href',
+                  messageAction.boltIsSigned.isSignedBolt_registredCMA.url
+                );
+
+                btnContinuer.innerHTML = `\n <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
+                                            <i class="material-icons right">send</i>
+                                            Continuer
+                                        </button>`;
+              }
+            } else {
+              //constract is not signed
+              bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
+              console.log(bolt_contract_uri);
+              textDescription.innerHTML = `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat.`;
+
+              btnContinuer.setAttribute('href', bolt_contract_uri);
+
+              btnContinuer.innerHTML = `\n <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
+                                            <i class="material-icons right">send</i>
+                                            Signer mon contrat
+                                        </button>`;
+              btnAction.addEventListener('click', function () {
+                window.location.href = bolt_contract_uri;
+              });
+            }
+
+            // btnContinuer.setAttribute(
+            //   'href',
+            //   `/inscription-bolt?nom[first]=${p.fisrtname}&nom[last]=${p.lastName}&email=${p.email}&numeroDe93=${p.phone}&adresse=${p.street}&adresse[city]=${p.city}&adresse[postal]=${p.zip}`
+            // );
+            // textDescription.innerHTML = p.note_exam + p.exam_state;
+            break;
+          case 'failed':
+            btnContinuer.setAttribute(
+              'href',
+              `/inscription-bolt?nom[first]=${p.fisrtname}&nom[last]=${p.lastName}&email=${p.email}&numeroDe93=${p.phone}&adresse=${p.street}&adresse[city]=${p.city}&adresse[postal]=${p.zip}`
+            );
+            btnContinuer.innerHTML = `\n <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
+                                            <i class="material-icons right">send</i>
+                                            voir l'offre
+                                        </button>`;
+            textDescription.innerHTML = `<b>Malheureusement <b/> 🙁, vous avez obtenu une note de ${
+              p.note_exam / 5
+            }/20 ce qui n'est pas suffisant pour bénéficier de l'offre à 20€ <br/>(note minimum pour bénéficier de l'offre : 8/20).<br/>
+Mais nous avons une autre offre pour vous...`;
+
+            break;
+
+          default:
+            break;
+        }
       }
-    }
+    });
 
     return;
   } else if (
@@ -221,6 +344,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // coordonnes is the first step by default
       // we will treat exam state of bolt here any way
       //Bolt exam state : exam_not_passed, in_process, success, failed
+
       if (document.getElementById('cartIsEmpty').value == 'False') {
         //
         // if (isBoltState == 'True') {
@@ -251,10 +375,14 @@ document.addEventListener('DOMContentLoaded', function () {
         // }
         //else{}
         //
-
         // coordonnees
-        btnContinuer.setAttribute('href', messageAction.coordonnees.url);
-        textDescription.innerHTML = messageAction.coordonnees.message;
+        // const partner = partnerInformation();
+        // partner.then((p) => {
+        //   console.log(p);
+        //   alert();
+        // });
+        // btnContinuer.setAttribute('href', messageAction.coordonnees.url);
+        // textDescription.innerHTML = messageAction.coordonnees.message;
       }
 
       break;
@@ -389,7 +517,10 @@ document.addEventListener('DOMContentLoaded', function () {
     default:
       break;
   }
-
+  // var test = partnerInformation();
+  // test.then((res) => {
+  //   textDescription.innerHTML = res.name;
+  // });
   //
 });
 
@@ -435,3 +566,51 @@ function activateStep(stepValue) {
   //console.log(step);
   document.getElementsByClassName('progress-bar')[0].style.width = progressBarValue + '%';
 }
+
+//HTTP REQUEST CALL
+const partnerInformation = async () => {
+  try {
+    // const res = await JSON.parse(sendHttpRequest('POST', '/get_data_user_connected', {}));
+    const res = await sendHttpRequest('POST', '/get_data_user_connected', {});
+    const partner = JSON.parse(res.result);
+    // console.log(partner.response);
+    // console.log(partner.response[0]);
+    return partner.response[0];
+  } catch (e) {
+    return 'error partnerInformation()';
+  }
+  // const res = await sendHttpRequest('POST', '/get_data_user_connected', {});
+  // const partner = JSON.parse(res.result);
+  // console.log(partner.response);
+  // console.log(partner.response[0]);
+  // return partner.response[0];
+};
+const sendHttpRequest = (method, url, data) => {
+  const promise = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+
+    xhr.responseType = 'json';
+
+    if (data) {
+      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    }
+
+    xhr.onload = () => {
+      if (xhr.status >= 400) {
+        reject(xhr.response);
+      } else {
+        resolve(xhr.response);
+      }
+    };
+
+    xhr.onerror = () => {
+      reject('Something went wrong!');
+    };
+
+    xhr.send(JSON.stringify(data));
+  });
+  return promise;
+};
+
+//

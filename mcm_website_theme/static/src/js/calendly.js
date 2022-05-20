@@ -4,6 +4,7 @@ window.onload = function () {
   if (
     !(
       url.includes('/web') ||
+      url.includes('/my/home') ||
       url.includes('/reset_password') ||
       url.includes('/bolt') ||
       url.includes('/inscription-bolt') ||
