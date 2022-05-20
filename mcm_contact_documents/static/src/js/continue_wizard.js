@@ -39,16 +39,7 @@ const messageAction = {
       url: '/',
     },
   },
-  cartIsEmpty: {
-    bolt: {
-      message: `Votre panier est vide. Vous devez choisir votre formation en cliquant sur continuer.`,
-      url: '/bolt#pricing',
-    },
-    nonBolt: {
-      message: `Votre panier est vide. Vous devez choisir votre formation en cliquant sur continuer.`,
-      url: '/#pricing',
-    },
-  },
+
   boltWrongProduct: {
     message: `Vous n'avez pas choisit la <b>formation VTC BOLT</b>. Vous devez cliquer sur continuer pour mettre à jour votre panier`,
     url: '/bolt#pricing',
@@ -144,10 +135,11 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('rdvIsBooked')) {
     rdvIsBooked = document.getElementById('rdvIsBooked').value;
   }
-  var boltWrongProduct;
-  if (document.getElementById('boltWrongProduct')) {
-    boltWrongProduct = document.getElementById('boltWrongProduct').value;
-  }
+  // var boltWrongProduct;
+  // if (document.getElementById('boltWrongProduct')) {
+  //   alert();
+  //   boltWrongProduct = document.getElementById('boltWrongProduct').value;
+  // }
   var user_name = document.getElementById('user_name_connected').value;
   var user_email = document.getElementById('user_email_connected').value;
   //
@@ -184,10 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
     btnContinuer.setAttribute('href', messageAction.boltWrongProduct.url);
     textDescription.innerHTML = messageAction.boltWrongProduct.message;
     return;
-  } else if (
-    isBoltState == 'True' &&
-    document.getElementById('cartIsEmpty').value == 'True'
-  ) {
+  } else if (isBoltState == 'True') {
     //=============================REMOVE COMMENT AFTER CORRECTING CONTRACT URI===========================================
     //bolt user with empty cart
     // btnContinuer.setAttribute('href', messageAction.cartIsEmpty.bolt.url);
