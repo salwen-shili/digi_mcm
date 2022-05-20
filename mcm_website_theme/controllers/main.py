@@ -698,6 +698,13 @@ class Routes_Site(http.Controller):
         promo = request.env['product.pricelist'].sudo().search(
             [('company_id', '=', 1), ('name', "=", 'bolt')], limit=1)
         #
+        raw = {'slug': 'submit/221072492423045/', 'input_language': 'Français', 'q99_nom': {'first': 'Rabhi', 'last': 'Soufiene'}, 'q169_email': 'so1388@outlook.fr', 'q172_numeroDe172': '0656742350', 'q173_adresse': {'addr_line1': 'Numéro et rue: 118 avenue Jean Jaurès <br>Ville: Epinay sur Seine <br>Code Postal: 93800<br>', 'addr_line2': '', 'city': '', 'state': '', 'postal': ''}, 'q170_numeroDe': {'area': '', 'phone': ''}, 'q129_saisissezUne': 'Time remaining: 18:40', 'q100_name100': ['Une augmentation de la circulation automobile'], 'q115_controleE1': '1', 'q103_resultatE1': '2', 'q27_name27': ['Les conséquences sur'], 'q116_controleE2': '1', 'q104_resultatE2': '2', 'q102_name102': ['La baisse du niveau de qualité de l’ensemble des véhicules en circulation'], 'q117_controleE3': '1', 'q105_resultatE3': '2', 'q82_name82': ['S’observe durant les années 2000', 'Est lié à l’augmentation des prix du pétrole'], 'q118_controleE4': '1', 'q106_resultatE4': '2', 'q84_name84': ['Une baisse du trafic automobile dans les grandes agglomérations', 'Une stabilité globale du trafic automobile en France'], 'q119_controleE5': '1', 'q107_resultatE5': '2', 'q101_name101': ['Augmente'], 'q120_controleE6': '1', 'q108_resultatE6': '2', 'q86_name86': ['Prédominent, s’imposent à l’esprit'], 'q121_controleE7': '1', 'q109_resultatE7': '2', 'q87_name87': ['En une dizaine d’années'], 'q122_controleE8': '-1', 'q110_resultatE8': '0', 'q88_name88': ['Pour l’ensemble des modes de transports routiers et particulièrement pour les automobiles'], 'q123_controleE9': '1', 'q111_resultatE9': '2', 'q89_name89': ['Il est nécessaire de réduire le trafic automobile afin de préserver l’environnement', 'Les progrès technologiques apportés aux véhicules et aux carburants devraient bientôt permettre de limiter les dommages causés à l’environnement par le trafic routier'], 'q124_controleE10': '0', 'q112_resultatE10': '0', 'q114_resultatExamen': '16', 'q154_selectionnezVotre': 'Île-de-France', 'q156_datesExamen': '28/06/2022', 'payment_total_checksum': '20', 'q96_mesProduits': {'0': {'id': '1000'}, 'intent_id': 'pi_3L1UWhLl1xtmJH5H1gLsPT4p', 'customer_id': 'cus_LiwPZRFi5UayOy', 'payment_method_id': '', 'return_url': 'https://submit.jotformeu.com/complete.php?sid=5288573082428438759', 'scaClass': 'StripePaymentsSCA', 'products': [{'productName': 'Formation à distance VTC - Bolt', 'unitPrice': 20, 'currency': 'EUR', 'quantity': 1, 'subTotal': 20}], 'totalInfo': {'totalSum': 20, 'currency': 'EUR'}}, 'coupon-input': '', 'coupon': '', 'event_id': '1653047417848_221072492423045_OXOyvEf', 'browserDetails': 'BROWSER: Safari\r\nOS: iOS\r\nDEVICE: iPhone\r\nLANGUAGE: fr-FR\r\nRESOLUTION: 390*844\r\nTIMEZONE: GMT +2\r\nUSER AGENT: Mozilla/5.0 (iPhone; CPU iPhone OS 15_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1', 'stripePaymentMethodId': 'pm_1L1UWeLl1xtmJH5HQl4tItZm', 'path': '/submit/221072492423045'}
+        q96 = raw['q96_mesProduits']
+        if 'intent_id' in q96 :
+            print('exiiiiiiiiiissssssst')
+        else:
+            print('nooooooooooootttttt')
+
         # res['exam_not_passed'] = 'False'
         # res['exam_success'] = 'False'
         # if order:
@@ -2194,110 +2201,113 @@ class AuthSignupHome(AuthSignupHome):
 
             if 'q96_mesProduits' in rawRequest:
                 _logger.info("True Condition")
-                intent_id = str(rawRequest['q96_mesProduits']['intent_id'])
-                acquirer = request.env['payment.acquirer'].sudo().search(
-                    [('name', 'ilike', 'stripe'), ('company_id', "=", 1)])
-                _logger.info("acquirer : %s" % (str(acquirer)))
-                if acquirer:
-                    _logger.info("acquirer : %s" % (str(acquirer.stripe_secret_key)))
-                    response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (intent_id),
-                                            auth=(str(acquirer.stripe_secret_key), ''))
-                    json_data = json.loads(response.text)
-                    _logger.info("json_data : %s" % (json_data))
-                    succeed = False
-                    if 'status' in json_data:
-                        if json_data['status'] == 'succeeded':
-                            succeed = True
-                    ville = str(rawRequest['q154_selectionnezVotre'])
-                    date_exam = str(rawRequest['q156_datesExamen'])
-                    date_exam = datetime.strptime(date_exam, '%d/%m/%Y').date()
-                    _logger.info("date_exam : %s" % (str(date_exam)))
-                    ville_id = request.env['session.ville'].sudo().search(
-                        [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1)
-                    product_id = request.env['product.product'].sudo().search(
-                        [('default_code', "=", 'vtc_bolt')], limit=1)
-                    module_id = False
-                    if ville_id and date_exam and product_id:
-                        module_id = request.env['mcmacademy.module'].sudo().search(
-                            [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
-                             ('date_exam', "=", date_exam), ('product_id', "=", product_id.id),
-                             ('session_id.number_places_available', '>', 0)], limit=1)
-                    _logger.info("succeed : %s" % (str(succeed)))
-                    _logger.info("module_id : %s" % (str(module_id.name)))
-                    if succeed:
-                        partner = user.partner_id
-                        so = request.env['sale.order'].sudo().create({
-                            'partner_id': partner.id,
-                            'company_id': 1,
-                            'website_id': 1,
-                        })
-                        request.env['sale.order.line'].sudo().create({
-                            'name': product_id.name,
-                            'product_id': product_id.id,
-                            'product_uom_qty': 1,
-                            'product_uom': product_id.uom_id.id,
-                            'price_unit': product_id.list_price,
-                            'order_id': so.id,
-                            'tax_id': product_id.taxes_id,
-                            'company_id': 1
-                        })
-                        pricelist = request.env['product.pricelist'].sudo().search(
-                            [('company_id', '=', 1), ('name', "=", 'bolt')])
-                        if pricelist:
-                            so.pricelist_id = pricelist.id
-                        so.action_confirm()
-                        if module_id:
-                            so.partner_id.session_ville_id = module_id.session_ville_id
-                            so.partner_id.date_examen_edof = module_id.date_exam
-                            so.module_id = module_id.id
-                            so.session_id = module_id.session_id.id
-                        moves = so._create_invoices(final=True)
-                        for move in moves:
-                            _logger.info("webhook_stripe_move : %s" % (str(move)))
-                            move.type_facture = 'web'
-                            move.module_id = so.module_id.id
-                            move.session_id = so.session_id.id
-                            move.post()
-                            journal_id = move.journal_id.id
-                            acquirer = request.env['payment.acquirer'].sudo().search(
-                                [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
-                            if acquirer:
-                                journal_id = acquirer.journal_id.id
-                            payment_method = request.env['account.payment.method'].sudo().search(
-                                [('code', 'ilike', 'electronic')], limit=1)
-                            payment = request.env['account.payment'].sudo().create(
-                                {'payment_type': 'inbound',
-                                 'payment_method_id': payment_method.id,
-                                 'partner_type': 'customer',
-                                 'partner_id': move.partner_id.id,
-                                 'amount': so.amount_total,
-                                 'currency_id': move.currency_id.id,
-                                 'payment_date': move.create_date,
-                                 'journal_id': journal_id,
-                                 'communication': False,
-                                 'payment_token_id': False,
-                                 'invoice_ids': [(6, 0, move.ids)],
-                                 })
-                        so.action_cancel()
-                        so.sale_action_sent()
-                        so.partner_id.sudo().write({
-                            'mcm_session_id': module_id.session_id.id,
-                            'module_id': module_id.id,
-                        })
-                        so.partner_id.statut = 'won'
-                        list = []
-                        for partner in module_id.session_id.client_ids:
-                            list.append(partner.id)
-                            list.append(so.partner_id.id)
-                            module_id.session_id.write({'client_ids': [(6, 0, list)]})
-                        _logger.info("so : %s" % (str(so.id)))
-                        if so.env.su:
-                            # sending mail in sudo was meant for it being sent from superuser
-                            so = so.with_user(SUPERUSER_ID)
-                        template_id = so._find_mail_template(force_confirmation_template=True)
-                        if template_id and so:
-                            so.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                        composition_mode='comment',
-                                                                                        email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
-                        return werkzeug.utils.redirect(str(rawRequest['q96_mesProduits']['return_url']), 301)
+                q96_mesProduits = raw['q96_mesProduits']
+                if 'intent_id' in q96_mesProduits:
+                    _logger.info("q96_mesProduits with intent : %s" % (rawRequest['q96_mesProduits']))
+                    intent_id = str(rawRequest['q96_mesProduits']['intent_id'])
+                    acquirer = request.env['payment.acquirer'].sudo().search(
+                        [('name', 'ilike', 'stripe'), ('company_id', "=", 1)])
+                    _logger.info("acquirer : %s" % (str(acquirer)))
+                    if acquirer:
+                        _logger.info("acquirer : %s" % (str(acquirer.stripe_secret_key)))
+                        response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (intent_id),
+                                                auth=(str(acquirer.stripe_secret_key), ''))
+                        json_data = json.loads(response.text)
+                        _logger.info("json_data : %s" % (json_data))
+                        succeed = False
+                        if 'status' in json_data:
+                            if json_data['status'] == 'succeeded':
+                                succeed = True
+                        ville = str(rawRequest['q154_selectionnezVotre'])
+                        date_exam = str(rawRequest['q156_datesExamen'])
+                        date_exam = datetime.strptime(date_exam, '%d/%m/%Y').date()
+                        _logger.info("date_exam : %s" % (str(date_exam)))
+                        ville_id = request.env['session.ville'].sudo().search(
+                            [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1)
+                        product_id = request.env['product.product'].sudo().search(
+                            [('default_code', "=", 'vtc_bolt')], limit=1)
+                        module_id = False
+                        if ville_id and date_exam and product_id:
+                            module_id = request.env['mcmacademy.module'].sudo().search(
+                                [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
+                                 ('date_exam', "=", date_exam), ('product_id', "=", product_id.id),
+                                 ('session_id.number_places_available', '>', 0)], limit=1)
+                        _logger.info("succeed : %s" % (str(succeed)))
+                        _logger.info("module_id : %s" % (str(module_id.name)))
+                        if succeed:
+                            partner = user.partner_id
+                            so = request.env['sale.order'].sudo().create({
+                                'partner_id': partner.id,
+                                'company_id': 1,
+                                'website_id': 1,
+                            })
+                            request.env['sale.order.line'].sudo().create({
+                                'name': product_id.name,
+                                'product_id': product_id.id,
+                                'product_uom_qty': 1,
+                                'product_uom': product_id.uom_id.id,
+                                'price_unit': product_id.list_price,
+                                'order_id': so.id,
+                                'tax_id': product_id.taxes_id,
+                                'company_id': 1
+                            })
+                            pricelist = request.env['product.pricelist'].sudo().search(
+                                [('company_id', '=', 1), ('name', "=", 'bolt')])
+                            if pricelist:
+                                so.pricelist_id = pricelist.id
+                            so.action_confirm()
+                            if module_id:
+                                so.partner_id.session_ville_id = module_id.session_ville_id
+                                so.partner_id.date_examen_edof = module_id.date_exam
+                                so.module_id = module_id.id
+                                so.session_id = module_id.session_id.id
+                            moves = so._create_invoices(final=True)
+                            for move in moves:
+                                _logger.info("webhook_stripe_move : %s" % (str(move)))
+                                move.type_facture = 'web'
+                                move.module_id = so.module_id.id
+                                move.session_id = so.session_id.id
+                                move.post()
+                                journal_id = move.journal_id.id
+                                acquirer = request.env['payment.acquirer'].sudo().search(
+                                    [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
+                                if acquirer:
+                                    journal_id = acquirer.journal_id.id
+                                payment_method = request.env['account.payment.method'].sudo().search(
+                                    [('code', 'ilike', 'electronic')], limit=1)
+                                payment = request.env['account.payment'].sudo().create(
+                                    {'payment_type': 'inbound',
+                                     'payment_method_id': payment_method.id,
+                                     'partner_type': 'customer',
+                                     'partner_id': move.partner_id.id,
+                                     'amount': so.amount_total,
+                                     'currency_id': move.currency_id.id,
+                                     'payment_date': move.create_date,
+                                     'journal_id': journal_id,
+                                     'communication': False,
+                                     'payment_token_id': False,
+                                     'invoice_ids': [(6, 0, move.ids)],
+                                     })
+                            so.action_cancel()
+                            so.sale_action_sent()
+                            so.partner_id.sudo().write({
+                                'mcm_session_id': module_id.session_id.id,
+                                'module_id': module_id.id,
+                            })
+                            so.partner_id.statut = 'won'
+                            list = []
+                            for partner in module_id.session_id.client_ids:
+                                list.append(partner.id)
+                                list.append(so.partner_id.id)
+                                module_id.session_id.write({'client_ids': [(6, 0, list)]})
+                            _logger.info("so : %s" % (str(so.id)))
+                            if so.env.su:
+                                # sending mail in sudo was meant for it being sent from superuser
+                                so = so.with_user(SUPERUSER_ID)
+                            template_id = so._find_mail_template(force_confirmation_template=True)
+                            if template_id and so:
+                                so.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                            composition_mode='comment',
+                                                                                            email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
+                            return werkzeug.utils.redirect(str(rawRequest['q96_mesProduits']['return_url']), 301)
         return True
