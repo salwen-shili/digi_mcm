@@ -1,8 +1,6 @@
-const isSignedBolt = `Vous devrez visualiser cette vidéo, pour bien suivre le processus <a target="_blank" href="https://www.examentaxivtc.fr/#!/register" style="color:blue">d'inscription </a>
-            à la chambre des métiers et de l'artisanat.`;
-
 var message = {
-  is_signed_bolt: isSignedBolt,
+  isSignedBolt_registredCAM: `Vos documents sont en cours de vérification, dès qu'ils seront validés, nous vous inscrirons à l'examen VTC auprès de la chambre des métiers.`,
+  isSignedBolt_notRegistredCMA: `Bravo ! Votre inscription à la formation et à l'examen est complète, vous pouvons commencez votre formation en cliquant sur le bouton suivant`,
   not_signed_bolt: '',
   is_signed: '',
   not_signed:
@@ -16,8 +14,7 @@ function setPopup() {
   if (document.getElementById('notifMessage')) {
     notifMessage = document.getElementById('notifMessage');
     isBolt = document.getElementById('bolt').value == 'bolt' ? true : false;
-    isSigned =
-      document.getElementById('issigned').value == 'sent' ? false : true;
+    isSigned = document.getElementById('issigned').value == 'sent' ? false : true;
 
     console.log('isSigned', isSigned, isBolt);
 
@@ -26,6 +23,10 @@ function setPopup() {
     // surveybtn = document.querySelector('.btn');
     // btnContiner.href = surveybtn.href;
     if (isBolt && isSigned) {
+      //Test registration to CMA
+      // if (){
+
+      // }
       notifMessage.innerHTML = message['is_signed_bolt'];
 
       //set iframe
