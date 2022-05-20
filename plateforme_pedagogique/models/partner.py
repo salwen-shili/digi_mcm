@@ -1830,7 +1830,7 @@ class partner(models.Model):
             print('else' )
 
     def test_email(self):
-        partner=self.env['res.partner'].sudo().search([('email',"=","tmejri@digimoov.fr")],limit=1)
+        partner=self.env['res.partner'].sudo().search([('email',"=","ilahmar@digimoov.fr")],limit=1)
         """Si message d'erreur "unavailableEmails" on ajoute #digimoov à l'email pour qu'il sera ajouté sur la plateforme 360"""
         print('partner',partner)
         old_email = partner.email
