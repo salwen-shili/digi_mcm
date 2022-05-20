@@ -40,9 +40,10 @@ class AuthSignupHome(AuthSignupHome):
         if lang in supported_lang_codes:
             values['lang'] = lang
         values['lang'] = 'fr_FR'
-        if request.website.id == 2:
-            values['company_ids'] = [1, 2]
-            values['company_id'] = 2
+        if hasattr(request, 'website'):
+            if request.website.id == 2:
+                values['company_ids'] = [1, 2]
+                values['company_id'] = 2
         #values['step'] = "document"     
         values['step'] = "coordonnées"
         values['notification_type'] = 'email'  # make default notificatication type by email for new users
