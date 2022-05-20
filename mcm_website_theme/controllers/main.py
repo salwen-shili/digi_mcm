@@ -784,8 +784,16 @@ class Routes_Site(http.Controller):
     def get_data_user_connected(self):
         partner = request.env.user.partner_id
         res = {'response': []}
+        exam_state = False
+        if partner.bolt and partner.note_exam:
+            note = float(partner.note_exam)
+            note = note /5
+            if note >= 8 :
+                exam_state = "success"
+            else:
+                exam_state = "failed"
         res['response'] += [{'id': partner.id, 'name': partner.name,'fisrtname': partner.firstname,'lastName': partner.lastName, 'email': partner.email, 'phone': partner.phone,'street': partner.street,'city': partner.city,'zip': partner.zip, 'email': partner.email,
-                             'note_exam': partner.note_exam, 'ipJotForm': partner.ipjotform,'evalbox':partner.numero_evalbox}]
+                             'note_exam': partner.note_exam,'exam_state':exam_state, 'ipJotForm': partner.ipjotform,'evalbox':partner.numero_evalbox}]
         partner = json.dumps(res)
         return partner
     @http.route('/formation-taxi-Paris', type='http', auth='public', website=True)
