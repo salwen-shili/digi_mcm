@@ -1,17 +1,25 @@
 <odoo>
-    <record model="ir.actions.act_window" id="act_coach_graph">
+    <record model="ir.actions.act_window" id="act_coach_kanban">
         <field name="name">Coaches</field>
         <field name="res_model">mcm_openedx.coach</field>
         <field name="view_mode">kanban</field>
         <field name="view_id"
                ref="mcm_openedx.view_openacad_session_kanban"/>
     </record>
-    <record model="ir.actions.act_window" id="act_session_kanban">
-        <field name="name">Session</field>
-        <field name="res_model">mcmacademy.session</field>
-        <field name="view_mode">kanban</field>
+    <record model="ir.actions.act_window" id="act_coach_graph">
+        <field name="name">Coaches</field>
+        <field name="res_model">mcm_openedx.coach</field>
+        <field name="view_mode">graph</field>
         <field name="view_id"
-               ref="mcm_session.view_mcmacademy_session_kanban"/>
+               ref="mcm_openedx_coach_graph_view"/>
+    </record>
+    <record model="ir.actions.act_window" id="act_stat_graph">
+        <field name="name">Statestiques Cours</field>
+
+        <field name="res_model">mcm_openedx.course_stat</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id"
+               ref="mcm_openedx_stat_graph_view"/>
     </record>
     <!--My Dashboard-->
     <record model="ir.ui.view" id="mcm_openedx_dashbord">
@@ -19,27 +27,24 @@
         <field name="model">board.board</field>
         <field name="arch" type="xml">
             <form string="My Dashboard">
-                <board style="2-1">
+                <board style="3-1">
                     <column>
-                        <action
-                                string="Coaches"
-                                name="%(act_coach_graph)d"
-                                height="150"
-                                width="510"/>
 
-                        <action
-                                string="Session"
-                                name="%(act_session_kanban)d"
-                                height="150"
-                                width="510"/>
+
+                        <action name="%(act_stat_graph)d" string="Statestiques Cours" view_mode="graph"
+                                context="{'lang': 'fr_FR', 'tz': False, 'uid': 17774, 'allowed_company_ids': [1, 1, 2], 'group_by': ['idcour'], 'graph_measure': 'seconde', 'graph_mode': 'pie', 'graph_groupbys': ['idcour'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[]" modifiers="{}"/>
+
                     </column>
                     <column>
-                        <action
-                                string="Coaches"
-                                name="%(act_coach_graph)d"
-                                height="150"
-                                width="510"/>
+                        <action string="Coaches" name="%(act_coach_kanban)d"/>
+                        <action name="%(act_coach_graph)d" string="Coaches" view_mode="graph"
+                                context="{'lang': 'fr_FR', 'tz': False, 'uid': 17774, 'allowed_company_ids': [1, 2], 'group_by': [], 'graph_measure': 'nombre_apprenant', 'graph_mode': 'pie', 'graph_groupbys': ['coach_name'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[]" modifiers="{}" id="action_0_0"/>
+
+
                     </column>
+
                 </board>
             </form>
         </field>
@@ -55,6 +60,13 @@
                     arch: arch,
                 }
             }).then(dataManager.invalidate.bind(dataManager));
+
+
+            main.js    if custom_id:
+            custom_view = request.env['ir.ui.view.custom'].browse(custom_id)
+        else:
+            custom_view = request.env['ir.ui.view'].browse(view_id)
+
     },-->
     <record model="ir.actions.act_window" id="open_board_my_dash_action">
         <field name="name">My Dashboard</field>

@@ -643,14 +643,14 @@ class partner(models.Model):
                                                                   ('email', "=", 'dimopes981@bunlets.comgit staut'),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
-                self.write({'state': 'supprimé'})
-                if (partner.supprimerdemoocit == date.today()):
-                    if (partner.module_id.product_id.default_code == "taxi"):
-                        self.desinscriteTaxi(partner)
-                    elif (partner.module_id.product_id.default_code == "vtc"):
-                        self.desinscriteVTC(partner)
-                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                        self.desinscriteVTC(partner)
+                  self.write({'state': 'supprimé'})
+                # if (partner.supprimerdemoocit == date.today()):
+                #     if (partner.module_id.product_id.default_code == "taxi"):
+                #         self.desinscriteTaxi(partner)
+                #     elif (partner.module_id.product_id.default_code == "vtc"):
+                #         self.desinscriteVTC(partner)
+                #     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                #         self.desinscriteVTC(partner)
 
     def update_suppresion_old_apprenats(self):
         datee = datetime.today()
@@ -709,7 +709,7 @@ class partner(models.Model):
             'Content-Type': 'application/json',
             'X-API-KEY': api_key,
         }
-        params_wedof = (
+        params_we = (
             ('order', 'desc'),
             ('type', 'all'),
             ('state', 'accepted'),
@@ -719,10 +719,11 @@ class partner(models.Model):
         )
 
         data = '{}'
-        response = requests.get('https://www.wedof.fr/api/registrationFolders', headers=headers,
-                                params=params_wedof)
+        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                params=params_we)
 
         registrations = response.json()
+        print(response.status_code)
 
         for dossier in registrations:
             externalId = dossier['externalId']
@@ -743,6 +744,9 @@ class partner(models.Model):
             newformat = "%d/%m/%Y %H:%M:%S"
             lastupdateform = lastupdate.strftime(newformat)
             lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+
+            print('dateeeeeeeeee', today, dateFormation, certificat, idform)
+
             if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi") and (
                     dateFormation <= today):
                 """si l'apprenant est sur moocit

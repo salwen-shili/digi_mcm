@@ -50,7 +50,7 @@
             <field name="model">mcmacademy.session</field>
             <field name="arch" type="xml">
                 <kanban class="o_kanban_small_column o_kanban_project_tasks" archivable="false" on_create="quick_create"
-                        default_group_by="stage_id">
+                      filter_domain="[('company_id','=',1)]"   default_group_by="stage_id">
                     <field name="color"/>
                     <field name="stage_id"/>
                     <field name="name"/>
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="o_kanban_record_body">
                                     <div style="font-weight: bold;">
-                                        <field name="date_debut"/>
+                                        <field name="date_debut"  filter_domain="[('date_debut','like',2022)]"/>
                                         -
                                         <field name="date_fin"/>
                                     </div>
@@ -117,7 +117,7 @@
     <record model="ir.actions.act_window" id="session_list_action">
         <field name="name">Les Sessions</field>
         <field name="res_model">mcmacademy.session</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="context">{'search_default_group_company_id': 1}</field>
 
     </record>

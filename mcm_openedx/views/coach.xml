@@ -96,7 +96,7 @@
                                     <center>
                                         <a href="https://app.intercom.com/a/apps/ekqg4dck/inbox/inbox/all/conversations/186275800000486
 ">
-                                            <img class="o_kanban_image"
+                                            <img class="o_kanban_image"  alt=""
                                                  src="https://og-blog-css.outgrow.co/blog/wp-content/uploads/2019/01/robo_small.gif?x65579"
                                             />
                                         </a>
@@ -146,7 +146,7 @@
     <record model="ir.actions.act_window" id="coach_list_action">
         <field name="name">Coaches</field>
         <field name="res_model">mcm_openedx.coach</field>
-        <field name="view_mode">kanban,tree,form,graph</field>
+        <field name="view_mode">kanban,form,tree,graph</field>
 
     </record>
 

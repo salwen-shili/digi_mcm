@@ -3,6 +3,9 @@ from datetime import datetime, date, timedelta
 
 from odoo import models, fields, api
 import numpy as np
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class Cours_stat(models.Model):
@@ -63,10 +66,35 @@ class Cours_stat(models.Model):
             self.mooc_temps_passe_min = minute
             self.mooc_temps_passe_seconde = secondes
 
+    def suupprimer_bouton_fiche_client(self):
+        # cree une  liste pour stocker les duplication
+        listcourduplicated = []
+        temppassetotale = 0
+        listjour = []
+
+        print("tacheeee supppppppppppp")
+        # chercher tout personne ayant un mail existant
+        for exist in self.env['mcm_openedx.course_stat'].sudo().search(
+                [('email', "=", self.email)]):
+            # verifier si la personne ayant les meme information
+            if exist.id not in listcourduplicated:
+                # chercher mail ,idcour,jour,id
+                duplicates = self.env['mcm_openedx.course_stat'].search(
+                    [('email', "=", exist.email), ('idcour', '=', exist.idcour), ('jour', "=", exist.jour),
+                     ('id', '!=', exist.id)
+                     ])
+                # parcourir la liste de duplication
+                for dup in duplicates:
+                    # ajouter les duplicant a la liste
+                    listcourduplicated.append(dup.id)
+        # supprimer duplication
+        self.browse(listcourduplicated).sudo().unlink()
+
     def supprimer_duplicatio(self):
         # cree une  liste pour stocker les duplication
         listcourduplicated = []
-        print("tacheeee supppppppppppp")
+        _logger.info('supprimer duplicationnn %s')
+
         # chercher tout personne ayant un mail existant
         for exist in self.env['mcm_openedx.course_stat'].sudo().search(
                 [('email', "!=", False)]):
@@ -82,4 +110,10 @@ class Cours_stat(models.Model):
                     # ajouter les duplicant a la liste
                     listcourduplicated.append(dup.id)
         # supprimer duplication
+        _logger.info('dupplication %s' % str(listcourduplicated))
+
         self.browse(listcourduplicated).sudo().unlink()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
