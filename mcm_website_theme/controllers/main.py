@@ -2073,8 +2073,8 @@ class AuthSignupHome(AuthSignupHome):
                     short_url = url
                     if link_tracker:
                         short_url = link_tracker.short_url
-                    body = "Bonjour %s voici les identifiants de connexion pour vous connecter sur le site de MCM Academy. login " % (
-                        short_url, odoo_contact.email, password)
+                    body = "Bonjour %s voici les identifiants de connexion pour vous connecter sur le site de MCM Academy. login : %s , MDP : %s .Cliquez ici pour vous connecter %s" % (
+                        odoo_contact.name,str(odoo_contact.email), str(password),str(short_url))
                     if body:
                         composer = request.env['sms.composer'].with_context(
                             default_res_model='res.partner',
