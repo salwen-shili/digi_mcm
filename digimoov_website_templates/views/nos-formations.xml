@@ -6,6 +6,25 @@
 
 
             <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0;" data-oe-model="ir.ui.view" data-oe-id="7544" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]">
+
+                <style>
+                    .training-card{
+                        background: #e7e7e73d;
+                        padding: 10px;
+                        border-radius: 3%;
+                        height: 606px;
+                        margin-block-end: 11px;
+                        cursor:pointer;
+                    }
+                    .training-card:hover{
+                        background: #a0bafe33;
+                        padding: 10px;
+                        border-radius: 3%;
+                        height: 606px;
+                        cursor:pointer;
+                        
+                    }
+                </style>
                 <section class="pt32 pb32" data-name="Title">
                     <div class="container">
                         <div class="row s_nb_column_fixed">
@@ -22,8 +41,8 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 wrap-feature14-box" style="border-style: none; border-width: 0px;">
-                                    <div>
-                                        <img class="rounded img-responsive" src="/digimoov_website_templates/static/img/transport-routier/1.png" alt="bizople kit" data-original-title="" title="" aria-describedby="tooltip268757" />
+                                    <div class="training-card" data-url="/formation-capacite-transport-lourd-marchandise">
+                                        <img class="rounded img-responsive" src="/digimoov_website_templates/static/img/transport-routier/1.png" alt="Formation en capacité de transport lourd de marchandises de +3.5 tonnes" data-original-title="Formation en capacité de transport lourd de marchandises de +3.5 tonnes" title="Formation en capacité de transport lourd de marchandises de +3.5 tonnes" />
                                         <div class="m-t-30">
                                             <h5 class="font-medium">
                                                 <text class="text-beta" style="">Formation en capacité de transport lourd de marchandises de +3.5 tonnes</text>
@@ -37,8 +56,8 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 wrap-feature14-box" style="border-style: none; border-width: 0px;">
-                                    <div>
-                                        <img class="rounded img-responsive video-img" src="/digimoov_website_templates/static/img/Paris/Attestation-de-transport-léger-de-marchandises-marseille-Digimoov.png" style="width:84%" alt="bizople kit" />
+                                    <div class="training-card" data-url="/attestation-transport-leger-marchandises">
+                                        <img class="rounded img-responsive video-img" src="/digimoov_website_templates/static/img/Paris/Attestation-de-transport-léger-de-marchandises-marseille-Digimoov.png" style="width:84%" alt="Formation en capacité de transport léger de marchandises - 3.5 tonnes" title="Formation en capacité de transport léger de marchandises - 3.5 tonnes" />
                                         <div class="embed-responsive hide embed-responsive-16by9" data-animation="animated fadeIn"></div>
                                         <div class="m-t-30">
                                             <h5 class="font-medium">
@@ -49,6 +68,8 @@
                                                 Vous souhaitez entreprendre dans le transport léger de marchandise et créer votre propre entreprise ? Chez Digimoov on vous propose une formation de 102 h en ligne agréée.
                                                 <br />
                                                 + De 90% de nos stagiaires sont satisfaits !
+                                                <br />
+                                                <br />
                                             </p>
                                             <div class="s_btn text-center pt16 pb16" data-name="Button">
                                                 <a href="/attestation-transport-leger-marchandises" class="btn btn-primary o_default_snippet_text">En savoir plus</a>
@@ -57,8 +78,8 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 wrap-feature14-box" style="border-style: none; border-width: 0px;">
-                                    <div>
-                                        <img class="rounded img-responsive video-img" src="/digimoov_website_templates/static/img/habilitation-electrique/formation-habilitation-électrique.png" alt="bizople kit" data-original-title="" title="" aria-describedby="tooltip527511" />
+                                    <div class="training-card" data-url="/habilitation-electrique">
+                                        <img class="rounded img-responsive video-img" src="/digimoov_website_templates/static/img/habilitation-electrique/formation-habilitation-électrique.png" alt="Formation en habilitation électrique BS-BE manœuvres" title="Formation en habilitation électrique BS-BE manœuvres" />
                                         <div class="embed-responsive hide embed-responsive-16by9" data-animation="animated fadeIn"></div>
                                         <div class="m-t-30">
                                             <h5 class="font-medium">
@@ -79,6 +100,14 @@
                 </section>
             </div>
 
+            <script>
+                const nodeList = document.querySelectorAll('.training-card');
+                nodeList.forEach((card) =>
+                    card.addEventListener('click', () => {
+                    window.location.href = card.getAttribute('data-url');
+                    })
+                );
+            </script>
 
         </t>
     </template>
