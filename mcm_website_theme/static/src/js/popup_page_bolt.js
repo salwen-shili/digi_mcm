@@ -130,24 +130,28 @@ function setPopup() {
           );
           textDescription.innerHTML =
             'Vous pouvez charger vos documents en cliquant sur continuer.';
-        } else if (p.ipJotForm != false) {
+          openPopup();
+        } else if (p.ipJotForm == true) {
           // bolt client has an account completed with jotform and need to pass his exam
           btnContinuer.setAttribute(
             'href',
             `/examen-blanc?nom[first]=${p.fisrtname}&nom[last]=${p.lastName}&email=${p.email}&numeroDe172=${p.phone}&adresse=${p.street}&adresse[city]=${p.city}&adresse[postal]=${p.zip}`
           );
           textDescription.innerHTML = messageAction.boltExamen.notpassed.message;
+          openPopup();
         }
       } else if (p.note_exam != false) {
         //bolt client has passed his exam
         switch (p.exam_state) {
           case 'success':
+            openPopup();
             //Testing contract signed or not
 
             btnContinuer.setAttribute('href', messageAction.boltExamen.succed.url);
             textDescription.innerHTML = messageAction.boltExamen.succed.message;
             break;
           case 'failed':
+            openPopup();
             btnContinuer.setAttribute('href', `https://www.lamaisonduchauffeurvtc.fr/`);
             btnContinuer.innerHTML = `\n <button class="rkmd-btn btn-black">voir l'offre</button>`;
             textDescription.innerHTML = `<b>Malheureusement <b/> 🙁, vous avez obtenu une note de ${
@@ -161,7 +165,6 @@ Mais nous avons une autre offre pour vous...`;
             break;
         }
       }
-      openPopup();
     });
 
     //***************** */

@@ -24,7 +24,7 @@
                       <p class="para">
                         Besoin de
                         <b>formation</b>
-                        pour devenir
+                        &amp;nbsp;pour devenir
                         <b>chauffeur TAXI</b>
                         , pour
                         renouveler votre
@@ -38,8 +38,7 @@
                             &amp;nbsp;
                           </b>
                         </u>
-                        a tout pour satisfaire vos
-                    besoins en formations !
+                        a tout pour satisfaire vos besoins en formation TAXI !
                       </p>
                       <br />
                       <a class="animated-button-yellow" href="#pricing" alt="inscirption formation chauffeur taxi en ligne MCM ACADEMY" title="Inscription">
@@ -109,10 +108,8 @@
                     <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">
                       Afin d'exercer la profession de
                       <b>conducteur taxi</b>
-                      en toute légalité, vous devez avoir votre carte professionnelle délivrée par la préfecture de votre région. Pour l'obtenir vous devez impérativement, passer
-                      <a href="/examen-vtc-taxi-moto-taxi" style="color: #000b58;
-    font-weight: 600;
-    text-decoration: underline !important;">un examen auprès de la CMA</a>
+                      en toute légalité, vous devez avoir votre carte professionnelle TAXI délivrée par la préfecture de votre région. Pour l'obtenir vous devez impérativement, passer
+                      <a href="/examen-vtc-taxi-moto-taxi" style="color: #000b58;     font-weight: 600;     text-decoration: underline !important;">un examen auprès de la CMA</a>
                       &amp;nbsp;et le réussir. Cet examen est composé d’une
                       <b>épreuve d'admission</b>
                       (théorique) et une
@@ -293,12 +290,12 @@
                   <p class="para" style="word-break: break-word; position: relative; z-index: 0;">
                     <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">
                       Ce que nous vous proposons chez MCM Academy, c’est la
-                      <b>garantie d'une formation en ligne théorique de qualité</b>
+                      <b>garantie d'une formation Taxi en ligne théorique de qualité</b>
                       , qui vous permettra non seulement d’acquérir de nouvelles connaissances, mais également de réussir votre
-                      <b>préparation à l’ examen</b>
+                      <b>préparation à l’ examen Taxi</b>
                       . Les
                       <b>cours</b>
-                      de la formation seront axés sur la
+                      de la formation Taxi seront axés sur la
                       <b>réglementation </b>
                       du transport public , la
                       <b> sécurité</b>
@@ -344,7 +341,7 @@
                       Depuis mai 2017, il est possible pour un stagiaire qui a réussi l’examen VTC de
                       <b>tronc commun</b>
                       de bénéficier d’une
-                      <b>passerelle VTC-TAXI</b>
+                      <b>passerelle VTC TAXI</b>
                       . Il devra donc passer
                       <b>deux modules théoriques</b>
                       : Une épreuve « F (T) » portant sur la
@@ -375,7 +372,7 @@
                   <h3>RENOUVELLEMENT CARTE PROFESSIONNELLE TAXI</h3>
                   <p class="para">
                     Cette
-                    <b>formation</b>
+                    <b>formation&amp;nbsp;Taxi</b>
                     est obligatoire et doit être suivie tous les 5 ans. Nous vous
                 conseillons d'effectuer un stage de remise à niveau dans un
                     <b>centre de formation agréé</b>
@@ -390,7 +387,7 @@
                   </p>
                 </div>
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.png" class="img img-fluid mx-auto lazy" alt="Chauffeur vtc femme mcm academy" />
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.png" class="img img-fluid mx-auto" alt="Chauffeur vtc femme mcm academy" />
                 </div>
               </div>
             </div>
@@ -410,7 +407,9 @@
                       <b>prix</b>
                       assez abordable de 680 euros avec possibilité de
                       <b>financement</b>
-                      en
+                      &amp;nbsp;de votre
+                      <b>formation Taxi</b>
+                      par&amp;nbsp;
                       <b>CPF</b>
                       (en mobilisation de votre compte de formation personnel) pour la
                       <b>formation initiale</b>
@@ -540,7 +539,5 @@
         </div>
       </div>
     </t>
-
-
   </template>
 </odoo>
