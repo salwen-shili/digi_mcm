@@ -833,10 +833,10 @@
                 <section class="container pt40 pb32 section-padding">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-md-4 col-sm-12 text-center mb-4 mb-md-0">
-                            <img class="img-fluid lazy pos-qualopi" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi" />
+                            <img class="img-fluid lazy pos-qualopi" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="Digimoov centre agrée par Qualiopi" alt="qualiopi" />
                         </div>
                         <div class="col-md-4 col-sm-12 text-center mb-4 mb-md-0">
-                            <img class="img-fluid lazy" style="width: 110px" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="France relance-MCM Academy" alt="France relance-MCM Academy" />
+                            <img class="img-fluid lazy" style="width: 110px" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="France relance-Digimoov" alt="France relance-Digimoov" />
                         </div>
                     </div>
                 </section>
