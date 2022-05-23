@@ -2111,7 +2111,7 @@ class AuthSignupHome(AuthSignupHome):
         q114_resultatExamen = rawRequest['q114_resultatExamen']
         _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
         user = request.env['res.users'].sudo().search(
-            [('email', "=", str(q169_email).lower().replace(' ', ''))], limit=1)
+            [('email', "=", str(q169_email).lower().replace(' ', ''))], limit=1) #search user using email
         if not user :
             if tel:
                 user = request.env["res.users"].sudo().search(
@@ -2185,7 +2185,7 @@ class AuthSignupHome(AuthSignupHome):
             qcontext['password'] = password
             qcontext['name'] = str(firstname) + ' ' + str(lastName)
             request.uid = odoo.SUPERUSER_ID
-            self.do_signup(qcontext)
+            self.do_signup(qcontext) #call function do_signup() to create account with password to client
             odoo_contact = res_user.sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
         if user:
             multiplication_note_exam_blan = int(q114_resultatExamen) * 5
@@ -2197,26 +2197,26 @@ class AuthSignupHome(AuthSignupHome):
                 q96_mesProduits = rawRequest['q96_mesProduits']
                 if 'intent_id' in q96_mesProduits:
                     _logger.info("q96_mesProduits with intent : %s" % (rawRequest['q96_mesProduits']))
-                    intent_id = str(rawRequest['q96_mesProduits']['intent_id'])
+                    intent_id = str(rawRequest['q96_mesProduits']['intent_id']) # get intent_id for jotform bolt payment intent
                     acquirer = request.env['payment.acquirer'].sudo().search(
                         [('name', 'ilike', 'stripe'), ('company_id', "=", 1)])
                     _logger.info("acquirer : %s" % (str(acquirer)))
                     if acquirer:
                         _logger.info("acquirer : %s" % (str(acquirer.stripe_secret_key)))
                         response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (intent_id),
-                                                auth=(str(acquirer.stripe_secret_key), ''))
+                                                auth=(str(acquirer.stripe_secret_key), ''))  # get response of payment intent using stripe api
                         json_data = json.loads(response.text)
                         _logger.info("json_data : %s" % (json_data))
                         succeed = False
                         if 'status' in json_data:
-                            if json_data['status'] == 'succeeded':
+                            if json_data['status'] == 'succeeded':  # check if the payment state is succeeded
                                 succeed = True
                         ville = str(rawRequest['q154_selectionnezVotre'])
                         date_exam = str(rawRequest['q156_datesExamen'])
                         date_exam = datetime.strptime(date_exam, '%d/%m/%Y').date()
                         _logger.info("date_exam : %s" % (str(date_exam)))
                         ville_id = request.env['session.ville'].sudo().search(
-                            [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1)
+                            [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1) #search session ville using ville sended from jotform
                         product_id = request.env['product.product'].sudo().search(
                             [('default_code', "=", 'vtc_bolt')], limit=1)
                         module_id = False
@@ -2224,7 +2224,7 @@ class AuthSignupHome(AuthSignupHome):
                             module_id = request.env['mcmacademy.module'].sudo().search(
                                 [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
                                  ('date_exam', "=", date_exam), ('product_id', "=", product_id.id),
-                                 ('session_id.number_places_available', '>', 0)], limit=1)
+                                 ('session_id.number_places_available', '>', 0)], limit=1) #search module in mcmacademy module using ville_id date_exam and product_id of bolt and session has available places
                         _logger.info("succeed : %s" % (str(succeed)))
                         _logger.info("module_id : %s" % (str(module_id.name)))
                         if succeed:
@@ -2233,7 +2233,7 @@ class AuthSignupHome(AuthSignupHome):
                                 'partner_id': partner.id,
                                 'company_id': 1,
                                 'website_id': 1,
-                            })
+                            }) #create sale order ( contract ) if payment is succeed
                             request.env['sale.order.line'].sudo().create({
                                 'name': product_id.name,
                                 'product_id': product_id.id,
@@ -2245,7 +2245,7 @@ class AuthSignupHome(AuthSignupHome):
                                 'company_id': 1
                             })
                             pricelist = request.env['product.pricelist'].sudo().search(
-                                [('company_id', '=', 1), ('name', "=", 'bolt')])
+                                [('company_id', '=', 1), ('name', "=", 'bolt')]) # search the pricelist bolt
                             if pricelist:
                                 so.pricelist_id = pricelist.id
                             so.action_confirm()
@@ -2254,13 +2254,13 @@ class AuthSignupHome(AuthSignupHome):
                                 so.partner_id.date_examen_edof = module_id.date_exam
                                 so.module_id = module_id.id
                                 so.session_id = module_id.session_id.id
-                            moves = so._create_invoices(final=True)
+                            moves = so._create_invoices(final=True) # create invoice from sale_order
                             for move in moves:
                                 _logger.info("webhook_stripe_move : %s" % (str(move)))
                                 move.type_facture = 'web'
                                 move.module_id = so.module_id.id
                                 move.session_id = so.session_id.id
-                                move.post()
+                                move.post() # post the created invoice
                                 journal_id = move.journal_id.id
                                 acquirer = request.env['payment.acquirer'].sudo().search(
                                     [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
@@ -2280,14 +2280,14 @@ class AuthSignupHome(AuthSignupHome):
                                      'communication': False,
                                      'payment_token_id': False,
                                      'invoice_ids': [(6, 0, move.ids)],
-                                     })
-                            so.action_cancel()
-                            so.sale_action_sent()
+                                     }) #create payment for invoice
+                            so.action_cancel() #cancel contract
+                            so.sale_action_sent()  #resend contract
                             so.partner_id.sudo().write({
                                 'mcm_session_id': module_id.session_id.id,
                                 'module_id': module_id.id,
                             })
-                            so.partner_id.statut = 'won'
+                            so.partner_id.statut = 'won' # change state of client to won
                             list = []
                             for partner in module_id.session_id.client_ids:
                                 list.append(partner.id)
