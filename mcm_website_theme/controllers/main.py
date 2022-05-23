@@ -2064,6 +2064,8 @@ class AuthSignupHome(AuthSignupHome):
                     odoo_contact.phone = phone
                     url = "https://www.mcm-academy.fr/web/login"
                     link_tracker = request.env['link.tracker'].sudo().search([('url', "=", url)])
+                    base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
+                    base_url = 'https://www.mcm-academy.fr' # change base url to mcm-academy before create link tracker
                     if not link_tracker:
                         # generate short link using module of link tracker
                         link_tracker = request.env['link.tracker'].sudo().create({
