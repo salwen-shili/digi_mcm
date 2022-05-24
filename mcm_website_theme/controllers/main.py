@@ -2223,7 +2223,7 @@ class AuthSignupHome(AuthSignupHome):
                                 phone = '0' + str(phone)
                                 user = request.env["res.users"].sudo().search(
                                     [("phone", "like", phone.replace(' ', ''))], limit=1)
-        if not user:
+        if not user :
             user_not_found = True
             qcontext = {}
             password = self.get_random_string(8)
@@ -2236,17 +2236,15 @@ class AuthSignupHome(AuthSignupHome):
             qcontext['password'] = password
             qcontext['name'] = str(firstname) + ' ' + str(lastName)
             request.uid = odoo.SUPERUSER_ID
-            # call function do_signup() to create account with password to client
-            self.do_signup(qcontext)
-            user = request.env['res.users'].sudo().search(
-                [('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+            self.do_signup(qcontext) #call function do_signup() to create account with password to client
+            user = request.env['res.users'].sudo().search([('login', "=", str(q169_email).lower().replace(' ', ''))], limit=1)
         if not user:
             _logger.info("user not created using do signup")
             user = request.env['res.users'].with_context({'no_reset_password': True}).sudo().create({
                 'name': qcontext['name'],
-                'login': email,
+                'login': q169_email,
                 'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
-                'email': email,
+                'email': q169_email,
                 'phone': tel,
                 'notification_type': 'email',
                 'step': "financement",
