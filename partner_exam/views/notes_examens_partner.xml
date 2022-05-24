@@ -55,6 +55,8 @@
                                 <field name="date_exam"/>
                                 <field name="epreuve_theorique"/>
                                 <field name="epreuve_pratique"/>
+                                <field name="date_exam_pratique"></field>
+
                             </group>
                             <group name="statut_mcm" string="Statut" attrs="{'invisible': [('company_id', '=', 2)]}">
                                 <field name="presence_mcm"/>

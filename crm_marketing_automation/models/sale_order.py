@@ -24,9 +24,13 @@ class Sale(models.Model):
         res = super(Sale, self).create(vals)
         print('drafttt', vals)
         partner_id = vals['partner_id']
+        pricelist_id=vals['pricelist_id']
+        product=self.env['product.pricelist'].sudo().search([('id',"=",pricelist_id)])
+        if product:
+            print("product",product.name,self.order_line)
         partner = self.env['res.partner'].sudo().search([('id', '=', partner_id)], limit=1)
         print('partner', partner)
-        if partner and not partner.bolt:
+        if partner and partner.statut_cpf != "validated" and not partner.bolt:
             self.change_stage_lead("Prospection", partner)
             # for so in self.order_line:
             print("order line",self.pricelist_id.name)
@@ -42,18 +46,21 @@ class Sale(models.Model):
                 partner = self.partner_id
                 print('sent', partner)
                 print('change statut', partner.mcm_session_id.id, partner.session_id.id)
-                if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id) and not partner.bolt:
+                if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id) and not partner.bolt and self.module_id.product_id.default_code != "vtc_bolt":
+                    print('contrat signé')
                     self.change_stage_lead("Contrat non Signé", partner)
-                if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id) and partner.bolt:
+                if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id) and (partner.bolt or self.module_id.product_id.default_code == "vtc_bolt"):
+                    print('bolt contrat signé')
                     self.change_stage_lead("Bolt-Contrat non Signé", partner)
             if vals['state'] == 'sale':
                 partner = self.partner_id
                 print('sale', partner)
                 print('change statut', partner.mcm_session_id.id, partner.session_id.id)
                 if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id):
-                    if not partner.bolt:
+                    if not partner.bolt and self.module_id.product_id.default_code != "vtc_bolt":
                         self.change_stage_lead("Contrat Signé", partner)
                     else :
+
                         """classer les apprenant de bolt"""
                         self.change_stage_lead("Bolt-Contrat Signé", partner)
         return record
