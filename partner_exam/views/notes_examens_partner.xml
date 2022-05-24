@@ -55,6 +55,8 @@
                                 <field name="date_exam"/>
                                 <field name="epreuve_theorique"/>
                                 <field name="epreuve_pratique"/>
+                                <field name="date_exam_pratique"></field>
+
 
 
                             </group>

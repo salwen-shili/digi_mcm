@@ -89,6 +89,7 @@ class NoteExamen(models.Model):
         string="Présence")
 
     date_resultat_officiel=fields.Date("Date Résultat officiel")
+    date_exam_pratique = fields.Date("Date Examen Pratique")
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):
         for rec in self.env['info.examen'].search([]):
