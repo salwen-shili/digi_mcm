@@ -759,7 +759,8 @@ class Routes_Site(http.Controller):
         if order and not order.order_line:
             cartIsEmpty = "True"
         boltWrongProduct = "False"
-        request.env.user.partner_id.bolt = True
+        if not request.website.is_public_user():
+            request.env.user.partner_id.bolt = True
         if order and order.order_line:
             for line in order.order_line:
                 if order.partner_id.bolt == True and line.product_id.default_code != "vtc_bolt":
@@ -2053,7 +2054,29 @@ class AuthSignupHome(AuthSignupHome):
             qcontext['name'] = str(firstname) + ' ' + str(lastName)
             request.uid = odoo.SUPERUSER_ID
             self.do_signup(qcontext)
-            odoo_contact = res_user.sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+            odoo_contact = request.env['res.users'].sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+            if not odoo_contact:
+                _logger.info("user not created using do signup")
+                odoo_contact = request.env['res.users'].with_context({'no_reset_password': True}).sudo().create({
+                    'name': qcontext['name'],
+                    'login': email,
+                    'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
+                    'email': email,
+                    'phone': phone,
+                    'notification_type': 'email',
+                    'step': "financement",
+                    'website_id': 1,
+                    'company_ids': [1, 2],
+                    'company_id': 1,
+                })
+                if odoo_contact :
+                    _logger.info("user created using create user")
+                    odoo_contact.street = street if street else False
+                    odoo_contact.zip = zipcode if zipcode else False
+                    odoo_contact.city = city if city else False
+                    odoo_contact.firstname = firstname if firstname else False
+                    odoo_contact.lastName = lastName if lastName else False
+                    odoo_contact.password = password
             if odoo_contact:
                 odoo_contact.street = street if street else False
                 odoo_contact.step = "financement"
@@ -2093,7 +2116,7 @@ class AuthSignupHome(AuthSignupHome):
                         composer._action_send_sms()  # we send sms to client contains link of reset password.
                         if odoo_contact.phone:
                             odoo_contact.phone = '0' + str(odoo_contact.phone.replace(' ', ''))[-9:]
-        odoo_contact = res_user.sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+        odoo_contact = request.env['res.users'].sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
         odoo_contact.ipjotform = ipjotform
         odoo_contact.bolt = True
         return True
@@ -2112,6 +2135,7 @@ class AuthSignupHome(AuthSignupHome):
         _logger.info("RawRequest Webhoook examen blanc %s" % (rawRequest))
         q114_resultatExamen = rawRequest['q114_resultatExamen']
         _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
+        user_not_found = False
         user = request.env['res.users'].sudo().search(
             [('email', "=", str(q169_email).lower().replace(' ', ''))], limit=1) #search user using email
         if not user :
@@ -2176,6 +2200,7 @@ class AuthSignupHome(AuthSignupHome):
                                 user = request.env["res.users"].sudo().search(
                                     [("phone", "like", phone.replace(' ', ''))], limit=1)
         if not user :
+            user_not_found = True
             qcontext = {}
             password = self.get_random_string(8)
             qcontext['login'] = q169_email
@@ -2188,121 +2213,185 @@ class AuthSignupHome(AuthSignupHome):
             qcontext['name'] = str(firstname) + ' ' + str(lastName)
             request.uid = odoo.SUPERUSER_ID
             self.do_signup(qcontext) #call function do_signup() to create account with password to client
-            odoo_contact = res_user.sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+            user = request.env['res.users'].sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+        if not user:
+            _logger.info("user not created using do signup")
+            user = request.env['res.users'].with_context({'no_reset_password': True}).sudo().create({
+                'name': qcontext['name'],
+                'login': email,
+                'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
+                'email': email,
+                'phone': tel,
+                'notification_type': 'email',
+                'step': "financement",
+                'website_id': 1,
+                'company_ids': [1, 2],
+                'company_id': 1,
+            })
         if user:
             multiplication_note_exam_blan = int(q114_resultatExamen) * 5
             user.note_exam = int(multiplication_note_exam_blan)
             _logger.info("user.note_exam SUR LA FICHE CLIENT %s" % (user.note_exam))
-
-            if 'q96_mesProduits' in rawRequest:
+            if user_not_found : #if user not found and created in this function we create password for the user and send it into sms
+                password = self.get_random_string(8)
+                user.password = password
+                odoo_contact = user
+                if odoo_contact.phone:
+                    phone = str(odoo_contact.phone.replace(' ', ''))[
+                            -9:]  # change phone to this format to be accepted in sms +33XXXXXXXXX
+                    phone = '+33' + phone
+                    odoo_contact.phone = phone
+                    url = "https://www.mcm-academy.fr/web/login"
+                    link_tracker = request.env['link.tracker'].sudo().search([('url', "=", url)])
+                    base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
+                    base_url = 'https://www.mcm-academy.fr' # change base url to mcm-academy before create link tracker
+                    if not link_tracker:
+                        # generate short link using module of link tracker
+                        link_tracker = request.env['link.tracker'].sudo().create({
+                            'title': 'Website login %s' % (odoo_contact.name),
+                            'url': url,
+                        })
+                    short_url = url
+                    if link_tracker:
+                        short_url = link_tracker.short_url
+                    body = "Bonjour %s voici les identifiants de connexion pour vous connecter sur le site de MCM Academy. login : %s , MDP : %s .Cliquez ici pour vous connecter %s" % (
+                        odoo_contact.name,str(odoo_contact.email), str(password),str(short_url))
+                    if body:
+                        composer = request.env['sms.composer'].with_context(
+                            default_res_model='res.partner',
+                            default_res_id=odoo_contact.partner_id.id,
+                            default_composition_mode='comment',
+                        ).sudo().create({
+                            'body': body,
+                            'mass_keep_log': True,
+                            'mass_force_send': False,
+                            'use_active_domain': True,
+                            'active_domain': [('id', 'in', odoo_contact.partner_id.ids)]
+                        })
+                        composer = composer.with_user(SUPERUSER_ID)
+                        composer._action_send_sms()  # we send sms to client contains link of reset password.
+                        if odoo_contact.phone:
+                            odoo_contact.phone = '0' + str(odoo_contact.phone.replace(' ', ''))[-9:]
+            if 'q96_mesProduits' in rawRequest :
                 _logger.info("True Condition")
                 q96_mesProduits = rawRequest['q96_mesProduits']
-                if 'intent_id' in q96_mesProduits:
-                    _logger.info("q96_mesProduits with intent : %s" % (rawRequest['q96_mesProduits']))
-                    intent_id = str(rawRequest['q96_mesProduits']['intent_id']) # get intent_id for jotform bolt payment intent
-                    acquirer = request.env['payment.acquirer'].sudo().search(
-                        [('name', 'ilike', 'stripe'), ('company_id', "=", 1)])
-                    _logger.info("acquirer : %s" % (str(acquirer)))
-                    if acquirer:
-                        _logger.info("acquirer : %s" % (str(acquirer.stripe_secret_key)))
-                        response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (intent_id),
-                                                auth=(str(acquirer.stripe_secret_key), ''))  # get response of payment intent using stripe api
-                        json_data = json.loads(response.text)
-                        _logger.info("json_data : %s" % (json_data))
-                        succeed = False
-                        if 'status' in json_data:
-                            if json_data['status'] == 'succeeded':  # check if the payment state is succeeded
-                                succeed = True
-                        ville = str(rawRequest['q154_selectionnezVotre'])
-                        date_exam = str(rawRequest['q156_datesExamen'])
-                        date_exam = datetime.strptime(date_exam, '%d/%m/%Y').date()
-                        _logger.info("date_exam : %s" % (str(date_exam)))
-                        ville_id = request.env['session.ville'].sudo().search(
-                            [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1) #search session ville using ville sended from jotform
-                        product_id = request.env['product.product'].sudo().search(
-                            [('default_code', "=", 'vtc_bolt')], limit=1)
-                        module_id = False
-                        if ville_id and date_exam and product_id:
-                            module_id = request.env['mcmacademy.module'].sudo().search(
-                                [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
-                                 ('date_exam', "=", date_exam), ('product_id', "=", product_id.id),
-                                 ('session_id.number_places_available', '>', 0)], limit=1) #search module in mcmacademy module using ville_id date_exam and product_id of bolt and session has available places
-                        _logger.info("succeed : %s" % (str(succeed)))
-                        _logger.info("module_id : %s" % (str(module_id.name)))
-                        if succeed:
-                            partner = user.partner_id
-                            so = request.env['sale.order'].sudo().create({
-                                'partner_id': partner.id,
-                                'company_id': 1,
-                                'website_id': 1,
-                            }) #create sale order ( contract ) if payment is succeed
-                            request.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 1
-                            })
-                            pricelist = request.env['product.pricelist'].sudo().search(
-                                [('company_id', '=', 1), ('name', "=", 'bolt')]) # search the pricelist bolt
-                            if pricelist:
-                                so.pricelist_id = pricelist.id
-                            so.action_confirm()
-                            if module_id:
-                                so.partner_id.session_ville_id = module_id.session_ville_id
-                                so.partner_id.date_examen_edof = module_id.date_exam
-                                so.module_id = module_id.id
-                                so.session_id = module_id.session_id.id
-                            moves = so._create_invoices(final=True) # create invoice from sale_order
-                            for move in moves:
-                                _logger.info("webhook_stripe_move : %s" % (str(move)))
-                                move.type_facture = 'web'
-                                move.module_id = so.module_id.id
-                                move.session_id = so.session_id.id
-                                move.post() # post the created invoice
-                                journal_id = move.journal_id.id
-                                acquirer = request.env['payment.acquirer'].sudo().search(
-                                    [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
-                                if acquirer:
-                                    journal_id = acquirer.journal_id.id
-                                payment_method = request.env['account.payment.method'].sudo().search(
-                                    [('code', 'ilike', 'electronic')], limit=1)
-                                payment = request.env['account.payment'].sudo().create(
-                                    {'payment_type': 'inbound',
-                                     'payment_method_id': payment_method.id,
-                                     'partner_type': 'customer',
-                                     'partner_id': move.partner_id.id,
-                                     'amount': so.amount_total,
-                                     'currency_id': move.currency_id.id,
-                                     'payment_date': move.create_date,
-                                     'journal_id': journal_id,
-                                     'communication': False,
-                                     'payment_token_id': False,
-                                     'invoice_ids': [(6, 0, move.ids)],
-                                     }) #create payment for invoice
-                            so.action_cancel() #cancel contract
-                            so.sale_action_sent()  #resend contract
-                            so.partner_id.sudo().write({
-                                'mcm_session_id': module_id.session_id.id,
-                                'module_id': module_id.id,
-                            })
-                            so.partner_id.statut = 'won' # change state of client to won
-                            list = []
-                            for partner in module_id.session_id.client_ids:
-                                list.append(partner.id)
-                                list.append(so.partner_id.id)
-                                module_id.session_id.write({'client_ids': [(6, 0, list)]})
-                            _logger.info("so : %s" % (str(so.id)))
-                            if so.env.su:
-                                # sending mail in sudo was meant for it being sent from superuser
-                                so = so.with_user(SUPERUSER_ID)
-                            template_id = so._find_mail_template(force_confirmation_template=True)
-                            if template_id and so:
-                                so.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                            composition_mode='comment',
-                                                                                            email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
-                            return werkzeug.utils.redirect(str(rawRequest['q96_mesProduits']['return_url']), 301)
+                if q96_mesProduits:
+                    if 'intent_id' in q96_mesProduits:
+                        _logger.info("q96_mesProduits with intent : %s" % (rawRequest['q96_mesProduits']))
+                        intent_id = str(rawRequest['q96_mesProduits']['intent_id']) # get intent_id for jotform bolt payment intent
+                        acquirer = request.env['payment.acquirer'].sudo().search(
+                            [('name', 'ilike', 'stripe'), ('company_id', "=", 1)])
+                        _logger.info("acquirer : %s" % (str(acquirer)))
+                        if acquirer:
+                            _logger.info("acquirer : %s" % (str(acquirer.stripe_secret_key)))
+                            response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (intent_id),
+                                                    auth=(str(acquirer.stripe_secret_key), ''))  # get response of payment intent using stripe api
+                            json_data = json.loads(response.text)
+                            _logger.info("json_data : %s" % (json_data))
+                            succeed = False
+                            if 'status' in json_data:
+                                if json_data['status'] == 'succeeded':  # check if the payment state is succeeded
+                                    succeed = True
+                            ville = str(rawRequest['q154_selectionnezVotre'])
+                            date_exam = str(rawRequest['q156_datesExamen'])
+                            date_exam = datetime.strptime(date_exam, '%d/%m/%Y').date()
+                            _logger.info("date_exam : %s" % (str(date_exam)))
+                            ville_id = request.env['session.ville'].sudo().search(
+                                [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1) #search session ville using ville sended from jotform
+                            product_id = request.env['product.product'].sudo().search(
+                                [('default_code', "=", 'vtc_bolt')], limit=1)
+                            module_id = False
+                            if ville_id and date_exam and product_id:
+                                module_id = request.env['mcmacademy.module'].sudo().search(
+                                    [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
+                                     ('date_exam', "=", date_exam), ('product_id', "=", product_id.id),
+                                     ('session_id.number_places_available', '>', 0)], limit=1) #search module in mcmacademy module using ville_id date_exam and product_id of bolt and session has available places
+                            _logger.info("succeed : %s" % (str(succeed)))
+                            if module_id :
+                                _logger.info("module_id : %s" % (str(module_id.name)))
+                            else:
+                                ville = 'Île-de-France'
+                                ville_id = request.env['session.ville'].sudo().search(
+                                    [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1)
+                                if ville_id :
+                                    module_id = request.env['mcmacademy.module'].sudo().search(
+                                        [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
+                                         ('date_exam', "=", date_exam), ('product_id', "=", product_id.id),
+                                         ('session_id.number_places_available', '>', 0)], limit=1)
+                            if succeed:
+                                partner = user.partner_id
+                                so = request.env['sale.order'].sudo().create({
+                                    'partner_id': partner.id,
+                                    'company_id': 1,
+                                    'website_id': 1,
+                                }) #create sale order ( contract ) if payment is succeed
+                                request.env['sale.order.line'].sudo().create({
+                                    'name': product_id.name,
+                                    'product_id': product_id.id,
+                                    'product_uom_qty': 1,
+                                    'product_uom': product_id.uom_id.id,
+                                    'price_unit': product_id.list_price,
+                                    'order_id': so.id,
+                                    'tax_id': product_id.taxes_id,
+                                    'company_id': 1
+                                })
+                                pricelist = request.env['product.pricelist'].sudo().search(
+                                    [('company_id', '=', 1), ('name', "=", 'bolt')]) # search the pricelist bolt
+                                if pricelist:
+                                    so.pricelist_id = pricelist.id
+                                so.action_confirm()
+                                if module_id:
+                                    so.partner_id.session_ville_id = module_id.session_ville_id
+                                    so.partner_id.date_examen_edof = module_id.date_exam
+                                    so.module_id = module_id.id
+                                    so.session_id = module_id.session_id.id
+                                moves = so._create_invoices(final=True) # create invoice from sale_order
+                                for move in moves:
+                                    _logger.info("webhook_stripe_move : %s" % (str(move)))
+                                    move.type_facture = 'web'
+                                    move.module_id = so.module_id.id
+                                    move.session_id = so.session_id.id
+                                    move.post() # post the created invoice
+                                    journal_id = move.journal_id.id
+                                    acquirer = request.env['payment.acquirer'].sudo().search(
+                                        [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
+                                    if acquirer:
+                                        journal_id = acquirer.journal_id.id
+                                    payment_method = request.env['account.payment.method'].sudo().search(
+                                        [('code', 'ilike', 'electronic')], limit=1)
+                                    payment = request.env['account.payment'].sudo().create(
+                                        {'payment_type': 'inbound',
+                                         'payment_method_id': payment_method.id,
+                                         'partner_type': 'customer',
+                                         'partner_id': move.partner_id.id,
+                                         'amount': so.amount_total,
+                                         'currency_id': move.currency_id.id,
+                                         'payment_date': move.create_date,
+                                         'journal_id': journal_id,
+                                         'communication': False,
+                                         'payment_token_id': False,
+                                         'invoice_ids': [(6, 0, move.ids)],
+                                         }) #create payment for invoice
+                                so.action_cancel() #cancel contract
+                                so.sale_action_sent()  #resend contract
+                                so.partner_id.sudo().write({
+                                    'mcm_session_id': module_id.session_id.id,
+                                    'module_id': module_id.id,
+                                })
+                                so.partner_id.statut = 'won' # change state of client to won
+                                list = []
+                                for partner in module_id.session_id.client_ids:
+                                    list.append(partner.id)
+                                    list.append(so.partner_id.id)
+                                    module_id.session_id.write({'client_ids': [(6, 0, list)]})
+                                _logger.info("so : %s" % (str(so.id)))
+                                if so.env.su:
+                                    # sending mail in sudo was meant for it being sent from superuser
+                                    so = so.with_user(SUPERUSER_ID)
+                                template_id = so._find_mail_template(force_confirmation_template=True)
+                                if template_id and so:
+                                    so.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                                composition_mode='comment',
+                                                                                                email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
+                                return werkzeug.utils.redirect(str(rawRequest['q96_mesProduits']['return_url']), 301)
         return True

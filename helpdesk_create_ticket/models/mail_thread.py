@@ -23,7 +23,7 @@ class MailThread(models.AbstractModel):
         notif_kwargs = dict((key, val) for key, val in kwargs.items() if key not in msg_kwargs)
 
         author_info = self._message_compute_author(author_id, email_from, raise_exception=True)
-        author_id, email_from = author_info['author_id'], author_info['email_from']
+        author_id, email_from  = author_info['author_id'], author_info['email_from']
 
         if not partner_ids:
             _logger.warning('Message notify called without recipient_ids, skipping')
@@ -32,7 +32,6 @@ class MailThread(models.AbstractModel):
         if not (model and res_id):  # both value should be set or none should be set (record)
             model = False
             res_id = False
-
         MailThread = self.env['mail.thread']
         values = {
             'parent_id': parent_id,
@@ -50,10 +49,10 @@ class MailThread(models.AbstractModel):
             'message_id': tools.generate_tracking_message_id('message-notify'),
         }
         values.update(msg_kwargs)
-
         new_message = MailThread._message_create(values)
         if new_message.model in ['helpdesk.ticket',
                                  'sale.order'] and new_message.message_type == 'user_notification':  # check if odoo send mail of assignment for helpdesk and sale order models
+
             return new_message  # don't send mail of assignment for new tickets and new sale orders
         else:
             MailThread._notify_thread(new_message, values, **notif_kwargs)
