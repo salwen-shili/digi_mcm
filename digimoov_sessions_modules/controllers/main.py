@@ -911,6 +911,7 @@ class WebsiteSale(WebsiteSale):
                                 vals)
                         return {
                             'ajout': "Le chargement de vos documents a été effectué avec succès ! Notre service clientèle se chargera de les valider, et de vous contacter dans les 24h pour poursuivre l'inscription."}
+        return {'url': 'False'}
 
     def ajouter_iOne(self, partner):
 

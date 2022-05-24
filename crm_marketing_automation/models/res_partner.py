@@ -188,7 +188,7 @@ class Partner(models.Model):
                             self.changestage("Echec d'Examen Blanc", self)
                         if sale_order and sale_order.state == "sent":
                             # _logger.info('contrat non signé')
-                            if not partner.bolt:
+                            if not partner.bolt and sale_order.module_id.product_id.default_code != "vtc_bolt":
                                 self.changestage("Contrat non Signé", partner)
                             else:
                                 self.changestage("Bolt-Contrat non Signé", partner)
@@ -218,7 +218,7 @@ class Partner(models.Model):
                                     else :
                                         self.changestage("Rétractation non Coché", partner)
                                 if partner.renounce_request :
-                                    if partner.bolt:
+                                    if partner.bolt or sale_order.module_id.product_id.default_code == "vtc_bolt":
                                         if partner.inscrit_mcm == False and partner.numero_evalbox == False:
                                             """S'il a renoncé et son contrat est signé et ses documents sont validé sera classé sous contrat Signé """
                                             self.changestage("Bolt-Contrat Signé",partner)

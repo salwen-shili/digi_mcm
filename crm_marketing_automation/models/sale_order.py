@@ -24,9 +24,10 @@ class Sale(models.Model):
         res = super(Sale, self).create(vals)
         print('drafttt', vals)
         partner_id = vals['partner_id']
+        pricelist_id=vals['pricelist_id']
         partner = self.env['res.partner'].sudo().search([('id', '=', partner_id)], limit=1)
         print('partner', partner)
-        if partner and not partner.bolt:
+        if partner and partner.statut_cpf != "validated" and not partner.bolt:
             self.change_stage_lead("Prospection", partner)
             # for so in self.order_line:
             print("order line",self.pricelist_id.name)
@@ -42,18 +43,21 @@ class Sale(models.Model):
                 partner = self.partner_id
                 print('sent', partner)
                 print('change statut', partner.mcm_session_id.id, partner.session_id.id)
-                if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id) and not partner.bolt:
+                if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id) :
+                    print('contrat signé')
                     self.change_stage_lead("Contrat non Signé", partner)
-                if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id) and partner.bolt:
+                if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id) :
+                    print('bolt contrat signé')
                     self.change_stage_lead("Bolt-Contrat non Signé", partner)
             if vals['state'] == 'sale':
                 partner = self.partner_id
                 print('sale', partner)
                 print('change statut', partner.mcm_session_id.id, partner.session_id.id)
                 if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id):
-                    if not partner.bolt:
+                    if not partner.bolt :
                         self.change_stage_lead("Contrat Signé", partner)
                     else :
+
                         """classer les apprenant de bolt"""
                         self.change_stage_lead("Bolt-Contrat Signé", partner)
         return record
