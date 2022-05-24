@@ -94,8 +94,7 @@
                                 <!-- dropdown menu -->
                                 <div class="o_kanban_image">
                                     <center>
-                                        <a href="https://app.intercom.com/a/apps/ekqg4dck/inbox/inbox/all/conversations/186275800000486
-">
+                                        <a href="https://app.intercom.com/a/apps/ekqg4dck/inbox/inbox/all/conversations">
                                             <img class="o_kanban_image"  alt=""
                                                  src="https://og-blog-css.outgrow.co/blog/wp-content/uploads/2019/01/robo_small.gif?x65579"
                                             />
@@ -129,7 +128,7 @@
                                 <field name="coach_name"/>
                                 <br/>
                                 <h4 style="background-color:white;">Nombre de place:</h4>
-                                <field name="nombre_apprenant"/>
+                                <field name="nombre_apprenant" />
                                 <h4 style="background-color:white;">Nombre Totale</h4>
 
                                 <field name="seats"/>
@@ -146,7 +145,7 @@
     <record model="ir.actions.act_window" id="coach_list_action">
         <field name="name">Coaches</field>
         <field name="res_model">mcm_openedx.coach</field>
-        <field name="view_mode">kanban,form,tree,graph</field>
+        <field name="view_mode">kanban,tree,form,graph</field>
 
     </record>
 

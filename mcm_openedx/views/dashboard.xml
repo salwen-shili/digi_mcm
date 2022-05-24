@@ -6,8 +6,16 @@
         <field name="view_id"
                ref="mcm_openedx.view_openacad_session_kanban"/>
     </record>
+    <record model="ir.actions.act_window" id="attente_tree_view">
+        <field name="name">Apprenant en attente sur edof</field>
+        <field name="res_model">mcm_openedx.enattente</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id"
+               ref="mcm_openedx.attente_tree_view"/>
+    </record>
 
-     <record model="ir.actions.act_window" id="act_coach_graph">
+
+    <record model="ir.actions.act_window" id="act_coach_graph">
         <field name="name">Coaches</field>
         <field name="res_model">mcm_openedx.coach</field>
         <field name="view_mode">graph</field>
@@ -16,7 +24,6 @@
     </record>
     <record model="ir.actions.act_window" id="act_stat_graph">
         <field name="name">Statestiques Cours</field>
-
         <field name="res_model">mcm_openedx.course_stat</field>
         <field name="view_mode">graph</field>
         <field name="view_id"
@@ -28,16 +35,16 @@
         <field name="model">board.board</field>
         <field name="arch" type="xml">
             <form string="My Dashboard">
-                <board style="3-1">
+                <board style="4-1">
                     <column>
+                        <action name="%(attente_tree_view)d" string="Les Apprenants en attente" view_mode="list"/>
 
 
                         <action name="%(act_stat_graph)d" string="Statestiques Cours" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False, 'uid': 17774, 'allowed_company_ids': [1, 1, 2], 'group_by': ['idcour'], 'graph_measure': 'seconde', 'graph_mode': 'pie', 'graph_groupbys': ['idcour'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" modifiers="{}"/>
 
-                    </column>
-                    <column>
+
                         <action string="Coaches" name="%(act_coach_kanban)d"/>
                         <action name="%(act_coach_graph)d" string="Coaches" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False, 'uid': 17774, 'allowed_company_ids': [1, 2], 'group_by': [], 'graph_measure': 'nombre_apprenant', 'graph_mode': 'pie', 'graph_groupbys': ['coach_name'], 'dashboard_merge_domains_contexts': False}"

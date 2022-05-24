@@ -12,6 +12,9 @@ class enattente(models.Model):
     date_edof = fields.Date(string="Date d'ajout")
     billingState = fields.Char(string="Statut de payement")
     state = fields.Char(string="Statut de cpf")
+    externalId = fields.Char(string="Numero de cpf")
+    firstName = fields.Char(string="Nom")
+    lastName = fields.Char(string="Prenom")
 
 
 class Coach(models.Model):
@@ -239,47 +242,57 @@ class Coach(models.Model):
             lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
             newformat = "%d/%m/%Y %H:%M:%S"
             lastupdateform = lastupdate.strftime(newformat)
+            lastName = dossier['attendee']['lastName']
+            firstName = dossier['attendee']['firstName']
             state = dossier['state']
             billingState = dossier['billingState']
+            externalId = dossier['externalId']
             lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
 
             # print('dateeeeeeeeee', today, dateFormation, certificat, idform)
             # print('diplome',diplome)
 
             if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi"):
-                print("aaaaaaaaaainfoooooooooooooo", attendee)
+
                 print(attendee['email'])
 
                 for enattente in self.env['mcm_openedx.enattente'].search(
-                        [('name','=',email)]):
-                    if not(enattente):
-                        new = self.env['mcm_openedx.enattente'].sudo().create({
-                            'name': email,
-                            'date_edof': dateFormation,
-                            'state': state,
-                            'billingState': billingState,
-                        })
-                        print("newwwwwwwwwwwwwwwwwwwwwwwww", new)
+                        []):
+                    existee = self.env['mcm_openedx.enattente'].search(
+                        [('name','=',enattente.name)])
 
+                    print(existee.name)
+                    if existee:
+                        print("existtttt")
 
+                if not existee:
+                    print("dont exist")
 
+                    new = self.env['mcm_openedx.enattente'].sudo().create({
+                        'name': email,
+                        'date_edof': dateFormation,
+                        'state': state,
+                        'billingState': billingState,
+                        'externalId': externalId,
+                        'lastName': lastName,
+                        'firstName': firstName,
+                    })
+                    print(new)
 
-
-
-        if (dateFormation <= today):
-            """si l'apprenant est sur moocit
-                                        on change le statut de son dossier sur wedof """
-        for partner in self.env['mcm_openedx.course_stat'].search(
-                [('email', "=", email)
-                 ]):
-            if (partner.email == dossier['attendee']['email']):
-                print("okokkookkokookokokko")
-                print('dateeeeeeeeee', today, dateFormation, certificat, idform)
-                print('wedooooffffff %s' % certificat)
-                print('dateformation %s' % dateFormation)
-                print('email %s' % email)
-                # response_post = requests.post(
-                #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
-                #     headers=headers, data=data)
-                # _logger.info('response post %s' % str(response_post.text))
-                # print('response post', str(response_post.text))
+                if (dateFormation <= today):
+                    """si l'apprenant est sur moocit
+                                                on change le statut de son dossier sur wedof """
+                for partner in self.env['mcm_openedx.course_stat'].search(
+                        [('email', "=", email)
+                         ]):
+                    if (partner.email == dossier['attendee']['email']):
+                        print("okokkookkokookokokko")
+                        print('dateeeeeeeeee', today, dateFormation, certificat, idform)
+                        print('wedooooffffff %s' % certificat)
+                        print('dateformation %s' % dateFormation)
+                        print('email %s' % email)
+                        # response_post = requests.post(
+                        #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                        #     headers=headers, data=data)
+                        # _logger.info('response post %s' % str(response_post.text))
+                        # print('response post', str(response_post.text))

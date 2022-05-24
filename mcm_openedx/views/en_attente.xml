@@ -2,14 +2,18 @@
 <odoo>
 
     <record model="ir.ui.view" id="attente_tree_view">
-        <field name="name">Apprenants</field>
+        <field name="name">Apprenants en attente</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
-            <tree string="Apprennat">
+            <tree string="Apprennat en attente" decoration-bf="state" decoration-danger="state">
+                <field name="externalId" />
+                <field name="lastName"/>
+                <field name="firstName"/>
                 <field name="name"/>
                 <field name="date_edof"/>
-                <field name="state"/>
+                <field name="state"  />
                 <field name="billingState"/>
+
 
             </tree>
         </field>
@@ -20,10 +24,33 @@
         <field name="arch" type="xml">
             <form string="Apprennat">
                 <sheet>
-                    <field name="name"/>
-                    <field name="date_edof"/>
+                    <h5>Email</h5>
+                    <field name="name" style="color:red"/>
+                    <br/>
+                    <h5>Date Edof</h5>
+
+                    <field name="date_edof" style="color:red"/>
+                    <br/>
+                    <h5>State</h5>
+
                     <field name="state"/>
-                    <field name="billingState"/>
+                    <br/>
+                    <h5>Staut de payement</h5>
+
+                    <field name="billingState" style="color:red"/>
+                    <br/>
+                    <h5>Numero CPF</h5>
+
+                    <field name="externalId"/>
+                    <br/>
+                    <h5>Date Edof</h5>
+
+                    <field name="lastName"/>
+                    <br/>
+                                        <h5>Nom</h5>
+
+                    <field name="firstName"/>
+                    <br/>
                 </sheet>
 
             </form>
@@ -52,6 +79,15 @@
                             </div>
                             <div t-attf-class="oe_kanban_content">
                                 <!-- title -->
+
+
+                                Nom:
+                                <field name="lastName"/>
+                                <br/>
+
+                                Prenom:
+                                <field name="firstName"/>
+                                <br/>
                                 Email de l'Apprenant:
                                 <field name="name"/>
                                 <br/>
@@ -63,6 +99,9 @@
                                 <br/>
                                 Staut De Payement
                                 <field name="billingState"/>
+                                <br/>
+                                ExternalId
+                                <field name="externalId"/>
 
                             </div>
                         </div>
@@ -76,7 +115,7 @@
     <record model="ir.actions.act_window" id="attente_list_action">
         <field name="name">Les Apprenants</field>
         <field name="res_model">mcm_openedx.enattente</field>
-        <field name="view_mode">kanban,form,tree</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
 
 
