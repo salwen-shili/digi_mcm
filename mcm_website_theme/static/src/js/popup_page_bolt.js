@@ -74,6 +74,7 @@ var btnContiner;
 var cartIsEmpty;
 
 function setPopup() {
+  return;
   if (document.getElementById('notifMessage')) {
     const btnContinuer = document.getElementById('btn-inside-popup');
     const textDescription = document.getElementById('notifMessage');

@@ -197,7 +197,10 @@
                                         <br /> 
                                     </p>-->
                                     <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                        <a href="/inscription-bolt" class="btn btn-success btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip663312">
+                                        <!-- <a href="/inscription-bolt" class="btn btn-success btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip663312">
+                Je m'inscris maintenant !
+                                        </a> -->
+                                        <a href="#" class="btn btn-success btn-lg disabled" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip663312">
                 Je m'inscris maintenant !
                                         </a>
                                     </div>
@@ -567,7 +570,10 @@
             Je m'inscris
                       </a> -->
                                                         <!-- onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;"-->
-                                                        <a href="/inscription-bolt" target="_blank" class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369">
+                                                        <!-- <a href="/inscription-bolt" target="_blank" class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369">
+                        Je m'inscris
+                                                        </a> -->
+                                                        <a href="#" target="_blank" class="btn btn-primary sh_btn_cm_8 disabled" data-original-title="" title="" aria-describedby="tooltip357369">
                         Je m'inscris
                                                         </a>
                                                     </div>

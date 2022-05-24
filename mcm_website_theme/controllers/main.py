@@ -61,7 +61,8 @@ class Website(Home):
         last_ville = request.env['session.ville'].sudo().search(
             [('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville desc', limit=1)
         list_villes = request.env['session.ville'].sudo().search(
-            [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)],
+            [('id', "!=", last_ville.id), ('company_id', '=', 2),
+             ('ville_formation', "=", False)],
             order='name_ville asc')
         values = {
             'list_villes': list_villes,
@@ -216,7 +217,7 @@ class Routes_Site(http.Controller):
         vals['street2'] = kw.get("street2")
         vals['phone'] = kw.get("phone")
         vals['street'] = kw.get("num_voie") + " " + \
-                         kw.get("voie") + " " + kw.get("nom_voie")
+            kw.get("voie") + " " + kw.get("nom_voie")
         user_id = request.uid
         partner = request.env['res.users'].sudo().search(
             [('id', "=", user_id)]).partner_id
@@ -453,10 +454,12 @@ class Routes_Site(http.Controller):
                                  ('survey_id', '=', survey.id)],
                                 order='create_date asc', limit=1)
                             if not survey_user:
-                                url = '/survey/start/' + str(survey.access_token)
+                                url = '/survey/start/' + \
+                                    str(survey.access_token)
                                 return werkzeug.utils.redirect(url, 301)
                             if survey_user and survey_user.state == 'new':
-                                url = '/survey/start/' + str(survey.access_token)
+                                url = '/survey/start/' + \
+                                    str(survey.access_token)
                                 return werkzeug.utils.redirect(url, 301)
                             if survey_user and survey_user.state == 'skip':
                                 return werkzeug.utils.redirect(
@@ -788,15 +791,16 @@ class Routes_Site(http.Controller):
         exam_state = False
         if partner.bolt and partner.note_exam:
             note = float(partner.note_exam)
-            note = note /5
-            if note >= 8 :
+            note = note / 5
+            if note >= 8:
                 exam_state = "success"
             else:
                 exam_state = "failed"
-        res['response'] += [{'id': partner.id, 'name': partner.name,'fisrtname': partner.firstname,'lastName': partner.lastName, 'email': partner.email, 'phone': partner.phone,'street': partner.street,'city': partner.city,'zip': partner.zip, 'email': partner.email,
-                             'note_exam': partner.note_exam,'exam_state':exam_state, 'ipJotForm': partner.ipjotform,'evalbox':partner.numero_evalbox}]
+        res['response'] += [{'id': partner.id, 'name': partner.name, 'fisrtname': partner.firstname, 'lastName': partner.lastName, 'email': partner.email, 'phone': partner.phone, 'street': partner.street, 'city': partner.city, 'zip': partner.zip, 'email': partner.email,
+                             'note_exam': partner.note_exam, 'exam_state': exam_state, 'ipJotForm': partner.ipjotform, 'evalbox': partner.numero_evalbox}]
         partner = json.dumps(res)
         return partner
+
     @http.route('/formation-taxi-Paris', type='http', auth='public', website=True)
     def taxi_paris(self):
 
@@ -1309,8 +1313,8 @@ class WebsiteSale(WebsiteSale):
                     order.partner_invoice_id = partner_id
                     if not kw.get('use_same'):
                         kw['callback'] = kw.get('callback') or \
-                                         (not order.only_services and (
-                                                 mode[0] == 'edit' and '/shop/checkout' or '/shop/address'))
+                            (not order.only_services and (
+                                mode[0] == 'edit' and '/shop/checkout' or '/shop/address'))
                 elif mode[1] == 'shipping':
                     order.partner_shipping_id = partner_id
 
@@ -1358,7 +1362,7 @@ class WebsiteSale(WebsiteSale):
             'field_required') or '').split(',') if f]
         # Required fields from mandatory field function
         required_fields += mode[
-                               1] == 'shipping' and self._get_mandatory_shipping_fields() or self._get_mandatory_billing_fields()
+            1] == 'shipping' and self._get_mandatory_shipping_fields() or self._get_mandatory_billing_fields()
         # Check if state required
         country = request.env['res.country']
         if data.get('country_id'):
@@ -1874,26 +1878,27 @@ class MCM_SIGNUP(http.Controller):
         if event == 'payment_intent.succeeded':
             _logger.info('teeeeeeest %s' % str(object))
             """Cas de paiement une seule fois : créer une facture lié à ce paiement """
-            acquirer=object['id']
-            receipt_email=object['receipt_email']
+            acquirer = object['id']
+            receipt_email = object['receipt_email']
             amount = int(object.get('amount') / 100)
-            _logger.info("acquirer %s" %str(acquirer))
+            _logger.info("acquirer %s" % str(acquirer))
             _logger.info("amount %s" % str(amount))
             one_months_before = date.today() - relativedelta(months=1)
             invoice = request.env['account.move'].sudo().search(
                 [("stripe_sub_reference", "=", False),
-                 ("partner_id.email","=",receipt_email),
-                 ("module_id.product_id.list_price","=",amount),
-                 ("methodes_payment","=","cartebleu"),
-                 ("create_date",">=",one_months_before)])
+                 ("partner_id.email", "=", receipt_email),
+                 ("module_id.product_id.list_price", "=", amount),
+                 ("methodes_payment", "=", "cartebleu"),
+                 ("create_date", ">=", one_months_before)])
             if invoice:
                 _logger.info('paiement invoice %s' % str(invoice.name))
-            trans = request.env['payment.transaction'].sudo().search([('acquirer_reference', "=", acquirer)])
+            trans = request.env['payment.transaction'].sudo().search(
+                [('acquirer_reference', "=", acquirer)])
             if trans and trans.state != 'done':
                 _logger.info('state before  %s' % str(tans.state))
-                trans.state='done'
+                trans.state = 'done'
                 _logger.info('state %s' % str(tans.state))
-            if not invoice and not trans :
+            if not invoice and not trans:
                 """if not invoive"""
                 _logger.info("if not invoice")
 
@@ -1909,7 +1914,7 @@ class MCM_SIGNUP(http.Controller):
             _logger.info('invoice ************* %s' %
                          str(invoice.stripe_sub_reference))
             payment_method = request.env['account.payment.method'].sudo().search(
-                [('code', 'ilike', 'electronic')],limit=1)
+                [('code', 'ilike', 'electronic')], limit=1)
             journal_id = invoice.journal_id.id
             acquirer = request.env['payment.acquirer'].sudo().search(
                 [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
@@ -1930,12 +1935,12 @@ class MCM_SIGNUP(http.Controller):
                                                                         })
 
                 payment.post()
-                
-                return True
 
+                return True
 
     @http.route('/inscription-bolt', type='http', auth='public', website=True)
     def inscription_bolt_jotform(self, **kw, ):
+        return werkzeug.utils.redirect('/bolt', 301)
         if request.website.id == 1:
             return request.render("mcm_website_theme.mcm_bolt_inscirption")
         else:
@@ -1943,6 +1948,7 @@ class MCM_SIGNUP(http.Controller):
 
     @http.route('/examen-blanc', type='http', auth='public', website=True)
     def documents_bolt_jotform(self, **kw, ):
+        return werkzeug.utils.redirect('/bolt', 301)
         if request.website.id == 1:
             return request.render("mcm_website_theme.mcm_bolt_documents")
         else:
@@ -1951,7 +1957,7 @@ class MCM_SIGNUP(http.Controller):
 
 class AuthSignupHome(AuthSignupHome):
 
-    #generate random password with letters and digits
+    # generate random password with letters and digits
     def get_random_string(self, length):
         letters = list(string.ascii_letters + string.digits)
         result_str = ''.join(random.choice(letters) for i in range(length))
@@ -1962,7 +1968,8 @@ class AuthSignupHome(AuthSignupHome):
         _logger.info("webhoook contact jotform %s" % (kw))
         rawRequest = kw['rawRequest']
         _logger.info("rawRequest : %s" % (rawRequest))
-        rawRequest = json.loads(rawRequest) #convert response of webhook to json format
+        # convert response of webhook to json format
+        rawRequest = json.loads(rawRequest)
         firstname = rawRequest['q53_nom']['first']
         lastName = rawRequest['q53_nom']['last']
         tel = str(rawRequest['q93_numeroDe93'])
@@ -1973,32 +1980,36 @@ class AuthSignupHome(AuthSignupHome):
         state = rawRequest['q82_adresse']['state']
         zipcode = rawRequest['q82_adresse']['postal']
         ipjotform = str(kw['ip'])
-        #get datas of contact from the response of the webhook
+        # get datas of contact from the response of the webhook
         _logger.info("IP of webhook_contact_form : %s" % (ipjotform))
         _logger.info("email: %s" % (email))
         _logger.info("tel: %s" % (tel))
         res_user = request.env['res.users']
-        odoo_contact = res_user.sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1) #search contact using email
+        odoo_contact = res_user.sudo().search([('login', "=", str(
+            email).lower().replace(' ', ''))], limit=1)  # search contact using email
         _logger.info("user founded using email : %s" % (odoo_contact))
 
         if not odoo_contact:
             if tel:
                 odoo_contact = request.env["res.users"].sudo().search(
-                    [("phone", "=", str(tel))], limit=1) #search contact using phone
+                    [("phone", "=", str(tel))], limit=1)  # search contact using phone
                 if not odoo_contact:
                     phone_number = str(tel).replace(' ', '')
-                    if '+33' not in str(phone_number):  # check if jotform webhook send the number of client with +33
+                    # check if jotform webhook send the number of client with +33
+                    if '+33' not in str(phone_number):
                         phone = phone_number[0:2]
                         if str(phone) == '33' and ' ' not in str(
                                 tel):  # check if jotform webhook send the number of client in this format (number_format: 33xxxxxxx)
                             phone = '+' + str(tel)
-                            odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                [("phone", "=", phone)], limit=1)
                             if not odoo_contact:
                                 phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
-                                                                                                 6:8] + ' ' + phone[
-                                                                                                              8:10] + ' ' + phone[
-                                                                                                                            10:]
-                                odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                                    6:8] + ' ' + phone[
+                                    8:10] + ' ' + phone[
+                                    10:]
+                                odoo_contact = request.env["res.users"].sudo().search(
+                                    [("phone", "=", phone)], limit=1)
                         phone = phone_number[0:2]
                         if str(phone) == '33' and ' ' in str(
                                 tel):  # check if jotform webhook send the number of client in this format (number_format: 33 x xx xx xx)
@@ -2008,12 +2019,15 @@ class AuthSignupHome(AuthSignupHome):
                         phone = phone_number[0:2]
                         if str(phone) in ['06', '07'] and ' ' not in str(
                                 tel):  # check if jotform webhook send the number of client in this format (number_format: 07xxxxxx)
-                            odoo_contact = request.env["res.users"].sudo().search([("phone", "=", str(tel))], limit=1)
-                            print('odoo_contact5 :', odoo_contact.partner_id.name)
+                            odoo_contact = request.env["res.users"].sudo().search(
+                                [("phone", "=", str(tel))], limit=1)
+                            print('odoo_contact5 :',
+                                  odoo_contact.partner_id.name)
                             if not odoo_contact:
                                 phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
-                                                                                                 6:8] + ' ' + phone[8:]
-                                odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                                    6:8] + ' ' + phone[8:]
+                                odoo_contact = request.env["res.users"].sudo().search(
+                                    [("phone", "=", phone)], limit=1)
                         phone = phone_number[0:2]
                         if str(phone) in ['06', '07'] and ' ' in str(
                                 tel):  # check if jotform webhook send the number of client in this format (number_format: 07 xx xx xx)
@@ -2023,8 +2037,8 @@ class AuthSignupHome(AuthSignupHome):
                         if ' ' not in str(tel):
                             phone = str(tel)
                             phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
-                                                                                                                8:10] + ' ' + phone[
-                                                                                                                              10:]
+                                8:10] + ' ' + phone[
+                                10:]
                             odoo_contact = request.env["res.users"].sudo().search(
                                 [("phone", "=", phone)], limit=1)
                         if not odoo_contact:
@@ -2054,7 +2068,8 @@ class AuthSignupHome(AuthSignupHome):
             qcontext['name'] = str(firstname) + ' ' + str(lastName)
             request.uid = odoo.SUPERUSER_ID
             self.do_signup(qcontext)
-            odoo_contact = request.env['res.users'].sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+            odoo_contact = request.env['res.users'].sudo().search(
+                [('login', "=", str(email).lower().replace(' ', ''))], limit=1)
             if not odoo_contact:
                 _logger.info("user not created using do signup")
                 odoo_contact = request.env['res.users'].with_context({'no_reset_password': True}).sudo().create({
@@ -2069,7 +2084,7 @@ class AuthSignupHome(AuthSignupHome):
                     'company_ids': [1, 2],
                     'company_id': 1,
                 })
-                if odoo_contact :
+                if odoo_contact:
                     _logger.info("user created using create user")
                     odoo_contact.street = street if street else False
                     odoo_contact.zip = zipcode if zipcode else False
@@ -2082,13 +2097,16 @@ class AuthSignupHome(AuthSignupHome):
                 odoo_contact.step = "financement"
                 if odoo_contact.phone:
                     phone = str(odoo_contact.phone.replace(' ', ''))[
-                            -9:]  # change phone to this format to be accepted in sms +33XXXXXXXXX
+                        -9:]  # change phone to this format to be accepted in sms +33XXXXXXXXX
                     phone = '+33' + phone
                     odoo_contact.phone = phone
                     url = "https://www.mcm-academy.fr/web/login"
-                    link_tracker = request.env['link.tracker'].sudo().search([('url', "=", url)])
-                    base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
-                    base_url = 'https://www.mcm-academy.fr' # change base url to mcm-academy before create link tracker
+                    link_tracker = request.env['link.tracker'].sudo().search([
+                        ('url', "=", url)])
+                    base_url = request.env['ir.config_parameter'].sudo(
+                    ).get_param('web.base.url')
+                    # change base url to mcm-academy before create link tracker
+                    base_url = 'https://www.mcm-academy.fr'
                     if not link_tracker:
                         # generate short link using module of link tracker
                         link_tracker = request.env['link.tracker'].sudo().create({
@@ -2099,7 +2117,7 @@ class AuthSignupHome(AuthSignupHome):
                     if link_tracker:
                         short_url = link_tracker.short_url
                     body = "Bonjour %s voici les identifiants de connexion pour vous connecter sur le site de MCM Academy. login : %s , MDP : %s .Cliquez ici pour vous connecter %s" % (
-                        odoo_contact.name,str(odoo_contact.email), str(password),str(short_url))
+                        odoo_contact.name, str(odoo_contact.email), str(password), str(short_url))
                     if body:
                         composer = request.env['sms.composer'].with_context(
                             default_res_model='res.partner',
@@ -2113,10 +2131,13 @@ class AuthSignupHome(AuthSignupHome):
                             'active_domain': [('id', 'in', odoo_contact.partner_id.ids)]
                         })
                         composer = composer.with_user(SUPERUSER_ID)
-                        composer._action_send_sms()  # we send sms to client contains link of reset password.
+                        # we send sms to client contains link of reset password.
+                        composer._action_send_sms()
                         if odoo_contact.phone:
-                            odoo_contact.phone = '0' + str(odoo_contact.phone.replace(' ', ''))[-9:]
-        odoo_contact = request.env['res.users'].sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+                            odoo_contact.phone = '0' + \
+                                str(odoo_contact.phone.replace(' ', ''))[-9:]
+        odoo_contact = request.env['res.users'].sudo().search(
+            [('login', "=", str(email).lower().replace(' ', ''))], limit=1)
         odoo_contact.ipjotform = ipjotform
         odoo_contact.bolt = True
         return True
@@ -2131,14 +2152,16 @@ class AuthSignupHome(AuthSignupHome):
         firstname = rawRequest['q99_nom']['first']
         lastName = rawRequest['q99_nom']['last']
         name = str(firstname)+' ' + str(lastName)
-        _logger.info("q169_email of webhook_integration_examen: %s" % (q169_email))
+        _logger.info("q169_email of webhook_integration_examen: %s" %
+                     (q169_email))
         _logger.info("RawRequest Webhoook examen blanc %s" % (rawRequest))
         q114_resultatExamen = rawRequest['q114_resultatExamen']
-        _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
+        _logger.info("RESULTAT Webhoook examen blanc %s" %
+                     (q114_resultatExamen))
         user_not_found = False
         user = request.env['res.users'].sudo().search(
-            [('email', "=", str(q169_email).lower().replace(' ', ''))], limit=1) #search user using email
-        if not user :
+            [('email', "=", str(q169_email).lower().replace(' ', ''))], limit=1)  # search user using email
+        if not user:
             if tel:
                 user = request.env["res.users"].sudo().search(
                     [("phone", "=", str(tel))], limit=1)  # search contact using phone
@@ -2150,14 +2173,15 @@ class AuthSignupHome(AuthSignupHome):
                         if str(phone) == '33' and ' ' not in str(
                                 tel):  # check if jotform webhook send the number of client in this format (number_format: 33xxxxxxx)
                             phone = '+' + str(tel)
-                            user = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            user = request.env["res.users"].sudo().search(
+                                [("phone", "=", phone)], limit=1)
                             if not user:
                                 phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
-                                                                                                 6:8] + ' ' + phone[
-                                                                                                              8:10] + ' ' + phone[
-                                                                                                                            10:]
+                                    6:8] + ' ' + phone[
+                                    8:10] + ' ' + phone[
+                                    10:]
                                 user = request.env["res.users"].sudo().search([("phone", "=", phone)],
-                                                                                      limit=1)
+                                                                              limit=1)
                         phone = phone_number[0:2]
                         if str(phone) == '33' and ' ' in str(
                                 tel):  # check if jotform webhook send the number of client in this format (number_format: 33 x xx xx xx)
@@ -2168,14 +2192,14 @@ class AuthSignupHome(AuthSignupHome):
                         if str(phone) in ['06', '07'] and ' ' not in str(
                                 tel):  # check if jotform webhook send the number of client in this format (number_format: 07xxxxxx)
                             user = request.env["res.users"].sudo().search([("phone", "=", str(tel))],
-                                                                                  limit=1)
+                                                                          limit=1)
                             print('user5 :', user.partner_id.name)
                             if not user:
                                 phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
-                                                                                                 6:8] + ' ' + phone[
-                                                                                                              8:]
+                                    6:8] + ' ' + phone[
+                                    8:]
                                 user = request.env["res.users"].sudo().search([("phone", "=", phone)],
-                                                                                      limit=1)
+                                                                              limit=1)
                         phone = phone_number[0:2]
                         if str(phone) in ['06', '07'] and ' ' in str(
                                 tel):  # check if jotform webhook send the number of client in this format (number_format: 07 xx xx xx)
@@ -2185,9 +2209,9 @@ class AuthSignupHome(AuthSignupHome):
                         if ' ' not in str(tel):
                             phone = str(tel)
                             phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
-                                                                                             6:8] + ' ' + phone[
-                                                                                                          8:10] + ' ' + phone[
-                                                                                                                        10:]
+                                6:8] + ' ' + phone[
+                                8:10] + ' ' + phone[
+                                10:]
                             user = request.env["res.users"].sudo().search(
                                 [("phone", "=", phone)], limit=1)
                         if not user:
@@ -2199,7 +2223,7 @@ class AuthSignupHome(AuthSignupHome):
                                 phone = '0' + str(phone)
                                 user = request.env["res.users"].sudo().search(
                                     [("phone", "like", phone.replace(' ', ''))], limit=1)
-        if not user :
+        if not user:
             user_not_found = True
             qcontext = {}
             password = self.get_random_string(8)
@@ -2212,8 +2236,10 @@ class AuthSignupHome(AuthSignupHome):
             qcontext['password'] = password
             qcontext['name'] = str(firstname) + ' ' + str(lastName)
             request.uid = odoo.SUPERUSER_ID
-            self.do_signup(qcontext) #call function do_signup() to create account with password to client
-            user = request.env['res.users'].sudo().search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+            # call function do_signup() to create account with password to client
+            self.do_signup(qcontext)
+            user = request.env['res.users'].sudo().search(
+                [('login', "=", str(email).lower().replace(' ', ''))], limit=1)
         if not user:
             _logger.info("user not created using do signup")
             user = request.env['res.users'].with_context({'no_reset_password': True}).sudo().create({
@@ -2231,20 +2257,24 @@ class AuthSignupHome(AuthSignupHome):
         if user:
             multiplication_note_exam_blan = int(q114_resultatExamen) * 5
             user.note_exam = int(multiplication_note_exam_blan)
-            _logger.info("user.note_exam SUR LA FICHE CLIENT %s" % (user.note_exam))
-            if user_not_found : #if user not found and created in this function we create password for the user and send it into sms
+            _logger.info("user.note_exam SUR LA FICHE CLIENT %s" %
+                         (user.note_exam))
+            if user_not_found:  # if user not found and created in this function we create password for the user and send it into sms
                 password = self.get_random_string(8)
                 user.password = password
                 odoo_contact = user
                 if odoo_contact.phone:
                     phone = str(odoo_contact.phone.replace(' ', ''))[
-                            -9:]  # change phone to this format to be accepted in sms +33XXXXXXXXX
+                        -9:]  # change phone to this format to be accepted in sms +33XXXXXXXXX
                     phone = '+33' + phone
                     odoo_contact.phone = phone
                     url = "https://www.mcm-academy.fr/web/login"
-                    link_tracker = request.env['link.tracker'].sudo().search([('url', "=", url)])
-                    base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
-                    base_url = 'https://www.mcm-academy.fr' # change base url to mcm-academy before create link tracker
+                    link_tracker = request.env['link.tracker'].sudo().search([
+                        ('url', "=", url)])
+                    base_url = request.env['ir.config_parameter'].sudo(
+                    ).get_param('web.base.url')
+                    # change base url to mcm-academy before create link tracker
+                    base_url = 'https://www.mcm-academy.fr'
                     if not link_tracker:
                         # generate short link using module of link tracker
                         link_tracker = request.env['link.tracker'].sudo().create({
@@ -2255,7 +2285,7 @@ class AuthSignupHome(AuthSignupHome):
                     if link_tracker:
                         short_url = link_tracker.short_url
                     body = "Bonjour %s voici les identifiants de connexion pour vous connecter sur le site de MCM Academy. login : %s , MDP : %s .Cliquez ici pour vous connecter %s" % (
-                        odoo_contact.name,str(odoo_contact.email), str(password),str(short_url))
+                        odoo_contact.name, str(odoo_contact.email), str(password), str(short_url))
                     if body:
                         composer = request.env['sms.composer'].with_context(
                             default_res_model='res.partner',
@@ -2269,54 +2299,65 @@ class AuthSignupHome(AuthSignupHome):
                             'active_domain': [('id', 'in', odoo_contact.partner_id.ids)]
                         })
                         composer = composer.with_user(SUPERUSER_ID)
-                        composer._action_send_sms()  # we send sms to client contains link of reset password.
+                        # we send sms to client contains link of reset password.
+                        composer._action_send_sms()
                         if odoo_contact.phone:
-                            odoo_contact.phone = '0' + str(odoo_contact.phone.replace(' ', ''))[-9:]
-            if 'q96_mesProduits' in rawRequest :
+                            odoo_contact.phone = '0' + \
+                                str(odoo_contact.phone.replace(' ', ''))[-9:]
+            if 'q96_mesProduits' in rawRequest:
                 _logger.info("True Condition")
                 q96_mesProduits = rawRequest['q96_mesProduits']
                 if q96_mesProduits:
                     if 'intent_id' in q96_mesProduits:
-                        _logger.info("q96_mesProduits with intent : %s" % (rawRequest['q96_mesProduits']))
-                        intent_id = str(rawRequest['q96_mesProduits']['intent_id']) # get intent_id for jotform bolt payment intent
+                        _logger.info("q96_mesProduits with intent : %s" %
+                                     (rawRequest['q96_mesProduits']))
+                        # get intent_id for jotform bolt payment intent
+                        intent_id = str(
+                            rawRequest['q96_mesProduits']['intent_id'])
                         acquirer = request.env['payment.acquirer'].sudo().search(
                             [('name', 'ilike', 'stripe'), ('company_id', "=", 1)])
                         _logger.info("acquirer : %s" % (str(acquirer)))
                         if acquirer:
-                            _logger.info("acquirer : %s" % (str(acquirer.stripe_secret_key)))
+                            _logger.info("acquirer : %s" %
+                                         (str(acquirer.stripe_secret_key)))
                             response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (intent_id),
                                                     auth=(str(acquirer.stripe_secret_key), ''))  # get response of payment intent using stripe api
                             json_data = json.loads(response.text)
                             _logger.info("json_data : %s" % (json_data))
                             succeed = False
                             if 'status' in json_data:
-                                if json_data['status'] == 'succeeded':  # check if the payment state is succeeded
+                                # check if the payment state is succeeded
+                                if json_data['status'] == 'succeeded':
                                     succeed = True
                             ville = str(rawRequest['q154_selectionnezVotre'])
                             date_exam = str(rawRequest['q156_datesExamen'])
-                            date_exam = datetime.strptime(date_exam, '%d/%m/%Y').date()
+                            date_exam = datetime.strptime(
+                                date_exam, '%d/%m/%Y').date()
                             _logger.info("date_exam : %s" % (str(date_exam)))
                             ville_id = request.env['session.ville'].sudo().search(
-                                [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1) #search session ville using ville sended from jotform
+                                [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1)  # search session ville using ville sended from jotform
                             product_id = request.env['product.product'].sudo().search(
                                 [('default_code', "=", 'vtc_bolt')], limit=1)
                             module_id = False
                             if ville_id and date_exam and product_id:
                                 module_id = request.env['mcmacademy.module'].sudo().search(
                                     [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
-                                     ('date_exam', "=", date_exam), ('product_id', "=", product_id.id),
-                                     ('session_id.number_places_available', '>', 0)], limit=1) #search module in mcmacademy module using ville_id date_exam and product_id of bolt and session has available places
+                                     ('date_exam', "=", date_exam), ('product_id',
+                                                                     "=", product_id.id),
+                                     ('session_id.number_places_available', '>', 0)], limit=1)  # search module in mcmacademy module using ville_id date_exam and product_id of bolt and session has available places
                             _logger.info("succeed : %s" % (str(succeed)))
-                            if module_id :
-                                _logger.info("module_id : %s" % (str(module_id.name)))
+                            if module_id:
+                                _logger.info("module_id : %s" %
+                                             (str(module_id.name)))
                             else:
                                 ville = 'Île-de-France'
                                 ville_id = request.env['session.ville'].sudo().search(
                                     [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1)
-                                if ville_id :
+                                if ville_id:
                                     module_id = request.env['mcmacademy.module'].sudo().search(
                                         [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
-                                         ('date_exam', "=", date_exam), ('product_id', "=", product_id.id),
+                                         ('date_exam', "=", date_exam), ('product_id',
+                                                                         "=", product_id.id),
                                          ('session_id.number_places_available', '>', 0)], limit=1)
                             if succeed:
                                 partner = user.partner_id
@@ -2324,7 +2365,7 @@ class AuthSignupHome(AuthSignupHome):
                                     'partner_id': partner.id,
                                     'company_id': 1,
                                     'website_id': 1,
-                                }) #create sale order ( contract ) if payment is succeed
+                                })  # create sale order ( contract ) if payment is succeed
                                 request.env['sale.order.line'].sudo().create({
                                     'name': product_id.name,
                                     'product_id': product_id.id,
@@ -2336,7 +2377,7 @@ class AuthSignupHome(AuthSignupHome):
                                     'company_id': 1
                                 })
                                 pricelist = request.env['product.pricelist'].sudo().search(
-                                    [('company_id', '=', 1), ('name', "=", 'bolt')]) # search the pricelist bolt
+                                    [('company_id', '=', 1), ('name', "=", 'bolt')])  # search the pricelist bolt
                                 if pricelist:
                                     so.pricelist_id = pricelist.id
                                 so.action_confirm()
@@ -2345,13 +2386,15 @@ class AuthSignupHome(AuthSignupHome):
                                     so.partner_id.date_examen_edof = module_id.date_exam
                                     so.module_id = module_id.id
                                     so.session_id = module_id.session_id.id
-                                moves = so._create_invoices(final=True) # create invoice from sale_order
+                                # create invoice from sale_order
+                                moves = so._create_invoices(final=True)
                                 for move in moves:
-                                    _logger.info("webhook_stripe_move : %s" % (str(move)))
+                                    _logger.info(
+                                        "webhook_stripe_move : %s" % (str(move)))
                                     move.type_facture = 'web'
                                     move.module_id = so.module_id.id
                                     move.session_id = so.session_id.id
-                                    move.post() # post the created invoice
+                                    move.post()  # post the created invoice
                                     journal_id = move.journal_id.id
                                     acquirer = request.env['payment.acquirer'].sudo().search(
                                         [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
@@ -2371,24 +2414,26 @@ class AuthSignupHome(AuthSignupHome):
                                          'communication': False,
                                          'payment_token_id': False,
                                          'invoice_ids': [(6, 0, move.ids)],
-                                         }) #create payment for invoice
-                                so.action_cancel() #cancel contract
-                                so.sale_action_sent()  #resend contract
+                                         })  # create payment for invoice
+                                so.action_cancel()  # cancel contract
+                                so.sale_action_sent()  # resend contract
                                 so.partner_id.sudo().write({
                                     'mcm_session_id': module_id.session_id.id,
                                     'module_id': module_id.id,
                                 })
-                                so.partner_id.statut = 'won' # change state of client to won
+                                so.partner_id.statut = 'won'  # change state of client to won
                                 list = []
                                 for partner in module_id.session_id.client_ids:
                                     list.append(partner.id)
                                     list.append(so.partner_id.id)
-                                    module_id.session_id.write({'client_ids': [(6, 0, list)]})
+                                    module_id.session_id.write(
+                                        {'client_ids': [(6, 0, list)]})
                                 _logger.info("so : %s" % (str(so.id)))
                                 if so.env.su:
                                     # sending mail in sudo was meant for it being sent from superuser
                                     so = so.with_user(SUPERUSER_ID)
-                                template_id = so._find_mail_template(force_confirmation_template=True)
+                                template_id = so._find_mail_template(
+                                    force_confirmation_template=True)
                                 if template_id and so:
                                     so.with_context(force_send=True).message_post_with_template(template_id,
                                                                                                 composition_mode='comment',
