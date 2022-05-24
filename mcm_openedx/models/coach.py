@@ -1,6 +1,17 @@
 # -*- coding: utf-8 -*-
-
+import requests
+from datetime import datetime, timedelta, date
 from odoo import models, fields, api, SUPERUSER_ID
+from odoo.tools import datetime
+
+
+class enattente(models.Model):
+    _name = 'mcm_openedx.enattente'
+
+    name = fields.Char(string="Apprenat en attente")
+    date_edof = fields.Date(string="Date d'ajout")
+    billingState = fields.Char(string="Statut de payement")
+    state = fields.Char(string="Statut de cpf")
 
 
 class Coach(models.Model):
@@ -33,7 +44,6 @@ class Coach(models.Model):
         # determiner le nombre total des apprenants
         for apprenant in self.env['res.partner'].sudo().search([('statut', "=", "won"), ('company_id', '=', 1)]):
             count_apprennat = count_apprennat + 1
-
 
         # definir si le partner et coach
         for coach in self.env['res.partner'].sudo().search(
@@ -176,3 +186,100 @@ class Coach(models.Model):
 
                 # appeler la fonction pour affecter les apprenats aux coach
             self.test_coach()
+
+    """recuperer les dossier avec état accepté apartir d'api wedof,
+          puis faire le parcours pour chaque dossier,
+          si tout les conditions sont vérifiés on Passe le dossier dans l'état 'en formation'"""
+
+    def wedof_api_integration_moocit(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+
+        companies = self.env['res.company'].sudo().search([('id', "=", 2)])
+        print(companies)
+        api_key = ""
+        if companies:
+            api_key = companies.wedof_api_key
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-API-KEY': api_key,
+        }
+        params_we = (
+            ('order', 'desc'),
+            ('type', 'all'),
+            ('state', 'accepted'),
+            ('billingState', 'all'),
+            ('certificationState', 'all'),
+            ('sort', 'lastUpdate'),
+        )
+
+        data = '{}'
+        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                params=params_we)
+        registrations = response.json()
+
+        print(response.status_code)
+
+        for dossier in registrations:
+            externalId = dossier['externalId']
+            diplome = dossier['trainingActionInfo']['title']
+            email = dossier['attendee']['email']
+            certificat = dossier['_links']['certification']['name']
+            certificat_info = dossier['_links']['certification']['certifInfo']
+            date_formation = dossier['trainingActionInfo']['sessionStartDate']
+            """convertir date de formation """
+            date_split = date_formation[0:10]
+            date_ = datetime.strptime(date_split, "%Y-%m-%d")
+            dateFormation = date_.date()
+            idform = dossier['trainingActionInfo']['externalId']
+            attendee = dossier['attendee']
+
+            today = date.today()
+            lastupdatestr = str(dossier['lastUpdate'])
+            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+            newformat = "%d/%m/%Y %H:%M:%S"
+            lastupdateform = lastupdate.strftime(newformat)
+            state = dossier['state']
+            billingState = dossier['billingState']
+            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+
+            # print('dateeeeeeeeee', today, dateFormation, certificat, idform)
+            # print('diplome',diplome)
+
+            if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi"):
+                print("aaaaaaaaaainfoooooooooooooo", attendee)
+                print(attendee['email'])
+
+                for enattente in self.env['mcm_openedx.enattente'].search(
+                        [('name','=',email)]):
+                    if not(enattente):
+                        new = self.env['mcm_openedx.enattente'].sudo().create({
+                            'name': email,
+                            'date_edof': dateFormation,
+                            'state': state,
+                            'billingState': billingState,
+                        })
+                        print("newwwwwwwwwwwwwwwwwwwwwwwww", new)
+
+
+
+
+
+
+        if (dateFormation <= today):
+            """si l'apprenant est sur moocit
+                                        on change le statut de son dossier sur wedof """
+        for partner in self.env['mcm_openedx.course_stat'].search(
+                [('email', "=", email)
+                 ]):
+            if (partner.email == dossier['attendee']['email']):
+                print("okokkookkokookokokko")
+                print('dateeeeeeeeee', today, dateFormation, certificat, idform)
+                print('wedooooffffff %s' % certificat)
+                print('dateformation %s' % dateFormation)
+                print('email %s' % email)
+                # response_post = requests.post(
+                #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                #     headers=headers, data=data)
+                # _logger.info('response post %s' % str(response_post.text))
+                # print('response post', str(response_post.text))

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="attente_tree_view">
+        <field name="name">Apprenants</field>
+        <field name="model">mcm_openedx.enattente</field>
+        <field name="arch" type="xml">
+            <tree string="Apprennat">
+                <field name="name"/>
+                <field name="date_edof"/>
+                <field name="state"/>
+                <field name="billingState"/>
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="attente_form_view">
+        <field name="name">Apprenants</field>
+        <field name="model">mcm_openedx.enattente</field>
+        <field name="arch" type="xml">
+            <form string="Apprennat">
+                <sheet>
+                    <field name="name"/>
+                    <field name="date_edof"/>
+                    <field name="state"/>
+                    <field name="billingState"/>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="att_kanban">
+        <field name="name">name</field>
+        <field name="model">mcm_openedx.enattente</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="name">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div>
+                            <div class="oe_dropdown_kanban">
+                                <!-- dropdown menu -->
+                                <div class="oe_dropdown_toggle">
+                                    <i class="fa fa-bars fa-lg"/>
+                                    <ul class="oe_dropdown_menu">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+                                <!-- title -->
+                                Email de l'Apprenant:
+                                <field name="name"/>
+                                <br/>
+                                Date Debut Formation:
+                                <field name="date_edof"/>
+                                <br/>
+                                Staut De l'apprannat:
+                                <field name="state"/>
+                                <br/>
+                                Staut De Payement
+                                <field name="billingState"/>
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="attente_list_action">
+        <field name="name">Les Apprenants</field>
+        <field name="res_model">mcm_openedx.enattente</field>
+        <field name="view_mode">kanban,form,tree</field>
+    </record>
+
+
+</odoo>

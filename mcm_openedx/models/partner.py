@@ -32,8 +32,6 @@ class partner(models.Model):
     mooc_temps_passe_min = fields.Integer()
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
-    apprenant_en_attente = fields.Char()
-    date_edof = fields.Date()
 
     # desinscrire les cours de formation  VTC a l'apprenant
 
@@ -694,83 +692,3 @@ class partner(models.Model):
                 new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
                 rec.supprimerdemoocit = new_date_format
 
-    """recuperer les dossier avec état accepté apartir d'api wedof,
-        puis faire le parcours pour chaque dossier,
-        si tout les conditions sont vérifiés on Passe le dossier dans l'état 'en formation'"""
-
-    def wedof_api_integration_moocit(self):
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-
-        companies = self.env['res.company'].sudo().search([('id', "=", 2)])
-        print(companies)
-        api_key = ""
-        if companies:
-            api_key = companies.wedof_api_key
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-API-KEY': api_key,
-        }
-        params_we = (
-            ('order', 'desc'),
-            ('type', 'all'),
-            ('state', 'accepted'),
-            ('billingState', 'all'),
-            ('certificationState', 'all'),
-            ('sort', 'lastUpdate'),
-        )
-
-        data = '{}'
-        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
-                                params=params_we)
-
-        registrations = response.json()
-        print(response.status_code)
-
-        for dossier in registrations:
-            externalId = dossier['externalId']
-            diplome = dossier['trainingActionInfo']['title']
-            email = dossier['attendee']['email']
-            certificat = dossier['_links']['certification']['name']
-            certificat_info = dossier['_links']['certification']['certifInfo']
-            date_formation = dossier['trainingActionInfo']['sessionStartDate']
-            """convertir date de formation """
-            date_split = date_formation[0:10]
-            date_ = datetime.strptime(date_split, "%Y-%m-%d")
-            dateFormation = date_.date()
-            idform = dossier['trainingActionInfo']['externalId']
-
-            today = date.today()
-            lastupdatestr = str(dossier['lastUpdate'])
-            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
-            newformat = "%d/%m/%Y %H:%M:%S"
-            lastupdateform = lastupdate.strftime(newformat)
-            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
-
-            # print('dateeeeeeeeee', today, dateFormation, certificat, idform)
-            # print('diplome',diplome)
-
-            if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi"):
-                print('email %s' % email)
-                apprenant_en_attente = email
-                print('dateformation %s' % dateFormation)
-                date_edof = dateFormation
-
-                if (dateFormation <= today):
-                    """si l'apprenant est sur moocit
-                                                on change le statut de son dossier sur wedof """
-                for partner in self.env['mcm_openedx.course_stat'].search(
-                        [('email', "=", email)
-                         ]):
-                    if (partner.email == dossier['attendee']['email']):
-                        print("okokkookkokookokokko")
-                        print('dateeeeeeeeee', today, dateFormation, certificat, idform)
-                        print('wedooooffffff %s' % certificat)
-                        print('dateformation %s' % dateFormation)
-                        print('email %s' % email)
-                        # response_post = requests.post(
-                        #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
-                        #     headers=headers, data=data)
-                        # _logger.info('response post %s' % str(response_post.text))
-                        # print('response post', str(response_post.text))
-                        #

@@ -87,6 +87,23 @@
         <field name="active" eval="False"></field>
         <field name="state">code</field>
         <field name="code">model.ajoutMoocit_automatique()</field>
+        <field name="interval_number">58</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="priority" eval="3"/>
+    </record>
+
+
+
+       <!-- tache cron pour voir statut en attent edof -->
+
+    <record id="ir_cron_edof_moocit" model="ir.cron">
+        <field name="name">edof verification
+        </field>
+        <field name="model_id" ref="model_mcm_openedx_coach"/>
+        <field name="active" eval="False"></field>
+        <field name="state">code</field>
+        <field name="code">model.wedof_api_integration_moocit()</field>
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
