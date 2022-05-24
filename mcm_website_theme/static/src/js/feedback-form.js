@@ -1,20 +1,20 @@
-function onSubmitForm(redirection) {
-  //redirection
-  if (document.getElementById('redirection')) {
-    document.getElementById('redirection').value = redirection;
-  }
-  document.getElementById('msform').submit();
-}
+// function onSubmitForm(redirection) {
+//   //redirection auto / manual mode
+//   if (document.getElementById('redirection')) {
+//     document.getElementById('redirection').value = redirection;
+//   }
+//   document.getElementById('msform').submit();
+// }
 
 $(document).ready(function () {
-  //popup's message depends with partner has documents
   document.getElementById('hasdocument').value == 'True'
     ? (document.getElementById('notifMessage').textContent =
         "Vous pouvez désormais choisir votre date et centre d'examen et financer votre formation.")
     : (document.getElementById('notifMessage').textContent =
-        "Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité, et veuillez choisir le mode de téléchargement souhaité :");
+        "Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité et cliquer sur continuer.");
+  console.log(hasdocument, document.getElementById('hasdocument').value);
   //console.log(hasdocument, document.getElementById('hasdocument').value);
-  //console.log(
+  // console.log(
   //   window.location.href.includes('/coordonnees#popup1'),
   //   window.location.href
   // );
@@ -63,6 +63,8 @@ $(document).ready(function () {
     if (pass) {
       current_fs = $(this).parent().parent();
       next_fs = $(this).parent().parent().next();
+      // 4 is the final step
+      // if partner has documents submit the form if not show the notification popup
       if (current == 4) {
         pass = 0;
         error.text('');
@@ -71,13 +73,14 @@ $(document).ready(function () {
         window.location.href = '#popup1';
         return false;
       }
+      if (current == 4) return;
       next_fs.show();
       //hide the current fieldset with style
       current_fs.animate(
         { opacity: 0 },
         {
           step: function (now) {
-            // for making fielset appear animation
+            // for making fielset appear animated
             opacity = 1 - now;
 
             current_fs.css({
@@ -100,13 +103,14 @@ $(document).ready(function () {
     }
 
     // if (pass.length > 1 && current === 4) {
-    //   //console.log(pass.length);
+    //   console.log(pass.length);
     else {
       error.text('Veuillez répondre à la question');
       error.show();
     }
   });
 
+  //determine which filedset is the previous
   $('.previous').click(function () {
     current_fs = $(this).parent().parent();
     previous_fs = $(this).parent().parent().prev();
@@ -137,6 +141,7 @@ $(document).ready(function () {
     fixStepIndicator(current - 1);
   });
 
+  //Determine if user has checked a box or not
   function check(name) {
     let category = document.getElementsByName(name);
     let check = 0;
@@ -150,7 +155,7 @@ $(document).ready(function () {
   }
 
   function fixStepIndicator(n) {
-    // This function removes the "active" class of all steps...
+    // Removes the "active" class of all steps...
     var i,
       x = document.getElementsByClassName('step');
     for (i = 0; i < x.length; i++) {

@@ -1,18 +1,17 @@
-function onSubmitForm(redirection) {
-  //redirection auto / manual mode
-  if (document.getElementById('redirection')) {
-    document.getElementById('redirection').value = redirection;
-  }
-  document.getElementById('msform').submit();
-}
+// function onSubmitForm(redirection) {
+//   //redirection auto / manual mode
+//   if (document.getElementById('redirection')) {
+//     document.getElementById('redirection').value = redirection;
+//   }
+//   document.getElementById('msform').submit();
+// }
 
 $(document).ready(function () {
-  //popup's message depends on partner has documents
   document.getElementById('hasdocument').value == 'True'
     ? (document.getElementById('notifMessage').textContent =
         "Vous pouvez désormais choisir votre date et centre d'examen et financer votre formation.")
     : (document.getElementById('notifMessage').textContent =
-        "Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité, et veuillez choisir le mode de téléchargement souhaité :");
+        "Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité et cliquer sur continuer.");
   //console.log(hasdocument, document.getElementById('hasdocument').value);
   // console.log(
   //   window.location.href.includes('/coordonnees#popup1'),

@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
       url: `/coordonnees?${Math.floor(Math.random() * 100)}`,
     },
     documents: {
-      message: `<b>Félicitations!</b> Vous avez terminé l'étape <b>Coordonnées</b> de votre inscription. Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité, et veuillez choisir le mode de téléchargement souhaité :`,
+      message: `<b>Félicitations!</b> Vous avez terminé l'étape <b>Coordonnées</b> de votre inscription. Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité et cliquer sur continuer. :`,
       url: `/charger_mes_documents?${Math.floor(Math.random() * 100)}`,
     },
     financement: {
@@ -117,23 +117,30 @@ document.addEventListener('DOMContentLoaded', function () {
                                         )}" style="margin-right: 8px;">
                                             <button id="btn-action" class="rkmd-btn btn-blue  ripple-effect ripple-yellow" type="submit" style="font-size: 11px;width:116px">
                                             
-                                            Manuel
+                                            Continuer
                                         </button>
                                         </a>
                                     </div>
 
-                                    <div class="">
-
-                                        <a id="button-continuer" href="/charger_mes_documents?${Math.floor(
-                                          Math.random() * 100
-                                        )}">
-                                            <button id="btn-action" class="rkmd-btn btn-blue  ripple-effect ripple-yellow" type="submit" style="font-size: 11px;width:116px;">
-                                            
-                                            Auto
-                                        </button>
-                                        </a>
-                                    </div>
+                                   
                                 </div>`;
+      // auto and manual possible to uncomment when return to auto verification
+      //<div class=''>
+      //    <a
+      //      id='button-continuer'
+      //      href='/charger_mes_documents?${Math.floor(Math.random() * 100)}'
+      //    >
+      //      <button
+      //        id='btn-action'
+      //        class='rkmd-btn btn-blue  ripple-effect ripple-yellow'
+      //        type='submit'
+      //        style='font-size: 11px;width:116px;'
+      //      >
+      //        Auto
+      //      </button>
+      //    </a>
+      //  </div>;
+
       finished.innerHTML = uploadDocumentBtns;
 
       break;
@@ -173,6 +180,5 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   var progressBarValue = step * 25;
   //console.log(step);
-  document.getElementsByClassName('progress-bar')[0].style.width =
-    progressBarValue + '%';
+  document.getElementsByClassName('progress-bar')[0].style.width = progressBarValue + '%';
 });
