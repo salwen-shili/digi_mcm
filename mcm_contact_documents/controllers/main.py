@@ -56,7 +56,7 @@ class CustomerPortal(CustomerPortal):
             if survey:
                 survey_user = request.env['survey.user_input'].sudo().search(
                     [('partner_id', "=", request.env.user.partner_id.id),
-                     ('survey_id', '=', survey.id),('state',"=",'done')],
+                     ('survey_id', '=', survey.id), ('state', "=", 'done')],
                     order='create_date asc', limit=1)
                 if not survey_user:
                     exam_state = 'exam_not_passed'
@@ -115,7 +115,7 @@ class CustomerPortal(CustomerPortal):
         boltWrongProduct = "False"
         if order and order.order_line:
             for line in order.order_line:
-                if order.partner_id.bolt ==True and line.product_id.default_code != "vtc_bolt":
+                if order.partner_id.bolt == True and line.product_id.default_code != "vtc_bolt":
                     boltWrongProduct = "True"
         values.update({
             'rdvIsBooked': rdvIsBooked,
@@ -713,6 +713,7 @@ class CustomerPortal(CustomerPortal):
 
     @http.route('/charger_mes_documents', type="http", auth="user", website=True)
     def create_documents_digimoov(self, **kw):
+        return werkzeug.utils.redirect("/charger_mes_documents_manual", 301)
         name = http.request.env.user.name
         email = http.request.env.user.email
         partner_id = http.request.env.user.partner_id
