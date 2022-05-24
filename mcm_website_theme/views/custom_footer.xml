@@ -221,7 +221,14 @@
                 <script type="text/javascript" src="/mcm_website_theme/static/src/js/calendly.min.js"></script>
                 <!-- Fin de widget de badge Calendly -->
 
-
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  chat-icon="https:&#x2F;&#x2F;static.wixstatic.com&#x2F;media&#x2F;bd95c6_051057e7915444cf9d22aa4524a1a8be~mv2.gif"
+  intent="WELCOME"
+  chat-title="MCMBOT"
+  agent-id="0759fe54-fb9e-4f41-99fe-d2643f1fd535"
+  language-code="fr"
+></df-messenger>
                 <!--
                                 <input type="hidden" name="intercom_user_name_connected" id="intercom_user_name_connected"
                                        t-att-value="request.website.get_user_name_logged()"/>

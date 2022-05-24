@@ -57,7 +57,7 @@
         <field name="active" eval="True"></field>
         <field name="state">code</field>
         <field name="code">model.egalité()</field>
-        <field name="interval_number">1</field>
+        <field name="interval_number">59</field>
         <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>
         <field name="priority" eval="1"/>

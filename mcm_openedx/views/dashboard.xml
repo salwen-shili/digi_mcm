@@ -6,7 +6,8 @@
         <field name="view_id"
                ref="mcm_openedx.view_openacad_session_kanban"/>
     </record>
-    <record model="ir.actions.act_window" id="act_coach_graph">
+
+     <record model="ir.actions.act_window" id="act_coach_graph">
         <field name="name">Coaches</field>
         <field name="res_model">mcm_openedx.coach</field>
         <field name="view_mode">graph</field>

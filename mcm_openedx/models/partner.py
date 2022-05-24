@@ -32,6 +32,8 @@ class partner(models.Model):
     mooc_temps_passe_min = fields.Integer()
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
+    apprenant_en_attente = fields.Char()
+    date_edof = fields.Date()
 
     # desinscrire les cours de formation  VTC a l'apprenant
 
@@ -643,14 +645,14 @@ class partner(models.Model):
                                                                   ('email', "=", 'dimopes981@bunlets.comgit staut'),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
-                  self.write({'state': 'supprimé'})
-                # if (partner.supprimerdemoocit == date.today()):
-                #     if (partner.module_id.product_id.default_code == "taxi"):
-                #         self.desinscriteTaxi(partner)
-                #     elif (partner.module_id.product_id.default_code == "vtc"):
-                #         self.desinscriteVTC(partner)
-                #     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                #         self.desinscriteVTC(partner)
+                self.write({'state': 'supprimé'})
+            # if (partner.supprimerdemoocit == date.today()):
+            #     if (partner.module_id.product_id.default_code == "taxi"):
+            #         self.desinscriteTaxi(partner)
+            #     elif (partner.module_id.product_id.default_code == "vtc"):
+            #         self.desinscriteVTC(partner)
+            #     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+            #         self.desinscriteVTC(partner)
 
     def update_suppresion_old_apprenats(self):
         datee = datetime.today()
@@ -745,12 +747,18 @@ class partner(models.Model):
             lastupdateform = lastupdate.strftime(newformat)
             lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
 
-            print('dateeeeeeeeee', today, dateFormation, certificat, idform)
+            # print('dateeeeeeeeee', today, dateFormation, certificat, idform)
+            # print('diplome',diplome)
 
-            if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi") and (
-                    dateFormation <= today):
-                """si l'apprenant est sur moocit
-                                            on change le statut de son dossier sur wedof """
+            if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi"):
+                print('email %s' % email)
+                apprenant_en_attente = email
+                print('dateformation %s' % dateFormation)
+                date_edof = dateFormation
+
+                if (dateFormation <= today):
+                    """si l'apprenant est sur moocit
+                                                on change le statut de son dossier sur wedof """
                 for partner in self.env['mcm_openedx.course_stat'].search(
                         [('email', "=", email)
                          ]):
