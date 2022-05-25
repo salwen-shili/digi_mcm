@@ -366,7 +366,7 @@ class partner(models.Model):
                     _logger.info('document valide , date exlan > datetoday %s')
 
                     if (self.renounce_request):
-                        # self.ajouter_IOne_MCM(self)
+                        self.ajouter_IOne_MCM(self)
                         _logger.info(' Doneeeee %s')
                         self.write({'state': 'en_formation'})
 
@@ -399,8 +399,8 @@ class partner(models.Model):
                         print(datetime.today())
                         if dateDebutSession <= datetime.today():
                             _logger.info(' Donnnnnnne %s')
-                            # self.ajouter_IOne_MCM(self)
-                            # self.write({'state': 'en_formation'})
+                            self.ajouter_IOne_MCM(self)
+                            self.write({'state': 'en_formation'})
 
 
 
@@ -571,12 +571,7 @@ class partner(models.Model):
     def supprimer_IOne_MCM(self):
 
         self.supprimerdemoocit = self.mcm_session_id.date_exam + timedelta(days=5)
-        # base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-        #     # ajouter une condition sur suppresion manuelle pour ne pas supprimer lapprenat que si
-        # la date est egale a la date today
-        # comparer la date avec la date Today si elle est différente afficher une notification
-        # if (date.today() == self.supprimerdemoocit):
+
         departement = self.state_id.code
         _logger.info(departement)
         self.write({'state': 'supprimé'})
