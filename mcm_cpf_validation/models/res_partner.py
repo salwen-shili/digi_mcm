@@ -202,14 +202,15 @@ class resPartner(models.Model):
                             for move in moves :
                                 move.session_id = self.mcm_session_id
                                 move.module_id = self.module_id
-                        product_of_module = previous_client_module.product_id
-                        module = self.env['mcmacademy.module'].sudo().search([('product_id', "=", product_of_module.id),('session_id',"=",self.mcm_session_id.id)],limit=1)
-                        if module :
-                            self.module_id=module
-                        if move :
-                            move.module_id = module
-                        if sale :
-                            sale.module_id = module
+                        if previous_client_module:
+                            product_of_module = previous_client_module.product_id
+                            module = self.env['mcmacademy.module'].sudo().search([('product_id', "=", product_of_module.id),('session_id',"=",self.mcm_session_id.id)],limit=1)
+                            if module :
+                                self.module_id=module
+                            if move :
+                                move.module_id = module
+                            if sale :
+                                sale.module_id = module
                     list = []
                     for client in self.mcm_session_id.client_ids:
                         list.append(client.id)
