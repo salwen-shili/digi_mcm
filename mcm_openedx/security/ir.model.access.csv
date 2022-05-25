@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 coach_manager,coach manager,model_mcm_openedx_coach,,1,1,1,1
 course_stat_manager,course_stat manager,model_mcm_openedx_course_stat,,1,1,1,1
+enattente_manager,enattente manager,model_mcm_openedx_enattente,,1,1,1,1

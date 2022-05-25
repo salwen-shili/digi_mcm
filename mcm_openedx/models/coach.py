@@ -4,6 +4,10 @@ from datetime import datetime, timedelta, date
 from odoo import models, fields, api, SUPERUSER_ID
 from odoo.tools import datetime
 
+import logging
+
+_logger = logging.getLogger(__name__)
+
 
 class enattente(models.Model):
     _name = 'mcm_openedx.enattente'
@@ -15,7 +19,7 @@ class enattente(models.Model):
     externalId = fields.Char(string="Numero de cpf")
     firstName = fields.Char(string="Nom")
     lastName = fields.Char(string="Prenom")
-    existant = fields.Boolean( string="Exist sur Moocit" , default=False )
+    existant = fields.Boolean(string="Exist sur Moocit", default=False)
 
 
 class Coach(models.Model):
@@ -257,44 +261,42 @@ class Coach(models.Model):
 
                 print(attendee['email'])
 
-                for enattente in self.env['mcm_openedx.enattente'].search(
-                        []):
-                    existee = self.env['mcm_openedx.enattente'].search(
-                        [('name','=',enattente.name)])
+                existee = self.env['mcm_openedx.enattente'].search(
+                    [('name', '=', email)])
 
-                    print(existee.name)
-                    if existee:
-                        print("existtttt")
+                print(existee.name)
+                if existee:
+                    _logger.info("existtttt")
 
-                    if not existee:
-                        print("dont exist")
+                if not existee:
+                    _logger.info("dont exist")
 
-                        new = self.env['mcm_openedx.enattente'].sudo().create({
-                            'name': email,
-                            'date_edof': dateFormation,
-                            'state': state,
-                            'billingState': billingState,
-                            'externalId': externalId,
-                            'lastName': lastName,
-                            'firstName': firstName,
-                        })
-                        print(new)
+                    new = self.env['mcm_openedx.enattente'].sudo().create({
+                        'name': email,
+                        'date_edof': dateFormation,
+                        'state': state,
+                        'billingState': billingState,
+                        'externalId': externalId,
+                        'lastName': lastName,
+                        'firstName': firstName,
+                    })
+                    _logger.info(new)
 
-                    if (dateFormation <= today):
-                        """si l'apprenant est sur moocit
-                                                    on change le statut de son dossier sur wedof """
-                    for partner in self.env['mcm_openedx.course_stat'].search(
-                            [('email', "=", email)
-                             ]):
-                        if (partner.email == dossier['attendee']['email']):
-                            existant = True
-                            print("okokkookkokookokokko")
-                            print('dateeeeeeeeee', today, dateFormation, certificat, idform)
-                            print('wedooooffffff %s' % certificat)
-                            print('dateformation %s' % dateFormation)
-                            print('email %s' % email)
-                            # response_post = requests.post(
-                            #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
-                            #     headers=headers, data=data)
-                            # _logger.info('response post %s' % str(response_post.text))
-                            # print('response post', str(response_post.text))
+                if (dateFormation <= today):
+                    """si l'apprenant est sur moocit
+                                                on change le statut de son dossier sur wedof """
+                for partner in self.env['mcm_openedx.course_stat'].search(
+                        [('email', "=", email)
+                         ]):
+                    if (partner.email == dossier['attendee']['email']):
+                        existant = True
+                        _logger.info("okokkookkokookokokko")
+                        _logger.info('dateeeeeeeeee', today, dateFormation, certificat, idform)
+                        _logger.info('wedooooffffff %s' % certificat)
+                        _logger.info('dateformation %s' % dateFormation)
+                        _logger.info('email %s' % email)
+                        # response_post = requests.post(
+                        #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                        #     headers=headers, data=data)
+                        # _logger.info('response post %s' % str(response_post.text))
+                        # print('response post', str(response_post.text))
