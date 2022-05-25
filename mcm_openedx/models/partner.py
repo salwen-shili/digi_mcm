@@ -333,7 +333,6 @@ class partner(models.Model):
                         # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
                         if (self.renounce_request):
                             # self.ajouter_IOne_MCM(self)
-                            self.write({'state': 'en_formation'})
 
                             _logger.info('doooooooooooooooooooone %s')
 
@@ -341,10 +340,8 @@ class partner(models.Model):
                         today = date.today()
                         if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
                             # self.ajouter_IOne_MCM(self)
-                            self.write({'state': 'en_formation'})
 
                             _logger.info('doooooooooooooooooooone %s')
-                            self.write({'state': 'en_formation'})
 
 
 
@@ -474,8 +471,10 @@ class partner(models.Model):
 
         _logger.info('user %s' % str(payload))
         _logger.info('existantttttt dejaa %s')
-        if (response.status_code == 409):
+        if (response.status_code == 200):
             self.inscrit_mcm = date.today()
+            self.write({'state': 'en_formation'})
+
             partner.lang = 'fr_FR'
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser
@@ -537,7 +536,7 @@ class partner(models.Model):
 
 
 
-        elif (response.status_code == 209):
+        elif (response.status_code == 409):
             _logger.info('existantttttt dejaa %s')
 
     # envoit d'un sms
@@ -691,4 +690,3 @@ class partner(models.Model):
             if rec.supprimerdemoocit:
                 new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
                 rec.supprimerdemoocit = new_date_format
-
