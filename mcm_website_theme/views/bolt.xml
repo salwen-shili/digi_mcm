@@ -55,7 +55,7 @@
                             <i class="fa fa-times" />
                         </a>
                         <div class="content">
-                            <p id="notifMessage" style="text-align: center; font-size: 16px" />
+                            <p id="notifMessage" style="text-align: justify; font-size: 16px" />
                             <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
                                 <div id="default">
                                     <a target="_blank" id="btn-inside-popup">
