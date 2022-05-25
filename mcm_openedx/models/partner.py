@@ -446,11 +446,7 @@ class partner(models.Model):
 
     # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
     def ajouter_IOne_MCM(self, partner):
-        # base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-        #     # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
-        # du compte dans odoo
-        locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+
         user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
         partner.password360 = user.password360
         password = user.password360
