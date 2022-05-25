@@ -102,20 +102,16 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
           }
           if (document.getElementById('order_instalment')) {
             document.getElementById('order_instalment').style.display = 'none';
-            document.getElementById(
-              'order_instalment_number'
-            ).style.visibility = 'hidden';
+            document.getElementById('order_instalment_number').style.visibility =
+              'hidden';
             if (document.getElementById('order_instalment_number_order')) {
-              document.getElementById(
-                'order_instalment_number_order'
-              ).style.visibility = 'hidden';
+              document.getElementById('order_instalment_number_order').style.visibility =
+                'hidden';
             }
-            document.getElementById('order_amount_to_pay').style.display =
-              'none';
+            document.getElementById('order_amount_to_pay').style.display = 'none';
             if (document.getElementById('order_amount_to_pay_amount')) {
-              document.getElementById(
-                'order_amount_to_pay_amount'
-              ).style.display = 'none';
+              document.getElementById('order_amount_to_pay_amount').style.display =
+                'none';
             }
           }
 
@@ -162,12 +158,9 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
       if (stripe_pm) {
         if (stripe_pm.checked == true) {
           document.getElementById().href = '/shop/checkout?express=1';
-          document.getElementById('pm_shop_check').href =
-            '/shop/checkout?express=1';
-          document.getElementById('pm_shop_checkout').href =
-            '/shop/checkout?express=1';
-          document.getElementById('pm_shop_checkout2').href =
-            '/shop/checkout?express=1';
+          document.getElementById('pm_shop_check').href = '/shop/checkout?express=1';
+          document.getElementById('pm_shop_checkout').href = '/shop/checkout?express=1';
+          document.getElementById('pm_shop_checkout2').href = '/shop/checkout?express=1';
         } else {
           document.getElementById('pm_shop_check').href = '/new/ticket';
           document.getElementById('pm_shop_checkout').href = '/new/ticket';
@@ -227,9 +220,7 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
       var self = this;
       var accompagnement = false;
       if (document.getElementById('checkbox_accompagnement')) {
-        if (
-          document.getElementById('checkbox_accompagnement').checked == true
-        ) {
+        if (document.getElementById('checkbox_accompagnement').checked == true) {
           accompagnement = true;
         } else {
           accompagnement = false;
@@ -246,193 +237,177 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
     },
   });
 
-  publicWidget.registry.WebsiteSaleRegionDate = publicWidget.Widget.extend(
-    VariantMixin,
-    {
-      selector: '#region_date_examen',
-      events: _.extend({}, VariantMixin.events || {}, {
-        'change select[name="region_examen"]': 'verify_centre',
-        'change select[name="date_examen"]': 'verify_date_exam',
-        //        'change input[id="checkbox_conditions"]': 'verify_conditions',
-      }),
-      verify_date_exam: function (ev) {
-        var self = this;
-        var center = false;
-        var exam_date = document.getElementById('options-date');
+  publicWidget.registry.WebsiteSaleRegionDate = publicWidget.Widget.extend(VariantMixin, {
+    selector: '#region_date_examen',
+    events: _.extend({}, VariantMixin.events || {}, {
+      'change select[name="region_examen"]': 'verify_centre',
+      'change select[name="date_examen"]': 'verify_date_exam',
+      //        'change input[id="checkbox_conditions"]': 'verify_conditions',
+    }),
+    verify_date_exam: function (ev) {
+      var self = this;
+      var center = false;
+      var exam_date = document.getElementById('options-date');
+      var center = document.getElementById('region_examen').value;
+      var exam_date_id = false;
+
+      if (exam_date) {
+        var exam = document.getElementById('options-date').value;
+
+        if (exam == 'all') {
+          var error = document.getElementById('error_exam_date');
+          if (error && exam_date.style.display == 'inline-block') {
+            error.style.display = 'inline-block';
+          }
+        } else {
+          var error = document.getElementById('error_exam_date');
+          if (error) {
+            error.style.display = 'none';
+          }
+        }
+      }
+
+      if (exam_date) {
+        var exam_date_id = exam_date.options[exam_date.selectedIndex].id;
+      }
+      if (center && exam_date) {
+        if (center == 'all' || exam_date.value == 'all') {
+          var pm_button = document.getElementById('pm_shop_check');
+          var pm_button_checkout = document.getElementById('pm_shop_checkout');
+        }
+      }
+      this._rpc({
+        route: '/shop/cart/update_exam_date_mcm',
+        params: {
+          exam_date_id: exam_date_id,
+        },
+      }).then(function () {
+        return true;
+      });
+    },
+
+    verify_centre: function (ev) {
+      var datenb = 0;
+      var self = this;
+      var center = false;
+
+      var center_exam = document.getElementById('region_examen');
+      if (center_exam) {
         var center = document.getElementById('region_examen').value;
-        var exam_date_id = false;
 
-        if (exam_date) {
-          var exam = document.getElementById('options-date').value;
-
-          if (exam == 'all') {
-            var error = document.getElementById('error_exam_date');
-            if (error && exam_date.style.display == 'inline-block') {
-              error.style.display = 'inline-block';
-            }
+        var id = center_exam.options[center_exam.selectedIndex].id;
+      }
+      if (center_exam) {
+        if (center_exam.value != 'all') {
+          var t_modules = document.getElementById('exam_date');
+          if (t_modules) {
+            t_modules.style.display = 'inline-block';
           } else {
-            var error = document.getElementById('error_exam_date');
-            if (error) {
-              error.style.display = 'none';
-            }
+            t_modules.style.display = 'none';
           }
         }
+      }
 
-        if (exam_date) {
-          var exam_date_id = exam_date.options[exam_date.selectedIndex].id;
-        }
-        if (center && exam_date) {
-          if (center == 'all' || exam_date.value == 'all') {
-            var pm_button = document.getElementById('pm_shop_check');
-            var pm_button_checkout =
-              document.getElementById('pm_shop_checkout');
-          }
-        }
-        this._rpc({
-          route: '/shop/cart/update_exam_date',
-          params: {
-            exam_date_id: exam_date_id,
-          },
-        }).then(function () {
-          return true;
-        });
-      },
+      if ($('#options-date').value) {
+        document.getElementById('date_insert').removeChild('#date_insert select');
+      }
 
-      verify_centre: function (ev) {
-        var datenb = 0;
+      var dateOptions = '';
+
+      $('#exam_date option').each(function () {
         var self = this;
-        var center = false;
+        var select_option = $(this);
 
-        var center_exam = document.getElementById('region_examen');
-        if (center_exam) {
-          var center = document.getElementById('region_examen').value;
-
-          var id = center_exam.options[center_exam.selectedIndex].id;
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        var ios = false;
+        if (isIOS) {
+          ios = true;
+        } else {
+          ios = false;
         }
-        if (center_exam) {
-          if (center_exam.value != 'all') {
-            var t_modules = document.getElementById('exam_date');
-            if (t_modules) {
-              t_modules.style.display = 'inline-block';
-            } else {
-              t_modules.style.display = 'none';
-            }
-          }
-        }
-
-        if ($('#options-date').value) {
-          document
-            .getElementById('date_insert')
-            .removeChild('#date_insert select');
-        }
-
-        var dateOptions = '';
-
-        $('#exam_date option').each(function () {
-          var self = this;
-          var select_option = $(this);
-
-          var isIOS =
-            /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-          var ios = false;
-          if (isIOS) {
-            ios = true;
-          } else {
-            ios = false;
-          }
-          if (self.value === center) {
-            datenb++;
-            var date = self.text;
-            console.log('datenb', datenb);
-            if (datenb < 3) {
-              dateOptions += `<option style='text-transform: capitalize' value=${self.value} id=${self.id}>
+        if (self.value === center) {
+          datenb++;
+          var date = self.text;
+          console.log('datenb', datenb);
+          if (datenb < 3) {
+            dateOptions += `<option style='text-transform: capitalize' value=${self.value} id=${self.id}>
              ${date}
             </option>`;
-            }
-
-            // document.getElementById("options-date").appendChild(dateOptions);
           }
-          if (self.value == center || self.value == 'all') {
-            if (ios == true) {
-              select_option.prop('disabled', false);
-              select_option.prop('display', 'none');
-            } else {
-              select_option.show();
-            }
+
+          // document.getElementById("options-date").appendChild(dateOptions);
+        }
+        if (self.value == center || self.value == 'all') {
+          if (ios == true) {
+            select_option.prop('disabled', false);
+            select_option.prop('display', 'none');
           } else {
-            if (ios == true) {
-              select_option.prop('disabled', true);
-              select_option.prop('display', 'inline');
-            } else {
-              select_option.hide(); //
-            }
+            select_option.show();
           }
-        });
+        } else {
+          if (ios == true) {
+            select_option.prop('disabled', true);
+            select_option.prop('display', 'inline');
+          } else {
+            select_option.hide(); //
+          }
+        }
+      });
 
-        if (dateOptions) {
-          var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()">
+      if (dateOptions) {
+        var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()">
           <option value="all" id="all">
                                     Sélectionnez votre date d'examen
                                 </option>                  
           ${dateOptions}
                             </select>`;
-          document.getElementById('select-date').innerHTML = select;
-          document
-            .getElementById('pm_shop_checkout')
-            .removeAttribute('disabled');
-          document
-            .getElementById('pm_shop_checkout2')
-            .removeAttribute('disabled');
+        document.getElementById('select-date').innerHTML = select;
+        document.getElementById('pm_shop_checkout').removeAttribute('disabled');
+        document.getElementById('pm_shop_checkout2').removeAttribute('disabled');
+      } else {
+        document.getElementById('select-date').innerHTML =
+          'Pas de date disponible pour le moment.';
+        document.getElementById('pm_shop_checkout').setAttribute('disabled', 'disabled');
+        document.getElementById('pm_shop_checkout2').setAttribute('disabled', 'disabled');
+      }
+
+      if (center_exam) {
+        var center = document.getElementById('region_examen').value;
+        if (center == 'all') {
+          var error = document.getElementById('error_exam_center');
+          if (error) {
+            error.style.display = 'inline-block';
+          }
         } else {
-          document.getElementById('select-date').innerHTML =
-            'Pas de date disponible pour le moment.';
-          document
-            .getElementById('pm_shop_checkout')
-            .setAttribute('disabled', 'disabled');
-          document
-            .getElementById('pm_shop_checkout2')
-            .setAttribute('disabled', 'disabled');
+          var error = document.getElementById('error_exam_center');
+          if (error) {
+            error.style.display = 'none';
+          }
         }
+      }
 
-        if (center_exam) {
-          var center = document.getElementById('region_examen').value;
-          if (center == 'all') {
-            var error = document.getElementById('error_exam_center');
-            if (error) {
-              error.style.display = 'inline-block';
-            }
-          } else {
-            var error = document.getElementById('error_exam_center');
-            if (error) {
-              error.style.display = 'none';
-            }
-          }
+      var exam_date = document.getElementById('exam_date');
+      if (exam_date) {
+        if (exam_date.value != 'all') {
+          exam_date.value = 'all';
         }
-
-        var exam_date = document.getElementById('exam_date');
-        if (exam_date) {
-          if (exam_date.value != 'all') {
-            exam_date.value = 'all';
-          }
+      }
+      if (center && exam_date) {
+        if (center == 'all' || exam_date == 'all') {
+          var pm_button = document.getElementById('pm_shop_check');
+          var pm_button_checkout = document.getElementById('pm_shop_checkout');
         }
-        if (center && exam_date) {
-          if (center == 'all' || exam_date == 'all') {
-            var pm_button = document.getElementById('pm_shop_check');
-            var pm_button_checkout =
-              document.getElementById('pm_shop_checkout');
-          }
-        }
-        onChangeCheckButton();
-        this._rpc({
-          route: '/shop/cart/update_exam_center',
-          params: {
-            center: center,
-          },
-        }).then(function () {
-          return true;
-        });
-      },
-    }
-  );
+      }
+      onChangeCheckButton();
+      this._rpc({
+        route: '/shop/cart/update_exam_center',
+        params: {
+          center: center,
+        },
+      }).then(function () {
+        return true;
+      });
+    },
+  });
 });
 //

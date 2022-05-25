@@ -99,8 +99,8 @@ class WebsiteSale(WebsiteSale):
                             phone = str(
                                 request.env.user.partner_id.phone.replace(' ', ''))[-9:]
                             phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                                           5:7] + ' ' + phone[
-                                                                                                                        7:]
+                                5:7] + ' ' + phone[
+                                7:]
                             request.env.user.partner_id.phone = phone
                         url = 'https://tinyurl.com/mtw2tv8z'
                         body = "Cher %s, Pour profiter de la formation VTC à 20 euros vous devez passer un test d'entré de 30 min.Commencez ici : %s" % (
@@ -1144,8 +1144,8 @@ class WebsiteSale(WebsiteSale):
                     if partner.phone:
                         phone = str(partner.phone.replace(' ', ''))[-9:]
                         phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                                       5:7] + ' ' + phone[
-                                                                                                                    7:]
+                            5:7] + ' ' + phone[
+                            7:]
                         partner.phone = phone
                     url = 'https://digimoov.360learning.com/'
                     body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par Digimoov à commencer votre formation via ce lien : %s .Vos identifiants sont identiques que sur le site web Digimoov.fr" % (
@@ -1168,7 +1168,8 @@ class WebsiteSale(WebsiteSale):
                             composer.action_send_sms()
                         if partner.phone:
                             partner.phone = '0' + \
-                                            str(partner.phone.replace(' ', ''))[-9:]
+                                            str(partner.phone.replace(
+                                                ' ', ''))[-9:]
                     return {
                         'ajout': 'Félicitations! Vous pouvez dés maintenant accéder à notre plateforme de formation,\nPour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.',
                         'url': 'https://digimoov.360learning.com'}
@@ -1220,7 +1221,8 @@ class WebsiteSale(WebsiteSale):
                                 limit=1).id,
                         }
                         description_client = "CPF: Apprenant non ajouté sur 360 " + \
-                                             str(partner.name) + str(responce_api)
+                                             str(partner.name) + \
+                            str(responce_api)
                         ticket_client = request.env['helpdesk.ticket'].sudo().search(
                             [("description", "=", description_client),
                              ("team_id.name", 'like', 'Client')])
@@ -1432,7 +1434,8 @@ class WebsiteSale(WebsiteSale):
         order_id = request.session.get('sale_last_order_id')
         if not order_id:
             last_order = request.env['sale.order'].sudo().search(
-                [("partner_id", "=", request.env.user.partner_id.id), ("state", "=", "sent")],
+                [("partner_id", "=", request.env.user.partner_id.id),
+                 ("state", "=", "sent")],
                 order='id desc', limit=1)
             if last_order:
                 order_id = last_order.id
@@ -1670,12 +1673,14 @@ class Date_Examen(http.Controller):
                     order.partner_id.date_examen_edof = module.date_exam
                     order.partner_id.session_ville_id = module.session_ville_id
             else:
-                subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mt_note')
+                subtype_id = request.env['ir.model.data'].xmlid_to_res_id(
+                    'mt_note')
                 if order and order.partner_id:
                     body = "Le candidat n'a pas pu réserver la date %s à %s pour l'examen car celle-ci dépassera 4 mois de formation.Le candidat peut reprendre l'inscription pour la même date à partir de %s." % (
                         str(module.date_exam), str(module.session_ville_id.name_ville), str(availableDate))
                     message = request.env['mail.message'].sudo().search(
-                        [('body', "=", body), ('model', "=", 'res.partner'), ('res_id', "=", order.partner_id.id)],
+                        [('body', "=", body), ('model', "=", 'res.partner'),
+                         ('res_id', "=", order.partner_id.id)],
                         limit=1)  # check if we have already create note for client with same description ( date et ville )
                     if not message:
                         # create new note for client ( dépassement du date 4mois )
@@ -1686,7 +1691,7 @@ class Date_Examen(http.Controller):
                             'message_type': 'notification',
                             'subtype_id': subtype_id,
                             'body': "Le candidat n'a pas pu réserver la session %s à %s car celle-ci dépassera 4 mois de formation.Le candidat peut reprendre l'inscription pour la même date à partir de %s." % (
-                            str(module.date_exam), str(module.session_ville_id.name_ville), str(availableDate)),
+                                str(module.date_exam), str(module.session_ville_id.name_ville), str(availableDate)),
                         })
         if exam_date_id and exam_date_id == 'all':
             if order:
@@ -1704,3 +1709,40 @@ class Date_Examen(http.Controller):
             if module and partner:
                 partner.date_examen_edof = module.date_exam
         return True
+    # dupilcated to call for mcm wihout availadedate and status (we have not a 4months condition in mcm)
+
+    @http.route(['/shop/cart/update_exam_date_mcm'], type='json', auth="public", methods=['POST'], website=True)
+    def cart_update_exam_center_mcm(self, exam_date_id):
+        order = request.website.sale_get_order()
+        if exam_date_id and exam_date_id != 'all':
+            module = request.env['mcmacademy.module'].sudo().search(
+                [('id', '=', exam_date_id)], limit=1)
+            if module and order:
+                check_partner_in_future_session = False
+                futures_sessions = request.env['mcmacademy.session'].sudo().search(
+                    [('date_exam', '>=', date.today())])
+                if futures_sessions:
+                    for session in futures_sessions:
+                        for client in session.client_ids:
+                            if client.id == order.partner_id.id:
+                                check_partner_in_future_session = True
+                if not check_partner_in_future_session:
+                    order.partner_id.statut = 'indecis'
+                    if futures_sessions:
+                        for session in futures_sessions:
+                            session.write(
+                                {'prospect_ids': [(3, order.partner_id.id)]})
+                    module.session_id.write(
+                        {'prospect_ids': [(4, order.partner_id.id)]})
+                order.module_id = module
+                order.session_id = module.session_id
+                # if order.company_id.id == 1:
+                order.partner_id.date_examen_edof = module.date_exam
+                order.partner_id.session_ville_id = module.session_ville_id
+
+        if exam_date_id and exam_date_id == 'all':
+            if order:
+                order.module_id = False
+                order.session_id = False
+                order.partner_id.date_examen_edof = False
+                order.partner_id.session_ville_id = False
