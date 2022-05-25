@@ -332,14 +332,14 @@ class partner(models.Model):
 
                         # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
                         if (self.renounce_request):
-                            # self.ajouter_IOne_MCM(self)
+                            self.ajouter_IOne_MCM(self)
 
                             _logger.info('doooooooooooooooooooone %s')
 
                         # si non il doit attendre 14jours pour etre ajouté a la platform*
                         today = date.today()
                         if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
-                            # self.ajouter_IOne_MCM(self)
+                            self.ajouter_IOne_MCM(self)
 
                             _logger.info('doooooooooooooooooooone %s')
 
