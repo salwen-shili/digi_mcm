@@ -266,35 +266,35 @@ class Coach(models.Model):
                     if existee:
                         print("existtttt")
 
-                if not existee:
-                    print("dont exist")
+                    if not existee:
+                        print("dont exist")
 
-                    new = self.env['mcm_openedx.enattente'].sudo().create({
-                        'name': email,
-                        'date_edof': dateFormation,
-                        'state': state,
-                        'billingState': billingState,
-                        'externalId': externalId,
-                        'lastName': lastName,
-                        'firstName': firstName,
-                    })
-                    print(new)
+                        new = self.env['mcm_openedx.enattente'].sudo().create({
+                            'name': email,
+                            'date_edof': dateFormation,
+                            'state': state,
+                            'billingState': billingState,
+                            'externalId': externalId,
+                            'lastName': lastName,
+                            'firstName': firstName,
+                        })
+                        print(new)
 
-                if (dateFormation <= today):
-                    """si l'apprenant est sur moocit
-                                                on change le statut de son dossier sur wedof """
-                for partner in self.env['mcm_openedx.course_stat'].search(
-                        [('email', "=", email)
-                         ]):
-                    if (partner.email == dossier['attendee']['email']):
-                        existant = True
-                        print("okokkookkokookokokko")
-                        print('dateeeeeeeeee', today, dateFormation, certificat, idform)
-                        print('wedooooffffff %s' % certificat)
-                        print('dateformation %s' % dateFormation)
-                        print('email %s' % email)
-                        # response_post = requests.post(
-                        #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
-                        #     headers=headers, data=data)
-                        # _logger.info('response post %s' % str(response_post.text))
-                        # print('response post', str(response_post.text))
+                    if (dateFormation <= today):
+                        """si l'apprenant est sur moocit
+                                                    on change le statut de son dossier sur wedof """
+                    for partner in self.env['mcm_openedx.course_stat'].search(
+                            [('email', "=", email)
+                             ]):
+                        if (partner.email == dossier['attendee']['email']):
+                            existant = True
+                            print("okokkookkokookokokko")
+                            print('dateeeeeeeeee', today, dateFormation, certificat, idform)
+                            print('wedooooffffff %s' % certificat)
+                            print('dateformation %s' % dateFormation)
+                            print('email %s' % email)
+                            # response_post = requests.post(
+                            #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                            #     headers=headers, data=data)
+                            # _logger.info('response post %s' % str(response_post.text))
+                            # print('response post', str(response_post.text))
