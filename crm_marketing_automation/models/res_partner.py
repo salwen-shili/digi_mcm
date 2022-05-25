@@ -36,6 +36,10 @@ class Partner(models.Model):
                 self.changestage("Bolt-Plateforme de formation",self)
             else :
                 self.changestage("Bolt-Rétractation non Coché",self)
+        if 'renounce_request' in vals and (vals['renounce_request'] == True) and self.bolt:
+            if self.inscrit_mcm:
+                self.changestage("Bolt-Plateforme de formation", self)
+
 
         """pour bolt prendre la valeur d'examen blanc si > 30% sera classé  sur crm sous reussi si non echec """
         if 'note_exam' in vals :
