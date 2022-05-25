@@ -77,7 +77,7 @@ function setPopup() {
   if (document.getElementById('notifMessage')) {
     const btnContinuer = document.getElementById('btn-inside-popup');
     const textDescription = document.getElementById('notifMessage');
-    btnContinuer.innerHTML = `\n <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;" onclick="closePopup()">
+    btnContinuer.innerHTML = `\n <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;width: 145px;" onclick="closePopup()">
                                             Fermer
                                         </button>`;
     textDescription.innerHTML = `Cher(e)s candidat(e)s, nous vous annonçons que l'offre relative à la formation VTC à 20 euros en collaboration avec BOLT a touchée à sa fin. <br>
