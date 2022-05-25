@@ -52,8 +52,9 @@
             <xpath expr="//form//sheet" position="before">
                 <header>
                     <button name="ajouter_iOne_manuelle" string="Ajouter sur 360"
-                            type="object" groups="crm_marketing_automation.group_user"></button>
+                            type="object" groups="crm_marketing_automation.group_user" attrs="{'invisible': [('company_id', '=', 1)]}"></button>
                     <button name="supprimer_ione_manuelle" string="Supprimer de 360"
+                            attrs="{'invisible': [('company_id', '=', 1)]}"
                             type="object" confirm="Êtes-vous sûr de vouloir supprimer cet apprenant de la plateforme?" groups="crm_marketing_automation.group_user"/>
                 </header>
             </xpath>
