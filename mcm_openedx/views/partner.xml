@@ -201,7 +201,6 @@
     <menuitem id="mcm_session_menu" name="Session" parent="main_mcm_openedx_menu" action="session_list_action"/>
     <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
     <menuitem id="coach_menu" name="Coaches" parent="main_mcm_openedx_menu" action="coach_list_action"/>
-    <menuitem id="att_menu" name="En_attente" parent="main_mcm_openedx_menu" action="attente_list_action"/>
 
 
 </odoo>
