@@ -104,8 +104,8 @@
         <field name="active" eval="False"></field>
         <field name="state">code</field>
         <field name="code">model.wedof_api_integration_moocit()</field>
-        <field name="interval_number">1</field>
-        <field name="interval_type">days</field>
+        <field name="interval_number">10</field>
+        <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>
         <field name="priority" eval="3"/>
     </record>

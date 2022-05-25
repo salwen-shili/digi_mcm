@@ -6,13 +6,14 @@
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
             <tree string="Apprennat en attente" decoration-bf="state" decoration-danger="state">
-                <field name="externalId" />
+                <field name="externalId"/>
                 <field name="lastName"/>
                 <field name="firstName"/>
                 <field name="name"/>
                 <field name="date_edof"/>
-                <field name="state"  />
+                <field name="state"/>
                 <field name="billingState"/>
+                <field name="existant"/>
 
 
             </tree>
@@ -47,7 +48,7 @@
 
                     <field name="lastName"/>
                     <br/>
-                                        <h5>Nom</h5>
+                    <h5>Nom</h5>
 
                     <field name="firstName"/>
                     <br/>

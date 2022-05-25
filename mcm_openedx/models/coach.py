@@ -15,6 +15,7 @@ class enattente(models.Model):
     externalId = fields.Char(string="Numero de cpf")
     firstName = fields.Char(string="Nom")
     lastName = fields.Char(string="Prenom")
+    existant = fields.Boolean( string="Exist sur Moocit" , default=False )
 
 
 class Coach(models.Model):
@@ -286,6 +287,7 @@ class Coach(models.Model):
                         [('email', "=", email)
                          ]):
                     if (partner.email == dossier['attendee']['email']):
+                        existant = True
                         print("okokkookkokookokokko")
                         print('dateeeeeeeeee', today, dateFormation, certificat, idform)
                         print('wedooooffffff %s' % certificat)
