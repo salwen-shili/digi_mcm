@@ -1895,9 +1895,9 @@ class MCM_SIGNUP(http.Controller):
             trans = request.env['payment.transaction'].sudo().search(
                 [('acquirer_reference', "=", acquirer)])
             if trans and trans.state != 'done':
-                _logger.info('state before  %s' % str(tans.state))
+                _logger.info('state before  %s' % str(trans.state))
                 trans.state = 'done'
-                _logger.info('state %s' % str(tans.state))
+                _logger.info('state %s' % str(trans.state))
             if not invoice and not trans:
                 """if not invoive"""
                 _logger.info("if not invoice")
