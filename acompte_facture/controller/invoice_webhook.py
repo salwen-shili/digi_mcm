@@ -162,7 +162,7 @@ class WebhookInvoiceController(http.Controller):
                                     """Calculer l'acompte 25% du montant total de la formation """
     
                                     acompte = (product_id.lst_price * move.pourcentage_acompte) / 100
-                                    move.cpf_acompte_amount = acompte_amount
+                                    
                                     print('acompte', acompte, product_id.lst_price, move.amount_paye)
                                     if so.pricelist_id.code:
                                         move.pricelist_id = amountCGU
@@ -200,7 +200,7 @@ class WebhookInvoiceController(http.Controller):
                                     print("paiement", payment)
     
                                     payment.post()
-    
+                                    move.cpf_acompte_amount = acompte_amount
                                     ref = move.name
     
                             so.action_cancel()

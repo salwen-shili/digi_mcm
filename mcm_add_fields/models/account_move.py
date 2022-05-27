@@ -324,7 +324,6 @@ class AccountMove(models.Model):
                                             print('line', line.price_unit)
                                         """Calculer l'es 'acompte 25% du montant total de la formation """
 
-                                        move.cpf_acompte_amount=acompte_amount
                                         move.amount_paye = ( product_id.lst_price * invoice.pourcentage_acompte) / 100
 
                                         print('acompte', move.acompte_invoice, product_id.lst_price,move.amount_paye)
@@ -391,6 +390,7 @@ class AccountMove(models.Model):
                                                 _logger.info('if not invoice %s ' % str(move.name))
 
                                                 payment.post()
+                                                move.cpf_acompte_amount = acompte_amount
 
                                         ref = move.name
 
