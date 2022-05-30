@@ -4991,7 +4991,7 @@ SHAPE DEVIDER 4 END
     font-size: 16px;
     line-height: 24px;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -5011,7 +5011,7 @@ SHAPE DEVIDER 4 END
     letter-spacing: .3px;
     line-height: 1.8;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -5113,7 +5113,7 @@ SHAPE DEVIDER 4 END
     letter-spacing: .3px;
     line-height: 1.8;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -9080,7 +9080,7 @@ box-shadow: none;width: 0.5rem;border-radius: 50%;background: #c5c5c5;margin: 0 
 #sh_corpomate_theme_section_275 .s_nb_column_fixed:before{content: '';position: absolute;background: $-color-Primary;width: 90%;height: 100%;top: 0;z-index: -1;opacity: 0.8;left: 50%;transform: translateX(-50%);border-radius: 10px;}
 #sh_corpomate_theme_section_275 .rounded h4{margin: 0;font-size: 16px;font-weight: 600;text-transform: capitalize;margin-bottom: 20px;color: #fff;}
 #sh_corpomate_theme_section_275 .rounded h2{text-transform: capitalize;font-weight: 600;font-size: 35px;letter-spacing: 0.7px;margin-bottom: 20px;color: #fff;display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;}
 #sh_corpomate_theme_section_275 .rounded p{margin-bottom: 20px;font-weight: 600;color: #fff;display: -webkit-box;
