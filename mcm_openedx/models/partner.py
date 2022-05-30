@@ -65,7 +65,7 @@ class partner(models.Model):
         print(payload, 'user', response.status_code)
         _logger.info('response.status_code %s' % str(response.status_code))
 
-    # ajouter les cours de formation taxi a l'apprenant
+    # ajouter les cours de formation vtc a l'apprenant
 
     def inscriteVTC(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
@@ -149,7 +149,7 @@ class partner(models.Model):
         print(response.text)
         _logger.info('response.status_code %s' % str(response.status_code))
 
-    # ajouter les cours de la conaissance local pour le choix de departement
+    # ajouter les cours de la conaissance local pour le choix de departement(pas de calais)
     def ajoutconnaisancelocalpasdecalais(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -169,7 +169,7 @@ class partner(models.Model):
         print(response.text)
         _logger.info('response.status_code %s' % str(response.status_code))
 
-    # ajouter les cours de la conaissance local pour le choix de departement
+    # ajouter les cours de la conaissance local pour le choix de departement(Nord)
     def ajoutconnaisancelocalNord(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -519,7 +519,7 @@ class partner(models.Model):
                         self.testsms(self)
 
 
-                # Formation à distance VTC-BOLT je doit l'ajouter
+                # Formation à distance VTC-BOLT
                 elif (partner.module_id.product_id.default_code == "vtc"):
                     _logger.info("client Bolt Formation VTC")
                     self.inscriteVTC(self)
@@ -604,14 +604,14 @@ class partner(models.Model):
                 }
             }
 
-    # affecter la date de suppression apres l'ajout de 6 mois
+    # affecter la date de suppression apres l'ajout  5 jours apres session
 
     def supprimer_apres_dateexman(self, partner):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
-
-            _logger.info("supprimer apres date exman")
+            if(partner.mcm_session_id.date_exam != False):
+                partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
+                _logger.info("supprimer apres date exman")
 
     # ajouter une date de suppression pour les ancien utilsateur avant prod
     def supprimer_avantprod(self):
@@ -644,50 +644,49 @@ class partner(models.Model):
             if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
                 _logger.info("supprimer autooo")
 
-            # if (partner.supprimerdemoocit == date.today()):
-            #     if (partner.module_id.product_id.default_code == "taxi"):
-            #         self.desinscriteTaxi(partner)
-            #     elif (partner.module_id.product_id.default_code == "vtc"):
-            #         self.desinscriteVTC(partner)
-            #     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-            #         self.desinscriteVTC(partner)
+            if (partner.supprimerdemoocit == date.today()):
+                if (partner.module_id.product_id.default_code == "taxi"):
+                    self.desinscriteTaxi(partner)
+                elif (partner.module_id.product_id.default_code == "vtc"):
+                    self.desinscriteVTC(partner)
+                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                    self.desinscriteVTC(partner)
 
+    # suppression des anciens apprenat  de 2020 2021
     def update_suppresion_old_apprenats(self):
         datee = datetime.today()
         print(datee.year)
         count = 0
 
-        list_nonsupprimer = ['marionduja@icloud.com', 'jessica.massee.g@gmail.com', 'djamel.hamrani@gmail.com']
         for partner in self.env['res.partner'].sudo().search([('company_id', '!=', 2),
                                                               ('mcm_session_id.date_fin', '!=', False),
                                                               ]):
             year_session = partner.mcm_session_id.date_fin.year
             if (year_session < datee.year):
-                if (partner.email not in list_nonsupprimer):
-                    print("nononon", partner.mcm_session_id.date_fin.year)
-                    print("nononon", partner.mcm_session_id.name)
-                    print(partner.email)
-                    count = count + 1
-                    partner.supprimerdemoocit = date.today()
+                print("nononon", partner.mcm_session_id.date_fin.year)
+                print("nononon", partner.mcm_session_id.name)
+                print(partner.email)
+                count = count + 1
+                partner.supprimerdemoocit = date.today()
 
-                    #                 if (partner.module_id.product_id.default_code == "taxi"):
-                    #                     self.desinscriteTaxi(partner)
-                    #                 elif (partner.module_id.product_id.default_code == "vtc"):
-                    #                     self.desinscriteVTC(partner)
-                    #                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                    #                     self.desinscriteVTC(partner)
+                if (partner.module_id.product_id.default_code == "taxi"):
+                    self.desinscriteTaxi(partner)
+                elif (partner.module_id.product_id.default_code == "vtc"):
+                    self.desinscriteVTC(partner)
+                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                    self.desinscriteVTC(partner)
 
-        print("Nombre de personne a supprimer", count)
 
-    def convertir_date_inscription(self):
-        """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
-        locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-        for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
-            if rec.inscrit_mcm:
-                new_date_format = datetime.strptime(str(rec.inscrit_mcm), "%d %B %Y").date().strftime(
-                    '%d/%m/%Y')
-                rec.inscrit_mcm = new_date_format
 
-            if rec.supprimerdemoocit:
-                new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
-                rec.supprimerdemoocit = new_date_format
+def convertir_date_inscription(self):
+    """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
+    locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+    for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
+        if rec.inscrit_mcm:
+            new_date_format = datetime.strptime(str(rec.inscrit_mcm), "%d %B %Y").date().strftime(
+                '%d/%m/%Y')
+            rec.inscrit_mcm = new_date_format
+
+        if rec.supprimerdemoocit:
+            new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
+            rec.supprimerdemoocit = new_date_format
