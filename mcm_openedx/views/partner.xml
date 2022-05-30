@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="partner_search_view" model="ir.ui.view">
+        <field name="name">Sessions</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" filter_domain="[('name','ilike',self)]"></field>
+                <field name="email" filter_domain="[('email','ilike',self)]"></field>
+                <filter name="company"/>
+                <filter name="company" string="MCM Academy"
+                        domain="[('company_id','=',1)]"
+                />
+                <filter name="group_company_id" string="Societé" icon="terp-partner"
+                        context="{'group_by':'company_id'}"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="mcm_partner_form_view">
+        <field name="name">Apprenants</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"></field>
+        <field name="arch" type="xml">
+
+            <xpath expr="//form//sheet" position="before">
+                <header>
+                    <button name="ajoutMoocit_manuelle" string="Ajouter Sur MOOCit"
+                            attrs="{'invisible': [('company_id', '=', 2)]}"
+                            type="object" confirm="Confirmer l'Ajout"
+                            state="En Formation"
+
+                    ></button>
+
+
+                    <button name="supprimer_IOne_MCM" string="Supprimer de MOOCit"
+                            attrs="{'invisible': [('company_id', '=', 2)]}"
+                            type="object" confirm="Confirmer Suppression"
+                            state="supprimé"></button>
+
+                    <field name="state" widget="statusbar" statusbar_visible="en_attente,en_formation,supprimé"
+                           attrs="{'invisible': [('company_id', '=', 2)]}"/>
+
+                </header>
+
+
+            </xpath>
+            <xpath expr="//group//div[@class='row']" position="inside">
+
+                <div class="col-sm-12" modifiers="{}">
+                    <label for="est_coach" string="Coach :" modifiers="{}">
+                        Coach
+                    </label>
+                    <field name="est_coach" widget="boolean_toggle" modifiers="{}"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//group//div[@class='row form-panel']//div[1]//div[3]//div[5]" position="after">
+                <field name="client" invisible="1"/>
+
+            </xpath>
+
+            <xpath expr="//page/group[@name='session']/group" position="inside">
+                <field name="inscrit_mcm" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                <field name="supprimerdemoocit" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+
+                <field name="coach_peda" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+
+
+            </xpath>
+
+            <!-- cacher les fields non utile pour le coach-->
+            <xpath expr="//notebook" position="attributes">
+                <attribute name="attrs">{'invisible': [('est_coach', '=', True)]}</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='internal_notes']" position="before">
+                <page string="Statistiques  MOOCit" name="mcm_plateforme"
+                      attrs="{'invisible': [('company_id', '=', 2)]}">
+                    <group>
+                        <group col="12">
+                        </group>
+
+
+                        <group col="8" colspan="4" string="Géneral">
+                            <div>
+                                <span class="o_stat_text">
+                                    <i class="fa fa-download"/>
+                                    Dernier importation
+                                </span>
+                                <br/>
+                                <span>
+                                    <field name="date_imortation_stat"/>
+                                </span>
+                            </div>
+                            <div>
+                                <span class="o_stat_text">
+                                    <i class="fa fa-check"/>
+                                    Dernière Connexion
+                                </span>
+                                <br/>
+                                <span>
+                                    <field name="mooc_dernier_coonx"/>
+                                </span>
+                            </div>
+                            <div>
+
+                                <span>
+                                    <span>
+                                        <i class="fa fa-clock-o"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Temps passé par Heure
+                                    </span>
+                                    <br/>
+                                    <span class="o_stat_text">
+                                        <field name="mooc_temps_passe_heure"></field>
+                                    </span>
+                                    <br/>
+                                    <span>
+                                        <i class="fa fa-clock-o"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Temps passé par Minute
+                                    </span>
+                                    <br/>
+                                    <span class="o_stat_text">
+                                        <field name="mooc_temps_passe_min"></field>
+                                    </span>
+                                    <br/>
+                                    <span>
+                                        <i class="fa fa-clock-o"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Temps passé par Seconde
+                                    </span>
+                                    <br/>
+                                    <span class="o_stat_text">
+                                        <field name="mooc_temps_passe_seconde"></field>
+                                    </span>
+
+                                </span>
+
+                            </div>
+                            <div>
+                                <span>
+                                    <i class="fa fa-sign-in" style="align:center"/>
+                                </span>
+                                <span class="o_stat_text">
+                                    Date d'inscription :
+
+                                </span>
+                                <br/>
+                                <span>
+                                    <field name="inscrit_mcm"></field>
+                                </span>
+                            </div>
+                        </group>
+
+
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+
+    </record>
+
+    <record model="ir.ui.view" id="mcm_partner_tree_view">
+        <field name="name">Apprenants</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"></field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="inscrit_mcm"/>
+                <field name="supprimerdemoocit"/>
+                <field name="client"/>
+                <field name="coach_peda"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="contact_list_action">
+        <field name="name">Les Apprenants</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_group_company_id': 1}</field>
+
+
+    </record>
+
+
+    <!-- top level menu: no parent -->
+    <menuitem id="main_mcm_openedx_menu" name="MCM_OpenEdx"/>
+    <menuitem id="mcm_apprennat_menu" name="Apprenants" parent="main_mcm_openedx_menu" action="contact_list_action"/>
+    <!--<menuitem id="mcm_courses_menu" name="MOOCIT" parent="main_mcm_openedx_menu"/>
+    <menuitem id="mcm_session_menu" name="Session" parent="main_mcm_openedx_menu" action="session_list_action"/>
+    <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
+    <menuitem id="coach_menu" name="Coaches" parent="main_mcm_openedx_menu" action="coach_list_action"/>
+    <menuitem id="att_menu" name="En_attente" parent="main_mcm_openedx_menu" action="attente_list_action"/>
+-->
+</odoo>

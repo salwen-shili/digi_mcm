@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record id="session_course_view" model="ir.ui.view">
+        <field name="name">Courses</field>
+        <field name="model">mcm_openedx.course_stat</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="email" filter_domain="[('email','ilike',self)]"/>
+                <field name="name" filter_domain="[('name','ilike',self)]"/>
+                <filter name="group_email" string="Email" icon="terp-partner" context="{'group_by':'email'}"/>
+                <filter name="group_idcour" string="IDcour" icon="terp-partner" context="{'group_by':'idcour'}"/>
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="course_stat_form_view">
+        <field name="name">mcm_openedx.course_stat.form</field>
+        <field name="model">mcm_openedx.course_stat</field>
+        <field name="arch" type="xml">
+            <form string="Course Form">
+                <xpath expr="//form//sheet" position="before">
+                    <header>
+                        <button name="suupprimer_bouton_fiche_client" string="supprimer_duplicatiot" type="object"/>
+                        <button name="calcul_temps_total" string="calcul_temps_total" type="object"/>
+                    </header>
+                </xpath>
+                <sheet>
+                    <group>
+
+                        <field name="email"/>
+                        <field name="partner"/>
+                        <field name="temppassetotale"/>
+                        <field name="name"/>
+                        <field name="idcour"/>
+                        <field name="temppasse"/>
+                        <field name="seconde"/>
+                        <field name="jour"/>
+                        <field name="mooc_temps_passe_heure"/>
+                        <field name="mooc_temps_passe_min"/>
+                        <field name="mooc_temps_passe_seconde"/>
+
+
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="course_tree_view">
+        <field name="name">mcm_openedx.course_stat.tree</field>
+        <field name="model">mcm_openedx.course_stat</field>
+        <field name="arch" type="xml">
+
+            <tree string="Statetstique">
+                <field name="email"/>
+                <field name="partner"/>
+                <field name="name"/>
+                <field name="jour"/>
+                <field name="idcour"/>
+
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_openacad_session_kanban">
+        <field name="name">mcm_openedx.course_stat.kanban</field>
+        <field name="model">mcm_openedx.course_stat</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="email">
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div
+                                t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+
+                            <div class="oe_dropdown_kanban">
+                                <div class="oe_dropdown_toggle">
+                                    <i class="fa fa-bars fa-lg"/>
+                                    <ul class="oe_dropdown_menu">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+                                        <li>
+                                            <ul class="oe_kanban_colorpicker"
+                                                data-field="color"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="oe_clear"/>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+
+                                Nom Utilisateur
+                                <field name="name"/>
+
+                                <br/>
+
+                                Temps passé sur moocit en Heures :
+                                <field name="temppassetotale"/>
+
+                                <br/>
+                                Email:
+                                <field name="email"/>
+                                <br/>
+                                ID Cours:
+                                <field name="idcour"/>
+                                <br/>
+                                jours:
+                                <field name="jour"/>
+                                <br/>
+                                Temps passés:
+                                <field name="temppasse"/>
+                                <br/>
+                                Temps passés (sec):
+                                <field name="seconde"/>
+                                <br/>
+                                Partner:
+                                <field name="partner"/>
+                                <br/>
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="mcm_openedx_stat_graph_view">
+        <field name="name">mcm_openedx.course_stat.graph</field>
+        <field name="model">mcm_openedx.course_stat</field>
+        <field name="arch" type="xml">
+            <graph string="Participations by Courses">
+                <field name="idcour"/>
+                <field name="attendees_count" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    <record id="course_list_action" model="ir.actions.act_window">
+        <field name="name">Courses</field>
+        <field name="res_model">mcm_openedx.course_stat</field>
+        <field name="view_mode">tree,form,kanban,graph</field>
+        <field name="context">{'search_default_group_email': 1, 'search_default_group_idcour':1}</field>
+
+
+    </record>
+
+
+</odoo>

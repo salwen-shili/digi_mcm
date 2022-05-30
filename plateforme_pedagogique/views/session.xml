@@ -18,7 +18,8 @@
     <field name="arch" type="xml">
             <header>
                 <button name="supprimer_session_manuelle" string="supprimer session de 360"
-                        type="object"  confirm="Êtes-vous sûr de vouloir supprimer cette session?">
+                        type="object"  confirm="Êtes-vous sûr de vouloir supprimer cette session?"
+                  attrs="{'invisible': [('company_id', '=', 1)]}">
                 </button>
             </header>
            <data>

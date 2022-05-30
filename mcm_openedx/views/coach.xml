@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record model="ir.ui.view" id="coach_form_view">
+        <field name="name">Coaches</field>
+        <field name="model">mcm_openedx.coach</field>
+        <field name="arch" type="xml">
+            <form string="Coaches">
+
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="test_coach"
+                                icon="fa-user-circle">
+                            <field string="seats" name="seats"/>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="test_coach"
+                                icon="fa-spinner fa-spin fa-3x fa-fw">
+                            <field string="nombre_apprenants" name="nombre_apprenant"/>
+                        </button>
+
+                    </div>
+
+                    <group>
+                        <group>
+                            <a href="https://app.intercom.com/a/apps/ekqg4dck/inbox/inbox/all/conversations/186275800000486
+">
+                                <widget name="web_ribbon" text="Coach"/>
+                            </a>
+                            <field name="coach_name"/>
+                            <field name="nombre_apprenant"/>
+                            <field name="seats"/>
+
+                            <field name="taken_seats" widget="progressbar"/>
+
+                        </group>
+
+                    </group>
+                    <notebook>
+
+                        <page string="Liste des Apprennats">
+                            <field name="apprenant_name"></field>
+                        </page>
+                        <page string="Commentaire">
+
+
+                            <field name="commentaire"></field>
+
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="coach_tree_view">
+        <field name="name">Coaches</field>
+        <field name="model">mcm_openedx.coach</field>
+        <field name="arch" type="xml">
+            <tree decoration-bf="coach_name" decoration-success="seats &lt; 'nombre_apprenant'" default_order="seats">
+                <field name="coach_name"/>
+                <field name="nombre_apprenant"/>
+                <field name="seats"/>
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="mcm_openedx_coach_graph_view">
+        <field name="name">mcm_openedx.coach.graph</field>
+        <field name="model">mcm_openedx.coach</field>
+        <field name="arch" type="xml">
+            <graph string="Participations by Courses">
+                <field name="coach_name"/>
+                <field name="nombre_apprenant" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_openacad_session_kanban">
+        <field name="name">coach.kanban</field>
+        <field name="model">mcm_openedx.coach</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="coach_name">
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div
+                                t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                            <div class="oe_dropdown_kanban">
+                                <!-- dropdown menu -->
+                                <div class="o_kanban_image">
+                                    <center>
+                                        <a href="https://app.intercom.com/a/apps/ekqg4dck/inbox/inbox/all/conversations">
+                                            <img class="o_kanban_image"  alt=""
+                                                 src="https://og-blog-css.outgrow.co/blog/wp-content/uploads/2019/01/robo_small.gif?x65579"
+                                            />
+                                        </a>
+                                    </center>
+                                </div>
+
+
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div class="oe_dropdown_toggle">
+                                    <i class="fa fa-bars fa-lg"/>
+                                    <ul class="oe_dropdown_menu">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+                                        <li>
+                                            <ul class="oe_kanban_colorpicker"
+                                                data-field="color"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+                                <!-- title -->
+                                <h4 style="background-color:white;">Coach name:</h4>
+
+                                <field name="coach_name"/>
+                                <br/>
+                                <h4 style="background-color:white;">Nombre de place:</h4>
+                                <field name="nombre_apprenant" />
+                                <h4 style="background-color:white;">Nombre Totale</h4>
+
+                                <field name="seats"/>
+
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="coach_list_action">
+        <field name="name">Coaches</field>
+        <field name="res_model">mcm_openedx.coach</field>
+        <field name="view_mode">kanban,tree,form,graph</field>
+
+    </record>
+
+
+</odoo>

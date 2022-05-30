@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="0">
+        <record id="mail_template_add_Ione_MOOcit" model="mail.template">
+            <field name="name">Contact : ajouter apprenant à la platforme</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Bienvenue chez MCM Academy</field>
+            <field name="email_from">${object.company_id.email}</field>
+            <field name="partner_to">${object.id}</field>
+            <field name="body_html" type="html">
+                <div>
+
+                    <style>
+                        .img-email {
+                        max-width: 45%;
+                        height: auto;
+                        }
+                        @media screen and (min-width: 40em) {
+                        .img-email {
+                        max-width: 66%;
+                        height: auto;
+                        }
+                        }
+                    </style>
+                    <p style="font-size: 18px;">Bonjour
+                        <span style=" font-size:17;color: rgb(85, 79, 59); font-weight: bold;">${object.name}</span>
+                    </p>
+                    <p style="font-size: 18px;">
+                        L'équipe <span style=" font-size:17;color: rgb(232, 185, 24 ); font-weight: bold;">
+                        MCM Academy
+                    </span> vous remercie pour votre confiance et vous confirme
+                        votre inscription à notre session de formation
+                        <span style=" font-size:17;color: rgb(85, 79, 59); font-weight: bold;">
+                            ${object.module_id.name}
+
+                        </span>
+                    </p>
+                    <br/>
+                    <div style="text-align: center;">
+                        <img class="img-email"
+                             width="60%"
+                             src="https://www.mcm-academy.fr/mcm_website_theme/static/src/img/homepage/formations-taxi-vtc-taxi-moto-en-ligne.webp"/>
+                    </div>
+                    <br/>
+
+                    <p style="font-size: 18px;">
+                        <span style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">Let's GO !</span>
+                        Il est temps de vous booster et de passer aux choses sérieuses pour <span
+                            style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">réussir
+                        votre examen ,
+                    </span>  avoir votre <span
+                            style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">carte professionnelle
+                    </span> , et lancer
+                        <span
+                                style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">votre projet !
+                        </span>
+                    </p>
+                    <p style="font-size: 18px;">Rendez-vous vite sur notre plateforme ! Et pour pouvoir vous connecter,
+                        merci de rentrer vos identifiants de connexion que vous utilisez sur notre site web.
+                    </p>
+                    <p style="font-size: 18px;">
+                        A très bientôt !
+                        <br/>
+                        L’équipe
+                        <span style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">
+                            MCM Academy
+                        </span>
+                    </p>
+                    <br/>
+
+
+                    <br/>
+                    <p style="font-size: 15px;font-weight:700">
+                        Si vous souhaitez avoir plus de renseignements, n'hésitez
+                        pas à contacter notre
+                        <span
+                                style=" font-size:17;color: rgb(219, 172, 15
+); font-weight: bold;">
+                            <a href="https://www.mcm-academy.fr/service-clientele">service clients</a>,
+                            disponible du lundi au vendredi
+                            de 9h à 17h.
+                        </span>
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        <record id="mail_coachh" model="mail.template">
+            <field name="name">Contact : ajouter apprenant à la platforme</field>
+            <field name="model_id" ref="model_mcm_openedx_coach"/>
+            <field name="subject">New learner
+            </field>
+            <field name="email_from">${object.coach_name.company_id.email}</field>
+            <field name="partner_to">${object.id}</field>
+            <field name="body_html" type="html">
+                <div>
+                    <style>
+                        .img-email {
+                        max-width: 45%;
+                        height: auto;
+                        }
+                        @media screen and (min-width: 40em) {
+                        .img-email {
+                        max-width: 66%;
+                        height: auto;
+                        }
+                        }
+                    </style>
+
+                    <h1>Bonjour coach ${object.coach_name.name}</h1>
+
+                    <h2>
+
+                        Ton équipe s’agrandit 💪!
+                        <br/>
+                        Un(e) nouvel(le) apprenant(e) ${object.apprenant_email} vient de s’ajouter à ta liste 😍
+                        <br/>qui dit nouvel(le) apprenant(e) dit nouveau challenge !
+                        <br/>
+                        Bon travail ! ✨
+
+                    </h2>
+                    <div style="text-align: center;">
+                        <img class="img-email"
+                             width="30%"
+                             src="https://media.giphy.com/media/Jir7AUookJHIVb5aYM/giphy.gif"/>
+                    </div>
+                </div>
+            </field>
+            <field name="lang">${object.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+    </data>
+
+
+</odoo>
