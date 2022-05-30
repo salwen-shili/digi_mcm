@@ -197,6 +197,7 @@ class partner(models.Model):
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
                 _logger.info(partner.name)
+
                 _logger.info(partner.module_id.id)
                 today = date.today()
                 # ajout automatique  des utilsateur sur MOOCit
