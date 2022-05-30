@@ -7,7 +7,7 @@
         </xpath>
         <xpath expr="//ul[@id='top_menu']/li[last()]" position="replace">
 
-            <li class="nav-item dropdown">
+            <li t-ignore="true" t-if="user_id._is_public()" class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                     <b>
                         <span>Mon Espace client</span>
@@ -15,9 +15,9 @@
                 </a>
                 <div class="dropdown-menu js_usermenu" role="menu">
 
-                    <a t-attf-href="/web/login" role=" menuitem" class=" dropdown-item">Se connecter à mon espace client</a>
+                    <a t-attf-href="/web/login" role=" menuitem" class="dropdown-item">Se connecter à mon espace client</a>
 
-                    <a t-attf-href="https://digimoov.360learning.com/home/ #{'btn-indigo' if request.website.id==2 else 'https://formation.mcm-academy.fr/login?next=/dashboard'}" role=" menuitem" class=" dropdown-item">Se connecter à la plateforme de formation</a>
+                    <a t-attf-href="https://digimoov.360learning.com/home/ #{'btn-indigo' if request.website.id==2 else 'https://formation.mcm-academy.fr/login?next=/dashboard'}" target="_blank" role=" menuitem" class=" dropdown-item">Se connecter à la plateforme de formation</a>
                 </div>
             </li>
         </xpath>
