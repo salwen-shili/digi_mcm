@@ -190,95 +190,95 @@ class partner(models.Model):
 
     # ajouter les apprenants    automatiquememnt a partire de  la fiche Client
     def ajoutMoocit_automatique(self):
-        # base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-        for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                              ('company_id', '=', 1),
-                                                              ('statut_cpf', "!=", "canceled")
-                                                              ]):
-            _logger.info(partner.name)
-            _logger.info(partner.module_id.id)
-            today = date.today()
-            # ajout automatique  des utilsateur sur MOOCit
-            # verifier staut de sale
-            sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-                                                               ('session_id', '=', partner.mcm_session_id.id),
-                                                               ('module_id', '=', partner.module_id.id),
-                                                               ('state', '=', 'sale'),
-                                                               ('session_id.date_exam', '>', date.today()),
-                                                               ], limit=1, order="id desc")
-            _logger.info(sale_order.name)
-            # Récupérer les documents et vérifier si ils sont validés ou non
-            documentss = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)
-                                                                       ])
-            document_valide = False
-            count = 0
-            for document in documentss:
-                if (document.state == "validated"):
-                    count = count + 1
-                    _logger.info('valide')
-                    _logger.info(document.state)
-            _logger.info('count', count, 'len', len(documentss))
-            if (count == len(documentss) and count != 0):
-                document_valide = True
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+            for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
+                                                                  ('company_id', '=', 1),
+                                                                  ('statut_cpf', "!=", "canceled")
+                                                                  ]):
+                _logger.info(partner.name)
+                _logger.info(partner.module_id.id)
+                today = date.today()
+                # ajout automatique  des utilsateur sur MOOCit
+                # verifier staut de sale
+                sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+                                                                   ('session_id', '=', partner.mcm_session_id.id),
+                                                                   ('module_id', '=', partner.module_id.id),
+                                                                   ('state', '=', 'sale'),
+                                                                   ('session_id.date_exam', '>', date.today()),
+                                                                   ], limit=1, order="id desc")
+                _logger.info(sale_order.name)
+                # Récupérer les documents et vérifier si ils sont validés ou non
+                documentss = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)
+                                                                           ])
+                document_valide = False
+                count = 0
+                for document in documentss:
+                    if (document.state == "validated"):
+                        count = count + 1
+                        _logger.info('valide')
+                        _logger.info(document.state)
+                _logger.info('count', count, 'len', len(documentss))
+                if (count == len(documentss) and count != 0):
+                    document_valide = True
 
-            _logger.info("document %s" % str(document_valide))
+                _logger.info("document %s" % str(document_valide))
 
-            _logger.info("sale_order %s" % str(sale_order.state))
-            # en va changer numero_evalbox avec numero eval ..
-            # verifier si la case evalbox est True
-            print(partner.numero_evalbox)
-            if (partner.numero_evalbox != False):
-                # defenir le mode de financement
-                if partner.mode_de_financement == "particulier":
-                    # verifier si le sale et les documents et satut sont valides
-                    if ((sale_order) and (document_valide)):
-                        _logger.info('document et sale valide Condition 1 validee')
-                        # Vérifier si contrat signé ou non
+                _logger.info("sale_order %s" % str(sale_order.state))
+                # en va changer numero_evalbox avec numero eval ..
+                # verifier si la case evalbox est True
+                print(partner.numero_evalbox)
+                if (partner.numero_evalbox != False):
+                    # defenir le mode de financement
+                    if partner.mode_de_financement == "particulier":
+                        # verifier si le sale et les documents et satut sont valides
+                        if ((sale_order) and (document_valide)):
+                            _logger.info('document et sale valide Condition 1 validee')
+                            # Vérifier si contrat signé ou non
 
-                        if (sale_order.state == 'sale') and (sale_order.signature):
-                            # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                            if (sale_order.state == 'sale') and (sale_order.signature):
+                                # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                                if (partner.renounce_request):
+                                    # self.ajouter_IOne_MCM(partner)
+                                    _logger.info(' Doneeeee %s')
+
+                                # si non il doit attendre 14jours pour etre ajouté a la platform
+                                if not partner.renounce_request and (
+                                        sale_order.signed_on + timedelta(days=14)) <= today:
+                                    # self.ajouter_IOne_MCM(partner)
+                                    _logger.info(' Doneeeee %s')
+
+                    if partner.mode_de_financement == "cpf":
+                        _logger.info(partner.mode_de_financement)
+                        _logger.info(partner.numero_evalbox)
+                        _logger.info(partner.mcm_session_id.date_exam)
+                        _logger.info(partner.mcm_session_id.date_exam)
+                        if (document_valide) and (partner.mcm_session_id.date_exam) and (
+                                partner.mcm_session_id.date_exam > date.today()):
+
                             if (partner.renounce_request):
                                 # self.ajouter_IOne_MCM(partner)
                                 _logger.info(' Doneeeee %s')
 
-                            # si non il doit attendre 14jours pour etre ajouté a la platform
-                            if not partner.renounce_request and (
-                                    sale_order.signed_on + timedelta(days=14)) <= today:
-                                # self.ajouter_IOne_MCM(partner)
-                                _logger.info(' Doneeeee %s')
-
-                if partner.mode_de_financement == "cpf":
-                    _logger.info(partner.mode_de_financement)
-                    _logger.info(partner.numero_evalbox)
-                    _logger.info(partner.mcm_session_id.date_exam)
-                    _logger.info(partner.mcm_session_id.date_exam)
-                    if (document_valide) and (partner.mcm_session_id.date_exam) and (
-                            partner.mcm_session_id.date_exam > date.today()):
-
-                        if (partner.renounce_request):
-                            # self.ajouter_IOne_MCM(partner)
-                            _logger.info(' Doneeeee %s')
-
-                        if not (partner.renounce_request) and partner.numero_cpf:
-                            """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
-                            headers = {
-                                'accept': 'application/json',
-                                'Content-Type': 'application/json',
-                                'X-API-KEY': partner.company_id.wedof_api_key,
-                            }
-                            responsesession = requests.get(
-                                'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
-                                headers=headers)
-                            dossier = responsesession.json()
-                            dateDebutSession_str = ""
-                            _logger.info('session %s' % str(dossier))
-                            if "trainingActionInfo" in dossier:
-                                dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
-                                dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
-                                if dateDebutSession <= datetime.today():
-                                    self.ajouter_IOne_MCM(partner)
-                                    _logger.info(' Doneeeee %s')
+                            if not (partner.renounce_request) and partner.numero_cpf:
+                                """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
+                                headers = {
+                                    'accept': 'application/json',
+                                    'Content-Type': 'application/json',
+                                    'X-API-KEY': partner.company_id.wedof_api_key,
+                                }
+                                responsesession = requests.get(
+                                    'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
+                                    headers=headers)
+                                dossier = responsesession.json()
+                                dateDebutSession_str = ""
+                                _logger.info('session %s' % str(dossier))
+                                if "trainingActionInfo" in dossier:
+                                    dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
+                                    dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
+                                    if dateDebutSession <= datetime.today():
+                                        self.ajouter_IOne_MCM(partner)
+                                        _logger.info(' Doneeeee %s')
 
     # ajouter les apprenants manuellemnt a partire de  la fiche Client
     def ajoutMoocit_manuelle(self):
@@ -609,7 +609,7 @@ class partner(models.Model):
     def supprimer_apres_dateexman(self, partner):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            if(partner.mcm_session_id.date_exam != False):
+            if (partner.mcm_session_id.date_exam != False):
                 partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
                 _logger.info("supprimer apres date exman")
 
@@ -620,13 +620,14 @@ class partner(models.Model):
                                                               ('mcm_session_id.date_exam', '!=', False),
 
                                                               ]):
+
             if (partner):
                 print(partner.mcm_session_id.date_exam)
                 for rec in partner:
                     if (partner.state == "en_attente"):
                         partner.sudo().write({'state': 'en_formation'})
-                partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
-                _logger.info("supprimer aprex 6 mois")
+                        partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
+                        _logger.info("supprimer aprex 5 j")
 
     # supprimer ione  automatique le desinscrire des cours sur la platfrom moocit
 
@@ -634,23 +635,20 @@ class partner(models.Model):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             # chercher dans res.partner la liste de apprennats puis verifier la
-            for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                                  ('company_id', '=', 1),
-                                                                  ('email', "=", 'dimopes981@bunlets.comgit staut'),
-                                                                  ('statut_cpf', "!=", "canceled")
-                                                                  ]):
+            for partner in self.env['res.partner'].sudo().search([
+                ('company_id', '=', 1),
+
+            ]):
                 self.write({'state': 'supprimé'})
-            base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-            if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
                 _logger.info("supprimer autooo")
 
-            if (partner.supprimerdemoocit == date.today()):
-                if (partner.module_id.product_id.default_code == "taxi"):
-                    self.desinscriteTaxi(partner)
-                elif (partner.module_id.product_id.default_code == "vtc"):
-                    self.desinscriteVTC(partner)
-                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                    self.desinscriteVTC(partner)
+                if (partner.supprimerdemoocit == date.today()):
+                    if (partner.module_id.product_id.default_code == "taxi"):
+                        self.desinscriteTaxi(partner)
+                    elif (partner.module_id.product_id.default_code == "vtc"):
+                        self.desinscriteVTC(partner)
+                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                        self.desinscriteVTC(partner)
 
     # suppression des anciens apprenat  de 2020 2021
     def update_suppresion_old_apprenats(self):
@@ -676,17 +674,15 @@ class partner(models.Model):
                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                     self.desinscriteVTC(partner)
 
+    def convertir_date_inscription(self):
+        """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
+        locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+        for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
+            if rec.inscrit_mcm:
+                new_date_format = datetime.strptime(str(rec.inscrit_mcm), "%d %B %Y").date().strftime(
+                    '%d/%m/%Y')
+                rec.inscrit_mcm = new_date_format
 
-
-def convertir_date_inscription(self):
-    """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
-    locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-    for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
-        if rec.inscrit_mcm:
-            new_date_format = datetime.strptime(str(rec.inscrit_mcm), "%d %B %Y").date().strftime(
-                '%d/%m/%Y')
-            rec.inscrit_mcm = new_date_format
-
-        if rec.supprimerdemoocit:
-            new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
-            rec.supprimerdemoocit = new_date_format
+            if rec.supprimerdemoocit:
+                new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
+                rec.supprimerdemoocit = new_date_format
