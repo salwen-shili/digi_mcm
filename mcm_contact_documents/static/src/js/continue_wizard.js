@@ -365,8 +365,8 @@ Mais nous avons une autre offre pour vous...`;
         //   console.log(p);
         //   alert();
         // });
-        // btnContinuer.setAttribute('href', messageAction.coordonnees.url);
-        // textDescription.innerHTML = messageAction.coordonnees.message;
+        btnContinuer.setAttribute('href', messageAction.coordonnees.url);
+        textDescription.innerHTML = messageAction.coordonnees.message;
       }
 
       break;
