@@ -66,6 +66,7 @@ function setPopup() {
       //Test registration to CMA
       notifMessage.innerHTML = message['isSignedBolt_notRegistredCMA'];
       document.getElementById('btn-inside-popup').style.display = 'none';
+      openPopup();
     }
   }
 
@@ -139,7 +140,6 @@ document.addEventListener('DOMContentLoaded', function () {
   partner.then((p) => {
     if (p.evalbox == false) {
       setPopup();
-      openPopup();
     }
   });
 
