@@ -7,25 +7,25 @@
         <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" defer="defer" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-
-
         <section id="sh_corpomate_theme_section_258 " class="pt8 sh_animation_part" data-name="Formation chauffeur TAXI">
           <div class="container-banner">
             <div class="row">
-              <div class="col-lg-6 js-scroll pb16 pt56 js-scroll slide-left">
+              <div class="col-lg-6 js-scroll pb16 pt56 slide-left ">
                 <div class="text-center">
                   <h1 class="slider-text-info title-mcm">
                     EXAMENS
                     <br />
-                    TAXI-VTC
+                    TAXI VTC
                     <br />
                     VMDTR
                   </h1>
                   <br />
                   <p class="para">
                     Passer les
-                    <b> examens taxi-vtc, </b>
-                    ou VMDTR et les réussir est important pour que vous puissiez
+                    <b> examens taxi VTC, </b>
+                    ou
+                    <b>Moto Taxi&amp;nbsp;</b>
+                    et les réussir est important pour que vous puissiez
                 avoir votre
                     <b> carte professionnelle. </b>
                     Pour ce faire, nous vous conseillons de vous inscrire à nos
@@ -40,8 +40,8 @@
               </a>
                 </div>
               </div>
-              <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
-                <img data-src="/mcm_website_theme/static/src/img/examen/examen-taxi-vtc-vmdtr.webp" data-srcsafari="/mcm_website_theme/static/src/img/examen/examen-taxi-vtc-vmdtr.png" class="img img-fluid mx-auto lazy text-center" alt="candidat à l’examen taxi vtc" style="width:80%" title="homme pointant du doigt pour montrer comment devenir chauffeur taxi vtc moto-taxi" />
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-right ">
+                <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.png" class="img img-fluid mx-auto text-center lazy" alt="candidat à l’examen taxi vtc" title="homme pointant du doigt pour montrer comment devenir chauffeur taxi vtc moto-taxi" />
               </div>
             </div>
           </div>
@@ -50,12 +50,11 @@
         <section class="s_text_image pt32 pb32" data-name="Image - Text">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
                 <img data-srcsafari="/mcm_website_theme/static/src/img/examen/conditions-examens-taxi-vtc-vmdtr.png" data-src="/mcm_website_theme/static/src/img/examen/conditions-examens-taxi-vtc-vmdtr.webp" class="img img-fluid mx-auto lazy" alt="inscription examen taxi vtc vmdtr" title="homme devant son écran s’inscrit à l’examen taxi vtc" />
               </div>
-
-              <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
-                <h2>EXAMEN VTC-TAXI et TAXI-MOTO</h2>
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
+                <h2>EXAMEN VTC TAXI et TAXI MOTO</h2>
                 <p class="para">
                   L'
                   <b>examen </b>
@@ -82,8 +81,6 @@
 
 
                 </p>
-
-
               </div>
             </div>
           </div>
@@ -111,8 +108,7 @@
                       <span class="button-more-text">Plus de détails</span>
                     </button>
                   </a> -->
-                  <a href="https://www.cma-hautsdefrance.fr/examen-taxi-et-vtc" target="_blank" rel="noopner" class="btn-primary btn sh_btn_cm_3" alt="modalités d'évaluation épreuves
-                théoriques pratiques examen TAXI-VTC-VMDTR" title="EN SAVOIR PLUS">
+                  <a href="https://www.cma-hautsdefrance.fr/examen-taxi-et-vtc" target="_blank" rel="noopner" class="btn-primary btn sh_btn_cm_3" alt="modalités d'évaluation épreuves                 théoriques pratiques examen TAXI-VTC-VMDTR" title="EN SAVOIR PLUS">
                 
                 EN SAVOIR PLUS</a>
                 </div>
@@ -155,7 +151,6 @@
               particulier de personnes.
                 </p>
               </div>
-
               <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
                 <img data-srcsafari="/mcm_website_theme/static/src/img/examen/passage-examen-vtc-taxi.png" data-src="/mcm_website_theme/static/src/img/examen/passage-examen-vtc-taxi.webp" class="img img-fluid mx-auto lazy" alt="examens théoriques taxis vtc" title="homme stylo à la main passant l’examen taxi vtc" />
               </div>
@@ -163,30 +158,29 @@
           </div>
         </section>
         <!-- -->
-        <section id="sh_corpomate_theme_section_46">
+        <section id="sh_corpomate_theme_section_46" class="">
           <div class="container">
             <div class="row">
-              <div class="col-md-6 sh_animation_part js-scroll slide-left">
+              <div class="col-md-6 sh_animation_part js-scroll slide-left ">
                 <div class="sh_content_right">
                   <div class="sh_img">
                     <div class="media_iframe_video" data-oe-expression="https://www.youtube.com/embed/GrsLyNnmghE?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1">
-                      <div class="css_editable_mode_display"></div>
-                      <div class="media_iframe_video_size"></div>
+                      <div class="css_editable_mode_display" />
+                      <div class="media_iframe_video_size" />
                       <iframe src="https://www.youtube.com/embed/GrsLyNnmghE?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen" />
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 js-scroll slide-right">
+              <div class="col-lg-6 js-scroll slide-right ">
                 <div class="sh_description sh_animation_part ">
-                  <h2>COMMENT S'INSCRIRE A L'EXAMEN TAXI/VTC/VMDTR ?</h2>
+                  <h2>COMMENT S'INSCRIRE A L'EXAMEN TAXI / VTC / VMDTR ?</h2>
                   <p class="para">
                     L'
                     <b>inscription </b>
-                    aux sessions d’examen s’effectue via
+                    aux sessions d’examen s’effectue via ce lien
                     <b>
-                      <a rel="noopner" target="_blank" href="https://www.examentaxivtc.fr/">ce lien</a>
-                      .
+                      <a rel="noopner" target="_blank" href="https://www.examentaxivtc.fr/" style="color: blue;text-decoration: underline !important;">https://www.examentaxivtc.fr/#!/login</a>
                     </b>
                     <br />
                     Pour valider votre inscription, vous devez vous inscrire en
@@ -205,7 +199,6 @@
             </div>
           </div>
         </section>
-
         <!-- Prcing table-->
         <div id="pricing" class="mt96 pb32">
           <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
@@ -217,7 +210,6 @@
                   <br />
                   Inscrivez-vous dès maintenant !
                 </h3>
-
                 <p>
                   <br />
                 </p>
@@ -231,7 +223,7 @@
                           <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
                           <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                           <h4>PACK VTC</h4>
-                          <h5 class="el-cpf">&amp;nbsp; &amp;nbsp;&amp;nbsp; &amp;nbsp;</h5>
+                          <h5 style="color: #636161">&amp;nbsp;</h5>
                           <h4 t-if="not promo">
                             <span t-esc="round(product.list_price)" />
                             <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
@@ -271,12 +263,11 @@
                             Je m'inscris
                                                 </a> -->
                             <!-- Call Mircorsoft ads script onclick-->
-
                             <a class="animated-button-yellow" href="#pricing" onClick="(function(){  document.getElementById('form-1-1').submit();return false;})();return false;">
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              <span></span>
+                              <span />
+                              <span />
+                              <span />
+                              <span />
                               Je m'inscris
                             </a>
                             <div>
@@ -284,7 +275,6 @@
                                                             Paiement 1 ou 2 fois
                               </span>
                             </div>
-
                           </div>
                         </form>
                       </t>
@@ -299,7 +289,7 @@
                           <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
                           <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                           <h4>PACK TAXI</h4>
-                          <h5 style="color: #636161">Éligible au CPF</h5>
+                          <h5 style="font-weight:600;color: #000">Éligible au CPF</h5>
                           <h4>
                             <span t-esc="round(product.list_price)" />
                             <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
@@ -325,10 +315,10 @@
                           </t>
                           <div class="sh_btn">
                             <a class="animated-button-yellow" href="#pricing" onClick="(function(){ document.getElementById('form-1-2').submit();return false;})();return false;">
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              <span></span>
+                              <span />
+                              <span />
+                              <span />
+                              <span />
                               Je m'inscris
                             </a>
                             <div>
@@ -378,12 +368,11 @@
                             <!-- <a class="btn btn-primary sh_btn_cm_8"  title="" aria-describedby="tooltip196298">
                             Je m'inscris
                                                 </a> -->
-
                             <a class="animated-button-yellow" href="#pricing" onClick="(function(){  document.getElementById('form-1-3').submit();return false;})();return false;">
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              <span></span>
+                              <span />
+                              <span />
+                              <span />
+                              <span />
                               Je m'inscris
                             </a>
                             <div>
@@ -406,7 +395,7 @@
           <div class="container js-scroll fade-in-top">
             <div class="center-logo">
               <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
-                <a href="/bolt" target="_blank" rel="noopner">
+                <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
                   <img data-src="/mcm_website_theme/static/src/img/logos/logo-bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-bolt.png" class="img-fluid lazy" style="width: 100px; margin-top: 25px" alt="Logo partenaire MCM-ACADEMY" title="Bolt partenaire MCM ACADEMY" />
                 </a>
               </div>
@@ -420,7 +409,6 @@
                   <img class="img-fluid lazy" style="width: 100px" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-CMA.png" data-src="/mcm_website_theme/static/src/img/logos/logo-CMA.png" title="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" alt="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" />
                 </a>
               </div>
-
               <div class="pt32" t-if="partenaire=='' or not partenaire ">
                 <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
                   <img class="img-fluid lazy" style="width: 250px" data-src="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" title="Joel partenaire MCM ACADEMY" alt="Joel partenaire MCM ACADEMY" />
@@ -429,8 +417,6 @@
             </div>
           </div>
         </section>
-
-
       </div>
     </t>
 
