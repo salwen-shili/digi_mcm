@@ -73,6 +73,8 @@
         'views/partners/ubereats.xml',
         'views/partners/deliveroo.xml',
         'views/partners/amazon.xml',
+        # Custom Menu Item
+        'views/dashboard/menu.xml'
 
     ],
     'qweb': [],

@@ -1,45 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="portal_layout" name="Portal layout: document menu entry" inherit_id="portal.portal_breadcrumbs"
-              priority="50">
+    <template id="portal_layout" name="Portal layout: document menu entry" inherit_id="portal.portal_breadcrumbs" priority="50">
 
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
 
-            <li t-if="page_name == 'document' or document"
-                t-attf-class="breadcrumb-item #{'active ' if not document else ''}">
+            <li t-if="page_name == 'document' or document" t-attf-class="breadcrumb-item #{'active ' if not document else ''}">
                 <a t-if="document" t-attf-href="/my/documents?{{ keep_query() }}">Document</a>
                 <t t-else="">Document</t>
             </li>
             <li t-if="document" class="breadcrumb-item active">
-                <t t-esc="document.name"/>
+                <t t-esc="document.name" />
             </li>
         </xpath>
     </template>
-    <template id="portal_my_home" name="Portal My Home : document entries" inherit_id="portal.portal_my_home"
-              priority="40">
+    <template id="portal_my_home" name="Portal My Home : document entries" inherit_id="portal.portal_my_home" priority="40">
 
 
         <xpath expr="//h3" position="before">
             <div t-if="request.website.id==1">
-                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-                <link href="/mcm_contact_documents/static/src/css/button.min.css" rel="stylesheet"/>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+                <link href="/mcm_contact_documents/static/src/css/button.min.css" rel="stylesheet" />
                 <script src="/mcm_contact_documents/static/src/js/continue_wizard.js" type="text/javascript"></script>
-                <link href="/mcm_website_theme/static/src/css/register_form.min.css" rel="stylesheet"/>
+                <link href="/mcm_website_theme/static/src/css/register_form.min.css" rel="stylesheet" />
 
-                <input id="isBolt" type="hidden" t-att-value="request.env.user.partner_id.bolt"/>
+                <input id="isBolt" type="hidden" t-att-value="request.env.user.partner_id.bolt" />
 
-                <input id="cartIsEmpty" type="hidden" t-att-value="cartIsEmpty"/>
+                <input id="cartIsEmpty" type="hidden" t-att-value="cartIsEmpty" />
 
-                <input id="isSigned" type="hidden" t-att-value="isSigned"/>
+                <input id="isSigned" type="hidden" t-att-value="isSigned" />
 
-                <input id="rdvIsBooked" type="hidden" t-att-value="rdvIsBooked"/>
+                <input id="rdvIsBooked" type="hidden" t-att-value="rdvIsBooked" />
 
-                <input id="bolt_contract_uri" type="hidden" t-att-value="bolt_contract_uri"/>
+                <input id="bolt_contract_uri" type="hidden" t-att-value="bolt_contract_uri" />
                 <!-- Bolt user and has not a bolt product-->
-                <input id="boltWrongProduct" type="hidden" t-att-value="boltWrongProduct"/>
+                <input id="boltWrongProduct" type="hidden" t-att-value="boltWrongProduct" />
                 <!-- Bolt exam state : exam_not_passed, in_process, success, failed-->
-                <input t-att-value="exam_state" id="exam_state" name="exam_state" type="hidden"/>
+                <input t-att-value="exam_state" id="exam_state" name="exam_state" type="hidden" />
 
 
                 <div class="container-fluid">
@@ -70,16 +67,58 @@
                       progress-bar progress-bar-striped progress-bar-animated
                     " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <br/>
+                                <br />
 
                                 <div class="mt40" style="font-size: 18px">
-                                    <p id="textDescription"></p>
+                                    <p id="textDescription">
+                                        <style>
+               .spinner {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+ background: conic-gradient(rgb(21 40 86 / 30%), #1a1a1a);
+  position: relative;
+  animation: spin 2.6s linear infinite;
+  transform: translateZ(0);
+  margin-block-end: 13px;
+}
+
+.spinner::after {
+  background: #ffffff;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+            </style>
+
+                                        <!-- <div style="text-align: -webkit-center;">
+                                            <div class="spinner"></div>
+                                        </div> -->
+                                    </p>
                                 </div>
+
 
                                 <div class="mt-3" style="float: right" id="finished">
                                     <a id="button-continuer" href="#">
-                                        <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow"
-                                                type="submit" style="font-size: 11px;">
+                                        <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
                                             <i class="material-icons right">send</i>
                                             Continuer
                                         </button>
@@ -87,7 +126,7 @@
                                 </div>
 
 
-                                <br/>
+                                <br />
 
 
                             </div>
@@ -96,7 +135,7 @@
 
                     </div>
                 </div>
-                <input id="step_value" t-att-value="user_id.partner_id.step" type="hidden"/>
+                <input id="step_value" t-att-value="user_id.partner_id.step" type="hidden" />
 
 
                 <!-- <input id="step_value2" value="finish" type="input"/> -->
@@ -116,8 +155,8 @@
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
             <t t-if="document_count" t-call="portal.portal_docs_entry">
                 <t t-set="title">Documents</t>
-                <t t-set="url" t-value="'/my/documents'"/>
-                <t t-set="count" t-value="document_count"/>
+                <t t-set="url" t-value="'/my/documents'" />
+                <t t-set="count" t-value="document_count" />
             </t>
         </xpath>
         <xpath expr="//div[@class='o_portal_docs list-group']" position="after">
@@ -152,8 +191,7 @@
                     </div>
                 </li>
             </ul> -->
-            <script type="text/javascript"
-                    src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
             <style>
                 .spinner {
                 width: 8rem;
@@ -253,17 +291,15 @@
                 <h5 class="list-group-item" t-if="user_id.partner_id.renounce_request==True">
                     <span class="d-flex align-items-center justify-content-between">
                         Renonciation au droit de rétractation conformément aux dispositions de l'article L.221-28 1°
-                        <i class="fa fa-check-circle text-success" role="img" aria-label="Success" title="Success"/>
+                        <i class="fa fa-check-circle text-success" role="img" aria-label="Success" title="Success" />
                     </span>
                 </h5>
 
                 <div class="renonce" style="padding-top:24px;" t-if="user_id.partner_id.renounce_request==False">
-                    <input type="checkbox" id="renonce_request_box" name="renonce"
-                           t-att-checked="user_id.partner_id.renounce_request"
-                           style="white-space: nowrap;width:20px;height:14px;" class="text-xl-left border-0">
+                    <input type="checkbox" id="renonce_request_box" name="renonce" t-att-checked="user_id.partner_id.renounce_request" style="white-space: nowrap;width:20px;height:14px;" class="text-xl-left border-0">
                         <label for="renonce" style="display:inline;color:#202647;font-weight:bold;">
                             Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
-                            <span t-esc="user_id.company_id.name"/>
+                            <span t-esc="user_id.company_id.name" />
                             procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
                             renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
                             l'article L.221-28 1° du code de la consommation.
@@ -277,26 +313,24 @@
     </template>
     <template id="portal_my_documents" name="Mes Documents">
         <t t-call="portal.portal_layout">
-            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
             <form method="POST" t-attf-action="/charger_mes_documents" t-if="website.id==1">
                 <h3>
                     Documents
-                    <t t-call="portal.portal_searchbar"/>
-                    <button name="create_documents" type="action" class="btn btn-primary" groups="base.group_portal"
-                            style="float: right; margin-right: 5px;">Charger mes documents
+                    <t t-call="portal.portal_searchbar" />
+                    <button name="create_documents" type="action" class="btn btn-primary" groups="base.group_portal" style="float: right; margin-right: 5px;">Charger mes documents
                     </button>
                 </h3>
-                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
             </form>
             <form method="POST" t-attf-action="/charger_mes_documents" t-if="website.id==2">
                 <h3>
                     Documents
-                    <t t-call="portal.portal_searchbar"/>
-                    <button name="create_documents" type="action" class="btn btn-primary" groups="base.group_portal"
-                            style="float: right; margin-right: 5px;">Charger mes documents
+                    <t t-call="portal.portal_searchbar" />
+                    <button name="create_documents" type="action" class="btn btn-primary" groups="base.group_portal" style="float: right; margin-right: 5px;">Charger mes documents
                     </button>
                 </h3>
-                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
             </form>
             <t t-if="not documents">
                 <p>Il n'y a pas de documents dans votre compte.</p>
@@ -314,7 +348,7 @@
                             <tr>
                                 <td>
                                     <a t-attf-href="/my/documents">
-                                        <t t-esc="document.name"/>
+                                        <t t-esc="document.name" />
                                     </a>
                                 </td>
                                 <td>
@@ -339,8 +373,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a t-attf-href="/my/document/#{document.id}" t-if="document.state=='refused'"
-                                       class="btn btn-primary">
+                                    <a t-attf-href="/my/document/#{document.id}" t-if="document.state=='refused'" class="btn btn-primary">
                                         Télécharger à nouveau mon document
                                     </a>
                                 </td>
@@ -349,76 +382,76 @@
                     </table>
                 </div>
                 <div t-if="pager" class="o_portal_pager text-center">
-                    <t t-call="portal.pager"/>
+                    <t t-call="portal.pager" />
                 </div>
             </div>
         </t>
     </template>
-<!--    <template id="cerfa_portal_template" name="CERFA Portal Template" inherit_id="portal.portal_sidebar" primary="True">-->
-<!--        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">-->
-<!--            <div class="row mt16 o_portal_sale_sidebar">-->
-<!--                &lt;!&ndash; Sidebar &ndash;&gt;-->
-<!--                <t t-call="portal.portal_record_sidebar">-->
-<!--                    <t t-set="classes" t-value="'col-lg-auto d-print-none'"/>-->
+    <!--    <template id="cerfa_portal_template" name="CERFA Portal Template" inherit_id="portal.portal_sidebar" primary="True">-->
+    <!--        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">-->
+    <!--            <div class="row mt16 o_portal_sale_sidebar">-->
+    <!--                &lt;!&ndash; Sidebar &ndash;&gt;-->
+    <!--                <t t-call="portal.portal_record_sidebar">-->
+    <!--                    <t t-set="classes" t-value="'col-lg-auto d-print-none'"/>-->
 
-<!--                    <t t-set="title">-->
-<!--                        Document décharge-->
-<!--                    </t>-->
-<!--                    <t t-set="entries">-->
-<!--                        <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">-->
-<!--                            <li class="list-group-item flex-grow-1">-->
-<!--                                <a role="button" class="btn btn-primary btn-block mb8" data-toggle="modal"-->
-<!--                                   data-target="#modalaccept" href="#">-->
-<!--                                    <i class="fa fa-check"/>-->
-<!--                                    <t>Accepter &amp; signer</t>-->
-<!--                                </a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                    </t>-->
-<!--                </t>-->
-<!--                <div id="quote_content" class="col-12 col-lg justify-content-end">-->
-<!--                    &lt;!&ndash; modal relative to the actions sign and pay &ndash;&gt;-->
-<!--                    <div role="dialog" class="modal fade" id="modalaccept">-->
-<!--                        <div class="modal-dialog">-->
-<!--                            <form id="accept" method="POST" class="js_accept_json modal-content js_website_submit_form">-->
-<!--                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>-->
-<!--                                <header class="modal-header">-->
-<!--                                    <h4 class="modal-title">Valider décharge</h4>-->
-<!--                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">X-->
-<!--                                    </button>-->
-<!--                                </header>-->
-<!--                                <main class="modal-body" id="sign-dialog">-->
-<!--                                    <p>-->
-<!--                                        <span>En signant ce document, je confirme que :</span>-->
-<!--                                        <ul>-->
-<!--                                            <li>-->
-<!--                                                <span>J'ai 3 ans de permis ou plus</span>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <span>J'ai aucun retrait définitif du permis ces 10 dernières années-->
-<!--                                                </span>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <span>J'ai un casier judiciaire vierge B2</span>-->
-<!--                                            </li>-->
-<!--                                        </ul>-->
-<!--                                    </p>-->
-<!--                                    <t t-call="portal.signature_form">-->
-<!--                                        <t t-set="call_url" t-value="'/my/cerfa/accept'"/>-->
-<!--                                        <t t-set="default_name" t-value="CERFA"/>-->
-<!--                                    </t>-->
-<!--                                </main>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </xpath>-->
-<!--    </template>-->
-<!--    <record id="cerfa_portal_template" model="website.page">-->
-<!--        <field name="website_published">True</field>-->
-<!--        <field name="website_indexed">False</field>-->
-<!--        <field name="url">/my/cerfa</field>-->
-<!--        <field name="view_id" ref="mcm_contact_documents.cerfa_portal_template"/>-->
-<!--    </record>-->
+    <!--                    <t t-set="title">-->
+    <!--                        Document décharge-->
+    <!--                    </t>-->
+    <!--                    <t t-set="entries">-->
+    <!--                        <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">-->
+    <!--                            <li class="list-group-item flex-grow-1">-->
+    <!--                                <a role="button" class="btn btn-primary btn-block mb8" data-toggle="modal"-->
+    <!--                                   data-target="#modalaccept" href="#">-->
+    <!--                                    <i class="fa fa-check"/>-->
+    <!--                                    <t>Accepter &amp; signer</t>-->
+    <!--                                </a>-->
+    <!--                            </li>-->
+    <!--                        </ul>-->
+    <!--                    </t>-->
+    <!--                </t>-->
+    <!--                <div id="quote_content" class="col-12 col-lg justify-content-end">-->
+    <!--                    &lt;!&ndash; modal relative to the actions sign and pay &ndash;&gt;-->
+    <!--                    <div role="dialog" class="modal fade" id="modalaccept">-->
+    <!--                        <div class="modal-dialog">-->
+    <!--                            <form id="accept" method="POST" class="js_accept_json modal-content js_website_submit_form">-->
+    <!--                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>-->
+    <!--                                <header class="modal-header">-->
+    <!--                                    <h4 class="modal-title">Valider décharge</h4>-->
+    <!--                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">X-->
+    <!--                                    </button>-->
+    <!--                                </header>-->
+    <!--                                <main class="modal-body" id="sign-dialog">-->
+    <!--                                    <p>-->
+    <!--                                        <span>En signant ce document, je confirme que :</span>-->
+    <!--                                        <ul>-->
+    <!--                                            <li>-->
+    <!--                                                <span>J'ai 3 ans de permis ou plus</span>-->
+    <!--                                            </li>-->
+    <!--                                            <li>-->
+    <!--                                                <span>J'ai aucun retrait définitif du permis ces 10 dernières années-->
+    <!--                                                </span>-->
+    <!--                                            </li>-->
+    <!--                                            <li>-->
+    <!--                                                <span>J'ai un casier judiciaire vierge B2</span>-->
+    <!--                                            </li>-->
+    <!--                                        </ul>-->
+    <!--                                    </p>-->
+    <!--                                    <t t-call="portal.signature_form">-->
+    <!--                                        <t t-set="call_url" t-value="'/my/cerfa/accept'"/>-->
+    <!--                                        <t t-set="default_name" t-value="CERFA"/>-->
+    <!--                                    </t>-->
+    <!--                                </main>-->
+    <!--                            </form>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </xpath>-->
+    <!--    </template>-->
+    <!--    <record id="cerfa_portal_template" model="website.page">-->
+    <!--        <field name="website_published">True</field>-->
+    <!--        <field name="website_indexed">False</field>-->
+    <!--        <field name="url">/my/cerfa</field>-->
+    <!--        <field name="view_id" ref="mcm_contact_documents.cerfa_portal_template"/>-->
+    <!--    </record>-->
 </odoo>
