@@ -2,7 +2,7 @@
     <template id="digimoov_website_templates.custom_menu" inherit_id="portal.frontend_layout" name="custom menu digimoov">
         <xpath expr="//a[@id='o_logout']" position="replace">
             <!-- <a href="/my/home" role="menuitem" class="dropdown-item">Mon espace client</a> -->
-            <a target="_blank" t-attf-href="https://digimoov.360learning.com/home/ #{'btn-indigo' if request.website.id==2 else 'https://formation.mcm-academy.fr/login?next=/dashboard'}" role=" menuitem" class=" dropdown-item">Se connecter à la plateforme de formation</a>
+            <a target="_blank" t-attf-href=" #{'https://digimoov.360learning.com/home/' if request.website.id==2 else 'https://formation.mcm-academy.fr/login?next=/dashboard'}" role=" menuitem" class=" dropdown-item">Se connecter à la plateforme de formation</a>
             <a id="o_logout" class="dropdown-item" t-attf-href="/web/session/logout?redirect=/" role="menuitem">Se déconnecter</a>
         </xpath>
         <xpath expr="//ul[@id='top_menu']/li[last()]" position="replace">
@@ -17,7 +17,7 @@
 
                     <a t-attf-href="/web/login" role=" menuitem" class="dropdown-item">Se connecter à mon espace client</a>
 
-                    <a t-attf-href="https://digimoov.360learning.com/home/ #{'btn-indigo' if request.website.id==2 else 'https://formation.mcm-academy.fr/login?next=/dashboard'}" target="_blank" role=" menuitem" class=" dropdown-item">Se connecter à la plateforme de formation</a>
+                    <a t-attf-href=" #{'https://digimoov.360learning.com/home/' if request.website.id==2 else 'https://formation.mcm-academy.fr/login?next=/dashboard'}" target="_blank" role=" menuitem" class=" dropdown-item">Se connecter à la plateforme de formation</a>
                 </div>
             </li>
         </xpath>
