@@ -195,11 +195,12 @@
 
 
     <!-- top level menu: no parent -->
-    <menuitem id="main_mcm_openedx_menu" name="MCM_OpenEdx"/>
+    <menuitem id="main_mcm_openedx_menu" name="MCM OpenEdx"/>
     <menuitem id="mcm_apprennat_menu" name="Apprenants" parent="main_mcm_openedx_menu" action="contact_list_action"/>
     <menuitem id="mcm_courses_menu" name="MOOCIT" parent="main_mcm_openedx_menu"/>
     <menuitem id="mcm_session_menu" name="Session" parent="main_mcm_openedx_menu" action="session_list_action"/>
     <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
     <menuitem id="coach_menu" name="Coaches" parent="main_mcm_openedx_menu" action="coach_list_action"/>
-    <menuitem id="att_menu" name="En_attente" parent="main_mcm_openedx_menu" action="attente_list_action"/>
+    <menuitem id="att_menu" name="En attente" parent="main_mcm_openedx_menu" action="attente_list_action"/>
+    <menuitem id="update_menu" name="Update" parent="main_mcm_openedx_menu" action="update"/>
 </odoo>

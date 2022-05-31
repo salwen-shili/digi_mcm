@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "MCM_Academy_OpenEdx",
+    'name': "MCM Academy OpenEdx",
 
     'summary': " Ce module permet d'ajouter une interface qui comporte toutes "
                "les statistiques sur OpenEdx pour chaque client. "
@@ -45,6 +45,7 @@
         "views/session.xml",
         "views/coach.xml",
         "views/assets.xml",
+        "views/update.xml",
         'data/mail_data.xml',
         'views/dashboard.xml',
 
