@@ -16,11 +16,11 @@ class Update(models.Model):
         for update in self.env['mcm_openedx.update'].sudo().search(
                 [('email', '!=', '')]):
             count = count + 1
-            for apprenant in self.env['res.partner'].sudo().search([
-                ('company_id', '=', 1),
-                ('email', 'ilike', update.email)]):
-                print(apprenant.email)
-                print(update.coach)
-                apprenant.coach_peda = update.coach
+            for coach in self.env['res.partner'].sudo().search([
+                ('est_coach', '=', True), ('name', 'like', update.coach)]):
+                for apprenant in self.env['res.partner'].sudo().search([
+                    ('company_id', '=', 1),
+                    ('email', "=", update.email)]):
+                    apprenant.coach_peda = coach
 
         print(count)

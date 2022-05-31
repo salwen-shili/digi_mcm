@@ -62,7 +62,7 @@ class Coach(models.Model):
             # crer une liste pour stocker les apprennats ayant les informations que en est en train de chercher
             listapprenant = []
             for rec in self.env['res.partner'].sudo().search(
-                    [('statut', "=", "won"), ('coach_peda', 'like', coach.name)]):
+                    [('coach_peda', 'like', coach.name)]):
 
                 if (rec.coach_peda.name == coach.name):
                     count = count + 1
@@ -128,7 +128,7 @@ class Coach(models.Model):
                 [('coach_name', '!=', ''), ('nombre_apprenant', '=', listcoach[0])], limit=1):
             i = 0
             for apprenat in self.env['res.partner'].sudo().search(
-                    [('statut', "=", "won"), ('coach_peda', '=', False), ('company_id', '=', 1)],
+                    [('coach_peda', '=', False), ('company_id', '=', 1)],
                     limit=limit[0]):
                 # a = apprenat.coach_peda.id
                 # team = self.env['helpdesk.team'].sudo().search([('name', "=", 'Coach_team')], limit=1)
