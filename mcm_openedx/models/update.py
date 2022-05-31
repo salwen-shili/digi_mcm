@@ -10,20 +10,17 @@ class Update(models.Model):
     coach = fields.Char()
 
     def update(self):
-        # chercher les coaches
-        for coach in self.env['res.partner'].sudo().search(
-                [('est_coach', '=', 'True')]):
-            # chercher dans la fiche excel les information
-            for cour in self.env['mcm_openedx.update'].sudo().search(
-                    []):
-                # chercher dans fiche client les personne ayant la liste
-                # des personnes ayant le meme mail que la liste dans excel
-                for rec in self.env['res.partner'].sudo().search(
-                        [('email', "=", cour.email)]):
-                    # Si la personne dans la fiche excel possede le meme mail
-                    # affecter le nom de coach sur la fiche excel
-                    if (cour.email == rec.email):
-                         rec.coach_peda = coach.id
+        count = 0
 
-                    else:
-                        print("non")
+        # chercher dans la fiche excel les information
+        for update in self.env['mcm_openedx.update'].sudo().search(
+                [('email', '!=', '')]):
+            count = count + 1
+            for apprenant in self.env['res.partner'].sudo().search([
+                ('company_id', '=', 1),
+                ('email', 'ilike', update.email)]):
+                print(apprenant.email)
+                print(update.coach)
+                apprenant.coach_peda = update.coach
+
+        print(count)
