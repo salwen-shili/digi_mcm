@@ -549,7 +549,7 @@ class partner(models.Model):
                             partner.email=new_email
                             partner.second_email=new_email
                             """Changer format du numero de tel pour envoyer le sms """
-                            if "#" in partner.email:
+                            if  partner.email and "#" in partner.email:
                                 _logger.info("send mail and sms %s" %str(partner.email))
                                 if partner.phone:
                                     phone = str(partner.phone.replace(' ', ''))[-9:]
@@ -1840,7 +1840,7 @@ class partner(models.Model):
         partner.email = new_email
         partner.second_email = new_email
         """Changer format du numero de tel pour envoyer le sms """
-        if "#" in partner.email:
+        if partner.email and "#" in partner.email:
             _logger.info("send mail and sms %s" % str(partner.email))
             if partner.phone:
                 phone = str(partner.phone.replace(' ', ''))[-9:]

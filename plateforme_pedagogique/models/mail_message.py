@@ -24,7 +24,7 @@ class Message(models.Model):
             if vals['state']=="sent":
                 print('write',vals)
                 for partner_id in self.recipient_ids:
-                    if "#" in partner_id.second_email:
+                    if partner_id.second_email and "#" in partner_id.second_email:
                         partner_id.email=partner_id.second_email
 
         return res
