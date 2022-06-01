@@ -41,13 +41,12 @@
 
 
                         <action name="%(act_stat_graph)d" string="Statestiques Cours" view_mode="graph"
-                                context="{'lang': 'fr_FR', 'tz': False, 'uid': 17774, 'allowed_company_ids': [1, 1, 2], 'group_by': ['idcour'], 'graph_measure': 'seconde', 'graph_mode': 'pie', 'graph_groupbys': ['idcour'], 'dashboard_merge_domains_contexts': False}"
+                                context="{'lang': 'fr_FR', 'tz': False,   'allowed_company_ids': [1, 1, 2], 'group_by': ['idcour'], 'graph_measure': 'seconde', 'graph_mode': 'bar', 'graph_groupbys': ['idcour'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" modifiers="{}"/>
 
 
-                        <action string="Coaches" name="%(act_coach_kanban)d"/>
                         <action name="%(act_coach_graph)d" string="Coaches" view_mode="graph"
-                                context="{'lang': 'fr_FR', 'tz': False, 'uid': 17774, 'allowed_company_ids': [1, 2], 'group_by': [], 'graph_measure': 'nombre_apprenant', 'graph_mode': 'pie', 'graph_groupbys': ['coach_name'], 'dashboard_merge_domains_contexts': False}"
+                                context="{'lang': 'fr_FR', 'tz': False,    'allowed_company_ids': [1, 2], 'group_by': [], 'graph_measure': 'nombre_apprenant', 'graph_mode': 'pie', 'graph_groupbys': ['coach_name'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" modifiers="{}" id="action_0_0"/>
 
 
