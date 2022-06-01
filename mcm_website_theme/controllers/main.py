@@ -26,7 +26,7 @@ import requests
 import random
 import string
 import odoo
-import pandas as pd
+import pandas as pd #import library pandas to manage excel files
 from odoo.addons.auth_signup.controllers.main import AuthSignupHome
 _logger = logging.getLogger(__name__)
 PPG = 20  # Products Per Page
@@ -696,13 +696,13 @@ class Routes_Site(http.Controller):
     def boltnowon(self):
         promo = request.env['product.pricelist'].sudo().search(
             [('company_id', '=', 1), ('name', "=", 'bolt')], limit=1)
-        data = pd.read_excel(r'/home/odoo/src/user/mcm_website_theme/static/res_partner_bolt.xlsx')
+        data = pd.read_excel(r'/home/odoo/src/user/mcm_website_theme/static/res_partner_bolt.xlsx') # read excel file using pandas read_excel function
         df = pd.DataFrame(data, columns=['Email'])
         compteur = 0
         list = []
         list_evalbox = []
         list_user_no_evalbox = []
-        for x in data['Email']:
+        for x in data['Email']: #read email column from excel file
             email = x
             email = str(email).lower().replace(' ', '')
             users = request.env['res.users'].sudo().search([('login', "=", email)])
@@ -712,9 +712,9 @@ class Routes_Site(http.Controller):
                         if user.statut != 'won' and user.statut != 'canceled':
                             compteur += 1
                             if user.numero_evalbox:
-                                list_evalbox.append(user.email)
+                                list_evalbox.append(user.email) # Add to the list of customers that have an evalbox number but do not have a won status.
                             else:
-                                list_user_no_evalbox.append(user)
+                                list_user_no_evalbox.append(user) #Add to the list of customers thatnot have an account on database
                         _logger.info("email : %s" % (str(email)))
 
             else:
@@ -764,7 +764,7 @@ class Routes_Site(http.Controller):
         _logger.info("date_exam : %s" % (str(date_exam)))
         ville_id = request.env['session.ville'].sudo().search(
             [('name_ville', "=", ville), ('company_id', "=", 1)],
-            limit=1)  # search session ville using ville sended from jotform
+            limit=1)  # search session ville
         product_id = request.env['product.product'].sudo().search(
             [('default_code', "=", 'vtc_bolt')], limit=1)
         module_id = False
