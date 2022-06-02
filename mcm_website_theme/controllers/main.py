@@ -27,6 +27,7 @@ import random
 import string
 import odoo
 import pandas as pd #import library pandas to manage excel files
+import xlrd #import library xlrd for excel files
 from odoo.addons.auth_signup.controllers.main import AuthSignupHome
 _logger = logging.getLogger(__name__)
 PPG = 20  # Products Per Page
