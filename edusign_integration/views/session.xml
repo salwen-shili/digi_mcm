@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="digimoov_edusign_inherit_view_session_form" model="ir.ui.view">
+        <field name="name">session.form</field>
+        <field name="model">mcmacademy.session</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='diplome_vise']" position="after">
+                <field name="id_group_edusign" />
+            </xpath>
+            <xpath expr="//header" position="inside">
+
+                <button name="createGroup" string="Groupe Edusign" type="object" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
