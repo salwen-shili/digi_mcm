@@ -28,14 +28,16 @@ class Partner(models.Model):
     #     return res
     def write(self, vals):
         record = super(Partner, self).write(vals)
-        if 'numero_evalbox' in vals and vals['numero_evalbox'] != False and self.bolt:
+        if 'numero_evalbox' in vals and vals['numero_evalbox'] != False and self.bolt and self.inscrit_mcm == False:
             eval_box=vals['numero_evalbox']
+            self.changestage("Inscription Examen Eval Box", self)
+
             self.change_crm_lead_i_One(self,eval_box)
         if 'inscrit_mcm' in vals and self.bolt :
-            if self.renounce_request:
+            # if self.renounce_request:
                 self.changestage("Bolt-Plateforme de formation",self)
-            else :
-                self.changestage("Bolt-Rétractation non Coché",self)
+            # else :
+            #     self.changestage("Bolt-Rétractation non Coché",self)
         if 'renounce_request' in vals and (vals['renounce_request'] == True) and self.bolt:
             if self.inscrit_mcm:
                 self.changestage("Bolt-Plateforme de formation", self)
