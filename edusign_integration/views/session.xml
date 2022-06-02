@@ -9,10 +9,48 @@
             <xpath expr="//field[@name='diplome_vise']" position="after">
                 <field name="id_group_edusign" />
             </xpath>
-            <xpath expr="//header" position="inside">
+        </field>
+    </record>
+    <record id="digimoov_edusign_inherit_view_session_form_button_add_group" model="ir.ui.view">
+        <field name="name">session.form</field>
+        <field name="model">mcmacademy.session</field>
+        <field name="inherit_id" ref="auto_mass_mailing_marketing.inherit_digimoov_session_form" />
+        <field name="arch" type="xml">
 
-                <button name="createGroup" string="Groupe Edusign" type="object" />
+            <xpath expr="//button[@name='get_list_of_partner_gagne']" position="before">
+                <style>
+                    .forced-btn-primary {
+                display: inline-block !important;
+                font-weight: 500 !important;
+                color: #666666 !important;
+                text-align: center !important;
+                vertical-align: middle !important;
+                user-select: none !important;
+
+                color: #ffffff !important;
+                background-color: #00a09d !important;
+                border-color: #00a09d !important;
+                padding: 0.375rem 0.75rem !important;
+                font-size: 1.08333333rem !important;
+                line-height: 1.5 !important;
+                border-radius: 0 !important;
+                transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+                    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+                }
+                </style>
+                <button name="createGroup" class="forced-btn-primary" string="Ajouter Groupe Edusign" type="object" />
+
             </xpath>
+            <!-- <xpath expr="//form/header" position="after">
+                <div class="oe_button_box" name="button_box">
+                    <button class="oe_stat_button" type="object" name="get_list_of_partner_gagne" icon="fa-thumbs-o-up">
+                        <field string="Client Gagné" name="clients_count" widget="statinfo" />
+                    </button>
+                    <button class="oe_stat_button" type="object" name="get_list_of_partner_indecis" icon="fa-thumbs-o-down">
+                        <field string="Client Indécis" name="prospect_count" widget="statinfo" />
+                    </button>
+                </div>
+            </xpath> -->
         </field>
     </record>
 </odoo>
