@@ -31,7 +31,7 @@ class Update(models.Model):
                         []):
                     print(coach.coach_name)
                     if (coach.coach_name.id == 15000):
-                        if app.id not in listapprenant:
+                        if app.id in listapprenant:
                             print("app", app.id)
                             print(coach.coach_name)
                             app.coach_peda = coach.coach_name
@@ -40,7 +40,7 @@ class Update(models.Model):
 
 
                     elif (coach.coach_name.id == 14682):
-                        if app.id not in listapprenant:
+                        if app.id in listapprenant:
                             print("app", app.id)
                             print("app", app.email)
                             print(coach.coach_name)
