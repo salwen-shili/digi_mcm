@@ -128,7 +128,7 @@ class Coach(models.Model):
                     [('coach_name', '!=', ''), ('nombre_apprenant', '=', listcoach[0])], limit=1):
                 i = 0
                 for apprenat in self.env['res.partner'].sudo().search(
-                        [('statut', "=", "won"),('coach_peda', '=', False), ('company_id', '=', 1)],
+                        [('statut', "=", "won"), ('coach_peda', '=', False), ('company_id', '=', 1)],
                         limit=limit[0]):
 
                     coach.apprenant_email = apprenat.name
@@ -242,11 +242,11 @@ class Coach(models.Model):
             if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi"):
 
                 print(attendee['email'])
-
                 existee = self.env['mcm_openedx.enattente'].search(
                     [('name', '=', email)])
 
                 print(existee.name)
+                print(existee.externalId)
                 if existee:
                     _logger.info("existtttt")
 
@@ -265,20 +265,24 @@ class Coach(models.Model):
                     _logger.info(new)
 
                 if (dateFormation <= today):
-                    """si l'apprenant est sur moocit
-                                                on change le statut de son dossier sur wedof """
-                for partner in self.env['mcm_openedx.course_stat'].search(
-                        [('email', "=", email)
-                         ]):
-                    if (partner.email == dossier['attendee']['email']):
-                        existant = True
-                        _logger.info("okokkookkokookokokko")
-                        _logger.info('dateeeeeeeeee', today, dateFormation, certificat, idform)
-                        _logger.info('wedooooffffff %s' % certificat)
-                        _logger.info('dateformation %s' % dateFormation)
-                        _logger.info('email %s' % email)
-                        response_post = requests.post(
-                            'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
-                            headers=headers, data=data)
-                        _logger.info('response post %s' % str(response_post.text))
-                        # print('response post', str(response_post.text))
+                    """si l'apprenant est sur moocit 
+                                                                   on change le statut de son dossier sur wedof """
+                    for partner in self.env['res.partner'].search(
+                            [('numero_cpf', '!=', False)
+                             ]):
+                        if (partner.numero_cpf == existee.externalId):
+                            for existt in self.env['mcm_openedx.course_stat'].sudo().search(
+                                    [('email', "=", self.email)]):
+                                existee.existant = True
+                                print(partner.name)
+                                print(partner.email)
+
+                                _logger.info("okokkookkokookokokko")
+                                _logger.info('dateeeeeeeeee', today, dateFormation, certificat, idform)
+                                _logger.info('email %s' % email)
+
+                        # response_post = requests.post(
+                        #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                        #     headers=headers, data=data)
+                        # _logger.info('response post %s' % str(response_post.text))
+                        # # print('response post', str(response_post.text))
