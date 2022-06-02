@@ -1568,7 +1568,7 @@ class partner(models.Model):
                                     [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
                                 if product_id:
                                     user.partner_id.id_edof = product_id.id_edof
-                            print('if digi ', product_id)
+                            _logger.info('if digi %s' %str(product_id))
                             if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
 
                                 print('if product_id digimoov', product_id.id_edof, user.login)
@@ -1576,9 +1576,9 @@ class partner(models.Model):
                                     [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
                                      ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
                                      ('session_id.number_places_available', '>', 0)], limit=1)
-                                print('before if modulee', module_id)
+                                _logger.info('before if modulee %s' %str(module_id))
                                 if module_id:
-                                    print('if modulee', module_id)
+                                    _logger.info('if modulee %s' %str(module_id))
                                     user.partner_id.module_id = module_id
                                     user.partner_id.mcm_session_id = module_id.session_id
                                     product_id = self.env['product.product'].sudo().search(
@@ -1660,7 +1660,7 @@ class partner(models.Model):
                                         })
 
                             elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
-                                print('if product_id mcm', product_id, user.login)
+                                logger.info('if product_id mcm %s' %str(product_id))
                                 user.partner_id.id_edof = product_id.id_edof
                                 module_id = self.env['mcmacademy.module'].sudo().search(
                                     [('company_id', "=", 1), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
