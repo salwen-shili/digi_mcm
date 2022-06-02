@@ -202,5 +202,5 @@
     <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
     <menuitem id="coach_menu" name="Coaches" parent="main_mcm_openedx_menu" action="coach_list_action"/>
     <menuitem id="att_menu" name="En attente" parent="main_mcm_openedx_menu" action="attente_list_action"/>
-    <menuitem id="update_menu" name="Update" parent="main_mcm_openedx_menu" action="update"/>
+<!--    <menuitem id="update_menu" name="Update" parent="main_mcm_openedx_menu" action="update"/>-->
 </odoo>

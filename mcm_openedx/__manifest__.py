@@ -45,7 +45,7 @@
         "views/session.xml",
         "views/coach.xml",
         "views/assets.xml",
-        "views/update.xml",
+        #"views/update.xml",
         'data/mail_data.xml',
         'views/dashboard.xml',
 

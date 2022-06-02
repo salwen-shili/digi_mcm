@@ -38,22 +38,22 @@ class Update(models.Model):
                             coach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
                                                 })
 
-
-                    elif (coach.coach_name.id == 14682):
-                        if app.id in listapprenant:
-                            print("app", app.id)
-                            print("app", app.email)
-                            print(coach.coach_name)
-                            app.coach_peda = coach.coach_name
-                            coach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
-                                                })
-
-                    elif (coach.coach_name.id == 19018):
-                        if app.id not in listapprenant:
-                            print("app", app.id)
-                            print(coach.coach_name)
-                            app.coach_peda = coach.coach_name
-                            coach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
-                                                   })
+                    #
+                    # elif (coach.coach_name.id == 14682):
+                    #     if app.id in listapprenant:
+                    #         print("app", app.id)
+                    #         print("app", app.email)
+                    #         print(coach.coach_name)
+                    #         app.coach_peda = coach.coach_name
+                    #         coach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
+                    #                             })
+                    #
+                    # elif (coach.coach_name.id == 19018):
+                    #     if app.id not in listapprenant:
+                    #         print("app", app.id)
+                    #         print(coach.coach_name)
+                    #         app.coach_peda = coach.coach_name
+                    #         coach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
+                    #                                })
 
         print(count)
