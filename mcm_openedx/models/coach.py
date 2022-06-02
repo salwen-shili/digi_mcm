@@ -120,80 +120,62 @@ class Coach(models.Model):
                 [('statut', "=", "won"), ('coach_peda', '=', False), ('company_id', '=', 1)]):
             sanscoach = sanscoach + 1
             # listaffecter.append()
-        print("nb sans coach", sanscoach)
-        limit = divmod(sanscoach, nombre_coach)
-        print("div", limit[0])
-        print("Rest", limit[1])
-        for coach in self.env['mcm_openedx.coach'].sudo().search(
-                [('coach_name', '!=', ''), ('nombre_apprenant', '=', listcoach[0])], limit=1):
-            i = 0
-            for apprenat in self.env['res.partner'].sudo().search(
-                    [('coach_peda', '=', False), ('company_id', '=', 1)],
-                    limit=limit[0]):
-                # a = apprenat.coach_peda.id
-                # team = self.env['helpdesk.team'].sudo().search([('name', "=", 'Coach_team')], limit=1)
-                # print("team", team)
-                # vals = {
-                #     'partner_email': coach.coach_name.email,
-                #     'partner_id': False,
-                #     'email_cc': "khouloudachour.97@gmail.com",
-                #     'user_id': a,
-                #     'description': 'new apprenat assgned to youuuuu',
-                #     'name': 'Ticket coach: new apprenat assigned to youuuuu ',
-                #     'team_id': team.id,
-                # }
-                # print("vals", vals)
-                # coach_ticket = self.env['helpdesk.ticket'].sudo().create(
-                #     vals)
-                # print("coach_ticket", coach_ticket)
-                # # send mail
-                #
-                # print("tesssssssssssssssstttttttttt", coach.coach_name.name)
-                coach.apprenant_email = apprenat.name
-                listexiste = []
-                listexiste.append(coach.apprenant_name)
-                coach.lang = 'fr_FR'
-                if self.env.su:
-                    # sending mail in sudo was meant for it being sent from superuser
-                    selff = self.with_user(SUPERUSER_ID)
-                    template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                        'mcm_openedx.mail_coachh'))
-                    template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-                    if not template_id:
-                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                            'mcm_openedx.mail_coachh',
-                            raise_if_not_found=False)
-                    if not template_id:
-                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                            'mcm_openedx.email_coachh',
-                            raise_if_not_found=False)
-                    if template_id:
-                        coach.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                       composition_mode='comment', )
-                        # ajouter une fonction pour connaitre l'utilisateur connecter et lui notifier si il a un nouveau apprenant
-                        context = self._context
-                        current_uid = context.get('uid')
-                        user = self.env['res.users'].browse(current_uid)
-                        print("emaillllllllllll", user.email)
-                        if (user.email == coach.coach_name.email):
-                            return {
-                                'type': 'ir.actions.client',
-                                'tag': 'display_notification',
-                                'params': {
-                                    'title': (' You have a new Mail🤓 🤓  '),
-                                    'message': ('consulter votre boite  maill'),
-                                    'sticky': True,
-                                    'className': 'bg-danger'
+            print("nb sans coach", sanscoach)
+            limit = divmod(sanscoach, nombre_coach)
+            print("div", limit[0])
+            print("Rest", limit[1])
+            for coach in self.env['mcm_openedx.coach'].sudo().search(
+                    [('coach_name', '!=', ''), ('nombre_apprenant', '=', listcoach[0])], limit=1):
+                i = 0
+                for apprenat in self.env['res.partner'].sudo().search(
+                        [('statut', "=", "won"),('coach_peda', '=', False), ('company_id', '=', 1)],
+                        limit=limit[0]):
+
+                    coach.apprenant_email = apprenat.name
+                    listexiste = []
+                    listexiste.append(coach.apprenant_name)
+                    coach.lang = 'fr_FR'
+                    if self.env.su:
+                        # sending mail in sudo was meant for it being sent from superuser
+                        selff = self.with_user(SUPERUSER_ID)
+                        template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                            'mcm_openedx.mail_coachh'))
+                        template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                        if not template_id:
+                            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                                'mcm_openedx.mail_coachh',
+                                raise_if_not_found=False)
+                        if not template_id:
+                            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                                'mcm_openedx.email_coachh',
+                                raise_if_not_found=False)
+                        if template_id:
+                            coach.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                           composition_mode='comment', )
+                            # ajouter une fonction pour connaitre l'utilisateur connecter et lui notifier si il a un nouveau apprenant
+                            context = self._context
+                            current_uid = context.get('uid')
+                            user = self.env['res.users'].browse(current_uid)
+                            print("emaillllllllllll", user.email)
+                            if (user.email == coach.coach_name.email):
+                                return {
+                                    'type': 'ir.actions.client',
+                                    'tag': 'display_notification',
+                                    'params': {
+                                        'title': (' You have a new Mail🤓 🤓  '),
+                                        'message': ('consulter votre boite  maill'),
+                                        'sticky': True,
+                                        'className': 'bg-danger'
+                                    }
                                 }
-                            }
 
-                if apprenat.id not in listexiste:
-                    print("app", apprenat.id)
-                    print(coach.coach_name)
-                    apprenat.coach_peda = coach.coach_name
+                    if apprenat.id not in listexiste:
+                        print("app", apprenat.id)
+                        print(coach.coach_name)
+                        apprenat.coach_peda = coach.coach_name
 
-                # appeler la fonction pour affecter les apprenats aux coach
-            self.test_coach()
+                    # appeler la fonction pour affecter les apprenats aux coach
+                self.test_coach()
 
     """recuperer les dossier avec état accepté apartir d'api wedof,
           puis faire le parcours pour chaque dossier,
