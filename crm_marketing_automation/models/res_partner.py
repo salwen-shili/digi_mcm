@@ -31,8 +31,6 @@ class Partner(models.Model):
         if 'numero_evalbox' in vals and vals['numero_evalbox'] != False and self.bolt and self.inscrit_mcm == False:
             eval_box=vals['numero_evalbox']
             self.changestage("Inscription Examen Eval Box", self)
-
-            self.change_crm_lead_i_One(self,eval_box)
         if 'inscrit_mcm' in vals and self.bolt :
             # if self.renounce_request:
                 self.changestage("Bolt-Plateforme de formation",self)
