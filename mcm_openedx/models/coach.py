@@ -272,7 +272,7 @@ class Coach(models.Model):
                              ]):
                         if (partner.numero_cpf == existee.externalId):
                             for existt in self.env['mcm_openedx.course_stat'].sudo().search(
-                                    [('email', "=", self.email)]):
+                                    [('email', "=", existee.name)]):
                                 existee.existant = True
                                 print(partner.name)
                                 print(partner.email)
