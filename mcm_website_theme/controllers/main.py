@@ -696,181 +696,225 @@ class Routes_Site(http.Controller):
     def boltnowon(self):
         promo = request.env['product.pricelist'].sudo().search(
             [('company_id', '=', 1), ('name', "=", 'bolt')], limit=1)
-        data = pd.read_excel(r'/home/odoo/src/user/mcm_website_theme/static/res_partner_bolt.xlsx') # read excel file using pandas read_excel function
-        df = pd.DataFrame(data, columns=['Email'])
-        compteur = 0
-        list = []
-        list_evalbox = []
-        list_user_no_evalbox = []
-        for x in data['Email']: #read email column from excel file
-            email = x
-            email = str(email).lower().replace(' ', '')
+        loc = ("/home/odoo/src/user/mcm_website_theme/static/res_partner_bolt.xlsx")
+        wb = xlrd.open_workbook(loc) # read excel file using xlrd open_workbook function
+
+        sheet = wb.sheet_by_index(0)
+        for i in range(sheet.nrows): # range rows of excel files
+            row = sheet.row_values(i)
+            _logger.info("email : %s" % (str(row[0])))
+            _logger.info("num : %s" % (str(row[1])))
+
+            email = str(row[0]).lower().replace(' ', '')
+            num_dossier = str(row[1])
+            department = str(row[2])
             users = request.env['res.users'].sudo().search([('login', "=", email)])
+            list_evalbox = []
+            list_dep = []
             if users:
                 for user in users:
                     if user:
-                        if user.statut != 'won' and user.statut != 'canceled':
-                            compteur += 1
-                            if user.numero_evalbox:
-                                list_evalbox.append(user.email) # Add to the list of customers that have an evalbox number but do not have a won status.
-                            else:
-                                list_user_no_evalbox.append(user) #Add to the list of customers thatnot have an account on database
-                        _logger.info("email : %s" % (str(email)))
-
-            else:
-                compteur += 1
-                list.append(email)
-        _logger.info("list evalbox %s compteur : %s" % (str(list_evalbox), str(len(list_evalbox))))
-        _logger.info("email_not_found : %s compteur : %s" % (str(list), str(len(list))))
-        _logger.info("compteur: %s" % (str(compteur)))
-
-        evalbox_no_facture = []
-        evalbox_facture = []
-        for email in list_evalbox:
-            user = request.env['res.users'].sudo().search([('login', "=", email)], limit=1)
-            if user and user.statut != 'canceled':
-                invoice = request.env['account.move'].sudo().search(
-                    [('partner_id', "=", user.partner_id.id), ('amount_total', "=", 20)], limit=1)
-                if not invoice:
-                    evalbox_no_facture.append(user)
-                else:
-                    evalbox_facture.append(user)
-        _logger.info(
-            "evalbox_no_facture_no_won: %s compteur %s" % (str(evalbox_no_facture), str(len(evalbox_no_facture))))
-        _logger.info("evalbox_facture_no_won: %s compteur %s" % (str(evalbox_facture), str(len(evalbox_facture))))
-        _logger.info(
-            "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
-        _logger.info(
-            "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
-        no_evalbox_no_facture = []
-        no_evalbox_facture = []
-        for user in list_user_no_evalbox:
-            if user.statut != 'canceled':
-                invoice = request.env['account.move'].sudo().search(
-                    [('partner_id', "=", user.partner_id.id), ('amount_total', "=", 20)], limit=1)
-                if not invoice:
-                    no_evalbox_no_facture.append(user.email)
-                else:
-                    no_evalbox_facture.append(user.email)
-        _logger.info("no_evalbox_no_facture_no_won: %s compteur %s" % (
-            str(no_evalbox_no_facture), str(len(no_evalbox_no_facture))))
-        _logger.info(
-            "no_evalbox_facture_no_won: %s compteur %s" % (str(no_evalbox_facture), str(len(no_evalbox_facture))))
-
-        ville = 'Île-de-France'
-        date_exam = '28/06/2022'
-        date_exam = datetime.strptime(
-            date_exam, '%d/%m/%Y').date()
-        _logger.info("date_exam : %s" % (str(date_exam)))
-        ville_id = request.env['session.ville'].sudo().search(
-            [('name_ville', "=", ville), ('company_id', "=", 1)],
-            limit=1)  # search session ville
-        product_id = request.env['product.product'].sudo().search(
-            [('default_code', "=", 'vtc_bolt')], limit=1)
-        module_id = False
-        if ville_id and date_exam and product_id:
-            module_id = request.env['mcmacademy.module'].sudo().search(
-                [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
-                 ('date_exam', "=", date_exam), ('product_id',
-                                                 "=", product_id.id),
-                 ('session_id.number_places_available', '>', 0)],
-                limit=1)  # search module in mcmacademy module using ville_id date_exam and product_id of bolt and session has available places
-        if module_id:
-            for user in evalbox_no_facture:
-                partner = user.partner_id
-                _logger.info("partneeeeeeeeeeeerr: %s" % (str(partner)))
-                so = request.env['sale.order'].sudo().create({
-                    'partner_id': partner.id,
-                    'company_id': 1,
-                    'website_id': 1,
-                })  # create sale order ( contract ) if payment is succeed
-                request.env['sale.order.line'].sudo().create({
-                    'name': product_id.name,
-                    'product_id': product_id.id,
-                    'product_uom_qty': 1,
-                    'product_uom': product_id.uom_id.id,
-                    'price_unit': product_id.list_price,
-                    'order_id': so.id,
-                    'tax_id': product_id.taxes_id,
-                    'company_id': 1
-                })
-                pricelist = request.env['product.pricelist'].sudo().search(
-                    [('company_id', '=', 1), ('name', "=", 'bolt')])  # search the pricelist bolt
-                if pricelist:
-                    so.pricelist_id = pricelist.id
-                _logger.info("soooooooooooooo: %s" % (str(so)))
-                so.action_confirm()
-                if module_id:
-                    so.partner_id.session_ville_id = module_id.session_ville_id
-                    so.partner_id.date_examen_edof = module_id.date_exam
-                    so.module_id = module_id.id
-                    so.session_id = module_id.session_id.id
-                # create invoice from sale_order
-                moves = so._create_invoices(final=True)
-                for move in moves:
-                    _logger.info(
-                        "webhook_stripe_move : %s" % (str(move)))
-                    move.type_facture = 'web'
-                    move.module_id = so.module_id.id
-                    move.session_id = so.session_id.id
-                    move.post()  # post the created invoice
-                    journal_id = move.journal_id.id
-                    acquirer = request.env['payment.acquirer'].sudo().search(
-                        [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
-                    if acquirer:
-                        journal_id = acquirer.journal_id.id
-                    payment_method = request.env['account.payment.method'].sudo().search(
-                        [('code', 'ilike', 'electronic')], limit=1)
-                    payment = request.env['account.payment'].sudo().create(
-                        {'payment_type': 'inbound',
-                         'payment_method_id': payment_method.id,
-                         'partner_type': 'customer',
-                         'partner_id': move.partner_id.id,
-                         'amount': so.amount_total,
-                         'currency_id': move.currency_id.id,
-                         'payment_date': move.create_date,
-                         'journal_id': journal_id,
-                         'communication': False,
-                         'payment_token_id': False,
-                         'invoice_ids': [(6, 0, move.ids)],
-                         })  # create payment for invoice
-                so.action_cancel()  # cancel contract
-                so.sale_action_sent()  # resend contract
-                so.partner_id.sudo().write({
-                    'mcm_session_id': module_id.session_id.id,
-                    'module_id': module_id.id,
-                })
-                so.partner_id.statut = 'won'  # change state of client to won
-                list = []
-                for partner in module_id.session_id.client_ids:
-                    list.append(partner.id)
-                    list.append(so.partner_id.id)
-                    module_id.session_id.write(
-                        {'client_ids': [(6, 0, list)]})
-                _logger.info("so : %s" % (str(so.id)))
-                if so.env.su:
-                    # sending mail in sudo was meant for it being sent from superuser
-                    so = so.with_user(SUPERUSER_ID)
-                template_id = so._find_mail_template(
-                    force_confirmation_template=True)
-                if template_id and so:
-                    so.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                composition_mode='comment',
-                                                                                email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
-            for user in evalbox_facture:
-                partner = user.partner_id
-                _logger.info("partneeeeeeeeeeeerr1: %s" % (str(partner)))
-                user.partner_id.sudo().write({
-                    'mcm_session_id': module_id.session_id.id,
-                    'module_id': module_id.id,
-                })
-                user.partner_id.statut = 'won'
-                list = []
-                for partner in module_id.session_id.client_ids:
-                    list.append(partner.id)
-                list.append(user.partner_id.id)
-                module_id.session_id.write(
-                    {'client_ids': [(6, 0, list)]})
+                        if not user.numero_evalbox: # check if user has already an evalbox_number
+                            if num_dossier:
+                                _logger.info("num_dossier : %s" % (str(state)))
+                                user.numero_evalbox = num_dossier #fill field numero_evalbox with the number obtained from excel
+                                list_evalbox.append(user.email)
+                        if not user.state_id: # check if user has already a state
+                            if department:
+                                state_id = department[:2]
+                                _logger.info("state_id : %s" % (str(state_id)))
+                                state = request.env['res.country.state'].sudo().search(
+                                    [('code', "=", state_id), ('country_id.code', "=", 'FR')])
+                                if len(state) > 1:
+                                    state_id = False
+                                    for s in state:
+                                        if (s.country_id.code == 'FR'):
+                                            state_id = s
+                                    if state_id:
+                                        state = state_id
+                                    else:
+                                        state = False
+                                if state:
+                                    _logger.info("state : %s" % (str(state)))
+                                    user.state_id = state #fill field state with the state obtained from excel
+                                    list_dep.append(user.email)
+            _logger.info("list_evalbox : %s" % (str(list_evalbox)))
+            _logger.info("list_dep : %s" % (str(list_dep)))
+        # data = pd.read_excel(r'/home/odoo/src/user/mcm_website_theme/static/res_partner_bolt.xlsx') # read excel file using pandas read_excel function
+        # df = pd.DataFrame(data, columns=['Email'])
+        # compteur = 0
+        # list = []
+        # list_evalbox = []
+        # list_user_no_evalbox = []
+        # for x in data['Email']: #read email column from excel file
+        #     email = x
+        #     email = str(email).lower().replace(' ', '')
+        #     users = request.env['res.users'].sudo().search([('login', "=", email)])
+        #     if users:
+        #         for user in users:
+        #             if user:
+        #                 if user.statut != 'won' and user.statut != 'canceled':
+        #                     compteur += 1
+        #                     if user.numero_evalbox:
+        #                         list_evalbox.append(user.email) # Add to the list of customers that have an evalbox number but do not have a won status.
+        #                     else:
+        #                         list_user_no_evalbox.append(user) #Add to the list of customers thatnot have an account on database
+        #                 _logger.info("email : %s" % (str(email)))
+        #
+        #     else:
+        #         compteur += 1
+        #         list.append(email)
+        # _logger.info("list evalbox %s compteur : %s" % (str(list_evalbox), str(len(list_evalbox))))
+        # _logger.info("email_not_found : %s compteur : %s" % (str(list), str(len(list))))
+        # _logger.info("compteur: %s" % (str(compteur)))
+        #
+        # evalbox_no_facture = []
+        # evalbox_facture = []
+        # for email in list_evalbox:
+        #     user = request.env['res.users'].sudo().search([('login', "=", email)], limit=1)
+        #     if user and user.statut != 'canceled':
+        #         invoice = request.env['account.move'].sudo().search(
+        #             [('partner_id', "=", user.partner_id.id), ('amount_total', "=", 20)], limit=1)
+        #         if not invoice:
+        #             evalbox_no_facture.append(user)
+        #         else:
+        #             evalbox_facture.append(user)
+        # _logger.info(
+        #     "evalbox_no_facture_no_won: %s compteur %s" % (str(evalbox_no_facture), str(len(evalbox_no_facture))))
+        # _logger.info("evalbox_facture_no_won: %s compteur %s" % (str(evalbox_facture), str(len(evalbox_facture))))
+        # _logger.info(
+        #     "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+        # _logger.info(
+        #     "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+        # no_evalbox_no_facture = []
+        # no_evalbox_facture = []
+        # for user in list_user_no_evalbox:
+        #     if user.statut != 'canceled':
+        #         invoice = request.env['account.move'].sudo().search(
+        #             [('partner_id', "=", user.partner_id.id), ('amount_total', "=", 20)], limit=1)
+        #         if not invoice:
+        #             no_evalbox_no_facture.append(user.email)
+        #         else:
+        #             no_evalbox_facture.append(user.email)
+        # _logger.info("no_evalbox_no_facture_no_won: %s compteur %s" % (
+        #     str(no_evalbox_no_facture), str(len(no_evalbox_no_facture))))
+        # _logger.info(
+        #     "no_evalbox_facture_no_won: %s compteur %s" % (str(no_evalbox_facture), str(len(no_evalbox_facture))))
+        #
+        # ville = 'Île-de-France'
+        # date_exam = '28/06/2022'
+        # date_exam = datetime.strptime(
+        #     date_exam, '%d/%m/%Y').date()
+        # _logger.info("date_exam : %s" % (str(date_exam)))
+        # ville_id = request.env['session.ville'].sudo().search(
+        #     [('name_ville', "=", ville), ('company_id', "=", 1)],
+        #     limit=1)  # search session ville
+        # product_id = request.env['product.product'].sudo().search(
+        #     [('default_code', "=", 'vtc_bolt')], limit=1)
+        # module_id = False
+        # if ville_id and date_exam and product_id:
+        #     module_id = request.env['mcmacademy.module'].sudo().search(
+        #         [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
+        #          ('date_exam', "=", date_exam), ('product_id',
+        #                                          "=", product_id.id),
+        #          ('session_id.number_places_available', '>', 0)],
+        #         limit=1)  # search module in mcmacademy module using ville_id date_exam and product_id of bolt and session has available places
+        # if module_id:
+        #     for user in evalbox_no_facture:
+        #         partner = user.partner_id
+        #         _logger.info("partneeeeeeeeeeeerr: %s" % (str(partner)))
+        #         so = request.env['sale.order'].sudo().create({
+        #             'partner_id': partner.id,
+        #             'company_id': 1,
+        #             'website_id': 1,
+        #         })  # create sale order ( contract ) if payment is succeed
+        #         request.env['sale.order.line'].sudo().create({
+        #             'name': product_id.name,
+        #             'product_id': product_id.id,
+        #             'product_uom_qty': 1,
+        #             'product_uom': product_id.uom_id.id,
+        #             'price_unit': product_id.list_price,
+        #             'order_id': so.id,
+        #             'tax_id': product_id.taxes_id,
+        #             'company_id': 1
+        #         })
+        #         pricelist = request.env['product.pricelist'].sudo().search(
+        #             [('company_id', '=', 1), ('name', "=", 'bolt')])  # search the pricelist bolt
+        #         if pricelist:
+        #             so.pricelist_id = pricelist.id
+        #         _logger.info("soooooooooooooo: %s" % (str(so)))
+        #         so.action_confirm()
+        #         if module_id:
+        #             so.partner_id.session_ville_id = module_id.session_ville_id
+        #             so.partner_id.date_examen_edof = module_id.date_exam
+        #             so.module_id = module_id.id
+        #             so.session_id = module_id.session_id.id
+        #         # create invoice from sale_order
+        #         moves = so._create_invoices(final=True)
+        #         for move in moves:
+        #             _logger.info(
+        #                 "webhook_stripe_move : %s" % (str(move)))
+        #             move.type_facture = 'web'
+        #             move.module_id = so.module_id.id
+        #             move.session_id = so.session_id.id
+        #             move.post()  # post the created invoice
+        #             journal_id = move.journal_id.id
+        #             acquirer = request.env['payment.acquirer'].sudo().search(
+        #                 [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
+        #             if acquirer:
+        #                 journal_id = acquirer.journal_id.id
+        #             payment_method = request.env['account.payment.method'].sudo().search(
+        #                 [('code', 'ilike', 'electronic')], limit=1)
+        #             payment = request.env['account.payment'].sudo().create(
+        #                 {'payment_type': 'inbound',
+        #                  'payment_method_id': payment_method.id,
+        #                  'partner_type': 'customer',
+        #                  'partner_id': move.partner_id.id,
+        #                  'amount': so.amount_total,
+        #                  'currency_id': move.currency_id.id,
+        #                  'payment_date': move.create_date,
+        #                  'journal_id': journal_id,
+        #                  'communication': False,
+        #                  'payment_token_id': False,
+        #                  'invoice_ids': [(6, 0, move.ids)],
+        #                  })  # create payment for invoice
+        #         so.action_cancel()  # cancel contract
+        #         so.sale_action_sent()  # resend contract
+        #         so.partner_id.sudo().write({
+        #             'mcm_session_id': module_id.session_id.id,
+        #             'module_id': module_id.id,
+        #         })
+        #         so.partner_id.statut = 'won'  # change state of client to won
+        #         list = []
+        #         for partner in module_id.session_id.client_ids:
+        #             list.append(partner.id)
+        #             list.append(so.partner_id.id)
+        #             module_id.session_id.write(
+        #                 {'client_ids': [(6, 0, list)]})
+        #         _logger.info("so : %s" % (str(so.id)))
+        #         if so.env.su:
+        #             # sending mail in sudo was meant for it being sent from superuser
+        #             so = so.with_user(SUPERUSER_ID)
+        #         template_id = so._find_mail_template(
+        #             force_confirmation_template=True)
+        #         if template_id and so:
+        #             so.with_context(force_send=True).message_post_with_template(template_id,
+        #                                                                         composition_mode='comment',
+        #                                                                         email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
+        #     for user in evalbox_facture:
+        #         partner = user.partner_id
+        #         _logger.info("partneeeeeeeeeeeerr1: %s" % (str(partner)))
+        #         user.partner_id.sudo().write({
+        #             'mcm_session_id': module_id.session_id.id,
+        #             'module_id': module_id.id,
+        #         })
+        #         user.partner_id.statut = 'won'
+        #         list = []
+        #         for partner in module_id.session_id.client_ids:
+        #             list.append(partner.id)
+        #         list.append(user.partner_id.id)
+        #         module_id.session_id.write(
+        #             {'client_ids': [(6, 0, list)]})
         return request.render("mcm_website_theme.mcm_bolt_no_won", {})
 
     @http.route(['''/bolt''', '''/BOLT''', '''/Bolt'''], type='http', auth='public', website=True, )
