@@ -31,11 +31,29 @@ class Update(models.Model):
                         []):
                     print(coach.coach_name)
                     if (coach.coach_name.id == 15000):
-                        app.coach_peda = coach.coach_name
+                        if app.id not in listapprenant:
+                            print("app", app.id)
+                            print(coach.coach_name)
+                            app.coach_peda = coach.coach_name
+                            coach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
+                                                })
+
 
                     elif (coach.coach_name.id == 14682):
-                        app.coach_peda = coach.coach_name
+                        if app.id not in listapprenant:
+                            print("app", app.id)
+                            print("app", app.email)
+                            print(coach.coach_name)
+                            app.coach_peda = coach.coach_name
+                            coach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
+                                                })
+
                     elif (coach.coach_name.id == 19018):
-                        app.coach_peda = coach.coach_name
+                        if app.id not in listapprenant:
+                            print("app", app.id)
+                            print(coach.coach_name)
+                            app.coach_peda = coach.coach_name
+                            coach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
+                                                   })
 
         print(count)
