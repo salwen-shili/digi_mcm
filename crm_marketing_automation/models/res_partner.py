@@ -188,55 +188,57 @@ class Partner(models.Model):
                                 _logger.info("refused %s " %str(partner.name))
                                 refuse=True
                     if partner.mode_de_financement == "particulier":
-                        if partner.bolt and float(partner.note_exam) < 40.0:
-                            self.changestage("Echec d'Examen Blanc", self)
-                        if sale_order and sale_order.state == "sent":
-                            # _logger.info('contrat non signé')
-                            if not partner.bolt and sale_order.module_id.product_id.default_code != "vtc_bolt":
-                                self.changestage("Contrat non Signé", partner)
-                            else:
-                                self.changestage("Bolt-Contrat non Signé", partner)
-                        if sale_order and sale_order.state == "sale":
-                            if waiting:
-                                if partner.bolt:
-                                    # _logger.info('wait bolt %s' % str(partner.email))
-                                    self.changestage("Bolt-Document non Validé", partner)
-                                else :
-                                    self.changestage("Document non Validé", partner)
-                            # """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
-                            # if refuse and partner.bolt:
-                            #     # _logger.info("Archivé %s" %str(partner.name))
-                            #     self.changestage("Archivé", partner)
-
-                            if document_valide:
-                                _logger.info('document valide %s' % str(partner.email))
-                                print("++++++++++++",partner.email,partner.inscrit_mcm)
-                                failure = sale_order.failures  # delai de retractation
-                                """Si Il n'as pas fait la renonciation au contrat et sur la fiche 
-                                 on le classe sous retractation non coché et on doit vérifier la date de signature si n'as
-                                     pas depassé 14jours"""
-                                if not (partner.renounce_request) and (date_facture) and (date_facture + timedelta(days=14)) > (today):
+                        if partner.inscrit_mcm and partner.numero_evalbox != False:
+                            _logger.info('plateforme %s' % str(partner.email))
+                            self.changestage("Bolt-Plateforme de formation", partner)
+                        else :
+                            if partner.bolt and float(partner.note_exam) < 40.0:
+                                self.changestage("Echec d'Examen Blanc", self)
+                            if sale_order and sale_order.state == "sent":
+                                # _logger.info('contrat non signé')
+                                if not partner.bolt and sale_order.module_id.product_id.default_code != "vtc_bolt":
+                                    self.changestage("Contrat non Signé", partner)
+                                else:
+                                    self.changestage("Bolt-Contrat non Signé", partner)
+                            if sale_order and sale_order.state == "sale":
+                                if waiting:
                                     if partner.bolt:
-                                        # _logger.info('bolt retract %s' % str(partner.email))
-                                        self.changestage("Bolt-Rétractation non Coché", partner)
+                                        # _logger.info('wait bolt %s' % str(partner.email))
+                                        self.changestage("Bolt-Document non Validé", partner)
                                     else :
-                                        self.changestage("Rétractation non Coché", partner)
-                                if partner.renounce_request :
-                                    if partner.bolt or sale_order.module_id.product_id.default_code == "vtc_bolt":
-                                        if partner.inscrit_mcm == False and partner.numero_evalbox == False:
-                                            """S'il a renoncé et son contrat est signé et ses documents sont validé sera classé sous contrat Signé """
-                                            self.changestage("Bolt-Contrat Signé",partner)
-                                        """Si client bolt et inscrit à l'examen eval box, et n'a pas encore commencé
-                                         sa formation sera classé sous examen eval box 
-                                        si non sous Plateforme de formation """
-                                        if partner.inscrit_mcm == False and partner.numero_evalbox != False:
-                                            _logger.info('eval box %s' % str(partner.email))
-                                            self.changestage("Inscription Examen Eval Box", partner)
-                                        if partner.inscrit_mcm and partner.numero_evalbox != False:
-                                            _logger.info('plateforme %s' % str(partner.email))
-                                            self.changestage("Bolt-Plateforme de formation", partner)
-                                    else :
-                                        self.changestage("Contrat Signé", partner)
+                                        self.changestage("Document non Validé", partner)
+                                # """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
+                                # if refuse and partner.bolt:
+                                #     # _logger.info("Archivé %s" %str(partner.name))
+                                #     self.changestage("Archivé", partner)
+
+                                if document_valide:
+                                    _logger.info('document valide %s' % str(partner.email))
+                                    print("++++++++++++",partner.email,partner.inscrit_mcm)
+                                    failure = sale_order.failures  # delai de retractation
+                                    """Si Il n'as pas fait la renonciation au contrat et sur la fiche 
+                                     on le classe sous retractation non coché et on doit vérifier la date de signature si n'as
+                                         pas depassé 14jours"""
+                                    if not (partner.renounce_request) and (date_facture) and (date_facture + timedelta(days=14)) > (today):
+                                        if partner.bolt:
+                                            # _logger.info('bolt retract %s' % str(partner.email))
+                                            self.changestage("Bolt-Rétractation non Coché", partner)
+                                        else :
+                                            self.changestage("Rétractation non Coché", partner)
+                                    if partner.renounce_request :
+                                        if partner.bolt or sale_order.module_id.product_id.default_code == "vtc_bolt":
+                                            if partner.inscrit_mcm == False and partner.numero_evalbox == False:
+                                                """S'il a renoncé et son contrat est signé et ses documents sont validé sera classé sous contrat Signé """
+                                                self.changestage("Bolt-Contrat Signé",partner)
+                                            """Si client bolt et inscrit à l'examen eval box, et n'a pas encore commencé
+                                             sa formation sera classé sous examen eval box 
+                                            si non sous Plateforme de formation """
+                                            if partner.inscrit_mcm == False and partner.numero_evalbox != False:
+                                                _logger.info('eval box %s' % str(partner.email))
+                                                self.changestage("Inscription Examen Eval Box", partner)
+
+                                        else :
+                                            self.changestage("Contrat Signé", partner)
 
 
                     """Si mode de financement cpf on doit vérifier seulement l'etat des documents  
