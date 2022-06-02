@@ -29,26 +29,28 @@ class mcmSession(models.Model):
             # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             company = self.env["res.company"].sudo().search([("id", "=", 2)], limit=1)
             api_key = ""
-
+            headers = {
+                "Authorization": "Bearer %s" % (str(api_key)),
+                "Content-Type": "application/json",
+            }
             if company:
                 api_key = company.edusign_api_key
                 # check if group exist already by id
+                groupIsCreated = False
+                if res.id_group_edusign:
 
-                headers = {
-                    "Authorization": "Bearer %s" % (str(api_key)),
-                    "Content-Type": "application/json",
-                }
+                    getResult = requests.get(
+                        "https://ext.edusign.fr/v1/group/" + res.id_group_edusign, headers=headers
+                    )
+                    getContent = json.loads(getResult.content)
+                    groupIsCreated = True if getContent["status"] == "success" else False
+                    print(getContent)
 
-                getResult = requests.get("https://ext.edusign.fr/v1/group/" + res.id_group_edusign, headers=headers)
-                getContent = json.loads(getResult.content)
-
-                groupIsCreated = True if getContent["status"] == "success" else False
                 print("Edusign group is created? : ", groupIsCreated)
-                print(getContent)
 
                 if not groupIsCreated:
                     # Session does not exist, post request to
-                    postUrl = "https://ext.edusign.fr/v1/group/:id"
+                    postUrl = "https://ext.edusign.fr/v1/group"
 
                     data = {
                         "group": {
