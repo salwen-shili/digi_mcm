@@ -717,7 +717,7 @@ class Routes_Site(http.Controller):
                 limit=1)  # search module in mcmacademy module using ville_id date_exam and product_id of bolt and session has available places
         _logger.info("module_id: %s" % (str(module_id)))
         if module_id :
-            partners = request.env['res.partner'].sudo().search([('statut', "=", 'won'),('mcm_session_id',"=",module_id.session_id)])
+            partners = request.env['res.partner'].sudo().search([('statut', "=", 'won'),('mcm_session_id',"=",module_id.session_id.id)])
             list = []
             _logger.info("compteurrrrrrrrrr : %s" %(str(len(partners))))
             for partner in partners :
