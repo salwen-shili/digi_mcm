@@ -722,7 +722,7 @@ class Routes_Site(http.Controller):
             _logger.info("compteurrrrrrrrrr : %s" %(str(len(partners))))
             for partner in partners :
                 list.append(partner.id)
-            module.session_id.sudo().write({'client_ids': [(6, 0, list)]})
+            module_id.session_id.sudo().write({'client_ids': [(6, 0, list)]})
 
         # promo = request.env['product.pricelist'].sudo().search(
         #     [('company_id', '=', 1), ('name', "=", 'bolt')], limit=1)
