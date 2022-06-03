@@ -959,7 +959,7 @@ class Routes_Site(http.Controller):
                 for order in orders:
                     order.session_id = module_id.session_id
                     order.module_id = module_id
-
+        _logger.info("aaaaaaaaaaa")
         return request.render("mcm_website_theme.mcm_bolt_no_won", {})
 
     @http.route(['''/bolt''', '''/BOLT''', '''/Bolt'''], type='http', auth='public', website=True, )
