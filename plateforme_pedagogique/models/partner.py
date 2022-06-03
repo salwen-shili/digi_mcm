@@ -1660,7 +1660,7 @@ class partner(models.Model):
                                         })
 
                             elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
-                                logger.info('if product_id mcm %s' %str(product_id))
+                                _logger.info('if product_id mcm %s' %str(product_id))
                                 user.partner_id.id_edof = product_id.id_edof
                                 module_id = self.env['mcmacademy.module'].sudo().search(
                                     [('company_id', "=", 1), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
