@@ -946,7 +946,7 @@ class WebhookController(http.Controller):
                             user.partner_id.phone = phone
                         url = 'https://bit.ly/3CZ2HtS'
                         body = "MCM ACADEMY. Afin d'accéder à notre formation vous devez vous inscrire à l'examen auprès de la CMA de votre région via le lien suivant:%s" % (
-                            user.partner_id.name, url)
+                             url)
                         if body:
                             composer = request.env['sms.composer'].with_context(
                                 default_res_model='res.partner',
