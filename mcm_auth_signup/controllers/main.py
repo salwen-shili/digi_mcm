@@ -73,6 +73,11 @@ class AuthSignupHome(AuthSignupHome):
                 [("login", "=", qcontext.get("login").replace(' ', '').lower())]):
             qcontext["error"] = _("Another user is already registered using this email address.")
 
+        if 'error' not in qcontext :
+            res_users = request.env["res.users"]
+            user=res_users.find_user_with_phone(qcontext.get("phone"))
+            if user :
+                qcontext["error"] = _("Another user is already registered using this phone number.")
         if 'error' not in qcontext and request.httprequest.method == 'POST':
             try:
                 qcontext['login'] = qcontext['login'].replace(' ', '').lower()
