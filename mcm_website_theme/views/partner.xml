@@ -13,6 +13,8 @@
                     <field name="street2"/><br/>
                     <label class="control-label" for="num_voie" string="Numéro de voie :">Numéro voie :</label>
                     <field name="num_voie"/><br/>
+                    <label class="control-label" for="extension" string="Extension :">Extension :</label>
+                    <field name="extension"/><br/>
                     <label class="control-label" for="voie" string="Type de voie :">Type voie:</label>
                     <field name="voie"/><br/>
                     <label class="control-label" for="nom_voie" string="Nom de voie: ">Nom de voie:</label>

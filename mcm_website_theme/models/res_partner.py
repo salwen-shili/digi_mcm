@@ -11,6 +11,7 @@ class Partner(models.Model):
     voie = fields.Char("type de voie")
     nom_voie = fields.Char("nom de voie")
     num_voie = fields.Char("num de voie")
+    extension = fields.Char("Extension")
     # Ce champ est utilisé pour l'espace client
     # À chaque fois que l'on termine une étape, le champ step prends la valeur de l'étape suivante
     step = fields.Char("step")
