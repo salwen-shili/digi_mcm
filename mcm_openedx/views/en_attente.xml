@@ -12,8 +12,9 @@
                 <field name="name"/>
                 <field name="date_edof"/>
                 <field name="state"/>
-                <field name="billingState"/>
+                <!--                <field name="billingState"/>-->
                 <field name="existant"/>
+                <field name="existantsurmooc"/>
 
 
             </tree>
@@ -29,29 +30,26 @@
                     <field name="name" style="color:red"/>
                     <br/>
                     <h5>Date Edof</h5>
-
                     <field name="date_edof" style="color:red"/>
                     <br/>
                     <h5>State</h5>
-
                     <field name="state"/>
                     <br/>
-                    <h5>Staut de payement</h5>
+                    <!--        <h5>Staut de payement</h5>
 
-                    <field name="billingState" style="color:red"/>
+                            <field name="billingState" style="color:red"/>-->
                     <br/>
                     <h5>Numero CPF</h5>
-
                     <field name="externalId"/>
-                    <br/>
-                    <h5>Date Edof</h5>
 
-                    <field name="lastName"/>
                     <br/>
                     <h5>Nom</h5>
-
                     <field name="firstName"/>
                     <br/>
+
+                    <h5>Prenom</h5>
+                    <field name="lastName"/>
+
                 </sheet>
 
             </form>
@@ -98,8 +96,8 @@
                                 Staut De l'apprannat:
                                 <field name="state"/>
                                 <br/>
-                                Staut De Payement
-                                <field name="billingState"/>
+                                <!-- Staut De Payement
+                                 <field name="billingState"/>-->
                                 <br/>
                                 ExternalId
                                 <field name="externalId"/>

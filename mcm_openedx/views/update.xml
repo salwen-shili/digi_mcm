@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+
+    <record model="ir.ui.view" id="up_stat_form_view">
+        <field name="name">mcm_openedx.update.form</field>
+        <field name="model">mcm_openedx.update</field>
+        <field name="arch" type="xml">
+            <form string="Course Form">
+                <xpath expr="//form//sheet" position="before">
+                    <header>
+                        <button name="update" string="update liste" type="object"/>
+                     </header>
+                </xpath>
+                <sheet>
+                     <field name="email"/>
+
+                <field name="coach"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="course_tree_view">
+        <field name="name">mcm_openedx.update.tree</field>
+        <field name="model">mcm_openedx.update</field>
+        <field name="arch" type="xml">
+
+            <tree string="Update">
+                <field name="email"/>
+
+                <field name="coach"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="update" model="ir.actions.act_window">
+        <field name="name">mcm_openedx.update</field>
+        <field name="res_model">mcm_openedx.update</field>
+        <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+
+</odoo>

@@ -19,7 +19,8 @@ class enattente(models.Model):
     externalId = fields.Char(string="Numero de cpf")
     firstName = fields.Char(string="Nom")
     lastName = fields.Char(string="Prenom")
-    existant = fields.Boolean(string="Exist sur Moocit", default=False)
+    existant = fields.Boolean(string="Exist sur ODOO", default=False)
+    existantsurmooc = fields.Boolean(string="Exist sur Moocit", default=False)
 
 
 class Coach(models.Model):
@@ -62,7 +63,7 @@ class Coach(models.Model):
             # crer une liste pour stocker les apprennats ayant les informations que en est en train de chercher
             listapprenant = []
             for rec in self.env['res.partner'].sudo().search(
-                    [('statut', "=", "won"), ('coach_peda', 'like', coach.name)]):
+                    [('coach_peda', 'like', coach.name)]):
 
                 if (rec.coach_peda.name == coach.name):
                     count = count + 1
@@ -120,184 +121,168 @@ class Coach(models.Model):
                 [('statut', "=", "won"), ('coach_peda', '=', False), ('company_id', '=', 1)]):
             sanscoach = sanscoach + 1
             # listaffecter.append()
-        print("nb sans coach", sanscoach)
-        limit = divmod(sanscoach, nombre_coach)
-        print("div", limit[0])
-        print("Rest", limit[1])
-        for coach in self.env['mcm_openedx.coach'].sudo().search(
-                [('coach_name', '!=', ''), ('nombre_apprenant', '=', listcoach[0])], limit=1):
-            i = 0
-            for apprenat in self.env['res.partner'].sudo().search(
-                    [('statut', "=", "won"), ('coach_peda', '=', False), ('company_id', '=', 1)],
-                    limit=limit[0]):
-                # a = apprenat.coach_peda.id
-                # team = self.env['helpdesk.team'].sudo().search([('name', "=", 'Coach_team')], limit=1)
-                # print("team", team)
-                # vals = {
-                #     'partner_email': coach.coach_name.email,
-                #     'partner_id': False,
-                #     'email_cc': "khouloudachour.97@gmail.com",
-                #     'user_id': a,
-                #     'description': 'new apprenat assgned to youuuuu',
-                #     'name': 'Ticket coach: new apprenat assigned to youuuuu ',
-                #     'team_id': team.id,
-                # }
-                # print("vals", vals)
-                # coach_ticket = self.env['helpdesk.ticket'].sudo().create(
-                #     vals)
-                # print("coach_ticket", coach_ticket)
-                # # send mail
-                #
-                # print("tesssssssssssssssstttttttttt", coach.coach_name.name)
-                coach.apprenant_email = apprenat.name
-                listexiste = []
-                listexiste.append(coach.apprenant_name)
-                coach.lang = 'fr_FR'
-                if self.env.su:
-                    # sending mail in sudo was meant for it being sent from superuser
-                    selff = self.with_user(SUPERUSER_ID)
-                    template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                        'mcm_openedx.mail_coachh'))
-                    template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-                    if not template_id:
-                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                            'mcm_openedx.mail_coachh',
-                            raise_if_not_found=False)
-                    if not template_id:
-                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                            'mcm_openedx.email_coachh',
-                            raise_if_not_found=False)
-                    if template_id:
-                        coach.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                       composition_mode='comment', )
-                        # ajouter une fonction pour connaitre l'utilisateur connecter et lui notifier si il a un nouveau apprenant
-                        context = self._context
-                        current_uid = context.get('uid')
-                        user = self.env['res.users'].browse(current_uid)
-                        print("emaillllllllllll", user.email)
-                        if (user.email == coach.coach_name.email):
-                            return {
-                                'type': 'ir.actions.client',
-                                'tag': 'display_notification',
-                                'params': {
-                                    'title': (' You have a new Mail🤓 🤓  '),
-                                    'message': ('consulter votre boite  maill'),
-                                    'sticky': True,
-                                    'className': 'bg-danger'
+            print("nb sans coach", sanscoach)
+            limit = divmod(sanscoach, nombre_coach)
+            print("div", limit[0])
+            print("Rest", limit[1])
+            for coach in self.env['mcm_openedx.coach'].sudo().search(
+                    [('coach_name', '!=', ''), ('nombre_apprenant', '=', listcoach[0])], limit=1):
+                i = 0
+                for apprenat in self.env['res.partner'].sudo().search(
+                        [('statut', "=", "won"), ('coach_peda', '=', False), ('company_id', '=', 1)],
+                        limit=limit[0]):
+
+                    coach.apprenant_email = apprenat.name
+                    listexiste = []
+                    listexiste.append(coach.apprenant_name)
+                    coach.lang = 'fr_FR'
+                    if self.env.su:
+                        # sending mail in sudo was meant for it being sent from superuser
+                        selff = self.with_user(SUPERUSER_ID)
+                        template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                            'mcm_openedx.mail_coachh'))
+                        template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                        if not template_id:
+                            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                                'mcm_openedx.mail_coachh',
+                                raise_if_not_found=False)
+                        if not template_id:
+                            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                                'mcm_openedx.email_coachh',
+                                raise_if_not_found=False)
+                        if template_id:
+                            coach.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                           composition_mode='comment', )
+                            # ajouter une fonction pour connaitre l'utilisateur connecter et lui notifier si il a un nouveau apprenant
+                            context = self._context
+                            current_uid = context.get('uid')
+                            user = self.env['res.users'].browse(current_uid)
+                            print("emaillllllllllll", user.email)
+                            if (user.email == coach.coach_name.email):
+                                return {
+                                    'type': 'ir.actions.client',
+                                    'tag': 'display_notification',
+                                    'params': {
+                                        'title': (' You have a new Mail🤓 🤓  '),
+                                        'message': ('consulter votre boite  maill'),
+                                        'sticky': True,
+                                        'className': 'bg-danger'
+                                    }
                                 }
-                            }
 
-                if apprenat.id not in listexiste:
-                    print("app", apprenat.id)
-                    print(coach.coach_name)
-                    apprenat.coach_peda = coach.coach_name
+                    if apprenat.id not in listexiste:
+                        print("app", apprenat.id)
+                        print(coach.coach_name)
+                        apprenat.coach_peda = coach.coach_name
 
-                # appeler la fonction pour affecter les apprenats aux coach
-            self.test_coach()
+                    # appeler la fonction pour affecter les apprenats aux coach
+                self.test_coach()
 
     """recuperer les dossier avec état accepté apartir d'api wedof,
           puis faire le parcours pour chaque dossier,
           si tout les conditions sont vérifiés on Passe le dossier dans l'état 'en formation'"""
 
     def wedof_api_integration_moocit(self):
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        print("okok")
 
-            companies = self.env['res.company'].sudo().search([('id', "=", 2)])
-            print(companies)
-            api_key = ""
-            if companies:
-                api_key = companies.wedof_api_key
-            headers = {
-                'accept': 'application/json',
-                'Content-Type': 'application/json',
-                'X-API-KEY': api_key,
-            }
-            params_we = (
-                ('order', 'desc'),
-                ('type', 'all'),
-                ('state', 'accepted'),
-                ('billingState', 'all'),
-                ('certificationState', 'all'),
-                ('sort', 'lastUpdate'),
-            )
+        companies = self.env['res.company'].sudo().search([('id', "=", 2)])
+        print(companies)
+        api_key = ""
+        if companies:
+            api_key = companies.wedof_api_key
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-API-KEY': api_key,
+        }
+        params_we = (
+            ('order', 'desc'),
+            ('type', 'all'),
+            ('state', 'accepted'),
+            ('billingState', 'all'),
+            ('certificationState', 'all'),
+            ('sort', 'lastUpdate'),
+        )
 
-            data = '{}'
-            response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
-                                    params=params_we)
-            registrations = response.json()
+        data = '{}'
+        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                params=params_we)
+        registrations = response.json()
 
-            print(response.status_code)
+        print(response.status_code)
 
-            for dossier in registrations:
-                externalId = dossier['externalId']
-                diplome = dossier['trainingActionInfo']['title']
-                email = dossier['attendee']['email']
-                certificat = dossier['_links']['certification']['name']
-                certificat_info = dossier['_links']['certification']['certifInfo']
-                date_formation = dossier['trainingActionInfo']['sessionStartDate']
-                """convertir date de formation """
-                date_split = date_formation[0:10]
-                date_ = datetime.strptime(date_split, "%Y-%m-%d")
-                dateFormation = date_.date()
-                idform = dossier['trainingActionInfo']['externalId']
-                attendee = dossier['attendee']
+        for dossier in registrations:
+            externalId = dossier['externalId']
+            diplome = dossier['trainingActionInfo']['title']
+            email = dossier['attendee']['email']
+            certificat = dossier['_links']['certification']['name']
+            certificat_info = dossier['_links']['certification']['certifInfo']
+            date_formation = dossier['trainingActionInfo']['sessionStartDate']
+            """convertir date de formation """
+            date_split = date_formation[0:10]
+            date_ = datetime.strptime(date_split, "%Y-%m-%d")
+            dateFormation = date_.date()
+            idform = dossier['trainingActionInfo']['externalId']
+            attendee = dossier['attendee']
 
-                today = date.today()
-                lastupdatestr = str(dossier['lastUpdate'])
-                lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
-                newformat = "%d/%m/%Y %H:%M:%S"
-                lastupdateform = lastupdate.strftime(newformat)
-                lastName = dossier['attendee']['lastName']
-                firstName = dossier['attendee']['firstName']
-                state = dossier['state']
-                billingState = dossier['billingState']
-                externalId = dossier['externalId']
-                lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+            today = date.today()
+            lastupdatestr = str(dossier['lastUpdate'])
+            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+            newformat = "%d/%m/%Y %H:%M:%S"
+            lastupdateform = lastupdate.strftime(newformat)
+            lastName = dossier['attendee']['lastName']
+            firstName = dossier['attendee']['firstName']
+            state = dossier['state']
+            billingState = dossier['billingState']
+            externalId = dossier['externalId']
+            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
 
-                # print('dateeeeeeeeee', today, dateFormation, certificat, idform)
-                # print('diplome',diplome)
+            # print('dateeeeeeeeee', today, dateFormation, certificat, idform)
+            # print('diplome',diplome)
 
-                if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi"):
+            if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi"):
 
-                    print(attendee['email'])
+                print(attendee['email'])
+                existee = self.env['mcm_openedx.enattente'].search(
+                    [('name', '=', email)])
 
-                    existee = self.env['mcm_openedx.enattente'].search(
-                        [('name', '=', email)])
-
-                    print(existee.name)
-                    if existee:
-                        _logger.info("existtttt")
-
-                    if not existee:
-                        _logger.info("dont exist")
-
-                        new = self.env['mcm_openedx.enattente'].sudo().create({
-                            'name': email,
-                            'date_edof': dateFormation,
-                            'state': state,
-                            'billingState': billingState,
-                            'externalId': externalId,
-                            'lastName': lastName,
-                            'firstName': firstName,
-                        })
-                        _logger.info(new)
-
-                    if (dateFormation <= today):
-                        """si l'apprenant est sur moocit
-                                                    on change le statut de son dossier sur wedof """
-                    for partner in self.env['mcm_openedx.course_stat'].search(
-                            [('email', "=", email)
+                print(existee.name)
+                print(existee.externalId)
+                if existee:
+                    _logger.info("existtttt")
+                    for partner in self.env['res.partner'].search(
+                            [('numero_cpf', '!=', False)
                              ]):
-                        if (partner.email == dossier['attendee']['email']):
-                            existant = True
-                            _logger.info("okokkookkokookokokko")
-                            _logger.info('dateeeeeeeeee', today, dateFormation, certificat, idform)
-                            _logger.info('wedooooffffff %s' % certificat)
-                            _logger.info('dateformation %s' % dateFormation)
-                            _logger.info('email %s' % email)
-                            response_post = requests.post(
-                                'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
-                                headers=headers, data=data)
-                            _logger.info('response post %s' % str(response_post.text))
-                            # print('response post', str(response_post.text))
+                        if (partner.numero_cpf == existee.externalId):
+                            existee.existant = True
+                            print(existee.existant)
+                            print("res.partner db", partner.numero_cpf)
+                            for existt in self.env['mcm_openedx.course_stat'].sudo().search(
+                                    [('email', "=", existee.name)]):
+                                existee.existantsurmooc = True
+                                print(partner.name)
+                                print(partner.email)
+                                _logger.info("okokkookkokookokokko")
+                                if (dateFormation <= today):
+                                    """si l'apprenant est sur moocit on change le statut de son dossier sur wedof """
+
+                                    # response_post = requests.post(
+                                    #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                                    #     headers=headers, data=data)
+                                    # _logger.info('response post %s' % str(response_post.text))
+                                    # # print('response post', str(response_post.text))
+
+                if not existee:
+                    _logger.info("dont exist")
+
+                    new = self.env['mcm_openedx.enattente'].sudo().create({
+                        'name': email,
+                        'date_edof': dateFormation,
+                        'state': state,
+                        'billingState': billingState,
+                        'externalId': externalId,
+                        'lastName': lastName,
+                        'firstName': firstName,
+                    })
+                    _logger.info(new)
+
