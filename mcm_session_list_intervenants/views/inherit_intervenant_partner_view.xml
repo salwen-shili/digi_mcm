@@ -6,9 +6,14 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@class='oe_title']" position="after">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <label for="est_intervenant" string="Est un intervenant:">Est un intervenant:</label>
-                          <field name="est_intervenant" widget="boolean_toggle"/>
+                          <field name="est_intervenant" widget="boolean_toggle"/><br/>
+
+                    <label for="lastName" string="Nom:" style="background:Lavender;" class="oe_edit_only">Nom:</label>
+                          <field name="lastName" style="background:Lavender;" class="oe_edit_only"/><br/>
+                    <label for="firstName" string="Prénom:" style="background:Lavender;" class="oe_edit_only">Prénom:</label>
+                          <field name="firstName" style="background:Lavender;" class="oe_edit_only"/>
                 </div>
             </xpath>
             <xpath expr="//page[@name='sales_purchases']" position="attributes">
