@@ -151,8 +151,18 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group label-floating form-group-sm">
-                                        <label class="control-label" for="street" string="Adresse">Adresse</label>
+                                        <label class="control-label" for="street" string="Adresse :">Adresse</label>
                                         <field name="street"/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group label-floating form-group-sm">
+                                        <label class="control-label" for="num_voie" string="Numéro de voie :">Numéro voie :</label>
+                                        <field name="num_voie"/><br/>
+                                        <label class="control-label" for="voie" string="Type de voie :">Type voie:</label>
+                                        <field name="voie"/><br/>
+                                        <label class="control-label" for="nom_voie" string="Nom de voie: ">Nom de voie:</label>
+                                        <field name="nom_voie"/>
                                     </div>
                                 </div>
                             </div>
