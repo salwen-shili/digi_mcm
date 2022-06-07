@@ -6,7 +6,6 @@ from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.osv import osv
 
-import numpy as np
 
 from datetime import date, datetime
 import requests
