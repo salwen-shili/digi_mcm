@@ -197,7 +197,6 @@ class partner(models.Model):
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
                 _logger.info(partner.name)
-
                 _logger.info(partner.module_id.id)
                 today = date.today()
                 # ajout automatique  des utilsateur sur MOOCit
@@ -369,8 +368,7 @@ class partner(models.Model):
                     if (self.renounce_request):
                         self.ajouter_IOne_MCM(self)
                         _logger.info(' Doneeeee %s')
-                        self.write({'state': 'en_formation'})
-
+ 
                 if not (self.renounce_request) and self.numero_cpf:
                     """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
                     headers = {

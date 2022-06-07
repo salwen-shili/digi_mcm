@@ -19,7 +19,8 @@ class enattente(models.Model):
     externalId = fields.Char(string="Numero de cpf")
     firstName = fields.Char(string="Nom")
     lastName = fields.Char(string="Prenom")
-    existant = fields.Boolean(string="Exist sur Moocit", default=False)
+    existant = fields.Boolean(string="Exist sur ODOO", default=False)
+    existantsurmooc = fields.Boolean(string="Exist sur Moocit", default=False)
 
 
 class Coach(models.Model):
@@ -249,6 +250,27 @@ class Coach(models.Model):
                 print(existee.externalId)
                 if existee:
                     _logger.info("existtttt")
+                    for partner in self.env['res.partner'].search(
+                            [('numero_cpf', '!=', False)
+                             ]):
+                        if (partner.numero_cpf == existee.externalId):
+                            existee.existant = True
+                            print(existee.existant)
+                            print("res.partner db", partner.numero_cpf)
+                            for existt in self.env['mcm_openedx.course_stat'].sudo().search(
+                                    [('email', "=", existee.name)]):
+                                existee.existantsurmooc = True
+                                print(partner.name)
+                                print(partner.email)
+                                _logger.info("okokkookkokookokokko")
+                                if (dateFormation <= today):
+                                    """si l'apprenant est sur moocit on change le statut de son dossier sur wedof """
+
+                                    # response_post = requests.post(
+                                    #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                                    #     headers=headers, data=data)
+                                    # _logger.info('response post %s' % str(response_post.text))
+                                    # # print('response post', str(response_post.text))
 
                 if not existee:
                     _logger.info("dont exist")
@@ -264,25 +286,3 @@ class Coach(models.Model):
                     })
                     _logger.info(new)
 
-                if (dateFormation <= today):
-                    """si l'apprenant est sur moocit 
-                                                                   on change le statut de son dossier sur wedof """
-                    for partner in self.env['res.partner'].search(
-                            [('numero_cpf', '!=', False)
-                             ]):
-                        if (partner.numero_cpf == existee.externalId):
-                            for existt in self.env['mcm_openedx.course_stat'].sudo().search(
-                                    [('email', "=", existee.name)]):
-                                existee.existant = True
-                                print(partner.name)
-                                print(partner.email)
-
-                                _logger.info("okokkookkokookokokko")
-                                _logger.info('dateeeeeeeeee', today, dateFormation, certificat, idform)
-                                _logger.info('email %s' % email)
-
-                        # response_post = requests.post(
-                        #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
-                        #     headers=headers, data=data)
-                        # _logger.info('response post %s' % str(response_post.text))
-                        # # print('response post', str(response_post.text))
