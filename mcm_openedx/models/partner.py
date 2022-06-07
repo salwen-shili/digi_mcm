@@ -239,14 +239,14 @@ class partner(models.Model):
                             if (sale_order.state == 'sale') and (sale_order.signature):
                                 # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
                                 if (partner.renounce_request):
-                                    # self.ajouter_IOne_MCM(partner)
-                                    _logger.info(' Doneeeee %s')
+                                    self.ajouter_IOne_MCM(partner)
+                                    _logger.info(' tout est valide %s')
 
                                 # si non il doit attendre 14jours pour etre ajouté a la platform
                                 if not partner.renounce_request and (
                                         sale_order.signed_on + timedelta(days=14)) <= today:
-                                    # self.ajouter_IOne_MCM(partner)
-                                    _logger.info(' Doneeeee %s')
+                                    self.ajouter_IOne_MCM(partner)
+                                    _logger.info(' tout est valide %s')
 
                     if partner.mode_de_financement == "cpf":
                         _logger.info(partner.mode_de_financement)
@@ -257,8 +257,8 @@ class partner(models.Model):
                                 partner.mcm_session_id.date_exam > date.today()):
 
                             if (partner.renounce_request):
-                                # self.ajouter_IOne_MCM(partner)
-                                _logger.info(' Doneeeee %s')
+                                self.ajouter_IOne_MCM(partner)
+                                _logger.info(' tout est valide %s')
 
                             if not (partner.renounce_request) and partner.numero_cpf:
                                 """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
@@ -368,7 +368,7 @@ class partner(models.Model):
                     if (self.renounce_request):
                         self.ajouter_IOne_MCM(self)
                         _logger.info(' Doneeeee %s')
- 
+
                 if not (self.renounce_request) and self.numero_cpf:
                     """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
                     headers = {
@@ -447,6 +447,8 @@ class partner(models.Model):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
 
+            _logger.info('email de lapprenant %s' % str(partner.email))
+
             user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
             partner.password360 = user.password360
             password = user.password360
@@ -491,6 +493,7 @@ class partner(models.Model):
                                                                                          composition_mode='comment', )
 
                         _logger("mail envoyeé")
+                        _logger(partner.email)
 
                 bolt = self.bolt
                 evalbox = self.numero_evalbox
