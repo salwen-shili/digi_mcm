@@ -472,7 +472,6 @@ class partner(models.Model):
             if (response.status_code == 200):
                 self.inscrit_mcm = date.today()
                 self.write({'state': 'en_formation'})
-
                 partner.lang = 'fr_FR'
                 if self.env.su:
                     # sending mail in sudo was meant for it being sent from superuser
