@@ -10,7 +10,8 @@
                 <field name="name"></field>
                 <filter name="apprenants" string="les apprenants"
                         domain="[('apprenant','=','True')]"/>
-                                <filter name="etat_financement_cpf_cb" string="Financement non payés" domain="[('etat_financement_cpf_cb', '!=', 'not_paid')]"/>
+                <filter name="etat_financement_cpf_cb" string="Financement non payés"
+                        domain="[('etat_financement_cpf_cb', '!=', 'not_paid')]"/>
 
             </search>
         </field>
@@ -36,11 +37,14 @@
         <field name="inherit_id" ref="base.view_partner_tree"></field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='email']" position="after">
+                <field name="firstName" string="Nom" optional="show"/>
+                <field name="lastName" string="Prénom" optional="show"/>
                 <field name="last_login"/>
                 <field name="totalTimeSpentInMinutes"/>
                 <field name="temps_minute" optional="hide"/>
                 <field name="is_not_paid" invisible="0" optional="hide"/>
-                <field name="etat_financement_cpf_cb" options='{"bg_color": "#FEE7F0:is_not_paid==True;"}' optional="show" string="Financement"/>
+                <field name="etat_financement_cpf_cb" options='{"bg_color": "#FEE7F0:is_not_paid==True;"}'
+                       optional="show" string="Financement"/>
             </xpath>
         </field>
     </record>
@@ -52,19 +56,22 @@
             <xpath expr="//form//sheet" position="before">
                 <header>
                     <button name="ajouter_iOne_manuelle" string="Ajouter sur 360"
-                            type="object" groups="crm_marketing_automation.group_user" attrs="{'invisible': [('company_id', '=', 1)]}"></button>
+                            type="object" groups="crm_marketing_automation.group_user"
+                            attrs="{'invisible': [('company_id', '=', 1)]}"></button>
                     <button name="supprimer_ione_manuelle" string="Supprimer de 360"
                             attrs="{'invisible': [('company_id', '=', 1)]}"
-                            type="object" confirm="Êtes-vous sûr de vouloir supprimer cet apprenant de la plateforme?" groups="crm_marketing_automation.group_user"/>
+                            type="object" confirm="Êtes-vous sûr de vouloir supprimer cet apprenant de la plateforme?"
+                            groups="crm_marketing_automation.group_user"/>
                 </header>
             </xpath>
             <xpath expr="//group//div[@class='row form-panel']//div[1]//div[3]//div[5]" position="after">
                 <div class="col-sm-12">
 
-                     <div>
-                        <label for="second_email" string="Email secondaire:" class="oe_edit_only">Email secondaire</label>
-                        <field name="second_email"  class="oe_edit_only" />
-                     </div>
+                    <div>
+                        <label for="second_email" string="Email secondaire:" class="oe_edit_only">Email secondaire
+                        </label>
+                        <field name="second_email" class="oe_edit_only"/>
+                    </div>
                     <field name="is_not_paid" invisible="1"/>
 
                 </div>
@@ -74,7 +81,8 @@
                 <field name="etat_financement_cpf_cb"/>
             </xpath>
             <xpath expr="//page[@name='internal_notes']" position="after">
-                <page string="Statistiques sur 360 Learning" name="pedagogique" attrs="{'invisible': [('company_id', '=', 1)]}">
+                <page string="Statistiques sur 360 Learning" name="pedagogique"
+                      attrs="{'invisible': [('company_id', '=', 1)]}">
                     <group>
                         <group col="12">
                         </group>
@@ -169,7 +177,7 @@
             </xpath>
         </field>
     </record>
-      <record id="mcmacademy_cpf_view_res_partner_form_pole" model="ir.ui.view">
+    <record id="mcmacademy_cpf_view_res_partner_form_pole" model="ir.ui.view">
         <field name="name">res.partner.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="mcm_cpf_partner.mcmacademy_cpf_view_res_partner_form"/>
@@ -179,7 +187,8 @@
                        attrs="{'invisible': ['|',('mode_de_financement', '!=', 'cpf'),('is_pole_emploi','=',False)]}"/>
             </xpath>
             <xpath expr="//group/field[@name='mode_de_financement']" position="before">
-                <field name="acompte_date"   attrs="{'invisible': ['|',('mode_de_financement', '!=', 'cpf'),('acompte_date','=',False)]}" ></field>
+                <field name="acompte_date"
+                       attrs="{'invisible': ['|',('mode_de_financement', '!=', 'cpf'),('acompte_date','=',False)]}"></field>
 
             </xpath>
         </field>
