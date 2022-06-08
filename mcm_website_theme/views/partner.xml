@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
         <!-- Ajouter les nouveaux champs sur la fiche du client -->
-         <record id="res_partner_form_inherit_mcm_website_new" model="ir.ui.view">
+        <record id="res_partner_form_inherit_mcm_website_new" model="ir.ui.view">
             <field name="name">res.partner.form.inherit.mcm.website.new</field>
             <field name="model">res.partner</field>
-          <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                  <xpath expr="//field[@name='city']" position="after">
-                  <br/>
-                         <label for="street2">Complément d'adresse: </label>
-                      <field name="street2"/>
-                     <field name="voie" invisible="True"/>
-                         <field name="nom_voie" invisible="True"/>
-                         <field name="num_voie" invisible="True"/>
-                        <field name="step" invisible="True"/>
+                <xpath expr="//field[@name='city']" position="after">
+                    <br/>
+                    <label for="street2">Complément d'adresse:</label>
+                    <field name="street2"/><br/>
+                    <label class="control-label" for="num_voie" string="Numéro de voie :">Numéro voie :</label>
+                    <field name="num_voie"/><br/>
+                    <label class="control-label" for="extension" string="Extension :">Extension :</label>
+                    <field name="extension"/><br/>
+                    <label class="control-label" for="voie" string="Type de voie :">Type voie:</label>
+                    <field name="voie"/><br/>
+                    <label class="control-label" for="nom_voie" string="Nom de voie: ">Nom de voie:</label>
+                    <field name="nom_voie"/>
+                    <field name="step" invisible="1"/>
                 </xpath>
             </field>
         </record>
-
-
     </data>
 </odoo>

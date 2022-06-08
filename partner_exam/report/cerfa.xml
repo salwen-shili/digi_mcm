@@ -37,13 +37,10 @@
                                 <img src="/partner_exam/static/src/img/check_icon_cerfa.png" height="20" width="10"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:130px;margin-left:310px;">
-                                <span t-raw="'%s' % o.name.split(' ')[0] if o.name else ''"/>
+                                <span t-raw="'%s' % o.lastName if o.lastName else ''"/>
                                 <br/>
-                                <span t-raw="'%s' % o.name.split(' ',1)[1] if o.name else ''"/>
+                                <span t-raw="'%s' % o.firstName if o.firstName else ''"/>
                                 <br/>
-                                <!--                                        <t t-if="o.title.name=='Madame' and o.name.split(' ')[2]">-->
-                                <!--                                            <span t-raw="'%s' % o.name.split(' ')[2] if o.name else ''"/>-->
-                                <!--                                        </t>-->
                                 <span t-field="o.nom_marital"/>
                                 <br/>
                             </strong>
@@ -63,14 +60,17 @@
                             <strong style="position:absolute;z-index:3;margin-top:250px;margin-left:600px;">
                                 <span t-raw="'%s' % o.birth_city if o.birth_city else ''"/>
                             </strong>
+                            <strong style="position:absolute;z-index:3;margin-top:409px;margin-left:550px;">
+                                <span t-raw="'%s' % o.extension if o.extension else ''"/>
+                            </strong>
                             <strong style="position:absolute;z-index:3;margin-top:409px;margin-left:285px;">
-                                <span t-raw="'%s' % o.street.split(' ')[0] if o.street else ''"/>
+                                <span t-raw="'%s' % o.num_voie if o.num_voie else ''"/>
                                 <br/>
-                                <span t-raw="'%s' % o.street.split(' ',2)[2] if o.street else ''"/>
+                                <span t-raw="'%s' % o.nom_voie if o.nom_voie else ''"/>
                                 <br/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:409px;margin-left:980px;">
-                                <span t-raw="'%s' % o.street.split(' ')[1] if o.street else ''"/>
+                                <span t-raw="'%s' % o.voie if o.voie else ''"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:525px;margin-left:600px;">
                                 <span t-raw="'%s' % o.city if o.city else '-------------'"/>
