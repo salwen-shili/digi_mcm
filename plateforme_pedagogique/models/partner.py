@@ -1555,6 +1555,7 @@ class partner(models.Model):
                             user.partner_id.diplome = diplome
                             module_id = False
                             product_id = False
+                            _logger.info('userrr %s' % str(user.partner_id.name))
                             """chercher le produit sur odoo selon id edof de formation"""
 
                             if 'digimoov' in str(training_id):
