@@ -15,9 +15,9 @@
                     </div>
                 </div>
             </xpath>
-
         </field>
     </record>
+
     <record model="ir.ui.view" id="partner_mcm_form_view">
         <field name="name">Apprenants</field>
         <field name="model">res.partner</field>
@@ -25,6 +25,8 @@
         <field name="arch" type="xml">
             <xpath expr="//group/group/field[@name='criminal_record']" position="after">
                 <field name="numero_evalbox"></field>
+                <field name="id_evalbox"></field>
+                <field name="password_evalbox"></field>
             </xpath>
         </field>
     </record>
@@ -40,4 +42,17 @@
             </xpath>
         </field>
     </record>
+
+    <!--Add fields Evalbox in Tree view-->
+    <record model="ir.ui.view" id="inherit_fields_evalbox_res_partner_tree_view">
+        <field name="name">fields.evalbox.res.partner.tree.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"></field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="after">
+                <field name="numero_evalbox" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

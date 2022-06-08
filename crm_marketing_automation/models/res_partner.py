@@ -8,15 +8,20 @@ import json
 from requests.structures import CaseInsensitiveDict
 from datetime import date, datetime, timedelta
 import logging
+
 _logger = logging.getLogger(__name__)
+
+
 class Partner(models.Model):
     _inherit = 'res.partner'
-    bolt=fields.Boolean('Client Bolt')
-    inscrit_mcm=fields.Date("Date formation MCM")
-    eval_box=fields.Boolean('Eval Box')
-    numero_evalbox=fields.Char('Numéro de dossier Evalbox')
 
-   
+    bolt = fields.Boolean('Client Bolt')
+    inscrit_mcm = fields.Date("Date formation MCM")
+    eval_box = fields.Boolean('Eval Box')
+    numero_evalbox = fields.Char('Numéro de dossier Evalbox')
+    password_evalbox = fields.Char('Mot de passe Evalbox')
+    id_evalbox = fields.Char('Identifiant Evalbox')
+
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
     # 
@@ -29,32 +34,31 @@ class Partner(models.Model):
     def write(self, vals):
         record = super(Partner, self).write(vals)
         if 'numero_evalbox' in vals and vals['numero_evalbox'] != False and self.bolt and self.inscrit_mcm == False:
-            eval_box=vals['numero_evalbox']
+            eval_box = vals['numero_evalbox']
             self.changestage("Inscription Examen Eval Box", self)
-        if 'inscrit_mcm' in vals and self.bolt :
+        if 'inscrit_mcm' in vals and self.bolt:
             # if self.renounce_request:
-                self.changestage("Bolt-Plateforme de formation",self)
-            # else :
-            #     self.changestage("Bolt-Rétractation non Coché",self)
+            self.changestage("Bolt-Plateforme de formation", self)
+        # else :
+        #     self.changestage("Bolt-Rétractation non Coché",self)
         if 'renounce_request' in vals and (vals['renounce_request'] == True) and self.bolt:
             if self.inscrit_mcm:
                 self.changestage("Bolt-Plateforme de formation", self)
 
-
         """pour bolt prendre la valeur d'examen blanc si > 30% sera classé  sur crm sous reussi si non echec """
-        if 'note_exam' in vals :
-            print("write",vals)
-            note_exam=vals['note_exam']
+        if 'note_exam' in vals:
+            print("write", vals)
+            note_exam = vals['note_exam']
             if self.bolt or ('bolt' in vals and vals['bolt']):
                 if float(note_exam) >= 40.0:
-                    self.changestage("Reussi dans Examen Blanc",self)
+                    self.changestage("Reussi dans Examen Blanc", self)
                 if float(note_exam) < 40.0:
-                    self.changestage("Echec d'Examen Blanc",self)
+                    self.changestage("Echec d'Examen Blanc", self)
         if 'statut' in vals:
             if vals['statut'] == 'canceled':
                 self.changestage("Annulé", self)
         """si date d'inscription remplit il sera classé sous l'etape plateforme de formation"""
-        if 'statut_cpf' in vals :
+        if 'statut_cpf' in vals:
             # Si statut cpf non traité on classe l'apprenant dans le pipeline du crm  sous etat non traité
             if vals['statut_cpf'] == 'untreated':
                 self.changestage("Non traité", self)
@@ -76,14 +80,15 @@ class Partner(models.Model):
                  on classe l'apprenant   sous statut  choix date d'examen"""
                 if not (self.session_ville_id) or not (self.date_examen_edof):
                     self.changestage("Choix date d'examen - CPF", self)
-                else :
+                else:
                     """Si non on classe l'apprenant   sous statut  accepté"""
-                    self.changestage("Accepté",self)
+                    self.changestage("Accepté", self)
             # Si statut cpf annulé on classe l'apprenant dans le pipeline du crm  sous statut  annulé
             if vals['statut_cpf'] == 'canceled':
                 self.changestage("Annulé", self)
 
         return record
+
     def changestage(self, name, partner):
         if partner.name:
             partner.diviser_nom(partner)
@@ -92,7 +97,7 @@ class Partner(models.Model):
             for stage in stages:
                 lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
                 if lead and partner.name and _(lead.stage_id.name) != name:
-                    _logger.info("stage %s" %str(_(lead.stage_id.name)))
+                    _logger.info("stage %s" % str(_(lead.stage_id.name)))
                     _logger.info("stage %s" % str(name))
                     lead.sudo().write({
                         'prenom': partner.firstName if partner.firstName else "",
@@ -109,7 +114,7 @@ class Partner(models.Model):
                         'mode_de_financement': partner.mode_de_financement,
                         'module_id': partner.module_id if partner.module_id else False,
                         'mcm_session_id': partner.mcm_session_id if partner.mcm_session_id else False,
-                        'company_id':partner.company_id if partner.company_id else False
+                        'company_id': partner.company_id if partner.company_id else False
                     })
                 if not lead and partner.name:
                     lead = self.env['crm.lead'].sudo().create({
@@ -130,12 +135,12 @@ class Partner(models.Model):
                         lead.partner_id = partner
                         lead.mcm_session_id = partner.mcm_session_id if partner.mcm_session_id else False
                         lead.module_id = partner.module_id if partner.module_id else False
-                        lead.company_id=partner.company_id if partner.company_id else False
+                        lead.company_id = partner.company_id if partner.company_id else False
+
     def change_crm_lead_existant(self):
         self.import_data("Plateforme de formation")
         partners = self.env['res.partner'].sudo().search([])
         today = date.today()
-
 
         for partner in partners:
             if (partner.statut_cpf and partner.statut_cpf == 'canceled') or (partner.statut == 'canceled'):
@@ -146,7 +151,7 @@ class Partner(models.Model):
                 year = date_creation.year
                 month = date_creation.month
                 if (year > 2020):
-                   
+
                     if partner.statut_cpf == "accepted":
                         """Pour etape accepté on doit vérifier la date et la ville """
                         if (not (partner.session_ville_id) or not (partner.date_examen_edof)) and not (
@@ -172,7 +177,7 @@ class Partner(models.Model):
                     documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
                     # pour classer sous document non validé dans crm lead
                     waiting = False
-                    refuse =False
+                    refuse = False
                     document_valide = False
                     if documents:
                         count = 0
@@ -184,14 +189,14 @@ class Partner(models.Model):
                             if (document.state == "waiting"):
                                 # _logger.info("document waiting  %s" % partner.name)
                                 waiting = True
-                            if (document.state =="refused"):
-                                _logger.info("refused %s " %str(partner.name))
-                                refuse=True
+                            if (document.state == "refused"):
+                                _logger.info("refused %s " % str(partner.name))
+                                refuse = True
                     if partner.mode_de_financement == "particulier":
                         if partner.inscrit_mcm and partner.numero_evalbox != False:
                             _logger.info('plateforme %s' % str(partner.email))
                             self.changestage("Bolt-Plateforme de formation", partner)
-                        else :
+                        else:
                             if partner.bolt and float(partner.note_exam) < 40.0:
                                 self.changestage("Echec d'Examen Blanc", self)
                             if sale_order and sale_order.state == "sent":
@@ -205,7 +210,7 @@ class Partner(models.Model):
                                     if partner.bolt:
                                         # _logger.info('wait bolt %s' % str(partner.email))
                                         self.changestage("Bolt-Document non Validé", partner)
-                                    else :
+                                    else:
                                         self.changestage("Document non Validé", partner)
                                 # """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
                                 # if refuse and partner.bolt:
@@ -214,22 +219,23 @@ class Partner(models.Model):
 
                                 if document_valide:
                                     _logger.info('document valide %s' % str(partner.email))
-                                    print("++++++++++++",partner.email,partner.inscrit_mcm)
+                                    print("++++++++++++", partner.email, partner.inscrit_mcm)
                                     failure = sale_order.failures  # delai de retractation
                                     """Si Il n'as pas fait la renonciation au contrat et sur la fiche 
                                      on le classe sous retractation non coché et on doit vérifier la date de signature si n'as
                                          pas depassé 14jours"""
-                                    if not (partner.renounce_request) and (date_facture) and (date_facture + timedelta(days=14)) > (today):
+                                    if not (partner.renounce_request) and (date_facture) and (
+                                            date_facture + timedelta(days=14)) > (today):
                                         if partner.bolt:
                                             # _logger.info('bolt retract %s' % str(partner.email))
                                             self.changestage("Bolt-Rétractation non Coché", partner)
-                                        else :
+                                        else:
                                             self.changestage("Rétractation non Coché", partner)
-                                    if partner.renounce_request :
+                                    if partner.renounce_request:
                                         if partner.bolt or sale_order.module_id.product_id.default_code == "vtc_bolt":
                                             if partner.inscrit_mcm == False and partner.numero_evalbox == False:
                                                 """S'il a renoncé et son contrat est signé et ses documents sont validé sera classé sous contrat Signé """
-                                                self.changestage("Bolt-Contrat Signé",partner)
+                                                self.changestage("Bolt-Contrat Signé", partner)
                                             """Si client bolt et inscrit à l'examen eval box, et n'a pas encore commencé
                                              sa formation sera classé sous examen eval box 
                                             si non sous Plateforme de formation """
@@ -237,18 +243,19 @@ class Partner(models.Model):
                                                 _logger.info('eval box %s' % str(partner.email))
                                                 self.changestage("Inscription Examen Eval Box", partner)
 
-                                        else :
+                                        else:
                                             self.changestage("Contrat Signé", partner)
-
 
                     """Si mode de financement cpf on doit vérifier seulement l'etat des documents  
                         et la renonciation sur la fiche client """
                     if partner.mode_de_financement == "cpf" and partner.mcm_session_id.date_exam and partner.mcm_session_id.date_exam > date.today():
                         if waiting:
                             self.changestage("Document non Validé", partner)
-                        if document_valide and not (partner.renounce_request) :
+                        if document_valide and not (partner.renounce_request):
                             self.changestage("Rétractation non Coché", partner)
+
     """Methode pour importation des données à partir de 360"""
+
     def import_data(self, name):
         """Supprimer les anciens apprenants et les remplacer par les nouveaux importés par api"""
         old_leads = self.env['crm.lead'].sudo().search([('stage_id.name', '=', 'Plateforme de formation')])
@@ -280,23 +287,25 @@ class Partner(models.Model):
                 })
 
     """Remplir le champ société pour les fiches clients """
+
     def remplir_société(self):
-        partners = self.env['res.partner'].search([('company_id','=',False)])
+        partners = self.env['res.partner'].search([('company_id', '=', False)])
         for partner in partners:
-                user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)],limit=1)
-                if user and user.company_id.id == 1:
-                    _logger.info("parnter_company %s" % user.name)
-                    _logger.info("_company %s" % user.company_id)
-                    partner.company_id = user.company_id.id
-                    # partner.sudo().write({
-                    #  'company_id': user.company_id.id
-                    # })
-                    _logger.info("after add %s" % partner.company_id)
+            user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
+            if user and user.company_id.id == 1:
+                _logger.info("parnter_company %s" % user.name)
+                _logger.info("_company %s" % user.company_id)
+                partner.company_id = user.company_id.id
+                # partner.sudo().write({
+                #  'company_id': user.company_id.id
+                # })
+                _logger.info("after add %s" % partner.company_id)
 
     """changer le statut d'un seul apprenant """
-    def change_crm_lead_i_One(self,partner,eval_box):
+
+    def change_crm_lead_i_One(self, partner, eval_box):
         self.import_data("Plateforme de formation")
-        partners = self.env['res.partner'].sudo().search([('id',"=",partner.id)])
+        partners = self.env['res.partner'].sudo().search([('id', "=", partner.id)])
         today = date.today()
 
         for partner in partners:
@@ -306,7 +315,7 @@ class Partner(models.Model):
                 date_creation = partner.create_date
                 year = date_creation.year
                 month = date_creation.month
-                if (year > 2020) :
+                if (year > 2020):
                     if partner.statut_cpf == "accepted":
                         """Pour etape accepté on doit vérifier la date et la ville """
                         if (not (partner.session_ville_id) or not (partner.date_examen_edof)) and not (
@@ -358,26 +367,27 @@ class Partner(models.Model):
                             if waiting:
                                 if partner.bolt:
                                     self.changestage("Bolt-Document non Validé", partner)
-                                else :
+                                else:
                                     self.changestage("Document non Validé", partner)
 
                             if document_valide:
-                                print("++++++++++++",partner.email,partner.inscrit_mcm)
+                                print("++++++++++++", partner.email, partner.inscrit_mcm)
                                 failure = sale_order.failures  # delai de retractation
                                 """Si Il n'as pas fait la renonciation au contrat et sur la fiche 
                                  on le classe sous retractation non coché et on doit vérifier la date de signature si n'as
                                      pas depassé 14jours"""
-                                if not (partner.renounce_request) and (date_facture) and (date_facture + timedelta(days=14)) > (today):
+                                if not (partner.renounce_request) and (date_facture) and (
+                                        date_facture + timedelta(days=14)) > (today):
                                     if partner.bolt:
                                         self.changestage("Bolt-Rétractation non Coché", partner)
-                                    else :
+                                    else:
                                         self.changestage("Rétractation non Coché", partner)
 
                                 if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and eval_box != False:
-                                    print("++++++",partner.email)
+                                    print("++++++", partner.email)
                                     self.changestage("Inscription Examen Eval Box", partner)
-                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm   and eval_box != False:
-                                    print("======",partner.email)
+                                if partner.renounce_request and partner.bolt and partner.inscrit_mcm and eval_box != False:
+                                    print("======", partner.email)
                                     self.changestage("Bolt-Plateforme de formation", partner)
                                 if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and eval_box == False:
                                     self.changestage("Bolt-Contrat Signé", partner)
@@ -387,25 +397,24 @@ class Partner(models.Model):
                     if partner.mode_de_financement == "cpf" and partner.mcm_session_id.date_exam and partner.mcm_session_id.date_exam > date.today():
                         if waiting:
                             self.changestage("Document non Validé", partner)
-                        if document_valide and not (partner.renounce_request) :
+                        if document_valide and not (partner.renounce_request):
                             self.changestage("Rétractation non Coché", partner)
+
     def name_convert(self):
-        leads =self.env['crm.lead'].sudo().search([('partner_id.bolt',"=",True)])
+        leads = self.env['crm.lead'].sudo().search([('partner_id.bolt', "=", True)])
         for lead in leads:
-            part=lead.partner_id
+            part = lead.partner_id
             if part and part.name:
-                    _logger.info('partnerr--------%s' %str(part.name))
-                    part.diviser_nom(part)
-                    lead.nom=part.lastName
-                    lead.prenom=part.firstName
+                _logger.info('partnerr--------%s' % str(part.name))
+                part.diviser_nom(part)
+                lead.nom = part.lastName
+                lead.prenom = part.firstName
 
     def cancel_subscription(self):
-        subscription="sub_1KQJqTIEbFL8iNKWR3zdh07g"
-        aquire=self.env['payment.acquirer'].sudo().search([],limit=1)
-        print("search",aquire)
+        subscription = "sub_1KQJqTIEbFL8iNKWR3zdh07g"
+        aquire = self.env['payment.acquirer'].sudo().search([], limit=1)
+        print("search", aquire)
         url = "subscriptions/%s" % (subscription)
-        paiement_intent=aquire._stripe_request(url, method="DELETE")
+        paiement_intent = aquire._stripe_request(url, method="DELETE")
         data_paiement = paiement_intent.get('data', [])
         print('data', paiement_intent)
-
-                
