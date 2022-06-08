@@ -25,8 +25,8 @@
         <field name="arch" type="xml">
             <xpath expr="//group/group/field[@name='criminal_record']" position="after">
                 <field name="numero_evalbox"></field>
-<!--                <field name="id_evalbox"></field>-->
-<!--                <field name="password_evalbox"></field>-->
+                <field name="id_evalbox"></field>
+                <field name="password_evalbox"></field>
             </xpath>
         </field>
     </record>
