@@ -38,7 +38,7 @@
                     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
                 }
                 </style>
-                <button name="createGroup" class="forced-btn-primary" string="Ajouter Groupe Edusign" type="object" />
+                <button name="main" class="forced-btn-primary" string="Ajouter Groupe Edusign" type="object" />
 
             </xpath>
             <!-- <xpath expr="//form/header" position="after">

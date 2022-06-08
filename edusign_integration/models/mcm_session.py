@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+from asyncio.log import logger
 import email
+from pickle import APPEND
+from tabnanny import check
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.osv import osv
 
-import numpy as np
 
 from datetime import date, datetime
 import requests
@@ -29,7 +31,7 @@ class mcmSession(models.Model):
             "group": {
                 "NAME": session.name,
                 "DESCRIPTION": "",
-                "STUDENTS": "",
+                "STUDENTS": [],
                 "PARENT": "",
                 "API_ID": "",
                 "API_TYPE": "",
@@ -68,45 +70,73 @@ class mcmSession(models.Model):
         if not value:
             print("checkExistance function has returned False due to empty value.")
             return False
-        getResult = requests.get(url + value, headers=headers)
+        print("checkExistence() function url request: ", url + str(value))
+        getResult = requests.get(url + str(value), headers=headers)
         getContent = json.loads(getResult.content)
         # check if group already exist
+
         check = True if getContent["status"] == "success" else False
         if check:
-            print("Function checkexistance has returned : " + getContent)
+            print("Function checkexistance has returned : ", getContent)
             return getContent
         else:
             return False
+
+    ##restore student by ID
+    def restoreStudent(self, id, email, headers):
+        result = requests.get("https://ext.edusign.fr/v1/student/restore/" + str(id), headers=headers)
+        print(result.content, "https://ext.edusign.fr/v1/student/restore/" + str(id))
+
+        if result.status_code == 200:
+
+            _logger.info("Student with email %s has been restored. " % (str(email)))
+            print("Student with email %s has been restored. " % (str(email)))
+
+        else:
+            print("error restore!")
 
     ## Check student existance
     # If False create new student and assign a group by self.id_group_edusign
     # if True Edit Groups and add another self.id_group_edusign to the existance
     # We can use it for adding a new student or update an existant student
     def addStudent(self, student, headers):
+        nbAdd = 0
+        nbEdit = 0
         url = "https://ext.edusign.fr/v1/student"
         result = ""
+        checkStudent = self.checkExistance("https://ext.edusign.fr/v1/student/by-email/", student.email, headers)
 
-        checkStudent = self.checkExistance("https://ext.edusign.fr/v1/student/by-email/:", student.email, headers)
         # -------------------------------------------------------------------------------
-        if not checkStudent and str(student.id) == str(checkStudent["result"].id):
+
+        if checkStudent:
+
             # Student exists, we make a patch request.
             # We pass all info in data, in case there is an update.
-            url = "https://ext.edusign.fr/v1/student/:" + checkStudent["result"].id
+            # We can optimise it later.
+            url = "https://ext.edusign.fr/v1/student/?id=" + checkStudent["result"]["id"]
 
             # Check group id existance in the student groups.
+            print(self.id_group_edusign)
+            groups = []
+
             groups = (
-                checkStudent["result"]
-                if self.id_group_edusign in checkStudent["result"].GROUPS
-                else checkStudent["result"].GROUPS.append(self.id_group_edusign)
+                [self.id_group_edusign]
+                if checkStudent["result"]["GROUPS"] == []
+                else checkStudent["result"]["GROUPS"].append(self.id_group_edusign)
             )
+            print(groups)
+
+            if checkStudent["result"]["HIDDEN"] == 1:
+                self.restoreStudent(checkStudent["result"]["id"], student.email, headers)
             data = {
                 "student": {
-                    "ID": checkStudent["result"].id,
-                    "FIRSTNAME": "student.firstname",
-                    "LASTNAME": "student.lastName",
+                    "ID": checkStudent["result"]["id"],
+                    "FIRSTNAME": student.firstName,
+                    "LASTNAME": student.lastName,
                     "EMAIL": student.email,
                     "FILE_NUMBER": "",
                     "PHOTO": "",
+                    "HIDDEN": 0,
                     "PHONE": student.phone,
                     "GROUPS": groups,
                     "TRAINING_NAME": self.diplome_vise,
@@ -119,14 +149,40 @@ class mcmSession(models.Model):
                     "STUDENT_FOLLOWER_ID": [],
                 }
             }
+
             # Edit by student ID
             result = requests.patch(url, data=json.dumps(data), headers=headers)
+
+            print(
+                "addStudent() has launched a patch request for : %s %s %s"
+                % (str(result), str(result.status_code), str(json.loads(result.content)))
+            )
+            _logger.info(
+                "addStudent() has launched a patch request for : %s %s %s"
+                % (str(result), str(result.status_code), str(json.loads(result.content)))
+            )
+
+            if result.status_code == 200:
+                nbEdit = nbEdit + 1
+
+        # else:
+        #     print(
+        #         "Find a user with the same email %s but the ID=%s did not match with edusign external API ID=%s "
+        #         % (str(student.email), str(student.id), str(checkStudent["result"]["API_ID"]))
+        #     )
+
+        #     _logger.info(
+        #         "Find a user with the same email %s but the ID=%s did not match with edusign external API ID=%s "
+        #         % (str(student.email), str(student.id), str(checkStudent["result"]["API_ID"]))
+        #     )
+
         else:
+
             # students doesn't exist, we make a post request and create a new one.
             data = {
                 "student": {
-                    "FIRSTNAME": "student.firstname",
-                    "LASTNAME": "student.lastName",
+                    "FIRSTNAME": student.firstName,
+                    "LASTNAME": student.lastName,
                     "EMAIL": student.email,
                     "FILE_NUMBER": "",
                     "PHOTO": "",
@@ -139,38 +195,52 @@ class mcmSession(models.Model):
                     "API_ID": student.id,
                     "API_TYPE": "",
                     "BADGE_ID": "",
-                    "STUDENT_FOLLOWER_ID": [],
                 }
             }
+
             # Add a new student
             result = requests.post(url, data=json.dumps(data), headers=headers)
-
-        status_code = result.status_code
-        resultContent = json.loads(result.content)
-        if status_code == 200:
-
             print(
-                "addStudent function post/patch request result :",
-                resultContent,
-                "| status_code:",
-                status_code,
+                "addStudent() has launched a patch request for ",
+                "FIRSTNAME",
+                student.firstName,
+                "LASTNAME",
+                student.lastName,
+                "EMAIL",
+                student.email,
+                "with a results: ",
+                result,
+                result.status_code,
+                result.content,
             )
             _logger.info(
-                "addStudent function post/patch request result :",
-                resultContent,
-                "| status_code:",
-                status_code,
+                "addStudent() has launched a patch request for ",
+                "FIRSTNAME",
+                student.firstName,
+                "LASTNAME",
+                student.lastName,
+                "EMAIL",
+                student.email,
+                "with a results: ",
+                result,
+                result.status_code,
+                json.loads(result.content),
             )
-            if resultContent["status"] == "success":
-                print("Student created with ID: ", resultContent["result"]["ID"])
-                _logger.info("Student created with ID: ", resultContent["result"]["ID"])
-                return True
-                # add group id to self
-        # Because we use return so if code gets to here it means we have an error
-        else:
-            print(resultContent["message"])
-            _logger.info(resultContent["message"])
-            return False
+            if result.status_code == 200:
+                nbAdd = nbAdd + 1
+        return {"nbAdd": nbAdd, "nbEdit": nbEdit}
+        # status_code = result.status_code
+        # resultContent = json.loads(result.content)
+        # if status_code == 200 and resultContent["status"] == "success":
+        #     print("Student created with ID: ", resultContent["result"]["ID"])
+        #     _logger.info("Student created with ID: ", resultContent["result"]["ID"])
+        #     return True
+        #     # add group id to self
+        # # Because we use return so if code gets to here it means we have an error
+        # else:
+        #     print(resultContent["message"])
+        #     _logger.info(resultContent["message"])
+        #     return False
 
     # Add a new group to a Student passed in parameters and add a new group using Edit a student's variable
 
@@ -197,6 +267,21 @@ class mcmSession(models.Model):
 
     # All logics is here
     def main(self):
+        print(
+            "################## ################## ################## ################## ################## ##################\n"
+            "#################                                                                              ##################\n"
+            "#################                   Edusign Main Function has executed.                        ##################\n"
+            "#################                                                                              ##################\n"
+            "################## ################## ################## ################## ################## ##################\n"
+        )
+        _logger.info(
+            "\n"
+            + "################## ################## ################## ################## ################## ##################\n"
+            "#################                                                                              ##################\n"
+            "#################                   Edusign Main Function has executed.                        ##################\n"
+            "#################                                                                              ##################\n"
+            "################## ################## ################## ################## ################## ##################\n"
+        )
         # if not in localhost
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
         # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
@@ -215,17 +300,53 @@ class mcmSession(models.Model):
                 # check if group exist already by id
                 check = self.checkExistance("https://ext.edusign.fr/v1/group/", res.id_group_edusign, headers)
                 if not check:
-                    print("Trying to add a group on Edusign with name : ", res.name, res.id_group_edusign)
-                    _logger.info("Trying to add a group on Edusign with name : ", res.name, res.id_group_edusign)
-                    self.addOneGroup(res, headers)
+                    print(
+                        "Trying to add the group %s on Edusign with ID %s : "
+                        % (str(res.name), str(res.id_group_edusign))
+                    )
+                    _logger.info(
+                        "Trying to add the group %s on Edusign with ID %s : "
+                        % (str(res.name), str(res.id_group_edusign))
+                    )
+                # self.addOneGroup(res, headers)
                 else:
-                    print("A group with the same ID already exist -  ", res.name, res.id_group_edusign)
-                    _logger.info("A group with the same ID already exist -  ", res.name, res.id_group_edusign)
+                    print(
+                        "The group '%s' with the ID '%s' already exists" % (str(res.name), str(res.id_group_edusign))
+                    )
+                    _logger.info(
+                        "The group '%s' with the ID '%s' already exists" % (str(res.name), str(res.id_group_edusign))
+                    )
 
-                for students in self:
+                nbCount = {
+                    "nbAdd": 0,
+                    "nbEdit": 0,
+                }
+                nb = nbCount
+                for students in res.client_ids:
                     for student in students:
-                        i = i + 1
-                        self.addStudent(student, headers)
-                print(i + " client(s) gagné(s) sont ajoutes a la session ." + res.name)
-                _logger.info(i + " client(s) gagné(s) sont ajoutes a la session ." + res.name)
-        return
+
+                        nb = self.addStudent(student, headers)
+                        nbCount = {
+                            "nbAdd": nb["nbAdd"] + nbCount["nbAdd"],
+                            "nbEdit": nb["nbEdit"] + nbCount["nbEdit"],
+                        }
+
+                print(str(nbCount["nbAdd"]) + " client(s) gagné(s) sont ajoutes a la session " + res.name)
+                _logger.info(str(nbCount["nbAdd"]) + " client(s) gagné(s) sont ajoutes a la session " + res.name)
+                print(str(nbCount["nbEdit"]) + " client(s) gagné(s) sont modifies dans la session " + res.name)
+                _logger.info(str(nbCount["nbEdit"]) + " client(s) gagné(s) sont modifies dans la session " + res.name)
+            print(
+                "################## ################## ################## ################## ################## ##################\n"
+                "#################                                                                              ##################\n"
+                "#################                   Edusign Main Function has finished.                        ##################\n"
+                "#################                                                                              ##################\n"
+                "################## ################## ################## ################## ################## ##################\n"
+            )
+            _logger.info(
+                "\n"
+                + "################## ################## ################## ################## ################## ##################\n"
+                "#################                                                                              ##################\n"
+                "#################                   Edusign Main Function has finished.                        ##################\n"
+                "#################                                                                              ##################\n"
+                "################## ################## ################## ################## ################## ##################\n"
+            )
