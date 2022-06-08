@@ -19,8 +19,8 @@ class Partner(models.Model):
     inscrit_mcm = fields.Date("Date formation MCM")
     eval_box = fields.Boolean('Eval Box')
     numero_evalbox = fields.Char('Numéro de dossier Evalbox')
-    password_evalbox = fields.Char('Mot de passe Evalbox')
-    id_evalbox = fields.Char('Identifiant Evalbox')
+    #password_evalbox = fields.Char('Mot de passe Evalbox')
+    #id_evalbox = fields.Char('Identifiant Evalbox')
 
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
