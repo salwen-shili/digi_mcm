@@ -695,55 +695,72 @@ class Routes_Site(http.Controller):
 
     @http.route(['/bolt-no-won'], type='http', auth='public', website=True, )
     def boltnowon(self):
-        ville = 'Île-de-France'
-        date_exam = '28/06/2022'
-        date_exam = datetime.strptime(
-            date_exam, '%d/%m/%Y').date()
-        _logger.info("date_exam : %s" % (str(date_exam)))
-        ville_id = request.env['session.ville'].sudo().search(
-            [('name_ville', "=", ville), ('company_id', "=", 1)],
-            limit=1)  # search session ville
-        _logger.info("ville_id: %s" % (str(ville_id)))
-        product_id = request.env['product.product'].sudo().search(
-            [('default_code', "=", 'vtc_bolt')], limit=1)
-        module_id = False
-        if ville_id and date_exam and product_id:
-            _logger.info("aaaaaaaaaaaaaaaaaaaaaaaaaa")
-            module_id = request.env['mcmacademy.module'].sudo().search(
-                [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
-                 ('date_exam', "=", date_exam), ('product_id',
-                                                 "=", product_id.id),
-                 ('session_id.number_places_available', '>', 0)],
-                limit=1)  # search module in mcmacademy module using ville_id date_exam and product_id of bolt and session has available places
-        _logger.info("module_id: %s" % (str(module_id)))
-        if module_id :
-            partners = request.env['res.partner'].sudo().search([('statut', "=", 'won'),('mcm_session_id',"=",module_id.session_id.id)])
-            list = []
-            _logger.info("compteurrrrrrrrrr : %s" %(str(len(partners))))
-            for partner in partners :
-                list.append(partner.id)
-            module_id.session_id.sudo().write({'client_ids': [(6, 0, list)]})
+        # ville = 'Île-de-France'
+        # date_exam = '28/06/2022'
+        # date_exam = datetime.strptime(
+        #     date_exam, '%d/%m/%Y').date()
+        # _logger.info("date_exam : %s" % (str(date_exam)))
+        # ville_id = request.env['session.ville'].sudo().search(
+        #     [('name_ville', "=", ville), ('company_id', "=", 1)],
+        #     limit=1)  # search session ville
+        # _logger.info("ville_id: %s" % (str(ville_id)))
+        # product_id = request.env['product.product'].sudo().search(
+        #     [('default_code', "=", 'vtc_bolt')], limit=1)
+        # module_id = False
+        # if ville_id and date_exam and product_id:
+        #     _logger.info("aaaaaaaaaaaaaaaaaaaaaaaaaa")
+        #     module_id = request.env['mcmacademy.module'].sudo().search(
+        #         [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
+        #          ('date_exam', "=", date_exam), ('product_id',
+        #                                          "=", product_id.id),
+        #          ('session_id.number_places_available', '>', 0)],
+        #         limit=1)  # search module in mcmacademy module using ville_id date_exam and product_id of bolt and session has available places
+        # _logger.info("module_id: %s" % (str(module_id)))
+        # if module_id :
+        #     partners = request.env['res.partner'].sudo().search([('statut', "=", 'won'),('mcm_session_id',"=",module_id.session_id.id)])
+        #     list = []
+        #     _logger.info("compteurrrrrrrrrr : %s" %(str(len(partners))))
+        #     for partner in partners :
+        #         list.append(partner.id)
+        #     module_id.session_id.sudo().write({'client_ids': [(6, 0, list)]})
 
         # promo = request.env['product.pricelist'].sudo().search(
         #     [('company_id', '=', 1), ('name', "=", 'bolt')], limit=1)
-        # loc = ("/home/odoo/src/user/mcm_website_theme/static/res_partner_bolt.xlsx")
-        # wb = xlrd.open_workbook(loc)  # read excel file using xlrd open_workbook function
+        loc = ("/home/odoo/src/user/mcm_website_theme/static/res_partner_bolt.xlsx")
+        wb = xlrd.open_workbook(loc)  # read excel file using xlrd open_workbook function
+        list_user_has_facture = []
+        list_user_has_not_facture = []
+        list_not_found_user = []
+        sheet = wb.sheet_by_index(0)
+        for i in range(sheet.nrows):  # range rows of excel files
+            row = sheet.row_values(i)
+            _logger.info("email : %s" % (str(row[3])))
+            _logger.info("num : %s" % (str(row[6])))
         #
-        # sheet = wb.sheet_by_index(0)
-        # for i in range(sheet.nrows):  # range rows of excel files
-        #     row = sheet.row_values(i)
-        #     _logger.info("email : %s" % (str(row[0])))
-        #     _logger.info("num : %s" % (str(row[1])))
-        #
-        #     email = str(row[0]).lower().replace(' ', '')
-        #     num_dossier = str(row[1])
+            email = str(row[3]).lower().replace(' ', '')
+            id_virement = str(row[6])
         #     department = str(row[2])
-        #     users = request.env['res.users'].sudo().search([('login', "=", email)])
-        #     list_evalbox = []
+            users = request.env['res.users'].sudo().search([('login', "=", email)])
+
+
+
         #     list_dep = []
-        #     if users:
-        #         for user in users:
-        #             if user:
+            if users:
+                for user in users:
+                    if user:
+                        invoice = request.env['account.move'].sudo().search(
+                            [('partner_id', "=", user.partner_id.id), ('amount_total', "=", 20)], limit=1)
+                        if invoice :
+                            list_user_has_facture.append(user.email)
+                            invoice.stripe_sub_reference = id_virement
+                        else:
+                            list_user_has_not_facture.append(user.email)
+            else:
+                list_not_found_user.append(email)
+        _logger.info("list_user_has_facture : %s" %(str(list_user_has_facture)))
+        _logger.info("list_user_has_not_facture : %s" %(str(list_user_has_not_facture)))
+        _logger.info("list_not_found_user : %s" %(str(list_not_found_user)))
+
         #                 if not user.numero_evalbox:  # check if user has already an evalbox_number
         #                     if num_dossier:
         #                         _logger.info("num_dossier : %s" % (str(state)))
