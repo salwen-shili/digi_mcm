@@ -1905,7 +1905,6 @@ class partner(models.Model):
                 # partner.email = new_email
 
     def test_api(self):
-
         company_id = '56f5520e11d423f46884d593'
         api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
         headers = CaseInsensitiveDict()
