@@ -50,7 +50,7 @@ class Module(models.Model):
         ('conduite', 'Conduite'),
     ], string='Modalité Pédagogique')
     website_published = fields.Boolean('Publié en site web', default=True)
-    contract_price=fields.Monetary('Prix Affiché en contrat',default=lambda self: self.product_id.list_price)
+    contract_price=fields.Monetary('Ancien Tarif',default=lambda self: self.product_id.list_price)
 
     @api.depends('duree')
     def _get_display_duration(self):
