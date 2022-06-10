@@ -449,93 +449,94 @@ class partner(models.Model):
 
             _logger.info('email de lapprenant %s' % str(partner.email))
 
-            user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
+            user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             partner.password360 = user.password360
             password = user.password360
-            url = "https://formation.mcm-academy.fr/user_api/v1/account/registration/"
-            payload = {'username': self.name.upper().replace(" ", ""),
-                       'email': self.email,
-                       'password': password,
-                       'terms_of_service': 'true',
-                       'name': self.name,
-                       'honor_code': 'true'}
-            headers = {
-                'Access-Control-Request-Headers': 'authorization',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
-            }
-            response = requests.request("POST", url, headers=headers, data=payload)
-            _logger.info('response.status_code %s' % str(response.status_code))
+            if (partner.name  and partner.email ):
+                url = "https://formation.mcm-academy.fr/user_api/v1/account/registration/"
+                payload = {'username': partner.name.upper().replace(" ", ""),
+                           'email': partner.email,
+                           'password': password,
+                           'terms_of_service': 'true',
+                           'name': partner.name,
+                           'honor_code': 'true'}
+                headers = {
+                    'Access-Control-Request-Headers': 'authorization',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+                }
+                response = requests.request("POST", url, headers=headers, data=payload)
+                _logger.info('response.status_code %s' % str(response.status_code))
 
-            _logger.info('user %s' % str(payload))
-            _logger.info('existantttttt dejaa %s')
-            if (response.status_code == 200):
-                self.inscrit_mcm = date.today()
-                self.write({'state': 'en_formation'})
-                partner.lang = 'fr_FR'
-                if self.env.su:
-                    # sending mail in sudo was meant for it being sent from superuser
-                    selff = self.with_user(SUPERUSER_ID)
-                    template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                        'mcm_openedx.mail_template_add_Ione_MOOcit'))
-                    template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-                    if not template_id:
-                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                            'mcm_openedx.mail_template_add_Ione_MOOcit',
-                            raise_if_not_found=False)
-                    if not template_id:
-                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                            'mcm_openedx.email_template_add_Ione_MOOcit',
-                            raise_if_not_found=False)
-                    if template_id:
-                        partner.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                         composition_mode='comment', )
-
-                        _logger("mail envoyeé")
-                        _logger(partner.email)
-
-                bolt = self.bolt
-                evalbox = self.numero_evalbox
-                departement = self.state_id.code
-                _logger.info(departement)
-                if (partner.module_id.product_id.default_code == "taxi"):
-                    _logger.info("formation valide")
-                    if (departement == "59"):
-                        self.inscriteTaxi(self)
-                        self.testsms(self)
-                        self.ajoutconnaisancelocalNord(self)
-                        self.supprimer_apres_dateexman(self)
-                        _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
-
-                    elif (departement == "62"):
-                        self.inscriteTaxi(self)
-                        self.testsms(self)
-                        self.ajoutconnaisancelocalpasdecalais(self)
-                        self.supprimer_apres_dateexman(self)
-                    else:
-                        self.inscriteTaxi(self)
-                        self.testsms(self)
-
-
-                # Formation à distance VTC-BOLT
-                elif (partner.module_id.product_id.default_code == "vtc"):
-                    _logger.info("client Bolt Formation VTC")
-                    self.inscriteVTC(self)
-                    self.supprimer_apres_dateexman(self)
-                    self.testsms(self)
-
-
-                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                    if (bolt == True):
-                        _logger.info("client Bolt Formation VTC")
-                        self.inscriteVTC(self)
-                        self.supprimer_apres_dateexman(self)
-                        self.testsms(self)
-
-
-
-            elif (response.status_code == 409):
+                _logger.info('user %s' % str(payload))
                 _logger.info('existantttttt dejaa %s')
+                if (response.status_code == 200):
+                    partner.inscrit_mcm = date.today()
+                    self.write({'state': 'en_formation'})
+                    partner.lang = 'fr_FR'
+                    if self.env.su:
+                        # sending mail in sudo was meant for it being sent from superuser
+                        selff = self.with_user(SUPERUSER_ID)
+                        template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                            'mcm_openedx.mail_template_add_Ione_MOOcit'))
+                        template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                        if not template_id:
+                            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                                'mcm_openedx.mail_template_add_Ione_MOOcit',
+                                raise_if_not_found=False)
+                        if not template_id:
+                            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                                'mcm_openedx.email_template_add_Ione_MOOcit',
+                                raise_if_not_found=False)
+                        if template_id:
+                            partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                             composition_mode='comment', )
+
+                            _logger("mail envoyeé")
+                            _logger(partner.email)
+
+                    bolt = partner.bolt
+                    evalbox = partner.numero_evalbox
+                    departement = partner.state_id.code
+                    _logger.info(departement)
+                    if (partner.module_id.product_id.default_code == "taxi"):
+                        _logger.info("formation valide")
+                        if (departement == "59"):
+                            self.inscriteTaxi(partner)
+                            self.testsms(partner)
+                            self.ajoutconnaisancelocalNord(partner)
+                            self.supprimer_apres_dateexman(partner)
+                            _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
+
+                        elif (departement == "62"):
+                            self.inscriteTaxi(partner)
+                            self.testsms(partner)
+                            self.ajoutconnaisancelocalpasdecalais(partner)
+                            self.supprimer_apres_dateexman(partner)
+                        else:
+                            self.inscriteTaxi(partner)
+                            self.testsms(partner)
+
+
+                    # Formation à distance VTC-BOLT
+                    elif (partner.module_id.product_id.default_code == "vtc"):
+                        _logger.info("client Bolt Formation VTC")
+                        self.inscriteVTC(partner)
+                        self.supprimer_apres_dateexman(partner)
+                        self.testsms(partner)
+
+
+                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                        if (bolt == True):
+                            _logger.info("client Bolt Formation VTC")
+                            self.inscriteVTC(partner)
+                            self.supprimer_apres_dateexman(partner)
+                            self.testsms(partner)
+
+
+
+                elif (response.status_code == 409):
+                    _logger.info('existantttttt dejaa %s')
 
     # envoit d'un sms
     def testsms(self, partner):
