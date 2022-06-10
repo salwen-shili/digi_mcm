@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='diplome_vise']" position="after">
                 <field name="id_group_edusign" />
+                <field name="id_session_edusign" />
             </xpath>
         </field>
     </record>
