@@ -1,3 +1,4 @@
+import string
 from datetime import date
 
 from odoo import api, fields, models
@@ -136,3 +137,28 @@ class InheritResPartner(models.Model):
                 self.is_absence_justifiee = False
         return val
 
+    @api.model
+    def create(self, vals):
+        # if vals.get('name', 'New') == 'New':
+        #     vals['name'] = self.env['ir.sequence'].next_by_code(
+        #         'self.service') or 'New'
+        result = super(InheritResPartner, self).create(vals)
+        alphabet = []
+        #print("Alphabet is here", list(string.ascii_uppercase))
+        company = vals['company_id']
+        print("vals['company_id']", company)
+        if company == 2:
+            alphabet_list = list(string.ascii_uppercase)
+            number = range(1, 1000)
+            for rec in alphabet_list:
+                for i in number:
+                    print(i)
+                    print("Alphabet is here", rec)
+                    alphabet.append(rec)
+                    a = ''.join(rec)
+                print("aaaaaaaaaaaaaaaaaaaaaaa", a)
+                partner = self.env['res.partner'].search([('company_id', "=", 2)], order='create_date asc', limit=1)
+                print("partner", partner)
+                    #print("last print", ''.join(l + i for l in alphabet))
+
+        return result
