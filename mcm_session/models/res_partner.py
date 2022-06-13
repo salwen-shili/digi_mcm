@@ -254,28 +254,58 @@ class resPartnerWizard(models.TransientModel):
             """désactiver l'annulation de statut pour cpf"""
             if self.partner_id.mode_de_financement=="cpf" and self.partner_id.statut_cpf != "canceled" and self.partner_id.numero_cpf:
                 raise UserError(_("L'apprenant doit annuler son inscription sur son compte cpf. Vous ne pouvez pas annuler manuellement un dossier cpf"))
-            list = []
-            for partner in self.session_id.canceled_prospect_ids:
-                list.append(partner.id)
-            list.append(self.partner_id.id)
-            self.session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
-
-            list = []
-            for partner in self.session_id.client_ids:
-                if partner.id != self.partner_id.id:
+            if self.session_id :
+                list = []
+                for partner in self.session_id.canceled_prospect_ids:
                     list.append(partner.id)
-            self.session_id.write({'client_ids': [(6, 0, list)]})
+                list.append(self.partner_id.id)
+                self.session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
 
-            list = []
-            for partner in self.session_id.panier_perdu_ids:
-                if partner.id != self.partner_id.id:
-                    list.append(partner.id)
-            self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+                list = []
+                for partner in self.session_id.client_ids:
+                    if partner.id != self.partner_id.id:
+                        list.append(partner.id)
+                self.session_id.write({'client_ids': [(6, 0, list)]})
 
-            list = []
-            for partner in self.session_id.prospect_ids:
-                if partner.id != self.partner_id.id:
-                    list.append(partner.id)
-            self.session_id.write({'prospect_ids': [(6, 0, list)]})
+                list = []
+                for partner in self.session_id.panier_perdu_ids:
+                    if partner.id != self.partner_id.id:
+                        list.append(partner.id)
+                self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+
+                list = []
+                for partner in self.session_id.prospect_ids:
+                    if partner.id != self.partner_id.id:
+                        list.append(partner.id)
+                self.session_id.write({'prospect_ids': [(6, 0, list)]})
+            else :
+                if self.partner_id.date_examen_edof and self.partner_id.session_ville_id :
+                    session = self.env['mcmacademy.session'].sudo().search(
+                    [('date_exam', "=", self.partner_id.date_examen_edof),('session_ville_id',"=",self.partner_id.session_ville_id.id)],limit=1)
+                    if session :
+                        list = []
+                        for partner in session.canceled_prospect_ids:
+                            list.append(partner.id)
+                        list.append(self.partner_id.id)
+                        session.write({'canceled_prospect_ids': [(6, 0, list)]})
+
+                        list = []
+                        for partner in session.client_ids:
+                            if partner.id != self.partner_id.id:
+                                list.append(partner.id)
+                        session.write({'client_ids': [(6, 0, list)]})
+
+                        list = []
+                        for partner in session.panier_perdu_ids:
+                            if partner.id != self.partner_id.id:
+                                list.append(partner.id)
+                        session.write({'panier_perdu_ids': [(6, 0, list)]})
+
+                        list = []
+                        for partner in session.prospect_ids:
+                            if partner.id != self.partner_id.id:
+                                list.append(partner.id)
+                        session.write({'prospect_ids': [(6, 0, list)]})
+
         # else:
         #     raise ValidationError(_('Vous pouvez pas modifier un utilisateur interne !'))
