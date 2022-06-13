@@ -12,8 +12,7 @@
                 <field name="name"/>
                 <field name="date_edof"/>
                 <field name="state"/>
-                <!--                <field name="billingState"/>-->
-                <field name="existant"/>
+                 <field name="existant"/>
                 <field name="existantsurmooc"/>
 
 
@@ -35,9 +34,7 @@
                     <h5>State</h5>
                     <field name="state"/>
                     <br/>
-                    <!--        <h5>Staut de payement</h5>
 
-                            <field name="billingState" style="color:red"/>-->
                     <br/>
                     <h5>Numero CPF</h5>
                     <field name="externalId"/>
