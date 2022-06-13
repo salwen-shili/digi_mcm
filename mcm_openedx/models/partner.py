@@ -469,7 +469,6 @@ class partner(models.Model):
                 _logger.info('response.status_code %s' % str(response.status_code))
 
                 _logger.info('user %s' % str(payload))
-                _logger.info('existantttttt dejaa %s')
                 if (response.status_code == 200):
                     partner.inscrit_mcm = date.today()
                     self.write({'state': 'en_formation'})
