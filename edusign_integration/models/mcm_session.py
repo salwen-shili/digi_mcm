@@ -102,11 +102,11 @@ class mcmSession(models.Model):
 
                 print(
                     "addCourse() has launched a patch request for : %s %s %s"
-                    % (str(result), str(result.status_code), str(json.loads(result.content)))
+                    % (str(result), str(result.status_code), str(json.loads(result.text)))
                 )
                 _logger.info(
                     "addCourse() has launched a patch request for : %s %s %s"
-                    % (str(result), str(result.status_code), str(json.loads(result.content)))
+                    % (str(result), str(result.status_code), str(json.loads(result.text)))
                 )
 
                 if result.status_code == 200:
@@ -136,7 +136,7 @@ class mcmSession(models.Model):
             status_code = result.status_code
 
             if status_code == 200:
-                resultContent = json.loads(result.content)
+                resultContent = json.loads(result.text)
                 print(
                     "Edusign addCourse() response :%s with status code %s"
                     % (
@@ -159,45 +159,73 @@ class mcmSession(models.Model):
                     session.id_session_edusign = resultContent["result"]["ID"]
 
     # Add an empty group to Edusing
+    # check group existance with session.id
+    # assign id if true
+    # create if false
     def addGroup(self, session, headers):
 
-        print("session name from AddOneGroupFunction: ", session.name)
-        postUrl = "https://ext.edusign.fr/v1/group"
-        data = {
-            "group": {
-                "NAME": session.name,
-                "DESCRIPTION": "",
-                "STUDENTS": [],
-                "PARENT": "",
-                "API_ID": session.id,
-                "API_TYPE": "",
-            }
-        }
-        _logger.info("Edusign addGroup start post request...")
-        print("Edusign addGroup start post request...")
-        result = requests.post(postUrl, data=json.dumps(data), headers=headers)
-        status_code = result.status_code
+        result = ""
+        checkGroup = self.checkExistance("https://ext.edusign.fr/v1/group/get-id/", session.id, headers)
 
-        if status_code == 200:
-            resultContent = json.loads(result.content)
+        # -------------------------------------------------------------------------------
+        edusignGroupID = ""
+
+        if checkGroup:
+            if "id" in checkGroup["result"]:
+                edusignGroupID = checkGroup["result"]["id"]
+            elif "ID" in checkGroup["result"]:
+                edusignGroupID = checkGroup["result"]["ID"]
+            else:
+                print("Please check the id key in addGroup() checkExistance response.")
+
             print(
-                "Edusign Add a group response :",
-                resultContent,
-                "| status_code:",
-                status_code,
+                "Edusign addGroup updated the session %s with edusignGroupID='%s'..."
+                % (str(session.name), str(edusignGroupID))
             )
             _logger.info(
-                "Edusign Add a group response :",
-                resultContent,
-                "| status_code:",
-                status_code,
+                "Edusign addGroup updated the session %s with edusignGroupID='%s'..."
+                % (str(session.name), str(edusignGroupID))
             )
-            if resultContent["status"] == "success":
 
-                print("Groupe created with ID: ", resultContent["result"]["ID"])
-                _logger.info("Groupe created with ID: ", resultContent["result"]["ID"])
-                # add group id to self
-                session.id_group_edusign = resultContent["result"]["ID"]
+            session.id_group_edusign = edusignGroupID
+
+        else:
+            postUrl = "https://ext.edusign.fr/v1/group"
+            data = {
+                "group": {
+                    "NAME": session.name,
+                    "DESCRIPTION": "",
+                    "STUDENTS": [],
+                    "PARENT": "",
+                    "API_ID": session.id,
+                    "API_TYPE": "",
+                }
+            }
+            _logger.info("Edusign addGroup start post request for %s..." % (str(session.name)))
+            print("Edusign addGroup start post request for %s..." % (str(session.name)))
+            result = requests.post(postUrl, data=json.dumps(data), headers=headers)
+            status_code = result.status_code
+
+            if status_code == 200:
+                resultContent = json.loads(result.text)
+                print(
+                    "Edusign Add a group response  %s: | with status code %s" % (str(resultContent), str(status_code))
+                )
+                _logger.info(
+                    "Edusign Add a group response  %s: | with status code %s" % (str(resultContent), str(status_code))
+                )
+                if resultContent["status"] == "success":
+
+                    print("Groupe created with ID: ", edusignGroupID)
+                    _logger.info("Groupe created with ID: %s " % (str(edusignGroupID)))
+                    # add group id to self
+
+                    if "id" in resultContent["result"]:
+                        session.id_group_edusign = edusignGroupID
+                    elif "ID" in resultContent["result"]:
+                        session.id_group_edusign = edusignGroupID
+                    else:
+                        print("Please verify result id key in addStudent() response")
 
     # Check existance of a value(group/student) and returns False or the content of the request.
     # return the content in case we want to search for the ID of a group/student.
@@ -208,7 +236,7 @@ class mcmSession(models.Model):
             return False
         print("checkExistence() function url request: ", url + str(value))
         getResult = requests.get(url + str(value), headers=headers)
-        getContent = json.loads(getResult.content)
+        getContent = json.loads(getResult.text)
         # check if group already exist
 
         check = True if getContent["status"] == "success" else False
@@ -221,7 +249,7 @@ class mcmSession(models.Model):
     ##restore student by ID
     def restoreStudent(self, id, email, headers):
         result = requests.get("https://ext.edusign.fr/v1/student/restore/" + str(id), headers=headers)
-        print(result.content, "https://ext.edusign.fr/v1/student/restore/" + str(id))
+        print(result.text, "https://ext.edusign.fr/v1/student/restore/" + str(id))
 
         if result.status_code == 200:
 
@@ -242,7 +270,7 @@ class mcmSession(models.Model):
         firstName = student.firstName
         lastName = student.lastName
 
-        print("]]]]]]]]]]]]", firstName, lastName)
+        print("=======================", firstName, lastName)
 
         nbAdd = 0
         nbEdit = 0
@@ -295,11 +323,11 @@ class mcmSession(models.Model):
 
             print(
                 "addStudent() has launched a patch request for : %s %s %s"
-                % (str(result), str(result.status_code), str(json.loads(result.content)))
+                % (str(result), str(result.status_code), str(json.loads(result.text)))
             )
             _logger.info(
                 "addStudent() has launched a patch request for : %s %s %s"
-                % (str(result), str(result.status_code), str(json.loads(result.content)))
+                % (str(result), str(result.status_code), str(json.loads(result.text)))
             )
 
             if result.status_code == 200:
@@ -328,7 +356,7 @@ class mcmSession(models.Model):
 
             # Add a new student
             result = requests.post(url, data=json.dumps(data), headers=headers)
-            resultContent = json.loads(result.content)
+            resultContent = json.loads(result.text)
             print("]]]]]]]]]]]]", firstName)
 
             print(
@@ -339,28 +367,24 @@ class mcmSession(models.Model):
                 lastName,
                 "EMAIL",
                 student.email,
-                "with a results: ",
+                "with results: ",
                 result,
                 result.status_code,
-                result.content,
+                result.text,
             )
             _logger.info(
-                "addStudent() has launched a post request for ",
-                "FIRSTNAME",
-                firstName,
-                "LASTNAME",
-                lastName,
-                "EMAIL",
-                student.email,
-                "with a results: ",
-                result,
-                result.status_code,
-                resultContent,
+                "addStudent() has launched a post request for FIRSTNAME '%s' LASTNAME '%s' EMAIL '%s' with results: {%s} {%s}"
+                % (str(firstName), str(lastName), str(student.email), str(result), str(resultContent))
             )
 
             if result.status_code == 200 and "result" in resultContent:
                 nbAdd = nbAdd + 1
-                edusignStudentID = resultContent["result"]["id"]
+                if "id" in resultContent["result"]:
+                    edusignStudentID = resultContent["result"]["id"]
+                elif "ID" in resultContent["result"]:
+                    edusignStudentID = resultContent["result"]["ID"]
+                else:
+                    print("Please verify result id key in addStudent() response")
         return {"nbAdd": nbAdd, "nbEdit": nbEdit, "id": edusignStudentID}
 
     # This function takes a list of students IDs and update Groups
@@ -386,11 +410,11 @@ class mcmSession(models.Model):
 
             print(
                 "updateStudentLists() has launched a patch request with a response : %s %s %s"
-                % (str(result), str(result.status_code), str(result.content))
+                % (str(result), str(result.status_code), str(result.text))
             )
             _logger.info(
                 "updateStudentLists() has launched a patch request with a response : %s %s %s"
-                % (str(result), str(result.status_code), str(result.content))
+                % (str(result), str(result.status_code), str(result.text))
             )
 
         else:
@@ -434,11 +458,11 @@ class mcmSession(models.Model):
 
             print(
                 "addProfessor() has launched a patch request for : %s %s %s"
-                % (str(result), str(result.status_code), str(json.loads(result.content)))
+                % (str(result), str(result.status_code), str(json.loads(result.text)))
             )
             _logger.info(
                 "addProfessor() has launched a patch request for : %s %s %s"
-                % (str(result), str(result.status_code), str(json.loads(result.content)))
+                % (str(result), str(result.status_code), str(json.loads(result.text)))
             )
 
             if result.status_code == 200:
@@ -488,10 +512,10 @@ class mcmSession(models.Model):
                 lastname,
                 "EMAIL",
                 professor.email,
-                "with a results: ",
+                "with results: ",
                 result,
                 result.status_code,
-                result.content,
+                result.text,
             )
             _logger.info(
                 "addProfessor() has launched a patch request for ",
@@ -501,10 +525,10 @@ class mcmSession(models.Model):
                 lastname,
                 "EMAIL",
                 professor.email,
-                "with a results: ",
+                "with results: ",
                 result,
                 result.status_code,
-                json.loads(result.content),
+                json.loads(result.text),
             )
             if result.status_code == 200:
                 nbAdd = nbAdd + 1
@@ -565,13 +589,9 @@ class mcmSession(models.Model):
             for res in self:
                 check = self.checkExistance("https://ext.edusign.fr/v1/group/", res.id_group_edusign, headers)
                 if not check:
-                    print(
-                        "Trying to add the group %s on Edusign with ID %s : "
-                        % (str(res.name), str(res.id_group_edusign))
-                    )
+                    print("Trying to add the group %s on Edusign with API ID %s : " % (str(res.name), str(res.id)))
                     _logger.info(
-                        "Trying to add the group %s on Edusign with ID %s : "
-                        % (str(res.name), str(res.id_group_edusign))
+                        "Trying to add the group %s on Edusign with API ID %s : " % (str(res.name), str(res.id))
                     )
                     # Addgroup
                     self.addGroup(res, headers)
