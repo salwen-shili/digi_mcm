@@ -452,7 +452,7 @@ class partner(models.Model):
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             partner.password360 = user.password360
             password = user.password360
-            if (partner.name  and partner.email ):
+            if (partner.name and partner.email):
                 url = "https://formation.mcm-academy.fr/user_api/v1/account/registration/"
                 payload = {'username': partner.name.upper().replace(" ", ""),
                            'email': partner.email,
@@ -491,47 +491,49 @@ class partner(models.Model):
                             partner.with_context(force_send=True).message_post_with_template(template_id,
                                                                                              composition_mode='comment', )
 
-                            _logger("mail envoyeé")
-                            _logger(partner.email)
+                        _logger("mail envoyeé")
+                        _logger(partner.email)
 
-                    bolt = partner.bolt
-                    evalbox = partner.numero_evalbox
-                    departement = partner.state_id.code
+                    bolt = self.bolt
+                    evalbox = self.numero_evalbox
+                    departement = self.state_id.code
                     _logger.info(departement)
+                    # Formation à distance Taxi
+
                     if (partner.module_id.product_id.default_code == "taxi"):
                         _logger.info("formation valide")
                         if (departement == "59"):
-                            self.inscriteTaxi(partner)
-                            self.testsms(partner)
-                            self.ajoutconnaisancelocalNord(partner)
-                            self.supprimer_apres_dateexman(partner)
+                            self.inscriteTaxi(self)
+                            self.testsms(self)
+                            self.ajoutconnaisancelocalNord(self)
+                            self.supprimer_apres_dateexman(self)
                             _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
 
                         elif (departement == "62"):
-                            self.inscriteTaxi(partner)
-                            self.testsms(partner)
-                            self.ajoutconnaisancelocalpasdecalais(partner)
-                            self.supprimer_apres_dateexman(partner)
+                            self.inscriteTaxi(self)
+                            self.testsms(self)
+                            self.ajoutconnaisancelocalpasdecalais(self)
+                            self.supprimer_apres_dateexman(self)
                         else:
-                            self.inscriteTaxi(partner)
-                            self.testsms(partner)
+                            self.inscriteTaxi(self)
+                            self.testsms(self)
 
 
-                    # Formation à distance VTC-BOLT
+                    # Formation à distance VTC
                     elif (partner.module_id.product_id.default_code == "vtc"):
                         _logger.info("client Bolt Formation VTC")
-                        self.inscriteVTC(partner)
-                        self.supprimer_apres_dateexman(partner)
-                        self.testsms(partner)
+                        self.inscriteVTC(self)
+                        self.supprimer_apres_dateexman(self)
+                        self.testsms(self)
 
+                    # Formation à distance VTC-BOLT
 
                     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                         if (bolt == True):
                             _logger.info("client Bolt Formation VTC")
-                            self.inscriteVTC(partner)
-                            self.supprimer_apres_dateexman(partner)
-                            self.testsms(partner)
-
+                            self.inscriteVTC(self)
+                            self.supprimer_apres_dateexman(self)
+                            self.testsms(self)
 
 
                 elif (response.status_code == 409):
