@@ -937,58 +937,59 @@ class WebhookController(http.Controller):
                                 user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
                                                               -9:]
                     else:
-                        if user.partner_id.phone:
-                            phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
-                            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
-                                                                                        3:5] + ' ' + phone[
-                                                                                                     5:7] + ' ' + phone[
-                                                                                                                  7:]
-                            user.partner_id.phone = phone
-                        url = 'https://bit.ly/3CZ2HtS'
-                        body = "MCM ACADEMY. Afin d'accéder à notre formation vous devez vous inscrire à l'examen auprès de la CMA de votre région via le lien suivant:%s" % (
-                             url)
-                        if body:
-                            composer = request.env['sms.composer'].with_context(
-                                default_res_model='res.partner',
-                                default_res_id=user.partner_id.id,
-                                default_composition_mode='comment',
-                            ).sudo().create({
-                                'body': body,
-                                'mass_keep_log': True,
-                                'mass_force_send': False,
-                                'use_active_domain': False,
-                            })
-                            sms = request.env['mail.message'].sudo().search(
-                                [("body", "=", body), ("message_type", "=", 'sms'),
-                                 ("res_id", "=", user.partner_id.id)])
-                            if not sms:
-                                composer.action_send_sms()  # we send sms to client contains link to register in cma.
+                        if not user.partner_id.bolt:
                             if user.partner_id.phone:
-                                user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
-                                                              -9:]
-
-                        mail_compose_message = request.env['mail.compose.message']
-                        mail_compose_message.fetch_sendinblue_template()
-                        template_id = False
-                        template_id = request.env['mail.template'].sudo().search(
-                            [('subject', "=", "Inscription examen chambre des métiers"),
-                             ('model_id', "=", 'res.partner')],
-                            limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
-                        if not template_id:
+                                phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                            3:5] + ' ' + phone[
+                                                                                                         5:7] + ' ' + phone[
+                                                                                                                      7:]
+                                user.partner_id.phone = phone
+                            url = 'https://bit.ly/3CZ2HtS'
+                            body = "MCM ACADEMY. Afin d'accéder à notre formation vous devez vous inscrire à l'examen auprès de la CMA de votre région via le lien suivant:%s" % (
+                                 url)
+                            if body:
+                                composer = request.env['sms.composer'].with_context(
+                                    default_res_model='res.partner',
+                                    default_res_id=user.partner_id.id,
+                                    default_composition_mode='comment',
+                                ).sudo().create({
+                                    'body': body,
+                                    'mass_keep_log': True,
+                                    'mass_force_send': False,
+                                    'use_active_domain': False,
+                                })
+                                sms = request.env['mail.message'].sudo().search(
+                                    [("body", "=", body), ("message_type", "=", 'sms'),
+                                     ("res_id", "=", user.partner_id.id)])
+                                if not sms:
+                                    composer.action_send_sms()  # we send sms to client contains link to register in cma.
+                                if user.partner_id.phone:
+                                    user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
+                                                                  -9:]
+    
+                            mail_compose_message = request.env['mail.compose.message']
+                            mail_compose_message.fetch_sendinblue_template()
+                            template_id = False
                             template_id = request.env['mail.template'].sudo().search(
-                                [('name', "=", "MCM INSCRIPTION EXAMEN CMA"),
-                                 ('model_id', "=", 'res.partner')],
-                                limit=1)
-                        if template_id:
-                            message = request.env['mail.message'].sudo().search(
                                 [('subject', "=", "Inscription examen chambre des métiers"),
-                                 ('model', "=", 'res.partner'), ('res_id', "=", user.partner_id.id)],
-                                limit=1)
-                            if not message:  # check if we have already sent the email
-                                user.partner_id.with_context(force_send=True).message_post_with_template(
-                                    template_id.id,
-                                    composition_mode='comment',
-                                )  # send the email to clien
+                                 ('model_id', "=", 'res.partner')],
+                                limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
+                            if not template_id:
+                                template_id = request.env['mail.template'].sudo().search(
+                                    [('name', "=", "MCM INSCRIPTION EXAMEN CMA"),
+                                     ('model_id', "=", 'res.partner')],
+                                    limit=1)
+                            if template_id:
+                                message = request.env['mail.message'].sudo().search(
+                                    [('subject', "=", "Inscription examen chambre des métiers"),
+                                     ('model', "=", 'res.partner'), ('res_id', "=", user.partner_id.id)],
+                                    limit=1)
+                                if not message:  # check if we have already sent the email
+                                    user.partner_id.with_context(force_send=True).message_post_with_template(
+                                        template_id.id,
+                                        composition_mode='comment',
+                                    )  # send the email to clien
                     """changer step à validé dans espace client """
                     user.partner_id.step = 'finish'
                     session = request.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
