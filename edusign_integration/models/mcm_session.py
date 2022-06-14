@@ -636,17 +636,18 @@ class mcmSession(models.Model):
                     print("=>", nameCopy[0], nameCopy[1])
             # Cas d'un seul nom
             else:
-                firstName = partner.name
-                lastName = partner.name
+                firstName = name
+                lastName = name
 
         return {"firstName": firstName, "lastName": lastName}
 
     def allowExecution(self):
         # if not in localhost
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
-
+        checkDate = True
         checkUrl = str(base_url) not in allowedUrls
-        checkDate = date.today() <= self.date_exam
+        if self.date_exam:
+            checkDate = date.today() <= self.date_exam
         print(
             "Edusign allowExecution() has checked date.today() <= date.exam = %s and base url=%s is allowed to execute API calls = %s"
             % (str(checkDate), str(base_url), str(checkUrl))
