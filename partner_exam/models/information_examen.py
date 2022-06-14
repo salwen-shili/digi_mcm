@@ -200,7 +200,7 @@ class NoteExamen(models.Model):
                         self.partner_id.resultat = "Ajourné(e)"
             else:
                 print("for mcm academy")
-                if self.state_pratique == 'reussi':
+                if self.state_theorique == 'reussi':
                     self.partner_id.resultat = 'Réussi(e)'
                 elif self.state_pratique == 'ajourne':
                     self.partner_id.resultat = 'Ajourné(e)'
@@ -426,7 +426,7 @@ class NoteExamen(models.Model):
         res = super(NoteExamen, self).write(values)
         # Add condition based on checkbox field paiement != True
         # to put auto value in "nombre de passage" based on sum of historic sessions
-        if 'partner_id' in values or 'presence_mcm' in values or 'state_theorique' in values:
+        if 'partner_id' in values or 'presence_mcm' in values or 'state_theorique' in values or 'epreuve_theorique' in values or 'epreuve_pratique' in values:
             self.update_boolean_values()
             self.compute_moyenne_generale()
         return res
