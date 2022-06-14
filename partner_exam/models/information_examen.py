@@ -230,10 +230,10 @@ class NoteExamen(models.Model):
                 else:  # si epreuve_theorique == Ajournée
                     self.state_theorique = 'ajourne'
             if self.epreuve_pratique:
-                if self.state_theorique == 'reussi':
-                    self.state_theorique = 'reussi'
+                if self.epreuve_pratique == 'reussi':
+                    self.epreuve_pratique = 'reussi'
                 else:  # si epreuve pratique == Ajournée
-                    self.state_theorique = 'ajourne'
+                    self.epreuve_pratique = 'ajourne'
 
     def _clear_duplicates_exams(self):
         """ Cron Delete exams duplications based on id and date_exam """
