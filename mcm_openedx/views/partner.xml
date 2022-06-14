@@ -12,6 +12,12 @@
                 <filter name="company" string="MCM Academy"
                         domain="[('company_id','=',1)]"
                 />
+
+                   <filter name="state" string="Statut de l'apprennat"
+                        domain="[('state','ilike','en_formation')]"
+                />
+                                <field name="state" filter_domain="[('state','ilike',self)]"></field>
+
                 <filter name="group_company_id" string="Societé" icon="terp-partner"
                         context="{'group_by':'company_id'}"/>
             </search>
@@ -179,6 +185,7 @@
                 <field name="supprimerdemoocit"/>
                 <field name="client"/>
                 <field name="coach_peda"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
@@ -202,4 +209,4 @@
     <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
     <menuitem id="coach_menu" name="Coaches" parent="main_mcm_openedx_menu" action="coach_list_action"/>
     <menuitem id="att_menu" name="En attente" parent="main_mcm_openedx_menu" action="attente_list_action"/>
- </odoo>
+</odoo>
