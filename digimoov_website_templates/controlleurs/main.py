@@ -576,6 +576,7 @@ class Services(http.Controller):
 
     @http.route('/service-comptabilite', type='http', auth='user', website=True)
     def comptabilite(self, **kw, ):
+        print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
         public_user = http.request.env['res.users'].sudo().search(
             [('id', '=', 4), ('active', '=', False)])
 
@@ -595,9 +596,10 @@ class Services(http.Controller):
                 if ' ' in name:
                     nom = name[1] if name[1] else ''
                 prenom = name[0] if name[0] else ''
-        return request.render("digimoov_website_templates.digimoov_template_service_comptabilite",
-                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                               'contact_name': prenom})
+        raise werkzeug.exceptions.NotFound()
+        # return request.render("digimoov_website_templates.digimoov_template_service_comptabilite",
+        #                       {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
+        #                        'contact_name': prenom})
 
     @http.route('/service-pedagogique', type='http', auth='user', website=True)
     def pedagogique(self, **kw, ):

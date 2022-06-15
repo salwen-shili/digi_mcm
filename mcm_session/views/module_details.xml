@@ -15,7 +15,7 @@
                     <div>
                         <group>
                             <group>
-                                <field name="prix_chpf"  widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="prix_chpf"  widget="monetary" options="{'currency_field': 'currency_id'}" invisible="1"/>
                                 <field name="prix_normal"  widget="monetary" options="{'currency_field': 'currency_id'}"/>
                                 <field name="currency_id" invisible="1"/>
                             </group>
@@ -39,7 +39,7 @@
             <field name="arch" type="xml">
                 <tree string="Type d'action">
                     <field name="name"/>
-                    <field name="prix_chpf"  widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="prix_chpf"  widget="monetary" options="{'currency_field': 'currency_id'}" invisible="1"/>
                     <field name="prix_normal"  widget="monetary" options="{'currency_field': 'currency_id'}"/>
                     <field name="duree"/>
                 </tree>

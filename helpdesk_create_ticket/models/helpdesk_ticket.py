@@ -22,22 +22,23 @@ class HelpdeskTicket(models.Model):
                     partner = self.env['res.partner'].sudo().search([('id', "=", rec['partner_id'])])
                     if partner:
                         partner.sudo().unlink() # supprimer la fiche contact de client si le client n'a pas de compte
-        if tickets :
-            for ticket in tickets:
-                if ticket.partner_email:
-                    if 'caissedesdepots' in ticket.partner_email: # transferer les emails envoyés par caissedesdepots au service comptabilité
-                        team = self.env['helpdesk.team'].sudo().search([('name', 'like', 'Compta'), ('company_id', "=", ticket.company_id.id)],limit=1)
-                        if team:
-                            ticket.team_id=team.id
-                    if 'billing' in ticket.partner_email: # transferer les emails envoyés par billing au service comptabilité
-                        team = self.env['helpdesk.team'].sudo().search([('name', 'like', 'Compta'), ('company_id', "=", ticket.company_id.id)],limit=1)
-                        if team:
-                            ticket.team_id=team.id
-                    if 'servicefinance@dkv-euroservice.com' in ticket.partner_email: # transferer les emails envoyés par servicefinance@dkv-euroservice.com au service comptabilité
-                        team = self.env['helpdesk.team'].sudo().search(
-                            [('name', 'like', 'Compta'), ('company_id', "=", ticket.company_id.id)], limit=1)
-                        if team:
-                            ticket.team_id = team.id
+        # if tickets :
+        #     for ticket in tickets:
+        #         if ticket.partner_email:
+        #             if 'caissedesdepots' in ticket.partner_email: # transferer les emails envoyés par caissedesdepots au service comptabilité
+        #                 team = self.env['helpdesk.team'].sudo().search([('name', 'like', 'Compta'), ('company_id', "=", ticket.company_id.id)],limit=1)
+        #                 if team:
+        #                     ticket.team_id=team.id
+        #             if 'billing' in ticket.partner_email: # transferer les emails envoyés par billing au service comptabilité
+        #                 team = self.env['helpdesk.team'].sudo().search([('name', 'like', 'Compta'), ('company_id', "=", ticket.company_id.id)],limit=1)
+        #                 if team:
+        #                     ticket.team_id=team.id
+        #             if 'servicefinance@dkv-euroservice.com' in ticket.partner_email: # transferer les emails envoyés par servicefinance@dkv-euroservice.com au service comptabilité
+        #                 team = self.env['helpdesk.team'].sudo().search(
+        #                     [('name', 'like', 'Compta'), ('company_id', "=", ticket.company_id.id)], limit=1)
+        #                 if team:
+        #                     ticket.team_id = team.id
+        #comment code of converting mails comes from (caissedesdepots,billing,servicefinance@dkv-euroservice.com) to comptabilité team
         return tickets
 
     def write(self, vals):
@@ -61,8 +62,8 @@ class HelpdeskTicket(models.Model):
             'uipath@discoursemail.com','info@dkv-euroservice.com','serviceclient@enjoy.eset.com','noreply@e.fiverr.com','hello@emails.paloaltonetworks.com',
             'francois.g@eset-nod32.fr','support@nordvpn.com','noreply@jotform.com','newsletter','communication@modedigital.online','support@ovh.com','do-not-reply@market.envato.com','cody@codeur.com','svein-tore.griff@joubel.com',
             'h5p','security@mail.instagram.com','notification@facebookmail.com','advertise-noreply@support.facebook.com','google','ne_pas_repondre_Moncompteformation','digimoov.fr','mcm-academy.fr','slack.com',
-            'noreply-platform@uipath.com','digidom.pro','ovhcloud.com','codepen.io','intercom.io','optimonk.com','yooda.com','facebookmail.com','junto.fr','sjalal@mcm-academy.fr','hello@edusign.fr'
-        ]
+            'noreply-platform@uipath.com','digidom.pro','ovhcloud.com','codepen.io','intercom.io','optimonk.com','yooda.com','facebookmail.com','junto.fr','sjalal@mcm-academy.fr','hello@edusign.fr','@calendly','@digiforma'
+        ] #add calendly and digiforma to list of rejected mails
         # list des terms  rejetés ( supprimer les tickets qui ont l'un de ces terms comme objet )
         rejected_subject = [
             'nouveau ticket', 'assigné à vous', 'assigned to you', 'SPAM'
