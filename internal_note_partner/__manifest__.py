@@ -22,6 +22,7 @@
     'data': [
         'views/inherit_res_partner.xml',
         'views/filter_not_paid_partner.xml',
+        'views/sequence_evalbox.xml',
     ],
     'qweb': [],
     'images': [],

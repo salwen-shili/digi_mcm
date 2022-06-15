@@ -44,6 +44,9 @@
             </xpath>
             <xpath expr="//tree/field[@name='email']" position="after">
                 <field name="last_internal_log" widget="html" optional="show"/>
+                <field name="nom_mcm" widget="html" optional="show"/>
+                <field name="prenom_mcm" widget="html" optional="show"/>
+                <field name="last_internal_log" widget="html" optional="show"/>
             </xpath>
             <xpath expr="//tree/field[@name='last_internal_log']" position="before">
                 <field name="is_recu" invisible="1"/>
