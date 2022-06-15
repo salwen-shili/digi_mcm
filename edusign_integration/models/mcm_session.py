@@ -32,7 +32,24 @@ class mcmSession(models.Model):
     # Patching a course will erase existing signatures.
     # We check if exam_date > today to allow patch request
     def addCourse(self, session, professorsId, headers):
-
+        print(
+            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
+        )
+        _logger.info(
+            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
+        )
+        print(
+            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
+        )
+        _logger.info(
+            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
+        )
+        print(
+            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
+        )
+        _logger.info(
+            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
+        )
         salle = (
             ""
             if not session.session_adresse_examen.adresse_centre_examen
@@ -100,7 +117,7 @@ class mcmSession(models.Model):
                         "NAME": session.name,
                         "DESCRIPTION": "session de " + session.name,
                         "STUDENTS": [],
-                        "CLASSROOM": salle,
+                        "CLASSROOM": session.session_adresse_examen.adresse_centre_examen,
                         "START": startDate,
                         "END": endDate,
                         "PROFESSOR": professor1,
@@ -143,7 +160,7 @@ class mcmSession(models.Model):
                         "SCHOOL_GROUP": [session.id_group_edusign],
                         "ZOOM": 0,
                         "API_ID": session.id,
-                        "CLASSROOM": salle,
+                        "CLASSROOM": session.session_adresse_examen.adresse_centre_examen,
                     }
                 }
 
