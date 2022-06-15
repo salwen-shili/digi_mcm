@@ -32,37 +32,11 @@ class mcmSession(models.Model):
     # Patching a course will erase existing signatures.
     # We check if exam_date > today to allow patch request
     def addCourse(self, session, professorsId, headers):
-        print(
-            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
-        )
-        _logger.info(
-            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
-        )
-        print(
-            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
-        )
-        _logger.info(
-            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
-        )
-        print(
-            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
-        )
-        _logger.info(
-            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
-        )
-        salle = (
-            ""
-            if not session.session_adresse_examen.adresse_centre_examen
-            else session.session_adresse_examen.adresse_centre_examen
-        )
-        print(
-            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
-        )
-        _logger.info(
-            "\n============================Adresse de la salle: ", session.session_adresse_examen.adresse_centre_examen
-        )
 
         # Exit add course if professor ID is empty
+        classroom = session.session_adresse_examen.adresse_centre_examen
+        if classroom == False:
+            classroom = ""
 
         if len(professorsId) == 0:
             return
@@ -111,33 +85,34 @@ class mcmSession(models.Model):
                 )
                 _logger.info("A course with the same ID exists already.")
                 patchUrl = "https://ext.edusign.fr/v1/course/?id=" + session.id_session_edusign
+
                 data = {
                     "course": {
                         "ID": session.id_session_edusign,
                         "NAME": session.name,
                         "DESCRIPTION": "session de " + session.name,
                         "STUDENTS": [],
-                        "CLASSROOM": session.session_adresse_examen.adresse_centre_examen,
+                        "CLASSROOM": classroom,
                         "START": startDate,
                         "END": endDate,
                         "PROFESSOR": professor1,
                         "PROFESSOR_2": professor2,
-                        "CLASSROOM": "",
                         "SCHOOL_GROUP": [session.id_group_edusign],
                         "ZOOM": 0,
-                        "API_ID": session.id,
+                        "API_ID": session.name,
                     }
                 }
+                print(data)
 
                 # Edit by student ID
                 result = requests.patch(patchUrl, data=json.dumps(data), headers=headers)
 
                 print(
-                    "addCourse() has launched a patch request for : %s %s %s"
+                    "addCourse() has launched a patch request for : %s %s %s "
                     % (str(result), str(result.status_code), str(json.loads(result.text)))
                 )
                 _logger.info(
-                    "addCourse() has launched a patch request for : %s %s %s"
+                    "addCourse() has launched a patch request for :  %s %s %s"
                     % (str(result), str(result.status_code), str(json.loads(result.text)))
                 )
 
@@ -146,24 +121,25 @@ class mcmSession(models.Model):
 
         else:
             if date.today() <= session.date_exam:
+
                 postUrl = "https://ext.edusign.fr/v1/course"
                 data = {
                     "course": {
                         "NAME": session.name,
                         "DESCRIPTION": "session de " + session.name,
                         "STUDENTS": [],
+                        "CLASSROOM": classroom,
                         "START": startDate,
                         "END": endDate,
                         "PROFESSOR": professor1,
                         "PROFESSOR_2": professor2,
-                        "CLASSROOM": "",
                         "SCHOOL_GROUP": [session.id_group_edusign],
                         "ZOOM": 0,
-                        "API_ID": session.id,
-                        "CLASSROOM": session.session_adresse_examen.adresse_centre_examen,
+                        "API_ID": session.name,
                     }
                 }
 
+                print(data)
                 _logger.info("Edusign addCourse start post request...")
                 print("Edusign addCourse start post request...")
                 result = requests.post(postUrl, data=json.dumps(data), headers=headers)
@@ -231,7 +207,7 @@ class mcmSession(models.Model):
                     "DESCRIPTION": "",
                     "STUDENTS": [],
                     "PARENT": "",
-                    "API_ID": session.id,
+                    "API_ID": session.name,
                     "API_TYPE": "",
                 }
             }
@@ -445,7 +421,7 @@ class mcmSession(models.Model):
                     "NAME": self.name,
                     "DESCRIPTION": "",
                     "STUDENTS": students,
-                    "API_ID": self.id,
+                    "API_ID": self.name,
                 }
             }
             # Edit by student ID
@@ -496,7 +472,7 @@ class mcmSession(models.Model):
                     "NAME": self.name,
                     "DESCRIPTION": "",
                     "STUDENTS": studentsID,
-                    "API_ID": self.id,
+                    "API_ID": self.name,
                 }
             }
             # Edit by student ID
