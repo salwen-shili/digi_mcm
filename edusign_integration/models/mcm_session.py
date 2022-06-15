@@ -33,6 +33,12 @@ class mcmSession(models.Model):
     # We check if exam_date > today to allow patch request
     def addCourse(self, session, professorsId, headers):
 
+        salle = (
+            ""
+            if not session.session_adresse_examen.adresse_centre_examen
+            else session.session_adresse_examen.adresse_centre_examen
+        )
+
         # Exit add course if professor ID is empty
 
         if len(professorsId) == 0:
@@ -88,6 +94,7 @@ class mcmSession(models.Model):
                         "NAME": session.name,
                         "DESCRIPTION": "session de " + session.name,
                         "STUDENTS": [],
+                        "CLASSROOM": salle,
                         "START": startDate,
                         "END": endDate,
                         "PROFESSOR": professor1,
@@ -130,6 +137,7 @@ class mcmSession(models.Model):
                         "SCHOOL_GROUP": [session.id_group_edusign],
                         "ZOOM": 0,
                         "API_ID": session.id,
+                        "CLASSROOM": salle,
                     }
                 }
 
@@ -633,7 +641,7 @@ class mcmSession(models.Model):
                 if nameCopy:
                     firstName = nameCopy[0]
                     lastName = nameCopy[1]
-                    print("=>", nameCopy[0], nameCopy[1])
+
             # Cas d'un seul nom
             else:
                 firstName = name
@@ -707,6 +715,7 @@ class mcmSession(models.Model):
                 headers = {
                     "Authorization": "Bearer %s" % (str(api_key)),
                     "Content-Type": "application/json",
+                    "cache-control": "no-cache",
                 }
                 for res in self:
                     check = self.checkExistance("https://ext.edusign.fr/v1/group/", res.id_group_edusign, headers)
@@ -906,7 +915,7 @@ class mcmSession(models.Model):
                     # Make an update to students Lists
                     self.updateStudentLists(studentsID, headers)
 
-                if "surveillant_id" in vals:
+                if "surveillant_id" in vals or "session_adresse_examen" in vals:
                     # Professor list has been updated
                     # Create professor if not exist and Launch create course
                     # get professor ID to create a course
