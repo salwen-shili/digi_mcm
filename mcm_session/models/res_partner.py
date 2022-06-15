@@ -164,6 +164,30 @@ class resPartnerWizard(models.TransientModel):
 
     def action_modify_partner(self):
         if self.partner_id:
+            if not self.statut and not self.session_id and self.partner_id.mcm_session_id:
+                list = []
+                for partner in self.partner_id.mcm_session_id.client_ids:
+                    if partner.id != self.partner_id.id:
+                        list.append(partner.id)
+                self.partner_id.mcm_session_id.write({'client_ids': [(6, 0, list)]})
+
+                list = []
+                for partner in self.partner_id.mcm_session_id.prospect_ids:
+                    if partner.id != self.partner_id.id:
+                        list.append(partner.id)
+                self.partner_id.mcm_session_id.write({'prospect_ids': [(6, 0, list)]})
+
+                list = []
+                for partner in self.partner_id.mcm_session_id.canceled_prospect_ids:
+                    if partner.id != self.partner_id.id:
+                        list.append(partner.id)
+                self.partner_id.mcm_session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
+
+                list = []
+                for partner in self.partner_id.mcm_session_id.panier_perdu_ids:
+                    if partner.id != self.partner_id.id:
+                        list.append(partner.id)
+                self.partner_id.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
             self.partner_id.statut=self.statut
             self.partner_id.mcm_session_id=self.session_id
             self.partner_id.module_id = self.module_id

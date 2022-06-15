@@ -12,6 +12,7 @@ from datetime import datetime
 
 class Session(models.Model):
     _name = 'mcmacademy.session'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Sessions de formation"
 
     name = fields.Char('Nom du session', required=True, track_visibility='always')
