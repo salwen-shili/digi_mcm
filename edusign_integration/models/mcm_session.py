@@ -38,6 +38,8 @@ class mcmSession(models.Model):
             if not session.session_adresse_examen.adresse_centre_examen
             else session.session_adresse_examen.adresse_centre_examen
         )
+        print("\nAdresse: ", salle)
+        _logger.info("\nAdresse: ", salle)
 
         # Exit add course if professor ID is empty
 
