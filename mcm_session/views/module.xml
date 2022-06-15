@@ -26,7 +26,7 @@
                                 <field name="prix_normal" widget="monetary"
                                        options="{'currency_field': 'currency_id'}"/>
                                 <field name="contract_price" widget="monetary"
-                                       options="{'currency_field': 'currency_id'}"/>
+                                       options="{'currency_field': 'currency_id'}" string="Ancien Tarif"/>
                                 <field name="currency_id" invisible="1"/>
                                 <field name="lieu" domain="[('country_id' ,'=', 'France')]" invisible="1"/>
                                 <field name="heure_debut_matin" placeholder="e.x. 09:00"/>
