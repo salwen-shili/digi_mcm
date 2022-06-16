@@ -3,7 +3,7 @@
     "version": "13.0",
     "category": "Examen DIGIMOOV",
     "summary": "Edusign Integration",
-    "depends": ["mcm_contact_documents", "mcm_session", "base", "auto_mass_mailing_marketing"],
+    "depends": ["mcm_contact_documents", "mcm_session", "base"],
     "data": ["views/company.xml", "views/session.xml"],
     "images": [],
     "author": "SALWEN SHILI",
