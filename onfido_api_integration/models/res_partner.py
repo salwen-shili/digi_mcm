@@ -4,13 +4,15 @@ import onfido
 import urllib.request
 from odoo.modules.module import get_resource_path
 from PIL import Image
+import json
 class InheritConfig(models.Model):
     _inherit = "res.partner"
 
 
-    def test_api_onfido(self):
+    def create_applicant(self,partner):
         # api_instance = onfido.Api('api_sandbox.SwW0JwK3WRL.4ntnjwCs6IWIbVv882-QPjQ0Q_UiPSCz','region')
         url_post="https://api.eu.onfido.com/v3.4/applicants"
+
         token_test="api_sandbox.SwW0JwK3WRL.4ntnjwCs6IWIbVv882-QPjQ0Q_UiPSCz"
 
         # applicant_details = {
@@ -36,8 +38,8 @@ class InheritConfig(models.Model):
         }
 
         json_data = {
-            "first_name": "Test",
-            "last_name": "Ines",
+            "first_name": partner.name,
+            "last_name": "test",
             "dob": "1990-01-31",
             "address": {
             "building_number": "100",
@@ -47,13 +49,32 @@ class InheritConfig(models.Model):
             "country": "GBR",
             }
         }
-        response = requests.post(url_post, headers=headers, json=json_data)
+        response = requests.post(url_post, headers=headers, data=json.dumps(json_data))
         applicant=response.json()
         print('ressssssssssppp',applicant)
-        applicant_id=applicant['id']
-        self.upload_document(headers,applicant_id)
+        return applicant['id']
+        # self.upload_document(headers,applicant_id)
         # self.upload_photo(headers,applicant_id)
 
+
+
+    def generateSdktoken(self,applicant_id):
+        url_sdk = "https://api.eu.onfido.com/v3.4/sdk_token"
+
+        token_test = "api_sandbox.SwW0JwK3WRL.4ntnjwCs6IWIbVv882-QPjQ0Q_UiPSCz"
+        headers = {
+            'Authorization': 'Token token=' + token_test,
+            # Already added when you pass json= but not when you pass data=
+            #     'Content-Type': 'application/json',
+        }
+        data = {
+            "applicant_id": applicant_id,
+            "referrer": "http://localhost:8069/upload_document"
+        }
+        response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
+        token_sdk=response_token.json()
+        print(response_token.json())
+        return token_sdk['token']
 
     def upload_document(self,headers,applicant_id):
 
