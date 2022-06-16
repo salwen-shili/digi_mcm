@@ -652,7 +652,7 @@ class mcmSession(models.Model):
         # if not in localhost
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
         checkDate = True
-        checkUrl = str(base_url) not in allowedUrls
+        checkUrl = str(base_url) in allowedUrls
         if self.date_exam:
             checkDate = date.today() <= self.date_exam
         print(
@@ -694,7 +694,7 @@ class mcmSession(models.Model):
             print(
                 "################## ################## ################## ################## ################## ##################\n"
                 "#################                                                                              ##################\n"
-                "#################                   Edusign Main Function has executed.                        ##################\n"
+                "#################                    Edusign Main Function has executed.                        ##################\n"
                 "#################                                                                              ##################\n"
                 "################## ################## ################## ################## ################## ##################\n"
             )
