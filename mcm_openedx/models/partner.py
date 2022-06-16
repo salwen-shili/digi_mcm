@@ -25,7 +25,7 @@ class partner(models.Model):
                               ])
     coach_peda = fields.Many2one('res.partner', string="Coach_Pedagogique", domain=[('est_coach', '=', True)])
     state = fields.Selection([('en_attente', 'En attente'), ('en_formation', 'En Formation'), ('supprimé', 'Supprimé')],
-                             required=True, default='en_attente',string="Statut")
+                             required=True, default='en_attente', string="Statut")
 
     mooc_dernier_coonx = fields.Date()
     mooc_temps_passe_heure = fields.Integer()
@@ -571,10 +571,8 @@ class partner(models.Model):
     # supprimer ione le desinscrire des cours sur la platfrom moocit
     def supprimer_IOne_MCM(self):
 
-
         departement = self.state_id.code
         _logger.info(departement)
-        self.write({'state': 'supprimé'})
         # supprimer l'apprenats en verifiant le module choisit
         if (self.module_id.product_id.default_code == "taxi"):
             self.desinscriteTaxi(self)
@@ -598,17 +596,17 @@ class partner(models.Model):
 
             _logger.info('state: supprimé')
 
-        # else:
-        #     return {
-        #         'type': 'ir.actions.client',
-        #         'tag': 'display_notification',
-        #         'params': {
-        #             'title': _('La date de suppression n_est pas valide il va etre supprimer le:🤓 🤓  '),
-        #             'message': _(self.supprimerdemoocit),
-        #             'sticky': True,
-        #             'className': 'bg-danger'
-        #         }
-        #     }
+        else:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _(' l apprennat n a pas une session :🤓 🤓  '),
+                    'message': _('verifier session'),
+                    'sticky': True,
+                    'className': 'bg-danger'
+                }
+            }
 
     # affecter la date de suppression apres l'ajout  5 jours apres session
 
