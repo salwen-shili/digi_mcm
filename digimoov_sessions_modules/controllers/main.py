@@ -1242,7 +1242,9 @@ class WebsiteSale(WebsiteSale):
         # Cas d'un nom composé
         else:
             if " " in partner.name:
-                name = partner.name.split(" ", 1)
+                name = partner.name
+                name = " ".join(name.split())
+                name = name.split(" ", 1)
                 if name:
                     partner.firstName = name[0]
                     partner.lastName = name[1]
