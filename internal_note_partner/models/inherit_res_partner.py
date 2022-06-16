@@ -8,14 +8,6 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class IrSequence(models.Model):
-    _inherit = "ir.sequence"
-
-    alphabet = fields.Char(string="Alphabet Evalbox")
-    suffix_number = fields.Char(string="Suffix Evalbox")
-    #code_evalbox = fields.Char(string="Code Evalbox")
-
-
 class InheritResPartner(models.Model):
     _inherit = "res.partner"
 
@@ -32,8 +24,6 @@ class InheritResPartner(models.Model):
     is_Absent = fields.Boolean(default=False)
     is_absence_justifiee = fields.Boolean(default=False)
     is_not_paid = fields.Boolean(default=False)
-    nom_mcm = fields.Char(string="Nom Evalbox")
-    prenom_mcm = fields.Char(string="Prénom Evalbox")
 
     def _get_last_presence_resultat_values(self):
         """ Function to get presence and resultat values of last session in tree partner view"""
@@ -61,18 +51,6 @@ class InheritResPartner(models.Model):
                         rec.resultat = "Admis(e)"
                     elif not resultat.resultat:
                         rec.resultat = "_______"
-                # for nb_passage in rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id), ('date_exam', '<', date.today())], limit=1, order="id desc"):
-                #     if nb_passage.nombre_de_passage == 'premier':
-                #         rec.nombre_de_passage = "Premier"
-                #         print("rec.nombre_de_passage1111", rec.nombre_de_passage)
-                #     if nb_passage.nombre_de_passage == 'deuxieme':
-                #         rec.nombre_de_passage = "Deuxième"
-                #         print("rec.nombre_de_passage2222", rec.nombre_de_passage)
-                #     if nb_passage.nombre_de_passage == 'troisieme':
-                #         rec.nombre_de_passage = "Troisième"
-                #         print("rec.nombre_de_passage3333", rec.nombre_de_passage)
-                #     elif not nb_passage.nombre_de_passage:
-                #         rec.nombre_de_passage = "_______"
 
     def _compute_get_last_internal_log(self):
         for record in self:
@@ -93,26 +71,6 @@ class InheritResPartner(models.Model):
                        ('subtype_id', '=', 'Note')],
             'context': "{'create': False, 'edit':False}"
         }
-
-    # @api.onchange("etat_financement_cpf_cb")
-    # def _financement_not_paid(self):
-    #     """ cette fonction sera executée une seul fois pour remplir les ancienes champs pour appliquer
-    #             la condition de coloration sur les clients avec des financements égale non payés """
-    #     # records/active_ids to get the records selected in tree view
-    #     active_ids = self.ids
-    #     active_ids = self.env.context.get('active_ids', [])
-    #     records = self.env['res.partner'].browse(self.env.context.get('active_ids'))
-    #     print("recordsssssss", records)
-    #     for rec in records:
-    #         print("for reccc", rec)
-    #         print("if rec.etat_financement_cpf_cb", rec.etat_financement_cpf_cb)
-    #         if rec.etat_financement_cpf_cb:
-    #             if rec.etat_financement_cpf_cb == 'not_paid':
-    #                 print("not_paid", rec.etat_financement_cpf_cb)
-    #                 self.is_not_paid = True
-    #             if rec.etat_financement_cpf_cb == 'paid':
-    #                 self.is_not_paid = False
-    #                 print("Paid", rec.etat_financement_cpf_cb)
 
     def write(self, values):
         """ Mettre à jour presence & resultat fields pour chaque mise à jour"""
@@ -146,31 +104,3 @@ class InheritResPartner(models.Model):
                 self.is_recu = False
                 self.is_absence_justifiee = False
         return val
-
-    @api.model
-    def create(self, vals):
-        if vals['company_id'] == 2:  # company DIGIMOOV
-            # prefix = "A"
-            vals['prenom_mcm'] = self.env['ir.sequence'].next_by_code(
-                 'res.partner') or '/'  # Affectation: Generate a sequence number to prenom_mcm field
-
-            ir_sequence = self.env['ir.sequence'].search([('name', '=', "Res Partner Evalbox")],
-                                                         limit=1)  # Search in ir.sequence with name of the record
-
-            print("ir_sequence", ir_sequence)  # Print
-            if ir_sequence.number_next_actual == 99999:  # Condition if next number in ir.sequence == 1001 because we need max 1000
-                # For one letter exemple: A:1-1000, B:1-1000
-                vals['prenom_mcm'] = ir_sequence.number_next_actual  # Update number_next_actual to 1
-
-                ir_sequence.number_next_actual = int('00001')
-                print("Hello //", ir_sequence.number_next_actual)
-                vals['prenom_mcm'] = ir_sequence.number_next_actual
-                char = ir_sequence.alphabet
-                vals['nom_mcm'] = chr(ord(char) + 1)
-                ir_sequence.alphabet = chr(ord(char) + 1)
-            else:
-                char = ir_sequence.alphabet
-                ir_sequence.alphabet = char
-                vals['nom_mcm'] = ir_sequence.alphabet
-                vals['prenom_mcm'] = ir_sequence.number_next_actual
-        return super(InheritResPartner, self).create(vals)

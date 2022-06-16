@@ -9,6 +9,11 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+class IrSequence(models.Model):
+    _inherit = "ir.sequence"
+
+    alphabet = fields.Char(string="Alphabet Evalbox")
+    suffix_number = fields.Char(string="Suffix Evalbox")
 
 class resComapny(models.Model):
     _inherit = "res.partner"
@@ -30,6 +35,9 @@ class resComapny(models.Model):
     nom_marital = fields.Char(string="Nom marital")
     other_cases = fields.Char(string="Nom de l'Etat pour les autres cas")
     age = fields.Char()
+    nom_evalbox = fields.Char(string="Nom Evalbox")
+    prenom_evalbox = fields.Char(string="Prénom Evalbox")
+    code_evalbox = fields.Char()
 
     def compute_notes_exams_count(self):
         for record in self:
@@ -105,4 +113,35 @@ class resComapny(models.Model):
             self.age = rd # Affectation de l'age au champ age dans res.partner
             _logger.info('rec.age date of birth-------------11111111111111111111-------- %s', self.age)
         return session
+
+    @api.model
+    def create(self, vals):
+        if vals['company_id'] == 2:  # company DIGIMOOV
+            # prefix = "A"
+            vals['prenom_evalbox'] = self.env['ir.sequence'].next_by_code(
+                'res.partner') or '/'  # Affectation: Generate a sequence number to prenom_evalbox field
+
+            ir_sequence = self.env['ir.sequence'].search([('name', '=', "Res Partner Evalbox")],
+                                                         limit=1)  # Search in ir.sequence with name of the record
+
+            print("ir_sequence", ir_sequence)  # Print
+            if ir_sequence.number_next_actual == 99999:  # Condition if next number in ir.sequence == 1001 because we need max 1000
+                # For one letter exemple: A:1-99999, B:1-99999
+                vals['prenom_evalbox'] = ir_sequence.number_next_actual  # Update number_next_actual to 1
+
+                ir_sequence.number_next_actual = int('00001')
+                print("Hello //", ir_sequence.number_next_actual)
+                vals['prenom_evalbox'] = ir_sequence.number_next_actual
+                char = ir_sequence.alphabet
+                vals['nom_evalbox'] = chr(ord(char) + 1)
+                ir_sequence.alphabet = chr(ord(char) + 1)
+                if ir_sequence.alphabet == "[":
+                    ir_sequence.alphabet == "A"
+            else:
+                char = ir_sequence.alphabet
+                ir_sequence.alphabet = char
+                vals['nom_evalbox'] = ir_sequence.alphabet
+                vals['prenom_evalbox'] = ir_sequence.number_next_actual
+        return super(resComapny, self).create(vals)
+
 
