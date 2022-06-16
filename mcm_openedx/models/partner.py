@@ -571,7 +571,6 @@ class partner(models.Model):
     # supprimer ione le desinscrire des cours sur la platfrom moocit
     def supprimer_IOne_MCM(self):
 
-        self.supprimerdemoocit = date.today()
 
         departement = self.state_id.code
         _logger.info(departement)
@@ -579,18 +578,24 @@ class partner(models.Model):
         # supprimer l'apprenats en verifiant le module choisit
         if (self.module_id.product_id.default_code == "taxi"):
             self.desinscriteTaxi(self)
+            self.supprimerdemoocit = date.today()
+
             self.write({'state': 'supprimé'})
             _logger.info('state: supprimé')
 
 
         elif (self.module_id.product_id.default_code == "vtc"):
             self.desinscriteVTC(self)
+            self.supprimerdemoocit = date.today()
+
             self.write({'state': 'supprimé'})
             _logger.info('state: supprimé')
 
 
         elif (self.module_id.product_id.default_code == "vtc_bolt"):
             self.desinscriteVTC(self)
+            self.supprimerdemoocit = date.today()
+
             _logger.info('state: supprimé')
 
         # else:
