@@ -571,7 +571,7 @@ class partner(models.Model):
     # supprimer ione le desinscrire des cours sur la platfrom moocit
     def supprimer_IOne_MCM(self):
 
-        # self.supprimerdemoocit = self.mcm_session_id.date_exam + timedelta(days=5)
+        self.supprimerdemoocit = date.today()
 
         departement = self.state_id.code
         _logger.info(departement)
@@ -593,17 +593,17 @@ class partner(models.Model):
             self.desinscriteVTC(self)
             _logger.info('state: supprimé')
 
-        else:
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': _('La date de suppression n_est pas valide il va etre supprimer le:🤓 🤓  '),
-                    'message': _(self.supprimerdemoocit),
-                    'sticky': True,
-                    'className': 'bg-danger'
-                }
-            }
+        # else:
+        #     return {
+        #         'type': 'ir.actions.client',
+        #         'tag': 'display_notification',
+        #         'params': {
+        #             'title': _('La date de suppression n_est pas valide il va etre supprimer le:🤓 🤓  '),
+        #             'message': _(self.supprimerdemoocit),
+        #             'sticky': True,
+        #             'className': 'bg-danger'
+        #         }
+        #     }
 
     # affecter la date de suppression apres l'ajout  5 jours apres session
 
