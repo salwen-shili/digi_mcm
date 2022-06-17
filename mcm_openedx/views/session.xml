@@ -119,6 +119,7 @@
         <field name="context">{'search_default_group_company_id': 1}</field>
 
     </record>
+    <menuitem id="mcm_session_menu" name="Session" parent="main_mcm_openedx_menu" action="session_list_action"/>
 
 
 </odoo>

@@ -12,7 +12,7 @@
                 <field name="name"/>
                 <field name="date_edof"/>
                 <field name="state"/>
-                 <field name="existant"/>
+                <field name="existant"/>
                 <field name="existantsurmooc"/>
 
 
@@ -113,6 +113,7 @@
         <field name="res_model">mcm_openedx.enattente</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
+    <menuitem id="att_menu" name="En attente" parent="main_mcm_openedx_menu" action="attente_list_action"/>
 
 
 </odoo>

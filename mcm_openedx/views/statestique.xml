@@ -147,5 +147,6 @@
 
     </record>
 
+    <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
 
 </odoo>

@@ -37,7 +37,6 @@
             <form string="My Dashboard">
                 <board style="4-1">
                     <column>
-                        <action name="%(attente_tree_view)d" string="Les Apprenants en attente" view_mode="list"/>
 
 
                         <action name="%(act_stat_graph)d" string="Statestiques Cours" view_mode="graph"
