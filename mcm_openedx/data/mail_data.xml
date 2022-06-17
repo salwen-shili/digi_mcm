@@ -56,8 +56,8 @@
                                 style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">votre projet !
                         </span>
                     </p>
-                    <p style="font-size: 18px;">Rendez-vous vite sur notre plateforme ! Et pour pouvoir vous connecter,
-                        merci de rentrer vos identifiants de connexion que vous utilisez sur notre site web.
+                    <p style="font-size: 18px;">
+                        Rendez-vous vite sur notre plateforme ! Et pour pouvoir vous connecter, merci de rentrer vos identifiants de connexion que vous utilisez sur notre site web.
                     </p>
                     <p style="font-size: 18px;">
                         A très bientôt !
@@ -71,7 +71,7 @@
 
 
                     <br/>
-                    <p style="font-size: 15px;font-weight:700">
+                    <p style="font-size: 10px;font-weight:500">
                         Si vous souhaitez avoir plus de renseignements, n'hésitez
                         pas à contacter notre
                         <span
