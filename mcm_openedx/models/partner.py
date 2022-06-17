@@ -492,8 +492,8 @@ class partner(models.Model):
                             partner.with_context(force_send=True).message_post_with_template(template_id,
                                                                                              composition_mode='comment', )
 
-                        _logger("mail envoyeé")
-                        _logger(partner.email)
+                        _logger.info("mail envoyeé")
+                        _logger.info(partner.email)
 
                     bolt = self.bolt
                     evalbox = self.numero_evalbox
