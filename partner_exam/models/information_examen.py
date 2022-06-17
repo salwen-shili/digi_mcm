@@ -88,7 +88,7 @@ class NoteExamen(models.Model):
         ('absence_justifiee', 'Absence justifiée')],
         string="Présence")
 
-    date_resultat_officiel=fields.Date("Date Résultat officiel")
+    date_resultat_officiel = fields.Date("Date Résultat officiel")
     date_exam_pratique = fields.Date("Date Examen Pratique")
     code_evalbox = fields.Char()
 
