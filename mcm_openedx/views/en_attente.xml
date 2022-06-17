@@ -6,6 +6,8 @@
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
             <tree string="Apprennat en attente" decoration-bf="state" decoration-danger="state">
+                <field name="existantsurmooc"/>
+
                 <field name="externalId"/>
                 <field name="lastName"/>
                 <field name="firstName"/>
@@ -13,7 +15,6 @@
                 <field name="date_edof"/>
                 <field name="state"/>
                 <field name="existant"/>
-                <field name="existantsurmooc"/>
 
 
             </tree>
