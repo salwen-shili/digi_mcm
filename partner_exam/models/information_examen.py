@@ -90,7 +90,7 @@ class NoteExamen(models.Model):
 
     date_resultat_officiel = fields.Date("Date Résultat officiel")
     date_exam_pratique = fields.Date("Date Examen Pratique")
-    code_evalbox = fields.Char()
+    code_evalbox = fields.Char(string="Code Evalbox")
 
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):
