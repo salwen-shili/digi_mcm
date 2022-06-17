@@ -728,18 +728,14 @@ class Routes_Site(http.Controller):
         #     [('company_id', '=', 1), ('name', "=", 'bolt')], limit=1)
         loc = ("/home/odoo/src/user/mcm_website_theme/static/res_partner_bolt.xlsx")
         wb = xlrd.open_workbook(loc)  # read excel file using xlrd open_workbook function
-        list_user_has_facture = []
-        list_user_has_not_facture = []
+        list_user_won_or_have_session = []
+        list_user_no_session_no_won= []
         list_not_found_user = []
         sheet = wb.sheet_by_index(0)
         for i in range(sheet.nrows):  # range rows of excel files
             row = sheet.row_values(i)
-            _logger.info("email : %s" % (str(row[3])))
-            _logger.info("num : %s" % (str(row[6])))
-        #
-            email = str(row[3]).lower().replace(' ', '')
-            id_virement = str(row[6])
-        #     department = str(row[2])
+            _logger.info("email : %s" % (str(row[0])))
+            email = str(row[0]).lower().replace(' ', '')
             users = request.env['res.users'].sudo().search([('login', "=", email)])
 
 
@@ -748,17 +744,14 @@ class Routes_Site(http.Controller):
             if users:
                 for user in users:
                     if user:
-                        invoice = request.env['account.move'].sudo().search(
-                            [('partner_id', "=", user.partner_id.id), ('amount_total', "=", 20)], limit=1)
-                        if invoice :
-                            list_user_has_facture.append(user.email)
-                            invoice.stripe_sub_reference = id_virement
+                        if user.statut == 'won' or user.mcm_session_id :
+                            list_user_won_or_have_session.append(user.email)
                         else:
-                            list_user_has_not_facture.append(user.email)
+                            list_user_no_session_no_won.append(user)
             else:
                 list_not_found_user.append(email)
-        _logger.info("list_user_has_facture : %s" %(str(list_user_has_facture)))
-        _logger.info("list_user_has_not_facture : %s" %(str(list_user_has_not_facture)))
+        _logger.info("list_user_won_or_have_session : %s" %(str(list_user_won_or_have_session)))
+        _logger.info("list_user_no_session_no_won : %s" %(str(list_user_no_session_no_won)))
         _logger.info("list_not_found_user : %s" %(str(list_not_found_user)))
 
         #                 if not user.numero_evalbox:  # check if user has already an evalbox_number
