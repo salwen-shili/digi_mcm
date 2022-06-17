@@ -274,6 +274,9 @@ class mcmSession(models.Model):
     # if True Edit Groups and add another self.id_group_edusign to the existance
     # We can use it for adding a new student or update an existant student
     def addStudent(self, student, headers):
+        # First thing is to check if a group is already created.
+        # In case there is a session not created in edusign and this function has lunched a student creation or update
+        # on empty group
         name = {
             "firstName": student.firstName if student.firstName else "No_firstName",
             "lastName": student.lastName if student.lastName else "No_lastName",
@@ -711,6 +714,10 @@ class mcmSession(models.Model):
             company = self.env["res.company"].sudo().search([("id", "=", 2)], limit=1)
             if company:
                 api_key = company.edusign_api_key
+                if not api_key:
+                    _logger.info("Please add edusign api_key")
+                    return
+
                 headers = {
                     "Authorization": "Bearer %s" % (str(api_key)),
                     "Content-Type": "application/json",
@@ -845,6 +852,9 @@ class mcmSession(models.Model):
         if self.allowExecution():
             if company:
                 api_key = company.edusign_api_key
+                if not api_key:
+                    _logger.info("Please add edusign api_key")
+                    return
                 headers = {
                     "Authorization": "Bearer %s" % (str(api_key)),
                     "Content-Type": "application/json",
@@ -878,6 +888,9 @@ class mcmSession(models.Model):
             company = self.env["res.company"].sudo().search([("id", "=", 2)], limit=1)
             if company:
                 api_key = company.edusign_api_key
+                if not api_key:
+                    _logger.info("Please add edusign api_key")
+                    return
                 headers = {
                     "Authorization": "Bearer %s" % (str(api_key)),
                     "Content-Type": "application/json",
@@ -895,8 +908,10 @@ class mcmSession(models.Model):
                 studentsID = []
                 # check if Students list has been updated
                 if "name" in vals:
+                    self.addGroup(self, headers)
                     self.updateGroup(headers)
                 if "client_ids" in vals:
+                    self.addGroup(self, headers)
                     print("Students list has been updated from session.")
                     _logger.info("Students list has been updated from session")
 
@@ -918,7 +933,7 @@ class mcmSession(models.Model):
                     # Professor list has been updated
                     # Create professor if not exist and Launch create course
                     # get professor ID to create a course
-
+                    self.addGroup(self, headers)
                     professorsId = []
                     nbCountProfessor = {
                         "nbAdd": 0,
