@@ -32,6 +32,7 @@
         'views/notes_examens_partner.xml',
         'views/add_signature.xml',
         'views/assets.xml',
+        'views/sequence_evalbox.xml',
         'report/menu.xml',
         'report/convocation_contact.xml',
         'report/print_releve_note_mass.xml',

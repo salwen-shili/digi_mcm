@@ -88,8 +88,10 @@ class NoteExamen(models.Model):
         ('absence_justifiee', 'Absence justifiée')],
         string="Présence")
 
-    date_resultat_officiel=fields.Date("Date Résultat officiel")
+    date_resultat_officiel = fields.Date("Date Résultat officiel")
     date_exam_pratique = fields.Date("Date Examen Pratique")
+    code_evalbox = fields.Char(string="Code Evalbox")
+
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):
         for rec in self.env['info.examen'].search([]):
@@ -162,6 +164,7 @@ class NoteExamen(models.Model):
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                     self.partner_id.presence = "Présent(e)"
                     self.partner_id.resultat = "Admis(e)"
+                    self.code_evalbox = self.partner_id.code_evalbox
 
                 else:
                     # reset your fields
@@ -182,6 +185,7 @@ class NoteExamen(models.Model):
                         self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                         self.partner_id.presence = "Présent(e)"
                         self.partner_id.resultat = "Ajourné(e)"
+                        self.code_evalbox = self.partner_id.code_evalbox
                     elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification and rec.partner_id:
                         self.session_id = self.partner_id.mcm_session_id
                         self.module_id = self.partner_id.module_id.id
@@ -190,6 +194,7 @@ class NoteExamen(models.Model):
                         self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                         self.partner_id.update({'presence': "Absent(e)"})
                         self.partner_id.resultat = "Ajourné(e)"
+                        self.code_evalbox = self.partner_id.code_evalbox
                     elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True and rec.partner_id:
                         self.session_id = last_line.session_id
                         self.module_id = last_line.client_id.module_id.id
@@ -198,6 +203,7 @@ class NoteExamen(models.Model):
                         self.ville_id = last_line.session_id.session_ville_id.id
                         self.partner_id.update({'presence': "Absence justifiée"})
                         self.partner_id.resultat = "Ajourné(e)"
+                        self.code_evalbox = self.partner_id.code_evalbox
             else:
                 print("for mcm academy")
                 if self.state_theorique == 'reussi':

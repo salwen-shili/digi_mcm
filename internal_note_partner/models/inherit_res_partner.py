@@ -1,3 +1,4 @@
+import string
 from datetime import date
 
 from odoo import api, fields, models
@@ -50,18 +51,6 @@ class InheritResPartner(models.Model):
                         rec.resultat = "Admis(e)"
                     elif not resultat.resultat:
                         rec.resultat = "_______"
-                # for nb_passage in rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id), ('date_exam', '<', date.today())], limit=1, order="id desc"):
-                #     if nb_passage.nombre_de_passage == 'premier':
-                #         rec.nombre_de_passage = "Premier"
-                #         print("rec.nombre_de_passage1111", rec.nombre_de_passage)
-                #     if nb_passage.nombre_de_passage == 'deuxieme':
-                #         rec.nombre_de_passage = "Deuxième"
-                #         print("rec.nombre_de_passage2222", rec.nombre_de_passage)
-                #     if nb_passage.nombre_de_passage == 'troisieme':
-                #         rec.nombre_de_passage = "Troisième"
-                #         print("rec.nombre_de_passage3333", rec.nombre_de_passage)
-                #     elif not nb_passage.nombre_de_passage:
-                #         rec.nombre_de_passage = "_______"
 
     def _compute_get_last_internal_log(self):
         for record in self:
@@ -83,26 +72,6 @@ class InheritResPartner(models.Model):
             'context': "{'create': False, 'edit':False}"
         }
 
-    # @api.onchange("etat_financement_cpf_cb")
-    # def _financement_not_paid(self):
-    #     """ cette fonction sera executée une seul fois pour remplir les ancienes champs pour appliquer
-    #             la condition de coloration sur les clients avec des financements égale non payés """
-    #     # records/active_ids to get the records selected in tree view
-    #     active_ids = self.ids
-    #     active_ids = self.env.context.get('active_ids', [])
-    #     records = self.env['res.partner'].browse(self.env.context.get('active_ids'))
-    #     print("recordsssssss", records)
-    #     for rec in records:
-    #         print("for reccc", rec)
-    #         print("if rec.etat_financement_cpf_cb", rec.etat_financement_cpf_cb)
-    #         if rec.etat_financement_cpf_cb:
-    #             if rec.etat_financement_cpf_cb == 'not_paid':
-    #                 print("not_paid", rec.etat_financement_cpf_cb)
-    #                 self.is_not_paid = True
-    #             if rec.etat_financement_cpf_cb == 'paid':
-    #                 self.is_not_paid = False
-    #                 print("Paid", rec.etat_financement_cpf_cb)
-
     def write(self, values):
         """ Mettre à jour presence & resultat fields pour chaque mise à jour"""
 
@@ -110,7 +79,7 @@ class InheritResPartner(models.Model):
         if 'note_exam_id' in values:
             print("here", 'note_exam_id')
             self._get_last_presence_resultat_values()
-            #Update boolean fields to set colors(red, orange, green) in contact list
+            # Update boolean fields to set colors(red, orange, green) in contact list
             if self.resultat == 'Admis(e)':
                 self.is_recu = True
                 self.is_ajourne = False
@@ -135,4 +104,3 @@ class InheritResPartner(models.Model):
                 self.is_recu = False
                 self.is_absence_justifiee = False
         return val
-
