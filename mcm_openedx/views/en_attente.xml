@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="attente_tree_view">
+    <record model="ir.ui.view" id="mcm_oprnedx_attente_tree_view">
         <field name="name">Apprenants en attente</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
             <tree string="Apprennat en attente" decoration-bf="state" decoration-danger="state">
                 <field name="existantsurmooc"/>
-
                 <field name="externalId"/>
                 <field name="lastName"/>
                 <field name="firstName"/>
@@ -20,7 +19,7 @@
             </tree>
         </field>
     </record>
-    <record model="ir.ui.view" id="attente_form_view">
+    <record model="ir.ui.view" id="mcm_oprnedx_attente_form_view">
         <field name="name">Apprenants</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
@@ -53,7 +52,7 @@
             </form>
         </field>
     </record>
-    <record model="ir.ui.view" id="att_kanban">
+    <record model="ir.ui.view" id="mcm_oprnedx_attente_kanban">
         <field name="name">name</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
@@ -109,12 +108,12 @@
     </record>
 
 
-    <record model="ir.actions.act_window" id="attente_list_action">
+    <record model="ir.actions.act_window" id="mcm_oprnedx_attente_list_action">
         <field name="name">Les Apprenants</field>
         <field name="res_model">mcm_openedx.enattente</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
-    <menuitem id="att_menu" name="En attente" parent="main_mcm_openedx_menu" action="attente_list_action"/>
+    <menuitem id="att_menu" name="En attente" parent="main_mcm_openedx_menu" action="mcm_oprnedx_attente_list_action"/>
 
 
 </odoo>
