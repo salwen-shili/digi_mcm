@@ -753,6 +753,16 @@ class Routes_Site(http.Controller):
         _logger.info("list_user_won_or_have_session : %s" %(str(list_user_won_or_have_session)))
         _logger.info("list_user_no_session_no_won : %s" %(str(list_user_no_session_no_won)))
         _logger.info("list_not_found_user : %s" %(str(list_not_found_user)))
+        for user in list_user_no_session_no_won:
+            subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mt_note')
+            message = self.env['mail.message'].sudo().create({
+                'subject': 'Session supprimé',
+                'model': 'res.partner',
+                'res_id': user.partner_id.id,
+                'message_type': 'notification',
+                'subtype_id': subtype_id,
+                'body': 'supprimé de la session du mois de juin suite à la demande de kawther dhmiri',
+            })
 
         #                 if not user.numero_evalbox:  # check if user has already an evalbox_number
         #                     if num_dossier:
