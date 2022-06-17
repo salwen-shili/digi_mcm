@@ -78,7 +78,7 @@
             </graph>
         </field>
     </record>
-    <record model="ir.ui.view" id="view_openacad_session_kanban">
+    <record model="ir.ui.view" id="view_openacad_coach_kanban">
         <field name="name">coach.kanban</field>
         <field name="model">mcm_openedx.coach</field>
         <field name="arch" type="xml">

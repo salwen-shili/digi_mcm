@@ -112,14 +112,14 @@
             </kanban>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="session_list_action">
+    <record model="ir.actions.act_window" id="mcm_session_list_action">
         <field name="name">Les Sessions</field>
         <field name="res_model">mcmacademy.session</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="context">{'search_default_group_company_id': 1}</field>
 
     </record>
-    <menuitem id="mcm_session_menu" name="Session" parent="main_mcm_openedx_menu" action="session_list_action"/>
+    <menuitem id="mcm_session_menu" name="Session" parent="main_mcm_openedx_menu" action="mcm_session_list_action"/>
 
 
 </odoo>

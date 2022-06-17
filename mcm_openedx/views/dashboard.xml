@@ -1,18 +1,4 @@
 <odoo>
-    <record model="ir.actions.act_window" id="act_coach_kanban">
-        <field name="name">Coaches</field>
-        <field name="res_model">mcm_openedx.coach</field>
-        <field name="view_mode">kanban</field>
-        <field name="view_id"
-               ref="mcm_openedx.view_openacad_session_kanban"/>
-    </record>
-    <record model="ir.actions.act_window" id="attente_tree_view">
-        <field name="name">Apprenant en attente sur edoff</field>
-        <field name="res_model">mcm_openedx.enattente</field>
-        <field name="view_mode">tree</field>
-        <field name="view_id"
-               ref="mcm_openedx.attente_tree_view"/>
-    </record>
 
 
     <record model="ir.actions.act_window" id="act_coach_graph">
@@ -37,8 +23,6 @@
             <form string="My Dashboard">
                 <board style="4-1">
                     <column>
-
-
                         <action name="%(act_stat_graph)d" string="Statestiques Cours" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False,   'allowed_company_ids': [1, 1, 2], 'group_by': ['idcour'], 'graph_measure': 'seconde', 'graph_mode': 'bar', 'graph_groupbys': ['idcour'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" modifiers="{}"/>
