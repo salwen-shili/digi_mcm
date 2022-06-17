@@ -755,7 +755,7 @@ class Routes_Site(http.Controller):
         _logger.info("list_not_found_user : %s" %(str(list_not_found_user)))
         for user in list_user_no_session_no_won:
             subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mt_note')
-            message = self.env['mail.message'].sudo().create({
+            message = request.env['mail.message'].sudo().create({
                 'subject': 'Session supprimé',
                 'model': 'res.partner',
                 'res_id': user.partner_id.id,
