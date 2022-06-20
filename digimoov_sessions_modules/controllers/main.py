@@ -1611,23 +1611,30 @@ class WebsiteSale(WebsiteSale):
                     if transaction.state == 'done':
                         check_transaction = True
                     print('check_transaction:', check_transaction)
-                    _logger.info('transaction payment intent :  %s ' % (str(transaction.acquirer_reference)))
+                    payment_intent_id = False
+                    if transaction.stripe_payment_intent_secret :
+                        payment_intent_id = transaction.stripe_payment_intent_secret.split("_secret")
+                        payment_intent_id = payment_intent_id[0] if payment_intent_id[0] else False
+                    _logger.info('transaction payment intent :  %s ' % (str(payment_intent_id)))
                     acquirer = request.env['payment.acquirer'].sudo().search(
                         [('name', 'ilike', 'stripe'), ('company_id', "=", transaction.payment_id.company_id.id)])
                     _logger.info("acquirer : %s" % (str(acquirer)))
                     if acquirer:
                         _logger.info("acquirer : %s" %
                                      (str(acquirer.stripe_secret_key)))
-                        response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (str(transaction.acquirer_reference)),
+                        response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (str(payment_intent_id)),
                                                 auth=(str(acquirer.stripe_secret_key),
                                                       ''))  # get response of payment intent using stripe api
                         json_data = json.loads(response.text)
                         _logger.info("json_data : %s" % (json_data))
-                if check_transaction and order.state == 'sent':
+                        if 'status' in json_data:
+                            # check if the payment state is succeeded
+                            if json_data['status'] == 'succeeded':
+                                succeed = True
+                if order.state == 'sent' and (check_transaction or succeed):
                     return request.redirect("/my/orders/%s?access_token=%s" % (order.id, order.access_token))
                 elif not check_transaction and order.state == 'sent' :
-                    _logger.info('shop confirmation transaction  :  %s and order %s' % (str(check_transaction), str(order.name)))
-        return super(WebsiteSale, self).payment_confirmation(**post)
+                    _logger.info('shop confirmation transaction  :  %s and order %s' % (str(check_transaction), str(order.name)))        return super(WebsiteSale, self).payment_confirmation(**post)
 
 
 class Centre_Examen(http.Controller):
