@@ -121,36 +121,40 @@ class resComapny(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals['company_id'] == 2:  # company DIGIMOOV
-            vals['prenom_evalbox'] = self.env['ir.sequence'].next_by_code(
+        """ Lors de la création d'une nouvelle fiche client le nom evalbox sera rempli par
+        un alphabet et prénom evalbox par séquence des nombres puis ça sera concaténé dans le champ evalbox"""
+        res = super(resComapny, self).create(vals)
+        _logger.info("res %s" % str(res))
+        if res.company_id.id == 2:
+            res.prenom_evalbox = self.env['ir.sequence'].next_by_code(
                 'res.partner') or '/'  # Affectation: Generate a sequence number to prenom_evalbox field
 
             ir_sequence = self.env['ir.sequence'].search([('name', '=', "Res Partner Evalbox")],
                                                          limit=1)  # Search in ir.sequence with name of the record
             if ir_sequence.number_next_actual == 100000:  # Condition if next number in ir.sequence == 1001 because we need max 1000
                 # For one letter exemple: A:1-99999, B:1-99999
-                vals['prenom_evalbox'] = ir_sequence.number_next_actual  # Update number_next_actual to 1
+                res.prenom_evalbox = ir_sequence.number_next_actual  # Update number_next_actual to 1
                 ir_sequence.number_next_actual = int('00001')  # Initialisation de 1
-                vals['prenom_evalbox'] = ir_sequence.number_next_actual
+                res.prenom_evalbox = ir_sequence.number_next_actual
 
                 char = ir_sequence.alphabet  # Global variable char to get alphabet from the search in sequence class
                 print("char///", char)
                 if chr(ord(char) + 1) == "[":  # refaire boucle apres "Z" ==> "[" : le champ alphabet sera égale à "A"
                     ir_sequence.alphabet = "A"
                     char = ir_sequence.alphabet
-                    vals['nom_evalbox'] = char
-                    vals['code_evalbox'] = str(vals['nom_evalbox']) + str(
-                        vals['prenom_evalbox'])  # To concatenate (combine) multiple fields
+                    res.nom_evalbox = char
+                    res.code_evalbox = str(res.nom_evalbox) + str(
+                        res.prenom_evalbox)  # To concatenate (combine) multiple fields
                 else:
                     char = chr(ord(char) + 1)
-                    vals['nom_evalbox'] = char
-                    vals['code_evalbox'] = str(vals['nom_evalbox']) + str(
-                        vals['prenom_evalbox'])  # To concatenate (combine) multiple fields
+                    res.nom_evalbox = char
+                    res.code_evalbox = str(res.nom_evalbox) + str(
+                        res.prenom_evalbox)  # To concatenate (combine) multiple fields
             else:  # If number_next_actual != 100000
                 char = ir_sequence.alphabet
                 ir_sequence.alphabet = char
-                vals['nom_evalbox'] = ir_sequence.alphabet  # Get alphabet from ir.sequence class
-                vals['prenom_evalbox'] = ir_sequence.number_next_actual
-                vals['code_evalbox'] = str(vals['nom_evalbox']) + str(
-                    vals['prenom_evalbox'])  # To concatenate (combine) multiple fields
-        return super(resComapny, self).create(vals)  # Return data in create function
+                res.nom_evalbox = ir_sequence.alphabet  # Get alphabet from ir.sequence class
+                res.prenom_evalbox = ir_sequence.number_next_actual
+                res.code_evalbox = str(res.nom_evalbox) + str(
+                    res.prenom_evalbox)  # To concatenate (combine) multiple fields
+        return res
