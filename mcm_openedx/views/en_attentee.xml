@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
+    <record id="en_attent_view" model="ir.ui.view">
+        <field name="name">En attente</field>
+        <field name="model">mcm_openedx.enattente</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" filter_domain="[('name','ilike',self)]"></field>
+                <field name="externalId" filter_domain="[('externalId','ilike',self)]"></field>
+
+            </search>
+        </field>
+    </record>
+
+
     <record model="ir.ui.view" id="mcm_openedx_attente_tree_view">
         <field name="name">Apprenants en attente</field>
         <field name="model">mcm_openedx.enattente</field>
@@ -14,8 +27,6 @@
                 <field name="date_edof"/>
                 <field name="state"/>
                 <field name="existant"/>
-
-
             </tree>
         </field>
     </record>
@@ -46,6 +57,10 @@
 
                     <h5>Prenom</h5>
                     <field name="lastName"/>
+                    <h5>Exist sur moocit</h5>
+                    <field name="existant"/>
+                    <h5>Exist sur ODOO</h5>
+                    <field name="existantsurmooc"/>
 
                 </sheet>
 
@@ -108,7 +123,7 @@
 
 
     <record model="ir.actions.act_window" id="mcm_openedx_attente_list_action">
-        <field name="name">Les Apprenants</field>
+        <field name="name">Les Apprenants via Wedof</field>
         <field name="res_model">mcm_openedx.enattente</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
