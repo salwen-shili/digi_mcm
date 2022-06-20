@@ -646,92 +646,92 @@ class ResPartner(models.Model):
     #         return res
     #     return res
 
-    def write(self, values):
-        # Add code here
-        res = super(ResPartner, self).write(values)
-        ax_api_id = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.ax_api_id')
-        ax_api_token = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.ax_api_token')
-
-        is_auto_update = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.is_auto_update')
-        # base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        #
-        # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-        for rec in self:
-            if 'air_contact_id' not in values:
-                if ax_api_id and ax_api_token and is_auto_update and rec.air_contact_id and (rec.phone or rec.mobile):
-                    phone_num = []
-                    emails = []
-                    if 'phone' in values:
-                        phone = str(values['phone'].replace(' ', ''))[-9:]
-                        phone = '+33' + phone
-                        phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:] #convert the phone number format to +33 X XX XX XX XX and send it to aircall in write function of res partner
-                        phone_num.append({
-                            "label": "Phone Number",
-                            "value": values['phone']
-                        })
-
-                    elif 'mobile' in values:
-                        phone = str(values['mobile'].replace(' ', ''))[-9:]
-                        phone = '+33' + phone
-                        phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
-                        phone_num.append({
-                            "label": "Mobile Number",
-                            "value": values['mobile']
-                        })
-
-                    if 'email' in values:
-                        emails = [
-                            {
-                                "label": "Odoo email",
-                                "value": rec.email
-                            }
-                        ]
-
-                    data = {
-                        "first_name": rec.name,
-
-                        "information": "created from Odoo",
-                        "phone_numbers": phone_num,
-                        "emails": [
-                            {
-                                "label": "Odoo email",
-                                "value": rec.email
-                            }
-                        ]
-                    }
-
-                    auth = ax_api_id + ':' + ax_api_token
-                    encoded_auth = base64.b64encode(auth.encode()).decode()
-                    header = {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Basic :{}'.format(encoded_auth)
-
-                    }
-
-                    response = requests.post(
-                        'https://api.aircall.io/v1/contacts/{}'.format(rec.air_contact_id),
-
-                        data=json.dumps(data),
-                        headers=header)
-                    if response :
-                        if response.status_code == 404 or response.status_code == 400:
-                            raise ValidationError(
-                                json.loads(response.content)['error'] + ',' + json.loads(response.content)['troubleshoot'])
-                        if response.content:
-                            response = json.loads(response.content)
-                            if response :
-                                self.air_contact_id = response['contact']['id']
-                            return res
-                        else:
-                            return res
-                    else:
-                        return res
-                else:
-                    return res
-            else:
-                return res
-        else:
-            return res
+    # def write(self, values):
+    #     # Add code here
+    #     res = super(ResPartner, self).write(values)
+    #     ax_api_id = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.ax_api_id')
+    #     ax_api_token = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.ax_api_token')
+    #
+    #     is_auto_update = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.is_auto_update')
+    #     # base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+    #     #
+    #     # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+    #     for rec in self:
+    #         if 'air_contact_id' not in values:
+    #             if ax_api_id and ax_api_token and is_auto_update and rec.air_contact_id and (rec.phone or rec.mobile):
+    #                 phone_num = []
+    #                 emails = []
+    #                 if 'phone' in values:
+    #                     phone = str(values['phone'].replace(' ', ''))[-9:]
+    #                     phone = '+33' + phone
+    #                     phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:] #convert the phone number format to +33 X XX XX XX XX and send it to aircall in write function of res partner
+    #                     phone_num.append({
+    #                         "label": "Phone Number",
+    #                         "value": values['phone']
+    #                     })
+    #
+    #                 elif 'mobile' in values:
+    #                     phone = str(values['mobile'].replace(' ', ''))[-9:]
+    #                     phone = '+33' + phone
+    #                     phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
+    #                     phone_num.append({
+    #                         "label": "Mobile Number",
+    #                         "value": values['mobile']
+    #                     })
+    #
+    #                 if 'email' in values:
+    #                     emails = [
+    #                         {
+    #                             "label": "Odoo email",
+    #                             "value": rec.email
+    #                         }
+    #                     ]
+    #
+    #                 data = {
+    #                     "first_name": rec.name,
+    #
+    #                     "information": "created from Odoo",
+    #                     "phone_numbers": phone_num,
+    #                     "emails": [
+    #                         {
+    #                             "label": "Odoo email",
+    #                             "value": rec.email
+    #                         }
+    #                     ]
+    #                 }
+    #
+    #                 auth = ax_api_id + ':' + ax_api_token
+    #                 encoded_auth = base64.b64encode(auth.encode()).decode()
+    #                 header = {
+    #                     'Content-Type': 'application/json',
+    #                     'Authorization': 'Basic :{}'.format(encoded_auth)
+    #
+    #                 }
+    #
+    #                 response = requests.post(
+    #                     'https://api.aircall.io/v1/contacts/{}'.format(rec.air_contact_id),
+    #
+    #                     data=json.dumps(data),
+    #                     headers=header)
+    #                 if response :
+    #                     if response.status_code == 404 or response.status_code == 400:
+    #                         raise ValidationError(
+    #                             json.loads(response.content)['error'] + ',' + json.loads(response.content)['troubleshoot'])
+    #                     if response.content:
+    #                         response = json.loads(response.content)
+    #                         if response :
+    #                             self.air_contact_id = response['contact']['id']
+    #                         return res
+    #                     else:
+    #                         return res
+    #                 else:
+    #                     return res
+    #             else:
+    #                 return res
+    #         else:
+    #             return res
+    #     else:
+    #         return res
 
     def export_contact(self):
         ax_api_id = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.ax_api_id')
