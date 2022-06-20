@@ -26,13 +26,13 @@ class PaymentTransaction(models.Model):
                     for partner in sale.session_id.client_ids:
                         list.append(partner.id)
                     list.append(sale.partner_id.id)
-                    sale.session_id.write({'client_ids': [(6, 0, list)]})
+                    sale.session_id.sudo().write({'client_ids': [(6, 0, list)]})
                     canceled_list=[]
                     for partner in sale.session_id.panier_perdu_ids:
                         if (partner.id != sale.partner_id.id):
                             canceled_list.append(partner.id)
-                    sale.session_id.write({'panier_perdu_ids': [(6, 0, canceled_list)]})
-                    sale.partner_id.statut='won'
+                    sale.session_id.sudo().write({'panier_perdu_ids': [(6, 0, canceled_list)]})
+                    sale.partner_id.sudo().write({'statut' : 'won'})
                     sale.partner_id.mode_de_financement = 'particulier'
                     sale.partner_id.mcm_session_id=sale.session_id
                     sale.partner_id.module_id=sale.module_id

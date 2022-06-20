@@ -25,6 +25,7 @@ class PaymentTransaction(models.Model):
                 Session = self.env['mcm.session']
                 sale.partner_id.mcm_session_id = sale.session_id
                 sale.partner_id.module_id = sale.module_id
+                sale.partner_id.sudo().write({'statut': 'won'})
                 sale.partner_id.mode_de_financement = 'particulier'
                 for order in sale.order_line:
                     session = Session.sudo().search([('product_id', '=', order.product_id.product_tmpl_id.id)])
@@ -57,6 +58,7 @@ class PaymentTransaction(models.Model):
                 sale.action_confirm()
                 sale.partner_id.mcm_session_id=sale.session_id
                 sale.partner_id.module_id=sale.module_id
+                sale.partner_id.sudo().write({'statut': 'won'})
                 sale.partner_id.mode_de_financement ='particulier'
                 moves = sale._create_invoices(final=False)
                 for move in moves:
