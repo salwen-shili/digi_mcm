@@ -1605,11 +1605,24 @@ class WebsiteSale(WebsiteSale):
                         else:
                             return request.redirect("/pricing")
                 check_transaction = False
+                succeed = False
                 for transaction in order.transaction_ids:
                     _logger.info('shop confirmation transaction  :  %s and order %s'  % (str(transaction.state),str(order.name)))
                     if transaction.state == 'done':
                         check_transaction = True
-                print('check_transaction:', check_transaction)
+                    print('check_transaction:', check_transaction)
+                    _logger.info('transaction payment intent :  %s ' % (str(transaction.acquirer_reference)))
+                    acquirer = request.env['payment.acquirer'].sudo().search(
+                        [('name', 'ilike', 'stripe'), ('company_id', "=", transaction.payment_id.company_id.id)])
+                    _logger.info("acquirer : %s" % (str(acquirer)))
+                    if acquirer:
+                        _logger.info("acquirer : %s" %
+                                     (str(acquirer.stripe_secret_key)))
+                        response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (intent_id),
+                                                auth=(str(acquirer.stripe_secret_key),
+                                                      ''))  # get response of payment intent using stripe api
+                        json_data = json.loads(response.text)
+                        _logger.info("json_data : %s" % (json_data))
                 if check_transaction and order.state == 'sent':
                     return request.redirect("/my/orders/%s?access_token=%s" % (order.id, order.access_token))
                 elif not check_transaction and order.state == 'sent' :
