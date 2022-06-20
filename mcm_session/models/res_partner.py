@@ -16,15 +16,15 @@ class resPartner(models.Model):
         ('panier_perdu', 'Panier perdu'),
         ('canceled', 'Annulé'),
         ('finalized', 'Finalisé'),
-    ], string='Statut Client', domain="[('customer_rank', '>', 0)]", default="indecis")
-    module_id = fields.Many2one('mcmacademy.module')
+    ], string='Statut Client', domain="[('customer_rank', '>', 0)]", default="indecis", track_visibility='always')
+    module_id = fields.Many2one('mcmacademy.module', track_visibility='always')
     mcm_session_id = fields.Many2one('mcmacademy.session', track_visibility='always')
     mode_de_financement = fields.Selection(selection=[
         ('particulier', 'Personnel'),
         ('cpf', 'Mon Compte Formation, CPF'),
         ('chpf', 'Région Hauts-de-France, CHPF'),
         ('aif', 'Pôle emploi, AIF'),
-    ], string='Mode de financement', domain="[('customer_rank', '>', 0)]", default="particulier")
+    ], string='Mode de financement', domain="[('customer_rank', '>', 0)]", default="particulier", track_visibility='always')
     code_pole_emploi = fields.Char('Code Pôle Emploi')
     code_interne=fields.Char('Code Interne')
     nationality=fields.Char('Nationalité')

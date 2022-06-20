@@ -68,7 +68,7 @@ class NoteExamen(models.Model):
     # Champ Mcm-academy
     epreuve_theorique = fields.Selection([
         ('reussi', 'Réussi(e)'),
-        ('ajourne', 'Ajourné(e)')], string="Epreuve théorique")
+        ('ajourne', 'Ajourné(e)')], string="Epreuve théorique", track_visibility='always')
 
     epreuve_pratique = fields.Selection([
         ('reussi', 'Réussi(e)'),
@@ -86,10 +86,10 @@ class NoteExamen(models.Model):
         ('present', 'Présent'),
         ('Absent', 'Absent'),
         ('absence_justifiee', 'Absence justifiée')],
-        string="Présence")
+        string="Présence", track_visibility='always')
 
     date_resultat_officiel = fields.Date("Date Résultat officiel")
-    date_exam_pratique = fields.Date("Date Examen Pratique")
+    date_exam_pratique = fields.Date("Date Examen Pratique", track_visibility='always')
     code_evalbox = fields.Char(string="Code Evalbox")
 
     @api.depends('partner_id.phone')
