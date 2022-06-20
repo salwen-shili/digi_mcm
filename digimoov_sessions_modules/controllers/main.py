@@ -1618,7 +1618,7 @@ class WebsiteSale(WebsiteSale):
                     if acquirer:
                         _logger.info("acquirer : %s" %
                                      (str(acquirer.stripe_secret_key)))
-                        response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (intent_id),
+                        response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (str(transaction.acquirer_reference)),
                                                 auth=(str(acquirer.stripe_secret_key),
                                                       ''))  # get response of payment intent using stripe api
                         json_data = json.loads(response.text)
