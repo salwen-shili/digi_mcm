@@ -143,7 +143,24 @@ class NoteExamen(models.Model):
                     line.epreuve_b = qro
                     line.moyenne_generale = (line.epreuve_a + line.epreuve_b)
 
-    @api.onchange('partner_id', 'epreuve_a', 'epreuve_b', 'presence', 'nombre_de_passage', 'presence_mcm', 'state_pratique', 'epreuve_pratique')
+    def _calcul_ancien_client_resultat_mcm(self):
+        """ Suit aux changements pour les notes des examens de mcm, on ve mettre a jour le champ presence et resultat"""
+        for line in self.env['info.examen'].sudo().search([]):
+            if line.state_theorique:
+                print("line", line)
+                if line.state_theorique == 'reussi':
+                    line.partner_id.resultat = 'Réussi(e)'
+                elif line.state_pratique == 'ajourne':
+                    line.partner_id.resultat = 'Ajourné(e)'
+                if line.presence_mcm == 'present':
+                    line.partner_id.presence = 'Présent(e)'
+                elif line.presence_mcm == 'Absent':
+                    line.partner_id.presence = 'Absent(e)'
+                else:
+                    line.partner_id.presence = 'Absence justifiée'
+
+    @api.onchange('partner_id', 'epreuve_a', 'epreuve_b', 'presence', 'nombre_de_passage', 'presence_mcm',
+                  'state_pratique', 'epreuve_pratique')
     def compute_moyenne_generale(self):
         """ This function used to auto display some result
         like the "Moyenne Generale" & "Mention" & "Resultat" """
