@@ -1604,13 +1604,16 @@ class WebsiteSale(WebsiteSale):
                             return request.redirect("/%s" % (pricelist.name))
                         else:
                             return request.redirect("/pricing")
-                check_transaction = True
+                check_transaction = False
                 for transaction in order.transaction_ids:
-                    if transaction.state != 'done':
-                        check_transaction = False
+                    _logger.info('shop confirmation transaction  :  %s and order %s'  % (str(transaction.state),str(order.name)))
+                    if transaction.state == 'done':
+                        check_transaction = True
                 print('check_transaction:', check_transaction)
                 if check_transaction and order.state == 'sent':
                     return request.redirect("/my/orders/%s?access_token=%s" % (order.id, order.access_token))
+                elif not check_transaction and order.state == 'sent' :
+                    _logger.info('shop confirmation transaction  :  %s and order %s' % (str(check_transaction), str(order.name)))
         return super(WebsiteSale, self).payment_confirmation(**post)
 
 

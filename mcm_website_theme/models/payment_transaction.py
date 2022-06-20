@@ -20,6 +20,7 @@ class PaymentTransaction(models.Model):
         if self.reference:
             data = self.reference.split("-")
             sale = self.env['sale.order'].sudo().search([('name', 'ilike', data[0])])
+            _logger.info("_set_transaction_done %s and state_of_transaction %s and sale is : %s" %(str(self.stripe_payment_intent),str(self.state),str(sale.name)))
             if (self.stripe_payment_intent and self.state == 'done' and sale):
                 Session = self.env['mcm.session']
                 sale.partner_id.mcm_session_id = sale.session_id
