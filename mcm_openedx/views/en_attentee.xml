@@ -15,17 +15,18 @@
 
 
     <record model="ir.ui.view" id="mcm_openedx_attente_tree_view">
-        <field name="name">Apprenants en attente</field>
+        <field name="name">WEDOF</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
-            <tree string="Apprennat en attente">
-                <field name="existantsurmooc"/>
+            <tree string="Apprennat en attente sur EDOF">
                 <field name="externalId"/>
                 <field name="lastName"/>
                 <field name="firstName"/>
                 <field name="name"/>
                 <field name="date_edof"/>
                 <field name="state"/>
+                <field name="existantsurmooc"/>
+
                 <field name="existant"/>
             </tree>
         </field>
