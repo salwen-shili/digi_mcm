@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="attente_tree_view">
-        <field name="name">Apprenants en attente</field>
+    <record id="en_attent_view" model="ir.ui.view">
+        <field name="name">En attente</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
-            <tree string="Apprennat en attente" decoration-bf="state" decoration-danger="state">
+            <search>
+                <field name="name" filter_domain="[('name','ilike',self)]"></field>
+                <field name="externalId" filter_domain="[('externalId','ilike',self)]"></field>
+
+            </search>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="mcm_openedx_attente_tree_view">
+        <field name="name">WEDOF</field>
+        <field name="model">mcm_openedx.enattente</field>
+        <field name="arch" type="xml">
+            <tree string="Apprennat en attente sur EDOF">
                 <field name="externalId"/>
                 <field name="lastName"/>
                 <field name="firstName"/>
                 <field name="name"/>
                 <field name="date_edof"/>
                 <field name="state"/>
-                 <field name="existant"/>
                 <field name="existantsurmooc"/>
 
-
+                <field name="existant"/>
             </tree>
         </field>
     </record>
-    <record model="ir.ui.view" id="attente_form_view">
-        <field name="name">Apprenants</field>
+    <record model="ir.ui.view" id="mcm_openedx_attente_form_view">
+        <field name="name">Apprenants En attente</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
             <form string="Apprennat">
@@ -46,13 +58,17 @@
 
                     <h5>Prenom</h5>
                     <field name="lastName"/>
+                    <h5>Exist sur moocit</h5>
+                    <field name="existant"/>
+                    <h5>Exist sur ODOO</h5>
+                    <field name="existantsurmooc"/>
 
                 </sheet>
 
             </form>
         </field>
     </record>
-    <record model="ir.ui.view" id="att_kanban">
+    <record model="ir.ui.view" id="mcm_openedx_attente_kanban">
         <field name="name">name</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
@@ -93,8 +109,7 @@
                                 Staut De l'apprannat:
                                 <field name="state"/>
                                 <br/>
-                                <!-- Staut De Payement
-                                 <field name="billingState"/>-->
+
                                 <br/>
                                 ExternalId
                                 <field name="externalId"/>
@@ -108,11 +123,13 @@
     </record>
 
 
-    <record model="ir.actions.act_window" id="attente_list_action">
-        <field name="name">Les Apprenants</field>
+    <record model="ir.actions.act_window" id="mcm_openedx_attente_list_action">
+        <field name="name">Les Apprenants via Wedof</field>
         <field name="res_model">mcm_openedx.enattente</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
+    <menuitem id="att_menu_mcm" name="En attente" parent="main_mcm_openedx_menu"
+              action="mcm_openedx_attente_list_action"/>
 
 
 </odoo>

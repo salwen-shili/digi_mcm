@@ -655,27 +655,32 @@ class partner(models.Model):
 
     # suppression des anciens apprenat  de 2020 2021
     def update_suppresion_old_apprenats(self):
-        datee = datetime.today()
-        print(datee.year)
-        count = 0
+        locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+        for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
 
-        for partner in self.env['res.partner'].sudo().search([('company_id', '!=', 2),
-                                                              ('mcm_session_id.date_fin', '!=', False),
-                                                              ]):
-            year_session = partner.mcm_session_id.date_fin.year
-            if (year_session < datee.year):
-                print("nononon", partner.mcm_session_id.date_fin.year)
-                print("nononon", partner.mcm_session_id.name)
-                print(partner.email)
-                count = count + 1
-                partner.supprimerdemoocit = date.today()
+            datee = datetime.today()
+            print(datee.year)
+            count = 0
+
+            for partner in self.env['res.partner'].sudo().search([('company_id', '!=', 2),
+                                                                  ('mcm_session_id.date_fin', '!=', False),
+                                                                  ]):
+                year_session = partner.mcm_session_id.date_fin.year
+                if (year_session < datee.year):
+                    print("nononon", partner.mcm_session_id.date_fin.year)
+                    print("nononon", partner.mcm_session_id.name)
+                    print(partner.email)
+                    count = count + 1
+                    partner.supprimerdemoocit = date.today()
+                    partner.write({'state': 'supprimé'})
+                print("nombre des apprenants a supprimer ", count)
 
                 if (partner.module_id.product_id.default_code == "taxi"):
-                    self.desinscriteTaxi(partner)
+                    partner.desinscriteTaxi(partner)
                 elif (partner.module_id.product_id.default_code == "vtc"):
-                    self.desinscriteVTC(partner)
+                    partner.desinscriteVTC(partner)
                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                    self.desinscriteVTC(partner)
+                    partner.desinscriteVTC(partner)
 
     def convertir_date_inscription(self):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
