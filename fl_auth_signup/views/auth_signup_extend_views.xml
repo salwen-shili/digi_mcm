@@ -174,7 +174,12 @@
                                                 <span></span>
                                             </div>
                                         </div>
+                                        <t t-if="phone">
+                                            <br />
+                                            <br />
+                                        </t>
                                         <div class="outlined-input-field bg-c" id="phone_container" t-if="phone">
+
                                             <input type="text" id="phone" name="phone" class="outlined-text-field" autocomplete="off" t-att-value="phone" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" t-att-readonly="'readonly' if phone else None" />
                                             <label for="phone" style="top: -0.7rem;padding: 0.25rem;">Téléphone *
                                             </label>
@@ -198,6 +203,8 @@
                                             <label for="email" style="top: -0.7rem;padding: 0.25rem;">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <span>Vous ne pouvez pas modifier votre email.</span>
+                                            <br />
+                                            <br />
                                         </div>
 
                                         <br t-if="not name or not last_login" />
@@ -736,7 +743,7 @@
                                 </p>
                                 <input type="hidden" name="redirect" t-att-value="redirect" />
                                 <input type="hidden" name="token" t-att-value="token" />
-                                <div class="clearfix oe_login_buttons" t-if="not token">
+                                <div class="clearfix oe_login_buttons">
                                     <div class="d-flex justify-content-between align-items-center small mt-2 mb16">
                                         <a style="font-size: 16px; color: #5850ec; text-decoration: underline !important;" t-if="not token" t-attf-href="/web/login?{{ keep_query() }}">Revenir à
                                             l’écran de connexion
@@ -745,13 +752,14 @@
                                         </a>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" style="width:100%" t-attf-class="rkmd-btn    #{'btn-indigo' if request.website.id == 2 else 'btn-black'}">
+                                        <button type="submit" style="" t-if="not error" t-attf-class="rkmd-btn    #{'btn-indigo' if request.website.id == 2 else 'btn-black'}">
                                             Confirmer
                                         </button>
 
                                     </div>
                                     <div class="o_login_auth" />
                                 </div>
+
                             </form>
                         </div>
                         <div class="col-lg-6 text-center logo-flex " t-if="not token">
@@ -894,7 +902,9 @@
 
                                 <div class="form-group field-password">
                                     <label for="password">Mot de passe</label>
+
                                     <input type="password" placeholder="Password" name="password" id="password" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096" />
+
                                 </div>
 
                                 <p class="alert alert-danger" t-if="error" role="alert">
