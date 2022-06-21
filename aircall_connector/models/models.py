@@ -307,9 +307,11 @@ class ResUser(models.Model):
                                     message = self.env['mail.message'].sudo().search(
                                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                                          ('res_id', '=', odoo_contact.id), ('body', "ilike", comment)])
-                                str(content)
-                                str( str(note['content']))
-
+                                    if not message :
+                                        subject = user_name + " " + started_at + " " + ended_at
+                                        message = self.env['mail.message'].sudo().search(
+                                            [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
+                                             ('res_id', '=', odoo_contact.id), ('subject', "=", subject)]) #add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
                                 if not message and odoo_contact:
                                     # Create new Note in view contact
                                     message = self.env['mail.message'].sudo().create({
