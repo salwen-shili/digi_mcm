@@ -174,7 +174,9 @@ class mcmSession(models.Model):
     # assign id if true
     # create if false
     def addGroup(self, session, headers):
-
+        if self.allowExecution() == False:
+            _logger.info("Edusign addGroup exit by the function allowExecution")
+            return
         result = ""
         checkGroup = self.checkExistance("https://ext.edusign.fr/v1/group/get-id/", session.name, headers)
 
@@ -241,7 +243,7 @@ class mcmSession(models.Model):
                     elif "ID" in resultContent["result"]:
                         edusignGroupID = resultContent["result"]["ID"]
                     else:
-                        print("Please verify result id key in addStudent() response")
+                        print("Please verify result id key in addGroup() response")
                     # add group id to self
                     session.id_group_edusign = edusignGroupID
                     print("Groupe created with ID: ", edusignGroupID)
@@ -286,15 +288,22 @@ class mcmSession(models.Model):
     # if True Edit Groups and add another self.id_group_edusign to the existance
     # We can use it for adding a new student or update an existant student
     def addStudent(self, student, headers):
+
+        if self.allowExecution() == False:
+            _logger.info("Edusign addStudent exit by the function allowExecution")
+            return
         # First thing is to check if a group is already created.
         # In case there is a session not created in edusign and this function has lunched a student creation or update
         # on empty group
-
+        if self.id_group_edusign == False:
+            self.addGroup(self, headers)
+        # Slipt name
         name = {
             "firstName": student.firstName if student.firstName else "No_firstName",
             "lastName": student.lastName if student.lastName else "No_lastName",
         }
         if not student.firstName or not student.lastName:
+
             splitName = self.splitName(student.name)
             name["firstName"] = splitName["firstName"]
             name["lastName"] = splitName["lastName"]
@@ -321,13 +330,29 @@ class mcmSession(models.Model):
             url = "https://ext.edusign.fr/v1/student/?id=" + edusignStudentID
 
             # Check group id existance in the student groups.
-
             groups = checkStudent["result"]["GROUPS"]
             if self.id_group_edusign not in checkStudent["result"]["GROUPS"] or checkStudent["result"]["GROUPS"] == []:
                 groups.append(self.id_group_edusign)
 
             if checkStudent["result"]["HIDDEN"] == 1:
                 self.restoreStudent(edusignStudentID, student.email, headers)
+            editStudent = (
+                checkStudent["result"]["GROUPS"] != groups
+                or checkStudent["result"]["FIRSTNAME"] != firstName
+                or checkStudent["result"]["LASTNAME"] != lastName
+                or checkStudent["result"]["PHONE"] != student.phone
+                or checkStudent["result"]["TRAINING_NAME"] != self.diplome_vise
+                or checkStudent["result"]["API_ID"] != str(student.id)
+            )
+            print(
+                checkStudent["result"]["GROUPS"] != groups,
+                checkStudent["result"]["FIRSTNAME"] != firstName,
+                checkStudent["result"]["LASTNAME"] != lastName,
+                checkStudent["result"]["PHONE"] != student.phone,
+                checkStudent["result"]["TRAINING_NAME"] != self.diplome_vise,
+                checkStudent["result"]["API_ID"] != str(student.id),
+            )
+
             data = {
                 "student": {
                     "ID": edusignStudentID,
@@ -351,19 +376,21 @@ class mcmSession(models.Model):
             }
 
             # Edit by student ID
-            result = requests.patch(url, data=json.dumps(data), headers=headers)
+            if editStudent:
 
-            print(
-                "addStudent() has launched a patch request with a response : %s %s %s"
-                % (str(result), str(result.status_code), str(json.loads(result.text)))
-            )
-            _logger.info(
-                "addStudent() has launched a patch request with a response : %s %s %s"
-                % (str(result), str(result.status_code), str(json.loads(result.text)))
-            )
+                result = requests.patch(url, data=json.dumps(data), headers=headers)
 
-            if result.status_code == 200:
-                nbEdit = nbEdit + 1
+                print(
+                    "addStudent() has launched a patch request with a response : %s %s %s"
+                    % (str(result), str(result.status_code), str(json.loads(result.text)))
+                )
+                _logger.info(
+                    "addStudent() has launched a patch request with a response : %s %s %s"
+                    % (str(result), str(result.status_code), str(json.loads(result.text)))
+                )
+
+                if result.status_code == 200:
+                    nbEdit = nbEdit + 1
         else:
 
             # students doesn't exist, we make a post request and create a new one.
@@ -420,8 +447,11 @@ class mcmSession(models.Model):
 
     # This function takes a list of students IDs and update Groups
     def updateStudentLists(self, students, headers):
-
+        if self.allowExecution() == False:
+            _logger.info("Edusign addStudent exit by the function allowExecution")
+            return
         # Check if a group exists with group ID
+        _logger.info("updateStudentLists()...")
         checkGroup = self.checkExistance("https://ext.edusign.fr/v1/group/", self.id_group_edusign, headers)
 
         if checkGroup:
@@ -436,17 +466,19 @@ class mcmSession(models.Model):
                     "API_ID": self.name,
                 }
             }
-            # Edit by student ID
-            result = requests.patch(url, data=json.dumps(data), headers=headers)
 
-            print(
-                "updateStudentLists() has launched a patch request with a response : %s %s %s"
-                % (str(result), str(result.status_code), str(result.text))
-            )
-            _logger.info(
-                "updateStudentLists() has launched a patch request with a response : %s %s %s"
-                % (str(result), str(result.status_code), str(result.text))
-            )
+            # Edit by student ID
+            if checkGroup["result"]["STUDENTS"] != students:
+                result = requests.patch(url, data=json.dumps(data), headers=headers)
+
+                print(
+                    "updateStudentLists() has launched a patch request with a response : %s %s %s"
+                    % (str(result), str(result.status_code), str(result.text))
+                )
+                _logger.info(
+                    "updateStudentLists() has launched a patch request with a response : %s %s %s"
+                    % (str(result), str(result.status_code), str(result.text))
+                )
 
         else:
             return False
@@ -503,6 +535,9 @@ class mcmSession(models.Model):
             return False
 
     def addProfessor(self, professor, headers):
+        if self.allowExecution() == False:
+            _logger.info("Edusign addStudent exit by the function allowExecution")
+            return
         firstName = ""
         lastName = ""
         # split name and surname
@@ -648,7 +683,7 @@ class mcmSession(models.Model):
             if " " in name:
                 nameCopy = name
                 nameCopy = " ".join(name.split())
-                nameCopy = name.split(" ", 1)
+                nameCopy = nameCopy.split(" ", 1)
                 if nameCopy:
                     firstName = nameCopy[0]
                     lastName = nameCopy[1]
@@ -662,18 +697,23 @@ class mcmSession(models.Model):
 
     def allowExecution(self):
         # if not in localhost
+        if self.date_exam == False:
+            print("Session %s has a date_exam= %s" % (str(self.name), str(self.date_exam)))
+            _logger.info("Session %s has a date_exam= %s" % (str(self.name), str(self.date_exam)))
+            return False
+
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
         checkDate = True
         checkUrl = str(base_url) not in allowedUrls
         if self.date_exam:
             checkDate = date.today() <= self.date_exam
         print(
-            "Edusign allowExecution() has checked date.today() <= date.exam = %s and base url=%s is allowed to execute API calls = %s"
-            % (str(checkDate), str(base_url), str(checkUrl))
+            "Edusign allowExecution() has checked %s date.today() <= %s = %s and base url=%s is allowed to execute API calls = %s"
+            % (str(self.name), str(self.date_exam), str(checkDate), str(base_url), str(checkUrl))
         )
         _logger.info(
-            "Edusign allowExecution() has checked date.today() <= date.exam = %s and base url=%s is allowed to execute API calls = %s"
-            % (str(checkDate), str(base_url), str(checkUrl))
+            "Edusign allowExecution() has checked %s date.today() <= %s = %s and base url=%s is allowed to execute API calls = %s"
+            % (str(self.name), str(self.date_exam), str(checkDate), str(base_url), str(checkUrl))
         )
         return checkUrl and checkDate
 
@@ -702,7 +742,7 @@ class mcmSession(models.Model):
 
     # All logics is here
     def main(self):
-        if self.allowExecution():
+        if self.allowExecution() == True:
             print(
                 "################## ################## ################## ################## ################## ##################\n"
                 "#################                                                                              ##################\n"
@@ -814,9 +854,9 @@ class mcmSession(models.Model):
 
                     print(str(nbCount["nbAdd"]) + " client(s) gagné(s) sont ajoutes a la session " + res.name)
                     _logger.info(str(nbCount["nbAdd"]) + " client(s) gagné(s) sont ajoutes a la session " + res.name)
-                    print(str(nbCount["nbEdit"]) + " client(s) gagné(s) sont modifies dans la session " + res.name)
+                    print(str(nbCount["nbEdit"]) + " client(s) gagné(s) sont modifiés dans la session " + res.name)
                     _logger.info(
-                        str(nbCount["nbEdit"]) + " client(s) gagné(s) sont modifies dans la session " + res.name
+                        str(nbCount["nbEdit"]) + " client(s) gagné(s) sont modifiés dans la session " + res.name
                     )
 
                     print(
@@ -837,9 +877,14 @@ class mcmSession(models.Model):
                 else:
                     print("Exit Main edusign because Allow function has returned False. ")
                     _logger.info("Exit Main edusign because Allow function has returned False. ")
+        else:
+            _logger.info("Edusign main function has exit by the allowExecution()")
 
     @api.model
     def create(self, vals):
+        if self.allowExecution() == False:
+            _logger.info("Edusign create function exit by the function allowExecution")
+            return super(mcmSession, self).create(vals)
         print(
             "################## ################## ################## ################## ################## ##################\n"
             "#################                                                                              ##################\n"
@@ -876,34 +921,26 @@ class mcmSession(models.Model):
             return res
 
     def write(self, vals):
-        # if "id_group_edusign" in vals:
-        #     print("id_group_edusign return ")
-        #     _logger.info("Exit write id_group_edusign has been changed.")
-        #     return super(mcmSession, self).write(vals)
-        # print("write", self.client_ids, vals)
-        # if vals.get("client_ids"):
-        #     clients = vals.get("client_ids")[len(vals.get("client_ids")) - 1][len(vals.get("client_ids")) - 1]
-        #     print("if", clients)
-
-        print(
-            "################## ################## ################## ################## ################## ##################\n"
-            "#################                                                                              ##################\n"
-            "#################                   Edusign Write Function has executed.                        ##################\n"
-            "#################                                                                              ##################\n"
-            "################## ################## ################## ################## ################## ##################\n"
-        )
-        _logger.info(
-            "\n"
-            + "################## ################## ################## ################## ################## ##################\n"
-            "#################                                                                              ##################\n"
-            "#################                   Edusign Write Function has executed.                        ##################\n"
-            "#################                                                                              ##################\n"
-            "################## ################## ################## ################## ################## ##################\n"
-        )
 
         res = super(mcmSession, self).write(vals)
 
-        if self.allowExecution():
+        if self.allowExecution() == True:
+            print(
+                "################## ################## ################## ################## ################## ##################\n"
+                "#################                                                                              ##################\n"
+                "#################                   Edusign Write Function has executed.                       ##################\n"
+                "#################                                                                              ##################\n"
+                "################## ################## ################## ################## ################## ##################\n"
+            )
+            _logger.info(
+                "\n"
+                + "################## ################## ################## ################## ################## ##################\n"
+                "#################                                                                              ##################\n"
+                "#################                   Edusign Write Function has executed.                       ##################\n"
+                "#################                                                                              ##################\n"
+                "################## ################## ################## ################## ################## ##################\n"
+            )
+
             company = self.env["res.company"].sudo().search([("id", "=", 2)], limit=1)
             if company:
                 api_key = company.edusign_api_key
