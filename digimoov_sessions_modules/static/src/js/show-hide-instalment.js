@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-  displayInstalmentPayment();
-  document
-    .getElementById('checkbox_instalment')
-    .addEventListener('click', function () {
-      displayInstalmentPayment();
-    });
+  if (document.getElementById('checkbox_instalment')) {
+    displayInstalmentPayment();
+    document
+      .getElementById('checkbox_instalment')
+      .addEventListener('click', function () {
+        displayInstalmentPayment();
+      });
+  }
 });
 
 const sendHttpRequest = (method, url, data) => {
