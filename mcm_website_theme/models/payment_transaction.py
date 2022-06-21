@@ -35,6 +35,7 @@ class PaymentTransaction(models.Model):
                     # sending mail in sudo was meant for it being sent from superuser
                     sale = sale.with_user(SUPERUSER_ID)
                 template_id = sale._find_mail_template(force_confirmation_template=True)
+                _logger.info('_set_transaction_done _find_mail_template %s and sale : %s' % (str(template_id),str(sale)))
                 if template_id and sale:
                     sale.with_context(force_send=True).message_post_with_template(template_id,
                                                                                   composition_mode='comment',

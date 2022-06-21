@@ -17,10 +17,8 @@ class PaymentTransaction(models.Model):
                 check_portal = False
                 if sale.partner_id.user_ids:
                     for user in sale.partner_id.user_ids:
-                        groups = user.groups_id
-                        for group in groups:
-                            if (group.name == _('Portail')):
-                                check_portal = True
+                        if user.share:
+                            check_portal = True
                 if check_portal:
                     sale.partner_id.mcm_session_id=sale.partner_id.module_id.session_id
                     for partner in sale.session_id.client_ids:

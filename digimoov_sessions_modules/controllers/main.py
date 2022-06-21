@@ -1634,7 +1634,8 @@ class WebsiteSale(WebsiteSale):
                 if order.state == 'sent' and (check_transaction or succeed):
                     return request.redirect("/my/orders/%s?access_token=%s" % (order.id, order.access_token))
                 elif not check_transaction and order.state == 'sent' :
-                    _logger.info('shop confirmation transaction  :  %s and order %s' % (str(check_transaction), str(order.name)))        return super(WebsiteSale, self).payment_confirmation(**post)
+                    _logger.info('shop confirmation transaction  :  %s and order %s' % (str(check_transaction), str(order.name))) 
+        return super(WebsiteSale, self).payment_confirmation(**post)
 
 
 class Centre_Examen(http.Controller):
