@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mcm_auth_signup
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-07 16:03+0000\n"
+"PO-Revision-Date: 2022-06-07 16:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mcm_auth_signup
+#: code:addons/mcm_auth_signup/controllers/main.py:0
+#: code:addons/mcm_auth_signup/controllers/main.py:0
+#, python-format
+msgid "Another user is already registered using this email address."
+msgstr "Un autre utilisateur est déjà enregistré avec cette adresse email."
+
+#. module: mcm_auth_signup
+#: code:addons/mcm_auth_signup/controllers/main.py:0
+#, python-format
+msgid "Another user is already registered using this phone number."
+msgstr "Un autre utilisateur est déjà enregistré avec ce numéro de téléphone."
+
+#. module: mcm_auth_signup
+#: model:ir.model,name:mcm_auth_signup.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: mcm_auth_signup
+#: code:addons/mcm_auth_signup/controllers/main.py:0
+#, python-format
+msgid "Could not create a new account."
+msgstr "Vous ne pouvez pas créer un nouveau compte."
+
+#. module: mcm_auth_signup
+#: code:addons/mcm_auth_signup/controllers/main.py:0
+#, python-format
+msgid "Le formulaire n'est pas correctement rempli."
+msgstr "Prénom"
+
+#. module: mcm_auth_signup
+#: model:ir.model.fields,field_description:mcm_auth_signup.field_res_partner__firstname
+#: model:ir.model.fields,field_description:mcm_auth_signup.field_res_users__firstname
+msgid "Prénom"
+msgstr "Prénom"
