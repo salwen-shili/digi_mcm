@@ -52,7 +52,8 @@ add css and js files to website model
         'views/formation-taxi-Paris.xml',
         'views/formation-taxi-Lyon.xml',
         'views/blog/blog_sidebar.xml',
-        'views/inscription_bolt.xml'
+        'views/inscription_bolt.xml',
+        'views/evalbox_templates.xml',
     ],
 
     'installable': True,
