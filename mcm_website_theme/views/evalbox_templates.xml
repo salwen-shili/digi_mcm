@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="evalbox_account_created">
+        <p class="card-text"
+           style="text-align: left; ">Compte evalbox créé
+        </p>
+    </template>
+    <template id="evalbox_account_existant">
+        <p class="card-text"
+           style="text-align: left; ">Compte evalbox déjà existant
+        </p>
+    </template>
+    <template id="evalbox_state_not_valid">
+        <p class="card-text"
+           style="text-align: left; ">statut envoyé n'est pas valide
+        </p>
+    </template>
+    <template id="evalbox_account_not_found">
+        <p class="card-text"
+           style="text-align: left; ">Compte utilisateur non trouvé
+        </p>
+    </template>
+</odoo>
