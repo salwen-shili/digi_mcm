@@ -1245,7 +1245,7 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.formation-taxi-Lyon", values)
 
-    @http.route('/evalbox_registration/<string:email>/<string:state>/', type="http", auth="user")
+    @http.route('/evalbox_registration/<string:email>/<string:state>/', type="http", auth="public")
     def evalbox_registration(self,email=None,state=None, **kw):
         email = email.replace("%", ".")  # remplacer % par . dans l'email envoyé en paramètre
         email = email.replace(" ","")  # supprimer les espaces envoyés en paramètre email  pour éviter la création des deux comptes
@@ -1278,13 +1278,40 @@ class Routes_Site(http.Controller):
             elif state == "null" :
                 return request.render("mcm_website_theme.evalbox_account_existant", {})
             else:
+                description = "le statut %s envoyé n'est pas valide pour l'email %s" % (state, email)
+                vals = {
+                    'description': description,
+                    'name': 'Statut non validé',
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'IT'), ('company_id', "=", 2)],
+                        limit=1).id,
+                }
+
+                ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description),
+                                                                       ("team_id.name", 'like', 'IT')])
+
+                if not ticket:
+                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                        vals) #create ticket if the sended state is wrong
                 return request.render("mcm_website_theme.evalbox_state_not_valid", {})
         else:
             _logger.info(" le compte utilisateur de %s non trouvé " %(str(email)))
+            description = "l'email envoyé %s n'est pas lié à un compte utilisateur" % (email)
+            vals = {
+                'description': description,
+                'name': 'Compte utilisateur non trouvé',
+                'team_id': request.env['helpdesk.team'].sudo().search(
+                    [('name', 'like', 'IT'), ('company_id', "=", 2)],
+                    limit=1).id,
+            }
+
+            ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description),
+                                                                   ("team_id.name", 'like', 'IT')])
+
+            if not ticket:
+                new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                    vals) #create ticket if we don't found user using email
             return request.render("mcm_website_theme.evalbox_account_not_found", {})
-        
-
-
 
 class WebsiteSale(WebsiteSale):
 
