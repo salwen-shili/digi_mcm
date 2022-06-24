@@ -9,12 +9,12 @@
     'category': 'API',
     'author': 'Ines Lahmer',
     'website': '',
-    'depends': ['base','mcm_session','crm','website','mcm_website_theme','partner_exam','portal'
+    'depends': ['web','base','mcm_session','crm','website','mcm_website_theme','partner_exam','portal'
     ],
     'data': [
         'views/configuration.xml',
         'views/load_document.xml',
-        'views/templates.xml',
+        # 'views/templates.xml',
     ],
     'demo': [
 

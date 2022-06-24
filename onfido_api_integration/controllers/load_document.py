@@ -14,20 +14,35 @@ _logger = logging.getLogger(__name__)
 
 class LoadDocument(Website):
 
-    @http.route('/upload_document', type='http', auth='public', website=True)
-    def create_applicant(self, **kw):
+    @http.route('/load_document', type='http', auth='public', website=True)
+    def load_document(self, **kw):
         partner=request.env['res.partner'].sudo().search([('id','=',request.env.user.partner_id.id)])
         values = {
             'sdk_token': '',
+            'workflow_run_id': '',
         }
         if partner:
-            id_applicant=partner.create_applicant(partner)
-            sdk_token=partner.generateSdktoken(id_applicant)
-            
-        # if request.website.id == 2:
-        #     digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-        #                                                                      order="list_price")
+            id_applicant=""
+            sdk_token=""
+            print('teeeeeeesttttt',request.website.onfido_api_key_live
+                  )
+            """Vérifier si on a deja créé un applicant lié à cet apprenant """
+            if partner.onfido_applicant_id:
+                id_applicant= partner.onfido_applicant_id
+            else:
+                id_applicant=partner.create_applicant(partner,
+                                                      request.website.onfido_api_key_live)
+            """Vérifier si on a généré un sdk token pour cet apprenant """
+            if partner.onfido_sdk_token and partner.exp_date_sdk_token and partner.exp_date_sdk_token >= datetime.now():
+                sdk_token=partner.onfido_sdk_token
+            else:
+                sdk_token=partner.generateSdktoken(id_applicant,
+                                                   request.website.onfido_api_key_live,partner)
+
+            workflow_run_id=partner.workflow_run(id_applicant,
+                                                 request.website.onfido_api_key_live)
             values = {
+                'workflow_run_id': workflow_run_id,
                 'sdk_token': sdk_token,
             }
 
@@ -36,116 +51,4 @@ class LoadDocument(Website):
         # else:
         #     raise werkzeug.exceptions.NotFound()
 
-    @http.route('/attestation-transport-leger-marchandises', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises(self, **kw, ):
-        if request.website.id == 2:
-            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-                                                                             order="list_price")
-            values = {
-                'digimoov_products': digimoov_products,
-            }
-            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises", values)
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    # Page de destination Paris
-
-    @http.route('/devenir-coursier-paris', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_destination_paris(self, **kw, ):
-
-        if request.website.id == 2:
-            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-                                                                             order="list_price")
-            values = {
-                'digimoov_products': digimoov_products,
-            }
-
-            return request.render("digimoov_website_templates.devenir_coursier_paris",
-                                  values)
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    # Route nos formations
-
-    @http.route('/nos-formations', type='http', auth='public', website=True)
-    def nos_formations_digimoov(self, **kw, ):
-
-        if request.website.id == 2:
-            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-                                                                             order="list_price")
-            values = {
-                'digimoov_products': digimoov_products,
-            }
-
-            return request.render("digimoov_website_templates.nos_formations",
-                                  values)
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    # Page de destination Lyon
-
-    @http.route('/devenir-coursier-lyon', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_destination_lyon(self, **kw, ):
-        if request.website.id == 2:
-            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-                                                                             order="list_price")
-            values = {
-                'digimoov_products': digimoov_products,
-            }
-            return request.render("digimoov_website_templates.devenir_coursier_lyon",
-                                  values)
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    # Page de destination nantes
-    @http.route('/livreur-de-colis-nantes', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_destination_nantes(self, **kw, ):
-        if request.website.id == 2:
-            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-                                                                             order="list_price")
-            values = {
-                'digimoov_products': digimoov_products,
-            }
-            return request.render("digimoov_website_templates.livreur_de_colis_nantes",
-                                  values)
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    # Page de destination bordeaux
-
-    @http.route('/capacitaire-transport-bordeaux', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_destination_bordeaux(self, **kw, ):
-        if request.website.id == 2:
-            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-                                                                             order="list_price")
-            values = {
-                'digimoov_products': digimoov_products,
-            }
-            return request.render("digimoov_website_templates.capacitaire_transport_bordeaux",
-                                  values)
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    # Page de destination Marseille
-
-    @http.route('/capacite-de-transport-marseille', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_destination_marseille(self, **kw, ):
-        if request.website.id == 2:
-            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-                                                                             order="list_price")
-            values = {
-                'digimoov_products': digimoov_products,
-            }
-            return request.render("digimoov_website_templates.capacité_de_transport_marseille",
-                                  values)
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/capacité-de-transport-marseille', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_destination_marseille_old_url(self, **kw, ):
-        if request.website.id == 2:
-            # redirect old url /capacité-de-transport-marseille to new url /capacite-de-transport-marseille
-            return werkzeug.utils.redirect('/capacite-de-transport-marseille', 301)
-        else:
-            raise werkzeug.exceptions.NotFound()
 

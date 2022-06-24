@@ -12,12 +12,8 @@
                     <div class="col-12 col-lg-6 o_setting_box" id="onfido_details">
                         <div class="o_setting_right_pane">
                             <div class="row">
-                                <label class="col-lg-3 o_light_label" string="Test Key" for="Onfido_api_key_test"/>
-                                <field name="Onfido_api_key_test" class="oe_inline"/>
-                            </div>
-                            <div class="row">
-                                <label class="col-lg-3 o_light_label" string="Live Key" for="Onfido_api_key_live"/>
-                                <field name="Onfido_api_key_live" class="oe_inline"/>
+                                <label class="col-lg-3 o_light_label" string="Live Key" for="onfido_api_key_live"/>
+                                <field name="onfido_api_key_live" class="oe_inline"/>
                             </div>
                         </div>
                     </div>

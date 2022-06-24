@@ -1,45 +1,30 @@
 from odoo import api, fields, models, tools
 import requests
-import onfido
 import urllib.request
+from datetime import datetime, timedelta, date
 from odoo.modules.module import get_resource_path
 from PIL import Image
 import json
 class InheritConfig(models.Model):
     _inherit = "res.partner"
+    onfido_sdk_token=fields.Char("SDK Token")
+    onfido_applicant_id=fields.Char('Applicant ID')
+    exp_date_sdk_token=fields.Datetime("Date d'expiration sdk token ")
 
-
-    def create_applicant(self,partner):
-        # api_instance = onfido.Api('api_sandbox.SwW0JwK3WRL.4ntnjwCs6IWIbVv882-QPjQ0Q_UiPSCz','region')
-        url_post="https://api.eu.onfido.com/v3.4/applicants"
-
-        token_test="api_sandbox.SwW0JwK3WRL.4ntnjwCs6IWIbVv882-QPjQ0Q_UiPSCz"
-
-        # applicant_details = {
-        #     "first_name": "Jane",
-        #     "last_name": "Consider",
-        #     "dob": "1990-01-31",
-        #     "address": {
-        #     "building_number": "100",
-        #     "street": "Main Street",
-        #     "town": "London",
-        #     "postcode": "SW4 6EH",
-        #     "country": "GBR",
-        #
-        # },}
-        #
-        # res=api_instance.applicant.create(applicant_details)
-        # print('ressssssssssppp',res)
-
+    def create_applicant(self,partner,token):
+        """Creer un nouveau applicant avec api Onfido"""
+        url_post = "https://api.eu.onfido.com/v3.4/applicants"
         headers = {
-            'Authorization':'Token token='+token_test,
+            'Authorization':'Token token='+token,
             # Already added when you pass json= but not when you pass data=
         #     'Content-Type': 'application/json',
         }
-
+        partner.diviser_nom(partner)
+        print('name',partner.lastName,partner.firstName)
+        
         json_data = {
-            "first_name": partner.name,
-            "last_name": "test",
+            "first_name": partner.firstName,
+            "last_name": partner.lastName,
             "dob": "1990-01-31",
             "address": {
             "building_number": "100",
@@ -52,56 +37,47 @@ class InheritConfig(models.Model):
         response = requests.post(url_post, headers=headers, data=json.dumps(json_data))
         applicant=response.json()
         print('ressssssssssppp',applicant)
+        if applicant['id']:
+            partner.onfido_applicant_id=applicant['id']
         return applicant['id']
-        # self.upload_document(headers,applicant_id)
-        # self.upload_photo(headers,applicant_id)
 
-
-
-    def generateSdktoken(self,applicant_id):
+    def generateSdktoken(self,applicant_id,token,partner):
+        """Génerer un sdk token avec API pour chaque applicant """
         url_sdk = "https://api.eu.onfido.com/v3.4/sdk_token"
-
-        token_test = "api_sandbox.SwW0JwK3WRL.4ntnjwCs6IWIbVv882-QPjQ0Q_UiPSCz"
         headers = {
-            'Authorization': 'Token token=' + token_test,
+            'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
             #     'Content-Type': 'application/json',
         }
         data = {
             "applicant_id": applicant_id,
-            "referrer": "http://localhost:8069/upload_document"
+            "referrer": "http://*.localhost:8069/*"
         }
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk=response_token.json()
         print(response_token.json())
+        if token_sdk['token']:
+            partner.onfido_sdk_token=token_sdk['token']
+            time_change =timedelta(minutes=90)
+            partner.exp_date_sdk_token=datetime.now()+time_change
         return token_sdk['token']
 
-    def upload_document(self,headers,applicant_id):
-
-
-        files = {
-            'file': open('/home/ines/PycharmProjects/site_mcm_academy/onfido_api_integration/static/src/sample_driving_licence.png','rb'),
-
-        }
-        data={
-            'applicant_id': applicant_id
-        }
-
-        post_document = requests.post('https://api.eu.onfido.com/v3.4/documents/', headers=headers, files=files,data=data)
-        print('document',post_document)
-
-    def upload_photo(self,headers,applicant_id):
-        files = {
-            'file': open(
-                '/home/ines/PycharmProjects/site_mcm_academy/onfido_api_integration/static/src/sample_photo-e5e3561c.png;type=image/png',
-                ),
-
+    def workflow_run(self,applicant_id,token):
+        url_workflow = "https://api.eu.onfido.com/v4/workflow_runs/"
+        headers = {
+            'Authorization': 'Token token=' + token,
+            # Already added when you pass json= but not when you pass data=
+            #     'Content-Type': 'application/json',
         }
         data = {
-            'applicant_id': applicant_id
-        }
+            "workflow_id": "32d13f66-8bae-4c6a-86a5-824573214620",
+            "applicant_id": applicant_id,
 
-        post_photo = requests.post('https://api.eu.onfido.com/v3.4/live_photos', headers=headers, files=files,
-                                      data=data)
-        print('photo', post_photo)
+        }
+        response_workflow_run = requests.post(url_workflow, headers=headers, data=json.dumps(data))
+        workflow_run = response_workflow_run.json()
+        print("hiiiiiiii",response_workflow_run.json())
+        return workflow_run['id']
+
+
         
