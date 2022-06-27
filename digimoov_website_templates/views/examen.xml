@@ -1,5 +1,6 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_template_examen" name="examen Digimoov">
+
         <t t-call="website.layout">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/examen.min.js" />
             <link rel="stylesheet" href="/digimoov_website_templates/static/src/css/popup-examen.min.css" />
@@ -8,19 +9,17 @@
             <div t-if="default == 'False'">
                 <input type="hidden" t-att-value="url" id="url" />
                 <input type="hidden" t-att-value="message" id="message" />
-
-
                 <!-- popup-->
                 <div id="popup1" class="overlay">
                     <div class="popup">
                         <h2 class="text-left">
-                            <i class="fa fa-info-circle" style="color: #152856"></i>
+                            <i class="fa fa-info-circle" style="color: #152856" />
                         </h2>
                         <a class="close" onclick="closePopup()">
-                            <i class="fa fa-times"></i>
+                            <i class="fa fa-times" />
                         </a>
                         <div class="content">
-                            <p id="notifMessage" style="text-align: center; font-size: 16px"></p>
+                            <p id="notifMessage" style="text-align: center; font-size: 16px" />
                             <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
                                 <div id="echec_examen">
                                     <a target="_blank" id="btnRepassage">
@@ -322,7 +321,7 @@
                 </section>
                 <ul />
                 <ol />
-                <section class="s_business_three_blocks_icons bg-light-1 feature11" data-name="Three Blocks Of Icons" style="">
+                <section class="s_business_three_blocks_icons bg-light-1 feature11" data-name="Three Blocks Of Icons" style="word-break: break-word; position: relative; z-index: 0;">
                     <div class="container" style="border-style: none; border-width: 0px">
                         <div class="row" style="width: 100% !important">
                             <div class="col-md-4 wrap-feature11-box col-lg-3" style="">
@@ -363,11 +362,8 @@
                                             </font>
                                         </h3>
                                         <p class="m-b-30 m-t-20 text-beta" style="text-align: justify">
-                                            La présence du stagiaire à l’intégralité de la formation
-                                            (102 heures en présentiel ou en e-learning) est une
-                                            condition indispensable à sa présentation à l’examen. Dans
-                                            le cas où le candidat serait dispensé de formation (candidat
-                                            en accès direct ou en échec), il faudrait qu'il fournisse le
+                                            La présence du stagiaire à l’intégralité de la formation (102 heures en présentiel ou en e-learning) est une condition indispensable à sa présentation à l’examen. Dans
+                                            le cas où le candidat serait dispensé de formation (candidat en accès direct ou en échec), il faudrait qu'il fournisse le
                                             dossier d’inscription au moins 2 mois avant la date
                                             d’examen.
                                             <br />
@@ -393,51 +389,54 @@
                                             <br />
                                         </h3>
                                         <p class="m-b-30 m-t-20 text-beta" />
-                                        <div style="text-align: justify">
-                                            <span style="                         color: rgb(32, 38, 71);                         font-size: 16px;                         background-color: unset;                       ">
-                                                La photocopie de la pièce d'identité ou d'un titre de
-                                                séjour européen
+                                        <div style="text-align: justify;">
+                                            <span style="background-color: unset; text-align: left; font-size: 16px;">
+                                                <font color="#202647">
+                                                    - Une copie de la pièce d'identité en cours de validité.
+                                                    <br />
+                                                    - Un justificatif de domicile de moins de trois mois au nom du candidat sinon accompagné d'une attestation d'hébergement et la CNI de l'hébergeur.
+                                                    <br />
+                                                    - Un certificat de participation à la journée de la défense et de la citoyenneté (JDC) pour ceux qui n'ont pas encore eu leurs 25 ans.&amp;nbsp;
+                                                </font>
                                             </span>
-                                            <span style="color: rgb(32, 38, 71); font-size: 16px">
-                                                <br />
-                                                <br />
-                                            </span>
-                                            <span style="                         color: rgb(32, 38, 71);                         font-size: 16px;                         background-color: unset;                       ">
-                                                Une justification de domicile de moins de 3 mois
-                                            </span>
-                                            <span style="color: rgb(32, 38, 71); font-size: 16px">&amp;nbsp;</span>
                                             <br />
                                         </div>
                                         <span style="font-size: 1rem; background-color: unset" />
                                     </div>
                                 </section>
                             </div>
-                            <div class="col-md-4 wrap-feature11-box col-lg-3">
+                            <div class="col-md-4 wrap-feature11-box col-lg-3" style="border-style: none; border-width: 0px;">
                                 <section class="card card-shadow pb0" style="">
                                     <div class="card-body">
                                         <div class="icon-space">
                                             <section class="icon-round bg-alpha" />
-                                            <img class="img-fluid o_we_custom_image lazy" data-src="/digimoov_website_templates/static/img/dossier d'inscription pour l'examen final.webp" data-srcsafari="/digimoov_website_templates/static/img/examen/dossier d'inscription pour l'examen final.png" style="                         transform: translateX(0.6%) translateY(14%) scaleX(1.04)                           scaleY(0.81);                       " alt="dossier d'inscription pour l'examen final" />
+                                            <img class="img-fluid o_we_custom_image lazy" data-src="/digimoov_website_templates/static/img/dossier d'inscription pour l'examen final.webp" data-srcsafari="/digimoov_website_templates/static/img/examen/dossier d'inscription pour l'examen final.png" style="                         transform: translateX(0.6%) translateY(14%) scaleX(1.04)                           scaleY(0.81);                       " alt="dossier d'inscription pour l'examen final" src="/digimoov_website_templates/static/img/dossier d'inscription pour l'examen final.webp" />
                                             <section class="icon-round bg-alpha" />
                                         </div>
                                         <h3 class="m-b-30 m-t-20 text-beta" style="text-align: center">
-                                            <span style="color: rgb(103, 67, 148)">Pendant l'examen</span>
+                                            <span style="color: rgb(103, 67, 148)">Le jour de l'examen</span>
                                         </h3>
                                         <p class="m-b-30 m-t-20 text-beta" />
                                         <div style="text-align: justify">
+                                            <div style="text-align: justify;">
+                                                <span style="font-size: 16px; color: rgb(32, 38, 71); background-color: unset;">Afin d'assurer le bon déroulement de l'examen, les candidats doivent se présenter 45 minutes à l'avance pour passer leur examen (Cette&amp;nbsp; instruction est mentionnée dans les convocations).</span>
+                                            </div>
                                             <font color="#202647">
-                                                <span style="font-size: 16px">Afin d'assurer le bon déroulement de
-                                                    l'examen, le
-                                                    candidat doit être présent avant une demi heure du début
-                                                    de l'examen. Il doit aussi être accompagné par sa CNI et
-                                                    sa convocation.
-                                                </span>
+                                                <div style="text-align: justify;">
+                                                    <span style="font-size: 16px; background-color: unset;">Ils doivent aussi être accompagnés par leurs CNI et leurs convocations.</span>
+                                                </div>
                                             </font>
-                                            <br />
+                                            <div style="text-align: left;">
+                                                <font color="#ce0000">
+                                                    <u>
+                                                        <br />
+                                                    </u>
+                                                </font>
+                                            </div>
                                             <span style="text-align: center; color: rgb(206, 0, 0)">
                                                 <span style="font-weight: bolder">
                                                     <u>
-                                                        <br />
+                                                        
                                                         Attention
                                                     </u>
                                                 </span>
@@ -492,14 +491,9 @@
                                         </span>
                                     </font>
                                 </p>
-
-
                                 <font color="#1d1c1d" face="Slack-Lato, appleLogo, sans-serif">
                                     <span style="font-size: 15px; font-variant-ligatures: common-ligatures;" class="text-beta">
-
                                         <hr />
-
-
                                         <b>Il faut tenir compte que pour chaque examen que vous soyez présent, absent ou que ça soit un report un passage sera automatiquement décompté.</b>
                                     </span>
                                 </font>
@@ -575,7 +569,6 @@
                                     </p>
                                     <div class="pb16 pt16 s_btn text-center" data-name="Button">
                                         <!-- Comparer si période < 6 mois  -->
-
                                         <t t-if="default == 'True' ">
                                             <form action="/shop/cart/update" method="post">
                                                 <input type="hidden" class="product_id" name="product_id" t-att-value="echec_examen.id" />
@@ -586,8 +579,6 @@
                                                 </td>
                                             </form>
                                         </t>
-
-
                                         <!-- <form action="/shop/cart/update" method="post">
                                             <input type="hidden" class="product_id" name="product_id" t-att-value="echec_examen.id" />
 
@@ -599,7 +590,6 @@
                                                 Réservez votre tentative
                                             </button>
                                         </td>
-
                                     </div>
                                 </div>
                             </div>
@@ -608,5 +598,6 @@
                 </section>
             </div>
         </t>
+
     </template>
 </odoo>
