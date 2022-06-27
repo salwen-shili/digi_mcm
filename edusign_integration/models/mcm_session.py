@@ -743,11 +743,11 @@ class mcmSession(models.Model):
         if self.date_exam:
             checkDate = date.today() >= self.date_exam
         print(
-            "Edusign allowGetPresence() %s has checked %s date.today() <= %s = %s and base url=%s is allowed to execute API calls = %s"
+            "Edusign allowGetPresence() %s has checked %s date.today() >= %s = %s and base url=%s is allowed to execute API calls = %s"
             % (str(func), str(self.name), str(self.date_exam), str(checkDate), str(base_url), str(checkUrl))
         )
         _logger.info(
-            "Edusign allowGetPresence() %s has checked %s date.today() <= %s = %s and base url=%s is allowed to execute API calls = %s"
+            "Edusign allowGetPresence() %s has checked %s date.today() >= %s = %s and base url=%s is allowed to execute API calls = %s"
             % (str(func), str(self.name), str(self.date_exam), str(checkDate), str(base_url), str(checkUrl))
         )
         return checkUrl and checkDate
@@ -1066,7 +1066,7 @@ class mcmSession(models.Model):
 
     # All logics are here for the button "Recuperer feuille de presence"
     def getPresenceList(self):
-        if self.allowExecution("getPresenceList()") == True:
+        if self.allowGetPresence("getPresenceList()") == True:
             print(
                 "################## ################## ################## ################## ################## ##################\n"
                 "#################                                                                               #################\n"
@@ -1163,147 +1163,147 @@ class mcmSession(models.Model):
 
         # def write(self, vals):
 
-        res = super(mcmSession, self).write(vals)
+        # res = super(mcmSession, self).write(vals)
 
-        if self.allowExecution("from write()") == True:
-            print(
-                "################## ################## ################## ################## ################## ##################\n"
-                "#################                                                                              ##################\n"
-                "#################                   Edusign Write Function has executed.                       ##################\n"
-                "#################                                                                              ##################\n"
-                "################## ################## ################## ################## ################## ##################\n"
-            )
-            _logger.info(
-                "\n"
-                + "################## ################## ################## ################## ################## ##################\n"
-                "#################                                                                              ##################\n"
-                "#################                   Edusign Write Function has executed.                       ##################\n"
-                "#################                                                                              ##################\n"
-                "################## ################## ################## ################## ################## ##################\n"
-            )
+        # if self.allowExecution("from write()") == True:
+        #     print(
+        #         "################## ################## ################## ################## ################## ##################\n"
+        #         "#################                                                                              ##################\n"
+        #         "#################                   Edusign Write Function has executed.                       ##################\n"
+        #         "#################                                                                              ##################\n"
+        #         "################## ################## ################## ################## ################## ##################\n"
+        #     )
+        #     _logger.info(
+        #         "\n"
+        #         + "################## ################## ################## ################## ################## ##################\n"
+        #         "#################                                                                              ##################\n"
+        #         "#################                   Edusign Write Function has executed.                       ##################\n"
+        #         "#################                                                                              ##################\n"
+        #         "################## ################## ################## ################## ################## ##################\n"
+        #     )
 
-            company = self.env["res.company"].sudo().search([("id", "=", 2)], limit=1)
-            if company:
-                api_key = company.edusign_api_key
-                if not api_key:
-                    _logger.info("Please add edusign api_key")
-                    return
-                headers = {
-                    "Authorization": "Bearer %s" % (str(api_key)),
-                    "Content-Type": "application/json",
-                }
+        #     company = self.env["res.company"].sudo().search([("id", "=", 2)], limit=1)
+        #     if company:
+        #         api_key = company.edusign_api_key
+        #         if not api_key:
+        #             _logger.info("Please add edusign api_key")
+        #             return
+        #         headers = {
+        #             "Authorization": "Bearer %s" % (str(api_key)),
+        #             "Content-Type": "application/json",
+        #         }
 
-                if not self.id_group_edusign:
-                    self.addGroup(self, headers)
+        #         if not self.id_group_edusign:
+        #             self.addGroup(self, headers)
 
-                nbCount = {
-                    "nbAdd": 0,
-                    "nbEdit": 0,
-                }
-                # Call addgroup to check if group matches edusign with odoo
+        #         nbCount = {
+        #             "nbAdd": 0,
+        #             "nbEdit": 0,
+        #         }
+        #         # Call addgroup to check if group matches edusign with odoo
 
-                nb = nbCount
-                # Loop and add each student.
-                # Create and update students
-                studentsID = []
-                # check if Students list has been updated
-                if "name" in vals:
+        #         nb = nbCount
+        #         # Loop and add each student.
+        #         # Create and update students
+        #         studentsID = []
+        #         # check if Students list has been updated
+        #         if "name" in vals:
 
-                    self.updateGroup(headers)
-                if "client_ids" in vals:
+        #             self.updateGroup(headers)
+        #         if "client_ids" in vals:
 
-                    for student in self.client_ids:
+        #             for student in self.client_ids:
 
-                        nb = self.addStudent(student, headers)
-                        nbCount = {
-                            "nbAdd": nb["nbAdd"] + nbCount["nbAdd"],
-                            "nbEdit": nb["nbEdit"] + nbCount["nbEdit"],
-                        }
-                        # Fill students ID from edusign to update the group list
-                        studentsID.append(nb["id"])
-                    print("Edusign Students ID in this session", studentsID)
-                    _logger.info("Edusign Students ID in this session %s = %s" % (str(self.name), str(studentsID)))
-                    # Make an update to students Lists
-                    print(self.surveillant_id)
-                    if self.updateStudentLists(studentsID, headers):
-                        print("Students list has been updated from session.")
-                        _logger.info("Students list has been updated from session")
-                        professorsEmails = []
-                        nbCountProfessor = {
-                            "nbAdd": 0,
-                            "nbEdit": 0,
-                        }
+        #                 nb = self.addStudent(student, headers)
+        #                 nbCount = {
+        #                     "nbAdd": nb["nbAdd"] + nbCount["nbAdd"],
+        #                     "nbEdit": nb["nbEdit"] + nbCount["nbEdit"],
+        #                 }
+        #                 # Fill students ID from edusign to update the group list
+        #                 studentsID.append(nb["id"])
+        #             print("Edusign Students ID in this session", studentsID)
+        #             _logger.info("Edusign Students ID in this session %s = %s" % (str(self.name), str(studentsID)))
+        #             # Make an update to students Lists
+        #             print(self.surveillant_id)
+        #             if self.updateStudentLists(studentsID, headers):
+        #                 print("Students list has been updated from session.")
+        #                 _logger.info("Students list has been updated from session")
+        #                 professorsEmails = []
+        #                 nbCountProfessor = {
+        #                     "nbAdd": 0,
+        #                     "nbEdit": 0,
+        #                 }
 
-                        # create and update professor
-                        for surveillant in self.surveillant_id:
-                            print(surveillant.id)
-                            # nb = self.addStudent(surveillant, headers)
-                            if surveillant:
+        #                 # create and update professor
+        #                 for surveillant in self.surveillant_id:
+        #                     print(surveillant.id)
+        #                     # nb = self.addStudent(surveillant, headers)
+        #                     if surveillant:
 
-                                professorsEmails.append(surveillant.email)
+        #                         professorsEmails.append(surveillant.email)
 
-                                nb = self.addProfessor(surveillant, headers)
+        #                         nb = self.addProfessor(surveillant, headers)
 
-                            nbCountProfessor = {
-                                "nbAdd": nb["nbAdd"] + nbCountProfessor["nbAdd"],
-                                "nbEdit": nb["nbEdit"] + nbCountProfessor["nbEdit"],
-                            }
+        #                     nbCountProfessor = {
+        #                         "nbAdd": nb["nbAdd"] + nbCountProfessor["nbAdd"],
+        #                         "nbEdit": nb["nbEdit"] + nbCountProfessor["nbEdit"],
+        #                     }
 
-                        # If  ProfessorsId[] is empty we can not create a course.
-                        if professorsEmails:
-                            self.addCourse(self, professorsEmails, headers)
-                        else:
-                            print(
-                                "\n\nImpossible to create a Course, Please assign Professor to the session "
-                                + self.name
-                                + "\n\n"
-                            )
-                            _logger.info(
-                                "\n\nImpossible to create a Course, Please assign Professor to the session "
-                                + self.name
-                                + "\n\n"
-                            )
+        #                 # If  ProfessorsId[] is empty we can not create a course.
+        #                 if professorsEmails:
+        #                     self.addCourse(self, professorsEmails, headers)
+        #                 else:
+        #                     print(
+        #                         "\n\nImpossible to create a Course, Please assign Professor to the session "
+        #                         + self.name
+        #                         + "\n\n"
+        #                     )
+        #                     _logger.info(
+        #                         "\n\nImpossible to create a Course, Please assign Professor to the session "
+        #                         + self.name
+        #                         + "\n\n"
+        #                     )
 
-                if "surveillant_id" in vals or "session_adresse_examen" in vals:
-                    # Professor list has been updated
-                    # Create professor if not exist and Launch create course
-                    # get professor ID to create a course
+        #         if "surveillant_id" in vals or "session_adresse_examen" in vals:
+        #             # Professor list has been updated
+        #             # Create professor if not exist and Launch create course
+        #             # get professor ID to create a course
 
-                    professorsEmails = []
-                    nbCountProfessor = {
-                        "nbAdd": 0,
-                        "nbEdit": 0,
-                    }
+        #             professorsEmails = []
+        #             nbCountProfessor = {
+        #                 "nbAdd": 0,
+        #                 "nbEdit": 0,
+        #             }
 
-                    # create and update professor
-                    for surveillant in self.surveillant_id:
-                        print(surveillant.id)
-                        # nb = self.addStudent(surveillant, headers)
-                        if surveillant:
+        #             # create and update professor
+        #             for surveillant in self.surveillant_id:
+        #                 print(surveillant.id)
+        #                 # nb = self.addStudent(surveillant, headers)
+        #                 if surveillant:
 
-                            professorsEmails.append(surveillant.email)
+        #                     professorsEmails.append(surveillant.email)
 
-                            nb = self.addProfessor(surveillant, headers)
+        #                     nb = self.addProfessor(surveillant, headers)
 
-                        nbCountProfessor = {
-                            "nbAdd": nb["nbAdd"] + nbCountProfessor["nbAdd"],
-                            "nbEdit": nb["nbEdit"] + nbCountProfessor["nbEdit"],
-                        }
+        #                 nbCountProfessor = {
+        #                     "nbAdd": nb["nbAdd"] + nbCountProfessor["nbAdd"],
+        #                     "nbEdit": nb["nbEdit"] + nbCountProfessor["nbEdit"],
+        #                 }
 
-                    # If  ProfessorsId[] is empty we can not create a course.
-                    if professorsEmails:
-                        self.addCourse(self, professorsEmails, headers)
-                    else:
-                        print(
-                            "\n\nImpossible to create a Course, Please assign Professor to the session "
-                            + self.name
-                            + "\n\n"
-                        )
-                        _logger.info(
-                            "\n\nImpossible to create a Course, Please assign Professor to the session "
-                            + self.name
-                            + "\n\n"
-                        )
-            return res
-        else:
-            return res
+        #             # If  ProfessorsId[] is empty we can not create a course.
+        #             if professorsEmails:
+        #                 self.addCourse(self, professorsEmails, headers)
+        #             else:
+        #                 print(
+        #                     "\n\nImpossible to create a Course, Please assign Professor to the session "
+        #                     + self.name
+        #                     + "\n\n"
+        #                 )
+        #                 _logger.info(
+        #                     "\n\nImpossible to create a Course, Please assign Professor to the session "
+        #                     + self.name
+        #                     + "\n\n"
+        #                 )
+        #     return res
+        # else:
+        #     return res
