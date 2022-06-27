@@ -36,9 +36,26 @@ onfidoOut.setOptions({
         "documentTypes": {
           "passport": true,
           "national_identity_card":
-          {"country": "ESP"} ,
+          {
+          "country":"ESP"
+          },
           "driving_licence": false,
-          "residence_permit": true
+          "residence_permit": true,
+        },
+        "showCountrySelection": false
+      }
+    },
+    {
+      "type": "document",
+      "options": {
+        "documentTypes": {
+          "passport": true,
+          "national_identity_card":true,
+           {
+          "country":"ESP"
+          },
+          "driving_licence": false,
+          "residence_permit": true,
         },
         "showCountrySelection": false
       }
