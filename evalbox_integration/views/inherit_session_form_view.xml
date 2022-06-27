@@ -10,15 +10,15 @@
                 <button style="background:#B0E0E6;" type="object"
                         name="import_qcm_qro_evalbox_to_odoo"
                         string="Importer les notes de Evalbox"
-                        groups="mcm_session.group_session_module_manager"><span style='font-size:30px;'>&#128221;</span>
-                    <!--<field string="Importer les notes de Evalbox" name="clients_count" widget="statinfo"/>-->
+                        groups="mcm_session.group_session_module_manager"> <!-- Le button sera visible juste pour les utilisateurs avec le droit d'accès de session égale à manager-->
+                    <span style='font-size:30px;'>&#128221;</span>
                 </button>
-<!--                <button style="background:#C0C0C0;" type="object"-->
-<!--                        name="import_qcm_qro_evalbox_to_odoo"-->
-<!--                        string="Exporter une classe sur Evalbox"-->
-<!--                        ><span style='font-size:30px;'>&#128218;</span>-->
-<!--                    &lt;!&ndash;<field string="Importer les notes de Evalbox" name="clients_count" widget="statinfo"/>&ndash;&gt;-->
-<!--                </button>-->
+                <button style="background:#C0C0C0;" type="object"
+                        name="create_class_odoo_to_evalbox"
+                        string="Exporter une classe sur Evalbox"
+                        groups="mcm_session.group_session_module_manager">
+                    <span style='font-size:30px;'>&#128218;</span>
+                </button>
             </xpath>
         </field>
     </record>

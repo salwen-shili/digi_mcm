@@ -15,12 +15,12 @@ _logger = logging.getLogger(__name__)
 class InheritMcmacademySession(models.Model):
     _inherit = "mcmacademy.session"
 
-    def notif_rainbow_man(self):
+    def notif_rainbow_man(self, message):
         print("notif_rainbow_man")
         return {
             'effect': {
                 'fadeout': 'slow',
-                'message': 'Opération Evalbox réussie!',
+                'message': message,
                 'type': 'rainbow_man',
             }
         }
@@ -89,7 +89,8 @@ class InheritMcmacademySession(models.Model):
                                             email_evalbox = m_rows['email']
                                             # print("email_evalbox", email_evalbox)
                                             mark_qcm = m_rows['mark']
-                                            for client in self.client_ids.sudo().search([("email", "=", email_evalbox)]):
+                                            for client in self.client_ids.sudo().search(
+                                                    [("email", "=", email_evalbox)]):
                                                 if client:
                                                     exam = self.env['info.examen'].sudo().search(
                                                         [("partner_id.email", "=", email_evalbox)],
@@ -138,14 +139,15 @@ class InheritMcmacademySession(models.Model):
                                                                 print("examen.epreuve_a", examen.epreuve_a)
                                                                 print("examen.epreuve_b", examen.epreuve_b)
                                                             else:
-                                                                print("examen.epreuve_aexamen.epreuve_a", examen.epreuve_a)
+                                                                print("examen.epreuve_aexamen.epreuve_a",
+                                                                      examen.epreuve_a)
                                                                 exam.sudo().create(
                                                                     {
                                                                         'partner_id': client.id,
                                                                         'session_id': client.mcm_session_id.id,
                                                                         'module_id': client.module_id.id,
                                                                         'date_exam': client.mcm_session_id.date_exam,
-                                                                        #'epreuve_a': exam.epreuve_a,
+                                                                        # 'epreuve_a': exam.epreuve_a,
                                                                         'epreuve_b': mark_qro,
                                                                         'ville_id': client.mcm_session_id.session_ville_id.id, })
         # #return self.notif_rainbow_man()
@@ -159,8 +161,7 @@ class InheritMcmacademySession(models.Model):
         #         'sticky': True,  # True/False will display for few seconds if false
         #     },
         # }
-        return self.notif_rainbow_man()
-
+        return self.notif_rainbow_man(message='Opération Evalbox réussie!')
 
         # name_evalbox = exams['head']['name']
         # title_evalbox = exams['head']['title']
@@ -218,44 +219,50 @@ class InheritMcmacademySession(models.Model):
         #                         'epreuve_a': student['mark'],
         #                         'epreuve_b': 0,
         #                     })
-        # self.env.user.lang = 'fr_FR'
-        # locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-        # headers = {
-        #     'content_type': 'application/json',
-        #     'User-Agent': 'MCM Academy',
-        #     'X-API-Key': '060951a19c45fb4c2acd7f02ab59ba28',
-        #     'X-APP-ID': 'info@mcm-academy.fr',
-        #     'X-Evalbox': 'api',
-        # }
-        # data = {
-        #     "head": {
-        #         "name": "Test py ITII P18 2A Test",
-        #         "year": "2010",
-        #         "year_end": "2011"
-        #     },
-        #     "rows": [
-        #         {
-        #             "firstname": "Gregor",
-        #             "lastname": "ARZOUYAN",
-        #             "email": "gregor.arzouyan@gmail.com"
-        #         },
-        #         {
-        #             "firstname": "Aldeen",
-        #             "lastname": "BERLUTI",
-        #             "email": "aldeen_berluti@hotmail.com",
-        #             "custom_fields": 'null',
-        #             "externid": 'null'
-        #         },
-        #         {
-        #             "firstname": "Clotilde",
-        #             "lastname": "BISCARRAT",
-        #             "email": "millyclo2007@yahoo.fr"
-        #         }
-        #     ]
-        # }
-        # print(json.dumps(data))
-        # response = requests.post('https://examiner.evalbox.com/api/v1/classes/create',
-        #                          data=json.dumps(data), headers=headers)
-        # result = json.loads(response.text)
-        # print("response", response)
-        # print("classes_post", result)
+
+    def create_class_odoo_to_evalbox(self):
+        """ Evalbox intergration : Ici où il y a la création de classe à partir un button dans la session
+        qui sera visible juste pour les utilisateurs avec le droit d'accès de session égale à manger"""
+        self.env.user.lang = 'fr_FR'
+        locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+        headers = {
+            "user-agent": "MCM Academy",
+            "x-api-key": "060951a19c45fb4c2acd7f02ab59ba28",
+            "x-app-id": "info@mcm-academy.fr",
+            "x-evalbox": "api",
+            "content-type": "application/json",
+            "cache-control": "no-cache",
+        }
+        data = {
+            "head": {
+                "name": "Test Class create 27/06/2022",
+                "year": "2010",
+                "year_end": "2011"
+            },
+            "rows": [
+                {
+                    "firstname": "Gregor",
+                    "lastname": "ARZOUYAN",
+                    "email": "gregor.arzouyan@gmail.com"
+                },
+                {
+                    "firstname": "Aldeen",
+                    "lastname": "BERLUTI",
+                    "email": "aldeen_berluti@hotmail.com",
+                    "custom_fields": {
+                        "prenom_officiel": "Test custom_fields"
+                    },
+                },
+                {
+                    "firstname": "Clotilde",
+                    "lastname": "BISCARRAT",
+                    "email": "millyclo2007@yahoo.fr"
+                }
+            ],
+        }
+        print(json.dumps(data))
+        response = requests.post('https://examiner.evalbox.com/api/v1/classes/create',
+                                 data=json.dumps(data), headers=headers)
+        result = json.loads(response.text)
+        print("response", response)
+        print("classes_post", result)
