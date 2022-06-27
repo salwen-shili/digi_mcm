@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--add evalbox button-->
+    <record id="inherit_session_form_view" model="ir.ui.view">
+        <field name="name">button.evalbox.session.form.view</field>
+        <field name="model">mcmacademy.session</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="after">
+                <button style="background:#B0E0E6;" type="object"
+                        name="import_qcm_qro_evalbox_to_odoo"
+                        string="Importer les notes de Evalbox"
+                        groups="mcm_session.group_session_module_manager"><span style='font-size:30px;'>&#128221;</span>
+                    <!--<field string="Importer les notes de Evalbox" name="clients_count" widget="statinfo"/>-->
+                </button>
+<!--                <button style="background:#C0C0C0;" type="object"-->
+<!--                        name="import_qcm_qro_evalbox_to_odoo"-->
+<!--                        string="Exporter une classe sur Evalbox"-->
+<!--                        ><span style='font-size:30px;'>&#128218;</span>-->
+<!--                    &lt;!&ndash;<field string="Importer les notes de Evalbox" name="clients_count" widget="statinfo"/>&ndash;&gt;-->
+<!--                </button>-->
+            </xpath>
+        </field>
+    </record>
+</odoo>
