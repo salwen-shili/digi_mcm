@@ -4,10 +4,10 @@ import re
 
 import requests
 
+from datetime import datetime
 from odoo import api, fields, models, _
 import logging
 
-from odoo.odoo.tools import datetime
 
 _logger = logging.getLogger(__name__)
 
