@@ -1246,7 +1246,7 @@ class Routes_Site(http.Controller):
             return request.render("mcm_website_theme.formation-taxi-Lyon", values)
 
     @http.route('/evalbox_registration/<string:email>/<string:state>/', type="http", auth="public")
-    def evalbox_registration(self,email=None,state=None, **kw):
+    def evalbox_registration(self,email=None, **kw):
         email = email.replace("%", ".")  # remplacer % par . dans l'email envoyé en paramètre
         email = email.replace(" ","")  # supprimer les espaces envoyés en paramètre email  pour éviter la création des deux comptes
         email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
@@ -1313,6 +1313,34 @@ class Routes_Site(http.Controller):
                     vals) #create ticket if we don't found user using email
             return request.render("mcm_website_theme.evalbox_account_not_found", {})
 
+    @http.route('/evalbox_registration_error/<string:email>', type="http", auth="public")
+    def evalbox_registration_error(self, email=None, **kw):
+        email = email.replace("%", ".")  # remplacer % par . dans l'email envoyé en paramètre
+        email = email.replace(" ",
+                              "")  # supprimer les espaces envoyés en paramètre email  pour éviter la création des deux comptes
+        email = str(email).lower()  # recupérer l'email en minuscule
+        user = request.env['res.users'].sudo().search([('login', "=", email)],limit=1)
+        description = "Zoé n'a pas pu créer un compte Evalbox pour %s en raison de l'absence d'un mot de passe contenant les critères requis ou d'une autre raison. merci de contacter le client afin de l'accompagner dans la création de son compte. " %(str(user.name) if user else str(email))
+        name = "Evalbox : Erreur lors de la création du compte de %s" %(str(user.name) if user else str(email))
+        vals = {
+            'partner_email': '',
+            'partner_id': False,
+            'description': description,
+            'name': name,
+            'team_id': request.env['helpdesk.team'].sudo().search(
+                [('name', "like", _('Examen')), ('company_id', "=", 1)],
+                limit=1).id,
+        }
+        ticket = request.env['helpdesk.ticket'].sudo().search(['|',('description', 'ilike', description),('name',"=",name)]) #search for ticket with same description or same name already created
+        if not ticket: #create new ticket if we didn't find a ticket already created 
+            new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                vals)
+            return request.render("mcm_website_theme.evalbox_ticket_created", {})
+        else:
+            return request.render("mcm_website_theme.evalbox_ticket_exist", {})
+        
+            
+                
 class WebsiteSale(WebsiteSale):
 
     def sitemap_shop(env, rule, qs):
@@ -2341,6 +2369,28 @@ class MCM_SIGNUP(http.Controller):
             return request.render("mcm_website_theme.mcm_bolt_documents")
         else:
             raise werkzeug.exceptions.NotFound()
+
+    @http.route('/get-resetPassword-token', type='http', auth='public', website=True)
+    def get_link_of_reset(self,**kw):
+        qcontext = request.params.copy()
+        _logger.info("qcontext %s" % str(qcontext))
+        if not qcontext.get('email'):
+            raise werkzeug.exceptions.NotFound()
+        else:
+            email = qcontext.get('email')
+            user_sudo = request.env['res.users'].sudo().search(
+                [('login', "=", email.replace(' ', '').lower())],limit=1)
+            if user_sudo :
+                if user_sudo.login_date :
+                    raise werkzeug.exceptions.NotFound()
+                else:
+                    if user_sudo.signup_url and 'reset_password' in user_sudo.signup_url :
+                        return werkzeug.utils.redirect(user_sudo.signup_url, 301)
+                    else:
+                        raise werkzeug.exceptions.NotFound()
+            else:
+                raise werkzeug.exceptions.NotFound()
+        raise werkzeug.exceptions.NotFound()
 
 
 class AuthSignupHome(AuthSignupHome):

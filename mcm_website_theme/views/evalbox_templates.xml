@@ -20,4 +20,14 @@
            style="text-align: left; ">Compte utilisateur non trouvé
         </p>
     </template>
+    <template id="evalbox_ticket_created">
+        <p class="card-text"
+           style="text-align: left; ">Ticket Créé
+        </p>
+    </template>
+    <template id="evalbox_ticket_exist">
+        <p class="card-text"
+           style="text-align: left; ">Ticket déjà existant
+        </p>
+    </template>
 </odoo>
