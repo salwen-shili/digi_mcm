@@ -634,7 +634,7 @@ class Services(http.Controller):
     def get_ticket(self, **kwargs):
         contact_last_name = kwargs.get('contact_lastname')
         contact_name = kwargs.get('contact_name')
-        email_from = kwargs.get('email_from')
+        email_from = str(kwargs.get('email_from')).replace(' ', '').lower()
         phone = kwargs.get('phone')
         name = kwargs.get('name')
         description = kwargs.get('description')
@@ -643,7 +643,7 @@ class Services(http.Controller):
         if kwargs.get('name_company'):
             name_company = kwargs.get('name_company')
         service = kwargs.get('service')
-        user = http.request.env['res.users'].sudo().search([('login', "=", str(email_from).replace(' ', '').lower()), '|', ('active', '=', True), ('active', '=', False)],
+        user = http.request.env['res.users'].sudo().search([('login', "=", str(email_from).replace(' ', '').lower()), '|', ('active', '=', True), ('active', '=', False)], #search for active and not active users
                                                            limit=1)  # get only one user if there is double account with same email 
         if not user:
             user = request.env['res.users'].sudo().create({
