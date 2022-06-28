@@ -15,9 +15,11 @@ class HelpdeskTicket(models.Model):
         for rec in list_value:
             if 'partner_id' in rec:
                 if rec['partner_id']:
-                    user = self.env['res.users'].sudo().search([('partner_id', "=", rec['partner_id'])])
+                    user = self.env['res.users'].sudo().search(
+                        [('partner_id', "=", rec['partner_id']), '|', ('active', '=', True), ('active', '=', False)])
                 else:
-                    user = self.env['res.users'].sudo().search([('login', "=", rec['partner_email'])])
+                    user = self.env['res.users'].sudo().search(
+                        [('login', "=", rec['partner_email']), '|', ('active', '=', True), ('active', '=', False)])
                 if not user:
                     partner = self.env['res.partner'].sudo().search([('id', "=", rec['partner_id'])])
                     if partner:
@@ -44,9 +46,11 @@ class HelpdeskTicket(models.Model):
     def write(self, vals):
         if 'partner_id' in vals:
             partner_id=vals['partner_id']
-            user = self.env['res.users'].sudo().search([('partner_id', "=", partner_id)])
+            user = self.env['res.users'].sudo().search(
+                [('partner_id', "=", partner_id), '|', ('active', '=', True), ('active', '=', False)])
             if not user:
-                partner = self.env['res.partner'].sudo().search([('id', "=", vals['partner_id'])])
+                partner = self.env['res.partner'].sudo().search(
+                    [('id', "=", vals['partner_id']), '|', ('active', '=', True), ('active', '=', False)])
                 if partner:
                     partner.sudo().unlink() # supprimer la fiche contact de client si le client n'a pas de compte
                     vals['partner_id']=False
