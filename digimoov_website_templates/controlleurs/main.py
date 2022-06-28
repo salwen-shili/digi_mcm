@@ -488,10 +488,7 @@ class Services(http.Controller):
 
     @http.route('/service-clientele', type='http', auth='public', website=True)
     def clientele(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search(
-            [('id', '=', 4), ('active', '=', False)])
-
-        if http.request.uid == public_user.id:
+        if not http.request.env.user.active:
             email_from = ""
             nom = ""
             prenom = ""
@@ -513,10 +510,7 @@ class Services(http.Controller):
 
     @http.route('/administration', type='http', auth='public', website=True)
     def administration(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search(
-            [('id', '=', 4), ('active', '=', False)])
-
-        if http.request.uid == public_user.id:
+        if not http.request.env.user.active:
             email_from = ""
             nom = ""
             prenom = ""
@@ -538,10 +532,8 @@ class Services(http.Controller):
 
     @http.route('/partenariat', type='http', auth='public', website=True)
     def partenariat(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search(
-            [('id', '=', 4), ('active', '=', False)])
 
-        if http.request.uid == public_user.id:
+        if not http.request.env.user.active:
             email_from = ""
             nom = ""
             prenom = ""
@@ -576,11 +568,7 @@ class Services(http.Controller):
 
     @http.route('/service-comptabilite', type='http', auth='user', website=True)
     def comptabilite(self, **kw, ):
-        print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-        public_user = http.request.env['res.users'].sudo().search(
-            [('id', '=', 4), ('active', '=', False)])
-
-        if http.request.uid == public_user.id:
+        if not http.request.env.user.active:
             email_from = ""
             nom = ""
             prenom = ""
@@ -603,9 +591,7 @@ class Services(http.Controller):
 
     @http.route('/service-pedagogique', type='http', auth='user', website=True)
     def pedagogique(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search(
-            [('id', '=', 4), ('active', '=', False)])
-        if http.request.uid == public_user.id:
+        if not http.request.env.user.active:
             email_from = ""
             nom = ""
             prenom = ""
@@ -657,7 +643,7 @@ class Services(http.Controller):
         if kwargs.get('name_company'):
             name_company = kwargs.get('name_company')
         service = kwargs.get('service')
-        user = http.request.env['res.users'].sudo().search([('login', "=", str(email_from))],
+        user = http.request.env['res.users'].sudo().search([('login', "=", str(email_from).replace(' ', '').lower()), '|', ('active', '=', True), ('active', '=', False)],
                                                            limit=1)  # get only one user if there is double account with same email
         if not user:
             user = request.env['res.users'].sudo().create({
