@@ -100,7 +100,7 @@ class NoteExamen(models.Model):
 
     @api.onchange('resultat', 'partner_id', 'presence')
     def update_boolean_values(self):
-        if self.company_id == 2:
+        if self.company_id.id == 2:
             for rec in self:
                 if rec.resultat == 'recu':
                     rec.is_recu = True
