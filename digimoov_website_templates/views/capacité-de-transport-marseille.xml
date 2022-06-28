@@ -417,7 +417,7 @@
                                                         </p>
                                                     </t>
                                                     <p class="paiement medium text-center font-weight-bolder text-secondary">
-                    Paiement 1 ou 2 fois
+                    Paiement 1 ou 3 fois
                                             </p>
                                                     <br />
                                                     <button class="btn-inscription btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();">
