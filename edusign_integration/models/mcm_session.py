@@ -1020,9 +1020,13 @@ class mcmSession(models.Model):
         locked = self.sendRequest(
             "get", "https://ext.edusign.fr/v1/course/lock/{}".format(session.id_session_edusign), headers
         )
-        if locked:
-            print("Course locked!")
-            return True
+
+        if locked and "status" in locked:
+            if locked["status"] == "success":
+
+                url = locked["result"]["link"]
+                self.urlToirAttachement(session, url)
+                return True
         else:
             print(
                 "Error while locking the course %s with edusign course id %s"
@@ -1030,39 +1034,21 @@ class mcmSession(models.Model):
             )
             return False
 
-    def getPresenceSheetFileUrl(self, group_id, course, headers):
+    def urlToirAttachement(self, session, url):
+        attachment_obj = self.env["ir.attachment"]
+        fileUrl = parse.urlparse(url)
 
-        url = self.sendRequest(
-            "get",
-            "https://ext.edusign.fr/v1/course/getGroupAttendanceSheet/{group_id}?start={start}&end={end}".format(
-                group_id=group_id, start=course["result"]["START"], end=course["result"]["END"]
-            ),
-            headers,
-        )
-        if url:
+        if not fileUrl.scheme:
+            fileUrl = parse.urlparse("{}{}".format("http://", fileUrl))
 
-            attachment_obj = self.env["ir.attachment"]
-
-            fileUrl = parse.urlparse(url["result"]["filename"])
-
-            if not fileUrl.scheme:
-                fileUrl = parse.urlparse("{}{}".format("http://", fileUrl))
-
-            attachment = {
-                "name": "Feuille_d'émargement_{}".format(self.name),
-                "type": "url",
-                "url": fileUrl.geturl(),
-                "res_id": self.id,
-                "res_model": "mcmacademy.session",
-            }
-            attachment_obj.create(attachment)
-
-        else:
-            print(
-                "Error while get Url filename of the course %s with edusign course id %s"
-                % (course["result"]["NAME"], str(course["result"]["ID"]))
-            )
-            return False
+        attachment = {
+            "name": "Feuille_d'émargement_{}".format(session.name),
+            "type": "url",
+            "url": fileUrl.geturl(),
+            "res_id": session.id,
+            "res_model": "mcmacademy.session",
+        }
+        attachment_obj.create(attachment)
 
     # All logics are here for the button "Recuperer feuille de presence"
     def getPresenceList(self):
@@ -1100,11 +1086,10 @@ class mcmSession(models.Model):
                     course = self.sendRequest(
                         "get", "https://ext.edusign.fr/v1/course/{}".format(res.id_session_edusign), headers
                     )
-
+                    # lock course and get presence file url
+                    # Download and add presence sheet to ir attachement
                     if self.lockCourse(res, headers):
                         if course and "STUDENTS" in course["result"]:
-                            # get presence file url
-                            self.getPresenceSheetFileUrl(res.id_group_edusign, course, headers)
                             # get presence and write exam lines
                             studentsList = course["result"]["STUDENTS"]
                             for student in studentsList:
