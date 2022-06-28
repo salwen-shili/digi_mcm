@@ -954,7 +954,7 @@ class mcmSession(models.Model):
     # if found will search if we have already a line exam
     # if line exam found will update it if presence is different else will create a new one
     def writeExamLine(self, session, student, headers):
-        print(student["studentId"])
+
         resultContent = self.sendRequest(
             "get",
             "https://ext.edusign.fr/v1/student/{}".format(student["studentId"]),
@@ -981,6 +981,21 @@ class mcmSession(models.Model):
                     presence,
                     session.session_ville_id.id,
                 )
+                _logger.info(
+                    "partner_id",
+                    partner.id,
+                    "session_id",
+                    partner.mcm_session_id.id,
+                    "module_id",
+                    partner.module_id.id,
+                    "date_exam",
+                    partner.mcm_session_id.date_exam,
+                    "ville_id",
+                    "presence",
+                    presence,
+                    session.session_ville_id.id,
+                )
+                # search for existance
                 examLines = (
                     self.env["info.examen"]
                     .sudo()
@@ -992,6 +1007,8 @@ class mcmSession(models.Model):
                         order="id desc",
                     )
                 )
+                print("print (examLines)", examLines)
+                _logger.info("print (examLines)", examLines)
 
                 if not examLines:
 
@@ -1005,15 +1022,19 @@ class mcmSession(models.Model):
                             "ville_id": session.session_ville_id.id,
                         }
                     )
+                    print("print (after if not examLines)", examLines)
+                    _logger.info("No lines => Exam line created ")
                 else:
                     for line in examLines:
-                        print("====================examLine.presence != presence,  ", line.presence, presence)
-                        if line.presence != presence:
+                        if line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam:
                             line.presence = presence
+                            print("Update presence in the same line. ")
+                            _logger.info("Update presence in the same line. ")
                         else:
                             return
         else:
             print("Student with id %s does not exist" % (str(student["studentId"])))
+            _logger.info("Student with id %s does not exist" % (str(student["studentId"])))
             return
 
     def lockCourse(self, session, headers):
@@ -1023,10 +1044,11 @@ class mcmSession(models.Model):
 
         if locked and "status" in locked:
             if locked["status"] == "success":
-
+                # get url
                 url = locked["result"]["link"]
                 self.urlToirAttachement(session, url)
-                return True
+
+            return True
         else:
             print(
                 "Error while locking the course %s with edusign course id %s"
@@ -1035,12 +1057,12 @@ class mcmSession(models.Model):
             return False
 
     def urlToirAttachement(self, session, url):
+        _logger.info("Trying to Add url=%s to ir attachement.", url)
         attachment_obj = self.env["ir.attachment"]
         fileUrl = parse.urlparse(url)
 
         if not fileUrl.scheme:
             fileUrl = parse.urlparse("{}{}".format("http://", fileUrl))
-
         attachment = {
             "name": "Feuille_d'émargement_{}".format(session.name),
             "type": "url",
@@ -1088,7 +1110,9 @@ class mcmSession(models.Model):
                     )
                     # lock course and get presence file url
                     # Download and add presence sheet to ir attachement
-                    if self.lockCourse(res, headers):
+                    lockCourse = self.lockCourse(res, headers)
+                    print("=========", lockCourse)
+                    if lockCourse:
                         if course and "STUDENTS" in course["result"]:
                             # get presence and write exam lines
                             studentsList = course["result"]["STUDENTS"]
