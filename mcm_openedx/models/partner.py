@@ -290,34 +290,37 @@ class partner(models.Model):
              ('session_id', '=', self.mcm_session_id.id),
              ('module_id', '=', self.module_id.id),
              ], limit=1, order="id desc")
-        # Récupérer les documents et vérifier si ils sont validés ou non
-        documents = self.env['documents.document'].sudo().search([('partner_id', '=', self.id)])
-        document_valide = False
-        count = 0
-        for document in documents:
-            if (document.state == "validated"):
-                count = count + 1
-        _logger.info('count %s ' % str(count))
-        _logger.info('len %s' % str(len(documents)))
-        if (count == len(documents) and count != 0):
-            document_valide = True
-        else:
-            # si les document ne sont  pas valide une notif appartient sur odoo
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': _('Document a verifier 🤓 🤓  '),
-                    'message': _('Document a verifier 🤓 🤓'),
-                    'sticky': True,
-                    'className': 'bg-danger'
-                }
-            }
+
         # en va changer numero_evalbox avec numero eval ..
         # verifier si la case evalbox est True
         _logger.info('numeroooooooo %s' % str(self.numero_evalbox))
 
         if (self.numero_evalbox != False):
+            _logger.info('self.numero_evalbox != False ')
+            # Récupérer les documents et vérifier si ils sont validés ou non
+            documents = self.env['documents.document'].sudo().search([('partner_id', '=', self.id)])
+            document_valide = False
+            count = 0
+            for document in documents:
+                if (document.state == "validated"):
+                    count = count + 1
+            _logger.info('count %s ' % str(count))
+            _logger.info('len %s' % str(len(documents)))
+            if (count == len(documents) and count != 0):
+                document_valide = True
+            else:
+                # si les document ne sont  pas valide une notif appartient sur odoo
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': _('Document a verifier 🤓 🤓  '),
+                        'message': _('Document a verifier 🤓 🤓'),
+                        'sticky': True,
+                        'className': 'bg-danger'
+                    }
+                }
+
             # defenir le mode de financement
             if self.mode_de_financement == "particulier":
                 _logger.info('mode_de_financement %s' % str(self.mode_de_financement))
