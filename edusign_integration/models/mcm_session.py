@@ -49,15 +49,14 @@ class mcmSession(models.Model):
             checkProfessor = self.checkExistance(
                 "https://ext.edusign.fr/v1/professor/by-email/", professorsEmails[0], headers
             )
-            if "status" in checkProfessor:
+            if checkProfessor["status"] == "success":
+                professor1 = checkProfessor["result"]["ID"]
+            if len(professorsEmails) == 2:
+                checkProfessor = self.checkExistance(
+                    "https://ext.edusign.fr/v1/professor/by-email/", professorsEmails[1], headers
+                )
                 if checkProfessor["status"] == "success":
-                    professor1 = checkProfessor["result"]["ID"]
-                if len(professorsEmails) == 2:
-                    checkProfessor = self.checkExistance(
-                        "https://ext.edusign.fr/v1/professor/by-email/", professorsEmails[1], headers
-                    )
-                    if checkProfessor["status"] == "success":
-                        professor2 = checkProfessor["result"]["ID"]
+                    professor2 = checkProfessor["result"]["ID"]
 
         nbAdd = 0
         nbEdit = 0
@@ -716,8 +715,12 @@ class mcmSession(models.Model):
 
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
         checkDate = True
-        # checkUrl = True
+<<<<<<<<< Temporary merge branch 1
+        checkUrl = True
+        # checkUrl = "localhost" not in str(base_url) and "dev.odoo" not in str(base_url)
+=========
         checkUrl = "localhost" not in str(base_url) and "dev.odoo" not in str(base_url)
+>>>>>>>>> Temporary merge branch 2
         if self.date_exam:
             checkDate = date.today() <= self.date_exam
         print(
@@ -1038,6 +1041,7 @@ class mcmSession(models.Model):
             _logger.info("Student with id %s does not exist" % (str(student["studentId"])))
             return
 
+<<<<<<<<< Temporary merge branch 1
     def lockCourse(self, session, headers):
         locked = self.sendRequest(
             "get", "https://ext.edusign.fr/v1/course/lock/{}".format(session.id_session_edusign), headers
@@ -1317,3 +1321,114 @@ class mcmSession(models.Model):
         #     return res
         # else:
         #     return res
+=========
+    # def write(self, vals):
+
+    #     res = super(mcmSession, self).write(vals)
+
+    #     if self.allowExecution() == True:
+    #         print(
+    #             "################## ################## ################## ################## ################## ##################\n"
+    #             "#################                                                                              ##################\n"
+    #             "#################                   Edusign Write Function has executed.                       ##################\n"
+    #             "#################                                                                              ##################\n"
+    #             "################## ################## ################## ################## ################## ##################\n"
+    #         )
+    #         _logger.info(
+    #             "\n"
+    #             + "################## ################## ################## ################## ################## ##################\n"
+    #             "#################                                                                              ##################\n"
+    #             "#################                   Edusign Write Function has executed.                       ##################\n"
+    #             "#################                                                                              ##################\n"
+    #             "################## ################## ################## ################## ################## ##################\n"
+    #         )
+
+    #         company = self.env["res.company"].sudo().search([("id", "=", 2)], limit=1)
+    #         if company:
+    #             api_key = company.edusign_api_key
+    #             if not api_key:
+    #                 _logger.info("Please add edusign api_key")
+    #                 return
+    #             headers = {
+    #                 "Authorization": "Bearer %s" % (str(api_key)),
+    #                 "Content-Type": "application/json",
+    #             }
+
+    #             if not self.id_group_edusign:
+    #                 self.addGroup(self, headers)
+
+    #             nbCount = {
+    #                 "nbAdd": 0,
+    #                 "nbEdit": 0,
+    #             }
+    #             # Call addgroup to check if group matches edusign with odoo
+
+    #             nb = nbCount
+    #             # Loop and add each student.
+    #             # Create and update students
+    #             studentsID = []
+    #             # check if Students list has been updated
+    #             if "name" in vals:
+
+    #                 self.updateGroup(headers)
+    #             if "client_ids" in vals:
+
+    #                 for student in self.client_ids:
+
+    #                     nb = self.addStudent(student, headers)
+    #                     nbCount = {
+    #                         "nbAdd": nb["nbAdd"] + nbCount["nbAdd"],
+    #                         "nbEdit": nb["nbEdit"] + nbCount["nbEdit"],
+    #                     }
+    #                     # Fill students ID from edusign to update the group list
+    #                     studentsID.append(nb["id"])
+    #                 print("Edusign Students ID in this session", studentsID)
+    #                 _logger.info("Edusign Students ID in this session %s = %s" % (str(self.name), str(studentsID)))
+    #                 # Make an update to students Lists
+    #                 self.updateStudentLists(studentsID, headers)
+    #                 print("Students list has been updated from session.")
+    #                 _logger.info("Students list has been updated from session")
+
+    #             if "surveillant_id" in vals or "session_adresse_examen" in vals:
+    #                 # Professor list has been updated
+    #                 # Create professor if not exist and Launch create course
+    #                 # get professor ID to create a course
+
+    #                 professorsId = []
+    #                 nbCountProfessor = {
+    #                     "nbAdd": 0,
+    #                     "nbEdit": 0,
+    #                 }
+
+    #                 # create and update professor
+    #                 for surveillant in self.surveillant_id:
+    #                     print(surveillant.id)
+    #                     # nb = self.addStudent(surveillant, headers)
+    #                     if surveillant:
+
+    #                         professorsId.append(surveillant.id)
+
+    #                         nb = self.addProfessor(surveillant, headers)
+
+    #                     nbCountProfessor = {
+    #                         "nbAdd": nb["nbAdd"] + nbCountProfessor["nbAdd"],
+    #                         "nbEdit": nb["nbEdit"] + nbCountProfessor["nbEdit"],
+    #                     }
+
+    #                 # If  ProfessorsId[] is empty we can not create a course.
+    #                 if professorsId:
+    #                     self.addCourse(self, professorsId, headers)
+    #                 else:
+    #                     print(
+    #                         "\n\nImpossible to create a Course, Please assign Professor to the session "
+    #                         + self.name
+    #                         + "\n\n"
+    #                     )
+    #                     _logger.info(
+    #                         "\n\nImpossible to create a Course, Please assign Professor to the session "
+    #                         + self.name
+    #                         + "\n\n"
+    #                     )
+    #         return res
+    #     else:
+    #         return res
