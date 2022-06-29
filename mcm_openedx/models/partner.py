@@ -278,7 +278,6 @@ class partner(models.Model):
                                     dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
                                     if dateDebutSession <= datetime.today():
                                         self.ajouter_IOne_MCM(partner)
-                                        _logger.info(' Doneeeee %s')
 
     # ajouter les apprenants manuellemnt a partire de  la fiche Client
     def ajoutMoocit_manuelle(self):
@@ -472,29 +471,29 @@ class partner(models.Model):
                 if (response.status_code == 200):
                     partner.inscrit_mcm = date.today()
                     self.write({'state': 'en_formation'})
-                    partner.lang = 'fr_FR'
-
                     if self.env.su:
                         # sending mail in sudo was meant for it being sent from superuser
-                        selff = self.with_user(SUPERUSER_ID)
-                        template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                            'mcm_openedx.mail_template_add_Ione_MOOcit'))
-                        template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-                        if not template_id:
-                            template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                                'mcm_openedx.mail_template_add_Ione_MOOcit',
-                                raise_if_not_found=False)
-                        if not template_id:
-                            template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                                'mcm_openedx.email_template_add_Ione_MOOcit',
-                                raise_if_not_found=False)
-                        if template_id:
-                            partner.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                             composition_mode='comment', )
+                        self = self.with_user(SUPERUSER_ID)
+                    if not partner.lang:
+                        partner.lang = 'fr_FR'
+                    _logger.info('avant email %s' % str(partner.name))
+                    template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                        'mcm_openedx.mail_template_add_Ione_MOOcit'))
+                    template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                    if not template_id:
+                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                            'mcm_openedx.mail_template_add_Ione_MOOcit',
+                            raise_if_not_found=False)
+                    if not template_id:
+                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                            'mcm_openedx.email_template_add_Ione_MOOcit',
+                            raise_if_not_found=False)
+                    if template_id:
+                        partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                         composition_mode='comment', )
 
-                        _logger.info("mail envoyeé")
-                        _logger.info(partner.email)
-
+                    _logger.info("mail envoyeé")
+                    _logger.info(partner.email)
                     bolt = self.bolt
                     evalbox = self.numero_evalbox
                     departement = self.state_id.code
@@ -570,14 +569,12 @@ class partner(models.Model):
 
     # supprimer ione le desinscrire des cours sur la platfrom moocit
     def supprimer_IOne_MCM(self):
-
         departement = self.state_id.code
         _logger.info(departement)
         # supprimer l'apprenats en verifiant le module choisit
         if (self.module_id.product_id.default_code == "taxi"):
             self.desinscriteTaxi(self)
             self.supprimerdemoocit = date.today()
-
             self.write({'state': 'supprimé'})
             _logger.info('state: supprimé')
 
@@ -585,7 +582,6 @@ class partner(models.Model):
         elif (self.module_id.product_id.default_code == "vtc"):
             self.desinscriteVTC(self)
             self.supprimerdemoocit = date.today()
-
             self.write({'state': 'supprimé'})
             _logger.info('state: supprimé')
 
@@ -593,7 +589,6 @@ class partner(models.Model):
         elif (self.module_id.product_id.default_code == "vtc_bolt"):
             self.desinscriteVTC(self)
             self.supprimerdemoocit = date.today()
-
             _logger.info('state: supprimé')
 
         else:
@@ -609,16 +604,7 @@ class partner(models.Model):
             }
 
     # affecter la date de suppression apres l'ajout  5 jours apres session
-
-    def supprimer_apres_dateexman(self, partner):
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            if (partner.mcm_session_id.date_exam != False):
-                partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
-                _logger.info("supprimer apres date exman")
-
-    # ajouter une date de suppression pour les ancien utilsateur avant prod
-    def supprimer_avantprod(self):
+    def update_datesupp(self):
         for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1),
                                                               ('inscrit_mcm', '!=', False),
                                                               ('mcm_session_id.date_exam', '!=', False),
@@ -653,35 +639,36 @@ class partner(models.Model):
                     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                         self.desinscriteVTC(partner)
 
-    # suppression des anciens apprenat  de 2020 2021
-    def update_suppresion_old_apprenats(self):
-        locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-        for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
-
-            datee = datetime.today()
-            print(datee.year)
-            count = 0
-
-            for partner in self.env['res.partner'].sudo().search([('company_id', '!=', 2),
-                                                                  ('mcm_session_id.date_fin', '!=', False),
-                                                                  ]):
-                year_session = partner.mcm_session_id.date_fin.year
-                if (year_session < datee.year):
-                    print("nononon", partner.mcm_session_id.date_fin.year)
-                    print("nononon", partner.mcm_session_id.name)
-                    print(partner.email)
-                    count = count + 1
-                    partner.supprimerdemoocit = date.today()
-                    partner.write({'state': 'supprimé'})
-                print("nombre des apprenants a supprimer ", count)
-
-                if (partner.module_id.product_id.default_code == "taxi"):
-                    partner.desinscriteTaxi(partner)
-                elif (partner.module_id.product_id.default_code == "vtc"):
-                    partner.desinscriteVTC(partner)
-                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                    partner.desinscriteVTC(partner)
-
+    # # suppression des anciens apprenat  de 2020 2021
+    # def update_suppresion_old_apprenats(self):
+    #     locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+    #     for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
+    #
+    #         datee = datetime.today()
+    #         print(datee.year)
+    #         count = 0
+    #
+    #         for partner in self.env['res.partner'].sudo().search([('company_id', '!=', 2),
+    #                                                               ('mcm_session_id.date_fin', '!=', False),
+    #                                                               ]):
+    #             year_session = partner.mcm_session_id.date_fin.year
+    #             if (year_session < datee.year):
+    #                 print("nononon", partner.mcm_session_id.date_fin.year)
+    #                 print("nononon", partner.mcm_session_id.name)
+    #                 print(partner.email)
+    #                 count = count + 1
+    #                 partner.supprimerdemoocit = date.today()
+    #                 partner.write({'state': 'supprimé'})
+    #             print("nombre des apprenants a supprimer ", count)
+    #
+    #             if (partner.module_id.product_id.default_code == "taxi"):
+    #                 partner.desinscriteTaxi(partner)
+    #             elif (partner.module_id.product_id.default_code == "vtc"):
+    #                 partner.desinscriteVTC(partner)
+    #             elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+    #                 partner.desinscriteVTC(partner)
+    #
+    #
     def convertir_date_inscription(self):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
