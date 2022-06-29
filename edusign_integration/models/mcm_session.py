@@ -49,14 +49,15 @@ class mcmSession(models.Model):
             checkProfessor = self.checkExistance(
                 "https://ext.edusign.fr/v1/professor/by-email/", professorsEmails[0], headers
             )
-            if checkProfessor["status"] == "success":
-                professor1 = checkProfessor["result"]["ID"]
-            if len(professorsEmails) == 2:
-                checkProfessor = self.checkExistance(
-                    "https://ext.edusign.fr/v1/professor/by-email/", professorsEmails[1], headers
-                )
+            if "status" in checkProfessor:
                 if checkProfessor["status"] == "success":
-                    professor2 = checkProfessor["result"]["ID"]
+                    professor1 = checkProfessor["result"]["ID"]
+                if len(professorsEmails) == 2:
+                    checkProfessor = self.checkExistance(
+                        "https://ext.edusign.fr/v1/professor/by-email/", professorsEmails[1], headers
+                    )
+                    if checkProfessor["status"] == "success":
+                        professor2 = checkProfessor["result"]["ID"]
 
         nbAdd = 0
         nbEdit = 0
