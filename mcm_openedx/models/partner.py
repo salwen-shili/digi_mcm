@@ -278,6 +278,7 @@ class partner(models.Model):
                                     dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
                                     if dateDebutSession <= datetime.today():
                                         self.ajouter_IOne_MCM(partner)
+                                        _logger.info(' tout est valide %s')
 
     # ajouter les apprenants manuellemnt a partire de  la fiche Client
     def ajoutMoocit_manuelle(self):
@@ -336,14 +337,14 @@ class partner(models.Model):
                         if (self.renounce_request):
                             self.ajouter_IOne_MCM(self)
 
-                            _logger.info('doooooooooooooooooooone %s')
+                            _logger.info(' tout est valide %s')
 
                         # si non il doit attendre 14jours pour etre ajouté a la platform*
                         today = date.today()
                         if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
                             self.ajouter_IOne_MCM(self)
 
-                            _logger.info('doooooooooooooooooooone %s')
+                            _logger.info(' tout est valide %s')
 
 
 
@@ -366,10 +367,9 @@ class partner(models.Model):
                 if (document_valide) and (self.mcm_session_id.date_exam) and (
                         self.mcm_session_id.date_exam > date.today()):
                     _logger.info('document valide , date exlan > datetoday %s')
-
                     if (self.renounce_request):
                         self.ajouter_IOne_MCM(self)
-                        _logger.info(' Doneeeee %s')
+                        _logger.info(' tout est valide %s')
 
                 if not (self.renounce_request) and self.numero_cpf:
                     """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
@@ -399,8 +399,9 @@ class partner(models.Model):
                         _logger.info('dateDebutSession %s' % str(dateDebutSession))
                         print(datetime.today())
                         if dateDebutSession <= datetime.today():
-                            _logger.info(' Donnnnnnne %s')
                             self.ajouter_IOne_MCM(self)
+                            _logger.info(' tout est valide %s')
+
 
 
 
