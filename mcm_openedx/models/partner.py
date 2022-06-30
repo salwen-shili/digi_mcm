@@ -305,7 +305,7 @@ class partner(models.Model):
         # verifier si la case evalbox est True
         _logger.info('numeroooooooo %s' % str(self.numero_evalbox))
 
-        if (self.numero_evalbox != False):
+        if (self.numero_evalbox != False   and (self.statut == "won")):
             bolt = self.bolt
 
             _logger.info('self.numero_evalbox != False ')
@@ -554,6 +554,7 @@ class partner(models.Model):
 
 
                 elif (response.status_code == 409):
+                    self.write({'state': 'en_formation'})
                     _logger.info('existantttttt dejaa %s')
 
     # envoit d'un sms
