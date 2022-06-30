@@ -298,126 +298,130 @@ class partner(models.Model):
         _logger.info('numeroooooooo %s' % str(self.numero_evalbox))
 
         if (self.numero_evalbox != False):
+            bolt = self.bolt
+
             _logger.info('self.numero_evalbox != False ')
-            # Récupérer les documents et vérifier si ils sont validés ou non
-            documents = self.env['documents.document'].sudo().search([('partner_id', '=', self.id)])
-            document_valide = False
-            count = 0
-            for document in documents:
-                if (document.state == "validated"):
-                    count = count + 1
-            _logger.info('count %s ' % str(count))
-            _logger.info('len %s' % str(len(documents)))
-            if (count == len(documents) and count != 0):
-                document_valide = True
+            if (bolt):
+                self.ajouter_IOne_MCM(self)
             else:
-                # si les document ne sont  pas valide une notif appartient sur odoo
-                return {
-                    'type': 'ir.actions.client',
-                    'tag': 'display_notification',
-                    'params': {
-                        'title': _('Document a verifier 🤓 🤓  '),
-                        'message': _('Document a verifier 🤓 🤓'),
-                        'sticky': True,
-                        'className': 'bg-danger'
-                    }
-                }
-
-            # defenir le mode de financement
-            if self.mode_de_financement == "particulier":
-                _logger.info('mode_de_financement %s' % str(self.mode_de_financement))
-                # verifier si le sale et les documents et satut sont valides
-                if ((sale_order) and (document_valide) and (self.statut == "won")):
-                    _logger.info('document et sale valide Condition 1 validee %s')
-
-                    # verifer avec ines statue sale.order
-                    if (sale_order.state == 'sale') and (sale_order.signature):
-                        _logger.info('sale order et signature valide %s')
-
-                        # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
-                        if (self.renounce_request):
-                            self.ajouter_IOne_MCM(self)
-
-                            _logger.info(' tout est valide %s')
-
-                        # si non il doit attendre 14jours pour etre ajouté a la platform*
-                        today = date.today()
-                        if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
-                            self.ajouter_IOne_MCM(self)
-
-                            _logger.info(' tout est valide %s')
-
-
-
-
-
+                # Récupérer les documents et vérifier si ils sont validés ou non
+                documents = self.env['documents.document'].sudo().search([('partner_id', '=', self.id)])
+                document_valide = False
+                count = 0
+                for document in documents:
+                    if (document.state == "validated"):
+                        count = count + 1
+                _logger.info('count %s ' % str(count))
+                _logger.info('len %s' % str(len(documents)))
+                if (count == len(documents) and count != 0 and bolt == False):
+                    document_valide = True
                 else:
-                    # si sale order ou bien les document ne sont pas valides  ou bien satut nest pas ganger alors en affiche une alert
+                    # si les document ne sont  pas valide une notif appartient sur odoo
                     return {
                         'type': 'ir.actions.client',
                         'tag': 'display_notification',
                         'params': {
-                            'title': _(' verifier sale order ou bien signature ou bien staut 🤓 🤓'),
-                            'message': _(' verifier sale order ou bien signature ou bien staut 🤓 🤓'),
+                            'title': _('Document a verifier 🤓 🤓  '),
+                            'message': _('Document a verifier 🤓 🤓'),
                             'sticky': True,
                             'className': 'bg-danger'
                         }
                     }
-            if self.mode_de_financement == "cpf":
-                _logger.info(' date exman %s' % str(self.mcm_session_id.date_exam))
-                if (document_valide) and (self.mcm_session_id.date_exam) and (
-                        self.mcm_session_id.date_exam > date.today()):
-                    _logger.info('document valide , date exlan > datetoday %s')
-                    if (self.renounce_request):
-                        self.ajouter_IOne_MCM(self)
-                        _logger.info(' tout est valide %s')
 
-                if not (self.renounce_request) and self.numero_cpf:
-                    """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
-                    headers = {
-                        'accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'X-API-KEY': self.company_id.wedof_api_key,
-                    }
-                    params_wedof = (
-                        ('order', 'desc'),
-                        ('type', 'all'),
-                        ('state', 'accepted'),
-                        ('billingState', 'all'),
-                        ('certificationState', 'all'),
-                        ('sort', 'lastUpdate'),
-                    )
-                    responsesession = requests.get(
-                        'https://www.wedof.fr/api/registrationFolders/' + self.numero_cpf,
-                        headers=headers, params=params_wedof)
-                    dossier = responsesession.json()
-                    dateDebutSession_str = ""
-                    _logger.info('session %s' % str(dossier))
-                    if "trainingActionInfo" in dossier:
-                        dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
-                        _logger.info(' testtt %s')
-                        dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
-                        _logger.info('dateDebutSession %s' % str(dateDebutSession))
-                        print(datetime.today())
-                        if dateDebutSession <= datetime.today():
-                            self.ajouter_IOne_MCM(self)
-                            _logger.info(' tout est valide %s')
+                # defenir le mode de financement
+                if self.mode_de_financement == "particulier":
+                    _logger.info('mode_de_financement %s' % str(self.mode_de_financement))
+                    # verifier si le sale et les documents et satut sont valides
+                    if ((sale_order) and (document_valide) and (self.statut == "won") and (bolt == False)):
+                        _logger.info('document et sale valide Condition 1 validee %s')
+
+                        # verifer avec ines statue sale.order
+                        if (sale_order.state == 'sale') and (sale_order.signature) and (bolt == False):
+                            _logger.info('sale order et signature valide %s')
+
+                            # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                            if (self.renounce_request):
+                                self.ajouter_IOne_MCM(self)
+
+                                _logger.info(' tout est valide %s')
+
+                            # si non il doit attendre 14jours pour etre ajouté a la platform*
+                            today = date.today()
+                            if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
+                                self.ajouter_IOne_MCM(self)
+                                _logger.info(' tout est valide %s')
+
 
 
 
 
                     else:
-                        _logger.info("seesion et date exman")
+                        # si sale order ou bien les document ne sont pas valides  ou bien satut nest pas ganger alors en affiche une alert
                         return {
                             'type': 'ir.actions.client',
                             'tag': 'display_notification',
                             'params': {
-                                'title': _('Verifier session et date exman🤓 🤓'),
-                                'message': _('Verifier session et date exman 🤓 🤓'),
+                                'title': _(' verifier sale order ou bien signature ou bien staut 🤓 🤓'),
+                                'message': _(' verifier sale order ou bien signature ou bien staut 🤓 🤓'),
                                 'sticky': True,
                                 'className': 'bg-danger'
                             }
                         }
+                if self.mode_de_financement == "cpf":
+                    _logger.info(' date exman %s' % str(self.mcm_session_id.date_exam))
+                    if (document_valide) and (self.mcm_session_id.date_exam) and (
+                            self.mcm_session_id.date_exam > date.today()):
+                        _logger.info('document valide , date exlan > datetoday %s')
+                        if (self.renounce_request):
+                            self.ajouter_IOne_MCM(self)
+                            _logger.info(' tout est valide %s')
+
+                    if not (self.renounce_request) and self.numero_cpf:
+                        """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
+                        headers = {
+                            'accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'X-API-KEY': self.company_id.wedof_api_key,
+                        }
+                        params_wedof = (
+                            ('order', 'desc'),
+                            ('type', 'all'),
+                            ('state', 'accepted'),
+                            ('billingState', 'all'),
+                            ('certificationState', 'all'),
+                            ('sort', 'lastUpdate'),
+                        )
+                        responsesession = requests.get(
+                            'https://www.wedof.fr/api/registrationFolders/' + self.numero_cpf,
+                            headers=headers, params=params_wedof)
+                        dossier = responsesession.json()
+                        dateDebutSession_str = ""
+                        _logger.info('session %s' % str(dossier))
+                        if "trainingActionInfo" in dossier:
+                            dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
+                            _logger.info(' testtt %s')
+                            dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
+                            _logger.info('dateDebutSession %s' % str(dateDebutSession))
+                            print(datetime.today())
+                            if dateDebutSession <= datetime.today():
+                                self.ajouter_IOne_MCM(self)
+                                _logger.info(' tout est valide %s')
+
+
+
+
+                        else:
+                            _logger.info("seesion et date exman")
+                            return {
+                                'type': 'ir.actions.client',
+                                'tag': 'display_notification',
+                                'params': {
+                                    'title': _('Verifier session et date exman🤓 🤓'),
+                                    'message': _('Verifier session et date exman 🤓 🤓'),
+                                    'sticky': True,
+                                    'className': 'bg-danger'
+                                }
+                            }
 
         else:
             # si les document ne sont  pas valide une notif appartient sur odoo
