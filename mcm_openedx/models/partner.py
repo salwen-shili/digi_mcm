@@ -213,6 +213,8 @@ class partner(models.Model):
                     bolt = partner.bolt
                     if (bolt):
                         self.ajouter_IOne_MCM(partner)
+                        _logger.info('ceci est un client bolt il va etre ajouter ssans verifer les autres conditions ')
+
                     else:
                         # Récupérer les documents et vérifier si ils sont validés ou non
                         documentss = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)
