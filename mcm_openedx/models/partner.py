@@ -210,6 +210,10 @@ class partner(models.Model):
                 _logger.info(sale_order.name)
 
                 if (partner.numero_evalbox != False):
+                    bolt = partner.bolt
+                    if (bolt):
+                        self.ajouter_IOne_MCM(partner)
+
                     # Récupérer les documents et vérifier si ils sont validés ou non
                     documentss = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)
                                                                                ])
@@ -221,7 +225,7 @@ class partner(models.Model):
                             _logger.info('valide')
                             _logger.info(document.state)
                     _logger.info('count', count, 'len', len(documentss))
-                    if (count == len(documentss) and count != 0):
+                    if (count == len(documentss) and count != 0 and (bolt == False)):
                         document_valide = True
 
                     _logger.info("document %s" % str(document_valide))
@@ -233,11 +237,11 @@ class partner(models.Model):
                     # defenir le mode de financement
                     if partner.mode_de_financement == "particulier":
                         # verifier si le sale et les documents et satut sont valides
-                        if ((sale_order) and (document_valide)):
+                        if ((sale_order) and (document_valide) and (bolt == False)):
                             _logger.info('document et sale valide Condition 1 validee')
                             # Vérifier si contrat signé ou non
 
-                            if (sale_order.state == 'sale') and (sale_order.signature):
+                            if (sale_order.state == 'sale') and (sale_order.signature) and (bolt == False):
                                 # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
                                 if (partner.renounce_request):
                                     self.ajouter_IOne_MCM(partner)
@@ -254,7 +258,7 @@ class partner(models.Model):
                         _logger.info(partner.numero_evalbox)
                         _logger.info(partner.mcm_session_id.date_exam)
                         _logger.info(partner.mcm_session_id.date_exam)
-                        if (document_valide) and (partner.mcm_session_id.date_exam) and (
+                        if (document_valide) and (bolt == False) and (partner.mcm_session_id.date_exam) and (
                                 partner.mcm_session_id.date_exam > date.today()):
 
                             if (partner.renounce_request):
@@ -370,8 +374,8 @@ class partner(models.Model):
                 if self.mode_de_financement == "cpf":
                     _logger.info(' date exman %s' % str(self.mcm_session_id.date_exam))
                     if (document_valide) and (self.mcm_session_id.date_exam) and (
-                            self.mcm_session_id.date_exam > date.today()):
-                        _logger.info('document valide , date exlan > datetoday %s')
+                            self.mcm_session_id.date_exam > date.today()) and (bolt == False):
+                        _logger.info('document valide , date exlan > datetoday , et nest pas bolt %s')
                         if (self.renounce_request):
                             self.ajouter_IOne_MCM(self)
                             _logger.info(' tout est valide %s')
