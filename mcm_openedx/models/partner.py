@@ -208,27 +208,28 @@ class partner(models.Model):
                                                                    ('session_id.date_exam', '>', date.today()),
                                                                    ], limit=1, order="id desc")
                 _logger.info(sale_order.name)
-                # Récupérer les documents et vérifier si ils sont validés ou non
-                documentss = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)
-                                                                           ])
-                document_valide = False
-                count = 0
-                for document in documentss:
-                    if (document.state == "validated"):
-                        count = count + 1
-                        _logger.info('valide')
-                        _logger.info(document.state)
-                _logger.info('count', count, 'len', len(documentss))
-                if (count == len(documentss) and count != 0):
-                    document_valide = True
 
-                _logger.info("document %s" % str(document_valide))
-
-                _logger.info("sale_order %s" % str(sale_order.state))
-                # en va changer numero_evalbox avec numero eval ..
-                # verifier si la case evalbox est True
-                print(partner.numero_evalbox)
                 if (partner.numero_evalbox != False):
+                    # Récupérer les documents et vérifier si ils sont validés ou non
+                    documentss = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)
+                                                                               ])
+                    document_valide = False
+                    count = 0
+                    for document in documentss:
+                        if (document.state == "validated"):
+                            count = count + 1
+                            _logger.info('valide')
+                            _logger.info(document.state)
+                    _logger.info('count', count, 'len', len(documentss))
+                    if (count == len(documentss) and count != 0):
+                        document_valide = True
+
+                    _logger.info("document %s" % str(document_valide))
+
+                    _logger.info("sale_order %s" % str(sale_order.state))
+                    # en va changer numero_evalbox avec numero eval ..
+                    # verifier si la case evalbox est True
+                    print(partner.numero_evalbox)
                     # defenir le mode de financement
                     if partner.mode_de_financement == "particulier":
                         # verifier si le sale et les documents et satut sont valides
@@ -449,9 +450,7 @@ class partner(models.Model):
     def ajouter_IOne_MCM(self, partner):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-
             _logger.info('email de lapprenant %s' % str(partner.email))
-
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             partner.password360 = user.password360
             password = user.password360
