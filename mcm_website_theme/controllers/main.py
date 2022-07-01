@@ -2454,6 +2454,7 @@ class AuthSignupHome(AuthSignupHome):
                 odoo_contact.firstname = firstname if firstname else False
                 odoo_contact.lastName = lastName if lastName else False
                 odoo_contact.email = email
+                odoo_contact.lang = 'fr_FR'
                 odoo_contact.state_id = department_id if department_id else False
         return True
 
