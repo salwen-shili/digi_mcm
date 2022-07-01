@@ -2417,6 +2417,9 @@ class AuthSignupHome(AuthSignupHome):
         street2 = rawRequest['q26_complementDadresse']
         city = rawRequest['q27_ville']
         zipcode = str(rawRequest['q29_codePostal'])
+        department = str(rawRequest['q38_dansQuel'])
+        department_id = request.env['res.country.state'].sudo().search([('code', "=", str(
+            department)),('country_id.code', 'ilike', 'FR')], limit=1)
         res_user = request.env['res.users']
         odoo_contact = res_user.sudo().search([('login', "=", str(
             email).lower().replace(' ', ''))], limit=1)  # search contact using email
@@ -2450,6 +2453,7 @@ class AuthSignupHome(AuthSignupHome):
                 odoo_contact.firstname = firstname if firstname else False
                 odoo_contact.lastName = lastName if lastName else False
                 odoo_contact.email = email
+                odoo_contact.state_id = department_id if department_id else False
         return True
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
