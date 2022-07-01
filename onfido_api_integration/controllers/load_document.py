@@ -37,7 +37,7 @@ class LoadDocument(Website):
                 sdk_token=partner.onfido_sdk_token
             else:
                 sdk_token=partner.generateSdktoken(id_applicant,
-                                                   request.website.onfido_api_key_live,partner)
+                                                       request.website.onfido_api_key_live,partner)
 
             workflow_run_id=partner.workflow_run(id_applicant,
                                                  request.website.onfido_api_key_live)
