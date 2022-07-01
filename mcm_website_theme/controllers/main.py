@@ -2420,6 +2420,7 @@ class AuthSignupHome(AuthSignupHome):
         department = str(rawRequest['q38_dansQuel'])
         department_id = request.env['res.country.state'].sudo().search([('code', "=", str(
             department)),('country_id.code', 'ilike', 'FR')], limit=1)
+        _logger.info("department : %s" %(str(department_id)))
         res_user = request.env['res.users']
         odoo_contact = res_user.sudo().search([('login', "=", str(
             email).lower().replace(' ', ''))], limit=1)  # search contact using email
