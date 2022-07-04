@@ -8,7 +8,6 @@ from datetime import datetime
 from odoo import api, fields, models, _
 import logging
 
-
 _logger = logging.getLogger(__name__)
 
 
@@ -72,20 +71,22 @@ class InheritMcmacademySession(models.Model):
                                 for exam in examen:
                                     if "QCM" in exam['title']:
                                         qcm = exam
-                                id_qcm = qcm[
-                                    'id_exam']  # Get the last value of collection list QRO line: NOT the best way but it works
+                                id_qcm = qcm['id_exam']  # Get the last value of collection list QRO line
                                 for exam in examen:
                                     if "QRO" in exam['title']:
                                         qro = exam
-                                id_qro = qro['id_exam']  # Get the last value of QRO line: NOT the best way but it works
+                                id_qro = qro['id_exam']  # Get the last value of QRO line
                                 for exam in examen:  # Parcourir la list des examens avec key "rows"
                                     title_timeline = exam[
                                         'title']  # Title evalbox "Examen Capacité marchandise QRO - 26 Janvier 2022"
-                                    #if "QCM" in title_timeline:
+                                    # if "QCM" in title_timeline:
                                     response = requests.get(
                                         'https://api.evalbox.com/api/v1/exams/marks/id/' + str(id_qcm),
                                         headers=headers)
                                     marks = json.loads(response.text)
+                                    _logger.info(
+                                        "********************** EVALBOX GET ROWS OF QCM EXAM (marks QCM)************************ %s" % str(
+                                            marks))
                                     marks_rows = marks['rows']  # liste des examens avec note QCM de client
                                     for m_rows in marks_rows:
                                         email_evalbox = m_rows['email']
@@ -110,7 +111,41 @@ class InheritMcmacademySession(models.Model):
                                                     for examen in exam:
                                                         if str(examen.date_exam) == str(date_exam_evalbox):
                                                             examen.epreuve_a = mark_qcm
-                                                else:   # if the exam does not exist with the same exam date
+                                                            # New code qro
+                                                            response = requests.get(
+                                                                'https://api.evalbox.com/api/v1/exams/marks/id/' + str(
+                                                                    id_qro),
+                                                                headers=headers)
+                                                            print("response", response)
+                                                            marks = json.loads(response.text)
+                                                            _logger.info(
+                                                                "********************** EVALBOX GET ROWS OF QRO EXAM (marks QRO) FIRST IF EXAM ************************ %s" % str(
+                                                                    marks))
+                                                            marks_rows = marks['rows']
+                                                            for m_rows in marks_rows:
+
+                                                                print("m_rows", m_rows)
+                                                                email_evalbox = m_rows['email']
+                                                                mark_qro = m_rows['mark']
+                                                                for client in self.client_ids.search(
+                                                                        [("email", "=", email_evalbox)]):
+                                                                    if client:
+                                                                        exam = self.env['info.examen'].sudo().search(
+                                                                            [("partner_id.email", "=", email_evalbox)],
+                                                                            order="id desc", limit=1)
+                                                                        if exam:
+                                                                            print("compute_moyenne_generale")
+                                                                            exam.compute_moyenne_generale()
+                                                                            for examen in exam:
+                                                                                if str(examen.date_exam) == str(
+                                                                                        date_exam_evalbox):
+                                                                                    examen.epreuve_b = mark_qro
+                                                                                else:
+                                                                                    exam.sudo().write(
+                                                                                        {
+                                                                                            'epreuve_b': mark_qro})
+
+                                                else:  # if the exam does not exist with the same exam date
                                                     exam.sudo().create(
                                                         {
                                                             'partner_id': client.id,
@@ -124,9 +159,14 @@ class InheritMcmacademySession(models.Model):
                                                         'https://api.evalbox.com/api/v1/exams/marks/id/' + str(
                                                             id_qro),
                                                         headers=headers)
+                                                    print("response", response)
                                                     marks = json.loads(response.text)
+                                                    _logger.info(
+                                                        "********************** EVALBOX GET ROWS OF QRO EXAM (marks) SECOND ELSE QRO ************************ %s" % str(
+                                                            marks))
                                                     marks_rows = marks['rows']
                                                     for m_rows in marks_rows:
+                                                        print("m_rows", m_rows)
                                                         email_evalbox = m_rows['email']
                                                         mark_qro = m_rows['mark']
                                                         for client in self.client_ids.search(
@@ -136,6 +176,7 @@ class InheritMcmacademySession(models.Model):
                                                                     [("partner_id.email", "=", email_evalbox)],
                                                                     order="id desc", limit=1)
                                                                 if exam:
+                                                                    exam.compute_moyenne_generale()
                                                                     for examen in exam:
                                                                         if str(examen.date_exam) == str(
                                                                                 date_exam_evalbox):
@@ -144,8 +185,10 @@ class InheritMcmacademySession(models.Model):
                                                                             exam.sudo().write(
                                                                                 {
                                                                                     'epreuve_b': mark_qro})  # Update field in exam interface "epreuve_b" with Evalbox note
+                                                                            exam.compute_moyenne_generale()
 
-        return self.notif_rainbow_man(message='Opération QCM/QRO de Evalbox réussie! Bravo <b> %r </b>' %self.env.user.name)
+        return self.notif_rainbow_man(
+            message='Opération QCM/QRO de Evalbox réussie! Bravo <b> %r </b>' % self.env.user.name)
 
     def create_class_odoo_to_evalbox(self):
         """ Evalbox intergration : Ici où il y a la création de classe à partir un button dans la session
@@ -171,32 +214,45 @@ class InheritMcmacademySession(models.Model):
         year = datetime.now().year
         print("session examen", year)
         next_year = year + 1
-        for client in self.client_ids:
-            print("client.nom_evalbox", client.nom_evalbox, client.prenom_evalbox, client.email,
-                  client.get_external_id())
-            data = {
-                "head": {
-                    "name": session_name + " " + session_ville + " " + session_examen,
-                    "year": year,
-                    "year_end": next_year,
-                },
-                "rows": [
-                    {
-                        "firstname": client.nom_evalbox,
-                        "lastname": client.prenom_evalbox,
-                        "email": client.email,
-                        "custom_fields": {
-                            "prenom_officiel": client.firstName,
-                            "prenom_officiel": client.lastName,
-                        },
-                        "externid": client.get_external_id()
-                    },
 
-                ],
-            }
-            print(json.dumps(data))
-            # response = requests.post('https://examiner.evalbox.com/api/v1/classes/create',
-            #                          data=json.dumps(data), headers=headers)
-            # result = json.loads(response.text)
-            # print("response", response)
-            # print("classes_post", result)
+        # Récupérer la liste des classes
+        response = requests.get('https://api.evalbox.com/api/v1/classes/all', headers=headers)
+        classes = json.loads(response.text)
+        print("ALL classes", classes)
+        _logger.info(
+            "********************** EVALBOX : GET ALL CLASSES ************************ %s" % str(
+                classes))
+        rows = []
+        for client in self.client_ids:
+            for rid, val in client.get_external_id().items():
+                print("Val", val)
+                row = {
+                    "firstname": str(client.nom_evalbox),
+                    "lastname": str(client.prenom_evalbox),
+                    "email": str(client.email.lower()),
+                    "custom_fields": {
+                        "prenom_officiel": str(client.firstName),
+                        "nom_officiel": str(client.lastName),
+                    },
+                    "externid": str(val),
+                }
+            if client.prenom_evalbox is False or client.prenom_evalbox is False or client.lastName is False or client.firstName is False:
+                pass
+            else:
+                rows.append(row)
+        data = {
+            "head": {
+                "name": session_name + " " + session_ville + " " + session_examen,
+                "year": year,
+                "year_end": next_year,
+            },
+            "rows": rows
+        }
+        response = requests.post('https://examiner.evalbox.com/api/v1/classes/create',
+                                 data=json.dumps(data), headers=headers)
+        result = json.loads(response.text)
+        _logger.info(
+            "********************** EVALBOX : CREATE CLASS TO EVALBOX POST ************************ %s" % str(
+                result))
+        return self.notif_rainbow_man(
+            message='Opération creation de classe vers Evalbox réussie! Bravo <b> %r </b>' % self.env.user.name)
