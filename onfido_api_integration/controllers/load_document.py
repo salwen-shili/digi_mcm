@@ -32,14 +32,14 @@ class LoadDocument(Website):
                 id_applicant=partner.create_applicant(partner,
                                                       request.website.onfido_api_key_live)
 
-            print('teeeeeeesttttt', request.website.onfido_api_key_live
-                  , id_applicant, partner)
+            _logger.info('teeeeeeesttttt %s' %str(request.website.onfido_api_key_live)
+                 )
             """Vérifier si on a généré un sdk token pour cet apprenant """
             # if partner.onfido_sdk_token and partner.exp_date_sdk_token and partner.exp_date_sdk_token >= datetime.now():
             #     sdk_token=partner.onfido_sdk_token
             # else:
             base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
-            print("base urll", base_url)
+            _logger.info("base urll %s" %str(base_url) )
             sdk_token=partner.generateSdktoken(id_applicant,
                                                        request.website.onfido_api_key_live,partner)
 
@@ -49,7 +49,7 @@ class LoadDocument(Website):
                 'workflow_run_id': workflow_run_id,
                 'sdk_token': sdk_token,
             }
-            print("sdkkkkkk",workflow_run_id)
+            _logger.info("workflow %s" %str(workflow_run_id))
 
         return request.render("onfido_api_integration.load_document",
                               values)

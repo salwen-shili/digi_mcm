@@ -5,6 +5,9 @@ from datetime import datetime, timedelta, date
 from odoo.modules.module import get_resource_path
 from PIL import Image
 import json
+import logging
+
+_logger = logging.getLogger(__name__)
 class InheritConfig(models.Model):
     _inherit = "res.partner"
     onfido_sdk_token=fields.Char("SDK Token")
@@ -20,7 +23,7 @@ class InheritConfig(models.Model):
         #     'Content-Type': 'application/json',
         }
         partner.diviser_nom(partner)
-        print('name',partner.lastName,partner.firstName)
+        _logger.info('lastname %s'%str(partner.lastName))
         
         json_data = {
             "first_name": partner.firstName,
@@ -36,7 +39,7 @@ class InheritConfig(models.Model):
         }
         response = requests.post(url_post, headers=headers, data=json.dumps(json_data))
         applicant=response.json()
-        print('ressssssssssppp',applicant)
+        _logger.info('ressssssssssppp %s' %str(applicant))
         if applicant['id']:
             partner.onfido_applicant_id=applicant['id']
         return applicant['id']
@@ -44,7 +47,7 @@ class InheritConfig(models.Model):
     def generateSdktoken(self,applicant_id,token,partner):
         """Génerer un sdk token avec API pour chaque applicant """
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        print("base urll",base_url)
+        _logger.info("base urll %s"%str(base_url))
         url_sdk = "https://api.eu.onfido.com/v3.4/sdk_token"
         headers = {
             'Authorization': 'Token token=' + token,
@@ -57,7 +60,7 @@ class InheritConfig(models.Model):
         }
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk=response_token.json()
-        print(response_token.json())
+        _logger.info("sdk token %s" %str(response_token.json()))
         if token_sdk['token']:
             partner.onfido_sdk_token=token_sdk['token']
             time_change =timedelta(minutes=90)
@@ -78,7 +81,7 @@ class InheritConfig(models.Model):
         }
         response_workflow_run = requests.post(url_workflow, headers=headers, data=json.dumps(data))
         workflow_run = response_workflow_run.json()
-        print("hiiiiiiii",response_workflow_run.json())
+        _logger.info("hiiiiiiii %s" %str(response_workflow_run.json()))
         return workflow_run['id']
 
 
