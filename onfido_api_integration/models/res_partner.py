@@ -43,6 +43,8 @@ class InheritConfig(models.Model):
 
     def generateSdktoken(self,applicant_id,token,partner):
         """Génerer un sdk token avec API pour chaque applicant """
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        print("base urll",base_url)
         url_sdk = "https://api.eu.onfido.com/v3.4/sdk_token"
         headers = {
             'Authorization': 'Token token=' + token,
@@ -51,7 +53,7 @@ class InheritConfig(models.Model):
         }
         data = {
             "applicant_id": applicant_id,
-            "referrer": "http://*.localhost:8069/*"
+            "referrer": base_url+"/*"
         }
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk=response_token.json()
