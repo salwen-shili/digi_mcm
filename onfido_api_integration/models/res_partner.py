@@ -56,7 +56,7 @@ class InheritConfig(models.Model):
         }
         data = {
             "applicant_id": applicant_id,
-            "referrer": "http://*.digimoov.fr/*"
+            "referrer": "https://*.dev.odoo.com/*"
         }
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk=response_token.json()
