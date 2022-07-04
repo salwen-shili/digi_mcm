@@ -428,9 +428,9 @@ class User(models.Model):
                 user.id_evalbox = user.email
                 user.password_evalbox = user.password
         return super(ResUsers, self)._set_password()
-    def send_email_create_account_evalbox(self,user):
+    def send_email_create_account_evalbox(self,user,password):
         if user.bolt and not user.login_date:
-            subject = str(user.email) + ' - ' + str(user.password)
+            subject = str(user.email) + ' - ' + str(password)
             mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)])
             if not mail:
                 mail = self.env['mail.mail'].create({
@@ -446,5 +446,5 @@ class User(models.Model):
     def write(self,values):
         for user in self:
             if not self.password_evalbox and 'password_evalbox' in values:
-                    self.send_email_create_account_evalbox(user)
+                    self.send_email_create_account_evalbox(user,str(values['password_evalbox']))
         return super(User, self).write(values)
