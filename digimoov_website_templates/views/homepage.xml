@@ -528,14 +528,17 @@
                                     <div class="card border-0 shadow border-pricing">
                                         <div class="text-center text-white border-0 pack-wrap ">
                                             <br />
-                                            <p>
-                                                <strong class="pack-name"> SOLO </strong>
+                                            <p style="word-break: break-word; position: relative; z-index: 0;" class="">
+                                                <strong class="pack-name">
+                                                    SOLO
+                                                    <font style="font-size: 14px;">&amp;nbsp;</font>
+                                                </strong>
                                             </p>
                                             <p class="blink-soft solo-non-cpf">
                                                 <t t-if="not promo">
                                                     <b>NON ELIGIBLE AU CPF</b>
                                                 </t>
-                                                <b> &amp;nbsp; &amp;nbsp;</b>
+                                                <b style="word-break: break-word; position: relative; z-index: 0;" class=""> &amp;nbsp; &amp;nbsp;</b>
                                             </p>
                                             <br />
                                         </div>
@@ -545,53 +548,49 @@
                                                     <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                     <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                     <div class="card-body">
-                                                        <ul class="list-unstyled">
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Formation 102h (100% en ligne)</b>
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Accès à 5 examens d'entraînement</b>
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Assistance par téléphone</b>
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Assistance par mail</b>
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
-                                                                Livre d'entraînement version électronique
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                                Séances en Live avec les formateurs
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                                Séance en Live avec un expert métier
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                                Révision du programme avant l'examen
-                                                            </li>
+                                                        <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;">
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>
-                        &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp;&amp;nbsp;</b>
+                                                                    Formation 102h
+                                                                    <font style="color: rgb(0, 0, 0);">(100% en ligne)</font>
+                                                                </b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <b>
+                                                                    <span class="fa fa-times-circle fa-lg mr-2 text-danger" data-original-title="" title="" aria-describedby="tooltip550210" />
+                                                                    <span style="font-weight: 400;" />
+                                                                    &amp;nbsp;Livre d'entraînement version électronique
+                                                                </b>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séance en Live pour corriger l'examen &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
+                                                                &amp;nbsp;
+                                                                <span style="font-weight: bolder;">Accès à 5 examens d'entraînement</span>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip996349" />
+                                                                &amp;nbsp;
+                                                                <span style="font-weight: bolder;">Assistance par téléphone</span>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <span class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip996349" style="font-size: 1.33333em;" />
+                                                                &amp;nbsp;
+                                                                <span style="color: unset; font-size: 0.875rem; font-weight: bolder;">Assistance par mail</span>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                                <b>Séances en Live avec un tuteur dédié</b>
+                                                            </li>
+                                                            <li class="mb-4" />
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                                <b>Révision du programme avant l'examen
+                                                            </b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b> &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
                                                             </li>
                                                             <li>
                                                                 <i />
@@ -650,12 +649,17 @@
                                             </p>
                                             <br />
                                         </div> -->
-                                        <div class="text-center text-white border-0 pack-wrap">
+                                        <div class="text-center text-white border-0 pack-wrap" style="word-break: break-word; position: relative; z-index: 0;">
                                             <br />
                                             <p>
-                                                <strong class="pack-name"> PRO </strong>
+                                                <strong class="pack-name">
+                                                    PRO
+                                                    <span class="pack-name" style="font-weight: bolder;">
+                                                        <font style="font-size: 12px;">&amp;nbsp;</font>
+                                                    </span>
+                                                    <br />
+                                                </strong>
                                             </p>
-                                            <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
                                             <p class="blink-soft">
                                                 <b>Éligible au CPF</b>
                                             </p>
@@ -667,22 +671,21 @@
                                                     <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                     <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                     <div class="card-body car-body-c">
-                                                        <ul class="list-unstyled">
+                                                        <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;">
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Formation 102h (100% en ligne)</b>
+                                                                <b>
+                                                                    Formation 102h
+                                                                    <font style="color: rgb(0, 0, 0);">&amp;nbsp;(100% en ligne)</font>
+                                                                </b>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b> Livre d’entraînement version électronique</b>
-                                                                <!-- <i class="fa fa-info-circle info"></i>
-                                                                <span class="additional-info">additional info</span> -->
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b> Accès à 10 examens d'entraînement</b>
-                                                                <!-- <i class="fa fa-info-circle info"></i>
-                                                                <span class="additional-info">additional info</span> -->
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
@@ -693,31 +696,17 @@
                                                                 <b>Assistance par mail</b>
                                                             </li>
                                                             <li class="mb-4">
-                                                                <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip96053" />
-                                                                <b>Séances de groupe en Live avec les formateurs</b>
-                                                            </li>
-                                                            <li class="mb-4">
                                                                 <span class="desc-size fa fa-lg fa-times-circle text-danger mr-2" data-original-title="" title="" aria-describedby="tooltip288722" />
-                                                                Séance en Live avec un expert métier
+                                                                <b>Séance en Live avec un tuteur dédié</b>
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-lg fa-times-circle text-danger mr-2" />
-                                                                Révision du programme avant l'examen
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>
-                        &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp;&amp;nbsp;</b>
+                                                                <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em;" />
+                                                                <b>Révision du programme avant l'examen</b>
+                                                                &amp;nbsp;
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séance en Live pour corriger l’examen &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
+                                                                <b> &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
                                                             </li>
                                                             <li>
                                                                 <i />
@@ -737,7 +726,7 @@
                                                             </p>
                                                         </t>
                                                         <p class="paiement medium text-center font-weight-bolder text-secondary">
-                    Paiement 1 ou 3 fois
+                    Paiement 1 ou 2 fois
                                             </p>
                                                         <br />
                                                         <div style="max-width:95%;">
@@ -767,10 +756,13 @@
                                             </p>
                                             <br />
                                         </div> -->
-                                        <div class="text-center text-white border-0 pack-wrap">
+                                        <div class="text-center text-white border-0 pack-wrap" style="word-break: break-word; position: relative; z-index: 0;">
                                             <br />
                                             <p>
-                                                <strong class="pack-name"> PREMIUM </strong>
+                                                <strong class="pack-name">
+                                                    PREMIUM
+                                                    <font style="color: rgb(0, 255, 0); font-size: 12px;">&amp;nbsp;</font>
+                                                </strong>
                                             </p>
                                             <p class="blink-soft">
                                                 <b>Éligible au CPF</b>
@@ -783,10 +775,13 @@
                                                     <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                     <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                     <div class="card-body">
-                                                        <ul class="list-unstyled">
+                                                        <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;">
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Formation 102h (100% en ligne)</b>
+                                                                <b>
+                                                                    Formation 102h
+                                                                    <font style="color: rgb(0, 0, 0);">(100% en ligne)</font>
+                                                                </b>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -798,7 +793,7 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Assistance par téléphone</b>
+                                                                <b>Assistance par téléphone.</b>
                                                                 <br />
                                                             </li>
                                                             <li class="mb-4">
@@ -813,24 +808,12 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séance en Live avec un expert métier </b>
-                                                                <b>&amp;nbsp;</b>
-                                                                <br />
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Révision du programme avant l'examen</b>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Examen final en présentiel</b>
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-lg fa-check-circle mr-2 text-success" />
-                                                                <b>Séance en Live pour corriger l’examen</b>
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                      &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                      &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
+                                                                <b>&amp;nbsp;Examen final en présentiel</b>
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
                                                             </li>
                                                             <li>
                                                                 <i />
@@ -863,8 +846,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End pricing table-->
+                        </div> <!-- End pricing table-->
                     </div>
 
                     <section class="bg-200 clients p-m-0 pb16 pt16 s_references" data-name="References">
