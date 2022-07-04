@@ -47,10 +47,11 @@ class ResUsers(models.Model):
                 if (user.bolt and user.login_date) or (not user.bolt):
                     raise UserError(_("Cannot send email: user %s has no email address.") % user.name)
             with self.env.cr.savepoint():
-                if (user.bolt and user.login_date) or (not user.bolt):
-                    force_send = not (self.env.context.get('import_file', False))
-                    template.with_context(lang=user.lang).send_mail(user.id, force_send=force_send,
-                                                                    raise_exception=True)
+                #comment block send mail reset password for bolt
+                # if (user.bolt and user.login_date) or (not user.bolt): comment
+                force_send = not (self.env.context.get('import_file', False))
+                template.with_context(lang=user.lang).send_mail(user.id, force_send=force_send,
+                                                                raise_exception=True)
             _logger.info("Password reset email sent for user <%s> to <%s>", user.login, user.email)
             if user.phone:
                 phone = str(user.phone.replace(' ', ''))[
