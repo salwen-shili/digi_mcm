@@ -337,64 +337,32 @@
                     </section>
 
                     <!-- Amazon-->
-                    <section class="s_text_image pt32 pb32 bg-200" data-name="Image - Text" style="">
-                        <div class="container">
+                    <section class="s_text_image pt32 pb32 bg-200" data-name="Image - Text" style="word-break: break-word; position: relative; z-index: 0;">
+                        <div class="container" style="border-style: none; border-width: 0px;">
                             <div class="row align-items-center">
                                 <div class="col-lg-6 pt16 pb16">
-                                    <img src="/digimoov_website_templates/static/img/partners/I 2.png" class="img img-fluid mx-auto" alt="partenaire de livraison avec Amazon" />
+                                    <img src="/web/image/302958/blog%20%285%29.png" class="img img-fluid mx-auto" alt="partenaire de livraison avec Amazon" data-original-title="" title="" aria-describedby="tooltip768727" />
                                 </div>
                                 <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
                                     <h2>
                                         <font style="font-size: 36px;" class="text-beta">
                                             <b>
-                                                Devenez Partenaire de livraison avec Amazon
+                                                Attestation en capacité de transport lourd de marchandises
                                                 <br />
                                             </b>
                                         </font>
                                     </h2>
-                                    <p>
-                                        <font style="color: rgb(99, 99, 99);">
-                                            <b>
-                                                <br />
-                                            </b>
-                                        </font>
-                                    </p>
-                                    <p>
-                                        <font style="color: rgb(99, 99, 99);">
-                                            <b>Digimoov&amp;nbsp;</b>
-                                            et&amp;nbsp;
-                                        </font>
-                                        <span style="font-weight: bolder;">
-                                            <font style="color: rgb(99, 99, 99);">amazon s'allient pour vous ouvrir les portes de la réussite !
-                
-                </font>
-                                        </span>
-                                        <font style="color: rgb(99, 99, 99);">
+                                    <blockquote>
+                                        <font style="font-size: 18px;">
+                                            Optez pour notre formation 100 % en ligne sur la capacité de transport lourd de marchandises !
                                             <br />
+                                            Une formation complète de 280 heures dont 210 heures de Live, animée et conçue par des experts du métier, et qui vous&amp;nbsp; permettra de vous préparer de façon optimale à l’examen annuel sur la capacité professionnelle de transport de poids lourd, maximiser vos chances de réussite et obtenir votre licence de transport !
                                         </font>
-                                        <font style="color: rgb(99, 99, 99);">Un partenariat dont le but est de promouvoir le programme "Partenaire de livraison amazon", qui vise à recruter les&amp;nbsp;</font>
-                                        <span style="font-weight: bolder;">
-                                            <font style="color: rgb(99, 99, 99);">nouveaux capacitaires
-                
-                </font>
-                                        </span>
-                                        <font style="color: rgb(99, 99, 99);">&amp;nbsp;souhaitant lancer ou développer leur activité dans leurs régions, et ce, en leur offrant la possibilité de devenir partenaires amazon.
-                </font>
-                                        <br />
-                                        <br />
-                                        <font style="color: rgb(99, 99, 99);">Vous aussi&amp;nbsp;</font>
-                                        <span style="font-weight: bolder;">
-                                            <font style="color: rgb(99, 99, 99);">inscrivez-vous à notre formation en ligne</font>
-                                        </span>
-                                        <font style="color: rgb(99, 99, 99);">&amp;nbsp;pour une préparation optimale à l'examen en capacité de transport léger. </font>
-                                        <br />
-                                        <font style="color: rgb(99, 99, 99);">Obtenez votre licence et devenez partenaire de livraison avec amazon !
-                </font>
-                                        <br />
-                                    </p>
+                                    </blockquote>
                                     <div class="s_btn text-left pt16 pb16" data-name="Button">
-                                        <a href="/amazon" class="btn btn-outline-primary" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip733359">En savoir plus</a>
+                                        <a href="/formation-capacite-transport-lourd-marchandise" class="btn btn-outline-primary btn-lg" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip733359" style="word-break: break-word; position: relative; z-index: 0;" lang="merciapp">En savoir plus</a>
                                     </div>
+                                    <mci-extension data-role="overlay" />
                                     <mci-extension data-role="overlay" />
                                 </div>
                             </div>
