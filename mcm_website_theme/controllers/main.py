@@ -2436,7 +2436,7 @@ class AuthSignupHome(AuthSignupHome):
                 'name': name,
                 'login': email,
                 'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
-                'email': False,
+                'email': email, # set email in create user instead of False
                 'phone': tel,
                 'notification_type': 'email',
                 'step': "financement",
@@ -2445,7 +2445,7 @@ class AuthSignupHome(AuthSignupHome):
                 'company_id': 1,
             })
             odoo_contact.bolt = True
-            odoo_contact.action_reset_password()
+            # odoo_contact.action_reset_password() comment action reset password
             if odoo_contact:
                 _logger.info("user created using create user")
                 odoo_contact.street = street if street else False
