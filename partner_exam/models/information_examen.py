@@ -97,11 +97,10 @@ class NoteExamen(models.Model):
         for rec in self.env['info.examen'].search([]):
             if rec.phone is not None:
                 rec.mobile = rec.phone
-                print("alloo mobile", rec.mobile)
 
     @api.onchange('resultat', 'partner_id', 'presence')
     def update_boolean_values(self):
-        if self.company_id == 2:
+        if self.company_id.id == 2:
             for rec in self:
                 if rec.resultat == 'recu':
                     rec.is_recu = True
@@ -165,7 +164,7 @@ class NoteExamen(models.Model):
         """ This function used to auto display some result
         like the "Moyenne Generale" & "Mention" & "Resultat" """
         for rec in self:
-            if self.company_id == 2:
+            if self.company_id.id == 2:
                 session_count = rec.env['partner.sessions'].search_count(
                     [('client_id', '=', rec.partner_id.id), ('paiement', '!=', True)])
                 rec.moyenne_generale = (rec.epreuve_a + rec.epreuve_b)
