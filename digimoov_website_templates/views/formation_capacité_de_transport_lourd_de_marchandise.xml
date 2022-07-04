@@ -37,7 +37,7 @@
                                     
                                &amp;nbsp;</font>
                                     <br />
-                                    <font style="font-size: 18px;"> Une formation complète de 280 heures, délivrée par des experts du métier, que pourriez suivre à votre rythme, afin de vous préparer à l’examen et obtenir votre carte professionnelle!</font>
+                                    <font style="font-size: 18px;"> Une formation complète de 280 heures, délivrée par des experts du métier, qui vous permettra une préparation optimale à l’examen annuel sur la capacité professionnelle de transport lourd de marchandises, et maximisera vos chances de réussite !</font>
                                 </blockquote>
                                 <div class="banner-btn s_btn" data-name="Button" style="text-align: center; ">
                                     <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
@@ -54,11 +54,7 @@
                     </div>
                 </section>
                 <style>
-                                                .blink-soft{
-                                                   color:#000;
-                                                   font-size:60px !important;
-
-                                                }
+                                               
                                                 .h1-title {
                                                 color: rgb(156, 0, 255);
                                                 }
@@ -177,25 +173,15 @@
                                             ?&amp;nbsp;
                                         </h2>
                                         <blockquote>
-                                            <font style="font-size: 18px;">L’attestation de capacité de transport poids lourd est un document obligatoire pour 
-                                            toute personne souhaitant 
-                                            devenir capacitaire.
-                                      &amp;nbsp;</font>
+                                            <font style="font-size: 18px;">L’attestation de capacité de transport poids lourd est un document obligatoire pour toute personne souhaitant devenir capacitaire. &amp;nbsp;</font>
                                             <br />
-                                            <font style="font-size: 18px;">
-                                            Elle s’adresse à toute personne qui souhaite s’installer comme 
-                                            transporteur routier de marchandises (avec des véhicules de plus 
-                                            de 3.5 t), ou qui souhaite être reconnue dans la profession.</font>
+                                            <font style="font-size: 18px;"> Elle s’adresse à toute personne qui souhaite s’installer comme transporteur routier de marchandises (avec des véhicules de plus de 3.5 t), ou qui souhaite être reconnue dans la profession.</font>
                                         </blockquote>
-                                        <div class="banner-btn s_btn text-center" style="margin-top:16px" data-name="Button">
-                                            <a style="font-size: 18px;" href="/digimoov_website_templates/static/pdf/Les démarches pour obtenir la capacité de transport lourd de marchandises.pdf" target="_blank" rel="noopener" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
-                                               Télécharger les démarches d'inscription
-                                            </a>
-                                        </div>
                                         <h4>
                                             <br />
                                         </h4>
                                     </div>
+                                    <mci-extension data-role="overlay" />
                                 </div>
                             </div>
                         </div>
@@ -210,7 +196,7 @@
                                    
                                 </h2>
                                 <blockquote>
-                                    <font style="font-size: 18px;">Afin de maximiser vos chances d'obtenir votre carte professionnelle et réaliser vos objectifs professionnels, Digimoov vous propose une formation 100 % en ligne à la hauteur de vos espérances, organisée par des formateurs du domaine du transport. Une formation accessible, à suivre à votre rythme, où vous voulez quand vous voulez.</font>
+                                    <font style="font-size: 18px;">Afin de maximiser vos chances d'obtenir votre licence de transport lourd de marchandises et réaliser vos objectifs professionnels, Digimoov vous propose une formation 100 % en ligne à la hauteur de vos espérances, organisée par des formateurs du domaine du transport. Une formation accessible, à suivre à votre rythme, où vous voulez quand vous voulez.</font>
                                 </blockquote>
                             </div>
                             <div class="col-lg-6">
@@ -368,15 +354,17 @@
                                                 <br />
                                                 Tout dossier transmis hors délai ou incomplet passé cette date, sera refusé.
                                                 <br />
-                                                Vous pouvez vous inscrire en ligne au lien suivant :
-                                                <a href="https://www.demarches-simplifiees.fr/commencer/examen-annuel-d-attestation-de-capacite-profession">https://www.demarches-simplifiees.fr/commencer/examen-annuel-d-attestation-de-capacite-profession</a>
                                             </span>
-                                            <br />
                                             <br />
                                         </font>
                                     </span>
                                 </blockquote>
+                                <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                    <a href="https://form.jotform.com/MCMACADEMYY/capacite-de-transport" class="btn btn-alpha btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip946083">Je m'inscris à l'examen</a>
+                                </div>
                                 <p />
+                                <mci-extension data-role="overlay" />
+                                <mci-extension data-role="overlay" />
                                 <mci-extension data-role="overlay" />
                             </div>
                             <div class="col-lg-6">
@@ -414,6 +402,10 @@
                                         de marchandises + 3.5t
                                     </p>
                                     <br />
+                                    <p class="blink-soft">
+                                        <b style="font-size: 33px;">Éligible au CPF</b>
+                                    </p>
+                                    <br />
                                 </div>
                                 <t t-foreach="digimoov_products" t-as="product">
                                     <t t-if="product.default_code=='transport-routier'">
@@ -446,15 +438,8 @@
                                                 </ul>
                                                 <div class="text-center ">
                                                     <b style="font-size:54px !important; color:#000000" t-if="not promo">
-                                                        <span class="blink-soft">
-                                                            <span t-esc="round(product.list_price)" />
-                                                            <span t-esc="product.currency_id.symbol" />
-                                                        </span>
-                                                        <span style="font-size: 17px !important;">
-                                                            au lieu de
-                                                            <span class="pricebar"> 2190€</span>
-
-                                                        </span>
+                                                        <span t-esc="round(product.list_price)" />
+                                                        <span t-esc="product.currency_id.symbol" />
                                                     </b>
                                                     <b style="font-size:60px !important; color:#000000" t-if="promo">
                                                         <t t-foreach="promo.item_ids" t-as="item">
