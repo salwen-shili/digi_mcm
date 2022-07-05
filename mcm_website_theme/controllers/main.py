@@ -2599,9 +2599,7 @@ class MCM_SIGNUP(http.Controller):
         **kw,
     ):
         if request.website.id == 1:
-
             return request.render("mcm_website_theme.mcm_bolt_contract")
-
         else:
             raise werkzeug.exceptions.NotFound()
 
