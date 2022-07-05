@@ -2484,6 +2484,62 @@ class AuthSignupHome(AuthSignupHome):
             _logger.info("user founded using tel : %s" % (odoo_contact))
         if odoo_contact and not odoo_contact.login_date:
             odoo_contact.action_reset_password()
+            if odoo_contact.phone:
+                phone = str(odoo_contact.phone.replace(' ', ''))[
+                        -9:]  # change phone to this format to be accepted in sms +33XXXXXXXXX
+                phone = '+33' + phone
+                # ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                #                                             3:5] + ' ' + phone[
+                #                                                          5:7] + ' ' + phone[
+                #                                                                       7:]
+                odoo_contact.phone = phone
+                url = odoo_contact.signup_url
+                base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+                # Define base_url according to partner company
+                if odoo_contact.company_id.id == 1:
+                    base_url = 'https://www.mcm-academy.fr'
+
+                elif odoo_contact.company_id.id == 2:
+                    base_url = 'https://www.digimoov.fr'
+
+                link_tracker = self.env['link.tracker'].sudo().search([('url', "=", url)])
+                if not link_tracker:
+                    # generate short link using module of link tracker
+                    link_tracker = self.env['link.tracker'].sudo().create({
+                        'title': 'Rénitialisation de mot de passe de %s' % (odoo_contact.name),
+                        'url': url,
+                    })
+                    link_tracker.sudo().write({
+                        'short_url': base_url + '/r/%(code)s' % {'code': link_tracker.code}
+                        # change the short url of link tracker based on base url
+                    })
+                if not link_tracker:
+                    short_url = pyshorteners.Shortener(api_key=bitly_access_token)  # api key of bitly
+                    short_url = short_url.bitly.short(
+                        url)
+                else:
+                    short_url = link_tracker.short_url
+                body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                    odoo_contact.partner_id.name, odoo_contact.partner_id.company_id.name, short_url,
+                    odoo_contact.partner_id.email)  # content of sms
+                if body:
+                    composer = self.env['sms.composer'].with_context(
+                        default_res_model='res.partner',
+                        default_res_id=odoo_contact.partner_id.id,
+                        default_composition_mode='comment',
+                    ).sudo().create({
+                        'body': body,
+                        'mass_keep_log': True,
+                        'mass_force_send': False,
+                        'use_active_domain': True,
+                        'active_domain': [('id', 'in', odoo_contact.partner_id.ids)]
+                    })
+                    if (odoo_contact.bolt and odoo_contact.login_date) or (not odoo_contact.bolt):
+                        composer = composer.with_user(SUPERUSER_ID)
+                        composer._action_send_sms()  # we send sms to client contains link of reset password.
+                    if odoo_contact.phone:
+                        odoo_contact.phone = '0' + str(odoo_contact.phone.replace(' ', ''))[
+                                           -9:]
         elif odoo_contact and odoo_contact.login_date and not odoo_contact.password_evalbox:
             _logger.info(
                 "remplir les champs evalbox : %s %s" % (str(odoo_contact.email), str(odoo_contact.password360)))
@@ -2515,4 +2571,120 @@ class AuthSignupHome(AuthSignupHome):
                 odoo_contact.lastName = lastName if lastName else False
                 odoo_contact.email = email
                 odoo_contact.lang = 'fr_FR'
+        if odoo_contact :
+            if 'transactionId' in rawRequest :
+                _logger.info("rawrequest with transaction_id : %s" %
+                             (rawRequest['transactionId']))
+                intent_id = str(
+                    rawRequest['transactionId'])
+                acquirer = request.env['payment.acquirer'].sudo().search(
+                    [('name', 'ilike', 'stripe'), ('company_id', "=", 1)])
+                _logger.info("acquirer : %s" % (str(acquirer)))
+                if acquirer:
+                    _logger.info("acquirer : %s" %
+                                 (str(acquirer.stripe_secret_key)))
+                    response = requests.get("https://api.stripe.com/v1/payment_intents/%s" % (intent_id),
+                                            auth=(str(acquirer.stripe_secret_key),
+                                                  ''))  # get response of payment intent using stripe api
+                    json_data = json.loads(response.text)
+                    _logger.info("json_data : %s" % (json_data))
+                    succeed = False
+                    if 'status' in json_data:
+                        # check if the payment state is succeeded
+                        if json_data['status'] == 'succeeded':
+                            succeed = True
+                    ville = 'Île-de-France'
+                    ville_id = request.env['session.ville'].sudo().search(
+                        [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1)
+                    date_exam = '27/09/2022'
+                    date_exam = datetime.strptime(
+                        date_exam, '%d/%m/%Y').date()
+                    product_id = request.env['product.product'].sudo().search(
+                        [('default_code', "=", 'vtc_bolt')], limit=1)
+                    module_id = False
+                    _logger.info("ville_id : %s and product_id : %s and date_exam : %s" % (str(ville_id),str(product_id),str(date_exam)))
+                    if ville_id and date_exam and product_id:
+                        module_id = request.env['mcmacademy.module'].sudo().search(
+                            [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
+                             ('date_exam', "=", date_exam), ('product_id',
+                                                             "=", product_id.id),
+                             ('session_id.number_places_available', '>', 0)], limit=1)
+                    _logger.info("module_id : %s" % (str(module_id)))
+                    if succeed:
+                        partner = odoo_contact.partner_id
+                        so = request.env['sale.order'].sudo().create({
+                            'partner_id': partner.id,
+                            'company_id': 1,
+                            'website_id': 1,
+                        })  # create sale order ( contract ) if payment is succeed
+                        request.env['sale.order.line'].sudo().create({
+                            'name': product_id.name,
+                            'product_id': product_id.id,
+                            'product_uom_qty': 1,
+                            'product_uom': product_id.uom_id.id,
+                            'price_unit': product_id.list_price,
+                            'order_id': so.id,
+                            'tax_id': product_id.taxes_id,
+                            'company_id': 1
+                        })
+                        pricelist = request.env['product.pricelist'].sudo().search(
+                            [('company_id', '=', 1), ('name', "=", 'bolt')])  # search the pricelist bolt
+                        if pricelist:
+                            so.pricelist_id = pricelist.id
+                        so.action_confirm()
+                        if module_id:
+                            so.partner_id.session_ville_id = module_id.session_ville_id
+                            so.partner_id.date_examen_edof = module_id.date_exam
+                            so.module_id = module_id.id
+                            so.session_id = module_id.session_id.id
+
+                        # create invoice from sale_order
+                            moves = so._create_invoices(final=True)
+                            for move in moves:
+                                _logger.info(
+                                    "webhook_stripe_move : %s" % (str(move)))
+                                move.type_facture = 'web'
+                                move.module_id = so.module_id.id
+                                move.session_id = so.session_id.id
+                                move.post()  # post the created invoice
+                                journal_id = move.journal_id.id
+                                acquirer = request.env['payment.acquirer'].sudo().search(
+                                    [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
+                                if acquirer:
+                                    journal_id = acquirer.journal_id.id
+                                payment_method = request.env['account.payment.method'].sudo().search(
+                                    [('code', 'ilike', 'electronic')], limit=1)
+                                payment = request.env['account.payment'].sudo().create(
+                                    {'payment_type': 'inbound',
+                                     'payment_method_id': payment_method.id,
+                                     'partner_type': 'customer',
+                                     'partner_id': move.partner_id.id,
+                                     'amount': so.amount_total,
+                                     'currency_id': move.currency_id.id,
+                                     'payment_date': move.create_date,
+                                     'journal_id': journal_id,
+                                     'communication': False,
+                                     'payment_token_id': False,
+                                     'invoice_ids': [(6, 0, move.ids)],
+                                     })  # create payment for invoice
+                            so.partner_id.sudo().write({
+                                'mcm_session_id': module_id.session_id.id,
+                                'module_id': module_id.id,
+                            })
+                            so.partner_id.statut = 'won'  # change state of client to won
+                            list = []
+                            for partner in module_id.session_id.client_ids:
+                                list.append(partner.id)
+                                list.append(so.partner_id.id)
+                                module_id.session_id.write(
+                                    {'client_ids': [(6, 0, list)]})
+                        so.action_cancel()  # cancel contract
+                        so.sudo().unlink()
+        return True
+
+    @http.route(['/contact-examen-blanc-resultat'], type='http', auth="public", csrf=False)
+    def webhook_resultat_examen(self, **kw):
+        _logger.info("webhoook contact jotform %s" % (kw))
+        rawRequest = json.loads(kw['rawRequest'])
+        _logger.info("rawRequest contact-examen-blanc-resultat: %s" % (str(rawRequest)))
         return True

