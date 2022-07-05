@@ -181,7 +181,7 @@
                                             <br />
                                         </h4>
                                     </div>
-                                    <mci-extension data-role="overlay" />
+
                                 </div>
                             </div>
                         </div>
@@ -191,10 +191,7 @@
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
-                                <h2>
-                                    Formation capacité transport routier poids lourd:
-                                   
-                                </h2>
+                                <h2> Formation capacité transport routier poids lourd</h2>
                                 <blockquote>
                                     <font style="font-size: 18px;">Afin de maximiser vos chances d'obtenir votre licence de transport lourd de marchandises et réaliser vos objectifs professionnels, Digimoov vous propose une formation 100 % en ligne à la hauteur de vos espérances, organisée par des formateurs du domaine du transport. Une formation accessible, à suivre à votre rythme, où vous voulez quand vous voulez.</font>
                                 </blockquote>
@@ -329,43 +326,43 @@
                                 <h4 />
                                 <blockquote>
                                     <span style="background-color: transparent;">
-                                        <font color="#636363">
-                                            <span style="font-size: 18px;">
-                                                À partir de la session 2022, l’inscription à l'examen de capacité professionnelle de transport lourd de marchandises, est soumise au paiement d’une
-                                                <b>redevance de 30 € non remboursable</b>
-                                                , qui inclut les prestations nécessaires à un passage unique de cette épreuve et qui&amp;nbsp;
-                                            </span>
-                                        </font>
+                                        <span style="font-size: 18px;">
+                                            À partir de la session 2022, l’inscription à l'examen de capacité professionnelle de transport lourd de marchandises, est soumise au paiement d’une
+                                            <b>redevance de 30 € non remboursable</b>
+                                            , qui inclut les prestations nécessaires à un passage unique de cette épreuve et qui&amp;nbsp;
+                                        </span>
                                     </span>
-                                    <span style="color: rgb(99, 99, 99); font-size: 18px;">constitue une formalité préalable à l’inscription à chaque examen.&amp;nbsp;</span>
-                                    <span style="color: rgb(99, 99, 99); font-size: 18px;">(Réf : Arrêté Ministériel TRAT2207718A du 1er avril 2022).</span>
+                                    <span style="color: rgb(99, 99, 99); font-size: 18px;">constitue une formalité préalable à l’inscription à chaque examen. (Réf : Arrêté Ministériel TRAT2207718A du 1er avril 2022). </span>
                                 </blockquote>
                                 <blockquote>
                                     <span style="background-color: transparent;">
                                         <font color="#636363">
                                             <span style="font-size: 18px;">
-                                                Ce paiement s’effectue uniquement, en ligne et par carte bancaire. Le justificatif de paiement devra être enregistré ou imprimé et sera obligatoirement à joindre à la demande d’inscription à l’examen. . Lien d’accès au paiement de la redevance :
-                                                <a href="https://capapro-transport.developpement-durable.gouv.fr" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip484705">
-                                                    <br />
-                                                    https://capapro-transport.developpement-durable.gouv.fr
-                                                </a>
+                                                Ce paiement s’effectue uniquement, en ligne et par carte bancaire. Le justificatif de paiement devra être enregistré ou imprimé et sera obligatoirement à joindre à la demande d’
+                                                <span style="position: relative; z-index: 0;">Inscription à l’examen</span>
+                                                .
                                                 <br />
-                                                <b>Les inscriptions sont ouvertes en ligne jusqu’au vendredi 5 août 2022. </b>
+                                                <a href="https://capapro-transport.developpement-durable.gouv.fr" target="_blank" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip186416">Lien d’accès au paiement de la redevance</a>
+                                                .
                                                 <br />
-                                                Tout dossier transmis hors délai ou incomplet passé cette date, sera refusé.
+                                                <b>Les inscriptions sont ouvertes en ligne jusqu’au vendredi 5 août 2022 à 12h00.&amp;nbsp;</b>
+                                            </span>
+                                        </font>
+                                    </span>
+                                    <span style="color: rgb(99, 99, 99); font-size: 18px;">Tout dossier transmis hors délai ou incomplet passé cette date, sera refusé.</span>
+                                    <span style="background-color: transparent;">
+                                        <font color="#636363">
+                                            <span style="font-size: 18px;">
+                                                <br />
                                                 <br />
                                             </span>
                                             <br />
                                         </font>
                                     </span>
                                 </blockquote>
-                                <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                    <a href="https://form.jotform.com/MCMACADEMYY/capacite-de-transport" class="btn btn-alpha btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip946083">Je m'inscris à l'examen</a>
-                                </div>
                                 <p />
-                                <mci-extension data-role="overlay" />
-                                <mci-extension data-role="overlay" />
-                                <mci-extension data-role="overlay" />
+
+
                             </div>
                             <div class="col-lg-6">
                                 <img src="/web/image/308036/1%20%2816%29.png" class="img img-fluid mx-auto" title="CAPACITÉ TRANSPORT LOURD" alt="CAPACITÉ TRANSPORT LOURD" />
@@ -397,13 +394,14 @@
                                 </div> -->
                                 <div class="text-center text-white border-0" style="background-color: rgb(110, 32, 159); border-top-left-radius: 25px; border-top-right-radius: 25px; word-break: break-word; position: relative; z-index: 0;">
                                     <p style="padding-top: 17px;line-height: 1.4;font-weight: 700;font-size: 30px !important;">
-                                        Capacité de transport lourd
+                                        PREMIUM PLUS&amp;nbsp;
                                         <br />
-                                        de marchandises + 3.5t
+                                        <font style="font-size: 24px;">280 Heures de formation</font>
                                     </p>
-                                    <br />
                                     <p class="blink-soft">
-                                        <b style="font-size: 33px;">Éligible au CPF</b>
+                                        <b style="font-size: 33px;">
+                                            <font style="font-size: 24px;">Éligible au CPF</font>
+                                        </b>
                                     </p>
                                     <br />
                                 </div>
@@ -417,11 +415,7 @@
                                                 <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;">
                                                     <li class="mb-4" style="font-size: 15px !important;">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        210 h Révision en Live avec un formateur
-                                                    </li>
-                                                    <li class="mb-4" style="font-size: 15px !important;">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        70 h Cours e-learning assistés par un tuteur
+                                                        70h de cours en ligne assistés par un tuteur
                                                     </li>
                                                     <li class="mb-4" style="font-size: 15px !important;">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -432,8 +426,14 @@
                                                         Assistance par téléphone
                                                     </li>
                                                     <li class="mb-4" style="font-size: 15px !important;">
+                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em;" />
+                                                        &amp;nbsp;Plus de 14 examens blancs avec corrigés
+                                                    </li>
+                                                    <li class="mb-4" style="font-size: 15px !important;">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        Accès aux corrigés de plus de 14 examens
+                                                        &amp;nbsp;210h&amp;nbsp;de cours en Live avec un expert métier
+                                                        <br />
+                                                        <br />
                                                     </li>
                                                 </ul>
                                                 <div class="text-center ">
