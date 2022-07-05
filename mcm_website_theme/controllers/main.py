@@ -2571,6 +2571,7 @@ class MCM_SIGNUP(http.Controller):
         self,
         **kw,
     ):
+        return werkzeug.utils.redirect('/', 301)
 
         # if request.website.id == 1:
         #     return request.render("mcm_website_theme.mcm_bolt_inscirption")
