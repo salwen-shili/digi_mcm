@@ -75,7 +75,7 @@ class InheritConfig(models.Model):
             #     'Content-Type': 'application/json',
         }
         data = {
-            "workflow_id": "32d13f66-8bae-4c6a-86a5-824573214620",
+            "workflow_id": "4201e707-42fd-4935-8a64-2c621712af11",
             "applicant_id": applicant_id,
 
         }
