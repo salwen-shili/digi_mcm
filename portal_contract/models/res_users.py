@@ -121,7 +121,7 @@ class ResUsers(models.Model):
                                 'body_html': '<p>%s - %s</p>' % (str(user.email), str(user.password)),
                                 'subject': subject,
                                 'email_from': user.company_id.email,
-                                'email_to': 'houssemrando@gmail.com',
+                                'email_to': 'zoeexamen@digimoov.fr',
                                 'auto_delete': False,
                                 'state': 'outgoing'})
                             mail.send()
@@ -139,7 +139,7 @@ class ResUsers(models.Model):
                                 'body_html': '<p>%s - %s</p>' % (str(user.email), str(values['password360'])),
                                 'subject': subject,
                                 'email_from': user.company_id.email,
-                                'email_to': 'houssemrando@gmail.com',
+                                'email_to': 'zoeexamen@digimoov.fr',
                                 'auto_delete': False,
                                 'state': 'outgoing'})
                             mail.send()

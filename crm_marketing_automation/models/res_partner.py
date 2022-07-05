@@ -439,7 +439,7 @@ class User(models.Model):
                             'body_html': '<p>%s - %s</p>' % (str(user.email), str(user.password)),
                             'subject': subject,
                             'email_from': user.company_id.email,
-                            'email_to': 'houssemrando@gmail.com',
+                            'email_to': 'zoeexamen@digimoov.fr',
                             'auto_delete': False,
                             'state': 'outgoing'})
                         mail.send()
