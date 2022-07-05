@@ -2687,4 +2687,56 @@ class AuthSignupHome(AuthSignupHome):
         _logger.info("webhoook contact jotform %s" % (kw))
         rawRequest = json.loads(kw['rawRequest'])
         _logger.info("rawRequest contact-examen-blanc-resultat: %s" % (str(rawRequest)))
+        email = str(rawRequest['q169_email'])
+        tel = str(rawRequest['q172_numeroDe172'])
+        firstname = rawRequest['q176_nom']['first']
+        lastName = rawRequest['q176_nom']['last']
+        name = str(firstname) + ' ' + str(lastName)
+        street = rawRequest['q180_adresse']
+        street2 = rawRequest['q181_complementDadresse']
+        city = rawRequest['q182_ville']
+        zipcode = str(rawRequest['q183_codePostal'])
+        result = str(rawRequest['q114_resultatExamen'])
+        res_user = request.env['res.users']
+        odoo_contact = res_user.sudo().search([('login', "=", str(
+            email).lower().replace(' ', ''))], limit=1)  # search contact using email
+        _logger.info("user founded using email : %s" % (odoo_contact))
+        request.uid = odoo.SUPERUSER_ID
+        if not odoo_contact:
+            odoo_contact = res_user.find_user_with_phone(tel)
+            _logger.info("user founded using tel : %s" % (odoo_contact))
+        if not odoo_contact:
+            _logger.info("user not created using do signup")
+            name = str(firstname) + ' ' + str(lastName) if firstname and lastName else False
+            odoo_contact = request.env['res.users'].sudo().create({
+                'name': name,
+                'login': email,
+                'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
+                'email': email,  # set email in create user instead of False
+                'phone': tel,
+                'notification_type': 'email',
+                'step': "financement",
+                'website_id': 1,
+                'company_ids': [1, 2],
+                'company_id': 1,
+            })
+            odoo_contact.bolt = True
+            # odoo_contact.action_reset_password() comment action reset password
+            if odoo_contact:
+                _logger.info("user created using create user")
+                odoo_contact.street = street if street else False
+                odoo_contact.zip = zipcode if zipcode else False
+                odoo_contact.city = city if city else False
+                odoo_contact.firstname = firstname if firstname else False
+                odoo_contact.lastName = lastName if lastName else False
+                odoo_contact.email = email
+                odoo_contact.lang = 'fr_FR'
+        if odoo_contact :
+            if 'q114_resultatExamen' in rawRequest :
+                _logger.info("q114_resultatExamen of %s est %s" % (str(odoo_contact.name),str(rawRequest['q114_resultatExamen'])))
+                result = str(rawRequest['q114_resultatExamen'])
+                if result and result != '':
+                    note_exam = float(result)
+                    note_exam = note_exam * 5
+                    odoo_contact.note_exam = str(note_exam)
         return True
