@@ -72,21 +72,13 @@ class Website(Home):
         last_ville = (
             request.env["session.ville"]
             .sudo()
-            .search(
-                [("company_id", "=", 2), ("ville_formation", "=", False)],
-                order="name_ville desc",
-                limit=1,
-            )
+            .search([("company_id", "=", 2), ("ville_formation", "=", False)], order="name_ville desc", limit=1)
         )
         list_villes = (
             request.env["session.ville"]
             .sudo()
             .search(
-                [
-                    ("id", "!=", last_ville.id),
-                    ("company_id", "=", 2),
-                    ("ville_formation", "=", False),
-                ],
+                [("id", "!=", last_ville.id), ("company_id", "=", 2), ("ville_formation", "=", False)],
                 order="name_ville asc",
             )
         )
@@ -157,15 +149,7 @@ class Website(Home):
         if list_villes:
             values["list_villes"] = list_villes
         if (
-            partenaire
-            in [
-                "",
-                "ubereats",
-                "deliveroo",
-                "coursierjob",
-                "box2home",
-                "coursier2roues",
-            ]
+            partenaire in ["", "ubereats", "deliveroo", "coursierjob", "box2home", "coursier2roues"]
             and request.website.id == 2
         ):
             values["partenaire"] = partenaire
@@ -486,11 +470,7 @@ class Routes_Site(http.Controller):
                                 .sudo()
                                 .search(
                                     [
-                                        (
-                                            "partner_id",
-                                            "=",
-                                            request.env.user.partner_id.id,
-                                        ),
+                                        ("partner_id", "=", request.env.user.partner_id.id),
                                         ("survey_id", "=", survey.id),
                                     ],
                                     order="create_date asc",
@@ -505,14 +485,7 @@ class Routes_Site(http.Controller):
                                 return werkzeug.utils.redirect(url, 301)
                             if survey_user and survey_user.state == "skip":
                                 return werkzeug.utils.redirect(
-                                    str(
-                                        "survey/fill/%s/%s"
-                                        % (
-                                            str(survey.access_token),
-                                            str(survey_user.token),
-                                        )
-                                    ),
-                                    301,
+                                    str("survey/fill/%s/%s" % (str(survey.access_token), str(survey_user.token))), 301
                                 )
                             if survey_user and survey_user.state == "done":
                                 if not survey_user.quizz_passed:
@@ -581,12 +554,7 @@ class Routes_Site(http.Controller):
                             pricelist = (
                                 request.env["product.pricelist"]
                                 .sudo()
-                                .search(
-                                    [
-                                        ("company_id", "=", 1),
-                                        ("name", "=", str(partenaire)),
-                                    ]
-                                )
+                                .search([("company_id", "=", 1), ("name", "=", str(partenaire))])
                             )
                             if not pricelist:
                                 pricelist_id = order.pricelist_id
@@ -607,12 +575,7 @@ class Routes_Site(http.Controller):
                             pricelist = (
                                 request.env["product.pricelist"]
                                 .sudo()
-                                .search(
-                                    [
-                                        ("company_id", "=", 1),
-                                        ("name", "=", str(partenaire)),
-                                    ]
-                                )
+                                .search([("company_id", "=", 1), ("name", "=", str(partenaire))])
                             )
 
                             if not pricelist:
@@ -685,12 +648,7 @@ class Routes_Site(http.Controller):
                             pricelist = (
                                 request.env["product.pricelist"]
                                 .sudo()
-                                .search(
-                                    [
-                                        ("company_id", "=", 2),
-                                        ("name", "=", str(partenaire)),
-                                    ]
-                                )
+                                .search([("company_id", "=", 2), ("name", "=", str(partenaire))])
                             )
                             if not pricelist:
                                 pricelist_id = order.pricelist_id
@@ -721,12 +679,7 @@ class Routes_Site(http.Controller):
                             pricelist = (
                                 request.env["product.pricelist"]
                                 .sudo()
-                                .search(
-                                    [
-                                        ("company_id", "=", 2),
-                                        ("name", "=", str(partenaire)),
-                                    ]
-                                )
+                                .search([("company_id", "=", 2), ("name", "=", str(partenaire))])
                             )
 
                             if not pricelist:
@@ -1149,12 +1102,121 @@ class Routes_Site(http.Controller):
         return request.render("mcm_website_theme.mcm_bolt_no_won", {})
 
     @http.route(
-        "/get_data_user_connected",
-        type="json",
-        auth="user",
-        methods=["POST"],
+        ["""/bolt""", """/BOLT""", """/Bolt"""],
+        type="http",
+        auth="public",
         website=True,
     )
+    def bolttest(self):
+        return werkzeug.utils.redirect("/inscription-bolt", 301)
+
+        bolt_product = (
+            request.env["product.product"]
+            .sudo()
+            .search([("company_id", "=", 1), ("default_code", "=", "vtc_bolt")], order="list_price", limit=1)
+        )
+        vtc_product = (
+            request.env["product.product"]
+            .sudo()
+            .search([("company_id", "=", 1), ("default_code", "=", "vtc")], order="list_price", limit=1)
+        )
+
+        promo = (
+            request.env["product.pricelist"].sudo().search([("company_id", "=", 1), ("name", "=", "bolt")], limit=1)
+        )
+        #
+        # res['exam_not_passed'] = 'False'
+        # res['exam_success'] = 'False'
+        # if order:
+        #     if order.company_id.id == 1:
+        #         if order.order_line:
+        #             for line in order.order_line:
+        #                 if (line.product_id.default_code == 'vtc_bolt'):
+        #                     default_code_bolt = True
+        #             if default_code_bolt:
+        #                 survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
+        #                                                                     limit=1)
+        #                 if survey:
+        #                     survey_user = request.env['survey.user_input'].sudo().search(
+        #                         [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
+        #                         order='create_date asc', limit=1)
+        #                     if not survey_user:
+        #                         res['exam_not_passed'] = 'True'
+        #                     if survey_user and survey_user.state == 'new':
+        #                         res['exam_not_passed'] = 'True'
+        #
+        #                     if survey_user and survey_user.state == 'done':
+        #                         if survey_user.quizz_passed:
+        #                             res['exam_success'] = 'True'
+        exam_state = "False"
+        if not request.website.is_public_user():
+            survey = request.env["survey.survey"].sudo().search([("title", "=", "Examen blanc Français")], limit=1)
+            if survey:
+                survey_user = (
+                    request.env["survey.user_input"]
+                    .sudo()
+                    .search(
+                        [
+                            ("partner_id", "=", request.env.user.partner_id.id),
+                            ("survey_id", "=", survey.id),
+                            ("state", "=", "done"),
+                        ],
+                        order="create_date asc",
+                        limit=1,
+                    )
+                )
+                if not survey_user:
+                    exam_state = "exam_not_passed"
+                if survey_user and survey_user.state == "new":
+                    exam_state = "exam_not_passed"
+
+                if survey_user and survey_user.state == "done":
+                    if not survey_user.quizz_corrected:
+                        exam_state = "in_process"
+                    else:
+                        if survey_user.quizz_passed:
+                            exam_state = "success"
+                        else:
+                            exam_state = "failed"
+            if request.env.user.partner_id.bolt:
+                if not request.env.user.partner_id.note_exam:
+                    exam_state = "exam_not_passed"
+                else:
+                    note_exam = request.env.user.partner_id.note_exam
+                    if int(note_exam) < 40:
+                        exam_state = "failed"
+                    else:
+                        exam_state = "success"
+        cartIsEmpty = "False"
+        order = request.website.sale_get_order()
+        if not order:
+            cartIsEmpty = "True"
+        if order and not order.order_line:
+            cartIsEmpty = "True"
+        boltWrongProduct = "False"
+        if not request.website.is_public_user():
+            request.env.user.partner_id.bolt = True
+        if order and order.order_line:
+            for line in order.order_line:
+                if order.partner_id.bolt == True and line.product_id.default_code != "vtc_bolt":
+                    boltWrongProduct = "True"
+        partner = request.env.user.partner_id
+        values = {
+            "bolt_product": bolt_product,
+            "vtc_product": vtc_product,
+            "promo": promo,
+            "exam_state": exam_state,
+            "cartIsEmpty": cartIsEmpty,
+            "boltWrongProduct": boltWrongProduct,
+            "partner": partner,
+        }
+
+        if request.website.id == 2:
+            raise werkzeug.exceptions.NotFound()
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_bolt", values)
+
+    @http.route("/get_data_user_connected", type="json", auth="user", methods=["POST"], website=True)
     def get_data_user_connected(self):
         partner = request.env.user.partner_id
         res = {"response": []}
@@ -1298,11 +1360,7 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.formation-taxi-Lyon", values)
 
-    @http.route(
-        "/evalbox_registration/<string:email>/<string:state>/",
-        type="http",
-        auth="public",
-    )
+    @http.route("/evalbox_registration/<string:email>/<string:state>/", type="http", auth="public")
     def evalbox_registration(self, email=None, **kw):
         email = email.replace("%", ".")  # remplacer % par . dans l'email envoyé en paramètre
         email = email.replace(
@@ -1349,10 +1407,7 @@ class Routes_Site(http.Controller):
             elif state == "null":
                 return request.render("mcm_website_theme.evalbox_account_existant", {})
             else:
-                description = "le statut %s envoyé n'est pas valide pour l'email %s" % (
-                    state,
-                    email,
-                )
+                description = "le statut %s envoyé n'est pas valide pour l'email %s" % (state, email)
                 vals = {
                     "description": description,
                     "name": "Statut non validé",
@@ -1365,12 +1420,7 @@ class Routes_Site(http.Controller):
                 ticket = (
                     request.env["helpdesk.ticket"]
                     .sudo()
-                    .search(
-                        [
-                            ("description", "=", description),
-                            ("team_id.name", "like", "IT"),
-                        ]
-                    )
+                    .search([("description", "=", description), ("team_id.name", "like", "IT")])
                 )
 
                 if not ticket:
@@ -1513,11 +1563,7 @@ class WebsiteSale(WebsiteSale):
         domain = self._get_search_domain(search, category, attrib_values)
 
         keep = QueryURL(
-            "/shop",
-            category=category and int(category),
-            search=search,
-            attrib=attrib_list,
-            order=post.get("order"),
+            "/shop", category=category and int(category), search=search, attrib=attrib_list, order=post.get("order")
         )
 
         pricelist_context, pricelist = self._get_pricelist_context()
@@ -1551,12 +1597,7 @@ class WebsiteSale(WebsiteSale):
 
         product_count = len(search_product)
         pager = request.website.pager(url=url, total=product_count, page=page, step=ppg, scope=7, url_args=post)
-        products = Product.sudo().search(
-            domain,
-            limit=ppg,
-            offset=pager["offset"],
-            order=self._get_search_order(post),
-        )
+        products = Product.sudo().search(domain, limit=ppg, offset=pager["offset"], order=self._get_search_order(post))
         final_products = []
         if state and state != "all" and category != "all":
             states = (
@@ -1579,21 +1620,12 @@ class WebsiteSale(WebsiteSale):
             states = (
                 request.env["res.country.state"]
                 .sudo()
-                .search(
-                    [
-                        "&",
-                        ("name", "ilike", taxi_state),
-                        ("country_id.code", "ilike", "FR"),
-                    ]
-                )
+                .search(["&", ("name", "ilike", taxi_state), ("country_id.code", "ilike", "FR")])
             )
             category = request.env["product.public.category"].sudo().search([("code", "ilike", "taxi")], limit=1)
             domain = self._get_search_domain(search, category.id, attrib_values)
             products = Product.sudo().search(
-                domain,
-                limit=ppg,
-                offset=pager["offset"],
-                order=self._get_search_order(post),
+                domain, limit=ppg, offset=pager["offset"], order=self._get_search_order(post)
             )
             for product in products:
                 if states:
@@ -1610,21 +1642,12 @@ class WebsiteSale(WebsiteSale):
             states = (
                 request.env["res.country.state"]
                 .sudo()
-                .search(
-                    [
-                        "&",
-                        ("name", "ilike", vmdtr_state),
-                        ("country_id.code", "ilike", "FR"),
-                    ]
-                )
+                .search(["&", ("name", "ilike", vmdtr_state), ("country_id.code", "ilike", "FR")])
             )
             category = request.env["product.public.category"].sudo().search([("code", "ilike", "vmdtr")], limit=1)
             domain = self._get_search_domain(search, category.id, attrib_values)
             products = Product.sudo().search(
-                domain,
-                limit=ppg,
-                offset=pager["offset"],
-                order=self._get_search_order(post),
+                domain, limit=ppg, offset=pager["offset"], order=self._get_search_order(post)
             )
             for product in products:
                 if states:
@@ -1641,21 +1664,12 @@ class WebsiteSale(WebsiteSale):
             states = (
                 request.env["res.country.state"]
                 .sudo()
-                .search(
-                    [
-                        "&",
-                        ("name", "ilike", vtc_state),
-                        ("country_id.code", "ilike", "FR"),
-                    ]
-                )
+                .search(["&", ("name", "ilike", vtc_state), ("country_id.code", "ilike", "FR")])
             )
             category = request.env["product.public.category"].sudo().search([("code", "ilike", "vtc")], limit=1)
             domain = self._get_search_domain(search, category.id, attrib_values)
             products = Product.sudo().search(
-                domain,
-                limit=ppg,
-                offset=pager["offset"],
-                order=self._get_search_order(post),
+                domain, limit=ppg, offset=pager["offset"], order=self._get_search_order(post)
             )
             for product in products:
                 if states:
@@ -1723,13 +1737,7 @@ class WebsiteSale(WebsiteSale):
             values["main_object"] = category
         return request.render("website_sale.products", values)
 
-    @http.route(
-        "/shop/payment/validate",
-        type="http",
-        auth="public",
-        website=True,
-        sitemap=False,
-    )
+    @http.route("/shop/payment/validate", type="http", auth="public", website=True, sitemap=False)
     def payment_validate(self, transaction_id=None, sale_order_id=None, **post):
         """Method that should be called by the server when receiving an update
         for a transaction. State at this point :
@@ -1905,10 +1913,7 @@ class WebsiteSale(WebsiteSale):
                 elif mode[1] == "shipping":
                     order.partner_shipping_id = partner_id
 
-                order.message_partner_ids = [
-                    (4, partner_id),
-                    (3, request.website.partner_id.id),
-                ]
+                order.message_partner_ids = [(4, partner_id), (3, request.website.partner_id.id)]
                 if not errors:
                     return request.redirect(kw.get("callback") or "/shop/confirm_order")
 
@@ -2005,12 +2010,7 @@ class WebsiteSale(WebsiteSale):
 
         return error, error_message
 
-    @http.route(
-        ['/shop/product/<model("product.template"):product>'],
-        type="http",
-        auth="public",
-        website=True,
-    )
+    @http.route(['/shop/product/<model("product.template"):product>'], type="http", auth="public", website=True)
     def product(self, product, category="", search="", **kwargs):
         res = super(WebsiteSale, self).product(product, category, search)
         if product and product.website_id and product.website_id.id == 1:
@@ -2037,13 +2037,7 @@ class WebsiteSale(WebsiteSale):
 
 
 class Payment3x(http.Controller):
-    @http.route(
-        ["/shop/payment/update_amount"],
-        type="json",
-        auth="public",
-        methods=["POST"],
-        website=True,
-    )
+    @http.route(["/shop/payment/update_amount"], type="json", auth="public", methods=["POST"], website=True)
     def cart_update_amount(self, instalment):
         """This route is called when changing quantity from the cart or adding
         a product from the wishlist."""
@@ -2051,12 +2045,7 @@ class Payment3x(http.Controller):
         payment = (
             request.env["payment.acquirer"]
             .sudo()
-            .search(
-                [
-                    ("name", "ilike", "stripe"),
-                    ("company_id", "=", request.website.company_id.id),
-                ]
-            )
+            .search([("name", "ilike", "stripe"), ("company_id", "=", request.website.company_id.id)])
         )
         if instalment:
             if payment:
@@ -2077,14 +2066,7 @@ class Payment3x(http.Controller):
                         line.price_unit = 380
         return True
 
-    @http.route(
-        ["/shop/payment/update_cpf"],
-        type="json",
-        auth="public",
-        methods=["POST"],
-        website=True,
-        csrf=False,
-    )
+    @http.route(["/shop/payment/update_cpf"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
     def cart_update_cpf(self, cpf):
         order = request.website.sale_get_order(force_create=1)
         if cpf and order.partner_id.statut != "won":
@@ -2098,12 +2080,7 @@ class Payment3x(http.Controller):
     """Route est appelé quand Pole emploi dans panier est coché """
 
     @http.route(
-        ["/shop/cart/update_pole_emploi"],
-        type="json",
-        auth="public",
-        methods=["POST"],
-        website=True,
-        csrf=False,
+        ["/shop/cart/update_pole_emploi"], type="json", auth="public", methods=["POST"], website=True, csrf=False
     )
     def cart_update_pole_emploi(self, pole_emploi_state):
         order = request.website.sale_get_order(force_create=1)
@@ -2116,12 +2093,7 @@ class Payment3x(http.Controller):
         return pole_emploi_state
 
     @http.route(
-        ["/shop/payment/update_cartebleu"],
-        type="json",
-        auth="public",
-        methods=["POST"],
-        website=True,
-        csrf=False,
+        ["/shop/payment/update_cartebleu"], type="json", auth="public", methods=["POST"], website=True, csrf=False
     )
     def cart_update_cartebleu(self, cartebleu):
         order = request.website.sale_get_order(force_create=1)
@@ -2132,13 +2104,7 @@ class Payment3x(http.Controller):
 
 
 class Conditions(http.Controller):
-    @http.route(
-        ["/shop/payment/update_condition"],
-        type="json",
-        auth="public",
-        methods=["POST"],
-        website=True,
-    )
+    @http.route(["/shop/payment/update_condition"], type="json", auth="public", methods=["POST"], website=True)
     def cart_update_condition(self, condition):
         """This route is called when changing conditions in shop cart"""
         print("POST request @ /shop/payment/update_condition")
@@ -2150,13 +2116,7 @@ class Conditions(http.Controller):
                 order.conditions = False
         return True
 
-    @http.route(
-        ["/shop/payment/update_failures"],
-        type="json",
-        auth="public",
-        methods=["POST"],
-        website=True,
-    )
+    @http.route(["/shop/payment/update_failures"], type="json", auth="public", methods=["POST"], website=True)
     def cart_update_failures(self, failures):
         """This route is called when changing failures in shop cart."""
         print(failures)
@@ -2173,11 +2133,7 @@ class Conditions(http.Controller):
         return True
 
     @http.route(
-        ["/shop/payment/update_failures_not_signed"],
-        type="json",
-        auth="public",
-        methods=["POST"],
-        website=True,
+        ["/shop/payment/update_failures_not_signed"], type="json", auth="public", methods=["POST"], website=True
     )
     def cart_update_failures_not_signed(self, failures, token):
         """This route is called when changing failures in contract not signed."""
@@ -2192,13 +2148,7 @@ class Conditions(http.Controller):
                 order.partner_id.renounce_request = False
         return (token, failures)
 
-    @http.route(
-        ["/shop/update_driver_licence"],
-        type="json",
-        auth="public",
-        methods=["POST"],
-        website=True,
-    )
+    @http.route(["/shop/update_driver_licence"], type="json", auth="public", methods=["POST"], website=True)
     def cart_update_driver_licence(self, driver_licence):
         """This route is called when changing driver_licence in shop cart."""
         order = request.website.sale_get_order(force_create=0)
@@ -2212,13 +2162,7 @@ class Conditions(http.Controller):
                             order.partner_id.driver_licence = False
         return True
 
-    @http.route(
-        ["/shop/update_license_suspension"],
-        type="json",
-        auth="public",
-        methods=["POST"],
-        website=True,
-    )
+    @http.route(["/shop/update_license_suspension"], type="json", auth="public", methods=["POST"], website=True)
     def cart_update_license_suspension(self, license_suspension):
         """This route is called when changing license_suspension in shop cart."""
         order = request.website.sale_get_order(force_create=0)
@@ -2232,13 +2176,7 @@ class Conditions(http.Controller):
                             order.partner_id.license_suspension = False
         return True
 
-    @http.route(
-        ["/shop/update_criminal_record"],
-        type="json",
-        auth="public",
-        methods=["POST"],
-        website=True,
-    )
+    @http.route(["/shop/update_criminal_record"], type="json", auth="public", methods=["POST"], website=True)
     def cart_update_criminal_record(self, criminal_record):
         """This route is called when changing criminal_record in shop cart."""
         order = request.website.sale_get_order(force_create=0)
@@ -2252,13 +2190,7 @@ class Conditions(http.Controller):
                             order.partner_id.criminal_record = False
         return True
 
-    @http.route(
-        ["/shop/payment/update_accompagnement"],
-        type="json",
-        auth="public",
-        methods=["POST"],
-        website=True,
-    )
+    @http.route(["/shop/payment/update_accompagnement"], type="json", auth="public", methods=["POST"], website=True)
     def cart_update_accompagnement(self, accompagnement):
         """This route is called when changing quantity from the cart or adding
         a product from the wishlist."""
@@ -2406,18 +2338,7 @@ class CustomerPortal(CustomerPortal):
         values = super(CustomerPortal, self)._prepare_portal_layout_values()
         invoice_count = request.env["account.move"].search_count(
             [
-                (
-                    "type",
-                    "in",
-                    (
-                        "out_invoice",
-                        "in_invoice",
-                        "out_refund",
-                        "in_refund",
-                        "out_receipt",
-                        "in_receipt",
-                    ),
-                ),
+                ("type", "in", ("out_invoice", "in_invoice", "out_refund", "in_refund", "out_receipt", "in_receipt")),
                 ("type_facture", "=", "web"),
             ]
         )
@@ -2435,14 +2356,7 @@ class CustomerPortal(CustomerPortal):
                     (
                         "type",
                         "in",
-                        (
-                            "out_invoice",
-                            "in_invoice",
-                            "out_refund",
-                            "in_refund",
-                            "out_receipt",
-                            "in_receipt",
-                        ),
+                        ("out_invoice", "in_invoice", "out_refund", "in_refund", "out_receipt", "in_receipt"),
                     ),
                     ("type_facture", "=", "web"),
                 ]
@@ -2462,29 +2376,13 @@ class CustomerPortal(CustomerPortal):
     """@override this function to add filter can display 
     all invoices Not CPF type linked to specific portal"""
 
-    @http.route(
-        ["/my/invoices", "/my/invoices/page/<int:page>"],
-        type="http",
-        auth="user",
-        website=True,
-    )
+    @http.route(["/my/invoices", "/my/invoices/page/<int:page>"], type="http", auth="user", website=True)
     def portal_my_invoices(self, page=1, date_begin=None, date_end=None, sortby=None, **kw):
         values = self._prepare_portal_layout_values()
         AccountInvoice = request.env["account.move"]
 
         domain = [
-            (
-                "type",
-                "in",
-                (
-                    "out_invoice",
-                    "out_refund",
-                    "in_invoice",
-                    "in_refund",
-                    "out_receipt",
-                    "in_receipt",
-                ),
-            ),
+            ("type", "in", ("out_invoice", "out_refund", "in_invoice", "in_refund", "out_receipt", "in_receipt")),
             ("type_facture", "=", "web"),
         ]
 
@@ -2501,10 +2399,7 @@ class CustomerPortal(CustomerPortal):
 
         archive_groups = self._get_archive_groups("account.move", domain)
         if date_begin and date_end:
-            domain += [
-                ("create_date", ">", date_begin),
-                ("create_date", "<=", date_end),
-            ]
+            domain += [("create_date", ">", date_begin), ("create_date", "<=", date_end)]
 
         # count for pager
         invoice_count = AccountInvoice.search_count(domain)
@@ -2671,128 +2566,6 @@ class MCM_SIGNUP(http.Controller):
 
                 return True
 
-    @http.route(
-        ["""/bolt""", """/BOLT""", """/Bolt"""],
-        type="http",
-        auth="public",
-        website=True,
-    )
-    def bolttest(self):
-        return werkzeug.utils.redirect("/inscription-bolt", 301)
-        bolt_product = (
-            request.env["product.product"]
-            .sudo()
-            .search(
-                [("company_id", "=", 1), ("default_code", "=", "vtc_bolt")],
-                order="list_price",
-                limit=1,
-            )
-        )
-        vtc_product = (
-            request.env["product.product"]
-            .sudo()
-            .search(
-                [("company_id", "=", 1), ("default_code", "=", "vtc")],
-                order="list_price",
-                limit=1,
-            )
-        )
-
-        promo = (
-            request.env["product.pricelist"].sudo().search([("company_id", "=", 1), ("name", "=", "bolt")], limit=1)
-        )
-        #
-        # res['exam_not_passed'] = 'False'
-        # res['exam_success'] = 'False'
-        # if order:
-        #     if order.company_id.id == 1:
-        #         if order.order_line:
-        #             for line in order.order_line:
-        #                 if (line.product_id.default_code == 'vtc_bolt'):
-        #                     default_code_bolt = True
-        #             if default_code_bolt:
-        #                 survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
-        #                                                                     limit=1)
-        #                 if survey:
-        #                     survey_user = request.env['survey.user_input'].sudo().search(
-        #                         [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
-        #                         order='create_date asc', limit=1)
-        #                     if not survey_user:
-        #                         res['exam_not_passed'] = 'True'
-        #                     if survey_user and survey_user.state == 'new':
-        #                         res['exam_not_passed'] = 'True'
-        #
-        #                     if survey_user and survey_user.state == 'done':
-        #                         if survey_user.quizz_passed:
-        #                             res['exam_success'] = 'True'
-        exam_state = "False"
-        if not request.website.is_public_user():
-            survey = request.env["survey.survey"].sudo().search([("title", "=", "Examen blanc Français")], limit=1)
-            if survey:
-                survey_user = (
-                    request.env["survey.user_input"]
-                    .sudo()
-                    .search(
-                        [
-                            ("partner_id", "=", request.env.user.partner_id.id),
-                            ("survey_id", "=", survey.id),
-                            ("state", "=", "done"),
-                        ],
-                        order="create_date asc",
-                        limit=1,
-                    )
-                )
-                if not survey_user:
-                    exam_state = "exam_not_passed"
-                if survey_user and survey_user.state == "new":
-                    exam_state = "exam_not_passed"
-
-                if survey_user and survey_user.state == "done":
-                    if not survey_user.quizz_corrected:
-                        exam_state = "in_process"
-                    else:
-                        if survey_user.quizz_passed:
-                            exam_state = "success"
-                        else:
-                            exam_state = "failed"
-            if request.env.user.partner_id.bolt:
-                if not request.env.user.partner_id.note_exam:
-                    exam_state = "exam_not_passed"
-                else:
-                    note_exam = request.env.user.partner_id.note_exam
-                    if int(note_exam) < 40:
-                        exam_state = "failed"
-                    else:
-                        exam_state = "success"
-        cartIsEmpty = "False"
-        order = request.website.sale_get_order()
-        if not order:
-            cartIsEmpty = "True"
-        if order and not order.order_line:
-            cartIsEmpty = "True"
-        boltWrongProduct = "False"
-        if not request.website.is_public_user():
-            request.env.user.partner_id.bolt = True
-        if order and order.order_line:
-            for line in order.order_line:
-                if order.partner_id.bolt == True and line.product_id.default_code != "vtc_bolt":
-                    boltWrongProduct = "True"
-        partner = request.env.user.partner_id
-        values = {
-            "bolt_product": bolt_product,
-            "vtc_product": vtc_product,
-            "promo": promo,
-            "exam_state": exam_state,
-            "cartIsEmpty": cartIsEmpty,
-            "boltWrongProduct": boltWrongProduct,
-            "partner": partner,
-        }
-
-        if request.website.id == 2:
-            raise werkzeug.exceptions.NotFound()
-        elif request.website.id == 1:
-            return request.render("mcm_website_theme.mcm_bolt", values)
-
     @http.route("/inscription-bolt", type="http", auth="public", website=True)
     def inscription_bolt_jotform(
         self,
@@ -2929,14 +2702,7 @@ class AuthSignupHome(AuthSignupHome):
                             odoo_contact = (
                                 request.env["res.users"]
                                 .sudo()
-                                .search(
-                                    [
-                                        "|",
-                                        ("phone", "=", phone),
-                                        ("phone", "=", phone.replace(" ", "")),
-                                    ],
-                                    limit=1,
-                                )
+                                .search(["|", ("phone", "=", phone), ("phone", "=", phone.replace(" ", ""))], limit=1)
                             )
                         phone = phone_number[0:2]
                         if str(phone) in ["06", "07"] and " " not in str(
@@ -2964,14 +2730,7 @@ class AuthSignupHome(AuthSignupHome):
                             odoo_contact = (
                                 request.env["res.users"]
                                 .sudo()
-                                .search(
-                                    [
-                                        "|",
-                                        ("phone", "=", str(tel)),
-                                        str(tel).replace(" ", ""),
-                                    ],
-                                    limit=1,
-                                )
+                                .search(["|", ("phone", "=", str(tel)), str(tel).replace(" ", "")], limit=1)
                             )
                     else:  # check if jotform webhook send the number of client with+33
                         if " " not in str(tel):
@@ -2994,16 +2753,7 @@ class AuthSignupHome(AuthSignupHome):
                             odoo_contact = (
                                 request.env["res.users"]
                                 .sudo()
-                                .search(
-                                    [
-                                        (
-                                            "phone",
-                                            "=",
-                                            str(phone_number).replace(" ", ""),
-                                        )
-                                    ],
-                                    limit=1,
-                                )
+                                .search([("phone", "=", str(phone_number).replace(" ", ""))], limit=1)
                             )
                             if not odoo_contact:
                                 phone = str(phone_number)
@@ -3012,10 +2762,7 @@ class AuthSignupHome(AuthSignupHome):
                                 odoo_contact = (
                                     request.env["res.users"]
                                     .sudo()
-                                    .search(
-                                        [("phone", "like", phone.replace(" ", ""))],
-                                        limit=1,
-                                    )
+                                    .search([("phone", "like", phone.replace(" ", ""))], limit=1)
                                 )
 
         _logger.info("user founded using tel  : %s" % (odoo_contact))
@@ -3098,12 +2845,7 @@ class AuthSignupHome(AuthSignupHome):
                         short_url = link_tracker.short_url
                     body = (
                         "Bonjour %s voici les identifiants de connexion pour vous connecter sur le site de MCM Academy. login : %s , MDP : %s .Cliquez ici pour vous connecter %s"
-                        % (
-                            odoo_contact.name,
-                            str(odoo_contact.email),
-                            str(password),
-                            str(short_url),
-                        )
+                        % (odoo_contact.name, str(odoo_contact.email), str(password), str(short_url))
                     )
                     if body:
                         composer = (
@@ -3191,14 +2933,7 @@ class AuthSignupHome(AuthSignupHome):
                             user = (
                                 request.env["res.users"]
                                 .sudo()
-                                .search(
-                                    [
-                                        "|",
-                                        ("phone", "=", phone),
-                                        ("phone", "=", phone.replace(" ", "")),
-                                    ],
-                                    limit=1,
-                                )
+                                .search(["|", ("phone", "=", phone), ("phone", "=", phone.replace(" ", ""))], limit=1)
                             )
                         phone = phone_number[0:2]
                         if str(phone) in ["06", "07"] and " " not in str(
@@ -3226,14 +2961,7 @@ class AuthSignupHome(AuthSignupHome):
                             user = (
                                 request.env["res.users"]
                                 .sudo()
-                                .search(
-                                    [
-                                        "|",
-                                        ("phone", "=", str(tel)),
-                                        str(tel).replace(" ", ""),
-                                    ],
-                                    limit=1,
-                                )
+                                .search(["|", ("phone", "=", str(tel)), str(tel).replace(" ", "")], limit=1)
                             )
                     else:  # check if jotform webhook send the number of client with+33
                         if " " not in str(tel):
@@ -3256,16 +2984,7 @@ class AuthSignupHome(AuthSignupHome):
                             user = (
                                 request.env["res.users"]
                                 .sudo()
-                                .search(
-                                    [
-                                        (
-                                            "phone",
-                                            "=",
-                                            str(phone_number).replace(" ", ""),
-                                        )
-                                    ],
-                                    limit=1,
-                                )
+                                .search([("phone", "=", str(phone_number).replace(" ", ""))], limit=1)
                             )
                             if not user:
                                 phone = str(phone_number)
@@ -3274,10 +2993,7 @@ class AuthSignupHome(AuthSignupHome):
                                 user = (
                                     request.env["res.users"]
                                     .sudo()
-                                    .search(
-                                        [("phone", "like", phone.replace(" ", ""))],
-                                        limit=1,
-                                    )
+                                    .search([("phone", "like", phone.replace(" ", ""))], limit=1)
                                 )
         if not user:
             user_not_found = True
@@ -3357,12 +3073,7 @@ class AuthSignupHome(AuthSignupHome):
                         short_url = link_tracker.short_url
                     body = (
                         "Bonjour %s voici les identifiants de connexion pour vous connecter sur le site de MCM Academy. login : %s , MDP : %s .Cliquez ici pour vous connecter %s"
-                        % (
-                            odoo_contact.name,
-                            str(odoo_contact.email),
-                            str(password),
-                            str(short_url),
-                        )
+                        % (odoo_contact.name, str(odoo_contact.email), str(password), str(short_url))
                     )
                     if body:
                         composer = (
@@ -3422,13 +3133,7 @@ class AuthSignupHome(AuthSignupHome):
                             ville_id = (
                                 request.env["session.ville"]
                                 .sudo()
-                                .search(
-                                    [
-                                        ("name_ville", "=", ville),
-                                        ("company_id", "=", 1),
-                                    ],
-                                    limit=1,
-                                )
+                                .search([("name_ville", "=", ville), ("company_id", "=", 1)], limit=1)
                             )  # search session ville using ville sended from jotform
                             product_id = (
                                 request.env["product.product"]
@@ -3446,11 +3151,7 @@ class AuthSignupHome(AuthSignupHome):
                                             ("session_ville_id", "=", ville_id.id),
                                             ("date_exam", "=", date_exam),
                                             ("product_id", "=", product_id.id),
-                                            (
-                                                "session_id.number_places_available",
-                                                ">",
-                                                0,
-                                            ),
+                                            ("session_id.number_places_available", ">", 0),
                                         ],
                                         limit=1,
                                     )
@@ -3463,13 +3164,7 @@ class AuthSignupHome(AuthSignupHome):
                                 ville_id = (
                                     request.env["session.ville"]
                                     .sudo()
-                                    .search(
-                                        [
-                                            ("name_ville", "=", ville),
-                                            ("company_id", "=", 1),
-                                        ],
-                                        limit=1,
-                                    )
+                                    .search([("name_ville", "=", ville), ("company_id", "=", 1)], limit=1)
                                 )
                                 if ville_id:
                                     module_id = (
@@ -3481,11 +3176,7 @@ class AuthSignupHome(AuthSignupHome):
                                                 ("session_ville_id", "=", ville_id.id),
                                                 ("date_exam", "=", date_exam),
                                                 ("product_id", "=", product_id.id),
-                                                (
-                                                    "session_id.number_places_available",
-                                                    ">",
-                                                    0,
-                                                ),
+                                                ("session_id.number_places_available", ">", 0),
                                             ],
                                             limit=1,
                                         )
@@ -3540,13 +3231,7 @@ class AuthSignupHome(AuthSignupHome):
                                     acquirer = (
                                         request.env["payment.acquirer"]
                                         .sudo()
-                                        .search(
-                                            [
-                                                ("name", "=", _("stripe")),
-                                                ("company_id", "=", 1),
-                                            ],
-                                            limit=1,
-                                        )
+                                        .search([("name", "=", _("stripe")), ("company_id", "=", 1)], limit=1)
                                     )
                                     if acquirer:
                                         journal_id = acquirer.journal_id.id
@@ -3599,8 +3284,5 @@ class AuthSignupHome(AuthSignupHome):
                                         composition_mode="comment",
                                         email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online",
                                     )
-                                return werkzeug.utils.redirect(
-                                    str(rawRequest["q96_mesProduits"]["return_url"]),
-                                    301,
-                                )
+                                return werkzeug.utils.redirect(str(rawRequest["q96_mesProduits"]["return_url"]), 301)
         return True
