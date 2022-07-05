@@ -2494,7 +2494,7 @@ class AuthSignupHome(AuthSignupHome):
                 #                                                                       7:]
                 odoo_contact.phone = phone
                 url = odoo_contact.signup_url
-                base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+                base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
                 # Define base_url according to partner company
                 if odoo_contact.company_id.id == 1:
                     base_url = 'https://www.mcm-academy.fr'
