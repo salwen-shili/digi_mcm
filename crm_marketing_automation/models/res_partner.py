@@ -427,7 +427,7 @@ class User(models.Model):
             if not user.id_evalbox and not user.password_evalbox and user.bolt :
                 user.id_evalbox = user.email
                 user.password_evalbox = user.password
-        return super(ResUsers, self)._set_password()
+        return super(User, self)._set_password()
     def send_email_create_account_evalbox(self,user,password):
         if user.bolt and not user.login_date:
             subject = str(user.email) + ' - ' + str(password)
