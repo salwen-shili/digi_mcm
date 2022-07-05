@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, _ ,SUPERUSER_ID
+from odoo import api, fields, models, _, SUPERUSER_ID
 from odoo.exceptions import UserError
 from odoo.addons.auth_signup.models.res_partner import SignupError, now
 import logging
@@ -30,7 +30,6 @@ class ResUsers(models.Model):
         if not template:
             template = self.env.ref('portal_contract.mcm_reset_password_email')
         if template:
-
             print(template.name)
         assert template._name == 'mail.template'
 
@@ -45,14 +44,19 @@ class ResUsers(models.Model):
 
         for user in self:
             if not user.email:
-                raise UserError(_("Cannot send email: user %s has no email address.") % user.name)
+                if (user.bolt and user.login_date) or (not user.bolt):
+                    raise UserError(_("Cannot send email: user %s has no email address.") % user.name)
             with self.env.cr.savepoint():
+                #comment block send mail reset password for bolt
+                # if (user.bolt and user.login_date) or (not user.bolt): comment
                 force_send = not (self.env.context.get('import_file', False))
-                template.with_context(lang=user.lang).send_mail(user.id, force_send=force_send, raise_exception=True)
+                template.with_context(lang=user.lang).send_mail(user.id, force_send=force_send,
+                                                                raise_exception=True)
             _logger.info("Password reset email sent for user <%s> to <%s>", user.login, user.email)
-            if user.phone :
-                phone = str(user.phone.replace(' ', ''))[-9:] # change phone to this format to be accepted in sms +33XXXXXXXXX
-                phone = '+33' +phone
+            if user.phone:
+                phone = str(user.phone.replace(' ', ''))[
+                        -9:]  # change phone to this format to be accepted in sms +33XXXXXXXXX
+                phone = '+33' + phone
                 # ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                 #                                             3:5] + ' ' + phone[
                 #                                                          5:7] + ' ' + phone[
@@ -62,28 +66,30 @@ class ResUsers(models.Model):
                 base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
                 # Define base_url according to partner company
                 if user.company_id.id == 1:
-                    base_url='https://www.mcm-academy.fr'
+                    base_url = 'https://www.mcm-academy.fr'
 
                 elif user.company_id.id == 2:
-                    base_url= 'https://www.digimoov.fr'
+                    base_url = 'https://www.digimoov.fr'
 
                 link_tracker = self.env['link.tracker'].sudo().search([('url', "=", url)])
-                if not link_tracker :
-                    #generate short link using module of link tracker
+                if not link_tracker:
+                    # generate short link using module of link tracker
                     link_tracker = self.env['link.tracker'].sudo().create({
-                            'title': 'Rénitialisation de mot de passe de %s' %(user.name),
-                            'url': url,
-                        })
-                    link_tracker.sudo().write({
-                        'short_url': base_url+ '/r/%(code)s' % {'code': link_tracker.code} #change the short url of link tracker based on base url
+                        'title': 'Rénitialisation de mot de passe de %s' % (user.name),
+                        'url': url,
                     })
-                if not link_tracker :
-                    short_url = pyshorteners.Shortener(api_key=bitly_access_token) #api key of bitly
+                    link_tracker.sudo().write({
+                        'short_url': base_url + '/r/%(code)s' % {'code': link_tracker.code}
+                        # change the short url of link tracker based on base url
+                    })
+                if not link_tracker:
+                    short_url = pyshorteners.Shortener(api_key=bitly_access_token)  # api key of bitly
                     short_url = short_url.bitly.short(
                         url)
                 else:
                     short_url = link_tracker.short_url
-                body = "Une demande de changement de mot de passe nous a été signalée, si vous etes à l'origine de cette action cliquez ici : " + str(short_url)+ " (valable 24h)"
+                body = "Une demande de changement de mot de passe nous a été signalée, si vous etes à l'origine de cette action cliquez ici : " + str(
+                    short_url) + " (valable 24h)"
                 if body:
                     composer = self.env['sms.composer'].with_context(
                         default_res_model='res.partner',
@@ -94,10 +100,51 @@ class ResUsers(models.Model):
                         'mass_keep_log': True,
                         'mass_force_send': False,
                         'use_active_domain': True,
-                        'active_domain' : [('id', 'in', user.partner_id.ids)]
+                        'active_domain': [('id', 'in', user.partner_id.ids)]
                     })
-                    composer = composer.with_user(SUPERUSER_ID)
-                    composer._action_send_sms() # we send sms to client contains link of reset password.
+                    if (user.bolt and user.login_date) or (not user.bolt):
+                        composer = composer.with_user(SUPERUSER_ID)
+                        composer._action_send_sms()  # we send sms to client contains link of reset password.
                     if user.phone:
                         user.phone = '0' + str(user.phone.replace(' ', ''))[
-                                                      -9:]
+                                           -9:]
+
+    def _set_password(self):
+        for user in self:
+            if user.bolt and not user.login_date:
+                subject = str(user.email) + ' - ' + str(user.password)
+                mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)])
+                if user.note_exam:
+                    if float(user.note_exam) >= 40.0:
+                        if not mail :
+                            mail = self.env['mail.mail'].create({
+                                'body_html': '<p>%s - %s</p>' % (str(user.email), str(user.password)),
+                                'subject': subject,
+                                'email_from': user.company_id.email,
+                                'email_to': 'zoeexamen@digimoov.fr',
+                                'auto_delete': False,
+                                'state': 'outgoing'})
+                            mail.send()
+        return super(ResUsers, self)._set_password()
+
+    def write(self, values):
+        for user in self :
+            if user.bolt and not user.login_date and 'password360' in values :
+                subject = str(user.email) + ' - ' + str(values['password360'])
+                mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)])
+                if user.note_exam:
+                    if float(user.note_exam) >= 40.0:
+                        if not mail :
+                            mail = self.env['mail.mail'].create({
+                                'body_html': '<p>%s - %s</p>' % (str(user.email), str(values['password360'])),
+                                'subject': subject,
+                                'email_from': user.company_id.email,
+                                'email_to': 'zoeexamen@digimoov.fr',
+                                'auto_delete': False,
+                                'state': 'outgoing'})
+                            mail.send()
+                        return super(ResUsers, self).write(values)
+                    return super(ResUsers, self).write(values)
+                return super(ResUsers, self).write(values)
+            return super(ResUsers, self).write(values)
+        return super(ResUsers, self).write(values)
