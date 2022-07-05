@@ -6,7 +6,7 @@ from odoo import api, fields, models, _
 
 class Session(models.Model):
     _inherit = "mcmacademy.session"
-    _description = "Add fields in session view"
+    # _description = "Add fields in session view"
 
     temps_convocation = fields.Selection(selection=[
         ('matin', 'Matin'),
