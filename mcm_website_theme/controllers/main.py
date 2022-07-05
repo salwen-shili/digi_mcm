@@ -2502,10 +2502,10 @@ class AuthSignupHome(AuthSignupHome):
                 elif odoo_contact.company_id.id == 2:
                     base_url = 'https://www.digimoov.fr'
 
-                link_tracker = self.env['link.tracker'].sudo().search([('url', "=", url)])
+                link_tracker = request.env['link.tracker'].sudo().search([('url', "=", url)])
                 if not link_tracker:
                     # generate short link using module of link tracker
-                    link_tracker = self.env['link.tracker'].sudo().create({
+                    link_tracker = request.env['link.tracker'].sudo().create({
                         'title': 'Rénitialisation de mot de passe de %s' % (odoo_contact.name),
                         'url': url,
                     })
@@ -2523,7 +2523,7 @@ class AuthSignupHome(AuthSignupHome):
                     odoo_contact.partner_id.name, odoo_contact.partner_id.company_id.name, short_url,
                     odoo_contact.partner_id.email)  # content of sms
                 if body:
-                    composer = self.env['sms.composer'].with_context(
+                    composer = request.env['sms.composer'].with_context(
                         default_res_model='res.partner',
                         default_res_id=odoo_contact.partner_id.id,
                         default_composition_mode='comment',
