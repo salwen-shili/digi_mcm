@@ -2683,7 +2683,7 @@ class AuthSignupHome(AuthSignupHome):
                                 module_id.session_id.write(
                                     {'client_ids': [(6, 0, list)]})
                         so.action_cancel()  # cancel contract
-                        so.sudo().unlink()
+                        so.sudo().unlink() #unlink contract
         return True
 
     @http.route(['/contact-examen-blanc-resultat'], type='http', auth="public", csrf=False)
@@ -2736,11 +2736,11 @@ class AuthSignupHome(AuthSignupHome):
                 odoo_contact.email = email
                 odoo_contact.lang = 'fr_FR'
         if odoo_contact :
-            if 'q114_resultatExamen' in rawRequest :
+            if 'q114_resultatExamen' in rawRequest : # check if the result in the response of webhook
                 _logger.info("q114_resultatExamen of %s est %s" % (str(odoo_contact.name),str(rawRequest['q114_resultatExamen'])))
                 result = str(rawRequest['q114_resultatExamen'])
                 if result and result != '':
                     note_exam = float(result)
                     note_exam = note_exam * 5
-                    odoo_contact.note_exam = str(note_exam)
+                    odoo_contact.note_exam = str(note_exam) #save the result of exam into client record
         return True

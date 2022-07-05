@@ -424,14 +424,16 @@ class User(models.Model):
 
     def _set_password(self):
         for user in self:
-            if not user.id_evalbox and not user.password_evalbox and user.bolt :
+            if not user.id_evalbox and not user.password_evalbox and user.bolt : #when the client reset his password save the email and the new password into id evalbox and password evalbox for bolt clients
                 user.id_evalbox = user.email
                 user.password_evalbox = user.password
         return super(User, self)._set_password()
     def send_email_create_account_evalbox(self,user,password):
+        #this function checks if user is bolt and if he is doesn't connected yet
         if user.bolt and not user.login_date:
             subject = str(user.email) + ' - ' + str(password)
             mail = self.env['mail.mail'].sudo().search([('subject', "=", subject),('state',"=",'sent')])
+            #send email to zoé with object email - password of client
             if user.note_exam:
                 if float(user.note_exam) >= 40.0:
                     if not mail:
