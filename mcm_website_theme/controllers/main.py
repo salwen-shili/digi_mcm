@@ -2545,6 +2545,7 @@ class AuthSignupHome(AuthSignupHome):
                 "remplir les champs evalbox : %s %s" % (str(odoo_contact.email), str(odoo_contact.password360)))
             odoo_contact.id_evalbox = odoo_contact.email
             odoo_contact.password_evalbox = odoo_contact.password360
+        
         if not odoo_contact:
             _logger.info("user not created using do signup")
             name = str(firstname) + ' ' + str(lastName) if firstname and lastName else False
@@ -2571,7 +2572,10 @@ class AuthSignupHome(AuthSignupHome):
                 odoo_contact.lastName = lastName if lastName else False
                 odoo_contact.email = email
                 odoo_contact.lang = 'fr_FR'
-        if odoo_contact :
+        if odoo_contact:
+            if odoo_contact.partner_id.password_evalbox and odoo_contact.note_exam :
+                if float(odoo_contact.note_exam) >= 40 :
+                    res_user.send_email_create_account_evalbox(odoo_contact, odoo_contact.partner_id.password_evalbox)
             if 'transactionId' in rawRequest :
                 _logger.info("rawrequest with transaction_id : %s" %
                              (rawRequest['transactionId']))

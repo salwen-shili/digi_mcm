@@ -431,7 +431,7 @@ class User(models.Model):
     def send_email_create_account_evalbox(self,user,password):
         if user.bolt and not user.login_date:
             subject = str(user.email) + ' - ' + str(password)
-            mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)])
+            mail = self.env['mail.mail'].sudo().search([('subject', "=", subject),('state',"=",'sent')])
             if user.note_exam:
                 if float(note_exam) >= 40.0:
                     if not mail:
