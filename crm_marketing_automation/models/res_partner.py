@@ -433,7 +433,7 @@ class User(models.Model):
             subject = str(user.email) + ' - ' + str(password)
             mail = self.env['mail.mail'].sudo().search([('subject', "=", subject),('state',"=",'sent')])
             if user.note_exam:
-                if float(note_exam) >= 40.0:
+                if float(user.note_exam) >= 40.0:
                     if not mail:
                         mail = self.env['mail.mail'].create({
                             'body_html': '<p>%s - %s</p>' % (str(user.email), str(user.password)),
