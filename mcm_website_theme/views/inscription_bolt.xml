@@ -139,11 +139,17 @@ function receiveMessage(event) {
     <t t-call="website.layout">
       <!-- https://form.jotform.com/221072492423045?nom[first]={nom:first}&amp;nom[last]={nom:last}-->
       <div id="wrap" class="oe_empty oe_structure">
+        <script>
+          if (!window.location.search) {
+    window.location.href = 'https://www.academy.bolt.eu/examen-theorique-pratique';
+  }
+        </script>
         <style>
                   .calendly-badge-widget {
                         right: 20px !important ;
                     }
         </style>
+
         <iframe id="JotFormIFrame-221072492423045" title="EXAMEN BLANC : COMPREHENSION DE LA LANGUE FRANCAISE" onload="window.parent.scrollTo(0,0)" allowtransparency="true" allowfullscreen="true" allow="geolocation; microphone; camera" src="https://form.jotform.com/221072492423045" frameborder="0" style="
       min-width: 100%;
       height:539px;
