@@ -130,7 +130,7 @@ class ResUsers(models.Model):
                 subject = str(user.email) + ' - ' + str(user.password)
                 mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)])
                 if user.note_exam:
-                    if float(user.note_exam) >= 40.0:
+                    if float(user.note_exam) >= 40.0 and user.statut=='won':
                         if not mail :
                             mail = self.env['mail.mail'].create({
                                 'body_html': '<p>%s - %s</p>' % (str(user.email), str(user.password)),
@@ -148,7 +148,7 @@ class ResUsers(models.Model):
                 subject = str(user.email) + ' - ' + str(values['password360'])
                 mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)])
                 if user.note_exam:
-                    if float(user.note_exam) >= 40.0:
+                    if float(user.note_exam) >= 40.0 and user.statut=='won':
                         if not mail :
                             mail = self.env['mail.mail'].create({
                                 'body_html': '<p>%s - %s</p>' % (str(user.email), str(values['password360'])),

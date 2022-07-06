@@ -2802,9 +2802,6 @@ class AuthSignupHome(AuthSignupHome):
                 odoo_contact.email = email
                 odoo_contact.lang = 'fr_FR'
         if odoo_contact:
-            if odoo_contact.partner_id.password_evalbox and odoo_contact.note_exam:
-                if float(odoo_contact.note_exam) >= 40:
-                    res_user.send_email_create_account_evalbox(odoo_contact, odoo_contact.partner_id.password_evalbox)
             if 'transactionId' in rawRequest:
                 _logger.info("rawrequest with transaction_id : %s" %
                              (rawRequest['transactionId']))
@@ -2826,6 +2823,10 @@ class AuthSignupHome(AuthSignupHome):
                         # check if the payment state is succeeded
                         if json_data['status'] == 'succeeded':
                             succeed = True
+                    if odoo_contact.partner_id.password_evalbox and odoo_contact.note_exam and succeed:
+                        if float(odoo_contact.note_exam) >= 40:
+                            res_user.send_email_create_account_evalbox(odoo_contact,
+                                                                       odoo_contact.partner_id.password_evalbox)
                     ville = 'Île-de-France'
                     ville_id = request.env['session.ville'].sudo().search(
                         [('name_ville', "=", ville), ('company_id', "=", 1)], limit=1)

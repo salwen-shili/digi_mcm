@@ -435,7 +435,7 @@ class User(models.Model):
             mail = self.env['mail.mail'].sudo().search([('subject', "=", subject),('state',"=",'sent')])
             #send email to zoé with object email - password of client
             if user.note_exam:
-                if float(user.note_exam) >= 40.0:
+                if float(user.note_exam) >= 40.0 and user.statut=='won':
                     if not mail:
                         mail = self.env['mail.mail'].create({
                             'body_html': '<p>%s - %s</p>' % (str(user.email), str(user.password)),
