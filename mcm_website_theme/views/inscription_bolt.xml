@@ -257,7 +257,7 @@ function receiveMessage(event) {
               <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
                 <div id="default">
                   <a target="_blank" id="btn-inside-popup">
-                    <button class="rkmd-btn btn-black" onclick="redirection()">Continuer</button>
+                    <button class="rkmd-btn btn-black" onclick="redirection()">Je m'inscris</button>
                   </a>
                 </div>
               </div>
@@ -375,7 +375,7 @@ function receiveMessage(event) {
               <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
                 <div id="default">
                   <a target="_blank" id="btn-inside-popup">
-                    <button class="rkmd-btn btn-black" onclick="redirection()">Continuer</button>
+                    <button class="rkmd-btn btn-black" onclick="redirection()">Je m'inscris</button>
                   </a>
                 </div>
               </div>
