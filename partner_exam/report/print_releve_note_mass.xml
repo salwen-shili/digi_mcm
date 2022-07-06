@@ -39,7 +39,7 @@
                                                 sous
                                                 le
                                                 numéro
-                                                d'agrément 2019-0110, après délibération du Jury,
+                                                d'agrément <span t-field='o.note_exam_id[-1].session_id.num_agrement_jury'/>, après délibération du Jury,
                                                 <br/>
                                                 Atteste que
                                                 <strong>
