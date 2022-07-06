@@ -1,0 +1,1190 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--[if lt IE 9
+      ]><script src="https://cdn01.jotfor.ms/js/vendor/flashcanvas.js?3.3.34465" type="text/javascript"></script
+    ><![endif]-->
+    <script src="https://cdn02.jotfor.ms/js/vendor/jquery-1.8.0.min.js?3.3.34465" type="text/javascript"></script>
+    <script
+      src="https://cdn03.jotfor.ms/js/vendor/jSignature.min.noconflict.js?3.3.34465"
+      type="text/javascript"
+    ></script>
+    <script src="https://cdn01.jotfor.ms/js/vendor/jotform.signaturepad.js?3.3.34465" type="text/javascript"></script>
+    <script src="https://cdn02.jotfor.ms/static/prototype.forms.js?3.3.34465" type="text/javascript"></script>
+    <script src="https://cdn03.jotfor.ms/static/jotform.forms.js?3.3.34465" type="text/javascript"></script>
+    <script
+      defer
+      src="https://cdn01.jotfor.ms/js/vendor/maskedinput.min.js?v=3.3.34465"
+      type="text/javascript"
+    ></script>
+    <script
+      defer
+      src="https://cdn02.jotfor.ms/js/vendor/jquery.maskedinput.min.js?v=3.3.34465"
+      type="text/javascript"
+    ></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/punycode/1.4.1/punycode.js"></script>
+    <script
+      src="https://cdn03.jotfor.ms/pdf-importer/static/js/form-patch.js?v=3.3.34465"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+      JotForm.newDefaultTheme = true;
+      JotForm.extendsNewTheme = false;
+      JotForm.newPaymentUIForNewCreatedForms = false;
+      JotForm.newPaymentUI = true;
+      JotForm.importedPDF =
+        'https://eu.jotform.com/uploads/MCMACADEMYY/form_files/pfc_62c4586b01f4e_Exemple_convention_de_formation.pdf?nc=1';
+      JotForm.importedPDFSettings = {
+        isConnected: 'Yes',
+        enableThumbnail: 'Yes',
+        hasPreviewButton: 'Yes',
+        startButtonText: 'Start Filling',
+        formType: 'legacyForm',
+        welcomeThumbnail: '',
+      };
+      JotForm.clearFieldOnHide = 'disable';
+
+      JotForm.init(function () {
+        /*INIT-START*/
+        if (window.JotForm && JotForm.accessible) $('input_56').setAttribute('tabindex', 0);
+        if (window.JotForm && JotForm.accessible) $('input_62').setAttribute('tabindex', 0);
+        if (window.JotForm && JotForm.accessible) $('input_57').setAttribute('tabindex', 0);
+        if (window.JotForm && JotForm.accessible) $('input_58').setAttribute('tabindex', 0);
+        if (window.JotForm && JotForm.accessible) $('input_59').setAttribute('tabindex', 0);
+        if (window.JotForm && JotForm.accessible) $('input_60').setAttribute('tabindex', 0);
+
+        JotForm.calendarMonths = [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
+        ];
+        JotForm.calendarDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        JotForm.calendarOther = { today: 'Today' };
+        var languageOptions = document.querySelectorAll('#langList li');
+        for (var langIndex = 0; langIndex < languageOptions.length; langIndex++) {
+          languageOptions[langIndex].on('click', function (e) {
+            setTimeout(function () {
+              JotForm.setCalendar('68', false, {
+                days: {
+                  monday: true,
+                  tuesday: true,
+                  wednesday: true,
+                  thursday: true,
+                  friday: true,
+                  saturday: true,
+                  sunday: true,
+                },
+                future: true,
+                past: true,
+                custom: false,
+                ranges: false,
+                start: '',
+                end: '',
+              });
+            }, 0);
+          });
+        }
+        JotForm.onTranslationsFetch(function () {
+          JotForm.setCalendar('68', false, {
+            days: {
+              monday: true,
+              tuesday: true,
+              wednesday: true,
+              thursday: true,
+              friday: true,
+              saturday: true,
+              sunday: true,
+            },
+            future: true,
+            past: true,
+            custom: false,
+            ranges: false,
+            start: '',
+            end: '',
+          });
+        });
+        JotForm.formatDate({ date: new Date(), dateField: $('id_' + 68) });
+        JotForm.alterTexts({
+          ageVerificationError: 'Vous devez avoir plus de {Ageminimum} ans pour envoyer ce formulaire.',
+          alphabetic: 'Ce champ ne peut contenir que des lettres',
+          alphanumeric: 'Ce champ ne peut contenir que des lettres et des chiffres.',
+          appointmentSelected: 'Vous avez sélectionné {time} le {date}',
+          ccDonationMinLimitError: 'Le montant minimum est de {minAmount} {currency}',
+          ccInvalidCVC: 'Le numéro CVC est invalide.',
+          ccInvalidExpireDate: "La date d'expiration est invalide.",
+          ccInvalidExpireMonth: 'Expiration month is invalid.',
+          ccInvalidExpireYear: 'Expiration year is invalid.',
+          ccInvalidNumber: 'Le numéro de la carte bancaire est invalide.',
+          ccMissingDetails: 'Please fill up the credit card details.',
+          ccMissingDonation: 'Veuillez saisir des valeurs numériques pour le montant des dons.',
+          ccMissingProduct: 'Veuillez sélectionner au moins un produit.',
+          characterLimitError: 'Trop de caractères. La limite est de',
+          characterMinLimitError: 'Nombre de caractères insuffisant. Le nombre minimum est de',
+          confirmClearForm: 'Êtes-vous certain de vouloir supprimer les inscriptions de ce formulaire ?',
+          confirmEmail: "L'adresse e-mail ne correspond pas",
+          currency: 'Ce champ ne peut contenir que des valeurs monétaires.',
+          cyrillic: 'Ce champ ne peut contenir que des caractères cyrilliques',
+          dateInvalid: "Ce format de date n'est pas valide. Le format de la date est {format}",
+          dateInvalidSeparate: "Cette date n'est pas valide. Veuillez saisir une date valide {element}.",
+          dateLimited: 'Cette date est indisponible.',
+          disallowDecimals: 'Veuillez entrer un nombre entier.',
+          doneButton: 'Terminé',
+          doneMessage: 'Bien joué ! Toutes les erreurs sont résolues.',
+          dragAndDropFilesHere_infoMessage: 'Glissez-déposez des fichiers ici',
+          email: 'Saisir une adresse courriel valide',
+          fillMask: 'La valeur du champ doit remplir le masque.',
+          freeEmailError: 'Les comptes e-mail gratuits ne sont pas autorisés',
+          generalError: 'Ce formulaire contient des erreurs. Veuillez les corriger avant de continuer.',
+          generalPageError: 'Cette page contient des erreurs. Veuillez les corriger avant de continuer.',
+          geoNotAvailableDesc: 'Location provider not available. Please enter the address manually.',
+          geoNotAvailableTitle: 'Position Unavailable',
+          geoPermissionDesc: "Check your browser's privacy settings.",
+          geoPermissionTitle: 'Permission Denied',
+          geoTimeoutDesc: 'Please check your internet connection and try again.',
+          geoTimeoutTitle: 'Timeout',
+          gradingScoreError: 'Le score total devrais être moins ou égal à',
+          incompleteFields: 'Des champs obligatoires ne sont pas remplis. Veuillez les compléter.',
+          inputCarretErrorA: 'Le nombre saisi ne peut pas être inférieur à la valeur minimum :',
+          inputCarretErrorB: 'Vous ne pouvez pas saisir une valeur supérieure à la valeur maximum :',
+          justSoldOut: 'Tout juste épuisé',
+          lessThan: 'Votre note doit être inférieure ou égale à',
+          maxDigitsError: 'Le nombre de chiffres maximum autorisé est de',
+          maxFileSize_infoMessage: 'Taille de fichier max.',
+          maxSelectionsError: 'The maximum number of selections allowed is ',
+          minCharactersError: 'Le nombre de caractères ne doit pas être inférieur à :',
+          minSelectionsError: 'Le nombre minimum requis de sélections est de',
+          multipleError: 'Il y a {count} erreurs dans cette page. Veuillez les corriger avant de continuer.',
+          multipleFileUploads_emptyError:
+            '{file} est vide, veuillez sélectionner à nouveau les fichiers sans celui-ci.',
+          multipleFileUploads_fileLimitError: 'Seuls {fileLimit} téléchargements de fichiers sont autorisés.',
+          multipleFileUploads_minSizeError: '{file} est trop petite, la taille de fichier minimale est {minSizeLimit}.',
+          multipleFileUploads_onLeave:
+            'Les fichiers sont en cours de téléchargement, si vous quittez maintenant le téléchargement sera annulé.',
+          multipleFileUploads_sizeError:
+            "{file} est trop volumineux, la taille maximale d'un fichier est de {sizeLimit}.",
+          multipleFileUploads_typeError:
+            "L'extension de {file} est invalide. Seules les extensions {extensions} sont autorisées.",
+          multipleFileUploads_uploadFailed: 'File upload failed, please remove it and upload the file again.',
+          noSlotsAvailable: 'Aucun emplacement disponible',
+          notEnoughStock: 'Pas assez de stock pour la sélection actuelle',
+          notEnoughStock_remainedItems: 'Pas assez de stock pour la sélection actuelle ({count} articles restants)',
+          noUploadExtensions: 'File has no extension file type (e.g. .txt, .png, .jpeg)',
+          numeric: 'Ce champ ne peut contenir que des valeurs numériques',
+          oneError: 'Il y a {count} erreur dans cette page. Veuillez la corriger avant de continuer.',
+          pastDatesDisallowed: 'La date ne doit pas se situer dans le passé.',
+          pleaseWait: 'Veuillez patienter.',
+          required: 'Ce champ est obligatoire.',
+          requiredLegend: "Tous les champs marqués d'un * sont obligatoires et doivent être remplis.",
+          requireEveryCell: 'Toutes les cellules sont nécessaires.',
+          requireEveryRow: 'Chaque ligne est obligatoire.',
+          requireOne: 'Au moins un champ est requis',
+          restrictedDomain: 'This domain is not allowed',
+          seeErrorsButton: 'Voir les erreurs',
+          selectionSoldOut: 'Sélection épuisée',
+          slotUnavailable: '{time} on {date} has been selected is unavailable. Please select another slot.',
+          soldOut: 'Epuisé',
+          subProductItemsLeft: '({count} articles restants)',
+          uploadExtensions: 'Vous ne pouvez uploader que les fichiers suivants :',
+          uploadFilesize: 'La taille du fichier ne peut pas dépasser :',
+          uploadFilesizemin: 'la taille du fichier ne peut pas être inférieure à :',
+          url: 'Ce champ peut uniquement contenir une URL valide',
+          validateEmail: 'Vous devez valider cet e-mail',
+          wordLimitError: 'Trop de mots. Le nombre max. de mots est de',
+          wordMinLimitError: 'Nombre de mots insuffisants. Le minimum est de',
+        });
+        FormTranslation.init({
+          detectUserLanguage: '1',
+          firstPageOnly: '0',
+          options: 'Français',
+          originalLanguage: 'fr',
+          primaryLanguage: 'fr',
+          saveUserLanguage: '1',
+          showStatus: 'flag-with-nation',
+          theme: 'light-theme',
+          version: '2',
+        });
+        /*INIT-END*/
+      });
+
+      JotForm.prepareCalculationsOnTheFly([
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        { description: '', name: 'nom', qid: '54', text: 'Nom', type: 'control_fullname' },
+        {
+          description: '',
+          name: 'jeSigne',
+          qid: '55',
+          subLabel: '',
+          text: 'Je signe mon contrat',
+          type: 'control_signature',
+        },
+        { description: '', name: 'session56', qid: '56', subLabel: '', text: 'Session', type: 'control_textbox' },
+        {
+          description: '',
+          name: 'complementDadresse',
+          qid: '57',
+          subLabel: '',
+          text: "Complement d'adresse",
+          type: 'control_textbox',
+        },
+        { description: '', name: 'saisissezUne58', qid: '58', subLabel: '', text: 'Ville', type: 'control_textbox' },
+        {
+          description: '',
+          name: 'saisissezUne59',
+          qid: '59',
+          subLabel: '',
+          text: 'Code postal',
+          type: 'control_textbox',
+        },
+        {
+          description: '',
+          name: 'saisissezUne60',
+          qid: '60',
+          subLabel: '',
+          text: 'Numero de telephone',
+          type: 'control_textbox',
+        },
+        {
+          description: '',
+          name: 'email',
+          qid: '61',
+          subLabel: 'exemple@exemple.com',
+          text: 'Email',
+          type: 'control_email',
+        },
+        {
+          description: '',
+          name: 'adresse62',
+          qid: '62',
+          subLabel: '',
+          text: 'Adresse : numero et rue',
+          type: 'control_textbox',
+        },
+        { name: 'soumettre', qid: '63', text: 'Soumettre', type: 'control_button' },
+        {
+          name: 'nousCreons',
+          qid: '64',
+          text: 'Une fois que vous aurez cliquer sur soumettre vous recevrez dans votre boite mail un lien de reinitialisation du mot de passe. Ce mot de passe sera utilise pour la plateforme de formation, votre compte MCM Academy et pour le site Evalbox (examen officiel).\nATTENTION, merci de bien reinitialiser le mot de passe. Sans cela, votre inscription ne pourra pas etre prise en compte.\nSi vous avez deja reinitialise votre mot de passe, merci de ne pas prendre en compte ce message.',
+          type: 'control_text',
+        },
+        null,
+        { name: 'sautDe', qid: '66', text: 'Saut de page', type: 'control_pagebreak' },
+        {
+          name: 'input67',
+          qid: '67',
+          text: "Votre reussite est la notre. Notre objectif est que vous reussissiez votre examen VTC et pour cela, nous avons besoin de votre engagement.\nJe soussigne(e) {nom}, demeurant au {adresse62} a {saisissezUne58}, atteste sur l'honneur que j'ai lu et approuve les informations suivantes :\n1. Je comprends que je ne peux pas choisir ma date d’examen et que je serai automatiquement affecte au prochain examen de disponible par la CMA;2. Je comprends que je ne peux pas depasser un delai de 12 semaines entre la date d’inscription a la formation et la date du passage de l’examen theorique. Je m’engage a consacrer un minimum de 70h a la formation pendant cette periode;3. Je comprends qu’aucune demande de report sans frais a l’examen theorique ne pourra etre acceptee une fois la date fixee lors de l’inscription, meme pour un motif legitime. Chaque report sera facture 206€ par MCM ACADEMY;4. Je comprends qu’en cas d'echec a l’examen, et si je souhaite le repasser, je devrai payer les frais d’inscription a la CMA au tarif de 206€;5. Je comprends qu'apres chaque echec a l'examen, mon compte sera automatiquement supprime de la Plateforme de Formation jusqu'au paiement d’un nouvel acces a la formation de 200€.\n6. Je comprends qu'en cas d'absence a l'examen ou si je ne me connecte pas a la formation, je devrai rembourser le montant de 706€ dans son integralite;7. Je comprends que je ne peux beneficier de l’offre Bolt Academy qu’une seule et unique fois ;\n \nFait a {saisissezUne58} le {date}",
+          type: 'control_text',
+        },
+        { description: '', name: 'date', qid: '68', text: 'Date', type: 'control_datetime' },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        { name: 'signatureDu', qid: '85', text: 'Signature du contrat', type: 'control_head' },
+      ]);
+      setTimeout(function () {
+        JotForm.paymentExtrasOnTheFly([
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          { description: '', name: 'nom', qid: '54', text: 'Nom', type: 'control_fullname' },
+          {
+            description: '',
+            name: 'jeSigne',
+            qid: '55',
+            subLabel: '',
+            text: 'Je signe mon contrat',
+            type: 'control_signature',
+          },
+          { description: '', name: 'session56', qid: '56', subLabel: '', text: 'Session', type: 'control_textbox' },
+          {
+            description: '',
+            name: 'complementDadresse',
+            qid: '57',
+            subLabel: '',
+            text: "Complement d'adresse",
+            type: 'control_textbox',
+          },
+          { description: '', name: 'saisissezUne58', qid: '58', subLabel: '', text: 'Ville', type: 'control_textbox' },
+          {
+            description: '',
+            name: 'saisissezUne59',
+            qid: '59',
+            subLabel: '',
+            text: 'Code postal',
+            type: 'control_textbox',
+          },
+          {
+            description: '',
+            name: 'saisissezUne60',
+            qid: '60',
+            subLabel: '',
+            text: 'Numero de telephone',
+            type: 'control_textbox',
+          },
+          {
+            description: '',
+            name: 'email',
+            qid: '61',
+            subLabel: 'exemple@exemple.com',
+            text: 'Email',
+            type: 'control_email',
+          },
+          {
+            description: '',
+            name: 'adresse62',
+            qid: '62',
+            subLabel: '',
+            text: 'Adresse : numero et rue',
+            type: 'control_textbox',
+          },
+          { name: 'soumettre', qid: '63', text: 'Soumettre', type: 'control_button' },
+          {
+            name: 'nousCreons',
+            qid: '64',
+            text: 'Une fois que vous aurez cliquer sur soumettre vous recevrez dans votre boite mail un lien de reinitialisation du mot de passe. Ce mot de passe sera utilise pour la plateforme de formation, votre compte MCM Academy et pour le site Evalbox (examen officiel).\nATTENTION, merci de bien reinitialiser le mot de passe. Sans cela, votre inscription ne pourra pas etre prise en compte.\nSi vous avez deja reinitialise votre mot de passe, merci de ne pas prendre en compte ce message.',
+            type: 'control_text',
+          },
+          null,
+          { name: 'sautDe', qid: '66', text: 'Saut de page', type: 'control_pagebreak' },
+          {
+            name: 'input67',
+            qid: '67',
+            text: "Votre reussite est la notre. Notre objectif est que vous reussissiez votre examen VTC et pour cela, nous avons besoin de votre engagement.\nJe soussigne(e) {nom}, demeurant au {adresse62} a {saisissezUne58}, atteste sur l'honneur que j'ai lu et approuve les informations suivantes :\n1. Je comprends que je ne peux pas choisir ma date d’examen et que je serai automatiquement affecte au prochain examen de disponible par la CMA;2. Je comprends que je ne peux pas depasser un delai de 12 semaines entre la date d’inscription a la formation et la date du passage de l’examen theorique. Je m’engage a consacrer un minimum de 70h a la formation pendant cette periode;3. Je comprends qu’aucune demande de report sans frais a l’examen theorique ne pourra etre acceptee une fois la date fixee lors de l’inscription, meme pour un motif legitime. Chaque report sera facture 206€ par MCM ACADEMY;4. Je comprends qu’en cas d'echec a l’examen, et si je souhaite le repasser, je devrai payer les frais d’inscription a la CMA au tarif de 206€;5. Je comprends qu'apres chaque echec a l'examen, mon compte sera automatiquement supprime de la Plateforme de Formation jusqu'au paiement d’un nouvel acces a la formation de 200€.\n6. Je comprends qu'en cas d'absence a l'examen ou si je ne me connecte pas a la formation, je devrai rembourser le montant de 706€ dans son integralite;7. Je comprends que je ne peux beneficier de l’offre Bolt Academy qu’une seule et unique fois ;\n \nFait a {saisissezUne58} le {date}",
+            type: 'control_text',
+          },
+          { description: '', name: 'date', qid: '68', text: 'Date', type: 'control_datetime' },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          { name: 'signatureDu', qid: '85', text: 'Signature du contrat', type: 'control_head' },
+        ]);
+      }, 20);
+    </script>
+    <style type="text/css">
+      @media print {
+        .form-section {
+          display: inline !important;
+        }
+        .form-pagebreak {
+          display: none !important;
+        }
+        .form-section-closed {
+          height: auto !important;
+        }
+        .page-section {
+          position: initial !important;
+        }
+      }
+    </style>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn01.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?themeRevisionID=5f7ed99c2c2c7240ba580251"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn02.jotfor.ms/css/styles/payment/payment_styles.css?3.3.34465"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn03.jotfor.ms/css/styles/payment/payment_feature.css?3.3.34465"
+    />
+    <style type="text/css" id="form-designer-style">
+      /* Injected CSS Code */
+      /*PREFERENCES STYLE*/
+      .form-all {
+        font-family: Inter, sans-serif;
+      }
+      .form-all .qq-upload-button,
+      .form-all .form-submit-button,
+      .form-all .form-submit-reset,
+      .form-all .form-submit-print {
+        font-family: Inter, sans-serif;
+      }
+      .form-all .form-pagebreak-back-container,
+      .form-all .form-pagebreak-next-container {
+        font-family: Inter, sans-serif;
+      }
+      .form-header-group {
+        font-family: Inter, sans-serif;
+      }
+      .form-label {
+        font-family: Inter, sans-serif;
+      }
+
+      .form-label.form-label-auto {
+        display: block;
+        float: none;
+        text-align: left;
+        width: 100%;
+      }
+
+      .form-line {
+        margin-top: 12px;
+        margin-bottom: 12px;
+      }
+
+      .form-all {
+        max-width: 752px;
+        width: 100%;
+      }
+
+      .form-label.form-label-left,
+      .form-label.form-label-right,
+      .form-label.form-label-left.form-label-auto,
+      .form-label.form-label-right.form-label-auto {
+        width: 230px;
+      }
+
+      .form-all {
+        font-size: 16px;
+      }
+      .form-all .qq-upload-button,
+      .form-all .qq-upload-button,
+      .form-all .form-submit-button,
+      .form-all .form-submit-reset,
+      .form-all .form-submit-print {
+        font-size: 16px;
+      }
+      .form-all .form-pagebreak-back-container,
+      .form-all .form-pagebreak-next-container {
+        font-size: 16px;
+      }
+
+      .supernova .form-all,
+      .form-all {
+        background-color: #fff;
+      }
+
+      .form-all {
+        color: #2c3345;
+      }
+      .form-header-group .form-header {
+        color: #2c3345;
+      }
+      .form-header-group .form-subHeader {
+        color: #2c3345;
+      }
+      .form-label-top,
+      .form-label-left,
+      .form-label-right,
+      .form-html,
+      .form-checkbox-item label,
+      .form-radio-item label {
+        color: #2c3345;
+      }
+      .form-sub-label {
+        color: #464d5f;
+      }
+
+      .supernova {
+        background-color: #ecedf3;
+      }
+      .supernova body {
+        background: transparent;
+      }
+
+      .form-textbox,
+      .form-textarea,
+      .form-dropdown,
+      .form-radio-other-input,
+      .form-checkbox-other-input,
+      .form-captcha input,
+      .form-spinner input {
+        background-color: #fff;
+      }
+
+      .supernova {
+        background-image: none;
+      }
+      #stage {
+        background-image: none;
+      }
+
+      .form-all {
+        background-image: none;
+      }
+
+      .ie-8 .form-all:before {
+        display: none;
+      }
+      .ie-8 {
+        margin-top: auto;
+        margin-top: initial;
+      }
+
+      /*PREFERENCES STYLE*/ /*__INSPECT_SEPERATOR__*/
+      /* Injected CSS Code */
+    </style>
+
+    <form
+      class="jotform-form"
+      action="https://submit.jotformeu.com/submit/221803597636059/"
+      method="post"
+      name="form_221803597636059"
+      id="221803597636059"
+      accept-charset="utf-8"
+      autocomplete="on"
+    >
+      <input type="hidden" name="formID" value="221803597636059" />
+      <input type="hidden" id="JWTContainer" value="" />
+      <input type="hidden" id="cardinalOrderNumber" value="" />
+      <div role="main" class="form-all">
+        <link
+          type="text/css"
+          rel="stylesheet"
+          media="all"
+          href="https://cdn.jotfor.ms/wizards/languageWizard/custom-dropdown/css/lang-dd.css?3.3.34465"
+        />
+        <div class="cont">
+          <input type="text" id="input_language" name="input_language" style="display: none" />
+          <div class="language-dd" id="langDd" style="display: none">
+            <div class="dd-placeholder lang-emp">Language</div>
+            <ul class="lang-list dn" id="langList">
+              <li data-lang="fr" class="fr">Français</li>
+            </ul>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdn.jotfor.ms/js/formTranslation.v2.js?3.3.34465"></script>
+        <style>
+          .form-all:before {
+            background: none;
+          }
+        </style>
+        <ul class="form-section page-section">
+          <li id="cid_85" class="form-input-wide" data-type="control_head">
+            <div class="form-header-group header-large">
+              <div class="header-text httac htvam">
+                <h1 id="header_85" class="form-header" data-component="header">Signature du contrat</h1>
+                <div id="subHeader_85" class="form-subHeader">Etape 5/6</div>
+              </div>
+            </div>
+          </li>
+          <li class="form-line always-hidden" data-type="control_fullname" id="id_54">
+            <label class="form-label form-label-top form-label-auto" id="label_54" for="first_54"> Nom </label>
+            <div id="cid_54" class="form-input-wide always-hidden" data-layout="full">
+              <div data-wrapper-react="true">
+                <span class="form-sub-label-container" style="vertical-align: top" data-input-type="first">
+                  <input
+                    type="text"
+                    id="first_54"
+                    name="q54_nom[first]"
+                    class="form-textbox"
+                    data-defaultvalue=""
+                    autocomplete="section-input_54 given-name"
+                    size="10"
+                    value=""
+                    data-component="first"
+                    aria-labelledby="label_54 sublabel_54_first"
+                  />
+                  <label
+                    class="form-sub-label"
+                    for="first_54"
+                    id="sublabel_54_first"
+                    style="min-height: 13px"
+                    aria-hidden="false"
+                  >
+                    Prénom
+                  </label>
+                </span>
+                <span class="form-sub-label-container" style="vertical-align: top" data-input-type="last">
+                  <input
+                    type="text"
+                    id="last_54"
+                    name="q54_nom[last]"
+                    class="form-textbox"
+                    data-defaultvalue=""
+                    autocomplete="section-input_54 family-name"
+                    size="15"
+                    value=""
+                    data-component="last"
+                    aria-labelledby="label_54 sublabel_54_last"
+                  />
+                  <label
+                    class="form-sub-label"
+                    for="last_54"
+                    id="sublabel_54_last"
+                    style="min-height: 13px"
+                    aria-hidden="false"
+                  >
+                    Nom de famille
+                  </label>
+                </span>
+              </div>
+            </div>
+          </li>
+          <li class="form-line always-hidden" data-type="control_textbox" id="id_56">
+            <label class="form-label form-label-top form-label-auto" id="label_56" for="input_56"> Session </label>
+            <div id="cid_56" class="form-input-wide always-hidden" data-layout="half">
+              <input
+                type="text"
+                id="input_56"
+                name="q56_session56"
+                data-type="input-textbox"
+                class="form-textbox"
+                data-defaultvalue="28 septembre 2022"
+                style="width: 310px"
+                size="310"
+                value="28 septembre 2022"
+                data-component="textbox"
+                aria-labelledby="label_56"
+              />
+            </div>
+          </li>
+          <li class="form-line always-hidden" data-type="control_textbox" id="id_62">
+            <label class="form-label form-label-top form-label-auto" id="label_62" for="input_62">
+              Adresse : numéro et rue
+            </label>
+            <div id="cid_62" class="form-input-wide always-hidden" data-layout="half">
+              <input
+                type="text"
+                id="input_62"
+                name="q62_adresse62"
+                data-type="input-textbox"
+                class="form-textbox"
+                data-defaultvalue=""
+                style="width: 310px"
+                size="310"
+                value=""
+                data-component="textbox"
+                aria-labelledby="label_62"
+              />
+            </div>
+          </li>
+          <li class="form-line always-hidden" data-type="control_textbox" id="id_57">
+            <label class="form-label form-label-top form-label-auto" id="label_57" for="input_57">
+              Complément d'adresse
+            </label>
+            <div id="cid_57" class="form-input-wide always-hidden" data-layout="half">
+              <input
+                type="text"
+                id="input_57"
+                name="q57_complementDadresse"
+                data-type="input-textbox"
+                class="form-textbox"
+                data-defaultvalue=""
+                style="width: 310px"
+                size="310"
+                value=""
+                data-component="textbox"
+                aria-labelledby="label_57"
+              />
+            </div>
+          </li>
+          <li class="form-line always-hidden" data-type="control_textbox" id="id_58">
+            <label class="form-label form-label-top form-label-auto" id="label_58" for="input_58"> Ville </label>
+            <div id="cid_58" class="form-input-wide always-hidden" data-layout="half">
+              <input
+                type="text"
+                id="input_58"
+                name="q58_saisissezUne58"
+                data-type="input-textbox"
+                class="form-textbox"
+                data-defaultvalue=""
+                style="width: 310px"
+                size="310"
+                value=""
+                data-component="textbox"
+                aria-labelledby="label_58"
+              />
+            </div>
+          </li>
+          <li class="form-line always-hidden" data-type="control_textbox" id="id_59">
+            <label class="form-label form-label-top form-label-auto" id="label_59" for="input_59"> Code postal </label>
+            <div id="cid_59" class="form-input-wide always-hidden" data-layout="half">
+              <input
+                type="text"
+                id="input_59"
+                name="q59_saisissezUne59"
+                data-type="input-textbox"
+                class="form-textbox"
+                data-defaultvalue=""
+                style="width: 310px"
+                size="310"
+                value=""
+                data-component="textbox"
+                aria-labelledby="label_59"
+              />
+            </div>
+          </li>
+          <li class="form-line always-hidden" data-type="control_textbox" id="id_60">
+            <label class="form-label form-label-top form-label-auto" id="label_60" for="input_60">
+              Numéro de téléphone
+            </label>
+            <div id="cid_60" class="form-input-wide always-hidden" data-layout="half">
+              <input
+                type="text"
+                id="input_60"
+                name="q60_saisissezUne60"
+                data-type="input-textbox"
+                class="form-textbox"
+                data-defaultvalue=""
+                style="width: 310px"
+                size="310"
+                value=""
+                data-component="textbox"
+                aria-labelledby="label_60"
+              />
+            </div>
+          </li>
+          <li class="form-line always-hidden" data-type="control_datetime" id="id_68">
+            <label class="form-label form-label-top form-label-auto" id="label_68" for="lite_mode_68"> Date </label>
+            <div id="cid_68" class="form-input-wide always-hidden" data-layout="half">
+              <div data-wrapper-react="true">
+                <div style="display: none">
+                  <span class="form-sub-label-container" style="vertical-align: top">
+                    <input
+                      type="tel"
+                      class="currentDate form-textbox validate[limitDate]"
+                      id="day_68"
+                      name="q68_date[day]"
+                      size="2"
+                      data-maxlength="2"
+                      data-age=""
+                      maxlength="2"
+                      value="06"
+                      autocomplete="section-input_68 off"
+                      aria-labelledby="label_68 sublabel_68_day"
+                    />
+                    <span class="date-separate" aria-hidden="true"> / </span>
+                    <label
+                      class="form-sub-label"
+                      for="day_68"
+                      id="sublabel_68_day"
+                      style="min-height: 13px"
+                      aria-hidden="false"
+                    >
+                      Jour
+                    </label>
+                  </span>
+                  <span class="form-sub-label-container" style="vertical-align: top">
+                    <input
+                      type="tel"
+                      class="form-textbox validate[limitDate]"
+                      id="month_68"
+                      name="q68_date[month]"
+                      size="2"
+                      data-maxlength="2"
+                      data-age=""
+                      maxlength="2"
+                      value="07"
+                      autocomplete="section-input_68 off"
+                      aria-labelledby="label_68 sublabel_68_month"
+                    />
+                    <span class="date-separate" aria-hidden="true"> / </span>
+                    <label
+                      class="form-sub-label"
+                      for="month_68"
+                      id="sublabel_68_month"
+                      style="min-height: 13px"
+                      aria-hidden="false"
+                    >
+                      Mois
+                    </label>
+                  </span>
+                  <span class="form-sub-label-container" style="vertical-align: top">
+                    <input
+                      type="tel"
+                      class="form-textbox validate[limitDate]"
+                      id="year_68"
+                      name="q68_date[year]"
+                      size="4"
+                      data-maxlength="4"
+                      data-age=""
+                      maxlength="4"
+                      value="2022"
+                      autocomplete="section-input_68 off"
+                      aria-labelledby="label_68 sublabel_68_year"
+                    />
+                    <label
+                      class="form-sub-label"
+                      for="year_68"
+                      id="sublabel_68_year"
+                      style="min-height: 13px"
+                      aria-hidden="false"
+                    >
+                      Année
+                    </label>
+                  </span>
+                </div>
+                <span class="form-sub-label-container" style="vertical-align: top">
+                  <input
+                    type="text"
+                    class="form-textbox validate[limitDate, validateLiteDate]"
+                    id="lite_mode_68"
+                    size="12"
+                    data-maxlength="12"
+                    maxlength="12"
+                    data-age=""
+                    value="06/07/2022"
+                    data-format="ddmmyyyy"
+                    data-seperator="/"
+                    placeholder="DD/MM/YYYY"
+                    autocomplete="section-input_68 off"
+                    aria-labelledby="label_68 sublabel_68_litemode"
+                  />
+                  <img
+                    class="newDefaultTheme-dateIcon icon-liteMode"
+                    alt="Pick a Date"
+                    id="input_68_pick"
+                    src="https://cdn.jotfor.ms/images/calendar.png"
+                    data-component="datetime"
+                    aria-hidden="true"
+                    data-allow-time="No"
+                    data-version="v2"
+                  />
+                  <label
+                    class="form-sub-label"
+                    for="lite_mode_68"
+                    id="sublabel_68_litemode"
+                    style="min-height: 13px"
+                    aria-hidden="false"
+                  >
+                    Date
+                  </label>
+                </span>
+              </div>
+            </div>
+          </li>
+          <li class="form-line always-hidden" data-type="control_email" id="id_61">
+            <label class="form-label form-label-top form-label-auto" id="label_61" for="input_61"> Email </label>
+            <div id="cid_61" class="form-input-wide always-hidden" data-layout="half">
+              <span class="form-sub-label-container" style="vertical-align: top">
+                <input
+                  type="email"
+                  id="input_61"
+                  name="q61_email"
+                  class="form-textbox validate[Email]"
+                  data-defaultvalue=""
+                  style="width: 310px"
+                  size="310"
+                  value=""
+                  data-component="email"
+                  aria-labelledby="label_61 sublabel_input_61"
+                />
+                <label
+                  class="form-sub-label"
+                  for="input_61"
+                  id="sublabel_input_61"
+                  style="min-height: 13px"
+                  aria-hidden="false"
+                >
+                  exemple@exemple.com
+                </label>
+              </span>
+            </div>
+          </li>
+          <li class="form-line" data-type="control_text" id="id_67">
+            <div id="cid_67" class="form-input-wide" data-layout="full">
+              <div id="text_67" class="form-html" data-component="text">
+                <p>
+                  Votre réussite est la notre. Notre objectif est que vous réussissiez votre examen VTC et pour cela,
+                  nous avons besoin de votre engagement.
+                </p>
+                <p>
+                  <br />Je soussigné(e) {nom}, demeurant au {adresse62} à {saisissezUne58}, atteste sur l'honneur que
+                  j'ai lu et approuvé les informations suivantes : <br /><br />1. Je comprends que je ne peux pas
+                  choisir ma date d’examen et que je serai automatiquement affecté au prochain examen de disponible par
+                  la CMA;<br /><br />2. Je comprends que je ne peux pas dépasser un délai de 12 semaines entre la date
+                  d’inscription à la formation et la date du passage de l’examen théorique. Je m’engage à consacrer un
+                  minimum de 70h à la formation pendant cette période;<br /><br />3. Je comprends qu’aucune demande de
+                  report sans frais à l’examen théorique ne pourra être acceptée une fois la date fixée lors de
+                  l’inscription, même pour un motif légitime. Chaque report sera facturé 206€ par MCM ACADEMY;<br /><br />4.
+                  Je comprends qu’en cas d'échec à l’examen, et si je souhaite le repasser, je devrai payer les frais
+                  d’inscription à la CMA au tarif de 206€;<br /><br />5. Je comprends qu'après chaque échec à l'examen,
+                  mon compte sera automatiquement supprimé de la Plateforme de Formation jusqu'au paiement d’un nouvel
+                  accès à la formation de 200€.
+                </p>
+                <p>
+                  6. Je comprends qu'en cas d'absence à l'examen ou si je ne me connecte pas à la formation, je devrai
+                  rembourser le montant de 706€ dans son intégralité;<br /><br />7. Je comprends que je ne peux
+                  bénéficier de l’offre Bolt Academy qu’une seule et unique fois ;
+                </p>
+                <p></p>
+                <p>Fait à {saisissezUne58} le {date}</p>
+              </div>
+            </div>
+          </li>
+          <li class="form-line jf-required" data-type="control_signature" id="id_55">
+            <label class="form-label form-label-top form-label-auto" id="label_55" for="input_55">
+              Je signe mon contrat
+              <span class="form-required"> * </span>
+            </label>
+            <div id="cid_55" class="form-input-wide jf-required" data-layout="half">
+              <div data-wrapper-react="true">
+                <div id="signature_pad_55" class="signature-pad-wrapper" style="width: 312px; height: 116px">
+                  <div data-wrapper-react="true">
+                    <!--[if IE 7]>
+                      <script type="text/javascript" src="/js/vendor/json2.js"></script>
+                    <![endif]-->
+                  </div>
+                  <div
+                    class="signature-line signature-wrapper signature-placeholder"
+                    data-component="signature"
+                    style="width: 312px; height: 116px"
+                  >
+                    <div
+                      id="sig_pad_55"
+                      data-width="310"
+                      data-height="114"
+                      data-id="55"
+                      data-required="true"
+                      class="pad validate[required]"
+                      aria-labelledby="label_55"
+                    ></div>
+                    <input type="hidden" name="q55_jeSigne" class="output4" id="input_55" />
+                  </div>
+                  <span class="clear-pad-btn clear-pad" role="button" tabindex="0"> Clear </span>
+                </div>
+                <div data-wrapper-react="true">
+                  <script type="text/javascript">
+                    window.signatureForm = true;
+                  </script>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li id="cid_66" class="form-input-wide" data-type="control_pagebreak">
+            <div class="form-pagebreak" data-component="pagebreak">
+              <div class="form-pagebreak-back-container">
+                <button
+                  id="form-pagebreak-back_66"
+                  type="button"
+                  class="form-pagebreak-back jf-form-buttons"
+                  data-component="pagebreak-back"
+                >
+                  Retour
+                </button>
+              </div>
+              <div class="form-pagebreak-next-container">
+                <button
+                  id="form-pagebreak-next_66"
+                  type="button"
+                  class="form-pagebreak-next jf-form-buttons"
+                  data-component="pagebreak-next"
+                >
+                  Suivant
+                </button>
+              </div>
+              <div style="clear: both" class="pageInfo form-sub-label" id="pageInfo_66"></div>
+            </div>
+          </li>
+        </ul>
+        <ul class="form-section page-section" style="display: none">
+          <li class="form-line" data-type="control_text" id="id_64">
+            <div id="cid_64" class="form-input-wide" data-layout="full">
+              <div id="text_64" class="form-html" data-component="text">
+                <p>
+                  Une fois que vous aurez cliquer sur soumettre vous recevrez dans votre boîte mail un lien de
+                  réinitialisation du mot de passe. Ce mot de passe sera utilisé pour la plateforme de formation, votre
+                  compte MCM Academy et pour le site Evalbox (examen officiel).
+                </p>
+                <p></p>
+                <p>
+                  ATTENTION, merci de bien réinitialiser le mot de passe. Sans cela, votre inscription ne pourra pas
+                  être prise en compte.
+                </p>
+                <p></p>
+                <p>Si vous avez déjà réinitialisé votre mot de passe, merci de ne pas prendre en compte ce message.</p>
+              </div>
+            </div>
+          </li>
+          <li class="form-line" data-type="control_button" id="id_63">
+            <div id="cid_63" class="form-input-wide" data-layout="full">
+              <div data-align="auto" class="form-buttons-wrapper form-buttons-auto jsTest-button-wrapperField">
+                <button
+                  id="input_preview_63"
+                  type="button"
+                  class="form-submit-preview jf-form-buttons"
+                  data-component="button"
+                >
+                  <img
+                    src="https://cdn.jotfor.ms/assets/img/theme-assets/5ca4930530899c64ff77cfa1/previewPDF-icon.svg"
+                  />
+                  <span id="span_preview_63" class="span_preview"> Lire le contrat avant soumission </span>
+                </button>
+                <span> </span>
+                <button
+                  id="input_63"
+                  type="submit"
+                  class="form-submit-button submit-button jf-form-buttons jsTest-submitField"
+                  data-component="button"
+                  data-content=""
+                >
+                  Soumettre
+                </button>
+              </div>
+            </div>
+          </li>
+          <li style="display: none">
+            Should be Empty:
+            <input type="text" name="website" value="" />
+          </li>
+        </ul>
+      </div>
+      <script>
+        JotForm.showJotFormPowered = '0';
+      </script>
+      <script>
+        JotForm.poweredByText = 'Powered by Jotform';
+      </script>
+      <input type="hidden" class="simple_spc" id="simple_spc" name="simple_spc" value="221803597636059" />
+      <script type="text/javascript">
+        var all_spc = document.querySelectorAll("form[id='221803597636059'] .si" + 'mple' + '_spc');
+        for (var i = 0; i < all_spc.length; i++) {
+          all_spc[i].value = '221803597636059-221803597636059';
+        }
+      </script>
+    </form>
+    <script type="text/javascript">
+      JotForm.forwardToEu = true;
+    </script>
+    <script src="https://cdn.jotfor.ms//js/vendor/smoothscroll.min.js?v=3.3.34465"></script>
+    <script src="https://cdn.jotfor.ms//js/errorNavigation.js?v=3.3.34465"></script>
+  </body>
+</html>

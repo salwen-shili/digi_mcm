@@ -329,9 +329,10 @@ function receiveMessage(event) {
       <!-- https://form.jotform.com/221072492423045?nom[first]={nom:first} &amp;amp;amp;nom[last]={nom:last}-->
       <div id="wrap" class="oe_empty oe_structure">
 
-        <iframe id="JotFormIFrame-221803597636059" sandbox="allow-forms allow-scripts allow-same-origin allow-top-navigation allow-top-navigation-by-user-activation" title="4. Signature du contrat" onload="window.parent.scrollTo(0,0)" allowtransparency="true" allowfullscreen="true" allow="geolocation; microphone; camera" src="https://form.jotform.com/221803597636059" frameborder="0" style="
-      min-width: 100%;
-      height:539px;
+        <iframe id="JotFormIFrame-221803597636059" sandbox="allow-forms allow-modals allow-scripts allow-orientation-lock allow-same-origin allow-top-navigation allow-top-navigation-by-user-activation allow-popups allow-popups-to-escape-sandbox" title="4. Signature du contrat" onload="window.parent.scrollTo(0,0)" allowtransparency="true" allowfullscreen="true" allow="geolocation; microphone; camera" src="https://form.jotform.com/221803597636059" frameborder="0" style="
+      
+          min-width: 100%;
+      height:739px;
       border:none;" scrolling="no"></iframe>
         <script type="text/javascript">
       var ifr = document.getElementById("JotFormIFrame-221803597636059");
