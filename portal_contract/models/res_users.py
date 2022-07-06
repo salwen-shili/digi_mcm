@@ -72,16 +72,18 @@ class ResUsers(models.Model):
                     base_url = 'https://www.digimoov.fr'
 
                 link_tracker = self.env['link.tracker'].sudo().search([('url', "=", url)])
-                if not link_tracker:
-                    # generate short link using module of link tracker
-                    link_tracker = self.env['link.tracker'].sudo().create({
-                        'title': 'Rénitialisation de mot de passe de %s' % (user.name),
-                        'url': url,
-                    })
-                    link_tracker.sudo().write({
-                        'short_url': base_url + '/r/%(code)s' % {'code': link_tracker.code}
-                        # change the short url of link tracker based on base url
-                    })
+                if link_tracker :
+                    link_tracker.unlink()
+                # generate short link using module of link tracker
+                url = user.signup_url
+                link_tracker = self.env['link.tracker'].sudo().create({
+                    'title': 'Rénitialisation de mot de passe de %s' % (user.name),
+                    'url': url,
+                })
+                link_tracker.sudo().write({
+                    'short_url': base_url + '/r/%(code)s' % {'code': link_tracker.code}
+                    # change the short url of link tracker based on base url
+                })
                 if not link_tracker:
                     short_url = pyshorteners.Shortener(api_key=bitly_access_token)  # api key of bitly
                     short_url = short_url.bitly.short(
