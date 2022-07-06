@@ -1,15 +1,16 @@
 var villeLourd = ['PARIS', 'NANTES', 'METZ', 'LILLE', 'LYON', 'TOULOUSE', 'MARSEILLE'];
 document.addEventListener('DOMContentLoaded', function () {
   if (window.location.href.includes('lourd')) {
-    Array.from(document.getElementById('centre_examen').options).forEach(function (option_element) {
+    var selectCenter = document.getElementById('centre_examen');
+    indexOption = 0;
+    Array.from(selectCenter.options).forEach(function (option_element) {
       let option_text = option_element.text;
-
-      if (villeLourd.indexOf(option_text.toUpperCase()) == -1) {
-        if (option_text.toUpperCase() != "SÉLECTIONNEZ VOTRE VILLE D'EXAMEN") {
-          option_element.style.display = 'none';
-          console.log(option_element, '==-1');
-        }
+      index = villeLourd.indexOf(option_text.toUpperCase());
+      if (index == -1 && option_text.toUpperCase() != "SÉLECTIONNEZ VOTRE VILLE D'EXAMEN") {
+        //remove option
+        selectCenter.remove(indexOption);
       }
+      indexOption++;
     });
   }
   displayInstalmentPayment();
