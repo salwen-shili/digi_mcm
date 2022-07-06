@@ -26,12 +26,8 @@
                         L'équipe <span style=" font-size:17;color: rgb(153, 0, 255); font-weight: bold;">
                         Digimoov
                     </span> vous remercie pour votre confiance et vous confirme
-                        votre inscription à notre session de formation à distance axée sur
-                        <span style=" font-size:17;color: rgb(153, 0, 255); font-weight: bold;">"La capacité de
-                            transport
-                            léger
-                            de
-                            marchandises".
+                        votre inscription à notre session de
+                        <span style=" font-size:17;color: rgb(153, 0, 255); font-weight: bold;">${object.module_id.name}.
                         </span>
                     </p>
                     <br/>

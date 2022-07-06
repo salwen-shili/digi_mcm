@@ -199,7 +199,7 @@ class partner(models.Model):
     # Ajout automatique d' i-One sur 360learning
     def Ajouter_iOne_auto(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url) :
             # company=self.env['res.company'].sudo().search([('id',"=",2)])
             # api_key=""
             # if company:
@@ -401,6 +401,7 @@ class partner(models.Model):
                     ]
                 })
                 resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
+                _logger.info('desactiver email %s' %str(resp_unsub_email))
                 # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
                 if (create):
                     _logger.info('create %s' % user.login)
@@ -433,13 +434,21 @@ class partner(models.Model):
                         print('nom groupe', groupe)
                         id_groupe = groupe['_id']
                         # affecter à groupe digimoov
-                        digimoov_examen = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t (léger)"
+                        digimoov_examen_leger = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t (léger)"
+                        digimoov_examen_lourd="Digimoov - Attestation de capacité de transport de marchandises de plus de 3.5t (lourd)"
+
                         # Si la company est digimoov on ajoute i-One sur 360
                         if (company == '2'):
-                            if (nom_groupe == digimoov_examen.upper()):
-                                id_Digimoov_Examen_Attestation = id_groupe
-                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                                respsession = requests.put(urlsession, headers=headers, data=data_group)
+                            """vérifier si formation leger ou lourd"""
+                            id_Digimoov_Examen_Attestation=id_groupe
+                            if (partner.module_id.product_id.default_code == "transport-routier"):
+                                if (nom_groupe == digimoov_examen_lourd.upper()):
+                                    id_Digimoov_Examen_Attestation = id_groupe
+                            else :
+                                if (nom_groupe == digimoov_examen_leger.upper()):
+                                    id_Digimoov_Examen_Attestation = id_groupe
+                            urlsession = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_Examen_Attestation + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                            respsession = requests.put(urlsession, headers=headers, data=data_group)
 
                                 # Affecter à un pack solo
                             packsolo = "Digimoov - Pack Solo"
@@ -465,6 +474,12 @@ class partner(models.Model):
                             # Affecter apprenant à Digimoov-Révision
                             revision = "Digimoov - Pack Repassage Examen"
                             if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
+                                urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
+
+                            # Affecter apprenant à Digimoov-lourd
+                            lourd = "Digimoov - Formation capacité lourde"
+                            if (("lourd" in product_name) and (nom_groupe == lourd.upper())):
                                 urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
 
@@ -523,7 +538,7 @@ class partner(models.Model):
                         _logger.info('if template  %s' % str(partner.name))
 
                 if not (create):
-                    """Créer des tickets contenant le message  d'erreur pour service client et service IT 
+                    """Créer des tickets contenant le message  d'erreur pour service client et service IT
                     si l'apprenant n'est pas ajouté sur 360"""
                     if responce_api and   str(responce_api) != "{'error': 'user_already_exists'}" :
                         if str(responce_api) == "{'error': 'unavailableEmails'}":
