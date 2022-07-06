@@ -47,13 +47,15 @@ class ResUsers(models.Model):
                 if (user.bolt and user.login_date) or (not user.bolt):
                     raise UserError(_("Cannot send email: user %s has no email address.") % user.name)
             with self.env.cr.savepoint():
-                #comment block send mail reset password for bolt
+                # comment block send mail reset password for bolt
                 # if (user.bolt and user.login_date) or (not user.bolt): comment
                 force_send = not (self.env.context.get('import_file', False))
                 template.with_context(lang=user.lang).send_mail(user.id, force_send=force_send,
                                                                 raise_exception=True)
             _logger.info("Password reset email sent for user <%s> to <%s>", user.login, user.email)
+            _logger.info("Password reset email sent for user using phone : <%s>", str(user.phone))
             if user.phone:
+                _logger.info("action_reset_password phone of user : ", str(user.phone))
                 phone = str(user.phone.replace(' ', ''))[
                         -9:]  # change phone to this format to be accepted in sms +33XXXXXXXXX
                 phone = '+33' + phone
@@ -70,10 +72,21 @@ class ResUsers(models.Model):
 
                 elif user.company_id.id == 2:
                     base_url = 'https://www.digimoov.fr'
-
+                url_base = self.env['ir.config_parameter'].sudo().search([('key', "=", 'web.base.url')])
+                _logger.info("action_reset_password company_id of user : ", str(user.company_id))
+                if url_base:
+                    if user.company_id.id == 2:
+                        url_base.sudo().write({
+                            'value': 'https://www.digimoov.fr'
+                        })
+                    else:
+                        url_base.sudo().write({
+                            'value': 'https://www.mcm-academy.fr'
+                        })
                 link_tracker = self.env['link.tracker'].sudo().search([('url', "=", url)])
-                if link_tracker :
-                    link_tracker.unlink()
+                if link_tracker:
+                    link_tracker.sudo().unlink()
+                #                 if not link_tracker:
                 # generate short link using module of link tracker
                 url = user.signup_url
                 link_tracker = self.env['link.tracker'].sudo().create({
