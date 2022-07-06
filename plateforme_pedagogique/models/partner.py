@@ -365,9 +365,9 @@ class partner(models.Model):
                 )
                 company_id = '56f5520e11d423f46884d593'
                 api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
-                urluser = 'https://staging.360learning-dev.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
-                url_groups = 'https://staging.360learning-dev.com/api/v1/groups'
-                url_unsubscribeToEmailNotifications = 'https://staging.360learning-dev.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
+                urluser = 'https://app.360learning.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
+                url_groups = 'https://app.360learning.com/api/v1/groups'
+                url_unsubscribeToEmailNotifications = 'https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
                 headers = CaseInsensitiveDict()
                 headers["Content-Type"] = "application/json"
                 invit = False
@@ -417,7 +417,7 @@ class partner(models.Model):
                     _logger.info('date_inscrit %s' % str(partner.date_creation))
 
                     # Affecter i-One to groupe digimoov-bienvenue
-                    urlgroup_Bienvenue = 'https://staging.360learning-dev.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                    urlgroup_Bienvenue = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
 
                     respgroupe = requests.put(urlgroup_Bienvenue, headers=headers, data=data_group)
                     print('bienvenue ', respgroupe.status_code, partner.date_creation)
@@ -447,14 +447,14 @@ class partner(models.Model):
                             else :
                                 if (nom_groupe == digimoov_examen_leger.upper()):
                                     id_Digimoov_Examen_Attestation = id_groupe
-                            urlsession = 'https://staging.360learning-dev.com/api/v1/groups/' + id_Digimoov_Examen_Attestation + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                            urlsession = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_Examen_Attestation + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                             respsession = requests.put(urlsession, headers=headers, data=data_group)
 
                                 # Affecter à un pack solo
                             packsolo = "Digimoov - Pack Solo"
                             if (("solo" in product_name) and (nom_groupe == packsolo.upper())):
                                 print(partner.module_id.name)
-                                urlgrp_solo = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_solo = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_solo = requests.put(urlgrp_solo, headers=headers, data=data_group)
                                 print('affecté à solo', respgrp_solo.status_code)
 
@@ -462,32 +462,32 @@ class partner(models.Model):
                             pack_pro = "Digimoov - Pack Pro"
                             if (("pro" in product_name) and (nom_groupe == pack_pro.upper())):
                                 print(partner.module_id.name)
-                                urlgrp_pro = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_pro = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_pro = requests.put(urlgrp_pro, headers=headers, data=data_group)
                             # Affecter à unpremium
                             packprem = "Digimoov - Pack Premium"
                             if (("premium" in product_name) and (nom_groupe == packprem.upper())):
                                 print(partner.module_id.name)
-                                urlgrp_prim = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_prim = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_prim = requests.put(urlgrp_prim, headers=headers, data=data_group)
 
                             # Affecter apprenant à Digimoov-Révision
                             revision = "Digimoov - Pack Repassage Examen"
                             if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
-                                urlgrp_revision = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
 
                             # Affecter apprenant à Digimoov-lourd
                             lourd = "Digimoov - Formation capacité lourde"
                             if (("lourd" in product_name) and (nom_groupe == lourd.upper())):
-                                urlgrp_revision = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
 
                             # Affecter apprenant à une session d'examen
                             print('date, ville', ville, date_session)
                             if (ville in nom_groupe) and (date_session in nom_groupe):
                                 existe = True
-                                urlsession = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
 
 
@@ -497,7 +497,7 @@ class partner(models.Model):
                         nom = ville + ' - ' + date_session
                         nomgroupe = unidecode(nom)
                         print(nomgroupe)
-                        urlgroups = 'https://staging.360learning-dev.com/api/v1/groups?company=' + company_id + '&apiKey=' + api_key
+                        urlgroups = 'https://app.360learning.com/api/v1/groups?company=' + company_id + '&apiKey=' + api_key
                         data_session = '{"name":"' + nomgroupe + '","parent":"' + id_Digimoov_Examen_Attestation + '"  , "public":"false" }'
                         create_session = requests.post(urlgroups, headers=headers, data=data_session)
                         print('creer  une session', create_session.status_code)
@@ -510,107 +510,107 @@ class partner(models.Model):
                             # Affecter apprenant à la nouvelle session d'examen
                             if (ville in nom_groupe) and (date_session in nom_groupe):
                                 existe = True
-                                urlsession = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
-                #     if self.env.su:
-                # 
-                #         # sending mail in sudo was meant for it being sent from superuser
-                #         self = self.with_user(SUPERUSER_ID)
-                #     if not partner.lang :
-                #         partner.lang = 'fr_FR'
-                #     _logger.info('avant email %s' % str(partner.name))
-                #     template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                #         'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
-                #     template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-                #     if not template_id:
-                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                #             'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
-                #             raise_if_not_found=False)
-                #     if not template_id:
-                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                #             'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
-                #             raise_if_not_found=False)
-                #     if template_id:
-                #         partner.with_context(force_send=True).message_post_with_template(template_id,
-                #                                                                                   composition_mode='comment',
-                #                                                                                   )
-                #         _logger.info('if template  %s' % str(partner.name))
-                # 
-                # if not (create):
-                #     """Créer des tickets contenant le message  d'erreur pour service client et service IT
-                #     si l'apprenant n'est pas ajouté sur 360"""
-                #     if responce_api and   str(responce_api) != "{'error': 'user_already_exists'}" :
-                #         if str(responce_api) == "{'error': 'unavailableEmails'}":
-                # 
-                #             vals = {
-                #                 'description': 'Apprenant non ajouté sur 360 %s' % (partner.name),
-                #                 'name': 'Email non valide ',
-                #                 'team_id': self.env['helpdesk.team'].sudo().search(
-                #                     [('name', 'like', 'Client'), ('company_id', "=", 2)],
-                #                     limit=1).id,
-                #             }
-                #             description = "Apprenant non ajouté sur 360 " + str(partner.name)
-                #             ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description),
-                #                                                                    ("team_id.name", 'like', 'Client')])
-                #             if not ticket:
-                #                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                #                     vals)
-                #             """Si message d'erreur "unavailableEmails" on ajoute #digimoov à l'email pour qu'il sera ajouté sur la plateforme 360"""
-                #             old_email = partner.email
-                #             position = old_email.index('@')
-                #             new_email = old_email[:position] + '#digimoov' + old_email[position:]
-                #             _logger.info("new email %s" % new_email)
-                #             partner.email=new_email
-                #             partner.second_email=new_email
-                #             """Changer format du numero de tel pour envoyer le sms """
-                #             if  partner.email and "#" in partner.email:
-                #                 _logger.info("send mail and sms %s" %str(partner.email))
-                #                 if partner.phone:
-                #                     phone = str(partner.phone.replace(' ', ''))[-9:]
-                #                     phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
-                #                                                                                 3:5] + ' ' + phone[
-                #                                                                                              5:7] + ' ' + phone[
-                #                                                                                                           7:]
-                #                     partner.phone = phone
-                #                 """envoyer SMS pour informer l'apprenant de sa nouvelle adresse email """
-                #                 new_login=partner.email
-                #                 name=partner.name
-                #                 body = "DIGIMOOV. Cher(e) %s, nous vous informons que nous avons procédé pour des raisons de sécurité au changement de votre adresse email. Pour plus d'infos, veuillez consulter votre boite mail. " % (
-                #                     name)
-                #                 if body:
-                #                     composer = self.env['sms.composer'].with_context(
-                #                         default_res_model='res.partner',
-                #                         default_res_id=partner.id,
-                #                         default_composition_mode='comment',
-                #                     ).sudo().create({
-                #                         'body': body,
-                #                         'mass_keep_log': True,
-                #                         'mass_force_send': False,
-                #                         'use_active_domain': False,
-                #                     })
-                #                     composer.action_send_sms()  # we send sms to client contains link to register in cma.
-                #                     if partner.phone:
-                #                         partner.phone = '0' + str(partner.phone.replace(' ', ''))[
-                #                                                       -9:]
-                #                 """envoyer email pour informer l'apprenant de sa nouvelle adresse email """
-                #                 # partner.email=old_email
-                #                 mail_compose_message = self.env['mail.compose.message']
-                #                 mail_compose_message.fetch_sendinblue_template()
-                #                 template_id = self.env['mail.template'].sudo().search(
-                #                     [('subject', "=", "Avis de changement de Login"),
-                #                      ('model_id', "=", 'res.partner')],
-                #                     limit=1)  #we get the mail template from sendinblue
-                #                 if template_id:
-                #                     message = self.env['mail.message'].sudo().search(
-                #                         [('subject', "=", "Avis de changement de Login"),
-                #                          ('model', "=", 'res.partner'), ('res_id', "=", partner.id)],
-                #                         limit=1)  #check if we have already sent the email
-                #                     if not message:
-                #                         partner.with_context(force_send=True).message_post_with_template(
-                #                             template_id.id,
-                #                             composition_mode='comment',
-                #                             )  # send the email to client
+                    if self.env.su:
+
+                        # sending mail in sudo was meant for it being sent from superuser
+                        self = self.with_user(SUPERUSER_ID)
+                    if not partner.lang :
+                        partner.lang = 'fr_FR'
+                    _logger.info('avant email %s' % str(partner.name))
+                    template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                        'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
+                    template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                    if not template_id:
+                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                            raise_if_not_found=False)
+                    if not template_id:
+                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                            raise_if_not_found=False)
+                    if template_id:
+                        partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                                  composition_mode='comment',
+                                                                                                  )
+                        _logger.info('if template  %s' % str(partner.name))
+
+                if not (create):
+                    """Créer des tickets contenant le message  d'erreur pour service client et service IT
+                    si l'apprenant n'est pas ajouté sur 360"""
+                    if responce_api and   str(responce_api) != "{'error': 'user_already_exists'}" :
+                        if str(responce_api) == "{'error': 'unavailableEmails'}":
+
+                            vals = {
+                                'description': 'Apprenant non ajouté sur 360 %s' % (partner.name),
+                                'name': 'Email non valide ',
+                                'team_id': self.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description = "Apprenant non ajouté sur 360 " + str(partner.name)
+                            ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description),
+                                                                                   ("team_id.name", 'like', 'Client')])
+                            if not ticket:
+                                new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                    vals)
+                            """Si message d'erreur "unavailableEmails" on ajoute #digimoov à l'email pour qu'il sera ajouté sur la plateforme 360"""
+                            old_email = partner.email
+                            position = old_email.index('@')
+                            new_email = old_email[:position] + '#digimoov' + old_email[position:]
+                            _logger.info("new email %s" % new_email)
+                            partner.email=new_email
+                            partner.second_email=new_email
+                            """Changer format du numero de tel pour envoyer le sms """
+                            if  partner.email and "#" in partner.email:
+                                _logger.info("send mail and sms %s" %str(partner.email))
+                                if partner.phone:
+                                    phone = str(partner.phone.replace(' ', ''))[-9:]
+                                    phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                                3:5] + ' ' + phone[
+                                                                                                             5:7] + ' ' + phone[
+                                                                                                                          7:]
+                                    partner.phone = phone
+                                """envoyer SMS pour informer l'apprenant de sa nouvelle adresse email """
+                                new_login=partner.email
+                                name=partner.name
+                                body = "DIGIMOOV. Cher(e) %s, nous vous informons que nous avons procédé pour des raisons de sécurité au changement de votre adresse email. Pour plus d'infos, veuillez consulter votre boite mail. " % (
+                                    name)
+                                if body:
+                                    composer = self.env['sms.composer'].with_context(
+                                        default_res_model='res.partner',
+                                        default_res_id=partner.id,
+                                        default_composition_mode='comment',
+                                    ).sudo().create({
+                                        'body': body,
+                                        'mass_keep_log': True,
+                                        'mass_force_send': False,
+                                        'use_active_domain': False,
+                                    })
+                                    composer.action_send_sms()  # we send sms to client contains link to register in cma.
+                                    if partner.phone:
+                                        partner.phone = '0' + str(partner.phone.replace(' ', ''))[
+                                                                      -9:]
+                                """envoyer email pour informer l'apprenant de sa nouvelle adresse email """
+                                # partner.email=old_email
+                                mail_compose_message = self.env['mail.compose.message']
+                                mail_compose_message.fetch_sendinblue_template()
+                                template_id = self.env['mail.template'].sudo().search(
+                                    [('subject', "=", "Avis de changement de Login"),
+                                     ('model_id', "=", 'res.partner')],
+                                    limit=1)  #we get the mail template from sendinblue
+                                if template_id:
+                                    message = self.env['mail.message'].sudo().search(
+                                        [('subject', "=", "Avis de changement de Login"),
+                                         ('model', "=", 'res.partner'), ('res_id', "=", partner.id)],
+                                        limit=1)  #check if we have already sent the email
+                                    if not message:
+                                        partner.with_context(force_send=True).message_post_with_template(
+                                            template_id.id,
+                                            composition_mode='comment',
+                                            )  # send the email to client
 
                         # else:
 
