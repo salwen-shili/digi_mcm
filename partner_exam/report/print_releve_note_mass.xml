@@ -34,7 +34,9 @@
                                                 Je soussigné <b>Nasserddine Cherih</b> agissant en tant que Directeur
                                                 Général du
                                                 centre de
-                                                formation Digimoov, agréé par le préfet de la région Ile de France sous
+                                                formation Digimoov, agréé par le préfet de la région
+                                                <span t-field='o.note_exam_id[-1].session_id.state_id'/>
+                                                sous
                                                 le
                                                 numéro
                                                 d'agrément 2019-0110, après délibération du Jury,

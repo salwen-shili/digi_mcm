@@ -19,3 +19,15 @@ class McmacademySessionVille(models.Model):
         liée par une seul ville choisi par l'utilisateur dans l'interface de session"""
         for rec in self:
             return {'domain': {'session_adresse_examen': [('session_ville_id', '=', rec.session_ville_id.id)]}}
+
+    @api.onchange('session_ville_id')
+    def auto_set_value_of_argument_number(self):
+        """ Affectation automatique du valeur d'agrement selon les villes """
+        if self.session_ville_id.name_ville == "Lyon":
+            self.num_agrement_jury = "2022-020"
+        elif self.session_ville_id.name_ville == "Bordeaux":
+            self.num_agrement_jury = "2022-01-B"
+        elif self.session_ville_id.name_ville == "Nantes":
+            self.num_agrement_jury = "DREAL/STRV/2022-014"
+        else:
+            self.num_agrement_jury = ""

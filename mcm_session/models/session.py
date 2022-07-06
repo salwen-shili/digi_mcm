@@ -55,6 +55,7 @@ class Session(models.Model):
     adresse_jury_id = fields.Many2one('session.adresse.examen', "Adresse de jury")
     date_jury = fields.Date()
     num_agrement_jury = fields.Char()
+    state_id = fields.Many2one('res.country.state', "Région : ", domain="[('country_id', '=', 'France')]")
 
     @api.onchange('adresse_jury_id')
     def onchange_session_ville_id(self):
