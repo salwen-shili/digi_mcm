@@ -1,6 +1,7 @@
 <odoo>
   <template id="mcm_website_theme.mcm_bolt_inscirption" name="Inscription_MCM_BOLT">
     <t t-call="website.layout">
+
       <div id="wrap" class="oe_empty oe_structure">
         <style>
                   .calendly-badge-widget {
@@ -238,7 +239,31 @@ function receiveMessage(event) {
     <t t-call="website.layout">
       <div id="wrap" class="oe_empty oe_structure">
         <script type="text/javascript" src="/mcm_website_theme/static/src/js/redirectbolt.js" />
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
+        <div id="popup1" class="overlay">
+          <div class="popup">
+            <h2 class="text-left">
+              <i class="fa fa-info-circle" style="color: #111111" />
+            </h2>
 
+            <div class="content">
+              <p id="notifMessage" style="text-align: justify !important; font-size: 17px">
+                Pour bénéficier de l'offre de
+                <b>20€</b>
+                en partenariat avec Bolt, il faut s'inscrire en cliquant sur
+                <b>Je m'inscris</b>
+                et réussir un examen blanc obligatoire en français.
+              </p>
+              <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
+                <div id="default">
+                  <a target="_blank" id="btn-inside-popup">
+                    <button class="rkmd-btn btn-black" onclick="redirection()">Continuer</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <iframe id="JotFormIFrame-221713712251546" sandbox="allow-forms allow-presentation allow-scripts allow-same-origin allow-top-navigation allow-top-navigation-by-user-activation" title="3. Documents administratifs" onload="window.parent.scrollTo(0,0)" allowtransparency="true" allowfullscreen="true" allow="geolocation; microphone; camera" src="https://form.jotform.com/221713712251546" frameborder="0" style="
       min-width: 100%;
       height:539px;
@@ -331,7 +356,32 @@ function receiveMessage(event) {
     <t t-call="website.layout">
       <!-- https://form.jotform.com/221072492423045?nom[first]={nom:first} &amp;amp;amp;nom[last]={nom:last}-->
       <div id="wrap" class="oe_empty oe_structure">
+        <script type="text/javascript" src="/mcm_website_theme/static/src/js/redirectbolt.js" />
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
+        <div id="popup1" class="overlay">
+          <div class="popup">
+            <h2 class="text-left">
+              <i class="fa fa-info-circle" style="color: #111111" />
+            </h2>
 
+            <div class="content">
+              <p id="notifMessage" style="text-align: justify !important; font-size: 17px">
+                Pour bénéficier de l'offre de
+                <b>20€</b>
+                en partenariat avec Bolt, il faut s'inscrire en cliquant sur
+                <b>Je m'inscris</b>
+                et réussir un examen blanc obligatoire en français.
+              </p>
+              <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
+                <div id="default">
+                  <a target="_blank" id="btn-inside-popup">
+                    <button class="rkmd-btn btn-black" onclick="redirection()">Continuer</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <iframe id="JotFormIFrame-221803597636059" sandbox="allow-forms allow-presentation allow-modals allow-scripts allow-orientation-lock allow-same-origin allow-top-navigation allow-top-navigation-by-user-activation allow-popups allow-popups-to-escape-sandbox" title="4. Signature du contrat" onload="window.parent.scrollTo(0,0)" allowtransparency="true" allowfullscreen="true" allow="geolocation; microphone; camera" src="https://form.jotform.com/221803597636059" frameborder="0" style="
       
           min-width: 100%;
