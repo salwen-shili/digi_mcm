@@ -252,7 +252,7 @@
                                                             object.env['ir.config_parameter'].sudo().get_param('web.base.url')
                                                             votre nom de domaine est:
                                                             <b>
-                                                                <a href='${website_url}'>${website_url}</a>
+                                                                <a href='${website_url}'>${object.company_id.website}</a>
                                                             </b>
                                                             <br/>
                                                             Votre courriel de connection est:
