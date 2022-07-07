@@ -383,7 +383,17 @@ class partner(models.Model):
                     partner.password360 = user.password360
                     password=str(user.password360.encode('utf-8'))
                     email=partner.email
+                    # Désactiver les notifications par email
+                    data_email = json.dumps({
+                        "usersEmails": [
+                            partner.email
+                        ]
+                    })
+                    resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers,
+                                                    data=data_email)
+                    _logger.info('desactiver email %s' % str(resp_unsub_email))
                     # Ajouter i-One to table user
+                    
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + password + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     _logger.info('data_user %s' %str(data_user))
@@ -394,15 +404,7 @@ class partner(models.Model):
 
                         create = True
                 data_group = {}
-                # Désactiver les notifications par email
-                data_email = json.dumps({
-                    "usersEmails": [
-                        partner.email
-                    ]
-                })
-                resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
-                _logger.info('desactiver email %s' %str(resp_unsub_email))
-                # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
+              # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
                 if (create):
                     _logger.info('create %s' % user.login)
                     today = date.today()
