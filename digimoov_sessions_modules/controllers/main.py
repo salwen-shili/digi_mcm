@@ -1026,16 +1026,20 @@ class WebsiteSale(WebsiteSale):
                         digimoov_examen = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t (léger)"
                         # Si la company est digimoov on ajoute i-One sur 360
                         if (company == '2'):
-                            if (nom_groupe == digimoov_examen.upper()):
-                                id_Digimoov_Examen_Attestation = id_groupe
-                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + \
-                                             '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                                respsession = requests.put(
-                                    urlsession, headers=headers, data=data_group)
-                                if respsession.status_code == 200:
-                                    ajout_exam = True
+                            """vérifier si formation leger ou lourd"""
+                            if (partner.module_id.product_id.default_code == "transport-routier"):
+                                if (nom_groupe == digimoov_examen_lourd.upper()):
+                                    id_Digimoov_Examen_Attestation = id_groupe
+                                    urlsession = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_Examen_Attestation + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    respsession = requests.put(urlsession, headers=headers, data=data_group)
 
-                                # Affecter à un pack solo
+                            else:
+                                if (nom_groupe == digimoov_examen_leger.upper()):
+                                    id_Digimoov_Examen_Attestation = id_groupe
+                                    urlsession = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_Examen_Attestation + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    respsession = requests.put(urlsession, headers=headers, data=data_group)
+
+                            # Affecter à un pack solo
                             packsolo = "Digimoov - Pack Solo"
                             if (("solo" in product_name) and (nom_groupe == packsolo.upper())):
                                 print(partner.module_id.name)
@@ -1070,6 +1074,12 @@ class WebsiteSale(WebsiteSale):
                                                   '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_revision = requests.put(
                                     urlgrp_revision, headers=headers, data=data_group)
+
+                                # Affecter apprenant à Digimoov-lourd
+                                lourd = "Digimoov - Formation capacité lourde"
+                                if (("lourd" in product_name) and (nom_groupe == lourd.upper())):
+                                    urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
 
                             # Affecter apprenant à une session d'examen
                             print('date, ville', ville, date_session)
