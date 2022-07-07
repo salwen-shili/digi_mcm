@@ -22,11 +22,11 @@
                                     <img src="/partner_exam/static/src/img/header2.png" style="position:absolute;z-index:3;width:100%;height:350px;margin-left:0px;margin-top:10px;"/>
                                     <p style="position:absolute;z-index:3;margin-top:100px;margin-left:25px;margin-right:25px;" align="center">
                                         DIGIMOOV centre de formation, organisateur du premier examen pour l’obtention
-                                        de la capacité professionnelle <br/> de transport routier léger de marchandises agréé
+                                        de la capacité <br/> professionnelle de transport routier léger de marchandises agréé
                                         par
-                                        le préfet de la région
+                                        le préfet <br/>de la région
                                         <span t-field="o.mcm_session_id.state_id"/>
-                                        <br/> sous le numéro d’agrément
+                                        sous le numéro d’agrément
                                         <span t-field="o.mcm_session_id.num_agrement_jury"/>
                                         <br/>
                                         <br/>
