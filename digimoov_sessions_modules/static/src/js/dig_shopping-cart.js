@@ -17,10 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
     indexOption = 0;
     Array.from(selectCenter.options).forEach(function (option_element) {
       let option_text = option_element.text;
+
       index = villeLeger.indexOf(option_text.toUpperCase());
+      console.log(option_text, index);
       if (index == -1 && option_text.toUpperCase() != "SÉLECTIONNEZ VOTRE VILLE D'EXAMEN") {
         //remove option
-        console.log('delete', indexOption);
+        console.log('delete', indexOption, selectCenter[indexOption]);
         selectCenter.remove(indexOption);
       }
       indexOption++;
