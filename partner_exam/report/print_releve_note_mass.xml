@@ -39,7 +39,16 @@
                                                 sous
                                                 le
                                                 numéro
-                                                d'agrément <span t-field='o.note_exam_id[-1].session_id.num_agrement_jury'/>, après délibération du Jury,
+                                                d'agrément
+                                                <t t-if="o.note_exam_id[-1].session_id.session_ville_id.name_ville != 'Nice' or o.note_exam_id[-1].session_id.session_ville_id.name_ville != 'Toulouse' or o.note_exam_id[-1].session_id.session_ville_id.name_ville != 'Marseille'">
+                                                    sous le numéro d’agrément
+                                                    <span t-field='o.note_exam_id[-1].session_id.num_agrement_jury'/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span></span>
+                                                </t>
+                                                , après
+                                                délibération du Jury,
                                                 <br/>
                                                 Atteste que
                                                 <strong>
