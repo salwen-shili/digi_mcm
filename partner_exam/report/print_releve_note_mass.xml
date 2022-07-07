@@ -35,7 +35,7 @@
                                                 Général du
                                                 centre de
                                                 formation Digimoov, agréé par le préfet de la région
-                                                <span t-field='o.note_exam_id[-1].session_id.state_id'/>
+                                                <span t-field='o.note_exam_id[-1].session_id.state_id.name'/>
                                                 sous
                                                 le
                                                 numéro
