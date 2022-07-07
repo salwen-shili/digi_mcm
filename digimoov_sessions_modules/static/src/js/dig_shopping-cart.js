@@ -2,6 +2,30 @@ var villeLourd = ['PARIS', 'NANTES', 'METZ', 'LILLE', 'LYON', 'TOULOUSE', 'MARSE
 var villeLeger = ['PARIS', 'NANTES', 'NICE', 'BORDEAUX', 'LYON', 'TOULOUSE', 'MARSEILLE'];
 document.addEventListener('DOMContentLoaded', function () {
   windowUrl = window.location.href;
+  console.log(
+    windowUrl,
+    windowUrl.includes('formation-pro') ||
+      windowUrl.includes('formation-solo') ||
+      windowUrl.includes('formation-premium')
+  );
+  if (
+    windowUrl.includes('formation-pro') ||
+    windowUrl.includes('formation-solo') ||
+    windowUrl.includes('formation-premium')
+  ) {
+    var selectCenter = document.getElementById('centre_examen');
+    indexOption = 0;
+    Array.from(selectCenter.options).forEach(function (option_element) {
+      let option_text = option_element.text;
+      index = villeLeger.indexOf(option_text.toUpperCase());
+      if (index == -1 && option_text.toUpperCase() != "SÉLECTIONNEZ VOTRE VILLE D'EXAMEN") {
+        //remove option
+        console.log('delete', indexOption);
+        selectCenter.remove(indexOption);
+      }
+      indexOption++;
+    });
+  }
   if (windowUrl.includes('lourd')) {
     var selectCenter = document.getElementById('centre_examen');
     indexOption = 0;
@@ -15,23 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
       indexOption++;
     });
   }
-  if (
-    windowUrl.includes('formation-pro') ||
-    windowUrl.includes('formation-solo') ||
-    windowUrl.includes('formation-premium')
-  ) {
-    var selectCenter = document.getElementById('centre_examen');
-    indexOption = 0;
-    Array.from(selectCenter.options).forEach(function (option_element) {
-      let option_text = option_element.text;
-      index = villeLeger.indexOf(option_text.toUpperCase());
-      if (index == -1 && option_text.toUpperCase() != "SÉLECTIONNEZ VOTRE VILLE D'EXAMEN") {
-        //remove option
-        selectCenter.remove(indexOption);
-      }
-      indexOption++;
-    });
-  }
+
   displayInstalmentPayment();
   onchangeTextButton1();
   document.getElementById('checkbox_conditions').addEventListener('change', function () {
