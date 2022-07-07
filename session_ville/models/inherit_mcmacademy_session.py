@@ -25,9 +25,22 @@ class McmacademySessionVille(models.Model):
         """ Affectation automatique du valeur d'agrement selon les villes """
         if self.session_ville_id.name_ville == "Lyon":
             self.num_agrement_jury = "2022-020"
+            self.state_id.name = "Auvergne-Rhône-Alpes"
         elif self.session_ville_id.name_ville == "Bordeaux":
             self.num_agrement_jury = "2022-01-B"
+            self.state_id.name = "Nouvelle-Aquitaine"
         elif self.session_ville_id.name_ville == "Nantes":
             self.num_agrement_jury = "DREAL/STRV/2022-014"
+            self.state_id.name = "Pays de la Loire"
+        elif self.session_ville_id.name_ville == "Paris":
+            self.num_agrement_jury = "2019-0110"
+            self.state_id.name = "Ile de France"
+        elif self.session_ville_id.name_ville == "Toulouse":
+            self.num_agrement_jury = ""
+            self.state_id.name = "Occitanie"
+        elif self.session_ville_id.name_ville == "Marseille" or self.session_ville_id.name_ville == "Nice":
+            self.num_agrement_jury = ""
+            self.state_id.name = "Paca"
         else:
             self.num_agrement_jury = ""
+            self.state_id.name = ""

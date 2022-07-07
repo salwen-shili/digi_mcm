@@ -30,10 +30,15 @@
                                             de transport routier léger de marchandises agréé
                                             par
                                             le préfet de la région
-                                            <span t-field="o.mcm_session_id.state_id"/>
+                                            <span t-field='o.note_exam_id[-1].session_id.state_id'/>
                                             <br/>
+                                            <t t-if="o.note_exam_id[-1].session_id.session_ville_id.name_ville != 'Nice' or o.note_exam_id[-1].session_id.session_ville_id.name_ville != 'Toulouse' or o.note_exam_id[-1].session_id.session_ville_id.name_ville != 'Marseille'">
                                             sous le numéro d’agrément
-                                            <span t-field="o.mcm_session_id.num_agrement_jury"/>
+                                            <span t-field='o.note_exam_id[-1].session_id.num_agrement_jury'/>
+                                            </t>
+                                            <t t-else="">
+                                                <span></span>
+                                            </t>
                                             <br/>
                                             <br/>
                                             <b>
