@@ -977,6 +977,14 @@ class WebsiteSale(WebsiteSale):
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
+                    # Désactiver les notifications par email
+                    data_email = json.dumps({
+                        "usersEmails": [
+                            partner.email
+                        ]
+                    })
+                    resp_unsub_email = requests.put(
+                        url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
 
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + \
@@ -989,15 +997,7 @@ class WebsiteSale(WebsiteSale):
                     if (resp.status_code == 200):
                         create = True
                 data_group = {}
-                # Désactiver les notifications par email
-                data_email = json.dumps({
-                    "usersEmails": [
-                        partner.email
-                    ]
-                })
-                resp_unsub_email = requests.put(
-                    url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
-                # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
+               # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
                 if (create):
                     _logger.info('create %s' % user.login)
                     today = date.today()
