@@ -24,7 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
         //remove option
         console.log('delete', indexOption, selectCenter[indexOption]);
         selectCenter.remove(indexOption);
+        indexOption--;
       }
+
       indexOption++;
     });
   }
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (index == -1 && option_text.toUpperCase() != "SÉLECTIONNEZ VOTRE VILLE D'EXAMEN") {
         //remove option
         selectCenter.remove(indexOption);
+        indexOption--;
       }
       indexOption++;
     });
