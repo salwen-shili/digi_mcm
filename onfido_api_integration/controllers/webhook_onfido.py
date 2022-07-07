@@ -21,7 +21,7 @@ class OnfidoController(http.Controller):
     """get event workflowrund is completed with webhoook  """
     @http.route(['/completed_workflow'], type='json', auth="public", methods=['POST'])
     def completed_workflow(self, **kw):
-        data = json.loads(request.httprequest.data)
+        data = json.loads(request.httprequest.payload)
         _logger.info("webhoooooooooook onfido %s" % str(data))
  
         return true
