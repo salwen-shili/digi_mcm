@@ -203,8 +203,8 @@
                                             <label for="email" style="top: -0.7rem;padding: 0.25rem;">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <span>Vous ne pouvez pas modifier votre email.</span>
-                                            <br />
-                                            <br />
+
+
                                         </div>
 
                                         <br t-if="not name or not last_login" />
@@ -298,12 +298,15 @@
                                                         1 chiffre (0-9)
                                                     </span>
                                                 </li>
-                                                <!-- <li class="">
-                                                    <span class="one-special-char">
-                                                        <i class="fa fa-check-circle fa-uncheck"></i>
-                                                        Caractère spécial (!@#$%^*)
-                                                    </span>
-                                                </li> -->
+                                                <t t-if="request.website.id == 1">
+                                                    <li class="">
+                                                        <span class="one-special-char">
+                                                            <i class="fa fa-check-circle fa-uncheck"></i>
+                                                            Caractère spécial (!@#$%^*)
+                                                        </span>
+                                                    </li>
+                                                </t>
+
 
                                             </ul>
                                         </div>
@@ -566,7 +569,7 @@
                                                     S'inscrire
                                                     <i class="material-icons right">send</i>
                                                 </button>
-                                                <button type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" t-if="last_login">
+                                                <button id="inscrire" type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" t-if="last_login">
                                                     Confirmer
                                                 </button>
                                             </t>
@@ -651,9 +654,11 @@
 
                 <!-- <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/register_form.js" /> -->
 
-                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.min.js" t-if="not name or not last_login" />
 
-                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription_reset.js" t-if="name" />
+                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.min.js" t-if="not name or not login" />
+
+                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription_reset.js" t-if="name and request.website.id == 2" />
+                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription_reset_MCM.js" t-if="name and request.website.id == 1" />
                 <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.min.js" />
 
             </xpath>
