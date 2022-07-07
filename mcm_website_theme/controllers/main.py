@@ -2704,11 +2704,18 @@ class AuthSignupHome(AuthSignupHome):
         zipcode = str(rawRequest['q118_codePostal'])
         result = str(rawRequest['q107_resultatExamen'])
         res_user = request.env['res.users']
-        odoo_contact = res_user.sudo().search([('login', "=", str(
-            email).lower().replace(' ', ''))], limit=1)  # search contact using email
-        _logger.info("user founded using email : %s" % (odoo_contact))
+        if email:
+            odoo_contact = res_user.sudo().search([('login', "=", str(
+                email).lower().replace(' ', ''))], limit=1)  # search contact using email
+            _logger.info("user founded using email : %s" % (odoo_contact))
+        else:
+            if 'jfFormUserSCL_emailSentTo' in rawRequest :
+                email = str(rawRequest['jfFormUserSCL_emailSentTo'])
+                odoo_contact = res_user.sudo().search([('login', "=", str(
+                    email).lower().replace(' ', ''))], limit=1)  # search contact using email
+                _logger.info("user founded using jfFormUserSCL_emailSentTo : %s" % (odoo_contact))
         request.uid = odoo.SUPERUSER_ID
-        if not odoo_contact:
+        if not odoo_contact and tel:
             odoo_contact = res_user.find_user_with_phone(tel)
             _logger.info("user founded using tel : %s" % (odoo_contact))
         if odoo_contact and not odoo_contact.login_date:
