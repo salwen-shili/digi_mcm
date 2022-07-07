@@ -67,7 +67,7 @@ class InheritConfig(models.Model):
             partner.exp_date_sdk_token=datetime.now()+time_change
         return token_sdk['token']
 
-    def workflow_run(self,applicant_id,token,onfido_workflow_id):
+    def workflow_run(self,applicant_id,token,):
         url_workflow = "https://api.eu.onfido.com/v4/workflow_runs/"
         headers = {
             'Authorization': 'Token token=' + token,
@@ -75,7 +75,7 @@ class InheritConfig(models.Model):
             #     'Content-Type': 'application/json',
         }
         data = {
-            "workflow_id": onfido_workflow_id,
+            "workflow_id": "4201e707-42fd-4935-8a64-2c621712af11",
             "applicant_id": applicant_id,
 
         }
