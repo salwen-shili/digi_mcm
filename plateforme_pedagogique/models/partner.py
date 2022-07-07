@@ -440,15 +440,17 @@ class partner(models.Model):
                         # Si la company est digimoov on ajoute i-One sur 360
                         if (company == '2'):
                             """vérifier si formation leger ou lourd"""
-                            id_Digimoov_Examen_Attestation=id_groupe
                             if (partner.module_id.product_id.default_code == "transport-routier"):
                                 if (nom_groupe == digimoov_examen_lourd.upper()):
                                     id_Digimoov_Examen_Attestation = id_groupe
+                                    urlsession = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_Examen_Attestation + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    respsession = requests.put(urlsession, headers=headers, data=data_group)
+
                             else :
                                 if (nom_groupe == digimoov_examen_leger.upper()):
                                     id_Digimoov_Examen_Attestation = id_groupe
-                            urlsession = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_Examen_Attestation + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                            respsession = requests.put(urlsession, headers=headers, data=data_group)
+                                    urlsession = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_Examen_Attestation + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    respsession = requests.put(urlsession, headers=headers, data=data_group)
 
                                 # Affecter à un pack solo
                             packsolo = "Digimoov - Pack Solo"
