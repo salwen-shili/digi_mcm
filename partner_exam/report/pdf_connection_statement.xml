@@ -82,13 +82,13 @@
                             <span t-field="o.module_id.date_exam"
                                   t-field-options='{"format": "dd/MM/yyyy"}'/>
                             <br/>
-                            Durée effective de la formation : &nbsp;&nbsp;min, dont :
+                            Durée effective de la formation : &amp;nbsp;&amp;nbsp;&amp;nbsp; min, dont :
                             <br/>
-                            - &nbsp;&nbsp;min d’appels
+                            - &amp;nbsp;&amp;nbsp;&amp;nbsp; min d’appels
                             <br/>
-                            - &nbsp;&nbsp;min de visioconférences
+                            - &amp;nbsp;&amp;nbsp;&amp;nbsp; min de visioconférences
                             <br/>
-                            - &nbsp;&nbsp;min de temps passé sur la plateforme
+                            - &amp;nbsp;&amp;nbsp;&amp;nbsp; min de temps passé sur la plateforme
                             <br/>
                         </div>
                         <br/>
