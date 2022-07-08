@@ -36,10 +36,6 @@
                                                 centre de
                                                 formation Digimoov, agréé par le préfet de la région
                                                 <span t-field='o.note_exam_id[-1].session_id.state'/>
-                                                sous
-                                                le
-                                                numéro
-                                                d'agrément
                                                 <t t-if="o.note_exam_id[-1].session_id.num_agrement_jury">
                                                     sous le numéro d’agrément
                                                     <span t-field='o.note_exam_id[-1].session_id.num_agrement_jury'/>
