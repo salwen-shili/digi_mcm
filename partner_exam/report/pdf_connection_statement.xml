@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="pdf_connection_statement_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <style>
+                        .page {
+                        line-height: 1.75 ;
+                        font-size:23px ;
+
+                        }
+                    </style>
+
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="col-12">
+                            <img src='/partner_exam/static/src/img/logo_digimoov.png'
+                                                         style="max-height: 190px; float:left;padding-right:30px;"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

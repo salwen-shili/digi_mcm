@@ -99,5 +99,13 @@
             file="partner_exam.report_cerfa"
             paperformat="partner_exam.paperformat_cerfa"
     />
+    <!-- Connection statement -->
+    <report id="pdf_connection_statement_id"
+            string="Générer un relevé de connexion"
+            model="res.partner"
+            report_type="qweb-pdf"
+            name="partner_exam.pdf_connection_statement_report"
+            file="partner_exam.pdf_connection_statement_id"
+    />
 
 </odoo>
