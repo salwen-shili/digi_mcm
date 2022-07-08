@@ -620,5 +620,6 @@ class Session(models.Model):
             rec.count_perdu = perdu_counter
             rec.count_annule = canceled_counter
             prospect_counter = 0
+            count_prospect = 0
             rec.count_prospect = len(rec.prospect_ids)
             rec.count_panier_perdu = len(rec.panier_perdu_ids)

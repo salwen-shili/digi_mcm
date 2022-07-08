@@ -19,325 +19,352 @@
                                     <div class="col-12">
                                         <img src='/partner_exam/static/src/img/suivi_formation_1.png' height="200"
                                              width="1200" style="padding-top:5px!important;"/>
-                                        <img src='/partner_exam/static/src/img/loi_digimoov.png' height="260"
-                                             width="1250" style=""/>
-                                    </div>
-                                    <!--                                    <t t-if="len(o.note_exam_id) &lt; 4">-->
-                                    <center>
-                                        <h2>Déclaration relative au suivi de la formation et aux examens</h2>
-                                    </center>
-                                    Civilité :
-                                    <strong>
-                                        <span t-field="o.title"/>
-                                    </strong>
-                                    <br/>
-                                    Nom et prénom :
-                                    <strong>
-                                        <span t-field="o.name"/>
-                                    </strong>
-                                    <br/>
-                                    Adresse :
-                                    <strong>
-                                        <span t-field="o.street"/>
-                                        <span t-field="o.zip"/>
-                                        <span t-field="o.city"/>
-                                    </strong>
-                                    <br/>
-                                    Né(e) le :
-                                    <strong>
-                                        <span t-field="o.birthday"/>
-                                        à
-                                        <span t-field="o.birth_city"/>
-                                        <span t-field="o.birth_state"/>
-                                    </strong>
-                                    <br/>
-                                    Intitulé de la formation :
-                                    <t t-if="o.mcm_session_id[0].diplome_vise">
-                                        <strong>
-                                            <span t-raw="'%s' % o.mcm_session_id[0].diplome_vise[14:].upper() if o.mcm_session_id[0].diplome_vise else ''"/>
-                                        </strong>
-                                    </t>
-                                    <br/>
-                                    Lieu et dates de la formation :
-                                    <strong>En ligne, du
-                                        <t t-set="sales"
-                                           t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
-                                        <t t-set="financement_mode"
-                                           t-value="o.mode_de_financement == 'particulier'"/>
-                                        <t t-if="sales and financement_mode">
-                                            <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
-                                        </t>
-                                        <t t-else="not sales">
-                                            <span t-esc="o.date_creation"/>
-                                        </t>
-                                        au
-                                        <span t-field="o.module_id.date_exam"
-                                              t-field-options='{"format": "dd/MM/yyyy"}'/>
-                                    </strong>
-                                    <hr width="100%"
-                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin_top: 16px 0px 16px 0px;"/>
-                                    <b>1° Suivi de la formation et premier examen.</b>
-                                    <br/>
-                                    Lieu et date de l’examen :
-                                    <t t-set="val"
-                                       t-value="o.note_exam_id.filtered(lambda nbrp: nbrp.nombre_de_passage == 'premier')"/>
-                                    <t t-if="val[-1]">
-                                        <t t-if="val[-1].session_id.session_adresse_examen">
-                                            <strong>
-                                                <span t-raw="'%s' % val[-1].session_id[0].session_adresse_examen.adresse_centre_examen if val[-1].session_id[0].session_adresse_examen else ''"/>
-                                                -
-                                                <span t-field="val[-1].session_id[0].date_exam"
-                                                      t-field-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
-                                            </strong>
-                                        </t>
-                                    </t>
-                                    <br/>
-                                    Le directeur du centre de formation, organisateur du premier examen,
-                                    agrée par le préfet de la région
-                                    <b>Ile de France</b>
-                                    (n° d’agrément <strong>IDF 2019-0110</strong>), déclare
-                                    que
-                                    M/Mme
-                                    <strong>
-                                        <t t-if="o.display_name">
-                                            <span t-esc="o.display_name"/>
-                                        </t>
-                                        <t t-else="">
-                                            <span>........</span>
-                                        </t>
-                                    </strong>
-                                    a suivi la formation mentionnée ci-dessus et
-                                    <t t-if="len(o.note_exam_id) &gt; 0">
-                                        <t t-if="val[-1]">
-                                            <t t-if="val[-1].presence == 'absence_justifiee'">
-                                                a une <b>absence justifiée</b> au premier examen.
+                                        <img src="/partner_exam/static/src/img/header2.png"
+                                             style="position:absolute;z-index:3;width:100%;height:350px;margin-left:0px;margin-top:10px;"/>
+                                        <p style="position:absolute;z-index:3;margin-top:100px;margin-left:25px;margin-right:25px;"
+                                           align="center">
+                                            DIGIMOOV centre de formation, organisateur du premier examen pour
+                                            l’obtention
+                                            de la capacité professionnelle
+                                            <br/>
+                                            de transport routier léger de marchandises agréé
+                                            par
+                                            le préfet de la région
+                                            <span t-field='o.note_exam_id[-1].session_id.state'/>
+                                            <br/>
+                                            <t t-if="o.note_exam_id[-1].session_id.num_agrement_jury">
+                                                sous le numéro d’agrément
+                                                <span t-field='o.note_exam_id[-1].session_id.num_agrement_jury'/>
                                             </t>
                                             <t t-else="">
-                                                <t t-if="len(o.note_exam_id) &gt; 0">
-                                                    <t t-if="val[-1].presence == 'present'">
-                                                        <span>a passé</span>
-                                                        <strong>
-                                                            <span t-field="val[-1].etat"/>
-                                                        </strong>
-                                                        <span>le premier examen.</span>
-                                                    </t>
-                                                    <t t-else="val[-1].presence == 'Absent'">
-                                                        <span>a été</span>
-                                                        <strong>
-                                                            <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[val[-1].presence]"></t>
-                                                        </strong>
-                                                        <span>au premier examen.</span>
-                                                    </t>
-                                                </t>
+                                                <span></span>
                                             </t>
-                                        </t>
-                                    </t>
-                                    <br/>
-                                    <strong>
+                                            <br/>
+                                            <br/>
+                                            <b>
+                                                Arrêté du 28 décembre 2011 relatif à la délivrance des attestations de
+                                                capacité professionnelle permettant
+                                                l’exercice de la profession de transporteur public routier, article 7
+                                            </b>
+                                        </p>
+                                    </div>
+                                    <div style="position:absolute;z-index:3;margin-top:370px;">
                                         <center>
-                                            Date :
-                                            <span t-esc="((val[-1].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
-                                            />
-                                            &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-                                            &amp;nbsp;&amp;nbsp;
-                                            Signature :
-
-                                            <img src='/partner_exam/static/src/img/signature_suivi.png'
-                                                 style="height:200px; width:300px;padding-top:5px!important;"/>
+                                            <h2>Déclaration relative au suivi de la formation et aux examens</h2>
                                         </center>
-                                    </strong>
-                                    <hr width="100%"
-                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin_top: 16px 0px 16px 0px;"/>
-                                    <b>2° Deuxième examen.</b>
-                                    <br/>
-                                    Lieu et date de l’examen :
-                                    <t t-set="val_2"
-                                       t-value="o.note_exam_id.filtered(lambda nbrp: nbrp.nombre_de_passage == 'deuxieme')"/>
-                                    <t t-if="val_2">
-                                        <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
+                                        Civilité :
+                                        <strong>
+                                            <span t-field="o.title"/>
+                                        </strong>
+                                        <br/>
+                                        Nom et prénom :
+                                        <strong>
+                                            <span t-field="o.name"/>
+                                        </strong>
+                                        <br/>
+                                        Adresse :
+                                        <strong>
+                                            <span t-field="o.street"/>
+                                            <span t-field="o.zip"/>
+                                            <span t-field="o.city"/>
+                                        </strong>
+                                        <br/>
+                                        Né(e) le :
+                                        <strong>
+                                            <span t-field="o.birthday"/>
+                                            à
+                                            <span t-field="o.birth_city"/>
+                                            <span t-field="o.birth_state"/>
+                                        </strong>
+                                        <br/>
+                                        Intitulé de la formation :
+                                        <t t-if="o.mcm_session_id[0].diplome_vise">
                                             <strong>
-                                                <span t-raw=" '%s' % val_2[-1].session_id[0].session_adresse_examen.adresse_centre_examen"/>
+                                                <span t-raw="'%s' % o.mcm_session_id[0].diplome_vise[14:].upper() if o.mcm_session_id[0].diplome_vise else ''"/>
                                             </strong>
-                                            <t t-if="val_2[-1].session_id[0].date_exam">
+                                        </t>
+                                        <br/>
+                                        Lieu et dates de la formation :
+                                        <strong>En ligne, du
+                                            <t t-set="sales"
+                                               t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
+                                            <t t-set="financement_mode"
+                                               t-value="o.mode_de_financement == 'particulier'"/>
+                                            <t t-if="sales and financement_mode">
+                                                <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
+                                            </t>
+                                            <t t-else="not sales">
+                                                <span t-esc="o.date_creation"/>
+                                            </t>
+                                            au
+                                            <span t-field="o.module_id.date_exam"
+                                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                        </strong>
+                                        <hr width="100%"
+                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin_top: 16px 0px 16px 0px;"/>
+                                        <b>1° Suivi de la formation et premier examen.</b>
+                                        <br/>
+                                        Lieu et date de l’examen :
+                                        <t t-set="val"
+                                           t-value="o.note_exam_id.filtered(lambda nbrp: nbrp.nombre_de_passage == 'premier')"/>
+                                        <t t-if="val[-1]">
+                                            <t t-if="val[-1].session_id.session_adresse_examen">
                                                 <strong>
-                                                    <span t-field='val_2[-1].session_id[0].date_exam'
-                                                          t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                                    <span t-raw="'%s' % val[-1].session_id[0].session_adresse_examen.adresse_centre_examen if val[-1].session_id[0].session_adresse_examen else ''"/>
+                                                    -
+                                                    <span t-field="val[-1].session_id[0].date_exam"
+                                                          t-field-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
                                                 </strong>
                                             </t>
                                         </t>
-                                    </t>
-                                    <br/>
-                                    Le directeur du centre de formation, organisateur du deuxième examen, agrée par
-                                    le préfet de la région
-                                    <t t-if="val_2">
-                                        <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
-                                            <strong>
-                                                <t t-if="o.company_id[0].region">
-                                                    <strong>
-                                                        <span t-raw=" '%s' % o.company_id.region"/>
-                                                    </strong>
-                                                </t>
-                                            </strong>
-                                        </t>
-                                    </t>
-                                    <t t-else="">
-                                        <span>........</span>
-                                    </t>
-                                    <br/>
-                                    (n° d’agrément <strong>IDF 2019-0110</strong>),
-                                    déclare que M/Mme
-                                    <t t-if="val_2">
-                                        <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
-                                            <strong>
-                                                <span t-esc="o.display_name"/>
-                                            </strong>
-                                            <t t-if="val_2[-1].presence == 'absence_justifiee'">
-                                                a une <b>absence justifiée</b> au deuxième examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="val_2[-1].presence == 'present'">
-                                                    <span>a passé</span>
-                                                    <strong>
-                                                        <span t-field="val_2[-1].etat"/>
-                                                    </strong>
-                                                    <span>le deuxième examen.</span>
-                                                </t>
-                                                <t t-else="val_2[-1].presence == 'Absent'">
-                                                    <span>a été</span>
-                                                    <strong>
-                                                        <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[val_2[-1].presence]"></t>
-                                                    </strong>
-                                                    <span>au deuxième examen.</span>
-                                                </t>
-                                            </t>
-                                        </t>
-                                    </t>
-                                    <t t-else="">
-                                        <span>........</span>
-                                    </t>
-                                    <center>
+                                        <br/>
+                                        Le directeur du centre de formation, organisateur du premier examen,
+                                        agrée par le préfet de la région
+                                        <b>Ile de France</b>
+                                        (n° d’agrément <strong>IDF 2019-0110</strong>), déclare
+                                        que
+                                        M/Mme
                                         <strong>
-                                            Date :
-                                            <t t-if="val_2">
-                                                <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
-                                                    <span t-esc="((val_2[-1].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
-                                                    />
-                                                </t>
+                                            <t t-if="o.display_name">
+                                                <span t-esc="o.display_name"/>
                                             </t>
                                             <t t-else="">
                                                 <span>........</span>
                                             </t>
-                                            &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-                                            &amp;nbsp;&amp;nbsp;
-                                            Signature :
                                         </strong>
-                                        <t t-if="val_2">
-                                            <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
-                                                <img src='/partner_exam/static/src/img/signature_suivi.png'
-                                                     style="height:200px; width:300px;"/>
+                                        a suivi la formation mentionnée ci-dessus et
+                                        <t t-if="len(o.note_exam_id) &gt; 0">
+                                            <t t-if="val[-1]">
+                                                <t t-if="val[-1].presence == 'absence_justifiee'">
+                                                    a une <b>absence justifiée</b> au premier examen.
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-if="len(o.note_exam_id) &gt; 0">
+                                                        <t t-if="val[-1].presence == 'present'">
+                                                            <span>a passé</span>
+                                                            <strong>
+                                                                <span t-field="val[-1].etat"/>
+                                                            </strong>
+                                                            <span>le premier examen.</span>
+                                                        </t>
+                                                        <t t-else="val[-1].presence == 'Absent'">
+                                                            <span>a été</span>
+                                                            <strong>
+                                                                <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[val[-1].presence]"></t>
+                                                            </strong>
+                                                            <span>au premier examen.</span>
+                                                        </t>
+                                                    </t>
+                                                </t>
                                             </t>
                                         </t>
-                                    </center>
-                                    <hr width="100%"
-                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin_top: 16px 0px 16px 0px;"/>
-                                    <b>3° Troisième examen.</b>
-                                    <br/>
-                                    Lieu et date de l’examen :
-                                    <t t-set="val_3"
-                                       t-value="o.note_exam_id.filtered(lambda nbrp: nbrp.nombre_de_passage == 'troisieme')"/>
-                                    <t t-if="val_3">
-                                        <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                            <strong>
-                                                <span t-raw=" '%s' % val_3[-1].session_id[0].session_adresse_examen.adresse_centre_examen"/>
-                                            </strong>
-                                            <t t-if="val_3[-1].session_id[0].date_exam">
+                                        <br/>
+                                        <strong>
+                                            <center>
+                                                Date :
+                                                <span t-esc="((val[-1].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
+                                                />
+                                                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                                                &amp;nbsp;&amp;nbsp;
+                                                Signature :
+
+                                                <img src='/partner_exam/static/src/img/signature_suivi.png'
+                                                     style="height:200px; width:300px;padding-top:5px!important;"/>
+                                            </center>
+                                        </strong>
+                                        <hr width="100%"
+                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin_top: 16px 0px 16px 0px;"/>
+                                        <b>2° Deuxième examen.</b>
+                                        <br/>
+                                        Lieu et date de l’examen :
+                                        <t t-set="val_2"
+                                           t-value="o.note_exam_id.filtered(lambda nbrp: nbrp.nombre_de_passage == 'deuxieme')"/>
+                                        <t t-if="val_2">
+                                            <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
                                                 <strong>
-                                                    <span t-field='val_3[-1].session_id[0].date_exam'
-                                                          t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                                    <span t-raw=" '%s' % val_2[-1].session_id[0].session_adresse_examen.adresse_centre_examen"/>
+                                                </strong>
+                                                <t t-if="val_2[-1].session_id[0].date_exam">
+                                                    <strong>
+                                                        <span t-field='val_2[-1].session_id[0].date_exam'
+                                                              t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                                    </strong>
+                                                </t>
+                                            </t>
+                                        </t>
+                                        <br/>
+                                        Le directeur du centre de formation, organisateur du deuxième examen, agrée par
+                                        le préfet de la région
+                                        <t t-if="val_2">
+                                            <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
+                                                <strong>
+                                                    <t t-if="o.company_id[0].region">
+                                                        <strong>
+                                                            <span t-raw=" '%s' % o.company_id.region"/>
+                                                        </strong>
+                                                    </t>
                                                 </strong>
                                             </t>
                                         </t>
-                                    </t>
-                                    <br/>
-                                    Le directeur du centre de formation, organisateur du troisième examen, agrée
-                                    par le préfet de la région
-                                    <t t-if="val_3">
-                                        <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                            <strong>
-                                                <t t-if="o.company_id.region">
-                                                    <strong>
-                                                        <span t-raw=" '%s' % o.company_id.region"/>
-                                                    </strong>
+                                        <t t-else="">
+                                            <span>........</span>
+                                        </t>
+                                        <br/>
+                                        (n° d’agrément <strong>IDF 2019-0110</strong>),
+                                        déclare que M/Mme
+                                        <t t-if="val_2">
+                                            <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
+                                                <strong>
+                                                    <span t-esc="o.display_name"/>
+                                                </strong>
+                                                <t t-if="val_2[-1].presence == 'absence_justifiee'">
+                                                    a une <b>absence justifiée</b> au deuxième examen.
                                                 </t>
-                                            </strong>
-                                        </t>
-                                    </t>
-                                    <br/>
-                                    (n° d’agrément <strong>IDF 2019-0110</strong>),
-                                    déclare que M/Mme
-                                    <t t-if="val_3">
-                                        <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                            <strong>
-                                                <span t-esc="o.display_name"/>
-                                            </strong>
-                                        </t>
-                                    </t>
-                                    <t t-else="">
-                                        <span>........</span>
-                                    </t>
-                                    <t t-if="val_3">
-                                        <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                            <t t-if="val_3[-1].presence == 'absence_justifiee'">
-                                                a une <b>absence justifiée</b> au troisième examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="len(o.note_exam_id) &gt; 2">
-                                                    <t t-if="val_3[-1].presence == 'present'">
+                                                <t t-else="">
+                                                    <t t-if="val_2[-1].presence == 'present'">
                                                         <span>a passé</span>
                                                         <strong>
-                                                            <span t-field="val_3[-1].etat"/>
+                                                            <span t-field="val_2[-1].etat"/>
                                                         </strong>
-                                                        <span>le troisième examen.</span>
+                                                        <span>le deuxième examen.</span>
                                                     </t>
-                                                    <t t-else="val_3[-1].presence == 'Absent'">
+                                                    <t t-else="val_2[-1].presence == 'Absent'">
                                                         <span>a été</span>
                                                         <strong>
-                                                            <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[val_3[-1].presence]"></t>
+                                                            <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[val_2[-1].presence]"></t>
                                                         </strong>
-                                                        <span>au troisième examen.</span>
+                                                        <span>au deuxième examen.</span>
                                                     </t>
                                                 </t>
                                             </t>
                                         </t>
-                                    </t>
-                                    <center>
-                                        <strong>
-                                            Date :
+                                        <t t-else="">
+                                            <span>........</span>
+                                        </t>
+                                        <center>
+                                            <strong>
+                                                Date :
+                                                <t t-if="val_2">
+                                                    <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
+                                                        <span t-esc="((val_2[-1].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
+                                                        />
+                                                    </t>
+                                                </t>
+                                                <t t-else="">
+                                                    <span>........</span>
+                                                </t>
+                                                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                                                &amp;nbsp;&amp;nbsp;
+                                                Signature :
+                                            </strong>
+                                            <t t-if="val_2">
+                                                <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
+                                                    <img src='/partner_exam/static/src/img/signature_suivi.png'
+                                                         style="height:200px; width:300px;"/>
+                                                </t>
+                                            </t>
+                                        </center>
+                                        <hr width="100%"
+                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin_top: 16px 0px 16px 0px;"/>
+                                        <b>3° Troisième examen.</b>
+                                        <br/>
+                                        Lieu et date de l’examen :
+                                        <t t-set="val_3"
+                                           t-value="o.note_exam_id.filtered(lambda nbrp: nbrp.nombre_de_passage == 'troisieme')"/>
+                                        <t t-if="val_3">
+                                            <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
+                                                <strong>
+                                                    <span t-raw=" '%s' % val_3[-1].session_id[0].session_adresse_examen.adresse_centre_examen"/>
+                                                </strong>
+                                                <t t-if="val_3[-1].session_id[0].date_exam">
+                                                    <strong>
+                                                        <span t-field='val_3[-1].session_id[0].date_exam'
+                                                              t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                                    </strong>
+                                                </t>
+                                            </t>
+                                        </t>
+                                        <br/>
+                                        Le directeur du centre de formation, organisateur du troisième examen, agrée
+                                        par le préfet de la région
+                                        <t t-if="val_3">
+                                            <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
+                                                <strong>
+                                                    <t t-if="o.company_id.region">
+                                                        <strong>
+                                                            <span t-raw=" '%s' % o.company_id.region"/>
+                                                        </strong>
+                                                    </t>
+                                                </strong>
+                                            </t>
+                                        </t>
+                                        <br/>
+                                        (n° d’agrément <strong>IDF 2019-0110</strong>),
+                                        déclare que M/Mme
+                                        <t t-if="val_3">
+                                            <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
+                                                <strong>
+                                                    <span t-esc="o.display_name"/>
+                                                </strong>
+                                            </t>
+                                        </t>
+                                        <t t-else="">
+                                            <span>........</span>
+                                        </t>
+                                        <t t-if="val_3">
+                                            <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
+                                                <t t-if="val_3[-1].presence == 'absence_justifiee'">
+                                                    a une <b>absence justifiée</b> au troisième examen.
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-if="len(o.note_exam_id) &gt; 2">
+                                                        <t t-if="val_3[-1].presence == 'present'">
+                                                            <span>a passé</span>
+                                                            <strong>
+                                                                <span t-field="val_3[-1].etat"/>
+                                                            </strong>
+                                                            <span>le troisième examen.</span>
+                                                        </t>
+                                                        <t t-else="val_3[-1].presence == 'Absent'">
+                                                            <span>a été</span>
+                                                            <strong>
+                                                                <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[val_3[-1].presence]"></t>
+                                                            </strong>
+                                                            <span>au troisième examen.</span>
+                                                        </t>
+                                                    </t>
+                                                </t>
+                                            </t>
+                                        </t>
+                                        <center>
+                                            <strong>
+                                                Date :
+                                                <t t-if="val_3">
+                                                    <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
+                                                        <span t-esc="((val_3[-1].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span>........</span>
+                                                    </t>
+                                                </t>
+                                                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                                                &amp;nbsp;&amp;nbsp;
+                                                Signature
+                                            </strong>
                                             <t t-if="val_3">
                                                 <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                                    <span t-esc="((val_3[-1].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
+                                                    <img src='/partner_exam/static/src/img/signature_suivi.png'
+                                                         style="height:200px; width:300px;"/>
                                                 </t>
                                                 <t t-else="">
                                                     <span>........</span>
                                                 </t>
                                             </t>
-                                            &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-                                            &amp;nbsp;&amp;nbsp;
-                                            Signature
-                                        </strong>
-                                        <t t-if="val_3">
-                                            <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                                <img src='/partner_exam/static/src/img/signature_suivi.png'
-                                                     style="height:200px; width:300px;"/>
-                                            </t>
-                                            <t t-else="">
-                                                <span>........</span>
-                                            </t>
-                                        </t>
-                                    </center>
-                                    <img src='/partner_exam/static/src/img/footer_attestation_r.png'
-                                         height="180"
-                                         width="1200"/>
+                                        </center>
+                                        <img src='/partner_exam/static/src/img/footer_attestation_r.png'
+                                             height="180"
+                                             width="1200"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
