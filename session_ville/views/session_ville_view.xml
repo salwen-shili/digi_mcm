@@ -30,6 +30,9 @@
                             <field name="company_id" class="oe_inline"/>
                         </div>
                         <group>
+                            <group name="region">
+                                <field name="state" string="Région"/>
+                            </group>
                             <group name="Informations">
                                 <field name="active" invisible="1"/>
                                 <field name="ville_formation"/>
@@ -59,6 +62,7 @@
             <field name="arch" type="xml">
                 <tree string="session ville Tree" default_order="name_ville asc">
                     <field name="name_ville"/>
+                    <field name="state" string="Région"/>
                     <field name="session_adresse_examen_ids"
                            string="Nombre d'addresses"/>
                 </tree>

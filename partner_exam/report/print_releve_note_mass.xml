@@ -34,10 +34,17 @@
                                                 Je soussigné <b>Nasserddine Cherih</b> agissant en tant que Directeur
                                                 Général du
                                                 centre de
-                                                formation Digimoov, agréé par le préfet de la région Ile de France sous
-                                                le
-                                                numéro
-                                                d'agrément 2019-0110, après délibération du Jury,
+                                                formation Digimoov, agréé par le préfet de la région
+                                                <span t-field='o.note_exam_id[-1].session_id.state'/>
+                                                <t t-if="o.note_exam_id[-1].session_id.num_agrement_jury">
+                                                    sous le numéro d’agrément
+                                                    <span t-field='o.note_exam_id[-1].session_id.num_agrement_jury'/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span></span>
+                                                </t>
+                                                , après
+                                                délibération du Jury,
                                                 <br/>
                                                 Atteste que
                                                 <strong>

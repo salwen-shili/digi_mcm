@@ -15,6 +15,9 @@
                 <field name="lien" widget="url" string="Lien"/>
                 <field name="company_id" invisible="True"/>
             </xpath>
+            <xpath expr="//group[@name='rapport_jury']" position="inside">
+                <field name="state" string="Région"/>
+            </xpath>
         </field>
     </record>
 </odoo>
