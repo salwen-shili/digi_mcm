@@ -7,35 +7,44 @@
                     <style>
                         .page {
                         line-height: 1.75 ;
-                        font-size:23px ;
+                        font-size:20px ;
 
                         }
                     </style>
                     <div class="page">
                         <div class="oe_structure"/>
-                        <div class="col-12">
-                            <img src='/partner_exam/static/src/img/logo_digimoov.png'
-                                 style="max-height: 190px;float:right;padding-right:30px;"/>
-                            <p style="float:left;">
-                                <b>DIGIMOOV</b>
-                                <br/>
-                                10 rue de PENTHIEVRE
-                                <br/>
-                                75008 PARIS
-                                <br/>
-                                Email: hello@digimoov.fr
-                                <br/>
-                                Tel: 09 86 87 88 66
-                            </p>
+                        <div class="row">
+                            <div class="col-4">
+                                <img src='/partner_exam/static/src/img/logo_digimoov.png'
+                                     style="max-height: 190px;float:right;padding-right:30px;"/>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <p style="float:left;">
+                                    <b>DIGIMOOV</b>
+                                    <br/>
+                                    10 rue de PENTHIEVRE
+                                    <br/>
+                                    75008 PARIS
+                                    <br/>
+                                    Email: hello@digimoov.fr
+                                    <br/>
+                                    Tel: 09 86 87 88 66
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <br/>
-                            <center>
-                                <b>Relevé de connexion</b>
-                            </center>
+                        <div class="row">
+                            <div class="col-12">
+                                <br/>
+                                <center>
+                                    <b>Relevé de connexion</b>
+                                </center>
+                            </div>
                         </div>
+                        <br/>
+                        <br/>
                         <div class="col-12">
-                            <br/>
+
                             <p>Je, soussigné : <b>NASSERDDINE CHERIH</b>, représentant de l'organisme de formation <b>
                                 DIGIMOOV</b>,
                             </p>
@@ -73,15 +82,27 @@
                             <span t-field="o.module_id.date_exam"
                                   t-field-options='{"format": "dd/MM/yyyy"}'/>
                             <br/>
-                            Durée effective de la formation : min, dont :
+                            Durée effective de la formation : &nbsp;&nbsp;min, dont :
                             <br/>
-                            - min d’appels
+                            - &nbsp;&nbsp;min d’appels
                             <br/>
-                            - min de visioconférences
+                            - &nbsp;&nbsp;min de visioconférences
                             <br/>
-                            - min de temps passé sur la plateforme
+                            - &nbsp;&nbsp;min de temps passé sur la plateforme
                             <br/>
                         </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        Fait à
+                        <strong>
+                            <span t-raw="'%s' % o.city if o.city else '..............'"/>
+                        </strong>
+                        , le
+                        <!-- date système-->
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                        <br/>
 
                     </div>
                 </t>
