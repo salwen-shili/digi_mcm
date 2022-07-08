@@ -69,10 +69,11 @@ class AuthSignupHome(AuthSignupHome):
         if not qcontext.get('token') and not qcontext.get('signup_enabled'):
             raise werkzeug.exceptions.NotFound()
         # Generate an error when a user already uses this email
-        if request.env["res.users"].sudo().search(
-                [("login", "=", qcontext.get("login").replace(' ', '').lower())]):
-            qcontext["error"] = _("Another user is already registered using this email address.")
-
+        _logger.info("mcm auth signup finded user %s" % (str(qcontext.get("login"))))
+        if qcontext.get("login") and qcontext.get("login") != 'none':#check if qcontext of login != none
+            if request.env["res.users"].sudo().search(
+                    [("login", "=", qcontext.get("login").replace(' ', '').lower())]):
+                qcontext["error"] = _("Another user is already registered using this email address.")
         if 'error' not in qcontext :
             res_users = request.env["res.users"]
             user=res_users.find_user_with_phone(qcontext.get("phone"))
