@@ -23,5 +23,7 @@ class OnfidoController(http.Controller):
     def completed_workflow(self, **kw):
         data = json.loads(request.httprequest.payload)
         _logger.info("webhoooooooooook onfido %s" % str(data))
- 
+        workflow_run_id=data['object']['id']
+        _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))
+        # get_workflow(workflow_run_id,token)
         return True

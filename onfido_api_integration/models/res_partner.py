@@ -84,8 +84,11 @@ class InheritConfig(models.Model):
         _logger.info("hiiiiiiii %s" %str(response_workflow_run.json()))
         return workflow_run['id']
 
-    def get_workflow_id(self,token):
-        """recuperer id de workflow activé """
-        url_wrkflow=""
-
-        
+    def get_workflow_runs(self,workflow_id,token):
+        """recuperer workflow activé """
+        url_wrkflow="https://api.eu.onfido.com/v4/workflow_runs/"+workflow_id
+        headers = {
+            'Authorization': 'Token token=' + token,
+            # Already added when you pass json= but not when you pass data=
+            #     'Content-Type': 'application/json',
+        }
