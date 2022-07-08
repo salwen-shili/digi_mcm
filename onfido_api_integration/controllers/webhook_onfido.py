@@ -24,4 +24,4 @@ class OnfidoController(http.Controller):
         data = json.loads(request.httprequest.payload)
         _logger.info("webhoooooooooook onfido %s" % str(data))
  
-        return true
+        return True

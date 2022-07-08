@@ -56,7 +56,7 @@ class InheritConfig(models.Model):
         }
         data = {
             "applicant_id": applicant_id,
-            "referrer": "http://localhost:8069/*"
+            "referrer": "https://dev.digimoov.fr/*"
         }
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk=response_token.json()
@@ -67,7 +67,7 @@ class InheritConfig(models.Model):
             partner.exp_date_sdk_token=datetime.now()+time_change
         return token_sdk['token']
 
-    def workflow_run(self,applicant_id,token,):
+    def workflow_run(self,applicant_id,token,workflow_id):
         url_workflow = "https://api.eu.onfido.com/v4/workflow_runs/"
         headers = {
             'Authorization': 'Token token=' + token,
@@ -75,7 +75,7 @@ class InheritConfig(models.Model):
             #     'Content-Type': 'application/json',
         }
         data = {
-            "workflow_id": "4201e707-42fd-4935-8a64-2c621712af11",
+            "workflow_id": workflow_id,
             "applicant_id": applicant_id,
 
         }
