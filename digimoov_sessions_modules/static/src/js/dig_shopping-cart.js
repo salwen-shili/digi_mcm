@@ -8,6 +8,21 @@ document.addEventListener('DOMContentLoaded', function () {
       windowUrl.includes('formation-solo') ||
       windowUrl.includes('formation-premium')
   );
+  if (windowUrl.includes('lourd')) {
+    var selectCenter = document.getElementById('centre_examen');
+    indexOption = 0;
+    Array.from(selectCenter.options).forEach(function (option_element) {
+      let option_text = option_element.text;
+      index = villeLourd.indexOf(option_text.toUpperCase());
+      if (index == -1 && option_text.toUpperCase() != "SÉLECTIONNEZ VOTRE VILLE D'EXAMEN") {
+        //remove option
+        selectCenter.remove(indexOption);
+        indexOption--;
+      }
+      indexOption++;
+    });
+  }
+  
   if (
     windowUrl.includes('formation-pro') ||
     windowUrl.includes('formation-solo') ||
@@ -30,20 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
       indexOption++;
     });
   }
-  if (windowUrl.includes('lourd')) {
-    var selectCenter = document.getElementById('centre_examen');
-    indexOption = 0;
-    Array.from(selectCenter.options).forEach(function (option_element) {
-      let option_text = option_element.text;
-      index = villeLourd.indexOf(option_text.toUpperCase());
-      if (index == -1 && option_text.toUpperCase() != "SÉLECTIONNEZ VOTRE VILLE D'EXAMEN") {
-        //remove option
-        selectCenter.remove(indexOption);
-        indexOption--;
-      }
-      indexOption++;
-    });
-  }
+ 
 
   displayInstalmentPayment();
   onchangeTextButton1();
