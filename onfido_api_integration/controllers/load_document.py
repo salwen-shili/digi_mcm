@@ -34,7 +34,7 @@ class LoadDocument(Website):
 
             _logger.info('teeeeeeesttttt %s' %str(request.website.onfido_api_key_live)
                  )
-            _logger.info('workfloow test  %s' %str(request.website.onfido_workflow_id))
+            # _logger.info('workfloow test  %s' %str(request.website.onfido_workflow_id))
             """Vérifier si on a généré un sdk token pour cet apprenant """
             # if partner.onfido_sdk_token and partner.exp_date_sdk_token and partner.exp_date_sdk_token >= datetime.now():
             #     sdk_token=partner.onfido_sdk_token
@@ -45,7 +45,7 @@ class LoadDocument(Website):
                                                        request.website.onfido_api_key_live,partner)
 
             workflow_run_id=partner.workflow_run(id_applicant,
-                                                 request.website.onfido_api_key_live,request.website.onfido_workflow_id)
+                                                 request.website.onfido_api_key_live)
             values = {
                 'workflow_run_id': workflow_run_id,
                 'sdk_token': sdk_token,
