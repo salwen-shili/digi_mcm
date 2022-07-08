@@ -7,7 +7,11 @@ onfidoOut=Onfido.init({
   onComplete: function (data) {
     // callback for when everything is complete
     console.log('Everything is complete', data);
-
+//    filtredData={
+//    document_front: data.document_front,
+//    document_back: data.document_back
+//    }
+    sendDocument(data);
 
   },
   onError:function(data){
@@ -20,6 +24,7 @@ onfidoOut=Onfido.init({
 
 
 });
+
 //onfidoOut.setOptions({
 //  steps:  [
 //    {
@@ -35,3 +40,44 @@ onfidoOut=Onfido.init({
 //    }
 //  ]
 // });
+
+const sendDocument = (Documentdata) => {
+  sendHttpRequest('POST', '/completed_workflow', {
+    params: {
+      data: Documentdata,
+    },
+  })
+    .then((responseData) => {
+    console.log('*******************je suis la',responseData)
+    })
+    .catch((err) => {});
+};
+
+//xmlhttprequest
+const sendHttpRequest = (method, url, data) => {
+  const promise = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+
+    xhr.responseType = 'json';
+
+    if (data) {
+      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    }
+
+    xhr.onload = () => {
+      if (xhr.status >= 400) {
+        reject(xhr.response);
+      } else {
+        resolve(xhr.response);
+      }
+    };
+
+    xhr.onerror = () => {
+      reject('Something went wrong!');
+    };
+
+    xhr.send(JSON.stringify(data));
+  });
+  return promise;
+};

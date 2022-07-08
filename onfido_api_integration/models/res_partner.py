@@ -56,7 +56,7 @@ class InheritConfig(models.Model):
         }
         data = {
             "applicant_id": applicant_id,
-            "referrer": "https://dev.digimoov.fr/*"
+            "referrer": "http://localhost:8069/*"
         }
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk=response_token.json()
@@ -67,7 +67,7 @@ class InheritConfig(models.Model):
             partner.exp_date_sdk_token=datetime.now()+time_change
         return token_sdk['token']
 
-    def workflow_run(self,applicant_id,token):
+    def workflow_run(self,applicant_id,token,workflow_id):
         url_workflow = "https://api.eu.onfido.com/v4/workflow_runs/"
         headers = {
             'Authorization': 'Token token=' + token,
@@ -75,7 +75,7 @@ class InheritConfig(models.Model):
             #     'Content-Type': 'application/json',
         }
         data = {
-            "workflow_id": "",
+            "workflow_id":workflow_id,
             "applicant_id": applicant_id,
 
         }
@@ -92,3 +92,14 @@ class InheritConfig(models.Model):
             # Already added when you pass json= but not when you pass data=
             #     'Content-Type': 'application/json',
         }
+    def getDocmument(self,token,documentid):
+        url_document="https://api.eu.onfido.com/v3.4/documents/"+documentid
+        headers = {
+            'Authorization': 'Token token=' + token,
+            # Already added when you pass json= but not when you pass data=
+            #     'Content-Type': 'application/json',
+        }
+        response_documents = requests.get(url_document, headers=headers)
+        document = response_documents.json()
+        _logger.info('document %s' %str(document))
+        return document
