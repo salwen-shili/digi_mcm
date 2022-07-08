@@ -11,13 +11,12 @@
 
                         }
                     </style>
-
                     <div class="page">
                         <div class="oe_structure"/>
                         <div class="col-12">
                             <img src='/partner_exam/static/src/img/logo_digimoov.png'
-                                 style="max-height: 190px; float:left;padding-right:30px;"/>
-                            <p style="float:right;">
+                                 style="max-height: 190px;float:right;padding-right:30px;"/>
+                            <p style="float:left;">
                                 <b>DIGIMOOV</b>
                                 <br/>
                                 10 rue de PENTHIEVRE
@@ -28,16 +27,62 @@
                                 <br/>
                                 Tel: 09 86 87 88 66
                             </p>
+                        </div>
+                        <div class="col-12">
                             <br/>
                             <center>
                                 <b>Relevé de connexion</b>
                             </center>
-                            <br/>
-                            <p>Je, soussigné : <b>NASSERDDINE CHERIH</b>, représentant de l'organisme de formation <b>DIGIMOOV</b>,</p>
-                            <br/>
-                            atteste que: <br/>
-                            a suivi la formation:
                         </div>
+                        <div class="col-12">
+                            <br/>
+                            <p>Je, soussigné : <b>NASSERDDINE CHERIH</b>, représentant de l'organisme de formation <b>
+                                DIGIMOOV</b>,
+                            </p>
+                            <br/>
+                            atteste que:
+                            <strong>
+                                <span t-field="o.name"/>
+                            </strong>
+                            <br/>
+                            a suivi la formation:
+                            <br/>
+                            <hr/>
+                            <center>
+                                <strong>
+                                    <span t-field="o.mcm_session_id.diplome_vise"/>
+                                </strong>
+                            </center>
+                            <hr/>
+                            <br/>
+                            Lieu de la formation :
+                            <b>A distance</b>
+                            <br/>
+                            Dates de la formation : du
+                            <t t-set="sales"
+                               t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
+                            <t t-set="financement_mode"
+                               t-value="o.mode_de_financement == 'particulier'"/>
+                            <t t-if="sales and financement_mode">
+                                <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
+                            </t>
+                            <t t-else="not sales">
+                                <span t-esc="o.date_creation"/>
+                            </t>
+                            au
+                            <span t-field="o.module_id.date_exam"
+                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                            <br/>
+                            Durée effective de la formation : min, dont :
+                            <br/>
+                            - min d’appels
+                            <br/>
+                            - min de visioconférences
+                            <br/>
+                            - min de temps passé sur la plateforme
+                            <br/>
+                        </div>
+
                     </div>
                 </t>
             </t>
