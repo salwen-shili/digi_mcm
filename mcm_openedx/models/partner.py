@@ -483,8 +483,9 @@ class partner(models.Model):
                 }
                 response = requests.request("POST", url, headers=headers, data=payload)
                 _logger.info('response.status_code %s' % str(response.status_code))
-
+                
                 _logger.info('user %s' % str(payload))
+                _logger.info('response content : %s' % str(json.loads(response.content)))
                 if (response.status_code == 200):
                     partner.inscrit_mcm = date.today()
                     self.write({'state': 'en_formation'})
