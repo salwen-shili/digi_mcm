@@ -891,21 +891,21 @@ class WebhookController(http.Controller):
                     user.partner_id.statut = 'won'
 
 
-                    mail_compose_message = request.env['mail.compose.message']
-                    mail_compose_message.fetch_sendinblue_template()
-                    template_id = request.env['mail.template'].sudo().search(
-                        [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
-                         ('model_id', "=", 'res.partner')],
-                        limit=1)  # when the webhook of wedof send the state accepted we send an email to client to register in CMA. we get the mail template from sendinblue
-                    if template_id:
-                        message = request.env['mail.message'].sudo().search(
-                            [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
-                             ('model', "=", 'res.partner'), ('res_id', "=", request.env.user.partner_id.id)],
-                            limit=1)  # check if we have already sent the email
-                        if not message:
-                            user.partner_id.with_context(force_send=True).message_post_with_template(template_id.id,
-                                                                                             composition_mode='comment',
-                                                                                             )  # send the email to client
+                    # mail_compose_message = request.env['mail.compose.message']
+                    # mail_compose_message.fetch_sendinblue_template()
+                    # template_id = request.env['mail.template'].sudo().search(
+                    #     [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
+                    #      ('model_id', "=", 'res.partner')],
+                    #     limit=1)  # when the webhook of wedof send the state accepted we send an email to client to register in CMA. we get the mail template from sendinblue
+                    # if template_id:
+                    #     message = request.env['mail.message'].sudo().search(
+                    #         [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
+                    #          ('model', "=", 'res.partner'), ('res_id', "=", request.env.user.partner_id.id)],
+                    #         limit=1)  # check if we have already sent the email
+                    #     if not message:
+                    #         user.partner_id.with_context(force_send=True).message_post_with_template(template_id.id,
+                    #                                                                          composition_mode='comment',
+                    #                                                                          )  # send the email to client
 
                     if not user.partner_id.renounce_request:
                         if user.partner_id.phone:

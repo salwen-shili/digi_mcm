@@ -72,97 +72,97 @@ class WebsiteSale(WebsiteSale):
         locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8')
         order = request.website.sale_get_order()
         default_code_bolt = False
-        if order.company_id.id == 1:
-            if order.order_line:
-                for line in order.order_line:
-                    # check the shop cart if the product choosed is bolt based on default code of product 'vtc_bolt'
-                    if (line.product_id.default_code == 'vtc_bolt'):
-                        default_code_bolt = True
-                        request.env.user.partner_id.bolt = True
-                        mail_compose_message = request.env['mail.compose.message']
-                        mail_compose_message.fetch_sendinblue_template()
-                        template_id = request.env['mail.template'].sudo().search(
-                            [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
-                             ('model_id', "=", 'res.partner')],
-                            limit=1)  # if product of bolt in shop cart we send mail contains link of exam to client. we get the mail template from sendinblue
-                        if template_id:
-                            message = request.env['mail.message'].sudo().search(
-                                [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
-                                 ('model', "=", 'res.partner'), ('res_id', "=", request.env.user.partner_id.id)],
-                                limit=1)
-                            if not message:  # check if we have already sent the email
-                                request.env.user.partner_id.with_context(force_send=True).message_post_with_template(
-                                    template_id.id,
-                                    composition_mode='comment',
-                                )  # send the email to client
-                        if request.env.user.partner_id.phone:
-                            phone = str(
-                                request.env.user.partner_id.phone.replace(' ', ''))[-9:]
-                            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                5:7] + ' ' + phone[
-                                7:]
-                            request.env.user.partner_id.phone = phone
-                        url = 'https://tinyurl.com/mtw2tv8z'
-                        body = "Cher %s, Pour profiter de la formation VTC à 20 euros vous devez passer un test d'entré de 30 min.Commencez ici : %s" % (
-                            request.env.user.partner_id.name, url)
-                        if body:
-                            sms = request.env['mail.message'].sudo().search(
-                                [("body", "=", body), ("message_type", "=", 'sms'),
-                                 ("res_id", "=", request.env.user.partner_id.id)])
-                            if not sms:
-                                survey = request.env['survey.survey'].sudo().search(
-                                    [('title', "=", 'Examen blanc Français')],
-                                    limit=1)
-                                if survey:
-                                    survey_user = request.env['survey.user_input'].sudo().search(
-                                        [('partner_id', "=", request.env.user.partner_id.id),
-                                         ('survey_id', '=', survey.id)],
-                                        order='create_date asc', limit=1)
-                                    # check if the client has already passed his exam
-                                    if not survey_user:
-                                        composer = request.env['sms.composer'].with_context(
-                                            default_res_model='res.partner',
-                                            default_res_id=request.env.user.partner_id.id,
-                                            default_composition_mode='comment',  # change composition mode to comment
-                                        ).sudo().create({
-                                            'body': body,
-                                            'mass_keep_log': True,
-                                            'mass_force_send': False,
-                                            'use_active_domain': False,
-                                        })
-
-                                        composer.action_send_sms()  # send sms of exam inscription
-                            if request.env.user.partner_id.phone:
-                                request.env.user.partner_id.phone = '0' + \
-                                                                    str(request.env.user.partner_id.phone.replace(
-                                                                        ' ', ''))[-9:]
-                if default_code_bolt:
-                    survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
-                                                                        limit=1)
-                    if survey:
-                        _logger.info('survey : %s' % (str(survey)))
-                        _logger.info('survey : %s' %
-                                     (str(request.env.user.partner_id.email)))
-                        survey_user = request.env['survey.user_input'].sudo().search(
-                            [('partner_id', "=", request.env.user.partner_id.id),
-                             ('survey_id', '=', survey.id)],
-                            order='create_date asc', limit=1)
-                        _logger.info('survey_user : %s' % (str(survey_user)))
-                        if not survey_user:
-                            url = '/survey/start/' + str(survey.access_token)
-                            return werkzeug.utils.redirect(url, 301)
-                        if survey_user and survey_user.state == 'new':
-                            # check if client has not yet passed the exam , we redirect him to the exam
-                            url = '/survey/start/' + str(survey.access_token)
-                            return werkzeug.utils.redirect(url, 301)
-                        if survey_user and survey_user.state == 'skip':
-                            return werkzeug.utils.redirect(
-                                str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
-                        if survey_user and survey_user.state == 'done':
-                            _logger.info('survey_user : %s' %
-                                         (str(survey_user.quizz_passed)))
-                            if not survey_user.quizz_passed:
-                                return werkzeug.utils.redirect('/bolt', 301)
+        # if order.company_id.id == 1:
+        #     if order.order_line:
+        #         for line in order.order_line:
+        #             # check the shop cart if the product choosed is bolt based on default code of product 'vtc_bolt'
+        #             if (line.product_id.default_code == 'vtc_bolt'):
+        #                 default_code_bolt = True
+        #                 request.env.user.partner_id.bolt = True
+        #                 mail_compose_message = request.env['mail.compose.message']
+        #                 mail_compose_message.fetch_sendinblue_template()
+        #                 template_id = request.env['mail.template'].sudo().search(
+        #                     [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
+        #                      ('model_id', "=", 'res.partner')],
+        #                     limit=1)  # if product of bolt in shop cart we send mail contains link of exam to client. we get the mail template from sendinblue
+        #                 if template_id:
+        #                     message = request.env['mail.message'].sudo().search(
+        #                         [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
+        #                          ('model', "=", 'res.partner'), ('res_id', "=", request.env.user.partner_id.id)],
+        #                         limit=1)
+        #                     if not message:  # check if we have already sent the email
+        #                         request.env.user.partner_id.with_context(force_send=True).message_post_with_template(
+        #                             template_id.id,
+        #                             composition_mode='comment',
+        #                         )  # send the email to client
+        #                 if request.env.user.partner_id.phone:
+        #                     phone = str(
+        #                         request.env.user.partner_id.phone.replace(' ', ''))[-9:]
+        #                     phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+        #                         5:7] + ' ' + phone[
+        #                         7:]
+        #                     request.env.user.partner_id.phone = phone
+        #                 url = 'https://tinyurl.com/mtw2tv8z'
+        #                 body = "Cher %s, Pour profiter de la formation VTC à 20 euros vous devez passer un test d'entré de 30 min.Commencez ici : %s" % (
+        #                     request.env.user.partner_id.name, url)
+        #                 if body:
+        #                     sms = request.env['mail.message'].sudo().search(
+        #                         [("body", "=", body), ("message_type", "=", 'sms'),
+        #                          ("res_id", "=", request.env.user.partner_id.id)])
+        #                     if not sms:
+        #                         survey = request.env['survey.survey'].sudo().search(
+        #                             [('title', "=", 'Examen blanc Français')],
+        #                             limit=1)
+        #                         if survey:
+        #                             survey_user = request.env['survey.user_input'].sudo().search(
+        #                                 [('partner_id', "=", request.env.user.partner_id.id),
+        #                                  ('survey_id', '=', survey.id)],
+        #                                 order='create_date asc', limit=1)
+        #                             # check if the client has already passed his exam
+        #                             if not survey_user:
+        #                                 composer = request.env['sms.composer'].with_context(
+        #                                     default_res_model='res.partner',
+        #                                     default_res_id=request.env.user.partner_id.id,
+        #                                     default_composition_mode='comment',  # change composition mode to comment
+        #                                 ).sudo().create({
+        #                                     'body': body,
+        #                                     'mass_keep_log': True,
+        #                                     'mass_force_send': False,
+        #                                     'use_active_domain': False,
+        #                                 })
+        # 
+        #                                 composer.action_send_sms()  # send sms of exam inscription
+        #                     if request.env.user.partner_id.phone:
+        #                         request.env.user.partner_id.phone = '0' + \
+        #                                                             str(request.env.user.partner_id.phone.replace(
+        #                                                                 ' ', ''))[-9:]
+        #         if default_code_bolt:
+        #             survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
+        #                                                                 limit=1)
+        #             if survey:
+        #                 _logger.info('survey : %s' % (str(survey)))
+        #                 _logger.info('survey : %s' %
+        #                              (str(request.env.user.partner_id.email)))
+        #                 survey_user = request.env['survey.user_input'].sudo().search(
+        #                     [('partner_id', "=", request.env.user.partner_id.id),
+        #                      ('survey_id', '=', survey.id)],
+        #                     order='create_date asc', limit=1)
+        #                 _logger.info('survey_user : %s' % (str(survey_user)))
+        #                 if not survey_user:
+        #                     url = '/survey/start/' + str(survey.access_token)
+        #                     return werkzeug.utils.redirect(url, 301)
+        #                 if survey_user and survey_user.state == 'new':
+        #                     # check if client has not yet passed the exam , we redirect him to the exam
+        #                     url = '/survey/start/' + str(survey.access_token)
+        #                     return werkzeug.utils.redirect(url, 301)
+        #                 if survey_user and survey_user.state == 'skip':
+        #                     return werkzeug.utils.redirect(
+        #                         str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
+        #                 if survey_user and survey_user.state == 'done':
+        #                     _logger.info('survey_user : %s' %
+        #                                  (str(survey_user.quizz_passed)))
+        #                     if not survey_user.quizz_passed:
+        #                         return werkzeug.utils.redirect('/bolt', 301)
         if not request.env.user.has_group('base.group_user'):
             documents = False
             if order.partner_id:
