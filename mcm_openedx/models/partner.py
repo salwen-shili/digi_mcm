@@ -485,7 +485,10 @@ class partner(models.Model):
                 _logger.info('response.status_code %s' % str(response.status_code))
                 
                 _logger.info('user %s' % str(payload))
-                _logger.info('response content : %s' % str(json.loads(response.content)))
+                if hasattr(response, 'content'):
+                    _logger.info('response content : %s' % str(json.loads(response.content)))
+                elif hasattr(response, 'text'):
+                    _logger.info('response content : %s' % str(json.loads(response.text)))
                 if (response.status_code == 200):
                     partner.inscrit_mcm = date.today()
                     self.write({'state': 'en_formation'})
