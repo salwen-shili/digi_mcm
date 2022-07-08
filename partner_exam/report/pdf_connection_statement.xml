@@ -7,7 +7,7 @@
                     <style>
                         .page {
                         line-height: 1.75 ;
-                        font-size:20px ;
+                        font-size:18px ;
 
                         }
                     </style>
@@ -81,6 +81,14 @@
                             au
                             <span t-field="o.module_id.date_exam"
                                   t-field-options='{"format": "dd/MM/yyyy"}'/>
+                            <br/>
+                            Date et lieu d'examen : Le
+                            <strong>
+                                <span t-field="o.note_exam_id[-1].session_id.date_exam"
+                                      t-field-options='{"format": "dd/MM/yyyy"}'/> -
+                                <span t-field="o.note_exam_id[-1].session_id.session_adresse_examen.adresse_centre_examen"/>
+                            </strong>
+
                             <br/>
                             Durée effective de la formation : &amp;nbsp;&amp;nbsp;&amp;nbsp; min, dont :
                             <br/>
