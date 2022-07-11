@@ -117,12 +117,15 @@
                         <!-- date système-->
                         <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                         <br/>
-                        <img src='/partner_exam/static/src/img/signature_cnx.png' style="height:200px;width:300px;padding-top:5px!important;"/>
+                        <img src='/partner_exam/static/src/img/signature_cnx.png'
+                             style="height:110px;width:300px;padding-top:10px!important;"/>
                     </div>
                     <br/>
-                        <div class="col-12">
-                            <img src='/partner_exam/static/src/img/footer_cnx.png' height="100" width="1000"/>
-                        </div>
+                    <br/>
+                    <br/>
+                    <div class="col-12" style="padding-top:150px;">
+                        <img src='/partner_exam/static/src/img/footer_cnx.png' height="45" width="1000"/>
+                    </div>
                 </t>
             </t>
         </t>
