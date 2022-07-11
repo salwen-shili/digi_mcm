@@ -115,7 +115,8 @@
                         </strong>
                         , le
                         <!-- date système-->
-                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                        <!--                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>-->
+                        <span t-esc="((o.note_exam_id[-1].session_id.date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
                         <br/>
                         <img src='/partner_exam/static/src/img/signature_cnx.png'
                              style="height:110px;width:300px;padding-top:10px!important;"/>
