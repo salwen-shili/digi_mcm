@@ -14,7 +14,6 @@
                     <div class="page">
                         <div class="oe_structure"/>
                         <div class="row">
-                            <div class="col-4"></div>
                             <div class="col-4">
                                 <p style="float:left;">
                                     <b>DIGIMOOV</b>
@@ -28,6 +27,7 @@
                                     Tel: 09 86 87 88 66
                                 </p>
                             </div>
+                            <div class="col-4"></div>
                             <div class="col-4">
                                 <img src='/partner_exam/static/src/img/logo_digimoov.png'
                                      style="max-height:190px;float:right;padding-right:30px;"/>
@@ -44,7 +44,6 @@
                         <br/>
                         <br/>
                         <div class="col-12">
-
                             <p>Je, soussigné : <b>NASSERDDINE CHERIH</b>, représentant de l'organisme de formation <b>
                                 DIGIMOOV</b>,
                             </p>
@@ -90,13 +89,13 @@
                             </strong>
 
                             <br/>
-                            Durée effective de la formation : &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; min, dont :
+                            Durée effective de la formation : &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; min, dont :
                             <br/>
-                            - &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; min d’appels
+                            - &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; min d’appels
                             <br/>
-                            - &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; min de visioconférences
+                            - &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; min de visioconférences
                             <br/>
-                            - &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; min de temps passé sur la plateforme
+                            - &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; min de temps passé sur la plateforme
                             <br/>
                         </div>
                         <br/>
