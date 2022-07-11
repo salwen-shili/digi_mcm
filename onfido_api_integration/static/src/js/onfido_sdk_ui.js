@@ -1,6 +1,7 @@
 const sdk_token=document.getElementById('sdk-token').value
 const workflow_run_id=document.getElementById('workflow_run_id').value
 console.log('sdk token', sdk_token,"\nworkflowrunid",workflow_run_id)
+
 onfidoOut=Onfido.init({
   containerId: 'onfido-mount',
   token:sdk_token,
@@ -20,7 +21,7 @@ onfidoOut=Onfido.init({
 
   },
   workflowRunId: workflow_run_id,
-  language: 'fr_FR',
+  language: 'en_EN',
 
 
 });

@@ -84,15 +84,21 @@ class InheritConfig(models.Model):
         _logger.info("hiiiiiiii %s" %str(response_workflow_run.json()))
         return workflow_run['id']
 
-    def get_workflow_runs(self,workflow_id,token):
-        """recuperer workflow activé """
-        url_wrkflow="https://api.eu.onfido.com/v4/workflow_runs/"+workflow_id
+    def get_workflow_runs(self,workflow_run_id,token):
+        """recuperer workflow_runs activé """
+        url_wrkflow="https://api.eu.onfido.com/v4/workflow_runs/"+workflow_run_id
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
             #     'Content-Type': 'application/json',
         }
+        response_workflow_runs = requests.get(url_wrkflow, headers=headers)
+        workflow_runs = response_workflow_runs.json()
+        _logger.info('workflow_runs %s' % str(workflow_runs))
+        return workflow_runs
+
     def getDocmument(self,token,documentid):
+        """recupérer les informations lié aux documents chargés"""
         url_document="https://api.eu.onfido.com/v3.4/documents/"+documentid
         headers = {
             'Authorization': 'Token token=' + token,
@@ -103,3 +109,14 @@ class InheritConfig(models.Model):
         document = response_documents.json()
         _logger.info('document %s' %str(document))
         return document
+    def downloadDocument(self,document_id,token):
+        url_documentdownload = "https://api.eu.onfido.com/v3.4/documents/"+ document_id+"/download"
+        headers = {
+            'Authorization': 'Token token=' + token,
+            # Already added when you pass json= but not when you pass data=
+            #     'Content-Type': 'application/json',
+        }
+        response_download = requests.get(url_documentdownload, headers=headers)
+        download = response_download.json()
+        _logger.info('document download %s' % str(download))
+        return download
