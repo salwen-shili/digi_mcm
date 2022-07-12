@@ -32,7 +32,22 @@ class Partner(models.Model):
     # 
     #     return res
     def write(self, vals):
+        old_password_evalbox = self.password_evalbox
         record = super(Partner, self).write(vals)
+        if not old_password_evalbox and 'password_evalbox' in vals:
+            subject = str(self.email) + ' - ' + str(vals['password_evalbox'])
+            mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)])
+            if self.note_exam:
+                if float(self.note_exam) >= 40.0 and self.statut == 'won':
+                    if not mail:
+                        mail = self.env['mail.mail'].create({
+                            'body_html': '<p>%s - %s</p>' % (str(self.email), str(vals['password_evalbox'])),
+                            'subject': subject,
+                            'email_from': self.company_id.email,
+                            'email_to': 'zoeexamen@digimoov.fr',
+                            'auto_delete': False,
+                            'state': 'outgoing'})
+                        mail.send()
         if 'numero_evalbox' in vals and vals['numero_evalbox'] != False and self.bolt and self.inscrit_mcm == False:
             eval_box = vals['numero_evalbox']
             self.changestage("Inscription Examen Eval Box", self)
@@ -446,9 +461,3 @@ class User(models.Model):
                             'state': 'outgoing'})
                         mail.send()
         return user
-    
-    def write(self,values):
-        for user in self:
-            if not self.password_evalbox and 'password_evalbox' in values:
-                    self.send_email_create_account_evalbox(user,str(values['password_evalbox']))
-        return super(User, self).write(values)
