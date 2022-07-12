@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+        <!-- Action Session Approval Number -->
+        <record id="action_session_ville" model="ir.actions.act_window">
+            <field name="name">Action Session Approval Number</field>
+            <field name="res_model">approval.number</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Add approval number!</p>
+            </field>
+        </record>
+
+        <!-- Views Form Approval Number-->
+        <record id="session_approval_number_form" model="ir.ui.view">
+            <field name="name">session.approval.number.form</field>
+            <field name="model">approval.number</field>
+            <field name="arch" type="xml">
+                <form string="ville">
+                    <sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name_ville" class="oe_inline"/>
+                            </h1>
+                        </div>
+                        <div>
+                            <label for="company_id" class="oe_edit_only"/>
+                            <field name="company_id" class="oe_inline"/>
+                        </div>
+                        <group>
+                            <group name="description">
+                                <field name="description" string="Description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Views Tree des villes-->
+        <record id="session_approval_number_tree_view" model="ir.ui.view">
+            <field name="name">session.approval.number.tree</field>
+            <field name="model">approval.number</field>
+            <field name="arch" type="xml">
+                <tree string="approval_number" default_order="name asc">
+                    <field name="name"/>
+                    <field name="company_id" string="Société"/>
+                    <field name="description"
+                           string="Description"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

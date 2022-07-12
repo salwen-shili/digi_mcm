@@ -28,6 +28,7 @@
         'views/inherit_res_partner.xml',
         'views/inherit_mcmacademy_module.xml',
         'views/res_partner_adresse_view.xml',
+        'views/approval_number.xml',
     ],
     'qweb': ['static/src/xml/hide_checkbox_company.xml'],
     'images': [],

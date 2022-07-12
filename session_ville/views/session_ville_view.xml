@@ -63,6 +63,7 @@
                 <tree string="session ville Tree" default_order="name_ville asc">
                     <field name="name_ville"/>
                     <field name="state" string="Région"/>
+                    <field name="num_agrement_jury" string="Numéro d'agrément"/>
                     <field name="session_adresse_examen_ids"
                            string="Nombre d'addresses"/>
                 </tree>
