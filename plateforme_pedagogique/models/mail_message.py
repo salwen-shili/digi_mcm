@@ -28,7 +28,7 @@ class Message(models.Model):
                         partner_id.email=partner_id.second_email
 
         return res
-
+    @api.model
     def create(self, values):
         res = super(Message, self).create(values)
         print("create ", values)
