@@ -37,7 +37,7 @@ class SessionApprovalNumber(models.Model):
     _name = "approval.number"
     _description = "Approval number"
 
-    name = fields.char()
+    name = fields.Char()
     active = fields.Boolean('Active', default=True)
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     description = fields.Char()
