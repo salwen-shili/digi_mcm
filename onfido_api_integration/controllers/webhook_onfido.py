@@ -9,6 +9,7 @@ from datetime import datetime, timedelta, date
 import re
 import json
 from odoo import _
+import base64
 import locale
 from dateutil.relativedelta import relativedelta
 from odoo.exceptions import ValidationError
@@ -36,6 +37,24 @@ class OnfidoController(http.Controller):
         # workflow_run_id=data['object']['id']
         # _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))
         # # get_workflow(workflow_run_id,token)
+        _logger.info('document download %s' % str(download_document))
+        image_binary = base64.b64encode(download_document)
+        folder_id = request.env['documents.folder'].sudo().search(
+            [('name', "=", _('Documents DIGIMOOV')), ('company_id', "=", 2)], limit=1)
+        _logger.info('partner_id %s' % str(request.env.user.partner_id.id))
+        vals = {
+            'name': document,
+            'datas': image_binary,
+            'type': 'binary',
+            'partner_id': request.env.user.partner_id.id,
+            'folder_id': folder_id.id,
+            'state': 'validated',
+        }
+        attachement = request.env['ir.attachment'].sudo().create(
+            vals
+        )
+        _logger.info('partner_id %s' % str(attachement))
+
         return True
 
 
@@ -43,7 +62,7 @@ class OnfidoController(http.Controller):
     @http.route(['/completed_workflow_webhook'], type='json', auth="user", methods=['POST'])
     def completed_workflow_webhook(self,**kw):
 
-        data = json.loads(request.httprequest.payload)
+        data = json.loads(request.httprequest.data)
         _logger.info("webhoooooooooook onfido %s" % str(data))
         workflow_run_id=data['object']['id']
         _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))

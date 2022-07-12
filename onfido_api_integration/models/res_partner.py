@@ -1,6 +1,9 @@
-from odoo import api, fields, models, tools
+from odoo import api, fields, models, tools,_
 import requests
 import urllib.request
+import base64
+
+
 from datetime import datetime, timedelta, date
 from odoo.modules.module import get_resource_path
 from PIL import Image
@@ -75,7 +78,7 @@ class InheritConfig(models.Model):
             #     'Content-Type': 'application/json',
         }
         data = {
-            "workflow_id":workflow_id,
+            "workflow_id": workflow_id,
             "applicant_id": applicant_id,
 
         }
@@ -117,6 +120,7 @@ class InheritConfig(models.Model):
             #     'Content-Type': 'application/json',
         }
         response_download = requests.get(url_documentdownload, headers=headers)
-        download = response_download.json()
-        _logger.info('document download %s' % str(download))
+        download = response_download.content
+        type_data=type(response_download)
+        
         return download
