@@ -21,7 +21,7 @@ class InheritConfig(models.Model):
         """Creer un nouveau applicant avec api Onfido"""
         url_post = "https://api.eu.onfido.com/v3.4/applicants"
         headers = {
-            'Authorization':'Token token=api_sandbox.q5hp3RFoEC5.LmalsAEYAIQj_ABRSx2o7LeuDFW0ZNc3',
+            'Authorization':'Token token='+token,
             # Already added when you pass json= but not when you pass data=
         #     'Content-Type': 'application/json',
         }
@@ -53,13 +53,13 @@ class InheritConfig(models.Model):
         _logger.info("base urll %s"%str(base_url))
         url_sdk = "https://api.eu.onfido.com/v3.4/sdk_token"
         headers = {
-            'Authorization': 'Token token=api_sandbox.q5hp3RFoEC5.LmalsAEYAIQj_ABRSx2o7LeuDFW0ZNc3',
+            'Authorization': 'Token token='+token,
             # Already added when you pass json= but not when you pass data=
             #     'Content-Type': 'application/json',
         }
         data = {
             "applicant_id": applicant_id,
-            "referrer": "https://dev.digimoov.fr/*"
+            "referrer": "http://localhost:8069/*"
         }
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk=response_token.json()
@@ -73,7 +73,7 @@ class InheritConfig(models.Model):
     def workflow_run(self,applicant_id,token,workflow_id):
         url_workflow = "https://api.eu.onfido.com/v4/workflow_runs/"
         headers = {
-            'Authorization': 'Token token=api_sandbox.q5hp3RFoEC5.LmalsAEYAIQj_ABRSx2o7LeuDFW0ZNc3',
+            'Authorization': 'Token token='+token,
             # Already added when you pass json= but not when you pass data=
             #     'Content-Type': 'application/json',
         }
@@ -91,7 +91,7 @@ class InheritConfig(models.Model):
         """recuperer workflow_runs activé """
         url_wrkflow="https://api.eu.onfido.com/v4/workflow_runs/"+workflow_run_id
         headers = {
-            'Authorization': 'Token token=api_sandbox.q5hp3RFoEC5.LmalsAEYAIQj_ABRSx2o7LeuDFW0ZNc3',
+            'Authorization': 'Token token='+token,
             # Already added when you pass json= but not when you pass data=
             #     'Content-Type': 'application/json',
         }
@@ -104,7 +104,7 @@ class InheritConfig(models.Model):
         """recupérer les informations lié aux documents chargés"""
         url_document="https://api.eu.onfido.com/v3.4/documents/"+documentid
         headers = {
-            'Authorization': 'Token token=api_sandbox.q5hp3RFoEC5.LmalsAEYAIQj_ABRSx2o7LeuDFW0ZNc3',
+            'Authorization': 'Token token='+token,
             # Already added when you pass json= but not when you pass data=
             #     'Content-Type': 'application/json',
         }
@@ -115,7 +115,7 @@ class InheritConfig(models.Model):
     def downloadDocument(self,document_id,token):
         url_documentdownload = "https://api.eu.onfido.com/v3.4/documents/"+ document_id+"/download"
         headers = {
-            'Authorization': 'Token token=api_sandbox.q5hp3RFoEC5.LmalsAEYAIQj_ABRSx2o7LeuDFW0ZNc3',
+            'Authorization': 'Token token='+token,
             # Already added when you pass json= but not when you pass data=
             #     'Content-Type': 'application/json',
         }

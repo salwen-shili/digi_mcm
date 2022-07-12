@@ -40,18 +40,26 @@ class OnfidoController(http.Controller):
         _logger.info('document download %s' % str(download_document))
         image_binary = base64.b64encode(download_document)
         folder_id = request.env['documents.folder'].sudo().search(
-            [('name', "=", _('Documents DIGIMOOV')), ('company_id', "=", 2)], limit=1)
+            [('name', "=", _('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
         _logger.info('partner_id %s' % str(request.env.user.partner_id.id))
+        _logger.info('partner_id %s' % str(folder_id))
         vals = {
             'name': document,
             'datas': image_binary,
             'type': 'binary',
-            'partner_id': request.env.user.partner_id.id,
+            'partner_id': request.env.user.partner_id,
             'folder_id': folder_id.id,
-            'state': 'validated',
+            'state': 'validated'
         }
-        attachement = request.env['ir.attachment'].sudo().create(
-            vals
+        attachement = request.env['documents.document'].sudo().create(
+            {
+                'name': "document",
+                'datas': image_binary,
+                'type': 'binary',
+                'partner_id': request.env.user.partner_id.id,
+                'folder_id': folder_id.id,
+                'state': 'validated'
+            }
         )
         _logger.info('partner_id %s' % str(attachement))
 
@@ -59,11 +67,11 @@ class OnfidoController(http.Controller):
 
 
     """get event workflowrund is completed with webhook """
-    @http.route(['/completed_workflow_webhook'], type='json', auth="user", methods=['POST'])
+    @http.route(['/completed_workflow_webhook'], type='http', auth="user", methods=['POST'])
     def completed_workflow_webhook(self,**kw):
 
         data = json.loads(request.httprequest.data)
-        _logger.info("webhoooooooooook onfido %s" % str(data))
+        _logger.info("webhoooooooooook onfido %s" % str(**kw))
         workflow_run_id=data['object']['id']
         _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))
         partner = request.env.user.partner_id
