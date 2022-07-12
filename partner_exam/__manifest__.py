@@ -39,6 +39,7 @@
         'report/mass_pdf_relevé_de_note_examen.xml',
         'report/attestation_suivi_formation.xml',
         'report/cerfa.xml',
+        'report/pdf_connection_statement.xml',
         'data/mail_template_suivi_formation.xml',
         'data/ir_cron.xml',
         'data/ir_actions.server.xml',

@@ -89,6 +89,22 @@
         <field name="header_spacing">0</field>
         <field name="dpi">90</field>
     </record>
+    <!--    This is used to reformat paper pdf format of connection statement -->
+    <record id="paperformat_connection_statement" model="report.paperformat">
+        <field name="name">Un relevé de connexion</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
 
     <!-- Cerfa -->
     <report id="report_cerfa"
@@ -98,6 +114,16 @@
             name="partner_exam.template_raport_cerfa"
             file="partner_exam.report_cerfa"
             paperformat="partner_exam.paperformat_cerfa"
+    />
+    <!-- Connection statement -->
+    <report id="pdf_connection_statement_id"
+            string="Générer un relevé de connexion"
+            model="res.partner"
+            report_type="qweb-pdf"
+            name="partner_exam.pdf_connection_statement_report"
+            file="partner_exam.pdf_connection_statement_id"
+            print_report_name="'Relevé de connexion- %s' % (object.name).replace('/', '')"
+            paperformat="partner_exam.paperformat_connection_statement"
     />
 
 </odoo>
