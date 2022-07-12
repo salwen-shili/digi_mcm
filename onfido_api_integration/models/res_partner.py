@@ -35,9 +35,9 @@ class InheritConfig(models.Model):
             "address": {
             "building_number": "100",
             "street": "Main Street",
-            "town": "London",
+            "town": partner.city,
             "postcode": "SW4 6EH",
-            "country": "GBR",
+            "country": partner.country_id.name,
             }
         }
         response = requests.post(url_post, headers=headers, data=json.dumps(json_data))
@@ -59,7 +59,7 @@ class InheritConfig(models.Model):
         }
         data = {
             "applicant_id": applicant_id,
-            "referrer": "http://localhost:8069/*"
+            "referrer": "https://dev.digimoov.fr/*"
         }
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk=response_token.json()
