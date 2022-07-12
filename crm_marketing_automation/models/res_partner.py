@@ -32,14 +32,14 @@ class Partner(models.Model):
     # 
     #     return res
     def write(self, vals):
-        old_password_evalbox = self.password_evalbox
+        old_password_evalbox = self.password_evalbox # get old password_evalbox before write
         record = super(Partner, self).write(vals)
-        if not old_password_evalbox and 'password_evalbox' in vals:
+        if not old_password_evalbox and 'password_evalbox' in vals: #check if old password_evalbox is empty and password_evalbox in vals of write
             subject = str(self.email) + ' - ' + str(vals['password_evalbox'])
-            mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)])
+            mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)]) #check if we have already send email to zoe contains email and password_evalbox of the client
             if self.note_exam:
-                if float(self.note_exam) >= 40.0 and self.statut == 'won':
-                    if not mail:
+                if float(self.note_exam) >= 40.0 and self.statut == 'won': #check if the state of client is won
+                    if not mail: #send mail to zoe
                         mail = self.env['mail.mail'].create({
                             'body_html': '<p>%s - %s</p>' % (str(self.email), str(vals['password_evalbox'])),
                             'subject': subject,
