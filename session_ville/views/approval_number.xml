@@ -22,7 +22,7 @@
                         <div class="oe_title">
                             <label for="name" class="oe_edit_only"/>
                             <h1>
-                                <field name="name_ville" class="oe_inline"/>
+                                <field name="name" class="oe_inline"/>
                             </h1>
                         </div>
                         <div>
