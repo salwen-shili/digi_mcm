@@ -42,35 +42,35 @@ class SurveyUserInput(models.Model):
                                                                     limit=1)
                 partner = self.env['res.partner'].sudo().search([('id', "=", partner_id)],
                                                                     limit=1)
-                if survey :
-                    if survey.title == 'Examen blanc Français' :
-                        if partner :
-                            if partner.phone:
-                                phone = str(partner.phone.replace(' ', ''))[-9:]
-                                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                                               5:7] + ' ' + phone[
-                                                                                                                            7:]
-                                partner.phone = phone
-                            url = 'https://tinyurl.com/mtw2tv8z'
-                            body = "Cher %s, Pour profiter de la formation VTC à 20 euros vous devez passer un test d'entré de 30 min.Commencez ici : %s" % (
-                                partner.name, url)
-                            if body:
-                                sms = self.env['mail.message'].sudo().search(
-                                    [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
-                                print('sms2:', sms)
-                                if not sms:
-                                    composer = self.env['sms.composer'].sudo().create({
-                                        'res_model': 'res.partner',
-                                        'res_id': partner.id,
-                                        'composition_mode': 'comment', #change composition mode to comment
-                                        'body': body,
-                                        'mass_keep_log': True,
-                                        'mass_force_send': False,
-                                        'use_active_domain': False,
-                                    })
-                                    composer.action_send_sms()  # send sms of exam inscription
-                                if partner.phone:
-                                    partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
+                # if survey :
+                #     if survey.title == 'Examen blanc Français' :
+                #         if partner :
+                #             if partner.phone:
+                #                 phone = str(partner.phone.replace(' ', ''))[-9:]
+                #                 phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                #                                                                                                5:7] + ' ' + phone[
+                #                                                                                                             7:]
+                #                 partner.phone = phone
+                #             url = 'https://tinyurl.com/mtw2tv8z'
+                #             body = "Cher %s, Pour profiter de la formation VTC à 20 euros vous devez passer un test d'entré de 30 min.Commencez ici : %s" % (
+                #                 partner.name, url)
+                #             if body:
+                #                 sms = self.env['mail.message'].sudo().search(
+                #                     [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
+                #                 print('sms2:', sms)
+                #                 if not sms:
+                #                     composer = self.env['sms.composer'].sudo().create({
+                #                         'res_model': 'res.partner',
+                #                         'res_id': partner.id,
+                #                         'composition_mode': 'comment', #change composition mode to comment
+                #                         'body': body,
+                #                         'mass_keep_log': True,
+                #                         'mass_force_send': False,
+                #                         'use_active_domain': False,
+                #                     })
+                #                     composer.action_send_sms()  # send sms of exam inscription
+                #                 if partner.phone:
+                #                     partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
         print('vals_list:', vals_list)
         return super(SurveyUserInput, self).create(vals_list)
 

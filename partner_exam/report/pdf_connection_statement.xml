@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="pdf_connection_statement_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <style>
+                        .page {
+                        line-height: 1.75 ;
+                        font-size:18px ;
+
+                        }
+                    </style>
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-4">
+                                <p style="float:left;">
+                                    <b>DIGIMOOV</b>
+                                    <br/>
+                                    10 rue de PENTHIEVRE
+                                    <br/>
+                                    75008 PARIS
+                                    <br/>
+                                    Email: hello@digimoov.fr
+                                    <br/>
+                                    Tel: 09 86 87 88 66
+                                </p>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <img src='/partner_exam/static/src/img/logo_digimoov.png'
+                                     style="max-height:190px;float:right;padding-right:30px;"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <br/>
+                                <center>
+                                    <h2>
+                                        <b>Relevé de connexion</b>
+                                    </h2>
+                                </center>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="col-12">
+                            <p>Je, soussigné : <b>NASSERDDINE CHERIH</b>, représentant de l'organisme de formation <b>
+                                DIGIMOOV</b>,
+                            </p>
+                            <br/>
+                            atteste que:
+                            <strong>
+                                <span t-field="o.name"/>
+                            </strong>
+                            <br/>
+                            a suivi la formation:
+                            <br/>
+                            <hr/>
+                            <center>
+                                <strong>
+                                    <span t-field="o.mcm_session_id.diplome_vise"/>
+                                </strong>
+                            </center>
+                            <hr/>
+                            <br/>
+                            Lieu de la formation :
+                            <b>A distance</b>
+                            <br/>
+                            Dates de la formation : du
+                            <t t-set="sales"
+                               t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
+                            <t t-set="financement_mode"
+                               t-value="o.mode_de_financement == 'particulier'"/>
+                            <t t-if="sales and financement_mode">
+                                <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
+                            </t>
+                            <t t-else="not sales">
+                                <span t-esc="o.date_creation"/>
+                            </t>
+                            au
+                            <span t-field="o.module_id.date_exam"
+                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                            <br/>
+                            Date et lieu d'examen : Le
+                            <strong>
+                                <span t-field="o.note_exam_id[-1].session_id.date_exam"
+                                      t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                -
+                                <span t-field="o.note_exam_id[-1].session_id.session_adresse_examen.adresse_centre_examen"/>
+                            </strong>
+
+                            <br/>
+                            Durée effective de la formation : &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                            min, dont :
+                            <br/>
+                            - &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                            min d’appels
+                            <br/>
+                            - &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                            min de visioconférences
+                            <br/>
+                            - &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                            min de temps passé sur la plateforme
+                            <br/>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        Fait à
+                        <strong>
+                            <span t-field="o.note_exam_id[-1].session_id.session_ville_id.name_ville"/>
+                        </strong>
+                        , le
+                        <!-- date système-->
+                        <!--                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>-->
+                        <span t-esc="((o.note_exam_id[-1].session_id.date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
+                        <br/>
+                        <img src='/partner_exam/static/src/img/signature_cnx.png'
+                             style="height:110px;width:300px;padding-top:10px!important;"/>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="col-12" style="padding-top:150px;">
+                        <img src='/partner_exam/static/src/img/footer_cnx.png' height="45" width="1000"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

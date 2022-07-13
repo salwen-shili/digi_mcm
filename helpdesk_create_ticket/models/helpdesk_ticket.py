@@ -59,7 +59,7 @@ class HelpdeskTicket(models.Model):
 
     def unlink_ticket_rejected_mails(self):
         tickets = self.env["helpdesk.ticket"].sudo().search([], order="id DESC",
-                                                            limit=500)  # récupérer les 500 derniers tickets créers
+                                                            limit=1500)  # récupérer les 500 derniers tickets créers
         # list des terms ou emails rejetés ( supprimer les tickets envoyés par ces emails )
         rejected_mails = [
             'no-reply@360learning.com','zoom.us','product-feedback@calendly.com','no-reply','customermarketing@aircall.io','newsletter@axeptio.eu','order-update@amazon.fr',
@@ -70,7 +70,7 @@ class HelpdeskTicket(models.Model):
         ] #add calendly and digiforma to list of rejected mails
         # list des terms  rejetés ( supprimer les tickets qui ont l'un de ces terms comme objet )
         rejected_subject = [
-            'nouveau ticket', 'assigné à vous', 'assigned to you', 'SPAM'
+            'nouveau ticket', 'assigné à vous', 'assigned to you', 'SPAM', 'Evalbox: Notification de connexion' , 'UiPath -' ,'Zoom'
         ]  # add the term spam from rejected subjects in ticket
         list_ids_deleted_tickets = []  # préparer une liste vide qui sera par les id des tickets à supprimer
         for ticket in tickets: #parcourir les 100 derniers tickets
@@ -79,7 +79,7 @@ class HelpdeskTicket(models.Model):
                     list_ids_deleted_tickets.append(ticket.id) #ajouter l'id de ticket à list des tickets à supprimer
                 else:
                     rejected_notes = [
-                        'Devis vu', 'Contrat signé', 'Quotation viewed by'
+                        'Devis vu', 'Contrat signé', 'Quotation viewed by', 'Quotation signed by'
                     ] # liste des terms des notes système créer en ticket à vérifier
 
                     notes = self.env["mail.message"].sudo().search([('model',"=",'helpdesk.ticket'),('res_id',"=",ticket.id)]) #recupère tous les notes créer dans le ticket

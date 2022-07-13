@@ -1666,6 +1666,11 @@ class partner(models.Model):
                                     #     so.action_cancel()
                                     #     so.unlink()
                                     user.partner_id.statut = 'won'
+                                    list = []
+                                    for client in module_id.session_id.client_ids: #get list of existing clients ids
+                                        list.append(client.id)
+                                    list.append(user.partner_id.id) #append partner to the list
+                                    module_id.session_id.write({'client_ids': [(6, 0, list)]}) # update the list of clients 
                                     """changer step à validé dans espace client """
                                     user.partner_id.step = 'finish'
                                     session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),

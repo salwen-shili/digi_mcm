@@ -38,4 +38,3 @@ class McmacademySessionVille(models.Model):
             self.num_agrement_jury = ""
         else:
             self.num_agrement_jury = ""
-            self.state_id.name = ""
