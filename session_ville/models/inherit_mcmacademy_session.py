@@ -22,20 +22,20 @@ class McmacademySessionVille(models.Model):
         for rec in self:
             return {'domain': {'session_adresse_examen': [('session_ville_id', '=', rec.session_ville_id.id)]}}
 
-    @api.onchange('session_ville_id')
-    def auto_set_value_of_argument_number(self):
-        """ Affectation automatique du valeur d'agrement selon les villes """
-        if self.session_ville_id.name_ville == "Lyon":
-            self.num_agrement_jury = "2022-020"
-        elif self.session_ville_id.name_ville == "Bordeaux":
-            self.num_agrement_jury = "2022-01-B"
-        elif self.session_ville_id.name_ville == "Nantes":
-            self.num_agrement_jury = "DREAL/STRV/2022-014"
-        elif self.session_ville_id.name_ville == "Paris":
-            self.num_agrement_jury = "2019-0110"
-        elif self.session_ville_id.name_ville == "Toulouse":
-            self.num_agrement_jury = ""
-        elif self.session_ville_id.name_ville == "Marseille" or self.session_ville_id.name_ville == "Nice":
-            self.num_agrement_jury = ""
-        else:
-            self.num_agrement_jury = ""
+    # @api.onchange('session_ville_id')
+    # def auto_set_value_of_argument_number(self):
+    #     """ Affectation automatique du valeur d'agrement selon les villes """
+    #     if self.session_ville_id.name_ville == "Lyon":
+    #         self.num_agrement_jury = "2022-020"
+    #     elif self.session_ville_id.name_ville == "Bordeaux":
+    #         self.num_agrement_jury = "2022-01-B"
+    #     elif self.session_ville_id.name_ville == "Nantes":
+    #         self.num_agrement_jury = "DREAL/STRV/2022-014"
+    #     elif self.session_ville_id.name_ville == "Paris":
+    #         self.num_agrement_jury = "2019-0110"
+    #     elif self.session_ville_id.name_ville == "Toulouse":
+    #         self.num_agrement_jury = ""
+    #     elif self.session_ville_id.name_ville == "Marseille" or self.session_ville_id.name_ville == "Nice":
+    #         self.num_agrement_jury = ""
+    #     else:
+    #         self.num_agrement_jury = ""
