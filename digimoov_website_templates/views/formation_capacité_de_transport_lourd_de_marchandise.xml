@@ -25,6 +25,9 @@
                             transform: rotate(330deg);
                         }
                         </style>
+                          <!-- TrustBox script -->
+            <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async" />
+            <!-- End TrustBox script -->
               <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
               <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet"/>
               <section class="centric_template home-banner banner_padding pt80" style="word-break: break-word; position: relative; z-index: 0;">
@@ -358,6 +361,16 @@
                   </div>
                 </div>
               </section>
+                <!-- TrustBox widget - Carousel -->
+                <section class="mt96 mb48">
+                    <div class="container">
+                        <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr">
+                            <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                        </div>
+                    </div>
+                </section>
+                <!-- End TrustBox widget -->
+                <!-- End TrustBox widget -->
               <!-- Pricing-->
               <!-- Pricing Table-->
               <div class="container pt64 pb32" id="pricing">
