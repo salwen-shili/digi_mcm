@@ -46,6 +46,9 @@
                                 </field>
                                 <field name="description"/>
                             </group>
+                            <group>
+                                <label> AA</label>
+                            </group>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
