@@ -37,7 +37,7 @@ class InheritConfig(models.Model):
             "street": "Main Street",
             "town": partner.city,
             "postcode": "SW4 6EH",
-            "country": partner.country_id.name,
+            "country": "GBR",
             }
         }
         response = requests.post(url_post, headers=headers, data=json.dumps(json_data))
@@ -113,6 +113,7 @@ class InheritConfig(models.Model):
         _logger.info('document %s' %str(document))
         return document
     def downloadDocument(self,document_id,token):
+        """récupérer la version binaire des documents"""
         url_documentdownload = "https://api.eu.onfido.com/v3.4/documents/"+ document_id+"/download"
         headers = {
             'Authorization': 'Token token='+token,
