@@ -12,6 +12,7 @@ class McmacademySessionVille(models.Model):
     email = fields.Char(related="session_adresse_examen.email")
     #Add new field "lien" contains link of center adress exam
     lien = fields.Char(related="session_adresse_examen.lien", string="Lien d'accées au centre d'examen")
+    num_agrement_jury = fields.Many2one(related="session_ville_id.num_agrement_jury", copy=True)
     state = fields.Selection(related='session_ville_id.state', string="Région", store=True, readonly=False)
 
     @api.onchange('session_ville_id')
