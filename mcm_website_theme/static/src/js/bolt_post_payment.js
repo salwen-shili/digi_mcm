@@ -164,32 +164,32 @@ const partnerInformation = async () => {
   // console.log(partner.response[0]);
   // return partner.response[0];
 };
-const sendHttpRequest = (method, url, data) => {
-  const promise = new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open(method, url);
+// const sendHttpRequest = (method, url, data) => {
+//   const promise = new Promise((resolve, reject) => {
+//     const xhr = new XMLHttpRequest();
+//     xhr.open(method, url);
 
-    xhr.responseType = 'json';
+//     xhr.responseType = 'json';
 
-    if (data) {
-      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    }
+//     if (data) {
+//       xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+//     }
 
-    xhr.onload = () => {
-      if (xhr.status >= 400) {
-        reject(xhr.response);
-      } else {
-        resolve(xhr.response);
-      }
-    };
+//     xhr.onload = () => {
+//       if (xhr.status >= 400) {
+//         reject(xhr.response);
+//       } else {
+//         resolve(xhr.response);
+//       }
+//     };
 
-    xhr.onerror = () => {
-      reject('Something went wrong!');
-    };
+//     xhr.onerror = () => {
+//       reject('Something went wrong!');
+//     };
 
-    xhr.send(JSON.stringify(data));
-  });
-  return promise;
-};
+//     xhr.send(JSON.stringify(data));
+//   });
+//   return promise;
+// };
 
 //
