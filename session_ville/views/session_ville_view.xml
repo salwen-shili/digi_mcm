@@ -32,6 +32,7 @@
                         <group>
                             <group name="region">
                                 <field name="state" string="Région"/>
+                                <field name="num_agrement_jury" string="Numéro d'agrément"/>
                             </group>
                             <group name="Informations">
                                 <field name="active" invisible="1"/>

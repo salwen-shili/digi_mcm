@@ -1,7 +1,7 @@
 <odoo>
     <data>
         <!-- Action Session Approval Number -->
-        <record id="action_session_ville" model="ir.actions.act_window">
+        <record id="action_session_approval_number" model="ir.actions.act_window">
             <field name="name">Action Session Approval Number</field>
             <field name="res_model">approval.number</field>
             <field name="view_mode">tree,form</field>
@@ -15,7 +15,7 @@
             <field name="name">session.approval.number.form</field>
             <field name="model">approval.number</field>
             <field name="arch" type="xml">
-                <form string="ville">
+                <form string="approval_number">
                     <sheet>
                         <div class="oe_title">
                             <label for="name" class="oe_edit_only"/>
@@ -36,7 +36,7 @@
                 </form>
             </field>
         </record>
-        <!-- Views Tree des villes-->
+        <!-- Views Tree des approvals number-->
         <record id="session_approval_number_tree_view" model="ir.ui.view">
             <field name="name">session.approval.number.tree</field>
             <field name="model">approval.number</field>
