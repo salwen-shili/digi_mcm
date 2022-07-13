@@ -59,8 +59,7 @@
                                 </p>
                                 <p style="margin-bottom: 1.55em; text-align: justify;">
                                     <font style="color: rgb(0, 0, 0);">
-                                        Il s’agit d’un dispositif de financement public relatif à la formation professionnelle continue. Ce droit offre l’
-                                        <span style="font-weight: bolder;">opportunité</span>
+                                        Il s’agit d’un dispositif de financement public relatif à la formation professionnelle continue. Ce droit offre l’<span style="font-weight: bolder;">opportunité</span>
                                         &amp;nbsp;à tous les actifs de bénéficier d’une action de&amp;nbsp;
                                         <span style="font-weight: bolder;">formations</span>
                                         &amp;nbsp;s’ils le souhaitent.&amp;nbsp;
@@ -202,9 +201,7 @@
             }
                                     </style>
                                     <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
-                                    <p class="blink-soft">
-                                        <b>Éligible au CPF</b>
-                                    </p>
+                                    <p><font style="color:#fff900;font-size: 24px;font-weight: 700">Formation transport léger</font></p>
                                     <br />
                                 </div>
                                 <t t-foreach="digimoov_products" t-as="product">
@@ -326,9 +323,7 @@
                                             <font style="font-size: 30px">PREMUIM</font>
                                         </strong>
                                     </p>
-                                    <p class="blink-soft">
-                                        <b>Éligible au CPF</b>
-                                    </p>
+                                    <p><font style="color:#fff900;font-weight: 700;font-size: 24px;">Formation transport léger</font></p>
                                     <br />
                                 </div>
                                 <t t-foreach="digimoov_products" t-as="product">
@@ -416,6 +411,101 @@
 
                                                 <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                            Je m'inscris
+                                                        </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
+                              
+                                <div class="text-center text-white border-0" style="background-color: rgb(110, 32, 159); border-top-left-radius: 25px; border-top-right-radius: 25px; word-break: break-word; position: relative; z-index: 0;">
+                                    <p style="padding-top: 17px;line-height: 1.4;font-weight: 700;font-size: 30px !important;">PREMIUM PLUS&amp;nbsp;<br/>
+                                        <font style="color:#fff900;font-size: 24px;">Formation transport lourd</font></p>
+                                 
+                                    <br/>
+                                  </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='transport-routier'">
+                                        <form action="/shop/cart/update" method="post" id="form-5-1">
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                            <div class="card-body">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <b>280 heures de formation dont:<br/></b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b> 70h de cours en ligne assistés par un tuteur </b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b> Assistance par mail                                                        </b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>  Assistance par téléphone</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Plus de 14 examens blancs avec corrigés</b>
+                                                        <br />
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>210h de cours en Live avec un expert métier</b>
+                                                        <br />
+                                                    </li>
+
+                                                
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Révision du programme avant l'examen</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" />
+                                                        <b>Examen final en présentiel</b>
+
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        
+                                                        &amp;nbsp;
+
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        
+                                                        &amp;nbsp;
+
+                                                    </li>
+                                              
+                                                    <li>
+                                                        <i />
+                                                    </li>
+                                                </ul>
+                                             
+                                                <div class="text-center ">
+                                                    <b style="font-size:54px !important; color:#000000" t-if="not promo">
+                                                      <span t-esc="round(product.list_price)"/>
+                                                      <span t-esc="product.currency_id.symbol"/>
+                                                    </b>
+                                                    <b style="font-size:60px !important; color:#000000" t-if="promo">
+                                                      <t t-foreach="promo.item_ids" t-as="item">
+                                                        <t t-if="item.product_id.id==product.id">
+                                                          <span t-esc="round(item.fixed_price)"/>
+                                                          <span t-esc="product.currency_id.symbol"/>
+                                                        </t>
+                                                      </t>
+                                                    </b>
+                                                  </div>
+                                                  <p class="                                                                 medium                                                                 text-center                                                                 font-weight-bolder                                                                 text-secondary                                                             " style="color: red !important">
+                                                                                                                        Paiement 1 ou 4 fois
+                                                                </p>
+                                                  <br/>
+                                                <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-5-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
                                                         </button>
                                             </div>
