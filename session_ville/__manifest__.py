@@ -21,6 +21,7 @@
         'security/ir.model.access.csv',
         'security/session_ville_security.xml',
         'wizard/address_class_exams.xml',
+        'data/data_approval_number.xml',
         'views/session_ville_view.xml',
         'views/adresse_centre_examen.xml',
         'views/inherit_mcmacademy_session.xml',
