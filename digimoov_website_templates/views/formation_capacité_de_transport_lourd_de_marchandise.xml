@@ -4,6 +4,11 @@
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px;">
               <style>
+                .trustbox-trustpilot {
+                    max-width: 181px!important;
+                    margin-block-start: 40px!important;
+                    margin: auto;
+                }
                             .para{
                                 vertical-align: baseline;
                                 font-size:18px;
@@ -48,10 +53,16 @@
                                             </a>
                       </div>
                     </div>
-                    <div class="bannercol col-lg-6 col-md-12 image_padding" style="border-style: none; border-width: 0px">
+                    <div class="bannercol col-lg-6 col-md-12 image_padding text-center" style="border-style: none; border-width: 0px">
                       <div class="banner_image">
                         <img class="img img-fluid" src="/digimoov_website_templates/static/img/transport-routier/1.png" title="" alt="CAPACITÉ TRANSPORT LOURD" aria-describedby="tooltip653698"/>
-                      </div>
+                         <!-- TrustBox widget - Mini -->
+                         <div class="trustpilot-widget trustbox-trustpilot" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
+                            <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                        </div>
+                        <!-- End TrustBox widget -->  
+                    </div>
+                  
                     </div>
                   </div>
                 </div>
@@ -418,8 +429,12 @@
                                                                 Assistance par téléphone
                                                             </li>
                                 <li class="mb-4" style="font-size: 15px !important;"><span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em;"/>&amp;nbsp;Plus de 14 examens blancs avec corrigés</li>
-                                <li class="mb-4" style="font-size: 15px !important;"><i class="fa fa-check-circle fa-lg mr-2 text-success"/>&amp;nbsp;210h&amp;nbsp;de cours en Live avec un expert métier<br/><br/></li>
+                                <li class="mb-4" style="font-size: 15px !important;"><i class="fa fa-check-circle fa-lg mr-2 text-success"/>&amp;nbsp;210h&amp;nbsp;de cours en Live avec un expert métier</li>
+                                <li class="mb-4" style="font-size: 15px !important;"><i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                    Révision du programme avant l'examen
+                                </li>
                               </ul>
+                              <br/><br/><br/><br/>
                               <div class="text-center ">
                                 <b style="font-size:54px !important; color:#000000" t-if="not promo">
                                   <span t-esc="round(product.list_price)"/>
