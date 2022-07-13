@@ -67,11 +67,11 @@ class OnfidoController(http.Controller):
 
 
     """get event workflowrund is completed with webhook """
-    @http.route(['/completed_workflow_webhook'], type='http', auth="user", methods=['POST'])
+    @http.route(['/completed_workflow_webhook'], type='json', auth="user")
     def completed_workflow_webhook(self,**kw):
 
-        data = json.loads(request.httprequest.data)
-        _logger.info("webhoooooooooook onfido ")
+        data = json.loads(kw)
+        _logger.info("webhoooooooooook onfido %s"%str(kw))
         workflow_run_id=data['object']['id']
         _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))
         partner = request.env.user.partner_id
