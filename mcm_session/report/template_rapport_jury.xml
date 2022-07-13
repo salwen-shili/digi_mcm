@@ -67,7 +67,7 @@
                                                 <td class="td" align="center" style="height: 80px; width: 80px;">
                                                     <strong>
                                                         <p>MCM ACADEMY</p>
-                                                        <span t-raw="'%s' % o.num_agrement_jury"/>
+                                                        <span t-field='o.num_agrement_jury'/>
                                                     </strong>
                                                 </td>
                                             </tr>
