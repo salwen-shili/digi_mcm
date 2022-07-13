@@ -30,4 +30,14 @@ class SessionVille(models.Model):
         ('provence', "Provence-Alpes-Côte d'Azur"),
         ('ile_de_france', "Île-de-France"),
     ], default=False, tracking=True)
+    num_agrement_jury = fields.Many2one('approval.number', string="Numéro d'agrément")
+
+
+class SessionApprovalNumber(models.Model):
+    _name = "approval.number"
+    _description = "Approval number"
+
+    name = fields.Char()
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+    description = fields.Char()
 

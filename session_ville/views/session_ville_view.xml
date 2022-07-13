@@ -32,6 +32,7 @@
                         <group>
                             <group name="region">
                                 <field name="state" string="Région"/>
+                                <field name="num_agrement_jury" string="Numéro d'agrément"/>
                             </group>
                             <group name="Informations">
                                 <field name="active" invisible="1"/>
@@ -44,6 +45,14 @@
                                     </tree>
                                 </field>
                                 <field name="description"/>
+                            </group>
+                            <group>
+                                <span> <b>NB:</b><br/> - Lyon : 2022-020 <br/>
+                                    - Bordeaux : 2022-01-B <br/>
+                                    - Nantes : DREAL/STRV/2022-014 <br/>
+                                    - Paris : 2019-0110 <br/>
+                                    - Marseille, Nice : 2022/17<br/>
+                                </span>
                             </group>
                         </group>
                     </sheet>
@@ -63,6 +72,7 @@
                 <tree string="session ville Tree" default_order="name_ville asc">
                     <field name="name_ville"/>
                     <field name="state" string="Région"/>
+                    <field name="num_agrement_jury" string="Numéro d'agrément"/>
                     <field name="session_adresse_examen_ids"
                            string="Nombre d'addresses"/>
                 </tree>

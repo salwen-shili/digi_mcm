@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!--les numero d'agrement pour lyon, bordeaux, nantes, paris, marseille, nice-->
+        <record id="data_approval_number_lyon" model="approval.number">
+            <field name="name">2022-020</field>
+        </record>
+        <record id="data_approval_number_bordeaux" model="approval.number">
+            <field name="name">2022-01-B</field>
+        </record>
+        <record id="data_approval_number_nantes" model="approval.number">
+            <field name="name">DREAL/STRV/2022-014</field>
+        </record>
+        <record id="data_approval_number_paris" model="approval.number">
+            <field name="name">2019-0110</field>
+        </record>
+        <record id="data_approval_number_marseille_nice" model="approval.number">
+            <field name="name">2022/17</field>
+        </record>
+    </data>
+</odoo>

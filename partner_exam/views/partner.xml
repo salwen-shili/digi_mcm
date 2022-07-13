@@ -16,11 +16,11 @@
                         <label for="other_cases" string="Nom de l’Etat pour les autres cas :"/>
                         <field name="other_cases"/>
                     </div>
-                    <div>
+                    <div attrs="{'invisible': [('company_id', '!=', 2)]}">
                         <label for="nom_evalbox" string="Nom Evalbox"/>
                         <field name="nom_evalbox"/>
                     </div>
-                    <div>
+                    <div attrs="{'invisible': [('company_id', '!=', 2)]}">
                         <label for="prenom_evalbox" string="Prénom Evalbox"/>
                         <field name="prenom_evalbox"/>
                     </div>
@@ -35,6 +35,7 @@
                     <field name="note_exam_id" attrs="{'invisible': [('company_id', '=', 1)]}" context="{'default_partner_id': id}">
                         <tree>
                             <field name="partner_id"/>
+                            <field name="code_evalbox"/>
                             <field name="mode_de_financement"/>
                             <field name="session_id"/>
                             <field name="module_id"/>
