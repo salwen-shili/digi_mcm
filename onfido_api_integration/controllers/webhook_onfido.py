@@ -82,7 +82,7 @@ class OnfidoController(http.Controller):
         _logger.info("workflow_run onfido response %s" % str(workflow_runs))
         return True
 
-    @http.route(['/workflow_webhook'], type='http', auth="public", csrf=False)
+    @http.route(['/workflow_webhook'], type='json', auth="public", csrf=False)
     def completed_workflow_event(self, **kw):
         _logger.info("webhoooooooooook onfido ")
         data = json.loads(kw)
