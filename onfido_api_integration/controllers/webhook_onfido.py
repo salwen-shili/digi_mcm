@@ -85,14 +85,14 @@ class OnfidoController(http.Controller):
     @http.route(['/workflow_webhook'], type='json', auth="public", csrf=False)
     def completed_workflow_event(self, **kw):
         _logger.info("webhoooooooooook onfido %s" %str(kw))
-        dossier = json.loads(request.httprequest.data)
+        data = json.loads(request.httprequest.data)
         # data = json.loads(kw)
-        # workflow_run_id = data['object']['id']
-        # _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))
-        # partner = request.env.user.partner_id
-        # company_id = request.env.user.company_id.id
-        # website = request.env['website'].get_current_website()
-        #
-        # workflow_runs = partner.get_workflow_runs(workflow_run_id, website.onfido_api_key_live)
-        _logger.info("workflow_run onfido response %s" % str(dossier))
+        workflow_run_id = data['payload']['object']['id']
+        _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))
+        partner = request.env.user.partner_id
+        company_id = request.env.user.company_id.id
+        website = request.env['website'].get_current_website()
+        
+        workflow_runs = partner.get_workflow_runs(workflow_run_id, website.onfido_api_key_live)
+        _logger.info("workflow_run onfido response %s" % str(workflow_runs))
         return True
