@@ -3,21 +3,21 @@
         <t t-call="website.layout">
             <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
             <!-- TrustBox script -->
-            <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async"></script>
+            <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async" />
             <!-- End TrustBox script -->
             <div id="wrap" class="oe_structure oe_empty">
                 <style>
-                @media (min-width: 1024px){
-                .pt160{
-                    padding-top: 160px !important;
-                }
-                }
-                @media (max-width: 1024px){
-                .pt160{
-                    padding-top: 20px !important;
-                }
-                }
-                </style>
+                        @media (min-width: 1024px){
+                        .pt160{
+                            padding-top: 160px !important;
+                        }
+                        }
+                        @media (max-width: 1024px){
+                        .pt160{
+                            padding-top: 20px !important;
+                        }
+                        }
+                        </style>
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
                 <section id="s_hero_banner" class="s_business_banner spacer bg-100" style="" data-name="Home Banner Two">
                     <div class="container">
@@ -29,7 +29,7 @@
                                 <p class="m-t-40 m-b-30 text-white op-8 custom_p">
                                     <span style="color: rgb(0, 0, 0); font-family: opensans-regular, &quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, &quot;Lucida Sans&quot;, Geneva, Verdana, sans-serif; font-size: 16.0016px;">Vous souhaitez suivre une formation en capacité de transport léger de marchandises pour avoir votre licence et booster votre carrière professionnelle , mais vous n'avez pas assez de fond ? Pas de problème! Digimoov vous offre l'opportunité de financer votre formation en mobilisant votre compte CPF et ainsi démarrer votre projet.</span>
                                     <br />
-                                    Pa
+                                 
                                 </p>
                             </div>
                             <div class="col-md-4 col-lg-6 align-self-center ml-auto">
@@ -59,7 +59,8 @@
                                 </p>
                                 <p style="margin-bottom: 1.55em; text-align: justify;">
                                     <font style="color: rgb(0, 0, 0);">
-                                        Il s’agit d’un dispositif de financement public relatif à la formation professionnelle continue. Ce droit offre l’<span style="font-weight: bolder;">opportunité</span>
+                                        Il s’agit d’un dispositif de financement public relatif à la formation professionnelle continue. Ce droit offre l’
+                                        <span style="font-weight: bolder;">opportunité</span>
                                         &amp;nbsp;à tous les actifs de bénéficier d’une action de&amp;nbsp;
                                         <span style="font-weight: bolder;">formations</span>
                                         &amp;nbsp;s’ils le souhaitent.&amp;nbsp;
@@ -93,25 +94,25 @@
                                         <span style="color: rgb(32, 33, 36); font-family: arial, sans-serif;">&amp;nbsp;créer votre compte&amp;nbsp;</span>
                                         <span style="color: rgb(32, 33, 36); font-family: arial, sans-serif;">personnel&amp;nbsp;</span>
                                         <span style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">de formation , il suffit de se rendre sur&amp;nbsp;</span>
-                                        <span style="font-size: 1rem;"></span>
+                                        <span style="font-size: 1rem;" />
                                         <b style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">le</b>
-                                        <span style="font-size: 1rem;"></span>
+                                        <span style="font-size: 1rem;" />
                                         <span style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">&amp;nbsp;site </span>
-                                        <span style="font-size: 1rem;"></span>
+                                        <span style="font-size: 1rem;" />
                                         <span style="font-size: 1rem; color: rgb(156, 0, 255); font-family: arial, sans-serif;">www.moncompteformation.gouv.fr</span>
-                                        <span style="font-size: 1rem;"></span>
+                                        <span style="font-size: 1rem;" />
                                         <span style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">, muni de&amp;nbsp;</span>
-                                        <span style="font-size: 1rem;"></span>
+                                        <span style="font-size: 1rem;" />
                                         <b style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">votre</b>
-                                        <span style="font-size: 1rem;"></span>
+                                        <span style="font-size: 1rem;" />
                                         <span style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">&amp;nbsp;numéro de sécurité sociale, et de renseigner&amp;nbsp;</span>
-                                        <span style="font-size: 1rem;"></span>
+                                        <span style="font-size: 1rem;" />
                                         <b style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">le</b>
-                                        <span style="font-size: 1rem;"></span>
+                                        <span style="font-size: 1rem;" />
                                         <span style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">&amp;nbsp;formulaire d'inscription avec l'aide du tutoriel si nécessaire. Une fois l'inscription validée,&amp;nbsp;</span>
-                                        <span style="font-size: 1rem;"></span>
+                                        <span style="font-size: 1rem;" />
                                         <b style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">le compte</b>
-                                        <span style="font-size: 1rem;"></span>
+                                        <span style="font-size: 1rem;" />
                                         <span style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">&amp;nbsp;est activé.</span>
                                     </p>
                                 </div>
@@ -122,21 +123,18 @@
                                             <div class="media_iframe_video_size">&amp;nbsp;</div>
                                             <iframe src="//www.youtube.com/embed/PN7gVHdT7x4?autoplay=0&amp;rel=0&amp;loop=1&amp;playlist=PN7gVHdT7x4&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen" />
                                         </div>
-                                        <div class="embed-responsive hide embed-responsive-16by9" data-animation="animated fadeIn"></div>
-
+                                        <div class="embed-responsive hide embed-responsive-16by9" data-animation="animated fadeIn" />
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 wrap-feature14-box">
                                     <div>
                                         <img class="rounded img-responsive" src="/web/image/7452/Capacit%C3%A9%20de%20transport%20l%C3%A9ger%20de%20marchandise.gif" alt="bizople kit" aria-describedby="tooltip484413" />
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
                 <!-- Pricing table-->
                 <div class="row justify-content-center" style="justify-content: center;">
                     <div class="col-md-8 text-center col-lg-11">
@@ -158,50 +156,51 @@
                         <div class="col-md-4 col-sm-6">
                             <div class="card border-0 shadow" style="border-radius: 25px 25px">
                                 <!-- <div class="text-center text-white border-0" style="
-                    background-color: #6e209f;
-                    border-top-left-radius: 25px;
-                    border-top-right-radius: 25px;
-                  ">
-                                            <br />
-                                            <p>
-                                                <strong style="color: white">
-                                                    <font style="font-size: 30px">PRO</font>
-                                                </strong>
-                                            </p>
-                                            <p>
-                                                <b></b>
-                                            </p>
-                                            <br />
-                                        </div> -->
+                            background-color: #6e209f;
+                            border-top-left-radius: 25px;
+                            border-top-right-radius: 25px;
+                          ">
+                                                    <br />
+                                                    <p>
+                                                        <strong style="color: white">
+                                                            <font style="font-size: 30px">PRO</font>
+                                                        </strong>
+                                                    </p>
+                                                    <p>
+                                                        <b></b>
+                                                    </p>
+                                                    <br />
+                                                </div> -->
                                 <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                     <br />
-
                                     <p>
                                         <strong style="color: white">
                                             <font style="font-size: 30px">PRO</font>
                                         </strong>
                                     </p>
                                     <style>
-                                             .blink-soft {
-            animation: blinker 1s linear infinite;
-            color:#fff900;
-            text-transform: uppercase;
-            font-size: 21px;
-            }
-            @keyframes blinker {
-            50% {
-                opacity: 0.1;
-            }
-            70%{
-            opacity: 1;
-            }
-            100%{
-            opacity: 1;
-            }
-            }
-                                    </style>
+                                                     .blink-soft {
+                    animation: blinker 1s linear infinite;
+                    color:#fff900;
+                    text-transform: uppercase;
+                    font-size: 21px;
+                    }
+                    @keyframes blinker {
+                    50% {
+                        opacity: 0.1;
+                    }
+                    70%{
+                    opacity: 1;
+                    }
+                    100%{
+                    opacity: 1;
+                    }
+                    }
+                                            </style>
                                     <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
-                                    <p><font style="color:#fff900;font-size: 24px;font-weight: 700">Formation transport léger</font></p>
+                                    <p>
+                                        <font style="color:#fff900;font-size: 24px;font-weight: 700">Formation transport léger</font>
+                                    </p>
                                     <br />
                                 </div>
                                 <t t-foreach="digimoov_products" t-as="product">
@@ -210,22 +209,18 @@
                                             <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                             <div class="card-body" style="background-color: white; padding-right:0 !important">
-                                                <ul class="list-unstyled">
+                                                <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;">
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Formation 102h (100% en ligne)</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b> Livre d’entraînement version électronique</b>
-                                                        <!-- <i class="fa fa-info-circle info"></i>
-                                                                <span class="additional-info">additional info</span> -->
+                                                        <b>Livre d’entraînement version électronique</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b> Accès à 10 examens d'entraînement</b>
-                                                        <!-- <i class="fa fa-info-circle info"></i>
-                                                                <span class="additional-info">additional info</span> -->
+                                                        <b>Accès à 10 examens d'entraînement</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
@@ -235,36 +230,29 @@
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Assistance par mail</b>
                                                     </li>
-
                                                     <li class="mb-4">
-                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip96053" />
-                                                        <b>Séances de groupe en Live avec les formateurs</b>
+                                                        <span class="fa fa-lg fa-times-circle text-danger mr-2" data-original-title="" title="" aria-describedby="tooltip646297" style="font-size: 1.33333em;" />Séances en Live avec un tuteur dédié
                                                     </li>
                                                     <li class="mb-4">
-                                                        <span class="fa fa-lg fa-times-circle text-danger mr-2" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip288722" />
-                                                        Séance en Live avec un expert métier
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2" />
+                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip284158" style="font-size: 1.33333em;" />
                                                         Révision du programme avant l'examen
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>  &amp;nbsp;Examen final en présentiel 
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;</b>
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip284158" />
+                                                        <b>Examen final en présentiel 
+                                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                        &amp;nbsp;&amp;nbsp;</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Séance en Live pour corriger l’examen &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;</b>
+                                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                        &amp;nbsp;&amp;nbsp;</b>
                                                     </li>
-
                                                     <li>
                                                         <i />
                                                     </li>
@@ -273,7 +261,6 @@
                                                     <font>
                                                         <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               ">
                                                             <span t-esc="round(product.list_price)" />
-
                                                             <span t-esc="product.currency_id.symbol" />
                                                         </p>
                                                     </font>
@@ -286,13 +273,12 @@
                                                     </p>
                                                 </t>
                                                 <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
-                                                            Paiement 1 ou 2 fois
-                                                            </p>
-
+                                                                    Paiement 1 ou 2 fois
+                                                                    </p>
                                                 <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                                                            Je m'inscris
-                                                            </button>
+                                                                    Je m'inscris
+                                                                    </button>
                                             </div>
                                         </form>
                                     </t>
@@ -302,28 +288,29 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="card border-0 shadow" style="border-radius: 25px 25px">
                                 <!-- <div class="text-center text-white border-0" style="
-                    background-color: #6e209f;
-                    border-top-left-radius: 25px;
-                    border-top-right-radius: 25px;
-                  ">
-                                            <br />
-                                            <h2>
-                                                <strong style="color: white">PREMIUM</strong>
-                                            </h2>
-                                            <p>
-                                                <b></b>
-                                            </p>
-                                            <br />
-                                        </div> -->
+                            background-color: #6e209f;
+                            border-top-left-radius: 25px;
+                            border-top-right-radius: 25px;
+                          ">
+                                                    <br />
+                                                    <h2>
+                                                        <strong style="color: white">PREMIUM</strong>
+                                                    </h2>
+                                                    <p>
+                                                        <b></b>
+                                                    </p>
+                                                    <br />
+                                                </div> -->
                                 <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                     <br />
-
                                     <p>
                                         <strong style="color: white">
                                             <font style="font-size: 30px">PREMUIM</font>
                                         </strong>
                                     </p>
-                                    <p><font style="color:#fff900;font-weight: 700;font-size: 24px;">Formation transport léger</font></p>
+                                    <p>
+                                        <font style="color:#fff900;font-weight: 700;font-size: 24px;">Formation transport léger</font>
+                                    </p>
                                     <br />
                                 </div>
                                 <t t-foreach="digimoov_products" t-as="product">
@@ -332,7 +319,7 @@
                                             <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                             <div class="card-body">
-                                                <ul class="list-unstyled">
+                                                <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;">
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Formation 102h (100% en ligne)</b>
@@ -344,7 +331,6 @@
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Accès à 14+ examens d'entraînement</b>
-
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -356,16 +342,9 @@
                                                         <b>Assistance par mail</b>
                                                         <br />
                                                     </li>
-
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Séances en Live avec un tuteur dédié</b>
-                                                        <br />
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Séance en Live avec un expert métier </b>
-                                                        <b>&amp;nbsp;</b>
                                                         <br />
                                                     </li>
                                                     <li class="mb-4">
@@ -375,16 +354,15 @@
                                                     <li class="mb-4">
                                                         <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" />
                                                         <b>Examen final en présentiel</b>
-
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-lg fa-check-circle mr-2 text-success" />
                                                         <b>Séance en Live pour corriger l’examen</b>
                                                         &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;
+                                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                        &amp;nbsp;&amp;nbsp;
                                                     </li>
                                                     <li>
                                                         <i />
@@ -406,13 +384,12 @@
                                                     </p>
                                                 </t>
                                                 <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
-                                                            Paiement 1 ou 3 fois
-                                                            </p>
-
+                                                                    Paiement 1 ou 3 fois
+                                                                    </p>
                                                 <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                                                            Je m'inscris
-                                                        </button>
+                                                                    Je m'inscris
+                                                                </button>
                                             </div>
                                         </form>
                                     </t>
@@ -421,38 +398,53 @@
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                              
-                                <div class="text-center text-white border-0" style="background-color: rgb(110, 32, 159); border-top-left-radius: 25px; border-top-right-radius: 25px; word-break: break-word; position: relative; z-index: 0;">
-                                    <p style="padding-top: 17px;line-height: 1.4;font-weight: 700;font-size: 30px !important;">PREMIUM PLUS&amp;nbsp;<br/>
-                                        <font style="color:#fff900;font-size: 24px;">Formation transport lourd</font></p>
-                                 
-                                    <br/>
-                                  </div>
+                               
+                                <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
+                                    <br />
+                                    <p>
+                                        <strong style="color: white">
+                                            <font style="font-size: 30px">PREMIUM PLUS</font>
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        <font style="color:#fff900;font-weight: 700;font-size: 24px;">Formation transport lourd</font>
+                                    </p>
+                                    <br />
+                                </div>
                                 <t t-foreach="digimoov_products" t-as="product">
                                     <t t-if="product.default_code=='transport-routier'">
                                         <form action="/shop/cart/update" method="post" id="form-5-1">
                                             <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                             <div class="card-body">
-                                                <ul class="list-unstyled">
+                                                <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;margin-block-end: 41px;">
                                                     <li class="mb-4">
-                                                        <b>280 heures de formation dont:<br/></b>
+                                                        <b>280 heures de formation dont:
+                                                            <br />
+                                                        </b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b> 70h de cours en ligne assistés par un tuteur </b>
+                                                        <b>70h de cours en ligne assistés par un tuteur </b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b> Assistance par mail                                                        </b>
+                                                        <b>Assistance par mail                                                        </b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>  Assistance par téléphone</b>
+                                                        <b>Assistance par téléphone</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Plus de 14 examens blancs avec corrigés</b>
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip266963" />
+                                                        <b>Plus de 14 examens blancs avec corrigés
+                                                            <br />
+                                                        </b>
+                                                        <br />
+                                                        <span style="font-weight: bolder;">
+                                                            <span class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip266963" style="font-size: 1.33333em;" />
+                                                            <span style="font-weight: 400;" />Séances en Live avec un tuteur dédié
+                                                        </span>
                                                         <br />
                                                     </li>
                                                     <li class="mb-4">
@@ -460,8 +452,6 @@
                                                         <b>210h de cours en Live avec un expert métier</b>
                                                         <br />
                                                     </li>
-
-                                                
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Révision du programme avant l'examen</b>
@@ -469,45 +459,35 @@
                                                     <li class="mb-4">
                                                         <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" />
                                                         <b>Examen final en présentiel</b>
-
                                                     </li>
-                                                    <li class="mb-4">
-                                                        
+                                                    <li>
                                                         &amp;nbsp;
-
                                                     </li>
-                                                    <li class="mb-4">
-                                                        
-                                                        &amp;nbsp;
-
-                                                    </li>
-                                              
                                                     <li>
                                                         <i />
                                                     </li>
                                                 </ul>
-                                             
                                                 <div class="text-center ">
                                                     <b style="font-size:54px !important; color:#000000" t-if="not promo">
-                                                      <span t-esc="round(product.list_price)"/>
-                                                      <span t-esc="product.currency_id.symbol"/>
+                                                        <span t-esc="round(product.list_price)" />
+                                                        <span t-esc="product.currency_id.symbol" />
                                                     </b>
                                                     <b style="font-size:60px !important; color:#000000" t-if="promo">
-                                                      <t t-foreach="promo.item_ids" t-as="item">
-                                                        <t t-if="item.product_id.id==product.id">
-                                                          <span t-esc="round(item.fixed_price)"/>
-                                                          <span t-esc="product.currency_id.symbol"/>
+                                                        <t t-foreach="promo.item_ids" t-as="item">
+                                                            <t t-if="item.product_id.id==product.id">
+                                                                <span t-esc="round(item.fixed_price)" />
+                                                                <span t-esc="product.currency_id.symbol" />
+                                                            </t>
                                                         </t>
-                                                      </t>
                                                     </b>
-                                                  </div>
-                                                  <p class="                                                                 medium                                                                 text-center                                                                 font-weight-bolder                                                                 text-secondary                                                             " style="color: red !important">
-                                                                                                                        Paiement 1 ou 4 fois
-                                                                </p>
-                                                  <br/>
+                                                </div>
+                                                <p class="                                                                 medium                                                                 text-center                                                                 font-weight-bolder                                                                 text-secondary                                                             " style="color: red !important">
+                                                                                                                                Paiement 1 ou 4 fois
+                                                                        </p>
+                                                <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-5-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                                                            Je m'inscris
-                                                        </button>
+                                                                    Je m'inscris
+                                                                </button>
                                             </div>
                                         </form>
                                     </t>
@@ -523,16 +503,16 @@
                                 <div id="myCollapse" class="accordion" role="tablist">
                                     <div class="card bg-white">
                                         <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1616754726586" aria-describedby="tooltip5917">
-                                            Comment en bénéficier ?
-                                        </a>
+                                                    Comment en bénéficier ?
+                                                </a>
                                         <div class="collapse" role="tabpanel" id="myCollapseTab1616754726586">
                                             <div class="card-body">
                                                 <p class="card-text">
-                                                 Si vous avez un CPF depuis 2015 et que vous ne l'avez jamais utilisé, 
-                                                 vous aurez à votre disposition 1 440&amp;nbsp;€. Vous pouvez 
-                                                 également saisir vos heures de DIF (Droit individuel à la 
-                                                 formation) s'il vous en reste
-                                                </p>
+                                                         Si vous avez un CPF depuis 2015 et que vous ne l'avez jamais utilisé, 
+                                                         vous aurez à votre disposition 1 440&amp;nbsp;€. Vous pouvez 
+                                                         également saisir vos heures de DIF (Droit individuel à la 
+                                                         formation) s'il vous en reste
+                                                        </p>
                                             </div>
                                         </div>
                                     </div>
@@ -542,14 +522,14 @@
                                 <div id="myCollapse" class="accordion" role="tablist">
                                     <div class="card bg-white">
                                         <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743649">Comment cela fonctionne?
-                                        </a>
+                                                </a>
                                         <div class="collapse" role="tabpanel" id="myCollapseTab1616754743649">
                                             <div class="card-body">
                                                 <p class="card-text">
-                                                        Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500€ par an 
-                                                        (somme versée autour du mois d'avril). Cela peut monter à 800€ pour les salariés moins 
-                                                        qualifiés et les personnes en situation de handicap.
-                                                </p>
+                                                                Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500€ par an 
+                                                                (somme versée autour du mois d'avril). Cela peut monter à 800€ pour les salariés moins 
+                                                                qualifiés et les personnes en situation de handicap.
+                                                        </p>
                                             </div>
                                         </div>
                                     </div>
@@ -559,7 +539,7 @@
                                 <div id="myCollapse" class="accordion" role="tablist">
                                     <div class="card bg-white">
                                         <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743646">A quoi sert t-il ?
-                                        </a>
+                                                </a>
                                         <div class="collapse" role="tabpanel" id="myCollapseTab1616754743646">
                                             <div class="card-body">
                                                 <p class="card-text">
@@ -577,7 +557,5 @@
                 </section>
             </div>
         </t>
-
-
     </template>
 </odoo>
