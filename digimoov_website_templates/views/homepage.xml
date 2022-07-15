@@ -23,7 +23,7 @@
                                         <h1 class="title-1 type-write" t-if="partenaire=='' or partenaire!='box2home'">
                                             FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE
                                             <text class="stabiloblue">MARCHANDISES</text>
-                                            &amp;nbsp;MOINS 3T5 POUR DEVENIR LIVREUR EN
+                                            &amp;nbsp;+/- 3T5 POUR DEVENIR LIVREUR EN
                                             <text class="typewrite" data-period="2000" data-type="[ &quot;SCOOTER&quot;, &quot;VOITURE&quot;, &quot;CAMIONNETTE&quot;]">
                                                 <span class="wrap" />
                                             </text>
@@ -269,8 +269,8 @@
                                         <div class="max-box">
                                             <h3 class="fs-30 m-t-20 text-beta title"> L'examen de l'attestation de capacité de transport de marchandise moins de 3t5&amp;nbsp;</h3>
                                             <p class="custom_p m-t-30 black-v fs-18 lheight24">
-                                                Après avoir terminé la formation, vous devez passer un examen de
-                3 heures en présentiel. Les questions de l'examen sont proposées
+                                                Après avoir terminé la formation, vous devez passer un examen
+                en présentiel. Les questions de l'examen sont proposées
                 sous forme de QCM (questions à choix multiples) et de Questions
                 rédigées. Vous pouvez choisir
                                                 <a href="/nos-centres-examen">
@@ -693,7 +693,7 @@
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        
+
                                                         <p class="paiement medium text-center font-weight-bolder text-secondary">
                     Paiement 1 ou 3 fois
                                             </p>
