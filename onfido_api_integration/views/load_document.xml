@@ -1,0 +1,21 @@
+<odoo>
+    <template id="onfido_api_integration.load_document" name="Load document ">
+     <t t-call="website.layout">
+<style>
+
+         #onfido-mount{margin: 60px 0;}
+         </style>
+
+            <link rel="stylesheet" href="/onfido_api_integration/static/src/css/style.css" />
+            <input type="hidden"  id="sdk-token" t-att-value="sdk_token"></input>
+            <input type="hidden"  id="workflow_run_id" t-att-value="workflow_run_id"></input>
+            <div id="wrap" class="oe_empty oe_structure">
+                <div id="onfido-mount"></div>
+            </div>
+            <script src="/onfido_api_integration/static/src/js/onfido.min.js"></script>
+            <script src="/onfido_api_integration/static/src/js/onfido_sdk_ui.js"></script>
+
+
+        </t>
+    </template>
+</odoo>
