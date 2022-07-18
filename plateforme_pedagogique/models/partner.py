@@ -69,10 +69,10 @@ class partner(models.Model):
                                                 ('paid', 'Payé'),
                                                 ('not_paid', 'Non payées'),
                                                 ('in_payment', 'En paiement')],
-                                               string="Financement", default=False)
+                                               string="Financement", default=False )
     is_not_paid = fields.Boolean(default=False)
 
-    @api.onchange('total_time_visio_min', 'total_time_appels_min')
+    @api.onchange('total_time_visio_min')
     def convert_minutes_to_hours(self):
         """ Convert Minutes To Hours And Minutes """
         if self.total_time_visio_min:
@@ -80,14 +80,13 @@ class partner(models.Model):
             minutes = self.total_time_visio_min % 60
             self.total_time_visio_hour = str(hours) + "h" + str(minutes) + "min"
             self.total_time_min = int(self.total_time_visio_min) + int(self.total_time_appels_min)
-            total = str((int(self.total_time_min) // 60) + "h" + (int(self.total_time_min % 60) + "min"))
-            self.total_time_hours = total
+
         if self.total_time_appels_min:
             hour = self.total_time_appels_min // 60
             min = self.total_time_appels_min % 60
             self.total_time_appels_hour = str(hour) + "h" + str(min) + "min"
             self.total_time_min = int(self.total_time_visio_min) + int(self.total_time_appels_min)
-            self.total_time_hours = (int(self.total_time_min) // 60) + "h" + (int(self.total_time_min % 60) + "min")
+            #self.total_time_hours = (int(self.total_time_min) // 60) + "h" + (int(self.total_time_min % 60) + "min")
 
     def write(self, vals):
         """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
