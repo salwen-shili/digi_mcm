@@ -125,10 +125,11 @@
                                 </span>
                                 <br/>
                                 <span class="o_stat_text">
-                                    <field name="totalTimeSpentInMinutes"></field>
-                                </span>
-                                <span class="o_stat_text">
                                     <field name="temps_minute" class="oe_edit_only"/>
+                                </span>
+                                <br/>
+                                <span class="o_stat_text">
+                                    <field name="totalTimeSpentInMinutes"></field>
                                 </span>
                             </div>
                             <div>
@@ -162,7 +163,7 @@
                             <div>
                                 <span class="o_stat_text">
                                     <i class="fa fa-tasks"/>
-                                    Total temps passé
+                                    Durée effective formation
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
