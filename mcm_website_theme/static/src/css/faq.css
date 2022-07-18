@@ -21,19 +21,23 @@
   margin-top: 20px;
   padding: 0 30px 50px 0;
   text-align: center;
+  color: #fff;
+  background: #000;
+
+
  
 }
 hr{
   width: 72px;
-
-  border: 3px solid rgb(26 26 26);
+  color: rgba(255, 255, 255, 0.096);
+  border: 3px solid rgb(51, 51, 51);
 
 }
 h1.title {
   font-size: 65px;
   letter-spacing: -1px;
   font-weight: 400;
-  color: #000;
+  color: #fff;
 }
 
 #myInput {
@@ -57,24 +61,27 @@ h1.title {
   outline: none;
   padding: 8px 15px 8px 0;
   background-color: #000000a3;
-  color: #ffffffd2;
+  background: hsl(60deg 98% 50% / 50%);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 700;
   width: 145px;
   box-shadow: 0 1px 1px 0 rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.2);
   margin-top: 14px;
+  color: #000;
 }
 
 .btn:hover {
-  background: #000001;
-  color: white;
+
+  background: hsl(60deg 98% 50%);
+  color: #000;
   box-shadow: 0 1px 1px 0 rgba(0,0,0,0.3), 0 3px 5px 0 rgba(0,0,0,0.3);
   transition: all 0.2s ease;
 }
 
 .btn.active-btn {
-  background: #000000;
-  color: white;
+  background: hsl(60, 98%, 50%);;
+  color: #000;
   box-shadow: 0 1px 1px 0 rgba(0,0,0,0.3), 0 3px 5px 0 rgba(0,0,0,0.3);
 }
 

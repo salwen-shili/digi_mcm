@@ -2,14 +2,7 @@
 <odoo>
     <template id="mcm_website_faq" name="FAQ | MCM ACADEMY" t-name="mcm_website_theme.mcm_website_faq">
         <t t-call="website.layout">
-           
-     
-      
-
-
-
-           
-                <t t-set="head">
+            <t t-set="head">
                     <!--script of structured data-->
                     <script type="application/ld+json">
                         {
@@ -236,16 +229,11 @@
                         }]
                         }
                     </script>
-                        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/faq.min.css" />
+                    <link rel="stylesheet" href="/mcm_website_theme/static/src/css/faq.min.css" />
              </t>
-                
-         
-            <link rel="stylesheet" href="/mcm_website_theme/static/src/css/faq.min.css"/>
-     
-             
-         
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/faq.min.css"/>
           <!-- partial:index.partial.html -->
-          <div class="master-box">
+        <div class="master-box">
             <div class="faq-header">
               <h1 class="title">FAQ</h1>
               <hr />
@@ -259,7 +247,7 @@
                 />
                 <div id="myBtnContainer">
                   <button class="btn active-btn" onclick="filterSelection('all')">
-                    Afficher tout
+                    AFFICHER TOUT
                   </button>
                   <button class="btn" onclick="filterSelection('account')">
                     FORMATIONS
