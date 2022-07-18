@@ -21,7 +21,7 @@ onfidoOut=Onfido.init({
 
   },
   workflowRunId: workflow_run_id,
-  language: 'en_US',
+  language: 'fr_FR',
 
 
 });

@@ -23,65 +23,58 @@ class OnfidoController(http.Controller):
     @http.route(['/completed_workflow'], type='json', auth="user", methods=['POST'])
     def completed_workflow(self, data):
         print('************',data['document_front']['id'],data['document_back']['id'])
+        """Recupérer ID des documents chargés """
+        for document in data:
+            _logger.info('get document %s' %str(document))
         document_front_id=data['document_front']['id']
         document_back_id=data['document_back']['id']
+        name_front=str(data['document_front']['type'])+"_"+str(data['document_front']['side'])
+        name_back=str(data['document_back']['type'])+"_"+str(data['document_back']['side'])
+
         partner=request.env.user.partner_id
         website = request.env['website'].get_current_website()
 
-        document=partner.getDocmument(website.onfido_api_key_live,document_front_id)
-        print('document from api %s' %str(document))
-        download_document=partner.downloadDocument(document_front_id,website.onfido_api_key_live)
-        print('download_document from api %s' % str(download_document))
-        # data = json.loads(request.httprequest.payload)
-        # _logger.info("webhoooooooooook onfido %s" % str(data))
-        # workflow_run_id=data['object']['id']
-        # _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))
-        # # get_workflow(workflow_run_id,token)
-        _logger.info('document download %s' % str(download_document))
-        image_binary = base64.b64encode(download_document)
+        document_front=partner.getDocmument(website.onfido_api_key_live,document_front_id)
+        print('document from api %s' %str(document_front))
+        """Telecharger les documents sous format binaire par l'api onfido"""
+        download_document_front=partner.downloadDocument(document_front_id,website.onfido_api_key_live)
+        download_document_back = partner.downloadDocument(document_back_id, website.onfido_api_key_live)
+        print('download_document from api %s' % str(download_document_front))
+        _logger.info('document download %s' % str(download_document_front))
+        image_front_binary = base64.b64encode(download_document_front)
+        image_back_binary = base64.b64encode(download_document_back)
         folder_id = request.env['documents.folder'].sudo().search(
             [('name', "=", _('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
         _logger.info('partner_id %s' % str(request.env.user.partner_id.id))
         _logger.info('partner_id %s' % str(folder_id))
-        vals = {
-            'name': document,
-            'datas': image_binary,
-            'type': 'binary',
-            'partner_id': request.env.user.partner_id,
-            'folder_id': folder_id.id,
-            'state': 'validated'
-        }
-        attachement = request.env['documents.document'].sudo().create(
+        """Creer les documents pour l'utilisateur courant """
+        attachement_front = request.env['documents.document'].sudo().create(
             {
-                'name': "document",
-                'datas': image_binary,
+                'name': name_front,
+                'datas': image_front_binary,
                 'type': 'binary',
                 'partner_id': request.env.user.partner_id.id,
                 'folder_id': folder_id.id,
-                'state': 'validated'
+                'state': 'waiting'
             }
         )
-        _logger.info('partner_id %s' % str(attachement))
+        attachement_back = request.env['documents.document'].sudo().create(
+            {
+                'name': name_back,
+                'datas': image_back_binary,
+                'type': 'binary',
+                'partner_id': request.env.user.partner_id.id,
+                'folder_id': folder_id.id,
+                'state': 'waiting'
+            }
+        )
+        _logger.info('front %s' % str(attachement_front))
+        _logger.info('back %s' % str(attachement_back))
+
 
         return True
-
 
     """get event workflowrund is completed with webhook """
-    @http.route(['/completed_workflow_webhook'], type='http', auth="user")
-    def completed_workflow_webhook(self,**kw):
-
-        data = json.loads(kw)
-        _logger.info("webhoooooooooook onfido %s"%str(kw))
-        workflow_run_id=data['object']['id']
-        _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))
-        partner = request.env.user.partner_id
-        company_id = request.env.user.company_id.id
-        website = request.env['website'].get_current_website()
-
-        workflow_runs=partner.get_workflow_runs(workflow_run_id,website.onfido_api_key_live)
-        _logger.info("workflow_run onfido response %s" % str(workflow_runs))
-        return True
-
     @http.route(['/workflow_webhook'], type='json', auth="public", csrf=False)
     def completed_workflow_event(self, **kw):
         _logger.info("webhoooooooooook onfido %s" %str(kw))
@@ -97,4 +90,4 @@ class OnfidoController(http.Controller):
         _logger.info("workflow_run onfido response %s" % str(workflow_runs))
         if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'fail':
 
-            return request.render("website.homepage")
+            return request.render("onfido_api_integration.rejected_document")

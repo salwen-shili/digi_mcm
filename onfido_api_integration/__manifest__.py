@@ -14,7 +14,7 @@
     'data': [
         'views/configuration.xml',
         'views/load_document.xml',
-        # 'views/templates.xml',
+        'views/rejected_document.xml',
     ],
     'demo': [
 
