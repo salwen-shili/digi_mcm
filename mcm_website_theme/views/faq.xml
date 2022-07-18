@@ -333,7 +333,7 @@
                   >Quelles sont les conditions pour s'inscrire à l'examen TAXI/VTC ?</span
                 >
                 <p class="accordion-panel">
-                  Pour s'inscrire à l' examen TAXI/VTC , le candidat doit être : -
+                  Pour s'inscrire à l' examen TAXI/VTC , le candidat doit être : <br/> -
                   Européen ou avoir un titre de séjour lui permettant d'exercer en France.
                   <br />
                   - Titulaire d'un permis B depuis au moins 3 ans et non soumis à une
@@ -446,7 +446,7 @@
                   >Quelle est la différence entre un chauffeur VTC et un chauffeur TAXI ?
                 </span>
                 <p class="accordion-panel">
-                  "Contrairement à un taxi, un VTC fonctionne uniquement par réservation
+                  Contrairement à un taxi, un VTC fonctionne uniquement par réservation
                   (immédiate ou à l’avance). Les véhicules VTC sont pas équipés de
                   compteurs, contrairement aux taxis. Le prix de la course est déterminé à
                   l'avance lors de la réservation. Le chauffeur VTC conduit ses passagers
@@ -455,7 +455,7 @@
                   a le droit de stationner sur la voie publique en attente de clients et
                   le prix de ses courses est déterminé par un compteur par contre une
                   voiture avec chauffeur VTC n’a pas le droit de stationner sur la voie
-                  publique en attente de clients. "
+                  publique en attente de clients.
                 </p>
               </li>
           
