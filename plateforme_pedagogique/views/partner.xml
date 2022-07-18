@@ -121,7 +121,7 @@
                                     <i class="fa fa-clock-o"/>
                                 </span>
                                 <span class="o_stat_text">
-                                    Temps passé par minute
+                                     Temps passé Plateforme
                                 </span>
                                 <br/>
                                 <span class="o_stat_text">
@@ -134,7 +134,7 @@
                             <div>
                                 <span class="o_stat_text">
                                     <i class="fa fa-comments"/>
-                                    Commentaires Postés
+                                    Temps passé Visio
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
@@ -144,7 +144,7 @@
                             <div>
                                 <span class="o_stat_text">
                                     <i class="fa fa-thumbs-up"/>
-                                    Réactions
+                                    Temps passé appels
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
@@ -154,7 +154,7 @@
                             <div>
                                 <span class="o_stat_text">
                                     <i class="fa fa-tasks"/>
-                                    Cours/Programmes publiés
+                                    Total temps passé
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
