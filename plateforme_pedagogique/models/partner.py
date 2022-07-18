@@ -71,7 +71,7 @@ class partner(models.Model):
         if self.total_time_visio_min:
             hours = self.total_time_visio_min // 60
             minutes = self.total_time_visio_min % 60
-            self.total_time_visio_hour = hours + "H" + minutes + "min"
+            self.total_time_visio_hour = str(hours) + "H" + str(minutes) + "min"
 
     def write(self, vals):
         """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
