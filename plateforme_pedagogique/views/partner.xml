@@ -140,6 +140,7 @@
                                 <span class="o_stat_value">
                                     <field name="total_time_visio_min"/>
                                 </span>
+                                <br/>
                                 <span class="o_stat_text">
                                     <field name="total_time_visio_hour"/>
                                 </span>
@@ -151,7 +152,11 @@
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
-                                    <field name="reactions"/>
+                                    <field name="total_time_appels_min"/>
+                                </span>
+                                <br/>
+                                <span class="o_stat_value">
+                                    <field name="total_time_appels_hour"/>
                                 </span>
                             </div>
                             <div>
@@ -161,7 +166,11 @@
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
-                                    <field name="publications"/>
+                                    <field name="total_time_min"/>
+                                </span>
+                                <br/>
+                                <span class="o_stat_value">
+                                    <field name="total_time_hours"/>
                                 </span>
                             </div>
                         </group>
