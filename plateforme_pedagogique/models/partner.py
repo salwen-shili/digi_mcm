@@ -44,7 +44,7 @@ class partner(models.Model):
     total_time_appels_min = fields.Integer()
     total_time_appels_hour = fields.Char()
     total_time_min = fields.Integer()
-    total_time_hours = fields.Integer()
+    total_time_hours = fields.Char()
     reactions = fields.Char()
     comments = fields.Char()
     renounce_request = fields.Boolean(
@@ -80,21 +80,19 @@ class partner(models.Model):
             minutes = self.total_time_visio_min % 60
             self.total_time_visio_hour = str(hours) + "h" + str(minutes) + "min"
             self.total_time_min = int(self.total_time_visio_min) + int(self.total_time_appels_min)
-            if self.total_time_min != 0:
-                tot_min = int(self.total_time_min) // 60
-                tot_hour = int(self.total_time_min) % 60
-                tot_first = str(tot_min) + "h" + str(tot_hour) + "min"
-                self.total_time_hours = tot_first
+            tot_min = int(self.total_time_min) // 60
+            tot_hour = int(self.total_time_min) % 60
+            tot_first = str(tot_min) + "h" + str(tot_hour) + "min"
+            self.total_time_hours = tot_first
         if self.total_time_appels_min != 0:
             hour = self.total_time_appels_min // 60
             min = self.total_time_appels_min % 60
             self.total_time_appels_hour = str(hour) + "h" + str(min) + "min"
             self.total_time_min = int(self.total_time_visio_min) + int(self.total_time_appels_min)
-            if self.total_time_min != 0:
-                tot_min = int(self.total_time_min) // 60
-                tot_hour = int(self.total_time_min) % 60
-                tot_two = str(tot_min) + "h" + str(tot_hour) + "min"
-                self.total_time_hours = tot_two
+            tot_min = int(self.total_time_min) // 60
+            tot_hour = int(self.total_time_min) % 60
+            tot_two = str(tot_min) + "h" + str(tot_hour) + "min"
+            self.total_time_hours = tot_two
 
     def write(self, vals):
         """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
