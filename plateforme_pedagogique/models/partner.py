@@ -80,13 +80,17 @@ class partner(models.Model):
             minutes = self.total_time_visio_min % 60
             self.total_time_visio_hour = str(hours) + "h" + str(minutes) + "min"
             self.total_time_min = int(self.total_time_visio_min) + int(self.total_time_appels_min)
-            self.total_time_hours = (int(self.total_time_min) // 60 + self.total_time_min // 60)
+            tot_min = int(self.total_time_min) // 60
+            tot_hour = int(self.total_time_min) % 60
+            self.total_time_hours = str(tot_min) + "h" + str(tot_hour) + "min"
         if self.total_time_appels_min:
             hour = self.total_time_appels_min // 60
             min = self.total_time_appels_min % 60
             self.total_time_appels_hour = str(hour) + "h" + str(min) + "min"
             self.total_time_min = int(self.total_time_visio_min) + int(self.total_time_appels_min)
-            self.total_time_hours = (int(self.total_time_min) // 60 + self.total_time_min // 60)
+            tot_min = int(self.total_time_min) // 60
+            tot_hour = int(self.total_time_min) % 60
+            self.total_time_hours = str(tot_min) + "h" + str(tot_hour) + "min"
 
     def write(self, vals):
         """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
