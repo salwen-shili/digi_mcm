@@ -104,21 +104,6 @@
                             </div>
                             <div>
                                 <span>
-                                    <i class="fa fa-clock-o"/>
-                                </span>
-                                <span class="o_stat_text">
-                                    Temps passé par minute
-                                </span>
-                                <br/>
-                                <span class="o_stat_text">
-                                    <field name="totalTimeSpentInMinutes"></field>
-                                </span>
-                                <span class="o_stat_text">
-                                    <field name="temps_minute" class="oe_edit_only"/>
-                                </span>
-                            </div>
-                            <div>
-                                <span>
                                     <i class="fa fa-sign-in" style="align:center"/>
                                 </span>
                                 <span class="o_stat_text">
@@ -130,15 +115,20 @@
                                 </span>
                             </div>
                         </group>
-                        <group col="8" colspan="4" string="Participation">
+                        <group col="8" colspan="4" string="Statistiques">
                             <div>
+                                <span>
+                                    <i class="fa fa-clock-o"/>
+                                </span>
                                 <span class="o_stat_text">
-                                    <i class="fa fa-comment"/>
-                                    Messages Postés
+                                    Temps passé par minute
                                 </span>
                                 <br/>
-                                <span class="o_stat_value">
-                                    <field name="messages"/>
+                                <span class="o_stat_text">
+                                    <field name="totalTimeSpentInMinutes"></field>
+                                </span>
+                                <span class="o_stat_text">
+                                    <field name="temps_minute" class="oe_edit_only"/>
                                 </span>
                             </div>
                             <div>
