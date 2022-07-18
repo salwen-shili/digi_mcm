@@ -22,7 +22,10 @@
   padding: 0 30px 50px 0;
   text-align: center;
   color: #fff;
-  background: #000;
+ 
+  background-image: 
+                  url("/mcm_website_theme/static/src/img/COUV FAQ.png");
+                  background-repeat: round;
 
 
  
@@ -34,6 +37,7 @@ hr{
 
 }
 h1.title {
+  padding-top: 24px;
   font-size: 65px;
   letter-spacing: -1px;
   font-weight: 400;
@@ -61,7 +65,7 @@ h1.title {
   outline: none;
   padding: 8px 15px 8px 0;
   background-color: #000000a3;
-  background: hsl(60deg 98% 50% / 50%);
+  background: hsl(60deg 98% 50% / 64%);
   cursor: pointer;
   font-size: 15px;
   font-weight: 700;
