@@ -80,11 +80,12 @@ class partner(models.Model):
             minutes = self.total_time_visio_min % 60
             self.total_time_visio_hour = str(hours) + "h" + str(minutes) + "min"
             self.total_time_min = int(self.total_time_visio_min) + int(self.total_time_appels_min)
-            self.total_time_hours = (int(self.total_time_min) // 60) + "h" + (int(self.total_time_min % 60) + "min")
-        elif self.total_time_appels_min:
-            hours = self.total_time_appels_min // 60
-            minutes = self.total_time_appels_min % 60
-            self.total_time_appels_hour = str(hours) + "h" + str(minutes) + "min"
+            total = str((int(self.total_time_min) // 60) + "h" + (int(self.total_time_min % 60) + "min"))
+            self.total_time_hours = total
+        if self.total_time_appels_min:
+            hour = self.total_time_appels_min // 60
+            min = self.total_time_appels_min % 60
+            self.total_time_appels_hour = str(hour) + "h" + str(min) + "min"
             self.total_time_min = int(self.total_time_visio_min) + int(self.total_time_appels_min)
             self.total_time_hours = (int(self.total_time_min) // 60) + "h" + (int(self.total_time_min % 60) + "min")
 
