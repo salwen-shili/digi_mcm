@@ -38,7 +38,8 @@ class partner(models.Model):
     date_creation = fields.Char(string="Date d'inscription")
     messages = fields.Char(string='Messages Postés')
     publications = fields.Char(string='Cours ou programmes publiés')
-    comments = fields.Char(string='Commentaires Postés')
+    total_time_visio_min = fields.Integer()
+    total_time_visio_hour = fields.Char()
     reactions = fields.Char(string="Réactions dans les forums d'activités")
     renounce_request = fields.Boolean(
         "Renonciation au droit de rétractation conformément aux dispositions de l'article L.221-28 1°")
@@ -64,9 +65,16 @@ class partner(models.Model):
                                                string="Financement", default=False )
     is_not_paid = fields.Boolean(default=False)
 
-    """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
+    @api.onchange('total_time_visio_min')
+    def convert_minutes_to_hours(self):
+        """ Convert Minutes To Hours And Minutes """
+        if self.total_time_visio_min:
+            hours = self.total_time_visio_min // 60
+            minutes = self.total_time_visio_min % 60
+            self.total_time_visio_hour = hours + "H" + minutes + "min"
 
     def write(self, vals):
+        """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
         if 'email' in vals and vals['email'] is not None:
 
             # Si email changé on change sur login
@@ -1886,7 +1894,7 @@ class partner(models.Model):
                 state=False
                 if sms:
                     print('sms')
-                    for motification_id in sms.notification_ids:
+                    for notification_id in sms.notification_ids:
                         if notification_id.notification_status=="sent":
                             state=True
                 if not state:

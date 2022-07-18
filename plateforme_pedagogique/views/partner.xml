@@ -121,7 +121,7 @@
                                     <i class="fa fa-clock-o"/>
                                 </span>
                                 <span class="o_stat_text">
-                                     Temps passé Plateforme
+                                     Temps passé plateforme
                                 </span>
                                 <br/>
                                 <span class="o_stat_text">
@@ -138,7 +138,10 @@
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
-                                    <field name="comments"/>
+                                    <field name="total_time_visio_min"/>
+                                </span>
+                                <span class="o_stat_text">
+                                    <field name="total_time_visio_hour"/>
                                 </span>
                             </div>
                             <div>
