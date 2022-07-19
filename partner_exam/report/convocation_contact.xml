@@ -30,10 +30,10 @@
                                         professionnelle de transport routier léger de marchandises agréé
                                         par
                                         le préfet<br/>de la région
-                                        <span t-field='o.note_exam_id[-1].session_id.state'/>
-                                        <t t-if="o.note_exam_id[-1].session_id.num_agrement_jury">
+                                        <span t-field='o.mcm_session_id.state'/>
+                                        <t t-if="o.mcm_session_id.num_agrement_jury">
                                             sous le numéro d’agrément
-                                            <span t-field='o.note_exam_id[-1].session_id.num_agrement_jury'/>
+                                            <span t-field='o.mcm_session_id.num_agrement_jury'/>
                                         </t>
                                         <t t-else="">
                                             <span></span>
