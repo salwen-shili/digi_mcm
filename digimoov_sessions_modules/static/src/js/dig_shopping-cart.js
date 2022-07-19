@@ -1,4 +1,4 @@
-var villeLourd = ['PARIS', 'NANTES', 'METZ', 'LILLE', 'LYON', 'TOULOUSE', 'MARSEILLE'];
+var villeLourd = ['PARIS', 'NANTES', 'METZ', 'LILLE', 'LYON', 'TOULOUSE', 'MARSEILLE', 'GUADELOUPE'];
 var villeLeger = ['PARIS', 'NANTES', 'NICE', 'BORDEAUX', 'LYON', 'TOULOUSE', 'MARSEILLE'];
 document.addEventListener('DOMContentLoaded', function () {
   windowUrl = window.location.href;
