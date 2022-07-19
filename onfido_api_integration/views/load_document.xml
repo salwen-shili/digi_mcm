@@ -9,7 +9,9 @@
             <link rel="stylesheet" href="/onfido_api_integration/static/src/css/style.css" />
             <input type="hidden"  id="sdk-token" t-att-value="sdk_token"></input>
             <input type="hidden"  id="workflow_run_id" t-att-value="workflow_run_id"></input>
-            <div id="wrap" class="oe_empty oe_structure">
+            <input type="hidden"  id="api_token" t-att-value="api_token"></input>
+
+         <div id="wrap" class="oe_empty oe_structure">
                 <div id="onfido-mount"></div>
             </div>
             <script src="/onfido_api_integration/static/src/js/onfido.min.js"></script>

@@ -14,12 +14,13 @@ _logger = logging.getLogger(__name__)
 
 class LoadDocument(Website):
 
-    @http.route('/load_document', type='http', auth='public', website=True)
+    @http.route('/charger_documents', type='http', auth='public', website=True)
     def load_document(self, **kw):
         partner=request.env['res.partner'].sudo().search([('id','=',request.env.user.partner_id.id)])
         values = {
             'sdk_token': '',
             'workflow_run_id': '',
+            'api_token':'',
         }
         if partner:
             id_applicant=""
@@ -49,6 +50,7 @@ class LoadDocument(Website):
             values = {
                 'workflow_run_id': workflow_run_id,
                 'sdk_token': sdk_token,
+                'api_token': request.website.onfido_api_key_live,
             }
             _logger.info("workflow %s" %str(workflow_run_id))
 

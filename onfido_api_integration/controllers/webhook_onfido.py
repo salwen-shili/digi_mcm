@@ -89,5 +89,8 @@ class OnfidoController(http.Controller):
         workflow_runs = partner.get_workflow_runs(workflow_run_id, website.onfido_api_key_live)
         _logger.info("workflow_run onfido response %s" % str(workflow_runs))
         if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'fail':
-
-            return request.render("onfido_api_integration.rejected_document")
+            _logger.info('state document %s' %str(workflow_runs['state']))
+            return True
+        if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'clear':
+            _logger.info('else state document %s' % str(workflow_runs['state']))
+            return werkzeug.utils.redirect("/shop/cart", 301)
