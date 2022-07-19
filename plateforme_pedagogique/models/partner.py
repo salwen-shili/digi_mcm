@@ -76,20 +76,19 @@ class partner(models.Model):
     def convert_minutes_to_hours(self):
         """ Convert Minutes To Hours And Minutes """
         if self.total_time_visio_min or self.total_time_appels_min or self.temps_minute:
-            if self.total_time_visio_min != 0 or self.total_time_appels_min != 0:
-                hours = self.total_time_visio_min // 60
-                minutes = self.total_time_visio_min % 60
-                self.total_time_visio_hour = str(hours) + "h" + str(minutes) + "min"
-                # Calcul total time_appels_min
-                hour = self.total_time_appels_min // 60
-                min = self.total_time_appels_min % 60
-                self.total_time_appels_hour = str(hour) + "h" + str(min) + "min"
-                # Calcul total time visio + appels + plateforme
-                self.total_time_min = int(self.total_time_visio_min) + int(self.total_time_appels_min) + int(self.temps_minute)
-                tot_min = int(self.total_time_min) // 60
-                tot_hour = int(self.total_time_min) % 60
-                tot_two = str(tot_min) + "h" + str(tot_hour) + "min"
-                self.total_time_hours = tot_two
+            hours = self.total_time_visio_min // 60
+            minutes = self.total_time_visio_min % 60
+            self.total_time_visio_hour = str(hours) + "h" + str(minutes) + "min"
+            # Calcul total time_appels_min
+            hour = self.total_time_appels_min // 60
+            min = self.total_time_appels_min % 60
+            self.total_time_appels_hour = str(hour) + "h" + str(min) + "min"
+            # Calcul total time visio + appels + plateforme
+            self.total_time_min = int(self.total_time_visio_min) + int(self.total_time_appels_min) + int(self.temps_minute)
+            tot_min = int(self.total_time_min) // 60
+            tot_hour = int(self.total_time_min) % 60
+            tot_two = str(tot_min) + "h" + str(tot_hour) + "min"
+            self.total_time_hours = tot_two
 
     def write(self, vals):
         """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
