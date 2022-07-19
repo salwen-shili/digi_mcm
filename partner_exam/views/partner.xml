@@ -84,6 +84,7 @@
             <xpath expr="//tree/field[@name='email']" position="after">
                 <field name="code_evalbox" optional="hide"/>
                 <field name="num_departement" optional="hide"/>
+                <field name="age" optional="hide"/>
                 <field name="date_creation" string="Inscription sur 360" optional="hide"/>
             </xpath>
         </field>
