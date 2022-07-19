@@ -23,7 +23,7 @@ class OnfidoController(http.Controller):
     @http.route(['/completed_workflow'], type='json', auth="user", methods=['POST'])
     def completed_workflow(self, data):
         print('************',data['document_front']['id'],data['document_back']['id'])
-        """Recupérer ID des documents chargés """
+        """Recupérer ID des documents chargés"""
         for document in data:
             _logger.info('get document %s' %str(document))
         document_front_id=data['document_front']['id']
@@ -39,8 +39,8 @@ class OnfidoController(http.Controller):
         """Telecharger les documents sous format binaire par l'api onfido"""
         download_document_front=partner.downloadDocument(document_front_id,website.onfido_api_key_live)
         download_document_back = partner.downloadDocument(document_back_id, website.onfido_api_key_live)
-        print('download_document from api %s' % str(download_document_front))
-        _logger.info('document download %s' % str(download_document_front))
+        # print('download_document from api %s' % str(download_document_front))
+        # _logger.info('document download %s' % str(download_document_front))
         image_front_binary = base64.b64encode(download_document_front)
         image_back_binary = base64.b64encode(download_document_back)
         folder_id = request.env['documents.folder'].sudo().search(
@@ -70,8 +70,16 @@ class OnfidoController(http.Controller):
         )
         _logger.info('front %s' % str(attachement_front))
         _logger.info('back %s' % str(attachement_back))
-
-
+        extraction=partner.autofill(document_back_id,website.onfido_api_key_live)
+        """Si les informations sont correctement extraits,
+        on fait la mise à jour de la fiche client """
+        if 'extracted_data' in extraction:
+            _logger.info("extract date %s" %str(extraction['extracted_data']['date_of_birth']))
+            partner.birthday=extraction['extracted_data']['date_of_birth']
+            if 'nationality' in extraction['extracted_data']:
+                partner.nationality = extraction['extracted_data']['nationality']
+            if 'place_of_birth' in extraction['extracted_data']:
+                partner.birth_city = extraction['extracted_data']['place_of_birth']
         return True
 
     """get event workflowrund is completed with webhook """
@@ -90,7 +98,10 @@ class OnfidoController(http.Controller):
         _logger.info("workflow_run onfido response %s" % str(workflow_runs))
         if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'fail':
             _logger.info('state document %s' %str(workflow_runs['state']))
+            for document in partner.document_ids:
+                document.state="rejected"
             return True
         if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'clear':
             _logger.info('else state document %s' % str(workflow_runs['state']))
+
             return werkzeug.utils.redirect("/shop/cart", 301)

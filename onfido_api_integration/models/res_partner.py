@@ -123,5 +123,21 @@ class InheritConfig(models.Model):
         response_download = requests.get(url_documentdownload, headers=headers)
         download = response_download.content
         type_data=type(response_download)
-        
         return download
+
+    def autofill(self,document_id,token):
+        """récupérer les informations récupérées à partir des documents"""
+        url_extraction = "https://api.eu.onfido.com/v3.4/extractions"
+        headers = {
+            'Authorization': 'Token token=' + token,
+            # Already added when you pass json= but not when you pass data=
+            #     'Content-Type': 'application/json',
+        }
+        data={
+            "document_id": document_id
+        }
+        response_extraction = requests.post(url_extraction, data=json.dumps(data),headers=headers)
+        extractions = response_extraction.json()
+        type_data = type(response_extraction)
+        _logger.info('extracttttttttttttt %s' %str(extractions))
+        return extractions
