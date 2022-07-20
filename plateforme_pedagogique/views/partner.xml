@@ -44,7 +44,7 @@
                 <field name="is_not_paid" invisible="0" optional="hide"/>
                 <field name="etat_financement_cpf_cb" options='{"bg_color": "#FEE7F0:is_not_paid==True;"}'
                        optional="show" string="Financement"/>
-                <field name="totalTimeSpentInMinutes" string="Temps passé plateforme(Heur)" optional="hide"/>
+                <field name="totalTimeSpentInMinutes" string="Temps passé plateforme(Heure)" optional="hide"/>
                 <field name="total_time_visio_hour" string="Temps passé Visio" optional="hide"/>
                 <field name="total_time_appels_hour" string="Temps passé appels" optional="hide"/>
                 <field name="total_time_hours" string="Durée effective formation" optional="hide"/>
