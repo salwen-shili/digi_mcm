@@ -91,6 +91,10 @@ class NoteExamen(models.Model):
     date_resultat_officiel = fields.Date("Date Résultat officiel")
     date_exam_pratique = fields.Date("Date Examen Pratique", track_visibility='always')
     code_evalbox = fields.Char(string="Code Evalbox")
+    temps_minute = fields.Char()
+    total_time_visio_hour = fields.Char()
+    total_time_appels_hour = fields.Char()
+    total_time_hours = fields.Char()
 
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):
@@ -181,6 +185,10 @@ class NoteExamen(models.Model):
                     self.partner_id.presence = "Présent(e)"
                     self.partner_id.resultat = "Admis(e)"
                     self.code_evalbox = self.partner_id.code_evalbox
+                    self.temps_minute = self.partner_id.temps_minute
+                    self.total_time_visio_hour = self.partner_id.total_time_visio_hour
+                    self.total_time_appels_hour = self.partner_id.total_time_appels_hour
+                    self.total_time_hours = self.partner_id.total_time_hours
 
                 else:
                     # reset your fields
@@ -202,6 +210,10 @@ class NoteExamen(models.Model):
                         self.partner_id.presence = "Présent(e)"
                         self.partner_id.resultat = "Ajourné(e)"
                         self.code_evalbox = self.partner_id.code_evalbox
+                        self.temps_minute = self.partner_id.temps_minute
+                        self.total_time_visio_hour = self.partner_id.total_time_visio_hour
+                        self.total_time_appels_hour = self.partner_id.total_time_appels_hour
+                        self.total_time_hours = self.partner_id.total_time_hours
                     elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification and rec.partner_id:
                         self.session_id = self.partner_id.mcm_session_id
                         self.module_id = self.partner_id.module_id.id
@@ -211,6 +223,10 @@ class NoteExamen(models.Model):
                         self.partner_id.update({'presence': "Absent(e)"})
                         self.partner_id.resultat = "Ajourné(e)"
                         self.code_evalbox = self.partner_id.code_evalbox
+                        self.temps_minute = self.partner_id.temps_minute
+                        self.total_time_visio_hour = self.partner_id.total_time_visio_hour
+                        self.total_time_appels_hour = self.partner_id.total_time_appels_hour
+                        self.total_time_hours = self.partner_id.total_time_hours
                     elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True and rec.partner_id:
                         self.session_id = last_line.session_id
                         self.module_id = last_line.client_id.module_id.id
@@ -220,6 +236,10 @@ class NoteExamen(models.Model):
                         self.partner_id.update({'presence': "Absence justifiée"})
                         self.partner_id.resultat = "Ajourné(e)"
                         self.code_evalbox = self.partner_id.code_evalbox
+                        self.temps_minute = self.partner_id.temps_minute
+                        self.total_time_visio_hour = self.partner_id.total_time_visio_hour
+                        self.total_time_appels_hour = self.partner_id.total_time_appels_hour
+                        self.total_time_hours = self.partner_id.total_time_hours
             else:
                 print("for mcm academy")
                 if self.state_theorique == 'reussi':
