@@ -29,7 +29,7 @@
                                 <field name="funding_method" string="Mode de financement"/>
                                 <field name="average_score" string="Score Moyen"/>
                                 <field name="last_login" string="Dernière Connexion"/>
-                                <field name="totalTimeSpentInMinutes" string="Temps passé par minute"/>
+                                <field name="total_time_hours" string=" Durée effective formation"/>
                                 <field name="date_creation" string="Date d'inscription"/>
                                 <field name="reactions" string="Réactions"/>
                                 <field name="folder_number_cpf" string="N° de Dossier CPF"/>
@@ -62,7 +62,7 @@
                     <field name="funding_method" string="Mode de financement" optional="show"/>
                     <field name="average_score" string="Score Moyen" optional="hide"/>
                     <field name="last_login" string="Dernière Connexion" optional="hide"/>
-                    <field name="totalTimeSpentInMinutes" string="Temps passé par minute" optional="show"/>
+                    <field name="total_time_hours" string=" Durée effective formation" optional="show"/>
                     <field name="date_creation" string="Date d'inscription" optional="show"/>
                     <field name="reactions" string="Réactions" optional="hide"/>
                     <field name="folder_number_cpf" string="N° de Dossier CPF" optional="hide"/>
