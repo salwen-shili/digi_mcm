@@ -347,16 +347,16 @@ class mcmSession(models.Model):
                 self.restoreStudent(edusignStudentID, student.email, headers)
             editStudent = (
                 checkStudent["result"]["GROUPS"] != groups
-                or checkStudent["result"]["FIRSTNAME"] != firstName
-                or checkStudent["result"]["LASTNAME"] != lastName
+                or checkStudent["result"]["FIRSTNAME"] != lastName
+                or checkStudent["result"]["LASTNAME"] != firstName
                 or checkStudent["result"]["PHONE"] != student.phone
                 or checkStudent["result"]["TRAINING_NAME"] != self.diplome_vise
                 or checkStudent["result"]["API_ID"] != str(student.id)
             )
             print(
                 checkStudent["result"]["GROUPS"] != groups,
-                checkStudent["result"]["FIRSTNAME"] != firstName,
-                checkStudent["result"]["LASTNAME"] != lastName,
+                checkStudent["result"]["FIRSTNAME"] != lastName,
+                checkStudent["result"]["LASTNAME"] != firstName,
                 checkStudent["result"]["PHONE"] != student.phone,
                 checkStudent["result"]["TRAINING_NAME"] != self.diplome_vise,
                 checkStudent["result"]["API_ID"] != str(student.id),
@@ -378,8 +378,8 @@ class mcmSession(models.Model):
                 data = {
                     "student": {
                         "ID": edusignStudentID,
-                        "FIRSTNAME": firstName,
-                        "LASTNAME": lastName,
+                        "FIRSTNAME": lastName,
+                        "LASTNAME": firstName
                         "EMAIL": student.email,
                         "FILE_NUMBER": "",
                         "PHOTO": "",
