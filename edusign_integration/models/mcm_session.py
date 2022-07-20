@@ -1028,8 +1028,7 @@ class mcmSession(models.Model):
                     
                 else:
                     for line in examLines:
-                        _logger.info("if line.presence != presence %s and line.date_exam == partner.mcm_session_id.date_exam %s" %(str(line.presence != presence) , str(line.date_exam == partner.mcm_session_id.date_exam))
-                        )
+                        _logger.info("if line.presence != presence %s and line.date_exam == partner.mcm_session_id.date_exam %s" %(str(line.presence != presence),str(line.date_exam == partner.mcm_session_id.date_exam)))
                         if line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam:
                             line.presence = presence
                             print("Update presence in the same line. ")
@@ -1045,7 +1044,7 @@ class mcmSession(models.Model):
                                     "presence": presence,
                                     "ville_id": session.session_ville_id.id,
                                 }
-                            )
+                            
                             print("else line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam:")
                             _logger.info("else line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam:")
                             
