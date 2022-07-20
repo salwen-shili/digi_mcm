@@ -1034,8 +1034,19 @@ class mcmSession(models.Model):
                             print("Update presence in the same line. ")
                             _logger.info("Update presence in the same line. ")
                         else:
-                            _logger.info("else")
-                            return
+                            exam.sudo().create(
+                                {
+                                    "partner_id": partner.id,
+                                    "session_id": partner.mcm_session_id.id,
+                                    "module_id": partner.module_id.id,
+                                    "date_exam": partner.mcm_session_id.date_exam,
+                                    "presence": presence,
+                                    "ville_id": session.session_ville_id.id,
+                                }
+                            )
+                            print("else line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam:")
+                            _logger.info("No lines => Exam line created ")
+                            
         else:
             print("Student with id %s does not exist" % (str(student["studentId"])))
             _logger.info("Student with id %s does not exist" % (str(student["studentId"])))
