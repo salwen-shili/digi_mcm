@@ -379,7 +379,7 @@ class mcmSession(models.Model):
                     "student": {
                         "ID": edusignStudentID,
                         "FIRSTNAME": lastName,
-                        "LASTNAME": firstName
+                        "LASTNAME": firstName,
                         "EMAIL": student.email,
                         "FILE_NUMBER": "",
                         "PHOTO": "",
