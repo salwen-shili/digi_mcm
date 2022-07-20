@@ -31,16 +31,15 @@ class search(models.Model):
         sessions = super(search, self).write(vals)
         last_session_line = self.env['partner.sessions'].search(
             [('client_id', '=', self.id), ('session_id', '=', self.mcm_session_id.id)], limit=1)
-        if 'temps_minute' in vals or 'date_creation' in vals or 'reactions' in vals or 'averageScore' in vals or 'last_login' in vals or 'mode_de_financement' in vals or 'etat_financement_cpf_cb' in vals or 'numero_cpf' in vals:
-            last_session_line.totalTimeSpentInMinutes = self.temps_minute
+        if 'total_time_hours' in vals or 'date_creation' in vals or 'reactions' in vals or 'averageScore' in vals or 'last_login' in vals or 'mode_de_financement' in vals or 'etat_financement_cpf_cb' in vals or 'numero_cpf' in vals:
             last_session_line.date_creation = self.date_creation
             last_session_line.reactions = self.reactions
             last_session_line.average_score = self.averageScore
             last_session_line.last_login = self.last_login
             last_session_line.folder_number_cpf = self.numero_cpf
+            last_session_line.total_time_hours = self.total_time_hours
             last_session_line.funding_method = dict(self._fields['mode_de_financement'].selection).get(
                     self.mode_de_financement)
             last_session_line.stat_funding = dict(self._fields['etat_financement_cpf_cb'].selection).get(
                     self.etat_financement_cpf_cb)
-            print("self.historic_sessions_ids.totalTimeSpentInMinutes", last_session_line.totalTimeSpentInMinutes)
         return sessions

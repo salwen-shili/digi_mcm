@@ -40,11 +40,14 @@
                 <field name="firstName" string="Nom" optional="show"/>
                 <field name="lastName" string="Prénom" optional="show"/>
                 <field name="last_login"/>
-                <field name="totalTimeSpentInMinutes"/>
-                <field name="temps_minute" optional="hide"/>
+                <field name="temps_minute" string="Temps passé plateforme(min)" optional="hide"/>
                 <field name="is_not_paid" invisible="0" optional="hide"/>
                 <field name="etat_financement_cpf_cb" options='{"bg_color": "#FEE7F0:is_not_paid==True;"}'
                        optional="show" string="Financement"/>
+                <field name="totalTimeSpentInMinutes" string="Temps passé plateforme(Heure)" optional="hide"/>
+                <field name="total_time_visio_hour" string="Temps passé Visio" optional="hide"/>
+                <field name="total_time_appels_hour" string="Temps passé appels" optional="hide"/>
+                <field name="total_time_hours" string="Durée effective formation" optional="hide"/>
             </xpath>
         </field>
     </record>
@@ -129,7 +132,7 @@
                                 </span>
                                 <br/>
                                 <span class="o_stat_text">
-                                    <field name="totalTimeSpentInMinutes"></field>
+                                    <field name="totalTimeSpentInMinutes"/>
                                 </span>
                             </div>
                             <div>
