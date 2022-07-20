@@ -21,7 +21,7 @@ class NoteExamen(models.Model):
 
     partner_id = fields.Many2one('res.partner', string="Client")
     epreuve_a = fields.Float(string="Epreuve A(QCM):", track_visibility='always', group_operator='avg')
-    epreuve_b = fields.Float(string="Epreuve B(QRO)", track_visibility='always', default=1, group_operator='avg')
+    epreuve_b = fields.Float(string="Epreuve B(QRO)", track_visibility='always', group_operator='avg')
     moyenne_generale = fields.Float(string="Moyenne Générale", track_visibility='always', store=True,
                                     group_operator='avg')
     mention = fields.Selection([
@@ -176,7 +176,7 @@ class NoteExamen(models.Model):
                     self.session_id = self.partner_id.mcm_session_id
                     self.module_id = self.partner_id.module_id.id
                     self.date_exam = self.partner_id.mcm_session_id.date_exam
-                    self.presence = 'present'
+                    # self.presence = 'present'
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                     self.partner_id.presence = "Présent(e)"
                     self.partner_id.resultat = "Admis(e)"
@@ -197,7 +197,7 @@ class NoteExamen(models.Model):
                         self.session_id = self.partner_id.mcm_session_id
                         self.module_id = self.partner_id.module_id.id
                         self.date_exam = self.partner_id.mcm_session_id.date_exam
-                        self.presence = 'present'
+                        # self.presence = 'present'
                         self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                         self.partner_id.presence = "Présent(e)"
                         self.partner_id.resultat = "Ajourné(e)"
@@ -206,7 +206,7 @@ class NoteExamen(models.Model):
                         self.session_id = self.partner_id.mcm_session_id
                         self.module_id = self.partner_id.module_id.id
                         self.date_exam = self.partner_id.mcm_session_id.date_exam
-                        self.presence = 'Absent'
+                        #self.presence = 'Absent'
                         self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                         self.partner_id.update({'presence': "Absent(e)"})
                         self.partner_id.resultat = "Ajourné(e)"
