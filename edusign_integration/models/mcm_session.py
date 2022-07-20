@@ -1028,12 +1028,13 @@ class mcmSession(models.Model):
                     
                 else:
                     for line in examLines:
-                        _logger.info("line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam" % (str(line.presence != presence)),(str(line.date_exam == partner.mcm_session_id.date_exam)))
+                        _logger.info(" if line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam")
                         if line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam:
                             line.presence = presence
                             print("Update presence in the same line. ")
                             _logger.info("Update presence in the same line. ")
                         else:
+                            
                             exam.sudo().create(
                                 {
                                     "partner_id": partner.id,
