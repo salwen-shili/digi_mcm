@@ -16,23 +16,25 @@
                         <label for="other_cases" string="Nom de l’Etat pour les autres cas :"/>
                         <field name="other_cases"/>
                     </div>
-                    <div attrs="{'invisible': [('company_id', '!=', 2)]}">
+                    <div attrs="{'invisible': [('company_id', '!=', 2)]}" invisible="1">
                         <label for="nom_evalbox" string="Nom Evalbox"/>
                         <field name="nom_evalbox"/>
                     </div>
-                    <div attrs="{'invisible': [('company_id', '!=', 2)]}">
+                    <div attrs="{'invisible': [('company_id', '!=', 2)]}" invisible="1">
                         <label for="prenom_evalbox" string="Prénom Evalbox"/>
                         <field name="prenom_evalbox"/>
                     </div>
                     <div attrs="{'invisible': [('company_id', '=', 2)]}">
                         <label for="note_exam" string="Note d'examen blanc :">Note d'examen blanc</label>
-                        <field name="note_exam"/><span>/100</span>
+                        <field name="note_exam"/>
+                        <span>/100</span>
                     </div>
                 </div>
             </xpath>
             <xpath expr="//page[last()]" position="after">
-                <page name="note_exam" string="Examen" >
-                    <field name="note_exam_id" attrs="{'invisible': [('company_id', '=', 1)]}" context="{'default_partner_id': id}">
+                <page name="note_exam" string="Examen">
+                    <field name="note_exam_id" attrs="{'invisible': [('company_id', '=', 1)]}"
+                           context="{'default_partner_id': id}">
                         <tree>
                             <field name="partner_id"/>
                             <field name="code_evalbox"/>
@@ -46,11 +48,16 @@
                             <field name="presence"/>
                             <field name="company_id"/>
                             <field name="nombre_de_passage"/>
+                            <field name="temps_minute" string="Temps passé plateforme" optional="hide"/>
+                            <field name="total_time_visio_hour" string="Temps passé Visio" optional="hide"/>
+                            <field name="total_time_appels_hour" string="Temps passé appels" optional="hide"/>
+                            <field name="total_time_hours" string="Durée effective formation" optional="hide"/>
                         </tree>
                     </field>
-                    <field name="note_exam_mcm_id" attrs="{'invisible': [('company_id', '=', 2)]}" context="{'default_partner_id': id}">
+                    <field name="note_exam_mcm_id" attrs="{'invisible': [('company_id', '=', 2)]}"
+                           context="{'default_partner_id': id}">
                         <tree>
-                            <field name="partner_id" />
+                            <field name="partner_id"/>
                             <field name="mode_de_financement"/>
                             <field name="session_id"/>
                             <field name="date_exam"/>
