@@ -69,6 +69,12 @@
                                 <field name="resultat"/>
                                 <field name="etat" invisible="1"/>
                             </group>
+                            <group name="stat" string="Statistique" attrs="{'invisible': [('company_id', '!=', 2)]}">
+                                <field name="temps_minute" string="Temps passé plateforme"/>
+                                <field name="total_time_visio_hour" string="Temps passé Visio"/>
+                                <field name="total_time_appels_hour" string="Temps passé appels"/>
+                                <field name="total_time_hours" string="Durée effective formation"/>
+                            </group>
                             <group name="other">
                                 <field name="nombre_de_passage"/>
                                 <field name="company_id"/>
@@ -127,8 +133,11 @@
                     <field name="nombre_de_passage"/>
                     <field name="sorti_formation" optional="hide"
                            attrs="{'invisible': [('company_id', '!=', 2)]}"/>
-                    <field name="temps_minute" optional="hide"/>
                     <field name="company_id" optional="hide"/>
+                    <field name="temps_minute" string="Temps passé plateforme" optional="hide" attrs="{'invisible': [('company_id', '!=', 2)]}"/>
+                    <field name="total_time_visio_hour" string="Temps passé Visio" optional="hide" attrs="{'invisible': [('company_id', '!=', 2)]}"/>
+                    <field name="total_time_appels_hour" string="Temps passé appels" optional="hide" attrs="{'invisible': [('company_id', '!=', 2)]}"/>
+                    <field name="total_time_hours" string="Durée effective formation" optional="hide" attrs="{'invisible': [('company_id', '!=', 2)]}"/>
                 </tree>
             </field>
         </record>
