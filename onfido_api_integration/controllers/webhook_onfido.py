@@ -100,12 +100,17 @@ class OnfidoController(http.Controller):
     """get event workflowrund is completed with webhook """
     @http.route(['/workflow_webhook'], type='json', auth="public", csrf=False)
     def completed_workflow_event(self, **kw):
+        values = {}
         _logger.info("webhoooooooooook onfido %s" %str(kw))
         data = json.loads(request.httprequest.data)
         # data = json.loads(kw)
         workflow_run_id = data['payload']['object']['id']
+        applicant_id = data['payload']['object']['applicant_id']
+
         _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))
         partner = request.env.user.partner_id
+        list_document=partner.get_listDocument(applicant_id,website.onfido_api_key_live)
+        _logger.info('*************************************DOCUMENT***************** %s'%str(list_document))
         company_id = request.env.user.company_id.id
         website = request.env['website'].get_current_website()
         workflow=partner.get_workflow('')
@@ -113,11 +118,13 @@ class OnfidoController(http.Controller):
         _logger.info("workflow_run onfido response %s" % str(workflow_runs))
         if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'fail':
             _logger.info('state document %s' %str(workflow_runs['state']))
+            partner.validation_onfido="fail"
             return True
         if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'clear':
             _logger.info('else state document %s' % str(workflow_runs['state']))
-
-            return werkzeug.utils.redirect("/shop/cart", 301)
+            self.create_documents()
+            partner.validation_onfido = "clear"
+            return True
 
     """get document ids  is completed with js callback """
     @http.route(['/get_document_ids'], type='json', auth="user", methods=['POST'])
@@ -127,10 +134,10 @@ class OnfidoController(http.Controller):
         _logger.info('************ %s' %str(DOCUMENT_IDs))
         return True
 
-    def create_documents(self):
-        """Recupérer ID des documents chargés"""
+    def create_documents(self,DOCUMENT_IDs):
+        """Recupérer ID des documents chargés et créer attachement pour le client"""
         for document in DOCUMENT_IDs:
-            _logger.info('get document %s' % str(document))
+            _logger.info('create_documents get document %s' % str(document))
         document_front_id = DOCUMENT_IDs['document_front']['id']
         document_back_id = DOCUMENT_IDs['document_back']['id']
         face_id=DOCUMENT_IDs['face']['id']

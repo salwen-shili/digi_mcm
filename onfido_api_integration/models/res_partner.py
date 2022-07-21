@@ -15,8 +15,13 @@ class InheritConfig(models.Model):
     _inherit = "res.partner"
     onfido_sdk_token=fields.Char("SDK Token")
     onfido_applicant_id=fields.Char('Applicant ID')
-    exp_date_sdk_token=fields.Datetime("Date d'expiration sdk token ")
-
+    exp_date_sdk_token=fields.Datetime("Date d'expiration sdk token")
+    validation_onfido=fields.Selection(selection=[
+        ('clear', 'Validé'),
+        ('fail', 'Refusé'),
+        ('in_progress', 'en cours de vérification'),
+    ], string='Statut des Documents')
+    
     def create_applicant(self,partner,token):
         """Creer un nouveau applicant avec api Onfido"""
         url_post = "https://api.eu.onfido.com/v3.4/applicants"
@@ -99,7 +104,18 @@ class InheritConfig(models.Model):
         workflow_runs = response_workflow_runs.json()
         _logger.info('workflow_runs %s' % str(workflow_runs))
         return workflow_runs
-
+    def get_listDocument(self,applicant_id,token):
+        """recuperer le workflow """
+        url_documents = "https://api.eu.onfido.com/v3.4/documents/"+ applicant_id
+        headers = {
+            'Authorization': 'Token token=' + token,
+            # Already added when you pass json= but not when you pass data=
+            #     'Content-Type': 'application/json',
+        }
+        response_documents = requests.get(url_documents, headers=headers)
+        documents = response_documents.json()
+        _logger.info('documents %s' % str(documents))
+        return documents
     def getDocmument(self,token,documentid):
         """recupérer les informations lié aux documents chargés"""
         url_document="https://api.eu.onfido.com/v3.4/documents/"+documentid
