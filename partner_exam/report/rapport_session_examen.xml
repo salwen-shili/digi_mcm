@@ -7,7 +7,7 @@
                     <style>
                         .page {
                         line-height: 1.75 ;
-                        font-size:18px ;
+                        font-size:20px ;
 
                         }
                     </style>
@@ -174,12 +174,33 @@
                             </div>
                         </div>
                         <p style="page-break-after:always;"/>
-                        <b><u>
-                            Déférant à cette réquisition :
-                        </u></b>
+                        <b>
+                            <u>
+                                Déférant à cette réquisition :
+                            </u>
+                        </b>
                         <br/>
                         <p>
-                            Je, ........
+                            Je,
+                            <strong>
+                                <span t-esc="o.display_name"/>
+                            </strong>
+                            et présentant les garanties d'honorabilité suffisantes, demeurant au
+                            <strong>
+                                <span t-raw="'%s' % o.street if o.street else '..............'"/>
+                                <span t-raw="'%s' % o.zip if o.zip else '..............'"/>
+                                <span t-raw="'%s' % o.city if o.city else '..............'"/>
+                            </strong>
+                            <br/>
+                            soussigné(e) :
+                            <br/>
+                            Me suis rendu ce jour, le
+                            <b>
+                                <u>
+                                    <span t-esc="o.date_session_frensh(date_examen)"/>
+                                </u>
+                            </b>
+                            dans les locaux de l’organisme de formation <b>MCM ACADEMY</b>, situé au
                         </p>
                     </div>
                 </t>
