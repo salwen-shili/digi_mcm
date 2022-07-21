@@ -36,14 +36,7 @@ class InheritConfig(models.Model):
         json_data = {
             "first_name": partner.firstName,
             "last_name": partner.lastName,
-            "dob": "1990-01-31",
-            "address": {
-            "building_number": "100",
-            "street": "Main Street",
-            "town": partner.city,
-            "postcode": "SW4 6EH",
-            "country": "GBR",
-            }
+            
         }
         response = requests.post(url_post, headers=headers, data=json.dumps(json_data))
         applicant=response.json()
