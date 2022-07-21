@@ -481,10 +481,10 @@ class NoteExamen(models.Model):
         if 'partner_id' in values:
             """ Une affectation simple de champ presence lors 
             de la creation d'un examen avec une absence justifiée automatiquement """
-            if 'presence' == 'present':
-                self.partner_id.presence = "Présent(e)"
-            if 'presence' == 'Absent':
-                self.partner_id.presence = "Absent(e)"
+            # if 'presence' == 'present':
+            #     self.partner_id.presence = "Présent(e)"
+            # if 'presence' == 'Absent':
+            #     self.partner_id.presence = "Absent(e)"
             if 'presence' == 'absence_justifiee':
                 self.partner_id.presence = "Absence justifiée"
             elif not 'presence':
