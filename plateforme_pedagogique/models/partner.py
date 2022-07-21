@@ -32,7 +32,7 @@ class partner(models.Model):
     last_login = fields.Char(string="Derniere Activité", readonly=True)
     # learner_achivement=fields.Char(string="Réalisations des apprenants")
     averageScore = fields.Integer(string="Score Moyen", readonly=True)
-    totalTimeSpentInMinutes = fields.Char(string="temps passé en minutes", readonly=True)
+    totalTimeSpentInMinutes = fields.Char(string="temps passé en minutes", readonly=False)
     password360 = fields.Char()  # Champs pour stocker le mot de passe non crypté
     firstName = fields.Char()
     lastName = fields.Char()
