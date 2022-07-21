@@ -124,7 +124,18 @@ class InheritConfig(models.Model):
         download = response_download.content
         type_data=type(response_download)
         return download
-
+    def downloadFace(self,applicant_id,token):
+        """récupérer la version binaire de face photo """
+        url_face_download = "https://api.eu.onfido.com/v3.4/applicants/" + applicant_id + "/face/download"
+        headers = {
+            'Authorization': 'Token token=' + token,
+            # Already added when you pass json= but not when you pass data=
+            #     'Content-Type': 'application/json',
+        }
+        response_download = requests.get(url_face_download, headers=headers)
+        face = response_download.content
+        type_data = type(response_download)
+        return face
     def autofill(self,document_id,token):
         """récupérer les informations récupérées à partir des documents"""
         url_extraction = "https://api.eu.onfido.com/v3.4/extractions"
