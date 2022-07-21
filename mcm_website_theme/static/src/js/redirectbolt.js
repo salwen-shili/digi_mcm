@@ -21,5 +21,5 @@ function openPopup() {
 }
 
 function redirection() {
-  window.open('https://www.academy.bolt.eu/examen-theorique-pratique', '_blank');
+  window.open('https://www.academy.bolt.eu/copy-of-examen-th%C3%A9orique-et-pratique', '_blank');
 }
