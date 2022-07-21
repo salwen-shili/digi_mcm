@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="pdf_rapport_session_examen">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <style>
+                        .page {
+                        line-height: 1.75 ;
+                        font-size:18px ;
+
+                        }
+                    </style>
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <center>DIRECTION REGIONALE DE L’ENVIRONNEMENT, DE L’AMENAGEMENT ET DU LOGEMENT</center>
+                            <br/>
+                            <strong>
+                                <center>
+                                    <h2>RAPPORT DE SESSION D’EXAMEN</h2>
+                                    <br/>
+                                    <h2>EXAMEN DE TRANSPORT PUBLIC ROUTIER DE MARCHANDISES ≤3,5 t</h2>
+                                    <br/>
+                                    <br/>
+                                    <u>SESSION DU
+                                        <span t-esc="o.mcm_session_id.date_exam"/>
+                                    </u>
+                                </center>
+                            </strong>
+                        </div>
+                        <div>
+                            <p>L'AN
+                                <span t-esc="o.mcm_session_id.date_to_text(yearformat,monthformat)"/>
+                                <span t-esc="o.mcm_session_id.month_session_in_lettre(month_format)"/>
+                            </p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
