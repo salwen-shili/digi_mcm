@@ -704,7 +704,7 @@ class partner(models.Model):
                 # pour assurer la suppresion automatique
                 if partner and partner.mcm_session_id.date_exam and not existe:
                     # date de suppression est date d'examen + 4jours
-                    date_suppression = partner.mcm_session_id.date_exam + timedelta(days=4)
+                    date_suppression = partner.mcm_session_id.date_exam
                     today = date.today()
                     if (date_suppression <= today):
                         email = partner.email
