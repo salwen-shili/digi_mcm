@@ -968,6 +968,8 @@ class mcmSession(models.Model):
 
                 exam = partner.note_exam_id
                 presence = "present" if student["state"] else "Absent"
+              
+               
                 print(
                     "partner_id",
                     partner.id,
@@ -982,20 +984,7 @@ class mcmSession(models.Model):
                     presence,
                     session.session_ville_id.id,
                 )
-                _logger.info(
-                    "partner_id",
-                    partner.id,
-                    "session_id",
-                    partner.mcm_session_id.id,
-                    "module_id",
-                    partner.module_id.id,
-                    "date_exam",
-                    partner.mcm_session_id.date_exam,
-                    "ville_id",
-                    "presence",
-                    presence,
-                    session.session_ville_id.id,
-                )
+               
                 # search for existance
                 examLines = (
                     self.env["info.examen"]
@@ -1009,7 +998,7 @@ class mcmSession(models.Model):
                     )
                 )
                 print("print (examLines)", examLines)
-                _logger.info("print (examLines)", examLines)
+                # _logger.info("print (examLines)", examLines)
 
                 if not examLines:
 
@@ -1048,6 +1037,11 @@ class mcmSession(models.Model):
                             
                             print("else line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam:")
                             _logger.info("else line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam:")
+                
+                #update presence fiche_client 
+                _logger.info("update presence fiche_client - edusign") 
+                presenceFicheClient = "Present(e)" if student["state"] else "Absent(e)"
+                partner.presence=presenceFicheClient
                             
         else:
             print("Student with id %s does not exist" % (str(student["studentId"])))
