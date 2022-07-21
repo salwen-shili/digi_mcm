@@ -37,8 +37,8 @@
         <field name="inherit_id" ref="base.view_partner_tree"></field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='email']" position="after">
-                <field name="firstName" string="Nom" optional="show"/>
-                <field name="lastName" string="Prénom" optional="show"/>
+                <field name="lastName" string="Nom" optional="show"/>
+                <field name="firstName" string="Prénom" optional="show"/>
                 <field name="last_login"/>
                 <field name="temps_minute" string="Temps passé plateforme(min)" optional="hide"/>
                 <field name="is_not_paid" invisible="0" optional="hide"/>
