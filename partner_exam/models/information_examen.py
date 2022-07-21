@@ -182,7 +182,7 @@ class NoteExamen(models.Model):
                     self.date_exam = self.partner_id.mcm_session_id.date_exam
                     # self.presence = 'present'
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
-                    self.partner_id.presence = "Présent(e)"
+                    # self.partner_id.presence = "Présent(e)"
                     self.partner_id.resultat = "Admis(e)"
                     self.code_evalbox = self.partner_id.code_evalbox
                     self.temps_minute = self.partner_id.temps_minute
@@ -207,7 +207,7 @@ class NoteExamen(models.Model):
                         self.date_exam = self.partner_id.mcm_session_id.date_exam
                         # self.presence = 'present'
                         self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
-                        self.partner_id.presence = "Présent(e)"
+                        # self.partner_id.presence = "Présent(e)"
                         self.partner_id.resultat = "Ajourné(e)"
                         self.code_evalbox = self.partner_id.code_evalbox
                         self.temps_minute = self.partner_id.temps_minute
@@ -220,7 +220,7 @@ class NoteExamen(models.Model):
                         self.date_exam = self.partner_id.mcm_session_id.date_exam
                         #self.presence = 'Absent'
                         self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
-                        self.partner_id.update({'presence': "Absent(e)"})
+                        # self.partner_id.update({'presence': "Absent(e)"})
                         self.partner_id.resultat = "Ajourné(e)"
                         self.code_evalbox = self.partner_id.code_evalbox
                         self.temps_minute = self.partner_id.temps_minute
@@ -233,7 +233,7 @@ class NoteExamen(models.Model):
                         self.date_exam = last_line.session_id.date_exam
                         self.presence = 'absence_justifiee'
                         self.ville_id = last_line.session_id.session_ville_id.id
-                        self.partner_id.update({'presence': "Absence justifiée"})
+                        # self.partner_id.update({'presence': "Absence justifiée"})
                         self.partner_id.resultat = "Ajourné(e)"
                         self.code_evalbox = self.partner_id.code_evalbox
                         self.temps_minute = self.partner_id.temps_minute
