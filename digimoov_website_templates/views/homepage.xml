@@ -1180,7 +1180,7 @@
                                     <div class="text-center text-white border-0" style="                 background-color: #6e209f;                 border-top-left-radius: 25px;                 border-top-right-radius: 25px;                 padding-bottom: 14px;               ">
                                         <br />
                                         <p>
-                                            <span style="                     font-size: 30px;                     font-weight: 700;                     padding-bottom: 10px;                   ">SOLO</span>
+                                            <span style="                     font-size: 30px;                     font-weight: 700;                     padding-bottom: 10px;                   ">COURSIER</span>
                                         </p>
                                         <br />
                                     </div>
@@ -1217,18 +1217,24 @@
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Examen Final</b>
+                                                        <b> Examen télé surveillé à passer en ligne</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b> Un 2 ème repassage de l'examen est OFFERT en cas d'échec.</b>
                                                     </li>
                                                 </ul>
                                                 <div class="text-center">
                                                     <b style="font-size: 60px !important; color: #000000" t-if="not promo">
-                                                        <span t-esc="round(product.list_price)" />
+<!--                                                        <span t-esc="round(product.list_price)" />-->
+                                                        <span> 525 </span>
                                                         <span t-esc="product.currency_id.symbol" />
                                                     </b>
                                                     <b style="font-size: 60px !important; color: #000000" t-if="promo">
                                                         <t t-foreach="promo.item_ids" t-as="item">
                                                             <t t-if="item.product_id.id==product.id">
-                                                                <span t-esc="round(item.fixed_price)" />
+<!--                                                                <span t-esc="round(item.fixed_price)" />-->
+                                                                <span> 525 </span>
                                                                 <span t-esc="product.currency_id.symbol" />
                                                             </t>
                                                         </t>
