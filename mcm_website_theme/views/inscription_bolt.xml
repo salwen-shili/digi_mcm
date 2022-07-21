@@ -370,10 +370,10 @@ function receiveMessage(event) {
               <p id="notifMessage" style="text-align: justify !important; font-size: 17px">
                 Pour bénéficier de l'offre de
                 <b>20€</b>
-                en partenariat avec Bolt, il faut s'inscrire en cliquant sur
+                en partenariat avec Bolt, il faut s'inscrire à la liste d'attente en cliquant sur
                 <b>Je m'inscris</b>
-                et réussir un examen blanc obligatoire en français.
-              </p>
+            
+              </p> 
               <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
                 <div id="default">
                   <a target="_blank" id="btn-inside-popup">
