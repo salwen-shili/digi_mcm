@@ -2573,54 +2573,58 @@ class MCM_SIGNUP(http.Controller):
         if event == "invoice.paid":
             _logger.info("teeeeeeest invoice %s" % str(object))
             subsciption = object.get("subscription")
-            customer = object.get("customer")
-            amount = int(object.get("amount_paid") / 100)
-            """Cas de paiement sur plusieur fois : Mettre à jour la facture lié à l'abonnement sur stripe """
-            invoice = request.env["account.move"].sudo().search([("stripe_sub_reference", "=", subsciption)], limit=1)
-            _logger.info("invoice %s" % str(invoice.name))
-            _logger.info("invoice ************* %s" % str(invoice.stripe_sub_reference))
-            payment_method = request.env["account.payment.method"].sudo().search([("code", "ilike", "electronic")],
-                                                                                 limit=1)
-            journal_id = invoice.journal_id.id
-            acquirer = False
-            if invoice:
-                acquirer = (
-                    request.env["payment.acquirer"]
-                    .sudo()
-                    .search([("name", "=", _("stripe")), ("company_id", "=", invoice.company_id.id)], limit=1)
-                )
-            else:
-                acquirer = (
-                    request.env["payment.acquirer"]
-                    .sudo()
-                    .search([("name", "=", _("stripe")), ("company_id", "=", 2)], limit=1)
-                )
-            if acquirer:
-                journal_id = acquirer.journal_id.id
-            if invoice:
-                payment = (
-                    request.env["account.payment"]
-                    .sudo()
-                    .create(
-                        {
-                            "payment_type": "inbound",
-                            "payment_method_id": payment_method.id,
-                            "partner_type": "customer",
-                            "partner_id": invoice.partner_id.id,
-                            "amount": amount,
-                            "currency_id": invoice.currency_id.id,
-                            "payment_date": datetime.now(),
-                            "journal_id": acquirer.journal_id.id if acquirer else invoice.journal_id.id,
-                            "communication": False,
-                            "payment_token_id": False,
-                            "invoice_ids": [(6, 0, invoice.ids)],
-                        }
+            receipt_email = object["receipt_email"]
+            if subsciption:
+                customer = object.get("customer")
+                amount = int(object.get("amount_paid") / 100)
+                """Cas de paiement sur plusieur fois : Mettre à jour la facture lié à l'abonnement sur stripe """
+                # partner=request.env['res.partner'].sudo().search([('email',"=",receipt_email)],limit=1)
+                invoice = request.env["account.move"].sudo().search([("stripe_sub_reference", "=", subsciption),
+                                                                     ("partner_id.email","=",receipt_email)], limit=1)
+                _logger.info("invoice %s" % str(invoice.name))
+                _logger.info("invoice ************* %s" % str(invoice.stripe_sub_reference))
+                payment_method = request.env["account.payment.method"].sudo().search([("code", "ilike", "electronic")],
+                                                                                     limit=1)
+                journal_id = invoice.journal_id.id
+                acquirer = False
+                if invoice:
+                    acquirer = (
+                        request.env["payment.acquirer"]
+                        .sudo()
+                        .search([("name", "=", _("stripe")), ("company_id", "=", invoice.company_id.id)], limit=1)
                     )
-                )
+                else:
+                    acquirer = (
+                        request.env["payment.acquirer"]
+                        .sudo()
+                        .search([("name", "=", _("stripe")), ("company_id", "=", 2)], limit=1)
+                    )
+                if acquirer:
+                    journal_id = acquirer.journal_id.id
+                if invoice:
+                    payment = (
+                        request.env["account.payment"]
+                        .sudo()
+                        .create(
+                            {
+                                "payment_type": "inbound",
+                                "payment_method_id": payment_method.id,
+                                "partner_type": "customer",
+                                "partner_id": invoice.partner_id.id,
+                                "amount": amount,
+                                "currency_id": invoice.currency_id.id,
+                                "payment_date": datetime.now(),
+                                "journal_id": acquirer.journal_id.id if acquirer else invoice.journal_id.id,
+                                "communication": False,
+                                "payment_token_id": False,
+                                "invoice_ids": [(6, 0, invoice.ids)],
+                            }
+                        )
+                    )
 
-                payment.post()
+                    payment.post()
 
-                return True
+                    return True
 
         return True
 
