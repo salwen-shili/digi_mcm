@@ -35,10 +35,6 @@ class InheritResPartner(models.Model):
                 _logger.info('-------Cron Partner presence and resultat------- %s',
                              rec.note_exam_id.partner_id.display_name)
                 for line in last_line:
-                    if line.presence == 'present':
-                        rec.presence = "Présent(e)"
-                    if line.presence == 'Absent':
-                        rec.presence = "Absent(e)"
                     if line.presence == 'absence_justifiee':
                         rec.presence = "Absence justifiée"
                     elif not line.presence:
