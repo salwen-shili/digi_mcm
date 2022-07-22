@@ -206,7 +206,7 @@
                             Me suis rendu ce jour, le
                             <b>
                                 <u>
-                                    <span t-esc="o.date_session_frensh(date_examen)"/>
+                                    <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>
                                 </u>
                             </b>
                             dans les locaux de l’organisme de formation <b>MCM ACADEMY</b>, situé au
