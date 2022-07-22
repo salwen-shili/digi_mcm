@@ -110,7 +110,7 @@ class OnfidoController(http.Controller):
         if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'fail':
             _logger.info('state document %s' %str(workflow_runs['state']))
             partner.validation_onfido="fail"
-            documents=request.env['documents.document'].sudo().search([('partner_id',"=",partner)])
+            documents=request.env['documents.document'].sudo().search([('partner_id',"=",partner.id)])
             if documents:
                 for document in documents:
                     document.state = "refused"
@@ -118,7 +118,7 @@ class OnfidoController(http.Controller):
         if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'clear':
             _logger.info('else state document %s' % str(workflow_runs['state']))
             partner.validation_onfido = "clear"
-            documents = request.env['documents.document'].sudo().search([('partner_id', "=", partner)])
+            documents = request.env['documents.document'].sudo().search([('partner_id', "=", partner.id)])
             if documents:
                 for document in documents:
                     document.state="validated"
