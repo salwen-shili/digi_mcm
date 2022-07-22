@@ -14,7 +14,7 @@
                         <div class="oe_structure"/>
                         <div class="col-4">
                             <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:150px;float:right;padding-right:80px;"/>
+                                 style="max-height:100px;float:right;padding-right:100px;"/>
                         </div>
                         <br/>
                         <br/>
@@ -84,9 +84,9 @@
                         <p style="page-break-after:always;"/>
                         <div class="col-4">
                             <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:150px;float:right;padding-right:80px;"/>
+                                 style="max-height:100px;float:right;padding-right:100px;"/>
                         </div>
-                        <br/>
+                        <div class="col-12"><p></p></div>
                         <div class="col-12">
                             Le centre de d’examen MCM ACADEMY, situé au
                             <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>
@@ -170,7 +170,6 @@
                             </ul>
                         </div>
                         <br/>
-                        <br/>
                         <div class="col-12">
                             <center>
                                 MCM ACADEMY, 10 rue de Penthièvre 75008 PARIS.
@@ -186,7 +185,7 @@
                         <p style="page-break-after:always;"/>
                         <div class="col-4">
                             <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:150px;float:right;padding-right:80px;"/>
+                                 style="max-height:100px;float:right;padding-right:100px;"/>
                         </div>
                         <br/>
                         <br/>
@@ -271,7 +270,7 @@
                             <p style="page-break-after:always;"/>
                             <div class="col-4">
                                 <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                     style="max-height:150px;float:right;padding-right:80px;"/>
+                                     style="max-height:100px;float:right;padding-right:100px;"/>
                             </div>
 
                             <br/>
