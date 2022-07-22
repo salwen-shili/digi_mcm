@@ -105,10 +105,8 @@ class InheritConfig(models.Model):
             # Already added when you pass json= but not when you pass data=
             #     'Content-Type': 'application/json',
         }
-        params={
-            'applicant_id':applicant_id
-        }
-        response_documents = requests.get(url_documents,params=params, headers=headers)
+       
+        response_documents = requests.get(url_documents, headers=headers)
         documents = response_documents.json()
         _logger.info('documents %s' % str(documents))
         return documents
