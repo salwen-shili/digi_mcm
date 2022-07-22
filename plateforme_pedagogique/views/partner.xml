@@ -128,7 +128,11 @@
                                 </span>
                                 <br/>
                                 <span class="o_stat_text">
-                                    <field name="temps_minute" class="oe_edit_only"/>
+                                    <field name="temps_minute"/>
+                                </span>
+                                <br/>
+                                <span class="o_stat_text">
+                                    <field name="temps_update_minute"/>
                                 </span>
                                 <br/>
                                 <span class="o_stat_text">

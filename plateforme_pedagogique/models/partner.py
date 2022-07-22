@@ -54,6 +54,7 @@ class partner(models.Model):
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     second_email = fields.Char(string='Email secondaire', track_visibility='always')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
+    temps_update_minute = fields.Char()
     is_pole_emploi = fields.Boolean(
         string="Pole Emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
@@ -83,6 +84,10 @@ class partner(models.Model):
             hour = self.total_time_appels_min // 60
             min = self.total_time_appels_min % 60
             self.total_time_appels_hour = str(hour) + "h" + str(min) + "min"
+            #add field for update temps plateforme
+            hour_temps_minute = self.temps_minute // 60
+            min_temps_minute = self.temps_minute % 60
+            self.temps_update_minute = str(hour_temps_minute) + "h" + str(min_temps_minute) + "min"
             # Calcul total time visio + appels + plateforme
             self.total_time_min = int(self.total_time_visio_min) + int(self.total_time_appels_min) + int(self.temps_minute)
             tot_min = int(self.total_time_min) // 60
