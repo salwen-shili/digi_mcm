@@ -7,14 +7,14 @@
                     <style>
                         .page {
                         line-height:1.75;
-                        font-size:25px ;
+                        font-size:20px ;
                         }
                     </style>
                     <div class="page">
                         <div class="oe_structure"/>
                             <div class="col-4">
                                 <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                     style="max-height:150px;float:right;padding-right:160px;"/>
+                                     style="max-height:150px;float:right;padding-right:120px;"/>
                             </div>
                         <br/>
                         <br/>
@@ -87,7 +87,7 @@
                         <p style="page-break-after:always;"/>
                         <div class="col-4">
                             <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:150px;float:right;padding-right:160px;"/>
+                                 style="max-height:150px;float:right;padding-right:120px;"/>
                         </div>
                         <br/>
                             <div>
@@ -187,7 +187,7 @@
                         <p style="page-break-after:always;"/>
                         <div class="col-4">
                             <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:150px;float:right;padding-right:160px;"/>
+                                 style="max-height:150px;float:right;padding-right:120px;"/>
                         </div>
                         <br/>
                         <b>
@@ -270,7 +270,7 @@
                         <p style="page-break-after:always;"/>
                         <div class="col-4">
                             <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:150px;float:right;padding-right:160px;"/>
+                                 style="max-height:150px;float:right;padding-right:120px;"/>
                         </div>
                         <br/>
                         A
@@ -301,13 +301,13 @@
                         <br/>
                         Autres remarques :
                         <br/>
-                        ...........................................................................................
-                        ...........................................................................................
-                        ...........................................................................................
-                        ...........................................................................................
-                        ...........................................................................................
-                        ...........................................................................................
-                        ...........................................................................................
+                        ......................................................................................................................................................................................
+
+                        ......................................................................................................................................................................................
+
+                        ......................................................................................................................................................................................
+
+                        ......................................................................................................................................................................................
                         <br/>
                         Mes contestations étant terminées, je me suis retiré.
                         <br/>
