@@ -245,6 +245,8 @@ class NoteExamen(models.Model):
                         self.company_id = self.partner_id.company_id.id
             else:
                 print("for mcm academy")
+                if self.partner_id.company_id:
+                    self.company_id = self.partner_id.company_id.id
                 if self.state_theorique == 'reussi':
                     self.partner_id.resultat = 'Réussi(e)'
                 elif self.state_pratique == 'ajourne':
