@@ -7,14 +7,14 @@
                     <style>
                         .page {
                         line-height:1.75;
-                        font-size:20px ;
+                        font-size:18px ;
                         }
                     </style>
                     <div class="page">
                         <div class="oe_structure"/>
                             <div class="col-4">
                                 <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                     style="max-height:150px;float:right;padding-right:120px;"/>
+                                     style="max-height:150px;float:right;padding-right:100px;"/>
                             </div>
                         <br/>
                         <br/>
@@ -26,9 +26,7 @@
                                 <center>
                                     <h3>RAPPORT DE SESSION D’EXAMEN</h3>
                                     <br/>
-                                    <br/>
                                     <h3>EXAMEN DE TRANSPORT PUBLIC ROUTIER DE MARCHANDISES ≤3,5 t</h3>
-                                    <br/>
                                     <br/>
                                     <u>SESSION DU
                                         <span t-field="o.mcm_session_id.date_exam"
@@ -38,7 +36,6 @@
                             </strong>
                         </div>
                         <div>
-                            <br/>
                             <br/>
                             <br/>
                             <p>L'AN
@@ -87,7 +84,7 @@
                         <p style="page-break-after:always;"/>
                         <div class="col-4">
                             <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:150px;float:right;padding-right:120px;"/>
+                                 style="max-height:150px;float:right;padding-right:100px;"/>
                         </div>
                         <br/>
                             <div>
@@ -187,8 +184,9 @@
                         <p style="page-break-after:always;"/>
                         <div class="col-4">
                             <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:150px;float:right;padding-right:120px;"/>
+                                 style="max-height:150px;float:right;padding-right:100px;"/>
                         </div>
+                        <br/>
                         <br/>
                         <b>
                             <u>
@@ -270,8 +268,9 @@
                         <p style="page-break-after:always;"/>
                         <div class="col-4">
                             <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:150px;float:right;padding-right:120px;"/>
+                                 style="max-height:150px;float:right;padding-right:100px;"/>
                         </div>
+                        <br/>
                         <br/>
                         A
                         <t t-if="o.mcm_session_id.temps_convocation == 'matin'">
