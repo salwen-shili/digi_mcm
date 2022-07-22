@@ -35,7 +35,6 @@ class NoteExamen(models.Model):
     active = fields.Boolean('Active', default=True)
     company_id = fields.Many2one(
         'res.company', string='Company', change_default=True,
-        default=lambda self: self.env.company,
         required=False, readonly=False)
     nombre_de_passage = fields.Selection(selection=[
         ('premier', 'Premier'),
