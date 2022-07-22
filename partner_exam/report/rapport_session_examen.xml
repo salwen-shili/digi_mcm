@@ -6,21 +6,18 @@
                 <t t-call="web.basic_layout">
                     <style>
                         .page {
-                        line-height: 1.75;
+                        line-height:1.75;
                         font-size:25px ;
                         }
                     </style>
                     <div class="page">
                         <div class="oe_structure"/>
-                        <div class="row">
                             <div class="col-4">
                                 <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                     style="max-height:150px;float:right;padding-right:190px;"/>
+                                     style="max-height:150px;float:right;padding-right:160px;"/>
                             </div>
-                        </div>
                         <br/>
                         <br/>
-                        <div class="row">
                         <div>
                             <center>DIRECTION REGIONALE DE L’ENVIRONNEMENT, DE L’AMENAGEMENT ET DU LOGEMENT</center>
                             <br/>
@@ -39,7 +36,6 @@
                                     </u>
                                 </center>
                             </strong>
-                        </div>
                         </div>
                         <div>
                             <br/>
@@ -91,10 +87,9 @@
                         <p style="page-break-after:always;"/>
                         <div class="col-4">
                             <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:150px;float:right;padding-right:190px;"/>
+                                 style="max-height:150px;float:right;padding-right:160px;"/>
                         </div>
                         <br/>
-                        <div class="row">
                             <div>
                                 Le centre de d’examen MCM ACADEMY, situé au
                                 <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>
@@ -189,11 +184,10 @@
                                     <b>www.mcm-academy.fr</b>
                                 </center>
                             </div>
-                        </div>
                         <p style="page-break-after:always;"/>
                         <div class="col-4">
                             <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:150px;float:right;padding-right:190px;"/>
+                                 style="max-height:150px;float:right;padding-right:160px;"/>
                         </div>
                         <br/>
                         <b>
@@ -276,7 +270,7 @@
                         <p style="page-break-after:always;"/>
                         <div class="col-4">
                             <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:150px;float:right;padding-right:190px;"/>
+                                 style="max-height:150px;float:right;padding-right:160px;"/>
                         </div>
                         <br/>
                         A
