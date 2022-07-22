@@ -79,7 +79,7 @@
                             <t t-foreach="o.invoice_line_ids"
                                t-as="line">
                                 <strong>
-                                    <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                    <span t-field="line.product_id.name" t-options="{'widget': 'text'}"/>
                                 </strong>
                             </t>
                         </h6>
