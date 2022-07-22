@@ -50,6 +50,16 @@ class OnfidoController(http.Controller):
                 }
             )
             _logger.info('front %s' % str(attachement_front))
+            extraction = partner.autofill(document_front_id, website.onfido_api_key_live)
+            """Si les informations sont correctement extraits,
+            on fait la mise à jour de la fiche client """
+            if 'extracted_data' in extraction:
+                _logger.info("extract date %s" % str(extraction['extracted_data']['date_of_birth']))
+                partner.birthday = extraction['extracted_data']['date_of_birth']
+                if 'nationality' in extraction['extracted_data']:
+                    partner.nationality = extraction['extracted_data']['nationality']
+                if 'place_of_birth' in extraction['extracted_data']:
+                    partner.birth_city = extraction['extracted_data']['place_of_birth']
 
         if 'document_back' in data:
             document_back_id=data['document_back']['id']
