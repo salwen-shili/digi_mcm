@@ -99,13 +99,16 @@ class InheritConfig(models.Model):
         return workflow_runs
     def get_listDocument(self,applicant_id,token):
         """recuperer le workflow """
-        url_documents = "https://api.eu.onfido.com/v3.4/documents/"+ applicant_id
+        url_documents = "https://api.eu.onfido.com/v3.4/documents"
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
             #     'Content-Type': 'application/json',
         }
-        response_documents = requests.get(url_documents, headers=headers)
+        params={
+            'applicant_id':applicant_id
+        }
+        response_documents = requests.get(url_documents,params=params, headers=headers)
         documents = response_documents.json()
         _logger.info('documents %s' % str(documents))
         return documents
