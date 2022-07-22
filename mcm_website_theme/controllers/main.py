@@ -2778,13 +2778,13 @@ class MCM_SIGNUP(http.Controller):
                     acquirer = (
                         request.env["payment.acquirer"]
                         .sudo()
-                        .search([("name", "=", _("stripe")), ("company_id", "=", invoice.company_id.id)], limit=1)
+                        .search([("name", "ilike", _("Stripe")), ("company_id", "=", invoice.company_id.id)], limit=1)
                     )
                 else:
                     acquirer = (
                         request.env["payment.acquirer"]
                         .sudo()
-                        .search([("name", "=", _("stripe")), ("company_id", "=", 2)], limit=1)
+                        .search([("name", "ilike", _("Stripe")), ("company_id", "=", 2)], limit=1)
                     )
                 if acquirer:
                     journal_id = acquirer.journal_id.id
