@@ -25,7 +25,7 @@ class resComapny(models.Model):
     note_exam_mcm_id = fields.One2many('info.examen', 'partner_id')
     note_exam_count = fields.Integer(compute="compute_notes_exams_count")
     this_is_technical_field = fields.Boolean(readonly=True, default=True)
-    company_id = fields.Many2one('res.company', default=lambda self: self.env.company)
+    company_id = fields.Many2one('res.company')
     report = fields.Boolean(default=False, help="Cocher ce bouton si vous voulez changer la session de ce client!")
     # Add fields pour la justification dans l'interface client en cas de report
     justification = fields.Boolean(string="Justification")
@@ -82,6 +82,7 @@ class resComapny(models.Model):
                         'session_id': self.mcm_session_id.id,
                         'module_id': self.module_id.id,
                         'date_exam': self.mcm_session_id.date_exam,
+                        'company_id': self.mcm_session_id.company_id.id,
                         'epreuve_a': 0,
                         'epreuve_b': 0,
                         'presence': 'absence_justifiee',

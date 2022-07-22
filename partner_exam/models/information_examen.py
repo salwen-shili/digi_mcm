@@ -189,6 +189,7 @@ class NoteExamen(models.Model):
                     self.total_time_visio_hour = self.partner_id.total_time_visio_hour
                     self.total_time_appels_hour = self.partner_id.total_time_appels_hour
                     self.total_time_hours = self.partner_id.total_time_hours
+                    self.company_id = self.partner_id.company_id.id
 
                 else:
                     # reset your fields
@@ -214,6 +215,7 @@ class NoteExamen(models.Model):
                         self.total_time_visio_hour = self.partner_id.total_time_visio_hour
                         self.total_time_appels_hour = self.partner_id.total_time_appels_hour
                         self.total_time_hours = self.partner_id.total_time_hours
+                        self.company_id = self.partner_id.company_id.id
                     elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification and rec.partner_id:
                         self.session_id = self.partner_id.mcm_session_id
                         self.module_id = self.partner_id.module_id.id
@@ -227,6 +229,7 @@ class NoteExamen(models.Model):
                         self.total_time_visio_hour = self.partner_id.total_time_visio_hour
                         self.total_time_appels_hour = self.partner_id.total_time_appels_hour
                         self.total_time_hours = self.partner_id.total_time_hours
+                        self.company_id = self.partner_id.company_id.id
                     elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True and rec.partner_id:
                         self.session_id = last_line.session_id
                         self.module_id = last_line.client_id.module_id.id
@@ -240,6 +243,7 @@ class NoteExamen(models.Model):
                         self.total_time_visio_hour = self.partner_id.total_time_visio_hour
                         self.total_time_appels_hour = self.partner_id.total_time_appels_hour
                         self.total_time_hours = self.partner_id.total_time_hours
+                        self.company_id = self.partner_id.company_id.id
             else:
                 print("for mcm academy")
                 if self.state_theorique == 'reussi':
