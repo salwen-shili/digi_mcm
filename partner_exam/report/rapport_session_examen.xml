@@ -3,6 +3,15 @@
     <template id="pdf_rapport_session_examen">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
+                <div class="header">
+                    <div class="row">
+                            <div class="col-4">
+                                <img src='/partner_exam/static/src/img/logo_digimoov.png'
+                                     style="max-height:190px;float:right;padding-right:30px;"/>
+                            </div>
+                        <div class="col-6"></div>
+                    </div>
+                </div>
                 <t t-call="web.basic_layout">
                     <style>
                         .page {
@@ -201,7 +210,109 @@
                                 </u>
                             </b>
                             dans les locaux de l’organisme de formation <b>MCM ACADEMY</b>, situé au
+                            <b>
+                                <u>
+                                    <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>,
+                                </u>
+                            </b>
+                            afin de surveiller et de contrôler le bon déroulement de l’examen qui a lieu le
+                            <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>
+                            à
+                            <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
                         </p>
+                        <br/>
+                        Je procède aux constatations qui suivent :
+                        <br/>
+                        <br/>
+                        Aucune difficulté n’est à mentionner, tout s’est bien déroulé.
+                        <br/>
+                        <br/>
+                        <style>
+                            ol.c {list-style-type: upper-roman;}
+                        </style>
+                        <ol class="c">
+                            <li>Constatations factuelles :</li>
+                        </ol>
+                        Nous sommes arrivés pour vous accueillir au centre de formation MCM ACADEMY à
+                        <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
+                        le<span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>.
+                        Nous avons demandé aux candidats présents de patienter dans le Hall d’entrée, le temps de
+                        préparer la salle d’examen.
+                        <br/>
+                        Nous avons invité les candidats à entrer dans la salle d’examen à
+                        <t t-if="o.mcm_session_id.temps_convocation == 'matin'">
+                            <strong>
+                                <span t-field="matin.heure_examen_matin"/>
+                            </strong>
+                        </t>
+                        <t t-if="o.mcm_session_id.temps_convocation == 'apres_midi'">
+                            <strong>
+                                <span t-field="o.mcm_session_id.heure_examen_apres_midi"/>
+                            </strong>
+                        </t>
+                        <t t-if="o.mcm_session_id.temps_convocation == ''">
+                            <p></p>
+                        </t>
+                        . Nous leurs avons demandé de présenter la convocation à l’examen envoyé par le centre ainsi
+                        qu’une pièce d’identité.
+                        <br/>
+                        <br/>
+                        Je demande à tous les candidats d’éteindre leur téléphone, de les disposer dans leur sac et
+                        de remettre leur sac à proximité du tableau.
+                        <br/>
+                        <p style="page-break-after:always;"/>
+                        A
+                        <t t-if="o.mcm_session_id.temps_convocation == 'matin'">
+                            <strong>
+                                <span t-field="matin.heure_examen_matin"/>
+                            </strong>
+                        </t>
+                        <t t-if="o.mcm_session_id.temps_convocation == 'apres_midi'">
+                            <strong>
+                                <span t-field="o.mcm_session_id.heure_examen_apres_midi"/>
+                            </strong>
+                        </t>
+                        <t t-if="o.mcm_session_id.temps_convocation == ''">
+                            <p></p>
+                        </t>
+                        , je procède à la lecture des règles, expliquant le déroulé de l’examen aux candidats.
+                        <br/>
+                        Les candidats n’ayant pas de questions, la distribution de l’examen c’est faite à <b>14h00</b> précise.
+                        Les sujets ont été distribués selon l’ordre chronologique d’arrivée.
+                        <br/>
+                        A ............. les candidats ont été notifiés qu’ils leurs resté 5 minutes avant la fin de
+                        l’épreuve.
+                        <br/>
+                        A ............. j’ai procédé au ramassage des copies dans le même ordre que mentionné
+                        précédemment. J’ai ensuite procédé à la mise sous plis dans une enveloppe.
+                        <br/>
+                        <br/>
+                        Autres remarques :
+                        <br/>
+                        ...........................................................................................
+                        ...........................................................................................
+                        ...........................................................................................
+                        ...........................................................................................
+                        ...........................................................................................
+                        ...........................................................................................
+                        ...........................................................................................
+                        <br/>
+                        Mes contestations étant terminées, je me suis retiré.
+                        <br/>
+                        Telles sont mes constations.
+                        <br/>
+                        Et de tout ce que dessus, j’ai dressé le présent procès-verbal de constat pour servir et valoir
+                        ce que de droit.
+                        <br/>
+                        <br/>
+                        A
+                        <strong>
+                            <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
+                        </strong>
+                        <br/>
+                        Le ....................
+                        <br/>
+                        Signature
                     </div>
                 </t>
             </t>
