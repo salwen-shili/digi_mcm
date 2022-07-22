@@ -997,9 +997,9 @@ class mcmSession(models.Model):
                         order="id desc",
                     )
                 )
-                print("search for existance", examLines)
+                print("print (examLines)", examLines)
                 # _logger.info("print (examLines)", examLines)
-                lineIsCreated = False
+
                 if not examLines:
 
                     exam.sudo().create(
@@ -1012,39 +1012,31 @@ class mcmSession(models.Model):
                             "ville_id": session.session_ville_id.id,
                         }
                     )
-                    lineIsCreated = True
                     print("print (after if not examLines)", examLines)
                     _logger.info("No lines => Exam line created ")
                     
                 else:
-                   
                     for line in examLines:
-                        
                         _logger.info("if line.presence != presence %s and line.date_exam == partner.mcm_session_id.date_exam %s" %(str(line.presence != presence),str(line.date_exam == partner.mcm_session_id.date_exam)))
                         if line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam:
                             line.presence = presence
-                            lineIsCreated = True
                             print("Update presence in the same line. ")
                             _logger.info("Update presence in the same line. ")
-                        elif line.presence == presence and line.date_exam == partner.mcm_session_id.date_exam:
-                            print("Same line exist!")
-                            _logger.info("No line to create!")
-                            lineIsCreated = True
                         else:
-                            return
-                    if lineIsCreated == False:     
-                        exam.sudo().create(
-                            {
-                                "partner_id": partner.id,
-                                "session_id": partner.mcm_session_id.id,
-                                "module_id": partner.module_id.id,
-                                "date_exam": partner.mcm_session_id.date_exam,
-                                "presence": presence,
-                                "ville_id": session.session_ville_id.id,
-                            }
-                        )
-                        print("End of for without creation = > Create a new line")
-                        
+                            
+                            exam.sudo().create(
+                                {
+                                    "partner_id": partner.id,
+                                    "session_id": partner.mcm_session_id.id,
+                                    "module_id": partner.module_id.id,
+                                    "date_exam": partner.mcm_session_id.date_exam,
+                                    "presence": presence,
+                                    "ville_id": session.session_ville_id.id,
+                                }
+                            )
+                            
+                            print("else line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam:")
+                            _logger.info("else line.presence != presence and line.date_exam == partner.mcm_session_id.date_exam:")
                 
                 #update presence fiche_client 
                 _logger.info("update presence fiche_client - edusign") 
