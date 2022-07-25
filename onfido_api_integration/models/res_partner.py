@@ -84,7 +84,7 @@ class InheritConfig(models.Model):
         workflow_run = response_workflow_run.json()
         _logger.info("hiiiiiiii %s" %str(response_workflow_run.json()))
         return workflow_run['id']
-
+    
     def get_workflow_runs(self,workflow_run_id,token):
         """recuperer workflow_runs activé """
         url_wrkflow="https://api.eu.onfido.com/v4/workflow_runs/"+workflow_run_id
@@ -97,6 +97,7 @@ class InheritConfig(models.Model):
         workflow_runs = response_workflow_runs.json()
         _logger.info('workflow_runs %s' % str(workflow_runs))
         return workflow_runs
+    
     def get_listDocument(self,applicant_id,token):
         """recuperer le workflow """
         url_documents = "https://api.eu.onfido.com/v3.4/documents"
@@ -105,11 +106,15 @@ class InheritConfig(models.Model):
             # Already added when you pass json= but not when you pass data=
             #     'Content-Type': 'application/json',
         }
+        params= {
+            'applicant_id': applicant_id
+        }
        
-        response_documents = requests.get(url_documents, headers=headers)
+        response_documents = requests.get(url_documents, headers=headers,params=params)
         documents = response_documents.json()
         _logger.info('documents %s' % str(documents))
         return documents
+    
     def getDocmument(self,token,documentid):
         """recupérer les informations lié aux documents chargés"""
         url_document="https://api.eu.onfido.com/v3.4/documents/"+documentid
@@ -122,6 +127,7 @@ class InheritConfig(models.Model):
         document = response_documents.json()
         _logger.info('document %s' %str(document))
         return document
+    
     def downloadDocument(self,document_id,token):
         """récupérer la version binaire des documents"""
         url_documentdownload = "https://api.eu.onfido.com/v3.4/documents/"+ document_id+"/download"
@@ -134,6 +140,7 @@ class InheritConfig(models.Model):
         download = response_download.content
         type_data=type(response_download)
         return download
+    
     def downloadFace(self,applicant_id,token):
         """récupérer la version binaire de face photo """
         url_face_download = "https://api.eu.onfido.com/v3.4/applicants/" + applicant_id + "/face/download"
@@ -146,6 +153,7 @@ class InheritConfig(models.Model):
         face = response_download.content
         type_data = type(response_download)
         return face
+    
     def autofill(self,document_id,token):
         """récupérer les informations récupérées à partir des documents"""
         url_extraction = "https://api.eu.onfido.com/v3.4/extractions"
