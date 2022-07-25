@@ -62,6 +62,7 @@ class InheritConfig(models.Model):
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk=response_token.json()
         _logger.info("sdk token %s" %str(response_token.json()))
+        _logger.info("sdk data %s" %str(data))
         if token_sdk['token']:
             partner.onfido_sdk_token=token_sdk['token']
             time_change =timedelta(minutes=90)

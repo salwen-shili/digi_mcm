@@ -27,13 +27,13 @@ class LoadDocument(Website):
             sdk_token=""
 
             """Vérifier si on a deja créé un applicant lié à cet apprenant """
-            if partner.onfido_applicant_id:
-                id_applicant= partner.onfido_applicant_id
-            else:
-                id_applicant=partner.create_applicant(partner,
+            # if partner.onfido_applicant_id:
+            #     id_applicant= partner.onfido_applicant_id
+            # else:
+            id_applicant=partner.create_applicant(partner,
                                                       request.website.onfido_api_key_live)
 
-            _logger.info('teeeeeeesttttt %s' %str(request.website.onfido_api_key_live)
+            _logger.info('teeeeeeesttttt %s' %str(id_applicant)
                  )
             _logger.info('workfloow test  %s' %str(request.website.onfido_workflow_id))
             """Vérifier si on a généré un sdk token pour cet apprenant """
