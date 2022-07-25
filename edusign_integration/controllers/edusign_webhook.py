@@ -22,7 +22,7 @@ _logger = logging.getLogger(__name__)
 class WebhookController(http.Controller):
     """valider les dossier cpf pour digimoov  apres la creation par webhook"""
 
-    @http.route('/api/edusign/webhook', type="json", auth="public", methods=["POST"])
+    @http.route('/api/edusign/webhook', type="http", auth="public", methods=["POST"])
     def validateEdusign(self, **kw):
         print("=====================================+>")
 
