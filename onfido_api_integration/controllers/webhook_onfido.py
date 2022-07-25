@@ -18,7 +18,7 @@ import pyshorteners
 import logging
 _logger = logging.getLogger(__name__)
 class OnfidoController(http.Controller):
-    """get event workflowrund is completed with js callback  """
+    """get event workflowrund is completed with js callback"""
     @http.route(['/completed_workflow'], type='json', auth="user", methods=['POST'])
     def completed_workflow(self, data):
         """Recupérer ID des documents chargés"""
@@ -37,8 +37,7 @@ class OnfidoController(http.Controller):
             download_document_front = partner.downloadDocument(document_front_id, website.onfido_api_key_live)
             image_front_binary = base64.b64encode(download_document_front)
             print('document from api %s' % str(document_front_id))
-
-            """Creer les documents pour l'utilisateur courant """
+            """Creer les documents pour l'utilisateur courant"""
             attachement_front = request.env['documents.document'].sudo().create(
                 {
                     'name': name_front,
@@ -134,76 +133,14 @@ class OnfidoController(http.Controller):
                     document.state="validated"
             return True
 
-    def create_documents(self,DOCUMENT_IDs):
-        """Recupérer ID des documents chargés et créer attachement pour le client"""
-        for document in DOCUMENT_IDs:
-            _logger.info('create_documents get document %s' % str(document))
-        document_front_id = DOCUMENT_IDs['document_front']['id']
-        document_back_id = DOCUMENT_IDs['document_back']['id']
-        face_id=DOCUMENT_IDs['face']['id']
-        name_front = str(DOCUMENT_IDs['document_front']['type']) + "_" + str(DOCUMENT_IDs['document_front']['side'])
-        name_back = str(DOCUMENT_IDs['document_back']['type']) + "_" + str(DOCUMENT_IDs['document_back']['side'])
+    """send state of document to frontend """
+    @http.route(['/send_state_document'], type='json', auth="public", csrf=False)
+    def sendStateDocument(self, partner_id):
+        _logger.info("sendStateDocument onfido %s" %str(partner_id))
+        partner=request.env['res.partner'].sudo().search([('id',"=",partner_id)])
+        if partner:
+           return {'validation_onfid': partner.validation_onfido }
+        else :
+            return {'validation_onfid': False }
 
-        partner = request.env.user.partner_id
-        website = request.env['website'].get_current_website()
-        document_front = partner.getDocmument(website.onfido_api_key_live, document_front_id)
-        print('document from api %s' % str(document_front))
-        """Telecharger les documents sous format binaire par l'api onfido"""
-        download_document_front = partner.downloadDocument(document_front_id, website.onfido_api_key_live)
-        download_document_back = partner.downloadDocument(document_back_id, website.onfido_api_key_live)
-        download_face_photo=partner.downloadFace(face_id,website.onfido_api_key_live)
-        # print('download_document from api %s' % str(download_document_front))
-        # _logger.info('document download %s' % str(download_document_front))
-        image_front_binary = base64.b64encode(download_document_front)
-        image_back_binary = base64.b64encode(download_document_back)
-        face_binary=base64.b64encode(download_face_photo)
-        folder_id = request.env['documents.folder'].sudo().search(
-            [('name', "=", _('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
-        _logger.info('partner_id %s' % str(request.env.user.partner_id.id))
-        _logger.info('partner_id %s' % str(folder_id))
-        """Creer les documents pour l'utilisateur courant """
-        attachement_front = request.env['documents.document'].sudo().create(
-            {
-                'name': name_front,
-                'datas': image_front_binary,
-                'type': 'binary',
-                'partner_id': request.env.user.partner_id.id,
-                'folder_id': folder_id.id,
-                'state': 'validated'
-            }
-        )
-        attachement_back = request.env['documents.document'].sudo().create(
-            {
-                'name': name_back,
-                'datas': image_back_binary,
-                'type': 'binary',
-                'partner_id': request.env.user.partner_id.id,
-                'folder_id': folder_id.id,
-                'state': 'validated'
-            }
-        )
-        attachement_face = request.env['documents.document'].sudo().create(
-            {
-                'name': "Visage",
-                'datas': face_binary,
-                'type': 'binary',
-                'partner_id': request.env.user.partner_id.id,
-                'folder_id': folder_id.id,
-                'state': 'validated'
-            }
-        )
-        _logger.info('front %s' % str(attachement_front))
-        _logger.info('back %s' % str(attachement_back))
-        _logger.info('face %s' % str(attachement_face))
-        extraction = partner.autofill(document_back_id, website.onfido_api_key_live)
-        """Si les informations sont correctement extraits,
-        on fait la mise à jour de la fiche client """
-        if 'extracted_data' in extraction:
-            _logger.info("extract date %s" % str(extraction['extracted_data']['date_of_birth']))
-            partner.birthday = extraction['extracted_data']['date_of_birth']
-            if 'nationality' in extraction['extracted_data']:
-                partner.nationality = extraction['extracted_data']['nationality']
-            if 'place_of_birth' in extraction['extracted_data']:
-                partner.birth_city = extraction['extracted_data']['place_of_birth']
-
-        return True
+    
