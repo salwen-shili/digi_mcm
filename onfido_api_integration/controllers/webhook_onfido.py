@@ -135,7 +135,8 @@ class OnfidoController(http.Controller):
 
     """send state of document to frontend """
     @http.route(['/send_state_document'], type='json', auth="public", csrf=False)
-    def sendStateDocument(self, partner_id):
+    def sendStateDocument(self):
+        partner_id=request.env.user.partner_id
         _logger.info("sendStateDocument onfido %s" %str(partner_id))
         partner=request.env['res.partner'].sudo().search([('id',"=",partner_id)])
         if partner:
