@@ -1,35 +1,147 @@
 
+
+const popup ={
+waiting: ` <div id="popup1" class="overlay">
+  <div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
+      <img src="/onfido_api_integration/static/img/scan-docs-2.gif" class="img img-fluid mx-auto text-center" style="height:180px" ></img>
+      <!--/.icon-->
+      <h1 style="color:#000000;margin-top:1rem">
+          Un instant!
+      </h1>
+      <p>Nous traitons actuellement vos <b>documents</b>. Cela pourrait prendre quelques secondes.</p>
+      
   
-  function setPopup() {
-    if (document.getElementById('notifMessage')) {
-      const btnContinuer = document.getElementById('btn-inside-popup');
-      const textDescription = document.getElementById('notifMessage');
-      btnContinuer.innerHTML = `\n <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;width: 145px;" onclick="closePopup()">
-                                              Fermer
-                                          </button>`;
-      textDescription.innerHTML = `Cher(e)s candidat(e)s, nous vous annonçons que l'offre relative à la formation VTC à 20 euros en collaboration avec BOLT a touchée à sa fin. <br>
-  Nous clôturons les inscriptions dés aujourd'hui.
-  Mais ne soyez pas découragés ! car vous aurez la possibilité d'en profiter de nouveau, lors de la prochaine session de formation prévue pour le 29/09/2022 et dont les inscriptions seront ouvertes sur notre site web à partir du 04/07/2022.`;
+  </div>
+</div>`,
+success:`<div id="popup1" class="overlay">
+<div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
+    <div class="icon">
+        <i class="fa fa-check" style="margin: 17px;
+        font-size: 57px;
+        color: #fff;" ></i>
+    </div>
+    <!--/.icon-->
+    <h1 style="color:#000000;margin-top:1rem">
+        Succès!
+    </h1>
+    <p>Vous pouvez désormais choisir votre centre et date d'examen</p>
+    <button onclick="window.location.href='/shop/cart'" type="button" class="redo btn">Continuer</button>
+
+</div>
+</div>`,
+failed:`<div id="popup1" class="overlay"><div class="modalbox error col-sm-8 col-md-6 col-lg-5 center animate">
+<div class="icon">
   
-      openPopup();
-      return;
+    <i class="fa fa-times" style="margin: 17px;
+    font-size: 57px;
+    color: #fff;" ></i>
+</div>
+<!--/.icon-->
+<h1 style="color:#000000;margin-top:1rem">
+    Validation échouée!
+</h1>
+<p>Vous pouvez désormais choisir votre centre et date d'examen</p>
+<button onclick="window.location.href='/shop/cart'" type="button" class="redo btn">Continuer</button>
+
+</div>
+</div>`,
+exceedWaiting:`<div id="popup1" class="overlay">
+  <div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
+     
+      <!--/.icon-->
+      <h4 style="color:#000000;margin-top:1rem">
+          Vos documents sont en cours de validation...
+      </h4>
+      <p>Vous pouvez poursuivre votre inscription et choisir votre centre et date d'examen. <br/>Notre service clientèle vous contactera en cas d'échec de validation.</p>
+      <button type="button" class="redo btn" onclick="window.location.href = 'shop/cart'">Continuer</button>
   
-    }
+  </div>
+</div>`,
 }
-  
-  function openPopup() {
-    document.getElementById('popup1').style.display = 'flex';
-  }
-  function closePopup() {
-    document.getElementById('popup1').style.display = 'none';
-  }
-  
-  document.addEventListener('DOMContentLoaded', function () {
-    setPopup();
-  });
-  
+
+
+
+
+const openPopup = (popupType)=>{
+document.querySelector('#wrap').insertAdjacentHTML( 'afterbegin', popup[popupType] );
+}
+
+const closePopup = ()=>{
+  document.querySelector('#popup1').remove();
+}
+
+const retreiveDocState = ()=>{
+  return "success";
+}
+
+var documentState = ""
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  //
+   openPopup("waiting");
+
+
+  const getDocumentState = setInterval(()=>{
+    // openPopup("waiting");
+    // closePopup();
+    // openPopup("success");
+
+    // if (documentState == "success" || documentState == "error"){
+    //   clearInterval(getDocumentState);
+    // }
+
+    console.log("getDocumentState")
+  },1500); 
+
 
   
+  const  myTimeout =  setTimeout(()=> {
+    console.log("myTimeout")
+    clearInterval(getDocumentState)   
+    mystuff(); 
+      }, 6000);
+
+  //after timeout
+  function mystuff(){
+    closePopup();
+    openPopup("failed");
+   
+   
+  }
+
   
-  //
-  
+});
+
+
+//HTTP REQUEST CALL
+const partnerInformation = async () => {
+  try {
+    // const res = await JSON.parse(sendHttpRequest('POST', '/get_data_user_connected', {}));
+    const res = await sendHttpRequest('POST', '/get_data_user_connected', {});
+    const partner = JSON.parse(res.result);
+    // console.log(partner.response);
+    // console.log(partner.response[0]);
+    return partner.response[0];
+  } catch (e) {
+    return 'error partnerInformation()';
+  }
+  // const res = await sendHttpRequest('POST', '/get_data_user_connected', {});
+  // const partner = JSON.parse(res.result);
+  // console.log(partner.response);
+  // console.log(partner.response[0]);
+  // return partner.response[0];
+};
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const partner = partnerInformation();
+  partner.then((p) => {
+   console.log(p)
+  });
+
+  return;
+});
+
+
+
