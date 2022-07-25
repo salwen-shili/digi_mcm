@@ -79,39 +79,50 @@ var documentState = ""
 
 document.addEventListener("DOMContentLoaded", function () {
   //
-   openPopup("waiting");
+  const partner = partnerInformation();
+  partner.then((p) => {
+   console.log(p)
+  });
+
+  setPopups();
+  
+
+  
+});
 
 
+
+
+const setPopups = ()=>{
   const getDocumentState = setInterval(()=>{
     // openPopup("waiting");
     // closePopup();
     // openPopup("success");
-
+  
     // if (documentState == "success" || documentState == "error"){
-    //   clearInterval(getDocumentState);
+    //   clearTimeout(waitingInterval)
     // }
-
-    console.log("getDocumentState")
+  
+    console.log("getDocumentState...")
   },1500); 
-
-
   
-  const  myTimeout =  setTimeout(()=> {
-    console.log("myTimeout")
+  
+  
+  const  waitingInterval =  setTimeout(()=> {
+    console.log("waiting...")
     clearInterval(getDocumentState)   
-    mystuff(); 
+    exceedWaiting(); 
       }, 6000);
-
-  //after timeout
-  function mystuff(){
-    closePopup();
-    openPopup("failed");
-   
-   
-  }
-
   
-});
+}
+
+//after timeout
+function exceedWaiting(){
+  closePopup();
+  openPopup("failed");
+ 
+ 
+}
 
 
 //HTTP REQUEST CALL
@@ -134,14 +145,7 @@ const partnerInformation = async () => {
 };
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  const partner = partnerInformation();
-  partner.then((p) => {
-   console.log(p)
-  });
 
-  return;
-});
 
 
 
