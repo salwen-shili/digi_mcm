@@ -1,21 +1,50 @@
 <odoo>
     <template id="onfido_api_integration.load_document" name="Load document ">
-     <t t-call="website.layout">
-<style>
+        <t t-call="website.layout">
+            <style>
 
          #onfido-mount{margin: 60px 0;}
          </style>
 
             <link rel="stylesheet" href="/onfido_api_integration/static/src/css/style.css" />
-            <input type="hidden"  id="sdk-token" t-att-value="sdk_token"></input>
-            <input type="hidden"  id="workflow_run_id" t-att-value="workflow_run_id"></input>
-            <input type="hidden"  id="api_token" t-att-value="api_token"></input>
+            <link rel="stylesheet" href="onfido_api_integration/static/src/css/popup.css" />
 
-         <div id="wrap" class="oe_empty oe_structure">
+
+            <input type="hidden" id="sdk-token" t-att-value="sdk_token"></input>
+            <input type="hidden" id="workflow_run_id" t-att-value="workflow_run_id"></input>
+            <input type="hidden" id="api_token" t-att-value="api_token"></input>
+            <style>
+            .popup .content {
+                max-height: 30%;
+                overflow: unset;
+            }
+
+            .popup-image-content{
+                max-height:180px;
+
+            }
+            .before-img{
+                padding-bottom:0px !Important; margin-bottom:0px !important;
+                text-align: justify !important;
+            }
+            .after-img{
+                margin-block-start: 1.4rem;
+                text-align: justify !important;
+            }
+        
+        </style>
+
+            <div id="wrap" class="oe_empty oe_structure">
+                <!-- POPUP-->
+               
+                
+
+
                 <div id="onfido-mount"></div>
             </div>
             <script src="/onfido_api_integration/static/src/js/onfido.min.js"></script>
             <script src="/onfido_api_integration/static/src/js/onfido_sdk_ui.js"></script>
+            <script src="/onfido_api_integration/static/src/js/popup.js"></script>
 
 
         </t>

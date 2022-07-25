@@ -74,14 +74,14 @@
                             <t t-set="financement_mode"
                                t-value="o.mode_de_financement == 'particulier'"/>
                             <t t-if="sales and financement_mode">
-                                <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
+                                <strong><span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/></strong>
                             </t>
                             <t t-else="not sales">
-                                <span t-esc="o.date_creation"/>
+                                <b><span t-esc="o.date_creation"/></b>
                             </t>
                             au
-                            <span t-field="o.module_id.date_exam"
-                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                            <strong><span t-field="o.module_id.date_exam"
+                                  t-field-options='{"format": "dd/MM/yyyy"}'/></strong>
                             <br/>
                             Date et lieu d'examen : Le
                             <strong>
@@ -92,17 +92,13 @@
                             </strong>
 
                             <br/>
-                            Durée effective de la formation : &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-                            min, dont :
+                            Durée effective de la formation : <span t-esc="o.total_time_hours"/>, dont :
                             <br/>
-                            - &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-                            min d’appels
+                            -  <span t-esc="o.total_time_appels_hour"/> d’appels
                             <br/>
-                            - &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-                            min de visioconférences
+                            -  <span t-esc="o.total_time_visio_hour"/> de visioconférences
                             <br/>
-                            - &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-                            min de temps passé sur la plateforme
+                            - <span t-esc="o.totalTimeSpentInMinutes"/> de temps passé sur la plateforme
                             <br/>
                         </div>
                         <br/>
@@ -114,8 +110,7 @@
                             <span t-field="o.note_exam_id[-1].session_id.session_ville_id.name_ville"/>
                         </strong>
                         , le
-                        <!-- date système-->
-                        <!--                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>-->
+                        <!-- date exam + 2-->
                         <span t-esc="((o.note_exam_id[-1].session_id.date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
                         <br/>
                         <img src='/partner_exam/static/src/img/signature_cnx.png'

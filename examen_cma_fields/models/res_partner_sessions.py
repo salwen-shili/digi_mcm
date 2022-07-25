@@ -33,6 +33,7 @@ class resPartnerSessions(models.Model):
     date_creation = fields.Char()
     reactions = fields.Char()
     folder_number_cpf = fields.Char()
+    total_time_hours = fields.Char()
 
     def remove_double_session_same_session(self):
         """ Add this function to remove duplicate

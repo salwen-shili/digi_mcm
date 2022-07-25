@@ -40,11 +40,14 @@
                 <field name="firstName" string="Nom" optional="show"/>
                 <field name="lastName" string="Prénom" optional="show"/>
                 <field name="last_login"/>
-                <field name="totalTimeSpentInMinutes"/>
-                <field name="temps_minute" optional="hide"/>
+                <field name="temps_minute" string="Temps passé plateforme(min)" optional="hide"/>
                 <field name="is_not_paid" invisible="0" optional="hide"/>
                 <field name="etat_financement_cpf_cb" options='{"bg_color": "#FEE7F0:is_not_paid==True;"}'
                        optional="show" string="Financement"/>
+                <field name="totalTimeSpentInMinutes" string="Temps passé plateforme(Heure)" optional="hide"/>
+                <field name="total_time_visio_hour" string="Temps passé Visio" optional="hide"/>
+                <field name="total_time_appels_hour" string="Temps passé appels" optional="hide"/>
+                <field name="total_time_hours" string="Durée effective formation" optional="hide"/>
             </xpath>
         </field>
     </record>
@@ -104,21 +107,6 @@
                             </div>
                             <div>
                                 <span>
-                                    <i class="fa fa-clock-o"/>
-                                </span>
-                                <span class="o_stat_text">
-                                    Temps passé par minute
-                                </span>
-                                <br/>
-                                <span class="o_stat_text">
-                                    <field name="totalTimeSpentInMinutes"></field>
-                                </span>
-                                <span class="o_stat_text">
-                                    <field name="temps_minute" class="oe_edit_only"/>
-                                </span>
-                            </div>
-                            <div>
-                                <span>
                                     <i class="fa fa-sign-in" style="align:center"/>
                                 </span>
                                 <span class="o_stat_text">
@@ -130,45 +118,63 @@
                                 </span>
                             </div>
                         </group>
-                        <group col="8" colspan="4" string="Participation">
+                        <group col="8" colspan="4" string="Statistiques">
                             <div>
+                                <span>
+                                    <i class="fa fa-clock-o"/>
+                                </span>
                                 <span class="o_stat_text">
-                                    <i class="fa fa-comment"/>
-                                    Messages Postés
+                                     Temps passé plateforme
                                 </span>
                                 <br/>
-                                <span class="o_stat_value">
-                                    <field name="messages"/>
+                                <span class="o_stat_text">
+                                    <field name="temps_minute" class="oe_edit_only"/>
+                                </span>
+                                <br/>
+                                <span class="o_stat_text">
+                                    <field name="totalTimeSpentInMinutes"/>
                                 </span>
                             </div>
                             <div>
                                 <span class="o_stat_text">
                                     <i class="fa fa-comments"/>
-                                    Commentaires Postés
+                                    Temps passé Visio
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
-                                    <field name="comments"/>
+                                    <field name="total_time_visio_min"/>
+                                </span>
+                                <br/>
+                                <span class="o_stat_text">
+                                    <field name="total_time_visio_hour"/>
                                 </span>
                             </div>
                             <div>
                                 <span class="o_stat_text">
                                     <i class="fa fa-thumbs-up"/>
-                                    Réactions
+                                    Temps passé appels
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
-                                    <field name="reactions"/>
+                                    <field name="total_time_appels_min"/>
+                                </span>
+                                <br/>
+                                <span class="o_stat_value">
+                                    <field name="total_time_appels_hour"/>
                                 </span>
                             </div>
                             <div>
                                 <span class="o_stat_text">
                                     <i class="fa fa-tasks"/>
-                                    Cours/Programmes publiés
+                                    Durée effective formation
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
-                                    <field name="publications"/>
+                                    <field name="total_time_min"/>
+                                </span>
+                                <br/>
+                                <span class="o_stat_value">
+                                    <field name="total_time_hours"/>
                                 </span>
                             </div>
                         </group>

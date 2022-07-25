@@ -2488,83 +2488,145 @@ class MCM_SIGNUP(http.Controller):
         _logger.info("webhoooooooooook %s" % str(dataa))
         event = dataa.get("type")
         object = dataa.get("data", []).get("object")
+        _logger.info("event : %s" % str(event))
+        if event == "payment_intent.payment_failed":
+            amount = int(object["amount"] / 100)
+            receipt_email = object["receipt_email"]
+            user = request.env['res.users'].sudo().search(
+                [('login', "=", str(receipt_email).replace(' ', '').lower())])
+            _logger.info("receipt_email : %s" % str(receipt_email))
+            _logger.info("user : %s" % str(user))
+            subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
+            if not subtype_id:
+                subtype_id = request.env.ref('mail.mt_note')
+            _logger.info("subtype_id : %s" % str(subtype_id))
+            if user:
+                message = request.env['mail.message'].sudo().create({
+                    'subject': 'Échec de paiement',
+                    'model': 'res.partner',
+                    'res_id': user.partner_id.id,
+                    'message_type': 'notification',
+                    'subtype_id': subtype_id,
+                    'body': 'Échec de réalisation de la tentative de paiement de %s €' % (str(amount)),
+                })
+            _logger.info("message : %s" % str(message))
+            return True
+
         if event == "payment_intent.succeeded":
             _logger.info("teeeeeeest %s" % str(object))
             """Cas de paiement une seule fois : créer une facture lié à ce paiement """
             acquirer = object["id"]
             receipt_email = object["receipt_email"]
-            amount = int(object.get("amount") / 100)
-            _logger.info("acquirer %s" % str(acquirer))
-            _logger.info("amount %s" % str(amount))
-            one_months_before = date.today() - relativedelta(months=1)
-            invoice = (
-                request.env["account.move"]
-                .sudo()
-                .search(
-                    [
-                        ("stripe_sub_reference", "=", False),
-                        ("partner_id.email", "=", receipt_email),
-                        ("module_id.product_id.list_price", "=", amount),
-                        ("methodes_payment", "=", "cartebleu"),
-                        ("create_date", ">=", one_months_before),
-                    ]
-                )
-            )
-            if invoice:
-                _logger.info("paiement invoice %s" % str(invoice.name))
-            trans = request.env["payment.transaction"].sudo().search([("acquirer_reference", "=", acquirer)])
-            if trans and trans.state != "done":
-                _logger.info("state before  %s" % str(trans.state))
-                trans.state = "done"
-                _logger.info("state %s" % str(trans.state))
-            if not invoice and not trans:
-                """if not invoive"""
-                _logger.info("if not invoice")
+            invoice_id = object["invoice"]
+            description = str(object["description"])
+            amount = int(object["amount"] / 100)
+            user = request.env['res.users'].sudo().search(
+                [('login', "=", str(receipt_email).replace(' ', '').lower())])
+            _logger.info("invoice_id : %s" % str(invoice_id))
+            _logger.info("description : %s" % str(description))
+            _logger.info("receipt_email : %s" % str(receipt_email))
+            _logger.info("user : %s" % str(user))
+            if user:
+                if not (description.startswith('S') and '-' in description):
+                    moves = request.env['account.move'].sudo().search(
+                        [('stripe_sub_reference', "!=", ''), ('partner_id', '=', user.partner_id.id),
+                         ('amount_residual', '>', 0)], limit=1)
+                    _logger.info("moves : %s" % str(moves))
+                    if moves:
+                        for move in moves:
+                            acquirer = request.env['payment.acquirer'].sudo().search(
+                                [('name', 'ilike', 'stripe'), ('company_id', "=", move.company_id.id)])
+                            _logger.info("acquirer : %s" % str(acquirer))
+                            payment_method = request.env["account.payment.method"].sudo().search(
+                                [("code", "ilike", "electronic")], limit=1)
+                            _logger.info("payment_method : %s" % str(payment_method))
+                            check_sale = False
+                            sales = request.env['sale.order'].sudo().search([('partner_id', '=', user.partner_id.id)])
+                            _logger.info("sales : %s" % str(sales))
+                            if sales:
+                                for sale in sales:
+                                    if int(sale.amount_total) == amount:
+                                        check_sale = True
+                            _logger.info("check_sale : %s" % str(check_sale))
+                            if not check_sale:
+                                payment = request.env["account.payment"].sudo().create(
+                                    {
+                                        "payment_type": "inbound",
+                                        "payment_method_id": payment_method.id,
+                                        "partner_type": "customer",
+                                        "partner_id": move.partner_id.id,
+                                        "amount": amount,
+                                        "currency_id": move.currency_id.id,
+                                        "payment_date": datetime.now(),
+                                        "journal_id": acquirer.journal_id.id if acquirer else move.journal_id.id,
+                                        "communication": False,
+                                        "payment_token_id": False,
+                                        "invoice_ids": [(6, 0, move.ids)],
+                                    }
+                                )
+                                _logger.info("payment : %s" % str(payment))
+                                payment.post()
+            return True
+
+            #     _logger.info("if not invoice")
 
         if event == "invoice.paid":
             _logger.info("teeeeeeest invoice %s" % str(object))
             subsciption = object.get("subscription")
-            customer = object.get("customer")
-            amount = int(object.get("amount_paid") / 100)
-            """Cas de paiement sur plusieur fois : Mettre à jour la facture lié à l'abonnement sur stripe """
-            invoice = request.env["account.move"].sudo().search([("stripe_sub_reference", "=", subsciption)], limit=1)
-            _logger.info("invoice %s" % str(invoice.name))
-            _logger.info("invoice ************* %s" % str(invoice.stripe_sub_reference))
-            payment_method = (
-                request.env["account.payment.method"].sudo().search([("code", "ilike", "electronic")], limit=1)
-            )
-            journal_id = invoice.journal_id.id
-            acquirer = (
-                request.env["payment.acquirer"]
-                .sudo()
-                .search([("name", "=", _("stripe")), ("company_id", "=", 1)], limit=1)
-            )
-            if acquirer:
-                journal_id = acquirer.journal_id.id
-            if invoice:
-                payment = (
-                    request.env["account.payment"]
-                    .sudo()
-                    .create(
-                        {
-                            "payment_type": "inbound",
-                            "payment_method_id": payment_method.id,
-                            "partner_type": "customer",
-                            "partner_id": invoice.partner_id.id,
-                            "amount": amount,
-                            "currency_id": invoice.currency_id.id,
-                            "payment_date": datetime.now(),
-                            "journal_id": journal_id,
-                            "communication": False,
-                            "payment_token_id": False,
-                            "invoice_ids": [(6, 0, invoice.ids)],
-                        }
+            receipt_email = object["receipt_email"]
+            if subsciption:
+                customer = object.get("customer")
+                amount = int(object.get("amount_paid") / 100)
+                """Cas de paiement sur plusieur fois : Mettre à jour la facture lié à l'abonnement sur stripe """
+                # partner=request.env['res.partner'].sudo().search([('email',"=",receipt_email)],limit=1)
+                invoice = request.env["account.move"].sudo().search([("stripe_sub_reference", "=", subsciption),
+                                                                     ("partner_id.email","=",receipt_email)], limit=1)
+                _logger.info("invoice %s" % str(invoice.name))
+                _logger.info("invoice ************* %s" % str(invoice.stripe_sub_reference))
+                payment_method = request.env["account.payment.method"].sudo().search([("code", "ilike", "electronic")],
+                                                                                     limit=1)
+                journal_id = invoice.journal_id.id
+                acquirer = False
+                if invoice:
+                    acquirer = (
+                        request.env["payment.acquirer"]
+                        .sudo()
+                        .search([("name", "=", _("stripe")), ("company_id", "=", invoice.company_id.id)], limit=1)
                     )
-                )
+                else:
+                    acquirer = (
+                        request.env["payment.acquirer"]
+                        .sudo()
+                        .search([("name", "=", _("stripe")), ("company_id", "=", 2)], limit=1)
+                    )
+                if acquirer:
+                    journal_id = acquirer.journal_id.id
+                if invoice:
+                    payment = (
+                        request.env["account.payment"]
+                        .sudo()
+                        .create(
+                            {
+                                "payment_type": "inbound",
+                                "payment_method_id": payment_method.id,
+                                "partner_type": "customer",
+                                "partner_id": invoice.partner_id.id,
+                                "amount": amount,
+                                "currency_id": invoice.currency_id.id,
+                                "payment_date": datetime.now(),
+                                "journal_id": acquirer.journal_id.id if acquirer else invoice.journal_id.id,
+                                "communication": False,
+                                "payment_token_id": False,
+                                "invoice_ids": [(6, 0, invoice.ids)],
+                            }
+                        )
+                    )
 
-                payment.post()
+                    payment.post()
 
-                return True
+                    return True
+
+        return True
 
     @http.route("/inscription-bolt", type="http", auth="public", website=True)
     def inscription_bolt_jotform(

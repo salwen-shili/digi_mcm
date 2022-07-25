@@ -1,84 +1,179 @@
-body {
-  margin-top: 30px;
-  background-color: #eee;
+
+
+.tooltip  {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
 }
-.faq-nav {
-  flex-direction: column;
-  margin: 0 0 32px;
-  border-radius: 2px;
-  border: 1px solid #ddd;
-  box-shadow: 0 1px 5px rgba(85, 85, 85, 0.15);
+  
+.master-box {
+  padding: 0 15%;
+  margin-bottom: 100px;
 }
-.faq-nav .nav-link {
-  position: relative;
-  display: block;
-  margin: 0;
-  padding: 13px 16px;
-  background-color: #fff;
-  border: 0;
-  border-bottom: 1px solid #ddd;
-  border-radius: 0;
-  color: #616161;
-  transition: background-color 0.2s ease;
+
+@media (max-width:768px){
+  .master-box {
+    padding: 0 0!important;
+  }
 }
-.faq-nav .nav-link:hover {
-  background-color: #f6f6f6;
+
+.faq-header {
+  margin-top: 20px;
+  padding: 0 0px 40px 0;
+  text-align: center;
+  color: #fff;
+ 
+  background-image: 
+                  url("/mcm_website_theme/static/src/img/COUV FAQ.png");
+                  background-repeat: round;
+
+
+ 
 }
-.faq-nav .nav-link.active {
-  background-color: #f6f6f6;
-  font-weight: 700;
-  color: rgba(0, 0, 0, 0.87);
+hr{
+  width: 72px;
+  color: rgba(255, 255, 255, 0.096);
+  border: 3px solid rgb(51, 51, 51);
+
 }
-.faq-nav .nav-link:last-of-type {
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-  border-bottom: 0;
+h1.title {
+  padding-top: 24px;
+  font-size: 65px;
+  letter-spacing: -1px;
+  font-weight: 400;
+  color: #fff;
 }
-.faq-nav .nav-link i.mdi {
-  margin-right: 5px;
+
+#myInput {
+ 
+  width: 50%;
   font-size: 18px;
-  position: relative;
+  padding: 5px 20px 5px 20px;
+  border: 1px solid #0000007d;
+  margin: 15px 0 15px 0;
+  border-radius: 9px;
 }
-.tab-content {
-  box-shadow: 0 1px 5px rgba(85, 85, 85, 0.15);
+
+#myBtnContainer {
+  margin: 15px;
+  letter-spacing: 5px;
 }
-.tab-content .card {
-  border-radius: 0;
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 8px 15px 8px 0;
+  background-color: #000000a3;
+  background: hsl(60deg 98% 50% / 64%);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  width: 145px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.2);
+  margin-top: 14px;
+  color: #000;
 }
-.tab-content .card-header {
-  padding: 15px 16px;
-  border-radius: 0;
-  background-color: #f6f6f6;
+
+.btn:hover {
+
+  background: hsl(60deg 98% 50%);
+  color: #000;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.3), 0 3px 5px 0 rgba(0,0,0,0.3);
+  transition: all 0.2s ease;
 }
-.tab-content .card-header h5 {
-  margin: 0;
+
+.btn.active-btn {
+  background: hsl(60, 98%, 50%);;
+  color: #000;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.3), 0 3px 5px 0 rgba(0,0,0,0.3);
 }
-.tab-content .card-header h5 button {
-  display: block;
+
+.btn::before {
+  content: '\00bb   ';
+  font-size: 18px;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.btn.active-btn::before {
+  content: '\00bb   ';
+  opacity: 1;
+  transition: 0.5s;
+}
+
+#myUL {
+  list-style-type: none;
   width: 100%;
   padding: 0;
-  border: 0;
-  font-weight: 700;
-  font-size: medium;
-  color: rgba(0, 0, 0, 0.87);
-  text-align: left;
-  white-space: normal;
+  background: rgba(255, 255, 255, 0.01);
 }
-.tab-content .card-header h5 button:hover,
-.tab-content .card-header h5 button:focus,
-.tab-content .card-header h5 button:active,
-.tab-content .card-header h5 button:hover:active {
-  text-decoration: none;
-}
-.tab-content .card-body p {
-  color: #616161;
-}
-.tab-content .card-body p:last-of-type {
+
+#myUL li span {
+  cursor: pointer;
+  -moz-transition: all 0.35s ease;
+  -ms-transition: all 0.35s ease;
+  -o-transition: all 0.35s ease;
+  -webkit-transition: all 0.35s ease;
+  border: 1px solid lightgrey;
+  margin-top: -1px;
+  padding: 10px 43px 10px 9px;
   margin: 0;
+  text-decoration: none;
+  font-size: 19px; 
+  color: #444343;
+  display: block;
 }
-.accordion > .card:not(:first-child) {
-  border-top: 0;
+
+#myUL li span:hover:not(.header) {
+    background-color: #e4ecf9;
+    border: 1px solid grey;
 }
-.collapse.show .card-body {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+
+.filterDiv {
+  display: none; /* Hidden by default */
+  transition: all 0.3s;
+  margin-bottom: 4px;
+}
+
+.show {
+  display: block;
+}
+
+.accordion-thumb {
+  font-weight: bold;
+  background: white;
+
+}
+
+/* Active answer */
+.filterDiv.is-active .accordion-thumb::before {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.accordion-thumb::before {
+  content: '';
+  display: inline-block;
+  height: 7px;
+  width: 7px;
+  margin-right: 1rem;
+  margin-left: .5rem;
+  vertical-align: middle;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  transition: -webkit-transform .2s ease-out;
+  transition: transform .2s ease-out;
+  transition: transform .2s ease-out, -webkit-transform .2s ease-out;
+}
+
+.accordion-panel {
+padding: 22px 20px 22px 20px;
+  display: none;
+  color: black;
+  font-size: 16px;
+  font-weight: normal;
+  background: white;
 }
