@@ -57,7 +57,7 @@ class InheritConfig(models.Model):
         }
         data = {
             "applicant_id": applicant_id,
-            "referrer": "http://localhost:8069/*"
+            "referrer": "https://mcm-academy-staging-interne-5449924.dev.odoo.com/*"
         }
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk=response_token.json()
