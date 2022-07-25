@@ -119,7 +119,7 @@ class OnfidoController(http.Controller):
         if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'fail':
             _logger.info('state document %s' %str(workflow_runs['state']))
             partner.validation_onfido="fail"
-            documents=request.env['documents.document'].sudo().search([('partner_id',"=",partner)])
+            documents=request.env['documents.document'].sudo().search([('partner_id',"=",partner.id)])
             _logger.info("documents %s" %str(documents))
 
             if documents:
