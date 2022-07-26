@@ -108,17 +108,18 @@ class OnfidoController(http.Controller):
         workflow_run_id = data['payload']['object']['id']
         _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))
         website = request.env['website'].get_current_website()
+        partner=request.env.user.partner_id
         workflow_runs = partner.get_workflow_runs(workflow_run_id, website.onfido_api_key_live)
         _logger.info("workflow_run onfido response %s" % str(workflow_runs))
         applicant_id = workflow_runs['applicant_id']
-        partner = request.env['res.partner'].sudo().search([('onfido_applicant_id',"=",applicant_id)])
+        partner_id = request.env['res.partner'].sudo().search([('onfido_applicant_id',"=",applicant_id)])
         list_document = partner.get_listDocument(applicant_id, website.onfido_api_key_live)
         _logger.info('*************************************DOCUMENT***************** %s' % str(list_document))
         if partner:
             if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'fail':
                 _logger.info('state document %s' %str(workflow_runs['state']))
                 partner.validation_onfido="fail"
-                documents=request.env['documents.document'].sudo().search([('partner_id',"=",partner.id)])
+                documents=request.env['documents.document'].sudo().search([('partner_id',"=",partner_id.id)])
                 _logger.info("documents %s" %str(documents))
     
                 if documents:
