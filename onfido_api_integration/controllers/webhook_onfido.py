@@ -146,8 +146,8 @@ class OnfidoController(http.Controller):
         _logger.info("sendStateDocument onfido %s" %str(partner_id))
         partner=request.env['res.partner'].sudo().search([('id',"=",partner_id)])
         if partner:
-           return {'validation_onfid': partner.validation_onfido }
+           return {'validation_onfido': partner.validation_onfido }
         else :
-            return {'validation_onfid': False }
+            return {'validation_onfido': False }
 
     
