@@ -99,7 +99,7 @@ class OnfidoController(http.Controller):
         return True
 
     """get event workflowrund is completed with webhook """
-    @http.route(['/workflow_webhook'], type='json', auth="user", csrf=False)
+    @http.route(['/workflow_webhook'], type='json', auth="public", csrf=False)
     def completed_workflow_event(self, **kw):
         values = {}
         _logger.info("webhoooooooooook onfido %s" %str(kw))
