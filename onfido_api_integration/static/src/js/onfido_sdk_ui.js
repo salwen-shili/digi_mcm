@@ -37,7 +37,7 @@ const popup = {
   
   </div>
   </div>`,
-  failed: `<div id="popup1" class="overlay"><div class="modalbox error col-sm-8 col-md-6 col-lg-5 center animate">
+  fail: `<div id="popup1" class="overlay"><div class="modalbox error col-sm-8 col-md-6 col-lg-5 center animate">
   <div class="icon">
     
       <i class="fa fa-times" style="margin: 17px;
@@ -74,19 +74,31 @@ const openPopup = (popupType) => {
 };
 
 const closePopup = () => {
-  document.querySelector("#popup1").remove();
-};
+  if (document.querySelector("#popup1")){
+    document.querySelector("#popup1").remove();
+  };
+}
+  
 
 //logics for setting popup
-const setPopups = () => {
+const setPopups = (validation_onfido) => {
   const getDocumentState = setInterval(() => {
-    // openPopup("waiting");
-    // closePopup();
-    // openPopup("success");
+    
+    // validation_onfido state will be clear / fail / in_progress
+    if (validation_onfido != "in_progress"){
+      if (validation_onfido == "clear"){
+      clearTimeout(waitingInterval)
+      closePopup()
+      openPopup("success")
+      }
+      else if (validation_onfido == "fail"){
+        clearTimeout(waitingInterval)
+        closePopup()
+        openPopup("fail")
+      }
+    }
 
-    // if (documentState == "success" || documentState == "error"){
-    //   clearTimeout(waitingInterval)
-    // }
+    
 
     console.log("getDocumentState...");
   }, 1500);
@@ -95,13 +107,13 @@ const setPopups = () => {
     console.log("waiting...");
     clearInterval(getDocumentState);
     exceedWaiting();
-  }, 6000);
+  }, 30000);
 };
 
 //after timeout
 function exceedWaiting() {
   closePopup();
-  openPopup("failed");
+  openPopup("fail");
 }
 
 
@@ -113,8 +125,16 @@ function exceedWaiting() {
 const checkDocumentState = () => {
   sendHttpRequest("POST", "/onfido/get_state_document", {})
     .then((responseData) => {
-      console.log("******************* onfido/get_state_document", responseData);
+      console.log("******************* onfido/get_state_document", responseData.result.validation_onfido);
+      if (responseData.result){
+        const validation_onfido = responseData.result.validation_onfido;
+        ///////// logics for setting popups
+        setPopups(validation_onfido)
+
+      }
+
     })
+   
     .catch((err) => {});
 };
 
@@ -135,9 +155,12 @@ onfidoOut = Onfido.init({
     //send ID documents after finishing the workflow
     sendDocument(data);
     //////////////////////////////////////////////////////////////
-    setPopups();
-
-    //send_state_document
+    // Display a waiting popup window after finishing the workflow. 
+    openPopup("waiting");
+    checkDocumentState();
+    // check document state every second. 
+    // display popup according to document state 
+    // after 30 secondes display exceed waiting popup
 
     //////////////////////////////////////////////////////////////
   },
