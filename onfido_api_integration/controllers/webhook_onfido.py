@@ -99,7 +99,7 @@ class OnfidoController(http.Controller):
         return True
 
     """get event workflowrund is completed with webhook """
-    @http.route(['/workflow_webhook'], type='json', auth="public", csrf=False)
+    @http.route(['/workflow_webhook'], type='json', auth="user", csrf=False)
     def completed_workflow_event(self, **kw):
         values = {}
         _logger.info("webhoooooooooook onfido %s" %str(kw))
@@ -140,14 +140,16 @@ class OnfidoController(http.Controller):
             return True
 
     """send state of document to frontend """
-    @http.route(['/onfido/get_state_document'], type='json', auth="public", csrf=False)
+    @http.route(['/onfido/get_state_document'],methods=["POST"] ,type='json', auth="user", csrf=False)
     def sendStateDocument(self):
         partner_id=request.env.user.partner_id
-        _logger.info("sendStateDocument onfido %s" %str(partner_id))
-        partner=request.env['res.partner'].sudo().search([('id',"=",partner_id)])
+        partner=request.env['res.partner'].sudo().search([('id',"=",partner_id.id)])
+        _logger.info("request.env.user.partner_id %s name=%s" %(str(partner_id.id),str(partner_id.name)))
+        _logger.info("partner.validation_onfido %s" %str(partner.validation_onfido))
+    
         if partner:
            return {'validation_onfido': partner.validation_onfido }
         else :
-            return {'validation_onfido': False }
+            return {'validation_onfido': "partner not found" }
 
     
