@@ -40,7 +40,9 @@
                 
 
 
+               <div>
                 <div id="onfido-mount"></div>
+               </div>
             </div>
             <script src="/onfido_api_integration/static/src/js/onfido.min.js"></script>
             <script src="/onfido_api_integration/static/src/js/onfido_sdk_ui.js"></script>

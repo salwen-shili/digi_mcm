@@ -28,7 +28,7 @@ waiting : `<div id="popup1" class="overlay">
       </div>
       <!--/.icon-->
       <h1 style="color:#000000;margin-top:1rem">
-          Succès!
+      Document validé!
       </h1>
       <p>Vous pouvez désormais choisir votre centre et date d'examen</p>
       <button onclick="window.location.href='/shop/cart'" type="button" class="redo btn">Continuer</button>
@@ -122,7 +122,7 @@ const setPopups = () => {
     console.log("waiting...");
     clearInterval(getDocumentState);
     exceedWaiting();
-  }, 60000);
+  }, 600000);
 
   
 };
