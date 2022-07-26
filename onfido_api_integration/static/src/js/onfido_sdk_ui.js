@@ -96,11 +96,13 @@ const setPopups = () => {
           clearTimeout(waitingInterval)
           closePopup()
           openPopup("success")
+          clearInterval(getDocumentState)
           }
           else if (validation_onfido == "fail"){
             clearTimeout(waitingInterval)
             closePopup()
             openPopup("fail")
+            clearInterval(getDocumentState)
           }
         }
       }

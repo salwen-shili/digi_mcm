@@ -112,14 +112,16 @@ class OnfidoController(http.Controller):
         workflow_runs = partner.get_workflow_runs(workflow_run_id, website.onfido_api_key_live)
         _logger.info("workflow_run onfido response %s" % str(workflow_runs))
         applicant_id = workflow_runs['applicant_id']
-        partner_id = request.env['res.partner'].sudo().search([('onfido_applicant_id',"=",applicant_id)])
+        currentUser = request.env['res.partner'].sudo().search([('onfido_applicant_id',"=",applicant_id)])
         list_document = partner.get_listDocument(applicant_id, website.onfido_api_key_live)
         _logger.info('*************************************DOCUMENT***************** %s' % str(list_document))
-        if partner:
+        if currentUser:
             if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'fail':
                 _logger.info('state document %s' %str(workflow_runs['state']))
-                partner.validation_onfido="fail"
-                documents=request.env['documents.document'].sudo().search([('partner_id',"=",partner_id.id)])
+                currentUser.validation_onfido="fail"
+                _logger.info('*************************************currentUser.validation_onfido***************** %s' % str(currentUser.validation_onfido))
+                
+                documents=request.env['documents.document'].sudo().search([('partner_id',"=",currentUser.id)])
                 _logger.info("documents %s" %str(documents))
     
                 if documents:
@@ -127,11 +129,12 @@ class OnfidoController(http.Controller):
                     for document in documents:
                         document.state = "refused"
                         _logger.info("documents %s" % str(document.state))
+                  
                 return True
             if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'clear':
                 _logger.info('else state document %s' % str(workflow_runs['state']))
-                partner.validation_onfido = "clear"
-                documents = request.env['documents.document'].sudo().search([('partner_id', "=", partner_id.id)])
+                currentUser.validation_onfido = "clear"
+                documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
                 if documents:
                     for document in documents:
                         document.state="validated"
