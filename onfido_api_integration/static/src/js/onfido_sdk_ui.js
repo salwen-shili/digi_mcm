@@ -122,7 +122,7 @@ const setPopups = () => {
     console.log("waiting...");
     clearInterval(getDocumentState);
     exceedWaiting();
-  }, 600000);
+  }, 60000);
 
   
 };
