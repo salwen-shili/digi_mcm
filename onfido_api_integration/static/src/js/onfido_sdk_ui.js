@@ -9,18 +9,16 @@
 ///////////////////////////////////////////////////////////////////
 
 const popup = {
-  waiting: ` <div id="popup1" class="overlay">
-    <div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
-        <img src="/onfido_api_integration/static/img/scan-docs-2.gif" class="img img-fluid mx-auto text-center" style="height:180px" ></img>
-        <!--/.icon-->
-        <h1 style="color:#000000;margin-top:1rem">
-            Un instant!
-        </h1>
-        <p>Nous traitons actuellement vos <b>documents</b>. Cela pourrait prendre quelques secondes.</p>
-        
-    
-    </div>
-  </div>`,
+waiting : `<div id="popup1" class="overlay">
+<div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
+    <img src="/onfido_api_integration/static/img/scan-docs-2.gif" class="img img-fluid mx-auto text-center" style="height:180px" ></img>
+    <!--/.icon-->
+    <h1 style="color:#000000;margin-top:1rem">
+        Un instant!
+    </h1>
+    <p>Nous traitons actuellement vos <b>documents</b>. Cela pourrait prendre quelques secondes.</p>
+</div>
+</div>`,
   success: `<div id="popup1" class="overlay">
   <div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
       <div class="icon">
@@ -129,7 +127,7 @@ const setPopups = () => {
 //after timeout
 function exceedWaiting() {
   closePopup();
-  openPopup("fail");
+  openPopup("exceedWaiting");
 }
 
 
