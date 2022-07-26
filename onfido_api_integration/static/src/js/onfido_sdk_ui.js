@@ -46,7 +46,8 @@ waiting : `<div id="popup1" class="overlay">
   <h1 style="color:#000000;margin-top:1rem">
       Validation échouée!
   </h1>
-  <p>Vous pouvez désormais choisir votre centre et date d'examen</p>
+  <p>Vous pouvez quand même poursuivre votre inscription et choisir votre centre et date d'examen. <br/>Notre service clientèle vous contactera pour valider vos documents.
+  </p>
   <button onclick="window.location.href='/shop/cart'" type="button" class="redo btn">Continuer</button>
   
   </div>
