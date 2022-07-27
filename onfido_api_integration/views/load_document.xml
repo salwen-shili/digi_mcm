@@ -7,7 +7,7 @@
          </style>
 
             <link rel="stylesheet" href="/onfido_api_integration/static/src/css/style.css" />
-            <link rel="stylesheet" href="onfido_api_integration/static/src/css/popup.css" />
+            <link rel="stylesheet" href="onfido_api_integration/static/src/css/popup.min.css" />
 
 
             <input type="hidden" id="sdk-token" t-att-value="sdk_token"></input>
@@ -36,10 +36,6 @@
 
             <div id="wrap" class="oe_empty oe_structure">
                 <!-- POPUP-->
-               
-                
-
-
                <div>
                 <div id="onfido-mount"></div>
                </div>
