@@ -558,7 +558,17 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Examen final en présentiel &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
+                                                                <b>Examen final en présentiel</b>
+                                                            </li>
+                                                         
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+
+                                                                <b>Séance en Live pour corriger l’examen</b>
+                                                            </li>
+                                                              <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                                <b style="font-size:13.92px !Important">Assistance pour avoir la Licence de transport</b>
                                                             </li>
                                                             <li>
                                                                 <i />
@@ -673,8 +683,19 @@
 
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
+
                                                                 <b>Examen final en présentiel &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
+
+                                                                <b>Séance en Live pour corriger l’examen</b>
+                                                            </li>
+                                                             <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+
+                                                                <b>Assistance pour avoir la Licence de transport</b>
                                                             </li>
                                                             <li>
                                                                 <i />
@@ -782,7 +803,15 @@
                                                             <li class="mb-4">
                                                                 <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Examen final en présentiel</b>
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
+
+                                                                <b>Séance en Live pour corriger l’examen</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b style="font-size:13.92px !Important">Assistance pour avoir la Licence de transport</b>
                                                             </li>
                                                             <li>
                                                                 <i />
