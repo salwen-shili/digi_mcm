@@ -219,13 +219,14 @@
                                             <span>........</span>
                                         </t>
                                         <br/>
+                                        (n° d’agrément
                                         <t t-if="val_2">
                                             <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
 
                                                    <t t-if="o.note_exam_id[-1].session_id.num_agrement_jury">
-                                                   (n° d’agrément
+
                                                        <strong> <span t-field='o.note_exam_id[-1].session_id.num_agrement_jury'/>
-                                                       </strong>),
+                                                       </strong>
                                                      </t>
                                             </t>
                                             <t t-else="">
@@ -235,7 +236,7 @@
                                         </t>
                                         <t t-else="">
                                             <span>........</span>
-                                        </t>
+                                        </t>),
 
                                         déclare que M/Mme
                                         <t t-if="val_2">
@@ -328,10 +329,9 @@
                                             <span>........</span>
                                         </t>
                                         <br/>
-
+                                         (n° d’agrément
                                          <t t-if="val_3">
                                             <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                                  (n° d’agrément
                                                <t t-if="o.note_exam_id[-1].session_id.num_agrement_jury">
                                              <strong>
                                                 <span t-field='o.note_exam_id[-1].session_id.num_agrement_jury'/>
@@ -340,12 +340,12 @@
                                             </t>
                                             <t t-else="">
                                                <span>........</span>
-                                             </t>),
+                                             </t>
 
                                         </t>
                                         <t t-else="">
                                             <span>........</span>
-                                        </t>
+                                        </t>),
                                         déclare que M/Mme
                                         <t t-if="val_3">
                                             <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
