@@ -19,7 +19,7 @@ function openPopup() {
   //   }, 2000);
   // }
 
-if ( !window.location.search.includes('said.ferhi') ) {
+
   setTimeout(() => {
     console.log("******************* onfido/")
     document.getElementById('popup1').style.display = 'flex';
@@ -28,7 +28,7 @@ if ( !window.location.search.includes('said.ferhi') ) {
     if (document.getElementById('JotFormIFrame-221803597636059'))
       document.getElementById('JotFormIFrame-221803597636059').remove(0);
   }, 2000);
-}
+
   
   
 }
