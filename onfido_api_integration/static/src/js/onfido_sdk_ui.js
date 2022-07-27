@@ -57,8 +57,12 @@ waiting : `<div id="popup1" class="overlay">
        
         <!--/.icon-->
         <h4 style="color:#000000;margin-top:1rem">
-            Vos documents sont en cours de validation...
-        </h4>
+        Vos documents sont en cours de validation <div class="snippet" data-title=".dot-flashing">
+       
+    </h4>
+    <div class="stage">
+        <div class="dot-flashing"></div>
+      </div>
         <p>Vous pouvez poursuivre votre inscription et choisir votre centre et date d'examen. <br/>Notre service clientèle vous contactera en cas d'échec de validation.</p>
         <button type="button" class="redo btn" onclick="window.location.href = 'shop/cart'">Continuer</button>
     
@@ -67,14 +71,27 @@ waiting : `<div id="popup1" class="overlay">
 };
 
 const openPopup = (popupType) => {
-  document
-    .querySelector("#wrap")
-    .insertAdjacentHTML("afterbegin", popup[popupType]);
+  if ("exceedWaitingwaitingsuccessfail".includes(popupType)){
+    if (document
+      .querySelector("#wrap")){
+        document
+        .querySelector("#wrap")
+        .insertAdjacentHTML("afterbegin", popup[popupType]);
+      }
+  }else {
+    console.log("Check popuptype!")
+  }
+ 
+
 };
 
+
 const closePopup = () => {
-  if (document.querySelector("#popup1")){
-    document.querySelector("#popup1").remove();
+  const popups= document.querySelectorAll("#popup1");
+  if (popups){
+    for (let i = 0; i < popups.length; i++) {
+      popups[i].remove();
+  }
   };
 }
   
