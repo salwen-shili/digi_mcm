@@ -210,7 +210,7 @@
 
                                                     <t t-if="o.company_id[0].region">
                                                         <strong>
-                                                            <span t-raw=" '%s' % o.company_id.region"/>
+                                                            <span t-raw=" '%s' % o.note_exam_id[-1].session_id.state"/>
                                                         </strong>
                                                     </t>
                                             </t>
@@ -319,7 +319,7 @@
                                                 <strong>
                                                     <t t-if="o.company_id.region">
                                                         <strong>
-                                                            <span t-raw=" '%s' % o.company_id.region"/>
+                                                            <span t-raw=" '%s' % o.note_exam_id[-1].session_id.state"/>
                                                         </strong>
                                                     </t>
                                                 </strong>
