@@ -208,7 +208,7 @@
                                         <t t-if="val_2">
                                             <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
 
-                                                    <t t-if="o.company_id[0].region">
+                                                    <t t-if="o.note_exam_id[-1].session_id.state">
                                                         <strong>
                                                             <span t-raw=" '%s' % o.note_exam_id[-1].session_id.state"/>
                                                         </strong>
@@ -317,7 +317,7 @@
                                         <t t-if="val_3">
                                             <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
                                                 <strong>
-                                                    <t t-if="o.company_id.region">
+                                                    <t t-if="o.note_exam_id[-1].session_id.state">
                                                         <strong>
                                                             <span t-raw=" '%s' % o.note_exam_id[-1].session_id.state"/>
                                                         </strong>
