@@ -120,8 +120,18 @@
                                         <br/>
                                         Le directeur du centre de formation, organisateur du premier examen,
                                         agrée par le préfet de la région
-                                        <b>Ile de France</b>
-                                        (n° d’agrément <strong>IDF 2019-0110</strong>), déclare
+                                        <b>  <span t-field='o.note_exam_id[-1].session_id.state'/></b>
+
+
+                                         <t t-if="o.note_exam_id[-1].session_id.num_agrement_jury">
+                                             (n° d’agrément
+                                             <strong>
+                                        <span t-field='o.note_exam_id[-1].session_id.num_agrement_jury'/>
+                                             </strong>
+                                        </t>
+                                        <t t-else="">
+                                            <span></span>
+                                        </t>), déclare
                                         que
                                         M/Mme
                                         <strong>
@@ -194,23 +204,23 @@
                                         </t>
                                         <br/>
                                         Le directeur du centre de formation, organisateur du deuxième examen, agrée par
-                                        le préfet de la région
-                                        <t t-if="val_2">
-                                            <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
-                                                <strong>
-                                                    <t t-if="o.company_id[0].region">
-                                                        <strong>
-                                                            <span t-raw=" '%s' % o.company_id.region"/>
-                                                        </strong>
-                                                    </t>
-                                                </strong>
-                                            </t>
-                                        </t>
+                                        le préfet de la région ........
+<!--                                        <t t-if="val_2">-->
+<!--                                            <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">-->
+<!--                                                <strong>-->
+<!--                                                    <t t-if="o.company_id[0].region">-->
+<!--                                                        <strong>-->
+<!--                                                            <span t-raw=" '%s' % o.company_id.region"/>-->
+<!--                                                        </strong>-->
+<!--                                                    </t>-->
+<!--                                                </strong>-->
+<!--                                            </t>-->
+<!--                                        </t>-->
                                         <t t-else="">
                                             <span>........</span>
                                         </t>
                                         <br/>
-                                        (n° d’agrément <strong>IDF 2019-0110</strong>),
+                                        (n° d’agrément <strong>........</strong>),
                                         déclare que M/Mme
                                         <t t-if="val_2">
                                             <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
@@ -286,20 +296,20 @@
                                         </t>
                                         <br/>
                                         Le directeur du centre de formation, organisateur du troisième examen, agrée
-                                        par le préfet de la région
-                                        <t t-if="val_3">
-                                            <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
-                                                <strong>
-                                                    <t t-if="o.company_id.region">
-                                                        <strong>
-                                                            <span t-raw=" '%s' % o.company_id.region"/>
-                                                        </strong>
-                                                    </t>
-                                                </strong>
-                                            </t>
-                                        </t>
+                                        par le préfet de la région ........
+<!--                                        <t t-if="val_3">-->
+<!--                                            <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">-->
+<!--                                                <strong>-->
+<!--                                                    <t t-if="o.company_id.region">-->
+<!--                                                        <strong>-->
+<!--                                                            <span t-raw=" '%s' % o.company_id.region"/>-->
+<!--                                                        </strong>-->
+<!--                                                    </t>-->
+<!--                                                </strong>-->
+<!--                                            </t>-->
+<!--                                        </t>-->
                                         <br/>
-                                        (n° d’agrément <strong>IDF 2019-0110</strong>),
+                                        (n° d’agrément <strong>........</strong>),
                                         déclare que M/Mme
                                         <t t-if="val_3">
                                             <t t-if="val[-1].date_exam &lt; val_3[-1].date_exam">
