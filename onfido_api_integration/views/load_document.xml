@@ -1,5 +1,5 @@
 <odoo>
-    <template id="onfido_api_integration.load_document" name="Load document ">
+    <template id="onfido_api_integration.load_document" name="Charger mes documents">
         <t t-call="website.layout">
             <style>
 
