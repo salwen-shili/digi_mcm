@@ -216,9 +216,9 @@
 <!--                                                </strong>-->
 <!--                                            </t>-->
 <!--                                        </t>-->
-                                        <t t-else="">
-                                            <span>........</span>
-                                        </t>
+<!--                                        <t t-else="">-->
+<!--                                            <span>........</span>-->
+<!--                                        </t>-->
                                         <br/>
                                         (n° d’agrément <strong>........</strong>),
                                         déclare que M/Mme
