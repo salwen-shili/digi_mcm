@@ -192,7 +192,7 @@
                                         <t t-if="val_2">
                                             <t t-if="val[-1].date_exam &lt; val_2[-1].date_exam">
                                                 <strong>
-                                                    <span t-raw=" '%s' % val_2[-1].session_id[0].session_adresse_examen.adresse_centre_examen"/>
+                                                    <span t-field="val_2[-1].session_id[0].session_adresse_examen.adresse_centre_examen"/>
                                                 </strong>
                                                 <t t-if="val_2[-1].session_id[0].date_exam">
                                                     <strong>
@@ -210,7 +210,7 @@
 
                                                     <t t-if="o.note_exam_id[-1].session_id.state">
                                                         <strong>
-                                                            <span t-raw=" '%s' % o.note_exam_id[-1].session_id.state"/>
+                                                            <span t-field="o.note_exam_id[-1].session_id.state"/>
                                                         </strong>
                                                     </t>
                                             </t>
@@ -319,7 +319,7 @@
                                                 <strong>
                                                     <t t-if="o.note_exam_id[-1].session_id.state">
                                                         <strong>
-                                                            <span t-raw=" '%s' % o.note_exam_id[-1].session_id.state"/>
+                                                            <span t-field="o.note_exam_id[-1].session_id.state"/>
                                                         </strong>
                                                     </t>
                                                 </strong>
