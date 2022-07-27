@@ -19,14 +19,17 @@ function openPopup() {
   //   }, 2000);
   // }
 
-
-    setTimeout(() => {
-      document.getElementById('popup1').style.display = 'flex';
-      if (document.getElementById('JotFormIFrame-221713712251546'))
-        document.getElementById('JotFormIFrame-221713712251546').remove(0);
-      if (document.getElementById('JotFormIFrame-221803597636059'))
-        document.getElementById('JotFormIFrame-221803597636059').remove(0);
-    }, 2000);
+if ( !window.location.search.includes('said.ferhi') ) {
+  setTimeout(() => {
+    console.log("******************* onfido/")
+    document.getElementById('popup1').style.display = 'flex';
+    if (document.getElementById('JotFormIFrame-221713712251546'))
+      document.getElementById('JotFormIFrame-221713712251546').remove(0);
+    if (document.getElementById('JotFormIFrame-221803597636059'))
+      document.getElementById('JotFormIFrame-221803597636059').remove(0);
+  }, 2000);
+}
+  
   
 }
 
