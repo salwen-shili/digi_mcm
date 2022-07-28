@@ -235,7 +235,7 @@
           <!-- partial:index.partial.html -->
         <div class="master-box">
             <div class="faq-header">
-              <h1 class="title">FAQ</h1>
+              <h1 class="title" style="font-size:55px">FAQ</h1>
               <hr />
               <h4 class="subtitle">Une question ? Une réponse !</h4>
               <div class="filter-search">
@@ -305,8 +305,8 @@
                 >
                 <p class="accordion-panel">
                   MCM Academy vous offre la possibilité de mobiliser votre compte
-                  personnel de formation (CPF). Pour en savoir plus cliquez ici :
-                  <a style="color:blue" href="https://youtu.be/19BiYQVwZFs">https://youtu.be/19BiYQVwZFs</a>
+                  personnel de formation (CPF). Pour en savoir plus cliquez ici 
+                  <a style="color:blue" href="https://youtu.be/19BiYQVwZFs">👈</a>
                 </p>
               </li>
               <li class="filterDiv account">
@@ -321,7 +321,7 @@
               </li>
               <li class="filterDiv orders">
                 <span class="accordion-thumb"
-                  >Comment puis-je m'inscrire à l'examen Taxi,VTC ou Moto-taxi ?</span
+                  >Comment puis-je m'inscrire à l'examen Taxi, VTC ou Moto-taxi ?</span
                 >
                 <p class="accordion-panel">
                   L'inscription aux sessions d’examen s’effectue via ce lien
@@ -333,18 +333,20 @@
                   >Quelles sont les conditions pour s'inscrire à l'examen TAXI/VTC ?</span
                 >
                 <p class="accordion-panel">
-                  Pour s'inscrire à l' examen TAXI/VTC , le candidat doit être : <br/> -
+                  Pour s'inscrire à l' examen TAXI/VTC, le candidat doit être : <br/> -
                   Européen ou avoir un titre de séjour lui permettant d'exercer en France.
                   <br />
                   - Titulaire d'un permis B depuis au moins 3 ans et non soumis à une
                   période probatoire.<br />
-                  - En capacité physique de devenir chauffeur professionnel.<br />
+                  - En capacité physique de devenir chauffeur professionnel.
+                  <br/><br/>
                   Nul ne peut s’inscrire à l’examen si : Il a fait objet dans les dix ans
-                  qui précèdent sa demande d’un retrait définitif de sa carte
-                  professionnelle ou s'il a fait objet dans les cinq ans qui précèdent sa
-                  demande, d’une exclusion pour fraude lors d’une session à l’un des
-                  examens des professions du transport public particulier de personnes.
+                    qui précèdent sa demande d’un retrait définitif de sa carte
+                    professionnelle ou s'il a fait objet dans les cinq ans qui précèdent sa
+                    demande, d’une exclusion pour fraude lors d’une session à l’un des
+                    examens des professions du transport public particulier de personnes.
                 </p>
+               
               </li>
               <li class="filterDiv orders">
                 <span class="accordion-thumb"
@@ -492,9 +494,9 @@
               <li class="filterDiv promotions">
                 <span class="accordion-thumb">Comment mobiliser mon CPF ?</span>
                 <p class="accordion-panel">
-                  Pour connaître les démarches cliquez ici :
-                  <a style="color:blue" href=" https://youtu.be/19BiYQVwZFs">
-                    https://youtu.be/19BiYQVwZFs</a
+                  Pour connaître les démarches cliquez ici 
+                  <a style="color:blue" href="https://youtu.be/19BiYQVwZFs">
+                    👈</a
                   >
                 </p>
               </li>
@@ -506,8 +508,5 @@
         <script type="text/javascript" src="/mcm_website_theme/static/src/js/faq.js"/>
     
             </t>
-
-
-
     </template>
 </odoo>
