@@ -1052,6 +1052,13 @@
                     }
                   }
                 </style>
+                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+                <!-- <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" /> -->
+                <!-- <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" /> -->
+    
+                <!-- TrustBox script -->
+                <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async" />
+                <!-- End TrustBox script -->
                     <section class="banner_padding centric_template home-banner pt128" data-name="Banner" style="word-break: break-word; position: relative; z-index: 0;">
                       <div class="container">
                         <div class="row">
@@ -1178,15 +1185,26 @@
                         </div>
                       </div>
                     </section>
+                      <!-- TrustBox widget - Carousel -->
+                      <section class="mt96 mb48">
+                        <div class="container">
+                            <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr">
+                                <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- End TrustBox widget -->
                     <!-- pricing table-->
                     <div class="container pt64 pb32" id="pricing">
                       <div class="row" style="place-content: center">
-                        <div class="col-lg-6 col-md-8 col-sm-12">
+                        <div class="col-lg-5 col-md-7 col-sm-12">
                           <div class="card border-0 shadow" style="border-radius: 25px 25px">
                             <div class="text-center text-white border-0" style="                 background-color: #6e209f;                 border-top-left-radius: 25px;                 border-top-right-radius: 25px;                 padding-bottom: 14px;               ">
                               <br/>
                               <p>
-                                <span style="                     font-size: 30px;                     font-weight: 700;                     padding-bottom: 10px;                   ">COURSIER</span>
+                                <span style="                     font-size: 30px;                     font-weight: 700;                     padding-bottom: 10px;                   ">
+                                    ULTRA-LÉGER
+                                </span>
                               </p>
                               <br/>
                             </div>
@@ -1203,10 +1221,6 @@
                                     </li>
                                     <li class="mb-4">
                                       <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                      <b>Accès à 4 examens d'entraînement</b>
-                                    </li>
-                                    <li class="mb-4">
-                                      <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
                                       <b>Assistance par mail</b>
                                     </li>
                                     <li class="mb-4">
@@ -1219,16 +1233,13 @@
                                     </li>
                                     <li class="mb-4">
                                       <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                      <b>Lives avec les formateurs pour explications</b>
+                                      <b>Séances en Live avec un tuteur dédié</b>
                                     </li>
                                     <li class="mb-4">
                                       <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                      <b> Examen télé surveillé à passer en ligne</b>
+                                      <b>Examen télésurveillé en ligne</b>
                                     </li>
-                                    <li class="mb-4">
-                                      <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                      <b> Un 2 ème repassage de l'examen est OFFERT en cas d'échec.</b>
-                                    </li>
+                                  
                                   </ul>
                                   <div class="text-center">
                                     <b style="font-size: 60px !important; color: #000000" t-if="not promo">
@@ -1300,7 +1311,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                   <a href="https://www.box2home.fr/" target="_blank" rel="noopener">
-                                    <img data-src="/digimoov_website_templates/static/img/coursier2roues/box2home.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/box2home.png" class="img img-fluid lazy res-width-30" alt="Logo partenaire Box2home" title="Box2home partenaire Digimoov" style="margin-top: 34px; width: 60%"/>
+                                    <img data-src="/digimoov_website_templates/static/img/coursier2roues/box2home.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/box2home.png" class="img img-fluid lazy res-width-30" alt="Logo partenaire Box2home" title="Box2home partenaire Digimoov" style="margin-top: 44px; width: 60%"/>
                                   </a>
                                 </div>
                                 <div class="col-sm-2">
