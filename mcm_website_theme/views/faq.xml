@@ -246,10 +246,8 @@
                   placeholder="Rechercher"
                 />
                 <div id="myBtnContainer">
-                  <button class="btn active-btn" onclick="filterSelection('all')">
-                    AFFICHER TOUT
-                  </button>
-                  <button class="btn" onclick="filterSelection('account')">
+         
+                  <button class="btn active-btn" onclick="filterSelection('account')">
                     FORMATIONS
                   </button>
                   <button class="btn" onclick="filterSelection('orders')">EXAMENS</button>
