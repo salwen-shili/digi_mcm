@@ -11,7 +11,7 @@ import json
 import logging
 
 _logger = logging.getLogger(__name__)
-class InheritConfig(models.Model):
+class ResPartner(models.Model):
     _inherit = "res.partner"
     onfido_sdk_token=fields.Char("SDK Token")
     onfido_applicant_id=fields.Char('Applicant ID')
@@ -21,6 +21,7 @@ class InheritConfig(models.Model):
         ('fail', 'Refusé'),
         ('in_progress', 'en cours de vérification'),
     ], string='Statut des Documents')
+    onfido_information_ids=fields.Many2one('onfido.info',string="Onfido information")
     
     def create_applicant(self,partner,token):
         """Creer un nouveau applicant avec api Onfido"""
@@ -57,7 +58,7 @@ class InheritConfig(models.Model):
         }
         data = {
             "applicant_id": applicant_id,
-            "referrer": "https://dev.digimoov.fr/*"
+            "referrer": "http://localhost:8069/*"
         }
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk=response_token.json()
