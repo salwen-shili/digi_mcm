@@ -7,7 +7,7 @@
          </style>
 
             <link rel="stylesheet" href="/onfido_api_integration/static/src/css/style.css" />
-            <link rel="stylesheet" href="onfido_api_integration/static/src/css/popup.min.css" />
+            <link rel="stylesheet" href="/onfido_api_integration/static/src/css/popup.css" />
 
 
             <input type="hidden" id="sdk-token" t-att-value="sdk_token"></input>

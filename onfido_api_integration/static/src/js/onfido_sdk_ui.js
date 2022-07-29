@@ -30,7 +30,7 @@ waiting : `<div id="popup1" class="overlay">
       <h1 style="color:#000000;margin-top:1rem">
       Document validé!
       </h1>
-      <p>Vous pouvez désormais choisir votre centre et date d'examen</p>
+      <p>Vous pouvez désormais choisir votre ville et date d'examen</p>
       <button onclick="window.location.href='/shop/cart'" type="button" class="redo btn">Continuer</button>
   
   </div>
@@ -46,38 +46,91 @@ waiting : `<div id="popup1" class="overlay">
   <h1 style="color:#000000;margin-top:1rem">
       Validation échouée!
   </h1>
-  <p>Vous pouvez quand même poursuivre votre inscription et choisir votre centre et date d'examen. <br/>Notre service clientèle vous contactera pour valider vos documents.
+  <p>Vous pouvez quand même poursuivre votre inscription et choisir votre ville et date d'examen. <br/>Notre service clientèle vous contactera pour valider vos documents.
   </p>
   <button onclick="window.location.href='/shop/cart'" type="button" class="redo btn">Continuer</button>
   
   </div>
   </div>`,
-  exceedWaiting: `<div id="popup1" class="overlay">
-    <div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
-       
-        <!--/.icon-->
-        <h4 style="color:#000000;margin-top:1rem">
-        Vos documents sont en cours de validation <div class="snippet" data-title=".dot-flashing">
-       
-    </h4>
-    <div class="stage">
-        <div class="dot-flashing"></div>
-      </div>
-        <p>Vous pouvez poursuivre votre inscription et choisir votre centre et date d'examen. <br/>Notre service clientèle vous contactera en cas d'échec de validation.</p>
-        <button type="button" class="redo btn" onclick="window.location.href = 'shop/cart'">Continuer</button>
-    
-    </div>
+  exceedWaiting: ` <div id="popup1" class="overlay">
+  <div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
+   
+      <!--/.icon-->
+      <h3 style="color:#000000;margin-top:1rem">
+          Vos documents sont en cours de validation...
+      </h3>
+      <div >
+          <div class='one'></div>
+          <div class='two'></div>
+          <div class='three'></div>
+          <div class='four'></div>
+          <div class='five'></div>
+          <div class='six'></div>
+          <div class='seven'></div>
+          <div class='eight'></div>
+          <div class='nine'></div>
+          <div class='ten'></div>
+        </div>
+      <p>Vous pouvez poursuivre votre inscription et choisir votre ville et date d'examen. <br/>Notre service clientèle vous contactera en cas d'échec de validation.</p>
+      <button type="button" class="redo btn" onclick="window.location.href = 'shop/cart'">Continuer</button>
+  
+  </div>
   </div>`,
 };
-
+const exceedWaitingCheck= () => {
+  return(
+    setInterval(() => {
+    
+      // validation_onfido state will be clear / fail / in_progress
+      //popup will be displayed accorrding the state 
+      sendHttpRequest("POST", "/onfido/get_state_document", {})
+      .then((responseData) => {
+        console.log("******************* onfido/get_state_document", responseData.result.validation_onfido);
+        if (responseData.result){
+          console.log("******************* onfido/", responseData.result.validation_onfido);
+          const validation_onfido = responseData.result.validation_onfido;
+          ///////// logics for setting popups
+          if (validation_onfido != "in_progress"){
+            if (validation_onfido == "clear"){
+        
+            closePopup()
+            openPopup("success")
+            clearInterval(getDocumentState)
+            }
+            else if (validation_onfido == "fail"){
+           
+              closePopup()
+              openPopup("fail")
+              clearInterval(getDocumentState)
+            }
+          }
+        }
+    
+      })
+     
+      .catch((err) => {});
+      
+    
+      
+    
+      console.log("getDocumentState...");
+    }, 4000)
+  )
+}
 const openPopup = (popupType) => {
+  
   if ("exceedWaitingwaitingsuccessfail".includes(popupType)){
     if (document
       .querySelector("#wrap")){
+        if (popupType="exceedWaiting"){
+       
+          exceedWaitingCheck();
+            }
         document
         .querySelector("#wrap")
         .insertAdjacentHTML("afterbegin", popup[popupType]);
       }
+     
   }else {
     console.log("Check popuptype!")
   }
