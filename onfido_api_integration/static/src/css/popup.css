@@ -178,34 +178,7 @@
 .modalbox.error p {
   font-family: 'Open Sans', sans-serif;
 }
-.modalbox.success button,
-.modalbox.error button,
-.modalbox.success button:active,
-.modalbox.error button:active,
-.modalbox.success button:focus,
-.modalbox.error button:focus {
-  -webkit-transition: all 0.1s ease-in-out;
-  transition: all 0.1s ease-in-out;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  border-radius: 30px;
-  margin-top: 15px;
-  width: 80%;
-  background: transparent;
-  color: #4caf50;
-  border-color: #4caf50;
-  outline: none;
-}
-.modalbox.success button:hover,
-.modalbox.error button:hover,
-.modalbox.success button:active:hover,
-.modalbox.error button:active:hover,
-.modalbox.success button:focus:hover,
-.modalbox.error button:focus:hover {
-  color: #fff;
-  background: #4caf50;
-  border-color: transparent;
-}
+
 .modalbox.success .icon,
 .modalbox.error .icon {
   position: relative;
@@ -223,18 +196,6 @@
   color: #fff;
   text-align: center;
   padding-top: 20px;
-}
-.modalbox.error button,
-.modalbox.error button:active,
-.modalbox.error button:focus {
-  color: #f44336;
-  border-color: #f44336;
-}
-.modalbox.error button:hover,
-.modalbox.error button:active:hover,
-.modalbox.error button:focus:hover {
-  color: #fff;
-  background: #f44336;
 }
 .modalbox.error .icon {
   background: #f44336;
@@ -518,16 +479,7 @@
   animation-delay: 0s;
 }
 
-.dot-flashing::after {
-  left: 15px;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: #252525;
-  color: #252525;
-  animation: dotFlashing 1s infinite alternate;
-  animation-delay: 1s;
-}
+
 
 .box {
   max-width:320px;
@@ -547,7 +499,7 @@
   top: 0;
   left: 0;
   height: 15px;
-  background: #1c87ec;
+  background: #3640f5;
 }
 
 
@@ -663,12 +615,37 @@
   100%  {opacity:1;}
 }
 
-@keyframes dotFlashing {
+@keyframes shake {
   0% {
-    background-color: #252525;
+    left: 0;
   }
-  50%,
-  100% {
-    background-color: #ebe6ff;
+  1% {
+    left: -3px;
   }
+  2% {
+    left: 5px;
+  }
+  3% {
+    left: -8px;
+  }
+  4% {
+    left: 8px;
+  }
+  5% {
+    left: -5px;
+  }
+  6% {
+    left: 3px;
+  }
+  7% {
+    left: 0;
+  }
+}
+
+.shake {
+  position: relative;
+  animation-name: shake;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
 }

@@ -9,7 +9,7 @@
 ///////////////////////////////////////////////////////////////////
 
 const popup = {
-waiting : `<div id="popup1" class="overlay">
+  waiting: `<div id="popup1" class="overlay">
 <div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
     <img src="/onfido_api_integration/static/img/scan-docs-2.gif" class="img img-fluid mx-auto text-center" style="height:180px" ></img>
     <!--/.icon-->
@@ -31,7 +31,7 @@ waiting : `<div id="popup1" class="overlay">
       Document validé!
       </h1>
       <p>Vous pouvez désormais choisir votre ville et date d'examen</p>
-      <button onclick="window.location.href='/shop/cart'" type="button" class="redo btn">Continuer</button>
+      <button onclick="window.location.href='/shop/cart'" type="button" style="background-color:#4caf50 !important" class="ods-button shake -action--primary onfido-sdk-ui-Theme-button-centered onfido-sdk-ui-Theme-button-lg">Continuer</button>
   
   </div>
   </div>`,
@@ -48,7 +48,7 @@ waiting : `<div id="popup1" class="overlay">
   </h1>
   <p>Vous pouvez quand même poursuivre votre inscription et choisir votre ville et date d'examen. <br/>Notre service clientèle vous contactera pour valider vos documents.
   </p>
-  <button onclick="window.location.href='/shop/cart'" type="button" class="redo btn">Continuer</button>
+  <button onclick="window.location.href='/shop/cart'" type="button" style="background-color:#f44336 !important" class="ods-button shake -action--primary onfido-sdk-ui-Theme-button-centered onfido-sdk-ui-Theme-button-lg">Continuer</button>
   
   </div>
   </div>`,
@@ -71,119 +71,122 @@ waiting : `<div id="popup1" class="overlay">
           <div class='nine'></div>
           <div class='ten'></div>
         </div>
-      <p>Vous pouvez poursuivre votre inscription et choisir votre ville et date d'examen. <br/>Notre service clientèle vous contactera en cas d'échec de validation.</p>
-      <button type="button" class="redo btn" onclick="window.location.href = 'shop/cart'">Continuer</button>
+      <p style="padding-top: 7px;">Vous pouvez poursuivre votre inscription et choisir votre ville et date d'examen. <br/>Notre service clientèle vous contactera en cas d'échec de validation.</p>
+      <button type="button" style="font-family:var(--osdk-font-family-body)" class="ods-button shake -action--primary onfido-sdk-ui-Theme-button-centered onfido-sdk-ui-Theme-button-lg" onclick="window.location.href = 'shop/cart'">Continuer</button>
   
   </div>
   </div>`,
 };
-const exceedWaitingCheck= () => {
-  return(
+const exceedWaitingCheck = () => {
+  return (
     setInterval(() => {
-    
+
       // validation_onfido state will be clear / fail / in_progress
       //popup will be displayed accorrding the state 
       sendHttpRequest("POST", "/onfido/get_state_document", {})
+        .then((responseData) => {
+          console.log("******************* onfido/get_state_document", responseData.result.validation_onfido);
+          if (responseData.result) {
+            console.log("******************* onfido/", responseData.result.validation_onfido);
+            const validation_onfido = responseData.result.validation_onfido;
+            ///////// logics for setting popups
+            if (validation_onfido != "in_progress") {
+              if (validation_onfido == "clear") {
+
+                closePopup()
+                openPopup("success")
+                clearInterval(getDocumentState)
+              }
+              else if (validation_onfido == "fail") {
+
+                closePopup()
+                openPopup("fail")
+                clearInterval(getDocumentState)
+              }
+            }
+          }
+
+        })
+
+        .catch((err) => { console.log(err)});
+
+
+
+
+      console.log("getDocumentState...");
+    }, 4000)
+  )
+}
+const openPopup = (popupType) => {
+
+  if ("exceedWaitingwaitingsuccessfail".includes(popupType)) {
+    if (document
+      .querySelector("#wrap")) {
+     
+      if (popupType == "exceedWaiting") {
+
+        exceedWaitingCheck();
+      }
+        document
+        .querySelector("#wrap")
+        .insertAdjacentHTML("afterbegin", popup[popupType]);
+      
+      
+    }
+
+  } else {
+    console.log("Check popuptype!")
+  }
+
+
+};
+
+
+const closePopup = () => {
+  const popups = document.querySelectorAll("#popup1");
+  if (popups) {
+    for (let i = 0; i < popups.length; i++) {
+      popups[i].remove();
+    }
+  };
+}
+
+
+//logics for setting popup
+const setPopups = () => {
+  const getDocumentState = setInterval(() => {
+
+    // validation_onfido state will be clear / fail / in_progress
+    //popup will be displayed accorrding the state 
+    sendHttpRequest("POST", "/onfido/get_state_document", {})
       .then((responseData) => {
         console.log("******************* onfido/get_state_document", responseData.result.validation_onfido);
-        if (responseData.result){
+        if (responseData.result) {
           console.log("******************* onfido/", responseData.result.validation_onfido);
           const validation_onfido = responseData.result.validation_onfido;
           ///////// logics for setting popups
-          if (validation_onfido != "in_progress"){
-            if (validation_onfido == "clear"){
-        
-            closePopup()
-            openPopup("success")
-            clearInterval(getDocumentState)
+          if (validation_onfido != "in_progress") {
+            if (validation_onfido == "clear") {
+              clearTimeout(waitingInterval)
+              closePopup()
+              openPopup("success")
+              clearInterval(getDocumentState)
             }
-            else if (validation_onfido == "fail"){
-           
+            else if (validation_onfido == "fail") {
+              clearTimeout(waitingInterval)
               closePopup()
               openPopup("fail")
               clearInterval(getDocumentState)
             }
           }
         }
-    
+
       })
-     
-      .catch((err) => {});
-      
-    
-      
-    
-      console.log("getDocumentState...");
-    }, 4000)
-  )
-}
-const openPopup = (popupType) => {
-  
-  if ("exceedWaitingwaitingsuccessfail".includes(popupType)){
-    if (document
-      .querySelector("#wrap")){
-        if (popupType="exceedWaiting"){
-       
-          exceedWaitingCheck();
-            }
-        document
-        .querySelector("#wrap")
-        .insertAdjacentHTML("afterbegin", popup[popupType]);
-      }
-     
-  }else {
-    console.log("Check popuptype!")
-  }
- 
 
-};
+      .catch((err) => { });
 
 
-const closePopup = () => {
-  const popups= document.querySelectorAll("#popup1");
-  if (popups){
-    for (let i = 0; i < popups.length; i++) {
-      popups[i].remove();
-  }
-  };
-}
-  
 
-//logics for setting popup
-const setPopups = () => {
-  const getDocumentState = setInterval(() => {
-    
-    // validation_onfido state will be clear / fail / in_progress
-    //popup will be displayed accorrding the state 
-    sendHttpRequest("POST", "/onfido/get_state_document", {})
-    .then((responseData) => {
-      console.log("******************* onfido/get_state_document", responseData.result.validation_onfido);
-      if (responseData.result){
-        console.log("******************* onfido/", responseData.result.validation_onfido);
-        const validation_onfido = responseData.result.validation_onfido;
-        ///////// logics for setting popups
-        if (validation_onfido != "in_progress"){
-          if (validation_onfido == "clear"){
-          clearTimeout(waitingInterval)
-          closePopup()
-          openPopup("success")
-          clearInterval(getDocumentState)
-          }
-          else if (validation_onfido == "fail"){
-            clearTimeout(waitingInterval)
-            closePopup()
-            openPopup("fail")
-            clearInterval(getDocumentState)
-          }
-        }
-      }
-
-    })
-   
-    .catch((err) => {});
-    
-
-    
 
     console.log("getDocumentState...");
   }, 1500);
@@ -194,7 +197,7 @@ const setPopups = () => {
     exceedWaiting();
   }, 600000);
 
-  
+
 };
 
 //after timeout
@@ -268,7 +271,7 @@ const sendDocument = (Documentdata) => {
     .then((responseData) => {
       console.log("*******************je suis la", responseData);
     })
-    .catch((err) => {});
+    .catch((err) => { });
 };
 
 //xmlhttprequest
