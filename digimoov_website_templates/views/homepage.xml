@@ -1296,7 +1296,9 @@
                                 </div>
                                 <div class="col-sm-2">
                                   <a href="https://www.ubereats.com/fr" target="_blank" rel="noopener">
-                                    <img data-src="/digimoov_website_templates/static/img/compressed/ubereats partenaire Digimoov.webp" data-srcsafari="digimoov_website_templates/static/img/Homepage/uber.png" class="img img-fluid lazy res-width-26" alt="Logo partenaire ubereats" title="Ubereats partenaire Digimoov" style="margin-top: 30px; width: 50%"/>
+                                    <img data-src="/digimoov_website_templates/static/img/compressed/ubereats partenaire Digimoov.webp" data-srcsafari="digimoov_website_templates/static/img/Homepage/uber.png" class="img img-fluid lazy res-width-26" alt="Logo partenaire ubereats" title="Ubereats partenaire Digimoov" style="    margin-top: 34px;
+                                    width: 50%;
+                                    margin-left: 33px;"/>
                                   </a>
                                 </div>
                                 <div class="col-sm-2">
@@ -1311,13 +1313,18 @@
                                 </div>
                                 <div class="col-sm-2">
                                   <a href="https://www.box2home.fr/" target="_blank" rel="noopener">
-                                    <img data-src="/digimoov_website_templates/static/img/coursier2roues/box2home.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/box2home.png" class="img img-fluid lazy res-width-30" alt="Logo partenaire Box2home" title="Box2home partenaire Digimoov" style="margin-top: 44px; width: 60%"/>
+                                    <img data-src="/digimoov_website_templates/static/img/coursier2roues/box2home.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/box2home.png" class="img img-fluid lazy res-width-30" alt="Logo partenaire Box2home" title="Box2home partenaire Digimoov" style="    margin-top: 34px;
+                                    width: 60%;
+                                    margin-left: 12px;"/>
                                   </a>
                                 </div>
                                 <div class="col-sm-2">
-                                  <a href="http://www.comptable-douai.com/" target="_blank" rel="noopener">
-                                    <img data-src="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" class="img img-fluid lazy res-width-30" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" style="margin-top: 30px; width: 50%"/>
+                                  <a href="/amazon" target="_blank" rel="noopener">
+                                    <img data-src="/digimoov_website_templates/static/img/partners/Amazon.png" data-srcsafari="/digimoov_website_templates/static/img/partners/Amazon.png" class="img img-fluid lazy" alt="Amazon" title="Amazon" style="    margin-top: 37px;
+                                
+                                   "/>
                                   </a>
+   
                                 </div>
                               </div>
                             </div>
