@@ -178,34 +178,7 @@
 .modalbox.error p {
   font-family: 'Open Sans', sans-serif;
 }
-.modalbox.success button,
-.modalbox.error button,
-.modalbox.success button:active,
-.modalbox.error button:active,
-.modalbox.success button:focus,
-.modalbox.error button:focus {
-  -webkit-transition: all 0.1s ease-in-out;
-  transition: all 0.1s ease-in-out;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  border-radius: 30px;
-  margin-top: 15px;
-  width: 80%;
-  background: transparent;
-  color: #4caf50;
-  border-color: #4caf50;
-  outline: none;
-}
-.modalbox.success button:hover,
-.modalbox.error button:hover,
-.modalbox.success button:active:hover,
-.modalbox.error button:active:hover,
-.modalbox.success button:focus:hover,
-.modalbox.error button:focus:hover {
-  color: #fff;
-  background: #4caf50;
-  border-color: transparent;
-}
+
 .modalbox.success .icon,
 .modalbox.error .icon {
   position: relative;
@@ -218,23 +191,11 @@
 }
 .modalbox.success .icon span,
 .modalbox.error .icon span {
-  postion: absolute;
+  position: absolute;
   font-size: 4em;
   color: #fff;
   text-align: center;
   padding-top: 20px;
-}
-.modalbox.error button,
-.modalbox.error button:active,
-.modalbox.error button:focus {
-  color: #f44336;
-  border-color: #f44336;
-}
-.modalbox.error button:hover,
-.modalbox.error button:active:hover,
-.modalbox.error button:focus:hover {
-  color: #fff;
-  background: #f44336;
 }
 .modalbox.error .icon {
   background: #f44336;
@@ -249,7 +210,7 @@
 /* stupid browser compat. smh */
 }
 .center .change {
-  clearn: both;
+  /* clearn: both; */
   display: block;
   font-size: 10px;
   color: #ccc;
@@ -518,23 +479,170 @@
   animation-delay: 0s;
 }
 
-.dot-flashing::after {
-  left: 15px;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: #252525;
-  color: #252525;
-  animation: dotFlashing 1s infinite alternate;
-  animation-delay: 1s;
+
+
+.box {
+  max-width:320px;
+  width: 100%;
+  height:20px;
+  margin:auto;
+  position:relative;
+  overflow:hidden;
 }
 
-@keyframes dotFlashing {
+.box .bar {
+  animation-duration: 1s;
+  animation-name: movingBar;
+  animation-iteration-count: infinite;
+  position: absolute;
+  width:100%;    
+  top: 0;
+  left: 0;
+  height: 15px;
+  background: #3640f5;
+}
+
+
+.one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten {
+  width: 16px;
+  height: 4px;
+  background: #1900ff;
+  margin: 0px -3px;
+  display: inline-block;
+  -webkit-box-shadow: 0 0 27px #1900ff, inset 0 0 10px rgb(255 255 255 / 50%);
+  border-radius: 5px;
+  -webkit-animation-duration: 0.7s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+}
+.one {
+   -webkit-animation-name: first ;
+}
+.two {
+  -webkit-animation-name: second ;
+}
+.three {
+  -webkit-animation-name: third ;
+}
+.four {
+  -webkit-animation-name: fourth ;
+}
+.five {
+  -webkit-animation-name: fifth ;
+}
+.six {
+  -webkit-animation-name: sixth ;
+}
+.seven {
+  -webkit-animation-name: seventh ;
+}
+.eight {
+  -webkit-animation-name: eighth ;
+}
+.nine {
+  -webkit-animation-name: ninth ;
+}
+.ten {
+  -webkit-animation-name: tenth ;
+}
+@keyframes first {
+  0%   {opacity:0.2;}
+  10%  {opacity:1;}
+  20%  {opacity:0.2;}
+  100% {opacity:0;}
+}
+@keyframes second {
+  0%   {opacity:0;}
+  10%   {opacity:0.2;}
+  20%  {opacity:1;}
+  30%  {opacity:0.2;}
+  100% {opacity:0;}
+}
+@keyframes third {
+  0%   {opacity:0;}
+  20%  {opacity:0.2;}
+  30%  {opacity:1;}
+  40%  {opacity:0.2;}
+  100% {opacity:0;}
+}
+@keyframes fourth {
+  0%   {opacity:0;}
+  30%  {opacity:0.2;}
+  40%  {opacity:1;}
+  50%  {opacity:0.2;}
+  100% {opacity:0;}
+}
+@keyframes fifth {
+  0%   {opacity:0;}
+  40%  {opacity:0.2;}
+  50%  {opacity:1;}
+  60%  {opacity:0.2;}
+  100% {opacity:0;}
+}
+@keyframes sixth {
+  0%   {opacity:0;}
+  50%  {opacity:0.2;}
+  60%  {opacity:1;}
+  70%  {opacity:0.2;}
+  100% {opacity:0;}
+}
+@keyframes seventh {
+  0%   {opacity:0;}
+  60%  {opacity:0.2;}
+  70%  {opacity:1;}
+  80%  {opacity:0.2;}
+  100% {opacity:0;}
+}
+@keyframes eighth {
+  0%   {opacity:0;}
+  70%  {opacity:0.2;}
+  80%  {opacity:1;}
+  90%  {opacity:0.2;}
+  100% {opacity:0;}
+}
+@keyframes ninth {
+  0%   {opacity:0;}
+  80%  {opacity:0.2;}
+  90%  {opacity:1;}
+  100% {opacity:0.2;}
+}
+@keyframes tenth {
+  0%   {opacity:0;}
+  90%  {opacity:0.2;}
+  100%  {opacity:1;}
+}
+
+@keyframes shake {
   0% {
-    background-color: #252525;
+    left: 0;
   }
-  50%,
-  100% {
-    background-color: #ebe6ff;
+  1% {
+    left: -3px;
   }
+  2% {
+    left: 5px;
+  }
+  3% {
+    left: -8px;
+  }
+  4% {
+    left: 8px;
+  }
+  5% {
+    left: -5px;
+  }
+  6% {
+    left: 3px;
+  }
+  7% {
+    left: 0;
+  }
+}
+
+.shake {
+  position: relative;
+  animation-name: shake;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
 }
