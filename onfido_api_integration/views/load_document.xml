@@ -5,11 +5,12 @@
 
          #onfido-mount{margin: 60px 0;}
          </style>
-
+        
+            <!-- Css Calls-->
             <link rel="stylesheet" href="/onfido_api_integration/static/src/css/style.css" />
             <link rel="stylesheet" href="/onfido_api_integration/static/src/css/popup.css" />
 
-
+            <!-- Onfido informations-->
             <input type="hidden" id="sdk-token" t-att-value="sdk_token"></input>
             <input type="hidden" id="workflow_run_id" t-att-value="workflow_run_id"></input>
             <input type="hidden" id="api_token" t-att-value="api_token"></input>
@@ -35,14 +36,15 @@
         </style>
 
             <div id="wrap" class="oe_empty oe_structure">
-                <!-- POPUP-->
-               <div>
-                <div id="onfido-mount"></div>
-               </div>
+                <!-- Here we display popups-->
+                <div>
+                    <!-- Onfido is called here-->
+                    <div id="onfido-mount"></div>
+                </div>
             </div>
+            <!-- Js calls -->
             <script src="/onfido_api_integration/static/src/js/onfido.min.js"></script>
             <script src="/onfido_api_integration/static/src/js/onfido_sdk_ui.js"></script>
-
 
 
         </t>
