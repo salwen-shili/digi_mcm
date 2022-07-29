@@ -23,6 +23,9 @@ class OnfidoController(http.Controller):
     def completed_workflow(self, data):
         """Recupérer ID des documents chargés"""
         partner = request.env.user.partner_id
+        partner.validation_onfido="in_progress"
+        data_onfido = request.env['onfido.info'].sudo().search([('partner_id','=',partner)],limit=1,order="id desc")
+
         folder_id = request.env['documents.folder'].sudo().search(
             [('name', "=", _('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
         _logger.info('partner_id %s' % str(request.env.user.partner_id.id))
@@ -48,13 +51,16 @@ class OnfidoController(http.Controller):
                     'state': 'waiting'
                 }
             )
+            if data_onfido:
+                data_onfido.id_document_front=document_front_id
             _logger.info('front %s' % str(attachement_front))
             extraction = partner.autofill(document_front_id, website.onfido_api_key_live)
             """Si les informations sont correctement extraits,
             on fait la mise à jour de la fiche client """
             if 'extracted_data' in extraction:
                 _logger.info("extract date %s" % str(extraction['extracted_data']['date_of_birth']))
-                partner.birthday = extraction['extracted_data']['date_of_birth']
+                if 'birthday' in extraction['extracted_data']['birthday']:
+                    partner.birthday = extraction['extracted_data']['date_of_birth']
                 if 'nationality' in extraction['extracted_data']:
                     partner.nationality = extraction['extracted_data']['nationality']
                 if 'place_of_birth' in extraction['extracted_data']:
@@ -76,6 +82,7 @@ class OnfidoController(http.Controller):
                     'state': 'waiting'
                 }
             )
+            data_onfido.id_document_back = document_back_id
             _logger.info('back %s' % str(attachement_back))
         if 'face' in data:
             face_id=data['face']['id']
@@ -92,6 +99,7 @@ class OnfidoController(http.Controller):
             )
             _logger.info('face %s' % str(attachement_face))
 
+            
         # document_front=partner.getDocmument(website.onfido_api_key_live,document_front_id)
 
         # print('download_document from api %s' % str(download_document_front))
@@ -113,14 +121,17 @@ class OnfidoController(http.Controller):
         _logger.info("workflow_run onfido response %s" % str(workflow_runs))
         applicant_id = workflow_runs['applicant_id']
         currentUser = request.env['res.partner'].sudo().search([('onfido_applicant_id',"=",applicant_id)])
+        data_onfido = request.env['onfido.info'].sudo().search([('partner_id','=',currentUser)],limit=1,order="id desc")
         list_document = partner.get_listDocument(applicant_id, website.onfido_api_key_live)
         _logger.info('*************************************DOCUMENT***************** %s' % str(list_document))
         if currentUser:
             if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'fail':
                 _logger.info('state document %s' %str(workflow_runs['state']))
                 currentUser.validation_onfido="fail"
+                if data_onfido:
+                    data_onfido.validation_onfido="fail"
+                    data_onfido.workflow_run_id=workflow_run_id
                 _logger.info('*************************************currentUser.validation_onfido***************** %s' % str(currentUser.validation_onfido))
-                
                 documents=request.env['documents.document'].sudo().search([('partner_id',"=",currentUser.id)])
                 _logger.info("documents %s" %str(documents))
     
@@ -128,12 +139,15 @@ class OnfidoController(http.Controller):
                     
                     for document in documents:
                         document.state = "refused"
+
                         _logger.info("documents %s" % str(document.state))
                   
                 return True
             if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'clear':
                 _logger.info('else state document %s' % str(workflow_runs['state']))
                 currentUser.validation_onfido = "clear"
+                if data_onfido:
+                    data_onfido.validation_onfido="clear"
                 documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
                 if documents:
                     for document in documents:

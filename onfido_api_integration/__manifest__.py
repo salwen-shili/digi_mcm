@@ -15,6 +15,7 @@
         'views/configuration.xml',
         'views/load_document.xml',
         'views/rejected_document.xml',
+        'views/partner_add_onfido.xml',
     ],
     'demo': [
 
