@@ -187,7 +187,9 @@ const setPopups = () => {
     console.log("waiting...");
     clearInterval(getDocumentState);
     exceedWaiting();
-  }, 600000);
+    //Change waiting interval 
+    // @ines a changer 
+  }, 30000);
 
 
 };
