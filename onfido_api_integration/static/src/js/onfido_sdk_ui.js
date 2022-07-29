@@ -7,7 +7,6 @@
 // success or failure an adequate popups will be displayed and
 // a redirection to /shop/cart when clicking on the button continue
 ///////////////////////////////////////////////////////////////////
-
 const popup = {
   waiting: `<div id="popup1" class="overlay">
 <div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
@@ -77,10 +76,16 @@ const popup = {
   </div>
   </div>`,
 };
-const exceedWaitingCheck = () => {
-  return (
-    setInterval(() => {
 
+// When waiting time is exceeded
+// Close all popups and display
+// exceedWaiting Popup
+// Continue to execute checkState document 
+// Dispaly popup according to success or failure. 
+
+const exceedWaitingCheck = () => {
+  closePopup();
+    const getDocumentState = setInterval(() => {
       // validation_onfido state will be clear / fail / in_progress
       //popup will be displayed accorrding the state 
       sendHttpRequest("POST", "/onfido/get_state_document", {})
@@ -92,56 +97,45 @@ const exceedWaitingCheck = () => {
             ///////// logics for setting popups
             if (validation_onfido != "in_progress") {
               if (validation_onfido == "clear") {
-
                 closePopup()
                 openPopup("success")
                 clearInterval(getDocumentState)
               }
               else if (validation_onfido == "fail") {
-
                 closePopup()
                 openPopup("fail")
                 clearInterval(getDocumentState)
               }
             }
           }
-
-        })
-
-        .catch((err) => { console.log(err)});
-
-
-
-
+        }).catch((err) => { console.log(err)});
       console.log("getDocumentState...");
     }, 4000)
-  )
-}
-const openPopup = (popupType) => {
 
+}////////////////////////////////////////////////////////////////
+//  Function to dispaly a popup, it takes a value in
+//  exceedWaiting,waiting,success,fail
+///////////////////////////////////////////////////////////////
+const openPopup = (popupType) => {
   if ("exceedWaitingwaitingsuccessfail".includes(popupType)) {
     if (document
       .querySelector("#wrap")) {
-     
       if (popupType == "exceedWaiting") {
-
         exceedWaitingCheck();
       }
         document
         .querySelector("#wrap")
         .insertAdjacentHTML("afterbegin", popup[popupType]);
-      
-      
     }
-
   } else {
     console.log("Check popuptype!")
   }
-
-
 };
 
-
+////////////////////////////////////////////////////////////////
+//  Function to close all popups
+//  remove it from dom
+///////////////////////////////////////////////////////////////
 const closePopup = () => {
   const popups = document.querySelectorAll("#popup1");
   if (popups) {
@@ -151,8 +145,12 @@ const closePopup = () => {
   };
 }
 
-
 //logics for setting popup
+// Make an interval of 30 seconds
+// Check state_document with a call to api
+// every 1 second
+// Remove the interval if the state in "success"
+// or "fail" and display adequate popup message
 const setPopups = () => {
   const getDocumentState = setInterval(() => {
 
@@ -181,13 +179,7 @@ const setPopups = () => {
           }
         }
 
-      })
-
-      .catch((err) => { });
-
-
-
-
+      }).catch((err) => { });
     console.log("getDocumentState...");
   }, 1500);
 
@@ -200,25 +192,19 @@ const setPopups = () => {
 
 };
 
-//after timeout
+//Function to call XMLHttpRequest which takes method("GET/POST"), url, and "Data"
 function exceedWaiting() {
   closePopup();
   openPopup("exceedWaiting");
 }
 
-
-
-
-
-
-
 ////////////////////////////////////////////////////////////////
-
 const sdk_token = document.getElementById("sdk-token").value;
 const workflow_run_id = document.getElementById("workflow_run_id").value;
 const api_token = document.getElementById("api_token").value;
 console.log("sdk token", sdk_token, "\nworkflowrunid", workflow_run_id);
 
+// Initialize onfido SDK and display it
 onfidoOut = Onfido.init({
   containerId: "onfido-mount",
   token: sdk_token,
@@ -261,7 +247,7 @@ onfidoOut = Onfido.init({
 //  ]
 // });
 
-
+// Send documentData to server
 const sendDocument = (Documentdata) => {
   sendHttpRequest("POST", "/completed_workflow", {
     params: {
@@ -274,7 +260,7 @@ const sendDocument = (Documentdata) => {
     .catch((err) => { });
 };
 
-//xmlhttprequest
+//xmlhttprequest template 
 const sendHttpRequest = (method, url, data) => {
   const promise = new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
@@ -303,6 +289,7 @@ const sendHttpRequest = (method, url, data) => {
   return promise;
 };
 
+//xmlhttprequest template for onfido to send documents
 const sendHttpRequestOnfido = (method, url, data) => {
   const promise = new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
