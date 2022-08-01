@@ -462,7 +462,7 @@ class partner(models.Model):
     # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
     def ajouter_IOne_MCM(self, partner):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url):
             _logger.info('email de lapprenant %s' % str(partner.email))
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             partner.password360 = user.password360
@@ -660,36 +660,7 @@ class partner(models.Model):
                     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                         self.desinscriteVTC(partner)
 
-    # # suppression des anciens apprenat  de 2020 2021
-    # def update_suppresion_old_apprenats(self):
-    #     locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-    #     for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
-    #
-    #         datee = datetime.today()
-    #         print(datee.year)
-    #         count = 0
-    #
-    #         for partner in self.env['res.partner'].sudo().search([('company_id', '!=', 2),
-    #                                                               ('mcm_session_id.date_fin', '!=', False),
-    #                                                               ]):
-    #             year_session = partner.mcm_session_id.date_fin.year
-    #             if (year_session < datee.year):
-    #                 print("nononon", partner.mcm_session_id.date_fin.year)
-    #                 print("nononon", partner.mcm_session_id.name)
-    #                 print(partner.email)
-    #                 count = count + 1
-    #                 partner.supprimerdemoocit = date.today()
-    #                 partner.write({'state': 'supprimé'})
-    #             print("nombre des apprenants a supprimer ", count)
-    #
-    #             if (partner.module_id.product_id.default_code == "taxi"):
-    #                 partner.desinscriteTaxi(partner)
-    #             elif (partner.module_id.product_id.default_code == "vtc"):
-    #                 partner.desinscriteVTC(partner)
-    #             elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-    #                 partner.desinscriteVTC(partner)
-    #
-    #
+
     def convertir_date_inscription(self):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
