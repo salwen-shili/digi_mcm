@@ -51,7 +51,8 @@ class Coach(models.Model):
     def test_coach(self):
         count_apprennat = 0
         # determiner le nombre total des apprenants
-        for apprenant in self.env['res.partner'].sudo().search([('statut', "=", "won"), ('company_id', '=', 1),('state',"=", "en_formation")]):
+        for apprenant in self.env['res.partner'].sudo().search(
+                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "=", "en_formation")]):
             count_apprennat = count_apprennat + 1
 
         # definir si le partner et coach
@@ -184,7 +185,7 @@ class Coach(models.Model):
 
     def wedof_api_integration_moocit(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url):
 
             print("okok")
 
