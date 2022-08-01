@@ -491,26 +491,6 @@ class partner(models.Model):
                 if (response.status_code == 200):
                     partner.inscrit_mcm = date.today()
                     self.write({'state': 'en_formation'})
-                    if self.env.su:
-                        # sending mail in sudo was meant for it being sent from superuser
-                        self = self.with_user(SUPERUSER_ID)
-                    if not partner.lang:
-                        partner.lang = 'fr_FR'
-                    _logger.info('avant email %s' % str(partner.name))
-                    template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                        'mcm_openedx.mail_template_add_Ione_MOOcit'))
-                    template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-                    if not template_id:
-                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                            'mcm_openedx.mail_template_add_Ione_MOOcit',
-                            raise_if_not_found=False)
-                    if not template_id:
-                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                            'mcm_openedx.email_template_add_Ione_MOOcit',
-                            raise_if_not_found=False)
-                    if template_id:
-                        partner.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                         composition_mode='comment', )
 
                     _logger.info("mail envoyeé")
                     _logger.info(partner.email)
@@ -527,6 +507,7 @@ class partner(models.Model):
                             self.testsms(self)
                             self.ajoutconnaisancelocalNord(self)
                             self.supprimer_apres_dateexman(self)
+                            self.sendmail(self)
                             _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
 
                         elif (departement == "62"):
@@ -534,9 +515,15 @@ class partner(models.Model):
                             self.testsms(self)
                             self.ajoutconnaisancelocalpasdecalais(self)
                             self.supprimer_apres_dateexman(self)
+                            _logger.info("ajouter a formation taxi car il a choisit et  departement 62")
+
                         else:
                             self.inscriteTaxi(self)
                             self.testsms(self)
+                            self.sendmail(self)
+                            _logger.info("ajouter a formation taxi ")
+
+
 
 
                     # Formation à distance VTC
@@ -545,6 +532,7 @@ class partner(models.Model):
                         self.inscriteVTC(self)
                         self.supprimer_apres_dateexman(self)
                         self.testsms(self)
+                        self.sendmail(self)
 
                     # Formation à distance VTC-BOLT
 
@@ -554,11 +542,34 @@ class partner(models.Model):
                             self.inscriteVTC(self)
                             self.supprimer_apres_dateexman(self)
                             self.testsms(self)
+                            self.sendmail(self)
+
 
 
                 elif (response.status_code == 409):
                     self.write({'state': 'en_formation'})
                     _logger.info('existantttttt dejaa %s')
+    def sendmail(self, partner):
+        if self.env.su:
+            # sending mail in sudo was meant for it being sent from superuser
+            self = self.with_user(SUPERUSER_ID)
+        if not partner.lang:
+            partner.lang = 'fr_FR'
+        _logger.info('avant email %s' % str(partner.name))
+        template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+            'mcm_openedx.mail_template_add_Ione_MOOcit'))
+        template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+        if not template_id:
+            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'mcm_openedx.mail_template_add_Ione_MOOcit',
+                raise_if_not_found=False)
+        if not template_id:
+            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'mcm_openedx.email_template_add_Ione_MOOcit',
+                raise_if_not_found=False)
+        if template_id:
+            partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                             composition_mode='comment', )
 
     # envoit d'un sms
     def testsms(self, partner):
