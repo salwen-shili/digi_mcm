@@ -542,8 +542,6 @@ class partner(models.Model):
                             self.testsms(self)
                             self.sendmail(self)
 
-
-
                 elif (response.status_code == 409):
                     self.write({'state': 'en_formation'})
                     _logger.info('existantttttt dejaa %s')

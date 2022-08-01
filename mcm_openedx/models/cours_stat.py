@@ -52,6 +52,7 @@ class Cours_stat(models.Model):
             for apprenant in self.env['res.partner'].sudo().search([
                 ('company_id', '!=', 2),
                 ('email', 'ilike', existt.email)]):
+                print("statteeeeeeeeeee",apprenant.state)
                 apprenant.date_imortation_stat = date.today()
                 apprenant.mooc_temps_passe_heure = heure
                 apprenant.mooc_temps_passe_min = minute
