@@ -60,7 +60,7 @@ class OnfidoController(http.Controller):
             if 'extracted_data' in extraction:
                 _logger.info("extract date %s" % str(extraction['extracted_data']))
 
-                if 'birthday' in extraction['extracted_data']:
+                if 'date_of_birth' in extraction['extracted_data']:
                     partner.birthday = extraction['extracted_data']['date_of_birth']
                 if 'nationality' in extraction['extracted_data']:
                     partner.nationality = extraction['extracted_data']['nationality']
