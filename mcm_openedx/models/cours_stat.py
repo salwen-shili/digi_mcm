@@ -65,7 +65,7 @@ class Cours_stat(models.Model):
                 self.mooc_temps_passe_heure = heure
                 self.mooc_temps_passe_min = minute
                 self.mooc_temps_passe_seconde = secondes
-                self.write({'apprenant.state': 'en_formation'})
+                apprenant.state = 'en_formation'
 
     def suupprimer_bouton_fiche_client(self):
         # cree une  liste pour stocker les duplication
