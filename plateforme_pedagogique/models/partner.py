@@ -38,7 +38,7 @@ class partner(models.Model):
     lastName = fields.Char()
     date_creation = fields.Char(string="Date d'inscription")
     messages = fields.Char(string='Messages Postés')
-    #publications = fields.Char(string='Cours ou programmes publiés')
+    publications = fields.Char(string='Cours ou programmes publiés')
     total_time_visio_min = fields.Integer()
     total_time_visio_hour = fields.Char(default="0h0min")
     total_time_appels_min = fields.Integer()

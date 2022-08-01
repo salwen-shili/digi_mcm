@@ -13,10 +13,10 @@
                         domain="[('company_id','=',1)]"
                 />
 
-                   <filter name="state" string="Statut de l'apprennat"
+                <filter name="state" string="Statut de l'apprennat"
                         domain="[('state','ilike','en_formation')]"
                 />
-                                <field name="state" filter_domain="[('state','ilike',self)]"></field>
+                <field name="state" filter_domain="[('state','ilike',self)]"></field>
 
                 <filter name="group_company_id" string="Societé" icon="terp-partner"
                         context="{'group_by':'company_id'}"/>
@@ -181,11 +181,11 @@
         <field name="arch" type="xml">
 
             <tree>
-                <field name="inscrit_mcm"/>
-                <field name="supprimerdemoocit"/>
-                <field name="client"/>
-                <field name="coach_peda"/>
-                <field name="state"/>
+                <field name="inscrit_mcm" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                <field name="supprimerdemoocit" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                <field name="client" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                <field name="coach_peda" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                <field name="state" attrs="{'invisible': [('company_id', '=', 2)]}"/>
             </tree>
         </field>
     </record>

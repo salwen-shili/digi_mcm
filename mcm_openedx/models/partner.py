@@ -26,7 +26,6 @@ class partner(models.Model):
     coach_peda = fields.Many2one('res.partner', string="Coach_Pedagogique", domain=[('est_coach', '=', True)])
     state = fields.Selection([('en_attente', 'En attente'), ('en_formation', 'En Formation'), ('supprimé', 'Supprimé')],
                              required=True, default='en_attente', string="Statut")
-
     mooc_dernier_coonx = fields.Date()
     mooc_temps_passe_heure = fields.Integer()
     mooc_temps_passe_min = fields.Integer()
@@ -305,7 +304,7 @@ class partner(models.Model):
         # verifier si la case evalbox est True
         _logger.info('numeroooooooo %s' % str(self.numero_evalbox))
 
-        if (self.numero_evalbox != False   and (self.statut == "won")):
+        if (self.numero_evalbox != False and (self.statut == "won")):
             bolt = self.bolt
 
             _logger.info('self.numero_evalbox != False ')
@@ -463,7 +462,7 @@ class partner(models.Model):
     # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
     def ajouter_IOne_MCM(self, partner):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url):
             _logger.info('email de lapprenant %s' % str(partner.email))
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             partner.password360 = user.password360
@@ -483,7 +482,7 @@ class partner(models.Model):
                 }
                 response = requests.request("POST", url, headers=headers, data=payload)
                 _logger.info('response.status_code %s' % str(response.status_code))
-                
+
                 _logger.info('user %s' % str(payload))
                 if hasattr(response, 'content'):
                     _logger.info('response content : %s' % str(json.loads(response.content)))
@@ -492,29 +491,7 @@ class partner(models.Model):
                 if (response.status_code == 200):
                     partner.inscrit_mcm = date.today()
                     self.write({'state': 'en_formation'})
-                    if self.env.su:
-                        # sending mail in sudo was meant for it being sent from superuser
-                        self = self.with_user(SUPERUSER_ID)
-                    if not partner.lang:
-                        partner.lang = 'fr_FR'
-                    _logger.info('avant email %s' % str(partner.name))
-                    template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                        'mcm_openedx.mail_template_add_Ione_MOOcit'))
-                    template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-                    if not template_id:
-                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                            'mcm_openedx.mail_template_add_Ione_MOOcit',
-                            raise_if_not_found=False)
-                    if not template_id:
-                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                            'mcm_openedx.email_template_add_Ione_MOOcit',
-                            raise_if_not_found=False)
-                    if template_id:
-                        partner.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                         composition_mode='comment', )
 
-                    _logger.info("mail envoyeé")
-                    _logger.info(partner.email)
                     bolt = self.bolt
                     evalbox = self.numero_evalbox
                     departement = self.state_id.code
@@ -527,25 +504,33 @@ class partner(models.Model):
                             self.inscriteTaxi(self)
                             self.testsms(self)
                             self.ajoutconnaisancelocalNord(self)
-                            self.supprimer_apres_dateexman(self)
+                            self.update_datesupp(self)
+                            self.sendmail(self)
                             _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
 
                         elif (departement == "62"):
                             self.inscriteTaxi(self)
                             self.testsms(self)
                             self.ajoutconnaisancelocalpasdecalais(self)
-                            self.supprimer_apres_dateexman(self)
+                            self.update_datesupp(self)
+                            _logger.info("ajouter a formation taxi car il a choisit et  departement 62")
+
                         else:
                             self.inscriteTaxi(self)
                             self.testsms(self)
+                            self.sendmail(self)
+                            _logger.info("ajouter a formation taxi ")
+
+
 
 
                     # Formation à distance VTC
                     elif (partner.module_id.product_id.default_code == "vtc"):
                         _logger.info("client Bolt Formation VTC")
                         self.inscriteVTC(self)
-                        self.supprimer_apres_dateexman(self)
+                        self.update_datesupp(self)
                         self.testsms(self)
+                        self.sendmail(self)
 
                     # Formation à distance VTC-BOLT
 
@@ -553,13 +538,41 @@ class partner(models.Model):
                         if (bolt == True):
                             _logger.info("client Bolt Formation VTC")
                             self.inscriteVTC(self)
-                            self.supprimer_apres_dateexman(self)
+                            self.update_datesupp(self)
                             self.testsms(self)
+                            self.sendmail(self)
+
 
 
                 elif (response.status_code == 409):
                     self.write({'state': 'en_formation'})
                     _logger.info('existantttttt dejaa %s')
+
+    # envoit d'un mail
+    def sendmail(self, partner):
+        if self.env.su:
+            # sending mail in sudo was meant for it being sent from superuser
+            self = self.with_user(SUPERUSER_ID)
+        if not partner.lang:
+            partner.lang = 'fr_FR'
+        _logger.info('avant email %s' % str(partner.name))
+        template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+            'mcm_openedx.mail_template_add_Ione_MOOcit'))
+        template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+        if not template_id:
+            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'mcm_openedx.mail_template_add_Ione_MOOcit',
+                raise_if_not_found=False)
+        if not template_id:
+            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'mcm_openedx.email_template_add_Ione_MOOcit',
+                raise_if_not_found=False)
+        if template_id:
+            partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                             composition_mode='comment', )
+
+            _logger.info("mail envoyeé")
+            _logger.info(partner.email)
 
     # envoit d'un sms
     def testsms(self, partner):
@@ -661,36 +674,6 @@ class partner(models.Model):
                     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                         self.desinscriteVTC(partner)
 
-    # # suppression des anciens apprenat  de 2020 2021
-    # def update_suppresion_old_apprenats(self):
-    #     locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-    #     for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
-    #
-    #         datee = datetime.today()
-    #         print(datee.year)
-    #         count = 0
-    #
-    #         for partner in self.env['res.partner'].sudo().search([('company_id', '!=', 2),
-    #                                                               ('mcm_session_id.date_fin', '!=', False),
-    #                                                               ]):
-    #             year_session = partner.mcm_session_id.date_fin.year
-    #             if (year_session < datee.year):
-    #                 print("nononon", partner.mcm_session_id.date_fin.year)
-    #                 print("nononon", partner.mcm_session_id.name)
-    #                 print(partner.email)
-    #                 count = count + 1
-    #                 partner.supprimerdemoocit = date.today()
-    #                 partner.write({'state': 'supprimé'})
-    #             print("nombre des apprenants a supprimer ", count)
-    #
-    #             if (partner.module_id.product_id.default_code == "taxi"):
-    #                 partner.desinscriteTaxi(partner)
-    #             elif (partner.module_id.product_id.default_code == "vtc"):
-    #                 partner.desinscriteVTC(partner)
-    #             elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-    #                 partner.desinscriteVTC(partner)
-    #
-    #
     def convertir_date_inscription(self):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
