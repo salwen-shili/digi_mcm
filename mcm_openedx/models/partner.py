@@ -304,7 +304,7 @@ class partner(models.Model):
         # verifier si la case evalbox est True
         _logger.info('numeroooooooo %s' % str(self.numero_evalbox))
 
-        if (self.numero_evalbox != False   and (self.statut == "won")):
+        if (self.numero_evalbox != False and (self.statut == "won")):
             bolt = self.bolt
 
             _logger.info('self.numero_evalbox != False ')
@@ -482,7 +482,7 @@ class partner(models.Model):
                 }
                 response = requests.request("POST", url, headers=headers, data=payload)
                 _logger.info('response.status_code %s' % str(response.status_code))
-                
+
                 _logger.info('user %s' % str(payload))
                 if hasattr(response, 'content'):
                     _logger.info('response content : %s' % str(json.loads(response.content)))
@@ -492,8 +492,6 @@ class partner(models.Model):
                     partner.inscrit_mcm = date.today()
                     self.write({'state': 'en_formation'})
 
-                    _logger.info("mail envoyeé")
-                    _logger.info(partner.email)
                     bolt = self.bolt
                     evalbox = self.numero_evalbox
                     departement = self.state_id.code
@@ -549,6 +547,7 @@ class partner(models.Model):
                 elif (response.status_code == 409):
                     self.write({'state': 'en_formation'})
                     _logger.info('existantttttt dejaa %s')
+
     def sendmail(self, partner):
         if self.env.su:
             # sending mail in sudo was meant for it being sent from superuser
@@ -570,6 +569,9 @@ class partner(models.Model):
         if template_id:
             partner.with_context(force_send=True).message_post_with_template(template_id,
                                                                              composition_mode='comment', )
+
+            _logger.info("mail envoyeé")
+            _logger.info(partner.email)
 
     # envoit d'un sms
     def testsms(self, partner):
@@ -670,7 +672,6 @@ class partner(models.Model):
                         self.desinscriteVTC(partner)
                     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                         self.desinscriteVTC(partner)
-
 
     def convertir_date_inscription(self):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
