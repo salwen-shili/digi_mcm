@@ -548,6 +548,7 @@ class partner(models.Model):
                     self.write({'state': 'en_formation'})
                     _logger.info('existantttttt dejaa %s')
 
+    # envoit d'un mail
     def sendmail(self, partner):
         if self.env.su:
             # sending mail in sudo was meant for it being sent from superuser
