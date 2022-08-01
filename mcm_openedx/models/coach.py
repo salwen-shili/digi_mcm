@@ -51,7 +51,7 @@ class Coach(models.Model):
     def test_coach(self):
         count_apprennat = 0
         # determiner le nombre total des apprenants
-        for apprenant in self.env['res.partner'].sudo().search([('statut', "=", "won"), ('company_id', '=', 1),('sate',"=", "en_formation")]):
+        for apprenant in self.env['res.partner'].sudo().search([('statut', "=", "won"), ('company_id', '=', 1),('state',"=", "en_formation")]):
             count_apprennat = count_apprennat + 1
 
         # definir si le partner et coach
