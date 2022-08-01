@@ -9,8 +9,8 @@
                 <page string="Onfido " name="onfido_info">
                     <field name="onfido_information_ids" >
                       <tree>
-                            <field name="id_document_front"/>
-                            <field name="id_document_back"/>
+                            <field name="workflow_run_id"/>
+                            <field name="partner_id"/>
                             <field name="sdk_token"/>
                           <field name="validation_onfido" ></field>
                         </tree>
