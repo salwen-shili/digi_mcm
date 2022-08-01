@@ -10,9 +10,11 @@
                     <field name="onfido_information_ids" >
                       <tree>
                             <field name="workflow_run_id"/>
-                            <field name="partner_id"/>
                             <field name="sdk_token"/>
-                          <field name="validation_onfido" ></field>
+                            <field name="id_document_back" />
+                            <field name="id_document_front" />
+                            <field name="validation_onfido"></field>
+
                         </tree>
                     </field>
                 </page>

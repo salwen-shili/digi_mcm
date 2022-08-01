@@ -82,7 +82,8 @@ class OnfidoController(http.Controller):
                     'state': 'waiting'
                 }
             )
-            data_onfido.id_document_back = document_back_id
+            if data_onfido:
+                data_onfido.id_document_back = document_back_id
             _logger.info('back %s' % str(attachement_back))
         if 'face' in data:
             face_id=data['face']['id']
@@ -98,12 +99,6 @@ class OnfidoController(http.Controller):
                 }
             )
             _logger.info('face %s' % str(attachement_face))
-
-            
-        # document_front=partner.getDocmument(website.onfido_api_key_live,document_front_id)
-
-        # print('download_document from api %s' % str(download_document_front))
-        # _logger.info('document download %s' % str(download_document_front))
         return True
 
     """get event workflowrund is completed with webhook """
@@ -130,7 +125,6 @@ class OnfidoController(http.Controller):
                 currentUser.validation_onfido="fail"
                 if data_onfido:
                     data_onfido.validation_onfido="fail"
-                    data_onfido.workflow_run_id=workflow_run_id
                 _logger.info('*************************************currentUser.validation_onfido***************** %s' % str(currentUser.validation_onfido))
                 documents=request.env['documents.document'].sudo().search([('partner_id',"=",currentUser.id)])
                 _logger.info("documents %s" %str(documents))

@@ -55,7 +55,6 @@ class LoadDocument(Website):
             _logger.info("workflow %s" %str(workflow_run_id))
             """créer une ligne pour information Onfido """
             data_onfido = request.env['onfido.info'].sudo().create({
-                # 'partner_id': partner,
                 'workflow_run_id' : workflow_run_id,
                 'sdk_token' : sdk_token,
                 
