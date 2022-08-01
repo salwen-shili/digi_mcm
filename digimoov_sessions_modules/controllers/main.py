@@ -389,14 +389,16 @@ class WebsiteSale(WebsiteSale):
             response = requests.get('https://www.wedof.fr/api/registrationFolders/' + numero_cpf, headers=headers,
                                     params=params_wedof)
             registration = response.json()
-            print('registration',
-                  registration['state'], registration['externalId'])
-            state = registration['state']
+            _logger.info('registration api %s' %str(registration))
+            # print('registration',
+            #       registration['state'], registration['externalId'])
+            if 'state' in registration:
+                state = registration['state']
 
-            if state == "validated":
-                statut = 'https://www.moncompteformation.gouv.fr/espace-prive/html/#/dossiers'
-            if state == "accepted":
-                statut = "accepted"
+                if state == "validated":
+                    statut = 'https://www.moncompteformation.gouv.fr/espace-prive/html/#/dossiers'
+                if state == "accepted":
+                    statut = "accepted"
 
         from_bolt = 'False'
         from_habilitation_electrique = False
