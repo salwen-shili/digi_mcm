@@ -24,7 +24,7 @@ class OnfidoController(http.Controller):
         """Recupérer ID des documents chargés"""
         partner = request.env.user.partner_id
         partner.validation_onfido="in_progress"
-        data_onfido = request.env['onfido.info'].sudo().search([('partner_id','=',partner)],limit=1,order="id desc")
+        data_onfido = request.env['onfido.info'].sudo().search([('partner_id','=',partner.id)],limit=1,order="id desc")
 
         folder_id = request.env['documents.folder'].sudo().search(
             [('name', "=", _('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
@@ -116,7 +116,7 @@ class OnfidoController(http.Controller):
         _logger.info("workflow_run onfido response %s" % str(workflow_runs))
         applicant_id = workflow_runs['applicant_id']
         currentUser = request.env['res.partner'].sudo().search([('onfido_applicant_id',"=",applicant_id)])
-        data_onfido = request.env['onfido.info'].sudo().search([('partner_id','=',currentUser)],limit=1,order="id desc")
+        data_onfido = request.env['onfido.info'].sudo().search([('partner_id','=',currentUser.id)],limit=1,order="id desc")
         list_document = partner.get_listDocument(applicant_id, website.onfido_api_key_live)
         _logger.info('*************************************DOCUMENT***************** %s' % str(list_document))
         if currentUser:
