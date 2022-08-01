@@ -504,7 +504,7 @@ class partner(models.Model):
                             self.inscriteTaxi(self)
                             self.testsms(self)
                             self.ajoutconnaisancelocalNord(self)
-                            self.supprimer_apres_dateexman(self)
+                            self.update_datesupp(self)
                             self.sendmail(self)
                             _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
 
@@ -512,7 +512,7 @@ class partner(models.Model):
                             self.inscriteTaxi(self)
                             self.testsms(self)
                             self.ajoutconnaisancelocalpasdecalais(self)
-                            self.supprimer_apres_dateexman(self)
+                            self.update_datesupp(self)
                             _logger.info("ajouter a formation taxi car il a choisit et  departement 62")
 
                         else:
@@ -528,7 +528,7 @@ class partner(models.Model):
                     elif (partner.module_id.product_id.default_code == "vtc"):
                         _logger.info("client Bolt Formation VTC")
                         self.inscriteVTC(self)
-                        self.supprimer_apres_dateexman(self)
+                        self.update_datesupp(self)
                         self.testsms(self)
                         self.sendmail(self)
 
@@ -538,7 +538,7 @@ class partner(models.Model):
                         if (bolt == True):
                             _logger.info("client Bolt Formation VTC")
                             self.inscriteVTC(self)
-                            self.supprimer_apres_dateexman(self)
+                            self.update_datesupp(self)
                             self.testsms(self)
                             self.sendmail(self)
 
