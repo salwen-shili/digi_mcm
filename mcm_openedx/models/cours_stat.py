@@ -47,11 +47,14 @@ class Cours_stat(models.Model):
             listjour.sort()
             # print("lowwww", listjour[0])
             # print("highhh", listjour[-1])
-
             # chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
-            for apprenant in self.env['res.partner'].sudo().search([
-                ('company_id', '!=', 2),
-                ('email', 'ilike', existt.email)]):
+
+            mail_evalbox = self.env['res.partner'].search(
+                [('company_id', '!=', 2), ('id_evalbox', 'ilike', existt.email)])
+            print(mail_evalbox.id_evalbox)
+            for apprenant in self.env['res.partner'].sudo().search([('company_id', '!=', 2),
+                                                                    ('email', 'ilike', existt.email)]):
+
                 # print("statteeeeeeeeeee", apprenant.state)
                 apprenant.date_imortation_stat = date.today()
                 apprenant.mooc_temps_passe_heure = heure
@@ -60,7 +63,6 @@ class Cours_stat(models.Model):
                 apprenant.mooc_dernier_coonx = listjour[-1]
                 if (apprenant.inscrit_mcm == False):
                     apprenant.inscrit_mcm = listjour[0]
-
                 existt.partner = apprenant.id
                 self.partner = existt.partner
                 self.mooc_temps_passe_heure = heure
@@ -70,6 +72,7 @@ class Cours_stat(models.Model):
 
                 if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx.year == todays_date.year):
                     apprenant.state = 'en_formation'
+
 
     def suupprimer_bouton_fiche_client(self):
         # cree une  liste pour stocker les duplication
