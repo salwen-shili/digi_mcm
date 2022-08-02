@@ -62,7 +62,7 @@ class partner(models.Model):
         response = requests.request("POST", url, headers=header, data=payload)
         print(response.text)
         print(payload, 'user', response.status_code)
-        _logger.info('response.status_code %s' % str(response.status_code))
+        _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
     # ajouter les cours de formation vtc a l'apprenant
 
@@ -89,7 +89,7 @@ class partner(models.Model):
         }
         response = requests.request("POST", url, headers=header, data=payload)
         print(response.text)
-        _logger.info('response.status_code %s' % str(response.status_code))
+        _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
     # desinscrire les cours de formation taxi a l'apprenant
 
@@ -118,7 +118,7 @@ class partner(models.Model):
         }
         response = requests.request("POST", url, headers=header, data=payload)
         print(response.text)
-        _logger.info('response.status_code %s' % str(response.status_code))
+        _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
     # ajouter les cours de formation taxi a l'apprenant
     # ajouter cour connaisance locale 2022 pour les autres departements
@@ -146,7 +146,7 @@ class partner(models.Model):
         }
         response = requests.request("POST", url, headers=header, data=payload)
         print(response.text)
-        _logger.info('response.status_code %s' % str(response.status_code))
+        _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
     # ajouter les cours de la conaissance local pour le choix de departement(pas de calais)
     def ajoutconnaisancelocalpasdecalais(self, partner):
@@ -166,7 +166,7 @@ class partner(models.Model):
         }
         response = requests.request("POST", url, headers=header, data=payload)
         print(response.text)
-        _logger.info('response.status_code %s' % str(response.status_code))
+        _logger.info('response.status_code de linscripstion cour %s' % str(response.status_code))
 
     # ajouter les cours de la conaissance local pour le choix de departement(Nord)
     def ajoutconnaisancelocalNord(self, partner):
@@ -185,7 +185,7 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         resp = requests.request("POST", url, headers=header, data=payload)
-        _logger.info('response.status_code %s' % str(resp.status_code))
+        _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(resp.status_code))
 
     # ajouter les apprenants    automatiquememnt a partire de  la fiche Client
     def ajoutMoocit_automatique(self):
@@ -212,8 +212,6 @@ class partner(models.Model):
                     bolt = partner.bolt
                     if (bolt):
                         self.ajouter_IOne_MCM(partner)
-
-                        _logger.info('ceci est un client bolt il va etre ajouter ssans verifer les autres conditions ')
 
                     else:
                         # Récupérer les documents et vérifier si ils sont validés ou non
@@ -311,8 +309,6 @@ class partner(models.Model):
             _logger.info('self.numero_evalbox != False ')
             if (bolt):
                 self.ajouter_IOne_MCM(self)
-                self.testsms(self)
-                self.sendmail(self)
                 _logger.info('ceci est un client bolt il va etre ajouter ssans verifer les autres conditions ')
 
             else:
@@ -481,10 +477,11 @@ class partner(models.Model):
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
             }
-            response = requests.request("POST", url, headers=headers, data=payload)
-            _logger.info('response.status_code %s' % str(response.status_code))
+            response_ajouter_IOne_MCM = requests.request("POST", url, headers=headers, data=payload)
+            _logger.info(
+                'response_ajouter_IOne_MCM de la fonction ajout ione %s' % str(response_ajouter_IOne_MCM.status_code))
             _logger.info('user %s' % str(payload))
-            if (response.status_code == 200):
+            if (response_ajouter_IOne_MCM.status_code == 200):
                 partner.inscrit_mcm = date.today()
                 self.testsms(self)
                 self.sendmail(self)
@@ -512,26 +509,20 @@ class partner(models.Model):
 
                     else:
                         self.inscriteTaxi(self)
-                        self.testsms(self)
-                        self.sendmail(self)
                         _logger.info("ajouter a formation taxi ")
-
-
-
-
                 # Formation à distance VTC
                 elif (partner.module_id.product_id.default_code == "vtc"):
                     _logger.info("client Bolt Formation VTC")
                     self.inscriteVTC(self)
 
                 # Formation à distance VTC-BOLT
-
                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                     if (bolt == True):
                         _logger.info("client Bolt Formation VTC")
+                        _logger.info('ceci est un client bolt il va etre ajouter ssans verifer les autres conditions ')
                         self.inscriteVTC(self)
 
-            if (response.status_code == 409):
+            if (response_ajouter_IOne_MCM.status_code == 409):
                 self.write({'state': 'en_formation'})
                 bolt = self.bolt
                 evalbox = self.numero_evalbox
@@ -541,19 +532,14 @@ class partner(models.Model):
 
                 # Formation à distance Taxi
                 if (partner.module_id.product_id.default_code == "taxi"):
-                    _logger.info("formation valide")
                     if (departement == "59"):
                         self.inscriteTaxi(self)
                         self.ajoutconnaisancelocalNord(self)
-                        self.update_datesupp(self)
                         _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
-
                     elif (departement == "62"):
                         self.inscriteTaxi(self)
                         self.ajoutconnaisancelocalpasdecalais(self)
-
                         _logger.info("ajouter a formation taxi car il a choisit et  departement 62")
-
                     else:
                         self.inscriteTaxi(self)
                         _logger.info("ajouter a formation taxi ")
@@ -561,9 +547,7 @@ class partner(models.Model):
                 elif (partner.module_id.product_id.default_code == "vtc"):
                     _logger.info("client Bolt Formation VTC")
                     self.inscriteVTC(self)
-
                 # Formation à distance VTC-BOLT
-
                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                     if (bolt == True):
                         _logger.info("client Bolt Formation VTC")
@@ -576,7 +560,7 @@ class partner(models.Model):
             self = self.with_user(SUPERUSER_ID)
         if not partner.lang:
             partner.lang = 'fr_FR'
-        _logger.info('avant email %s' % str(partner.name))
+        _logger.info('avant email mcm_openedx %s' % str(partner.name))
         template_id = int(self.env['ir.config_parameter'].sudo().get_param(
             'mcm_openedx.mail_template_add_Ione_MOOcit'))
         template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
