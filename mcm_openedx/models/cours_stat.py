@@ -52,7 +52,7 @@ class Cours_stat(models.Model):
             for apprenant in self.env['res.partner'].sudo().search([
                 ('company_id', '!=', 2),
                 ('email', 'ilike', existt.email)]):
-                print("statteeeeeeeeeee",apprenant.state)
+                print("statteeeeeeeeeee", apprenant.state)
                 apprenant.date_imortation_stat = date.today()
                 apprenant.mooc_temps_passe_heure = heure
                 apprenant.mooc_temps_passe_min = minute
@@ -66,7 +66,9 @@ class Cours_stat(models.Model):
                 self.mooc_temps_passe_heure = heure
                 self.mooc_temps_passe_min = minute
                 self.mooc_temps_passe_seconde = secondes
-                apprenant.state = 'en_formation'
+                todays_date = date.today()
+                if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx > todays_date.year):
+                    apprenant.state = 'en_formation'
 
     def suupprimer_bouton_fiche_client(self):
         # cree une  liste pour stocker les duplication
