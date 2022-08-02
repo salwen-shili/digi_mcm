@@ -553,7 +553,7 @@ class partner(models.Model):
 
                     else:
                         self.inscriteTaxi(self)
-                       _logger.info("ajouter a formation taxi ")
+                        _logger.info("ajouter a formation taxi ")
 
 
 
