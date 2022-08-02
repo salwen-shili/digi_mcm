@@ -480,12 +480,53 @@ class partner(models.Model):
             }
             response = requests.request("POST", url, headers=headers, data=payload)
             _logger.info('response.status_code %s' % str(response.status_code))
-            partner.inscrit_mcm = date.today()
-            self.testsms(self)
-            self.sendmail(self)
             _logger.info('user %s' % str(payload))
+            if (response.status_code == 200):
+                partner.inscrit_mcm = date.today()
+                self.testsms(self)
+                self.sendmail(self)
+                self.write({'state': 'en_formation'})
+                bolt = self.bolt
+                evalbox = self.numero_evalbox
+                departement = self.state_id.code
+                _logger.info(departement)
+                # Formation à distance Taxi
+                if (partner.module_id.product_id.default_code == "taxi"):
+                    _logger.info("formation valide")
+                    if (departement == "59"):
+                        self.inscriteTaxi(self)
+                        self.ajoutconnaisancelocalNord(self)
+                        self.update_datesupp(self)
+                        _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
 
-            if (response.status_code == 200 or response.status_code == 409):
+                    elif (departement == "62"):
+                        self.inscriteTaxi(self)
+                        self.ajoutconnaisancelocalpasdecalais(self)
+
+                        _logger.info("ajouter a formation taxi car il a choisit et  departement 62")
+
+                    else:
+                        self.inscriteTaxi(self)
+                        self.testsms(self)
+                        self.sendmail(self)
+                        _logger.info("ajouter a formation taxi ")
+
+
+
+
+                # Formation à distance VTC
+                elif (partner.module_id.product_id.default_code == "vtc"):
+                    _logger.info("client Bolt Formation VTC")
+                    self.inscriteVTC(self)
+
+                # Formation à distance VTC-BOLT
+
+                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                    if (bolt == True):
+                        _logger.info("client Bolt Formation VTC")
+                        self.inscriteVTC(self)
+
+            if (response.status_code == 409):
                 self.write({'state': 'en_formation'})
                 bolt = self.bolt
                 evalbox = self.numero_evalbox
