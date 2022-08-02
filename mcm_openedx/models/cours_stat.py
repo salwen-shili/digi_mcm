@@ -68,7 +68,7 @@ class Cours_stat(models.Model):
                 self.mooc_temps_passe_seconde = secondes
                 todays_date = date.today()
 
-                if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx.year != todays_date.year):
+                if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx.year == todays_date.year):
                     apprenant.state = 'en_formation'
 
     def suupprimer_bouton_fiche_client(self):
