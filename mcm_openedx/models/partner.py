@@ -554,10 +554,6 @@ class partner(models.Model):
                     else:
                         self.inscriteTaxi(self)
                         _logger.info("ajouter a formation taxi ")
-
-
-
-
                 # Formation à distance VTC
                 elif (partner.module_id.product_id.default_code == "vtc"):
                     _logger.info("client Bolt Formation VTC")
