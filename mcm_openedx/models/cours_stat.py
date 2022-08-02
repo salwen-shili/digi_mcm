@@ -73,6 +73,7 @@ class Cours_stat(models.Model):
                 if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx.year == todays_date.year):
                     apprenant.state = 'en_formation'
 
+
     def suupprimer_bouton_fiche_client(self):
         # cree une  liste pour stocker les duplication
         listcourduplicated = []
