@@ -480,6 +480,7 @@ class partner(models.Model):
             response_ajouter_IOne_MCM = requests.request("POST", url, headers=headers, data=payload)
             _logger.info(
                 'response_ajouter_IOne_MCM de la fonction ajout ione %s' % str(response_ajouter_IOne_MCM.status_code))
+            _logger.info('response_ajouter_IOne_MCM de la fonction ajout ione %s' % str(response_ajouter_IOne_MCM.text))
             _logger.info('user %s' % str(payload))
             if (response_ajouter_IOne_MCM.status_code == 200):
                 partner.inscrit_mcm = date.today()
@@ -552,169 +553,161 @@ class partner(models.Model):
                     if (bolt == True):
                         _logger.info("client Bolt Formation VTC")
                         self.inscriteVTC(self)
+            # Ajout ticket pour notiifer le service client pour changer mp
+            """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
+            if (response_ajouter_IOne_MCM.status_code == 400 and partner.state != 'en_formation'):
+                _logger.info('utilisateur mp doit etre changeé %s')
+                vals = {
+                    'description': 'verifier mot de passe %s' % (partner.name),
+                    'name': 'Le mot de passe est trop semblable au champ Email ',
+                    'team_id': self.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Service clientèle MCM'), ('company_id', "=", 1)],
+                        limit=1).id,
+                }
+                description = "test " + str(partner.name)
+                print("dessssssssss", description)
+                ticket = self.env['helpdesk.ticket'].sudo().search(
+                    [("description", "=", description)])
+                if not ticket:
+                    print("cree tichket")
+                    new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                        vals)
 
-            if (response_ajouter_IOne_MCM.status_code == 400):
+    # envoit d'un mail
+    def sendmail(self, partner):
+        if self.env.su:
+            # sending mail in sudo was meant for it being sent from superuser
+            self = self.with_user(SUPERUSER_ID)
+        if not partner.lang:
+            partner.lang = 'fr_FR'
+        _logger.info('avant email mcm_openedx %s' % str(partner.name))
+        template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+            'mcm_openedx.mail_template_add_Ione_MOOcit'))
+        template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+        if not template_id:
+            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'mcm_openedx.mail_template_add_Ione_MOOcit',
+                raise_if_not_found=False)
+        if not template_id:
+            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'mcm_openedx.email_template_add_Ione_MOOcit',
+                raise_if_not_found=False)
+        if template_id:
+            partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                             composition_mode='comment', )
 
-                """Créer des tickets contenant le message  d'erreur pour service client et service IT
-                si l'apprenant n'est pas ajouté sur moocit
-                """
-                if str(response_ajouter_IOne_MCM.status_code) == "{'error': 'Le mot de passe est trop semblable au champ « adresse électronique ».'}":
+            _logger.info("mail envoyeé")
+            _logger.info(partner.email)
 
-                    vals = {
-                        'description': 'Apprenant non ajouté sur moocit   %s' % (partner.name),
-                        'name': 'Le mot de passe est trop semblable au champ « adresse électronique ». ',
-                        'team_id': self.env['helpdesk.team'].sudo().search(
-                            [('name', 'like', 'Client'), ('company_id', "=", 1)],
-                            limit=1).id,
-                    }
-                    description = "Apprenant non ajouté sur Moocit " + str(partner.name)
-                    ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description),
-                                                                        ("team_id.name", 'like', 'Client')])
-                    if not ticket:
-                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                            vals)
-
-
-# envoit d'un mail
-def sendmail(self, partner):
-    if self.env.su:
-        # sending mail in sudo was meant for it being sent from superuser
-        self = self.with_user(SUPERUSER_ID)
-    if not partner.lang:
-        partner.lang = 'fr_FR'
-    _logger.info('avant email mcm_openedx %s' % str(partner.name))
-    template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-        'mcm_openedx.mail_template_add_Ione_MOOcit'))
-    template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-    if not template_id:
-        template_id = self.env['ir.model.data'].xmlid_to_res_id(
-            'mcm_openedx.mail_template_add_Ione_MOOcit',
-            raise_if_not_found=False)
-    if not template_id:
-        template_id = self.env['ir.model.data'].xmlid_to_res_id(
-            'mcm_openedx.email_template_add_Ione_MOOcit',
-            raise_if_not_found=False)
-    if template_id:
-        partner.with_context(force_send=True).message_post_with_template(template_id,
-                                                                         composition_mode='comment', )
-
-        _logger.info("mail envoyeé")
-        _logger.info(partner.email)
-
-
-# envoit d'un sms
-def testsms(self, partner):
-    if partner.phone:
-        phone = str(partner.phone.replace(' ', ''))[-9:]
-        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                       5:7] + ' ' + phone[
-                                                                                                    7:]
-        partner.phone = phone
-        _logger.info(partner.phone)
-    body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez désormais commencer votre formation  ,%s  en utilisant les mêmes identifiants que sur notre site web." % (
-        partner.name, partner.module_id.name)
-    if body:
-        sms = self.env['mail.message'].sudo().search(
-            [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
-        if not sms:
-            composer = self.env['sms.composer'].with_context(
-                default_res_model='res.partner',
-                default_res_ids=partner.id,
-                default_composition_mode='mass',
-            ).sudo().create({
-                'body': body,
-                'mass_keep_log': True,
-                'mass_force_send': True,
-            })
-            composer.action_send_sms()  # send sms of end of exam and waiting for result
+    # envoit d'un sms
+    def testsms(self, partner):
         if partner.phone:
-            partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
+            phone = str(partner.phone.replace(' ', ''))[-9:]
+            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                                                                                           5:7] + ' ' + phone[
+                                                                                                        7:]
+            partner.phone = phone
+            _logger.info(partner.phone)
+        body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez désormais commencer votre formation  ,%s  en utilisant les mêmes identifiants que sur notre site web." % (
+            partner.name, partner.module_id.name)
+        if body:
+            sms = self.env['mail.message'].sudo().search(
+                [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
+            if not sms:
+                composer = self.env['sms.composer'].with_context(
+                    default_res_model='res.partner',
+                    default_res_ids=partner.id,
+                    default_composition_mode='mass',
+                ).sudo().create({
+                    'body': body,
+                    'mass_keep_log': True,
+                    'mass_force_send': True,
+                })
+                composer.action_send_sms()  # send sms of end of exam and waiting for result
+            if partner.phone:
+                partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
 
-
-# supprimer ione le desinscrire des cours sur la platfrom moocit
-def supprimer_IOne_MCM(self):
-    departement = self.state_id.code
-    _logger.info(departement)
-    # supprimer l'apprenats en verifiant le module choisit
-    if (self.module_id.product_id.default_code == "taxi"):
-        self.desinscriteTaxi(self)
-        self.supprimerdemoocit = date.today()
-        self.write({'state': 'supprimé'})
-        _logger.info('state: supprimé')
-
-
-    elif (self.module_id.product_id.default_code == "vtc"):
-        self.desinscriteVTC(self)
-        self.supprimerdemoocit = date.today()
-        self.write({'state': 'supprimé'})
-        _logger.info('state: supprimé')
-
-
-    elif (self.module_id.product_id.default_code == "vtc_bolt"):
-        self.desinscriteVTC(self)
-        self.supprimerdemoocit = date.today()
-        _logger.info('state: supprimé')
-
-    else:
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': _(' l apprennat n a pas une session :🤓 🤓  '),
-                'message': _('verifier session'),
-                'sticky': True,
-                'className': 'bg-danger'
-            }
-        }
-
-
-# affecter la date de suppression apres l'ajout  5 jours apres session
-def update_datesupp(self):
-    for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1),
-                                                          ('inscrit_mcm', '!=', False),
-                                                          ('mcm_session_id.date_exam', '!=', False),
-
-                                                          ]):
-        if (partner):
-            print(partner.mcm_session_id.date_exam)
-            for rec in partner:
-                if (partner.state == "en_attente"):
-                    partner.sudo().write({'state': 'en_formation'})
-                    partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
-                    _logger.info("supprimer aprex 5 j")
-
-
-# supprimer ione  automatique le desinscrire des cours sur la platfrom moocit
-
-def supprimer_automatique(self):
-    base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-    if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-        # chercher dans res.partner la liste de apprennats puis verifier la
-        for partner in self.env['res.partner'].sudo().search([
-            ('company_id', '=', 1),
-
-        ]):
+    # supprimer ione le desinscrire des cours sur la platfrom moocit
+    def supprimer_IOne_MCM(self):
+        departement = self.state_id.code
+        _logger.info(departement)
+        # supprimer l'apprenats en verifiant le module choisit
+        if (self.module_id.product_id.default_code == "taxi"):
+            self.desinscriteTaxi(self)
+            self.supprimerdemoocit = date.today()
             self.write({'state': 'supprimé'})
-            _logger.info("supprimer autooo")
-
-            if (partner.supprimerdemoocit == date.today()):
-                if (partner.module_id.product_id.default_code == "taxi"):
-                    self.desinscriteTaxi(partner)
-                elif (partner.module_id.product_id.default_code == "vtc"):
-                    self.desinscriteVTC(partner)
-                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                    self.desinscriteVTC(partner)
+            _logger.info('state: supprimé')
 
 
-def convertir_date_inscription(self):
-    """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
-    locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-    for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
-        if rec.inscrit_mcm:
-            new_date_format = datetime.strptime(str(rec.inscrit_mcm), "%d %B %Y").date().strftime(
-                '%d/%m/%Y')
-            rec.inscrit_mcm = new_date_format
+        elif (self.module_id.product_id.default_code == "vtc"):
+            self.desinscriteVTC(self)
+            self.supprimerdemoocit = date.today()
+            self.write({'state': 'supprimé'})
+            _logger.info('state: supprimé')
 
-        if rec.supprimerdemoocit:
-            new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
-            rec.supprimerdemoocit = new_date_format
+
+        elif (self.module_id.product_id.default_code == "vtc_bolt"):
+            self.desinscriteVTC(self)
+            self.supprimerdemoocit = date.today()
+            _logger.info('state: supprimé')
+
+        else:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _(' l apprennat n a pas une session :🤓 🤓  '),
+                    'message': _('verifier session'),
+                    'sticky': True,
+                    'className': 'bg-danger'
+                }
+            }
+
+    # affecter la date de suppression apres l'ajout  5 jours apres session
+    def update_datesupp(self):
+        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1),
+                                                              ('inscrit_mcm', '!=', False),
+                                                              ('mcm_session_id.date_exam', '!=', False),
+
+                                                              ]):
+            if (partner):
+                print(partner.mcm_session_id.date_exam)
+                for rec in partner:
+                    if (partner.state == "en_attente"):
+                        partner.sudo().write({'state': 'en_formation'})
+                        partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
+                        _logger.info("supprimer aprex 5 j")
+
+    # supprimer ione  automatique le desinscrire des cours sur la platfrom moocit
+
+    def supprimer_automatique(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+            # chercher dans res.partner la liste de apprennats puis verifier la
+            for partner in self.env['res.partner'].sudo().search([
+                ('company_id', '=', 1),
+
+            ]):
+                self.write({'state': 'supprimé'})
+                _logger.info("supprimer autooo")
+
+                if (partner.supprimerdemoocit == date.today()):
+                    if (partner.module_id.product_id.default_code == "taxi"):
+                        self.desinscriteTaxi(partner)
+                    elif (partner.module_id.product_id.default_code == "vtc"):
+                        self.desinscriteVTC(partner)
+                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                        self.desinscriteVTC(partner)
+
+    def convertir_date_inscription(self):
+        """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
+        locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+        for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
+            if rec.inscrit_mcm:
+                new_date_format = datetime.strptime(str(rec.inscrit_mcm), "%d %B %Y").date().strftime(
+                    '%d/%m/%Y')
+                rec.inscrit_mcm = new_date_format
+
+            if rec.supprimerdemoocit:
+                new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
+                rec.supprimerdemoocit = new_date_format
