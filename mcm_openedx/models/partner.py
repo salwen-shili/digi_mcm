@@ -461,90 +461,116 @@ class partner(models.Model):
 
     # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
     def ajouter_IOne_MCM(self, partner):
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
-            _logger.info('email de lapprenant %s' % str(partner.email))
-            user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
-            partner.password360 = user.password360
-            password = user.password360
-            if (partner.name and partner.email):
-                url = "https://formation.mcm-academy.fr/user_api/v1/account/registration/"
-                payload = {'username': partner.name.upper().replace(" ", ""),
-                           'email': partner.email,
-                           'password': password,
-                           'terms_of_service': 'true',
-                           'name': partner.name,
-                           'honor_code': 'true'}
-                headers = {
-                    'Access-Control-Request-Headers': 'authorization',
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
-                }
-                response = requests.request("POST", url, headers=headers, data=payload)
-                _logger.info('response.status_code %s' % str(response.status_code))
+        _logger.info('email de lapprenant %s' % str(partner.email))
+        user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
+        partner.password360 = user.password360
+        password = user.password360
+        if (partner.name and partner.email):
+            url = "https://formation.mcm-academy.fr/user_api/v1/account/registration/"
+            payload = {'username': partner.name.upper().replace(" ", ""),
+                       'email': partner.email,
+                       'password': password,
+                       'terms_of_service': 'true',
+                       'name': partner.name,
+                       'honor_code': 'true'}
+            headers = {
+                'Access-Control-Request-Headers': 'authorization',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+            }
+            response = requests.request("POST", url, headers=headers, data=payload)
+            _logger.info('response.status_code %s' % str(response.status_code))
+            _logger.info('user %s' % str(payload))
+            if (response.status_code == 200):
+                partner.inscrit_mcm = date.today()
+                self.testsms(self)
+                self.sendmail(self)
+                self.write({'state': 'en_formation'})
+                bolt = self.bolt
+                evalbox = self.numero_evalbox
+                departement = self.state_id.code
+                _logger.info('departement %s' % str(departement))
+                _logger.info('Client ajouter a la platforme staut code 200 %s' % str(partner.email))
 
-                _logger.info('user %s' % str(payload))
-                if hasattr(response, 'content'):
-                    _logger.info('response content : %s' % str(json.loads(response.content)))
-                elif hasattr(response, 'text'):
-                    _logger.info('response content : %s' % str(json.loads(response.text)))
-                if (response.status_code == 200):
-                    partner.inscrit_mcm = date.today()
-                    self.write({'state': 'en_formation'})
-
-                    bolt = self.bolt
-                    evalbox = self.numero_evalbox
-                    departement = self.state_id.code
-                    _logger.info(departement)
-                    # Formation à distance Taxi
-
-                    if (partner.module_id.product_id.default_code == "taxi"):
-                        _logger.info("formation valide")
-                        if (departement == "59"):
-                            self.inscriteTaxi(self)
-                            self.testsms(self)
-                            self.ajoutconnaisancelocalNord(self)
-                            self.update_datesupp(self)
-                            self.sendmail(self)
-                            _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
-
-                        elif (departement == "62"):
-                            self.inscriteTaxi(self)
-                            self.testsms(self)
-                            self.ajoutconnaisancelocalpasdecalais(self)
-                            self.update_datesupp(self)
-                            _logger.info("ajouter a formation taxi car il a choisit et  departement 62")
-
-                        else:
-                            self.inscriteTaxi(self)
-                            self.testsms(self)
-                            self.sendmail(self)
-                            _logger.info("ajouter a formation taxi ")
-
-
-
-
-                    # Formation à distance VTC
-                    elif (partner.module_id.product_id.default_code == "vtc"):
-                        _logger.info("client Bolt Formation VTC")
-                        self.inscriteVTC(self)
+                # Formation à distance Taxi
+                if (partner.module_id.product_id.default_code == "taxi"):
+                    _logger.info("formation valide")
+                    if (departement == "59"):
+                        self.inscriteTaxi(self)
+                        self.ajoutconnaisancelocalNord(self)
                         self.update_datesupp(self)
+                        _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
+
+                    elif (departement == "62"):
+                        self.inscriteTaxi(self)
+                        self.ajoutconnaisancelocalpasdecalais(self)
+
+                        _logger.info("ajouter a formation taxi car il a choisit et  departement 62")
+
+                    else:
+                        self.inscriteTaxi(self)
                         self.testsms(self)
                         self.sendmail(self)
+                        _logger.info("ajouter a formation taxi ")
 
-                    # Formation à distance VTC-BOLT
 
-                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                        if (bolt == True):
-                            _logger.info("client Bolt Formation VTC")
-                            self.inscriteVTC(self)
-                            self.update_datesupp(self)
-                            self.testsms(self)
-                            self.sendmail(self)
 
-                elif (response.status_code == 409):
-                    self.write({'state': 'en_formation'})
-                    _logger.info('existantttttt dejaa %s')
+
+                # Formation à distance VTC
+                elif (partner.module_id.product_id.default_code == "vtc"):
+                    _logger.info("client Bolt Formation VTC")
+                    self.inscriteVTC(self)
+
+                # Formation à distance VTC-BOLT
+
+                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                    if (bolt == True):
+                        _logger.info("client Bolt Formation VTC")
+                        self.inscriteVTC(self)
+
+            if (response.status_code == 409):
+                self.write({'state': 'en_formation'})
+                bolt = self.bolt
+                evalbox = self.numero_evalbox
+                departement = self.state_id.code
+                _logger.info('departement %s' % str(departement))
+                _logger.info('Client ajouter aux cours 409 %s' % str(partner.email))
+
+                # Formation à distance Taxi
+                if (partner.module_id.product_id.default_code == "taxi"):
+                    _logger.info("formation valide")
+                    if (departement == "59"):
+                        self.inscriteTaxi(self)
+                        self.ajoutconnaisancelocalNord(self)
+                        self.update_datesupp(self)
+                        _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
+
+                    elif (departement == "62"):
+                        self.inscriteTaxi(self)
+                        self.ajoutconnaisancelocalpasdecalais(self)
+
+                        _logger.info("ajouter a formation taxi car il a choisit et  departement 62")
+
+                    else:
+                        self.inscriteTaxi(self)
+                        self.testsms(self)
+                        self.sendmail(self)
+                        _logger.info("ajouter a formation taxi ")
+
+
+
+
+                # Formation à distance VTC
+                elif (partner.module_id.product_id.default_code == "vtc"):
+                    _logger.info("client Bolt Formation VTC")
+                    self.inscriteVTC(self)
+
+                # Formation à distance VTC-BOLT
+
+                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                    if (bolt == True):
+                        _logger.info("client Bolt Formation VTC")
+                        self.inscriteVTC(self)
 
     # envoit d'un mail
     def sendmail(self, partner):

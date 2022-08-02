@@ -14,7 +14,7 @@
     </record>
 
 
-    <record model="ir.ui.view" id="mcm_openedx_attente_tree_view">
+    <record id="mcm_openedx_attente_tree_view" model="ir.ui.view">
         <field name="name">WEDOF</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
@@ -23,15 +23,15 @@
                 <field name="lastName"/>
                 <field name="firstName"/>
                 <field name="name"/>
+                <field name="existant"/>
                 <field name="date_edof"/>
                 <field name="state"/>
                 <field name="existantsurmooc"/>
 
-                <field name="existant"/>
             </tree>
         </field>
     </record>
-    <record model="ir.ui.view" id="mcm_openedx_attente_form_view">
+    <record id="mcm_openedx_attente_form_view" model="ir.ui.view">
         <field name="name">Apprenants En attente</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
@@ -46,22 +46,20 @@
                     <h5>State</h5>
                     <field name="state"/>
                     <br/>
-
                     <br/>
                     <h5>Numero CPF</h5>
                     <field name="externalId"/>
-
                     <br/>
                     <h5>Nom</h5>
                     <field name="firstName"/>
                     <br/>
-
                     <h5>Prenom</h5>
                     <field name="lastName"/>
                     <h5>Exist sur moocit</h5>
-                    <field name="existant"/>
-                    <h5>Exist sur ODOO</h5>
                     <field name="existantsurmooc"/>
+
+                    <h5>Exist sur ODOO</h5>
+                    <field name="existant"/>
 
                 </sheet>
 
@@ -113,6 +111,8 @@
                                 <br/>
                                 ExternalId
                                 <field name="externalId"/>
+                                <br/>
+                                <field name="existantsurmooc"/>
 
                             </div>
                         </div>

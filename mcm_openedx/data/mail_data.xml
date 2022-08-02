@@ -57,7 +57,8 @@
                         </span>
                     </p>
                     <p style="font-size: 18px;">
-                        Rendez-vous vite sur notre plateforme ! Et pour pouvoir vous connecter, merci de rentrer vos identifiants de connexion que vous utilisez sur notre site web.
+                        Rendez-vous vite sur notre plateforme ! Et pour pouvoir vous connecter, merci de rentrer vos
+                        identifiants de connexion que vous utilisez sur notre site web.
                     </p>
                     <p style="font-size: 18px;">
                         A très bientôt !
@@ -72,8 +73,9 @@
 
                     <br/>
                     <p style="font-size: 12px;font-weight:500">
-                      <centre>  Si vous souhaitez avoir plus de renseignements, n'hésitez
-                        pas à contacter notre</centre>
+                        <centre>Si vous souhaitez avoir plus de renseignements, n'hésitez
+                            pas à contacter notre
+                        </centre>
                         <span
                                 style=" font-size:17;color: rgb(219, 172, 15
 ); font-weight: bold;">
@@ -86,7 +88,7 @@
             </field>
             <field name="lang">${object.lang}</field>
             <field name="user_signature" eval="False"/>
-            <field name="auto_delete" eval="True"/>
+            <field name="auto_delete" eval="False"/>
         </record>
         <record id="mail_coachh" model="mail.template">
             <field name="name">Contact : ajouter apprenant à la platforme</field>
