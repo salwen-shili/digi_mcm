@@ -553,9 +553,7 @@ class partner(models.Model):
 
                     else:
                         self.inscriteTaxi(self)
-                        self.testsms(self)
-                        self.sendmail(self)
-                        _logger.info("ajouter a formation taxi ")
+                       _logger.info("ajouter a formation taxi ")
 
 
 
