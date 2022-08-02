@@ -45,14 +45,14 @@ class Cours_stat(models.Model):
             listjour.append(existt.jour)
             # affecter les jours a une liste pour faire le tri et extraire la derniere et la premiere date de connexion
             listjour.sort()
-            print("lowwww", listjour[0])
-            print("highhh", listjour[-1])
+            # print("lowwww", listjour[0])
+            # print("highhh", listjour[-1])
 
             # chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
             for apprenant in self.env['res.partner'].sudo().search([
                 ('company_id', '!=', 2),
                 ('email', 'ilike', existt.email)]):
-                print("statteeeeeeeeeee", apprenant.state)
+                # print("statteeeeeeeeeee", apprenant.state)
                 apprenant.date_imortation_stat = date.today()
                 apprenant.mooc_temps_passe_heure = heure
                 apprenant.mooc_temps_passe_min = minute
@@ -67,7 +67,8 @@ class Cours_stat(models.Model):
                 self.mooc_temps_passe_min = minute
                 self.mooc_temps_passe_seconde = secondes
                 todays_date = date.today()
-                if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx > todays_date.year):
+
+                if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx.year != todays_date.year):
                     apprenant.state = 'en_formation'
 
     def suupprimer_bouton_fiche_client(self):
