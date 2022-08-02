@@ -489,7 +489,9 @@ class partner(models.Model):
                 bolt = self.bolt
                 evalbox = self.numero_evalbox
                 departement = self.state_id.code
-                _logger.info(departement)
+                _logger.info('departement %s' % str(departement))
+                _logger.info('Client ajouter a la platforme staut code 200 %s' % str(partner.email))
+
                 # Formation à distance Taxi
                 if (partner.module_id.product_id.default_code == "taxi"):
                     _logger.info("formation valide")
@@ -531,7 +533,9 @@ class partner(models.Model):
                 bolt = self.bolt
                 evalbox = self.numero_evalbox
                 departement = self.state_id.code
-                _logger.info(departement)
+                _logger.info('departement %s' % str(departement))
+                _logger.info('Client ajouter aux cours 409 %s' % str(partner.email))
+
                 # Formation à distance Taxi
                 if (partner.module_id.product_id.default_code == "taxi"):
                     _logger.info("formation valide")
