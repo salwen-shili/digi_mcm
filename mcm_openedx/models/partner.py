@@ -212,6 +212,7 @@ class partner(models.Model):
                     bolt = partner.bolt
                     if (bolt):
                         self.ajouter_IOne_MCM(partner)
+
                         _logger.info('ceci est un client bolt il va etre ajouter ssans verifer les autres conditions ')
 
                     else:
@@ -310,6 +311,8 @@ class partner(models.Model):
             _logger.info('self.numero_evalbox != False ')
             if (bolt):
                 self.ajouter_IOne_MCM(self)
+                self.testsms(self)
+                self.sendmail(self)
                 _logger.info('ceci est un client bolt il va etre ajouter ssans verifer les autres conditions ')
 
             else:
