@@ -35,7 +35,7 @@ class OnfidoController(http.Controller):
             _logger.info('get document %s' %str(document))
         if 'document_front' in data:
             document_front_id=data['document_front']['id']
-            # name_front = str(data['document_front']['type']) + "_" + str(data['document_front']['side'])
+            name_front = str(data['document_front']['type']) + "_" + str(data['document_front']['side'])
             # """Telecharger les documents sous format binaire par l'api onfido"""
             # download_document_front = partner.downloadDocument(document_front_id, website.onfido_api_key_live)
             # image_front_binary = base64.b64encode(download_document_front)
