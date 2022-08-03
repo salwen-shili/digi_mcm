@@ -31,8 +31,6 @@ class OnfidoController(http.Controller):
         _logger.info('partner_id %s' % str(request.env.user.partner_id.id))
         _logger.info('partner_id %s' % str(folder_id))
         website = request.env['website'].get_current_website()
-        for document in data:
-            _logger.info('get document %s' %str(document))
         if 'document_front' in data:
             document_front_id=data['document_front']['id']
             name_front = str(data['document_front']['type']) + "_" + str(data['document_front']['side'])
@@ -131,7 +129,7 @@ class OnfidoController(http.Controller):
                     _logger.info("document %s" % str(documents))
                     if documents:
                         for document in documents:
-                            document.state = "validated"
+                            document.state = "refused"
                     # self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"refused",currentUser)
                     # self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"refused",currentUser)
                     # 
