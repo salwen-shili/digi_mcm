@@ -126,8 +126,8 @@ class OnfidoController(http.Controller):
                 currentUser.validation_onfido="fail"
                 if data_onfido:
                     data_onfido.validation_onfido="fail"
-                _logger.info('*************************************currentUser.validation_onfido***************** %s' % str(currentUser.validation_onfido))
-                documents=request.env['documents.document'].sudo().search([('partner_id',"=",currentUser.id)])
+                _logger.info('*************************************currentUser.validation_onfido***************** %s' % str(currentUser.id))
+                documents=request.env['documents.document'].sudo().search([('partner_id',"=",currentUser)])
                 _logger.info("documents %s" %str(documents))
     
                 if documents:
@@ -143,7 +143,7 @@ class OnfidoController(http.Controller):
                 currentUser.validation_onfido = "clear"
                 if data_onfido:
                     data_onfido.validation_onfido="clear"
-                documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
+                documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser)])
                 if documents:
                     for document in documents:
                         document.state="validated"
