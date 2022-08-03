@@ -53,7 +53,7 @@ class OnfidoController(http.Controller):
             # )
             if data_onfido:
                 data_onfido.id_document_front=document_front_id
-            _logger.info('front %s' % str(attachement_front))
+            # _logger.info('front %s' % str(attachement_front))
             extraction = partner.autofill(document_front_id, website.onfido_api_key_live)
             """Si les informations sont correctement extraits,
             on fait la mise à jour de la fiche client """
@@ -70,9 +70,9 @@ class OnfidoController(http.Controller):
         if 'document_back' in data:
             document_back_id=data['document_back']['id']
             name_back=str(data['document_back']['type'])+"_"+str(data['document_back']['side'])
-            download_document_back = partner.downloadDocument(document_back_id, website.onfido_api_key_live)
-            download_face_photo = partner.downloadFace(partner.onfido_applicant_id, website.onfido_api_key_live)
-            image_back_binary = base64.b64encode(download_document_back)
+            # download_document_back = partner.downloadDocument(document_back_id, website.onfido_api_key_live)
+            # download_face_photo = partner.downloadFace(partner.onfido_applicant_id, website.onfido_api_key_live)
+            # image_back_binary = base64.b64encode(download_document_back)
             # attachement_back = request.env['documents.document'].sudo().create(
             #     {
             #         'name': name_back,
@@ -85,7 +85,7 @@ class OnfidoController(http.Controller):
             # )
             if data_onfido:
                 data_onfido.id_document_back = document_back_id
-            _logger.info('back %s' % str(attachement_back))
+            # _logger.info('back %s' % str(attachement_back))
         if 'face' in data:
             face_id=data['face']['id']
             face_binary = base64.b64encode(download_face_photo)
@@ -99,7 +99,7 @@ class OnfidoController(http.Controller):
             #         'state': 'waiting'
             #     }
             # )
-            _logger.info('face %s' % str(attachement_face))
+            # _logger.info('face %s' % str(attachement_face))
         return True
 
     """get event workflowrund is completed with webhook """
