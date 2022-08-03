@@ -68,19 +68,33 @@
         <field name="interval_number">58</field>
         <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>
-        <field name="priority" eval="3"/>
+        <field name="priority" eval="2"/>
     </record>
 
 
     <!-- tache cron pour voir statut en attent edof -->
 
     <record id="ir_cron_edof_moocitt" model="ir.cron">
-        <field name="name">edof verification
+        <field name="name">edof verification mcm
         </field>
         <field name="model_id" ref="model_mcm_openedx_enattente"/>
         <field name="active" eval="True"></field>
         <field name="state">code</field>
         <field name="code">model.wedof_api_integration_moocit()</field>
+        <field name="interval_number">10</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="priority" eval="3"/>
+    </record>
+    <!-- tache cron pour voir statut en attent edof -->
+
+    <record id="ir_cron_update_datesupp" model="ir.cron">
+        <field name="name">edof verification mcm
+        </field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="active" eval="True"></field>
+        <field name="state">code</field>
+        <field name="code">model.update_datesupp(()</field>
         <field name="interval_number">10</field>
         <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>

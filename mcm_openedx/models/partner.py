@@ -498,7 +498,6 @@ class partner(models.Model):
                     if (departement == "59"):
                         self.inscriteTaxi(self)
                         self.ajoutconnaisancelocalNord(self)
-                        self.update_datesupp(self)
                         _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
 
                     elif (departement == "62"):
