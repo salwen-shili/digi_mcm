@@ -128,8 +128,8 @@ class OnfidoController(http.Controller):
                     data_onfido.validation_onfido="fail"
                     _logger.info('*************************************currentUser.validation_onfido***************** %s' % str(currentUser.id))
 
-                    self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"refused")
-                    self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"refused")
+                    self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"refused",currentUser)
+                    self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"refused",currentUser)
                   
                 return True
             if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'clear':
@@ -137,8 +137,8 @@ class OnfidoController(http.Controller):
                 currentUser.validation_onfido = "clear"
                 if data_onfido:
                     data_onfido.validation_onfido="clear"
-                    self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"validated")
-                    self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"validated")
+                    self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"validated",currentUser)
+                    self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"validated",currentUser)
 
 
             return True
