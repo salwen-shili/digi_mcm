@@ -483,7 +483,7 @@ class partner(models.Model):
             _logger.info('user %s' % str(payload))
             if (response_ajouter_IOne_MCM.status_code == 200):
                 partner.inscrit_mcm = date.today()
-                self.testsms(self)
+                #self.testsms(self)
                 self.sendmail(self)
                 self.write({'state': 'en_formation'})
                 bolt = self.bolt
