@@ -190,6 +190,7 @@ class partner(models.Model):
         # ajouter les apprenants    automatiquememnt a partire de  la fiche Client
 
     def ajoutMoocit_automatique(self):
+        _logger.info(" ajoutMoocit_automatique")
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
@@ -296,161 +297,159 @@ class partner(models.Model):
         # if (self.mcm_session_id.date_debut.year >= todays_date.year):
         #     print("okokookokokokok")
         # print("sellff", self.numero_evalbox)
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            # ajout manuelle  des utilsateur sur MOOCit
-            # verifier staut de sale
-            sale_order = self.env['sale.order'].sudo().search(
-                [('partner_id', '=', self.id),
-                 ('state', '=', 'sale'),
-                 ('session_id', '=', self.mcm_session_id.id),
-                 ('module_id', '=', self.module_id.id),
-                 ], limit=1, order="id desc")
+        # ajout manuelle  des utilsateur sur MOOCit
+        # verifier staut de sale
+        sale_order = self.env['sale.order'].sudo().search(
+            [('partner_id', '=', self.id),
+             ('state', '=', 'sale'),
+             ('session_id', '=', self.mcm_session_id.id),
+             ('module_id', '=', self.module_id.id),
+             ], limit=1, order="id desc")
 
-            # en va changer numero_evalbox avec numero eval ..
-            # verifier si la case evalbox est True
-            _logger.info('numeroooooooo %s' % str(self.numero_evalbox))
+        # en va changer numero_evalbox avec numero eval ..
+        # verifier si la case evalbox est True
+        _logger.info('numeroooooooo %s' % str(self.numero_evalbox))
 
-            if (self.numero_evalbox != False and (self.statut == "won")):
-                bolt = self.bolt
+        if (self.numero_evalbox != False and (self.statut == "won")):
+            bolt = self.bolt
 
-                _logger.info('self.numero_evalbox != False ')
-                if (bolt):
-                    self.ajouter_IOne_MCM(self)
-                    _logger.info('ceci est un client bolt il va etre ajouter ssans verifer les autres conditions ')
+            _logger.info('self.numero_evalbox != False ')
+            if (bolt):
+                self.ajouter_IOne_MCM(self)
+                _logger.info('ceci est un client bolt il va etre ajouter ssans verifer les autres conditions ')
 
+            else:
+                # Récupérer les documents et vérifier si ils sont validés ou non
+                documents = self.env['documents.document'].sudo().search([('partner_id', '=', self.id)])
+                document_valide = False
+                count = 0
+                for document in documents:
+                    if (document.state == "validated"):
+                        count = count + 1
+                _logger.info('count %s ' % str(count))
+                _logger.info('len %s' % str(len(documents)))
+                if (count == len(documents) and count != 0 and bolt == False):
+                    document_valide = True
                 else:
-                    # Récupérer les documents et vérifier si ils sont validés ou non
-                    documents = self.env['documents.document'].sudo().search([('partner_id', '=', self.id)])
-                    document_valide = False
-                    count = 0
-                    for document in documents:
-                        if (document.state == "validated"):
-                            count = count + 1
-                    _logger.info('count %s ' % str(count))
-                    _logger.info('len %s' % str(len(documents)))
-                    if (count == len(documents) and count != 0 and bolt == False):
-                        document_valide = True
+                    # si les document ne sont  pas valide une notif appartient sur odoo
+                    return {
+                        'type': 'ir.actions.client',
+                        'tag': 'display_notification',
+                        'params': {
+                            'title': _('Document a verifier 🤓 🤓  '),
+                            'message': _('Document a verifier 🤓 🤓'),
+                            'sticky': True,
+                            'className': 'bg-danger'
+                        }
+                    }
+
+                # defenir le mode de financement
+                if self.mode_de_financement == "particulier":
+                    _logger.info('mode_de_financement %s' % str(self.mode_de_financement))
+                    # verifier si le sale et les documents et satut sont valides
+                    if ((sale_order) and (document_valide) and (self.statut == "won") and (bolt == False)):
+                        _logger.info('document et sale valide Condition 1 validee %s')
+
+                        # verifer avec ines statue sale.order
+                        if (sale_order.state == 'sale') and (sale_order.signature) and (bolt == False):
+                            _logger.info('sale order et signature valide %s')
+
+                            # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                            if (self.renounce_request):
+                                self.ajouter_IOne_MCM(self)
+
+                                _logger.info(' tout est valide %s')
+
+                            # si non il doit attendre 14jours pour etre ajouté a la platform*
+                            today = date.today()
+                            if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
+                                self.ajouter_IOne_MCM(self)
+                                _logger.info(' tout est valide %s')
+
+
+
+
+
                     else:
-                        # si les document ne sont  pas valide une notif appartient sur odoo
+                        # si sale order ou bien les document ne sont pas valides  ou bien satut nest pas ganger alors en affiche une alert
                         return {
                             'type': 'ir.actions.client',
                             'tag': 'display_notification',
                             'params': {
-                                'title': _('Document a verifier 🤓 🤓  '),
-                                'message': _('Document a verifier 🤓 🤓'),
+                                'title': _(' verifier sale order ou bien signature ou bien staut 🤓 🤓'),
+                                'message': _(' verifier sale order ou bien signature ou bien staut 🤓 🤓'),
                                 'sticky': True,
                                 'className': 'bg-danger'
                             }
                         }
+                if self.mode_de_financement == "cpf":
+                    _logger.info(' date exman %s' % str(self.mcm_session_id.date_exam))
+                    if (document_valide) and (self.mcm_session_id.date_exam) and (
+                            self.mcm_session_id.date_exam > date.today()) and (bolt == False):
+                        _logger.info('document valide , date exlan > datetoday , et nest pas bolt %s')
+                        if (self.renounce_request):
+                            self.ajouter_IOne_MCM(self)
+                            _logger.info(' tout est valide %s')
 
-                    # defenir le mode de financement
-                    if self.mode_de_financement == "particulier":
-                        _logger.info('mode_de_financement %s' % str(self.mode_de_financement))
-                        # verifier si le sale et les documents et satut sont valides
-                        if ((sale_order) and (document_valide) and (self.statut == "won") and (bolt == False)):
-                            _logger.info('document et sale valide Condition 1 validee %s')
-
-                            # verifer avec ines statue sale.order
-                            if (sale_order.state == 'sale') and (sale_order.signature) and (bolt == False):
-                                _logger.info('sale order et signature valide %s')
-
-                                # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
-                                if (self.renounce_request):
-                                    self.ajouter_IOne_MCM(self)
-
-                                    _logger.info(' tout est valide %s')
-
-                                # si non il doit attendre 14jours pour etre ajouté a la platform*
-                                today = date.today()
-                                if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
-                                    self.ajouter_IOne_MCM(self)
-                                    _logger.info(' tout est valide %s')
-
+                    if not (self.renounce_request) and self.numero_cpf:
+                        """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
+                        headers = {
+                            'accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'X-API-KEY': self.company_id.wedof_api_key,
+                        }
+                        params_wedof = (
+                            ('order', 'desc'),
+                            ('type', 'all'),
+                            ('state', 'accepted'),
+                            ('billingState', 'all'),
+                            ('certificationState', 'all'),
+                            ('sort', 'lastUpdate'),
+                        )
+                        responsesession = requests.get(
+                            'https://www.wedof.fr/api/registrationFolders/' + self.numero_cpf,
+                            headers=headers, params=params_wedof)
+                        dossier = responsesession.json()
+                        dateDebutSession_str = ""
+                        _logger.info('session %s' % str(dossier))
+                        if "trainingActionInfo" in dossier:
+                            dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
+                            _logger.info(' testtt %s')
+                            dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
+                            _logger.info('dateDebutSession %s' % str(dateDebutSession))
+                            print(datetime.today())
+                            if dateDebutSession <= datetime.today():
+                                self.ajouter_IOne_MCM(self)
+                                _logger.info(' tout est valide %s')
 
 
 
 
                         else:
-                            # si sale order ou bien les document ne sont pas valides  ou bien satut nest pas ganger alors en affiche une alert
+                            _logger.info("seesion et date exman")
                             return {
                                 'type': 'ir.actions.client',
                                 'tag': 'display_notification',
                                 'params': {
-                                    'title': _(' verifier sale order ou bien signature ou bien staut 🤓 🤓'),
-                                    'message': _(' verifier sale order ou bien signature ou bien staut 🤓 🤓'),
+                                    'title': _('Verifier session et date exman🤓 🤓'),
+                                    'message': _('Verifier session et date exman 🤓 🤓'),
                                     'sticky': True,
                                     'className': 'bg-danger'
                                 }
                             }
-                    if self.mode_de_financement == "cpf":
-                        _logger.info(' date exman %s' % str(self.mcm_session_id.date_exam))
-                        if (document_valide) and (self.mcm_session_id.date_exam) and (
-                                self.mcm_session_id.date_exam > date.today()) and (bolt == False):
-                            _logger.info('document valide , date exlan > datetoday , et nest pas bolt %s')
-                            if (self.renounce_request):
-                                self.ajouter_IOne_MCM(self)
-                                _logger.info(' tout est valide %s')
 
-                        if not (self.renounce_request) and self.numero_cpf:
-                            """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
-                            headers = {
-                                'accept': 'application/json',
-                                'Content-Type': 'application/json',
-                                'X-API-KEY': self.company_id.wedof_api_key,
-                            }
-                            params_wedof = (
-                                ('order', 'desc'),
-                                ('type', 'all'),
-                                ('state', 'accepted'),
-                                ('billingState', 'all'),
-                                ('certificationState', 'all'),
-                                ('sort', 'lastUpdate'),
-                            )
-                            responsesession = requests.get(
-                                'https://www.wedof.fr/api/registrationFolders/' + self.numero_cpf,
-                                headers=headers, params=params_wedof)
-                            dossier = responsesession.json()
-                            dateDebutSession_str = ""
-                            _logger.info('session %s' % str(dossier))
-                            if "trainingActionInfo" in dossier:
-                                dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
-                                _logger.info(' testtt %s')
-                                dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
-                                _logger.info('dateDebutSession %s' % str(dateDebutSession))
-                                print(datetime.today())
-                                if dateDebutSession <= datetime.today():
-                                    self.ajouter_IOne_MCM(self)
-                                    _logger.info(' tout est valide %s')
-
-
-
-
-                            else:
-                                _logger.info("seesion et date exman")
-                                return {
-                                    'type': 'ir.actions.client',
-                                    'tag': 'display_notification',
-                                    'params': {
-                                        'title': _('Verifier session et date exman🤓 🤓'),
-                                        'message': _('Verifier session et date exman 🤓 🤓'),
-                                        'sticky': True,
-                                        'className': 'bg-danger'
-                                    }
-                                }
-
-            else:
-                # si les document ne sont  pas valide une notif appartient sur odoo
-                return {
-                    'type': 'ir.actions.client',
-                    'tag': 'display_notification',
-                    'params': {
-                        'title': _('Eval Box Non cocher :)  '),
-                        'message': _('Eval Box Non cocher :)'),
-                        'sticky': True,
-                        'className': 'bg-danger'
-                    }
+        else:
+            # si les document ne sont  pas valide une notif appartient sur odoo
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Eval Box Non cocher :)  '),
+                    'message': _('Eval Box Non cocher :)'),
+                    'sticky': True,
+                    'className': 'bg-danger'
                 }
+            }
 
     # fonction pour tester si le client en partenriat Avec Bolt ou non Si nn i la va  identifier le Client avec le nom de la company
     def estBolt(self):
@@ -601,8 +600,7 @@ class partner(models.Model):
                 'mcm_openedx.email_template_add_Ione_MOOcit',
                 raise_if_not_found=False)
         if template_id:
-            partner.with_context(force_send=True).message_post_with_template(template_id,
-                                                                             composition_mode='comment', )
+            partner.with_context(force_send=True).message_post_with_template(template_id, composition_mode='comment', )
 
             _logger.info("mail envoyeé")
             _logger.info(partner.email)
