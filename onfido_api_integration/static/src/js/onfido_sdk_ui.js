@@ -228,7 +228,7 @@ onfidoOut = Onfido.init({
     console.log("error occurs", data);
   },
   workflowRunId: workflow_run_id,
-  language: "fr_FR",
+  language: 'fr_FR '| 'fr',
 });
 
 //onfidoOut.setOptions({

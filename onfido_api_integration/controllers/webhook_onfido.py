@@ -34,23 +34,23 @@ class OnfidoController(http.Controller):
         for document in data:
             _logger.info('get document %s' %str(document))
         if 'document_front' in data:
-            document_front_id=data['document_front']['id']
-            name_front = str(data['document_front']['type']) + "_" + str(data['document_front']['side'])
-            """Telecharger les documents sous format binaire par l'api onfido"""
-            download_document_front = partner.downloadDocument(document_front_id, website.onfido_api_key_live)
-            image_front_binary = base64.b64encode(download_document_front)
-            print('document from api %s' % str(document_front_id))
-            """Creer les documents pour l'utilisateur courant"""
-            attachement_front = request.env['documents.document'].sudo().create(
-                {
-                    'name': name_front,
-                    'datas': image_front_binary,
-                    'type': 'binary',
-                    'partner_id': request.env.user.partner_id.id,
-                    'folder_id': folder_id.id,
-                    'state': 'waiting'
-                }
-            )
+            # document_front_id=data['document_front']['id']
+            # name_front = str(data['document_front']['type']) + "_" + str(data['document_front']['side'])
+            # """Telecharger les documents sous format binaire par l'api onfido"""
+            # download_document_front = partner.downloadDocument(document_front_id, website.onfido_api_key_live)
+            # image_front_binary = base64.b64encode(download_document_front)
+            # print('document from api %s' % str(document_front_id))
+            # """Creer les documents pour l'utilisateur courant"""
+            # attachement_front = request.env['documents.document'].sudo().create(
+            #     {
+            #         'name': name_front,
+            #         'datas': image_front_binary,
+            #         'type': 'binary',
+            #         'partner_id': request.env.user.partner_id.id,
+            #         'folder_id': folder_id.id,
+            #         'state': 'waiting'
+            #     }
+            # )
             if data_onfido:
                 data_onfido.id_document_front=document_front_id
             _logger.info('front %s' % str(attachement_front))
@@ -73,32 +73,32 @@ class OnfidoController(http.Controller):
             download_document_back = partner.downloadDocument(document_back_id, website.onfido_api_key_live)
             download_face_photo = partner.downloadFace(partner.onfido_applicant_id, website.onfido_api_key_live)
             image_back_binary = base64.b64encode(download_document_back)
-            attachement_back = request.env['documents.document'].sudo().create(
-                {
-                    'name': name_back,
-                    'datas': image_back_binary,
-                    'type': 'binary',
-                    'partner_id': request.env.user.partner_id.id,
-                    'folder_id': folder_id.id,
-                    'state': 'waiting'
-                }
-            )
+            # attachement_back = request.env['documents.document'].sudo().create(
+            #     {
+            #         'name': name_back,
+            #         'datas': image_back_binary,
+            #         'type': 'binary',
+            #         'partner_id': request.env.user.partner_id.id,
+            #         'folder_id': folder_id.id,
+            #         'state': 'waiting'
+            #     }
+            # )
             if data_onfido:
                 data_onfido.id_document_back = document_back_id
             _logger.info('back %s' % str(attachement_back))
         if 'face' in data:
             face_id=data['face']['id']
             face_binary = base64.b64encode(download_face_photo)
-            attachement_face = request.env['documents.document'].sudo().create(
-                {
-                    'name': "Visage",
-                    'datas': face_binary,
-                    'type': 'binary',
-                    'partner_id': request.env.user.partner_id.id,
-                    'folder_id': folder_id.id,
-                    'state': 'waiting'
-                }
-            )
+            # attachement_face = request.env['documents.document'].sudo().create(
+            #     {
+            #         'name': "Visage",
+            #         'datas': face_binary,
+            #         'type': 'binary',
+            #         'partner_id': request.env.user.partner_id.id,
+            #         'folder_id': folder_id.id,
+            #         'state': 'waiting'
+            #     }
+            # )
             _logger.info('face %s' % str(attachement_face))
         return True
 
@@ -126,16 +126,10 @@ class OnfidoController(http.Controller):
                 currentUser.validation_onfido="fail"
                 if data_onfido:
                     data_onfido.validation_onfido="fail"
-                _logger.info('*************************************currentUser.validation_onfido***************** %s' % str(currentUser.id))
-                documents=request.env['documents.document'].sudo().search([('owner_id',"=",currentUser.id)])
-                _logger.info("documents %s" %str(documents))
-    
-                if documents:
-                    
-                    for document in documents:
-                        document.state = "refused"
+                    _logger.info('*************************************currentUser.validation_onfido***************** %s' % str(currentUser.id))
 
-                        _logger.info("documents %s" % str(document.state))
+                    self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"refused")
+                    self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"refused")
                   
                 return True
             if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'clear':
@@ -143,11 +137,9 @@ class OnfidoController(http.Controller):
                 currentUser.validation_onfido = "clear"
                 if data_onfido:
                     data_onfido.validation_onfido="clear"
-                documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
-                if documents:
-                    for document in documents:
-                        document.state="validated"
-                        _logger.info("documents %s" % str(document.state))
+                    self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"validated")
+                    self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"validated")
+
 
             return True
 
@@ -166,4 +158,28 @@ class OnfidoController(http.Controller):
 
     
 
-    
+    def create_document(self,document_id,side,type,state,currentUser):
+        folder_id = request.env['documents.folder'].sudo().search(
+            [('name', "=", _('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
+        _logger.info('partner_id %s' % str(request.env.user.partner_id.id))
+        _logger.info('partner_id %s' % str(folder_id))
+        website = request.env['website'].get_current_website()
+        name = str(type) + "_" + str(side)
+        """Telecharger les documents sous format binaire par l'api onfido"""
+        download_document= currentUser.downloadDocument(document_id, website.onfido_api_key_live)
+        image_binary = base64.b64encode(download_document)
+        print('document from api %s' % str(document_id))
+        """Creer les documents pour l'utilisateur courant"""
+        attachement = request.env['documents.document'].sudo().create(
+                {
+                    'name': name,
+                    'datas': image_binary,
+                    'type': 'binary',
+                    'partner_id': currentUser.id,
+                    'folder_id': folder_id.id,
+                    'state': state
+                }
+            )
+
+        _logger.info('front %s' % str(attachement))
+        return True
