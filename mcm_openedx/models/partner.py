@@ -190,11 +190,11 @@ class partner(models.Model):
         # ajouter les apprenants    automatiquememnt a partire de  la fiche Client
 
     def ajoutMoocit_automatique(self):
-
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                                   ('company_id', '=', 1),
+                                                                  ('numero_evalbox ', '!=', False),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
                 _logger.info(partner.name)
@@ -290,11 +290,12 @@ class partner(models.Model):
 
                 # ajouter les apprenants manuellemnt a partire de  la fiche Client
 
-    @api.depends('numero_evalbox')
     def ajoutMoocit_manuelle(self):
-        print("sellff", self.name)
-        print("sellff", self.numero_evalbox)
-        print("oooooooooooooooooooooooooooooooooooooooook")
+        # todays_date = date.today()
+        # print(todays_date.year)
+        # if (self.mcm_session_id.date_debut.year >= todays_date.year):
+        #     print("okokookokokokok")
+        # print("sellff", self.numero_evalbox)
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             # ajout manuelle  des utilsateur sur MOOCit

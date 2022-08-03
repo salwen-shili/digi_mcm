@@ -7,10 +7,11 @@
         <field name="trigger">on_create_or_write</field>
         <field name="trigger_field_ids" eval="[(4,ref('crm_marketing_automation.field_res_partner__numero_evalbox'))]"/>
         <field name="active" eval="True"/>
-        <field name="state">multi</field>
-        <field name="code">
-            action = model.ajoutMoocit_automatique()
-        </field>
+        <field name="state">code</field>
+        <field name="filter_domain">[('company_id', '=', 1)]</field>
+        <field name="filter_pre_domain">[('company_id', '=', 1)]</field>
+
+        <field name="code">model.ajoutMoocit_automatique()</field>
 
     </record>
 </odoo>
