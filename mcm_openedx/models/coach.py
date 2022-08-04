@@ -72,29 +72,27 @@ class enattente(models.Model):
             billingState = dossier['billingState']
             externalId = dossier['externalId']
             lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
-
             # print('dateeeeeeeeee', today, dateFormation, certificat, idform)
             # print('diplome',diplome)
-
             if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi"):
-
-                print(attendee['email'])
+                _logger.info("Habilitation pour l’accès à la profession de conducteur de taxi")
+                _logger.info(attendee['email'])
                 existee = self.env['mcm_openedx.enattente'].search(
                     [('name', '=', email)])
-
-                print(existee.name)
-                print(existee.externalId)
+                _logger.info(existee.name)
+                _logger.info(existee.externalId)
                 if existee:
                     _logger.info("existtttt")
                     for partner in self.env['res.partner'].search(
-                            [('numero_cpf', '!=', False)
+                            [('numero_cpf', '!=', False, ('statut_cpf', '!=', 'canceled'))
                              ]):
                         if (partner.numero_cpf == existee.externalId):
                             existee.existant = True
-                            print(existee.existant)
-                            print("res.partner db", partner.numero_cpf)
+                            _logger.info(existee.existant)
+                            _logger.info("res.partner db", partner.numero_cpf)
                             for existt in self.env['mcm_openedx.course_stat'].sudo().search(
                                     [('email', "=", existee.name)]):
+
                                 existee.existantsurmooc = True
                                 print(partner.name)
                                 print(partner.email)
