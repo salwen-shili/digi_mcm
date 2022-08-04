@@ -47,7 +47,8 @@
                             state="supprimé"></button>
                     <button name="notifierapprenant" string="Notifier Apprenant"
                             attrs="{'invisible': [('company_id', '=', 2)]}"
-                            type="object"></button>
+                            type="object" confirm="Envoyer un Mail"
+                            state="mail envoyé"></button>
 
                     <field name="state" widget="statusbar" statusbar_visible="en_attente,en_formation,supprimé"
                            attrs="{'invisible': [('company_id', '=', 2)]}"/>

@@ -47,7 +47,7 @@
         "views/assets.xml",
         # "views/update.xml",
         'data/mail_data.xml',
-        'data/automation_action_add_evalbox.xml',
+        #'data/automation_action_add_evalbox.xml',
         'views/dashboard.xml',
 
     ],
