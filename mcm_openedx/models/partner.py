@@ -292,6 +292,7 @@ class partner(models.Model):
                 # ajouter les apprenants manuellemnt a partire de  la fiche Client
 
     def ajoutMoocit_manuelle(self):
+        _logger.info('password360%s' % str(self.password360))
         # todays_date = date.today()
         # print(todays_date.year)
         # if (self.mcm_session_id.date_debut.year >= todays_date.year):
@@ -491,13 +492,14 @@ class partner(models.Model):
             _logger.info('user %s' % str(payload))
             if (response_ajouter_IOne_MCM.status_code == 200):
                 partner.inscrit_mcm = date.today()
-                self.testsms(self)
+                # self.testsms(self)
                 self.sendmail(self)
                 self.write({'state': 'en_formation'})
                 bolt = self.bolt
                 evalbox = self.numero_evalbox
                 departement = self.state_id.code
                 _logger.info('departement %s' % str(departement))
+                _logger.info('partner.inscrit_mcm = date.today() affecter date ajout')
                 _logger.info('Client ajouter a la platforme staut code 200 %s' % str(partner.email))
 
                 # Formation à distance Taxi
@@ -581,7 +583,7 @@ class partner(models.Model):
                         vals)
 
     # envoit d'un mail
-    def sendmail(self, partner):
+    def sendmail(self):
         if self.env.su:
             # sending mail in sudo was meant for it being sent from superuser
             self = self.with_user(SUPERUSER_ID)
@@ -604,6 +606,31 @@ class partner(models.Model):
 
             _logger.info("mail envoyeé")
             _logger.info(partner.email)
+
+    # notifier apprenant
+    def notifierapprenant(self):
+        if self.env.su:
+            # sending mail in sudo was meant for it being sent from superuser
+            self = self.with_user(SUPERUSER_ID)
+        if not self.lang:
+            self.lang = 'fr_FR'
+        _logger.info('avant email mcm_openedx %s' % str(self.name))
+        template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+            'mcm_openedx.mail_template_add_Ione_MOOcit'))
+        template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+        if not template_id:
+            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'mcm_openedx.mail_template_add_Ione_MOOcit',
+                raise_if_not_found=False)
+        if not template_id:
+            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'mcm_openedx.email_template_add_Ione_MOOcit',
+                raise_if_not_found=False)
+        if template_id:
+            self.with_context(force_send=True).message_post_with_template(template_id, composition_mode='comment', )
+
+            _logger.info("mail envoyeé")
+            _logger.info(self.email)
 
     # envoit d'un sms
     def testsms(self, partner):

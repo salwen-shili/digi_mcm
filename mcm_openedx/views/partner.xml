@@ -45,6 +45,9 @@
                             attrs="{'invisible': [('company_id', '=', 2)]}"
                             type="object" confirm="Confirmer Suppression"
                             state="supprimé"></button>
+                    <button name="notifierapprenant" string="Notifier Apprenant"
+                            attrs="{'invisible': [('company_id', '=', 2)]}"
+                            type="object"></button>
 
                     <field name="state" widget="statusbar" statusbar_visible="en_attente,en_formation,supprimé"
                            attrs="{'invisible': [('company_id', '=', 2)]}"/>
