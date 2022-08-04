@@ -437,7 +437,7 @@ Mais nous avons une autre offre pour vous...`;
     case 'finish':
       if (document.getElementById('cartIsEmpty').value == 'False') {
         if (isBoltState == 'True') {
-          if (isSignedState == 'True') {
+//          if (isSignedState == 'True') {
             //********************* New process with Jotform*/
             //********************* */
             //********************* */
@@ -476,7 +476,7 @@ Mais nous avons une autre offre pour vous...`;
             //************** End Old Process ****************//
             //*****************************//
             //*****************************//
-          }
+//          }
         } else {
           // his not bolt
           // => Step 4 is his final step
