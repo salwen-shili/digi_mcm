@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 
 class LoadDocument(Website):
 
-    @http.route('/charger_documents', type='http', auth='public', website=True)
+    @http.route('/charger_documents', type='http', auth='user', website=True)
     def load_document(self, **kw):
         partner=request.env['res.partner'].sudo().search([('id','=',request.env.user.partner_id.id)])
         values = {
