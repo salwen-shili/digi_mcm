@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('isSignedState', isSignedState);
             bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
             console.log(bolt_contract_uri);
-            if (isSignedState == 'True') {
+//            if (isSignedState == 'True') {
               // testing is registred to CMA or not with evalbox true or false
 
               if (p.evalbox == false) {
@@ -271,22 +271,22 @@ document.addEventListener('DOMContentLoaded', function () {
                                             Continuer
                                         </button>`;
               }
-            } else {
-              //constract is not signed
-              bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
-              console.log(bolt_contract_uri);
-              textDescription.innerHTML = `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat.`;
-
-              btnContinuer.setAttribute('href', bolt_contract_uri);
-
-              btnContinuer.innerHTML = `\n <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
-                                            <i class="material-icons right">send</i>
-                                            Signer mon contrat
-                                        </button>`;
-              btnAction.addEventListener('click', function () {
-                window.location.href = bolt_contract_uri;
-              });
-            }
+//            } else {
+//              //constract is not signed
+//              bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
+//              console.log(bolt_contract_uri);
+//              textDescription.innerHTML = `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat.`;
+//
+//              btnContinuer.setAttribute('href', bolt_contract_uri);
+//
+//              btnContinuer.innerHTML = `\n <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
+//                                            <i class="material-icons right">send</i>
+//                                            Signer mon contrat
+//                                        </button>`;
+//              btnAction.addEventListener('click', function () {
+//                window.location.href = bolt_contract_uri;
+//              });
+//            }
 
             // btnContinuer.setAttribute(
             //   'href',
