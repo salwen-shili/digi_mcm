@@ -487,7 +487,7 @@
                                                     </b>
                                                 </div>
                                                 <p class="                                                                 medium                                                                 text-center                                                                 font-weight-bolder                                                                 text-secondary                                                             " style="color: red !important">
-                                                                                                                                Paiement 1 ou 4 fois
+                                                                                                                                Paiement 1 ou 3 fois
                                                                         </p>
                                                 <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-5-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
