@@ -58,7 +58,7 @@
         <field name="arch" type="xml">
             <xpath expr="//form//sheet" position="before">
                 <header>
-                    <button name="send_email_manuel" string="Envoyer invitation"
+                    <button name="send_email_manuel" string="Envoyer invitation 360"
                             type="object" attrs="{'invisible': [('company_id', '=', 1)]}"></button>
                     <button name="supprimer_ione_manuelle" string="Supprimer de 360"
                             attrs="{'invisible': [('company_id', '=', 1)]}"
