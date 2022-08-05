@@ -494,31 +494,15 @@ class partner(models.Model):
             _logger.info('user %s' % str(payload))
             if (response_ajouter_IOne_MCM.status_code == 200):
                 partner.inscrit_mcm = date.today()
+                # The finally__block gets executed no matter if the try block raises any errors or not:
                 # self.testsms(self)
-                if self.env.su:
-                    # sending mail in sudo was meant for it being sent from superuser
-                    self = self.with_user(SUPERUSER_ID)
-                if not partner.lang:
-                    partner.lang = 'fr_FR'
-                _logger.info('avant email mcm_openedx %s' % str(partner.name))
-                template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                    'mcm_openedx.mail_template_add_Ione_MOOcit'))
-                template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-                if not template_id:
-                    template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                        'mcm_openedx.mail_template_add_Ione_MOOcit',
-                        raise_if_not_found=False)
-                if not template_id:
-                    template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                        'mcm_openedx.email_template_add_Ione_MOOcit',
-                        raise_if_not_found=False)
-                if template_id:
-                    partner.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                     composition_mode='comment', )
-
-                    _logger.info("mail envoyeé")
-                    _logger.info(partner.email)
-                    _logger.info('if template  %s' % str(partner.name))
+                try:
+                    self.sendmail(self)
+                except:
+                    _logger.info('problem au niveau denvoit des mail')
+                finally:
+                    partner.inscrit_mcm = date.today()
+                    _logger.info('print date.today()')
 
                 self.write({'state': 'en_formation'})
                 bolt = self.bolt
@@ -620,6 +604,32 @@ class partner(models.Model):
                     print("cree tichket")
                     new_ticket = self.env['helpdesk.ticket'].sudo().create(
                         vals)
+
+    def sendmail(self, partner):
+        if self.env.su:
+            # sending mail in sudo was meant for it being sent from superuser
+            self = self.with_user(SUPERUSER_ID)
+        if not partner.lang:
+            partner.lang = 'fr_FR'
+        _logger.info('avant email mcm_openedx %s' % str(partner.name))
+        template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+            'mcm_openedx.mail_template_add_Ione_MOOcit'))
+        template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+        if not template_id:
+            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'mcm_openedx.mail_template_add_Ione_MOOcit',
+                raise_if_not_found=False)
+        if not template_id:
+            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'mcm_openedx.email_template_add_Ione_MOOcit',
+                raise_if_not_found=False)
+        if template_id:
+            partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                             composition_mode='comment', )
+
+            _logger.info("mail envoyeé")
+            _logger.info(partner.email)
+            _logger.info('if template  %s' % str(partner.name))
 
     # notifier apprenant
     def notifierapprenant(self):

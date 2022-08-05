@@ -9,6 +9,8 @@ from requests.structures import CaseInsensitiveDict
 from datetime import date, datetime, timedelta
 import logging
 
+from odoo.exceptions import ValidationError
+
 _logger = logging.getLogger(__name__)
 
 
@@ -18,28 +20,35 @@ class Partner(models.Model):
     bolt = fields.Boolean('Client Bolt')
     inscrit_mcm = fields.Date("Date formation MCM")
     eval_box = fields.Boolean('Eval Box')
-    numero_evalbox = fields.Char('Numéro de dossier Evalbox')
+    numero_evalbox = fields.Char('Numéro de dossier Evalbox', size=20)
     password_evalbox = fields.Char('Mot de passe Evalbox')
     id_evalbox = fields.Char('Identifiant Evalbox')
 
+    @api.constrains('numero_evalbox')
+    def _check_numero_evalbox(self):
+        if self.numero_evalbox:
+            if len(self.numero_evalbox) <= 10:
+                raise ValidationError('Numéro evalbox doit contenir min 10 caractères 🤷🤷🤷')
+
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
-    # 
+    #
     #     if self.user_has_groups('crm_marketing_automation.group_bolt'):
     #         domain += [('bolt', '=', True)]
-    # 
+    #
     #     res = super(Partner, self).search_read(domain, fields, offset, limit, order)
-    # 
+    #
     #     return res
     def write(self, vals):
-        old_password_evalbox = self.password_evalbox # get old password_evalbox before write
+        old_password_evalbox = self.password_evalbox  # get old password_evalbox before write
         record = super(Partner, self).write(vals)
-        if not old_password_evalbox and 'password_evalbox' in vals: #check if old password_evalbox is empty and password_evalbox in vals of write
+        if not old_password_evalbox and 'password_evalbox' in vals:  # check if old password_evalbox is empty and password_evalbox in vals of write
             subject = str(self.email) + ' - ' + str(vals['password_evalbox'])
-            mail = self.env['mail.mail'].sudo().search([('subject', "=", subject)]) #check if we have already send email to zoe contains email and password_evalbox of the client
+            mail = self.env['mail.mail'].sudo().search([('subject', "=",
+                                                         subject)])  # check if we have already send email to zoe contains email and password_evalbox of the client
             if self.note_exam:
-                if float(self.note_exam) >= 40.0 and self.statut == 'won': #check if the state of client is won
-                    if not mail: #send mail to zoe
+                if float(self.note_exam) >= 40.0 and self.statut == 'won':  # check if the state of client is won
+                    if not mail:  # send mail to zoe
                         mail = self.env['mail.mail'].create({
                             'body_html': '<p>%s - %s</p>' % (str(self.email), str(vals['password_evalbox'])),
                             'subject': subject,
@@ -434,23 +443,25 @@ class Partner(models.Model):
         data_paiement = paiement_intent.get('data', [])
         print('data', paiement_intent)
 
+
 class User(models.Model):
     _inherit = 'res.users'
 
     def _set_password(self):
         for user in self:
-            if not user.id_evalbox and not user.password_evalbox and user.bolt : #when the client reset his password save the email and the new password into id evalbox and password evalbox for bolt clients
+            if not user.id_evalbox and not user.password_evalbox and user.bolt:  # when the client reset his password save the email and the new password into id evalbox and password evalbox for bolt clients
                 user.id_evalbox = user.email
                 user.password_evalbox = user.password
         return super(User, self)._set_password()
-    def send_email_create_account_evalbox(self,user,password):
-        #this function checks if user is bolt and if he is doesn't connected yet
+
+    def send_email_create_account_evalbox(self, user, password):
+        # this function checks if user is bolt and if he is doesn't connected yet
         if user.bolt and not user.login_date:
             subject = str(user.email) + ' - ' + str(password)
-            mail = self.env['mail.mail'].sudo().search([('subject', "=", subject),('state',"=",'sent')])
-            #send email to zoé with object email - password of client
+            mail = self.env['mail.mail'].sudo().search([('subject', "=", subject), ('state', "=", 'sent')])
+            # send email to zoé with object email - password of client
             if user.note_exam:
-                if float(user.note_exam) >= 40.0 and user.statut=='won':
+                if float(user.note_exam) >= 40.0 and user.statut == 'won':
                     if not mail:
                         mail = self.env['mail.mail'].create({
                             'body_html': '<p>%s - %s</p>' % (str(user.email), str(user.password)),
