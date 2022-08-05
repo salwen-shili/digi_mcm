@@ -190,7 +190,7 @@ class partner(models.Model):
         # ajouter les apprenants    automatiquememnt a partire de  la fiche Client
 
     def ajoutMoocit_automatique(self):
-        _logger.info(" ajoutMoocit_automatique")
+        _logger.info(" ajoutMoocit_automatique lors de changement de Evalbox sur fiche client")
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
@@ -624,6 +624,7 @@ class partner(models.Model):
     # notifier apprenant
     def notifierapprenant(self):
         print(self.module_id.name)
+
         if (self.numero_evalbox != False and self.module_id.name != False and self.state != "supprimé'"):
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser
@@ -647,6 +648,7 @@ class partner(models.Model):
 
                 _logger.info("mail envoyeé")
                 _logger.info(self.email)
+                self.testsms(self)
         else:
             return {
                 'type': 'ir.actions.client',
