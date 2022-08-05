@@ -614,6 +614,7 @@ class partner(models.Model):
         if not partner.lang:
             partner.lang = 'fr_FR'
         _logger.info('avant email mcm_openedx %s' % str(partner.name))
+        # tester si l'apprenat a deja recu un mail
         message = self.env['mail.message'].search(
             [('res_id', "=", partner.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
         if not message:
@@ -640,6 +641,9 @@ class partner(models.Model):
     # notifier apprenant
     def notifierapprenant(self):
         print(self.module_id.name)
+        print("sssssssssss", self.composer_ids)
+        if('self.last_internal_log','ilike','safa'):
+            print("Safaaaaaaaaaaaaaaaaa")
 
         if (self.numero_evalbox != False and self.module_id.name != False and self.state != "supprimé'"):
             if self.env.su:
@@ -648,6 +652,8 @@ class partner(models.Model):
             if not self.lang:
                 self.lang = 'fr_FR'
             _logger.info('avant email mcm_openedx %s' % str(self.name))
+            # tester si l'apprenat a deja recu un mail
+
             message = self.env['mail.message'].search(
                 [('res_id', "=", self.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
             if not message:
@@ -669,14 +675,24 @@ class partner(models.Model):
                     _logger.info("mail envoyeé")
                     _logger.info(self.email)
                     self.testsms(self)
+                    notification = {
+                        'type': 'ir.actions.client',
+                        'tag': 'display_notification',
+                        'params': {
+                            'title': _(' Mail  Envoyé 🥳 🥳'),
+                            'sticky': False,
+                            'className': 'success'
+                        },
+                    }
+                    return notification
 
             else:
                 return {
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
                     'params': {
-                        'title': _(' Mail deja  envoyée 🤷🤷🤷 '),
-                        'sticky': True,
+                        'title': _(' Mail deja  Envoyé 🤷🤷🤷 '),
+                        'sticky': False,
                         'className': 'bg-danger'
                     }
                 }
