@@ -570,6 +570,7 @@ class partner(models.Model):
                             'ceci est un client bolt il va etre ajouter ssans verifer les autres conditions ')
                         self.inscriteVTC(self)
             if (response_ajouter_IOne_MCM.status_code == 409):
+                # voir si statut de l'apprenant en formation ou la date de mise en formation est vide alors mettre la date pour la date.today
                 if (partner.state != 'en_formation' and partner.inscrit_mcm == False):
                     partner.inscrit_mcm = date.today()
 
@@ -578,7 +579,6 @@ class partner(models.Model):
                 evalbox = self.numero_evalbox
                 departement = self.state_id.code
                 _logger.info('departement %s' % str(departement))
-                _logger.info('Client ajouter aux cours 409 %s' % str(partner.email))
                 # Formation à distance Taxi
                 if (partner.module_id.product_id.default_code == "taxi"):
                     if (departement == "59"):
@@ -653,7 +653,7 @@ class partner(models.Model):
                 'tag': 'display_notification',
                 'params': {
                     'title': _(' message ne peut pas être envoyé  '),
-                    'message': _('verifier eval_box or module 🤓 🤓 🤓'),
+                    'message': _('verifier eval_box or module 😒😒 🤓 🤓 🤓'),
                     'sticky': True,
                     'className': 'bg-danger'
                 }
