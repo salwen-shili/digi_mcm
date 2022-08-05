@@ -2068,7 +2068,7 @@ class partner(models.Model):
                     'tag': 'display_notification',
                     'params': {
                         'title': _(' Mail déja envoyé'),
-                        'sticky': True,
+                        'sticky': False,
                         'className': 'bg-danger'
                     }
                 }
@@ -2082,8 +2082,8 @@ class partner(models.Model):
                         'tag': 'display_notification',
                         'params': {
                             'title': _(' Mail envoyé avec succès'),
-                            'sticky': True,
-                            'className': 'bg-success'
+                            'sticky': False,
+                            'className': 'success'
                         }
                     }
 
@@ -2092,9 +2092,9 @@ class partner(models.Model):
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'title': _(' Mail non  envoyé'),
-                    'message': _("l'Apprenant n'est pas sur la plateforme !‍️"),
-                    'sticky': True,
+                    'title': _(' Mail non envoyé'),
+                    'message': _("L'apprenant n'est pas sur la plateforme !‍️"),
+                    'sticky': False,
                     'className': 'bg-danger'
                 }
             }
