@@ -2040,3 +2040,61 @@ class partner(models.Model):
                                                                                 composition_mode='comment',
                                                                                 )
             _logger.info('if template  %s' % str(partner.name))
+
+
+    def send_email_manuel(self):
+        company_id = '56f5520e11d423f46884d593'
+        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+        headers = CaseInsensitiveDict()
+        headers["Accept"] = "*/*"
+        params = (
+            ('company', '56f5520e11d423f46884d593'),
+            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+        )
+        response = requests.get('https://digimoov.staging.360learning-dev.com/api/v1/users', params=params)
+        users = response.json()
+        # Faire un parcours sur chaque user vérifier l'existance d'apprenant sur email
+        existant =False
+        for user in users:
+            email = user['mail']
+            if email == self.email :
+                existant =True
+        if (existant):
+            message = self.env['mail.message'].search(
+                [('res_id', "=", partner.id), ('subject', "ilike", "Digimoov - Accès à la plateforme en ligne")])
+            if message:
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': _(' Mail déja envoyé'),
+                        'sticky': True,
+                        'className': 'bg-danger'
+                    }
+                }
+            if not message :
+                send_email(self)
+                message_exist = self.env['mail.message'].search(
+                    [('res_id', "=", partner.id), ('subject', "ilike", "Digimoov - Accès à la plateforme en ligne")])
+                if message_exist:
+                    return {
+                        'type': 'ir.actions.client',
+                        'tag': 'display_notification',
+                        'params': {
+                            'title': _(' Mail envoyé avec succès'),
+                            'sticky': True,
+                            'className': 'bg-success'
+                        }
+                    }
+
+        else :
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _(' Mail non  envoyé'),
+                    'message': _("l'Apprenant n'est pas sur la plateforme !‍️"),
+                    'sticky': True,
+                    'className': 'bg-danger'
+                }
+            }
