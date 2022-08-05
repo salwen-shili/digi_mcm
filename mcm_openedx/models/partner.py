@@ -498,6 +498,7 @@ class partner(models.Model):
                 # self.testsms(self)
                 try:
                     self.sendmail(self)
+                    self.sendsms(self)
                 except:
                     _logger.info('problem au niveau denvoit des mail ')
                 finally:
@@ -613,36 +614,9 @@ class partner(models.Model):
         if not partner.lang:
             partner.lang = 'fr_FR'
         _logger.info('avant email mcm_openedx %s' % str(partner.name))
-        template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-            'mcm_openedx.mail_template_add_Ione_MOOcit'))
-        template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-        if not template_id:
-            template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                'mcm_openedx.mail_template_add_Ione_MOOcit',
-                raise_if_not_found=False)
-        if not template_id:
-            template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                'mcm_openedx.email_template_add_Ione_MOOcit',
-                raise_if_not_found=False)
-        if template_id:
-            partner.with_context(force_send=True).message_post_with_template(template_id,
-                                                                             composition_mode='comment', )
-
-            _logger.info("mail envoyeé")
-            _logger.info(partner.email)
-            _logger.info('if template  %s' % str(partner.name))
-
-    # notifier apprenant
-    def notifierapprenant(self):
-        print(self.module_id.name)
-
-        if (self.numero_evalbox != False and self.module_id.name != False and self.state != "supprimé'"):
-            if self.env.su:
-                # sending mail in sudo was meant for it being sent from superuser
-                self = self.with_user(SUPERUSER_ID)
-            if not self.lang:
-                self.lang = 'fr_FR'
-            _logger.info('avant email mcm_openedx %s' % str(self.name))
+        message = self.env['mail.message'].search(
+            [('res_id', "=", partner.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
+        if not message:
             template_id = int(self.env['ir.config_parameter'].sudo().get_param(
                 'mcm_openedx.mail_template_add_Ione_MOOcit'))
             template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
@@ -655,11 +629,57 @@ class partner(models.Model):
                     'mcm_openedx.email_template_add_Ione_MOOcit',
                     raise_if_not_found=False)
             if template_id:
-                self.with_context(force_send=True).message_post_with_template(template_id, composition_mode='comment', )
+                partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                 composition_mode='comment', )
 
                 _logger.info("mail envoyeé")
-                _logger.info(self.email)
-                self.testsms(self)
+                _logger.info(partner.email)
+                _logger.info('if template  %s' % str(partner.name))
+                partner.sendsms(self)
+
+    # notifier apprenant
+    def notifierapprenant(self):
+        print(self.module_id.name)
+
+        if (self.numero_evalbox != False and self.module_id.name != False and self.state != "supprimé'"):
+            if self.env.su:
+                # sending mail in sudo was meant for it being sent from superuser
+                self = self.with_user(SUPERUSER_ID)
+            if not self.lang:
+                self.lang = 'fr_FR'
+            _logger.info('avant email mcm_openedx %s' % str(self.name))
+            message = self.env['mail.message'].search(
+                [('res_id', "=", self.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
+            if not message:
+                template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                    'mcm_openedx.mail_template_add_Ione_MOOcit'))
+                template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                if not template_id:
+                    template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                        'mcm_openedx.mail_template_add_Ione_MOOcit',
+                        raise_if_not_found=False)
+                if not template_id:
+                    template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                        'mcm_openedx.email_template_add_Ione_MOOcit',
+                        raise_if_not_found=False)
+                if template_id:
+                    self.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                  composition_mode='comment', )
+
+                    _logger.info("mail envoyeé")
+                    _logger.info(self.email)
+                    self.testsms(self)
+
+            else:
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': _(' Mail deja  envoyée 🤷🤷🤷 '),
+                        'sticky': True,
+                        'className': 'bg-danger'
+                    }
+                }
         else:
             return {
                 'type': 'ir.actions.client',
