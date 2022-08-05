@@ -2073,7 +2073,7 @@ class partner(models.Model):
                     }
                 }
             if not message :
-                send_email(self)
+                self.send_email(self)
                 message_exist = self.env['mail.message'].search(
                     [('res_id', "=", self.id), ('subject', "ilike", "Digimoov - Accès à la plateforme en ligne")])
                 if message_exist:
