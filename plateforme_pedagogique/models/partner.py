@@ -2021,7 +2021,7 @@ class partner(models.Model):
         if not partner.lang:
             partner.lang = 'fr_FR'
         _logger.info('avant email %s' % str(partner.name))
-        message = env['mail.message'].search(
+        message = self.env['mail.message'].search(
             [('res_id', "=", partner.id), ('subject', "ilike", "Digimoov - Accès à la plateforme en ligne")])
         if not message:
             template_id = int(self.env['ir.config_parameter'].sudo().get_param(
