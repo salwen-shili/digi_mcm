@@ -9,21 +9,23 @@
         <field name="active" eval="True"/>
         <field name="state">code</field>
         <field name="code">
-            template_id = int(env['ir.config_parameter'].sudo().get_param(
-            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
-            template_id = env['mail.template'].search([('id', '=', template_id)]).id
-            if not template_id:
-            template_id = env['ir.model.data'].xmlid_to_res_id(
-            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
-            raise_if_not_found=False)
-            if not template_id:
-            template_id = self.env['ir.model.data'].xmlid_to_res_id(
-            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
-            raise_if_not_found=False)
-            if template_id:
-            record.with_context(force_send=True).message_post_with_template(template_id,
-            composition_mode='comment',
-            )
+            message = env['mail.message'].search([('res_id', "=", record.id),('subject',"ilike","Digimoov - Accès à la plateforme en ligne")])
+            if not message :
+                template_id = int(env['ir.config_parameter'].sudo().get_param(
+                            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
+                template_id = env['mail.template'].search([('id', '=', template_id)]).id
+                if not template_id:
+                    template_id = env['ir.model.data'].xmlid_to_res_id(
+                            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                                    raise_if_not_found=False)
+                if not template_id:
+                    template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                        'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                            raise_if_not_found=False)
+                if template_id:
+                    record.with_context(force_send=True).message_post_with_template(template_id,
+                                                                         composition_mode='comment',
+                                                                         )
         </field>
     </record>
 </odoo>
