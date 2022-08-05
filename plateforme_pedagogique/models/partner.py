@@ -2061,7 +2061,7 @@ class partner(models.Model):
                 existant =True
         if (existant):
             message = self.env['mail.message'].search(
-                [('res_id', "=", partner.id), ('subject', "ilike", "Digimoov - Accès à la plateforme en ligne")])
+                [('res_id', "=", self.id), ('subject', "ilike", "Digimoov - Accès à la plateforme en ligne")])
             if message:
                 return {
                     'type': 'ir.actions.client',
@@ -2075,7 +2075,7 @@ class partner(models.Model):
             if not message :
                 send_email(self)
                 message_exist = self.env['mail.message'].search(
-                    [('res_id', "=", partner.id), ('subject', "ilike", "Digimoov - Accès à la plateforme en ligne")])
+                    [('res_id', "=", self.id), ('subject', "ilike", "Digimoov - Accès à la plateforme en ligne")])
                 if message_exist:
                     return {
                         'type': 'ir.actions.client',
