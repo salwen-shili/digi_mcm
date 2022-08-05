@@ -652,8 +652,8 @@ class partner(models.Model):
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'title': _(' message ne peut pas être envoyé  '),
-                    'message': _('verifier eval_box or module 😒😒 🤓 🤓 🤓'),
+                    'title': _(' Mail non  envoyée 🤷🤷🤷 '),
+                    'message': _('Vérification de NumeroEvalbox ou bien Nom de module 🤦‍🤦‍️'),
                     'sticky': True,
                     'className': 'bg-danger'
                 }
