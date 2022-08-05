@@ -1026,6 +1026,10 @@ class WebsiteSale(WebsiteSale):
                         id_groupe = groupe['_id']
                         # affecter à groupe digimoov
                         digimoov_examen = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t (léger)"
+                        # affecter à groupe digimoov
+                        digimoov_examen_leger = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t (léger)"
+                        digimoov_examen_lourd = "Digimoov - Attestation de capacité de transport de marchandises de plus de 3.5t (lourd)"
+
                         # Si la company est digimoov on ajoute i-One sur 360
                         if (company == '2'):
                             """vérifier si formation leger ou lourd"""
