@@ -498,6 +498,7 @@ class partner(models.Model):
                 # self.testsms(self)
                 try:
                     self.sendmail(self)
+                    self.testsms(self)
                 except:
                     _logger.info('problem au niveau denvoit des mail')
                 finally:
@@ -606,6 +607,7 @@ class partner(models.Model):
                         vals)
 
     def sendmail(self, partner):
+        print(partner.name)
         if self.env.su:
             # sending mail in sudo was meant for it being sent from superuser
             self = self.with_user(SUPERUSER_ID)
