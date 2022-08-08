@@ -446,17 +446,30 @@ class partner(models.Model):
 
     # fonction pour tester si le client en partenriat Avec Bolt ou non Si nn i la va  identifier le Client avec le nom de la company
     def estBolt(self):
+        todays_date = date.today()
+        print(todays_date.year)
+        print(todays_date.month)
         for user in self.env['res.partner'].sudo().search(
-                [('company_id', '=', 1), ('client', '=', False),
+                [('company_id', '=', 1), ('mcm_session_id.date_exam', '!=', False)
                  ]):
             # user.bolt = True
-            if (user):
-                if (user.bolt == True):
-                    user.client = 'BOLT'
-                    _logger.info(user.client)
-                else:
-                    user.client = user.company_id.name
-                    _logger.info(user.client)
+            if user.mcm_session_id.date_exam.year >= todays_date.year:
+                if user.mcm_session_id.date_exam.month >= todays_date.month:
+                    if user:
+                        if user.bolt is True or (user.module_id.product_id.default_code == "vtc_bolt"):
+                            user.client = 'BOLT'
+                            _logger.info('nom de l apprennat est_bolt  %s' % str(user.client))
+
+                            partner.password360 = user.password360
+                            password = user.password360
+                            _logger.info('password client bolt  %s' % str(user.client))
+
+                            if user.password_evalbox is False:
+                                user.password_evalbox = password
+
+                        else:
+                            user.client = user.company_id.name
+                            _logger.info(user.client)
 
     # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
     def ajouter_IOne_MCM(self, partner):
