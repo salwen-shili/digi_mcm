@@ -643,8 +643,9 @@ class partner(models.Model):
         # print("sssssssssss", self.composer_ids)
         # if('self.last_internal_log','ilike','safa'):
         #     print("Safaaaaaaaaaaaaaaaaa")
+        print(self.state)
 
-        if (self.numero_evalbox != False and self.module_id.name != False and self.state != "supprimé'"):
+        if (self.numero_evalbox != False and self.module_id.name != False and self.state != "supprimé"):
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser
                 self = self.with_user(SUPERUSER_ID)
@@ -706,7 +707,7 @@ class partner(models.Model):
                 'tag': 'display_notification',
                 'params': {
                     'title': _(' Mail non  envoyée 🤷🤷🤷 '),
-                    'message': _('Vérification de NumeroEvalbox ou bien Nom de module 🤦‍🤦‍️'),
+                    'message': _('Vérification de NumeroEvalbox ou bien Nom de module ou statut 🤦‍🤦‍️'),
                     'sticky': True,
                     'className': 'bg-danger'
                 }
