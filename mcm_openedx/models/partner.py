@@ -636,14 +636,13 @@ class partner(models.Model):
                 _logger.info("mail envoyeé")
                 _logger.info(partner.email)
                 _logger.info('if template  %s' % str(partner.name))
-                partner.sendsms(self)
 
     # notifier apprenant
     def notifierapprenant(self):
-        print(self.module_id.name)
-        print("sssssssssss", self.composer_ids)
-        if('self.last_internal_log','ilike','safa'):
-            print("Safaaaaaaaaaaaaaaaaa")
+        # print(self.module_id.name)
+        # print("sssssssssss", self.composer_ids)
+        # if('self.last_internal_log','ilike','safa'):
+        #     print("Safaaaaaaaaaaaaaaaaa")
 
         if (self.numero_evalbox != False and self.module_id.name != False and self.state != "supprimé'"):
             if self.env.su:
@@ -674,7 +673,12 @@ class partner(models.Model):
 
                     _logger.info("mail envoyeé")
                     _logger.info(self.email)
-                    self.testsms(self)
+                    try:
+                        self.testsms(self)
+
+                    except:
+                        _logger.info('problem au niveau denvoit d sms ')
+
                     notification = {
                         'type': 'ir.actions.client',
                         'tag': 'display_notification',
