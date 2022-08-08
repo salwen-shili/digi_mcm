@@ -13,95 +13,96 @@
                         }
                     </style>
                     <div class="page">
-                    <div class="oe_structure"/>
-                    <div class="row">
-                        <div class="col-4">
-                            <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:100px;float:right;padding-right:100px;"/>
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="/partner_exam/static/src/img/logo_digimoov.png"
+                                     style="max-height:100px;float:left;"/>
+                            </div>
                         </div>
-                    </div>
-                    <br/>
-                    <br/>
-                    <div class="row">
-                        <div class="col-12">
-                            <center>DIRECTION REGIONALE DE L’ENVIRONNEMENT, DE L’AMENAGEMENT ET DU LOGEMENT</center>
-                            <br/>
-                            <br/>
-                            <strong>
+                        <br/>
+                        <br/>
+                        <div class="row" style="padding-top:130px;">
+                            <div class="col-12">
                                 <center>
-                                    <h3>RAPPORT DE SESSION D’EXAMEN</h3>
-                                    <br/>
-                                    <h3>EXAMEN DE TRANSPORT PUBLIC ROUTIER DE MARCHANDISES ≤3,5 t</h3>
-                                    <br/>
-                                    <u>SESSION DU
-                                        <span t-field="o.mcm_session_id.date_exam"
-                                              t-field-options='{"format": "dd/MM/yyyy"}'/>
-                                    </u>
+                                    <b style="font-size:16px;font-family:Liberation Serif;color:#707070;">DIRECTION
+                                        REGIONALE DE L’ENVIRONNEMENT, DE L’AMENAGEMENT ET DU LOGEMENT
+                                    </b>
                                 </center>
-                            </strong>
+                                <br/>
+                                <br/>
+                                <strong>
+                                    <center>
+                                        <h3>RAPPORT DE SESSION D’EXAMEN</h3>
+                                        <br/>
+                                        <h3>EXAMEN DE TRANSPORT PUBLIC ROUTIER DE MARCHANDISES ≤3,5 t</h3>
+                                        <br/>
+                                        <u>SESSION DU
+                                            <span t-field="o.mcm_session_id.date_exam"
+                                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                        </u>
+                                    </center>
+                                </strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <br/>
-                            <br/>
-                            <p>L'AN
-                                <span t-esc="o.mcm_session_id.date_to_text(yearformat,monthformat)"/>
-                                <span t-esc="o.mcm_session_id.month_session_in_lettre(month_format)"/>
-                            </p>
+                        <div class="row">
+                            <div class="col-12">
+                                <br/>
+                                <br/>
+                                <p style="font-size:16px;">L'AN
+                                    <span t-esc="o.mcm_session_id.date_to_text(yearformat,monthformat)"/>
+                                    <span t-esc="o.mcm_session_id.month_session_in_lettre(month_format)"/>
+                                </p>
+                            </div>
                         </div>
-                    </div>
 
-                    <style>
-                        .tr, .td , .table, .tbody{
-                        padding: 1px;
-                        border: solid;
-                        }
-                    </style>
-                    <center style="padding-top:60px!important;">
-                        <table class="table">
-                            <tr align="center">
-                                <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
-                            </tr>
-                            <tbody>
-                                <tr class="tr" style="height:100px;width:200px;">
-                                    <td class="td" align="center" style="height: 80px; width: 80px;">
-                                        <b>Numéro d’agrément</b>
-                                    </td>
-                                    <td class="td" align="center" style="height: 80px; width: 80px;">
-                                        <strong>
-                                            <p>MCM ACADEMY</p>
-                                            <span t-field='o.mcm_session_id.num_agrement_jury'/>
-                                        </strong>
-                                    </td>
-                                </tr>
-                                <tr class="tr" style="height:100px;width:200px;">
-                                    <td class="td" align="center" style="height: 80px; width: 80px;">
-                                        <b>Lieu de réalisation de la session</b>
-                                    </td>
-                                    <td class="td" align="center" style="height: 80px; width: 80px;">
-                                        <strong>
-                                            <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>:
-                                            <span t-raw="'%s' % o.mcm_session_id.adresse_jury_id.adresse_centre_examen"/>
-                                        </strong>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </center>
-                    <p style="page-break-after:always;"/>
-                    <div class="row">
-                        <div class="col-4">
-                            <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:100px;float:right;padding-right:100px;"/>
+                        <div class="row" style="padding-top:50px;">
+                            <div class="col-12">
+                                <table border="1" style="height:100px;width:800px;">
+                                    <tbody>
+                                        <tr align="center" style="height: 80px; width: 80px;">
+                                            <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
+                                        </tr>
+
+                                        <tr style="height:100px;width:200px;">
+                                            <td align="center" style="height: 80px; width: 80px;">
+                                                <b>Numéro d’agrément</b>
+                                            </td>
+                                            <td class="td" align="center" style="height: 80px; width: 80px;">
+                                                <strong>
+                                                    <p>MCM ACADEMY</p>
+                                                    <span t-field='o.mcm_session_id.num_agrement_jury'/>
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                        <tr style="height:100px;width:200px;">
+                                            <td align="center" style="height: 80px; width: 80px;">
+                                                <b>Lieu de réalisation de la session</b>
+                                            </td>
+                                            <td align="center" style="height: 80px; width: 80px;">
+                                                <strong>
+                                                    <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>:
+                                                    <span t-raw="'%s' % o.mcm_session_id.adresse_jury_id.adresse_centre_examen"/>
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p></p>
+                        <p style="page-break-after:always;"/>
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="/partner_exam/static/src/img/logo_digimoov.png"
+                                     style="max-height:100px;float:left;"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
+                        <div class="row">
+                            <div class="col-12">
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:130px;">
                         <div class="col-12">
                             Le centre de d’examen MCM ACADEMY, situé au
                             <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>
@@ -119,9 +120,7 @@
                             d’examen et aux modèles d’attestation de capacité professionnelle pour l’exercice des
                             activités
                             de transport public routier. L’examen se présente de la façon suivante :
-                            <br/>
-                            <br/>
-                            <i>Référence</i>: article 8 de l’arrêté du 28 décembre 2011 relatif à la délivrance des
+                            <p style="color:#696969;"><i>Référence</i>: article 8 de l’arrêté du 28 décembre 2011 relatif à la délivrance des
                             attestations de
                             capacité professionnelle permettant l’exercice de la profession de transporteur public
                             routier.
@@ -131,13 +130,12 @@
                             - Pour obtenir l’attestation de capacité professionnelle : au moins 120 points au total
                             sous réserve d’avoir obtenu au moins 50 points aux QCM et 40 points aux questions
                             rédigées.
-                            <br/>
+                            </p>
                             <center>
-                                <i>Examen de 3 heures</i>
-                                <br/>
-                                1re épreuve : temps conseillé : 1 h 15
+                                <i style="color:#696969;">Examen de 3 heures</i>
+                                <p style="color:#696969;">1re épreuve : temps conseillé : 1 h 15</p>
                             </center>
-                            <br/>
+                            <p style="color:#696969;">
                             Questionnaires de 50 QCM (4 propositions : une seule bonne réponse) à 2 points chacune,
                             soit
                             100 points, réparties sur l’ensemble des thématiques du référentiel des connaissances :
@@ -157,10 +155,9 @@
                             Dans chaque thématique, le créateur de l’examen veillera à ce que les QCM ne portent pas
                             sur les
                             mêmes sujets que les questions à réponse rédigée de la seconde partie de l’examen.
-                            <br/>
-                            <center>2e épreuve : temps conseillé : 1 h 45</center>
-                            <br/>
-                            <ul>
+                            </p>
+                            <center style="color:#696969;">2e épreuve : temps conseillé : 1 h 45</center>
+                            <ul style="color:#696969;">
                                 <li>Questions et exercices exigeant une réponse rédigée sur 100 points :</li>
                                 <li>Exercices sur la thématique « D. L’entreprise et son activité financière »
                                     exigeant une réponse
@@ -182,7 +179,7 @@
                                     et « F. L’entreprise et la
                                     sécurité » (dont 3 questions sur la thématique E et 1 question sur chaque
                                     thématique C et
-                                    F) ; Entre 6 à 10 points par question, pour un total de 50 points ;
+                                    F); Entre 6 à 10 points par question, pour un total de 50 points ;
                                 </li>
                             </ul>
                         </div>
@@ -190,7 +187,7 @@
                     <br/>
                     <div class="row">
                         <div class="col-12">
-                            <center>
+                            <center style="font-size:12px;">
                                 MCM ACADEMY, 10 rue de Penthièvre 75008 PARIS.
                                 <br/>
                                 Déclaration d'activité enregistrée sous le numéro 11755542075 auprès du préfet de la
@@ -202,105 +199,74 @@
                             </center>
                         </div>
                     </div>
-                    <p style="page-break-after:always;"/>
-                    <div class="row">
+                        <p style="page-break-after:always;"/>
+                        <div class="row">
                         <div class="col-4">
-                            <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                 style="max-height:100px;float:right;padding-right:100px;"/>
+                            <img src="/partner_exam/static/src/img/logo_digimoov.png" style="max-height:100px;float:left;"/>
                         </div>
                     </div>
-                    <br/>
-                    <br/>
-                    <div class="row">
-                        <div class="col-12">
-                            <b>
-                                <u>
-                                    Déférant à cette réquisition :
-                                </u>
-                            </b>
-                            <br/>
-                            <p>
-                                Je,
-                                <strong>
-                                    <span t-esc="o.display_name"/>
-                                </strong>
-                                et présentant les garanties d'honorabilité suffisantes, demeurant au
-                                <strong>
-                                    <span t-raw="'%s' % o.street if o.street else '..............'"/>
-                                    <span t-raw="'%s' % o.zip if o.zip else '..............'"/>
-                                    <span t-raw="'%s' % o.city if o.city else '..............'"/>
-                                </strong>
-                                <br/>
-                                soussigné(e) :
-                                <br/>
-                                Me suis rendu ce jour, le
+
+                    <div class="row" style="padding-top:130px;">
+                            <div class="col-12">
                                 <b>
                                     <u>
-                                        <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>
+                                        Déférant à cette réquisition :
                                     </u>
                                 </b>
-                                dans les locaux de l’organisme de formation <b>MCM ACADEMY</b>, situé au
-                                <b>
-                                    <u>
-                                        <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>,
-                                    </u>
-                                </b>
-                                afin de surveiller et de contrôler le bon déroulement de l’examen qui a lieu le
-                                <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>
-                                à
+                                <br/>
+                                <p>
+                                    Je,
+                                    <strong>
+                                        <span t-esc="o.display_name"/>
+                                    </strong>
+                                    et présentant les garanties d'honorabilité suffisantes, demeurant au
+                                    <strong>
+                                        <span t-raw="'%s' % o.street if o.street else '..............'"/>
+                                        <span t-raw="'%s' % o.zip if o.zip else '..............'"/>
+                                        <span t-raw="'%s' % o.city if o.city else '..............'"/>
+                                    </strong>
+                                    <br/>
+                                    soussigné(e) :
+                                    <br/>
+                                    Me suis rendu ce jour, le
+                                    <b>
+                                        <u>
+                                            <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>
+                                        </u>
+                                    </b>
+                                    dans les locaux de l’organisme de formation <b>MCM ACADEMY</b>, situé au
+                                    <b>
+                                        <u>
+                                            <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>
+                                            ,
+                                        </u>
+                                    </b>
+                                    afin de surveiller et de contrôler le bon déroulement de l’examen qui a lieu le
+                                    <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>
+                                    à
+                                    <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
+                                </p>
+                                <br/>
+                                Je procède aux constatations qui suivent :
+                                <br/>
+                                <br/>
+                                Aucune difficulté n’est à mentionner, tout s’est bien déroulé.
+                                <br/>
+                                <br/>
+                                <style>
+                                    ol.c {list-style-type: upper-roman;}
+                                </style>
+                                <ol class="c">
+                                    <li>Constatations factuelles :</li>
+                                </ol>
+                                Nous sommes arrivés pour vous accueillir au centre de formation MCM ACADEMY à
                                 <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
-                            </p>
-                            <br/>
-                            Je procède aux constatations qui suivent :
-                            <br/>
-                            <br/>
-                            Aucune difficulté n’est à mentionner, tout s’est bien déroulé.
-                            <br/>
-                            <br/>
-                            <style>
-                                ol.c {list-style-type: upper-roman;}
-                            </style>
-                            <ol class="c">
-                                <li>Constatations factuelles :</li>
-                            </ol>
-                            Nous sommes arrivés pour vous accueillir au centre de formation MCM ACADEMY à
-                            <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
-                            le<span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>.
-                            Nous avons demandé aux candidats présents de patienter dans le Hall d’entrée, le temps de
-                            préparer la salle d’examen.
-                            <br/>
-                            Nous avons invité les candidats à entrer dans la salle d’examen à
-                            <t t-if="o.mcm_session_id.temps_convocation == 'matin'">
-                                <strong>
-                                    <span t-field="matin.heure_examen_matin"/>
-                                </strong>
-                            </t>
-                            <t t-if="o.mcm_session_id.temps_convocation == 'apres_midi'">
-                                <strong>
-                                    <span t-field="o.mcm_session_id.heure_examen_apres_midi"/>
-                                </strong>
-                            </t>
-                            <t t-if="o.mcm_session_id.temps_convocation == ''">
-                                <p></p>
-                            </t>
-                            . Nous leurs avons demandé de présenter la convocation à l’examen envoyé par le centre ainsi
-                            qu’une pièce d’identité.
-                            <br/>
-                            <br/>
-                            Je demande à tous les candidats d’éteindre leur téléphone, de les disposer dans leur sac et
-                            de remettre leur sac à proximité du tableau.
-                            <br/>
-                            <p style="page-break-after:always;"/>
-                            <div class="row">
-                                <div class="col-4">
-                                    <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                         style="max-height:100px;float:right;padding-right:100px;"/>
-                                </div>
-                            </div>
-                            <br/>
-                            <br/>
-                            <div class="row">
-                                A
+                                le<span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>.
+                                Nous avons demandé aux candidats présents de patienter dans le Hall d’entrée, le temps
+                                de
+                                préparer la salle d’examen.
+                                <br/>
+                                Nous avons invité les candidats à entrer dans la salle d’examen à
                                 <t t-if="o.mcm_session_id.temps_convocation == 'matin'">
                                     <strong>
                                         <span t-field="matin.heure_examen_matin"/>
@@ -314,42 +280,79 @@
                                 <t t-if="o.mcm_session_id.temps_convocation == ''">
                                     <p></p>
                                 </t>
-                                , je procède à la lecture des règles, expliquant le déroulé de l’examen aux candidats.
-                            </div>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <div class="row">
-                                Les candidats n’ayant pas de questions, la distribution de l’examen c’est faite à <b>
-                                14h00
-                            </b> précise.
-                            </div>
-                            <div class="row">
-                                Les sujets ont été distribués selon l’ordre chronologique d’arrivée.
-                                <br/><br/>
-                                A ............. les candidats ont été notifiés qu’ils leurs resté 5 minutes avant la fin
-                                de
-                                l’épreuve.
-                            </div>
+                                . Nous leurs avons demandé de présenter la convocation à l’examen envoyé par le centre
+                                ainsi
+                                qu’une pièce d’identité.
                                 <br/>
                                 <br/>
-                            <div class="row">
-                                A ............. j’ai procédé au ramassage des copies dans le même ordre que mentionné
-                                précédemment. J’ai ensuite procédé à la mise sous plis dans une enveloppe.
-                            </div>
+                                Je demande à tous les candidats d’éteindre leur téléphone, de les disposer dans leur sac
+                                et
+                                de remettre leur sac à proximité du tableau.
+                                <br/>
+                                <p style="page-break-after:always;"/>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img src="/partner_exam/static/src/img/logo_digimoov.png"
+                                             style="max-height:100px;float:right;padding-right:100px;"/>
+                                    </div>
+                                </div>
                                 <br/>
                                 <br/>
-                            <div class="row">
-                                Autres remarques :
+                                <div class="row">
+                                    A
+                                    <t t-if="o.mcm_session_id.temps_convocation == 'matin'">
+                                        <strong>
+                                            <span t-field="matin.heure_examen_matin"/>
+                                        </strong>
+                                    </t>
+                                    <t t-if="o.mcm_session_id.temps_convocation == 'apres_midi'">
+                                        <strong>
+                                            <span t-field="o.mcm_session_id.heure_examen_apres_midi"/>
+                                        </strong>
+                                    </t>
+                                    <t t-if="o.mcm_session_id.temps_convocation == ''">
+                                        <p></p>
+                                    </t>
+                                    , je procède à la lecture des règles, expliquant le déroulé de l’examen aux
+                                    candidats.
+                                </div>
                                 <br/>
-                                ...........................................................................................
-                                ...........................................................................................
-                                ...........................................................................................
-                                ...........................................................................................
-                                ...........................................................................................
-                                ...........................................................................................
-                                ...........................................................................................
-                            </div>
+                                <br/>
+                                <br/>
+                                <div class="row">
+                                    Les candidats n’ayant pas de questions, la distribution de l’examen c’est faite à <b>
+                                    14h00
+                                </b> précise.
+                                </div>
+                                <div class="row">
+                                    Les sujets ont été distribués selon l’ordre chronologique d’arrivée.
+                                    <br/>
+                                    <br/>
+                                    A ............. les candidats ont été notifiés qu’ils leurs resté 5 minutes avant la
+                                    fin
+                                    de
+                                    l’épreuve.
+                                </div>
+                                <br/>
+                                <br/>
+                                <div class="row">
+                                    A ............. j’ai procédé au ramassage des copies dans le même ordre que
+                                    mentionné
+                                    précédemment. J’ai ensuite procédé à la mise sous plis dans une enveloppe.
+                                </div>
+                                <br/>
+                                <br/>
+                                <div class="row">
+                                    Autres remarques :
+                                    <br/>
+                                    ...........................................................................................
+                                    ...........................................................................................
+                                    ...........................................................................................
+                                    ...........................................................................................
+                                    ...........................................................................................
+                                    ...........................................................................................
+                                    ...........................................................................................
+                                </div>
                                 <br/>
                                 <br/>
                                 <br/>
@@ -358,20 +361,23 @@
                                 <br/>
                                 Telles sont mes constations.
                                 <br/>
-                                <br/><br/>
+                                <br/>
+                                <br/>
                                 Et de tout ce que dessus, j’ai dressé le présent procès-verbal de constat pour servir et
                                 valoir
                                 ce que de droit.
                                 <br/>
                                 <br/>
-                                <br/><br/>
+                                <br/>
+                                <br/>
                                 A
                                 <strong>
                                     <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
                                 </strong>
                                 <br/>
                                 Le ....................
-                                <br/><br/>
+                                <br/>
+                                <br/>
                                 Signature
                             </div>
                         </div>
