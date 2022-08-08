@@ -27,7 +27,7 @@ class Partner(models.Model):
     @api.constrains('numero_evalbox')
     def _check_numero_evalbox(self):
         if self.numero_evalbox:
-            if len(self.numero_evalbox) <= 10:
+            if len(self.numero_evalbox) <= 9:
                 raise ValidationError('Numéro evalbox doit contenir min 10 caractères 🤷🤷🤷')
 
     # @api.model

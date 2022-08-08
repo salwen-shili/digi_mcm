@@ -191,105 +191,104 @@ class partner(models.Model):
 
     def ajoutMoocit_automatique(self):
         _logger.info(" ajoutMoocit_automatique lors de changement de Evalbox sur fiche client")
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                                  ('company_id', '=', 1),
-                                                                  ('numero_evalbox ', '!=', False),
-                                                                  ('statut_cpf', "!=", "canceled")
-                                                                  ]):
-                _logger.info(partner.name)
-                _logger.info(partner.module_id.id)
-                today = date.today()
-                # ajout automatique  des utilsateur sur MOOCit
-                # verifier staut de sale
-                sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-                                                                   ('session_id', '=', partner.mcm_session_id.id),
-                                                                   ('module_id', '=', partner.module_id.id),
-                                                                   ('state', '=', 'sale'),
-                                                                   ('session_id.date_exam', '>', date.today()),
-                                                                   ], limit=1, order="id desc")
-                _logger.info(sale_order.name)
 
-                if (partner.numero_evalbox != False):
-                    bolt = partner.bolt
-                    if (bolt):
-                        self.ajouter_IOne_MCM(partner)
+        for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
+                                                              ('company_id', '=', 1),
+                                                              ('numero_evalbox ', '!=', False),
+                                                              ('statut_cpf', "!=", "canceled")
+                                                              ]):
+            _logger.info(partner.name)
+            _logger.info(partner.module_id.id)
+            today = date.today()
+            # ajout automatique  des utilsateur sur MOOCit
+            # verifier staut de sale
+            sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+                                                               ('session_id', '=', partner.mcm_session_id.id),
+                                                               ('module_id', '=', partner.module_id.id),
+                                                               ('state', '=', 'sale'),
+                                                               ('session_id.date_exam', '>', date.today()),
+                                                               ], limit=1, order="id desc")
+            _logger.info(sale_order.name)
 
-                    else:
-                        # Récupérer les documents et vérifier si ils sont validés ou non
-                        documentss = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)
-                                                                                   ])
-                        document_valide = False
-                        count = 0
-                        for document in documentss:
-                            if (document.state == "validated"):
-                                count = count + 1
-                                _logger.info('valide')
-                                _logger.info(document.state)
-                        _logger.info('count', count, 'len', len(documentss))
-                        if (count == len(documentss) and count != 0 and (bolt == False)):
-                            document_valide = True
+            if (partner.numero_evalbox != False):
+                bolt = partner.bolt
+                if (bolt):
+                    self.ajouter_IOne_MCM(partner)
 
-                        _logger.info("document %s" % str(document_valide))
+                else:
+                    # Récupérer les documents et vérifier si ils sont validés ou non
+                    documentss = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)
+                                                                               ])
+                    document_valide = False
+                    count = 0
+                    for document in documentss:
+                        if (document.state == "validated"):
+                            count = count + 1
+                            _logger.info('valide')
+                            _logger.info(document.state)
+                    _logger.info('count', count, 'len', len(documentss))
+                    if (count == len(documentss) and count != 0 and (bolt == False)):
+                        document_valide = True
 
-                        _logger.info("sale_order %s" % str(sale_order.state))
-                        # en va changer numero_evalbox avec numero eval ..
-                        # verifier si la case evalbox est True
-                        print(partner.numero_evalbox)
-                        # defenir le mode de financement
-                        if partner.mode_de_financement == "particulier":
-                            # verifier si le sale et les documents et satut sont valides
-                            if ((sale_order) and (document_valide) and (bolt == False)):
-                                _logger.info('document et sale valide Condition 1 validee')
-                                # Vérifier si contrat signé ou non
+                    _logger.info("document %s" % str(document_valide))
 
-                                if (sale_order.state == 'sale') and (sale_order.signature) and (bolt == False):
-                                    # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
-                                    if (partner.renounce_request):
-                                        self.ajouter_IOne_MCM(partner)
-                                        _logger.info(' tout est valide %s')
+                    _logger.info("sale_order %s" % str(sale_order.state))
+                    # en va changer numero_evalbox avec numero eval ..
+                    # verifier si la case evalbox est True
+                    print(partner.numero_evalbox)
+                    # defenir le mode de financement
+                    if partner.mode_de_financement == "particulier":
+                        # verifier si le sale et les documents et satut sont valides
+                        if ((sale_order) and (document_valide) and (bolt == False)):
+                            _logger.info('document et sale valide Condition 1 validee')
+                            # Vérifier si contrat signé ou non
 
-                                    # si non il doit attendre 14jours pour etre ajouté a la platform
-                                    if not partner.renounce_request and (
-                                            sale_order.signed_on + timedelta(days=14)) <= today:
-                                        self.ajouter_IOne_MCM(partner)
-                                        _logger.info(' tout est valide %s')
-
-                        if partner.mode_de_financement == "cpf":
-                            _logger.info(partner.mode_de_financement)
-                            _logger.info(partner.numero_evalbox)
-                            _logger.info(partner.mcm_session_id.date_exam)
-                            _logger.info(partner.mcm_session_id.date_exam)
-                            if (document_valide) and (bolt == False) and (partner.mcm_session_id.date_exam) and (
-                                    partner.mcm_session_id.date_exam > date.today()):
-
+                            if (sale_order.state == 'sale') and (sale_order.signature) and (bolt == False):
+                                # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
                                 if (partner.renounce_request):
                                     self.ajouter_IOne_MCM(partner)
                                     _logger.info(' tout est valide %s')
 
-                                if not (partner.renounce_request) and partner.numero_cpf:
-                                    """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
-                                    headers = {
-                                        'accept': 'application/json',
-                                        'Content-Type': 'application/json',
-                                        'X-API-KEY': partner.company_id.wedof_api_key,
-                                    }
-                                    responsesession = requests.get(
-                                        'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
-                                        headers=headers)
-                                    dossier = responsesession.json()
-                                    dateDebutSession_str = ""
-                                    _logger.info('session %s' % str(dossier))
-                                    if "trainingActionInfo" in dossier:
-                                        dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
-                                        dateDebutSession = datetime.strptime(dateDebutSession_str,
-                                                                             '%Y-%m-%dT%H:%M:%S.%fz')
-                                        if dateDebutSession <= datetime.today():
-                                            self.ajouter_IOne_MCM(partner)
-                                            _logger.info(' tout est valide %s')
+                                # si non il doit attendre 14jours pour etre ajouté a la platform
+                                if not partner.renounce_request and (
+                                        sale_order.signed_on + timedelta(days=14)) <= today:
+                                    self.ajouter_IOne_MCM(partner)
+                                    _logger.info(' tout est valide %s')
 
-                # ajouter les apprenants manuellemnt a partire de  la fiche Client
+                    if partner.mode_de_financement == "cpf":
+                        _logger.info(partner.mode_de_financement)
+                        _logger.info(partner.numero_evalbox)
+                        _logger.info(partner.mcm_session_id.date_exam)
+                        _logger.info(partner.mcm_session_id.date_exam)
+                        if (document_valide) and (bolt == False) and (partner.mcm_session_id.date_exam) and (
+                                partner.mcm_session_id.date_exam > date.today()):
+
+                            if (partner.renounce_request):
+                                self.ajouter_IOne_MCM(partner)
+                                _logger.info(' tout est valide %s')
+
+                            if not (partner.renounce_request) and partner.numero_cpf:
+                                """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
+                                headers = {
+                                    'accept': 'application/json',
+                                    'Content-Type': 'application/json',
+                                    'X-API-KEY': partner.company_id.wedof_api_key,
+                                }
+                                responsesession = requests.get(
+                                    'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
+                                    headers=headers)
+                                dossier = responsesession.json()
+                                dateDebutSession_str = ""
+                                _logger.info('session %s' % str(dossier))
+                                if "trainingActionInfo" in dossier:
+                                    dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
+                                    dateDebutSession = datetime.strptime(dateDebutSession_str,
+                                                                         '%Y-%m-%dT%H:%M:%S.%fz')
+                                    if dateDebutSession <= datetime.today():
+                                        self.ajouter_IOne_MCM(partner)
+                                        _logger.info(' tout est valide %s')
+
+            # ajouter les apprenants manuellemnt a partire de  la fiche Client
 
     def ajoutMoocit_manuelle(self):
         _logger.info('password360%s' % str(self.password360))
@@ -454,17 +453,31 @@ class partner(models.Model):
 
     # fonction pour tester si le client en partenriat Avec Bolt ou non Si nn i la va  identifier le Client avec le nom de la company
     def estBolt(self):
+        todays_date = date.today()
+        print(todays_date.year)
+        print(todays_date.month)
         for user in self.env['res.partner'].sudo().search(
-                [('company_id', '=', 1), ('client', '=', False),
+                [('company_id', '=', 1), ('mcm_session_id.date_debut', '!=', False)
                  ]):
+
             # user.bolt = True
-            if (user):
-                if (user.bolt == True):
-                    user.client = 'BOLT'
-                    _logger.info(user.client)
-                else:
-                    user.client = user.company_id.name
-                    _logger.info(user.client)
+            if (user.mcm_session_id.date_debut.year >= todays_date.year):
+
+                if (user):
+                    if (user.bolt == True) or (user.module_id.product_id.default_code == "vtc_bolt"):
+                        user.client = 'BOLT'
+                        _logger.info(user.client)
+                        partner.password360 = user.password360
+                        password = user.password360
+                        _logger.info(password)
+                        if (user.password_evalbox == False):
+                            user.password_evalbox = password
+
+
+
+                    else:
+                        user.client = user.company_id.name
+                        _logger.info(user.client)
 
     # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
     def ajouter_IOne_MCM(self, partner):
@@ -472,6 +485,8 @@ class partner(models.Model):
         user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
         partner.password360 = user.password360
         password = user.password360
+
+        print(password)
         if (partner.name and partner.email):
             url = "https://formation.mcm-academy.fr/user_api/v1/account/registration/"
             payload = {'username': partner.name.upper().replace(" ", ""),
