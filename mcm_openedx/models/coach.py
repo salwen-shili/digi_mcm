@@ -11,6 +11,8 @@ _logger = logging.getLogger(__name__)
 
 class enattente(models.Model):
     _name = 'mcm_openedx.enattente'
+    _description = "les apprennat en attente sur l'api "
+
 
     name = fields.Char(string="Apprenat en attente")
     date_edof = fields.Date(string="Date d'ajout")
