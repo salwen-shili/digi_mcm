@@ -103,118 +103,127 @@
                             </div>
                         </div>
                         <div class="row" style="padding-top:130px;">
-                        <div class="col-12">
-                            Le centre de d’examen MCM ACADEMY, situé au
-                            <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>
-                            dont le siège social se situe au 10 rue de Penthièvre 75008 Paris, est représenté par
-                            son
-                            Directeur Général en exercice, Monsieur CHERIH Nasserddine.
-                            <br/>
-                            <br/>
-                            Il est le responsable du bon déroulement de l’examen de transport public routier Léger
-                            de
-                            marchandises et se positionne en tant que responsable de la surveillance du centre de
-                            formation
-                            MCM ACADEMY se référant à la Décision du 3 février 2012 relative aux référentiels et
-                            jury
-                            d’examen et aux modèles d’attestation de capacité professionnelle pour l’exercice des
-                            activités
-                            de transport public routier. L’examen se présente de la façon suivante :
-                            <p style="color:#696969;"><i>Référence</i>: article 8 de l’arrêté du 28 décembre 2011 relatif à la délivrance des
-                            attestations de
-                            capacité professionnelle permettant l’exercice de la profession de transporteur public
-                            routier.
-                            <br/>
-                            - QCM : 100 points – Questions rédigées : 100 points = 200 points.
-                            <br/>
-                            - Pour obtenir l’attestation de capacité professionnelle : au moins 120 points au total
-                            sous réserve d’avoir obtenu au moins 50 points aux QCM et 40 points aux questions
-                            rédigées.
-                            </p>
-                            <center>
-                                <i style="color:#696969;">Examen de 3 heures</i>
-                                <p style="color:#696969;">1re épreuve : temps conseillé : 1 h 15</p>
-                            </center>
-                            <p style="color:#696969;">
-                            Questionnaires de 50 QCM (4 propositions : une seule bonne réponse) à 2 points chacune,
-                            soit
-                            100 points, réparties sur l’ensemble des thématiques du référentiel des connaissances :
-                            <br/>
-                            e) L’entreprise et le droit civil et commercial : 14 questions ;
-                            <br/>
-                            f) L’entreprise et son activité commerciale : 2 questions ;
-                            <br/>
-                            g) L’entreprise et le cadre réglementaire de l’activité de transport : 13 questions ;
-                            <br/>
-                            h) L’entreprise et son activité financière : 5 questions ;
-                            <br/>
-                            i) L’entreprise et ses salariés : 10 questions ;
-                            <br/>
-                            j) L’entreprise et la sécurité : 6 questions.
-                            <br/>
-                            Dans chaque thématique, le créateur de l’examen veillera à ce que les QCM ne portent pas
-                            sur les
-                            mêmes sujets que les questions à réponse rédigée de la seconde partie de l’examen.
-                            </p>
-                            <center style="color:#696969;">2e épreuve : temps conseillé : 1 h 45</center>
-                            <ul style="color:#696969;">
-                                <li>Questions et exercices exigeant une réponse rédigée sur 100 points :</li>
-                                <li>Exercices sur la thématique « D. L’entreprise et son activité financière »
-                                    exigeant une réponse
-                                    rédigée, sur 50 points, comportant au moins un calcul de coût de revient complet
-                                    et deux
-                                    questions rédigées portant sur les autres connaissances de la thématique « D.
-                                    L’entreprise et
-                                    son activité financière ». Un calcul de seuil de rentabilité ou un exercice
-                                    d’organisation/classement de postes financiers peuvent remplacer une de ces
-                                    questions ;
-                                </li>
-                                <li>25 à 30 points pour le coût de revient et 20 à 25 points à répartir sur les
-                                    autres questions, soit
-                                    50 points au total ;
-                                </li>
-                                <li>5 questions à réponses rédigées portant sur les thématiques « C. L’entreprise et
-                                    le son cadre
-                                    réglementaire de l’activité de transport », « E. L’entreprise et ses salariés »
-                                    et « F. L’entreprise et la
-                                    sécurité » (dont 3 questions sur la thématique E et 1 question sur chaque
-                                    thématique C et
-                                    F); Entre 6 à 10 points par question, pour un total de 50 points ;
-                                </li>
-                            </ul>
+                            <div class="col-12">
+                                Le centre de d’examen MCM ACADEMY, situé au
+                                <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>
+                                dont le siège social se situe au 10 rue de Penthièvre 75008 Paris, est représenté par
+                                son
+                                Directeur Général en exercice, Monsieur CHERIH Nasserddine.
+                                <br/>
+                                <br/>
+                                Il est le responsable du bon déroulement de l’examen de transport public routier Léger
+                                de
+                                marchandises et se positionne en tant que responsable de la surveillance du centre de
+                                formation
+                                MCM ACADEMY se référant à la Décision du 3 février 2012 relative aux référentiels et
+                                jury
+                                d’examen et aux modèles d’attestation de capacité professionnelle pour l’exercice des
+                                activités
+                                de transport public routier. L’examen se présente de la façon suivante :
+                                <p style="color:#696969;"><i>Référence</i>: article 8 de l’arrêté du 28 décembre 2011
+                                    relatif à la délivrance des
+                                    attestations de
+                                    capacité professionnelle permettant l’exercice de la profession de transporteur
+                                    public
+                                    routier.
+                                    <br/>
+                                    - QCM : 100 points – Questions rédigées : 100 points = 200 points.
+                                    <br/>
+                                    - Pour obtenir l’attestation de capacité professionnelle : au moins 120 points au
+                                    total
+                                    sous réserve d’avoir obtenu au moins 50 points aux QCM et 40 points aux questions
+                                    rédigées.
+                                </p>
+                                <center>
+                                    <i style="color:#696969;">Examen de 3 heures</i>
+                                    <p style="color:#696969;">1re épreuve : temps conseillé : 1 h 15</p>
+                                </center>
+                                <p style="color:#696969;">
+                                    Questionnaires de 50 QCM (4 propositions : une seule bonne réponse) à 2 points
+                                    chacune,
+                                    soit
+                                    100 points, réparties sur l’ensemble des thématiques du référentiel des
+                                    connaissances :
+                                    <br/>
+                                    e) L’entreprise et le droit civil et commercial : 14 questions ;
+                                    <br/>
+                                    f) L’entreprise et son activité commerciale : 2 questions ;
+                                    <br/>
+                                    g) L’entreprise et le cadre réglementaire de l’activité de transport : 13 questions
+                                    ;
+                                    <br/>
+                                    h) L’entreprise et son activité financière : 5 questions ;
+                                    <br/>
+                                    i) L’entreprise et ses salariés : 10 questions ;
+                                    <br/>
+                                    j) L’entreprise et la sécurité : 6 questions.
+                                    <br/>
+                                    Dans chaque thématique, le créateur de l’examen veillera à ce que les QCM ne portent
+                                    pas
+                                    sur les
+                                    mêmes sujets que les questions à réponse rédigée de la seconde partie de l’examen.
+                                </p>
+                                <center style="color:#696969;">2e épreuve : temps conseillé : 1 h 45</center>
+                                <ul style="color:#696969;">
+                                    <li>Questions et exercices exigeant une réponse rédigée sur 100 points :</li>
+                                    <li>Exercices sur la thématique « D. L’entreprise et son activité financière »
+                                        exigeant une réponse
+                                        rédigée, sur 50 points, comportant au moins un calcul de coût de revient complet
+                                        et deux
+                                        questions rédigées portant sur les autres connaissances de la thématique « D.
+                                        L’entreprise et
+                                        son activité financière ». Un calcul de seuil de rentabilité ou un exercice
+                                        d’organisation/classement de postes financiers peuvent remplacer une de ces
+                                        questions ;
+                                    </li>
+                                    <li>25 à 30 points pour le coût de revient et 20 à 25 points à répartir sur les
+                                        autres questions, soit
+                                        50 points au total ;
+                                    </li>
+                                    <li>5 questions à réponses rédigées portant sur les thématiques « C. L’entreprise et
+                                        le son cadre
+                                        réglementaire de l’activité de transport », « E. L’entreprise et ses salariés »
+                                        et « F. L’entreprise et la
+                                        sécurité » (dont 3 questions sur la thématique E et 1 question sur chaque
+                                        thématique C et
+                                        F); Entre 6 à 10 points par question, pour un total de 50 points ;
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <br/>
-                    <div class="row">
-                        <div class="col-12">
-                            <center style="font-size:12px;">
-                                MCM ACADEMY, 10 rue de Penthièvre 75008 PARIS.
-                                <br/>
-                                Déclaration d'activité enregistrée sous le numéro 11755542075 auprès du préfet de la
-                                région d'Ile-de-France
-                                <br/>
-                                Responsable de formation Mr CHERIH Nasserddine
-                                <br/>
-                                <b>www.mcm-academy.fr</b>
-                            </center>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12">
+                                <center style="font-size:12px;">
+                                    MCM ACADEMY, 10 rue de Penthièvre 75008 PARIS.
+                                    <br/>
+                                    Déclaration d'activité enregistrée sous le numéro 11755542075 auprès du préfet de la
+                                    région d'Ile-de-France
+                                    <br/>
+                                    Responsable de formation Mr CHERIH Nasserddine
+                                    <br/>
+                                    <b>www.mcm-academy.fr</b>
+                                </center>
+                            </div>
                         </div>
-                    </div>
                         <p style="page-break-after:always;"/>
                         <div class="row">
-                        <div class="col-4">
-                            <img src="/partner_exam/static/src/img/logo_digimoov.png" style="max-height:100px;float:left;"/>
+                            <div class="col-4">
+                                <img src="/partner_exam/static/src/img/logo_digimoov.png"
+                                     style="max-height:100px;float:left;"/>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row" style="padding-top:130px;">
+                        <div class="row" style="padding-top:130px;">
                             <div class="col-12">
                                 <b>
-                                    <u>
+                                    <u style="font-size:18px;">
                                         Déférant à cette réquisition :
                                     </u>
                                 </b>
                                 <br/>
-                                <p>
+                                <br/>
+                                <p style="font-size:18px;">
                                     Je,
                                     <strong>
                                         <span t-esc="o.display_name"/>
@@ -225,6 +234,8 @@
                                         <span t-raw="'%s' % o.zip if o.zip else '..............'"/>
                                         <span t-raw="'%s' % o.city if o.city else '..............'"/>
                                     </strong>
+                                    <br/>
+                                    <br/>
                                     <br/>
                                     soussigné(e) :
                                     <br/>
@@ -242,64 +253,43 @@
                                         </u>
                                     </b>
                                     afin de surveiller et de contrôler le bon déroulement de l’examen qui a lieu le
-                                    <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>
+                                    <b>
+                                        <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>
+                                    </b>
                                     à
-                                    <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
+                                    <b>
+                                        <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
+                                    </b>
+
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    Je procède aux constatations qui suivent :
+                                    <br/>
+                                    <br/>
+                                    Aucune difficulté n’est à mentionner, tout s’est bien déroulé.
                                 </p>
-                                <br/>
-                                Je procède aux constatations qui suivent :
-                                <br/>
-                                <br/>
-                                Aucune difficulté n’est à mentionner, tout s’est bien déroulé.
                                 <br/>
                                 <br/>
                                 <style>
                                     ol.c {list-style-type: upper-roman;}
                                 </style>
-                                <ol class="c">
-                                    <li>Constatations factuelles :</li>
-                                </ol>
-                                Nous sommes arrivés pour vous accueillir au centre de formation MCM ACADEMY à
-                                <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
-                                le<span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>.
-                                Nous avons demandé aux candidats présents de patienter dans le Hall d’entrée, le temps
-                                de
-                                préparer la salle d’examen.
-                                <br/>
-                                Nous avons invité les candidats à entrer dans la salle d’examen à
-                                <t t-if="o.mcm_session_id.temps_convocation == 'matin'">
-                                    <strong>
-                                        <span t-field="matin.heure_examen_matin"/>
-                                    </strong>
-                                </t>
-                                <t t-if="o.mcm_session_id.temps_convocation == 'apres_midi'">
-                                    <strong>
-                                        <span t-field="o.mcm_session_id.heure_examen_apres_midi"/>
-                                    </strong>
-                                </t>
-                                <t t-if="o.mcm_session_id.temps_convocation == ''">
-                                    <p></p>
-                                </t>
-                                . Nous leurs avons demandé de présenter la convocation à l’examen envoyé par le centre
-                                ainsi
-                                qu’une pièce d’identité.
-                                <br/>
-                                <br/>
-                                Je demande à tous les candidats d’éteindre leur téléphone, de les disposer dans leur sac
-                                et
-                                de remettre leur sac à proximité du tableau.
-                                <br/>
-                                <p style="page-break-after:always;"/>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <img src="/partner_exam/static/src/img/logo_digimoov.png"
-                                             style="max-height:100px;float:right;padding-right:100px;"/>
-                                    </div>
-                                </div>
-                                <br/>
-                                <br/>
-                                <div class="row">
-                                    A
+                                <h3>
+                                    <ol class="c">
+                                        <li>Constatations factuelles :</li>
+                                    </ol>
+                                </h3>
+                                <p style="font-size:18px;">
+                                    Nous sommes arrivés pour vous accueillir au centre de formation MCM ACADEMY à
+                                    <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
+                                    le<span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>.
+                                    Nous avons demandé aux candidats présents de patienter dans le Hall d’entrée, le
+                                    temps
+                                    de
+                                    préparer la salle d’examen.
+                                    <br/>
+                                    <br/>
+                                    Nous avons invité les candidats à entrer dans la salle d’examen à
                                     <t t-if="o.mcm_session_id.temps_convocation == 'matin'">
                                         <strong>
                                             <span t-field="matin.heure_examen_matin"/>
@@ -313,20 +303,56 @@
                                     <t t-if="o.mcm_session_id.temps_convocation == ''">
                                         <p></p>
                                     </t>
-                                    , je procède à la lecture des règles, expliquant le déroulé de l’examen aux
-                                    candidats.
+                                    . Nous leurs avons demandé de présenter la convocation à l’examen envoyé par le
+                                    centre
+                                    ainsi
+                                    qu’une pièce d’identité.
+                                    <br/>
+                                    <br/>
+                                    Je demande à tous les candidats d’éteindre leur téléphone, de les disposer dans leur
+                                    sac
+                                    et
+                                    de remettre leur sac à proximité du tableau.
+                                </p>
+                                <br/>
+                                <p style="page-break-after:always;"/>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img src="/partner_exam/static/src/img/logo_digimoov.png"
+                                             style="max-height:100px;float:left;"/>
+                                    </div>
                                 </div>
                                 <br/>
                                 <br/>
+                                <p style="font-size:18px;">
+                                <div class="row" style="padding-top:130px;">
+                                    <p style="font-size:18px;">
+                                        A
+                                        <t t-if="o.mcm_session_id.temps_convocation == 'matin'">
+                                            <strong>
+                                                <span t-field="matin.heure_examen_matin"/>
+                                            </strong>
+                                        </t>
+                                        <t t-if="o.mcm_session_id.temps_convocation == 'apres_midi'">
+                                            <strong>
+                                                <span t-field="o.mcm_session_id.heure_examen_apres_midi"/>
+                                            </strong>
+                                        </t>
+                                        <t t-if="o.mcm_session_id.temps_convocation == ''">
+                                            <p/>
+                                        </t>
+                                        , je procède à la lecture des règles, expliquant le déroulé de l’examen aux
+                                        candidats.
+                                    </p>
+                                </div>
                                 <br/>
-                                <div class="row">
+                                <div class="row" style="font-size:18px;">
                                     Les candidats n’ayant pas de questions, la distribution de l’examen c’est faite à <b>
                                     14h00
                                 </b> précise.
                                 </div>
-                                <div class="row">
+                                <div class="row" style="font-size:18px;">
                                     Les sujets ont été distribués selon l’ordre chronologique d’arrivée.
-                                    <br/>
                                     <br/>
                                     A ............. les candidats ont été notifiés qu’ils leurs resté 5 minutes avant la
                                     fin
@@ -334,51 +360,53 @@
                                     l’épreuve.
                                 </div>
                                 <br/>
-                                <br/>
-                                <div class="row">
+                                <div class="row" style="font-size:18px;">
                                     A ............. j’ai procédé au ramassage des copies dans le même ordre que
                                     mentionné
                                     précédemment. J’ai ensuite procédé à la mise sous plis dans une enveloppe.
                                 </div>
                                 <br/>
-                                <br/>
-                                <div class="row">
+                                <div class="row" style="font-size:18px;">
                                     Autres remarques :
                                     <br/>
-                                    ...........................................................................................
-                                    ...........................................................................................
-                                    ...........................................................................................
-                                    ...........................................................................................
-                                    ...........................................................................................
-                                    ...........................................................................................
-                                    ...........................................................................................
+                                    ......................................................................................................................................................................................
+
+                                    ......................................................................................................................................................................................
+
+                                    ......................................................................................................................................................................................
+
+                                    ......................................................................................................................................................................................
+
+                                    ......................................................................................................................................................................................
+
+                                    ......................................................................................................................................................................................
+
+                                    ......................................................................................................................................................................................
                                 </div>
                                 <br/>
-                                <br/>
-                                <br/>
-                                Mes contestations étant terminées, je me suis retiré.
-                                <br/>
-                                <br/>
-                                Telles sont mes constations.
-                                <br/>
-                                <br/>
-                                <br/>
-                                Et de tout ce que dessus, j’ai dressé le présent procès-verbal de constat pour servir et
-                                valoir
-                                ce que de droit.
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                A
-                                <strong>
-                                    <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
-                                </strong>
-                                <br/>
-                                Le ....................
-                                <br/>
-                                <br/>
-                                Signature
+                                <p style="font-size:18px;">Mes contestations étant terminées, je me suis retiré.
+                                    <br/>
+                                    <br/>
+                                    Telles sont mes constations.
+                                    <br/>
+                                    <br/>
+                                    Et de tout ce que dessus, j’ai dressé le présent procès-verbal de constat pour
+                                    servir et
+                                    valoir
+                                    ce que de droit.
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    A
+                                    <strong>
+                                        <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
+                                    </strong>
+                                    <br/>
+                                    Le ....................
+                                    <br/>
+                                    <br/>
+                                    Signature
+                                </p>
                             </div>
                         </div>
                     </div>
