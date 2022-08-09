@@ -146,19 +146,23 @@ class Coach(models.Model):
                 r.taken_seats = 100.0 * len(r.apprenant_name) / r.seats
 
     def aff_coach(self):
+        count_apprennat = 0
         for partner in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"), ('company_id', '=', 1), ('state', "=", "en_formation")]):
+            count_apprennat = count_apprennat + 1
             for coaches in self.env['res.partner'].sudo().search(
                     [('est_coach', '=', 'True')]):
+                _logger.info(coaches.name)
                 # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
                 for message in self.env['mail.message'].search(
-                        [('res_id', "=", self.id), ('author_id', 'ilike', coaches.name)]):
+                        [('res_id', "=", partner.id), ('author_id.name', 'ilike', coaches.name)]):
                     _logger.info("message.author_id")
-                    _logger.info(message.author_id.name)
-
+                    print("oooooooooooo",message.author_id.name)
                     if (coaches.name, 'ilike', message.author_id.name):
                         _logger.info(coaches.name)
                         partner.coach_peda = message.author_id
+
+        print(count_apprennat)
 
     # tester le nombre des coach et le nombre d'apprenant pour chaque un  , pour controller l'affectation des apprenants pour chaque'un
     @api.depends('nombre_apprenant', 'coach_name', 'apprenant_name', 'seats')
