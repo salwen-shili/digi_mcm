@@ -401,7 +401,10 @@
                                         <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
                                     </strong>
                                     <br/>
-                                    Le ....................
+                                    Le <strong>
+                                        <span t-field="o.mcm_session_id.date_exam"
+                                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                    </strong>
                                     <br/>
                                     <br/>
                                     Signature
