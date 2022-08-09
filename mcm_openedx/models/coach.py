@@ -147,7 +147,7 @@ class Coach(models.Model):
 
     def aff_coach(self):
         for partner in self.env['res.partner'].sudo().search(
-                [('statut', "=", "won"), ('company_id', '=', 1)]):
+                [('statut', "=", "won"), ('company_id', '=', 1), ('state', 'ilike', 'en_formation')]):
 
             for coaches in self.env['res.partner'].sudo().search(
                     [('est_coach', '=', 'True')]):
