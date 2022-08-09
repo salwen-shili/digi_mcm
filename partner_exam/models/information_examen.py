@@ -502,9 +502,10 @@ class NoteExamen(models.Model):
         if res.partner_id.note_exam_id:
             info_exam = self.env['info.examen'].sudo().search(
                 [('partner_id', '=', res.partner_id.id), ('id', "!=", res.id)], order="id desc", limit=1)
-            if res.partner_id.module_id.product_id.default_code == 'examen' or info_exam.presence == 'Absence justifiée':
-                _logger.info('info_exam µµµµµµµµµµµµµµ************ %s', info_exam.partner_id.display_name)
-                _logger.info('info_exam µµµµµµµµµµµµµµ************ %s', info_exam.presence)
+            _logger.info('info_exam µµµµµµµµµµµµµµ************ %s', info_exam.partner_id.display_name)
+            _logger.info('info_exam µµµµµµµµµµµµµµ************ %s', info_exam.presence)
+            if res.partner_id.module_id.product_id.default_code == 'examen' or info_exam.presence == 'absence_justifiee':
+
 
                 if info_exam:
                     if info_exam.nombre_de_passage == 'premier':
