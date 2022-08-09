@@ -147,17 +147,17 @@ class Coach(models.Model):
 
     def aff_coach(self):
         for partner in self.env['res.partner'].sudo().search(
-                [('statut', "=", "won"), ('company_id', '=', 1), ('state', 'ilike', 'en_formation')]):
-
+                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "=", "en_formation")]):
             for coaches in self.env['res.partner'].sudo().search(
                     [('est_coach', '=', 'True')]):
                 # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
                 for message in self.env['mail.message'].search(
                         [('res_id', "=", self.id), ('author_id', 'ilike', coaches.name)]):
-                    print("message.author_id", message.author_id.name)
+                    _logger.info("message.author_id")
+                    _logger.info(message.author_id.name)
 
                     if (coaches.name, 'ilike', message.author_id.name):
-                        print(coaches.name)
+                        _logger.info(coaches.name)
                         partner.coach_peda = message.author_id
 
     # tester le nombre des coach et le nombre d'apprenant pour chaque un  , pour controller l'affectation des apprenants pour chaque'un
