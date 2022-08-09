@@ -44,7 +44,7 @@ class partner(models.Model):
             'email_students': 'false',
             'action': 'unenroll',
             'courses': 'course-v1:Digimoov+reg_vtc_02+2,'
-                       'course-v1:Digimoov+dev_com_01+1,'
+                       'course-v1:Digimoov+dev_com_02+2,'
                        'course-v1:Digimoov+t3p_02+2,'
                        'course-v1:Digimoov+sec_rout_02+2,'
                        'course-v1:Digimoov+ges02+2,'
@@ -73,7 +73,7 @@ class partner(models.Model):
             'email_students': 'false',
             'action': 'enroll',
             'courses': 'course-v1:Digimoov+reg_vtc_02+2,'
-                       'course-v1:Digimoov+dev_com_01+1,'
+                       'course-v1:Digimoov+dev_com_02+2,'
                        'course-v1:Digimoov+sec_rout_02+2,'
                        'course-v1:Digimoov+t3p_02+2,'
                        'course-v1:Digimoov+ges02+2,'
