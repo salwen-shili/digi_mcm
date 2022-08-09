@@ -500,9 +500,11 @@ class NoteExamen(models.Model):
         ainsi la ligne suivante sera déplacée comme la seconde... 
         Dans le cas contraire, le nombre de passage sera à nouveau le premier. """
         if res.partner_id.note_exam_id:
-            if res.partner_id.module_id.product_id.default_code == 'examen' or res.partner_id.presence == 'absence_justifiee':
-                info_exam = self.env['info.examen'].sudo().search(
-                    [('partner_id', '=', res.partner_id.id), ('id', "!=", res.id)], order="id desc", limit=1)
+            info_exam = self.env['info.examen'].sudo().search(
+                [('partner_id', '=', res.partner_id.id), ('id', "!=", res.id)], order="id desc", limit=1)
+            if res.partner_id.module_id.product_id.default_code == 'examen' or res.partner_id.note_exam_id[
+                -1].presence == 'Absence justifiée':
+
                 if info_exam:
                     if info_exam.nombre_de_passage == 'premier':
                         res.nombre_de_passage = 'deuxieme'
