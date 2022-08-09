@@ -13,7 +13,6 @@ class enattente(models.Model):
     _name = 'mcm_openedx.enattente'
     _description = "les apprennat en attente sur l'api "
 
-
     name = fields.Char(string="Apprenat en attente")
     date_edof = fields.Date(string="Date d'ajout")
     billingState = fields.Char(string="Statut de payement")
@@ -145,6 +144,22 @@ class Coach(models.Model):
                 r.taken_seats = 0.0
             else:
                 r.taken_seats = 100.0 * len(r.apprenant_name) / r.seats
+
+    def aff_coach(self):
+        for partner in self.env['res.partner'].sudo().search(
+                [('statut', "=", "won"), ('company_id', '=', 1)]):
+
+            for coaches in self.env['res.partner'].sudo().search(
+                    [('est_coach', '=', 'True')]):
+                # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
+                for message in self.env['mail.message'].search(
+                        [('res_id', "=", self.id), ('author_id', 'ilike', coaches.name)]):
+                    print("message.author_id", message.author_id.name)
+
+                    if partner.coach_peda.name is False:
+                        if (coaches.name, 'ilike', message.author_id.name):
+                            print(coaches.name)
+                            partner.coach_peda = message.author_id
 
     # tester le nombre des coach et le nombre d'apprenant pour chaque un  , pour controller l'affectation des apprenants pour chaque'un
     @api.depends('nombre_apprenant', 'coach_name', 'apprenant_name', 'seats')
