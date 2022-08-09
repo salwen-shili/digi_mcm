@@ -168,6 +168,7 @@ class Session(models.Model):
     def month_session_in_lettre(self, month_format):
         """ Fonction qui affiche les mois de date d'examen en lettres et en majuscules"""
         month_format = '%B'
+        locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
         month_format = (self.date_exam).strftime(month_format).upper()
         return month_format
 
