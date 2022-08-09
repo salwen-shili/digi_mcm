@@ -294,17 +294,16 @@ class partner(models.Model):
     def ajoutMoocit_manuelle(self):
         _logger.info(' emailll  utilisateur %s' % str(self.email))
         _logger.info('password360%s' % str(self.password360))
-        # for coaches in self.env['res.partner'].sudo().search(
-        #         [('est_coach', '=', 'True')]):
-        #     # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
-        #     for message in self.env['mail.message'].search(
-        #             [('res_id', "=", self.id), ('author_id', 'ilike', coaches.name)]):
-        #         print("message.author_id", message.author_id.name)
-        #
-        #     if self.coach_peda.name is False:
-        #         if (coaches.name, 'ilike', message.author_id.name):
-        #             print(coaches.name)
-        #             self.coach_peda = message.author_id
+        for coaches in self.env['res.partner'].sudo().search(
+                [('est_coach', '=', 'True')]):
+            # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
+            for message in self.env['mail.message'].search(
+                    [('res_id', "=", self.id), ('author_id', 'ilike', coaches.name)]):
+                print("message.author_id", message.author_id.name)
+
+                if (coaches.name, 'ilike', message.author_id.name):
+                    print(coaches.name)
+                    self.coach_peda = message.author_id
 
         # todays_date = date.today()
         # print(todays_date.year)
@@ -459,7 +458,6 @@ class partner(models.Model):
                     }
                 }
 
-
     # fonction pour tester si le client en partenriat Avec Bolt ou non Si nn i la va  identifier le Client avec le nom de la company
     def estBolt(self):
         todays_date = date.today()
@@ -486,7 +484,6 @@ class partner(models.Model):
                         else:
                             user.client = user.company_id.name
                             _logger.info(user.client)
-
 
     # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
     def ajouter_IOne_MCM(self, partner):
@@ -628,7 +625,6 @@ class partner(models.Model):
                     new_ticket = self.env['helpdesk.ticket'].sudo().create(
                         vals)
 
-
     def sendmail(self, partner):
         print(partner.name)
         if self.env.su:
@@ -659,7 +655,6 @@ class partner(models.Model):
                 _logger.info("mail envoyeé")
                 _logger.info(partner.email)
                 _logger.info('if template  %s' % str(partner.name))
-
 
     # notifier apprenant
     def notifierapprenant(self):
@@ -737,7 +732,6 @@ class partner(models.Model):
                 }
             }
 
-
     # envoit d'un sms
     def testsms(self, partner):
         if partner.phone:
@@ -765,7 +759,6 @@ class partner(models.Model):
                 composer.action_send_sms()  # send sms of end of exam and waiting for result
             if partner.phone:
                 partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
-
 
     # supprimer ione le desinscrire des cours sur la platfrom moocit
     def supprimer_IOne_MCM(self):
@@ -803,7 +796,6 @@ class partner(models.Model):
                 }
             }
 
-
     # affecter la date de suppression apres l'ajout  5 jours apres session
     def update_datesupp(self):
         for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1),
@@ -818,7 +810,6 @@ class partner(models.Model):
                         partner.sudo().write({'state': 'en_formation'})
                         partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
                         _logger.info("supprimer aprex 5 j")
-
 
     # supprimer ione  automatique le desinscrire des cours sur la platfrom moocit
 
@@ -840,7 +831,6 @@ class partner(models.Model):
                         self.desinscriteVTC(partner)
                     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                         self.desinscriteVTC(partner)
-
 
     def convertir_date_inscription(self):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
