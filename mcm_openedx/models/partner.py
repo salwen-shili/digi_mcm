@@ -298,12 +298,17 @@ class partner(models.Model):
                 [('est_coach', '=', 'True')]):
             # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
             for message in self.env['mail.message'].search(
-                    [('res_id', "=", self.id), ('author_id', 'ilike', coaches.name)]):
-                print("message.author_id", message.author_id.name)
+                    [('res_id', "=", self.id), ('author_id.name', 'ilike', coaches.name)], order="create_date asc",
+                    limit=1):
+                print("First", message.create_date)
+                print("nom", message.author_id.name)
 
                 if (coaches.name, 'ilike', message.author_id.name):
-                    print(coaches.name)
                     self.coach_peda = message.author_id
+                    break
+            break
+
+
 
         # todays_date = date.today()
         # print(todays_date.year)
@@ -818,13 +823,11 @@ class partner(models.Model):
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             # chercher dans res.partner la liste de apprennats puis verifier la
             for partner in self.env['res.partner'].sudo().search([
-                ('company_id', '=', 1),
-
-            ]):
+                ('company_id', '=', 1)]):
                 self.write({'state': 'supprimé'})
                 _logger.info("supprimer autooo")
 
-                if (partner.supprimerdemoocit == date.today()):
+                if (partner.supprimerdemoocit < date.today()):
                     if (partner.module_id.product_id.default_code == "taxi"):
                         self.desinscriteTaxi(partner)
                     elif (partner.module_id.product_id.default_code == "vtc"):
