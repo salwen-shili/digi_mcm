@@ -25,7 +25,7 @@ class enattente(models.Model):
 
     def wedof_api_integration_moocit(self):
         companies = self.env['res.company'].sudo().search([('id', "=", 2)])
-        print(companies)
+        _logger.info (companies)
         api_key = ""
         if companies:
             api_key = companies.wedof_api_key
@@ -47,7 +47,8 @@ class enattente(models.Model):
         response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
                                 params=params_we)
         registrations = response.json()
-        print(response.status_code)
+        _logger.info("Habilitation pour l’accès à la profession de conducteur de taxi")
+        _logger.infot(response.status_code)
         for dossier in registrations:
             externalId = dossier['externalId']
             diplome = dossier['trainingActionInfo']['title']
@@ -73,8 +74,8 @@ class enattente(models.Model):
             billingState = dossier['billingState']
             externalId = dossier['externalId']
             lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
-            # print('dateeeeeeeeee', today, dateFormation, certificat, idform)
-            # print('diplome',diplome)
+            # _logger.info ('dateeeeeeeeee', today, dateFormation, certificat, idform)
+            # _logger.info ('diplome',diplome)
             if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi"):
                 _logger.info("Habilitation pour l’accès à la profession de conducteur de taxi")
                 _logger.info(attendee['email'])
@@ -95,8 +96,8 @@ class enattente(models.Model):
                                     [('email', "=", existee.name)]):
 
                                 existee.existantsurmooc = True
-                                print(partner.name)
-                                print(partner.email)
+                                _logger.info (partner.name)
+                                _logger.info (partner.email)
                                 _logger.info("okokkookkokookokokko")
                                 if (dateFormation <= today):
                                     """si l'apprenant est sur moocit on change le statut de son dossier sur wedof """
@@ -105,7 +106,7 @@ class enattente(models.Model):
                                         'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
                                         headers=headers, data=data)
                                     _logger.info('response post %s' % str(response_post.text))
-                                    # print('response post', str(response_post.text))
+                                    # _logger.info ('response post', str(response_post.text))
 
                 if not existee:
                     _logger.info("dont exist")
@@ -154,17 +155,18 @@ class Coach(models.Model):
                     [('est_coach', '=', 'True')]):
                 # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
                 for message in self.env['mail.message'].search(
-                        [('res_id', "=", partner.id), ('author_id.name', 'ilike', coaches.name)], order="create_date asc",
+                        [('res_id', "=", partner.id), ('author_id.name', 'ilike', coaches.name)],
+                        order="create_date asc",
                         limit=1):
-                    print("First", message.create_date)
-                    print("nom", message.author_id.name)
+                    _logger.info ("First", message.create_date)
+                    _logger.info ("nom", message.author_id.name)
 
                     if (coaches.name, 'ilike', message.author_id.name):
                         partner.coach_peda = message.author_id
                         break
                 break
 
-        print(count_apprennat)
+        _logger.info (count_apprennat)
 
     # tester le nombre des coach et le nombre d'apprenant pour chaque un  , pour controller l'affectation des apprenants pour chaque'un
     @api.depends('nombre_apprenant', 'coach_name', 'apprenant_name', 'seats')
@@ -197,7 +199,7 @@ class Coach(models.Model):
             if (coach):
 
                 coach_name = coach.name
-                print("coachs names", coach_name)
+                _logger.info ("coachs names", coach_name)
                 # verfier dans la class Coach si il existe un coach ayant le meme nom que le coach affecter pour les apprenants
 
                 exist = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '=', coach.id)])
@@ -218,7 +220,7 @@ class Coach(models.Model):
                     newcoach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
                                            })
 
-                print("nombre d'apprenant par coach ", coach_name, nombre_apprenant)
+                _logger.info ("nombre d'apprenant par coach ", coach_name, nombre_apprenant)
 
     # chercher les nombre des apprennats qui n'on pas des coach et
     # chercher le nombre d'apprennats par  coach pour voir la differance et affecter les apprenat aux coach qui a le nombre inferieur aux autres
@@ -235,17 +237,17 @@ class Coach(models.Model):
             nombre_coach = nombre_coach + 1
             listcoach.append(coach1.nombre_apprenant)
             listcoach.sort()
-            print(listcoach)
-            print(listcoach[0])
+            _logger.info (listcoach)
+            _logger.info (listcoach[0])
             # calculer nb apprenants sans coaches
         for apprenatsanscoach in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"), ('coach_peda', '=', False), ('company_id', '=', 1)]):
             sanscoach = sanscoach + 1
             # listaffecter.append()
-            print("nb sans coach", sanscoach)
+            _logger.info ("nb sans coach", sanscoach)
             limit = divmod(sanscoach, nombre_coach)
-            print("div", limit[0])
-            print("Rest", limit[1])
+            _logger.info ("div", limit[0])
+            _logger.info ("Rest", limit[1])
             for coach in self.env['mcm_openedx.coach'].sudo().search(
                     [('coach_name', '!=', ''), ('nombre_apprenant', '=', listcoach[0])], limit=1):
                 i = 0
@@ -278,7 +280,7 @@ class Coach(models.Model):
                             context = self._context
                             current_uid = context.get('uid')
                             user = self.env['res.users'].browse(current_uid)
-                            print("emaillllllllllll", user.email)
+                            _logger.info ("emaillllllllllll", user.email)
                             if (user.email == coach.coach_name.email):
                                 return {
                                     'type': 'ir.actions.client',
@@ -292,8 +294,8 @@ class Coach(models.Model):
                                 }
 
                     if apprenat.id not in listexiste:
-                        print("app", apprenat.id)
-                        print(coach.coach_name)
+                        _logger.info ("app", apprenat.id)
+                        _logger.info (coach.coach_name)
                         apprenat.coach_peda = coach.coach_name
 
                     # appeler la fonction pour affecter les apprenats aux coach
