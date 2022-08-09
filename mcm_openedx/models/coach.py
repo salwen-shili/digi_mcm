@@ -158,9 +158,10 @@ class Coach(models.Model):
                         [('res_id', "=", partner.id), ('author_id.name', 'ilike', coaches.name)]):
                     _logger.info("message.author_id")
                     print("oooooooooooo",message.author_id.name)
-                    if (coaches.name, 'ilike', message.author_id.name):
-                        _logger.info(coaches.name)
-                        partner.coach_peda = message.author_id
+                    if(partner.coach_peda != False):
+                        if (coaches.name, 'ilike', message.author_id.name):
+                            _logger.info(coaches.name)
+                            partner.coach_peda = message.author_id
 
         print(count_apprennat)
 
