@@ -58,36 +58,39 @@
 
                         <div class="row" style="padding-top:50px;">
                             <div class="col-12">
-                                <table border="1" style="height:100px;width:800px;">
-                                    <tbody>
-                                        <tr align="center" style="height: 80px; width: 80px;">
-                                            <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
-                                        </tr>
+                                <center>
+                                    <table border="1" style="height:100px;width:800px;">
+                                        <tbody>
+                                            <tr align="center" style="height: 80px; width: 80px;">
+                                                <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
+                                            </tr>
 
-                                        <tr style="height:100px;width:200px;">
-                                            <td align="center" style="height: 80px; width: 80px;">
-                                                <b>Numéro d’agrément</b>
-                                            </td>
-                                            <td class="td" align="center" style="height: 80px; width: 80px;">
-                                                <strong>
-                                                    <p>MCM ACADEMY</p>
-                                                    <span t-field='o.mcm_session_id.num_agrement_jury'/>
-                                                </strong>
-                                            </td>
-                                        </tr>
-                                        <tr style="height:100px;width:200px;">
-                                            <td align="center" style="height: 80px; width: 80px;">
-                                                <b>Lieu de réalisation de la session</b>
-                                            </td>
-                                            <td align="center" style="height: 80px; width: 80px;">
-                                                <strong>
-                                                    <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>:
-                                                    <span t-raw="'%s' % o.mcm_session_id.adresse_jury_id.adresse_centre_examen"/>
-                                                </strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            <tr style="height:100px;width:200px;">
+                                                <td align="center" style="height: 80px; width: 80px;">
+                                                    <b>Numéro d’agrément</b>
+                                                </td>
+                                                <td class="td" align="center" style="height: 80px; width: 80px;">
+                                                    <strong>
+                                                        <p>MCM ACADEMY</p>
+                                                        <span t-field='o.mcm_session_id.num_agrement_jury'/>
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                            <tr style="height:100px;width:200px;">
+                                                <td align="center" style="height: 80px; width: 80px;">
+                                                    <b>Lieu de réalisation de la session</b>
+                                                </td>
+                                                <td align="center" style="height: 80px; width: 80px;">
+                                                    <strong>
+                                                        <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
+                                                        :
+                                                        <span t-raw="'%s' % o.mcm_session_id.adresse_jury_id.adresse_centre_examen"/>
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </center>
                             </div>
                         </div>
                         <p style="page-break-after:always;"/>
@@ -346,12 +349,14 @@
                                 </div>
                                 <br/>
                                 <div class="row" style="font-size:18px;">
-                                    Les candidats n’ayant pas de questions, la distribution de l’examen c’est faite à ...................... précise.
+                                    Les candidats n’ayant pas de questions, la distribution de l’examen c’est faite à
+                                    ...................... précise.
                                 </div>
                                 <div class="row" style="font-size:18px;">
                                     Les sujets ont été distribués selon l’ordre chronologique d’arrivée.
                                     <br/>
-                                    A ...................... les candidats ont été notifiés qu’ils leurs resté 5 minutes avant la
+                                    A ...................... les candidats ont été notifiés qu’ils leurs resté 5 minutes
+                                    avant la
                                     fin
                                     de
                                     l’épreuve.
@@ -399,9 +404,10 @@
                                         <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
                                     </strong>
                                     <br/>
-                                    Le <strong>
+                                    Le
+                                    <strong>
                                         <span t-field="o.mcm_session_id.date_exam"
-                                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                              t-field-options='{"format": "dd/MM/yyyy"}'/>
                                     </strong>
                                     <br/>
                                     <br/>
