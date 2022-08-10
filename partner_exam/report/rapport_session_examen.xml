@@ -22,7 +22,7 @@
                         </div>
                         <br/>
                         <br/>
-                        <div class="row" style="padding-top:80px;">
+                        <div class="row" style="padding-top:60px;">
                             <div class="col-12">
                                 <center>
                                     <b style="font-size:16px;font-family:Liberation Serif;color:#707070;">DIRECTION
@@ -59,7 +59,7 @@
                         <div class="row" style="padding-top:50px;">
                             <div class="col-12">
                                 <center>
-                                    <table border="1" style="height:100px;width:800px;">
+                                    <table class="table table-bordered">
                                         <tbody>
                                             <tr align="center" style="height: 80px; width: 80px;">
                                                 <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
@@ -105,7 +105,7 @@
                                 <p></p>
                             </div>
                         </div>
-                        <div class="row" style="padding-top:80px;">
+                        <div class="row" style="padding-top:60px;">
                             <div class="col-12">
                                 Le centre de d’examen MCM ACADEMY, situé au
                                 <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>
@@ -217,7 +217,7 @@
                             </div>
                         </div>
 
-                        <div class="row" style="padding-top:80px;">
+                        <div class="row" style="padding-top:60px;">
                             <div class="col-12">
                                 <b>
                                     <u style="font-size:18px;">
@@ -314,7 +314,7 @@
                                 </div>
                                 <br/>
                                 <br/>
-                                <div class="row" style="padding-top:80px;">
+                                <div class="row" style="padding-top:60px;">
                                     <p style="font-size:18px;">
                                         A ............................
                                         , je procède à la lecture des règles, expliquant le déroulé de l’examen aux
