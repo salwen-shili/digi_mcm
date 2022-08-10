@@ -309,7 +309,6 @@ class partner(models.Model):
                     self.coach_peda = message.author_id
                     break
 
-
         # todays_date = date.today()
         # print(todays_date.year)
         # if (self.mcm_session_id.date_debut.year >= todays_date.year):
