@@ -292,20 +292,7 @@
                                     préparer la salle d’examen.
                                     <br/>
                                     <br/>
-                                    Nous avons invité les candidats à entrer dans la salle d’examen à
-                                    <t t-if="o.mcm_session_id.temps_convocation == 'matin'">
-                                        <strong>
-                                            <span t-field="matin.heure_examen_matin"/>
-                                        </strong>
-                                    </t>
-                                    <t t-if="o.mcm_session_id.temps_convocation == 'apres_midi'">
-                                        <strong>
-                                            <span t-field="o.mcm_session_id.heure_examen_apres_midi"/>
-                                        </strong>
-                                    </t>
-                                    <t t-if="o.mcm_session_id.temps_convocation == ''">
-                                        <p></p>
-                                    </t>
+                                    Nous avons invité les candidats à entrer dans la salle d’examen à ...................
                                     . Nous leurs avons demandé de présenter la convocation à l’examen envoyé par le
                                     centre
                                     ainsi
@@ -329,20 +316,7 @@
                                 <br/>
                                 <div class="row" style="padding-top:130px;">
                                     <p style="font-size:18px;">
-                                        A
-                                        <t t-if="o.mcm_session_id.temps_convocation == 'matin'">
-                                            <strong>
-                                                <span t-field="matin.heure_examen_matin"/>
-                                            </strong>
-                                        </t>
-                                        <t t-if="o.mcm_session_id.temps_convocation == 'apres_midi'">
-                                            <strong>
-                                                <span t-field="o.mcm_session_id.heure_examen_apres_midi"/>
-                                            </strong>
-                                        </t>
-                                        <t t-if="o.mcm_session_id.temps_convocation == ''">
-                                            <p/>
-                                        </t>
+                                        A ............................
                                         , je procède à la lecture des règles, expliquant le déroulé de l’examen aux
                                         candidats.
                                     </p>
