@@ -471,7 +471,8 @@ class partner(models.Model):
                             user.client = user.company_id.name
                             _logger.info(user.client)
 
-    # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
+        # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
+
     def ajouter_IOne_MCM(self, partner):
         _logger.info('email de lapprenant %s' % str(partner.email))
         user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
@@ -572,7 +573,6 @@ class partner(models.Model):
                         self.inscriteVTC(self)
 
     def sendmail(self, partner):
-        print(partner.name)
         if self.env.su:
             # sending mail in sudo was meant for it being sent from superuser
             self = self.with_user(SUPERUSER_ID)
@@ -598,8 +598,8 @@ class partner(models.Model):
                 partner.with_context(force_send=True).message_post_with_template(template_id,
                                                                                  composition_mode='comment', )
 
-                _logger.info("mail envoyeé")
-                _logger.info(partner.email)
+                _logger.info('mail apprennat  %s' % str(partner.email))
+
                 _logger.info('if template  %s' % str(partner.name))
 
     # envoit d'un sms
