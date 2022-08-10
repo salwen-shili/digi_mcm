@@ -567,20 +567,21 @@ class partner(models.Model):
                         self.inscriteTaxi(self)
                         _logger.info("ajouter a formation taxi ")
                 # Formation à distance VTC
-                elif partner.module_id.product_id.default_code == "vtc":
+                elif (partner.module_id.product_id.default_code == "vtc"):
                     _logger.info("client Bolt Formation VTC")
                     self.inscriteVTC(self)
                 # Formation à distance VTC-BOLT
-                elif partner.module_id.product_id.default_code == "vtc_bolt":
-                    if bolt is True:
+                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                    if (bolt == True):
                         _logger.info("client Bolt Formation VTC")
                         _logger.info(
                             'ceci est un client bolt il va etre ajouter ssans verifer les autres conditions ')
                         self.inscriteVTC(self)
-            if response_ajouter_IOne_MCM.status_code == 409:
+            if (response_ajouter_IOne_MCM.status_code == 409):
                 # voir si statut de l'apprenant en formation ou la date de mise en formation est vide alors mettre la date pour la date.today
-                if partner.state != 'en_formation':
+                if (partner.state != 'en_formation' and partner.inscrit_mcm == False):
                     partner.inscrit_mcm = date.today()
+
                 self.write({'state': 'en_formation'})
                 bolt = self.bolt
                 evalbox = self.numero_evalbox
