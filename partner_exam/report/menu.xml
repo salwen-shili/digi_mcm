@@ -106,6 +106,23 @@
         <field name="dpi">90</field>
     </record>
 
+    <!--This is used to reformat paper pdf format of RAPPORT DE SESSION D’EXAMEN -->
+    <record id="paperformat_rapport_session_examen" model="report.paperformat">
+        <field name="name">RAPPORT DE SESSION D’EXAMEN</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
     <!-- Cerfa -->
     <report id="report_cerfa"
             string="Cerfa"
@@ -123,6 +140,16 @@
             name="partner_exam.pdf_connection_statement_report"
             file="partner_exam.pdf_connection_statement_id"
             print_report_name="'Relevé de connexion- %s' % (object.name).replace('/', '')"
+            paperformat="partner_exam.paperformat_connection_statement"
+    />
+    <!-- RAPPORT DE SESSION D’EXAMEN -->
+    <report id="pdf_rapport_session_examen_id"
+            string="RAPPORT DE SESSION D’EXAMEN"
+            model="res.partner"
+            report_type="qweb-pdf"
+            name="partner_exam.pdf_rapport_session_examen"
+            file="partner_exam.pdf_rapport_session_examen_id"
+            print_report_name="'RAPPORT DE SESSION D’EXAMEN- %s' % (object.name).replace('/', '')"
             paperformat="partner_exam.paperformat_connection_statement"
     />
 
