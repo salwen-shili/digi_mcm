@@ -106,7 +106,7 @@
         <field name="dpi">90</field>
     </record>
 
-    <!--This is used to reformat paper pdf format of connection statement -->
+    <!--This is used to reformat paper pdf format of RAPPORT DE SESSION D’EXAMEN -->
     <record id="paperformat_rapport_session_examen" model="report.paperformat">
         <field name="name">RAPPORT DE SESSION D’EXAMEN</field>
         <field name="default" eval="False"/>
