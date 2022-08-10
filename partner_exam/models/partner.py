@@ -118,7 +118,7 @@ class resComapny(models.Model):
         if 'nom_evalbox' in values or 'prenom_evalbox' in values:  # If we have changed this fields
             self.code_evalbox = str(self.nom_evalbox) + str(
                 self.prenom_evalbox)  # Update code evalbox and # To concatenate (combine) multiple fields
-        if 'mcm_session_id' in values and 'company_id' == 2:
+        if 'mcm_session_id' in values and self.company_id.id == 2:
             self.code_evalbox = str(self.mcm_session_id.session_ville_id.name_ville[0:3]) + str(self.nom_evalbox) + str(self.prenom_evalbox)
             _logger.info("Get first three characters of a string session ville %s" % str(self.mcm_session_id.session_ville_id.name_ville[0:3]))
         return session
