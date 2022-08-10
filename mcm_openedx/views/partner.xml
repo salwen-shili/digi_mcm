@@ -185,11 +185,11 @@
         <field name="arch" type="xml">
 
             <tree>
-                <field name="inscrit_mcm" attrs="{'invisible': [('company_id', '=', 2)]}"/>
-                <field name="supprimerdemoocit" attrs="{'invisible': [('company_id', '=', 2)]}"/>
-                <field name="client" attrs="{'invisible': [('company_id', '=', 2)]}"/>
-                <field name="coach_peda" attrs="{'invisible': [('company_id', '=', 2)]}"/>
-                <field name="state" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                <field name="inscrit_mcm"/>
+                <field name="supprimerdemoocit"/>
+                <field name="client"/>
+                <field name="coach_peda"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
