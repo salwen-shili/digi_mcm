@@ -294,20 +294,18 @@ class partner(models.Model):
     def ajoutMoocit_manuelle(self):
         _logger.info(' emailll  utilisateur %s' % str(self.email))
         _logger.info('password360%s' % str(self.password360))
-        for coaches in self.env['res.partner'].sudo().search(
-                [('est_coach', '=', 'True')]):
-            print("coaches.name", coaches.name)
-            # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
-            for message in self.env['mail.message'].search(
-                    [('res_id', "=", self.id), ('author_id.name', 'ilike', coaches.name)], order="create_date asc",
-                    limit=1):
-                print("First", message.create_date)
-                print("nom", message.author_id.name)
-                if (coaches.name, 'ilike', message.author_id.name):
-                    print("coaches.name", coaches.name)
-                    print("message.author_id.name", message.author_id.name)
-                    self.coach_peda = message.author_id
-                    break
+
+        # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
+        message = self.env['mail.message'].search(
+            [('res_id', "=", self.id), ('author_id.est_coach', '=', 'True'), ('company_id', '=', 1)],
+            order="create_date asc",
+            limit=1)
+        print("First", message.create_date)
+        print("nom", message.author_id.name)
+        # if (coaches.name, 'ilike', message.author_id.name):
+        # print("coaches.name", coaches.name)
+        print("message.author_id.name", message.author_id.name)
+        self.coach_peda = message.author_id
 
         # todays_date = date.today()
         # print(todays_date.year)
@@ -734,7 +732,6 @@ class partner(models.Model):
                     'className': 'bg-danger'
                 }
             }
-
 
     # envoit d'un sms
     def testsms(self, partner):

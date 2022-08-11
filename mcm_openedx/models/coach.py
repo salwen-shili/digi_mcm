@@ -151,21 +151,15 @@ class Coach(models.Model):
         for partner in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"), ('company_id', '=', 1), ('state', "=", "en_formation")]):
             count_apprennat = count_apprennat + 1
-            for coaches in self.env['res.partner'].sudo().search(
-                    [('est_coach', '=', 'True')]):
-                # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
-                for message in self.env['mail.message'].search(
-                        [('res_id', "=", partner.id), ('author_id.name', 'ilike', coaches.name)],
-                        order="create_date asc",
-                        limit=1):
-                    print("First", message.create_date)
-                    print("nom", message.author_id.name)
-
-                    if (coaches.name, 'ilike', message.author_id.name):
-                        partner.coach_peda = message.author_id
-                        break
-
-        print(count_apprennat)
+            # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
+            message = self.env['mail.message'].search(
+                [('res_id', "=", partner.id), ('author_id.est_coach', '=', 'True'), ('company_id', '=', 1)],
+                order="create_date asc",
+                limit=1)
+            # if (coaches.name, 'ilike', message.author_id.name):
+            # print("coaches.name", coaches.name)
+            print("message.author_id.name", message.author_id.name)
+            partner.coach_peda = message.author_id
 
     # tester le nombre des coach et le nombre d'apprenant pour chaque un  , pour controller l'affectation des apprenants pour chaque'un
     @api.depends('nombre_apprenant', 'coach_name', 'apprenant_name', 'seats')
