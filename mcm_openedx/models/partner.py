@@ -529,6 +529,24 @@ class partner(models.Model):
                 bolt = self.bolt
                 evalbox = self.numero_evalbox
                 departement = self.state_id.code
+
+                # # ajouter une fonction pour connaitre l'utilisateur connecter et lui notifier si il a un nouveau apprenant
+                # for coach in self.env['mcm_openedx.coach'].sudo().search(
+                #         [('coach_name', '!=', '')]):
+                #     context = self._context
+                #     current_uid = context.get('uid')
+                #     user = self.env['res.users'].browse(current_uid)
+                #     print("emaillllllllllll", user.email)
+                #     if user.email == coach.coach_name.email:
+                #         return {
+                #             'type': 'ir.actions.client',
+                #             'tag': 'display_notification',
+                #             'params': {
+                #                 'title': _('On a un nouvel Apprenant 🤓 🤓 '),
+                #                 'sticky': False,
+                #                 'className': 'bg-danger'
+                #             }
+                #         }
                 _logger.info('departement %s' % str(departement))
                 _logger.info('partner.inscrit_mcm = date.today() affecter date ajout')
                 _logger.info('Client ajouter a la platforme staut code 200 %s' % str(partner.email))
@@ -711,11 +729,12 @@ class partner(models.Model):
                 'tag': 'display_notification',
                 'params': {
                     'title': _(' Mail Non  envoyée  '),
-                    'message': _('Vérifiez le numéro Evalbox CMA ‍️'),
+                    'message': _('Vérifiez le numéro Evalbox CMA , ou Bien Statut ‍️'),
                     'sticky': False,
                     'className': 'bg-danger'
                 }
             }
+
 
     # envoit d'un sms
     def testsms(self, partner):
