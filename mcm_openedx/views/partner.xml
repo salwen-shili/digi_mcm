@@ -43,7 +43,7 @@
 
                     <button name="supprimer_IOne_MCM" string="SUPPRIMER DE MOOCit"
                             attrs="{'invisible': [('company_id', '=', 2)]}"
-                            type="object" confirm="Êtes-vous sûr de vouloir supprimer cet apprenant de la plateforme?n"
+                            type="object" confirm="Êtes-vous sûr de vouloir supprimer cet apprenant de la plateforme ?"
                             state="supprimé"></button>
                     <button name="notifierapprenant" string="ENVOYER INVITATION MOOCit"
                             attrs="{'invisible': [('company_id', '=', 2)]}"
