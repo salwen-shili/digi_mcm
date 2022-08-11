@@ -141,9 +141,14 @@ class resComapny(models.Model):
                                                          limit=1)  # Search in ir.sequence with name of the record
             if res.mcm_session_id is True:
                 name_ville = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper()
+                three_char_name_ville = name_ville
+                _logger.info("OKKKKKKK Get first three characters of a string session ville %s" % str(three_char_name_ville))
             else:
                 name_ville = ""
-            three_char_name_ville = name_ville
+
+                three_char_name_ville = name_ville
+
+                _logger.info("NOOOOOOO Get first three characters of a string session ville %s" % str(three_char_name_ville))
             if ir_sequence.number_next_actual == 100000:  # Condition if next number in ir.sequence == 1001 because we need max 1000
                 # For one letter exemple: A:1-99999, B:1-99999
                 res.prenom_evalbox = ir_sequence.number_next_actual  # Update number_next_actual to 1
