@@ -33,19 +33,19 @@
 
             <xpath expr="//form//sheet" position="before">
                 <header>
-                    <button name="ajoutMoocit_manuelle" string="Ajouter Sur MOOCit"
+                    <button name="ajoutMoocit_manuelle" string="AJOUTER SUR MOOCit"
                             attrs="{'invisible': [('company_id', '=', 2)]}"
-                            type="object" confirm="Confirmer l'Ajout"
+                            type="object" confirm="Confirmation de l’ajout"
                             state="En Formation"
 
                     ></button>
 
 
-                    <button name="supprimer_IOne_MCM" string="Supprimer de MOOCit"
+                    <button name="supprimer_IOne_MCM" string="SUPPRIMER DE MOOCit"
                             attrs="{'invisible': [('company_id', '=', 2)]}"
-                            type="object" confirm="Confirmer Suppression"
+                            type="object" confirm="Êtes-vous sûr de vouloir supprimer cet apprenant de la plateforme?n"
                             state="supprimé"></button>
-                    <button name="notifierapprenant" string="Notifier Apprenant"
+                    <button name="notifierapprenant" string="ENVOYER INVITATION MOOCit"
                             attrs="{'invisible': [('company_id', '=', 2)]}"
                             type="object" confirm="Envoyer un Mail"
                             state="mail envoyé"></button>

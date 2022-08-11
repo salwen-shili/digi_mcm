@@ -64,10 +64,10 @@ class Cours_stat(models.Model):
                 if (apprenant.inscrit_mcm == False):
                     apprenant.inscrit_mcm = listjour[0]
                 existt.partner = apprenant.id
-                self.partner = existt.partner
-                self.mooc_temps_passe_heure = heure
-                self.mooc_temps_passe_min = minute
-                self.mooc_temps_passe_seconde = secondes
+                apprenant.partner = existt.partner
+                apprenant.mooc_temps_passe_heure = heure
+                apprenant.mooc_temps_passe_min = minute
+                apprenant.mooc_temps_passe_seconde = secondes
                 todays_date = date.today()
 
                 if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx.year == todays_date.year):

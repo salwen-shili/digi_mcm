@@ -352,8 +352,8 @@ class partner(models.Model):
                             'type': 'ir.actions.client',
                             'tag': 'display_notification',
                             'params': {
-                                'title': _('Document a verifier 🤓 🤓  '),
-                                'message': _('Document a verifier 🤓 🤓'),
+                                'title': _('Document a verifier 🤓   '),
+                                'message': _('Document a verifier 🤓'),
                                 'sticky': True,
                                 'className': 'bg-danger'
                             }
@@ -387,8 +387,8 @@ class partner(models.Model):
                                 'type': 'ir.actions.client',
                                 'tag': 'display_notification',
                                 'params': {
-                                    'title': _(' verifier sale order ou bien signature ou bien staut 🤓 🤓'),
-                                    'message': _(' verifier sale order ou bien signature ou bien staut 🤓 🤓'),
+                                    'title': _(' verifier sale order ou bien signature ou bien staut '),
+                                    'message': _(' verifier sale order ou bien signature ou bien staut'),
                                     'sticky': True,
                                     'className': 'bg-danger'
                                 }
@@ -442,8 +442,8 @@ class partner(models.Model):
                                     'type': 'ir.actions.client',
                                     'tag': 'display_notification',
                                     'params': {
-                                        'title': _('Verifier session et date exman🤓 🤓'),
-                                        'message': _('Verifier session et date exman 🤓 🤓'),
+                                        'title': _('Verifier session et date exman'),
+                                        'message': _('Verifier session et date exman'),
                                         'sticky': True,
                                         'className': 'bg-danger'
                                     }
@@ -707,7 +707,7 @@ class partner(models.Model):
                         'type': 'ir.actions.client',
                         'tag': 'display_notification',
                         'params': {
-                            'title': _(' Mail  Envoyé 🥳 🥳'),
+                            'title': _(' Mail  Envoyé  🥳'),
                             'sticky': False,
                             'className': 'success'
                         },
@@ -719,7 +719,7 @@ class partner(models.Model):
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
                     'params': {
-                        'title': _(' Mail deja  Envoyé 🤷🤷🤷 '),
+                        'title': _(' Mail deja  Envoyé  '),
                         'sticky': False,
                         'className': 'bg-danger'
                     }
@@ -729,9 +729,9 @@ class partner(models.Model):
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'title': _(' Mail non  envoyée 🤷🤷🤷 '),
-                    'message': _('Vérification de NumeroEvalbox ou bien Nom de module ou statut 🤦‍🤦‍️'),
-                    'sticky': True,
+                    'title': _(' Mail non  envoyée  '),
+                    'message': _('Vérifiez le numéro Evalbox CMA ‍️'),
+                    'sticky': False,
                     'className': 'bg-danger'
                 }
             }
