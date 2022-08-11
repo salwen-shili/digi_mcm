@@ -139,16 +139,6 @@ class resComapny(models.Model):
                 'res.partner') or '/'  # Affectation: Generate a sequence number to prenom_evalbox field
             ir_sequence = self.env['ir.sequence'].search([('name', '=', "Res Partner Evalbox")],
                                                          limit=1)  # Search in ir.sequence with name of the record
-            if res.mcm_session_id is True:
-                name_ville = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper()
-                three_char_name_ville = name_ville
-                _logger.info("OKKKKKKK Get first three characters of a string session ville %s" % str(three_char_name_ville))
-            else:
-                name_ville = ""
-
-                three_char_name_ville = name_ville
-
-                _logger.info("NOOOOOOO Get first three characters of a string session ville %s" % str(three_char_name_ville))
             if ir_sequence.number_next_actual == 100000:  # Condition if next number in ir.sequence == 1001 because we need max 1000
                 # For one letter exemple: A:1-99999, B:1-99999
                 res.prenom_evalbox = ir_sequence.number_next_actual  # Update number_next_actual to 1
@@ -161,8 +151,8 @@ class resComapny(models.Model):
                     ir_sequence.alphabet = "A"
                     char = ir_sequence.alphabet
                     res.nom_evalbox = char
-                    if res.mcm_session_id is True:
-                        res.code_evalbox = three_char_name_ville + "-" + str(
+                    if res.mcm_session_id:
+                        res.code_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + str(
                             res.nom_evalbox) + str(
                             res.prenom_evalbox)  # To concatenate (combine) multiple fields
                     else:
@@ -172,17 +162,27 @@ class resComapny(models.Model):
                 else:
                     char = chr(ord(char) + 1)
                     res.nom_evalbox = char
-                    res.code_evalbox = three_char_name_ville + "-" + str(
-                        res.nom_evalbox) + str(
-                        res.prenom_evalbox)  # To concatenate (combine) multiple fields
+                    if res.mcm_session_id:
+                        res.code_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + str(
+                            res.nom_evalbox) + str(
+                            res.prenom_evalbox)  # To concatenate (combine) multiple fields
+                    else:
+                        res.code_evalbox = str(
+                            res.nom_evalbox) + str(
+                            res.prenom_evalbox)  # To concatenate (combine) multiple fields
 
             else:  # If number_next_actual != 100000
                 char = ir_sequence.alphabet
                 ir_sequence.alphabet = char
                 res.nom_evalbox = ir_sequence.alphabet  # Get alphabet from ir.sequence class
                 res.prenom_evalbox = ir_sequence.number_next_actual
-                res.code_evalbox = three_char_name_ville + "-" + str(
-                    res.nom_evalbox) + str(
-                    res.prenom_evalbox)  # To concatenate (combine) multiple fields
+                if res.mcm_session_id:
+                    res.code_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + str(
+                        res.nom_evalbox) + str(
+                        res.prenom_evalbox)  # To concatenate (combine) multiple fields
+                else:
+                    res.code_evalbox = str(
+                        res.nom_evalbox) + str(
+                        res.prenom_evalbox)  # To concatenate (combine) multiple fields
 
         return res
