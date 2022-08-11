@@ -287,7 +287,7 @@ class Coach(models.Model):
                                     'type': 'ir.actions.client',
                                     'tag': 'display_notification',
                                     'params': {
-                                        'title': (' You have a new Mail🤓 🤓  '),
+                                        'title': ('Vous Avez un nouvel Apprenant🤓 🤓  '),
                                         'message': ('consulter votre boite  maill'),
                                         'sticky': True,
                                         'className': 'bg-danger'

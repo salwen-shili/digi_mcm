@@ -380,15 +380,14 @@ class partner(models.Model):
                                 today = date.today()
                                 if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
                                     self.ajouter_IOne_MCM(self)
-                                    _logger.info(' tout est valide %s')
+                                    _logger.info('Tout est valide %s')
                         else:
                             # si sale order ou bien les document ne sont pas valides  ou bien satut nest pas ganger alors en affiche une alert
                             return {
                                 'type': 'ir.actions.client',
                                 'tag': 'display_notification',
                                 'params': {
-                                    'title': _(' verifier sale order ou bien signature ou bien staut '),
-                                    'message': _(' verifier sale order ou bien signature ou bien staut'),
+                                    'title': _('Vérifiez sale order ou bien signature ou bien staut '),
                                     'sticky': True,
                                     'className': 'bg-danger'
                                 }
@@ -442,8 +441,7 @@ class partner(models.Model):
                                     'type': 'ir.actions.client',
                                     'tag': 'display_notification',
                                     'params': {
-                                        'title': _('Verifier session et date exman'),
-                                        'message': _('Verifier session et date exman'),
+                                        'title': _('Vérifiez session et date exman'),
                                         'sticky': True,
                                         'className': 'bg-danger'
                                     }
@@ -455,8 +453,7 @@ class partner(models.Model):
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
                     'params': {
-                        'title': _('Verifier:)  '),
-                        'message': _('Eval Box  ou Statut:)'),
+                        'title': _('Vérifiez le numéro Evalbox CMA , ou Bien Statut  '),
                         'sticky': True,
                         'className': 'bg-danger'
                     }
@@ -535,23 +532,7 @@ class partner(models.Model):
                 _logger.info('departement %s' % str(departement))
                 _logger.info('partner.inscrit_mcm = date.today() affecter date ajout')
                 _logger.info('Client ajouter a la platforme staut code 200 %s' % str(partner.email))
-                vals = {
-                    'description': 'un nouvel apprenant est ajouter a la plateforme %s' % (partner.name),
-                    'name': 'un nouvel apprenant est ajouter a la plateforme',
-                    'team_id': self.env['helpdesk.team'].sudo().search(
-                        [('name', 'like', 'Service coaching MCM'), ('company_id', "=", 1)],
-                        limit=1).id,
-                    'priority': "3",
 
-                }
-                description = "test " + str(partner.name)
-                print("dessssssssss", description)
-                ticket = self.env['helpdesk.ticket'].sudo().search(
-                    [("description", "=", description)])
-                if not ticket:
-                    print("cree tichket")
-                    new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                        vals)
                 # Formation à distance Taxi
                 if (partner.module_id.product_id.default_code == "taxi"):
                     _logger.info("formation valide")
@@ -658,7 +639,7 @@ class partner(models.Model):
 
                 _logger.info("mail envoyeé")
                 _logger.info(partner.email)
-                _logger.info('if template  %s' % str(partner.name))
+                _logger.info('mail envoyeé  %s' % str(partner.name))
 
     # notifier apprenant
     def notifierapprenant(self):
@@ -719,7 +700,7 @@ class partner(models.Model):
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
                     'params': {
-                        'title': _(' Mail deja  Envoyé  '),
+                        'title': _('Mail deja  Envoyé  '),
                         'sticky': False,
                         'className': 'bg-danger'
                     }
@@ -729,7 +710,7 @@ class partner(models.Model):
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'title': _(' Mail non  envoyée  '),
+                    'title': _(' Mail Non  envoyée  '),
                     'message': _('Vérifiez le numéro Evalbox CMA ‍️'),
                     'sticky': False,
                     'className': 'bg-danger'
@@ -793,8 +774,7 @@ class partner(models.Model):
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'title': _(' l apprennat n a pas un module  :🤓 🤓  '),
-                    'message': _('verifier module de la session'),
+                    'title': _('Vérifiez module de la session'),
                     'sticky': True,
                     'className': 'bg-danger'
                 }
