@@ -97,8 +97,24 @@
         <field name="active" eval="True"></field>
         <field name="state">code</field>
         <field name="code">model.update_datesupp()</field>
-        <field name="interval_number">10</field>
-        <field name="interval_type">minutes</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">>days</field>
+        <field name="numbercall">-1</field>
+        <field name="priority" eval="3"/>
+    </record>
+
+
+    <!-- tache cron pour affecter les coaches selon la premiere personne qui a ecrit un comm -->
+
+    <record id="ir_cron_update_datesupp" model="ir.cron">
+        <field name="name">affecter les coaches selon la premiere personne qui a ecrit comm
+        </field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="active" eval="True"></field>
+        <field name="state">code</field>
+        <field name="code">model.aff_coach()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">>days</field>
         <field name="numbercall">-1</field>
         <field name="priority" eval="3"/>
     </record>

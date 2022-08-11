@@ -520,7 +520,7 @@ class partner(models.Model):
                 except:
                     _logger.info('problem au niveau denvoit des mail ')
                 finally:
-                    partner.inscrit_mcm = date.today()
+                    self.inscrit_mcm = date.today()
                     _logger.info('print date.today()')
 
                 self.write({'state': 'en_formation'})
