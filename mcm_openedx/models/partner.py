@@ -23,9 +23,10 @@ class partner(models.Model):
     coach = fields.Selection([('coach1', 'Safa'),
                               ('coachh2', 'Sara'),
                               ])
-    coach_peda = fields.Many2one('res.partner', string="Coach_Pedagogique", domain=[('est_coach', '=', True)])
+    coach_peda = fields.Many2one('res.partner', track_visibility='onchange', string="Coach_Pedagogique",
+                                 domain=[('est_coach', '=', True), ])
     state = fields.Selection([('en_attente', 'En attente'), ('en_formation', 'En Formation'), ('supprimé', 'Supprimé')],
-                             required=True, default='en_attente', string="Statut")
+                             required=True, default='en_attente', track_visibility='onchange', string="Statut")
     mooc_dernier_coonx = fields.Date()
     mooc_temps_passe_heure = fields.Integer()
     mooc_temps_passe_min = fields.Integer()
