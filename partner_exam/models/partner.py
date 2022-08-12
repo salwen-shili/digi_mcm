@@ -119,11 +119,12 @@ class resComapny(models.Model):
         if (
                 'nom_evalbox' in values or 'prenom_evalbox' in values or 'mcm_session_id' in values) and self.company_id.id == 2:  # If we have changed this fields
             if 'mcm_session_id' in values:
-                self.code_evalbox = str(self.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + str(
-                    self.nom_evalbox) + str(
+                eval_name = str(self.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + str(
+                    self.nom_evalbox)
+                self.nom_evalbox = eval_name
+                self.code_evalbox = eval_name + str(
                     self.prenom_evalbox)  # Update code evalbox and # To concatenate (combine) multiple fields
-                _logger.info("Get first three characters of a string session ville %s" % str(
-                    self.mcm_session_id.session_ville_id.name_ville[0:3]))
+                _logger.info("Get first three characters of a string session ville %s" % str(eval_name))
             else:
                 self.code_evalbox = str(self.nom_evalbox) + str(self.prenom_evalbox)
         return session
@@ -140,7 +141,7 @@ class resComapny(models.Model):
             ir_sequence = self.env['ir.sequence'].search([('name', '=', "Res Partner Evalbox")],
                                                          limit=1)  # Search in ir.sequence with name of the record
             if ir_sequence.number_next_actual == 100000:  # Condition if next number in ir.sequence == 1001 because we need max 1000
-                # For one letter exemple: A:1-99999, B:1-99999
+                # For one letter example: A:1-99999, B:1-99999
                 res.prenom_evalbox = ir_sequence.number_next_actual  # Update number_next_actual to 1
                 ir_sequence.number_next_actual = int('00001')  # Initialisation de 1
                 res.prenom_evalbox = ir_sequence.number_next_actual
@@ -152,37 +153,34 @@ class resComapny(models.Model):
                     char = ir_sequence.alphabet
                     res.nom_evalbox = char
                     if res.mcm_session_id:
-                        res.code_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + str(
-                            res.nom_evalbox) + str(
+                        res.nom_evalbox = str(self.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
+                        res.code_evalbox = str(res.nom_evalbox) + str(
                             res.prenom_evalbox)  # To concatenate (combine) multiple fields
                     else:
-                        res.code_evalbox = str(
-                            res.nom_evalbox) + str(
+                        res.code_evalbox = str(res.nom_evalbox) + str(
                             res.prenom_evalbox)  # To concatenate (combine) multiple fields
                 else:
                     char = chr(ord(char) + 1)
                     res.nom_evalbox = char
                     if res.mcm_session_id:
-                        res.code_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + str(
-                            res.nom_evalbox) + str(
+                        res.nom_evalbox = str(self.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
+                        res.code_evalbox = str(res.nom_evalbox) + str(
                             res.prenom_evalbox)  # To concatenate (combine) multiple fields
                     else:
-                        res.code_evalbox = str(
-                            res.nom_evalbox) + str(
+                        res.code_evalbox = str(res.nom_evalbox) + str(
                             res.prenom_evalbox)  # To concatenate (combine) multiple fields
 
             else:  # If number_next_actual != 100000
                 char = ir_sequence.alphabet
-                ir_sequence.alphabet = char
-                res.nom_evalbox = ir_sequence.alphabet  # Get alphabet from ir.sequence class
+                # ir_sequence.alphabet = char
+                res.nom_evalbox = char  # Get alphabet from ir.sequence class
                 res.prenom_evalbox = ir_sequence.number_next_actual
                 if res.mcm_session_id:
-                    res.code_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + str(
-                        res.nom_evalbox) + str(
+                    res.nom_evalbox = str(self.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
+                    res.code_evalbox = str(res.nom_evalbox) + str(
                         res.prenom_evalbox)  # To concatenate (combine) multiple fields
                 else:
                     res.code_evalbox = str(
                         res.nom_evalbox) + str(
                         res.prenom_evalbox)  # To concatenate (combine) multiple fields
-
         return res
