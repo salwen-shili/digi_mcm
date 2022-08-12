@@ -194,8 +194,8 @@ class partner(models.Model):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                                  ('company_id', '=', 1),
-                                                                  ('numero_evalbox ', '!=', False),
+                                                                  ('company_id.id', '=', 1),
+                                                                  ('numero_evalbox', '!=', False),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
                 _logger.info(partner.name)
@@ -292,28 +292,21 @@ class partner(models.Model):
                 # ajouter les apprenants manuellemnt a partire de  la fiche Client
 
     def ajoutMoocit_manuelle(self):
+        print(self.company_id.id)
         _logger.info(' emailll  utilisateur %s' % str(self.email))
         _logger.info('password360%s' % str(self.password360))
 
-        # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
-        message = self.env['mail.message'].search(
-            [('res_id', "=", self.id), ('author_id.est_coach', '=', 'True'), ('company_id', '=', 1)],
-            order="create_date asc",
-            limit=1)
-        print("First", message.create_date)
-        print("nom", message.author_id.name)
-        # if (coaches.name, 'ilike', message.author_id.name):
-        # print("coaches.name", coaches.name)
-        print("message.author_id.name", message.author_id.name)
-        self.coach_peda = message.author_id
-
-        # todays_date = date.today()
-        # print(todays_date.year)
-        # if (self.mcm_session_id.date_debut.year >= todays_date.year):
-        #     print("okokookokokokok")
-        # print("sellff", self.numero_evalbox)
-        # ajout manuelle  des utilsateur sur MOOCit
-        # verifier staut de sale
+        # # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
+        # message = self.env['mail.message'].search(
+        #     [('res_id', "=", self.id), ('author_id.est_coach', '=', 'True'), ('company_id.id', '=', 1)],
+        #     order="create_date asc",
+        #     limit=1)
+        # print("First", message.create_date)
+        # print("nom", message.author_id.name)
+        # # if (coaches.name, 'ilike', message.author_id.name):
+        # # print("coaches.name", coaches.name)
+        # print("message.author_id.name", message.author_id.name)
+        # self.coach_peda = message.author_id
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
 
@@ -404,7 +397,7 @@ class partner(models.Model):
                             headers = {
                                 'accept': 'application/json',
                                 'Content-Type': 'application/json',
-                                'X-API-KEY': self.company_id.wedof_api_key,
+                                'X-API-KEY': self.company_id.id.wedof_api_key,
                             }
                             params_wedof = (
                                 ('order', 'desc'),
@@ -463,7 +456,7 @@ class partner(models.Model):
         print(todays_date.year)
         print(todays_date.month)
         for user in self.env['res.partner'].sudo().search(
-                [('company_id', '=', 1), ('mcm_session_id.date_exam', '!=', False)
+                [('company_id.id', '=', 1), ('mcm_session_id.date_exam', '!=', False)
                  ]):
             # user.bolt = True
             if user.mcm_session_id.date_exam.year >= todays_date.year:
@@ -481,13 +474,17 @@ class partner(models.Model):
                                 user.password_evalbox = password
 
                         else:
-                            user.client = user.company_id.name
+                            user.client = user.company_id.id.name
                             _logger.info(user.client)
 
     # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
     def ajouter_IOne_MCM(self, partner):
         _logger.info('email de lapprenant %s' % str(partner.email))
+        _logger.info('email de lapprenant hhhhhhhhhh %s' % str(self.email))
         user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
+        bolt = partner.bolt
+
+        departement = partner.state_id.code
         partner.password360 = user.password360
         password = user.password360
         if (partner.name and partner.email):
@@ -521,12 +518,10 @@ class partner(models.Model):
                     _logger.info('problem au niveau denvoit des mail ')
                 finally:
                     self.inscrit_mcm = date.today()
+                    partner.inscrit_mcm = date.today()
                     _logger.info('print date.today()')
-
-                self.write({'state': 'en_formation'})
-                bolt = self.bolt
-                evalbox = self.numero_evalbox
-                departement = self.state_id.code
+                    self.write({'state': 'en_formation'})
+                    partner.write({'state': 'en_formation'})
 
                 # ajouter une fonction pour connaitre l'utilisateur connecter et lui notifier si il a un nouveau apprenant
                 for coach in self.env['mcm_openedx.coach'].sudo().search(
@@ -577,13 +572,7 @@ class partner(models.Model):
             if (response_ajouter_IOne_MCM.status_code == 409):
                 # voir si statut de l'apprenant en formation ou la date de mise en formation est vide alors mettre la date pour la date.today
                 if (partner.state != 'en_formation' and partner.inscrit_mcm == False):
-                    partner.inscrit_mcm = date.today()
-
-                self.write({'state': 'en_formation'})
-                bolt = self.bolt
-                evalbox = self.numero_evalbox
-                departement = self.state_id.code
-                _logger.info('departement %s' % str(departement))
+                    partner.write({'state': 'en_formation'})
                 # Formation à distance Taxi
                 if (partner.module_id.product_id.default_code == "taxi"):
                     if (departement == "59"):
@@ -614,7 +603,7 @@ class partner(models.Model):
                     'description': 'verifier mot de passe %s' % (partner.name),
                     'name': 'Le mot de passe est trop semblable au champ Email ',
                     'team_id': self.env['helpdesk.team'].sudo().search(
-                        [('name', 'like', 'Service clientèle MCM'), ('company_id', "=", 1)],
+                        [('name', 'like', 'Service Examen MCM'), ('company_id.id', "=", 1)],
                         limit=1).id,
                 }
                 description = "test " + str(partner.name)
@@ -628,34 +617,36 @@ class partner(models.Model):
 
     def sendmail(self, partner):
         print(partner.name)
-        if self.env.su:
-            # sending mail in sudo was meant for it being sent from superuser
-            self = self.with_user(SUPERUSER_ID)
-        if not partner.lang:
-            partner.lang = 'fr_FR'
-        _logger.info('avant email mcm_openedx %s' % str(partner.name))
-        # tester si l'apprenat a deja recu un mail
-        message = self.env['mail.message'].search(
-            [('res_id', "=", partner.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
-        if not message:
-            template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                'mcm_openedx.mail_template_add_Ione_MOOcit'))
-            template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-            if not template_id:
-                template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                    'mcm_openedx.mail_template_add_Ione_MOOcit',
-                    raise_if_not_found=False)
-            if not template_id:
-                template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                    'mcm_openedx.email_template_add_Ione_MOOcit',
-                    raise_if_not_found=False)
-            if template_id:
-                partner.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                 composition_mode='comment', )
 
-                _logger.info("mail envoyeé")
-                _logger.info(partner.email)
-                _logger.info('mail envoyeé  %s' % str(partner.name))
+        if partner.company_id.id == 1:
+            if self.env.su:
+                # sending mail in sudo was meant for it being sent from superuser
+                self = self.with_user(SUPERUSER_ID)
+            if not partner.lang:
+                partner.lang = 'fr_FR'
+            _logger.info('avant email mcm_openedx %s' % str(partner.name))
+            # tester si l'apprenat a deja recu un mail
+            message = self.env['mail.message'].search(
+                [('res_id', "=", partner.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
+            if not message:
+                template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                    'mcm_openedx.mail_template_add_Ione_MOOcit'))
+                template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                if not template_id:
+                    template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                        'mcm_openedx.mail_template_add_Ione_MOOcit',
+                        raise_if_not_found=False)
+                if not template_id:
+                    template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                        'mcm_openedx.email_template_add_Ione_MOOcit',
+                        raise_if_not_found=False)
+                if template_id:
+                    partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                     composition_mode='comment', )
+
+                    _logger.info("mail envoyeé")
+                    _logger.info(partner.email)
+                    _logger.info('mail envoyeé  %s' % str(partner.name))
 
     # notifier apprenant
     def notifierapprenant(self):
@@ -734,7 +725,7 @@ class partner(models.Model):
             }
 
     # envoit d'un sms
-    def testsms(self, partner):
+    def sendsms(self, partner):
         if partner.phone:
             phone = str(partner.phone.replace(' ', ''))[-9:]
             phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
@@ -798,7 +789,7 @@ class partner(models.Model):
 
     # affecter la date de suppression apres l'ajout  5 jours apres session
     def update_datesupp(self):
-        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1),
+        for partner in self.env['res.partner'].sudo().search([('company_id.id', '=', 1),
                                                               ('inscrit_mcm', '!=', False),
                                                               ('mcm_session_id.date_exam', '!=', False),
 
@@ -818,7 +809,7 @@ class partner(models.Model):
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             # chercher dans res.partner la liste de apprennats puis verifier la
             for partner in self.env['res.partner'].sudo().search([
-                ('company_id', '=', 1)]):
+                ('company_id.id', '=', 1)]):
                 self.write({'state': 'supprimé'})
                 _logger.info("supprimer autooo")
 
