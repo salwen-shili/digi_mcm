@@ -33,7 +33,6 @@ class partner(models.Model):
     date_imortation_stat = fields.Date()
 
     # desinscrire les cours de formation  VTC a l'apprenant
-
     def desinscriteVTC(self, partner):
 
         user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
@@ -65,7 +64,6 @@ class partner(models.Model):
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
     # ajouter les cours de formation vtc a l'apprenant
-
     def inscriteVTC(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -92,7 +90,6 @@ class partner(models.Model):
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
     # desinscrire les cours de formation taxi a l'apprenant
-
     def desinscriteTaxi(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -803,7 +800,6 @@ class partner(models.Model):
                         _logger.info("supprimer aprex 5 j")
 
     # supprimer ione  automatique le desinscrire des cours sur la platfrom moocit
-
     def supprimer_automatique(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
