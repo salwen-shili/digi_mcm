@@ -118,15 +118,16 @@ class resComapny(models.Model):
             _logger.info('rec.age date of birth-------------11111111111111111111-------- %s', self.age)
         if (
                 'nom_evalbox' in values or 'prenom_evalbox' in values or 'mcm_session_id' in values) and self.company_id.id == 2:  # If we have changed this fields
-            if 'mcm_session_id' in values:
-                eval_name_actuel = self.nom_evalbox[1:0]
-                eval_name = str(self.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + eval_name_actuel
-                self.nom_evalbox = eval_name
-                self.code_evalbox = eval_name + str(
-                    self.prenom_evalbox)  # Update code evalbox and # To concatenate (combine) multiple fields
-                _logger.info("Get first three characters of a string session ville %s" % str(eval_name_actuel))
-            else:
-                self.code_evalbox = str(self.nom_evalbox) + str(self.prenom_evalbox)
+            if self.company_id.id == 2:
+                if 'mcm_session_id' in values:
+                    eval_name_actuel = self.nom_evalbox[1:0]
+                    eval_name = str(self.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + eval_name_actuel
+                    self.nom_evalbox = eval_name
+                    self.code_evalbox = eval_name + str(
+                        self.prenom_evalbox)  # Update code evalbox and # To concatenate (combine) multiple fields
+                    _logger.info("Get first three characters of a string session ville %s" % str(eval_name_actuel))
+                else:
+                    self.code_evalbox = str(self.nom_evalbox) + str(self.prenom_evalbox)
         return session
 
     @api.model
