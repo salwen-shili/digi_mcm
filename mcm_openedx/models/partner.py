@@ -86,7 +86,8 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         response = requests.request("POST", url, headers=header, data=payload)
-        print(response.text)
+
+        _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.text))
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
     # desinscrire les cours de formation taxi a l'apprenant
