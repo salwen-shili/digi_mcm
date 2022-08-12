@@ -153,7 +153,7 @@ class resComapny(models.Model):
                     char = ir_sequence.alphabet
                     res.nom_evalbox = char
                     if res.mcm_session_id:
-                        res.nom_evalbox = str(self.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
+                        res.nom_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
                         res.code_evalbox = str(res.nom_evalbox) + str(
                             res.prenom_evalbox)  # To concatenate (combine) multiple fields
                     else:
@@ -163,7 +163,7 @@ class resComapny(models.Model):
                     char = chr(ord(char) + 1)
                     res.nom_evalbox = char
                     if res.mcm_session_id:
-                        res.nom_evalbox = str(self.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
+                        res.nom_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
                         res.code_evalbox = str(res.nom_evalbox) + str(
                             res.prenom_evalbox)  # To concatenate (combine) multiple fields
                     else:
@@ -176,7 +176,7 @@ class resComapny(models.Model):
                 res.nom_evalbox = char  # Get alphabet from ir.sequence class
                 res.prenom_evalbox = ir_sequence.number_next_actual
                 if res.mcm_session_id:
-                    res.nom_evalbox = str(self.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
+                    res.nom_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
                     res.code_evalbox = str(res.nom_evalbox) + str(
                         res.prenom_evalbox)  # To concatenate (combine) multiple fields
                 else:
