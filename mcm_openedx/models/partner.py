@@ -616,7 +616,6 @@ class partner(models.Model):
 
     def sendmail(self, partner):
         print(partner.name)
-
         if partner.company_id.id == 1:
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser

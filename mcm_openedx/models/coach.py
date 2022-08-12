@@ -148,6 +148,7 @@ class Coach(models.Model):
 
     def aff_coach(self):
         count_apprennat = 0
+
         for partner in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"), ('company_id', '=', 1), ('state', "=", "en_formation")]):
             count_apprennat = count_apprennat + 1
@@ -164,11 +165,16 @@ class Coach(models.Model):
     # tester le nombre des coach et le nombre d'apprenant pour chaque un  , pour controller l'affectation des apprenants pour chaque'un
     @api.depends('nombre_apprenant', 'coach_name', 'apprenant_name', 'seats')
     def test_coach(self):
+        todays_date = date.today()
+        print(todays_date.year)
+
         count_apprennat = 0
         # determiner le nombre total des apprenants
         for apprenant in self.env['res.partner'].sudo().search(
-                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "=", "en_formation")]):
-            count_apprennat = count_apprennat + 1
+                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "=", "en_formation"),
+                 ]):
+            if (apprenant.mcm_session_id.date_exam.year >= todays_date.year):
+                count_apprennat = count_apprennat + 1
 
         # definir si le partner et coach
         for coach in self.env['res.partner'].sudo().search(
