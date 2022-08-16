@@ -9,16 +9,6 @@ from odoo.exceptions import UserError
 class MailComposeMessage(models.TransientModel):
     _inherit = 'mail.compose.message'
 
-    def _get_default_bcc(self):
-        """ add default bcc in send email action based on template name"""
-        if self.template_id:
-            if (self.template_id.name, 'ilike', "DIGIMOOV RÉSULTATS FAVORABLES"):
-                test = self.bcc_partner_ids.search([('email', "=", "digimoov.fr+25e168c414@invite.trustpilot.com")])
-                return test
-            # return self.bcc_partner_ids
-            else:
-                pass
-
     @api.model
     def _get_default_bcc(self):
         return self.env['res.partner'].sudo().search([('email', "=", "digimoov.fr+25e168c414@invite.trustpilot.com")]).ids
