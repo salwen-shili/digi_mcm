@@ -133,11 +133,11 @@ class Coach(models.Model):
 
     _description = "coaches module en va affecter pour chaque coach sa liste des apprennats"
     name = fields.Char(string="Coaches")
-    nombre_apprenant = fields.Integer(readonly=True)
+    nombre_apprenant = fields.Integer(string="Nombre apprenan",readonly=True)
     coach_name = fields.Many2one('res.partner', string="Tuteur", readonly=True, domain=[('est_coach', '=', True)])
     apprenant_name = fields.Many2many('res.partner', domain=[('est_coach', '=', False)])
-    seats = fields.Integer(string="nombre de places", readonly=True)
-    taken_seats = fields.Float(string="nombre des places ocuppé ", compute='_taken_seats')
+    seats = fields.Integer(string="Place occupée", readonly=True)
+    taken_seats = fields.Float(string="Place occupée", compute='_taken_seats')
     commentaire = fields.Char(string="Commentaires")
     color = fields.Integer()
     apprenant_email = fields.Char()
@@ -286,7 +286,7 @@ class Coach(models.Model):
                                     'type': 'ir.actions.client',
                                     'tag': 'display_notification',
                                     'params': {
-                                        'title': ('Vous Avez un nouvel Apprenant🤓 🤓  '),
+                                        'title': ('Vous Avez un nouvel Apprenant  '),
                                         'message': ('consulter votre boite  maill'),
                                         'sticky': True,
                                         'className': 'bg-danger'

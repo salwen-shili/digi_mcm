@@ -28,7 +28,7 @@ class Partner(models.Model):
     def _check_numero_evalbox(self):
         if self.numero_evalbox:
             if len(self.numero_evalbox) <= 9:
-                raise ValidationError('Numéro evalbox doit contenir min 10 caractères 🤷🤷🤷')
+                raise ValidationError('Numéro evalbox doit contenir minimum 10 caractères')
 
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
