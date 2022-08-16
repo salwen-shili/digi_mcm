@@ -119,7 +119,7 @@ class resComapny(models.Model):
         if (
                 'nom_evalbox' in values or 'prenom_evalbox' in values or 'mcm_session_id' in values) and self.company_id.id == 2:  # If we have changed this fields
             if 'mcm_session_id' in values:
-                eval_name_actuel = self.nom_evalbox[1:0]
+                eval_name_actuel = self.nom_evalbox[1:0] if self.nom_evalbox else ''
                 eval_name = str(self.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + eval_name_actuel
                 self.nom_evalbox = eval_name
                 self.code_evalbox = eval_name + str(
