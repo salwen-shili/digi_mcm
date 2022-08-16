@@ -129,10 +129,10 @@ class Coach(models.Model):
 
     _description = "coaches module en va affecter pour chaque coach sa liste des apprennats"
     name = fields.Char(string="Coaches")
-    nombre_apprenant = fields.Integer()
-    coach_name = fields.Many2one('res.partner', string="Tuteur", domain=[('est_coach', '=', True)])
+    nombre_apprenant = fields.Integer(readonly=True)
+    coach_name = fields.Many2one('res.partner', string="Tuteur",readonly=True, domain=[('est_coach', '=', True)])
     apprenant_name = fields.Many2many('res.partner', domain=[('est_coach', '=', False)])
-    seats = fields.Integer(string="nombre de places")
+    seats = fields.Integer(string="nombre de places", readonly=True)
     taken_seats = fields.Float(string="nombre des places ocuppé ", compute='_taken_seats')
     commentaire = fields.Char(string="Commentaires")
     color = fields.Integer()
@@ -167,7 +167,6 @@ class Coach(models.Model):
     def test_coach(self):
         todays_date = date.today()
         print(todays_date.year)
-
         count_apprennat = 0
         # determiner le nombre total des apprenants
         for apprenant in self.env['res.partner'].sudo().search(
@@ -180,30 +179,25 @@ class Coach(models.Model):
         for coach in self.env['res.partner'].sudo().search(
                 [('est_coach', '=', 'True')]):
             count = 0
-
             # extraire les client ganger ayant le meme nom de coach dans la liste des partner
             # crer une liste pour stocker les apprennats ayant les informations que en est en train de chercher
             listapprenant = []
             for rec in self.env['res.partner'].sudo().search(
                     [('coach_peda', 'like', coach.name)]):
-
                 if (rec.coach_peda.name == coach.name):
                     count = count + 1
                     # stoker dans la liste les apprennats
                     listapprenant.append(rec.id)
-
             nombre_apprenant = count
             # si le partner est un coach alors en va verifier si il existe deja dans la liste des coach pour lui affecter les apprenants
-
             if (coach):
-
                 coach_name = coach.name
+                name = coach.name
                 print("coachs names", coach_name)
                 # verfier dans la class Coach si il existe un coach ayant le meme nom que le coach affecter pour les apprenants
-
                 exist = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '=', coach.id)])
                 # si le coach existe alors en va lui affecter la liste des apprenats ayant le nom de ce caoch
-
+                print("exiiiiiiiist", exist)
                 if (exist):
                     exist.seats = count_apprennat
                     exist.nombre_apprenant = nombre_apprenant
@@ -218,6 +212,7 @@ class Coach(models.Model):
                     newcoach.nombre_apprenant = nombre_apprenant
                     newcoach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
                                            })
+                    exist.browse(exist.id).sudo().unlink()
 
                 print("nombre d'apprenant par coach ", coach_name, nombre_apprenant)
 

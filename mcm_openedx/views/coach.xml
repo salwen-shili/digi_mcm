@@ -7,8 +7,6 @@
         <field name="model">mcm_openedx.coach</field>
         <field name="arch" type="xml">
             <form string="Coaches">
-
-
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button class="oe_stat_button" type="object" name="test_coach"
@@ -19,19 +17,16 @@
                                 icon="fa-spinner fa-spin fa-3x fa-fw">
                             <field string="nombre_apprenants" name="nombre_apprenant"/>
                         </button>
-
                     </div>
 
                     <group>
                         <group>
-                            <a href="https://app.intercom.com/a/apps/ekqg4dck/inbox/inbox/all/conversations/186275800000486
-">
+                            <a href="https://app.intercom.com/a/apps/ekqg4dck/inbox/inbox/all/conversations/186275800000486">
                                 <widget name="web_ribbon" text="Coach"/>
                             </a>
                             <field name="coach_name"/>
                             <field name="nombre_apprenant"/>
                             <field name="seats"/>
-
                             <field name="taken_seats" widget="progressbar"/>
 
                         </group>
@@ -51,6 +46,13 @@
                         </page>
                     </notebook>
                 </sheet>
+                <!-- Add chatter and followers widget -->
+                <div class="oe_chatter">
+                    <!-- Followers view -->
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <!-- Chatter view -->
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
 
         </field>
