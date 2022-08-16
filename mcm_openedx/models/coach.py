@@ -257,7 +257,7 @@ class Coach(models.Model):
                     coach.lang = 'fr_FR'
                     if self.env.su:
                         # sending mail in sudo was meant for it being sent from superuser
-                        selff = self.with_user(SUPERUSER_ID)
+                        self = self.with_user(SUPERUSER_ID)
                         template_id = int(self.env['ir.config_parameter'].sudo().get_param(
                             'mcm_openedx.mail_coachh'))
                         template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
