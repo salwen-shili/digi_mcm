@@ -146,7 +146,6 @@ class partner(models.Model):
         response = requests.request("POST", url, headers=header, data=payload)
         print(response.text)
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
-
     # ajouter les cours de la conaissance local pour le choix de departement(pas de calais)
     def ajoutconnaisancelocalpasdecalais(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
@@ -653,7 +652,6 @@ class partner(models.Model):
         # if('self.last_internal_log','ilike','safa'):
         #     print("Safaaaaaaaaaaaaaaaaa")
         print(self.state)
-
         if (self.numero_evalbox != False and self.module_id.name != False and self.state != "supprimé"):
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser

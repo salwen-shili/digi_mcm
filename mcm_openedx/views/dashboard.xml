@@ -23,22 +23,17 @@
             <form string="My Dashboard">
                 <board style="4-1">
                     <column>
-
-
                         <action name="%(act_stat_graph)d" string="Statistiques Cours" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'allowed_company_ids': [1, 1, 2], 'group_by': [], 'graph_measure': 'seconde', 'graph_mode': 'bar', 'graph_groupbys': ['idcour'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" modifiers="{}"/>
                               <action name="%(act_coach_graph)d" string="Coaches" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'allowed_company_ids': [1, 1, 2], 'group_by': [], 'graph_measure': 'nombre_apprenant', 'graph_mode': 'pie', 'graph_groupbys': ['coach_name'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" modifiers="{}"/>
-
                     </column>
-
                 </board>
             </form>
         </field>
     </record>
-
     <!--My Dashboard Action  add thiscode in costum _saveDashboard: function () {
         var board = this.renderer.getBoard();
         var arch = QWeb.render('DashBoard.xml', _.extend({}, board));
@@ -63,9 +58,7 @@
         <field name="view_mode">form</field>
         <field name="usage">menu</field>
         <field name="view_id" ref="mcm_openedx_dashbord"/>
-
     </record>
-
     <menuitem id="main_dashbord" name="Dashbord" parent="main_mcm_openedx_menu" action="open_board_my_dash_action"
               sequence="1"/>
 </odoo>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record id="en_attent_vieww" model="ir.ui.view">
         <field name="name">En attente</field>
         <field name="model">mcm_openedx.enattente</field>
@@ -12,13 +11,11 @@
             </search>
         </field>
     </record>
-
-
     <record id="mcm_openedx_attente_tree_vieww" model="ir.ui.view">
         <field name="name">Apprenants En attente</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
-            <tree string="Apprennat en attente sur wedof" >
+            <tree string="Apprennat en attente sur wedof">
                 <field name="name"/>
                 <field name="existant"/>
                 <field name="externalId"/>
@@ -65,8 +62,6 @@
             </form>
         </field>
     </record>
-
-
     <record model="ir.actions.act_window" id="mcm_openedx_attente_list_actionn_mcm">
         <field name="name">Les Apprenants via Wedof</field>
         <field name="res_model">mcm_openedx.enattente</field>
@@ -74,6 +69,4 @@
     </record>
     <menuitem id="att_menu_mcmm" name="En attente" parent="main_mcm_openedx_menu"
               action="mcm_openedx_attente_list_actionn_mcm"/>
-
-
 </odoo>

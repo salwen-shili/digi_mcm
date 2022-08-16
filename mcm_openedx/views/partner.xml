@@ -23,8 +23,6 @@
             </search>
         </field>
     </record>
-
-
     <record model="ir.ui.view" id="mcm_partner_form_view">
         <field name="name">Apprenants</field>
         <field name="model">res.partner</field>
@@ -173,11 +171,8 @@
                     </group>
                 </page>
             </xpath>
-
         </field>
-
     </record>
-
     <record model="ir.ui.view" id="mcm_partner_tree_view">
         <field name="name">Apprenants</field>
         <field name="model">res.partner</field>
@@ -193,8 +188,6 @@
             </tree>
         </field>
     </record>
-
-
     <record model="ir.actions.act_window" id="contact_list_action">
         <field name="name">Les Apprenants</field>
         <field name="res_model">res.partner</field>
@@ -203,8 +196,6 @@
 
 
     </record>
-
-
     <!-- top level menu: no parent -->
     <menuitem id="main_mcm_openedx_menu" name="MCM OpenEdx"/>
     <menuitem id="mcm_apprennat_menu" name="Apprenants" parent="main_mcm_openedx_menu" action="contact_list_action"/>

@@ -57,7 +57,6 @@
 
         </field>
     </record>
-
     <record model="ir.ui.view" id="coach_tree_view">
         <field name="name">Coaches</field>
         <field name="model">mcm_openedx.coach</field>
@@ -143,14 +142,12 @@
             </kanban>
         </field>
     </record>
-
     <record model="ir.actions.act_window" id="coach_list_action">
         <field name="name">Coaches</field>
         <field name="res_model">mcm_openedx.coach</field>
         <field name="view_mode">tree,form,kanban,graph</field>
 
     </record>
-
     <menuitem id="coach_menu" name="Coaches" parent="main_mcm_openedx_menu" action="coach_list_action"/>
 
 </odoo>
