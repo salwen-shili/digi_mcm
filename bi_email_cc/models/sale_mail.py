@@ -8,12 +8,22 @@ from odoo.exceptions import UserError
 class MailComposeMessage(models.TransientModel):
 	_inherit = 'mail.compose.message'
 
+	@api.model
+	def _get_default_bcc(self):
+		""" add default bcc in send email action based on template name"""
+		if self.template_id:
+			if (self.template_id.name, 'ilike', "DIGIMOOV RÉSULTATS FAVORABLES"):
+				default_bcc = self.bcc_partner_ids == self.env["res.partner"].sudo().search([('email', "=", "digimoov.fr+25e168c414@invite.trustpilot.com")])
+				return default_bcc
+			else:
+				pass
+
 	cc_partner_ids = fields.Many2many(
         'res.partner', 'mail_compose_message_res_cc_partner_rel',
         'wizard_id', 'cc_partner_id', 'cc',readonly=False)
 	bcc_partner_ids = fields.Many2many(
         'res.partner', 'mail_compose_message_res_bcc_partner_rel',
-        'wizard_id', 'bcc_partner_id', 'BCC',readonly=False)
+        'wizard_id', 'bcc_partner_id', 'BCC',readonly=False, default=_get_default_bcc)
 	rply_partner_id=fields.Many2one('res.partner',string='Default Reply-To',readonly=False)
 	is_cc = fields.Boolean(string='Enable Email CC')
 	is_bcc = fields.Boolean(string='Enable Email BCC')
