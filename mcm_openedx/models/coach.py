@@ -23,6 +23,10 @@ class enattente(models.Model):
     existant = fields.Boolean(string="Exist sur ODOO", default=False)
     existantsurmooc = fields.Boolean(string="Exist sur Moocit", default=False)
 
+    """recuperer les dossier avec état accepté apartir d'api wedof,
+           puis faire le parcours pour chaque dossier,
+           si tout les conditions sont vérifiés on Passe le dossier dans l'état 'en formation'"""
+
     def wedof_api_integration_moocit(self):
         companies = self.env['res.company'].sudo().search([('id', "=", 2)])
         print(companies)
@@ -130,7 +134,7 @@ class Coach(models.Model):
     _description = "coaches module en va affecter pour chaque coach sa liste des apprennats"
     name = fields.Char(string="Coaches")
     nombre_apprenant = fields.Integer(readonly=True)
-    coach_name = fields.Many2one('res.partner', string="Tuteur",readonly=True, domain=[('est_coach', '=', True)])
+    coach_name = fields.Many2one('res.partner', string="Tuteur", readonly=True, domain=[('est_coach', '=', True)])
     apprenant_name = fields.Many2many('res.partner', domain=[('est_coach', '=', False)])
     seats = fields.Integer(string="nombre de places", readonly=True)
     taken_seats = fields.Float(string="nombre des places ocuppé ", compute='_taken_seats')
@@ -295,7 +299,3 @@ class Coach(models.Model):
 
                     # appeler la fonction pour affecter les apprenats aux coach
                 self.test_coach()
-
-    """recuperer les dossier avec état accepté apartir d'api wedof,
-          puis faire le parcours pour chaque dossier,
-          si tout les conditions sont vérifiés on Passe le dossier dans l'état 'en formation'"""
