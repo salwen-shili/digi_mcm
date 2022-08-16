@@ -111,6 +111,7 @@
                         }
                         }
                     </style>
+                    <center>
 
                     <h1>Bonjour coach ${object.coach_name.name}</h1>
 
@@ -126,10 +127,13 @@
                     </h2>
                     <div style="text-align: center;">
                         <img class="img-email"
-                             width="30%"
+                             width="50%"
                              src="https://media.giphy.com/media/Jir7AUookJHIVb5aYM/giphy.gif"/>
+
                     </div>
+                    </center>
                 </div>
+
             </field>
             <field name="lang">${object.lang}</field>
             <field name="user_signature" eval="False"/>

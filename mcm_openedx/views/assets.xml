@@ -2,9 +2,11 @@
 <odoo>
     <data>
 <template id="button_js" inherit_id="web.assets_backend">
+
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/mcm_openedx/static/src/js/action_button.js" />
         </xpath>
+
     </template>
     </data>
 </odoo>

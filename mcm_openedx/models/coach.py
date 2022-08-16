@@ -129,7 +129,7 @@ class enattente(models.Model):
 
 class Coach(models.Model):
     _name = 'mcm_openedx.coach'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread','mail.activity.mixin']
 
     _description = "coaches module en va affecter pour chaque coach sa liste des apprennats"
     name = fields.Char(string="Coaches")
@@ -145,6 +145,7 @@ class Coach(models.Model):
     @api.depends('seats', 'apprenant_name')
     def _taken_seats(self):
         for r in self:
+
             if not r.seats:
                 r.taken_seats = 0.0
             else:
