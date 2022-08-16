@@ -13,8 +13,10 @@ class MailComposeMessage(models.TransientModel):
 		""" add default bcc in send email action based on template name"""
 		if self.template_id:
 			if (self.template_id.name, 'ilike', "DIGIMOOV RÉSULTATS FAVORABLES"):
-				default_bcc = self.bcc_partner_ids == self.env["res.partner"].sudo().search([('email', "=", "digimoov.fr+25e168c414@invite.trustpilot.com")])
-				return default_bcc
+				partner = self.env["res.partner"].sudo().search([('email', "=", "digimoov.fr+25e168c414@invite.trustpilot.com")])
+
+				self.bcc_partner_ids == partner
+				#return self.bcc_partner_ids
 			else:
 				pass
 
