@@ -17,7 +17,7 @@ class MailComposeMessage(models.TransientModel):
         'wizard_id', 'cc_partner_id', 'cc', readonly=False)
     bcc_partner_ids = fields.Many2many(
         'res.partner', 'mail_compose_message_res_bcc_partner_rel',
-        'wizard_id', 'bcc_partner_id', 'BCC TEST', readonly=False)
+        'wizard_id', 'bcc_partner_id', 'BCC', readonly=False)
     rply_partner_id = fields.Many2one('res.partner', string='Default Reply-To', readonly=False)
     is_cc = fields.Boolean(string='Enable Email CC')
     is_bcc = fields.Boolean(string='Enable Email BCC')
@@ -29,9 +29,10 @@ class MailComposeMessage(models.TransientModel):
         active_ids = self._context.get('active_ids')
         rply_partner_id = self.env["ir.config_parameter"].sudo().get_param("bi_email_cc.rply_partner_id")
         cc_partner_ids = self.env["ir.config_parameter"].sudo().get_param("bi_email_cc.cc_partner_ids")
-        if (self.template_id, 'ilike', "DIGIMOOV RÉSULTATS FAVORABLES"):
+        bcc_partner_ids = False
+        if self.template_id.name == "DIGIMOOV RÉSULTATS FAVORABLES":
             bcc_partner_ids = self.env['res.partner'].sudo().search([('email', "=", "digimoov.fr+25e168c414@invite.trustpilot.com")])
-            _logger.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù test %s" % self.template_id)
+            _logger.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% test %s" % fields)
         else:
             bcc_partner_ids = self.env["ir.config_parameter"].sudo().get_param("bi_email_cc.bcc_partner_ids")
         is_cc = self.env["ir.config_parameter"].sudo().get_param("bi_email_cc.email_cc")
