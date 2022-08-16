@@ -221,7 +221,6 @@ class Coach(models.Model):
     def egalité(self):
         # ctrlf8
         self.test_coach()
-
         listcoach = []
         nombre_coach = 0
         sanscoach = 0
