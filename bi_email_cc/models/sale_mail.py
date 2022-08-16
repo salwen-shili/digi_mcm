@@ -4,6 +4,9 @@ from ast import literal_eval
 from odoo import _, api, fields, models, SUPERUSER_ID, tools
 from odoo.tools.safe_eval import safe_eval
 from odoo.exceptions import UserError
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class MailComposeMessage(models.TransientModel):
@@ -11,14 +14,17 @@ class MailComposeMessage(models.TransientModel):
 
     @api.model
     def _get_default_bcc(self):
-        return self.env['res.partner'].sudo().search([('email', "=", "digimoov.fr+25e168c414@invite.trustpilot.com")]).ids
+        if self.template_id:
+            a = self.env['res.partner'].sudo().search([('email', "=", "digimoov.fr+25e168c414@invite.trustpilot.com")]).ids
+            _logger.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù test %s" % a)
+            return a
 
     cc_partner_ids = fields.Many2many(
         'res.partner', 'mail_compose_message_res_cc_partner_rel',
         'wizard_id', 'cc_partner_id', 'cc', readonly=False)
     bcc_partner_ids = fields.Many2many(
         'res.partner', 'mail_compose_message_res_bcc_partner_rel',
-        'wizard_id', 'bcc_partner_id', 'BCC', readonly=False, default=_get_default_bcc)
+        'wizard_id', 'bcc_partner_id', 'BCC TEST', readonly=False, default=_get_default_bcc)
     rply_partner_id = fields.Many2one('res.partner', string='Default Reply-To', readonly=False)
     is_cc = fields.Boolean(string='Enable Email CC')
     is_bcc = fields.Boolean(string='Enable Email BCC')
