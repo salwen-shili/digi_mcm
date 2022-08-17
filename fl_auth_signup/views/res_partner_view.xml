@@ -7,9 +7,18 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='function']" position="after">
-                     <field name="birthday" attrs="{'invisible':[('company_type','=','company')]}"/>
+                    <field name="birthday" attrs="{'invisible':[('company_type','=','company')]}"/>
                 </xpath>
             </field>
+        </record>
+        <record model="ir.actions.server" id="action_reset_password_from_partner">
+            <field name="name">Envoyer les instructions de réinitialisation de mot de passe</field>
+            <field name="model_id" ref="fl_auth_signup.model_res_partner"/>
+            <field name="binding_model_id" ref="fl_auth_signup.model_res_partner"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="sequence">5</field>
+            <field name="code">record.action_reset_password()</field>
         </record>
     </data>
 </odoo>

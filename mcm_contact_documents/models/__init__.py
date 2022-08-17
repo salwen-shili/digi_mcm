@@ -1,1 +1,1 @@
-from . import partner_documents
+from . import partner_documents, res_partner

@@ -19,7 +19,10 @@ class Documents(models.Model):
     def action_refuse_document(self):
         self.state='refused'
         lang = self.env.context.get('lang')
-        template_id = self.env['ir.model.data'].xmlid_to_res_id('mcm_contact_documents.mail_template_refused_document',raise_if_not_found=False)
+        template_id = self.env['mail.template'].sudo().search(
+            [('name', "=", "Contact : Document Refusé"),
+             ('model_id', "=", 'documents.document')],
+            limit=1)
         subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
         body = str(self.name).replace(str(self.owner_id.name), '') + ' a été refusé'
         message = self.env['mail.message'].sudo().create({
@@ -34,7 +37,7 @@ class Documents(models.Model):
             'default_model': 'documents.document',
             'default_res_id': self.ids[0],
             'default_use_template': bool(template_id),
-            'default_template_id': template_id,
+            'default_template_id': template_id.id,
             'default_composition_mode': 'comment',
             'mark_so_as_sent': True,
             'proforma': self.env.context.get('proforma', False),
