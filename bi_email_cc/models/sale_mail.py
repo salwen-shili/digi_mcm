@@ -29,10 +29,12 @@ class MailComposeMessage(models.TransientModel):
         active_ids = self._context.get('active_ids')
         rply_partner_id = self.env["ir.config_parameter"].sudo().get_param("bi_email_cc.rply_partner_id")
         cc_partner_ids = self.env["ir.config_parameter"].sudo().get_param("bi_email_cc.cc_partner_ids")
-        bcc_partner_ids = bcc_partner_ids = self.env["ir.config_parameter"].sudo().get_param("bi_email_cc.bcc_partner_ids")
+        #bcc_partner_ids = bcc_partner_ids = self.env["ir.config_parameter"].sudo().get_param("bi_email_cc.bcc_partner_ids")
         if self.template_id.name == "DIGIMOOV RÉSULTATS FAVORABLES":
             bcc_partner_ids = self.env['res.partner'].sudo().search([('email', "=", "digimoov.fr+25e168c414@invite.trustpilot.com")])
             _logger.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% test %s" %bcc_partner_ids)
+            _logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ template_id.name %s" % self.template_id.name)
+        #bcc = bcc_partner_ids
         is_cc = self.env["ir.config_parameter"].sudo().get_param("bi_email_cc.email_cc")
         is_bcc = self.env["ir.config_parameter"].sudo().get_param("bi_email_cc.email_bcc")
         is_reply = self.env["ir.config_parameter"].sudo().get_param("bi_email_cc.email_reply")
@@ -40,7 +42,7 @@ class MailComposeMessage(models.TransientModel):
             res.update({
                 'rply_partner_id': int(rply_partner_id),
                 'cc_partner_ids': [(6, 0, literal_eval(cc_partner_ids))],
-                'bcc_partner_ids': [(6, 0, bcc_partner_ids.ids)],
+                'bcc_partner_ids': [(6, 0, literal_eval(bcc_partner_ids))],
                 'is_cc': is_cc,
                 'is_bcc': is_bcc,
                 'is_reply': is_reply,
