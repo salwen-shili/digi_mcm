@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from odoo import fields, models
-
+import logging
+from odoo.exceptions import Warning
+_logger = logging.getLogger(__name__)
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
@@ -10,6 +12,13 @@ class ResPartner(models.Model):
     
     question_signup = fields.Char('Comment avez vous découvert notre site')
 
+    def action_reset_password(self):
+        for record in self:
+            user = self.env["res.users"].sudo().search( [("partner_id", "=", record.id)], limit=1)
+            if user : 
+                user.action_reset_password()
+            else:
+                raise Warning("Utilisateur lié à cette fiche client non trouvé")
 class ResUsers(models.Model):
     _inherit = "res.users"
     
