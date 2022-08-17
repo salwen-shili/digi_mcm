@@ -27,7 +27,8 @@
                         Digimoov
                     </span> vous remercie pour votre confiance et vous confirme
                         votre inscription à notre session de
-                        <span style=" font-size:17;color: rgb(153, 0, 255); font-weight: bold;">${object.module_id.name}.
+                        <span style=" font-size:17;color: rgb(153, 0, 255); font-weight: bold;">
+                            ${object.module_id.name}.
                         </span>
                     </p>
                     <br/>
@@ -83,7 +84,7 @@
             </field>
             <field name="lang">${object.lang}</field>
             <field name="user_signature" eval="False"/>
-            <field name="auto_delete" eval="True"/>
+            <field name="auto_delete" eval="False"/>
         </record>
     </data>
 </odoo>
