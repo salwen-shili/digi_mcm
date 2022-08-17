@@ -35,9 +35,7 @@ class partner(models.Model):
 
     # desinscrire les cours de formation  VTC a l'apprenant
     def desinscriteVTC(self, partner):
-
         user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
-
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
             'auto_enroll': 'true',
