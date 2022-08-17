@@ -20,10 +20,11 @@ class PartnerDocuments(models.Model):
     def action_refuse_document(self):
         self.state='refuse'
         lang = self.env.context.get('lang')
+        #search template using name of template
         template_id = self.env['mail.template'].sudo().search(
             [('name', "=", "Contact : Document Refusé"),
              ('model_id', "=", 'documents.document')],
-            limit=1)  # we get the mail template from sendinblue
+            limit=1)
         print(template_id)
         ctx = {
             'default_model': 'partner.documents',
