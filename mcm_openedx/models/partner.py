@@ -286,7 +286,6 @@ class partner(models.Model):
         _logger.info(self.company_id.id)
         _logger.info(' emailll  utilisateur %s' % str(self.email))
         _logger.info('password360%s' % str(self.password360))
-
         # # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
         # message = self.env['mail.message'].search(
         #     [('res_id', "=", self.id), ('author_id.est_coach', '=', 'True'), ('company_id.id', '=', 1)],
@@ -298,7 +297,6 @@ class partner(models.Model):
         # # print("coaches.name", coaches.name)
         # print("message.author_id.name", message.author_id.name)
         # self.coach_peda = message.author_id
-
         sale_order = self.env['sale.order'].sudo().search(
             [('partner_id', '=', self.id),
              ('state', '=', 'sale'),
@@ -339,14 +337,12 @@ class partner(models.Model):
                             'className': 'bg-danger'
                         }
                     }
-
                 # defenir le mode de financement
                 if self.mode_de_financement == "particulier":
                     _logger.info('mode_de_financement %s' % str(self.mode_de_financement))
                     # verifier si le sale et les documents et satut sont valides
                     if ((sale_order) and (document_valide) and (self.statut == "won") and (bolt == False)):
                         _logger.info('document et sale valide Condition 1 validee %s')
-
                         # verifer avec ines statue sale.order
                         if (sale_order.state == 'sale') and (sale_order.signature) and (bolt == False):
                             _logger.info('sale order et signature valide %s')
@@ -354,7 +350,6 @@ class partner(models.Model):
                             # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
                             if (self.renounce_request):
                                 self.ajouter_IOne_MCM(self)
-
                                 _logger.info(' tout est valide %s')
 
                             # si non il doit attendre 14jours pour etre ajouté a la platform*
@@ -377,11 +372,11 @@ class partner(models.Model):
                 if self.mode_de_financement == "cpf":
                     _logger.info(' date exman %s' % str(self.mcm_session_id.date_exam))
                     if (document_valide) and (self.mcm_session_id.date_exam) and (
-                            self.mcm_session_id.date_exam > date.today()) and (bolt == False):
+                            self.mcm_session_id.date_exam > date.today()) and (bolt is False):
                         _logger.info('document valide , date exlan > datetoday , et nest pas bolt %s')
                         if (self.renounce_request):
                             self.ajouter_IOne_MCM(self)
-                            _logger.info(' tout est valide %s')
+                            _logger.info('tout est valide %s')
 
                     if not (self.renounce_request) and self.numero_cpf:
                         """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
@@ -429,7 +424,6 @@ class partner(models.Model):
                                     'className': 'bg-danger'
                                 }
                             }
-
         else:
             # si les document ne sont  pas valide une notif appartient sur odoo
             return {
@@ -472,6 +466,7 @@ class partner(models.Model):
 
     # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
     def ajouter_IOne_MCM(self, partner):
+        print(self)
         _logger.info('email de lapprenant %s' % str(partner.email))
         user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
         bolt = partner.bolt

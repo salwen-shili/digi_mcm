@@ -33,7 +33,6 @@ class Cours_stat(models.Model):
     def calcul_temps_total(self):
         temppassetotale = 0
         listjour = []
-
         for existt in self.env['mcm_openedx.course_stat'].sudo().search(
                 [('email', "=", self.email)]):
             temppassetotale = existt.seconde + temppassetotale
@@ -41,14 +40,12 @@ class Cours_stat(models.Model):
             minute = int((temppassetotale - (3600 * heure)) / 60)
             secondes = int(temppassetotale - (3600 * heure) - (60 * minute))
             timee = (heure, minute, secondes)
-
             listjour.append(existt.jour)
             # affecter les jours a une liste pour faire le tri et extraire la derniere et la premiere date de connexion
             listjour.sort()
             # print("lowwww", listjour[0])
             # print("highhh", listjour[-1])
             # chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
-
             mail_evalbox = self.env['res.partner'].search(
                 [('company_id', '!=', 2), ('id_evalbox', 'ilike', existt.email)])
             print(mail_evalbox.id_evalbox)
@@ -73,14 +70,11 @@ class Cours_stat(models.Model):
                 if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx.year == todays_date.year):
                     apprenant.state = 'en_formation'
 
-
     def suupprimer_bouton_fiche_client(self):
         # cree une  liste pour stocker les duplication
         listcourduplicated = []
         temppassetotale = 0
         listjour = []
-
-        print("tacheeee supppppppppppp")
         # chercher tout personne ayant un mail existant
         for exist in self.env['mcm_openedx.course_stat'].sudo().search(
                 [('email', "=", self.email)]):

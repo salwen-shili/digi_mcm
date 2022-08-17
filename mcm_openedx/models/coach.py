@@ -156,7 +156,7 @@ class Coach(models.Model):
 
         for partner in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"), ('company_id', '=', 1), ('state', "=", "en_formation"),
-                 ('coach_peda', '=', False)]):
+                 ]):
             count_apprennat = count_apprennat + 1
             # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
             message = self.env['mail.message'].search(
@@ -165,11 +165,12 @@ class Coach(models.Model):
                 limit=1)
             # if (coaches.name, 'ilike', message.author_id.name):
             # print("coaches.name", coaches.name)
-            print("message.author_id.name", message.author_id.name)
-            partner.coach_peda = message.author_id
-            print("partner.coach_peda == False", count_apprennat)
+            if (partner.coach_peda is False):
+                _logger.info("message.author_id.name", message.author_id.name)
+                partner.coach_peda = message.author_id
+                _logger.info("partner.coach_peda == False", count_apprennat)
 
-        print(count_apprennat)
+        _logger.info(count_apprennat)
 
     # tester le nombre des coach et le nombre d'apprenant pour chaque un  , pour controller l'affectation des apprenants pour chaque'un
     @api.depends('nombre_apprenant', 'coach_name', 'apprenant_name', 'seats')
