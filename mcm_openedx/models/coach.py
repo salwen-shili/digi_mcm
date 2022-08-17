@@ -129,11 +129,11 @@ class enattente(models.Model):
 
 class Coach(models.Model):
     _name = 'mcm_openedx.coach'
-    _inherit = ['mail.thread','mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     _description = "coaches module en va affecter pour chaque coach sa liste des apprennats"
     name = fields.Char(string="Coaches")
-    nombre_apprenant = fields.Integer(string="Nombre apprenan",readonly=True)
+    nombre_apprenant = fields.Integer(string="Nombre apprenan", readonly=True)
     coach_name = fields.Many2one('res.partner', string="Tuteur", readonly=True, domain=[('est_coach', '=', True)])
     apprenant_name = fields.Many2many('res.partner', domain=[('est_coach', '=', False)])
     seats = fields.Integer(string="Place occupée", readonly=True)
@@ -164,8 +164,9 @@ class Coach(models.Model):
                 limit=1)
             # if (coaches.name, 'ilike', message.author_id.name):
             # print("coaches.name", coaches.name)
-            print("message.author_id.name", message.author_id.name)
-            partner.coach_peda = message.author_id
+            if (partner.coach_peda == False):
+                print("message.author_id.name", message.author_id.name)
+                partner.coach_peda = message.author_id
 
     # tester le nombre des coach et le nombre d'apprenant pour chaque un  , pour controller l'affectation des apprenants pour chaque'un
     @api.depends('nombre_apprenant', 'coach_name', 'apprenant_name', 'seats')
