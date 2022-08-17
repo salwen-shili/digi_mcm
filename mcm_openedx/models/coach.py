@@ -131,13 +131,13 @@ class Coach(models.Model):
     _name = 'mcm_openedx.coach'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    _description = "coaches module en va affecter pour chaque coach sa liste des apprennats"
+    _description = "Liste des apprenantes créées"
     name = fields.Char(string="Coaches")
-    nombre_apprenant = fields.Integer(string="Nombre apprenan", readonly=True)
+    nombre_apprenant = fields.Integer(string="Nombre apprenant", readonly=True)
     coach_name = fields.Many2one('res.partner', string="Tuteur", readonly=True, domain=[('est_coach', '=', True)])
-    apprenant_name = fields.Many2many('res.partner', domain=[('est_coach', '=', False)])
-    seats = fields.Integer(string="Place occupée", readonly=True)
-    taken_seats = fields.Float(string="Place occupée", compute='_taken_seats')
+    apprenant_name = fields.Many2many('res.partner', domain=[('est_coach', '=', False),])
+    seats = fields.Integer(string="En Formation", readonly=True)
+    taken_seats = fields.Float(string="Place occupée", compute='_taken_seats',readonly=True)
     commentaire = fields.Char(string="Commentaires")
     color = fields.Integer()
     apprenant_email = fields.Char()
@@ -155,7 +155,8 @@ class Coach(models.Model):
         count_apprennat = 0
 
         for partner in self.env['res.partner'].sudo().search(
-                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "=", "en_formation")]):
+                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "=", "en_formation"),
+                 ('coach_peda', '=', False)]):
             count_apprennat = count_apprennat + 1
             # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
             message = self.env['mail.message'].search(
@@ -164,9 +165,11 @@ class Coach(models.Model):
                 limit=1)
             # if (coaches.name, 'ilike', message.author_id.name):
             # print("coaches.name", coaches.name)
-            if (partner.coach_peda == False):
-                print("message.author_id.name", message.author_id.name)
-                partner.coach_peda = message.author_id
+            print("message.author_id.name", message.author_id.name)
+            partner.coach_peda = message.author_id
+            print("partner.coach_peda == False", count_apprennat)
+
+        print(count_apprennat)
 
     # tester le nombre des coach et le nombre d'apprenant pour chaque un  , pour controller l'affectation des apprenants pour chaque'un
     @api.depends('nombre_apprenant', 'coach_name', 'apprenant_name', 'seats')

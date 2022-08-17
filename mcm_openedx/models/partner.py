@@ -333,6 +333,8 @@ class partner(models.Model):
                         'tag': 'display_notification',
                         'params': {
                             'title': _('Merci de vérifier les documents !   '),
+                            'message': _('Merci de vérifier les documents ! !️'),
+
                             'sticky': True,
                             'className': 'bg-danger'
                         }
@@ -367,6 +369,7 @@ class partner(models.Model):
                             'tag': 'display_notification',
                             'params': {
                                 'title': _('Merci de vérifier le contrat de formation !'),
+                                'message': _('Merci de vérifier le contrat de formation !'),
                                 'sticky': True,
                                 'className': 'bg-danger'
                             }
@@ -421,6 +424,7 @@ class partner(models.Model):
                                 'tag': 'display_notification',
                                 'params': {
                                     'title': _('Merci de vérifier la date d’examen ? '),
+                                    'title': _('Merci de vérifier la date d’examen ? '),
                                     'sticky': True,
                                     'className': 'bg-danger'
                                 }
@@ -433,6 +437,7 @@ class partner(models.Model):
                 'tag': 'display_notification',
                 'params': {
                     'title': _('Manque numéro Evalbox-CMA !'),
+                    'message': _('Merci de vérifier Numéro Evalbox-CMA ou bien  le statut de l i one '),
                     'sticky': True,
                     'className': 'bg-danger'
                 }
@@ -755,7 +760,7 @@ class partner(models.Model):
                 'params': {
                     'title': _(' Mail Non  envoyée  '),
                     'message': _('Manque numéro Evalbox-CMA !️'),
-                    'sticky': False,
+                    'sticky': True,
                     'className': 'bg-danger'
                 }
             }
