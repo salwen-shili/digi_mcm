@@ -153,24 +153,25 @@ class Coach(models.Model):
 
     def aff_coach(self):
         count_apprennat = 0
-
         for partner in self.env['res.partner'].sudo().search(
-                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "=", "en_formation"),
+                [('statut', "=", "won"),
+                 ('company_id', '=', 1),
+                 ('state', "=", "en_formation"),
                  ]):
-            count_apprennat = count_apprennat + 1
-            # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
-            message = self.env['mail.message'].search(
-                [('res_id', "=", partner.id), ('author_id.est_coach', '=', 'True'), ('company_id', '=', 1)],
-                order="create_date asc",
-                limit=1)
-            # if (coaches.name, 'ilike', message.author_id.name):
-            # print("coaches.name", coaches.name)
-            if (partner.coach_peda is False):
-                _logger.info("message.author_id.name", message.author_id.name)
+            if partner.coach_peda.id is False:
+                count_apprennat = count_apprennat + 1
+                # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
+                message = self.env['mail.message'].search(
+                    [('res_id', "=", partner.id), ('author_id.est_coach', '=', 'True'), ('company_id', '=', 1)],
+                    order="create_date asc",
+                    limit=1)
+                # if (coaches.name, 'ilike', message.author_id.name):
+                # print("coaches.name", coaches.name)
+                _logger.info('partner.name %s' % str(partner.name))
+                _logger.info('partner.coach_peda == Falsee %s' % str(count_apprennat))
                 partner.coach_peda = message.author_id
-                _logger.info("partner.coach_peda == False", count_apprennat)
 
-        _logger.info(count_apprennat)
+        print(count_apprennat)
 
     # tester le nombre des coach et le nombre d'apprenant pour chaque un  , pour controller l'affectation des apprenants pour chaque'un
     @api.depends('nombre_apprenant', 'coach_name', 'apprenant_name', 'seats')
@@ -203,17 +204,16 @@ class Coach(models.Model):
             if (coach):
                 coach_name = coach.name
                 name = coach.name
-                print("coachs names", coach_name)
+                _logger.info('coachs names %s' % str(coach_name))
                 # verfier dans la class Coach si il existe un coach ayant le meme nom que le coach affecter pour les apprenants
                 exist = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '=', coach.id)])
                 # si le coach existe alors en va lui affecter la liste des apprenats ayant le nom de ce caoch
-                print("exiiiiiiiist", exist)
+                _logger.info('exist %s' % str(exist))
                 if (exist):
                     exist.seats = count_apprennat
                     exist.nombre_apprenant = nombre_apprenant
                     exist.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
                                         })
-
                 # si non en va creé le coach
                 if not exist:
                     newcoach = self.env['mcm_openedx.coach'].sudo().create({
@@ -223,8 +223,8 @@ class Coach(models.Model):
                     newcoach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
                                            })
                     exist.browse(exist.id).sudo().unlink()
-
-                print("nombre d'apprenant par coach ", coach_name, nombre_apprenant)
+                _logger.info('nombre d apprenant par coach nom coach %s' % str(coach_name))
+                _logger.info('nombre d apprenant par coach %s' % str(nombre_apprenant))
 
     # chercher les nombre des apprennats qui n'on pas des coach et
     # chercher le nombre d'apprennats par  coach pour voir la differance et affecter les apprenat aux coach qui a le nombre inferieur aux autres
@@ -236,7 +236,7 @@ class Coach(models.Model):
         sanscoach = 0
         # calculer nb coach
         for coach1 in self.env['mcm_openedx.coach'].sudo().search(
-                [('coach_name', '!=', '')]):
+                [('coach_name', "!=", '')]):
             nombre_coach = nombre_coach + 1
             listcoach.append(coach1.nombre_apprenant)
             listcoach.sort()
@@ -248,10 +248,11 @@ class Coach(models.Model):
                  ('state', "=", "en_formation")]):
             sanscoach = sanscoach + 1
             # listaffecter.append()
-            print("nb sans coach", sanscoach)
+            _logger.info('nb sans coach %s' % str(sanscoach))
+
             limit = divmod(sanscoach, nombre_coach)
-            print("div", limit[0])
-            print("Rest", limit[1])
+            _logger.info('div %s' % str(limit[0]))
+            _logger.info('rest %s' % str(limit[1]))
             for coach in self.env['mcm_openedx.coach'].sudo().search(
                     [('coach_name', '!=', ''), ('nombre_apprenant', '=', listcoach[0])], limit=1):
                 i = 0
@@ -285,7 +286,7 @@ class Coach(models.Model):
                             context = self._context
                             current_uid = context.get('uid')
                             user = self.env['res.users'].browse(current_uid)
-                            print("emaillllllllllll", user.email)
+                            _logger.info('email %s' % str(user.email))
                             if (user.email == coach.coach_name.email):
                                 return {
                                     'type': 'ir.actions.client',
@@ -297,11 +298,9 @@ class Coach(models.Model):
                                         'className': 'bg-danger'
                                     }
                                 }
-
                     if apprenat.id not in listexiste:
-                        print("app", apprenat.id)
-                        print(coach.coach_name)
+                        _logger.info('apprennat  %s' % str(apprenat.id))
+                        _logger.info('coach.coach_name%s' % str(coach.coach_name))
                         apprenat.coach_peda = coach.coach_name
-
                     # appeler la fonction pour affecter les apprenats aux coach
                 self.test_coach()
