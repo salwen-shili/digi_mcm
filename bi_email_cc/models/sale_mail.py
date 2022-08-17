@@ -24,7 +24,7 @@ class MailComposeMessage(models.TransientModel):
     is_reply = fields.Boolean(string='Reply')
 
     @api.onchange('template_id')
-    def test_change_template(self):
+    def set_default_bcc_email(self):
         """ Search for partner with email egale à "digimoov.fr+25e168c414@invite.trustpilot.com"
         based on template name "DIGIMOOV RÉSULTATS FAVORABLES" """
         if self.template_id.name == "DIGIMOOV RÉSULTATS FAVORABLES":
@@ -64,14 +64,14 @@ class MailComposeMessage(models.TransientModel):
         return res
 
 
-def get_mail_values(self, res_ids):
-    res = super(MailComposeMessage, self).get_mail_values(res_ids)
+    def get_mail_values(self, res_ids):
+        res = super(MailComposeMessage, self).get_mail_values(res_ids)
 
-    for rec in res_ids:
-        res[rec].update({
-            "cc_partner_ids": [(6, 0, self.cc_partner_ids.ids)],
-            "bcc_partner_ids": [(6, 0, self.bcc_partner_ids.ids)],
-            "rply_partner_id": self.rply_partner_id.id,
-        })
+        for rec in res_ids:
+            res[rec].update({
+                "cc_partner_ids": [(6, 0, self.cc_partner_ids.ids)],
+                "bcc_partner_ids": [(6, 0, self.bcc_partner_ids.ids)],
+                "rply_partner_id": self.rply_partner_id.id,
+            })
 
-    return res
+        return res
