@@ -193,7 +193,7 @@ class partner(models.Model):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                                  ('company_id.id', '=', 1),
+                                                                  ('company_id', '=', 1),
                                                                   ('numero_evalbox', '!=', False),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
@@ -283,12 +283,12 @@ class partner(models.Model):
                 # ajouter les apprenants manuellemnt a partire de  la fiche Client
 
     def ajoutMoocit_manuelle(self):
-        _logger.info(self.company_id.id)
+        _logger.info(self.company_id)
         _logger.info(' emailll  utilisateur %s' % str(self.email))
         _logger.info('password360%s' % str(self.password360))
         # # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
         # message = self.env['mail.message'].search(
-        #     [('res_id', "=", self.id), ('author_id.est_coach', '=', 'True'), ('company_id.id', '=', 1)],
+        #     [('res_id', "=", self.id), ('author_id.est_coach', '=', 'True'), ('company_id', '=', 1)],
         #     order="create_date asc",
         #     limit=1)
         # print("First", message.create_date)
@@ -383,7 +383,7 @@ class partner(models.Model):
                         headers = {
                             'accept': 'application/json',
                             'Content-Type': 'application/json',
-                            'X-API-KEY': self.company_id.id.wedof_api_key,
+                            'X-API-KEY': self.company_id.wedof_api_key,
                         }
                         params_wedof = (
                             ('order', 'desc'),
@@ -443,7 +443,7 @@ class partner(models.Model):
         print(todays_date.year)
         print(todays_date.month)
         for user in self.env['res.partner'].sudo().search(
-                [('company_id.id', '=', 1), ('mcm_session_id.date_exam', '!=', False)
+                [('company_id', '=', 1), ('mcm_session_id.date_exam', '!=', False)
                  ]):
             # user.bolt = True
             if user.mcm_session_id.date_exam.year >= todays_date.year:
@@ -461,7 +461,7 @@ class partner(models.Model):
                                 user.password_evalbox = password
 
                         else:
-                            user.client = user.company_id.id.name
+                            user.client = user.company_id.name
                             _logger.info(user.client)
 
     # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
@@ -641,7 +641,7 @@ class partner(models.Model):
                     'description': 'verifier mot de passe %s' % (partner.name),
                     'name': 'Le mot de passe est trop semblable au champ Email ',
                     'team_id': self.env['helpdesk.team'].sudo().search(
-                        [('name', 'like', 'Service Examen MCM'), ('company_id.id', "=", 1)],
+                        [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
                         limit=1).id,
                 }
                 description = "test " + str(partner.name)
@@ -655,7 +655,7 @@ class partner(models.Model):
 
     def sendmail(self, partner):
         print(partner.name)
-        if partner.company_id.id == 1 and partner.inscrit_mcm != False:
+        if partner.company_id == 1 and partner.inscrit_mcm != False:
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser
                 self = self.with_user(SUPERUSER_ID)
@@ -797,7 +797,7 @@ class partner(models.Model):
 
     # affecter la date de suppression apres l'ajout  5 jours apres session
     def update_datesupp(self):
-        for partner in self.env['res.partner'].sudo().search([('company_id.id', '=', 1),
+        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1),
                                                               ('inscrit_mcm', '!=', False),
                                                               ('mcm_session_id.date_exam', '!=', False),
 
@@ -816,7 +816,7 @@ class partner(models.Model):
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             # chercher dans res.partner la liste de apprennats puis verifier la
             for partner in self.env['res.partner'].sudo().search([
-                ('company_id.id', '=', 1)]):
+                ('company_id', '=', 1)]):
                 self.write({'state': 'supprimé'})
                 _logger.info("supprimer autooo")
 
