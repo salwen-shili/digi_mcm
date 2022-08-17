@@ -3,12 +3,8 @@ import requests
 from datetime import datetime, timedelta, date
 from odoo import models, fields, api, SUPERUSER_ID
 from odoo.tools import datetime
-
 import logging
-
 _logger = logging.getLogger(__name__)
-
-
 class enattente(models.Model):
     _name = 'mcm_openedx.enattente'
     _description = "les apprennat en attente sur l'api "
