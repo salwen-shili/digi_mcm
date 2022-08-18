@@ -118,7 +118,7 @@ class partner(models.Model):
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
     # Ajouter l'apprenant au cours de formation taxi
-    # Ajouter cour connaisances locale 2022
+    # Ajouter cours connaisances locale 2022
     def inscriteTaxi(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -145,7 +145,7 @@ class partner(models.Model):
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
         _logger.info('response.text de linscripstion  ou desincs cour %s' % str(response.text))
 
-    # Ajouter l'apprenant au cour de conaissance locale à la  sélection du département(pas de calais)
+    # Ajouter l'apprenant au cours de conaissance locale département(Pas-de-Calais)
     def ajoutconnaisancelocalpasdecalais(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -165,7 +165,7 @@ class partner(models.Model):
         _logger.info('response.text de linscripstion  ou desincs cour %s' % str(response.text))
         _logger.info('response.status_code de linscripstion cour %s' % str(response.status_code))
 
-    # Ajouter l'apprenant au cour de conaissance locale  à la sélection du département (Nord)
+    # Ajouter l'apprenant au cours de conaissance locale département (Nord)
     def ajoutconnaisancelocalNord(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -187,7 +187,7 @@ class partner(models.Model):
 
         # ajouter les apprenants    automatiquememnt a partire de  la fiche Client
 
-    # Ajout automatique des  apprenants à  moocit
+    # Ajout automatique apprenant à moocit
     def ajoutMoocit_automatique(self):
         _logger.info(" ajoutMoocit_automatique lors de changement de Evalbox sur fiche client")
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
@@ -282,7 +282,7 @@ class partner(models.Model):
 
                 # ajouter les apprenants manuellemnt a partire de  la fiche Client
 
-    # Ajout manuelle des  apprenants à  moocit
+    # Ajout manuelle apprenant à moocit
     def ajoutMoocit_manuelle(self):
         _logger.info(self.company_id)
         _logger.info(' email utilisateur %s' % str(self.email))
@@ -425,7 +425,7 @@ class partner(models.Model):
                 }
             }
 
-    # Vérifier l'appartenance d'iOne et affectation de mot de passe Eval-box CMA
+    # Vérification client Bolt ou MCM
     def Bolt(self):
         todays_date = date.today()
         print(todays_date.year)
@@ -788,7 +788,7 @@ class partner(models.Model):
                         partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
                         _logger.info("supprimer aprex 5 j")
 
-    # Suppression automatique du iOnes
+    # Suppression automatique du iOne
     def supprimer_automatique(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
@@ -805,9 +805,6 @@ class partner(models.Model):
                         self.desinscriteVTC(partner)
                     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                         self.desinscriteVTC(partner)
-
-
-
 
     def convertir_date_inscription(self):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
