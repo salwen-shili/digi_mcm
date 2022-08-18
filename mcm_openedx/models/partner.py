@@ -622,24 +622,25 @@ class partner(models.Model):
                             _logger.info(
                                 'Ceci est un client Bolt sans autre condition')
                             self.inscriteVTC(partner)
-                # Ajout ticket pour notiifer le service client pour changer mp
-                """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
-                if (response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation'):
-                    _logger.info('Utilisateur  mot de passe invalide %s')
-                    vals = {
-                        'description': 'verifier mot de passe %s' % (partner.name),
-                        'name': 'Le mot de passe est trop semblable au champ Email ',
-                        'team_id': self.env['helpdesk.team'].sudo().search(
-                            [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
-                            limit=1).id,
-                    }
-                    description = "test " + str(partner.name)
-                    ticket = self.env['helpdesk.ticket'].sudo().search(
-                        [("description", "=", description)])
-                    if not ticket:
-                        print("cree tichket")
-                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                            vals)
+            # Ajout ticket pour notiifer le service client pour changer mp
+            """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
+            if (response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation'):
+
+                _logger.info('Utilisateur  mot de passe invalide %s')
+                vals = {
+                    'description': 'verifier mot de passe %s' % (partner.name),
+                    'name': 'Le mot de passe est trop semblable au champ Email ',
+                    'team_id': self.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                        limit=1).id,
+                }
+                description = "test " + str(partner.name)
+                ticket = self.env['helpdesk.ticket'].sudo().search(
+                    [("description", "=", description)])
+                if not ticket:
+                    print("cree tichket")
+                    new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                        vals)
 
     # Envoyer des e-mails aux apprenants.
     def sendmail(self, partner):
