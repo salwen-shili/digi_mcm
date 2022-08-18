@@ -439,16 +439,13 @@ class partner(models.Model):
                     if user:
                         if user.bolt is True or (user.module_id.product_id.default_code == "vtc_bolt"):
                             user.client = 'BOLT'
-                            user.bolt =  True
+                            user.bolt = True
                             _logger.info('nom de l apprennat est_bolt  %s' % str(user.client))
-
                             partner.password360 = user.password360
                             password = user.password360
                             _logger.info('password client bolt  %s' % str(user.client))
-
                             if user.password_evalbox is False:
                                 user.password_evalbox = password
-
                         else:
                             user.client = user.company_id.name
                             _logger.info(user.client)
@@ -643,32 +640,6 @@ class partner(models.Model):
                     new_ticket = self.env['helpdesk.ticket'].sudo().create(
                         vals)
 
-                # Formation à distance Taxi
-                if (partner.module_id.product_id.default_code == "taxi"):
-                    _logger.info("partner.module_id.product_id.default_code")
-                    if (departement == "59"):
-                        self.inscriteTaxi(partner)
-                        self.ajoutconnaisancelocalNord(partner)
-                        _logger.info("Departement 59")
-                    elif (departement == "62"):
-                        self.inscriteTaxi(partner)
-                        self.ajoutconnaisancelocalpasdecalais(partner)
-                        _logger.info("Departement 62")
-                    else:
-                        self.inscriteTaxi(partner)
-                        _logger.info("Ajouter a formation taxi ")
-                # Formation à distance VTC
-                elif (partner.module_id.product_id.default_code == "vtc"):
-                    _logger.info("Formation VTC")
-                    self.inscriteVTC(partner)
-                # Formation à distance VTC-BOLT
-                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                    if (bolt == True):
-                        _logger.info("Bolt Formation VTC")
-                        _logger.info(
-                            'Ceci est un client Bolt sans autre condition')
-                        self.inscriteVTC(partner)
-
     # Envoyer des e-mails aux apprenants.
     def sendmail(self, partner):
         print(partner.name)
@@ -834,6 +805,9 @@ class partner(models.Model):
                         self.desinscriteVTC(partner)
                     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                         self.desinscriteVTC(partner)
+
+
+
 
     def convertir_date_inscription(self):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
