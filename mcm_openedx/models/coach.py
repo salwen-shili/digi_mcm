@@ -4,7 +4,10 @@ from datetime import datetime, timedelta, date
 from odoo import models, fields, api, SUPERUSER_ID
 from odoo.tools import datetime
 import logging
+
 _logger = logging.getLogger(__name__)
+
+
 class enattente(models.Model):
     _name = 'mcm_openedx.enattente'
     _description = "les apprennat en attente sur l'api "
@@ -146,7 +149,7 @@ class Coach(models.Model):
                 r.taken_seats = 0.0
             else:
                 r.taken_seats = 100.0 * len(r.apprenant_name) / r.seats
-
+    #Faire des tests sur les fiches clients pour extraire le premier courriel qui a été envoyé et assigner le participant à celui qui a envoyé le courriel.
     def aff_coach(self):
         count_apprennat = 0
         for partner in self.env['res.partner'].sudo().search(
@@ -169,8 +172,7 @@ class Coach(models.Model):
 
         print(count_apprennat)
 
-    # tester le nombre des coach et le nombre d'apprenant pour chaque un  , pour controller l'affectation des apprenants pour chaque'un
-    @api.depends('nombre_apprenant', 'coach_name', 'apprenant_name', 'seats')
+    # Tester le nombre des coachs et le nombre d'apprenant pour chaque un, pour contrôler l'affectation des apprenants pour chaque
     def test_coach(self):
         todays_date = date.today()
         print(todays_date.year)
@@ -222,8 +224,9 @@ class Coach(models.Model):
                 _logger.info('nombre d apprenant par coach nom coach %s' % str(coach_name))
                 _logger.info('nombre d apprenant par coach %s' % str(nombre_apprenant))
 
-    # chercher les nombre des apprennats qui n'on pas des coach et
-    # chercher le nombre d'apprennats par  coach pour voir la differance et affecter les apprenat aux coach qui a le nombre inferieur aux autres
+    # Chercher les nombres des apprenants qui n'ont pas des coachs
+    # Chercher le nombre d'apprenants par  coach pour voir la différence et affecter les apprenat aux coachs qui a le nombre inférieur aux autres
+
     def egalité(self):
         # ctrlf8
         self.test_coach()

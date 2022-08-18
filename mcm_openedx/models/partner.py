@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 
 class partner(models.Model):
     _inherit = 'res.partner'
-    # ajouter champs au modeule partner par defaut res.partner ne sont pas des instructors
+    # Ajouter champs au modeule partner par defaut res.partner ne sont pas des instructors
     supprimerdemoocit = fields.Date("Date de suppression")
     departement = fields.Many2one('res.country.state')
     date_ajout_surMOOCIT = fields.Date(string="Date ajout moocit")
@@ -424,6 +424,7 @@ class partner(models.Model):
                     'className': 'bg-danger'
                 }
             }
+
     # Vérifier l'appartenance d'iOne et affectation de mot de passe Eval-box CMA
     def Bolt(self):
         todays_date = date.today()
@@ -450,6 +451,7 @@ class partner(models.Model):
                         else:
                             user.client = user.company_id.name
                             _logger.info(user.client)
+
     # Fonction d'affectation des apprenants à la plateforme et aux cours.
     def ajouter_IOne_MCM(self, partner):
         print(self)
@@ -637,6 +639,7 @@ class partner(models.Model):
                     print("cree tichket")
                     new_ticket = self.env['helpdesk.ticket'].sudo().create(
                         vals)
+
     # Envoyer des e-mails aux apprenants.
     def sendmail(self, partner):
         print(partner.name)
@@ -669,6 +672,7 @@ class partner(models.Model):
                     _logger.info("E-mail envoyé")
                     _logger.info(partner.email)
                     _logger.info('E-mail envoyé  %s' % str(partner.name))
+
     # Notifier les apprenants
     def notifierapprenant(self):
         print(self.state)
@@ -738,6 +742,7 @@ class partner(models.Model):
                     'className': 'bg-danger'
                 }
             }
+
     # Suppression d'iOne
     def supprimer_IOne_MCM(self):
         departement = self.state_id.code
@@ -772,6 +777,7 @@ class partner(models.Model):
                     'className': 'bg-danger'
                 }
             }
+
     # Affecter la date de suppression
     def update_datesupp(self):
         for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1),
