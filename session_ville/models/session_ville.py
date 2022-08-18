@@ -31,7 +31,15 @@ class SessionVille(models.Model):
         ('ile_de_france', "Île-de-France"),
     ], default=False, tracking=True)
     num_agrement_jury = fields.Many2one('approval.number', string="Numéro d'agrément")
-    coach_id = fields.Many2one('res.partner', track_visibility='always')
+    coach_id = fields.Many2many('res.partner', track_visibility='always')
+
+    @api.model
+    def create(self, values):
+        users_paris = self.env["res.partner"].sudo().search([("email", "=", "mbensaad@digimoov.fr")], order="id desc", limit=1)
+        if self.name_ville == "Paris":
+            values.update({"coach_id": [(6, 0, users_paris.cc_partner_ids.ids)]})
+        res = super(SessionVille, self).create(values)
+        return res
 
 
 
