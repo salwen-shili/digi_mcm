@@ -9,7 +9,7 @@
             <xpath expr="//page/group[@name='session']/group/field[@name='state_id']" position="after">
                 <field name="salle_id" string="Adresse salle d'examen"/>
             </xpath>
-            <xpath expr="//page[last()]" position="after" attrs="{'invisible':[('est_coach', '=', True)]}">
+            <xpath expr="//form/sheet" position="inside" attrs="{'invisible':[('est_coach', '=', True)]}">
                 <notebook>
                     <page name="coach_settings" string="Configuration Coach">
                         <group>
