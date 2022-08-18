@@ -704,11 +704,6 @@ class partner(models.Model):
 
                     _logger.info("email envoyé")
                     _logger.info(self.email)
-                    try:
-                        self.testsms(self)
-
-                    except:
-                        _logger.info('problem au niveau denvoit d sms ')
 
                     notification = {
                         'type': 'ir.actions.client',
