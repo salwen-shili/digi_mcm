@@ -33,7 +33,7 @@ class partner(models.Model):
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
 
-    # desinscrire les cours de formation  VTC a l'apprenant
+    # Desinscrire l'apprenant des cours VTC
     def desinscriteVTC(self, partner):
         user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
@@ -58,11 +58,10 @@ class partner(models.Model):
         }
 
         response = requests.request("POST", url, headers=header, data=payload)
-        print(response.text)
-        print(payload, 'user', response.status_code)
+        _logger.info('response.text de linscripstion  ou desincs cour %s' % str(response.text))
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
-    # ajouter les cours de formation vtc a l'apprenant
+    # Ajouter l'apprenant au cours VTC
     def inscriteVTC(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -89,7 +88,7 @@ class partner(models.Model):
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.text))
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
-    # desinscrire les cours de formation taxi a l'apprenant
+    # Desinscrire l'apprenant des cours TAXI
     def desinscriteTaxi(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -114,11 +113,12 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         response = requests.request("POST", url, headers=header, data=payload)
-        print(response.text)
+        _logger.info('response.text de linscripstion  ou desincs cour %s' % str(response.text))
+
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
-    # ajouter les cours de formation taxi a l'apprenant
-    # ajouter cour connaisance locale 2022 pour les autres departements
+    # Ajouter l'apprenant au cours de formation taxi
+    # Ajouter cour connaisances locale 2022
     def inscriteTaxi(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -142,10 +142,10 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         response = requests.request("POST", url, headers=header, data=payload)
-        print(response.text)
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
+        _logger.info('response.text de linscripstion  ou desincs cour %s' % str(response.text))
 
-    # ajouter les cours de la conaissance local pour le choix de departement(pas de calais)
+    # Ajouter l'apprenant au cour de conaissance locale à la  sélection du département(pas de calais)
     def ajoutconnaisancelocalpasdecalais(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -162,10 +162,10 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         response = requests.request("POST", url, headers=header, data=payload)
-        print(response.text)
+        _logger.info('response.text de linscripstion  ou desincs cour %s' % str(response.text))
         _logger.info('response.status_code de linscripstion cour %s' % str(response.status_code))
 
-    # ajouter les cours de la conaissance local pour le choix de departement(Nord)
+    # Ajouter l'apprenant au cour de conaissance locale  à la sélection du département (Nord)
     def ajoutconnaisancelocalNord(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -183,9 +183,11 @@ class partner(models.Model):
         }
         resp = requests.request("POST", url, headers=header, data=payload)
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(resp.status_code))
+        _logger.info('response.text de linscripstion  ou desincs cour %s' % str(resp.text))
 
         # ajouter les apprenants    automatiquememnt a partire de  la fiche Client
 
+    # Ajout automatique des  apprenants à  moocit
     def ajoutMoocit_automatique(self):
         _logger.info(" ajoutMoocit_automatique lors de changement de Evalbox sur fiche client")
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
@@ -280,29 +282,19 @@ class partner(models.Model):
 
                 # ajouter les apprenants manuellemnt a partire de  la fiche Client
 
+    # Ajout manuelle des  apprenants à  moocit
     def ajoutMoocit_manuelle(self):
         _logger.info(self.company_id)
-        _logger.info(' emailll  utilisateur %s' % str(self.email))
+        _logger.info(' email utilisateur %s' % str(self.email))
         _logger.info('password360%s' % str(self.password360))
-        # # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
-        # message = self.env['mail.message'].search(
-        #     [('res_id', "=", self.id), ('author_id.est_coach', '=', 'True'), ('company_id', '=', 1)],
-        #     order="create_date asc",
-        #     limit=1)
-        # print("First", message.create_date)
-        # print("nom", message.author_id.name)
-        # # if (coaches.name, 'ilike', message.author_id.name):
-        # # print("coaches.name", coaches.name)
-        # print("message.author_id.name", message.author_id.name)
-        # self.coach_peda = message.author_id
         sale_order = self.env['sale.order'].sudo().search(
             [('partner_id', '=', self.id),
              ('state', '=', 'sale'),
              ('session_id', '=', self.mcm_session_id.id),
              ('module_id', '=', self.module_id.id),
              ], limit=1, order="id desc")
-        # en va changer numero_evalbox avec numero eval ..
-        # verifier si la case evalbox est True
+        # On va changer numero_evalbox avec numero eval ..
+        # Verifier si la case evalbox est True
         _logger.info('numero %s' % str(self.numero_evalbox))
         if (self.numero_evalbox != False and (self.statut == "won")):
             bolt = self.bolt
@@ -329,8 +321,7 @@ class partner(models.Model):
                         'tag': 'display_notification',
                         'params': {
                             'title': _('Merci de vérifier les documents !   '),
-                            'message': _('Merci de vérifier les documents ! !️'),
-
+                            'message': _('Merci de vérifier les documents ! ️'),
                             'sticky': True,
                             'className': 'bg-danger'
                         }
@@ -428,15 +419,13 @@ class partner(models.Model):
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'title': _('Manque numéro Evalbox-CMA !'),
-                    'message': _('Merci de vérifier Numéro Evalbox-CMA ou bien  le statut de l i one '),
+                    'title': _('Manque numéro d’Evalbox-CMA !'),
                     'sticky': True,
                     'className': 'bg-danger'
                 }
             }
-
-    # fonction pour tester si le client en partenriat Avec Bolt ou non Si nn i la va  identifier le Client avec le nom de la company
-    def estBolt(self):
+    # Vérifier l'appartenance d'iOne et affectation de mot de passe Eval-box CMA
+    def Bolt(self):
         todays_date = date.today()
         print(todays_date.year)
         print(todays_date.month)
@@ -461,11 +450,10 @@ class partner(models.Model):
                         else:
                             user.client = user.company_id.name
                             _logger.info(user.client)
-
-    # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
+    # Fonction d'affectation des apprenants à la plateforme et aux cours.
     def ajouter_IOne_MCM(self, partner):
         print(self)
-        _logger.info('email de lapprenant %s' % str(partner.email))
+        _logger.info('E-mail de lapprenant %s' % str(partner.email))
         user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
         bolt = partner.bolt
         departement = partner.state_id.code
@@ -484,14 +472,14 @@ class partner(models.Model):
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
             }
-            response_ajouter_IOne_MCM = requests.request("POST", url, headers=headers, data=payload)
+            response_ajouter_iOne_MCM = requests.request("POST", url, headers=headers, data=payload)
             _logger.info(
-                'response_ajouter_IOne_MCM de la fonction ajout ione %s' % str(
-                    response_ajouter_IOne_MCM.status_code))
+                'response_ajouter_iOne_MCM de la fonction ajout ione %s' % str(
+                    response_ajouter_iOne_MCM.status_code))
             _logger.info(
-                'response_ajouter_IOne_MCM de la fonction ajout ione %s' % str(response_ajouter_IOne_MCM.text))
+                'response_ajouter_iOne_MCM de la fonction ajout ione %s' % str(response_ajouter_iOne_MCM.text))
             _logger.info('user %s' % str(payload))
-            if (response_ajouter_IOne_MCM.status_code == 200):
+            if (response_ajouter_iOne_MCM.status_code == 200):
                 partner.inscrit_mcm = date.today()
                 # The finally__block gets executed no matter if the try block raises any errors or not:
                 # self.testsms(self)
@@ -507,23 +495,23 @@ class partner(models.Model):
                         [('res_id', "=", partner.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
                     if not message:
                         template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                            'mcm_openedx.mail_template_add_Ione_MOOcit'))
+                            'mcm_openedx.mail_template_add_ione_MOOcit'))
                         template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
                         if not template_id:
                             template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                                'mcm_openedx.mail_template_add_Ione_MOOcit',
+                                'mcm_openedx.mail_template_add_ione_MOOcit',
                                 raise_if_not_found=False)
                         if not template_id:
                             template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                                'mcm_openedx.email_template_add_Ione_MOOcit',
+                                'mcm_openedx.email_template_add_ione_MOOcit',
                                 raise_if_not_found=False)
                         if template_id:
                             partner.with_context(force_send=True).message_post_with_template(template_id,
                                                                                              composition_mode='comment', )
 
-                            _logger.info("mail envoyeé")
+                            _logger.info("E-mail envoyé")
                             _logger.info(partner.email)
-                            _logger.info('mail envoyeé  %s' % str(partner.name))
+                            _logger.info('E-mail envoyé  %s' % str(partner.name))
 
                     if partner.phone:
                         phone = str(partner.phone.replace(' ', ''))[-9:]
@@ -551,7 +539,7 @@ class partner(models.Model):
                         if partner.phone:
                             partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
                 except:
-                    _logger.info('problem au niveau denvoit des mail ')
+                    _logger.info('E-mail non envoyé')
                 finally:
                     partner.inscrit_mcm = date.today()
                     _logger.info('print date.today()')
@@ -581,30 +569,30 @@ class partner(models.Model):
 
                 # Formation à distance Taxi
                 if (partner.module_id.product_id.default_code == "taxi"):
-                    _logger.info("formation valide")
+                    _logger.info("partner.module_id.product_id.default_code")
                     if (departement == "59"):
                         self.inscriteTaxi(partner)
                         self.ajoutconnaisancelocalNord(partner)
-                        _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
+                        _logger.info("Departement 59")
                     elif (departement == "62"):
                         self.inscriteTaxi(partner)
                         self.ajoutconnaisancelocalpasdecalais(partner)
-                        _logger.info("ajouter a formation taxi car il a choisit et  departement 62")
+                        _logger.info("Departement 62")
                     else:
                         self.inscriteTaxi(partner)
-                        _logger.info("ajouter a formation taxi ")
+                        _logger.info("Ajouter a formation taxi ")
                 # Formation à distance VTC
                 elif (partner.module_id.product_id.default_code == "vtc"):
-                    _logger.info("client Bolt Formation VTC")
+                    _logger.info("Formation VTC")
                     self.inscriteVTC(partner)
                 # Formation à distance VTC-BOLT
                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                     if (bolt == True):
-                        _logger.info("client Bolt Formation VTC")
+                        _logger.info("Bolt Formation VTC")
                         _logger.info(
-                            'ceci est un client bolt il va etre ajouter ssans verifer les autres conditions ')
+                            'Ceci est un client Bolt sans autre condition')
                         self.inscriteVTC(partner)
-            if (response_ajouter_IOne_MCM.status_code == 409):
+            if (response_ajouter_iOne_MCM.status_code == 409):
                 # voir si statut de l'apprenant en formation ou la date de mise en formation est vide alors mettre la date pour la date.today
                 if (partner.state != 'en_formation' and partner.inscrit_mcm == False):
                     partner.write({'state': 'en_formation'})
@@ -613,11 +601,11 @@ class partner(models.Model):
                     if (departement == "59"):
                         self.inscriteTaxi(partner)
                         self.ajoutconnaisancelocalNord(partner)
-                        _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
+                        _logger.info("Departement 59")
                     elif (departement == "62"):
                         self.inscriteTaxi(partner)
                         self.ajoutconnaisancelocalpasdecalais(partner)
-                        _logger.info("ajouter a formation taxi car il a choisit et  departement 62")
+                        _logger.info("Departement 62")
                     else:
                         self.inscriteTaxi(partner)
                         _logger.info("ajouter a formation taxi ")
@@ -633,8 +621,8 @@ class partner(models.Model):
                         self.inscriteVTC(partner)
             # Ajout ticket pour notiifer le service client pour changer mp
             """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
-            if (response_ajouter_IOne_MCM.status_code == 400 and partner.state != 'en_formation'):
-                _logger.info('utilisateur mp doit etre changeé %s')
+            if (response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation'):
+                _logger.info('Utilisateur  mot de passe invalide %s')
                 vals = {
                     'description': 'verifier mot de passe %s' % (partner.name),
                     'name': 'Le mot de passe est trop semblable au champ Email ',
@@ -643,14 +631,13 @@ class partner(models.Model):
                         limit=1).id,
                 }
                 description = "test " + str(partner.name)
-                print("dessssssssss", description)
                 ticket = self.env['helpdesk.ticket'].sudo().search(
                     [("description", "=", description)])
                 if not ticket:
                     print("cree tichket")
                     new_ticket = self.env['helpdesk.ticket'].sudo().create(
                         vals)
-
+    # Envoyer des e-mails aux apprenants.
     def sendmail(self, partner):
         print(partner.name)
         if partner.company_id == 1 and partner.inscrit_mcm != False:
@@ -665,30 +652,25 @@ class partner(models.Model):
                 [('res_id', "=", partner.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
             if not message:
                 template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                    'mcm_openedx.mail_template_add_Ione_MOOcit'))
+                    'mcm_openedx.mail_template_add_ione_MOOcit'))
                 template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
                 if not template_id:
                     template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                        'mcm_openedx.mail_template_add_Ione_MOOcit',
+                        'mcm_openedx.mail_template_add_ione_MOOcit',
                         raise_if_not_found=False)
                 if not template_id:
                     template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                        'mcm_openedx.email_template_add_Ione_MOOcit',
+                        'mcm_openedx.email_template_add_ione_MOOcit',
                         raise_if_not_found=False)
                 if template_id:
                     partner.with_context(force_send=True).message_post_with_template(template_id,
                                                                                      composition_mode='comment', )
 
-                    _logger.info("mail envoyeé")
+                    _logger.info("E-mail envoyé")
                     _logger.info(partner.email)
-                    _logger.info('mail envoyeé  %s' % str(partner.name))
-
-    # notifier apprenant
+                    _logger.info('E-mail envoyé  %s' % str(partner.name))
+    # Notifier les apprenants
     def notifierapprenant(self):
-        # print(self.module_id.name)
-        # print("sssssssssss", self.composer_ids)
-        # if('self.last_internal_log','ilike','safa'):
-        #     print("Safaaaaaaaaaaaaaaaaa")
         print(self.state)
         if (self.numero_evalbox != False and self.module_id.name != False and self.state != "supprimé"):
             if self.env.su:
@@ -698,26 +680,25 @@ class partner(models.Model):
                 self.lang = 'fr_FR'
             _logger.info('avant email mcm_openedx %s' % str(self.name))
             # tester si l'apprenat a deja recu un mail
-
             message = self.env['mail.message'].search(
                 [('res_id', "=", self.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
             if not message:
                 template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                    'mcm_openedx.mail_template_add_Ione_MOOcit'))
+                    'mcm_openedx.mail_template_add_ione_MOOcit'))
                 template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
                 if not template_id:
                     template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                        'mcm_openedx.mail_template_add_Ione_MOOcit',
+                        'mcm_openedx.mail_template_add_ione_MOOcit',
                         raise_if_not_found=False)
                 if not template_id:
                     template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                        'mcm_openedx.email_template_add_Ione_MOOcit',
+                        'mcm_openedx.email_template_add_ione_MOOcit',
                         raise_if_not_found=False)
                 if template_id:
                     self.with_context(force_send=True).message_post_with_template(template_id,
                                                                                   composition_mode='comment', )
 
-                    _logger.info("mail envoyeé")
+                    _logger.info("email envoyé")
                     _logger.info(self.email)
                     try:
                         self.testsms(self)
@@ -751,14 +732,13 @@ class partner(models.Model):
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'title': _(' Mail Non  envoyée  '),
-                    'message': _('Manque numéro Evalbox-CMA !️'),
+                    'title': _(' Mail non envoyé  '),
+                    'message': _('Manque numéro d’Evalbox-CMA !️'),
                     'sticky': True,
                     'className': 'bg-danger'
                 }
             }
-
-    # supprimer ione le desinscrire des cours sur la platfrom moocit
+    # Suppression d'iOne
     def supprimer_IOne_MCM(self):
         departement = self.state_id.code
         _logger.info(departement)
@@ -787,13 +767,12 @@ class partner(models.Model):
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'title': _('Merci de vérifier la session-module ?'),
+                    'title': _('Merci de vérifier dans Session-module !'),
                     'sticky': True,
                     'className': 'bg-danger'
                 }
             }
-
-    # affecter la date de suppression apres l'ajout  5 jours apres session
+    # Affecter la date de suppression
     def update_datesupp(self):
         for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1),
                                                               ('inscrit_mcm', '!=', False),
@@ -808,7 +787,7 @@ class partner(models.Model):
                         partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
                         _logger.info("supprimer aprex 5 j")
 
-    # supprimer ione  automatique le desinscrire des cours sur la platfrom moocit
+    # Suppression automatique du iOnes
     def supprimer_automatique(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
