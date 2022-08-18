@@ -37,7 +37,7 @@ class SessionVille(models.Model):
     def create(self, values):
         users_paris = self.env["res.partner"].sudo().search([("email", "=", "mbensaad@digimoov.fr")], order="id desc", limit=1)
         if self.name_ville == "Paris":
-            values.update({"coach_id": [(6, 0, users_paris.cc_partner_ids.ids)]})
+            values.update({"coach_id": [(6, 0, users_paris.ids)]})
         res = super(SessionVille, self).create(values)
         return res
 
