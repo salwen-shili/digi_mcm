@@ -593,9 +593,9 @@ class partner(models.Model):
                         self.inscriteVTC(partner)
             if (response_ajouter_iOne_MCM.status_code == 409):
                 # voir si statut de l'apprenant en formation ou la date de mise en formation est vide alors mettre la date pour la date.today
-                if (user.mcm_session_id.date_exam.year):
+                if (partner.mcm_session_id.date_exam.year):
                     if (partner.state != 'en_formation' and
-                            user.mcm_session_id.date_exam.year >= todays_date.year):
+                            partner.mcm_session_id.date_exam.year >= todays_date.year):
                         partner.write({'state': 'en_formation'})
                     # Formation à distance Taxi
                     if (partner.module_id.product_id.default_code == "taxi"):
