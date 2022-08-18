@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
-
     <record id="session_course_view" model="ir.ui.view">
         <field name="name">Courses</field>
         <field name="model">mcm_openedx.course_stat</field>
@@ -146,7 +144,5 @@
 
 
     </record>
-
     <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
-
 </odoo>

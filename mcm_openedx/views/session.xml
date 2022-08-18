@@ -15,7 +15,6 @@
             </search>
         </field>
     </record>
-
     <!-- Vue Form session-->
     <record model="ir.ui.view" id="learning_session_form_view">
         <field name="name">Session</field>
@@ -42,7 +41,6 @@
             </field>
         </field>
     </record>
-
     <record model="ir.ui.view" id="view_mcmacademy_session_kanban">
         <field name="name">mcm academy session kanban</field>
         <field name="model">mcmacademy.session</field>

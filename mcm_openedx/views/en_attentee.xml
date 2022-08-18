@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
-    <record id="en_attent_view" model="ir.ui.view">
+    <record id="en_attent_vieww" model="ir.ui.view">
         <field name="name">En attente</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
@@ -12,26 +11,23 @@
             </search>
         </field>
     </record>
-
-
-    <record id="mcm_openedx_attente_tree_view" model="ir.ui.view">
-        <field name="name">WEDOF</field>
+    <record id="mcm_openedx_attente_tree_vieww" model="ir.ui.view">
+        <field name="name">Apprenants En attente</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
-            <tree string="Apprennat en attente sur EDOF">
+            <tree string="Apprennat en attente sur wedof" >
+                <field name="name"/>
+                <field name="existant"/>
                 <field name="externalId"/>
                 <field name="lastName"/>
                 <field name="firstName"/>
-                <field name="name"/>
-                <field name="existant"/>
                 <field name="date_edof"/>
                 <field name="state"/>
                 <field name="existantsurmooc"/>
-
             </tree>
         </field>
     </record>
-    <record id="mcm_openedx_attente_form_view" model="ir.ui.view">
+    <record id="mcm_openedx_attente_form_vieww" model="ir.ui.view">
         <field name="name">Apprenants En attente</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
@@ -66,70 +62,11 @@
             </form>
         </field>
     </record>
-    <record model="ir.ui.view" id="mcm_openedx_attente_kanban">
-        <field name="name">name</field>
-        <field name="model">mcm_openedx.enattente</field>
-        <field name="arch" type="xml">
-            <kanban default_group_by="name">
-                <templates>
-                    <t t-name="kanban-box">
-                        <div>
-                            <div class="oe_dropdown_kanban">
-                                <!-- dropdown menu -->
-                                <div class="oe_dropdown_toggle">
-                                    <i class="fa fa-bars fa-lg"/>
-                                    <ul class="oe_dropdown_menu">
-                                        <li>
-                                            <a type="delete">Delete</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="oe_clear"></div>
-                            </div>
-                            <div t-attf-class="oe_kanban_content">
-                                <!-- title -->
-
-
-                                Nom:
-                                <field name="lastName"/>
-                                <br/>
-
-                                Prenom:
-                                <field name="firstName"/>
-                                <br/>
-                                Email de l'Apprenant:
-                                <field name="name"/>
-                                <br/>
-                                Date Debut Formation:
-                                <field name="date_edof"/>
-                                <br/>
-                                Staut De l'apprannat:
-                                <field name="state"/>
-                                <br/>
-
-                                <br/>
-                                ExternalId
-                                <field name="externalId"/>
-                                <br/>
-                                <field name="existantsurmooc"/>
-
-                            </div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-
-
-    <record model="ir.actions.act_window" id="mcm_openedx_attente_list_action">
+    <record model="ir.actions.act_window" id="mcm_openedx_attente_list_actionn_mcm">
         <field name="name">Les Apprenants via Wedof</field>
         <field name="res_model">mcm_openedx.enattente</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
-    <menuitem id="att_menu_mcm" name="En attente" parent="main_mcm_openedx_menu"
-              action="mcm_openedx_attente_list_action"/>
-
-
+    <menuitem id="att_menu_mcmm" name="En attente" parent="main_mcm_openedx_menu"
+              action="mcm_openedx_attente_list_actionn_mcm"/>
 </odoo>
