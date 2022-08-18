@@ -439,6 +439,7 @@ class partner(models.Model):
                     if user:
                         if user.bolt is True or (user.module_id.product_id.default_code == "vtc_bolt"):
                             user.client = 'BOLT'
+                            user.bolt =  True
                             _logger.info('nom de l apprennat est_bolt  %s' % str(user.client))
 
                             partner.password360 = user.password360
@@ -600,6 +601,7 @@ class partner(models.Model):
                     partner.write({'state': 'en_formation'})
                 # Formation à distance Taxi
                 if (partner.module_id.product_id.default_code == "taxi"):
+                    _logger.info("partner.module_id.product_id.default_code")
                     if (departement == "59"):
                         self.inscriteTaxi(partner)
                         self.ajoutconnaisancelocalNord(partner)
@@ -610,16 +612,17 @@ class partner(models.Model):
                         _logger.info("Departement 62")
                     else:
                         self.inscriteTaxi(partner)
-                        _logger.info("ajouter a formation taxi ")
+                        _logger.info("Ajouter a formation taxi ")
                 # Formation à distance VTC
                 elif (partner.module_id.product_id.default_code == "vtc"):
-                    _logger.info("client Bolt Formation VTC")
-
+                    _logger.info("Formation VTC")
                     self.inscriteVTC(partner)
                 # Formation à distance VTC-BOLT
                 elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                     if (bolt == True):
-                        _logger.info("client Bolt Formation VTC")
+                        _logger.info("Bolt Formation VTC")
+                        _logger.info(
+                            'Ceci est un client Bolt sans autre condition')
                         self.inscriteVTC(partner)
             # Ajout ticket pour notiifer le service client pour changer mp
             """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
@@ -639,6 +642,32 @@ class partner(models.Model):
                     print("cree tichket")
                     new_ticket = self.env['helpdesk.ticket'].sudo().create(
                         vals)
+
+                # Formation à distance Taxi
+                if (partner.module_id.product_id.default_code == "taxi"):
+                    _logger.info("partner.module_id.product_id.default_code")
+                    if (departement == "59"):
+                        self.inscriteTaxi(partner)
+                        self.ajoutconnaisancelocalNord(partner)
+                        _logger.info("Departement 59")
+                    elif (departement == "62"):
+                        self.inscriteTaxi(partner)
+                        self.ajoutconnaisancelocalpasdecalais(partner)
+                        _logger.info("Departement 62")
+                    else:
+                        self.inscriteTaxi(partner)
+                        _logger.info("Ajouter a formation taxi ")
+                # Formation à distance VTC
+                elif (partner.module_id.product_id.default_code == "vtc"):
+                    _logger.info("Formation VTC")
+                    self.inscriteVTC(partner)
+                # Formation à distance VTC-BOLT
+                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                    if (bolt == True):
+                        _logger.info("Bolt Formation VTC")
+                        _logger.info(
+                            'Ceci est un client Bolt sans autre condition')
+                        self.inscriteVTC(partner)
 
     # Envoyer des e-mails aux apprenants.
     def sendmail(self, partner):
