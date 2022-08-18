@@ -428,8 +428,6 @@ class partner(models.Model):
     # Vérification client Bolt ou MCM
     def Bolt(self):
         todays_date = date.today()
-        print(todays_date.year)
-        print(todays_date.month)
         for user in self.env['res.partner'].sudo().search(
                 [('company_id', '=', 1), ('mcm_session_id.date_exam', '!=', False)
                  ]):
