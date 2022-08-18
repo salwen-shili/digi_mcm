@@ -454,6 +454,7 @@ class partner(models.Model):
         _logger.info('E-mail de lapprenant %s' % str(partner.email))
         user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
         bolt = partner.bolt
+        todays_date = date.today()
         departement = partner.state_id.code
         partner.password360 = user.password360
         password = user.password360
@@ -592,51 +593,53 @@ class partner(models.Model):
                         self.inscriteVTC(partner)
             if (response_ajouter_iOne_MCM.status_code == 409):
                 # voir si statut de l'apprenant en formation ou la date de mise en formation est vide alors mettre la date pour la date.today
-                if (partner.state != 'en_formation' and partner.inscrit_mcm == False):
-                    partner.write({'state': 'en_formation'})
-                # Formation à distance Taxi
-                if (partner.module_id.product_id.default_code == "taxi"):
-                    _logger.info("partner.module_id.product_id.default_code")
-                    if (departement == "59"):
-                        self.inscriteTaxi(partner)
-                        self.ajoutconnaisancelocalNord(partner)
-                        _logger.info("Departement 59")
-                    elif (departement == "62"):
-                        self.inscriteTaxi(partner)
-                        self.ajoutconnaisancelocalpasdecalais(partner)
-                        _logger.info("Departement 62")
-                    else:
-                        self.inscriteTaxi(partner)
-                        _logger.info("Ajouter a formation taxi ")
-                # Formation à distance VTC
-                elif (partner.module_id.product_id.default_code == "vtc"):
-                    _logger.info("Formation VTC")
-                    self.inscriteVTC(partner)
-                # Formation à distance VTC-BOLT
-                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                    if (bolt == True):
-                        _logger.info("Bolt Formation VTC")
-                        _logger.info(
-                            'Ceci est un client Bolt sans autre condition')
+                if (user.mcm_session_id.date_exam.year):
+                    if (partner.state != 'en_formation' and
+                            user.mcm_session_id.date_exam.year >= todays_date.year):
+                        partner.write({'state': 'en_formation'})
+                    # Formation à distance Taxi
+                    if (partner.module_id.product_id.default_code == "taxi"):
+                        _logger.info("partner.module_id.product_id.default_code")
+                        if (departement == "59"):
+                            self.inscriteTaxi(partner)
+                            self.ajoutconnaisancelocalNord(partner)
+                            _logger.info("Departement 59")
+                        elif (departement == "62"):
+                            self.inscriteTaxi(partner)
+                            self.ajoutconnaisancelocalpasdecalais(partner)
+                            _logger.info("Departement 62")
+                        else:
+                            self.inscriteTaxi(partner)
+                            _logger.info("Ajouter a formation taxi ")
+                    # Formation à distance VTC
+                    elif (partner.module_id.product_id.default_code == "vtc"):
+                        _logger.info("Formation VTC")
                         self.inscriteVTC(partner)
-            # Ajout ticket pour notiifer le service client pour changer mp
-            """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
-            if (response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation'):
-                _logger.info('Utilisateur  mot de passe invalide %s')
-                vals = {
-                    'description': 'verifier mot de passe %s' % (partner.name),
-                    'name': 'Le mot de passe est trop semblable au champ Email ',
-                    'team_id': self.env['helpdesk.team'].sudo().search(
-                        [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
-                        limit=1).id,
-                }
-                description = "test " + str(partner.name)
-                ticket = self.env['helpdesk.ticket'].sudo().search(
-                    [("description", "=", description)])
-                if not ticket:
-                    print("cree tichket")
-                    new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                        vals)
+                    # Formation à distance VTC-BOLT
+                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                        if (bolt == True):
+                            _logger.info("Bolt Formation VTC")
+                            _logger.info(
+                                'Ceci est un client Bolt sans autre condition')
+                            self.inscriteVTC(partner)
+                # Ajout ticket pour notiifer le service client pour changer mp
+                """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
+                if (response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation'):
+                    _logger.info('Utilisateur  mot de passe invalide %s')
+                    vals = {
+                        'description': 'verifier mot de passe %s' % (partner.name),
+                        'name': 'Le mot de passe est trop semblable au champ Email ',
+                        'team_id': self.env['helpdesk.team'].sudo().search(
+                            [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                            limit=1).id,
+                    }
+                    description = "test " + str(partner.name)
+                    ticket = self.env['helpdesk.ticket'].sudo().search(
+                        [("description", "=", description)])
+                    if not ticket:
+                        print("cree tichket")
+                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                            vals)
 
     # Envoyer des e-mails aux apprenants.
     def sendmail(self, partner):
