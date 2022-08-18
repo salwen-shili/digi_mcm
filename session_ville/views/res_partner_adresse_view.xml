@@ -2,12 +2,21 @@
 <odoo>
     <!-- Inherit partner module to add new relation field Adresse salle d'examen-->
     <record model="ir.ui.view" id="partner_adresse_de_salle_exam_view_form">
-        <field name="name">Add adresse salle d'examens </field>
+        <field name="name">Inherit res.partner.add.adress.coach</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"></field>
         <field name="arch" type="xml">
             <xpath expr="//page/group[@name='session']/group/field[@name='state_id']" position="after">
-                    <field name="salle_id" string="Adresse salle d'examen" />
+                <field name="salle_id" string="Adresse salle d'examen"/>
+            </xpath>
+            <xpath expr="//page[last()]" position="after" attrs="{'invisible':[('est_coach', '=', True)]}">
+                <page name="coach_settings" string="Configuration Coach">
+                    <group>
+                        <group string="Couleur de votre tags!">
+                            <field name="color" string="Couleur : " widget="color_picker"/>
+                        </group>
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>
