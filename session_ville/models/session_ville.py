@@ -1,4 +1,7 @@
 from odoo import api, fields, models, _
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class SessionVille(models.Model):
@@ -33,14 +36,13 @@ class SessionVille(models.Model):
     num_agrement_jury = fields.Many2one('approval.number', string="Numéro d'agrément")
     coach_id = fields.Many2many('res.partner', track_visibility='always')
 
-    @api.model
-    def create(self, values):
-        users_paris = self.env["res.partner"].sudo().search([("email", "=", "mbensaad@digimoov.fr")], order="id desc", limit=1)
+    @api.onchange('name_ville')
+    def set_default_coach_id(self):
+        users_paris = self.env["res.partner"].sudo().search([("email", "=", "mbensaad@digimoov.fr")], order="id desc",
+                                                            limit=1)
+        _logger.info("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨set_default_coach_id  %s" % users_paris.email)
         if self.name_ville == "Paris":
-            values.update({"coach_id": [(6, 0, users_paris.ids)]})
-        res = super(SessionVille, self).create(values)
-        return res
-
+            self.update({"coach_id": [(6, 0, users_paris.ids)]})
 
 
 class SessionApprovalNumber(models.Model):
