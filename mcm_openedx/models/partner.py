@@ -33,7 +33,7 @@ class partner(models.Model):
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
 
-    # Desinscrire l'apprenant des cours VTC
+    # Dsinscrire l'apprenant  des cours VTC
     def desinscriteVTC(self, partner):
         user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
