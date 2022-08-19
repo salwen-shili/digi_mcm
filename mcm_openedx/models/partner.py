@@ -645,7 +645,7 @@ class partner(models.Model):
     # Envoyer des e-mails aux apprenants.
     def sendmail(self, partner):
         print(partner.name)
-        if partner.company_id == 1 and partner.inscrit_mcm != False:
+        if partner.company_id.id == 1 and partner.state == "en_formation" and partner.inscrit_mcm != False:
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser
                 self = self.with_user(SUPERUSER_ID)
