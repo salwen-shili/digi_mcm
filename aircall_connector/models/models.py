@@ -254,7 +254,6 @@ class ResUser(models.Model):
         else:
             #Case when response has no content, this can cause a problem in signup in mcm website
             if call_response.status_code != 204:
-                print(call_response.content)
                 if call_response.content :
                     calls = json.loads(call_response.content)
                     call=calls['calls']
@@ -491,16 +490,16 @@ class ResUser(models.Model):
                                          ('res_id', '=', odoo_contact.id), ('subject', "=",
                                                                             subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
                                 
-                            if not message:
-                                #Create new Note in view contact
-                                message = self.env['mail.message'].sudo().create({
-                                    'subject': user_name + " " + started_at + " " + ended_at,
-                                    'model': 'res.partner',
-                                    'res_id': odoo_contact.id,
-                                    'message_type': 'notification',
-                                    'subtype_id': subtype_id,
-                                    'body': content + note['content'],
-                                })
+                                if not message:
+                                    #Create new Note in view contact
+                                    message = self.env['mail.message'].sudo().create({
+                                        'subject': user_name + " " + started_at + " " + ended_at,
+                                        'model': 'res.partner',
+                                        'res_id': odoo_contact.id,
+                                        'message_type': 'notification',
+                                        'subtype_id': subtype_id,
+                                        'body': content + note['content'],
+                                    })
                         call_rec.write({'notes':notes})
                     if not call_rec.call_contact and odoo_contact:
                         call_rec.write({'call_contact': odoo_contact.id if odoo_contact else False,
