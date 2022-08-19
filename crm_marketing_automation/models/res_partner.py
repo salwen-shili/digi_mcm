@@ -48,13 +48,13 @@ class Partner(models.Model):
             raise ValidationError('Merci de vérifier le statut!')
         if not (bolt):
             print(self.mode_de_financement)
-            if (self.mode_de_financement != "cpf")and  (sale_order.state != 'sale')and (self.numero_evalbox)  and  (sale_order.signature):
-                    raise ValidationError('Merci de vérifier le contrat de formation ! ')
-
+            if (self.mode_de_financement != "cpf") and (sale_order.state != 'sale') and (self.numero_evalbox) and \
+                    (sale_order.signature):
+                raise ValidationError('Merci de vérifier le contrat de formation ! ')
 
             if (self.numero_evalbox) and (document_valide != True):
                 raise ValidationError('Merci de vérifier les documents ')
-            if not self.renounce_request  and self.numero_evalbox:
+            if not self.renounce_request and self.numero_evalbox:
                 raise ValidationError('Merci de vérifier => Renonciation au droit de rétractation ! ')
 
             if len(self.numero_evalbox) <= 9:
