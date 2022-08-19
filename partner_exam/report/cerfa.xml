@@ -37,9 +37,9 @@
                                 <img src="/partner_exam/static/src/img/check_icon_cerfa.png" height="20" width="10"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:130px;margin-left:310px;">
-                                <span t-raw="'%s' % o.firstName if o.firstName else ''"/>
-                                <br/>
                                 <span t-raw="'%s' % o.lastName if o.lastName else ''"/>
+                                <br/>
+                                <span t-raw="'%s' % o.firstName if o.firstName else ''"/>
                                 <br/>
                                 <span t-field="o.nom_marital"/>
                                 <br/>
