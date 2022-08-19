@@ -363,17 +363,17 @@ class ResUser(models.Model):
                                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                                          ('res_id', '=', odoo_contact.id), ('subject', "=",
                                                                             subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
-                            if not message:
-                                # Create new Note in view contact
-                                message = self.env['mail.message'].sudo().create({
-                                    'subject': user_name + " " + started_at + " " + ended_at,
-                                    'model': 'res.partner',
-                                    'res_id': odoo_contact.id,
-                                    'message_type': 'notification',
-                                    'subtype_id': subtype_id,
-                                    'body': str(content) + str(note['content']),
-                                })
-                                message.body=message.body[2:]
+                                if not message:
+                                    # Create new Note in view contact
+                                    message = self.env['mail.message'].sudo().create({
+                                        'subject': user_name + " " + started_at + " " + ended_at,
+                                        'model': 'res.partner',
+                                        'res_id': odoo_contact.id,
+                                        'message_type': 'notification',
+                                        'subtype_id': subtype_id,
+                                        'body': str(content) + str(note['content']),
+                                    })
+                                    message.body=message.body[2:]
                         call_rec.write({'notes':notes})
                     if not call_rec.call_contact and odoo_contact:
                         call_rec.write({'call_contact': odoo_contact.id if odoo_contact else False,
