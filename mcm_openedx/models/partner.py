@@ -450,7 +450,7 @@ class partner(models.Model):
 
     # Fonction d'affectation des apprenants à la plateforme et aux cours.
     def ajouter_IOne_MCM(self, partner):
-        print(self)
+        print(partner)
         _logger.info('E-mail de lapprenant %s' % str(partner.email))
         user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
         bolt = partner.bolt
@@ -820,3 +820,4 @@ class partner(models.Model):
             if rec.supprimerdemoocit:
                 new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
                 rec.supprimerdemoocit = new_date_format
+
