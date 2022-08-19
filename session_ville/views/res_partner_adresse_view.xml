@@ -9,17 +9,6 @@
             <xpath expr="//page/group[@name='session']/group/field[@name='state_id']" position="after">
                 <field name="salle_id" string="Adresse salle d'examen"/>
             </xpath>
-            <xpath expr="//form/sheet" position="inside" attrs="{'invisible':[('est_coach', '=', True)]}">
-                <notebook>
-                    <page name="coach_settings" string="Configuration Coach">
-                        <group>
-                            <group string="Couleur de votre tags!">
-                                <field name="color" string="Couleur : " widget="color_picker"/>
-                            </group>
-                        </group>
-                    </page>
-                </notebook>
-            </xpath>
         </field>
     </record>
 </odoo>

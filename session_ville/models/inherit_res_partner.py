@@ -11,4 +11,3 @@ class InheritResPartner(models.Model):
      readonly=True, help="Choisir une adresse pour la salle d'examen!")
     # add pays de naissance dans la fiche client
     country_of_birth_id = fields.Many2one('res.country', track_visibility='onchange')
-    color = fields.Integer()
