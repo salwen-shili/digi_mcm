@@ -89,8 +89,7 @@ class enattente(models.Model):
                 if existee:
                     _logger.info("existtttt")
                     for partner in self.env['res.partner'].search(
-                            [('numero_cpf', '!=', False, ('statut_cpf', '!=', 'canceled'))
-                             ]):
+                            [('numero_cpf', '!=', False), ('statut_cpf', '!=', 'canceled')]):
                         if (partner.numero_cpf == existee.externalId):
                             existee.existant = True
                             _logger.info(existee.existant)
