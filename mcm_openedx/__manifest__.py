@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "MCM Academy OpenEdx",
+    'name': "MCM Academy MOOCIT",
 
     'summary': " Ce module permet d'ajouter une interface qui comporte toutes "
                "les statistiques sur OpenEdx pour chaque client. "
