@@ -326,7 +326,7 @@ class partner(models.Model):
                             'className': 'bg-danger'
                         }
                     }
-                #defenir le mode de financement
+                # defenir le mode de financement
                 if self.mode_de_financement == "particulier":
                     _logger.info('mode_de_financement %s' % str(self.mode_de_financement))
                     # verifier si le sale et les documents et satut sont valides
@@ -845,4 +845,3 @@ class partner(models.Model):
             if rec.supprimerdemoocit:
                 new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
                 rec.supprimerdemoocit = new_date_format
-
