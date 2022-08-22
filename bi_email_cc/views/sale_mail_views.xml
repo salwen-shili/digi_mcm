@@ -12,7 +12,7 @@
                             <field name="is_bcc" invisible="1"/>
                              <field name="is_reply" invisible="1"/>
                             <field name="cc_partner_ids" widget="many2many_tags_email" placeholder="Add CC contacts to notify"  domain="[('is_company', '=', True)]" attrs="{'invisible': [('is_cc', '=', False)]}" />
-                            <field name="bcc_partner_ids"  widget="many2many_tags_email" placeholder="Add BCC contacts to notify" domain="[('is_company', '=', False)]" attrs="{'invisible': [('is_bcc', '=', False)]}" />
+                            <field name="bcc_partner_ids"  widget="many2many_tags_email" placeholder="Ajouter des contacts Cci à notifier" domain="[('is_company', '=', False)]" attrs="{'invisible': [('is_bcc', '=', False)]}" />
                             <field name="rply_partner_id" context="{'force_email':True, 'show_email':True}" attrs="{'invisible': [('is_reply', '=', False)]}"/> 
                         </field>
                     </data>
