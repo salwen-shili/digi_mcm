@@ -519,7 +519,7 @@ class partner(models.Model):
                                                                                                                     7:]
                         partner.phone = phone
                         _logger.info(partner.phone)
-                    body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez désormais commencer votre formation  ,%s  en utilisant les mêmes identifiants que sur notre site web." % (
+                    body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez desormais commencer votre, %s en utilisant les memes identifiants que sur notre site web 	https://www.mcm-academy.fr/r/izy." % (
                         partner.name, partner.module_id.name)
                     if body:
                         sms = self.env['mail.message'].sudo().search(
@@ -706,6 +706,31 @@ class partner(models.Model):
 
                     _logger.info("email envoyé")
                     _logger.info(self.email)
+                    if self.phone:
+                        phone = str(self.phone.replace(' ', ''))[-9:]
+                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                                                                                                       5:7] + ' ' + phone[
+                                                                                                                    7:]
+                        self.phone = phone
+                        _logger.info(self.phone)
+                    body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez desormais commencer votre, %s en utilisant les memes identifiants que sur notre site web 	https://www.mcm-academy.fr/r/izy." % (
+                        self.name, self.module_id.name)
+                    if body:
+                        sms = self.env['mail.message'].sudo().search(
+                            [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", self.id)])
+                        if not sms:
+                            composer = self.env['sms.composer'].with_context(
+                                default_res_model='res.partner',
+                                default_res_ids=self.id,
+                                default_composition_mode='comment',
+                            ).sudo().create({
+                                'body': body,
+                                'mass_keep_log': True,
+                                'mass_force_send': True,
+                            })
+                            composer.action_send_sms()  # send sms of end of exam and waiting for result
+                        if self.phone:
+                            self.phone = '0' + str(self.phone.replace(' ', ''))[-9:]
 
                     notification = {
                         'type': 'ir.actions.client',
