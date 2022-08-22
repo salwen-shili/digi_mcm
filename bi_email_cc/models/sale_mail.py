@@ -26,8 +26,8 @@ class MailComposeMessage(models.TransientModel):
     @api.onchange('template_id')
     def set_default_bcc_email(self):
         """ Search for partner with email egale à "digimoov.fr+25e168c414@invite.trustpilot.com"
-        based on template name "DIGIMOOV RÉSULTATS FAVORABLES" """
-        if self.template_id.name == "DIGIMOOV RÉSULTATS FAVORABLES":
+        based on template name "DIGIMOOV RÉUSSITE À L'EXAMEN DE CAPACITÉ DE TRANSPORT DE MARCHANDISES -3,5T" """
+        if self.template_id.name == "DIGIMOOV RÉUSSITE À L'EXAMEN DE CAPACITÉ DE TRANSPORT DE MARCHANDISES -3,5T":
             bcc_partner_ids = self.env['res.partner'].sudo().search(
                 [('email', "=", "digimoov.fr+25e168c414@invite.trustpilot.com")])
             if bcc_partner_ids:
