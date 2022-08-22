@@ -3,17 +3,19 @@ from odoo import api, fields, models
 
 class McmacademySessionVille(models.Model):
     _inherit = "mcmacademy.session"
-     # "Inherit this mcmacademy.session to add list of villes"
+    # "Inherit this mcmacademy.session to add list of villes"
 
     # lier chaque session par une ville et adresse d'examen
-    session_ville_id = fields.Many2one('session.ville',string="Ville",required=True,track_visibility='always')#edit the field to be required and show field edit history
-    session_adresse_examen =fields.Many2one('session.adresse.examen',"Adresse d'examen")
+    session_ville_id = fields.Many2one('session.ville', string="Ville", required=True,
+                                       track_visibility='always')  # edit the field to be required and show field edit history
+    session_adresse_examen = fields.Many2one('session.adresse.examen', "Adresse d'examen", track_visibility='always')
     phone = fields.Char(related="session_adresse_examen.phone")
     email = fields.Char(related="session_adresse_examen.email")
-    #Add new field "lien" contains link of center adress exam
+    # Add new field "lien" contains link of center adress exam
     lien = fields.Char(related="session_adresse_examen.lien", string="Lien d'accées au centre d'examen")
     num_agrement_jury = fields.Many2one(related="session_ville_id.num_agrement_jury", copy=True)
     state = fields.Selection(related='session_ville_id.state', string="Région", store=True, readonly=False)
+    coach_id = fields.Many2many(related="session_ville_id.coach_id", track_visibility='always')
 
     @api.onchange('session_ville_id')
     def onchange_session_ville_id(self):

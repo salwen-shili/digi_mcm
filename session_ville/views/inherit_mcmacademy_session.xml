@@ -14,6 +14,7 @@
                 <field name="email"/>
                 <field name="lien" widget="url" string="Lien"/>
                 <field name="company_id" invisible="True"/>
+                <field name="coach_id" invisible="False" readonly="1" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
             </xpath>
             <xpath expr="//group[@name='rapport_jury']" position="inside">
                 <field name="num_agrement_jury" string="Numéro d'agrément"/>
