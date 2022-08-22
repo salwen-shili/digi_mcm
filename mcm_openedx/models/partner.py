@@ -528,7 +528,7 @@ class partner(models.Model):
                             composer = self.env['sms.composer'].with_context(
                                 default_res_model='res.partner',
                                 default_res_ids=partner.id,
-                                default_composition_mode='mass',
+                                default_composition_mode='comment',
                             ).sudo().create({
                                 'body': body,
                                 'mass_keep_log': True,
