@@ -56,13 +56,14 @@
                     </p>
                     <p style="font-size: 18px;">
                         Rendez-vous vite sur notre
-                        <a href="https://formation.mcm-academy.fr/login?next=">plateforme</a> !
+                        <a href="https://formation.mcm-academy.fr/login?next=">plateforme</a>
+                        !
                         <br/>
                         Merci de rentrer vos identifiants de connexion que vous utilisez sur notre
-                         <a href="https://www.mcm-academy.fr/">site web.</a>
+                        <a href="https://www.mcm-academy.fr/">site web.</a>
                     </p>
                     <p style="font-size: 18px;">
-                         À très bientôt !
+                        À très bientôt !
                         <br/>
                         L’équipe
                         <span style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">
@@ -73,10 +74,11 @@
 
 
                     <br/>
+                    <span align="center" style="border:1px">
                     <p style="font-size: 12px;font-weight:500">
-                        <centre>Si vous souhaitez avoir plus de renseignements, n'hésitez
-                            pas à contacter notre
-                        </centre>
+                        Si vous souhaitez avoir plus de renseignements, n'hésitez
+                        pas à contacter notre
+
                         <span
                                 style=" font-size:17;color: rgb(219, 172, 15
 ); font-weight: bold;">
@@ -85,6 +87,7 @@
                             de 9h à 17h.
                         </span>
                     </p>
+ </span>
                 </div>
             </field>
             <field name="lang">${object.lang}</field>
