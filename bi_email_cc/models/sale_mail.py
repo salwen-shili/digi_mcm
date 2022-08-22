@@ -17,10 +17,10 @@ class MailComposeMessage(models.TransientModel):
         'wizard_id', 'cc_partner_id', 'cc', readonly=False)
     bcc_partner_ids = fields.Many2many(
         'res.partner', 'mail_compose_message_res_bcc_partner_rel',
-        'wizard_id', 'bcc_partner_id', 'BCC', readonly=False)
+        'wizard_id', 'bcc_partner_id', 'CCI', readonly=False)
     rply_partner_id = fields.Many2one('res.partner', string='Default Reply-To', readonly=False)
     is_cc = fields.Boolean(string='Enable Email CC')
-    is_bcc = fields.Boolean(string='Enable Email BCC')
+    is_bcc = fields.Boolean(string='Enable Email CCI')
     is_reply = fields.Boolean(string='Reply')
 
     @api.onchange('template_id')
