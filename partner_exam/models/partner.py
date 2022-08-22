@@ -40,6 +40,7 @@ class resComapny(models.Model):
     nom_evalbox = fields.Char(string="Nom Evalbox")
     prenom_evalbox = fields.Char(string="Prénom Evalbox")
     code_evalbox = fields.Char()
+    zip = fields.Char(track_visibility='always', change_default=True)
 
     def compute_notes_exams_count(self):
         for record in self:
