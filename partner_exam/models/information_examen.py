@@ -104,34 +104,33 @@ class NoteExamen(models.Model):
     @api.onchange('resultat', 'partner_id', 'presence')
     def update_boolean_values(self):
         if self.company_id.id == 2:
-            for rec in self:
-                if rec.resultat == 'recu':
-                    rec.is_recu = True
-                    rec.is_ajourne = False
-                if rec.resultat == 'ajourne' and rec.presence == 'present':
-                    rec.is_ajourne = True
-                    rec.is_recu = False
-                    rec.is_Absent = True
-                    rec.is_absence_justifiee = False
-                if rec.resultat == 'ajourne' and rec.presence == 'absence_justifiee':
-                    rec.is_ajourne = True
-                    rec.is_recu = False
-                    rec.is_Absent = False
-                    rec.is_absence_justifiee = True
-                if rec.presence == 'present':
-                    rec.is_present = True
-                    rec.is_Absent = False
-                    rec.is_absence_justifiee = False
-                if rec.presence == 'Absent' and rec.resultat == 'ajourne':
-                    rec.is_Absent = True
-                    rec.is_ajourne = True
-                    rec.is_present = False
-                    rec.is_recu = False
-                    rec.is_absence_justifiee = False
-                # if rec.presence == 'absence_justifiee':
-                #     rec.is_absence_justifiee = True
-                #     rec.is_recu = False
-                #     rec.is_Absent = False
+            if self.resultat == 'recu':
+                self.is_recu = True
+                self.is_ajourne = False
+            if self.resultat == 'ajourne' and self.presence == 'present':
+                self.is_ajourne = True
+                self.is_recu = False
+                self.is_Absent = True
+                self.is_absence_justifiee = False
+            if self.resultat == 'ajourne' and self.presence == 'absence_justifiee':
+                self.is_ajourne = True
+                self.is_recu = False
+                self.is_Absent = False
+                self.is_absence_justifiee = True
+            if self.presence == 'present':
+                self.is_present = True
+                self.is_Absent = False
+                self.is_absence_justifiee = False
+            if self.presence == 'Absent' and self.resultat == 'ajourne':
+                self.is_Absent = True
+                self.is_ajourne = True
+                self.is_present = False
+                self.is_recu = False
+                self.is_absence_justifiee = False
+            # if rec.presence == 'absence_justifiee':
+            #     rec.is_absence_justifiee = True
+            #     rec.is_recu = False
+            #     rec.is_Absent = False
 
     def _calcul_ancien_client(self):
         """ Suit aux changements pour les notes des examens;
@@ -149,7 +148,6 @@ class NoteExamen(models.Model):
         """ Suit aux changements pour les notes des examens de mcm, on ve mettre a jour le champ presence et resultat"""
         for line in self.env['info.examen'].sudo().search([]):
             if line.state_theorique:
-                print("line", line)
                 if line.state_theorique == 'reussi':
                     line.partner_id.resultat = 'Réussi(e)'
                 elif line.state_pratique == 'ajourne':
@@ -258,19 +256,19 @@ class NoteExamen(models.Model):
                 else:
                     self.partner_id.presence = 'Absence justifiée'
 
-    @api.onchange("résultat", "epreuve_theorique", "epreuve_pratique")
+    @api.onchange("resultat", "epreuve_theorique", "epreuve_pratique")
     def etat_de_client_apres_examen(self):
         """Fonction pour mettre le champs etat
         automatique depend de champ resultat,
         pour l'utilisé dans la template de "Attestation de suivi de formation" """
-        for rec in self:
-            if rec.resultat == 'recu':
-                rec.etat = "avec succès"
-            if not rec.resultat == "recu":
-                rec.etat = "sans succès"
+        if self.company_id.id == 2:
+            if self.resultat == 'recu':
+                self.etat = "avec succès"
+            if not self.resultat == "recu":
+                self.etat = "sans succès"
         # Ajouter une condition si company == MCM-ACADEMY et selon state téthorique == reussi
         # donc state pratique sera automatiquement Réussi(e)
-        if self.company_id.id == 1:
+        elif self.company_id.id == 1:
             if self.epreuve_theorique:
                 if self.epreuve_theorique == 'reussi':
                     self.state_theorique = 'reussi'  # Affectation automatique
@@ -471,11 +469,12 @@ class NoteExamen(models.Model):
 
     def write(self, values):
         res = super(NoteExamen, self).write(values)
-        # Add condition based on checkbox field paiement != True
-        # to put auto value in "nombre de passage" based on sum of historic sessions
-        if 'partner_id' in values or 'presence_mcm' in values or 'state_theorique' in values or 'epreuve_theorique' in values or 'epreuve_pratique' in values:
-            self.update_boolean_values()
-            self.compute_moyenne_generale()
+        if 'resultat' in values or 'presence' in values or 'partner_id' in values or 'presence_mcm' in values or 'state_theorique' in values or 'epreuve_theorique' in values or 'epreuve_pratique' in values:
+            if self.company_id.id == 1:
+                self.compute_moyenne_generale()
+            else:
+                self.update_boolean_values()
+                self.compute_moyenne_generale()
         return res
 
     @api.model
