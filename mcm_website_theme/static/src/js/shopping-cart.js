@@ -479,11 +479,23 @@ function onchangeTextButton() {
           document.getElementById('arrow-down').classList.add('hide');
         }
       }
-    } else {
+    } else if (cpf_pm.checked){
+      //show cpf 
+      showCpfDetails();
       //hide poleEmploi details
       hidePoleEmploiDetails();
+
       //send pole emploi checked
       sendPoleEmploiState(pole_emploi_checkbox.checked);
+    } else{
+     
+        //show cpf 
+        hideCpfDetails
+        //hide poleEmploi details
+        hidePoleEmploiDetails();
+  
+        //send pole emploi checked
+        sendPoleEmploiState(pole_emploi_checkbox.checked);
     }
   }
   if (document.getElementById('pm_shop_checkout2')) {

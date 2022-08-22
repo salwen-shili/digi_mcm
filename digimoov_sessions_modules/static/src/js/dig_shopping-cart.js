@@ -592,8 +592,6 @@ function onchangeTextButton() {
 
   if (pole_emploi_checkbox) {
     if (pole_emploi_checkbox.checked) {
-      //hide instalment
-
       //send pole emploi checked = true
       //hide cpf details
       hideCpfDetails();
@@ -606,11 +604,23 @@ function onchangeTextButton() {
           document.getElementById('arrow-down').classList.add('hide');
         }
       }
-    } else {
+    } else if (cpf_pm.checked){
+      //show cpf 
+      showCpfDetails();
       //hide poleEmploi details
       hidePoleEmploiDetails();
+
       //send pole emploi checked
       sendPoleEmploiState(pole_emploi_checkbox.checked);
+    } else{
+     
+        //show cpf 
+        hideCpfDetails
+        //hide poleEmploi details
+        hidePoleEmploiDetails();
+  
+        //send pole emploi checked
+        sendPoleEmploiState(pole_emploi_checkbox.checked);
     }
   }
   var stripe_pm = document.getElementById('stripe_pm');
