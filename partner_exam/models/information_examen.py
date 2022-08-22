@@ -471,7 +471,7 @@ class NoteExamen(models.Model):
 
     def write(self, values):
         res = super(NoteExamen, self).write(values)
-        if 'presence' in values or 'resultat' in values or partner_id' in values or 'presence_mcm' in values or 'state_theorique' in values or 'epreuve_theorique' in values or 'epreuve_pratique' in values:
+        if 'presence' in values or 'resultat' in values or 'partner_id' in values or 'presence_mcm' in values or 'state_theorique' in values or 'epreuve_theorique' in values or 'epreuve_pratique' in values:
             self.update_boolean_values()
             self.compute_moyenne_generale()
         return res
