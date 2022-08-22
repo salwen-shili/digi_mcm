@@ -36,7 +36,7 @@
         <!-- <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot.js" /> -->
         <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot-config.js" />
         <!-- Début de widget de badge Calendly -->
-        <link rel="stylesheet" href="/digimoov_website_templates/static/src/css/widget_calendly.min.css" />
+        <!-- <link rel="stylesheet" href="/digimoov_website_templates/static/src/css/widget_calendly.min.css" />
 
         <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
         <script type="text/javascript">
@@ -58,7 +58,7 @@
               }
           };
         
-        </script>
+        </script> -->
         <!-- Fin de widget de badge Calendly -->
       </t>
       <t t-if="request.website.is_public_user()==False">
@@ -72,9 +72,9 @@
         <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()" />
 
         <!-- Début de widget de badge Calendly -->
-        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+        <!-- <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
         <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
-        <script type="text/javascript" src="/digimoov_website_templates/static/src/js/calendly.min.js"></script>
+        <script type="text/javascript" src="/digimoov_website_templates/static/src/js/calendly.min.js"></script> -->
         <!-- Fin de widget de badge Calendly -->
 
       </t>
