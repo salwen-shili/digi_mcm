@@ -237,6 +237,7 @@ class NoteExamen(models.Model):
                         self.ville_id = last_line.session_id.session_ville_id.id
                         # self.partner_id.update({'presence': "Absence justifiée"})
                         self.partner_id.resultat = "Ajourné(e)"
+                        self.partner_id.presence = "Absence justifiée"
                         self.code_evalbox = self.partner_id.code_evalbox
                         self.temps_minute = self.partner_id.temps_minute
                         self.total_time_visio_hour = self.partner_id.total_time_visio_hour
@@ -258,7 +259,7 @@ class NoteExamen(models.Model):
                 else:
                     self.partner_id.presence = 'Absence justifiée'
 
-    @api.onchange("résultat", "epreuve_theorique", "epreuve_pratique")
+    @api.onchange("resultat", "epreuve_theorique", "epreuve_pratique")
     def etat_de_client_apres_examen(self):
         """Fonction pour mettre le champs etat
         automatique depend de champ resultat,
@@ -471,8 +472,6 @@ class NoteExamen(models.Model):
 
     def write(self, values):
         res = super(NoteExamen, self).write(values)
-        # Add condition based on checkbox field paiement != True
-        # to put auto value in "nombre de passage" based on sum of historic sessions
         if 'partner_id' in values or 'presence_mcm' in values or 'state_theorique' in values or 'epreuve_theorique' in values or 'epreuve_pratique' in values:
             self.update_boolean_values()
             self.compute_moyenne_generale()

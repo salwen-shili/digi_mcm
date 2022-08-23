@@ -72,28 +72,28 @@ class InheritResPartner(models.Model):
         """ Mettre à jour presence & resultat fields pour chaque mise à jour"""
 
         val = super(InheritResPartner, self).write(values)
-        if 'note_exam_id' in values:
+        if 'note_exam_id' in values or 'resultat' in values:
             print("here", 'note_exam_id')
             self._get_last_presence_resultat_values()
             # Update boolean fields to set colors(red, orange, green) in contact list
             if self.resultat == 'Admis(e)':
                 self.is_recu = True
                 self.is_ajourne = False
-            if self.resultat == 'Ajourné(e)' and self.presence == 'Présent(e)':
+            elif self.resultat == 'Ajourné(e)' and self.presence == 'Présent(e)':
                 self.is_ajourne = True
                 self.is_recu = False
                 self.is_Absent = True
                 self.is_absence_justifiee = False
-            if self.resultat == 'Ajourné(e)' and self.presence == 'Absence justifiée':
+            elif self.resultat == 'Ajourné(e)' and self.presence == 'Absence justifiée':
                 self.is_ajourne = True
                 self.is_recu = False
                 self.is_Absent = False
                 self.is_absence_justifiee = True
-            if self.presence == 'Présent(e)':
+            elif self.presence == 'Présent(e)':
                 self.is_present = True
                 self.is_Absent = False
                 self.is_absence_justifiee = False
-            if self.presence == 'Absent(e)' and self.resultat == 'Ajourné(e)':
+            elif self.presence == 'Absent(e)' and self.resultat == 'Ajourné(e)':
                 self.is_Absent = True
                 self.is_ajourne = True
                 self.is_present = False
