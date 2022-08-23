@@ -255,7 +255,7 @@
                                         <!-- password signup-->
                                         <div class="outlined-input-field bg-c" id="password_container">
                                             <input type="password" id="password" class="outlined-text-field"
-                                                   autocomplete="off" required="required" name="password"
+                                            maxlength="75" minlength="8" autocomplete="off" required="required" name="password"
                                                    onfocus="showPasswordPopover()"/>
                                             <label for="password">Mot de passe *</label>
                                             <i class="toggle-password material-icons visibility " style="
@@ -1021,10 +1021,10 @@
                                 <div class="form-group field-password">
                                     <label for="password">Mot de passe</label>
 
-                                    <input type="password" placeholder="Password" name="password" id="password"
+                                    <input type="password" maxlength="75" minlength="8"  placeholder="Password" name="password" id="password"
                                            t-attf-class="form-control #{'form-control-sm' if form_small else ''}"
                                            required="required" autocomplete="current-password"
-                                           t-att-autofocus="'autofocus' if login else None" maxlength="4096"/>
+                                           t-att-autofocus="'autofocus' if login else None" />
 
                                 </div>
 
