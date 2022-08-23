@@ -238,6 +238,10 @@ class NoteExamen(models.Model):
                         # self.partner_id.update({'presence': "Absence justifiée"})
                         self.partner_id.resultat = "Ajourné(e)"
                         self.partner_id.presence = "Absence justifiée"
+                        self.partner_id.is_ajourne = True
+                        self.partner_id.is_recu = False
+                        self.partner_id.is_Absent = False
+                        self.partner_id.is_absence_justifiee = True
                         self.code_evalbox = self.partner_id.code_evalbox
                         self.temps_minute = self.partner_id.temps_minute
                         self.total_time_visio_hour = self.partner_id.total_time_visio_hour
