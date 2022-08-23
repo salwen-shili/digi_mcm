@@ -45,25 +45,25 @@ class Partner(models.Model):
         if (count == len(documents) and count != 0):
             document_valide = True
             # Vérifier statut iOne
+        if self.numero_evalbox:
+            if (self.numero_evalbox) and (self.statut != "won"):
+                raise ValidationError('Merci de vérifier le statut!')
+            # Vérifier longeur du numéro d'Eval_box CMA
+            if len(self.numero_evalbox) <= 9:
+                raise ValidationError('Numéro evalbox doit contenir minimum 10 caractères')
+            # Vérifier Si Client n'est pas bolt
+            if not (bolt):
+                print(self.mode_de_financement)
+                # Vérifier mode de financement et contrat de formation
+                if (self.mode_de_financement != "cpf") and (sale_order.state != 'sale') and (self.numero_evalbox) and \
+                        (sale_order.signature):
+                    raise ValidationError('Merci de vérifier le contrat de formation ! ')
 
-        if (self.numero_evalbox) and (self.statut != "won"):
-            raise ValidationError('Merci de vérifier le statut!')
-        # Vérifier longeur du numéro d'Eval_box CMA
-        if len(self.numero_evalbox) <= 9:
-            raise ValidationError('Numéro evalbox doit contenir minimum 10 caractères')
-        # Vérifier Si Client n'est pas bolt
-        if not (bolt):
-            print(self.mode_de_financement)
-            # Vérifier mode de financement et contrat de formation
-            if (self.mode_de_financement != "cpf") and (sale_order.state != 'sale') and (self.numero_evalbox) and \
-                    (sale_order.signature):
-                raise ValidationError('Merci de vérifier le contrat de formation ! ')
-
-            if (self.numero_evalbox) and (document_valide is not True):
-                raise ValidationError('Merci de vérifier les documents ')
-            # Vérifier  Renonciation au droit de rétractation
-            if not self.renounce_request and self.numero_evalbox:
-                raise ValidationError('Merci de vérifier => Renonciation au droit de rétractation ! ')
+                if (self.numero_evalbox) and (document_valide is not True):
+                    raise ValidationError('Merci de vérifier les documents ')
+                # Vérifier  Renonciation au droit de rétractation
+                if not self.renounce_request and self.numero_evalbox:
+                    raise ValidationError('Merci de vérifier => Renonciation au droit de rétractation ! ')
 
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
