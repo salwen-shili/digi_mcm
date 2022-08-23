@@ -197,7 +197,7 @@
 
     </record>
     <!-- top level menu: no parent -->
-    <menuitem id="main_mcm_openedx_menu" name="MCM MOOCIT"/>
+    <menuitem id="main_mcm_openedx_menu" name="MCM MOOCIT" web_icon="odx_mcmmoocit_customization, static/description/icon.png" />
     <menuitem id="mcm_apprennat_menu" name="Apprenants" parent="main_mcm_openedx_menu" action="contact_list_action"/>
     <menuitem id="mcm_courses_menu" name="MOOCIT" parent="main_mcm_openedx_menu"/>
 </odoo>
