@@ -78,6 +78,10 @@ class resComapny(models.Model):
                     'autre_raison': self.autre_raison})
                 # Add new line in examen if mcm_session_id changed
                 if self.justification is True:
+                    self.is_ajourne = True
+                    self.is_recu = False
+                    self.is_Absent = False
+                    self.is_absence_justifiee = True
                     self.env['info.examen'].search([], limit=1, order='id desc').sudo().create({
                         'partner_id': self.id,
                         'session_id': self.mcm_session_id.id,
