@@ -72,7 +72,7 @@ class InheritResPartner(models.Model):
         """ Mettre à jour presence & resultat fields pour chaque mise à jour"""
 
         val = super(InheritResPartner, self).write(values)
-        if 'note_exam_id' in values or 'resultat' in values:
+        if 'note_exam_id' in values:
             print("here", 'note_exam_id')
             self._get_last_presence_resultat_values()
             # Update boolean fields to set colors(red, orange, green) in contact list
