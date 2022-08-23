@@ -1048,7 +1048,7 @@ class mcmSession(models.Model):
                 
                 #update presence fiche_client 
                 _logger.info("update presence fiche_client - edusign") 
-                presenceFicheClient = "Present(e)" if student["state"] else "Absent(e)"
+                presenceFicheClient = "Présent(e)" if student["state"] else "Absent(e)"
                 partner.presence=presenceFicheClient
                             
         else:
