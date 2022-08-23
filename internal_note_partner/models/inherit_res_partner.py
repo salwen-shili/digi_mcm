@@ -93,7 +93,7 @@ class InheritResPartner(models.Model):
                 self.is_present = True
                 self.is_Absent = False
                 self.is_absence_justifiee = False
-            elif self.presence == 'Absent(e)' and self.resultat == 'Ajourné(e)':
+            elif (self.presence == 'Absent(e)' and self.resultat == 'Ajourné(e)') or (self.presence is False and self.resultat == 'Ajourné(e)'):
                 self.is_Absent = True
                 self.is_ajourne = True
                 self.is_present = False
