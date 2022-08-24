@@ -185,13 +185,13 @@ class Coach(models.Model):
 
         # definir si le partner et coach
         for coach in self.env['res.partner'].sudo().search(
-                [('est_coach', '=', 'True')]):
+                [('est_coach', '=', 'True'), ('company_id', '=', 1)]):
             count = 0
             # extraire les client ganger ayant le meme nom de coach dans la liste des partner
             # crer une liste pour stocker les apprennats ayant les informations que en est en train de chercher
             listapprenant = []
             for rec in self.env['res.partner'].sudo().search(
-                    [('coach_peda', 'like', coach.name)]):
+                    [('coach_peda', 'like', coach.name), ('company_id', '=', 1)]):
                 if (rec.coach_peda.name == coach.name):
                     count = count + 1
                     # stoker dans la liste les apprennats

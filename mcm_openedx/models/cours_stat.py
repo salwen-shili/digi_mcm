@@ -24,6 +24,11 @@ class Cours_stat(models.Model):
     mooc_temps_passe_heure = fields.Integer(string="temps passé en heure")
     mooc_temps_passe_min = fields.Integer(string="temps passé en minute")
     mooc_temps_passe_seconde = fields.Integer(string="temps passé en Seconde")
+    # # # add new fields
+    # statut = fields.Char(string="Statut")
+    # date_inscri = fields.Date(string="Date Inscription",default='null')
+    # derniere_connx = fields.Date(string="Dernière connexion",default='null')
+    # genre = fields.Char(string="Genre")
 
     @api.depends('temppasse')
     def _get_attendees_count(self):
@@ -66,9 +71,9 @@ class Cours_stat(models.Model):
                 apprenant.mooc_temps_passe_min = minute
                 apprenant.mooc_temps_passe_seconde = secondes
                 todays_date = date.today()
-
-                if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx.year == todays_date.year):
-                    apprenant.state = 'en_formation'
+                if (apprenant.mooc_dernier_coonx):
+                    if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx.year == todays_date.year):
+                        apprenant.state = 'en_formation'
 
     def suupprimer_bouton_fiche_client(self):
         # cree une  liste pour stocker les duplication
@@ -105,8 +110,7 @@ class Cours_stat(models.Model):
                 # chercher mail ,idcour,jour,id
                 duplicates = self.env['mcm_openedx.course_stat'].search(
                     [('email', "=", exist.email), ('idcour', '=', exist.idcour), ('jour', "=", exist.jour),
-                     ('id', '!=', exist.id)
-                     ])
+                     ('id', '!=', exist.id)])
                 # parcourir la liste de duplication
                 for dup in duplicates:
                     # ajouter les duplicant a la liste
@@ -119,3 +123,6 @@ class Cours_stat(models.Model):
             'type': 'ir.actions.client',
             'tag': 'reload',
         }
+
+    def test_app(self):
+        print()

@@ -9,6 +9,7 @@
                 <field name="name" filter_domain="[('name','ilike',self)]"/>
                 <filter name="group_email" string="Email" icon="terp-partner" context="{'group_by':'email'}"/>
                 <filter name="group_idcour" string="IDcour" icon="terp-partner" context="{'group_by':'idcour'}"/>
+                <filter name="group_statut" string="Statut" icon="terp-partner" context="{'group_by':'statut'}"/>
             </search>
         </field>
     </record>
@@ -49,15 +50,12 @@
         <field name="name">mcm_openedx.course_stat.tree</field>
         <field name="model">mcm_openedx.course_stat</field>
         <field name="arch" type="xml">
-
             <tree string="Statetstique">
                 <field name="email"/>
                 <field name="partner"/>
                 <field name="name"/>
                 <field name="jour"/>
                 <field name="idcour"/>
-
-
             </tree>
         </field>
     </record>
@@ -136,6 +134,8 @@
             </graph>
         </field>
     </record>
+
+
     <record id="course_list_action" model="ir.actions.act_window">
         <field name="name">Courses</field>
         <field name="res_model">mcm_openedx.course_stat</field>
@@ -144,5 +144,6 @@
 
 
     </record>
+
     <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
-</odoo>
+ </odoo>

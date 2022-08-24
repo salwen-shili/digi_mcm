@@ -23,16 +23,14 @@
                         }
                         }
                     </style>
-                    <p style="font-size: 18px;">Bonjour
-                        <span style=" font-size:17;color: rgb(85, 79, 59); font-weight: bold;">${object.name}</span>,
-                    </p>
+                    <p style="font-size: 18px;">Bonjour ${object.name},</p>
                     <p style="font-size: 18px;">
                         L'équipe <span style=" font-size:17;color: rgb(232, 185, 24 ); font-weight: bold;">
                         MCM Academy
                     </span> vous remercie pour votre confiance et vous confirme
-                        votre inscription à notre session de formation
+                        votre inscription à notre session de
                         <span style=" font-size:17;color: rgb(85, 79, 59); font-weight: bold;">
-                            ${object.module_id.name}
+                            ${object.module_id.name}.
 
                         </span>
                     </p>
@@ -46,23 +44,26 @@
 
                     <p style="font-size: 18px;">
                         <span style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">Let's GO !</span>
-                        Il est temps de vous booster et de passer aux choses sérieuses pour <span
-                            style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">réussir
-                        votre examen ,
-                    </span>  avoir votre <span
-                            style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">carte professionnelle
-                    </span> , et lancer
+                        Il est temps de vous booster, de passer aux choses sérieuses pour <span
+                            style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">
+                        réussir votre examen,
+                    </span> avoir votre <span
+                            style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">carte professionnelle,
+                    </span> et lancer
                         <span
                                 style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">votre projet !
                         </span>
                     </p>
                     <p style="font-size: 18px;">
                         Rendez-vous vite sur notre
-                          <a href="https://formation.mcm-academy.fr/login?next=">plateforme</a>! merci de rentrer vos
-                        identifiants de connexion que vous utilisez sur notre site web.
+                        <a href="https://formation.mcm-academy.fr/login?next=">plateforme</a>
+                        !
+                        <br/>
+                        Merci de rentrer vos identifiants de connexion que vous utilisez sur notre
+                        <a href="https://www.mcm-academy.fr/">site web.</a>
                     </p>
                     <p style="font-size: 18px;">
-                        A très bientôt !
+                        À très bientôt !
                         <br/>
                         L’équipe
                         <span style=" font-size:17;color: rgb(119, 116, 95 ); font-weight: bold;">
@@ -73,10 +74,11 @@
 
 
                     <br/>
+                    <span align="center" style="border:1px">
                     <p style="font-size: 12px;font-weight:500">
-                        <centre>Si vous souhaitez avoir plus de renseignements, n'hésitez
-                            pas à contacter notre
-                        </centre>
+                        Si vous souhaitez avoir plus de renseignements, n'hésitez
+                        pas à contacter notre
+
                         <span
                                 style=" font-size:17;color: rgb(219, 172, 15
 ); font-weight: bold;">
@@ -85,6 +87,7 @@
                             de 9h à 17h.
                         </span>
                     </p>
+ </span>
                 </div>
             </field>
             <field name="lang">${object.lang}</field>
@@ -114,24 +117,24 @@
                     </style>
                     <center>
 
-                    <h1>Bonjour coach ${object.coach_name.name}</h1>
+                        <h1>Bonjour coach ${object.coach_name.name}</h1>
 
-                    <h2>
+                        <h2>
 
-                        Ton équipe s’agrandit 💪!
-                        <br/>
-                        Un(e) nouvel(le) apprenant(e) ${object.apprenant_email} vient de s’ajouter à ta liste 😍
-                        <br/>qui dit nouvel(le) apprenant(e) dit nouveau challenge !
-                        <br/>
-                        Bon travail ! ✨
+                            Ton équipe s’agrandit 💪!
+                            <br/>
+                            Un(e) nouvel(le) apprenant(e) ${object.apprenant_email} vient de s’ajouter à ta liste 😍
+                            <br/>qui dit nouvel(le) apprenant(e) dit nouveau challenge !
+                            <br/>
+                            Bon travail ! ✨
 
-                    </h2>
-                    <div style="text-align: center;">
-                        <img class="img-email"
-                             width="50%"
-                             src="https://media.giphy.com/media/Jir7AUookJHIVb5aYM/giphy.gif"/>
+                        </h2>
+                        <div style="text-align: center;">
+                            <img class="img-email"
+                                 width="50%"
+                                 src="https://media.giphy.com/media/Jir7AUookJHIVb5aYM/giphy.gif"/>
 
-                    </div>
+                        </div>
                     </center>
                 </div>
 

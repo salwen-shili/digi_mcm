@@ -450,7 +450,7 @@ class partner(models.Model):
 
     # Fonction d'affectation des apprenants à la plateforme et aux cours.
     def ajouter_IOne_MCM(self, partner):
-        print(self)
+        print(partner)
         _logger.info('E-mail de lapprenant %s' % str(partner.email))
         user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
         bolt = partner.bolt
@@ -512,31 +512,31 @@ class partner(models.Model):
                             _logger.info(partner.email)
                             _logger.info('E-mail envoyé  %s' % str(partner.name))
 
-                    if partner.phone:
-                        phone = str(partner.phone.replace(' ', ''))[-9:]
-                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                                       5:7] + ' ' + phone[
-                                                                                                                    7:]
-                        partner.phone = phone
-                        _logger.info(partner.phone)
-                    body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez désormais commencer votre formation  ,%s  en utilisant les mêmes identifiants que sur notre site web." % (
-                        partner.name, partner.module_id.name)
-                    if body:
-                        sms = self.env['mail.message'].sudo().search(
-                            [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
-                        if not sms:
-                            composer = self.env['sms.composer'].with_context(
-                                default_res_model='res.partner',
-                                default_res_ids=partner.id,
-                                default_composition_mode='mass',
-                            ).sudo().create({
-                                'body': body,
-                                'mass_keep_log': True,
-                                'mass_force_send': True,
-                            })
-                            composer.action_send_sms()  # send sms of end of exam and waiting for result
-                        if partner.phone:
-                            partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
+                            if partner.phone:
+                                phone = str(partner.phone.replace(' ', ''))[-9:]
+                                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                                                                                                               5:7] + ' ' + phone[
+                                                                                                                            7:]
+                                partner.phone = phone
+                                _logger.info(partner.phone)
+                            body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez désormais commencer votre %s, en utilisant les mêmes identifiants que sur notre site web. https://formation.mcm-academy.fr/" % (
+                                partner.name,partner.module_id.name)
+                            if body:
+                                sms = self.env['mail.message'].sudo().search(
+                                    [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
+                                if not sms:
+                                    composer = self.env['sms.composer'].with_context(
+                                        default_res_model='res.partner',
+                                        default_res_ids=partner.id,
+                                        default_composition_mode='comment',
+                                    ).sudo().create({
+                                        'body': body,
+                                        'mass_keep_log': True,
+                                        'mass_force_send': True,
+                                    })
+                                    composer.action_send_sms()  # send sms of end of exam and waiting for result
+                                if partner.phone:
+                                    partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
                 except:
                     _logger.info('E-mail non envoyé')
                 finally:
@@ -675,10 +675,14 @@ class partner(models.Model):
                     _logger.info(partner.email)
                     _logger.info('E-mail envoyé  %s' % str(partner.name))
 
+
     # Notifier les apprenants
     def notifierapprenant(self):
         print(self.state)
-        if (self.numero_evalbox != False and self.module_id.name != False and self.state != "supprimé"):
+        print( self.name)
+        print( self.module_id.name)
+
+        if (self.numero_evalbox != False and self.module_id != False and self.state != "supprimé"):
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser
                 self = self.with_user(SUPERUSER_ID)
@@ -706,6 +710,31 @@ class partner(models.Model):
 
                     _logger.info("email envoyé")
                     _logger.info(self.email)
+                    if self.phone:
+                        phone = str(self.phone.replace(' ', ''))[-9:]
+                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                                                                                                       5:7] + ' ' + phone[
+                                                                                                                    7:]
+                        self.phone = phone
+                        _logger.info(self.phone)
+                    body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez désormais commencer votre %s, en utilisant les mêmes identifiants que sur notre site web. https://formation.mcm-academy.fr/" % (
+                        self.name,self.module_id.name)
+                    if body:
+                        sms = self.env['mail.message'].sudo().search(
+                            [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", self.id)])
+                        if not sms:
+                            composer = self.env['sms.composer'].with_context(
+                                default_res_model='res.partner',
+                                default_res_ids=self.id,
+                                default_composition_mode='comment',
+                            ).sudo().create({
+                                'body': body,
+                                'mass_keep_log': True,
+                                'mass_force_send': True,
+                            })
+                            composer.action_send_sms()  # send sms of end of exam and waiting for result
+                        if self.phone:
+                            self.phone = '0' + str(self.phone.replace(' ', ''))[-9:]
 
                     notification = {
                         'type': 'ir.actions.client',

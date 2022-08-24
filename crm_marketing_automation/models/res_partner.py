@@ -24,11 +24,46 @@ class Partner(models.Model):
     password_evalbox = fields.Char('Mot de passe Evalbox')
     id_evalbox = fields.Char('Identifiant Evalbox')
 
-    @api.constrains('numero_evalbox')
+    @api.constrains('numero_evalbox', 'statut', 'mode_de_financement')
     def _check_numero_evalbox(self):
+        bolt = self.bolt
+        sale_order = self.env['sale.order'].sudo().search(
+            [('partner_id', '=', self.id),
+             ('state', '=', 'sale'),
+             ('session_id', '=', self.mcm_session_id.id),
+             ('module_id', '=', self.module_id.id),
+             ], limit=1, order="id desc")
+        # Récupérer les documents et vérifier si ils sont validés ou non
+        documents = self.env['documents.document'].sudo().search([('partner_id', '=', self.id)])
+        document_valide = False
+        count = 0
+        for document in documents:
+            if (document.state == "validated"):
+                count = count + 1
+        _logger.info('count %s ' % str(count))
+        _logger.info('len %s' % str(len(documents)))
+        if (count == len(documents) and count != 0):
+            document_valide = True
+            # Vérifier statut iOne
         if self.numero_evalbox:
+            if (self.numero_evalbox) and (self.statut != "won"):
+                raise ValidationError('Merci de vérifier le statut!')
+            # Vérifier longeur du numéro d'Eval_box CMA
             if len(self.numero_evalbox) <= 9:
                 raise ValidationError('Numéro evalbox doit contenir minimum 10 caractères')
+            # Vérifier Si Client n'est pas bolt
+            if not (bolt):
+                print(self.mode_de_financement)
+                # Vérifier mode de financement et contrat de formation
+                if (self.mode_de_financement != "cpf") and (sale_order.state != 'sale') and (self.numero_evalbox) and \
+                        (sale_order.signature):
+                    raise ValidationError('Merci de vérifier le contrat de formation ! ')
+
+                if (self.numero_evalbox) and (document_valide is not True):
+                    raise ValidationError('Merci de vérifier les documents ')
+                # Vérifier  Renonciation au droit de rétractation
+                if not self.renounce_request and self.numero_evalbox:
+                    raise ValidationError('Merci de vérifier => Renonciation au droit de rétractation ! ')
 
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):

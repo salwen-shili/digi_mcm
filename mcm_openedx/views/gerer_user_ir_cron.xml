@@ -43,8 +43,8 @@
         <field name="active" eval="True"></field>
         <field name="state">code</field>
         <field name="code">model.ajoutMoocit_automatique()</field>
-        <field name="interval_number">58</field>
-        <field name="interval_type">minutes</field>
+        <field name="interval_number">12</field>
+        <field name="interval_type">hours</field>
         <field name="numbercall">-1</field>
         <field name="priority" eval="3"/>
     </record>
