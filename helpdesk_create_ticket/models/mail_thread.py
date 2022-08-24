@@ -148,3 +148,30 @@ class MailThread(models.AbstractModel):
                 res['email_from'] = tools.formataddr(
                     (user.partner_id.name or u"False", user_signature.email_from or u"False"))  # change the sender mail
         return res
+
+    @api.returns('mail.message', lambda value: value.id)
+    def message_post(self, **kwargs):
+        new_message = super(MailThread, self).message_post(**kwargs)
+        _logger.info('message_post : %s' % str(new_message))
+        _logger.info('message_post : %s' % str(new_message.reply_to))
+        _logger.info('message_post_author_id : %s' % str(new_message.author_id))
+        if '<' in new_message.reply_to and '>' in new_message.reply_to :
+            catchall_mail = re.search('<(.*)>', new_message.reply_to)
+            catchall_mail = catchall_mail.group(1)
+            if catchall_mail :
+                catchall_mail = str(catchall_mail)
+                user_sudo = self.env['res.users'].sudo().search([('partner_id', "=", int(new_message.author_id))],limit=1)
+                records = self.env[new_message.model].browse([new_message.res_id])
+                _logger.info('user_sudo : %s' % str(user_sudo))
+                if records :
+                    if hasattr(records, 'company_id'):
+                        user_signature = self.env['res.user.signature'].sudo().search(
+                            [('user_id', "=", user_sudo.id), ('company_id', "=", records.company_id.id)],
+                            limit=1)
+                        if user_signature and user_signature.reply_to :
+                            _logger.info('catchall_mail : %s' % str(catchall_mail))
+                            _logger.info('user_signature.reply_to : %s' % str(user_signature.reply_to))
+                            new_reply_to = new_message.reply_to.replace(catchall_mail,user_signature.reply_to)
+                            _logger.info('new_reply_to : %s' % str(new_message.reply_to))
+                            new_message.reply_to = new_reply_to
+        return new_message
