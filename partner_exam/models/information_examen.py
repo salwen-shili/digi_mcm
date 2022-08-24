@@ -94,6 +94,9 @@ class NoteExamen(models.Model):
     total_time_visio_hour = fields.Char()
     total_time_appels_hour = fields.Char()
     total_time_hours = fields.Char()
+    etat_formation = fields.Selection([('actif', 'Actif'),
+                                              ('inactif', 'Inactif'),
+                                              ])
 
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):
