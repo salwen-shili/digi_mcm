@@ -150,15 +150,28 @@ class MailThread(models.AbstractModel):
         return res
 
     @api.returns('mail.message', lambda value: value.id)
-    def message_post(self, *,
-                     body='', subject=None, message_type='notification',
-                     email_from=None, author_id=None, parent_id=False,
-                     subtype_id=False, subtype=None, partner_ids=None, channel_ids=None,
-                     attachments=None, attachment_ids=None,
-                     add_sign=True, record_name=False,
-                     **kwargs):
-        new_message = super(MailThread, self).message_post(body,subject,message_type,email_from,author_id,parent_id,subtype_id,subtype,partner_ids
-                                                           ,channel_ids,attachments,attachment_ids,add_sign,record_name,kwargs)
+    def message_post(self, **kwargs):
+        new_message = super(MailThread, self).message_post(**kwargs)
         _logger.info('message_post : %s' % str(new_message))
-
+        _logger.info('message_post : %s' % str(new_message.reply_to))
+        _logger.info('message_post_author_id : %s' % str(new_message.author_id))
+        if '<' in new_message.reply_to and '>' in new_message.reply_to :
+            catchall_mail = re.search('<(.*)>', new_message.reply_to)
+            catchall_mail = catchall_mail.group(1)
+            if catchall_mail :
+                catchall_mail = str(catchall_mail)
+                user_sudo = self.env['res.users'].sudo().search([('partner_id', "=", int(new_message.author_id))],limit=1)
+                records = self.env[new_message.model].browse([new_message.res_id])
+                _logger.info('user_sudo : %s' % str(user_sudo))
+                if records :
+                    if hasattr(records, 'company_id'):
+                        user_signature = self.env['res.user.signature'].sudo().search(
+                            [('user_id', "=", user_sudo.id), ('company_id', "=", records.company_id.id)],
+                            limit=1)
+                        if user_signature and user_signature.reply_to :
+                            _logger.info('catchall_mail : %s' % str(catchall_mail))
+                            _logger.info('user_signature.reply_to : %s' % str(user_signature.reply_to))
+                            new_reply_to = new_message.reply_to.replace(catchall_mail,user_signature.reply_to)
+                            _logger.info('new_reply_to : %s' % str(new_message.reply_to))
+                            new_message.reply_to = new_reply_to
         return new_message
