@@ -519,7 +519,7 @@ class partner(models.Model):
                                                                                                                             7:]
                                 partner.phone = phone
                                 _logger.info(partner.phone)
-                            body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez désormais commencer votre %s, en utilisant les mêmes identifiants que sur notre site web. https://formation.mcm-academy.fr/" % (
+                            body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez desormais commencer votre %s, en utilisant les memes identifiants que sur notre site web. https://formation.mcm-academy.fr/" % (
                                 partner.name,partner.module_id.name)
                             if body:
                                 sms = self.env['mail.message'].sudo().search(
