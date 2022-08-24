@@ -366,6 +366,28 @@ $(document).ready(function () {
       });
   });
   $('#first_form').submit(function (e) {
+
+    //document.querySelector('.error-input-field').scrollIntoView();
+    //document.getElementById('.password').scrollIntoView();
+    const hasError = document.querySelector('.error-input-field') != null ? true: false;
+    const passwordHasError =  document.querySelector('.niv-level-3')  == null ? true: false;
+    if (hasError ||  passwordHasError) {
+      e.preventDefault();
+      if (document.querySelector('.error-input-field')){
+        document.querySelector('.error-input-field').scrollIntoView();
+      }else if (passwordHasError){
+        document.getElementById('password').scrollIntoView();
+
+      }
+      return;
+    } else {
+      
+    }
+  });
+
+  //for resettting password
+  $('form').submit(function (e) {
+
     //document.querySelector('.error-input-field').scrollIntoView();
     //document.getElementById('.password').scrollIntoView();
     const hasError = document.querySelector('.error-input-field') != null ? true: false;
@@ -499,7 +521,11 @@ function checkStrength(password) {
 //Compare password similarity with Name and lastname
 // Jaro-Winkler Algorithm for similarity comparison
   if (password.length>7){
-    if (JaroWrinker(password.toUpperCase(),firstname.toUpperCase()+lastname.toUpperCase() )<=0.9071428571428571){
+    var firstnameCopy = ""
+    var lasNameCopy = ""
+    if (firstname) firstnameCopy = firstname
+    if (lastname) lasNameCopy = lastname
+    if (JaroWrinker(password.toUpperCase(),firstnameCopy.toUpperCase()+lasNameCopy.toUpperCase() )<=0.9071428571428571){
       strength += 1;
       checkpassword.classList.add('fa-check');
         $(`#password_container `).removeClass('error-input-field');
