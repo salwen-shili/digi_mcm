@@ -51,7 +51,7 @@
     </record>
 
 
-    <record model="ir.ui.view" id="openacademy_session_graph_view">
+    <record model="ir.ui.view" id="actif_graph_view">
         <field name="name">mcm_openedx.state.graph</field>
         <field name="model">mcm_openedx.state</field>
         <field name="arch" type="xml">
