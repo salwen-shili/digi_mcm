@@ -9,8 +9,7 @@
                 <field name="name" filter_domain="[('name','ilike',self)]"/>
                 <filter name="group_email" string="Email" icon="terp-partner" context="{'group_by':'email'}"/>
                 <filter name="group_idcour" string="IDcour" icon="terp-partner" context="{'group_by':'idcour'}"/>
-                <filter name="group_statut" string="Statut" icon="terp-partner" context="{'group_by':'statut'}"/>
-            </search>
+             </search>
         </field>
     </record>
     <record model="ir.ui.view" id="course_stat_form_view">

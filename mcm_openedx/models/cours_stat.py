@@ -11,6 +11,7 @@ _logger = logging.getLogger(__name__)
 class Cours_stat(models.Model):
     _name = 'mcm_openedx.course_stat'
     _description = "importer les listes des cours pour calculer les statestiques"
+
     name = fields.Char(string="Nom Utilisateur")
     email = fields.Char(string="Email")
     color = fields.Char(string="color")
@@ -43,9 +44,6 @@ class Cours_stat(models.Model):
             listjour.append(existt.jour)
             # affecter les jours a une liste pour faire le tri et extraire la derniere et la premiere date de connexion
             listjour.sort()
-            # print("lowwww", listjour[0])
-            # print("highhh", listjour[-1])
-            # chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
             mail_evalbox = self.env['res.partner'].search(
                 [('company_id', '!=', 2), ('id_evalbox', 'ilike', existt.email)])
             print(mail_evalbox.id_evalbox)
@@ -147,7 +145,7 @@ class actif_inactif(models.Model):
             if exist.id not in listcourduplicated:
                 # chercher mail ,idcour,jour,id
                 duplicates = self.env['mcm_openedx.state'].search(
-                    [('email', "=", exist.email), ('idcour', '=', exist.idcour) ,
+                    [('email', "=", exist.email), ('idcour', '=', exist.idcour),
                      ('id', '!=', exist.id)])
                 # parcourir la liste de duplication
                 for dup in duplicates:
