@@ -60,7 +60,7 @@
             report_type="qweb-pdf"
             name="partner_exam.examen_releve_note_id"
             file="partner_exam.examen_releve_note_ids"
-            menu="False"
+            menu="True"
             attachment="(object.company_id.id == 1).replace('/','')+'.pdf')"
             print_report_name="'Relevé-de-notes- %s' % (object.partner_id.name).replace('/', '')"
             paperformat="partner_exam.paperformat_releve_note_id"/>
