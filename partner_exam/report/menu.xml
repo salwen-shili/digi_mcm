@@ -61,7 +61,6 @@
             name="partner_exam.examen_releve_note_id"
             file="partner_exam.examen_releve_note_ids"
             menu="True"
-            attachment="(object.company_id.id == 1).replace('/','')+'.pdf')"
             print_report_name="'Relevé-de-notes- %s' % (object.partner_id.name).replace('/', '')"
             paperformat="partner_exam.paperformat_releve_note_id"/>
     <!--This is the action to create a print pdf in module res.partner for "Attestation de suivi de formation", using the template(xml) ID-->
