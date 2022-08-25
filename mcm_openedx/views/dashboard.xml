@@ -36,11 +36,13 @@
                     <column>
                         <action name="%(actif_graph)d" string="Actif vs Non Actif" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 1, 'allowed_company_ids': [1], 'params': {'action': 1963, 'cids': 1, 'menu_id': 1111, 'model': 'mcm_openedx.state', 'view_type': 'graph'}, 'group_by': ['statut'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['statut'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[]" modifiers="{}"  />
+                                domain="[]" modifiers="{}"/>
 
                         <action name="%(act_stat_graph)d" string="Statistiques Cours" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'allowed_company_ids': [1, 1, 2], 'group_by': [], 'graph_measure': 'seconde', 'graph_mode': 'bar', 'graph_groupbys': ['idcour'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" modifiers="{}"/>
+                    </column>
+                    <column>
                         <action name="%(act_coach_graph)d" string="Coaches" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'allowed_company_ids': [1, 1, 2], 'group_by': [], 'graph_measure': 'nombre_apprenant', 'graph_mode': 'pie', 'graph_groupbys': ['coach_name'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" modifiers="{}"/>
