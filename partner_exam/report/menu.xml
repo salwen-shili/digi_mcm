@@ -56,12 +56,22 @@
     <!-- This is the action to create a print pdf in module info.examen for "Générer les relevés de notes", using the template(xml) ID-->
     <report id="examen_releve_note_ids"
             model="info.examen"
-            string="Générer les relevés de notes"
+            string="Relevé de note"
             report_type="qweb-pdf"
             name="partner_exam.examen_releve_note_id"
             file="partner_exam.examen_releve_note_ids"
             menu="True"
             print_report_name="'Relevé-de-notes- %s' % (object.partner_id.name).replace('/', '')"
+            paperformat="partner_exam.paperformat_releve_note_id"/>
+    <!-- Rapport attestation de suivi de formation dans l'interface de notes des examen, le menu existe dans la session-->
+    <report id="examen_suivi_de_formation_ids"
+            model="info.examen"
+            string="Attestation de suivi de formation"
+            report_type="qweb-pdf"
+            name="partner_exam.examen_attestation_suivi_formation_id"
+            file="partner_exam.examen_suivi_de_formation_ids"
+            menu="True"
+            print_report_name="'Attestation-suivi-formation- %s' % (object.partner_id.name).replace('/', '')"
             paperformat="partner_exam.paperformat_releve_note_id"/>
     <!--This is the action to create a print pdf in module res.partner for "Attestation de suivi de formation", using the template(xml) ID-->
     <report id="id_attestation"
