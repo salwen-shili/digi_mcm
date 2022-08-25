@@ -24,7 +24,13 @@
         <field name="view_id"
                ref="actif_graph_view"/>
     </record>
-
+    <record model="ir.actions.act_window" id="app_graph">
+        <field name="name">Les Apprenants</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id"
+               ref="mcm_openedx_app_graph_view"/>
+    </record>
 
     <!--My Dashboard-->
     <record model="ir.ui.view" id="mcm_openedx_dashbord">
@@ -43,6 +49,12 @@
                                 domain="[]" modifiers="{}"/>
                     </column>
                     <column>
+                        <action name="%(app_graph)d" string="Les Apprenants" view_mode="graph"
+                                context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 1, 'allowed_company_ids': [1], 'group_by': ['company_id'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_id'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', '=', 1], '|', '|', ['state', 'ilike', 'en_formation'], ['state', 'ilike', 'en_attente'], ['state', 'ilike', 'supprimé']]"
+                                modifiers="{}"/>
+
+
                         <action name="%(act_coach_graph)d" string="Coaches" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'allowed_company_ids': [1, 1, 2], 'group_by': [], 'graph_measure': 'nombre_apprenant', 'graph_mode': 'pie', 'graph_groupbys': ['coach_name'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" modifiers="{}"/>
