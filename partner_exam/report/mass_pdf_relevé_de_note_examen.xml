@@ -172,13 +172,14 @@
                                                         <tr>
                                                             <td align="center">
                                                                 <b>Résultat</b>
-                                                                <t t-esc="o.resultat"/>
                                                             </td>
                                                             <td align="center">
-                                                                <strong >
-                                                                    <t t-if="o.resultat == 'recu' or o.resultat == 'ajourne'">
-                                                                        <t t-esc="o.resultat"/>
-                                                                        <span>(e)</span>
+                                                                <strong>
+                                                                    <t t-if="o.resultat == 'recu'">
+                                                                        <span>Reçu(e)</span>
+                                                                    </t>
+                                                                    <t t-if="o.resultat == 'ajourne'">
+                                                                        <span>Ajourné(e)</span>
                                                                     </t>
                                                                 </strong>
                                                             </td>
