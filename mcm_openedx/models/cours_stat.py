@@ -24,11 +24,6 @@ class Cours_stat(models.Model):
     mooc_temps_passe_heure = fields.Integer(string="temps passé en heure")
     mooc_temps_passe_min = fields.Integer(string="temps passé en minute")
     mooc_temps_passe_seconde = fields.Integer(string="temps passé en Seconde")
-    # # # add new fields
-    # statut = fields.Char(string="Statut")
-    # date_inscri = fields.Date(string="Date Inscription",default='null')
-    # derniere_connx = fields.Date(string="Dernière connexion",default='null')
-    # genre = fields.Char(string="Genre")
 
     @api.depends('temppasse')
     def _get_attendees_count(self):
@@ -124,5 +119,45 @@ class Cours_stat(models.Model):
             'tag': 'reload',
         }
 
+
+class actif_inactif(models.Model):
+    _name = 'mcm_openedx.state'
+    _description = "importer les listes des cours pour calculer les statestiques"
+    # # # add new fields
+    statut = fields.Char(string="Statut")
+
+    genre = fields.Char(string="Genre")
+    email = fields.Char(string="Email")
+    idcour = fields.Char(string="ID Cours")
+
+    @api.depends('statut')
+    def _get_attendees_count(self):
+        for r in self:
+            r.statut = len(r.statut)
+
     def test_app(self):
-        print()
+        # cree une  liste pour stocker les duplication
+        listcourduplicated = []
+        _logger.info('supprimer duplicationnn %s')
+
+        # chercher tout personne ayant un mail existant
+        for exist in self.env['mcm_openedx.state'].sudo().search(
+                [('email', "!=", False)]):
+            # verifier si la personne ayant les meme information
+            if exist.id not in listcourduplicated:
+                # chercher mail ,idcour,jour,id
+                duplicates = self.env['mcm_openedx.state'].search(
+                    [('email', "=", exist.email), ('idcour', '=', exist.idcour) ,
+                     ('id', '!=', exist.id)])
+                # parcourir la liste de duplication
+                for dup in duplicates:
+                    # ajouter les duplicant a la liste
+                    listcourduplicated.append(dup.id)
+        # supprimer duplication
+        _logger.info('dupplication %s' % str(listcourduplicated))
+
+        self.browse(listcourduplicated).sudo().unlink()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }

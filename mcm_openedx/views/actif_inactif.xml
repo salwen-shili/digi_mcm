@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="actif_course_view" model="ir.ui.view">
+        <field name="name">Courses</field>
+        <field name="model">mcm_openedx.state</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="email" filter_domain="[('email','ilike',self)]"/>
+                <filter name="group_email" string="Email" icon="terp-partner" context="{'group_by':'email'}"/>
+                <filter name="group_statut" string="Statut" icon="terp-partner" context="{'group_by':'statut'}"/>
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="actif_stat_form_view">
+        <field name="name">mcm_openedx.state.form</field>
+        <field name="model">mcm_openedx.state</field>
+        <field name="arch" type="xml">
+            <form string="Course Form">
+                <xpath expr="//form//sheet" position="before">
+                    <header>
+                        <button name="test_app" string="tessst" type="object"/>
+                    </header>
+                </xpath>
+                <sheet>
+                    <group>
+                        <field name="statut"/>
+                        <field name="genre"/>
+                        <field name="email"/>
+                        <field name="idcour"/>
+
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="actif_tree_view">
+        <field name="name">mcm_openedx.state.tree</field>
+        <field name="model">mcm_openedx.state</field>
+        <field name="arch" type="xml">
+            <tree string="Statetstique" decoration-success="statut == 'Actif'" decoration-danger="statut == 'No show'">
+                <field name="email"/>
+                <field name="statut"/>
+
+                <field name="genre"/>
+                <field name="idcour"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="openacademy_session_graph_view">
+        <field name="name">mcm_openedx.state.graph</field>
+        <field name="model">mcm_openedx.state</field>
+        <field name="arch" type="xml">
+            <graph string="Participations par Courses">
+                <field name="email"/>
+                <field name="statut" type="measure"/>
+                <field name="genre" type="measure"/>
+                <field name="idcour" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    <record id="actif_list_action" model="ir.actions.act_window">
+        <field name="name">Courses</field>
+        <field name="res_model">mcm_openedx.state</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="context">{'search_default_group_email': 1, 'search_default_group_idcour':1}</field>
+
+
+    </record>
+
+    <menuitem id="actif_menu" name="ACTIF VS NON ACTIF" parent="mcm_courses_menu" action="actif_list_action"/>
+</odoo>
