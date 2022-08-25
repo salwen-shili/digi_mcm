@@ -49,10 +49,7 @@
                                 domain="[]" modifiers="{}"/>
                     </column>
                     <column>
-                        <action name="%(app_graph)d" string="Les Apprenants" view_mode="graph"
-                                context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 1, 'allowed_company_ids': [1], 'group_by': ['company_id'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_id'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[['company_id', '=', 1], '|', '|', ['state', 'ilike', 'en_formation'], ['state', 'ilike', 'en_attente'], ['state', 'ilike', 'supprimé']]"
-                                modifiers="{}"/>
+                        <action name="%(app_graph)d" string="Les Apprenants" view_mode="graph" context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 1, 'allowed_company_ids': [1], 'group_by': ['company_id', 'state'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_id', 'state'], 'dashboard_merge_domains_contexts': False}" domain="[['company_id', '=', 1]]" modifiers="{}"/>
 
 
                         <action name="%(act_coach_graph)d" string="Coaches" view_mode="graph"
