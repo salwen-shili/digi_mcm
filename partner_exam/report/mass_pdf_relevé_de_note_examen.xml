@@ -56,9 +56,9 @@
                                         <br/>
                                         Demeurant au :
                                         <strong>
-                                            <span t-raw="'%s' % o.partner_id.street if o.street else ''"/>,
-                                            <span t-raw="'%s' % o.partner_id.zip if o.zip else ''"/>
-                                            <span t-raw="'%s' % o.partner_id.city if o.city else ''"/>
+                                            <span t-raw="'%s' % o.partner_id.street if o.partner_id.street else ''"/>,
+                                            <span t-raw="'%s' % o.partner_id.zip if o.partner_id.zip else ''"/>
+                                            <span t-raw="'%s' % o.partner_id.city if o.partner_id.city else ''"/>
                                         </strong>
                                         <br></br>
                                         A été
