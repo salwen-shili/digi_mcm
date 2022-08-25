@@ -172,11 +172,12 @@
                                                         <tr>
                                                             <td align="center">
                                                                 <b>Résultat</b>
+                                                                <t t-esc="o.resultat"/>
                                                             </td>
                                                             <td align="center">
-                                                                <strong style="line-height:1.5;font-family:Montserrat;font-size:12%;page-break-before:always;">
+                                                                <strong >
                                                                     <t t-if="o.resultat == 'recu' or o.resultat == 'ajourne'">
-                                                                        <t t-esc="dict(object.fields_get(allfields=['resultat'])['resultat']['selection'])[o.resultat]"/>
+                                                                        <t t-esc="o.resultat"/>
                                                                         <span>(e)</span>
                                                                     </t>
                                                                 </strong>
