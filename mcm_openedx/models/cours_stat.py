@@ -136,7 +136,8 @@ class actif_inactif(models.Model):
     def test_app(self):
         # cree une  liste pour stocker les duplication
         listcourduplicated = []
-        _logger.info('supprimer duplicationnn %s')
+        _logger.info('supprimer duplicationnn state code'
+                     ' %s')
 
         # chercher tout personne ayant un mail existant
         for exist in self.env['mcm_openedx.state'].sudo().search(
@@ -155,7 +156,4 @@ class actif_inactif(models.Model):
         _logger.info('dupplication %s' % str(listcourduplicated))
 
         self.browse(listcourduplicated).sudo().unlink()
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'reload',
-        }
+
