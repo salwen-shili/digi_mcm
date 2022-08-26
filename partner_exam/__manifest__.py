@@ -42,6 +42,7 @@
         'report/pdf_connection_statement.xml',
         'report/rapport_session_examen.xml',
         'report/examen_attestation_suivi_formation.xml',
+        'report/examen_cerfa.xml',
         'data/mail_template_suivi_formation.xml',
         'data/ir_cron.xml',
         'data/ir_actions.server.xml',

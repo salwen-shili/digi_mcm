@@ -73,6 +73,18 @@
             menu="True"
             print_report_name="'Attestation-suivi-formation- %s' % (object.partner_id.name).replace('/', '')"
             paperformat="partner_exam.paperformat_releve_note_id"/>
+
+    <!-- Rapport cerfa dans l'interface de notes des examen, le menu existe dans la session-->
+    <report id="examen_cerfa_id"
+            model="info.examen"
+            string="Cerfa"
+            report_type="qweb-pdf"
+            name="partner_exam.examen_rapport_cerfa_id"
+            file="partner_exam.examen_cerfa_id"
+            menu="True"
+            print_report_name="'Cerfa- %s' % (object.partner_id.name).replace('/', '')"
+            paperformat="partner_exam.paperformat_cerfa"/>
+
     <!--This is the action to create a print pdf in module res.partner for "Attestation de suivi de formation", using the template(xml) ID-->
     <report id="id_attestation"
             model="res.partner"
