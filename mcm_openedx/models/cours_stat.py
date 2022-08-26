@@ -156,4 +156,8 @@ class actif_inactif(models.Model):
         _logger.info('dupplication %s' % str(listcourduplicated))
 
         self.browse(listcourduplicated).sudo().unlink()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
 
