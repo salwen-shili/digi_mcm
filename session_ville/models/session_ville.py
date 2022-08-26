@@ -31,7 +31,6 @@ class SessionVille(models.Model):
         ('ile_de_france', "Île-de-France"),
     ], default=False, tracking=True)
     num_agrement_jury = fields.Many2one('approval.number', string="Numéro d'agrément")
-    heure_jury = fields.Char(track_visibility='always')
     coach_id = fields.Many2many('res.partner', track_visibility='always')
 
     @api.onchange('name_ville')

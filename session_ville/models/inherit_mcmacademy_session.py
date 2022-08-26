@@ -15,6 +15,7 @@ class McmacademySessionVille(models.Model):
     lien = fields.Char(related="session_adresse_examen.lien", string="Lien d'accées au centre d'examen")
     num_agrement_jury = fields.Many2one(related="session_ville_id.num_agrement_jury", copy=True)
     state = fields.Selection(related='session_ville_id.state', string="Région", store=True, readonly=False)
+    heure_jury = fields.Char(track_visibility='always')
     coach_id = fields.Many2many(related="session_ville_id.coach_id", track_visibility='always')
 
     @api.onchange('session_ville_id')
