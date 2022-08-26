@@ -8,7 +8,6 @@
                         .page {
                         line-height: 1.75 ;
                         font-size:23px ;
-
                         }
                     </style>
                     <div class="page">
@@ -85,7 +84,8 @@
                                 <span t-raw="'%s' % o.zip if o.zip else '-------------'"/>
                                 <br/>
                                 <span t-raw="'%s' % o.country_id.name if o.country_id else '-------------'"/>
-                                <br/><span>0</span>
+                                <br/>
+                                <span>0</span>
                                 <span t-raw="'%s' % (o.phone.replace(' ', '')[-9:]) if o.phone else '-------------'"/>
                             </strong>
 
