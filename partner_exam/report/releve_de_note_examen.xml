@@ -118,7 +118,7 @@
                                                                     </td>
                                                                     <td align="center">
                                                                         <strong>
-                                                                            <t t-if="res.partner_id.presence == 'present'">
+                                                                            <t t-if="res.presence == 'present'">
                                                                                 <t t-if="o.partner_id.note_exam_id[-1].epreuve_a &gt; 0 or o.partner_id.note_exam_id[-1].epreuve_b &gt; 0">
                                                                                     <span t-esc="'%.0f' % o.partner_id.note_exam_id[-1].epreuve_a"/>
                                                                                 </t>
@@ -136,7 +136,7 @@
                                                                     </td>
                                                                     <td align="center">
                                                                         <strong>
-                                                                            <t t-if="res.partner_id.presence == 'present'">
+                                                                            <t t-if="res.presence == 'present'">
                                                                                 <span t-esc="'%.0f' % o.partner_id.note_exam_id[-1].epreuve_b"/>
                                                                             </t>
                                                                             <t t-else="">
@@ -180,7 +180,7 @@
                                                                                 <t t-foreach="docs.partner_id.note_exam_id[-1]"
                                                                                    t-as="res"
                                                                                    style="line-height:1.5;font-family:Montserrat;font-size:12%;page-break-before:always;">
-                                                                                    <t t-if="res.partner_id.resultat == 'recu' or res.partner_id.resultat == 'ajourne'">
+                                                                                    <t t-if="res.resultat == 'recu' or res.resultat == 'ajourne'">
                                                                                         <span t-field="res.resultat"/>
                                                                                         <span>(e)</span>
                                                                                     </t>

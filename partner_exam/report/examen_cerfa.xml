@@ -87,7 +87,7 @@
                                 <br/>
                                 <t t-set="phone" t-value="o.partner_id.phone.replace(' ', '')"/>
                                 <t t-if="phone[3:] == '+33'">
-                                    <span t-field="phone.replace('+33', '0')[-9:]"/>
+                                    <span t-esc="phone.replace('+33', '0')[-9:]"/>
                                 </t>
                                 <t t-else="not phone[3:] == '+33'">
                                     <span t-field="phone"/>

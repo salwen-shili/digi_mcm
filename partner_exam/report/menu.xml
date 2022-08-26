@@ -34,7 +34,7 @@
             report_type="qweb-pdf"
             name="partner_exam.examen_convocation_id"
             file="partner_exam.convocation_examen_ids"
-            print_report_name="'Convocation- %s - %s' % ((object.partner_id.mcm_session_id.date_exam),(object.name).replace('/', ''))"
+            print_report_name="'Convocation- %s - %s' % ((object.partner_id.mcm_session_id.date_exam),(object.partner_id.name).replace('/', ''))"
             paperformat="partner_exam.paperformat_convocation"
     />
 
