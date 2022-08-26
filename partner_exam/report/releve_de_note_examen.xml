@@ -11,10 +11,9 @@
                             font-size:18px !important;
                             }
                         </style>
-                        <t t-if="docs.partner_id.note_exam_id">
-                            <t t-foreach="docs.partner_id.note_exam_id[-1]" t-as="res"
+                        <t t-foreach="o.partner_id.note_exam_id[-1]" t-as="res"
                                style="line-height:1.5;font-family:Montserrat;font-size:12%;page-break-before:always;">
-                                <t t-if="res.partner_id.presence == 'present' or res.partner_id.presence == 'Absent'">
+                                <t t-if="res.presence == 'present' or res.presence == 'Absent'">
                                     <div class="page">
                                         <div class="oe_structure"/>
                                         <div class="row">
@@ -241,7 +240,6 @@
                                     </div>
                                 </t>
                             </t>
-                        </t>
                     </t>
                 </t>
             </t>

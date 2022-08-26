@@ -85,7 +85,13 @@
                                 <br/>
                                 <span t-raw="'%s' % o.partner_id.country_id.name if o.partner_id.country_id else '-------------'"/>
                                 <br/>
-                                <span t-raw="'%s' % (o.partner_id.phone.replace(' ', '').replace('+33', '0')[-9:]) if o.partner_id.phone else '-------------'"/>
+                                <t t-set="phone" t-value="o.partner_id.phone.replace(' ', '')"/>
+                                <t t-if="phone[3:] == '+33'">
+                                    <span t-field="phone.replace('+33', '0')[-9:]"/>
+                                </t>
+                                <t t-else="not phone[3:] == '+33'">
+                                    <span t-field="phone"/>
+                                </t>
                             </strong>
 
                         </div>

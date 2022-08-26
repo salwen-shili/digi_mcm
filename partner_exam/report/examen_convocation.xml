@@ -231,7 +231,7 @@
                                         <!-- Madame/Mademoiselle/Monsieur -->
                                         <strong>
                                             <span t-field="o.partner_id.title.shortcut"/>
-                                            <span t-raw="'%s' % o.name if o.name else ''"/>
+                                            <span t-raw="'%s' % o.partner_id.name if o.partner_id.name else ''"/>
                                         </strong>
                                         , né(e) le
                                         <!-- Ajout de t-field-options permet d'afficher day month and year avec une format spécifique-->
