@@ -27,6 +27,17 @@
             paperformat="partner_exam.paperformat_convocation"
     />
 
+    <!-- This report action create a report in exam view-->
+    <report id="convocation_examen_ids'"
+            string="Convocation"
+            model="info.examen"
+            report_type="qweb-pdf"
+            name="partner_exam.examen_convocation_id"
+            file="partner_exam.convocation_examen_ids"
+            print_report_name="'Convocation- %s - %s' % ((object.partner_id.mcm_session_id.date_exam),(object.name).replace('/', ''))"
+            paperformat="partner_exam.paperformat_convocation"
+    />
+
     <!--    This is used to reformat paper format of report PDF Relevé de Note-->
     <record id="paperformat_releve_note_id" model="report.paperformat">
         <field name="name">Relevé de note</field>
@@ -53,6 +64,7 @@
             file="partner_exam.report_releve_note_id"
             print_report_name="'Relevé-de-notes %s' % (object.name).replace('/', '')"
             paperformat="partner_exam.paperformat_releve_note_id"/>
+
     <!-- This is the action to create a print pdf in module info.examen for "Générer les relevés de notes", using the template(xml) ID-->
     <report id="examen_releve_note_ids"
             model="info.examen"
@@ -63,6 +75,7 @@
             menu="True"
             print_report_name="'Relevé-de-notes- %s' % (object.partner_id.name).replace('/', '')"
             paperformat="partner_exam.paperformat_releve_note_id"/>
+
     <!-- Rapport attestation de suivi de formation dans l'interface de notes des examen, le menu existe dans la session-->
     <report id="examen_suivi_de_formation_ids"
             model="info.examen"
@@ -111,6 +124,7 @@
         <field name="header_spacing">0</field>
         <field name="dpi">90</field>
     </record>
+
     <!--    This is used to reformat paper pdf format of connection statement -->
     <record id="paperformat_connection_statement" model="report.paperformat">
         <field name="name">Un relevé de connexion</field>
@@ -154,6 +168,7 @@
             file="partner_exam.report_cerfa"
             paperformat="partner_exam.paperformat_cerfa"
     />
+
     <!-- Connection statement -->
     <report id="pdf_connection_statement_id"
             string="Générer un relevé de connexion"
@@ -164,6 +179,7 @@
             print_report_name="'Relevé de connexion- %s' % (object.name).replace('/', '')"
             paperformat="partner_exam.paperformat_connection_statement"
     />
+
     <!-- RAPPORT DE SESSION D’EXAMEN -->
     <report id="pdf_rapport_session_examen_id"
             string="RAPPORT DE SESSION D’EXAMEN"
