@@ -32,7 +32,10 @@ ListController.include({
                     model: 'mcm_openedx.course_stat',
                     method: 'supprimer_duplicatio',
                     args: [""],
-                })
+                }).then(function (result) {
+                    self.do_action(result);
+                });
+   },
     actif_def: function (e) {
         var self = this;
         var active_id = this.model.get(this.handle).getContext()['active_ids'];
@@ -41,7 +44,9 @@ ListController.include({
                     model: 'mcm_openedx.state',
                     method: 'test_app',
                     args: [""],
-                })
+                }).then(function (result) {
+                    self.do_action(result);
+                });
    },
 });
 });
