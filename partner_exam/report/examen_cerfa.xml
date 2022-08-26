@@ -90,7 +90,7 @@
                                     <span t-esc="phone.replace('+33', '0')[-9:]"/>
                                 </t>
                                 <t t-else="not phone[3:] == '+33'">
-                                    <span t-field="phone"/>
+                                    <span t-esc="phone"/>
                                 </t>
                             </strong>
 
