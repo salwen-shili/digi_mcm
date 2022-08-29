@@ -127,7 +127,7 @@
         <field name="name">mcm_openedx.course_stat.graph</field>
         <field name="model">mcm_openedx.course_stat</field>
         <field name="arch" type="xml">
-            <graph string="Participations by Courses" type="pie" default_group_by="email">
+            <graph string="Participations by Courses" type="pie"  >
                 <field name="idcour"/>
                 <field name="attendees_count"/>
             </graph>
