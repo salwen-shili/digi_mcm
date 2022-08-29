@@ -17,9 +17,11 @@
                 <field name="coach_id" invisible="False" readonly="1" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
             </xpath>
             <xpath expr="//group[@name='rapport_jury']" position="inside">
+                <field name="heure_jury" string="Heure"/>
                 <field name="num_agrement_jury" string="Numéro d'agrément"/>
                 <field name="state" string="Région"/>
-                <field name="heure_jury" string="Heure"/>
+                <field name="zoom_link" widget="url" string="Lien ZOOM"><span class="fa-chain"/></field>
+
             </xpath>
         </field>
     </record>
