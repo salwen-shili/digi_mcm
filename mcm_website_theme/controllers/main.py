@@ -2760,14 +2760,14 @@ class MCM_SIGNUP(http.Controller):
         if event == "invoice.paid":
             _logger.info("teeeeeeest invoice %s" % str(object))
             subsciption = object.get("subscription")
-            receipt_email = object["receipt_email"]
+            customer_email = object["customer_email"]
             if subsciption:
                 customer = object.get("customer")
                 amount = int(object.get("amount_paid") / 100)
                 """Cas de paiement sur plusieur fois : Mettre à jour la facture lié à l'abonnement sur stripe """
                 # partner=request.env['res.partner'].sudo().search([('email',"=",receipt_email)],limit=1)
                 invoice = request.env["account.move"].sudo().search([("stripe_sub_reference", "=", subsciption),
-                                                                     ("partner_id.email", "=", receipt_email)], limit=1)
+                                                                     ("partner_id.email", "=", customer_email)], limit=1)
                 _logger.info("invoice %s" % str(invoice.name))
                 _logger.info("invoice ************* %s" % str(invoice.stripe_sub_reference))
                 payment_method = request.env["account.payment.method"].sudo().search([("code", "ilike", "electronic")],
