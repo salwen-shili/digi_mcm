@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <template id="template_raport_cerfa">
+    <template id="examen_rapport_cerfa_id">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.basic_layout">
@@ -21,13 +21,13 @@
                             <img src="/partner_exam/static/src/img/cerfa_dynamic.png"
                                  style="position:absolute;z-index:3;width:100%;height:750px;"/>
                             <strong style="position:absolute;z-index:3;margin-top:120px;margin-left:75px;">
-                                <t t-if="o.title.name=='Monsieur'">
+                                <t t-if="o.partner_id.title.name=='Monsieur'">
                                     <img src="/partner_exam/static/src/img/check_icon_cerfa.png" height="20"
                                          width="10"/>
                                 </t>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:118px;margin-left:175px;">
-                                <t t-if="o.title.name=='Madame'">
+                                <t t-if="o.partner_id.title.name=='Madame'">
                                     <img src="/partner_exam/static/src/img/check_icon_cerfa.png" height="20"
                                          width="10"/>
                                 </t>
@@ -36,57 +36,57 @@
                                 <img src="/partner_exam/static/src/img/check_icon_cerfa.png" height="20" width="10"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:130px;margin-left:310px;">
-                                <span t-raw="'%s' % o.lastName if o.lastName else ''"/>
+                                <span t-raw="'%s' % o.partner_id.lastName if o.partner_id.lastName else ''"/>
                                 <br/>
-                                <span t-raw="'%s' % o.firstName if o.firstName else ''"/>
+                                <span t-raw="'%s' % o.partner_id.firstName if o.partner_id.firstName else ''"/>
                                 <br/>
-                                <span t-field="o.nom_marital"/>
+                                <span t-field="o.partner_id.nom_marital"/>
                                 <br/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:290px;margin-left:320px;">
-                                <span t-raw="'%s' % o.num_departement if o.num_departement else ''"/>
+                                <span t-raw="'%s' % o.partner_id.num_departement if o.partner_id.num_departement else ''"/>
                                 <br/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:250px;margin-left:320px;">
-                                <span t-field="o.birthday"
+                                <span t-field="o.partner_id.birthday"
                                       t-field-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
                                 <br/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:300px;margin-left:320px;">
                                 <br/>
-                                <span t-raw="'%s' % o.nationality if o.nationality else ''"/>
+                                <span t-raw="'%s' % o.partner_id.nationality if o.partner_id.nationality else ''"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:250px;margin-left:600px;">
-                                <span t-raw="'%s' % o.birth_city if o.birth_city else ''"/>
+                                <span t-raw="'%s' % o.partner_id.birth_city if o.partner_id.birth_city else ''"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:409px;margin-left:550px;">
-                                <span t-raw="'%s' % o.extension if o.extension else ''"/>
+                                <span t-raw="'%s' % o.partner_id.extension if o.partner_id.extension else ''"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:409px;margin-left:285px;">
-                                <span t-raw="'%s' % o.num_voie if o.num_voie else ''"/>
+                                <span t-raw="'%s' % o.partner_id.num_voie if o.partner_id.num_voie else ''"/>
                                 <br/>
-                                <span t-raw="'%s' % o.nom_voie if o.nom_voie else ''"/>
+                                <span t-raw="'%s' % o.partner_id.nom_voie if o.partner_id.nom_voie else ''"/>
                                 <br/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:409px;margin-left:980px;">
-                                <span t-raw="'%s' % o.voie if o.voie else ''"/>
+                                <span t-raw="'%s' % o.partner_id.voie if o.partner_id.voie else ''"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:525px;margin-left:600px;">
-                                <span t-raw="'%s' % o.city if o.city else '-------------'"/>
+                                <span t-raw="'%s' % o.partner_id.city if o.partner_id.city else '-------------'"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:300px;margin-left:960px;">
-                                <span t-raw="'%s' % o.other_cases if o.other_cases else ''"/>
+                                <span t-raw="'%s' % o.partner_id.other_cases if o.partner_id.other_cases else ''"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:640px;margin-left:290px;">
-                                <span t-raw="'%s' % o.email if o.email else '-------------'"/>
+                                <span t-raw="'%s' % o.partner_id.email if o.partner_id.email else '-------------'"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:525px;margin-left:290px;">
-                                <span t-raw="'%s' % o.zip if o.zip else '-------------'"/>
+                                <span t-raw="'%s' % o.partner_id.zip if o.partner_id.zip else '-------------'"/>
                                 <br/>
-                                <span t-raw="'%s' % o.country_id.name if o.country_id else '-------------'"/>
+                                <span t-raw="'%s' % o.partner_id.country_id.name if o.partner_id.country_id else '-------------'"/>
                                 <br/>
-                                <span>0</span>
-                                <span t-raw="'%s' % (o.phone.replace(' ', '')[-9:]) if o.phone else '-------------'"/>
+                                <t t-set="phone" t-value="o.partner_id.phone.replace(' ', '')"/>
+                                <span t-esc="phone.replace('+33', '0')[-10:]"/>
                             </strong>
 
                         </div>
@@ -104,7 +104,7 @@
                             <img src="/partner_exam/static/src/img/cerfa_page3_3.png"
                                  style="z-index:3;width:100%;height:800px"/>
                             <strong style="position:absolute;z-index:3;margin-top:-700px;margin-left:120px;">
-                                <span t-raw="'%s' % o.city if o.city else '-------------'"/>
+                                <span t-raw="'%s' % o.partner_id.city if o.partner_id.city else '-------------'"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:-700px;margin-left:950px;">
                                 <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>

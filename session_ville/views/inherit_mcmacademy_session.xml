@@ -19,6 +19,7 @@
             <xpath expr="//group[@name='rapport_jury']" position="inside">
                 <field name="num_agrement_jury" string="Numéro d'agrément"/>
                 <field name="state" string="Région"/>
+                <field name="heure_jury" string="Heure"/>
             </xpath>
         </field>
     </record>

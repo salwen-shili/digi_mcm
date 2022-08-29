@@ -27,6 +27,17 @@
             paperformat="partner_exam.paperformat_convocation"
     />
 
+    <!-- This report action create a report in exam view-->
+    <report id="convocation_examen_ids'"
+            string="Convocation"
+            model="info.examen"
+            report_type="qweb-pdf"
+            name="partner_exam.examen_convocation_id"
+            file="partner_exam.convocation_examen_ids"
+            print_report_name="'Convocation- %s - %s' % ((object.partner_id.mcm_session_id.date_exam),(object.partner_id.name).replace('/', ''))"
+            paperformat="partner_exam.paperformat_convocation"
+    />
+
     <!--    This is used to reformat paper format of report PDF Relevé de Note-->
     <record id="paperformat_releve_note_id" model="report.paperformat">
         <field name="name">Relevé de note</field>
@@ -53,16 +64,40 @@
             file="partner_exam.report_releve_note_id"
             print_report_name="'Relevé-de-notes %s' % (object.name).replace('/', '')"
             paperformat="partner_exam.paperformat_releve_note_id"/>
+
     <!-- This is the action to create a print pdf in module info.examen for "Générer les relevés de notes", using the template(xml) ID-->
-    <report id="mass_pdf_relevé_de_note_examen"
+    <report id="examen_releve_note_ids"
             model="info.examen"
-            string="Générer les relevés de notes"
+            string="Relevé de note"
             report_type="qweb-pdf"
-            name="partner_exam.mass_pdf_relevé_de_note_examen_ids"
-            file="partner_exam.mass_pdf_relevé_de_note_examen"
+            name="partner_exam.examen_releve_note_id"
+            file="partner_exam.examen_releve_note_ids"
             menu="True"
             print_report_name="'Relevé-de-notes- %s' % (object.partner_id.name).replace('/', '')"
             paperformat="partner_exam.paperformat_releve_note_id"/>
+
+    <!-- Rapport attestation de suivi de formation dans l'interface de notes des examen, le menu existe dans la session-->
+    <report id="examen_suivi_de_formation_ids"
+            model="info.examen"
+            string="Attestation de suivi de formation"
+            report_type="qweb-pdf"
+            name="partner_exam.examen_attestation_suivi_formation_id"
+            file="partner_exam.examen_suivi_de_formation_ids"
+            menu="True"
+            print_report_name="'Attestation-suivi-formation- %s' % (object.partner_id.name).replace('/', '')"
+            paperformat="partner_exam.paperformat_releve_note_id"/>
+
+    <!-- Rapport cerfa dans l'interface de notes des examen, le menu existe dans la session-->
+    <report id="examen_cerfa_id"
+            model="info.examen"
+            string="Cerfa"
+            report_type="qweb-pdf"
+            name="partner_exam.examen_rapport_cerfa_id"
+            file="partner_exam.examen_cerfa_id"
+            menu="True"
+            print_report_name="'Cerfa- %s' % (object.partner_id.name).replace('/', '')"
+            paperformat="partner_exam.paperformat_cerfa"/>
+
     <!--This is the action to create a print pdf in module res.partner for "Attestation de suivi de formation", using the template(xml) ID-->
     <report id="id_attestation"
             model="res.partner"
@@ -89,6 +124,7 @@
         <field name="header_spacing">0</field>
         <field name="dpi">90</field>
     </record>
+
     <!--    This is used to reformat paper pdf format of connection statement -->
     <record id="paperformat_connection_statement" model="report.paperformat">
         <field name="name">Un relevé de connexion</field>
@@ -132,7 +168,8 @@
             file="partner_exam.report_cerfa"
             paperformat="partner_exam.paperformat_cerfa"
     />
-    <!-- Connection statement -->
+
+    <!-- Connection statement in partner view (Générer un relevé de connexion)-->
     <report id="pdf_connection_statement_id"
             string="Générer un relevé de connexion"
             model="res.partner"
@@ -142,6 +179,17 @@
             print_report_name="'Relevé de connexion- %s' % (object.name).replace('/', '')"
             paperformat="partner_exam.paperformat_connection_statement"
     />
+    <!-- Connection statement in exam view (Générer un relevé de connexion)-->
+    <report id="exam_connection_statement_id"
+            string="Générer un relevé de connexion"
+            model="info.examen"
+            report_type="qweb-pdf"
+            name="partner_exam.examen_connection_statement"
+            file="partner_exam.exam_connection_statement_id"
+            print_report_name="'Relevé de connexion- %s' % (object.partner_id.name).replace('/', '')"
+            paperformat="partner_exam.paperformat_connection_statement"
+    />
+
     <!-- RAPPORT DE SESSION D’EXAMEN -->
     <report id="pdf_rapport_session_examen_id"
             string="RAPPORT DE SESSION D’EXAMEN"

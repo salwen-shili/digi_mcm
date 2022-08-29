@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <template id="id_many_releve_note_print_report_pdf">
+        <template id="examen_releve_note_id">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.basic_layout">
@@ -11,9 +11,8 @@
                             font-size:18px !important;
                             }
                         </style>
-                        <t t-if="docs.note_exam_id">
-                            <t t-foreach="docs.note_exam_id[-1]" t-as="res"
-                               style="line-height:1.5;font-family:Montserrat;font-size:12%;page-break-before:always;">
+                        <t t-foreach="o.partner_id.note_exam_id[-1]" t-as="res"
+                               style="line-height:1.5;font-family:Montserrat;font-size:12%;">
                                 <t t-if="res.presence == 'present' or res.presence == 'Absent'">
                                     <div class="page">
                                         <div class="oe_structure"/>
@@ -35,10 +34,10 @@
                                                 Général du
                                                 centre de
                                                 formation Digimoov, agréé par le préfet de la région
-                                                <span t-field='o.note_exam_id[-1].session_id.state'/>
-                                                <t t-if="o.note_exam_id[-1].session_id.num_agrement_jury">
+                                                <span t-field='o.partner_id.note_exam_id[-1].session_id.state'/>
+                                                <t t-if="o.partner_id.note_exam_id[-1].session_id.num_agrement_jury">
                                                     sous le numéro d’agrément
-                                                    <span t-field='o.note_exam_id[-1].session_id.num_agrement_jury'/>
+                                                    <span t-field='o.partner_id.note_exam_id[-1].session_id.num_agrement_jury'/>
                                                 </t>
                                                 <t t-else="">
                                                     <span></span>
@@ -48,45 +47,45 @@
                                                 <br/>
                                                 Atteste que
                                                 <strong>
-                                                    <span t-raw="'%s' % o.name if o.name else ''"/>
+                                                    <span t-raw="'%s' % o.partner_id.name if o.partner_id.name else ''"/>
                                                 </strong>
                                                 <br/>
                                                 Né(e) le :
                                                 <strong>
-                                                    <span t-field="o.birthday"/>
+                                                    <span t-field="o.partner_id.birthday"/>
                                                 </strong>
                                                 <br/>
                                                 Demeurant au :
                                                 <strong>
-                                                    <span t-raw="'%s' % o.street if o.street else ''"/>,
-                                                    <span t-raw="'%s' % o.zip if o.zip else ''"/>
-                                                    <span t-raw="'%s' % o.city if o.city else ''"/>
+                                                    <span t-raw="'%s' % o.partner_id.street if o.partner_id.street else ''"/>,
+                                                    <span t-raw="'%s' % o.partner_id.zip if o.partner_id.zip else ''"/>
+                                                    <span t-raw="'%s' % o.partner_id.city if o.partner_id.city else ''"/>
                                                 </strong>
                                                 <br></br>
                                                 A été
                                                 <strong>
-                                                    <span t-field="o.note_exam_id[-1].mention"
+                                                    <span t-field="o.partner_id.note_exam_id[-1].mention"
                                                           style="text-transform: lowercase;"/>(e)
                                                 </strong>
                                                 aux épreuves d’examen pour l’obtention de
                                                 l’attestation de capacité de transport léger de marchandises
                                                 organisé au centre d’examen situé au
                                                 <strong>
-                                                    <t t-if="o.note_exam_id[0].session_id.session_adresse_examen.adresse_centre_examen">
-                                                        <span t-field='o.note_exam_id[-1].session_id.session_adresse_examen.adresse_centre_examen'/>
+                                                    <t t-if="o.partner_id.note_exam_id[0].session_id.session_adresse_examen.adresse_centre_examen">
+                                                        <span t-field='o.partner_id.note_exam_id[-1].session_id.session_adresse_examen.adresse_centre_examen'/>
                                                     </t>
                                                 </strong>
                                                 <br></br>
                                                 le
                                                 <strong>
-                                                    <t t-if="o.note_exam_id[-1].session_id.date_exam">
-                                                        <span t-field='o.note_exam_id[-1].session_id.date_exam'
+                                                    <t t-if="o.partner_id.note_exam_id[-1].session_id.date_exam">
+                                                        <span t-field='o.partner_id.note_exam_id[-1].session_id.date_exam'
                                                               t-field-options='{"format": "dd/MM/yyyy"}'/>
                                                     </t>
                                                 </strong>
                                                 pour son
                                                 <strong>
-                                                    <span t-raw="'%s' % o.note_exam_id[-1].nombre_de_passage if o.note_exam_id[-1].nombre_de_passage else ''"/>
+                                                    <span t-raw="'%s' % o.partner_id.note_exam_id[-1].nombre_de_passage if o.partner_id.note_exam_id[-1].nombre_de_passage else ''"/>
                                                 </strong>
                                                 passage, en ayant obtenu les notes
                                                 suivantes :
@@ -120,12 +119,12 @@
                                                                     <td align="center">
                                                                         <strong>
                                                                             <t t-if="res.presence == 'present'">
-                                                                                <t t-if="o.note_exam_id[-1].epreuve_a &gt; 0 or o.note_exam_id[-1].epreuve_b &gt; 0">
-                                                                                    <span t-esc="'%.0f' % o.note_exam_id[-1].epreuve_a"/>
+                                                                                <t t-if="o.partner_id.note_exam_id[-1].epreuve_a &gt; 0 or o.partner_id.note_exam_id[-1].epreuve_b &gt; 0">
+                                                                                    <span t-esc="'%.0f' % o.partner_id.note_exam_id[-1].epreuve_a"/>
                                                                                 </t>
                                                                             </t>
                                                                             <t t-else="">
-                                                                                <span t-field="o.note_exam_id[-1].presence"/>
+                                                                                <span t-field="o.partner_id.note_exam_id[-1].presence"/>
                                                                                 <span>(e)</span>
                                                                             </t>
                                                                         </strong>
@@ -138,10 +137,10 @@
                                                                     <td align="center">
                                                                         <strong>
                                                                             <t t-if="res.presence == 'present'">
-                                                                                <span t-esc="'%.0f' % o.note_exam_id[-1].epreuve_b"/>
+                                                                                <span t-esc="'%.0f' % o.partner_id.note_exam_id[-1].epreuve_b"/>
                                                                             </t>
                                                                             <t t-else="">
-                                                                                <span t-field="o.note_exam_id[-1].presence"/>
+                                                                                <span t-field="o.partner_id.note_exam_id[-1].presence"/>
                                                                                 <span>(e)</span>
                                                                             </t>
                                                                         </strong>
@@ -162,10 +161,10 @@
                                                                     </td>
                                                                     <td align="center">
                                                                         <strong>
-                                                                            <t t-if="o.note_exam_id[-1].moyenne_generale &gt; 0">
-                                                                                <span t-esc="'%.0f' % o.note_exam_id[-1].moyenne_generale"/>
+                                                                            <t t-if="o.partner_id.note_exam_id[-1].moyenne_generale &gt; 0">
+                                                                                <span t-esc="'%.0f' % o.partner_id.note_exam_id[-1].moyenne_generale"/>
                                                                             </t>
-                                                                            <t t-if="not o.note_exam_id[-1].moyenne_generale &gt; 0">
+                                                                            <t t-if="not o.partner_id.note_exam_id[-1].moyenne_generale &gt; 0">
                                                                                 <span>Absent(e)</span>
                                                                             </t>
                                                                         </strong>
@@ -177,12 +176,12 @@
                                                                     </td>
                                                                     <td align="center">
                                                                         <strong>
-                                                                            <t t-if="docs.note_exam_id">
-                                                                                <t t-foreach="docs.note_exam_id[-1]"
+                                                                            <t t-if="docs.partner_id.note_exam_id">
+                                                                                <t t-foreach="docs.partner_id.note_exam_id[-1]"
                                                                                    t-as="res"
-                                                                                   style="line-height:1.5;font-family:Montserrat;font-size:12%;page-break-before:always;">
+                                                                                   style="line-height:1.5;font-family:Montserrat;font-size:12%;">
                                                                                     <t t-if="res.resultat == 'recu' or res.resultat == 'ajourne'">
-                                                                                        <span t-field="o.note_exam_id[-1].resultat"/>
+                                                                                        <span t-field="res.resultat"/>
                                                                                         <span>(e)</span>
                                                                                     </t>
                                                                                 </t>
@@ -240,7 +239,6 @@
                                     </div>
                                 </t>
                             </t>
-                        </t>
                     </t>
                 </t>
             </t>
