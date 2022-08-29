@@ -86,6 +86,7 @@
                                 <span t-raw="'%s' % o.partner_id.country_id.name if o.partner_id.country_id else '-------------'"/>
                                 <br/>
                                 <t t-set="phone" t-value="o.partner_id.phone.replace(' ', '')"/>
+                                <span t-esc="phone.replace('+33', '0')[-9:]"/>
                                 <t t-if="phone[3:] == '+33'">
                                     <span t-esc="phone.replace('+33', '0')[-9:]"/>
                                 </t>
