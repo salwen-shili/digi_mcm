@@ -11,6 +11,7 @@
                         <group>
                            <field name="name"/>
                            <field name="company_id"/>
+                           <field name="folded"/>
                         </group>
                     </sheet>
                 </form>
