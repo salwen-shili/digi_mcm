@@ -1,5 +1,6 @@
-<odoo>
+<?xml version="1.0" encoding="utf-8" ?>
 
+<odoo>
 
     <record model="ir.actions.act_window" id="act_coach_graph">
         <field name="name">Coaches</field>
@@ -37,6 +38,17 @@
         <field name="name">My Dashboard</field>
         <field name="model">board.board</field>
         <field name="arch" type="xml">
+            <t t-name="CustomDashBoard">
+                <div class="oh_dashboards" style="margin-top: 50px;">
+                    <div class="container-fluid o_pj_dashboard">
+                        <center>
+                            <img src="https://so2-static.s3.eu-west-3.amazonaws.com/digimoov/logo.png" width="15%"/>
+                        </center>
+
+                    </div>
+                </div>
+
+            </t>
             <form string="My Dashboard">
                 <board style="1-1">
                     <column>
@@ -49,7 +61,9 @@
                                 domain="[]" modifiers="{}"/>
                     </column>
                     <column>
-                        <action name="%(app_graph)d" string="Les Apprenants" view_mode="graph" context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 1, 'allowed_company_ids': [1], 'group_by': ['company_id', 'state'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_id', 'state'], 'dashboard_merge_domains_contexts': False}" domain="[['company_id', '=', 1]]" modifiers="{}"/>
+                        <action name="%(app_graph)d" string="Les Apprenants" view_mode="graph"
+                                context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 1, 'allowed_company_ids': [1], 'group_by': ['company_id', 'state'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_id', 'state'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', '=', 1]]" modifiers="{}"/>
 
 
                         <action name="%(act_coach_graph)d" string="Coaches" view_mode="graph"
@@ -85,6 +99,8 @@
         <field name="usage">menu</field>
         <field name="view_id" ref="mcm_openedx_dashbord"/>
     </record>
+
     <menuitem id="main_dashbord" name="Dashbord" parent="main_mcm_openedx_menu" action="open_board_my_dash_action"
               sequence="1"/>
+
 </odoo>
