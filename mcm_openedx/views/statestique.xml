@@ -127,9 +127,9 @@
         <field name="name">mcm_openedx.course_stat.graph</field>
         <field name="model">mcm_openedx.course_stat</field>
         <field name="arch" type="xml">
-            <graph string="Participations by Courses">
+            <graph string="Participations by Courses" type="pie" default_group_by="email">
                 <field name="idcour"/>
-                <field name="attendees_count" type="measure"/>
+                <field name="attendees_count"/>
             </graph>
         </field>
     </record>
@@ -139,7 +139,7 @@
         <field name="name">Courses</field>
         <field name="res_model">mcm_openedx.course_stat</field>
         <field name="view_mode">tree,form,kanban,graph</field>
-        <field name="context">{'search_default_group_email': 1, 'search_default_group_idcour':1}</field>
+        <field name="context">{'search_default_group_idcour':1}</field>
 
 
     </record>

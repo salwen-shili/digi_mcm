@@ -117,7 +117,7 @@ class Cours_stat(models.Model):
             'tag': 'reload',
         }
 
-
+#Ajout Class Apprenant Actif Vs non Actif
 class actif_inactif(models.Model):
     _name = 'mcm_openedx.state'
     _description = "importer les listes des cours pour calculer les statestiques"
@@ -132,7 +132,7 @@ class actif_inactif(models.Model):
     def _get_attendees_count(self):
         for r in self:
             r.statut = len(r.statut)
-
+    #suprimer duplication lors d'importation
     def test_app(self):
         # cree une  liste pour stocker les duplication
         listcourduplicated = []
