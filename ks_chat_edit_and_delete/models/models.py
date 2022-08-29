@@ -6,7 +6,7 @@ class KsChatDelete(models.Model):
     _inherit = 'mail.message'
     ks_msg_del = fields.Char()
     ks_msg_edit = fields.Boolean()
-    ks_msg_edit_date = fields.Char(string="Date de modification de contenu de message")
+    ks_msg_edit_date = fields.Char()
 
     # Function to delete the message and changes the message to notification.
     @api.model
@@ -43,9 +43,9 @@ class KsChatDelete(models.Model):
         ks_present = datetime.datetime.now()
         ks_difference = ks_present - ks_date
         self.write_date = datetime.datetime.now()
-        self.browse(ks_message_id).ks_msg_edit_date = str(datetime.datetime.now())
         if ks_difference.seconds <= 600:
             self.browse(ks_message_id).ks_msg_edit = ks_state
+            self.browse(ks_message_id).ks_msg_edit_date = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     # @api.multi
     def read(self, fields=None, load='_classic_read'):
@@ -53,6 +53,8 @@ class KsChatDelete(models.Model):
             by the ORM. It instead directly fetches ir.rules and apply them. """
         if fields and 'ks_msg_edit' not in fields:
             fields.append('ks_msg_edit')
+        if fields and 'ks_msg_edit_date' not in fields:
+            fields.append('ks_msg_edit_date')
 
         return super(KsChatDelete, self).read(fields=fields, load=load)
 

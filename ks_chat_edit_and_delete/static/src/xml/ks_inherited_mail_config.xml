@@ -14,7 +14,7 @@
             </span>
             <span class="ks_check_edited">
                 <t t-if="message.ks_getEditMessage() and !message.isSystemNotification() and !message.needsModeration() and !message.shouldRedirectToAuthor() and message.ks_hasBody()">
-                    <span>Edité </span>
+                    <span>Edité le </span>
                 </t>
                 <t t-if="message.ks_getEditMessageDate()">
                     <small><t t-esc="message.ks_getEditMessageDate()"/></small>

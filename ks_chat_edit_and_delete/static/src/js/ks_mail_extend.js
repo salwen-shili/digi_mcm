@@ -233,11 +233,11 @@ odoo.define('ks_chat_edit_and_delete.ks_qweb_load', function (require) {
                                 method: 'ks_edit_message',
                                 args: [ks_messageID, true],
                             });
-                    ks_msg_span.innerHTML = `<span> Edité le ${new Date().toLocaleString()}</span>`;
+//                    ks_msg_span.innerHTML = `<span> Edité le ${new Date().toLocaleString()}</span>`;
                     _.map(ks_thread_messages, function(ks_thread_message, ks_message_div){
                        if(ks_thread_message._id === ks_messageID){
                             ks_thread_message.ks_msg_edit = true;
-                            ks_thread_message.ks_msg_edit_date = `<span> ${new Date().toLocaleString()}</span>`;
+                            ks_thread_message.ks_msg_edit_date = new Date().toLocaleString();
                             ks_thread_message._body = $("#input_"+ks_messageID)[0].value;
                        }
                    });
@@ -396,7 +396,7 @@ odoo.define('ks_chat_edit_and_delete.ks_qweb_load', function (require) {
 
         init: function (parent, data) {
             this.ks_msg_edit = data.ks_msg_edit;
-            this._ks_msg_edit_date = data.ks_msg_edit_date;
+            this.ks_msg_edit_date = data.ks_msg_edit_date;
 
             this._super(parent, data);
             console.log('data: '+data);
@@ -432,10 +432,8 @@ odoo.define('ks_chat_edit_and_delete.ks_qweb_load', function (require) {
         ks_getEditMessage: function(){
             return this.ks_msg_edit;
         },
-
-        ks_getEditMessageDate : function(){
-            return this._ks_msg_edit_date;
-
+        ks_getEditMessageDate: function(){
+            return this.ks_msg_edit_date;
         },
 
         ks_edit_time_elapsed: function(){
