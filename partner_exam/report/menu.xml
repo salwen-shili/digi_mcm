@@ -169,7 +169,7 @@
             paperformat="partner_exam.paperformat_cerfa"
     />
 
-    <!-- Connection statement -->
+    <!-- Connection statement in partner view (Générer un relevé de connexion)-->
     <report id="pdf_connection_statement_id"
             string="Générer un relevé de connexion"
             model="res.partner"
@@ -177,6 +177,16 @@
             name="partner_exam.pdf_connection_statement_report"
             file="partner_exam.pdf_connection_statement_id"
             print_report_name="'Relevé de connexion- %s' % (object.name).replace('/', '')"
+            paperformat="partner_exam.paperformat_connection_statement"
+    />
+    <!-- Connection statement in exam view (Générer un relevé de connexion)-->
+    <report id="exam_connection_statement_id"
+            string="Générer un relevé de connexion"
+            model="info.examen"
+            report_type="qweb-pdf"
+            name="partner_exam.examen_connection_statement"
+            file="partner_exam.exam_connection_statement_id"
+            print_report_name="'Relevé de connexion- %s' % (object.partner_id.name).replace('/', '')"
             paperformat="partner_exam.paperformat_connection_statement"
     />
 
