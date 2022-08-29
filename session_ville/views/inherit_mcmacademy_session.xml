@@ -20,7 +20,7 @@
                 <field name="heure_jury" string="Heure"/>
                 <field name="num_agrement_jury" string="Numéro d'agrément"/>
                 <field name="state" string="Région"/>
-                <field name="zoom_link" widget="url" string="Lien ZOOM"><span class="fa-chain"/></field>
+                <field name="zoom_link" widget="url" string="Lien ZOOM"><span class="fa fa-chain"/></field>
 
             </xpath>
         </field>
