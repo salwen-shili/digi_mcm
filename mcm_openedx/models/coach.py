@@ -148,7 +148,8 @@ class Coach(models.Model):
                 r.taken_seats = 0.0
             else:
                 r.taken_seats = 100.0 * len(r.apprenant_name) / r.seats
-    #Faire des tests sur les fiches clients pour extraire le premier courriel qui a été envoyé et assigner le participant à celui qui a envoyé le courriel.
+
+    # Faire des tests sur les fiches clients pour extraire le premier courriel qui a été envoyé et assigner le participant à celui qui a envoyé le courriel.
     def aff_coach(self):
         count_apprennat = 0
         for partner in self.env['res.partner'].sudo().search(
@@ -184,9 +185,12 @@ class Coach(models.Model):
                 count_apprennat = count_apprennat + 1
 
         # definir si le partner et coach
+        listcoach = []
         for coach in self.env['res.partner'].sudo().search(
                 [('est_coach', '=', 'True'), ('company_id', '=', 1)]):
             count = 0
+            listcoach.append(coach.id)
+
             # extraire les client ganger ayant le meme nom de coach dans la liste des partner
             # crer une liste pour stocker les apprennats ayant les informations que en est en train de chercher
             listapprenant = []
@@ -202,10 +206,12 @@ class Coach(models.Model):
                 coach_name = coach.name
                 name = coach.name
                 _logger.info('coachs names %s' % str(coach_name))
-                # verfier dans la class Coach si il existe un coach ayant le meme nom que le coach affecter pour les apprenants
+                 # verfier dans la class Coach si il existe un coach ayant le meme nom que le coach affecter pour les apprenants
                 exist = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '=', coach.id)])
                 # si le coach existe alors en va lui affecter la liste des apprenats ayant le nom de ce caoch
                 _logger.info('exist %s' % str(exist))
+
+
                 if (exist):
                     exist.seats = count_apprennat
                     exist.nombre_apprenant = nombre_apprenant
@@ -219,9 +225,17 @@ class Coach(models.Model):
                     newcoach.nombre_apprenant = nombre_apprenant
                     newcoach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
                                            })
-                    exist.browse(exist.id).sudo().unlink()
+
                 _logger.info('nombre d apprenant par coach nom coach %s' % str(coach_name))
                 _logger.info('nombre d apprenant par coach %s' % str(nombre_apprenant))
+                coachsupp = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '!=', False)])
+
+
+
+                # return {
+                #     'type': 'ir.actions.client',
+                #     'tag': 'reload',
+                # }
 
     # Chercher les nombres des apprenants qui n'ont pas des coachs
     # Chercher le nombre d'apprenants par  coach pour voir la différence et affecter les apprenat aux coachs qui a le nombre inférieur aux autres
