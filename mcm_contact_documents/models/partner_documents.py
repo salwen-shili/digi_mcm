@@ -13,7 +13,7 @@ class Documents(models.Model):
         ('refused', 'Refuser'),
         ('waiting', 'Vérification en cours'),
         ('validated', 'Valider'),
-    ], string='État de document',default="waiting")
+    ], string='État de document',default="waiting",track_visibility='always')
     code_document = fields.Char('code document')
 
     def action_refuse_document(self):
