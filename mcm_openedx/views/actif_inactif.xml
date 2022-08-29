@@ -8,7 +8,7 @@
                 <field name="email" filter_domain="[('email','ilike',self)]"/>
                 <field name="statut" filter_domain="[('statut','ilike',self)]"/>
                 <filter name="group_email" string="Email" icon="terp-partner" context="{'group_by':'email'}"/>
-                <filter name="group_idcour" string="Email" icon="terp-partner" context="{'group_by':'idcour'}"/>
+                <filter name="group_idcour" string="ID COUR" icon="terp-partner" context="{'group_by':'idcour'}"/>
                 <filter name="group_statut" string="Statut" icon="terp-partner" context="{'group_by':'statut'}"/>
             </search>
         </field>
@@ -67,7 +67,7 @@
         </field>
     </record>
     <record id="actif_list_action" model="ir.actions.act_window">
-        <field name="name"> Actif Vs Inactif</field>
+        <field name="name">Actif Vs Inactif</field>
         <field name="res_model">mcm_openedx.state</field>
         <field name="view_mode">tree,form,graph</field>
         <field name="context">{'search_default_group_idcour': 1, 'search_default_group_statut':1}</field>
