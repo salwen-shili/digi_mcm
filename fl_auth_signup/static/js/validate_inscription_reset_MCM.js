@@ -439,6 +439,9 @@ function checkStrength(password) {
       JaroWrinker(
         password.toUpperCase(),
         firstnameCopy.toUpperCase() + lasNameCopy.toUpperCase()
+      ) >= 0.9071428571428571 ||  JaroWrinker(
+        password.toUpperCase(),
+        lasNameCopy.toUpperCase() +  firstnameCopy.toUpperCase()
       ) >= 0.9071428571428571
     ) {
       checkpassword.classList.remove("fa-check");
@@ -450,7 +453,12 @@ function checkStrength(password) {
     } else isSimilarUserName = false;
     if (
       JaroWrinker(password.toUpperCase(), email.toUpperCase()) >=
-      0.9071428571428571
+      0.9071428571428571 || 
+      JaroWrinker(password.toUpperCase(), email.split("@")[0].toUpperCase()) >=
+      0.9071428571428571 ||
+      JaroWrinker(password.toUpperCase(), email.split("@")[1].split(".")[0].toUpperCase()) >=
+      0.9071428571428571 
+
     ) {
       checkpassword.classList.remove("fa-check");
       $(`#password_container `).addClass("error-input-field");
