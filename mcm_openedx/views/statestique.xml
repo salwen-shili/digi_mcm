@@ -9,7 +9,7 @@
                 <field name="name" filter_domain="[('name','ilike',self)]"/>
                 <filter name="group_email" string="Email" icon="terp-partner" context="{'group_by':'email'}"/>
                 <filter name="group_idcour" string="IDcour" icon="terp-partner" context="{'group_by':'idcour'}"/>
-             </search>
+            </search>
         </field>
     </record>
     <record model="ir.ui.view" id="course_stat_form_view">
@@ -127,7 +127,7 @@
         <field name="name">mcm_openedx.course_stat.graph</field>
         <field name="model">mcm_openedx.course_stat</field>
         <field name="arch" type="xml">
-            <graph string="Participations by Courses" type="pie"  >
+            <graph string="Participations by Courses" type="pie">
                 <field name="idcour"/>
                 <field name="attendees_count"/>
             </graph>
@@ -139,10 +139,10 @@
         <field name="name">Courses</field>
         <field name="res_model">mcm_openedx.course_stat</field>
         <field name="view_mode">tree,form,kanban,graph</field>
-        <field name="context">{'search_default_group_idcour':1}</field>
+        <field name="context">{'search_default_group_email':1,'search_default_group_idcour':1}</field>
 
 
     </record>
 
     <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
- </odoo>
+</odoo>

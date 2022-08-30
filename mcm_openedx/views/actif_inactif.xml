@@ -70,7 +70,7 @@
         <field name="name">Actif Vs Inactif</field>
         <field name="res_model">mcm_openedx.state</field>
         <field name="view_mode">tree,form,graph</field>
-        <field name="context">{'search_default_group_idcour': 1, 'search_default_group_statut':1}</field>
+        <field name="context">{'search_default_group_statut':1, 'search_default_group_idcour': 1}</field>
 
 
     </record>
