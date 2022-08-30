@@ -12,233 +12,235 @@
                             }
                         </style>
                         <t t-foreach="o.partner_id.note_exam_id[-1]" t-as="res"
-                               style="line-height:1.5;font-family:Montserrat;font-size:12%;">
-                                <t t-if="res.presence == 'present' or res.presence == 'Absent'">
-                                    <div class="page">
-                                        <div class="oe_structure"/>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <br></br>
-                                                <t t-if="res.resultat == 'recu'">
-                                                    <img src='/partner_exam/static/src/img/new_reussite.png'
-                                                         height="260"
-                                                         width="970"/>
+                           style="line-height:1.5;font-family:Montserrat;font-size:12%;">
+                            <t t-if="res.presence == 'present' or res.presence == 'Absent'">
+                                <div class="page">
+                                    <div class="oe_structure"/>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <br></br>
+                                            <t t-if="res.resultat == 'recu'">
+                                                <img src='/partner_exam/static/src/img/new_reussite.png'
+                                                     height="260"
+                                                     width="970"/>
+                                            </t>
+                                            <t t-if="not res.resultat == 'recu'">
+                                                <img src='/partner_exam/static/src/img/attestation_ajournement.png'
+                                                     height="260"
+                                                     width="970"/>
+                                            </t>
+                                            <br></br>
+                                            Je soussigné <b>Nasserddine Cherih</b> agissant en tant que Directeur
+                                            Général du
+                                            centre de
+                                            formation Digimoov, agréé par le préfet de la région
+                                            <span t-field='o.partner_id.note_exam_id[-1].session_id.state'/>
+                                            <t t-if="o.partner_id.note_exam_id[-1].session_id.num_agrement_jury">
+                                                sous le numéro d’agrément
+                                                <span t-field='o.partner_id.note_exam_id[-1].session_id.num_agrement_jury'/>
+                                            </t>
+                                            <t t-else="">
+                                                <span></span>
+                                            </t>
+                                            , après
+                                            délibération du Jury,
+                                            <br/>
+                                            Atteste que
+                                            <strong>
+                                                <span t-raw="'%s' % o.partner_id.name if o.partner_id.name else ''"/>
+                                            </strong>
+                                            <br/>
+                                            Né(e) le :
+                                            <strong>
+                                                <span t-field="o.partner_id.birthday"/>
+                                            </strong>
+                                            <br/>
+                                            Demeurant au :
+                                            <strong>
+                                                <span t-raw="'%s' % o.partner_id.street if o.partner_id.street else ''"/>
+                                                ,
+                                                <span t-raw="'%s' % o.partner_id.zip if o.partner_id.zip else ''"/>
+                                                <span t-raw="'%s' % o.partner_id.city if o.partner_id.city else ''"/>
+                                            </strong>
+                                            <br></br>
+                                            A été
+                                            <strong>
+                                                <span t-field="o.partner_id.note_exam_id[-1].mention"
+                                                      style="text-transform: lowercase;"/>(e)
+                                            </strong>
+                                            aux épreuves d’examen pour l’obtention de
+                                            l’attestation de capacité de transport léger de marchandises
+                                            organisé au centre d’examen situé au
+                                            <strong>
+                                                <t t-if="o.partner_id.note_exam_id[0].session_id.session_adresse_examen.adresse_centre_examen">
+                                                    <span t-field='o.partner_id.note_exam_id[-1].session_id.session_adresse_examen.adresse_centre_examen'/>
                                                 </t>
-                                                <t t-if="not res.resultat == 'recu'">
-                                                    <img src='/partner_exam/static/src/img/attestation_ajournement.png'
-                                                         height="260"
-                                                         width="970"/>
+                                            </strong>
+                                            <br></br>
+                                            le
+                                            <strong>
+                                                <t t-if="o.partner_id.note_exam_id[-1].session_id.date_exam">
+                                                    <span t-field='o.partner_id.note_exam_id[-1].session_id.date_exam'
+                                                          t-field-options='{"format": "dd/MM/yyyy"}'/>
                                                 </t>
-                                                <br></br>
-                                                Je soussigné <b>Nasserddine Cherih</b> agissant en tant que Directeur
-                                                Général du
-                                                centre de
-                                                formation Digimoov, agréé par le préfet de la région
-                                                <span t-field='o.partner_id.note_exam_id[-1].session_id.state'/>
-                                                <t t-if="o.partner_id.note_exam_id[-1].session_id.num_agrement_jury">
-                                                    sous le numéro d’agrément
-                                                    <span t-field='o.partner_id.note_exam_id[-1].session_id.num_agrement_jury'/>
-                                                </t>
-                                                <t t-else="">
-                                                    <span></span>
-                                                </t>
-                                                , après
-                                                délibération du Jury,
-                                                <br/>
-                                                Atteste que
-                                                <strong>
-                                                    <span t-raw="'%s' % o.partner_id.name if o.partner_id.name else ''"/>
-                                                </strong>
-                                                <br/>
-                                                Né(e) le :
-                                                <strong>
-                                                    <span t-field="o.partner_id.birthday"/>
-                                                </strong>
-                                                <br/>
-                                                Demeurant au :
-                                                <strong>
-                                                    <span t-raw="'%s' % o.partner_id.street if o.partner_id.street else ''"/>,
-                                                    <span t-raw="'%s' % o.partner_id.zip if o.partner_id.zip else ''"/>
-                                                    <span t-raw="'%s' % o.partner_id.city if o.partner_id.city else ''"/>
-                                                </strong>
-                                                <br></br>
-                                                A été
-                                                <strong>
-                                                    <span t-field="o.partner_id.note_exam_id[-1].mention"
-                                                          style="text-transform: lowercase;"/>(e)
-                                                </strong>
-                                                aux épreuves d’examen pour l’obtention de
-                                                l’attestation de capacité de transport léger de marchandises
-                                                organisé au centre d’examen situé au
-                                                <strong>
-                                                    <t t-if="o.partner_id.note_exam_id[0].session_id.session_adresse_examen.adresse_centre_examen">
-                                                        <span t-field='o.partner_id.note_exam_id[-1].session_id.session_adresse_examen.adresse_centre_examen'/>
-                                                    </t>
-                                                </strong>
-                                                <br></br>
-                                                le
-                                                <strong>
-                                                    <t t-if="o.partner_id.note_exam_id[-1].session_id.date_exam">
-                                                        <span t-field='o.partner_id.note_exam_id[-1].session_id.date_exam'
-                                                              t-field-options='{"format": "dd/MM/yyyy"}'/>
-                                                    </t>
-                                                </strong>
-                                                pour son
-                                                <strong>
-                                                    <span t-raw="'%s' % o.partner_id.note_exam_id[-1].nombre_de_passage if o.partner_id.note_exam_id[-1].nombre_de_passage else ''"/>
-                                                </strong>
-                                                passage, en ayant obtenu les notes
-                                                suivantes :
-                                                <img src='/partner_exam/static/src/img/text_1_2.png'
-                                                     style="height:40px;width:840px;padding-left:50px;"/>
-                                                <br></br>
-                                                <p align="center">
-                                                    <b>
-                                                        Conformément à l’arrêté du 28 décembre 2011 relatif à la
-                                                        délivrance des
-                                                        attestations
-                                                        de capacité, professionnelle
-                                                        permettant l’exercice de la profession de transporteur public
-                                                        routier, article 7
-                                                    </b>
-                                                </p>
-                                                <div class="row" style="padding-top:5px!important;">
-                                                    <div class="col-1"></div>
-                                                    <div class="col-10">
-                                                        <table class="table table-bordered"
-                                                               style="border:1px solid black;">
-                                                            <tr align="center">
-                                                                <th>EPREUVES</th>
-                                                                <th>NOTES/200</th>
+                                            </strong>
+                                            pour son
+                                            <strong>
+                                                <span t-raw="'%s' % o.partner_id.note_exam_id[-1].nombre_de_passage if o.partner_id.note_exam_id[-1].nombre_de_passage else ''"/>
+                                            </strong>
+                                            passage, en ayant obtenu les notes
+                                            suivantes :
+                                            <img src='/partner_exam/static/src/img/text_1_2.png'
+                                                 style="height:40px;width:840px;padding-left:50px;"/>
+                                            <br></br>
+                                            <p align="center">
+                                                <b>
+                                                    Conformément à l’arrêté du 28 décembre 2011 relatif à la
+                                                    délivrance des
+                                                    attestations
+                                                    de capacité, professionnelle
+                                                    permettant l’exercice de la profession de transporteur public
+                                                    routier, article 7
+                                                </b>
+                                            </p>
+                                            <div class="row" style="padding-top:5px!important;">
+                                                <div class="col-1"></div>
+                                                <div class="col-10">
+                                                    <table class="table table-bordered"
+                                                           style="border:1px solid black;">
+                                                        <tr align="center">
+                                                            <th>EPREUVES</th>
+                                                            <th>NOTES/200</th>
+                                                        </tr>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    <b>EPREUVE A - QUESTIONS A CHOIX UNIQUE</b>
+                                                                </td>
+                                                                <td align="center">
+                                                                    <strong>
+                                                                        <t t-if="res.presence == 'present'">
+                                                                            <t t-if="o.partner_id.note_exam_id[-1].epreuve_a &gt; 0 or o.partner_id.note_exam_id[-1].epreuve_b &gt; 0">
+                                                                                <span t-esc="'%.0f' % o.partner_id.note_exam_id[-1].epreuve_a"/>
+                                                                            </t>
+                                                                        </t>
+                                                                        <t t-else="">
+                                                                            <span t-field="o.partner_id.note_exam_id[-1].presence"/>
+                                                                            <span>(e)</span>
+                                                                        </t>
+                                                                    </strong>
+                                                                </td>
                                                             </tr>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td align="center">
-                                                                        <b>EPREUVE A - QUESTIONS A CHOIX UNIQUE</b>
-                                                                    </td>
-                                                                    <td align="center">
-                                                                        <strong>
-                                                                            <t t-if="res.presence == 'present'">
-                                                                                <t t-if="o.partner_id.note_exam_id[-1].epreuve_a &gt; 0 or o.partner_id.note_exam_id[-1].epreuve_b &gt; 0">
-                                                                                    <span t-esc="'%.0f' % o.partner_id.note_exam_id[-1].epreuve_a"/>
-                                                                                </t>
-                                                                            </t>
-                                                                            <t t-else="">
-                                                                                <span t-field="o.partner_id.note_exam_id[-1].presence"/>
-                                                                                <span>(e)</span>
-                                                                            </t>
-                                                                        </strong>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td align="center">
-                                                                        <b>EPREUVE B - QUESTION DE RÉDACTION</b>
-                                                                    </td>
-                                                                    <td align="center">
-                                                                        <strong>
-                                                                            <t t-if="res.presence == 'present'">
-                                                                                <span t-esc="'%.0f' % o.partner_id.note_exam_id[-1].epreuve_b"/>
-                                                                            </t>
-                                                                            <t t-else="">
-                                                                                <span t-field="o.partner_id.note_exam_id[-1].presence"/>
-                                                                                <span>(e)</span>
-                                                                            </t>
-                                                                        </strong>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="padding-top:10px!important;">
-                                                    <div class="col-1"></div>
-                                                    <div class="col-10">
-                                                        <table class="table table-bordered">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td align="center">
-                                                                        <b>Moyenne générale</b>
-                                                                    </td>
-                                                                    <td align="center">
-                                                                        <strong>
-                                                                            <t t-if="o.partner_id.note_exam_id[-1].moyenne_generale &gt; 0">
-                                                                                <span t-esc="'%.0f' % o.partner_id.note_exam_id[-1].moyenne_generale"/>
-                                                                            </t>
-                                                                            <t t-if="not o.partner_id.note_exam_id[-1].moyenne_generale &gt; 0">
-                                                                                <span>Absent(e)</span>
-                                                                            </t>
-                                                                        </strong>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td align="center">
-                                                                        <b>Résultat</b>
-                                                                    </td>
-                                                                    <td align="center">
-                                                                        <strong>
-                                                                            <t t-if="docs.partner_id.note_exam_id">
-                                                                                <t t-foreach="docs.partner_id.note_exam_id[-1]"
-                                                                                   t-as="res"
-                                                                                   style="line-height:1.5;font-family:Montserrat;font-size:12%;">
-                                                                                    <t t-if="res.resultat == 'recu' or res.resultat == 'ajourne'">
-                                                                                        <span t-field="res.resultat"/>
-                                                                                        <span>(e)</span>
-                                                                                    </t>
-                                                                                </t>
-                                                                            </t>
-                                                                        </strong>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <br></br>
-                                                <p align="center">
-                                                    <b>Il est rappelé que d’après l’arrêté du 28 décembre 2011 relatif à
-                                                        la
-                                                        délivrance des attestations de capacité
-                                                        professionnelle permettant l'exercice de la profession de
-                                                        transporteur
-                                                        public routier, sont déclarés reçus
-                                                        les candidats qui ont obtenu, pour l'ensemble des épreuves, une
-                                                        note au
-                                                        moins égale à 120 sur 200, sous réserve qu'ils aient obtenu au
-                                                        moins 50 points
-                                                        pour
-                                                        le questionnaire à choix
-                                                        multiples et 40 points pour l'épreuve à réponses
-                                                        rédigées.
-                                                    </b>
-                                                </p>
-                                                <br></br>
-                                                <div class="row" style="padding-left:100px!important;">
-                                                    <table border="0" width="700">
-                                                        <thead>
-                                                            <tr align="center">
-                                                                <th>Signature
-                                                                    <img src='/partner_exam/static/src/img/signature.png'
-                                                                         style="height:100px; width:200px;"/>
-                                                                </th>
-                                                                <th width="400"></th>
-                                                                <th>À Paris,
-                                                                    <span>le</span>
-                                                                    <br/>
-                                                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
-                                                                </th>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    <b>EPREUVE B - QUESTION DE RÉDACTION</b>
+                                                                </td>
+                                                                <td align="center">
+                                                                    <strong>
+                                                                        <t t-if="res.presence == 'present'">
+                                                                            <span t-esc="'%.0f' % o.partner_id.note_exam_id[-1].epreuve_b"/>
+                                                                        </t>
+                                                                        <t t-else="">
+                                                                            <span t-field="o.partner_id.note_exam_id[-1].presence"/>
+                                                                            <span>(e)</span>
+                                                                        </t>
+                                                                    </strong>
+                                                                </td>
                                                             </tr>
-                                                        </thead>
+                                                        </tbody>
                                                     </table>
                                                 </div>
-                                                <br></br>
-                                                <img src='/partner_exam/static/src/img/footer_attestation_r.png'
-                                                     height="150"
-                                                     width="1000"/>
                                             </div>
+                                            <div class="row" style="padding-top:10px!important;">
+                                                <div class="col-1"></div>
+                                                <div class="col-10">
+                                                    <table class="table table-bordered">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    <b>Moyenne générale</b>
+                                                                </td>
+                                                                <td align="center">
+                                                                    <strong>
+                                                                        <t t-if="o.partner_id.note_exam_id[-1].moyenne_generale &gt; 0">
+                                                                            <span t-esc="'%.0f' % o.partner_id.note_exam_id[-1].moyenne_generale"/>
+                                                                        </t>
+                                                                        <t t-if="not o.partner_id.note_exam_id[-1].moyenne_generale &gt; 0">
+                                                                            <span>Absent(e)</span>
+                                                                        </t>
+                                                                    </strong>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    <b>Résultat</b>
+                                                                </td>
+                                                                <td align="center">
+                                                                    <strong>
+                                                                        <t t-esc="{False: False, 'recu': 'Reçu(e)', 'ajourne': 'Ajourné(e)'}[o.resultat]"></t>
+                                                                        <!--                                                                            <t t-if="o.partner_id.note_exam_id">-->
+                                                                        <!--                                                                                <t t-foreach="o.partner_id.note_exam_id[-1]"-->
+                                                                        <!--                                                                                   t-as="res"-->
+                                                                        <!--                                                                                   style="line-height:1.5;font-family:Montserrat;font-size:12%;">-->
+                                                                        <!--                                                                                    <t t-if="res.resultat == 'recu' or res.resultat == 'ajourne'">-->
+                                                                        <!--                                                                                        <span t-field="res.resultat"/>-->
+                                                                        <!--                                                                                        <span>(e)</span>-->
+                                                                        <!--                                                                                    </t>-->
+                                                                        <!--                                                                                </t>-->
+                                                                        <!--                                                                            </t>-->
+                                                                    </strong>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <br></br>
+                                            <p align="center">
+                                                <b>Il est rappelé que d’après l’arrêté du 28 décembre 2011 relatif à
+                                                    la
+                                                    délivrance des attestations de capacité
+                                                    professionnelle permettant l'exercice de la profession de
+                                                    transporteur
+                                                    public routier, sont déclarés reçus
+                                                    les candidats qui ont obtenu, pour l'ensemble des épreuves, une
+                                                    note au
+                                                    moins égale à 120 sur 200, sous réserve qu'ils aient obtenu au
+                                                    moins 50 points
+                                                    pour
+                                                    le questionnaire à choix
+                                                    multiples et 40 points pour l'épreuve à réponses
+                                                    rédigées.
+                                                </b>
+                                            </p>
+                                            <br></br>
+                                            <div class="row" style="padding-left:100px!important;">
+                                                <table border="0" width="700">
+                                                    <thead>
+                                                        <tr align="center">
+                                                            <th>Signature
+                                                                <img src='/partner_exam/static/src/img/signature.png'
+                                                                     style="height:100px; width:200px;"/>
+                                                            </th>
+                                                            <th width="400"></th>
+                                                            <th>À Paris,
+                                                                <span>le</span>
+                                                                <br/>
+                                                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <br></br>
+                                            <img src='/partner_exam/static/src/img/footer_attestation_r.png'
+                                                 height="150"
+                                                 width="1000"/>
                                         </div>
                                     </div>
-                                </t>
+                                </div>
                             </t>
+                        </t>
                     </t>
                 </t>
             </t>
