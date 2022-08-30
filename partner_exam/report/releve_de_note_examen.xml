@@ -177,17 +177,7 @@
                                                                 </td>
                                                                 <td align="center">
                                                                     <strong>
-                                                                        <t t-esc="{False: False, 'recu': 'Reçu(e)', 'ajourne': 'Ajourné(e)'}[o.resultat]"></t>
-                                                                        <!--                                                                            <t t-if="o.partner_id.note_exam_id">-->
-                                                                        <!--                                                                                <t t-foreach="o.partner_id.note_exam_id[-1]"-->
-                                                                        <!--                                                                                   t-as="res"-->
-                                                                        <!--                                                                                   style="line-height:1.5;font-family:Montserrat;font-size:12%;">-->
-                                                                        <!--                                                                                    <t t-if="res.resultat == 'recu' or res.resultat == 'ajourne'">-->
-                                                                        <!--                                                                                        <span t-field="res.resultat"/>-->
-                                                                        <!--                                                                                        <span>(e)</span>-->
-                                                                        <!--                                                                                    </t>-->
-                                                                        <!--                                                                                </t>-->
-                                                                        <!--                                                                            </t>-->
+                                                                        <t t-esc="{False: False, 'recu': 'Reçu(e)', 'ajourne': 'Ajourné(e)'}[o.resultat]"/>
                                                                     </strong>
                                                                 </td>
                                                             </tr>
