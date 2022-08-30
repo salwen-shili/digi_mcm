@@ -400,8 +400,8 @@ class partner(models.Model):
                 url_groups = 'https://staging.360learning-dev.com/api/v1/groups'
                 url_unsubscribeToEmailNotifications = ' https://staging.360learning-dev.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
                 headers = CaseInsensitiveDict()
-                headers["Content-Type"] = "application/json"
-                headers["charset"] = "utf - 8"
+                headers["Content-Type"] = "application/json ; charset = UTF-8"
+                
                 invit = False
                 create = False
                 # Si le mot de passe n'est pas récupérée au moment d'inscrit on invite l'apprennant
