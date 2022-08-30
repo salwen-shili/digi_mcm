@@ -138,7 +138,7 @@
                                             </a>
                                         </p>
                                     </div>
-                                    <style>
+                                    <style t-if="request.website.id == 1">
 
 
                                 
@@ -181,7 +181,7 @@
   background-color: #04AA6D;
 }
 </style>
-                                    <fieldset class="tab" id="fields1">
+                                    <fieldset class="tab" id="fields1" >
                                         <div class="row" t-if="not login or not last_login">
                                             <div class="col-7">
                                                 <h2 class="fs-title">Informations personnelles:</h2>
@@ -656,14 +656,14 @@
                                                 </button>
                                             </t>
                                             <t t-if="request.website.id == 2">
-                                                <!-- <button id="inscrire" type="submit" t-if="not name or not last_login"
+                                                <button id="inscrire" type="submit" t-if="not name or not last_login"
                                                         class="rkmd-btn btn-blue ripple-effect ripple-yellow"
                                                         data-oe-model="ir.ui.view" data-oe-id="1730"
                                                         data-oe-field="arch"
                                                         data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
                                                     S'inscrire
                                                     <i class="material-icons right">send</i>
-                                                </button> -->
+                                                </button>
                                                 <button type="submit"
                                                         class="rkmd-btn btn-black ripple-effect ripple-yellow"
                                                         t-if="last_login">
@@ -682,19 +682,20 @@
                                     </fieldset>
                                     <div style="overflow:auto;">
                                         <div style="float:right;">
-                                          <button type="button" id="prevBtn" class="rkmd-btn btn-grey ripple-effect ripple-yellow" onclick="nextPrev(-1)"><i class="material-icons left">keyboard_arrow_left</i>Retour</button>
                                           <t t-if="request.website.id == 1">
-                                            
+                                            <button type="button" id="prevBtn" class="rkmd-btn btn-grey ripple-effect ripple-yellow" onclick="nextPrev(-1)"><i class="material-icons left">keyboard_arrow_left</i>Retour</button>
+
                                             <button type="button" class="rkmd-btn btn-black ripple-effect ripple-yellow" 
                                             t-if="not name or not last_login" id="nextBtn" onclick="nextPrev(1)">Suivant  <i class="material-icons right">send</i></button>
 
                                           </t>
-                                          <t t-if="request.website.id == 2">
+                                          <!-- <t t-if="request.website.id == 2">
                                             <button type="button" class="rkmd-btn btn-blue ripple-effect ripple-yellow" t-if="not name or not last_login" id="nextBtn" onclick="nextPrev(1)">Suivant<i class="material-icons right">keyboard_arrow_right</i></button>
-                                          </t>
+                                          </t> -->
                                         </div>
                                       </div>
-                                      <div style="text-align:center;margin-top:40px;">
+                                      <!-- Les points en bas du wizard -steps-->
+                                      <div style="text-align:center;margin-top:40px;" t-if="request.website.id == 1" >
                                         <span class="step"></span>
                                         <span class="step"></span>
                              
