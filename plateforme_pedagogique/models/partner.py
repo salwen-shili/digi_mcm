@@ -401,6 +401,7 @@ class partner(models.Model):
                 url_unsubscribeToEmailNotifications = ' https://staging.360learning-dev.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
                 headers = CaseInsensitiveDict()
                 headers["Content-Type"] = "application/json"
+                headers["charset"] = "utf - 8"
                 invit = False
                 create = False
                 # Si le mot de passe n'est pas récupérée au moment d'inscrit on invite l'apprennant
@@ -425,7 +426,7 @@ class partner(models.Model):
                     _logger.info('desactiver email %s' % str(resp_unsub_email))
                     # Ajouter i-One to table user
 
-                    data_user = '{"mail":"' + partner.email + '" , "password":"' + password + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
+                    data_user = '{"mail":"' + partner.email + '" , "password":"' + partner.password360  + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     _logger.info('data_user %s' % str(data_user))
                     respo = str(json.loads(resp.text))
