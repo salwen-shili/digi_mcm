@@ -59,7 +59,7 @@ class HelpdeskTicket(models.Model):
 
     def unlink_ticket_rejected_mails(self):
         tickets = self.env["helpdesk.ticket"].sudo().search([], order="id DESC",
-                                                            limit=1500)  # récupérer les 500 derniers tickets créers
+                                                            limit=500)  # récupérer les 500 derniers tickets créers
         # list des terms ou emails rejetés ( supprimer les tickets envoyés par ces emails )
         rejected_mails = [
             'no-reply@360learning.com','zoom.us','product-feedback@calendly.com','no-reply','customermarketing@aircall.io','newsletter@axeptio.eu','order-update@amazon.fr',
