@@ -206,11 +206,10 @@ class Coach(models.Model):
                 coach_name = coach.name
                 name = coach.name
                 _logger.info('coachs names %s' % str(coach_name))
-                 # verfier dans la class Coach si il existe un coach ayant le meme nom que le coach affecter pour les apprenants
+                # verfier dans la class Coach si il existe un coach ayant le meme nom que le coach affecter pour les apprenants
                 exist = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '=', coach.id)])
                 # si le coach existe alors en va lui affecter la liste des apprenats ayant le nom de ce caoch
                 _logger.info('exist %s' % str(exist))
-
 
                 if (exist):
                     exist.seats = count_apprennat
@@ -229,8 +228,6 @@ class Coach(models.Model):
                 _logger.info('nombre d apprenant par coach nom coach %s' % str(coach_name))
                 _logger.info('nombre d apprenant par coach %s' % str(nombre_apprenant))
                 coachsupp = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '!=', False)])
-
-
 
                 # return {
                 #     'type': 'ir.actions.client',

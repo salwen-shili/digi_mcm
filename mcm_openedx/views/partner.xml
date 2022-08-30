@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name" filter_domain="[('name','ilike',self)]"></field>
+                <field name="coach_peda" filter_domain="[('coach_peda','ilike',self)]"></field>
                 <field name="email" filter_domain="[('email','ilike',self)]"></field>
                 <filter name="company"/>
                 <filter name="company" string="MCM Academy"
@@ -20,6 +21,15 @@
 
                 <filter name="group_company_id" string="Societé" icon="terp-partner"
                         context="{'group_by':'company_id'}"/>
+                <filter name="group_mcm_session_id" string="Session" icon="terp-partner"
+                        domain="[('mcm_session_id.date_exam.year', '=',2022)]"
+
+                        context="{'group_by':'mcm_session_id'}"/>
+                <filter name="group_module_id" string="Module" icon="terp-partner" context="{'group_by':'module_id'}"/>
+                <filter name="group_coach_peda" string="Coach" icon="terp-partner"
+                        context="{'group_by':'coach_peda'}"/>
+
+
             </search>
         </field>
     </record>
@@ -177,10 +187,10 @@
         <field name="name">Apprenants</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_tree"></field>
-        <field name="arch" type="xml">
+        <field name="arch" type="xml" >
 
             <tree>
-                <field name="inscrit_mcm"/>
+                <field name="inscrit_mcm" />
                 <field name="supprimerdemoocit"/>
                 <field name="client"/>
                 <field name="coach_peda"/>
@@ -188,12 +198,12 @@
             </tree>
         </field>
     </record>
-        <record model="ir.ui.view" id="mcm_openedx_app_graph_view">
-           <field name="name">Apprenants</field>
+    <record model="ir.ui.view" id="mcm_openedx_app_graph_view">
+        <field name="name">Apprenants</field>
         <field name="model">res.partner</field>
         <field name="arch" type="xml">
             <graph string="iOne">
-               <field name="inscrit_mcm"/>
+                <field name="inscrit_mcm"/>
                 <field name="supprimerdemoocit"/>
                 <field name="client"/>
                 <field name="coach_peda"/>

@@ -520,7 +520,7 @@ class partner(models.Model):
                                 partner.phone = phone
                                 _logger.info(partner.phone)
                             body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez desormais commencer votre %s, en utilisant les memes identifiants que sur notre site web. https://formation.mcm-academy.fr/" % (
-                                partner.name,partner.module_id.name)
+                                partner.name, partner.module_id.name)
                             if body:
                                 sms = self.env['mail.message'].sudo().search(
                                     [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
@@ -638,7 +638,7 @@ class partner(models.Model):
                 ticket = self.env['helpdesk.ticket'].sudo().search(
                     [("description", "=", description)])
                 if not ticket:
-                    print("cree tichket")
+                    print("cree ticket")
                     new_ticket = self.env['helpdesk.ticket'].sudo().create(
                         vals)
 
@@ -675,13 +675,8 @@ class partner(models.Model):
                     _logger.info(partner.email)
                     _logger.info('E-mail envoyé  %s' % str(partner.name))
 
-
     # Notifier les apprenants
     def notifierapprenant(self):
-        print(self.state)
-        print( self.name)
-        print( self.module_id.name)
-
         if (self.numero_evalbox != False and self.module_id != False and self.state != "supprimé"):
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser
@@ -718,7 +713,7 @@ class partner(models.Model):
                         self.phone = phone
                         _logger.info(self.phone)
                     body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez désormais commencer votre %s, en utilisant les mêmes identifiants que sur notre site web. https://formation.mcm-academy.fr/" % (
-                        self.name,self.module_id.name)
+                        self.name, self.module_id.name)
                     if body:
                         sms = self.env['mail.message'].sudo().search(
                             [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", self.id)])
