@@ -229,7 +229,7 @@ class partner(models.Model):
     # Ajout automatique d' i-One sur 360learning
     def Ajouter_iOne_auto(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
+        if "localhost" not in str(base_url) and "dev" in str(base_url):
             # company=self.env['res.company'].sudo().search([('id',"=",2)])
             # api_key=""
             # if company:
