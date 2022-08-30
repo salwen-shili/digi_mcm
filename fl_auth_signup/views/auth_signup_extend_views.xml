@@ -138,7 +138,50 @@
                                             </a>
                                         </p>
                                     </div>
-                                    <fieldset>
+                                    <style t-if="request.website.id == 1">
+
+
+                                
+                                         
+                                            .rkmd-btn {
+                                                                                    
+                                              padding: 0 0.6rem !important;}
+                                   
+
+                                        
+.tab {
+  display: none;
+}
+
+
+
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #04AA6D;
+}
+</style>
+                                    <fieldset class="tab" id="fields1" >
                                         <div class="row" t-if="not login or not last_login">
                                             <div class="col-7">
                                                 <h2 class="fs-title">Informations personnelles:</h2>
@@ -147,12 +190,10 @@
 
                                         <!-- error-input-field -->
                                         <div class="outlined-input-field bg-c" id="lastname_container" t-if="not name">
-
-
                                             <input type="text" name="lastName" id="lastname" class="outlined-text-field"
                                                    autocomplete="off" t-att-value="lastName"
                                                    pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required"
-                                                   inputmode="latin-name"/>
+                                                   inputmode="latin-name" style="text-transform:uppercase" />
                                             <label for="lastname" style="font-size: 1rem; top: 1rem; padding: 0px;">Nom
                                                 *
                                             </label>
@@ -168,7 +209,7 @@
                                             <input type="text" id="firstname" name="firstname"
                                                    class="outlined-text-field" autocomplete="off"
                                                    t-att-value="firstname" pattern="[A-Z,a-z,À-ÿ '-]{2,}"
-                                                   required="required" inputmode="latin-name"/>
+                                                   required="required" inputmode="latin-name" style="text-transform:capitalize" />
                                             <label for="firstname">Prénom *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="firstname_helper">
@@ -192,7 +233,9 @@
                                             <br/>
                                         </t>
                                         <div class="outlined-input-field bg-c" id="phone_container" t-if="phone">
-
+                                            <input type="hidden" id="firstname" t-att-value="firstname"/>
+                                            <input type="hidden" id="lastname" t-att-value="lastName" />
+                                     
                                             <input type="text" id="phone" name="phone" class="outlined-text-field"
                                                    autocomplete="off" t-att-value="phone" maxlength="10"
                                                    pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric"
@@ -209,7 +252,7 @@
                                         <div class="outlined-input-field bg-c" id="email_container" t-if="not name">
                                             <input type="email" id="email" class="outlined-text-field"
                                                    autocomplete="off" value="" required="required" inputmode="email"
-                                                   name="login"/>
+                                                   name="login" style="text-transform:lowercase" />
                                             <label for="email">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="email_helper">
@@ -221,7 +264,7 @@
                                                    autocomplete="off" t-att-value="login" required="required"
                                                    inputmode="email" name="login"
                                                    t-att-readonly="'readonly' if login else None"/>
-                                            <label for="email" style="top: -0.7rem;padding: 0.25rem;">Email *</label>
+                                            <label for="email" style="top: -0.7rem;padding: 0.25rem; text-transform:lowercase">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <span>Vous ne pouvez pas modifier votre email.</span>
 
@@ -233,7 +276,7 @@
                                              t-if="not name">
                                             <input type="email" id="confirm_email" class="outlined-text-field"
                                                    name="confirm_email" autocomplete="off" value="" required="required"
-                                                   inputmode="email"/>
+                                                   inputmode="email" style="text-transform:lowercase"/>
                                             <label for="confirm_email">Confirmer votre email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="confirm_email_helper">
@@ -244,7 +287,7 @@
                                              style="display:none">
                                             <input type="email" id="confirm_email" class="outlined-text-field"
                                                    name="confirm_email" autocomplete="off" t-att-value="login"
-                                                   required="required" inputmode="email"/>
+                                                   required="required" inputmode="email" style="text-transform:lowercase"/>
                                             <label for="confirm_email">Confirmer votre email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="confirm_email_helper">
@@ -275,15 +318,15 @@
                                         <!-- -->
                                         <div id="popover-password" class="hide">
                                             <div class="" style="
-    clear: both;
-    overflow: hidden;
-    margin-block-start:10px;
-">
+                                                                clear: both;
+                                                                overflow: hidden;
+                                                                margin-block-start:10px;
+                                                            ">
                                                 <div class="" style="
-    float: left;
-    font-weight: bold;
-    width: 35%;
-">
+                                                                                    float: left;
+                                                                                    font-weight: bold;
+                                                                                    width: 35%;
+                                                                                ">
                                                     <div class="nivTxt">
                                                         Sécurité
                                                         <span class="nivLevel niv-level-1">faible</span>
@@ -333,70 +376,29 @@
                                                     <li class="">
                                                         <span class="one-special-char">
                                                             <i class="fa fa-check-circle fa-uncheck"></i>
-                                                            Caractère spécial (!@#$%^*)
+                                                            Un caractère spécial (!@#$%^*)
                                                         </span>
                                                     </li>
                                                 </t>
 
                                                 <t t-if="request.website.id == 1">
                                                     <li class="">
-                                                        <span class="one-special-char">
-                                                            <i class="fa fa-exclamation"></i>
-                                                             Votre mot de passe doit être Différant de votre Adresse mail .
+                                                        <span class="checkpassword">
+                                                            <i class="fa fa-check-circle fa-uncheck"></i>
+                                                             Votre mot de passe doit être différant de votre nom, prénom et adresse enail.
                                                         </span>
                                                     </li>
                                                 </t>
-
-
                                             </ul>
                                         </div>
-
-
                                         <!-- -->
-
                                         <br t-if="not name or not last_login"/>
                                         <br t-if="name"/>
+                                       
                                     </fieldset>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <script t-if="name">
-                    $(`#email`).animate(
-                    {
-                    fontSize: "0.8rem",
-                    top: "-0.7rem",
-                    padding: "0.25rem",
-                    },
-                    80
-                    );
-                    $(`#phone`).animate(
-                    {
-                    fontSize: "0.8rem",
-                    top: "-0.7rem",
-                    padding: "0.25rem",
-                    },
-                    80
-                    );
+                                    
 
-                </script>
-                <!-- Address Form -->
-                <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden"/>
-                <div class="container-fluid" t-if="not name or not last_login">
-                    <div class="row justify-content-center paper">
-                        <div class="
-                col-11 col-sm-10 col-md-10 col-lg-6 col-xl-8
-
-                p-0
-                mt-3
-                mb-2
-              ">
-                            <div class="form-section">
-                                <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c"
-                                     style="marging: 0 !important; padding: 0 !important">
-                                    <!-- fieldsets -->
-                                    <fieldset>
+                                    <fieldset id="fields2" class="tab"  t-if="not name or not last_login">
                                         <div class="row">
                                             <div class="col-7">
                                                 <h2 class="fs-title" style="margin-block-end: 19px">Votre adresse</h2>
@@ -416,7 +418,7 @@
                                                     <span></span>
                                                 </div>
                                             </div>
-
+                        
                                             <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container"
                                                  t-if="name">
                                                 <input type="text" id="zipcode" name="zip" class="outlined-text-field"
@@ -445,7 +447,7 @@
                                             </div>
                                             <div class="col-md-8 outlined-input-field bg-c" id="city_container"
                                                  aria-disabled="true" t-if="name">
-
+                        
                                                 <input class="outlined-text-field disabled" name="city" id="city"
                                                        t-att-value="city"/>
                                                 <label for="city"
@@ -459,8 +461,8 @@
                                             </div>
                                         </div>
                                         <br/>
-
-
+                        
+                        
                                         <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true"
                                              t-if="not name">
                                             <select class="outlined-text-field" name="voie" id="voie" disabled="true"
@@ -506,15 +508,15 @@
                                                 <span></span>
                                             </div>
                                         </div>
-
+                        
                                         <br/>
-
+                        
                                         <div class="outlined-input-field bg-c" id="nom_voie_container"
                                              aria-disabled="true" t-if="not nom_voie">
-
+                        
                                             <input type="text" name="nom_voie" id="nom_voie" class="outlined-text-field"
                                                    autocomplete="off" required="required"/>
-
+                        
                                             <label for="nom_voie">Nom de voie *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="nom_voie_helper">
@@ -533,7 +535,7 @@
                                             </div>
                                         </div>
                                         <br/>
-
+                        
                                         <div class="outlined-input-field bg-c" id="num_voie_container"
                                              t-if="not num_voie">
                                             <input type="text" id="num_voie" name="num_voie" class="outlined-text-field"
@@ -556,7 +558,7 @@
                                             </div>
                                         </div>
                                         <br/>
-
+                        
                                         <div class="outlined-input-field bg-c" id="comp_address_container"
                                              t-if="not street2">
                                             <input type="text" id="comp_address" name="street2"
@@ -590,7 +592,7 @@
                                         </label>
                                         <div class="outlined-input-field bg-c" id="question_signup_container"
                                              t-if="not question_signup">
-
+                        
                                             <select class="outlined-text-select" name="question_signup"
                                                     id="question_signup" required="required">
                                                 <option value="" disabled="disabled" selected="selected">Vous devez
@@ -605,14 +607,14 @@
                                                     ami/collègue/parent
                                                 </option>
                                             </select>
-
+                        
                                             <i class="material-icons error-icon"></i>
                                             <div class="helper-text bg-c" id="question_signup_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-
-
+                        
+                        
                                         <br/>
                                         <!-- End question_signups-->
                                         <input type="hidden" name="redirect"
@@ -624,9 +626,9 @@
                                             >
                                           </label>
                                         </div> -->
-
+                        
                                         <!-- <input type="submit" value="Suivant" style=""/> -->
-
+                        
                                         <!-- <div class="mt-3" style="float: right">
                                           <button class="rkmd-btn btn-white ripple-effect ripple-yellow" id="button-submit" type="submit">
                                             Suivant<i class="fa fa-chevron-right"></i>
@@ -635,18 +637,18 @@
                                         <div class="text-center oe_login_buttons pt-5" style="margin-block-end: 3rem">
                                             <a href="/web/login?" class="rkmd-btn btn-white ripple-effect ripple-yellow"
                                                style="margin-right: 10px; display:none">
-
+                        
                                                 se connecter
                                             </a>
                                             <t t-if="request.website.id == 1">
-                                                <button id="inscrire" type="submit" t-if="not name or not last_login"
+                                                <!-- <button id="inscrire" type="submit" t-if="not name or not last_login"
                                                         class="rkmd-btn btn-black ripple-effect ripple-yellow"
                                                         data-oe-model="ir.ui.view" data-oe-id="1730"
                                                         data-oe-field="arch"
                                                         data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
                                                     S'inscrire
                                                     <i class="material-icons right">send</i>
-                                                </button>
+                                                </button> -->
                                                 <button id="inscrire" type="submit"
                                                         class="rkmd-btn btn-black ripple-effect ripple-yellow"
                                                         t-if="last_login">
@@ -668,93 +670,138 @@
                                                     Confirmer
                                                 </button>
                                             </t>
-
-                                            <script></script>
-
+                        
+                                           
+                        
                                             <div class="o_login_auth" data-oe-model="ir.ui.view" data-oe-id="1730"
                                                  data-oe-field="arch"
                                                  data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/div[1]"></div>
                                         </div>
                                         <link href="/mcm_contact_documents/static/src/css/button.min.css"
                                               rel="stylesheet"/>
-
-
                                     </fieldset>
+                                    <div style="overflow:auto;">
+                                        <div style="float:right;">
+                                          <t t-if="request.website.id == 1">
+                                            <button type="button" id="prevBtn" class="rkmd-btn btn-grey ripple-effect ripple-yellow" onclick="nextPrev(-1)"><i class="material-icons left">keyboard_arrow_left</i>Retour</button>
+
+                                            <button type="button" class="rkmd-btn btn-black ripple-effect ripple-yellow" 
+                                            t-if="not name or not last_login" id="nextBtn" onclick="nextPrev(1)">Suivant  <i class="material-icons right">send</i></button>
+
+                                          </t>
+                                          <!-- <t t-if="request.website.id == 2">
+                                            <button type="button" class="rkmd-btn btn-blue ripple-effect ripple-yellow" t-if="not name or not last_login" id="nextBtn" onclick="nextPrev(1)">Suivant<i class="material-icons right">keyboard_arrow_right</i></button>
+                                          </t> -->
+                                        </div>
+                                      </div>
+                                      <!-- Les points en bas du wizard -steps-->
+                                      <div style="text-align:center;margin-top:40px;" t-if="request.website.id == 1" >
+                                        <span class="step"></span>
+                                        <span class="step"></span>
+                             
+                                      </div>
+                                                    <script t-if="name">
+                                                        $(`#zipcode`).animate(
+                                                        {
+                                                        fontSize: "0.8rem",
+                                                        top: "-0.7rem",
+                                                        padding: "0.25rem",
+                                                        },
+                                                        80
+                                                        );
+                                                        $(`#city`).animate(
+                                                        {
+                                                        fontSize: "0.8rem",
+                                                        top: "-0.7rem",
+                                                        padding: "0.25rem",
+                                                        },
+                                                        80
+                                                        );
+                                                        if (('#voie').val){
+                                                        $(`#voie`).animate(
+                                                        {
+                                                        fontSize: "0.8rem",
+                                                        top: "-0.7rem",
+                                                        padding: "0.25rem",
+                                                        },
+                                                        80
+                                                        );
+                                                        }
+                                                        $(`#nom_voie`).animate(
+                                                        {
+                                                        fontSize: "0.8rem",
+                                                        top: "-0.7rem",
+                                                        padding: "0.25rem",
+                                                        },
+                                                        80
+                                                        );
+                                                        $(`#num_voie`).animate(
+                                                        {
+                                                        fontSize: "0.8rem",
+                                                        top: "-0.7rem",
+                                                        padding: "0.25rem",
+                                                        },
+                                                        80
+                                                        );
+                                                        $(`#comp_address`).animate(
+                                                        {
+                                                        fontSize: "0.8rem",
+                                                        top: "-0.7rem",
+                                                        padding: "0.25rem",
+                                                        },
+                                                        80
+                                                        );
+                        
+                                                    </script>
                                 </div>
                             </div>
-                            <script t-if="name">
-                                $(`#zipcode`).animate(
-                                {
-                                fontSize: "0.8rem",
-                                top: "-0.7rem",
-                                padding: "0.25rem",
-                                },
-                                80
-                                );
-                                $(`#city`).animate(
-                                {
-                                fontSize: "0.8rem",
-                                top: "-0.7rem",
-                                padding: "0.25rem",
-                                },
-                                80
-                                );
-                                if (('#voie').val){
-                                $(`#voie`).animate(
-                                {
-                                fontSize: "0.8rem",
-                                top: "-0.7rem",
-                                padding: "0.25rem",
-                                },
-                                80
-                                );
-                                }
-                                $(`#nom_voie`).animate(
-                                {
-                                fontSize: "0.8rem",
-                                top: "-0.7rem",
-                                padding: "0.25rem",
-                                },
-                                80
-                                );
-                                $(`#num_voie`).animate(
-                                {
-                                fontSize: "0.8rem",
-                                top: "-0.7rem",
-                                padding: "0.25rem",
-                                },
-                                80
-                                );
-                                $(`#comp_address`).animate(
-                                {
-                                fontSize: "0.8rem",
-                                top: "-0.7rem",
-                                padding: "0.25rem",
-                                },
-                                80
-                                );
-
-                            </script>
                         </div>
                     </div>
+                
+                   
+                
                 </div>
+                <script t-if="name">
+                    $(`#email`).animate(
+                    {
+                    fontSize: "0.8rem",
+                    top: "-0.7rem",
+                    padding: "0.25rem",
+                    },
+                    80
+                    );
+                    $(`#phone`).animate(
+                    {
+                    fontSize: "0.8rem",
+                    top: "-0.7rem",
+                    padding: "0.25rem",
+                    },
+                    80
+                    );
+
+                </script>
+                <!-- Address Form -->
+              
                 <script defer="defer" type="text/javascript"
-                        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
+                        src="/fl_auth_signup/static/js/jquery.min.js"/>
 
 
                 <!-- <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/register_form.js" /> -->
+<!-- 
 
-
-                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.min.js"
-                        t-if="not name or not login"/>
-
+                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.min.js"/> -->
+               
                 <script defer="defer" type="text/javascript"
                         src="/fl_auth_signup/static/js/validate_inscription_reset.js"
-                        t-if="name and request.website.id == 2"/>
+                        t-if="request.website.id == 2"/>
+        
                 <script defer="defer" type="text/javascript"
                         src="/fl_auth_signup/static/js/validate_inscription_reset_MCM.js"
-                        t-if="name and request.website.id == 1"/>
+                        t-if="request.website.id == 1"/>
+                        
                 <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.min.js"/>
+                
+
 
             </xpath>
 
@@ -858,8 +905,9 @@
                                            t-if="invalid_token" href="/web/login">Revenir à l’écran de connexion
                                         </a>
                                     </div>
+                                    <!-- add condition and not token to hide it from reset password-->
                                     <div class="text-center">
-                                        <button type="submit" style="" t-if="not error"
+                                        <button type="submit" style="" t-if="not error and not token"
                                                 t-attf-class="rkmd-btn    #{'btn-indigo' if request.website.id == 2 else 'btn-black'}">
                                             Confirmer
                                         </button>
