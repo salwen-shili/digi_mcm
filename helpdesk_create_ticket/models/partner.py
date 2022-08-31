@@ -6,6 +6,7 @@ from odoo import api, fields, models,tools
 class ResPartner(models.Model):
     _inherit = "res.partner"
     
+    # Function to return user's signatures.
     def get_signatures(self):
         self.ensure_one()
         return {
