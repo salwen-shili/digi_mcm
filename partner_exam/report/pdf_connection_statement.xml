@@ -98,7 +98,12 @@
                             <br/>
                             -  <span t-esc="o.total_time_visio_hour"/> de visioconférences
                             <br/>
-                            - <span t-esc="o.temps_update_minute"/> de temps passé sur la plateforme
+                            - <t t-if="o.temps_update_minute">
+                            <span t-esc="o.temps_update_minute"/>
+                            </t>
+                            <t t-else="not o.temps_update_minute">
+                                <span t-esc="o.totalTimeSpentInMinutes"/>
+                            </t> de temps passé sur la plateforme
                             <br/>
                         </div>
                         <br/>
