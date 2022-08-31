@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
-<!--        View form of aircall call contains details of call -->
+        <!--        View form of aircall call contains details of call -->
         <record id="call_detail_form" model="ir.ui.view">
             <field name="name">call.detail.form</field>
             <field name="model">call.detail</field>
@@ -55,7 +55,7 @@
                     <field name="phone_number"/>
                     <field name="company_name"/>
                     <field name="call_date"/>
-                    <field name="call_recording" widget ="url"/>
+                    <field name="call_recording" widget="url"/>
                     <field name="call_direction"/>
                     <field name="call_direction"/>
                     <field name="call_status"/>
@@ -66,29 +66,37 @@
         </record>
         <!--        View Kanban of aircall call contains details of call -->
         <record id="call_detail_kanban" model="ir.ui.view">
-         <field name="name">call.detail.kanban</field>
-          <field name="model">call.detail</field>
-         <field name="arch" type="xml">
-            <kanban default_order="create_date">
-                <field name="call_contact"/>
-                <field name="phone_number"/>
-                <field name="call_direction"/>
-<!--                <field name="call_status"/>-->
-                <field name="call_date"/>
+            <field name="name">call.detail.kanban</field>
+            <field name="model">call.detail</field>
+            <field name="arch" type="xml">
+                <kanban default_order="create_date">
+                    <field name="call_contact"/>
+                    <field name="phone_number"/>
+                    <field name="call_direction"/>
+                    <!--                <field name="call_status"/>-->
+                    <field name="call_date"/>
 
-         <templates>
+                    <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
                                 <div class="row mb4">
                                     <div class="col-6">
-                                        <strong><span><field name="call_contact"/></span></strong>
+                                        <strong>
+                                            <span>
+                                                <field name="call_contact"/>
+                                            </span>
+                                        </strong>
 
                                     </div>
 
                                 </div>
                                 <div class="row mb4">
                                     <div class="col-6">
-                                        <strong><span><field name="phone_number"/></span></strong>
+                                        <strong>
+                                            <span>
+                                                <field name="phone_number"/>
+                                            </span>
+                                        </strong>
 
                                     </div>
 
@@ -97,8 +105,8 @@
                                 <div class="row">
 
                                     <div class="col-6">
-                                        <field name="call_date" />
-                                        <field name="call_direction" />
+                                        <field name="call_date"/>
+                                        <field name="call_direction"/>
 
 
                                     </div>
@@ -108,7 +116,7 @@
 
                                     <div class="col-6">
 
-                                         <field name="call_status" />
+                                        <field name="call_status"/>
 
                                     </div>
 
@@ -116,33 +124,44 @@
                             </div>
                         </t>
                     </templates>
-         </kanban>
-         </field>
+                </kanban>
+            </field>
         </record>
         <!--        Action call history of specific contact -->
         <record id="call_detail_action" model="ir.actions.act_window">
             <field name="name">Call Details</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">call.detail</field>
-             <field name="domain">[('call_contact.id','=', active_id)]</field>
+            <field name="domain">[('call_contact.id','=', active_id)]</field>
             <field name="view_mode">tree,form</field>
 
         </record>
-         <!--        Action call view kanban of aircall calls -->
-         <record id="call_detail_action2" model="ir.actions.act_window">
+        <!--        Action call view kanban of aircall calls -->
+        <record id="call_detail_action2" model="ir.actions.act_window">
             <field name="name">Call Details</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">call.detail</field>
-<!--             <field name="domain">[('call_contact.id','=', active_id)]</field>-->
+            <!--             <field name="domain">[('call_contact.id','=', active_id)]</field>-->
             <field name="view_mode">kanban,tree,form</field>
 
         </record>
 
         <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
-<!--        <menuitem id="aircall_menu" name="AirCall" parent="base.menu_users" sequence="5"/>-->
-          <menuitem id="aircall_menu"  name="AirCall "
+        <!--        <menuitem id="aircall_menu" name="AirCall" parent="base.menu_users" sequence="5"/>-->
+        <menuitem id="aircall_menu" name="AirCall "
                   groups="base.group_user" web_icon="aircall_connector,static/description/aircall.webp"/>
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="aircall_menu_categ" name="AirCall Details" parent="aircall_menu" action="call_detail_action2" sequence="3"/>
+        <menuitem id="aircall_menu_categ" name="AirCall Details" parent="aircall_menu" action="call_detail_action2"
+                  sequence="3"/>
+
+        <record model="ir.actions.server" id="action_reset_password_from_partner">
+            <field name="name">Chercher Client</field>
+            <field name="model_id" ref="aircall_connector.model_call_detail"/>
+            <field name="binding_model_id" ref="aircall_connector.model_call_detail"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="sequence">5</field>
+            <field name="code">record.action_find_user_using_phone()</field>
+        </record>
     </data>
 </odoo>
