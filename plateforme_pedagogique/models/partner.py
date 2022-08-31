@@ -136,8 +136,8 @@ class partner(models.Model):
             table_user = response_user.json()
             lastlogin = ""
             if 'lastLoginAt' in table_user:
-                lastlogin = str(table_user['lastLoginAt'])
 
+                lastlogin = str(table_user['lastLoginAt'])
             print('user date supp', table_user['toDeactivateAt'])
             times = ''
             time = 0
@@ -167,7 +167,11 @@ class partner(models.Model):
                 new_format = '%d %B, %Y'
                 new_format = '%d %B, %Y'
                 last_login = str(date.strftime(new_format))
-
+                """get first value of lastLoginAt as date inscription"""
+                if not partner.date_creation and not partner.last_login :
+                    partner.sudo().write({
+                        'date_creation': last_login
+                    })
             message = "0"
             if ('messages' in table_user):
                 message = table_user['messages']
@@ -413,7 +417,7 @@ class partner(models.Model):
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
-                    password = str(user.password360.encode('utf-8').decode('utf-8'))
+                    password = str(user.password360.encode('utf-8'))
                     email = partner.email
                     # Désactiver les notifications par email
                     data_email = json.dumps({
@@ -426,7 +430,7 @@ class partner(models.Model):
                     _logger.info('desactiver email %s' % str(resp_unsub_email))
                     # Ajouter i-One to table user
 
-                    data_user = '{"mail":"' + partner.email + '" , "password":"' + partner.password360  + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
+                    data_user = '{"mail":"' + partner.email + '" , "password":"' + password  + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     _logger.info('data_user %s' % str(data_user))
                     respo = str(json.loads(resp.text))
@@ -442,7 +446,7 @@ class partner(models.Model):
                     new_format = '%d/%m/%Y'
                     # Changer format de date et la mettre en majuscule
                     date_ajout = today.strftime(new_format)
-                    partner.date_creation = date_ajout
+                    # partner.date_creation = date_ajout
                     """Remplir champs date_creation  """
                     # self._cr.execute(
                     #     """UPDATE res_partner SET date_creation = %s WHERE id=%s""", (date_ajout, partner.id,))
@@ -548,7 +552,7 @@ class partner(models.Model):
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
 
-
+                    self.send_email(partner)
                 if not (create):
                     """Créer des tickets contenant le message  d'erreur pour service client et service IT
                     si l'apprenant n'est pas ajouté sur 360"""
@@ -2044,6 +2048,8 @@ class partner(models.Model):
 
 
     def send_email_manuel(self):
+        """check if user added to plateform"""
+        """send mail with button"""
         company_id = '56f5520e11d423f46884d593'
         api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
         headers = CaseInsensitiveDict()
