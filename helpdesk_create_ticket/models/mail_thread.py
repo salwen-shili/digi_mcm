@@ -169,10 +169,10 @@ class MailThread(models.AbstractModel):
                         user_signature = self.env['res.user.signature'].sudo().search(
                             [('user_id', "=", user_sudo.id), ('company_id', "=", records.company_id.id)],
                             limit=1)
-                        if user_signature and user_signature.reply_to :
+                        if user_signature and user_signature.reply_to : #verify if 'reply_to' in the sender's user's signature elready filled
                             _logger.info('catchall_mail : %s' % str(catchall_mail))
                             _logger.info('user_signature.reply_to : %s' % str(user_signature.reply_to))
                             new_reply_to = new_message.reply_to.replace(catchall_mail,user_signature.reply_to)
                             _logger.info('new_reply_to : %s' % str(new_message.reply_to))
-                            new_message.reply_to = new_reply_to
+                            new_message.reply_to = new_reply_to #change mail message's default reply_to by the reply_to of the user signature
         return new_message

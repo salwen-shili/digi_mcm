@@ -16,4 +16,4 @@ class UserSignature(models.Model):
                              help="Sender address (placeholders may be used here). If not set, the default "
                                   "value will be the author's email alias if configured, or email address.")
     reply_to = fields.Char('Reply-To',
-                           help='Reply email address. Setting the reply_to bypasses the automatic thread creation.')
+                           help='Reply email address. Setting the reply_to bypasses the automatic thread creation.')#add field reply to in user signature form view

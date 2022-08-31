@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--smart button in partner form -->
+        <record id="signatures_smart_button" model="ir.ui.view">
+            <field name="name">signatures.buttons</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                    <button class="oe_stat_button" type="object" name="get_signatures">
+                        Signatures
+                    </button>
+                </div>
+            </field>
+        </record>
+
+    </data>
+
+</odoo>

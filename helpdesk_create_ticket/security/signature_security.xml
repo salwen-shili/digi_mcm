@@ -8,5 +8,25 @@
             <field name="global" eval="True"/>
             <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
         </record>
+
+        <record model="ir.rule" id="user_signature_public_rule">
+            <field name="name">User signature public rule</field>
+            <field name="model_id" ref="model_res_user_signature"/>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+        <record model="ir.rule" id="user_signature_public_rule">
+            <field name="name">User signature public rule</field>
+            <field name="model_id" ref="model_res_user_signature"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
     </data>
 </odoo>

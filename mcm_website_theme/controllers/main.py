@@ -1524,7 +1524,8 @@ class WebsiteSale(WebsiteSale):
         ppg=False,
         **post,
     ):
-
+        if 'product.public.category' not in str(type(category)):
+            return werkzeug.utils.redirect("/#pricing", 301)
         if category and category.website_id and category.website_id.id == 1:
             if any(taxi in category.name for taxi in ["TAXI", "Taxi", "taxi"]):
                 return werkzeug.utils.redirect("/formation-taxi#pricing", 301)
