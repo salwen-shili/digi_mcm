@@ -148,7 +148,7 @@ class AirCall(models.Model):
                                 [("phone", "like", phone.replace(' ', ''))], limit=1)
             _logger.info('odoo contact : %s' % str(odoo_contact))
             if not odoo_contact :
-                res_users = request.env["res.users"]
+                res_users = self.env["res.users"]
                 odoo_contact = res_users.find_user_with_phone(self.phone_number)
                 _logger.info('odoo contact1 : %s' % str(odoo_contact))
             if odoo_contact : 
