@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, SUPERUSER_ID
 from odoo.exceptions import ValidationError
 from odoo.exceptions import UserError, AccessError
 from odoo.osv import osv
@@ -9,7 +9,6 @@ import time
 from datetime import datetime
 import requests
 import logging
-
 _logger = logging.getLogger(__name__)
 
 class AirCall(models.Model):
@@ -151,8 +150,9 @@ class AirCall(models.Model):
                 res_users = self.env["res.users"]
                 odoo_contact = res_users.find_user_with_phone(self.phone_number)
                 _logger.info('odoo contact1 : %s' % str(odoo_contact))
-            if odoo_contact : 
-                self.call_contact = odoo_contact.partner_id
+            if odoo_contact :
+                self = self.with_user(SUPERUSER_ID)
+                self.sudo().write({"call_contact": odoo_contact.partner_id.id})
         
 
 
