@@ -154,7 +154,7 @@
         <menuitem id="aircall_menu_categ" name="AirCall Details" parent="aircall_menu" action="call_detail_action2"
                   sequence="3"/>
 
-        <record model="ir.actions.server" id="action_reset_password_from_partner">
+        <record model="ir.actions.server" id="action_find_user_using_phone">
             <field name="name">Chercher Client</field>
             <field name="model_id" ref="aircall_connector.model_call_detail"/>
             <field name="binding_model_id" ref="aircall_connector.model_call_detail"/>
