@@ -97,13 +97,13 @@ class Cours_stat(models.Model):
 
         # chercher tout personne ayant un mail existant
         for exist in self.env['mcm_openedx.course_stat'].sudo().search(
-                [('email', "!=", False)]):
+                [('email', "!=", False)], order="id desc"):
             # verifier si la personne ayant les meme information
             if exist.id not in listcourduplicated:
                 # chercher mail ,idcour,jour,id
                 duplicates = self.env['mcm_openedx.course_stat'].search(
                     [('email', "=", exist.email), ('idcour', '=', exist.idcour), ('jour', "=", exist.jour),
-                     ('id', '!=', exist.id)])
+                     ('id', '!=', exist.id)], order="id desc")
                 # parcourir la liste de duplication
                 for dup in duplicates:
                     # ajouter les duplicant a la liste
@@ -117,7 +117,8 @@ class Cours_stat(models.Model):
             'tag': 'reload',
         }
 
-#Ajout Class Apprenant Actif Vs non Actif
+
+# Ajout Class Apprenant Actif Vs non Actif
 class actif_inactif(models.Model):
     _name = 'mcm_openedx.state'
     _description = "importer les listes des cours pour calculer les statestiques"
@@ -132,7 +133,8 @@ class actif_inactif(models.Model):
     def _get_attendees_count(self):
         for r in self:
             r.statut = len(r.statut)
-    #suprimer duplication lors d'importation
+
+    # suprimer duplication lors d'importation
     def test_app(self):
         # cree une  liste pour stocker les duplication
         listcourduplicated = []
@@ -141,13 +143,16 @@ class actif_inactif(models.Model):
 
         # chercher tout personne ayant un mail existant
         for exist in self.env['mcm_openedx.state'].sudo().search(
-                [('email', "!=", False)]):
+                [('email', "!=", False)], order="id desc"):
+
+            print("exist.id", exist.id)
             # verifier si la personne ayant les meme information
             if exist.id not in listcourduplicated:
                 # chercher mail ,idcour,jour,id
                 duplicates = self.env['mcm_openedx.state'].search(
                     [('email', "=", exist.email), ('idcour', '=', exist.idcour),
-                     ('id', '!=', exist.id)])
+                     ('id', '!=', exist.id)], order="id desc")
+                print(duplicates)
                 # parcourir la liste de duplication
                 for dup in duplicates:
                     # ajouter les duplicant a la liste
@@ -160,4 +165,3 @@ class actif_inactif(models.Model):
             'type': 'ir.actions.client',
             'tag': 'reload',
         }
-

@@ -284,6 +284,7 @@ class partner(models.Model):
 
     # Ajout manuelle apprenant à moocit
     def ajoutMoocit_manuelle(self):
+
         _logger.info(self.company_id)
         _logger.info(' email utilisateur %s' % str(self.email))
         _logger.info('password360%s' % str(self.password360))
@@ -481,8 +482,9 @@ class partner(models.Model):
             if (response_ajouter_iOne_MCM.status_code == 200):
                 partner.inscrit_mcm = date.today()
                 # The finally__block gets executed no matter if the try block raises any errors or not:
-                # self.testsms(self)
+
                 try:
+
                     if self.env.su:
                         # sending mail in sudo was meant for it being sent from superuser
                         self = self.with_user(SUPERUSER_ID)
