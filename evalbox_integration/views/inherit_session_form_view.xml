@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('oe_button_box')]" position="after">
                 <field name="show_hide_button" invisible="1"/>
+                <field name="hide_import_note_evalbox" invisible="1"/>
                 <button style="background:#B0E0E6;" type="object"
                         name="import_qcm_qro_evalbox_to_odoo"
                         string="Importer les notes depuis Evalbox"
