@@ -94,6 +94,7 @@ class AirCall(models.Model):
         return res
     
     def action_find_user_using_phone(self):
+        _logger.info('phone _number : %s' % str(self.phone_number))
         if self.phone_number and not self.call_contact:
             odoo_contact = self.env["res.users"].sudo().search(
                 [("phone", "=", str(self.phone_number))], limit=1)

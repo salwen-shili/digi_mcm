@@ -158,10 +158,10 @@
             <field name="name">Chercher Client</field>
             <field name="model_id" ref="aircall_connector.model_call_detail"/>
             <field name="binding_model_id" ref="aircall_connector.model_call_detail"/>
-            <field name="binding_view_types">form</field>
+            <field name="binding_view_types">list</field>
             <field name="state">code</field>
             <field name="sequence">5</field>
-            <field name="code">record.action_find_user_using_phone()</field>
+            <field name="code">records.action_find_user_using_phone()</field>
         </record>
     </data>
 </odoo>
