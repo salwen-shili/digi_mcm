@@ -39,7 +39,7 @@
         <field name="model">board.board</field>
         <field name="arch" type="xml">
             <t t-name="CustomDashBoard">
-                <div class="oh_dashboards" style="margin-top: 50px;">
+                <div class="oh_dashboards" style="margin-top: 30px;">
                     <div class="container-fluid o_pj_dashboard">
                         <center>
                             <img src="https://so2-static.s3.eu-west-3.amazonaws.com/digimoov/logo.png" width="10%"/>

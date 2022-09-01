@@ -34,6 +34,23 @@ class partner(models.Model):
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
 
+    # Supprimer iOne  Resulta = Réussi(e)
+    def supp_Réussie(self):
+        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1), ('resultat', "=", "Réussi(e)")]):
+            # supprimer l'apprenats en verifiant le module choisit
+            partner.state = "supprimé"
+
+            # if (partner.module_id.product_id.default_code == "taxi"):
+            #     self.desinscriteTaxi(partner)
+            #     self.supprimerdemoocit = date.today()
+            # elif (self.module_id.product_id.default_code == "vtc"):
+            #     self.desinscriteVTC(partner)
+            #     self.supprimerdemoocit = date.today()
+            # elif (self.module_id.product_id.default_code == "vtc_bolt"):
+            #     self.desinscriteVTC(partner)
+            #     self.supprimerdemoocit = date.today()
+
+    # Ajout d'une fonction pour filtrer les Anciens iOnes
     def anicen_app(self):
         todays_date = date.today()
 
