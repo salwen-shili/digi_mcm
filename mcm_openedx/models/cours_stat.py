@@ -125,7 +125,6 @@ class actif_inactif(models.Model):
     # # # add new fields
     name = fields.Char(string="Nom Utilisateur")
     statut = fields.Char(string="Statut")
-
     genre = fields.Char(string="Genre")
     email = fields.Char(string="Email")
     idcour = fields.Char(string="ID Cours")

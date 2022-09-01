@@ -9,7 +9,7 @@ from requests.structures import CaseInsensitiveDict
 from datetime import date, datetime, timedelta
 import logging
 
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -51,7 +51,8 @@ class Partner(models.Model):
             # Vérifier longeur du numéro d'Eval_box CMA
             if len(self.numero_evalbox) <= 9:
                 raise ValidationError('Numéro evalbox doit contenir minimum 10 caractères')
-            # Vérifier Si Client n'est pas bolt
+
+                # Vérifier Si Client n'est pas bolt
             if not (bolt):
                 print(self.mode_de_financement)
                 # Vérifier mode de financement et contrat de formation
@@ -61,9 +62,6 @@ class Partner(models.Model):
 
                 if (self.numero_evalbox) and (document_valide is not True):
                     raise ValidationError('Merci de vérifier les documents ')
-                # Vérifier  Renonciation au droit de rétractation
-                if not self.renounce_request and self.numero_evalbox:
-                    raise ValidationError('Merci de vérifier => Renonciation au droit de rétractation ! ')
 
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):

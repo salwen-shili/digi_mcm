@@ -39,7 +39,6 @@ class partner(models.Model):
         for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1), ('resultat', "=", "Réussi(e)")]):
             # supprimer l'apprenats en verifiant le module choisit
             partner.state = "supprimé"
-
             # if (partner.module_id.product_id.default_code == "taxi"):
             #     self.desinscriteTaxi(partner)
             #     self.supprimerdemoocit = date.today()
@@ -55,10 +54,9 @@ class partner(models.Model):
         todays_date = date.today()
 
         for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1)]):
-
             if partner.create_date.year < todays_date.year:
-                if (partner.state != "en_formation") and (
-                        partner.state != "supprimé"):
+                if (partner.state != "en_formation") and \
+                        (partner.state != "supprimé"):
                     partner.state = "ancien"
 
     # Dsinscrire l'apprenant  des cours VTC
