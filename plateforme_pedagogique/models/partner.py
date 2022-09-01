@@ -175,9 +175,9 @@ class partner(models.Model):
             message = "0"
             if ('messages' in table_user):
                 message = table_user['messages']
-            publication = ''
-            if ('publications' in table_user):
-                publication = table_user['publications']
+            # publication = ''
+            # if ('publications' in table_user):
+            #     publication = table_user['publications']
             comment = "0"
             if ('comments' in table_user):
                 comments = table_user['comments']
@@ -193,7 +193,6 @@ class partner(models.Model):
                         'averageScore': average,
                         'comments': comment,
                         'reactions': reaction,
-                        'publications': publication,
                         'messages': message,
                         'totalTimeSpentInMinutes': times,
                         'assignedPrograms': table_user['assignedPrograms'],
