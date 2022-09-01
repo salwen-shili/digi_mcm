@@ -417,7 +417,7 @@
                 
         #tools {
           position: absolute;
-          right: 1px;
+          left:1px;
           top: 11vh;
           width: 30px;
           max-width: 50px;
