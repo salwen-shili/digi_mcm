@@ -167,11 +167,6 @@ class partner(models.Model):
                 new_format = '%d %B, %Y'
                 new_format = '%d %B, %Y'
                 last_login = str(date.strftime(new_format))
-                """get first value of lastLoginAt as date inscription"""
-                if not partner.date_creation and not partner.last_login :
-                    partner.sudo().write({
-                        'date_creation': last_login
-                    })
             message = "0"
             if ('messages' in table_user):
                 message = table_user['messages']
@@ -188,6 +183,11 @@ class partner(models.Model):
             partners = self.env['res.partner'].sudo().search([('email', "=", email)])
             for partner in partners:
                 if partners:
+                    """get first value of lastLoginAt as date inscription"""
+                    if not partner.date_creation and not partner.last_login:
+                        partner.sudo().write({
+                            'date_creation': last_login
+                        })
                     partner.sudo().write({
                         'last_login': last_login,
                         'averageScore': average,
@@ -416,7 +416,7 @@ class partner(models.Model):
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
-                    password = str(user.password360.encode('utf-8'))
+                    # password = str(user.password360.encode('utf-8'))
                     email = partner.email
                     # Désactiver les notifications par email
                     data_email = json.dumps({
@@ -429,8 +429,8 @@ class partner(models.Model):
                     _logger.info('desactiver email %s' % str(resp_unsub_email))
                     # Ajouter i-One to table user
 
-                    data_user = '{"mail":"' + partner.email + '" , "password":"' + password  + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
-                    resp = requests.post(urluser, headers=headers, data=data_user)
+                    data_user = '{"mail":"' + partner.email + '" , "password":"' + partner.password360  + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
+                    resp = requests.post(urluser, headers=headers, data=json.dumps(data_user))
                     _logger.info('data_user %s' % str(data_user))
                     respo = str(json.loads(resp.text))
                     responce_api = json.loads(resp.text)
