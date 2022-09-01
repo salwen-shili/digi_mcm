@@ -7,6 +7,7 @@
         <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('oe_button_box')]" position="after">
+                <field name="show_hide_button" invisible="1"/>
                 <button style="background:#B0E0E6;" type="object"
                         name="import_qcm_qro_evalbox_to_odoo"
                         string="Importer les notes depuis Evalbox"
