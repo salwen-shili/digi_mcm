@@ -138,7 +138,7 @@ class partner(models.Model):
             if 'lastLoginAt' in table_user:
 
                 lastlogin = str(table_user['lastLoginAt'])
-            print('user date supp', table_user['toDeactivateAt'])
+            _logger.info('user date supp %s' %table_user['lastLoginAt'])
             times = ''
             time = 0
             # Ecrire le temps récupéré de 360 sous forme d'heures et minutes
