@@ -123,6 +123,7 @@ class actif_inactif(models.Model):
     _name = 'mcm_openedx.state'
     _description = "importer les listes des cours pour calculer les statestiques"
     # # # add new fields
+    name = fields.Char(string="Nom Utilisateur")
     statut = fields.Char(string="Statut")
 
     genre = fields.Char(string="Genre")
@@ -150,7 +151,9 @@ class actif_inactif(models.Model):
             if exist.id not in listcourduplicated:
                 # chercher mail ,idcour,jour,id
                 duplicates = self.env['mcm_openedx.state'].search(
-                    [('email', "=", exist.email), ('idcour', '=', exist.idcour),
+                    [('email', "=", exist.email),
+                     ('idcour', '=', exist.idcour),
+                     ('name', '=', exist.name),
                      ('id', '!=', exist.id)], order="id desc")
                 print(duplicates)
                 # parcourir la liste de duplication

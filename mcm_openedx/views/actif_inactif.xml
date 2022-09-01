@@ -26,6 +26,7 @@
                 <sheet>
                     <group>
                         <field name="statut"/>
+                        <field name="name"/>
                         <field name="genre"/>
                         <field name="email"/>
                         <field name="idcour"/>
@@ -42,6 +43,8 @@
         <field name="arch" type="xml">
             <tree string="Statetstique" decoration-success="statut == 'Actif'" decoration-danger="statut == 'No show'">
                 <field name="email"/>
+                <field name="name"/>
+
                 <field name="statut"/>
                 <field name="genre"/>
                 <field name="idcour" type="measure"/>
@@ -59,6 +62,7 @@
             <graph string="Participations par Courses" type="pie">
                 <field name="email"/>
                 <field name="statut"/>
+                <field name="name"/>
                 <field name="genre" type="row"/>
                 <field name="idcour" type="col"/>
             </graph>
