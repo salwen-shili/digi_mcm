@@ -160,8 +160,8 @@ class AirCall(models.Model):
                     odoo_contact = res_users.find_user_with_phone(record.phone_number)
                     _logger.info('odoo contact1 : %s' % str(odoo_contact))
                 if odoo_contact:
-                    self = self.with_user(SUPERUSER_ID)
-                    self.sudo().write({"call_contact": odoo_contact.partner_id.id})
+                    record = record.with_user(SUPERUSER_ID)
+                    record.sudo().write({"call_contact": odoo_contact.partner_id.id})
         
 
 
