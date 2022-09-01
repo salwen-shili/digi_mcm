@@ -11,14 +11,14 @@
                 <button style="background:#B0E0E6;" type="object"
                         name="import_qcm_qro_evalbox_to_odoo"
                         string="Importer les notes depuis Evalbox"
-                        attrs="{'invisible':[('date_exam','&lt;', context_today().strftime('%Y-%m-%d'))]}"
+                        attrs="{'invisible': [('hide_import_note_evalbox', '=', False)]}"
                         groups="mcm_session.group_session_module_manager"> <!-- Le button sera visible juste pour les utilisateurs avec le droit d'accès de session égale à manager-->
                     <span style='font-size:30px;'>&#128221;</span>
                 </button>
                 <button style="background:#C0C0C0;" type="object"
                         name="create_class_odoo_to_evalbox"
                         string="Exporter une classe vers Evalbox"
-                        attrs="{'invisible':[('date_exam','&lt;', context_today().strftime('%Y-%m-%d'))]}"
+                        attrs="{'invisible': [('show_hide_button', '=', False)]}"
                         groups="mcm_session.group_session_module_manager">
                     <span style='font-size:30px;'>&#128218;</span>
                 </button>
