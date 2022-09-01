@@ -66,7 +66,7 @@
                                 domain="[['company_id', '=', 1]]" modifiers="{}"/>
 
 
-                        <action name="%(act_coach_graph)d" string="Coaches" view_mode="graph"
+                        <action name="%(act_coach_graph)d" string="Coache" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'allowed_company_ids': [1, 1, 2], 'group_by': [], 'graph_measure': 'nombre_apprenant', 'graph_mode': 'pie', 'graph_groupbys': ['coach_name'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" modifiers="{}"/>
                     </column>

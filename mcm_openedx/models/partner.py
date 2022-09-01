@@ -38,11 +38,11 @@ class partner(models.Model):
         todays_date = date.today()
 
         for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1)]):
-            if partner.mcm_session_id.date_debut:
-                if partner.create_date.year < todays_date.year:
-                    if (partner.state != "en_formation") and (partner.state != "en_attente") and (
-                            partner.state != "supprimé"):
-                        partner.state = "ancien"
+
+            if partner.create_date.year < todays_date.year:
+                if (partner.state != "en_formation") and (
+                        partner.state != "supprimé"):
+                    partner.state = "ancien"
 
     # Dsinscrire l'apprenant  des cours VTC
     def desinscriteVTC(self, partner):
