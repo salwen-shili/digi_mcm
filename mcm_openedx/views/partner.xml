@@ -191,10 +191,10 @@
 
             <tree>
                 <field name="inscrit_mcm"/>
-                <!--                <field name="supprimerdemoocit"/>-->
+<!--                <field name="supprimerdemoocit"/>-->
                 <field name="client"/>
                 <field name="coach_peda"/>
-                <field name="state" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
@@ -207,7 +207,7 @@
                 <field name="supprimerdemoocit"/>
                 <field name="client"/>
                 <field name="coach_peda"/>
-                <field name="state" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                <field name="state"/>
             </graph>
         </field>
     </record>
@@ -230,7 +230,7 @@
                                 <field name="supprimerdemoocit"/>
                                 <field name="client"/>
                                 <field name="coach_peda"/>
-                                <field name="state" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                                <field name="state"/>
                             </div>
                         </div>
                     </t>
