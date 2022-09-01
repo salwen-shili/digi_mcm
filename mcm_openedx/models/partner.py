@@ -25,13 +25,24 @@ class partner(models.Model):
                               ])
     coach_peda = fields.Many2one('res.partner', track_visibility='onchange', string="Coach_Pedagogique",
                                  domain=[('est_coach', '=', True), ])
-    state = fields.Selection([('en_attente', 'En attente'), ('en_formation', 'En Formation'), ('supprimé', 'Supprimé')],
+    state = fields.Selection([('ancien', 'Ancien iOne'), ('en_attente', 'En attente'), ('en_formation', 'En Formation'),
+                              ('supprimé', 'Supprimé')],
                              required=True, default='en_attente', track_visibility='onchange', string="Statut")
     mooc_dernier_coonx = fields.Date()
     mooc_temps_passe_heure = fields.Integer()
     mooc_temps_passe_min = fields.Integer()
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
+
+    def anicen_app(self):
+        todays_date = date.today()
+
+        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1)]):
+            if partner.mcm_session_id.date_debut:
+                if partner.create_date.year < todays_date.year:
+                    if (partner.state != "en_formation") and (partner.state != "en_attente") and (
+                            partner.state != "supprimé"):
+                        partner.state = "ancien"
 
     # Dsinscrire l'apprenant  des cours VTC
     def desinscriteVTC(self, partner):

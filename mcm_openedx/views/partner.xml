@@ -58,7 +58,7 @@
                             type="object" confirm="Envoyer un Mail"
                             state="mail envoyé"></button>
 
-                    <field name="state" widget="statusbar" statusbar_visible="en_attente,en_formation,supprimé"
+                    <field name="state" widget="statusbar" statusbar_visible="ancien,en_attente,en_formation,supprimé"
                            attrs="{'invisible': [('company_id', '=', 2)]}"/>
 
                 </header>
@@ -218,7 +218,7 @@
         <field name="context">{'search_default_group_company_id': 1}</field>
     </record>
     <!-- top level menu: no parent -->
-    <menuitem id="main_mcm_openedx_menu" name="MCM MOOCIT" web_icon="mcm_openedx,static/description/ok.png"/>
+    <menuitem id="main_mcm_openedx_menu" name="MCM MOOCIT" web_icon="mcm_openedx, static/description/ok.png"/>
     <menuitem id="mcm_apprennat_menu" name="Apprenants" parent="main_mcm_openedx_menu" action="contact_list_action"/>
     <menuitem id="mcm_courses_menu" name="MOOCIT" parent="main_mcm_openedx_menu"/>
 </odoo>
