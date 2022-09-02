@@ -424,10 +424,9 @@
                 
         #tools {
           position: absolute;
-          right:1px;
-          top: 7vh;
+          right: 6px;
+          top: 8vh;
           width: 30px;
-          max-width: 50px;
         }
         .icon {
             display: flex;
