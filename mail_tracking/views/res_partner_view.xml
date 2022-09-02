@@ -6,10 +6,10 @@
     <record model="ir.ui.view" id="view_partner_form">
         <field name="name">Partner Form with tracking emails</field>
         <field name="model">res.partner</field>
-        <field name="priority">46</field>
+        <field name="priority">1</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='schedule_meeting']" position="before">
+            <div name="button_box" position="inside">
                 <button
                         name="%(mail_tracking.action_view_mail_tracking_email)d"
                         context="{'search_default_recipient': email,
@@ -25,7 +25,7 @@
                             string="Tracking emails"
                     />
                 </button>
-            </xpath>
+            </div>
         </field>
     </record>
 
