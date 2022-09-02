@@ -1,179 +1,82 @@
-
-
-.tooltip  {
-  color: -webkit-link;
+#tools {
+  position: absolute;
+  right: 7px;
+  top: 10vh;
+  width: 30px;
+  max-width: 50px;
+}
+.icon {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  color: #ffc107;
+  background: #fff;
+  border: 1px solid #ffc10782;
+  border-bottom: 0;
   cursor: pointer;
-  text-decoration: underline;
-}
-  
-.master-box {
-  padding: 0 15%;
-  margin-bottom: 100px;
 }
 
-@media (max-width:768px){
-  .master-box {
-    padding: 0 0!important;
+.icon:last-child {
+  border-bottom: 1px solid #ffc10782;
+}
+
+.white_square_icon {
+  background: #fff;
+  color: var(--grey);
+}
+.green_square_icon {
+  background: #ffc107;
+  color: #fff;
+  transform: scaleX(-1);
+}
+
+/* Shine */
+.hover14 a {
+  position: relative;
+}
+.hover14 a::before {
+  position: absolute;
+  top: 0;
+  left: -75%;
+  z-index: 2;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+  background: -webkit-linear-gradient(
+    left,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  -webkit-transform: skewX(-25deg);
+  transform: skewX(-25deg);
+}
+.hover14 a:hover::before {
+  -webkit-animation: shine 1.2s;
+  animation: shine 1.2s;
+}
+@-webkit-keyframes shine {
+  100% {
+    left: 125%;
   }
 }
-
-.faq-header {
-  margin-top: 20px;
-  padding: 0 0px 40px 0;
-  text-align: center;
-  color: #fff;
- 
-  background-image: 
-                  url("/mcm_website_theme/static/src/img/COUV FAQ.png");
-                  background-repeat: round;
-
-
- 
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
 }
-hr{
-  width: 72px;
-  color: rgba(255, 255, 255, 0.096);
-  border: 3px solid rgb(51, 51, 51);
-
-}
-h1.title {
-  padding-top: 24px;
-  font-size: 65px;
-  letter-spacing: -1px;
-  font-weight: 400;
-  color: #fff;
+.svg-social-media {
+  fill: #ffc107;
 }
 
-#myInput {
- 
-  width: 50%;
-  font-size: 18px;
-  padding: 5px 20px 5px 20px;
-  border: 1px solid #0000007d;
-  margin: 15px 0 15px 0;
-  border-radius: 9px;
-}
+.icon:hover {
+  box-shadow: 0px 0px 9px 3px #ffc107;
 
-#myBtnContainer {
-  margin: 15px;
-  letter-spacing: 5px;
-}
-
-/* Style the buttons */
-.btn {
-  border: none;
-  outline: none;
-  padding: 8px 15px 8px 0;
-  background-color: #000000a3;
-  background: hsl(60deg 98% 50% / 64%);
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 700;
-  width: 145px;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.2);
-  margin-top: 14px;
-  color: #000;
-}
-
-.btn:hover {
-
-  background: hsl(60deg 98% 50%);
-  color: #000;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.3), 0 3px 5px 0 rgba(0,0,0,0.3);
-  transition: all 0.2s ease;
-}
-
-.btn.active-btn {
-  background: hsl(60, 98%, 50%);;
-  color: #000;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.3), 0 3px 5px 0 rgba(0,0,0,0.3);
-}
-
-.btn::before {
-  content: '\00bb   ';
-  font-size: 18px;
-  opacity: 0;
-  transition: 0.4s;
-}
-
-.btn.active-btn::before {
-  content: '\00bb   ';
-  opacity: 1;
-  transition: 0.5s;
-}
-
-#myUL {
-  list-style-type: none;
-  width: 100%;
-  padding: 0;
-  background: rgba(255, 255, 255, 0.01);
-}
-
-#myUL li span {
-  cursor: pointer;
-  -moz-transition: all 0.35s ease;
-  -ms-transition: all 0.35s ease;
-  -o-transition: all 0.35s ease;
-  -webkit-transition: all 0.35s ease;
-  border: 1px solid lightgrey;
-  margin-top: -1px;
-  padding: 10px 43px 10px 9px;
-  margin: 0;
-  text-decoration: none;
-  font-size: 19px; 
-  color: #444343;
-  display: block;
-}
-
-#myUL li span:hover:not(.header) {
-    background-color: #e4ecf9;
-    border: 1px solid grey;
-}
-
-.filterDiv {
-  display: none; /* Hidden by default */
-  transition: all 0.3s;
-  margin-bottom: 4px;
-}
-
-.show {
-  display: block;
-}
-
-.accordion-thumb {
-  font-weight: bold;
-  background: white;
-
-}
-
-/* Active answer */
-.filterDiv.is-active .accordion-thumb::before {
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.accordion-thumb::before {
-  content: '';
-  display: inline-block;
-  height: 7px;
-  width: 7px;
-  margin-right: 1rem;
-  margin-left: .5rem;
-  vertical-align: middle;
-  border-right: 1px solid;
-  border-bottom: 1px solid;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  transition: -webkit-transform .2s ease-out;
-  transition: transform .2s ease-out;
-  transition: transform .2s ease-out, -webkit-transform .2s ease-out;
-}
-
-.accordion-panel {
-padding: 22px 20px 22px 20px;
-  display: none;
-  color: black;
-  font-size: 16px;
-  font-weight: normal;
-  background: white;
 }
