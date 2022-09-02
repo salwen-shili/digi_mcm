@@ -29,7 +29,7 @@ class partner(models.Model):
     # champs pour recuperer les statistiques
     assignedPrograms = fields.Integer(string='Nombre de programmes attribués')
 
-    last_login = fields.Char(string="Derniere Activité", readonly=True)
+    last_login = fields.Char(string="Derniere Activité")
     # learner_achivement=fields.Char(string="Réalisations des apprenants")
     averageScore = fields.Integer(string="Score Moyen", readonly=True)
     totalTimeSpentInMinutes = fields.Char(string="temps passé en minutes", readonly=False)
@@ -48,7 +48,7 @@ class partner(models.Model):
     reactions = fields.Char()
     comments = fields.Char()
     renounce_request = fields.Boolean(
-        "Renonciation au droit de rétractation conformément aux dispositions de l'article L.221-28 1°")
+    "Renonciation au droit de rétractation conformément aux dispositions de l'article L.221-28 1°")
     toDeactivateAt = fields.Char("Date de suppression")
     passage_exam = fields.Boolean("Examen passé", default=False)
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
@@ -132,11 +132,11 @@ class partner(models.Model):
         for user in users:
             iduser = user['_id']
             email = user['mail']
+            _logger.info('user %s' % str(user))
             response_user = requests.get('https://app.360learning.com/api/v1/users/' + iduser, params=params)
             table_user = response_user.json()
             lastlogin = ""
             if 'lastLoginAt' in table_user:
-
                 lastlogin = str(table_user['lastLoginAt'])
             _logger.info('user date supp %s' %table_user['lastLoginAt'])
             times = ''
@@ -148,11 +148,12 @@ class partner(models.Model):
                 minute = time % 60
                 times = str(heure) + 'h' + str(minute) + 'min'
                 _logger.info("heuurs %s" % str(times))
-
+                _logger.info("user %s" % str(email))
                 if (heure == 0):
                     times = str(minute) + 'min'
-                    print(times)
+                    _logger.info("timers %s" %str(times))
                 if (minute == 0):
+                    _logger.info("minute 0 %s" % str(times))
                     times = '0min'
             average = ''
 
@@ -183,6 +184,11 @@ class partner(models.Model):
             partners = self.env['res.partner'].sudo().search([('email', "=", email)])
             for partner in partners:
                 if partners:
+                    """get first value of lastLoginAt as date inscription"""
+                    if not partner.date_creation and not partner.last_login:
+                        partner.sudo().write({
+                            'date_creation': last_login
+                        })
                     partner.sudo().write({
                         'last_login': last_login,
                         'averageScore': average,
@@ -398,7 +404,7 @@ class partner(models.Model):
                 url_groups = 'https://app.360learning.com/api/v1/groups'
                 url_unsubscribeToEmailNotifications = ' https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
                 headers = CaseInsensitiveDict()
-                headers["Content-Type"] = "application/json ; charset = UTF-8"
+                headers["Content-Type"] = "application/json"
                 
                 invit = False
                 create = False
@@ -424,7 +430,13 @@ class partner(models.Model):
                     _logger.info('desactiver email %s' % str(resp_unsub_email))
                     # Ajouter i-One to table user
 
-                    data_user = '{"mail":"' + partner.email + '" , "password":"' + partner.password360  + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
+                    data_user = {"mail": partner.email,
+                                 "password": partner.password360,
+                                 "firstName": partner.firstName,
+                                 "lastName": partner.lastName,
+                                 "phone": partner.phone,
+                                 "lang": "fr",
+                                 "sendCredentials": "true"}
                     resp = requests.post(urluser, headers=headers, data=json.dumps(data_user))
                     _logger.info('data_user %s' % str(data_user))
                     respo = str(json.loads(resp.text))
@@ -440,7 +452,7 @@ class partner(models.Model):
                     new_format = '%d/%m/%Y'
                     # Changer format de date et la mettre en majuscule
                     date_ajout = today.strftime(new_format)
-                    partner.date_creation = date_ajout
+                    #partner.date_creation = date_ajout
                     """Remplir champs date_creation  """
                     # self._cr.execute(
                     #     """UPDATE res_partner SET date_creation = %s WHERE id=%s""", (date_ajout, partner.id,))
@@ -546,7 +558,7 @@ class partner(models.Model):
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
 
-                    # self.send_email(partner)
+                    self.send_email(partner)
                 if not (create):
                     """Créer des tickets contenant le message  d'erreur pour service client et service IT
                     si l'apprenant n'est pas ajouté sur 360"""

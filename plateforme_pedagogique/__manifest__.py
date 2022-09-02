@@ -30,7 +30,7 @@
         'views/session.xml' ,
         'views/users_stats.xml',
         'data/mail_data.xml',
-        'data/automated_action_send_mail.xml',
+        # 'data/automated_action_send_mail.xml',
 
     ],
     'application': True,
