@@ -85,7 +85,7 @@
                                 <br/>
                                 <span t-raw="'%s' % o.partner_id.country_id.name if o.partner_id.country_id else '-------------'"/>
                                 <br/>
-                                <span t-raw="'%s' % o.phone if o.phone else '-------------'"/>
+                                <span t-raw="'%s' % o.partner_id.phone if o.partner_id.phone else '-------------'"/>
                             </strong>
 
                         </div>
