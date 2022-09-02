@@ -253,6 +253,13 @@
           border-color: hsl(199, 85%, 36%);
           color: hsl(199, 85%, 36%);
         }
+        #tidio-chat-iframe{
+        
+          top: 37% !important;
+     
+          height: 215px !important;
+      
+        }
       </style>
 
 
@@ -417,7 +424,7 @@
                 
         #tools {
           position: absolute;
-          left:1px;
+          right:1px;
           top: 7vh;
           width: 30px;
           max-width: 50px;
@@ -542,6 +549,7 @@
         
 
     </div>
+    
     </xpath>
   </template>
 </odoo>
