@@ -37,9 +37,10 @@
                     <br/>
                     <div style="text-align: center;">
                         <img class="img-email"
-                             width="60%"
-                             src="https://www.mcm-academy.fr/mcm_website_theme/static/src/img/homepage/formations-taxi-vtc-taxi-moto-en-ligne.webp"/>
+                             width="50%"
+                             src="https://www.cjoint.com/doc/22_09/LIcjSnifSvE_chauffeurs-2.gif"/>
                     </div>
+
                     <br/>
 
                     <p style="font-size: 18px;">
@@ -75,19 +76,19 @@
 
                     <br/>
                     <span align="center" style="border:1px">
-                    <p style="font-size: 12px;font-weight:500">
-                        Si vous souhaitez avoir plus de renseignements, n'hésitez
-                        pas à contacter notre
+                        <p style="font-size: 12px;font-weight:500">
+                            Si vous souhaitez avoir plus de renseignements, n'hésitez
+                            pas à contacter notre
 
-                        <span
-                                style=" font-size:17;color: rgb(219, 172, 15
+                            <span
+                                    style=" font-size:17;color: rgb(219, 172, 15
 ); font-weight: bold;">
-                            <a href="https://www.mcm-academy.fr/service-clientele">service clients</a>,
-                            disponible du lundi au vendredi
-                            de 9h à 17h.
-                        </span>
-                    </p>
- </span>
+                                <a href="https://www.mcm-academy.fr/service-clientele">service clients</a>,
+                                disponible du lundi au vendredi
+                                de 9h à 17h.
+                            </span>
+                        </p>
+                    </span>
                 </div>
             </field>
             <field name="lang">${object.lang}</field>

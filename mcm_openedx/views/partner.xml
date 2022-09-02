@@ -21,9 +21,7 @@
 
                 <filter name="group_company_id" string="Societé" icon="terp-partner"
                         context="{'group_by':'company_id'}"/>
-                <filter name="group_mcm_session_id" string="Session" icon="terp-partner"
 
-                        context="{'group_by':'mcm_session_id'}"/>
                 <filter name="group_module_id" string="Module" icon="terp-partner" context="{'group_by':'module_id'}"/>
                 <filter name="group_state" string="Statut" icon="terp-partner" context="{'group_by':'state'}"/>
                 <filter name="group_coach_peda" string="Coach" icon="terp-partner"
@@ -191,7 +189,7 @@
 
             <tree>
                 <field name="inscrit_mcm"/>
-<!--                <field name="supprimerdemoocit"/>-->
+                <!--                <field name="supprimerdemoocit"/>-->
                 <field name="client"/>
                 <field name="coach_peda"/>
                 <field name="state"/>

@@ -79,5 +79,5 @@
 
     </record>
 
-    <menuitem id="actif_menu" name="ACTIF VS NON ACTIF" parent="mcm_courses_menu" action="actif_list_action"/>
+    <menuitem id="actif_menu" name="ACTIF-INACTIF" parent="mcm_courses_menu" action="actif_list_action"/>
 </odoo>
