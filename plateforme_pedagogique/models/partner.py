@@ -29,7 +29,7 @@ class partner(models.Model):
     # champs pour recuperer les statistiques
     assignedPrograms = fields.Integer(string='Nombre de programmes attribués')
 
-    last_login = fields.Char(string="Derniere Activité", readonly=True)
+    last_login = fields.Char(string="Derniere Activité")
     # learner_achivement=fields.Char(string="Réalisations des apprenants")
     averageScore = fields.Integer(string="Score Moyen", readonly=True)
     totalTimeSpentInMinutes = fields.Char(string="temps passé en minutes", readonly=False)
@@ -132,11 +132,11 @@ class partner(models.Model):
         for user in users:
             iduser = user['_id']
             email = user['mail']
+            _logger.info('user %s' % str(user))
             response_user = requests.get('https://app.360learning.com/api/v1/users/' + iduser, params=params)
             table_user = response_user.json()
             lastlogin = ""
             if 'lastLoginAt' in table_user:
-
                 lastlogin = str(table_user['lastLoginAt'])
             _logger.info('user date supp %s' %table_user['lastLoginAt'])
             times = ''
