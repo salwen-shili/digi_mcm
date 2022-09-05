@@ -227,7 +227,7 @@ onfidoOut = Onfido.init({
     sendDocument(data);
     //////////////////////////////////////////////////////////////
     // Display a waiting popup window after finishing the workflow.
-    // openPopup("waiting");
+    openPopup("waiting");
     setPopups();
     // check document state every second.
     // display popup according to document state
@@ -335,17 +335,18 @@ const sendHttpRequestOnfido = (method, url, data) => {
 
 //events
 
-var showWaiting = false;
+// var showWaiting = false;
 
-addEventListener("userAnalyticsEvent", (event) => {
-  showWaiting = false;
-  if (event.detail.eventName == "UPLOAD") {
-    showWaiting = true;
-  }
+// addEventListener("userAnalyticsEvent", (event) => {
+//   console.log("userAnalyticsEvent: " , event)
+//   showWaiting = false;
+//   if (event.detail.eventName == "UPLOAD") {
+//     showWaiting = true;
+//   }
 
-  if (showWaiting == true) {
-    openPopup("waiting");
-  } else {
-    closePopup();
-  }
-});
+//   if (showWaiting == true) {
+//     openPopup("waiting");
+//   } else {
+//     closePopup();
+//   }
+// });
