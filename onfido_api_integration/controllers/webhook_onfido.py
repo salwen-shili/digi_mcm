@@ -16,6 +16,7 @@ from odoo.exceptions import ValidationError
 from unidecode import unidecode
 import pyshorteners
 import logging
+import time
 _logger = logging.getLogger(__name__)
 class OnfidoController(http.Controller):
     """get event workflowrund is completed with js callback"""
@@ -133,6 +134,17 @@ class OnfidoController(http.Controller):
                     # self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"refused",currentUser)
                     # self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"refused",currentUser)
                     # 
+                    else :
+                        time.sleep(9)
+                        _logger.info(
+                            '*************************************after waite***************** %s' % str(
+                                currentUser.id))
+                        documents = request.env['documents.document'].sudo().search(
+                            [('partner_id', "=", currentUser.id)])
+                        _logger.info("document %s" % str(documents))
+                        if documents:
+                            for document in documents:
+                                document.state = "refused"
                 return True
             if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'clear':
                 _logger.info('else state document %s' % str(workflow_runs['state']))
@@ -146,7 +158,17 @@ class OnfidoController(http.Controller):
                             document.state="validated"
                     # self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"validated",currentUser)
                     # self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"validated",currentUser)
-
+                    else :
+                        time.sleep(9)
+                        _logger.info(
+                            '*************************************after waite clear  ***************** %s' % str(
+                                currentUser.id))
+                        documents = request.env['documents.document'].sudo().search(
+                            [('partner_id', "=", currentUser.id)])
+                        _logger.info("document %s" % str(documents))
+                        if documents:
+                            for document in documents:
+                                document.state = "validated"
 
             return True
 
