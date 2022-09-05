@@ -34,7 +34,10 @@ class OnfidoController(http.Controller):
         website = request.env['website'].get_current_website()
         document_state = "waiting"
         if data_onfido:
-            document_state = data_onfido.validation_onfido
+            if data_onfido.validation_onfido=="clear":
+                document_state = "validated"
+            if data_onfido.validation_onfido=="fail":
+                document_state = "refused"
         if 'document_front' in data:
             document_front_id=data['document_front']['id']
             name_front = str(data['document_front']['type']) + "_" + str(data['document_front']['side'])
