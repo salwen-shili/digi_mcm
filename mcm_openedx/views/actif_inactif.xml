@@ -18,11 +18,7 @@
         <field name="model">mcm_openedx.state</field>
         <field name="arch" type="xml">
             <form string="Course Form">
-                <xpath expr="//form//sheet" position="before">
-                    <header>
-                        <button name="test_app" string="tessst" type="object"/>
-                    </header>
-                </xpath>
+
                 <sheet>
                     <group>
                         <field name="statut"/>
