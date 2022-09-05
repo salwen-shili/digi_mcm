@@ -40,8 +40,6 @@ class partner(models.Model):
     # Si présent  + échec = > Supprimer ==> 100 Euro => Ajouter
     # Si ajournée + Absente = > Supprimer == > 200 Euro => Ajouter
 
-
-
     # Supprimer iOne  Resulta = Réussi(e)
     def supp_Réussie(self):
         for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1), ('resultat', "=", "Réussi(e)")]):
@@ -432,10 +430,6 @@ class partner(models.Model):
                             if dateDebutSession <= datetime.today():
                                 self.ajouter_IOne_MCM(self)
                                 _logger.info(' tout est valide %s')
-
-
-
-
                         else:
                             _logger.info("seesion et date exman")
                             return {
@@ -658,6 +652,7 @@ class partner(models.Model):
                             _logger.info(
                                 'Ceci est un client Bolt sans autre condition')
                             self.inscriteVTC(partner)
+
             # Ajout ticket pour notiifer le service client pour changer mp
             """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
             if (response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation'):
