@@ -525,6 +525,8 @@ class ResUser(models.Model):
 
                             call_rec.write({'air_call_tag': [(4, odoo_tag.id)],
                                             'is_imp_tag': True})
+                if call_rec and not call_rec.call_contact :
+                    call_rec.action_find_user_using_phone()
 
 
 class ResUser(models.Model):
