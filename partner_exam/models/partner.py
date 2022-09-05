@@ -28,7 +28,7 @@ class resComapny(models.Model):
     company_id = fields.Many2one('res.company', default=lambda self: self.env.company)
     report = fields.Boolean(default=False, help="Cocher ce bouton si vous voulez changer la session de ce client!")
     # Add fields pour la justification dans l'interface client en cas de report
-    justification = fields.Boolean(string="Justification")
+    justification = fields.Boolean(string="Absence justifié")
     paiement = fields.Boolean(string="Paiement")
     attachment_ids = fields.Many2many('ir.attachment', string="Attachment", required=True)
     autre_raison = fields.Text(string="Autre Raison")
@@ -115,10 +115,10 @@ class resComapny(models.Model):
                 info_exam.mode_de_financement = dict(self._fields['mode_de_financement'].selection).get(
                     self.mode_de_financement)
         """ Calculer âge pour faire le filtrage avec âge dans la fiche client en utilisant relativedelta"""
-        if 'birthday' in values:
+        if 'birthday' in values or 'mcm_session_id' in values:
             dt = self.birthday
-            today = date.today()
-            rd = relativedelta(today, dt).years
+            date_exam = self.mcm_session_id.date_exam
+            rd = relativedelta(date_exam, dt).years
             self.age = rd  # Affectation de l'age au champ age dans res.partner
             _logger.info('rec.age date of birth-------------11111111111111111111-------- %s', self.age)
         if (

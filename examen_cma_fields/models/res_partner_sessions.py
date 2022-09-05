@@ -17,7 +17,7 @@ class resPartnerSessions(models.Model):
     session_id = fields.Many2one('mcmacademy.session', 'Session', track_visibility='always')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     # Add new field pour la justification de report
-    justification = fields.Boolean(string="Absence justifié", track_visibility='always')
+    justification = fields.Boolean(string="Justificatif d'absence", track_visibility='always')
     paiement = fields.Boolean(string="Changement de ville", track_visibility='always')
     attachment_ids = fields.Many2many('ir.attachment', string="Attachment", required=True, track_visibility='always')
     autre_raison = fields.Text(track_visibility='always')
