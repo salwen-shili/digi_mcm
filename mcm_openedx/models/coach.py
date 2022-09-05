@@ -194,6 +194,7 @@ class Coach(models.Model):
             # extraire les client ganger ayant le meme nom de coach dans la liste des partner
             # crer une liste pour stocker les apprennats ayant les informations que en est en train de chercher
             listapprenant = []
+
             for rec in self.env['res.partner'].sudo().search(
                     [('coach_peda', 'like', coach.name), ('company_id', '=', 1)]):
                 if (rec.coach_peda.name == coach.name):
