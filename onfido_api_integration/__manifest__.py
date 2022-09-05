@@ -16,6 +16,7 @@
         'views/load_document.xml',
         'views/rejected_document.xml',
         'views/partner_add_onfido.xml',
+        'security/ir.model.access.csv',
     ],
     'demo': [
 

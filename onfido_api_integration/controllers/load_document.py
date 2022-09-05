@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 
 class LoadDocument(Website):
 
-    @http.route('/charger_documents', type='http', auth='public', website=True)
+    @http.route('/charger_documents', type='http', auth='user', website=True)
     def load_document(self, **kw):
         partner=request.env['res.partner'].sudo().search([('id','=',request.env.user.partner_id.id)])
         values = {
@@ -55,7 +55,6 @@ class LoadDocument(Website):
             _logger.info("workflow %s" %str(workflow_run_id))
             """créer une ligne pour information Onfido """
             data_onfido = request.env['onfido.info'].sudo().create({
-                # 'partner_id': partner,
                 'workflow_run_id' : workflow_run_id,
                 'sdk_token' : sdk_token,
                 
