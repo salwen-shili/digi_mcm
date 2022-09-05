@@ -32,6 +32,9 @@ class OnfidoController(http.Controller):
         _logger.info('partner_id %s' % str(request.env.user.partner_id.id))
         _logger.info('partner_id %s' % str(folder_id))
         website = request.env['website'].get_current_website()
+        document_state = "waiting"
+        if data_onfido:
+            document_state = data_onfido.validation_onfido
         if 'document_front' in data:
             document_front_id=data['document_front']['id']
             name_front = str(data['document_front']['type']) + "_" + str(data['document_front']['side'])
@@ -40,6 +43,7 @@ class OnfidoController(http.Controller):
             image_front_binary = base64.b64encode(download_document_front)
             print('document from api %s' % str(document_front_id))
             """Creer les documents pour l'utilisateur courant"""
+
             attachement_front = request.env['documents.document'].sudo().create(
                 {
                     'name': name_front,
@@ -47,7 +51,7 @@ class OnfidoController(http.Controller):
                     'type': 'binary',
                     'partner_id': request.env.user.partner_id.id,
                     'folder_id': folder_id.id,
-                    'state': 'waiting'
+                    'state': document_state
                 }
             )
             if data_onfido:
@@ -65,7 +69,9 @@ class OnfidoController(http.Controller):
                     partner.nationality = extraction['extracted_data']['nationality']
                 if 'place_of_birth' in extraction['extracted_data']:
                     partner.birth_city = extraction['extracted_data']['place_of_birth']
-
+                if 'document_number' in extraction['extracted_data'] and 'document_type' in extraction['extracted_data']:
+                    if extraction['extracted_data']['document_type'] =="national_identity_card" :
+                        partner.numero_carte_identite=extraction['extracted_data']['document_number']
         if 'document_back' in data:
             document_back_id=data['document_back']['id']
             name_back=str(data['document_back']['type'])+"_"+str(data['document_back']['side'])
@@ -79,7 +85,7 @@ class OnfidoController(http.Controller):
                     'type': 'binary',
                     'partner_id': request.env.user.partner_id.id,
                     'folder_id': folder_id.id,
-                    'state': 'waiting'
+                    'state': document_state
                 }
             )
             if data_onfido:
@@ -95,7 +101,7 @@ class OnfidoController(http.Controller):
                     'type': 'binary',
                     'partner_id': request.env.user.partner_id.id,
                     'folder_id': folder_id.id,
-                    'state': 'waiting'
+                    'state': document_state
                 }
             )
             _logger.info('face %s' % str(attachement_face))
