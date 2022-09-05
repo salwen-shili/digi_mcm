@@ -201,7 +201,7 @@ const setPopups = () => {
     exceedWaiting();
     //Change waiting interval
     // @ines a changer
-  }, 30000);
+  }, 10000);
 };
 
 //Function to call XMLHttpRequest which takes method("GET/POST"), url, and "Data"
