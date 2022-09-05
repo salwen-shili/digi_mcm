@@ -34,6 +34,14 @@ class partner(models.Model):
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
 
+    # Ajouter Des condition pour supprimer apprenant
+    # Si absence justifiée  => ne sort pas de la formation
+    # Si ajournée + absence sans justification == > Supprimer
+    # Si présent  + échec = > Supprimer ==> 100 Euro => Ajouter
+    # Si ajournée + Absente = > Supprimer == > 200 Euro => Ajouter
+
+
+
     # Supprimer iOne  Resulta = Réussi(e)
     def supp_Réussie(self):
         for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1), ('resultat', "=", "Réussi(e)")]):
