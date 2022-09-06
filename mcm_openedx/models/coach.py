@@ -131,10 +131,10 @@ class Coach(models.Model):
 
     _description = "Liste des apprenantes créées"
     name = fields.Char(string="Coaches")
-    nombre_apprenant = fields.Integer(string="Nombre apprenant", readonly=True)
+    nombre_apprenant = fields.Integer(string="En formation", readonly=True)
     coach_name = fields.Many2one('res.partner', string="Tuteur", readonly=True, domain=[('est_coach', '=', True)])
     apprenant_name = fields.Many2many('res.partner', domain=[('est_coach', '=', False)], readonly=True)
-    seats = fields.Integer(string="En formation", readonly=True)
+    seats = fields.Integer(string="Nombre apprenant", readonly=True)
     taken_seats = fields.Float(string="Place occupée", compute='_taken_seats', readonly=True)
     commentaire = fields.Char(string="Commentaires")
     color = fields.Integer()
