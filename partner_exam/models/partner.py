@@ -119,7 +119,9 @@ class resComapny(models.Model):
             dt = self.birthday
             date_exam = self.mcm_session_id.date_exam
             rd = relativedelta(date_exam, dt).years
-            self.age = rd  # Affectation de l'age au champ age dans res.partner
+            months = relativedelta(date_exam, dt).months
+            jours = relativedelta(date_exam, dt).months
+            self.age = rd + "ans" + months + "mois" + jours + "jours" # Affectation de l'age au champ age dans res.partner (année + mois)
             _logger.info('rec.age date of birth-------------11111111111111111111-------- %s', self.age)
         if (
                 'nom_evalbox' in values or 'prenom_evalbox' in values or 'mcm_session_id' in values) and self.company_id.id == 2:  # If we have changed this fields
