@@ -16,6 +16,8 @@ class InheritSaleOrder(models.Model):
                 self.show_hide_button = True
             else:
                 self.show_hide_button = False
+        else:
+            pass
 
     def _get_visible_import_note_evalbox(self):
         """ Add fuction to control show and hide button in session view "Importer les notes depuis Evalbox" """
@@ -25,3 +27,5 @@ class InheritSaleOrder(models.Model):
                 self.hide_import_note_evalbox = True
             else:
                 self.hide_import_note_evalbox = False
+        else:
+            pass
