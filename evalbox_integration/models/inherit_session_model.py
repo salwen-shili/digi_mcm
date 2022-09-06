@@ -31,5 +31,5 @@ class InheritSaleOrder(models.Model):
             else:
                 self.hide_import_note_evalbox = False
         else:
-            self.show_hide_button = False
+            self.hide_import_note_evalbox = False
 
