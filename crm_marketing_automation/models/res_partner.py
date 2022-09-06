@@ -62,6 +62,9 @@ class Partner(models.Model):
 
                 if (self.numero_evalbox) and (document_valide is not True):
                     raise ValidationError('Merci de vérifier les documents ')
+                # Vérifier  Renonciation au droit de rétractation
+                if not self.renounce_request and self.numero_evalbox:
+                    raise ValidationError('Merci de vérifier => Renonciation au droit de rétractation ! ')
 
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
