@@ -179,64 +179,65 @@ class Coach(models.Model):
         count_apprennat = 0
         # determiner le nombre total des apprenants
         for apprenant in self.env['res.partner'].sudo().search(
-                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "=", "en_formation"),
+                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "!=", "supprimé"),
                  ]):
-            if (apprenant.mcm_session_id.date_exam.year >= todays_date.year):
-                count_apprennat = count_apprennat + 1
+            if apprenant.mcm_session_id.date_exam:
+                if (apprenant.mcm_session_id.date_exam.year >= todays_date.year):
+                    count_apprennat = count_apprennat + 1
 
-        # definir si le partner et coach
-        listcoach = []
-        for coach in self.env['res.partner'].sudo().search(
-                [('est_coach', '=', 'True'), ('company_id', '=', 1)]):
-            count = 0
-            listcoach.append(coach.id)
+            # definir si le partner et coach
+            listcoach = []
+            for coach in self.env['res.partner'].sudo().search(
+                    [('est_coach', '=', 'True'), ('company_id', '=', 1)]):
+                count = 0
+                listcoach.append(coach.id)
 
-            # extraire les client ganger ayant le meme nom de coach dans la liste des partner
-            # crer une liste pour stocker les apprennats ayant les informations que en est en train de chercher
-            listapprenant = []
+                # extraire les client ganger ayant le meme nom de coach dans la liste des partner
+                # crer une liste pour stocker les apprennats ayant les informations que en est en train de chercher
+                listapprenant = []
 
-            for rec in self.env['res.partner'].sudo().search(
-                    [('coach_peda', 'like', coach.name), ('company_id', '=', 1)]):
-                if (rec.coach_peda.name == coach.name):
-                    count = count + 1
-                    # stoker dans la liste les apprennats
-                    listapprenant.append(rec.id)
-            nombre_apprenant = count
-            # si le partner est un coach alors en va verifier si il existe deja dans la liste des coach pour lui affecter les apprenants
-            if (coach):
-                coach_name = coach.name
-                name = coach.name
-                _logger.info('coachs names %s' % str(coach_name))
-                # verfier dans la class Coach si il existe un coach ayant le meme nom que le coach affecter pour les apprenants
-                exist = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '=', coach.id)])
-                # si le coach existe alors en va lui affecter la liste des apprenats ayant le nom de ce caoch
-                _logger.info('exist %s' % str(exist))
+                for rec in self.env['res.partner'].sudo().search(
+                        [('coach_peda', 'like', coach.name), ('company_id', '=', 1), ('state', "!=", "supprimé")]):
+                    if (rec.coach_peda.name == coach.name):
+                        count = count + 1
+                        # stoker dans la liste les apprennats
+                        listapprenant.append(rec.id)
+                nombre_apprenant = count
+                # si le partner est un coach alors en va verifier si il existe deja dans la liste des coach pour lui affecter les apprenants
+                if (coach):
+                    coach_name = coach.name
+                    name = coach.name
+                    _logger.info('coachs names %s' % str(coach_name))
+                    # verfier dans la class Coach si il existe un coach ayant le meme nom que le coach affecter pour les apprenants
+                    exist = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '=', coach.id)])
+                    # si le coach existe alors en va lui affecter la liste des apprenats ayant le nom de ce caoch
+                    _logger.info('exist %s' % str(exist))
 
-                if (exist):
-                    exist.seats = count_apprennat
-                    exist.nombre_apprenant = nombre_apprenant
-                    exist.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
-                                        })
-                # si non en va creé le coach
-                if not exist:
-                    newcoach = self.env['mcm_openedx.coach'].sudo().create({
-                        'coach_name': coach.id, })
-                    newcoach.seats = count_apprennat
-                    newcoach.nombre_apprenant = nombre_apprenant
-                    newcoach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
-                                           })
+                    if (exist):
+                        exist.seats = count_apprennat
+                        exist.nombre_apprenant = nombre_apprenant
+                        exist.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
+                                            })
+                    # si non en va creé le coach
+                    if not exist:
+                        newcoach = self.env['mcm_openedx.coach'].sudo().create({
+                            'coach_name': coach.id, })
+                        newcoach.seats = count_apprennat
+                        newcoach.nombre_apprenant = nombre_apprenant
+                        newcoach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
+                                               })
 
-                _logger.info('nombre d apprenant par coach nom coach %s' % str(coach_name))
-                _logger.info('nombre d apprenant par coach %s' % str(nombre_apprenant))
-                coachsupp = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '!=', False)])
+                    _logger.info('nombre d apprenant par coach nom coach %s' % str(coach_name))
+                    _logger.info('nombre d apprenant par coach %s' % str(nombre_apprenant))
+                    coachsupp = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '!=', False)])
 
-                # return {
-                #     'type': 'ir.actions.client',
-                #     'tag': 'reload',
-                # }
+                    # return {
+                    #     'type': 'ir.actions.client',
+                    #     'tag': 'reload',
+                    # }
 
-    # Chercher les nombres des apprenants qui n'ont pas des coachs
-    # Chercher le nombre d'apprenants par  coach pour voir la différence et affecter les apprenat aux coachs qui a le nombre inférieur aux autres
+        # Chercher les nombres des apprenants qui n'ont pas des coachs
+        # Chercher le nombre d'apprenants par  coach pour voir la différence et affecter les apprenat aux coachs qui a le nombre inférieur aux autres
 
     def egalité(self):
         # ctrlf8
