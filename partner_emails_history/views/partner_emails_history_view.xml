@@ -12,9 +12,9 @@
                 <button class="oe_stat_button" type="object"
                         string="E-mails envoyés"
                         name="sent_email_history" icon="fa-mail-forward"/>
-                <button class="oe_stat_button" type="object"
+      <!--          <button class="oe_stat_button" type="object"
                         string="E-mails reçus"
-                        name="received_email_history" icon="fa-mail-reply"/>
+                        name="received_email_history" icon="fa-mail-reply"/>-->
             </xpath>
         </field>
     </record>
