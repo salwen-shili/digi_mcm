@@ -59,7 +59,8 @@ class partner(models.Model):
     def anicen_app(self):
         todays_date = date.today()
 
-        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1)]):
+        for partner in self.env['res.partner'].sudo().search(
+                [('company_id', '=', 1), ('partner.state', '!=', "en_formation")]):
             if partner.create_date.year < todays_date.year:
                 if (partner.state != "en_formation") and \
                         (partner.state != "supprimé"):
