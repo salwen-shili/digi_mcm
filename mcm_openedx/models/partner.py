@@ -39,7 +39,7 @@ class partner(models.Model):
     # Si ajournée + absence sans justification == > Supprimer
     # Si présent  + échec = > Supprimer ==> 100 Euro => Ajouter
     # Si ajournée + Absente = > Supprimer == > 200 Euro => Ajouter
-    def reppasage_exman(self):
+    def repasage_exman(self):
         for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1)]):
             if (partner.presence == "Présent(e)") and (partner.resultat == "Ajourné(e)"):
                 _logger.info(" suppprimer et Repassage 100 EUROOOO")
