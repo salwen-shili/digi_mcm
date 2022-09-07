@@ -47,13 +47,13 @@ class partner(models.Model):
             partner.state = "supprimé"
             if (partner.module_id.product_id.default_code == "taxi"):
                 self.desinscriteTaxi(partner)
-                self.supprimerdemoocit = date.today()
-            elif (self.module_id.product_id.default_code == "vtc"):
+                partner.supprimerdemoocit = date.today()
+            elif (partner.module_id.product_id.default_code == "vtc"):
                 self.desinscriteVTC(partner)
-                self.supprimerdemoocit = date.today()
-            elif (self.module_id.product_id.default_code == "vtc_bolt"):
+                partner.supprimerdemoocit = date.today()
+            elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                 self.desinscriteVTC(partner)
-                self.supprimerdemoocit = date.today()
+                partner.supprimerdemoocit = date.today()
 
     # Ajout d'une fonction pour filtrer les Anciens iOnes
     def anicen_app(self):
@@ -64,6 +64,15 @@ class partner(models.Model):
                 if (partner.state != "en_formation") and \
                         (partner.state != "supprimé"):
                     partner.state = "ancien"
+                    if (partner.module_id.product_id.default_code == "taxi"):
+                        self.desinscriteTaxi(partner)
+                        partner.supprimerdemoocit = date.today()
+                    elif (partner.module_id.product_id.default_code == "vtc"):
+                        self.desinscriteVTC(partner)
+                        partner.supprimerdemoocit = date.today()
+                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                        self.desinscriteVTC(partner)
+                        partner.supprimerdemoocit = date.today()
 
     # Dsinscrire l'apprenant  des cours VTC
     def desinscriteVTC(self, partner):
