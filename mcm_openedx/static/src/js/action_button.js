@@ -11,6 +11,7 @@ ListController.include({
    this._super.apply(this, arguments);
        if (this.$buttons) {
          this.$buttons.find('.oe_action_button').click(this.proxy('action_def'));
+         this.$buttons.find('.oe_actif_button').click(this.proxy('actif_def'));
        }
     },
 
@@ -30,6 +31,18 @@ ListController.include({
             this._rpc({
                     model: 'mcm_openedx.course_stat',
                     method: 'supprimer_duplicatio',
+                    args: [""],
+                }).then(function (result) {
+                    self.do_action(result);
+                });
+   },
+    actif_def: function (e) {
+        var self = this;
+        var active_id = this.model.get(this.handle).getContext()['active_ids'];
+        var model_name = this.model.get(this.handle).getContext()['active_model'];
+            this._rpc({
+                    model: 'mcm_openedx.state',
+                    method: 'test_app',
                     args: [""],
                 }).then(function (result) {
                     self.do_action(result);
