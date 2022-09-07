@@ -62,6 +62,13 @@
                                         <ul>
 
                                             <li class="mb-2">
+                                                <a href="tel:+330986878867" style="cursor: pointer; color:#ffffff">
+                                                    <i class="fa fa-phone"/>
+                                                    +33 09 86 87 88 67
+                                                </a>
+                                            </li>
+
+                                            <li class="mb-2">
                                                 <a href="/contact" style="cursor: pointer; color:#ffffff">
                                                     <i class="fa fa-envelope" />
                                                     Envoyez-nous un message
