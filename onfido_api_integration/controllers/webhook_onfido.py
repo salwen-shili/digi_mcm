@@ -69,13 +69,14 @@ class OnfidoController(http.Controller):
                 if 'issuing_country' in extraction['document_classification']:
                     code_pays = extraction['document_classification']['issuing_country']
                     _logger.info("extract date %s" % str(pycountry.countries.get(alpha_3=code_pays)))
-
-                    partner.nationality = pycountry.countries.get(alpha_3=code_pays)
+                    nationality = pycountry.countries.get(alpha_3=code_pays)
+                    partner.nationality = nationality.name
                 if 'date_of_birth' in extraction['extracted_data']:
                     partner.birthday = extraction['extracted_data']['date_of_birth']
                 if 'nationality' in extraction['extracted_data']:
                     code_pays = extraction['extracted_data']['nationality']
-
+                    nationality = pycountry.countries.get(alpha_3=code_pays)
+                    partner.nationality = nationality.name
                     partner.nationality= pycountry.countries.get(alpha_3=code_pays)
                 if 'place_of_birth' in extraction['extracted_data']:
                     partner.birth_city = extraction['extracted_data']['place_of_birth']
