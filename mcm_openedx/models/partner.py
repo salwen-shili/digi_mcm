@@ -45,15 +45,15 @@ class partner(models.Model):
         for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1), ('resultat', "=", "Réussi(e)")]):
             # supprimer l'apprenats en verifiant le module choisit
             partner.state = "supprimé"
-            # if (partner.module_id.product_id.default_code == "taxi"):
-            #     self.desinscriteTaxi(partner)
-            #     self.supprimerdemoocit = date.today()
-            # elif (self.module_id.product_id.default_code == "vtc"):
-            #     self.desinscriteVTC(partner)
-            #     self.supprimerdemoocit = date.today()
-            # elif (self.module_id.product_id.default_code == "vtc_bolt"):
-            #     self.desinscriteVTC(partner)
-            #     self.supprimerdemoocit = date.today()
+            if (partner.module_id.product_id.default_code == "taxi"):
+                self.desinscriteTaxi(partner)
+                self.supprimerdemoocit = date.today()
+            elif (self.module_id.product_id.default_code == "vtc"):
+                self.desinscriteVTC(partner)
+                self.supprimerdemoocit = date.today()
+            elif (self.module_id.product_id.default_code == "vtc_bolt"):
+                self.desinscriteVTC(partner)
+                self.supprimerdemoocit = date.today()
 
     # Ajout d'une fonction pour filtrer les Anciens iOnes
     def anicen_app(self):
