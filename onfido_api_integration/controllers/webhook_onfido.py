@@ -17,6 +17,7 @@ from unidecode import unidecode
 import pyshorteners
 import logging
 import time
+import pycountry
 _logger = logging.getLogger(__name__)
 class OnfidoController(http.Controller):
     """get event workflowrund is completed with js callback"""
@@ -65,11 +66,17 @@ class OnfidoController(http.Controller):
             on fait la mise à jour de la fiche client """
             if 'extracted_data' in extraction:
                 _logger.info("extract date %s" % str(extraction['extracted_data']))
+                if 'issuing_country' in extraction['document_classification']:
+                    code_pays = extraction['extracted_data']['nationality']
+                    _logger.info("extract date %s" % str(pycountry.countries.get(alpha_3=code_pays)))
 
+                    partner.nationality = pycountry.countries.get(alpha_3=code_pays)
                 if 'date_of_birth' in extraction['extracted_data']:
                     partner.birthday = extraction['extracted_data']['date_of_birth']
                 if 'nationality' in extraction['extracted_data']:
-                    partner.nationality = extraction['extracted_data']['nationality']
+                    code_pays = extraction['extracted_data']['nationality']
+
+                    partner.nationality= pycountry.countries.get(alpha_3=code_pays)
                 if 'place_of_birth' in extraction['extracted_data']:
                     partner.birth_city = extraction['extracted_data']['place_of_birth']
                 if 'document_number' in extraction['extracted_data'] and 'document_type' in extraction['extracted_data']:
