@@ -55,7 +55,7 @@ class partner(models.Model):
                 self.desinscriteVTC(partner)
                 partner.supprimerdemoocit = date.today()
 
-    # Ajout d'une fonction pour filtrer les Anciens iOnes
+    # Ajout d'une fonction pour filtrer les Anciens iOnes et les supprimer
     def anicen_app(self):
         todays_date = date.today()
 
