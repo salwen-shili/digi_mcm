@@ -39,6 +39,23 @@ class partner(models.Model):
     # Si ajournée + absence sans justification == > Supprimer
     # Si présent  + échec = > Supprimer ==> 100 Euro => Ajouter
     # Si ajournée + Absente = > Supprimer == > 200 Euro => Ajouter
+    def reppasage_exman(self):
+        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1)]):
+            if (partner.presence == "Présent(e)") and (partner.resultat == "Ajourné(e)"):
+                _logger.info(" suppprimer et Repassage 100 EUROOOO")
+                partner.state = "supprimé"
+                # self.desinscriteVTC(partner)
+                # self.desinscriteTaxi(partner)
+            if (partner.presence == "Absence justifiée") and (partner.resultat == "Ajourné(e)"):
+                _logger.info(" suppprimer et Repassage 200 EUROOOO")
+                partner.state = "supprimé"
+                # self.desinscriteVTC(partner)
+                # self.desinscriteTaxi(partner)
+            if (partner.presence == "Absent(e)") and (partner.resultat == "Ajourné(e)"):
+                _logger.info("supprimerrrrrrrrrrrr")
+                partner.state = "supprimé"
+                # self.desinscriteVTC(partner)
+                # self.desinscriteTaxi(partner)
 
     # Supprimer iOne  Resulta = Réussi(e)
     def supp_Réussie(self):
@@ -60,7 +77,7 @@ class partner(models.Model):
         todays_date = date.today()
 
         for partner in self.env['res.partner'].sudo().search(
-                [('company_id', '=', 1), ('partner.state', '!=', "en_formation")]):
+                [('company_id', '=', 1), ('state', '!=', "en_formation")]):
             if partner.create_date.year < todays_date.year:
                 if (partner.state != "en_formation") and \
                         (partner.state != "supprimé"):
@@ -328,6 +345,7 @@ class partner(models.Model):
     def ajoutMoocit_manuelle(self):
 
         _logger.info(self.company_id)
+        print("okkokokookok", self.module_id.name)
         _logger.info(' email utilisateur %s' % str(self.email))
         _logger.info('password360%s' % str(self.password360))
         sale_order = self.env['sale.order'].sudo().search(
@@ -633,38 +651,62 @@ class partner(models.Model):
                         self.inscriteVTC(partner)
             if (response_ajouter_iOne_MCM.status_code == 409):
                 # voir si statut de l'apprenant en formation ou la date de mise en formation est vide alors mettre la date pour la date.today
-                if (partner.mcm_session_id.date_exam.year):
-                    if (partner.state != 'en_formation' and
-                            partner.mcm_session_id.date_exam.year >= todays_date.year):
-                        partner.write({'state': 'en_formation'})
-                    # Formation à distance Taxi
-                    if (partner.module_id.product_id.default_code == "taxi"):
-                        _logger.info("partner.module_id.product_id.default_code")
-                        if (departement == "59"):
-                            self.inscriteTaxi(partner)
-                            self.ajoutconnaisancelocalNord(partner)
-                            _logger.info("Departement 59")
-                        elif (departement == "62"):
-                            self.inscriteTaxi(partner)
-                            self.ajoutconnaisancelocalpasdecalais(partner)
-                            _logger.info("Departement 62")
-                        else:
-                            self.inscriteTaxi(partner)
-                            _logger.info("Ajouter a formation taxi ")
-                    # Formation à distance VTC
-                    elif (partner.module_id.product_id.default_code == "vtc"):
-                        _logger.info("Formation VTC")
-                        self.inscriteVTC(partner)
-                    # Formation à distance VTC-BOLT
-                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                        if (bolt == True):
-                            _logger.info("Bolt Formation VTC")
-                            _logger.info(
-                                'Ceci est un client Bolt sans autre condition')
+                if partner.mcm_session_id.date_exam:
+                    if (partner.mcm_session_id.date_exam.year):
+                        if (partner.state != 'en_formation' and
+                                partner.mcm_session_id.date_exam.year >= todays_date.year):
+                            partner.write({'state': 'en_formation'})
+                        # Formation à distance Taxi
+                        if (partner.module_id.product_id.default_code == "taxi"):
+                            _logger.info("partner.module_id.product_id.default_code")
+                            if (departement == "59"):
+                                self.inscriteTaxi(partner)
+                                self.ajoutconnaisancelocalNord(partner)
+                                _logger.info("Departement 59")
+                            elif (departement == "62"):
+                                self.inscriteTaxi(partner)
+                                self.ajoutconnaisancelocalpasdecalais(partner)
+                                _logger.info("Departement 62")
+                            else:
+                                self.inscriteTaxi(partner)
+                                _logger.info("Ajouter a formation taxi ")
+                        # Formation à distance VTC
+                        elif (partner.module_id.product_id.default_code == "vtc"):
+                            _logger.info("Formation VTC")
                             self.inscriteVTC(partner)
+                        # Formation à distance VTC-BOLT
+                        elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                            if (bolt == True):
+                                _logger.info("Bolt Formation VTC")
+                                _logger.info(
+                                    'Ceci est un client Bolt sans autre condition')
+                                self.inscriteVTC(partner)
+                        # Si l'apprenant achete le module de repasage vtc
+                        elif partner.module_id.name == "Repassage VTC":
+                            _logger.info("Ajouter a Repassage ")
+                            self.inscriteVTC(partner)
+                        # Si l'apprenant achete le module de repasage vtc
+                        elif partner.module_id.name == "Repassage TAXI":
+                            _logger.info("Repassage taxi")
+                            _logger.info("partner.module_id.product_id.default_code")
+                            if (departement == "59"):
+                                self.inscriteTaxi(partner)
+                                self.ajoutconnaisancelocalNord(partner)
+                                _logger.info("Departement 59")
+                                _logger.info("Ajouter a Repassage ")
 
-            # Ajout ticket pour notiifer le service client pour changer mp
-            """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
+                            elif (departement == "62"):
+                                self.inscriteTaxi(partner)
+                                self.ajoutconnaisancelocalpasdecalais(partner)
+                                _logger.info("Departement 62")
+                                _logger.info("Ajouter a Repassage ")
+
+                            else:
+                                self.inscriteTaxi(partner)
+                                _logger.info("Ajouter a Repassage ")
+
+                # Ajout ticket pour notiifer le service client pour changer mp
+                """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
             if (response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation'):
 
                 _logger.info('Utilisateur  mot de passe invalide %s')
