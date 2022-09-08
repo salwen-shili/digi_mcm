@@ -524,7 +524,7 @@
             <svg class="svg-social-media" width="20px" height="20px" id="a" xmlns="http://www.w3.org/2000/svg" fill="#464fa4" viewBox="0 0 23.33 21.95"><path d="M7.04,12.84l.67,.98c.87,1.26,.86,2.93-.03,4.18l-2.01,2.81c-1.15,1.62-3.59,1.49-4.58-.23h0c-1.9-3.34-1.28-7.55,1.5-10.21L11.09,2.3c3.17-3.01,8.42-3.08,11.66-.15h0c.96,.86,.71,2.43-.47,2.95l-4.9,2.18c-.62,.27-1.33,.19-1.87-.21l-1.61-1.22c-.35-.26-.83-.23-1.14,.07l-5.57,5.48c-.39,.38-.44,.98-.14,1.43Z"/></svg>                        
           </a>
       
-            <a  class="icon" href="mailto:hello@digimoov.fr">
+            <a  class="icon" href="/contact">
 
                 <svg class="svg-social-media" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="#464fa4" viewBox="0 0 30 18"><path d="M15,13.66L30,1.08V18H0V1.08L15,13.66ZM2.59,0L15,11.06,27.31,0H2.59Z"/></svg>
             </a>
