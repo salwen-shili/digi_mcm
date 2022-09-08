@@ -141,9 +141,7 @@ class OnfidoController(http.Controller):
         # data = json.loads(kw)
         workflow_run_id = data['payload']['object']['id']
         _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))
-        """get report document"""
-        report = partner.download_report(workflow_run_id,website.onfido_api_key_live)
-        _logger.info("reppooort %s" %str(report))
+       
         website = request.env['website'].get_current_website()
         partner=request.env.user.partner_id
         workflow_runs = partner.get_workflow_runs(workflow_run_id, website.onfido_api_key_live)
@@ -154,6 +152,9 @@ class OnfidoController(http.Controller):
         list_document = partner.get_listDocument(applicant_id, website.onfido_api_key_live)
         _logger.info('*************************************DOCUMENT***************** %s' % str(list_document))
         if currentUser:
+            """get report document"""
+            report = currentUser.download_report(workflow_run_id, website.onfido_api_key_live)
+            _logger.info("reppooort %s" % str(report))
             if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'fail':
                 _logger.info('state document %s' %str(workflow_runs['state']))
                 currentUser.validation_onfido="fail"
