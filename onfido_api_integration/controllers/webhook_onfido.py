@@ -153,7 +153,10 @@ class OnfidoController(http.Controller):
         _logger.info('*************************************DOCUMENT***************** %s' % str(list_document))
         if currentUser:
             """get report document"""
-            report = currentUser.download_report(data_onfido.id_document_front,data_onfido.id_document_back,                   website.onfido_api_key_live) 
+            check=currentUser.get_check(applicant_id,website.onfido_api_key_live)
+            report_id=check['report_ids'][0]
+            _logger.info("report_id %s" %str(report_id))
+            report = currentUser.get_report(report_id,website.onfido_api_key_live)
             _logger.info("reppooort %s" % str(report))
             if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'fail':
                 _logger.info('state document %s' %str(workflow_runs['state']))

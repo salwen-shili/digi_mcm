@@ -175,19 +175,26 @@ class ResPartner(models.Model):
         _logger.info('extracttttttttttttt %s' % str(extractions))
         return extractions
 
-    def download_report(self, document_front_id, document_back_id, token):
+    def get_checks(self, applicant_id, token):
+        """get checks information"""
+        url_check = "https://api.eu.onfido.com/v3.1/checks?applicant_id=" + applicant_id
+        headers = {
+            'Authorization': 'Token token=' + token,
+        }
+        response_check = requests.get(url_check, headers=headers)
+        check = response_check.json()
+        type_data = type(response_check)
+        _logger.info('checkkkkk %s' % str(check))
+        return check
+
+    def get_report(self, report_id, token):
         """récupérer le rapport de document"""
-        url_rapport = "https://api.eu.onfido.com/v3.4/reports"
+        url_rapport = "https://api.eu.onfido.com/v3.4/reports/" + report_id
         headers = {
             'Authorization': 'Token token=' + token,
 
         }
-
-        params = {
-            'document_ids': [document_front_id, document_back_id]
-
-        }
-        response_report = requests.get(url_rapport, headers=headers, params=params)
+        response_report = requests.get(url_rapport, headers=headers)
         report = response_report.json()
         type_data = type(response_report)
         _logger.info('repooorttttttt %s' % str(report))
