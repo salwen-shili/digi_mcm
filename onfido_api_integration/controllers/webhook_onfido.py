@@ -74,11 +74,11 @@ class OnfidoController(http.Controller):
                     translation = gettext.translation('iso3166', pycountry.LOCALES_DIR,
                                                                  languages=['fr'])
                     translation.install()
-                    country = _(nationality)
+                    country = _(nationality.name)
                     _logger.info("translated_nationality %s" % str(translation))
                     _logger.info("translated_nationality %s" % str(country))
-                    _logger.info("translated_nationality %s" % str(translated_nationality))
-                    partner.nationality = nationality.name
+                    _logger.info("translated_nationality %s" % str(translation))
+                    partner.nationality =country
                 if 'date_of_birth' in extraction['extracted_data']:
                     partner.birthday = extraction['extracted_data']['date_of_birth']
                 if 'nationality' in extraction['extracted_data']:
@@ -86,11 +86,11 @@ class OnfidoController(http.Controller):
                     nationality = pycountry.countries.get(alpha_3=code_pays)
                     translation = gettext.translation('iso3166', pycountry.LOCALES_DIR,languages = ['fr'])
                     translation.install()
-                    country=_(nationality)
+                    country=_(nationality.name)
                     _logger.info("translated_nationality %s" % str(translation))
                     _logger.info("translated_nationality %s" % str(country))
 
-                    partner.nationality = nationality.name
+                    partner.nationality = country
                     partner.nationality= pycountry.countries.get(alpha_3=code_pays)
                 if 'place_of_birth' in extraction['extracted_data']:
                     partner.birth_city = extraction['extracted_data']['place_of_birth']
@@ -141,6 +141,9 @@ class OnfidoController(http.Controller):
         # data = json.loads(kw)
         workflow_run_id = data['payload']['object']['id']
         _logger.info("workflow_run_id onfido %s" % str(workflow_run_id))
+        """get report document"""
+        report = partner.download_report(workflow_run_id,website.onfido_api_key_live)
+        _logger.info("reppooort %s" %str(report))
         website = request.env['website'].get_current_website()
         partner=request.env.user.partner_id
         workflow_runs = partner.get_workflow_runs(workflow_run_id, website.onfido_api_key_live)

@@ -174,3 +174,16 @@ class ResPartner(models.Model):
         type_data = type(response_extraction)
         _logger.info('extracttttttttttttt %s' % str(extractions))
         return extractions
+    def download_report(self,workflow_run_id,token):
+        """récupérer le rapport de document"""
+        url_rapport = "https://api.eu.onfido.com/v3.4/reports?check_id="+workflow_run_id
+        headers = {
+            'Authorization': 'Token token=' + token,
+
+        }
+
+        response_report = requests.get(url_rapport, headers=headers)
+        report = response_report.json()
+        type_data = type(response_report)
+        _logger.info('repooorttttttt %s' % str(report))
+        return report
