@@ -40,22 +40,29 @@ class partner(models.Model):
     # Si présent  + échec = > Supprimer ==> 100 Euro => Ajouter
     # Si ajournée + Absente = > Supprimer == > 200 Euro => Ajouter
     def repasage_exman(self):
-        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1)]):
-            if (partner.presence == "Présent(e)") and (partner.resultat == "Ajourné(e)"):
-                _logger.info(" suppprimer et Repassage 100 EUROOOO")
-                partner.state = "supprimé"
-                # self.desinscriteVTC(partner)
-                # self.desinscriteTaxi(partner)
-            if (partner.presence == "Absence justifiée") and (partner.resultat == "Ajourné(e)"):
-                _logger.info(" suppprimer et Repassage 200 EUROOOO")
-                partner.state = "supprimé"
-                # self.desinscriteVTC(partner)
-                # self.desinscriteTaxi(partner)
-            if (partner.presence == "Absent(e)") and (partner.resultat == "Ajourné(e)"):
-                _logger.info("supprimerrrrrrrrrrrr")
-                partner.state = "supprimé"
-                # self.desinscriteVTC(partner)
-                # self.desinscriteTaxi(partner)
+        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1), ('module_id', '!=', False)]):
+            if (partner.module_id.name != "Repassage VTC") or (partner.module_id.name != "Repassage TAXI"):
+                if (partner.presence == "Présent(e)") and (partner.resultat == "Ajourné(e)"):
+                    _logger.info(" suppprimer et Repassage 100 EUROOOO")
+                    partner.state = "supprimé"
+                    partner.supprimerdemoocit = date.today()
+
+                    # self.desinscriteVTC(partner)
+                    # self.desinscriteTaxi(partner)
+                if (partner.presence == "Absence justifiée") and (partner.resultat == "Ajourné(e)"):
+                    _logger.info(" suppprimer et Repassage 200 EUROOOO")
+                    partner.state = "supprimé"
+                    partner.supprimerdemoocit = date.today()
+
+                    # self.desinscriteVTC(partner)
+                    # self.desinscriteTaxi(partner)
+                if (partner.presence == "Absent(e)") and (partner.resultat == "Ajourné(e)"):
+                    _logger.info("supprimerrrrrrrrrrrr")
+                    partner.state = "supprimé"
+                    partner.supprimerdemoocit = date.today()
+
+                    # self.desinscriteVTC(partner)
+                    # self.desinscriteTaxi(partner)
 
     # Supprimer iOne  Resulta = Réussi(e)
     def supp_Réussie(self):
@@ -684,11 +691,14 @@ class partner(models.Model):
                         # Si l'apprenant achete le module de repasage vtc
                         elif partner.module_id.name == "Repassage VTC":
                             _logger.info("Ajouter a Repassage ")
+                            partner.write({'state': 'en_formation'})
+
                             self.inscriteVTC(partner)
                         # Si l'apprenant achete le module de repasage vtc
                         elif partner.module_id.name == "Repassage TAXI":
                             _logger.info("Repassage taxi")
                             _logger.info("partner.module_id.product_id.default_code")
+                            partner.write({'state': 'en_formation'})
                             if (departement == "59"):
                                 self.inscriteTaxi(partner)
                                 self.ajoutconnaisancelocalNord(partner)
