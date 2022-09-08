@@ -18,6 +18,7 @@ import pyshorteners
 import logging
 import time
 import pycountry
+import gettext
 _logger = logging.getLogger(__name__)
 class OnfidoController(http.Controller):
     """get event workflowrund is completed with js callback"""
@@ -76,6 +77,9 @@ class OnfidoController(http.Controller):
                 if 'nationality' in extraction['extracted_data']:
                     code_pays = extraction['extracted_data']['nationality']
                     nationality = pycountry.countries.get(alpha_3=code_pays)
+                    translated_nationality = gettext.translation('iso3166', pycountry.LOCALES_DIR,
+                    languages = ['fr'])
+                    _logger.info("translated_nationality %s" % str(translated_nationality))
                     partner.nationality = nationality.name
                     partner.nationality= pycountry.countries.get(alpha_3=code_pays)
                 if 'place_of_birth' in extraction['extracted_data']:
