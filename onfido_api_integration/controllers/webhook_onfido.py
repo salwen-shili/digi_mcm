@@ -80,9 +80,13 @@ class OnfidoController(http.Controller):
                 if 'nationality' in extraction['extracted_data']:
                     code_pays = extraction['extracted_data']['nationality']
                     nationality = pycountry.countries.get(alpha_3=code_pays)
-                    translated_nationality = gettext.translation('iso3166', pycountry.LOCALES_DIR,
+                    translation = gettext.translation('iso3166', pycountry.LOCALES_DIR,
                     languages = ['fr'])
-                    _logger.info("translated_nationality %s" % str(translated_nationality))
+                    translation.install()
+                    country=_(nationality)
+                    _logger.info("translated_nationality %s" % str(translation))
+                    _logger.info("translated_nationality %s" % str(country))
+
                     partner.nationality = nationality.name
                     partner.nationality= pycountry.countries.get(alpha_3=code_pays)
                 if 'place_of_birth' in extraction['extracted_data']:
