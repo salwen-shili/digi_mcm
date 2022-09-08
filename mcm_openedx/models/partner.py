@@ -25,8 +25,8 @@ class partner(models.Model):
                               ])
     coach_peda = fields.Many2one('res.partner', track_visibility='onchange', string="Coach_Pedagogique",
                                  domain=[('est_coach', '=', True), ])
-    state = fields.Selection([('ancien', 'Ancien iOne'), ('en_attente', 'En attente'), ('en_formation', 'En Formation'),
-                              ('supprimé', 'Supprimé')],
+    state = fields.Selection([('ancien', 'Ancien'), ('en_attente', 'En attente'), ('en_formation', 'En Formation'),
+                              ('supprimé', 'Supprimée')],
                              required=True, default='en_attente', track_visibility='onchange', string="Statut")
     mooc_dernier_coonx = fields.Date()
     mooc_temps_passe_heure = fields.Integer()
@@ -46,6 +46,23 @@ class partner(models.Model):
                     _logger.info(" suppprimer et Repassage 100 EUROOOO")
                     partner.state = "supprimé"
                     partner.supprimerdemoocit = date.today()
+                    for record in partner:
+                        # comment = "testttttttttttt"
+                        print('aaaaa')
+
+                        values = {
+                            'record_name': partner.name,
+                            'model': 'res.partner',
+                            'message_type': 'comment',
+                            'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                            'res_id': partner.id,
+                            'author_id': partner.env.user.partner_id.id,
+                            'date': datetime.now(),
+                            'body': "Cette apprenant A a été supprimée de la plate-forme car il est Présent(e) mais Ajourné(e)."
+                        }
+                        partner.env['mail.message'].sudo().create(values)
+                        record.comment = ''
+                        print("test")
 
                     # self.desinscriteVTC(partner)
                     # self.desinscriteTaxi(partner)
@@ -53,6 +70,24 @@ class partner(models.Model):
                     _logger.info(" suppprimer et Repassage 200 EUROOOO")
                     partner.state = "supprimé"
                     partner.supprimerdemoocit = date.today()
+                    for record in partner:
+                        # comment = "testttttttttttt"
+                        print('aaaaa')
+
+                        values = {
+                            'record_name': partner.name,
+                            'model': 'res.partner',
+                            'message_type': 'comment',
+                            'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                            'res_id': partner.id,
+                            'author_id': partner.env.user.partner_id.id,
+                            'date': datetime.now(),
+                            'body': "Cette apprenant A a été supprimée de la plate-forme car Presence => Absence justifiée mais Ajourné(e)."
+                        }
+                        partner.env['mail.message'].sudo().create(values)
+                        record.comment = ''
+                        print("test")
+
 
                     # self.desinscriteVTC(partner)
                     # self.desinscriteTaxi(partner)
@@ -60,6 +95,23 @@ class partner(models.Model):
                     _logger.info("supprimerrrrrrrrrrrr")
                     partner.state = "supprimé"
                     partner.supprimerdemoocit = date.today()
+                    for record in partner:
+                        # comment = "testttttttttttt"
+                        print('aaaaa')
+
+                        values = {
+                            'record_name': partner.name,
+                            'model': 'res.partner',
+                            'message_type': 'comment',
+                            'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                            'res_id': partner.id,
+                            'author_id': partner.env.user.partner_id.id,
+                            'date': datetime.now(),
+                            'body': "Cette apprenant A a été supprimée de la plate-forme car il est absent(e) mais Ajourné(e)."
+                        }
+                        partner.env['mail.message'].sudo().create(values)
+                        record.comment = ''
+                        print("test")
 
                     # self.desinscriteVTC(partner)
                     # self.desinscriteTaxi(partner)
@@ -69,6 +121,23 @@ class partner(models.Model):
         for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1), ('resultat', "=", "Réussi(e)")]):
             # supprimer l'apprenats en verifiant le module choisit
             partner.state = "supprimé"
+            for record in partner:
+                # comment = "testttttttttttt"
+                print('aaaaa')
+
+                values = {
+                    'record_name': partner.name,
+                    'model': 'res.partner',
+                    'message_type': 'comment',
+                    'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                    'res_id': partner.id,
+                    'author_id': partner.env.user.partner_id.id,
+                    'date': datetime.now(),
+                    'body': "Cette apprenant A a été supprimée de la plate-forme car il a réussi son examen."
+                }
+                partner.env['mail.message'].sudo().create(values)
+                record.comment = ''
+                print("test")
             if (partner.module_id.product_id.default_code == "taxi"):
                 self.desinscriteTaxi(partner)
                 partner.supprimerdemoocit = date.today()
