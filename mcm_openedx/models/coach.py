@@ -179,7 +179,7 @@ class Coach(models.Model):
         count_apprennat = 0
         # determiner le nombre total des apprenants
         for apprenant in self.env['res.partner'].sudo().search(
-                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "!=", "supprimé"),
+                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "!=", "supprimé"), ('state', "!=", "ancien")
                  ]):
             if apprenant.mcm_session_id.date_exam:
                 if (apprenant.mcm_session_id.date_exam.year >= todays_date.year):
@@ -197,7 +197,8 @@ class Coach(models.Model):
                 listapprenant = []
 
                 for rec in self.env['res.partner'].sudo().search(
-                        [('coach_peda', 'like', coach.name), ('company_id', '=', 1), ('state', "!=", "supprimé")]):
+                        [('coach_peda', 'like', coach.name), ('company_id', '=', 1), ('state', "!=", "supprimé"),
+                         ('state', "!=", "ancien")]):
                     if (rec.coach_peda.name == coach.name):
                         count = count + 1
                         # stoker dans la liste les apprennats
