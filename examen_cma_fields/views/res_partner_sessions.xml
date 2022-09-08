@@ -56,7 +56,7 @@
                     <field name="module_id" string="Module"/>
                     <field name="justification" string="Absence justifié"/>
                     <field name="paiement" string="Changement de ville"/>
-                    <field name="attachment_ids" string="Justificatif" widget="many2many_binary"/>
+                    <field name="attachment_ids" string="Justificatif d'absence" widget="many2many_binary"/>
                     <field name="autre_raison" string="Notes"/>
                     <field name="stat_funding" string="Financement" optional="show"/>
                     <field name="funding_method" string="Mode de financement" optional="show"/>

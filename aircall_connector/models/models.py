@@ -268,7 +268,7 @@ class ResUser(models.Model):
         if call_response['calls']:
 
             for call in call_response['calls']:
-                call_rec = self.env['call.detail'].search([('call_id', '=', call['id'])])
+                call_rec = self.env['call.detail'].sudo().search([('call_id', "=", call['id'])])
                 odoo_contact = False
                 if (call['number']['name'] == 'MCM ACADEMY'):
                     #Get calls of MCM ACADEMY using call number name from api response
@@ -374,8 +374,12 @@ class ResUser(models.Model):
                                     })
                                     message.body=message.body[2:]
                         call_rec.write({'notes':notes})
+                    _logger.info('call_rec : %s and odoo_contact : %s ' %(str(call_rec),str(odoo_contact)))
+                    if call_rec :
+                        if not call_rec.call_contact and odoo_contact :
+                            call_rec.call_contact = odoo_contact
                     if not call_rec.call_contact and odoo_contact:
-                        call_rec.write({'call_contact': odoo_contact.id if odoo_contact else False,
+                        call_rec.sudo().write({'call_contact': odoo_contact.id if odoo_contact else False,
                                         })
 
                     if call['tags']:
@@ -501,8 +505,11 @@ class ResUser(models.Model):
                                         'body': content + note['content'],
                                     })
                         call_rec.write({'notes':notes})
+                    if call_rec :
+                        if not call_rec.call_contact and odoo_contact :
+                            call_rec.call_contact = odoo_contact
                     if not call_rec.call_contact and odoo_contact:
-                        call_rec.write({'call_contact': odoo_contact.id if odoo_contact else False,
+                        call_rec.sudo().write({'call_contact': odoo_contact.id if odoo_contact else False,
                                         })
 
                     if call['tags']:
@@ -518,6 +525,8 @@ class ResUser(models.Model):
 
                             call_rec.write({'air_call_tag': [(4, odoo_tag.id)],
                                             'is_imp_tag': True})
+                if call_rec and not call_rec.call_contact :
+                    call_rec.action_find_user_using_phone()
 
 
 class ResUser(models.Model):

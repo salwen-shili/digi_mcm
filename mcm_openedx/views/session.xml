@@ -110,10 +110,21 @@
             </kanban>
         </field>
     </record>
+
+    <!-- calendar view -->
+    <record model="ir.ui.view" id="session_calendar_view">
+        <field name="name">mcm academy session kanban</field>
+        <field name="model">mcmacademy.session</field>
+        <field name="arch" type="xml">
+            <calendar string="Session Calendar" date_start="date_debut" date_stop="date_fin">
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
     <record model="ir.actions.act_window" id="mcm_session_list_action">
         <field name="name">Les Sessions</field>
         <field name="res_model">mcmacademy.session</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">calendar,kanban,tree,form</field>
         <field name="context">{'search_default_group_company_id': 1}</field>
 
     </record>

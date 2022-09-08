@@ -11,6 +11,7 @@ _logger = logging.getLogger(__name__)
 class Cours_stat(models.Model):
     _name = 'mcm_openedx.course_stat'
     _description = "importer les listes des cours pour calculer les statestiques"
+
     name = fields.Char(string="Nom Utilisateur")
     email = fields.Char(string="Email")
     color = fields.Char(string="color")
@@ -24,11 +25,6 @@ class Cours_stat(models.Model):
     mooc_temps_passe_heure = fields.Integer(string="temps passé en heure")
     mooc_temps_passe_min = fields.Integer(string="temps passé en minute")
     mooc_temps_passe_seconde = fields.Integer(string="temps passé en Seconde")
-    # # # add new fields
-    # statut = fields.Char(string="Statut")
-    # date_inscri = fields.Date(string="Date Inscription",default='null')
-    # derniere_connx = fields.Date(string="Dernière connexion",default='null')
-    # genre = fields.Char(string="Genre")
 
     @api.depends('temppasse')
     def _get_attendees_count(self):
@@ -48,9 +44,6 @@ class Cours_stat(models.Model):
             listjour.append(existt.jour)
             # affecter les jours a une liste pour faire le tri et extraire la derniere et la premiere date de connexion
             listjour.sort()
-            # print("lowwww", listjour[0])
-            # print("highhh", listjour[-1])
-            # chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
             mail_evalbox = self.env['res.partner'].search(
                 [('company_id', '!=', 2), ('id_evalbox', 'ilike', existt.email)])
             print(mail_evalbox.id_evalbox)
@@ -104,13 +97,13 @@ class Cours_stat(models.Model):
 
         # chercher tout personne ayant un mail existant
         for exist in self.env['mcm_openedx.course_stat'].sudo().search(
-                [('email', "!=", False)]):
+                [('email', "!=", False)], order="id desc"):
             # verifier si la personne ayant les meme information
             if exist.id not in listcourduplicated:
                 # chercher mail ,idcour,jour,id
                 duplicates = self.env['mcm_openedx.course_stat'].search(
                     [('email', "=", exist.email), ('idcour', '=', exist.idcour), ('jour', "=", exist.jour),
-                     ('id', '!=', exist.id)])
+                     ('id', '!=', exist.id)], order="id desc")
                 # parcourir la liste de duplication
                 for dup in duplicates:
                     # ajouter les duplicant a la liste
@@ -124,5 +117,53 @@ class Cours_stat(models.Model):
             'tag': 'reload',
         }
 
+
+# Ajout Class Apprenant Actif Vs non Actif
+class actif_inactif(models.Model):
+    _name = 'mcm_openedx.state'
+    _description = "importer les listes des cours pour calculer les statestiques"
+    # # # add new fields
+    name = fields.Char(string="Nom Utilisateur")
+    statut = fields.Char(string="Statut")
+    genre = fields.Char(string="Genre")
+    email = fields.Char(string="Email")
+    idcour = fields.Char(string="ID Cours")
+
+    @api.depends('statut')
+    def _get_attendees_count(self):
+        for r in self:
+            r.statut = len(r.statut)
+
+    # suprimer duplication lors d'importation
     def test_app(self):
-        print()
+        # cree une  liste pour stocker les duplication
+        listcourduplicated = []
+        _logger.info('supprimer duplicationnn state code'
+                     ' %s')
+
+        # chercher tout personne ayant un mail existant
+        for exist in self.env['mcm_openedx.state'].sudo().search(
+                [('email', "!=", False)], order="id desc"):
+
+            print("exist.id", exist.id)
+            # verifier si la personne ayant les meme information
+            if exist.id not in listcourduplicated:
+                # chercher mail ,idcour,jour,id
+                duplicates = self.env['mcm_openedx.state'].search(
+                    [('email', "=", exist.email),
+                     ('idcour', '=', exist.idcour),
+                     ('name', '=', exist.name),
+                     ('id', '!=', exist.id)], order="id desc")
+                print(duplicates)
+                # parcourir la liste de duplication
+                for dup in duplicates:
+                    # ajouter les duplicant a la liste
+                    listcourduplicated.append(dup.id)
+        # supprimer duplication
+        _logger.info('dupplication %s' % str(listcourduplicated))
+
+        self.browse(listcourduplicated).sudo().unlink()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }

@@ -22,7 +22,7 @@
                     <field
                             name="tracking_emails_count"
                             widget="statinfo"
-                            string="Tracking emails"
+                            string="Suivi des emails"
                     />
                 </button>
             </div>

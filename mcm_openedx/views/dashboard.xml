@@ -1,5 +1,6 @@
-<odoo>
+<?xml version="1.0" encoding="utf-8" ?>
 
+<odoo>
 
     <record model="ir.actions.act_window" id="act_coach_graph">
         <field name="name">Coaches</field>
@@ -15,18 +16,57 @@
         <field name="view_id"
                ref="mcm_openedx_stat_graph_view"/>
     </record>
+
+
+    <record model="ir.actions.act_window" id="actif_graph">
+        <field name="name">Statestiques Cours</field>
+        <field name="res_model">mcm_openedx.state</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id"
+               ref="actif_graph_view"/>
+    </record>
+    <record model="ir.actions.act_window" id="app_graph">
+        <field name="name">Les Apprenants</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id"
+               ref="mcm_openedx_app_graph_view"/>
+    </record>
+
     <!--My Dashboard-->
     <record model="ir.ui.view" id="mcm_openedx_dashbord">
         <field name="name">My Dashboard</field>
         <field name="model">board.board</field>
         <field name="arch" type="xml">
+            <t t-name="CustomDashBoard">
+                <div class="oh_dashboards" style="margin-top: 30px;">
+                    <div class="container-fluid o_pj_dashboard">
+                        <center>
+                            <img src="https://so2-static.s3.eu-west-3.amazonaws.com/digimoov/logo.png" width="10%"/>
+                        </center>
+
+                    </div>
+                </div>
+
+            </t>
             <form string="My Dashboard">
-                <board style="4-1">
+                <board style="1-1">
                     <column>
+                        <action name="%(actif_graph)d" string="Actif - Inactif" view_mode="graph"
+                                context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 1, 'allowed_company_ids': [1], 'params': {'action': 1963, 'cids': 1, 'menu_id': 1111, 'model': 'mcm_openedx.state', 'view_type': 'graph'}, 'group_by': ['statut'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['statut'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[]" modifiers="{}"/>
+
                         <action name="%(act_stat_graph)d" string="Statistiques Cours" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'allowed_company_ids': [1, 1, 2], 'group_by': [], 'graph_measure': 'seconde', 'graph_mode': 'bar', 'graph_groupbys': ['idcour'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" modifiers="{}"/>
-                              <action name="%(act_coach_graph)d" string="Coaches" view_mode="graph"
+                    </column>
+                    <column>
+                        <action name="%(app_graph)d" string="Les Apprenants" view_mode="graph"
+                                context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 1, 'allowed_company_ids': [1], 'group_by': ['company_id', 'state'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_id', 'state'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', '=', 1]]" modifiers="{}"/>
+
+
+                        <action name="%(act_coach_graph)d" string="Coache" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'allowed_company_ids': [1, 1, 2], 'group_by': [], 'graph_measure': 'nombre_apprenant', 'graph_mode': 'pie', 'graph_groupbys': ['coach_name'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" modifiers="{}"/>
                     </column>
@@ -59,6 +99,8 @@
         <field name="usage">menu</field>
         <field name="view_id" ref="mcm_openedx_dashbord"/>
     </record>
+
     <menuitem id="main_dashbord" name="Dashbord" parent="main_mcm_openedx_menu" action="open_board_my_dash_action"
               sequence="1"/>
+
 </odoo>

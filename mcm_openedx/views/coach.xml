@@ -6,7 +6,7 @@
         <field name="name">Coaches</field>
         <field name="model">mcm_openedx.coach</field>
         <field name="arch" type="xml">
-            <form string="Coaches">
+            <form string="Coache">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button class="oe_stat_button" type="object" name="test_coach"

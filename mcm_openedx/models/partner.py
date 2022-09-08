@@ -25,13 +25,55 @@ class partner(models.Model):
                               ])
     coach_peda = fields.Many2one('res.partner', track_visibility='onchange', string="Coach_Pedagogique",
                                  domain=[('est_coach', '=', True), ])
-    state = fields.Selection([('en_attente', 'En attente'), ('en_formation', 'En Formation'), ('supprimé', 'Supprimé')],
+    state = fields.Selection([('ancien', 'Ancien iOne'), ('en_attente', 'En attente'), ('en_formation', 'En Formation'),
+                              ('supprimé', 'Supprimé')],
                              required=True, default='en_attente', track_visibility='onchange', string="Statut")
     mooc_dernier_coonx = fields.Date()
     mooc_temps_passe_heure = fields.Integer()
     mooc_temps_passe_min = fields.Integer()
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
+
+    # Ajouter Des condition pour supprimer apprenant
+    # Si absence justifiée  => ne sort pas de la formation
+    # Si ajournée + absence sans justification == > Supprimer
+    # Si présent  + échec = > Supprimer ==> 100 Euro => Ajouter
+    # Si ajournée + Absente = > Supprimer == > 200 Euro => Ajouter
+
+    # Supprimer iOne  Resulta = Réussi(e)
+    def supp_Réussie(self):
+        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1), ('resultat', "=", "Réussi(e)")]):
+            # supprimer l'apprenats en verifiant le module choisit
+            partner.state = "supprimé"
+            if (partner.module_id.product_id.default_code == "taxi"):
+                self.desinscriteTaxi(partner)
+                partner.supprimerdemoocit = date.today()
+            elif (partner.module_id.product_id.default_code == "vtc"):
+                self.desinscriteVTC(partner)
+                partner.supprimerdemoocit = date.today()
+            elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                self.desinscriteVTC(partner)
+                partner.supprimerdemoocit = date.today()
+
+    # Ajout d'une fonction pour filtrer les Anciens iOnes et les supprimer
+    def anicen_app(self):
+        todays_date = date.today()
+
+        for partner in self.env['res.partner'].sudo().search(
+                [('company_id', '=', 1), ('partner.state', '!=', "en_formation")]):
+            if partner.create_date.year < todays_date.year:
+                if (partner.state != "en_formation") and \
+                        (partner.state != "supprimé"):
+                    partner.state = "ancien"
+                    if (partner.module_id.product_id.default_code == "taxi"):
+                        self.desinscriteTaxi(partner)
+                        partner.supprimerdemoocit = date.today()
+                    elif (partner.module_id.product_id.default_code == "vtc"):
+                        self.desinscriteVTC(partner)
+                        partner.supprimerdemoocit = date.today()
+                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                        self.desinscriteVTC(partner)
+                        partner.supprimerdemoocit = date.today()
 
     # Dsinscrire l'apprenant  des cours VTC
     def desinscriteVTC(self, partner):
@@ -284,6 +326,7 @@ class partner(models.Model):
 
     # Ajout manuelle apprenant à moocit
     def ajoutMoocit_manuelle(self):
+
         _logger.info(self.company_id)
         _logger.info(' email utilisateur %s' % str(self.email))
         _logger.info('password360%s' % str(self.password360))
@@ -397,10 +440,6 @@ class partner(models.Model):
                             if dateDebutSession <= datetime.today():
                                 self.ajouter_IOne_MCM(self)
                                 _logger.info(' tout est valide %s')
-
-
-
-
                         else:
                             _logger.info("seesion et date exman")
                             return {
@@ -481,8 +520,9 @@ class partner(models.Model):
             if (response_ajouter_iOne_MCM.status_code == 200):
                 partner.inscrit_mcm = date.today()
                 # The finally__block gets executed no matter if the try block raises any errors or not:
-                # self.testsms(self)
+
                 try:
+
                     if self.env.su:
                         # sending mail in sudo was meant for it being sent from superuser
                         self = self.with_user(SUPERUSER_ID)
@@ -520,7 +560,7 @@ class partner(models.Model):
                                 partner.phone = phone
                                 _logger.info(partner.phone)
                             body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez desormais commencer votre %s, en utilisant les memes identifiants que sur notre site web. https://formation.mcm-academy.fr/" % (
-                                partner.name,partner.module_id.name)
+                                partner.name, partner.module_id.name)
                             if body:
                                 sms = self.env['mail.message'].sudo().search(
                                     [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
@@ -622,6 +662,7 @@ class partner(models.Model):
                             _logger.info(
                                 'Ceci est un client Bolt sans autre condition')
                             self.inscriteVTC(partner)
+
             # Ajout ticket pour notiifer le service client pour changer mp
             """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
             if (response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation'):
@@ -638,7 +679,7 @@ class partner(models.Model):
                 ticket = self.env['helpdesk.ticket'].sudo().search(
                     [("description", "=", description)])
                 if not ticket:
-                    print("cree tichket")
+                    print("cree ticket")
                     new_ticket = self.env['helpdesk.ticket'].sudo().create(
                         vals)
 
@@ -675,13 +716,8 @@ class partner(models.Model):
                     _logger.info(partner.email)
                     _logger.info('E-mail envoyé  %s' % str(partner.name))
 
-
     # Notifier les apprenants
     def notifierapprenant(self):
-        print(self.state)
-        print( self.name)
-        print( self.module_id.name)
-
         if (self.numero_evalbox != False and self.module_id != False and self.state != "supprimé"):
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser
@@ -718,7 +754,7 @@ class partner(models.Model):
                         self.phone = phone
                         _logger.info(self.phone)
                     body = "Cher(e)  %s, MCM Academy vous informe que vous pouvez désormais commencer votre %s, en utilisant les mêmes identifiants que sur notre site web. https://formation.mcm-academy.fr/" % (
-                        self.name,self.module_id.name)
+                        self.name, self.module_id.name)
                     if body:
                         sms = self.env['mail.message'].sudo().search(
                             [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", self.id)])

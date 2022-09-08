@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name" filter_domain="[('name','ilike',self)]"></field>
+                <field name="coach_peda" filter_domain="[('coach_peda','ilike',self)]"></field>
                 <field name="email" filter_domain="[('email','ilike',self)]"></field>
                 <filter name="company"/>
                 <filter name="company" string="MCM Academy"
@@ -20,6 +21,13 @@
 
                 <filter name="group_company_id" string="Societé" icon="terp-partner"
                         context="{'group_by':'company_id'}"/>
+
+                <filter name="group_module_id" string="Module" icon="terp-partner" context="{'group_by':'module_id'}"/>
+                <filter name="group_state" string="Statut" icon="terp-partner" context="{'group_by':'state'}"/>
+                <filter name="group_coach_peda" string="Coach" icon="terp-partner"
+                        context="{'group_by':'coach_peda'}"/>
+
+
             </search>
         </field>
     </record>
@@ -48,7 +56,7 @@
                             type="object" confirm="Envoyer un Mail"
                             state="mail envoyé"></button>
 
-                    <field name="state" widget="statusbar" statusbar_visible="en_attente,en_formation,supprimé"
+                    <field name="state" widget="statusbar" statusbar_visible="ancien,en_attente,en_formation,supprimé"
                            attrs="{'invisible': [('company_id', '=', 2)]}"/>
 
                 </header>
@@ -181,21 +189,61 @@
 
             <tree>
                 <field name="inscrit_mcm"/>
-                <field name="supprimerdemoocit"/>
+                <!--                <field name="supprimerdemoocit"/>-->
                 <field name="client"/>
                 <field name="coach_peda"/>
                 <field name="state"/>
             </tree>
         </field>
     </record>
+    <record model="ir.ui.view" id="mcm_openedx_app_graph_view">
+        <field name="name">Apprenants</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <graph string="iOne">
+                <field name="inscrit_mcm"/>
+                <field name="supprimerdemoocit"/>
+                <field name="client"/>
+                <field name="coach_peda"/>
+                <field name="state"/>
+            </graph>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_openacad_session_kanban">
+        <field name="name">Apprenants</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div>
+                            <div class="oe_dropdown_kanban">
+                                <!-- dropdown menu -->
+
+                                <div class="oe_clear"></div>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+                                <field name="inscrit_mcm"/>
+                                <field name="supprimerdemoocit"/>
+                                <field name="client"/>
+                                <field name="coach_peda"/>
+                                <field name="state"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
     <record model="ir.actions.act_window" id="contact_list_action">
         <field name="name">Les Apprenants</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,graph,kanban</field>
         <field name="context">{'search_default_group_company_id': 1}</field>
     </record>
     <!-- top level menu: no parent -->
-    <menuitem id="main_mcm_openedx_menu" name="MCM MOOCIT"/>
+    <menuitem id="main_mcm_openedx_menu" name="MCM MOOCIT" web_icon="mcm_openedx,static/src/ico.png"/>
     <menuitem id="mcm_apprennat_menu" name="Apprenants" parent="main_mcm_openedx_menu" action="contact_list_action"/>
     <menuitem id="mcm_courses_menu" name="MOOCIT" parent="main_mcm_openedx_menu"/>
 </odoo>

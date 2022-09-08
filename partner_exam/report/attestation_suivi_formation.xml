@@ -17,11 +17,11 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="col-12">
-                                        <img src='/partner_exam/static/src/img/suivi_formation_1.png' height="200"
+                                        <img src='/partner_exam/static/src/img/suivi_formation_1.png' height="170"
                                              width="1200" style="padding-top:5px!important;"/>
                                         <img src="/partner_exam/static/src/img/header2.png"
-                                             style="position:absolute;z-index:3;width:100%;height:350px;margin-left:0px;margin-top:10px;"/>
-                                        <p style="position:absolute;z-index:3;margin-top:100px;margin-left:25px;margin-right:25px;"
+                                             style="position:absolute;z-index:3;width:100%;height:300px;margin-left:0px;margin-top:10px;"/>
+                                        <p style="position:absolute;z-index:3;margin-top:70px;margin-left:25px;margin-right:25px;"
                                            align="center">
                                             DIGIMOOV centre de formation, organisateur du premier examen pour
                                             l’obtention
@@ -40,7 +40,6 @@
                                                 <span></span>
                                             </t>
                                             <br/>
-                                            <br/>
                                             <b>
                                                 Arrêté du 28 décembre 2011 relatif à la délivrance des attestations de
                                                 capacité professionnelle permettant
@@ -48,7 +47,7 @@
                                             </b>
                                         </p>
                                     </div>
-                                    <div style="position:absolute;z-index:3;margin-top:370px;">
+                                    <div style="position:absolute;z-index:3;margin-top:320px;">
                                         <center>
                                             <h2>Déclaration relative au suivi de la formation et aux examens</h2>
                                         </center>
@@ -408,7 +407,7 @@
                                             </t>
                                         </center>
                                         <img src='/partner_exam/static/src/img/footer_attestation_r.png'
-                                             height="180"
+                                             height="120"
                                              width="1200"/>
                                     </div>
                                 </div>
