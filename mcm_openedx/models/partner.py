@@ -58,7 +58,7 @@ class partner(models.Model):
                             'res_id': partner.id,
                             'author_id': partner.env.user.partner_id.id,
                             'date': datetime.now(),
-                            'body': "La personne a été retirée de la plateforme, car elle/il est présent(e), mais n'y réussit pas."
+                            'body': "Apprenant supprimé de la plate-forme => Ajournée à l’examen théorique CMA."
                         }
                         partner.env['mail.message'].sudo().create(values)
                         record.comment = ''
@@ -80,7 +80,7 @@ class partner(models.Model):
                             'res_id': partner.id,
                             'author_id': partner.env.user.partner_id.id,
                             'date': datetime.now(),
-                            'body': "Cette personne a été retirée de la plateforme parce qu'elle était absente."
+                            'body': "Apprenant supprimé de la plate-forme => Absence justifiée ."
                         }
                         partner.env['mail.message'].sudo().create(values)
                         record.comment = ''
@@ -88,7 +88,7 @@ class partner(models.Model):
                     # self.desinscriteVTC(partner)
                     # self.desinscriteTaxi(partner)
                 if (partner.presence == "Absent(e)") and (partner.resultat == "Ajourné(e)"):
-                    _logger.info("supprimerrrrrrrrrrrr")
+                    _logger.info("supprimer")
                     partner.state = "supprimé"
                     partner.supprimerdemoocit = date.today()
                     for record in partner:
@@ -102,7 +102,7 @@ class partner(models.Model):
                             'res_id': partner.id,
                             'author_id': partner.env.user.partner_id.id,
                             'date': datetime.now(),
-                            'body': "Cette personne a été retirée de la plateforme parce qu'elle était absente sans justification."
+                            'body': "Apprenant supprimé de la plate-forme => Absence sans justification ."
                         }
                         partner.env['mail.message'].sudo().create(values)
                         record.comment = ''
@@ -118,8 +118,6 @@ class partner(models.Model):
             partner.state = "supprimé"
             for record in partner:
                 # comment = "testttttttttttt"
-                print('aaaaa')
-
                 values = {
                     'record_name': partner.name,
                     'model': 'res.partner',
@@ -128,7 +126,7 @@ class partner(models.Model):
                     'res_id': partner.id,
                     'author_id': partner.env.user.partner_id.id,
                     'date': datetime.now(),
-                    'body': "Cette apprenant A a été supprimée de la plate-forme car il a réussi son examen."
+                    'body': "Apprenant supprimé de la plate-forme => ADMIS à l’examen théorique CMA."
                 }
                 partner.env['mail.message'].sudo().create(values)
                 record.comment = ''
@@ -620,7 +618,7 @@ class partner(models.Model):
                     _logger.info('avant email mcm_openedx %s' % str(partner.name))
                     # tester si l'apprenat a deja recu un mail
                     message = self.env['mail.message'].search(
-                        [('res_id', "=", partner.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
+                        [('res_id', "=", partner.id), ('subject', "ilike", "CPF cancled")])
                     if not message:
                         template_id = int(self.env['ir.config_parameter'].sudo().get_param(
                             'mcm_openedx.mail_template_add_ione_MOOcit'))
