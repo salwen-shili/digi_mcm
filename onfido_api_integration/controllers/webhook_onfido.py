@@ -218,10 +218,10 @@ class OnfidoController(http.Controller):
                         limit=1).id,
                 }
                 description = currentUser.name + ":" + message_ticket
-                ticket = self.env['helpdesk.ticket'].sudo().search(
+                ticket = request.env['helpdesk.ticket'].sudo().search(
                     [('description', 'ilike', description)])
                 if not ticket:
-                    new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
                         vals)
                 return True
             if str(workflow_runs['finished']) == 'True' and workflow_runs['state'] == 'clear':
