@@ -136,6 +136,7 @@ class OnfidoController(http.Controller):
     @http.route(['/workflow_webhook'], type='json', auth="public", csrf=False)
     def completed_workflow_event(self, **kw):
         values = {}
+        motif=""
         _logger.info("webhoooooooooook onfido %s" %str(kw))
         data = json.loads(request.httprequest.data)
         # data = json.loads(kw)
@@ -154,14 +155,34 @@ class OnfidoController(http.Controller):
         if currentUser:
             """get report document"""
             check=currentUser.get_checks(applicant_id,website.onfido_api_key_live)
-            report_id=check['report_ids'][0]
+            report_id = check['checks'][0]['report_ids'][0]
             _logger.info("report_id %s" %str(report_id))
             report = currentUser.get_report(report_id,website.onfido_api_key_live)
             _logger.info("reppooort %s" % str(report))
+            """get result of validation, if fail we check the reason in brakdown and notify the user"""
             if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'fail':
                 _logger.info('state document %s' %str(workflow_runs['state']))
                 currentUser.validation_onfido="fail"
-                if data_onfido:
+                breakdown_origin = report['breakdown']['visual_authenticity']
+                breakdown_quality = report['breakdown']['picture_face_integrity']
+                breakdown_expiration = report['breakdown']['document_expiration']
+                _logger.info('breakdown %s' % str(breakdown_origin['result']))
+                if breakdown_origin['result'] != 'clear':
+                    motif = "original_document"
+                    motif_fiche="document non original"
+                    message_ticket = "Motif: type de documents scannés ou capture d'écran."
+                    _logger.info('breakdown %s' % str(breakdown_origin['result']))
+                if breakdown_quality['result'] != 'clear':
+                    motif = "quality_document"
+                    motif_fiche="Documents de mauvaise qualité"
+                    message_ticket = "Motif: Documents de mauvaise qualité."
+                    _logger.info('breakdown %s' % str(breakdown_origin['result']))
+                if breakdown_expiration['result'] != 'clear':
+                    motif = "expired_document"
+                    motif_fiche="Documents expirés"
+                    message_ticket = "Motif: Documents expirés."
+                    _logger.info('breakdown %s' % str(breakdown_expiration['result']))
+            if data_onfido:
                     data_onfido.validation_onfido="fail"
                     _logger.info('*************************************currentUser.validation_onfido***************** %s' % str(currentUser.id))
                     documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
@@ -182,8 +203,24 @@ class OnfidoController(http.Controller):
                         _logger.info("document %s" % str(documents))
                         if documents:
                             for document in documents:
-                                document.state = "refused"
-                return True
+                                document.state = "refused" 
+                    """créer ticket pour service client"""
+                    vals = {
+                        'partner_email': '',
+                        'partner_id': False,
+                        'description': currentUser.name+":"+ message_ticket ,
+                        'name': 'Documents refusés',
+                        'team_id': request.env['helpdesk.team'].sudo().search(
+                            [('name', "like", _('Client')), ('company_id', "=", 1)],
+                            limit=1).id,
+                    }
+                    description = currentUser.name+":"+ message_ticket
+                    ticket = self.env['helpdesk.ticket'].sudo().search(
+                        [('description', 'ilike', description)])
+                    if not ticket:
+                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                            vals)
+                    return motif
             if str(workflow_runs['finished'])=='True' and workflow_runs['state'] == 'clear':
                 _logger.info('else state document %s' % str(workflow_runs['state']))
                 currentUser.validation_onfido = "clear"

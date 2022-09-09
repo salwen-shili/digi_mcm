@@ -27,3 +27,4 @@ class InheritConfig(models.Model):
     ], string='Statut des Documents')
     partner_id = fields.Many2one('res.partner', string="Client")
     workflow_run_id = fields.Char("Workflow run id")
+    motif=fields.Char("Motif de refus")

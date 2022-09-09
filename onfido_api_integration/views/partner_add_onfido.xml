@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="sendinblue.view_partner_sendinblue_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook[last()]" position="inside">
-                <page string="Onfido " name="onfido_info">
+                <page string="Onfido" name="onfido_info">
                     <field name="onfido_information_ids" >
                       <tree>
                             <field name="workflow_run_id"/>
@@ -14,7 +14,7 @@
                             <field name="id_document_back" />
                             <field name="id_document_front" />
                             <field name="validation_onfido"></field>
-
+                            <field name="motif"></field>
                         </tree>
                     </field>
                 </page>
