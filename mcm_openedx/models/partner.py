@@ -58,7 +58,7 @@ class partner(models.Model):
                             'res_id': partner.id,
                             'author_id': partner.env.user.partner_id.id,
                             'date': datetime.now(),
-                            'body': "Cette apprenant A a été supprimée de la plate-forme car il est Présent(e) mais Ajourné(e)."
+                            'body': "La personne a été retirée de la plateforme, car elle/il est présent(e), mais n'y réussit pas."
                         }
                         partner.env['mail.message'].sudo().create(values)
                         record.comment = ''
@@ -66,7 +66,7 @@ class partner(models.Model):
                     # self.desinscriteVTC(partner)
                     # self.desinscriteTaxi(partner)
                 if (partner.presence == "Absence justifiée") and (partner.resultat == "Ajourné(e)"):
-                    _logger.info(" suppprimer et Repassage 200 EUROOOO")
+                    _logger.info(" suppprimer et Repassage 100 EUROOOO")
                     partner.state = "supprimé"
                     partner.supprimerdemoocit = date.today()
                     for record in partner:
@@ -80,7 +80,7 @@ class partner(models.Model):
                             'res_id': partner.id,
                             'author_id': partner.env.user.partner_id.id,
                             'date': datetime.now(),
-                            'body': "Cette apprenant A a été supprimée de la plate-forme car Presence => Absence justifiée mais Ajourné(e)."
+                            'body': "Cette personne a été retirée de la plateforme parce qu'elle était absente."
                         }
                         partner.env['mail.message'].sudo().create(values)
                         record.comment = ''
@@ -102,7 +102,7 @@ class partner(models.Model):
                             'res_id': partner.id,
                             'author_id': partner.env.user.partner_id.id,
                             'date': datetime.now(),
-                            'body': "Cette apprenant A a été supprimée de la plate-forme car il est absent(e) mais Ajourné(e)."
+                            'body': "Cette personne a été retirée de la plateforme parce qu'elle était absente sans justification."
                         }
                         partner.env['mail.message'].sudo().create(values)
                         record.comment = ''
