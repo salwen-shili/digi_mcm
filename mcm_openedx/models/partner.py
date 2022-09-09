@@ -41,9 +41,9 @@ class partner(models.Model):
     # Si ajournée + Absente = > Supprimer == > 200 Euro => Ajouter
     def repasage_exman(self):
         for partner in self.env['res.partner'].sudo().search(
-                [('company_id', '=', 1), ('module_id', '!=', False)]):
+                [('company_id', '=', 1), ('module_id', '!=', False), ('state', '!=', "ancien")]):
             if (partner.module_id.name != "Repassage VTC") or (partner.module_id.name != "Repassage TAXI"):
-                if (partner.presence_mcm == "Présent(e)") and (partner.resultat == "Ajourné(e)"):
+                if (partner.presence == "Présent(e)") and (partner.resultat == "Ajourné(e)"):
                     _logger.info(" suppprimer et Repassage 100 EUROOOO")
                     partner.state = "supprimé"
                     partner.supprimerdemoocit = date.today()
@@ -65,7 +65,7 @@ class partner(models.Model):
 
                     # self.desinscriteVTC(partner)
                     # self.desinscriteTaxi(partner)
-                if (partner.presence_mcm == "Absence justifiée") and (partner.resultat == "Ajourné(e)"):
+                if (partner.presence == "Absence justifiée") and (partner.resultat == "Ajourné(e)"):
                     _logger.info(" suppprimer et Repassage 100 EUROOOO")
                     partner.state = "supprimé"
                     partner.supprimerdemoocit = date.today()
@@ -87,7 +87,7 @@ class partner(models.Model):
 
                     # self.desinscriteVTC(partner)
                     # self.desinscriteTaxi(partner)
-                if (partner.presence_mcm == "Absent(e)") and (partner.resultat == "Ajourné(e)"):
+                if (partner.presence == "Absent(e)") and (partner.resultat == "Ajourné(e)"):
                     _logger.info("supprimer")
                     partner.state = "supprimé"
                     partner.supprimerdemoocit = date.today()
@@ -113,7 +113,7 @@ class partner(models.Model):
     # Supprimer iOne  Resulta = Réussi(e)
     def supp_Réussie(self):
         for partner in self.env['res.partner'].sudo().search(
-                [('company_id', '=', 1), ('resultat', "=", "Réussi(e)")]):
+                [('company_id', '=', 1), ('resultat', "=", "Réussi(e)"), ('state', '!=', "ancien")]):
             # supprimer l'apprenats en verifiant le module choisit
             partner.state = "supprimé"
             for record in partner:
