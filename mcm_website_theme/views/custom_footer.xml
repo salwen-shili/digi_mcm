@@ -21,7 +21,6 @@
                 }
             </style>
 
-
             <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()" />
             <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()" />
 
@@ -215,7 +214,7 @@
         #tools {
             position: absolute;
             right: 7px;
-            top: 10vh;
+            top: 11vh;
             width: 30px;
             max-width: 50px;
           }
@@ -298,10 +297,6 @@
             box-shadow: 0px 0px 1px 1px #ffc107;
           }
           
-
-
-
-  
           </style>
 
 

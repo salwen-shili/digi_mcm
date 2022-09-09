@@ -425,7 +425,7 @@
         #tools {
           position: absolute;
           right: 6px;
-          top: 8vh;
+          top: 11vh;
           width: 30px;
         }
         .icon {
