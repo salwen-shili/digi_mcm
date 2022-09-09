@@ -137,7 +137,7 @@ class OnfidoController(http.Controller):
     @http.route(['/workflow_webhook'], type='json', auth="public", csrf=False)
     def completed_workflow_event(self, **kw):
         values = {}
-        motif = ""
+        motif_fiche = ""
         _logger.info("webhoooooooooook onfido %s" % str(kw))
         data = json.loads(request.httprequest.data)
         # data = json.loads(kw)
