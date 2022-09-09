@@ -40,7 +40,8 @@ class partner(models.Model):
     # Si présent  + échec = > Supprimer ==> 100 Euro => Ajouter
     # Si ajournée + Absente = > Supprimer == > 200 Euro => Ajouter
     def repasage_exman(self):
-        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1), ('module_id', '!=', False)]):
+        for partner in self.env['res.partner'].sudo().search(
+                [('company_id', '=', 1), ('module_id', '!=', False), ('state', '!=', "supprimé")]):
             if (partner.module_id.name != "Repassage VTC") or (partner.module_id.name != "Repassage TAXI"):
                 if (partner.presence == "Présent(e)") and (partner.resultat == "Ajourné(e)"):
                     _logger.info(" suppprimer et Repassage 100 EUROOOO")
@@ -48,7 +49,6 @@ class partner(models.Model):
                     partner.supprimerdemoocit = date.today()
                     for record in partner:
                         # comment = "testttttttttttt"
-                        print('aaaaa')
 
                         values = {
                             'record_name': partner.name,
@@ -62,7 +62,6 @@ class partner(models.Model):
                         }
                         partner.env['mail.message'].sudo().create(values)
                         record.comment = ''
-                        print("test")
 
                     # self.desinscriteVTC(partner)
                     # self.desinscriteTaxi(partner)
@@ -72,7 +71,6 @@ class partner(models.Model):
                     partner.supprimerdemoocit = date.today()
                     for record in partner:
                         # comment = "testttttttttttt"
-                        print('aaaaa')
 
                         values = {
                             'record_name': partner.name,
@@ -86,8 +84,6 @@ class partner(models.Model):
                         }
                         partner.env['mail.message'].sudo().create(values)
                         record.comment = ''
-                        print("test")
-
 
                     # self.desinscriteVTC(partner)
                     # self.desinscriteTaxi(partner)
@@ -97,7 +93,6 @@ class partner(models.Model):
                     partner.supprimerdemoocit = date.today()
                     for record in partner:
                         # comment = "testttttttttttt"
-                        print('aaaaa')
 
                         values = {
                             'record_name': partner.name,
@@ -111,14 +106,14 @@ class partner(models.Model):
                         }
                         partner.env['mail.message'].sudo().create(values)
                         record.comment = ''
-                        print("test")
 
                     # self.desinscriteVTC(partner)
                     # self.desinscriteTaxi(partner)
 
     # Supprimer iOne  Resulta = Réussi(e)
     def supp_Réussie(self):
-        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1), ('resultat', "=", "Réussi(e)")]):
+        for partner in self.env['res.partner'].sudo().search(
+                [('company_id', '=', 1), ('resultat', "=", "Réussi(e)"), ('state', '!=', "supprimé")]):
             # supprimer l'apprenats en verifiant le module choisit
             partner.state = "supprimé"
             for record in partner:
@@ -727,7 +722,7 @@ class partner(models.Model):
                         self.inscriteVTC(partner)
             if (response_ajouter_iOne_MCM.status_code == 409):
                 # voir si statut de l'apprenant en formation ou la date de mise en formation est vide alors mettre la date pour la date.today
-                if partner.mcm_session_id.date_exam:
+                if partner.mcm_session_id.date_exam and partner.state != "supprimé":
                     if (partner.mcm_session_id.date_exam.year):
                         if (partner.state != 'en_formation' and
                                 partner.mcm_session_id.date_exam.year >= todays_date.year):
