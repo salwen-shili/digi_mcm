@@ -138,6 +138,7 @@ class OnfidoController(http.Controller):
     def completed_workflow_event(self, **kw):
         values = {}
         motif_fiche = ""
+        message_ticket=""
         _logger.info("webhoooooooooook onfido %s" % str(kw))
         data = json.loads(request.httprequest.data)
         # data = json.loads(kw)
