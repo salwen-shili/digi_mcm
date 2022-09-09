@@ -153,7 +153,7 @@ class OnfidoController(http.Controller):
         _logger.info('*************************************DOCUMENT***************** %s' % str(list_document))
         if currentUser:
             """get report document"""
-            check=currentUser.get_check(applicant_id,website.onfido_api_key_live)
+            check=currentUser.get_checks(applicant_id,website.onfido_api_key_live)
             report_id=check['report_ids'][0]
             _logger.info("report_id %s" %str(report_id))
             report = currentUser.get_report(report_id,website.onfido_api_key_live)
