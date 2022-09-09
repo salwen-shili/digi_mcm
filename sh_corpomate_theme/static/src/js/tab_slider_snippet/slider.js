@@ -82,7 +82,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_202').replaceWith(values.data);
+		   		    	// // $el.find('.js_cls_corpomate_blog_slider_main_div_202').replaceWith(values.data);
 		   		        
 		            });  
 			
@@ -144,7 +144,7 @@ $( document ).ready(function() {
 		   		    }).then(function (values) {
 
 		   		    	
-		   		    	$el.find('.js_cls_corpomate_blog_slider_tab_content_202 ' + tab_href_find ).replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_tab_content_202 ' + tab_href_find ).replaceWith(values.data);
 		   		        
 
 		            });  
@@ -211,62 +211,62 @@ $( document ).ready(function() {
 		
 		
 		// BLOG SLIDER LAYOUT render function start here
-		function sh_corpomate_theme_tmpl_203_layout($el) {
+		// function sh_corpomate_theme_tmpl_203_layout($el) {
 			
-			//get snippet options start here    	 	
-	    	var class_name = $el.attr('class');
-		    var slider_id = false;
+		// 	//get snippet options start here    	 	
+	    // 	var class_name = $el.attr('class');
+		//     var slider_id = false;
 		    	
 	    	
 	 	    		    	
-		    	if(class_name){
+		//     	if(class_name){
 
 		    		
-		    		//for slider 
-		    		var js_slider_id = class_name.match("sh_slider_(.*)_send");
+		//     		//for slider 
+		//     		var js_slider_id = class_name.match("sh_slider_(.*)_send");
 		
 		    		
-		    		if(js_slider_id && js_slider_id.length == 2){
-		    			slider_id = js_slider_id[1];
-		    		} 	
+		//     		if(js_slider_id && js_slider_id.length == 2){
+		//     			slider_id = js_slider_id[1];
+		//     		} 	
 		    		
 		    			    		
-		    	}		
+		//     	}		
 			
 			
-			//get snippet option ends here		
+		// 	//get snippet option ends here		
 
-		    //ajax call start here	
-			ajax.jsonRpc('/sh_corpomate_theme/sh_tab_slider_snippet/sh_corpomate_theme_tmpl_203_tab_pane_layout', 'call', 
-		       	 	{       
-			    		'slider_id': 			slider_id,	    		
+		//     //ajax call start here	
+		// 	ajax.jsonRpc('/sh_corpomate_theme/sh_tab_slider_snippet/sh_corpomate_theme_tmpl_203_tab_pane_layout', 'call', 
+		//        	 	{       
+		// 	    		'slider_id': 			slider_id,	    		
 			    		
-		   		    }).then(function (values) {
+		//    		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_203').replaceWith(values.data);
+		// //    		    	$el.find('.js_cls_corpomate_blog_slider_main_div_203').replaceWith(values.data);
 		   		        
-		            });  
+		//             });  
 			
-			//then function ends here
+		// 	//then function ends here
 				
 	        
-	    }
+	    // }
 		// blog LAYOUT render function ends here		
 		
 		
 		
-		var $snippet_sections = $(".js_cls_corpomate_blog_slider_section_203");
+		// var $snippet_sections = $(".js_cls_corpomate_blog_slider_section_203");
 		
-		if($snippet_sections && $snippet_sections.length){
+		// if($snippet_sections && $snippet_sections.length){
 			
-			$snippet_sections.each(function( index ) {
+		// 	$snippet_sections.each(function( index ) {
 				
-				sh_corpomate_theme_tmpl_203_layout( $( this )  );
+		// 		sh_corpomate_theme_tmpl_203_layout( $( this )  );
 			
 
-		});
+		// });
 			
-		}	
+		// }	
 		
 		
 		
@@ -305,7 +305,7 @@ $( document ).ready(function() {
 		   		    }).then(function (values) {
 
 		   		    	
-		   		    	$el.find('.js_cls_corpomate_blog_slider_tab_content_203 ' + tab_href_find ).replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_tab_content_203 ' + tab_href_find ).replaceWith(values.data);
 		   		        
 
 		            });  
@@ -394,7 +394,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_204').replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_main_div_204').replaceWith(values.data);
 		   		        
 		            });  
 			
@@ -456,7 +456,7 @@ $( document ).ready(function() {
 		   		    }).then(function (values) {
 
 		   		    	
-		   		    	$el.find('.js_cls_corpomate_blog_slider_tab_content_204 ' + tab_href_find ).replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_tab_content_204 ' + tab_href_find ).replaceWith(values.data);
 		   		        
 
 		            });  
@@ -535,7 +535,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_205').replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_main_div_205').replaceWith(values.data);
 		   		        
 		            });  
 			
@@ -597,7 +597,7 @@ $( document ).ready(function() {
 		   		    }).then(function (values) {
 
 		   		    	
-		   		    	$el.find('.js_cls_corpomate_blog_slider_tab_content_205 ' + tab_href_find ).replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_tab_content_205 ' + tab_href_find ).replaceWith(values.data);
 		   		        
 
 		            });  
@@ -713,7 +713,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_206').replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_main_div_206').replaceWith(values.data);
 		   		    	var is_rtl_enabled =  $('#wrapwrap').hasClass('o_rtl');
 		   		    	//refresh the owl start here
 		   		    	$el.find('.owl-carousel').owlCarousel({
@@ -801,7 +801,7 @@ $( document ).ready(function() {
 		   		    }).then(function (values) {
 
 		   		    	
-		   		    	$el.find('.js_cls_corpomate_blog_slider_tab_content_206 ' + tab_href_find ).replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_tab_content_206 ' + tab_href_find ).replaceWith(values.data);
 		   		        var is_rtl_enabled =  $('#wrapwrap').hasClass('o_rtl');
 		   		    	//refresh the owl start here
 		   		    	$el.find('.owl-carousel').owlCarousel({
@@ -955,7 +955,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_207').replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_main_div_207').replaceWith(values.data);
 		   		    	var is_rtl_enabled =  $('#wrapwrap').hasClass('o_rtl');
 		   		    	//refresh the owl start here
 		   		    	$el.find('.owl-carousel').owlCarousel({
@@ -1043,7 +1043,7 @@ $( document ).ready(function() {
 		   		    }).then(function (values) {
 
 		   		    	
-		   		    	$el.find('.js_cls_corpomate_blog_slider_tab_content_207 ' + tab_href_find ).replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_tab_content_207 ' + tab_href_find ).replaceWith(values.data);
 		   		        var is_rtl_enabled =  $('#wrapwrap').hasClass('o_rtl');
 		   		    	//refresh the owl start here
 		   		    	$el.find('.owl-carousel').owlCarousel({
@@ -1179,7 +1179,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_208').replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_main_div_208').replaceWith(values.data);
 		   		    	var is_rtl_enabled =  $('#wrapwrap').hasClass('o_rtl');
 		   		    	//refresh the owl start here
 		   		    	$el.find('.owl-carousel').owlCarousel({
@@ -1267,7 +1267,7 @@ $( document ).ready(function() {
 		   		    }).then(function (values) {
 
 		   		    	
-		   		    	$el.find('.js_cls_corpomate_blog_slider_tab_content_208 ' + tab_href_find ).replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_tab_content_208 ' + tab_href_find ).replaceWith(values.data);
 		   		        var is_rtl_enabled =  $('#wrapwrap').hasClass('o_rtl');
 		   		    	//refresh the owl start here
 		   		    	$el.find('.owl-carousel').owlCarousel({
@@ -1389,7 +1389,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_209').replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_main_div_209').replaceWith(values.data);
 		   		    	var is_rtl_enabled =  $('#wrapwrap').hasClass('o_rtl');
 		   		    	//refresh the owl start here
 		   		    	$el.find('.owl-carousel').owlCarousel({
@@ -1477,7 +1477,7 @@ $( document ).ready(function() {
 		   		    }).then(function (values) {
 
 		   		    	
-		   		    	$el.find('.js_cls_corpomate_blog_slider_tab_content_209 ' + tab_href_find ).replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_tab_content_209 ' + tab_href_find ).replaceWith(values.data);
 		   		        var is_rtl_enabled =  $('#wrapwrap').hasClass('o_rtl');
 		   		    	//refresh the owl start here
 		   		    	$el.find('.owl-carousel').owlCarousel({
@@ -1606,7 +1606,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_210').replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_main_div_210').replaceWith(values.data);
 		   		    	var is_rtl_enabled =  $('#wrapwrap').hasClass('o_rtl');
 		   		    	//refresh the owl start here
 		   		    	$el.find('.owl-carousel').owlCarousel({
@@ -1694,7 +1694,7 @@ $( document ).ready(function() {
 		   		    }).then(function (values) {
 
 		   		    	
-		   		    	$el.find('.js_cls_corpomate_blog_slider_tab_content_210 ' + tab_href_find ).replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_tab_content_210 ' + tab_href_find ).replaceWith(values.data);
 		   		        var is_rtl_enabled =  $('#wrapwrap').hasClass('o_rtl');
 		   		    	//refresh the owl start here
 		   		    	$el.find('.owl-carousel').owlCarousel({
@@ -1804,7 +1804,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_263').replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_main_div_263').replaceWith(values.data);
 		   		    	
 		   		    	//refresh the owl start here
 
@@ -1905,7 +1905,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_280').replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_main_div_280').replaceWith(values.data);
 		   		    	
 		   		    	//refresh the owl start here
 
@@ -2002,7 +2002,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_298').replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_main_div_298').replaceWith(values.data);
 		   		    	
 		   		    	//refresh the owl start here
 
@@ -2112,7 +2112,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_323').replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_main_div_323').replaceWith(values.data);
 		   		    	
 		   		    	//refresh the owl start here
 
@@ -2213,7 +2213,7 @@ $( document ).ready(function() {
 			    		
 		   		    }).then(function (values) {
 
-		   		    	$el.find('.js_cls_corpomate_blog_slider_main_div_348').replaceWith(values.data);
+		   		    	// $el.find('.js_cls_corpomate_blog_slider_main_div_348').replaceWith(values.data);
 		   		    	
 		   		    	//refresh the owl start here
 
