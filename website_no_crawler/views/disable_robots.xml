@@ -10,6 +10,10 @@ Disallow: /service-pedagogique
 Disallow: /shop/cart
 Disallow: /conditions
 Disallow: /helpdesk/rating
+Disallow: /shop/category/*
+Disallow: /website/translations
+Disallow: /reset_password
+Disallow: /shop/page/*/
 Disallow: /web/content/slide.slide/*
 Sitemap:<t t-esc="url_root"/>sitemap.xml
             </t>

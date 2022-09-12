@@ -27,11 +27,13 @@ class enattente(models.Model):
            si tout les conditions sont vérifiés on Passe le dossier dans l'état 'en formation'"""
 
     def wedof_api_integration_moocit(self):
-        companies = self.env['res.company'].sudo().search([('id', "=", 2)])
+        todays_date = date.today()
+
+        companies = self.env['res.company'].sudo().search([('id', "!=", False)])
         print(companies)
         api_key = ""
-        if companies:
-            api_key = companies.wedof_api_key
+        for companiess in companies:
+            api_key = companiess.wedof_api_key
         headers = {
             'accept': 'application/json',
             'Content-Type': 'application/json',
@@ -50,7 +52,6 @@ class enattente(models.Model):
         response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
                                 params=params_we)
         registrations = response.json()
-        _logger.info("Habilitation pour l’accès à la profession de conducteur de taxi")
         _logger.info(response.status_code)
         for dossier in registrations:
             externalId = dossier['externalId']
@@ -65,6 +66,7 @@ class enattente(models.Model):
             dateFormation = date_.date()
             idform = dossier['trainingActionInfo']['externalId']
             attendee = dossier['attendee']
+            count = 0
 
             today = date.today()
             lastupdatestr = str(dossier['lastUpdate'])
@@ -77,17 +79,82 @@ class enattente(models.Model):
             billingState = dossier['billingState']
             externalId = dossier['externalId']
             lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
-            # print ('dateeeeeeeeee', today, dateFormation, certificat, idform)
-            # print ('diplome',diplome)
-            if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi"):
+
+            if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi") or (
+                    certificat == "Habilitation pour l’accès à la profession de conducteur de voiture de transport avec chauffeur (VTC)"):
                 _logger.info("Habilitation pour l’accès à la profession de conducteur de taxi")
                 _logger.info(attendee['email'])
+                _logger.info(certificat)
                 existee = self.env['mcm_openedx.enattente'].search(
                     [('name', '=', email)])
                 _logger.info(existee.name)
                 _logger.info(existee.externalId)
                 if existee:
-                    _logger.info("existtttt")
+                    for partner_cancled in self.env['res.partner'].search(
+                            [('numero_cpf', '!=', False), ('statut_cpf', '=', 'canceled'), ('company_id', '=', 1)]):
+                        if partner_cancled.date_examen_edof:
+                            if partner_cancled.date_examen_edof.year < todays_date.year:
+                                print("partner_cancled", partner_cancled)
+                                print("partner_cancled", partner_cancled.email)
+                                count = count + 1
+                                # if self.env.su:
+                                #     # sending mail in sudo was meant for it being sent from superuser
+                                #     self = self.with_user(SUPERUSER_ID)
+                                # if not partner_cancled.lang:
+                                #     partner_cancled.lang = 'fr_FR'
+                                # _logger.info('avant email mcm_openedx %s' % str(partner_cancled.name))
+                                # # tester si l'apprenat a deja recu un mail
+                                # message = self.env['mail.message'].search(
+                                #     [('res_id', "=", partner_cancled.id),
+                                #      ('subject', "ilike", "Bienvenue chez MCM Academy")])
+                                # if not message:
+                                #     template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                                #         'mcm_openedx.mail_cpf_annulé'))
+                                #     template_id = self.env['mail.template'].search(
+                                #         [('id', '=', template_id)]).id
+                                #     if not template_id:
+                                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                                #             'mcm_openedx.mail_cpf_annulé',
+                                #             raise_if_not_found=False)
+                                #     if not template_id:
+                                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                                #             'mcm_openedx.mail_cpf_annulé',
+                                #             raise_if_not_found=False)
+                                #     if template_id:
+                                #         partner_cancled.with_context(force_send=True).message_post_with_template(
+                                #             template_id,
+                                #             composition_mode='comment', )
+                                #
+                                #         _logger.info("E-mail envoyé")
+                                # if partner_cancled.phone:
+                                #     phone = str(partner_cancled.phone.replace(' ', ''))[-9:]
+                                #     phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                #                                                                 3:5] + ' ' + phone[
+                                #                                                                              5:7] + ' ' + phone[
+                                #                                                                                           7:]
+                                #     partner_cancled.phone = phone
+                                #     _logger.info(partner_cancled.phone)
+                                # body = "Bonjour Mr %s, A la suite de l'annulation de votre dossier CPF nous vous informons que votre accès à notre plateforme a été suspendu." % (
+                                #     partner_cancled.name)
+                                # if body:
+                                #     sms = self.env['mail.message'].sudo().search(
+                                #         [("body", "=", body), ("message_type", "=", 'sms'),
+                                #          ("res_id", "=", partner_cancled.id)])
+                                #     if not sms:
+                                #         composer = self.env['sms.composer'].with_context(
+                                #             default_res_model='res.partner',
+                                #             default_res_ids=partner_cancled.id,
+                                #             default_composition_mode='comment',
+                                #         ).sudo().create({
+                                #             'body': body,
+                                #             'mass_keep_log': True,
+                                #             'mass_force_send': True,
+                                #         })
+                                #         composer.action_send_sms()  # send sms of end of exam and waiting for result
+                                #     if partner_cancled.phone:
+                                #         partner_cancled.phone = '0' + str(partner_cancled.phone.replace(' ', ''))[-9:]
+                    print("Count apprenant statut cpf Cancled", count)
+
                     for partner in self.env['res.partner'].search(
                             [('numero_cpf', '!=', False), ('statut_cpf', '!=', 'canceled')]):
                         if (partner.numero_cpf == existee.externalId):
@@ -103,7 +170,6 @@ class enattente(models.Model):
                                 print("okokkookkokookokokko")
                                 if (dateFormation <= today):
                                     """si l'apprenant est sur moocit on change le statut de son dossier sur wedof """
-
                                     response_post = requests.post(
                                         'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
                                         headers=headers, data=data)
@@ -179,7 +245,7 @@ class Coach(models.Model):
         count_apprennat = 0
         # determiner le nombre total des apprenants
         for apprenant in self.env['res.partner'].sudo().search(
-                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "!=", "supprimé"),
+                [('statut', "=", "won"), ('company_id', '=', 1), ('state', "!=", "supprimé"), ('state', "!=", "ancien")
                  ]):
             if apprenant.mcm_session_id.date_exam:
                 if (apprenant.mcm_session_id.date_exam.year >= todays_date.year):
@@ -197,7 +263,8 @@ class Coach(models.Model):
                 listapprenant = []
 
                 for rec in self.env['res.partner'].sudo().search(
-                        [('coach_peda', 'like', coach.name), ('company_id', '=', 1), ('state', "!=", "supprimé")]):
+                        [('coach_peda', 'like', coach.name), ('company_id', '=', 1), ('state', "!=", "supprimé"),
+                         ('state', "!=", "ancien")]):
                     if (rec.coach_peda.name == coach.name):
                         count = count + 1
                         # stoker dans la liste les apprennats
