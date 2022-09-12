@@ -230,13 +230,13 @@ class enattente(models.Model):
                             print(partner.name)
                             print(partner.email)
                             print("okokkookkokookokokko")
-                            # if (dateFormation <= today):
-                            #     """si l'apprenant est sur moocit on change le statut de son dossier sur wedof """
-                            #     response_post = requests.post(
-                            #         'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
-                            #         headers=headers, data=data)
-                            #     print('response post %s' % str(response_post.text))
-                            #     # print ('response post', str(response_post.text))
+                            if (dateFormation <= today):
+                                """si l'apprenant est sur moocit on change le statut de son dossier sur wedof """
+                                response_post = requests.post(
+                                    'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                                    headers=headers, data=data)
+                                print('response post %s' % str(response_post.text))
+                                # print ('response post', str(response_post.text))
 
                 if not existee:
                     print("dont exist")
