@@ -25,8 +25,8 @@ class partner(models.Model):
                               ])
     coach_peda = fields.Many2one('res.partner', track_visibility='onchange', string="Coach_Pedagogique",
                                  domain=[('est_coach', '=', True), ])
-    state = fields.Selection([('ancien', 'Ancien iOne'), ('en_attente', 'En attente'), ('en_formation', 'En Formation'),
-                              ('supprimé', 'Supprimé')],
+    state = fields.Selection([('ancien', 'Ancien'), ('en_attente', 'En attente'), ('en_formation', 'En Formation'),
+                              ('supprimé', 'Supprimée')],
                              required=True, default='en_attente', track_visibility='onchange', string="Statut")
     mooc_dernier_coonx = fields.Date()
     mooc_temps_passe_heure = fields.Integer()
@@ -39,12 +39,99 @@ class partner(models.Model):
     # Si ajournée + absence sans justification == > Supprimer
     # Si présent  + échec = > Supprimer ==> 100 Euro => Ajouter
     # Si ajournée + Absente = > Supprimer == > 200 Euro => Ajouter
+    def repasage_exman(self):
+        for partner in self.env['res.partner'].sudo().search(
+                [('company_id', '=', 1), ('module_id', '!=', False), ('state', '!=', "ancien")]):
+            if (partner.module_id.name != "Repassage VTC") or (partner.module_id.name != "Repassage TAXI") and (
+                    partner.state != "supprimé"):
+                if (partner.presence == "Présent(e)") and (partner.resultat == "Ajourné(e)"):
+                    _logger.info(" suppprimer et Repassage 100 EUROOOO")
+                    partner.state = "supprimé"
+                    partner.supprimerdemoocit = date.today()
+                    for record in partner:
+                        # comment = "testttttttttttt"
+
+                        values = {
+                            'record_name': partner.name,
+                            'model': 'res.partner',
+                            'message_type': 'comment',
+                            'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                            'res_id': partner.id,
+                            'author_id': partner.env.user.partner_id.id,
+                            'date': datetime.now(),
+                            'body': "Apprenant supprimé de la plate-forme => Ajourné(e) à l’examen théorique CMA."
+                        }
+                        partner.env['mail.message'].sudo().create(values)
+                        record.comment = ''
+
+                    # self.desinscriteVTC(partner)
+                    # self.desinscriteTaxi(partner)
+                if (partner.presence == "Absence justifiée") and (partner.resultat == "Ajourné(e)"):
+                    _logger.info(" suppprimer et Repassage 100 EUROOOO")
+                    partner.state = "supprimé"
+                    partner.supprimerdemoocit = date.today()
+                    for record in partner:
+                        # comment = "testttttttttttt"
+
+                        values = {
+                            'record_name': partner.name,
+                            'model': 'res.partner',
+                            'message_type': 'comment',
+                            'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                            'res_id': partner.id,
+                            'author_id': partner.env.user.partner_id.id,
+                            'date': datetime.now(),
+                            'body': "Apprenant supprimé de la plate-forme => Absence justifiée."
+                        }
+                        partner.env['mail.message'].sudo().create(values)
+                        record.comment = ''
+
+                    # self.desinscriteVTC(partner)
+                    # self.desinscriteTaxi(partner)
+                if (partner.presence == "Absent(e)") and (partner.resultat == "Ajourné(e)"):
+                    _logger.info("supprimer")
+                    partner.state = "supprimé"
+                    partner.supprimerdemoocit = date.today()
+                    for record in partner:
+                        # comment = "testttttttttttt"
+
+                        values = {
+                            'record_name': partner.name,
+                            'model': 'res.partner',
+                            'message_type': 'comment',
+                            'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                            'res_id': partner.id,
+                            'author_id': partner.env.user.partner_id.id,
+                            'date': datetime.now(),
+                            'body': "Apprenant supprimé de la plate-forme => Absence sans justification."
+                        }
+                        partner.env['mail.message'].sudo().create(values)
+                        record.comment = ''
+
+                    # self.desinscriteVTC(partner)
+                    # self.desinscriteTaxi(partner)
 
     # Supprimer iOne  Resulta = Réussi(e)
     def supp_Réussie(self):
-        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1), ('resultat', "=", "Réussi(e)")]):
+        for partner in self.env['res.partner'].sudo().search(
+                [('company_id', '=', 1), ('resultat', "=", "Réussi(e)"), ('state', '!=', "ancien")]):
             # supprimer l'apprenats en verifiant le module choisit
             partner.state = "supprimé"
+            for record in partner:
+                # comment = "testttttttttttt"
+                values = {
+                    'record_name': partner.name,
+                    'model': 'res.partner',
+                    'message_type': 'comment',
+                    'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                    'res_id': partner.id,
+                    'author_id': partner.env.user.partner_id.id,
+                    'date': datetime.now(),
+                    'body': "Apprenant supprimé de la plate-forme => Admis à l’examen théorique CMA."
+                }
+                partner.env['mail.message'].sudo().create(values)
+                record.comment = ''
+                print("test")
             if (partner.module_id.product_id.default_code == "taxi"):
                 self.desinscriteTaxi(partner)
                 partner.supprimerdemoocit = date.today()
@@ -60,7 +147,7 @@ class partner(models.Model):
         todays_date = date.today()
 
         for partner in self.env['res.partner'].sudo().search(
-                [('company_id', '=', 1), ('partner.state', '!=', "en_formation")]):
+                [('company_id', '=', 1), ('state', '!=', "en_formation")]):
             if partner.create_date.year < todays_date.year:
                 if (partner.state != "en_formation") and \
                         (partner.state != "supprimé"):
@@ -328,6 +415,7 @@ class partner(models.Model):
     def ajoutMoocit_manuelle(self):
 
         _logger.info(self.company_id)
+        print("okkokokookok", self.module_id.name)
         _logger.info(' email utilisateur %s' % str(self.email))
         _logger.info('password360%s' % str(self.password360))
         sale_order = self.env['sale.order'].sudo().search(
@@ -531,7 +619,7 @@ class partner(models.Model):
                     _logger.info('avant email mcm_openedx %s' % str(partner.name))
                     # tester si l'apprenat a deja recu un mail
                     message = self.env['mail.message'].search(
-                        [('res_id', "=", partner.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
+                        [('res_id', "=", partner.id), ('subject', "ilike", "CPF cancled")])
                     if not message:
                         template_id = int(self.env['ir.config_parameter'].sudo().get_param(
                             'mcm_openedx.mail_template_add_ione_MOOcit'))
@@ -633,38 +721,65 @@ class partner(models.Model):
                         self.inscriteVTC(partner)
             if (response_ajouter_iOne_MCM.status_code == 409):
                 # voir si statut de l'apprenant en formation ou la date de mise en formation est vide alors mettre la date pour la date.today
-                if (partner.mcm_session_id.date_exam.year):
-                    if (partner.state != 'en_formation' and
-                            partner.mcm_session_id.date_exam.year >= todays_date.year):
-                        partner.write({'state': 'en_formation'})
-                    # Formation à distance Taxi
-                    if (partner.module_id.product_id.default_code == "taxi"):
-                        _logger.info("partner.module_id.product_id.default_code")
-                        if (departement == "59"):
-                            self.inscriteTaxi(partner)
-                            self.ajoutconnaisancelocalNord(partner)
-                            _logger.info("Departement 59")
-                        elif (departement == "62"):
-                            self.inscriteTaxi(partner)
-                            self.ajoutconnaisancelocalpasdecalais(partner)
-                            _logger.info("Departement 62")
-                        else:
-                            self.inscriteTaxi(partner)
-                            _logger.info("Ajouter a formation taxi ")
-                    # Formation à distance VTC
-                    elif (partner.module_id.product_id.default_code == "vtc"):
-                        _logger.info("Formation VTC")
-                        self.inscriteVTC(partner)
-                    # Formation à distance VTC-BOLT
-                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                        if (bolt == True):
-                            _logger.info("Bolt Formation VTC")
-                            _logger.info(
-                                'Ceci est un client Bolt sans autre condition')
+                if partner.mcm_session_id.date_exam and partner.state != "supprimé":
+                    if (partner.mcm_session_id.date_exam.year):
+                        if (partner.state != 'en_formation' and
+                                partner.mcm_session_id.date_exam.year >= todays_date.year):
+                            partner.write({'state': 'en_formation'})
+                        # Formation à distance Taxi
+                        if (partner.module_id.product_id.default_code == "taxi"):
+                            _logger.info("partner.module_id.product_id.default_code")
+                            if (departement == "59"):
+                                self.inscriteTaxi(partner)
+                                self.ajoutconnaisancelocalNord(partner)
+                                _logger.info("Departement 59")
+                            elif (departement == "62"):
+                                self.inscriteTaxi(partner)
+                                self.ajoutconnaisancelocalpasdecalais(partner)
+                                _logger.info("Departement 62")
+                            else:
+                                self.inscriteTaxi(partner)
+                                _logger.info("Ajouter a formation taxi ")
+                        # Formation à distance VTC
+                        elif (partner.module_id.product_id.default_code == "vtc"):
+                            _logger.info("Formation VTC")
                             self.inscriteVTC(partner)
+                        # Formation à distance VTC-BOLT
+                        elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                            if (bolt == True):
+                                _logger.info("Bolt Formation VTC")
+                                _logger.info(
+                                    'Ceci est un client Bolt sans autre condition')
+                                self.inscriteVTC(partner)
+                        # Si l'apprenant achete le module de repasage vtc
+                        elif partner.module_id.name == "Repassage VTC":
+                            _logger.info("Ajouter a Repassage ")
+                            partner.write({'state': 'en_formation'})
 
-            # Ajout ticket pour notiifer le service client pour changer mp
-            """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
+                            self.inscriteVTC(partner)
+                        # Si l'apprenant achete le module de repasage vtc
+                        elif partner.module_id.name == "Repassage TAXI":
+                            _logger.info("Repassage taxi")
+                            _logger.info("partner.module_id.product_id.default_code")
+                            partner.write({'state': 'en_formation'})
+                            if (departement == "59"):
+                                self.inscriteTaxi(partner)
+                                self.ajoutconnaisancelocalNord(partner)
+                                _logger.info("Departement 59")
+                                _logger.info("Ajouter a Repassage ")
+
+                            elif (departement == "62"):
+                                self.inscriteTaxi(partner)
+                                self.ajoutconnaisancelocalpasdecalais(partner)
+                                _logger.info("Departement 62")
+                                _logger.info("Ajouter a Repassage ")
+
+                            else:
+                                self.inscriteTaxi(partner)
+                                _logger.info("Ajouter a Repassage ")
+
+                # Ajout ticket pour notiifer le service client pour changer mp
+                """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
             if (response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation'):
 
                 _logger.info('Utilisateur  mot de passe invalide %s')
