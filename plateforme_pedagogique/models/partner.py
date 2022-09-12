@@ -558,7 +558,11 @@ class partner(models.Model):
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
 
+
                     self.send_email(partner)
+                    """"we send sms to client contains link to register in 360learning."""
+                    body="Digimoov vous confirme votre inscription à la Formation capacité de transport de marchandises. RDV sur notre plateforme https://www.digimoov.fr/r/SnB"
+                    self.send_sms(body,partner)
                 if not (create):
                     """Créer des tickets contenant le message  d'erreur pour service client et service IT
                     si l'apprenant n'est pas ajouté sur 360"""
@@ -1346,6 +1350,20 @@ class partner(models.Model):
                                 phone = '0' + str(phone)
                                 user = self.env["res.users"].sudo().search(
                                     [("phone", "like", phone.replace(' ', ''))], limit=1)
+
+            if user:
+                if not(user.partner_id.date_examen_edof) or not(user.partner_id.session_ville_id):
+
+                    """Envoyez un SMS aux apprenants qui arrivent de CPF."""
+                    url = '%s/my' %str(user.partner_id.company_id.website)  # get the signup_url
+                    short_url = pyshorteners.Shortener()
+                    short_url = short_url.tinyurl.short(
+                        url)  # convert the url to be short using pyshorteners library
+
+                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                    user.partner_id.name, user.partner_id.company_id.name, short_url,
+                    user.partner_id.email)  # content of sms
+                    self.send_sms(sms_body_contenu,user.partner_id)
             if not user:
                 # créer
                 exist = False
@@ -1398,26 +1416,7 @@ class partner(models.Model):
                         'body': str(body)
                     })  # create sms
                     sms_id = sms.id
-                    if (sms):
-                        sms.send()  # send the sms
-                        subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
-                        body = False
-                        sms = self.env["sms.sms"].sudo().search(
-                            [("id", "=", sms_id)], limit=1)
-                        if (sms):
-                            if sms.state == 'error':
-                                body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
-                        else:
-                            body = "Le SMS suivant a été bien envoyé : %s " % (sms_body_contenu)
-                        if body:
-                            message = self.env['mail.message'].sudo().create({
-                                'subject': 'Invitation de rejoindre le site par sms',
-                                'model': 'res.partner',
-                                'res_id': user.partner_id.id,
-                                'message_type': 'notification',
-                                'subtype_id': subtype_id,
-                                'body': body,
-                            })  # create note in client view
+
         # user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
             client = self.env['res.partner'].sudo().search(
@@ -2111,3 +2110,30 @@ class partner(models.Model):
                     'className': 'bg-danger'
                 }
             }
+
+    def send_sms(self,body,partner):
+        """Changer format du numero de tel pour envoyer le sms"""
+        _logger.info("send  sms %s" % str(partner.email))
+        if partner.phone:
+                phone = str(partner.phone.replace(' ', ''))[-9:]
+                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                            3:5] + ' ' + phone[
+                                                                                         5:7] + ' ' + phone[
+                                                                                                      7:]
+                partner.phone = phone
+                name = partner.name
+                composer = self.env['sms.composer'].with_context(
+                        default_res_model='res.partner',
+                        default_res_id=partner.id,
+                        default_composition_mode='comment',
+                    ).sudo().create({
+                        'body': body,
+                        'mass_keep_log': True,
+                        'mass_force_send': False,
+                        'use_active_domain': False,
+                    })
+                composer.action_send_sms()  # we send sms.
+                if partner.phone:
+                        partner.phone = '0' + str(partner.phone.replace(' ', ''))[
+                                              -9:]
+        
