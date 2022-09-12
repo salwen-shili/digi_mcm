@@ -620,7 +620,7 @@ class partner(models.Model):
                     _logger.info('avant email mcm_openedx %s' % str(partner.name))
                     # tester si l'apprenat a deja recu un mail
                     message = self.env['mail.message'].search(
-                        [('res_id', "=", partner.id), ('subject', "ilike", "CPF cancled")])
+                        [('res_id', "=", partner.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
                     if not message:
                         template_id = int(self.env['ir.config_parameter'].sudo().get_param(
                             'mcm_openedx.mail_template_add_ione_MOOcit'))

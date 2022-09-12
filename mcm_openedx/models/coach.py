@@ -26,6 +26,63 @@ class enattente(models.Model):
            puis faire le parcours pour chaque dossier,
            si tout les conditions sont vérifiés on Passe le dossier dans l'état 'en formation'"""
 
+    # Dsinscrire l'apprenant  des cours VTC
+    def desinscriteVTC(self, partner):
+        user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
+        url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
+        payload = {
+            'auto_enroll': 'true',
+            'email_students': 'false',
+            'action': 'unenroll',
+            'courses': 'course-v1:Digimoov+reg_vtc_02+2,'
+                       'course-v1:Digimoov+dev_com_02+2,'
+                       'course-v1:Digimoov+t3p_02+2,'
+                       'course-v1:Digimoov+sec_rout_02+2,'
+                       'course-v1:Digimoov+ges02+2,'
+                       'course-v1:Digimoov+angl_02+2,'
+                       'course-v1:Digimoov+fr_02+2',
+            'identifiers': partner.email,
+        }
+
+        header = {
+            'Access-Control-Request-Headers': 'authorization',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+        }
+
+        response = requests.request("POST", url, headers=header, data=payload)
+        _logger.info('response.text de linscripstion  ou desincs cour %s' % str(response.text))
+        _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
+
+    # Desinscrire l'apprenant des cours TAXI
+    def desinscriteTaxi(self, partner_cancled):
+        url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
+        payload = {
+            'auto_enroll': 'true',
+            'email_students': 'false',
+            'action': 'unenroll',
+            'courses': 'course-v1:Digimoov+t3p_02+2,'
+                       'course-v1:Digimoov+reg_taxi_02+2,'
+                       'course-v1:Digimoov+conn_loc_calais_02+2,'
+                       'course-v1:Digimoov+conn_loc_nord_02+2,'
+                       'course-v1:Digimoov+sec_rout_02+2,'
+                       'course-v1:Digimoov+ges02+2,'
+                       'course-v1:Digimoov+angl_02+2,'
+                       'course-v1:DIGIMOOV+CN02+2022,'
+                       'course-v1:Digimoov+fr_02+2',
+            'identifiers': partner_cancled.email,
+        }
+
+        header = {
+            'Access-Control-Request-Headers': 'authorization',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+        }
+        response = requests.request("POST", url, headers=header, data=payload)
+        _logger.info('response.text de linscripstion  ou desincs cour %s' % str(response.text))
+
+        _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
+
     def wedof_api_integration_moocit(self):
         todays_date = date.today()
 
@@ -91,68 +148,76 @@ class enattente(models.Model):
                 _logger.info(existee.externalId)
                 if existee:
                     for partner_cancled in self.env['res.partner'].search(
-                            [('numero_cpf', '!=', False), ('statut_cpf', '=', 'canceled'), ('company_id', '=', 1)]):
+                            [('numero_cpf', '!=', False), ('statut_cpf', '=', 'canceled'), ('state', '!=', 'supprimé'), ('company_id', '=', 1)]):
                         if partner_cancled.date_examen_edof:
-                            if partner_cancled.date_examen_edof.year < todays_date.year:
+                            if partner_cancled.date_examen_edof.year >= todays_date.year:
                                 print("partner_cancled", partner_cancled)
                                 print("partner_cancled", partner_cancled.email)
+                                self.desinscriteVTC(partner_cancled)
+                                self.desinscriteTaxi(partner_cancled)
+                                partner_cancled.write({'state': 'supprimé'})
+
                                 count = count + 1
-                                # if self.env.su:
-                                #     # sending mail in sudo was meant for it being sent from superuser
-                                #     self = self.with_user(SUPERUSER_ID)
-                                # if not partner_cancled.lang:
-                                #     partner_cancled.lang = 'fr_FR'
-                                # _logger.info('avant email mcm_openedx %s' % str(partner_cancled.name))
-                                # # tester si l'apprenat a deja recu un mail
-                                # message = self.env['mail.message'].search(
-                                #     [('res_id', "=", partner_cancled.id),
-                                #      ('subject', "ilike", "Bienvenue chez MCM Academy")])
-                                # if not message:
-                                #     template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                                #         'mcm_openedx.mail_cpf_annulé'))
-                                #     template_id = self.env['mail.template'].search(
-                                #         [('id', '=', template_id)]).id
-                                #     if not template_id:
-                                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                                #             'mcm_openedx.mail_cpf_annulé',
-                                #             raise_if_not_found=False)
-                                #     if not template_id:
-                                #         template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                                #             'mcm_openedx.mail_cpf_annulé',
-                                #             raise_if_not_found=False)
-                                #     if template_id:
-                                #         partner_cancled.with_context(force_send=True).message_post_with_template(
-                                #             template_id,
-                                #             composition_mode='comment', )
-                                #
-                                #         _logger.info("E-mail envoyé")
-                                # if partner_cancled.phone:
-                                #     phone = str(partner_cancled.phone.replace(' ', ''))[-9:]
-                                #     phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
-                                #                                                                 3:5] + ' ' + phone[
-                                #                                                                              5:7] + ' ' + phone[
-                                #                                                                                           7:]
-                                #     partner_cancled.phone = phone
-                                #     _logger.info(partner_cancled.phone)
-                                # body = "Bonjour Mr %s, A la suite de l'annulation de votre dossier CPF nous vous informons que votre accès à notre plateforme a été suspendu." % (
-                                #     partner_cancled.name)
-                                # if body:
-                                #     sms = self.env['mail.message'].sudo().search(
-                                #         [("body", "=", body), ("message_type", "=", 'sms'),
-                                #          ("res_id", "=", partner_cancled.id)])
-                                #     if not sms:
-                                #         composer = self.env['sms.composer'].with_context(
-                                #             default_res_model='res.partner',
-                                #             default_res_ids=partner_cancled.id,
-                                #             default_composition_mode='comment',
-                                #         ).sudo().create({
-                                #             'body': body,
-                                #             'mass_keep_log': True,
-                                #             'mass_force_send': True,
-                                #         })
-                                #         composer.action_send_sms()  # send sms of end of exam and waiting for result
-                                #     if partner_cancled.phone:
-                                #         partner_cancled.phone = '0' + str(partner_cancled.phone.replace(' ', ''))[-9:]
+                                if self.env.su:
+                                    # sending mail in sudo was meant for it being sent from superuser
+                                    self = self.with_user(SUPERUSER_ID)
+                                if not partner_cancled.lang:
+                                    partner_cancled.lang = 'fr_FR'
+                                _logger.info('avant email mcm_openedx %s' % str(partner_cancled.name))
+                                # tester si l'apprenat a deja recu un mail
+                                message = self.env['mail.message'].search(
+                                    [('res_id', "=", partner_cancled.id),
+                                     ('subject', "ilike", "CPF cancled")])
+                                if not message:
+                                    template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                                        'mcm_openedx.mail_cpf_annulé'))
+                                    template_id = self.env['mail.template'].search(
+                                        [('id', '=', template_id)]).id
+                                    if not template_id:
+                                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                                            'mcm_openedx.mail_cpf_annulé',
+                                            raise_if_not_found=False)
+                                    if not template_id:
+                                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                                            'mcm_openedx.mail_cpf_annulé',
+                                            raise_if_not_found=False)
+                                    if template_id:
+                                        partner_cancled.with_context(force_send=True).message_post_with_template(
+                                            template_id,
+                                            composition_mode='comment', )
+
+                                        _logger.info("E-mail envoyé")
+                                        try:
+                                            if partner_cancled.phone:
+                                                phone = str(partner_cancled.phone.replace(' ', ''))[-9:]
+                                                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                                            3:5] + ' ' + phone[
+                                                                                                                         5:7] + ' ' + phone[
+                                                                                                                                      7:]
+                                                partner_cancled.phone = phone
+                                                _logger.info(partner_cancled.phone)
+                                            body = "Bonjour Mr %s, A la suite de l'annulation de votre dossier CPF nous vous informons que votre accès à notre plateforme a été suspendu." % (
+                                                partner_cancled.name)
+                                            if body:
+                                                sms = self.env['mail.message'].sudo().search(
+                                                    [("body", "=", body), ("message_type", "=", 'sms'),
+                                                     ("res_id", "=", partner_cancled.id)])
+                                                if not sms:
+                                                    composer = self.env['sms.composer'].with_context(
+                                                        default_res_model='res.partner',
+                                                        default_res_ids=partner_cancled.id,
+                                                        default_composition_mode='comment',
+                                                    ).sudo().create({
+                                                        'body': body,
+                                                        'mass_keep_log': True,
+                                                        'mass_force_send': True,
+                                                    })
+                                                    composer.action_send_sms()  # send sms of end of exam and waiting for result
+                                                if partner_cancled.phone:
+                                                    partner_cancled.phone = '0' + str(partner_cancled.phone.replace(' ', ''))[
+                                                                                  -9:]
+                                        except:
+                                            _logger.info('sms non envoyé')
                     print("Count apprenant statut cpf Cancled", count)
                     for partner in self.env['res.partner'].search(
                             [('numero_cpf', '=', existee.externalId), ('statut_cpf', '!=', 'canceled')]):
@@ -165,13 +230,13 @@ class enattente(models.Model):
                             print(partner.name)
                             print(partner.email)
                             print("okokkookkokookokokko")
-                            if (dateFormation <= today):
-                                """si l'apprenant est sur moocit on change le statut de son dossier sur wedof """
-                                response_post = requests.post(
-                                    'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
-                                    headers=headers, data=data)
-                                print('response post %s' % str(response_post.text))
-                                # print ('response post', str(response_post.text))
+                            # if (dateFormation <= today):
+                            #     """si l'apprenant est sur moocit on change le statut de son dossier sur wedof """
+                            #     response_post = requests.post(
+                            #         'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                            #         headers=headers, data=data)
+                            #     print('response post %s' % str(response_post.text))
+                            #     # print ('response post', str(response_post.text))
 
                 if not existee:
                     print("dont exist")
