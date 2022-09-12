@@ -168,7 +168,7 @@
                     </style>
 
 
-                    <p style="font-size: 19px;">Bonjour ${object.name},</p>
+                    <p style="font-size: 17px;">Bonjour ${object.name},</p>
 
                     <h2>
 
