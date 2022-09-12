@@ -19,7 +19,7 @@
         </xpath>
         <xpath expr="//link[last()]" position="after">
             <!-- <link rel="stylesheet" type="text/scss" href="/digimoov_website_templates/static/src/css/dist/home.min.css"/> -->
-            <link href="/digimoov_website_templates/static/src/img/LOGO_DIGIMOOV.png" rel="apple-touch-icon" />
+            <link href="/digimoov_website_templates/static/img/Homepage/digimoov.png" rel="apple-touch-icon" />
         </xpath>
         <xpath expr="." position="inside">
         </xpath>
