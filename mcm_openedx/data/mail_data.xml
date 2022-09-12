@@ -154,23 +154,7 @@
             <field name="partner_to">${object.id}</field>
             <field name="body_html" type="html">
                 <div>
-                    <style>
-                        .img-email {
-                        max-width: 45%;
-                        height: auto;
-                        }
-                        @media screen and (min-width: 40em) {
-                        .img-email {
-                        max-width: 66%;
-                        height: auto;
-                        }
-                        }
-                    </style>
-
-
-                    <p style="font-size: 17px;">Bonjour ${object.name},</p>
-
-                    <h2>
+                      <p>Bonjour ${object.name},</p>
 
 
                         <br/>
@@ -187,7 +171,7 @@
 
                         <br/>
 
-                    </h2>
+
 
 
                     <span align="center" style="border:1px">
