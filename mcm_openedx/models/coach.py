@@ -156,27 +156,25 @@ class enattente(models.Model):
                     print("Count apprenant statut cpf Cancled", count)
                     for partner in self.env['res.partner'].search(
                             [('numero_cpf', '=', existee.externalId), ('statut_cpf', '!=', 'canceled')]):
-                        if (partner.numero_cpf == existee.externalId):
-                            existee.existant = True
-                            _logger.info(existee.existant)
-                            print("res.partner db", partner.numero_cpf)
-                            for existt in self.env['mcm_openedx.course_stat'].sudo().search(
-                                    [('email', "like", existee.name)]):
-                                existee.existantsurmooc = True
-                                print(partner.name)
-                                print(partner.email)
-                                print("okokkookkokookokokko")
-                                # if (dateFormation <= today):
-                                #     """si l'apprenant est sur moocit on change le statut de son dossier sur wedof """
-                                #     response_post = requests.post(
-                                #         'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
-                                #         headers=headers, data=data)
-                                #     print('response post %s' % str(response_post.text))
-                                #     # print ('response post', str(response_post.text))
+                        existee.existant = True
+                        _logger.info(existee.existant)
+                        print("res.partner db", partner.numero_cpf)
+                        for existt in self.env['mcm_openedx.course_stat'].sudo().search(
+                                [('email', "like", existee.name)]):
+                            existee.existantsurmooc = True
+                            print(partner.name)
+                            print(partner.email)
+                            print("okokkookkokookokokko")
+                            # if (dateFormation <= today):
+                            #     """si l'apprenant est sur moocit on change le statut de son dossier sur wedof """
+                            #     response_post = requests.post(
+                            #         'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                            #         headers=headers, data=data)
+                            #     print('response post %s' % str(response_post.text))
+                            #     # print ('response post', str(response_post.text))
 
                 if not existee:
                     print("dont exist")
-
                     new = self.env['mcm_openedx.enattente'].sudo().create({
                         'name': email,
                         'date_edof': dateFormation,
