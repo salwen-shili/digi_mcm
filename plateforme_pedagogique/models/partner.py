@@ -1355,7 +1355,7 @@ class partner(models.Model):
                 if not(user.partner_id.date_examen_edof) or not(user.partner_id.session_ville_id):
 
                     """Envoyez un SMS aux apprenants qui arrivent de CPF."""
-                    url = '%s/my' %str(user.partner_id.company_id.website)  # get the signup_url
+                    url = '%smy' %str(user.partner_id.company_id.website)  # get the signup_url
                     short_url = pyshorteners.Shortener()
                     short_url = short_url.tinyurl.short(
                         url)  # convert the url to be short using pyshorteners library
