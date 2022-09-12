@@ -59,7 +59,7 @@ class partner(models.Model):
                             'res_id': partner.id,
                             'author_id': partner.env.user.partner_id.id,
                             'date': datetime.now(),
-                            'body': "Apprenant supprimé de la plate-forme => Ajournée à l’examen théorique CMA."
+                            'body': "Apprenant supprimé de la plate-forme => Ajourné(e) à l’examen théorique CMA."
                         }
                         partner.env['mail.message'].sudo().create(values)
                         record.comment = ''
@@ -81,7 +81,7 @@ class partner(models.Model):
                             'res_id': partner.id,
                             'author_id': partner.env.user.partner_id.id,
                             'date': datetime.now(),
-                            'body': "Apprenant supprimé de la plate-forme => Absence justifiée ."
+                            'body': "Apprenant supprimé de la plate-forme => Absence justifiée."
                         }
                         partner.env['mail.message'].sudo().create(values)
                         record.comment = ''
