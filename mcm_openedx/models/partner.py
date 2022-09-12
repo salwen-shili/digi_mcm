@@ -42,7 +42,8 @@ class partner(models.Model):
     def repasage_exman(self):
         for partner in self.env['res.partner'].sudo().search(
                 [('company_id', '=', 1), ('module_id', '!=', False), ('state', '!=', "ancien")]):
-            if (partner.module_id.name != "Repassage VTC") or (partner.module_id.name != "Repassage TAXI"):
+            if (partner.module_id.name != "Repassage VTC") or (partner.module_id.name != "Repassage TAXI") and (
+                    partner.state != "supprimé"):
                 if (partner.presence == "Présent(e)") and (partner.resultat == "Ajourné(e)"):
                     _logger.info(" suppprimer et Repassage 100 EUROOOO")
                     partner.state = "supprimé"
@@ -102,7 +103,7 @@ class partner(models.Model):
                             'res_id': partner.id,
                             'author_id': partner.env.user.partner_id.id,
                             'date': datetime.now(),
-                            'body': "Apprenant supprimé de la plate-forme => Absence sans justification ."
+                            'body': "Apprenant supprimé de la plate-forme => Absence sans justification."
                         }
                         partner.env['mail.message'].sudo().create(values)
                         record.comment = ''
@@ -126,7 +127,7 @@ class partner(models.Model):
                     'res_id': partner.id,
                     'author_id': partner.env.user.partner_id.id,
                     'date': datetime.now(),
-                    'body': "Apprenant supprimé de la plate-forme => ADMIS à l’examen théorique CMA."
+                    'body': "Apprenant supprimé de la plate-forme => Admis à l’examen théorique CMA."
                 }
                 partner.env['mail.message'].sudo().create(values)
                 record.comment = ''
