@@ -2098,6 +2098,8 @@ class partner(models.Model):
                             'className': 'success'
                         }
                     }
+                body="Digimoov vous confirme votre inscription à la Formation capacité de transport de marchandises. RDV sur notre plateforme https://www.digimoov.fr/r/SnB"
+                self.send_sms(body,self)
 
         else :
             return {
