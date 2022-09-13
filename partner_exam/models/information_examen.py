@@ -95,8 +95,8 @@ class NoteExamen(models.Model):
     total_time_appels_hour = fields.Char()
     total_time_hours = fields.Char()
     etat_formation = fields.Selection([('actif', 'Actif'),
-                                              ('inactif', 'Inactif'),
-                                              ])
+                                       ('inactif', 'Inactif'),
+                                       ])
 
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):
@@ -106,35 +106,32 @@ class NoteExamen(models.Model):
 
     @api.onchange('resultat', 'partner_id', 'presence')
     def update_boolean_values(self):
+        """ Boolean fields used in xml code to control colors
+        of specific values based on resultat and presence fields"""
         if self.company_id.id == 2:
             for rec in self:
-                if rec.resultat == 'recu':
+                if rec.resultat == 'recu' and rec.presence == 'present':
                     rec.is_recu = True
                     rec.is_ajourne = False
-                if rec.resultat == 'ajourne' and rec.presence == 'present':
-                    rec.is_ajourne = True
-                    rec.is_recu = False
-                    rec.is_Absent = True
+                    rec.is_present = True
                     rec.is_absence_justifiee = False
-                if rec.resultat == 'ajourne' and rec.presence == 'absence_justifiee':
+                elif rec.resultat == 'ajourne' and rec.presence == 'present':
+                    rec.is_ajourne = True
+                    rec.is_present = True
+                    rec.is_recu = False
+                    rec.is_Absent = False
+                    rec.is_absence_justifiee = False
+                elif rec.resultat == 'ajourne' and rec.presence == 'absence_justifiee':
                     rec.is_ajourne = True
                     rec.is_recu = False
                     rec.is_Absent = False
                     rec.is_absence_justifiee = True
-                if rec.presence == 'present':
-                    rec.is_present = True
-                    rec.is_Absent = False
-                    rec.is_absence_justifiee = False
-                if rec.presence == 'Absent' and rec.resultat == 'ajourne':
+                elif rec.presence == 'Absent' and rec.resultat == 'ajourne':
                     rec.is_Absent = True
                     rec.is_ajourne = True
                     rec.is_present = False
                     rec.is_recu = False
                     rec.is_absence_justifiee = False
-                # if rec.presence == 'absence_justifiee':
-                #     rec.is_absence_justifiee = True
-                #     rec.is_recu = False
-                #     rec.is_Absent = False
 
     def _calcul_ancien_client(self):
         """ Suit aux changements pour les notes des examens;
@@ -222,7 +219,7 @@ class NoteExamen(models.Model):
                         self.session_id = self.partner_id.mcm_session_id
                         self.module_id = self.partner_id.module_id.id
                         self.date_exam = self.partner_id.mcm_session_id.date_exam
-                        #self.presence = 'Absent'
+                        # self.presence = 'Absent'
                         self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                         # self.partner_id.update({'presence': "Absent(e)"})
                         self.partner_id.resultat = "Ajourné(e)"
@@ -507,7 +504,6 @@ class NoteExamen(models.Model):
             _logger.info('info_exam µµµµµµµµµµµµµµ************ %s', info_exam.partner_id.display_name)
             _logger.info('info_exam µµµµµµµµµµµµµµ************ %s', info_exam.presence)
             if res.partner_id.module_id.product_id.default_code == 'examen' or info_exam.presence == 'absence_justifiee':
-
 
                 if info_exam:
                     if info_exam.nombre_de_passage == 'premier':
