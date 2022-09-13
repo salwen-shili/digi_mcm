@@ -45,8 +45,6 @@ class InheritResPartner(models.Model):
                         rec.resultat = "Ajourné(e)"
                     if resultat.resultat == 'recu':
                         rec.resultat = "Admis(e)"
-                    elif not resultat.resultat:
-                        rec.resultat = "_______"
 
     def _compute_get_last_internal_log(self):
         for record in self:
@@ -76,22 +74,27 @@ class InheritResPartner(models.Model):
             print("here", 'note_exam_id')
             self._get_last_presence_resultat_values()
             # Update boolean fields to set colors(red, orange, green) in contact list
-            if self.resultat == 'Admis(e)':
+            if self.resultat == 'Admis(e)' and self.presence == 'Présent(e)':
                 self.is_recu = True
                 self.is_ajourne = False
+                self.is_present = True
+                self.is_absence_justifiee = False
             elif self.resultat == 'Ajourné(e)' and self.presence == 'Présent(e)':
+                self.is_present = True
                 self.is_ajourne = True
                 self.is_recu = False
-                self.is_Absent = True
+                self.is_Absent = False
                 self.is_absence_justifiee = False
             elif self.resultat == 'Ajourné(e)' and self.presence == 'Absence justifiée':
                 self.is_ajourne = True
                 self.is_recu = False
                 self.is_Absent = False
                 self.is_absence_justifiee = True
-            elif self.presence == 'Présent(e)':
-                self.is_present = True
-                self.is_Absent = False
+            elif self.resultat == 'Ajourné(e)' and self.presence == 'Absent(e)':
+                self.is_present = False
+                self.is_ajourne = True
+                self.is_recu = False
+                self.is_Absent = True
                 self.is_absence_justifiee = False
             elif (self.presence == 'Absent(e)' and self.resultat == 'Ajourné(e)') or (self.presence == "_______" and self.resultat == 'Ajourné(e)'):
                 self.is_Absent = True if self.presence == 'Absent(e)' else False
