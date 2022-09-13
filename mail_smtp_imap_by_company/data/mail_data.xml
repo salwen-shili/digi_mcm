@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="mail_bounce_catchall_by_company">
+            <div>
+                <p>Hello<t t-esc="message['email_from']"/>,
+                </p>
+                <p>The email sent to
+                    <t t-esc="message['to']"/>
+                    cannot be processed. This address
+                    is used to collect replies and should not be used to directly contact<t t-esc="company.name"/>.
+                </p>
+                <p>Please contact us
+                    <a t-att-href="%scontact' % company.website">
+                        here
+                    </a>
+                </p>
+                <p>Regards,</p>
+                <p>The
+                    <t t-esc="company.name"/>
+                    team.
+                </p>
+            </div>
+            <blockquote>
+                <t t-esc="message['body']"/>
+            </blockquote>
+        </template>
+    </data>
+</odoo>

@@ -137,10 +137,14 @@ class MailThreadInherit(models.AbstractModel):
             # check it does not directly contact catchall
             if catchall_alias and catchall_alias in email_to_localpart:
                 _logger.info('Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce', email_from, email_to, message_id)
-                body = self.env.ref('mail.mail_bounce_catchall').render({
-                    'message': message,
+                company_id = 1
+                if 'digimoov' in email_to :
+                    company_id = 2
+                company = self.env['res.company'].sudo().search([('id',"=",company_id)])
+                body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
+                    'message': message,'company' : company if company else self.env.company
                 }, engine='ir.qweb')
-                self._routing_create_bounce_email(email_from, body, message, reply_to=self.env.company.email)
+                self._routing_create_bounce_email(email_from, body, message, reply_to=company.email if company else self.env.company.email)
                 return []
             alias_domain_id = self.env['alias.mail'].search([('domain_name','in',email_to_alias_domain_list)])
             dest_aliases = False

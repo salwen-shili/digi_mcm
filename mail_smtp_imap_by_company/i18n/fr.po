@@ -1,0 +1,179 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mail_smtp_imap_by_company
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-13 11:05+0000\n"
+"PO-Revision-Date: 2022-09-13 11:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mail_smtp_imap_by_company
+#: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.alias_mail_company_form
+msgid "Alias"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_account_bank_statement_import_journal_creation__alias_domain
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_account_journal__alias_domain
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_crm_team__alias_domain
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_documents_share__alias_domain
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_helpdesk_team__alias_domain
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_mail_alias__alias_domain
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_mail_alias_mixin__alias_domain
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_mail_channel__alias_domain
+msgid "Alias Domain"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.actions.act_window,name:mail_smtp_imap_by_company.action_alias_mail
+#: model:ir.ui.menu,name:mail_smtp_imap_by_company.alias_mail_menu
+msgid "Alias Domains"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_alias_mail__company_id
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_fetchmail_server__default_company
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_ir_mail_server__default_company
+msgid "Company"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_alias_mail__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_alias_mail__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_alias_mail__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_alias_mail__domain_name
+msgid "Domain Name"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model,name:mail_smtp_imap_by_company.model_mail_alias
+msgid "Email Aliases"
+msgstr "Alias email"
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model,name:mail_smtp_imap_by_company.model_mail_thread
+msgid "Email Thread"
+msgstr "Discussion par email"
+
+#. module: mail_smtp_imap_by_company
+#: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
+msgid "Hello"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_alias_mail__id
+msgid "ID"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: code:addons/mail_smtp_imap_by_company/models/alias_mail.py:0
+#, python-format
+msgid "Inactive Alias"
+msgstr "Alias inactif"
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model,name:mail_smtp_imap_by_company.model_fetchmail_server
+msgid "Incoming Mail Server"
+msgstr "Serveur d'emails entrant"
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model,name:mail_smtp_imap_by_company.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_alias_mail____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_alias_mail__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_alias_mail__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model,name:mail_smtp_imap_by_company.model_ir_mail_server
+msgid "Mail Server"
+msgstr "Serveur d'email"
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model,name:mail_smtp_imap_by_company.model_mail_mail
+msgid "Outgoing Mails"
+msgstr "Emails à envoyer"
+
+#. module: mail_smtp_imap_by_company
+#: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
+msgid "Please contact us"
+msgstr "Merci de nous contacter"
+
+#. module: mail_smtp_imap_by_company
+#: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
+msgid "Regards,"
+msgstr "Salutations"
+
+#. module: mail_smtp_imap_by_company
+#: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
+msgid "The"
+msgstr "Le"
+
+#. module: mail_smtp_imap_by_company
+#: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
+msgid "The email sent to"
+msgstr "L'email envoyé à "
+
+#. module: mail_smtp_imap_by_company
+#: code:addons/mail_smtp_imap_by_company/models/mail_server.py:0
+#, python-format
+msgid "Unable to connect to SMTP Server"
+msgstr "Impossible de se connecter au serveur SMTP"
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model.constraint,message:mail_smtp_imap_by_company.constraint_mail_alias_alias_unique
+msgid ""
+"Unfortunately this email alias is already used, please choose a unique one !"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model:ir.model,name:mail_smtp_imap_by_company.model_alias_mail
+msgid "alias.mail"
+msgstr ""
+
+#. module: mail_smtp_imap_by_company
+#: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
+msgid "cannot be processed. This address is used to collect replies and should not be used to directly contact"
+msgstr "ne peut pas être traité. Cette adresse est utilisée pour recevoir les réponses et ne doit pas être utilisée pour contacter directement"
+
+#. module: mail_smtp_imap_by_company
+#: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
+msgid "here"
+msgstr "ici"
+
+#. module: mail_smtp_imap_by_company
+#: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
+msgid "team."
+msgstr "équipe."
