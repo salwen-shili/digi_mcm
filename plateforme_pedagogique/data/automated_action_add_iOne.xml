@@ -8,6 +8,7 @@
         <field name="trigger_field_ids" eval="[(4,ref('plateforme_pedagogique.field_res_partner__statut'))]"/>
         <field name="active" eval="True"/>
         <field name="state">code</field>
+
         <field name="code">
             model.ajouter_iOne_manuelle(record)
 
