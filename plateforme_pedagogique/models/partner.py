@@ -300,7 +300,7 @@ class partner(models.Model):
 
     # Ajouter ione manuellement
     def ajouter_iOne_manuelle(self):
-        # _logger.info("++++++++++++Cron ajouter_iOne_manuelle++++++++++++++++++++++")
+        _logger.info("++++++++++++Cron ajouter_iOne_manuelle++++++++++++++++++++++")
         product_name = self.module_id.product_id.name
         sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', self.id),
                                                            ('session_id', '=', self.mcm_session_id.id),
