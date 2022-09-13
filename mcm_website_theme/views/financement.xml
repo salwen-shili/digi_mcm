@@ -6,188 +6,571 @@
       <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
 
       <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-<style>
-  .truncate-p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-</style>
-  
-      <div id="wrap" class="oe_structure">
 
-        <section id="sh_corpomate_theme_section_203" class="" data-name="blog 2">
-          <div class="container">
+      <style>
+        h1{
+        text-transform: uppercase;
+      }
+    
+        #sh_corpomate_theme_section_184 .sh_content .sh_more_btn.sh_btn_cm_8 {
+          background: black;
+          border: 2px solid #0a0a0a;
+          padding: 8px 25px;
+          border-radius: 10px;
+          margin-right: 15px;
+          font-size: 16px;
+          letter-spacing: 1px;
+        }
+        @media (max-width: 410px) {
+          res-button {
+            margin-bottom: 1rem;
+          }
+        }
+     
+          
+        .h2 {
+          
+          text-transform: uppercase;
+            font-size: 30px !important;
+            font-weight: 700 !important;
+        }
+        .p {
+          color: rgb(66, 66, 66);
+          font-size: 18px;
+        }
+        #sh_corpomate_theme_section_258 {
+          padding: 50px 0;
+        }
+        .image-size {
+           max-width: 60%;
+          }
+
+          @media (min-width: 992px) and (max-width: 1511px) {
+            .image-size {
+              max-width: 479px;
+            }
+          }
+          @media (min-width: 1512px)  {
+            .image-size {
+              max-width: 391px;
+            }
+          }
+
+      </style>
+      <div id="wrap" class="oe_structure">
+        <!-- first section-->
+        <section class="sh_animation_part pt8" data-name="practice">
+          <div class="container-banner">
             <div class="row">
-              <div class="col-md-3 col-sm-12">
-                <div class="sh_heading">
-                  <h3 class="o_default_snippet_text">Le Blog</h3>
+              <div class="col-lg-6 pb16 pt56 js-scroll slide-left" style="border-style: none; border-width: 0px">
+                <div class="text-center">
+                  <h1 class="title-mcm slider-text-info">
+                    Comment financer ma formation de chauffeur
+                    <br />
+                    <span class="subtitle-mcm"> TAXI, VTC ou VMDTR ? </span>
+                  </h1>
+                  <p style="margin-top:32px" class="p">
+                    Chez MCM Academy nous offrons à nos candidats la possibilité
+                    de financer leurs formation Taxi VTC et VMDTR en mobilisant
+                    leurs Compte de formation Personnel ou par auto-financement
+                    avec des modalités assez flexibles !
+                  </p>
+
+                  <a class="animated-button-yellow" href="#pricing" alt="Bouton je m'inscris au site MCM Academy">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Je m'inscris
+                  </a>
+
+
+                  <a class="animated-button-black" href="/contact" alt="Bouton contactez-nous">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Contactez-nous
+                  </a>
                 </div>
               </div>
-              <div class="col-md-9 col-sm-12">
-                <div class="sh_description">
-                  <p class="o_default_snippet_text">Vous souhaitez devenir chauffeur de taxi ? Retrouvez dans notre blog, toutes les informations nécessaires sur le métier, nos astuces pour réussir votre projet et les actualités du moment.</p>
-                </div>
+              <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
+                <br />
+                <img data-src="/mcm_website_theme/static/src/img/financement/Comment-financer-ma-formation-de-chauffeur-TAXI-VTC-VMDTR.webp" data-srcSafari="/mcm_website_theme/static/src/img/financement/Comment-financer-ma-formation-de-chauffeur-TAXI-VTC-VMDTR.png" class="img img-fluid mx-auto image-size lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Formation vtc taxi moto-taxi" aria-describedby="tooltip202025" style="text-align: center; " />
               </div>
             </div>
-            <div class="card ">
-              <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs " role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active o_default_snippet_text" id="nav_tabs_link_21" data-toggle="tab" href="#nav_tabs_content_21" role="tab" aria-controls="nav_tabs_content_21" aria-selected="true">Blog Taxi</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link o_default_snippet_text" id="nav_tabs_link_22" data-toggle="tab" href="#nav_tabs_content_22" role="tab" aria-controls="nav_tabs_content_22" aria-selected="false">Blog VTC</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link o_default_snippet_text" id="nav_tabs_link_23" data-toggle="tab" href="#nav_tabs_content_23" role="tab" aria-controls="nav_tabs_content_23" aria-selected="false">Blog MOTO TAXI</a>
-                  </li>
-                </ul>
+          </div>
+        </section>
+        <!-- end first section-->
+
+        <!-- second section-->
+
+        <section class="s_text_image pt32 pb32" data-name="Image - Text">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 js-scroll slide-left">
+                <h2 class="h2">Financer votre formation par carte bancaire :</h2>
+                <p class="p">
+                  Et ce en payant directement votre formation en ligne par carte
+                  bancaire.
+                  <br />
+                  En passant par ce mode de paiement , MCM Academy, vous offre
+                  le choix de financer votre formation en intégralité ou en
+                  répartissant votre paiement sur deux ou trois tranches.
+                  <br />
+                  *Vous pouvez consulter nos règlements pour plus d’informations
+                  ou détails.
+                </p>
+
+                <div class="s_btn text-left pt16 pb16" data-name="Button">
+                  <a class="animated-button-yellow" href="#pricing" alt="Bouton je m'inscris au site MCM Academy">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Je m'inscris
+                  </a>
+                </div>
               </div>
-              <div class="card-body tab-content ">
-                <div class="tab-pane fade show active" id="nav_tabs_content_21" role="tabpanel" aria-labelledby="nav_tabs_link_21">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="sh_content">
-                        <div class="sh_img">
-                          <img src="/web/image/246715/couv%20taxi%202.png"/>
-                        </div>
-                        <div class="sh_des">
-                          <p class="o_default_snippet_text"><span class="fa fa-calendar"/>26 janvier, 2022</p>
-                          <h4 class="o_default_snippet_text ">Devenir chauffeur de taxi indépendant</h4>
-                          <p class="truncate-p ">Si le métier de chauffeur de taxi à titre salarié présente comme intérêt premier de bénéficier de la sécurité de l’emploi, exercer sa profession en tant qu’indépendant présente un nombre d’avantages autrement plus conséquents. Or, devenir taxi indépendant requiert de suivre différentes étapes avant de réellement pouvoir offrir un service de transport de personne exercé à son compte.</p>
-                          <a href="#" class="btn o_default_snippet_text">Lire La suite</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="sh_content">
-                        <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/299010/Renouvellement%20carte%20pro.png"/>
-                        </div>
-                        <div class="sh_des">
-                          <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 24 mai, 2022</p>
-                          <h4 class="o_default_snippet_text">Comment renouveler sa carte TAXI ou VTC ?</h4>
-                          <p class="truncate-p ">Seuls les titulaires de la carte professionnelle ont le droit de conduire un Véhicule de Tourisme avec Chauffeur ou un Taxi. Cette pièce doit être visible lorsqu’ils exercent leur métier. En général, elle est placée sur le pare-brise de la voiture. La carte professionnelle taxi est expirée tous les 5 ans. Celle-ci doit être renouvelée.</p>
-                          <a href="#" class="btn o_default_snippet_text">Lire la suite</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="sh_content">
-                        <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/352139/LICENCE%20ADS%20TAXI.png"/>
-                        </div>
-                        <div class="sh_des">
-                          <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 2 septembre, 2022</p>
-                          <h4 class="o_default_snippet_text">Comment obtenir une Licence Taxi ADS ?</h4>
-                          <p class="truncate-p ">Si vous vous demandez comment obtenir une Licence Taxi ADS, c’est certainement parce que vous envisagez de vous lancer comme chauffeur de taxi indépendant. C’est un projet ambitieux, surtout lorsqu’on sait qu’un chauffeur de taxi ferait en moyenne un chiffre d’affaires de 60.000 € environs à Paris. Ailleurs, le chiffre d’affaires tourne autour de 45.000€. La Licence ADS taxi ou autorisation de stationnement est obligatoire pour toute personne qui exerce le métier de chauffeur de taxi.</p>
-                          <a href="#" class="btn o_default_snippet_text">Lire la suite</a>
-                        </div>
-                      </div>
-                    </div>
+              <div class="col-lg-6 pt16 js-scroll slide-right" style="">
+                <img data-srcSafari="/mcm_website_theme/static/src/img/financement/Financer-votre-formation-taxi-vtc-vmdtr-par-carte-bleu.png" data-src="/mcm_website_theme/static/src/img/financement/Financer-votre-formation-taxi-vtc-vmdtr-par-carte-bleu.webp" class="img img-fluid mx-auto lazy" alt="Candidat carte bancaire a la main pour financer sa formation VTC, VMDTR, TAXI" title="Financer votre formation taxi, vtc, vmdtr par carte bancaire" />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="pb4 mt24 s_text_block" data-name="Text block">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 js-scroll fade-in-top">
+                <h2 class="h2">
+                  Financer votre formation en mobilisant votre CPF
+                  <br />
+                </h2>
+                <h3 style="padding-top: 7px">C’est quoi le CPF ?</h3>
+                <p class="p">
+                  Le compte personnel de formation sert à accompagner le
+                  titulaire dans le cadre de l’évolution, la reconversion et la
+                  sécurisation de son parcours professionnel. Une fois alimenté,
+                  il permet de financer tout ou une partie d’une formation
+                  éligible au dispositif, en ligne ou en présentiel. Salariés,
+                  demandeurs d’emploi ou encore travailleurs indépendants, vous
+                  avez tous des droits à la formation professionnelle. D’où la
+                  nécessité de la mise en place du Compte personnel de formation
+                  (CPF), qui a remplacé depuis le 1er janvier 2015 le Droit
+                  Individuel à la Formation (DIF). C’est un droit octroyé à ces
+                  catégories de personnes pour financer une formation
+                  professionnelle qualifiante ou certifiante. L’objectif
+                  consiste à améliorer leur niveau de qualification et accroître
+                  leurs compétences.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- section 3-->
+        <section class="bg-200 pb16 pt32 s_three_columns" data-name="Columns">
+          <div class="container">
+            <div class="align-items-stretch d-flex row">
+              <div class="col-lg-4 pb16 pt16 s_col_no_bgcolor js-scroll slide-left">
+                <div class="bg-white card">
+                  <img class="card-img-top lazy" data-srcSafari="/mcm_website_theme/static/src/img/financement/CPF_comment_ça_fonctionne.png" data-src="/mcm_website_theme/static/src/img/financement/CPF_comment_ça_fonctionne.webp" alt="Interface mon compte de formation" title="Interface mon compte de formation" aria-describedby="tooltip14515" />
+                  <div class="card-body">
+                    <h3 class="card-title" style="font-size: 22px; font-weight: 600">
+                      CPF: Comment est-ce que ça fonctionne?
+                    </h3>
+
+                    <p class="p" style="line-height: 1.88182">
+                      Si vous avez un CPF depuis 2015 et que vous ne l'avez
+                      jamais utilisé, vous aurez à votre disposition 1440€. Vous
+                      pouvez également saisir vos heures de DIF (Droit
+                      individuel à la formation) s'il vous en reste.
+                    </p>
                   </div>
                 </div>
+              </div>
+              <div class="col-lg-4 pb16 pt16 s_col_no_bgcolor js-scroll fade-in-top">
+                <div class="bg-white card">
+                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/financement/Mon-compte-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/financement/Mon-compte-de-formation.png" alt="interface mobile mon compte de formation" title="Interface mobile mon compte de formation" aria-describedby="tooltip14515" />
+                  <div class="card-body">
+                    <h3 class="card-title" style="font-size: 22px; font-weight: 600">
+                      Mon compte de formation
+                    </h3>
 
-                    <!-- tab 2 -->
-                <div class="tab-pane fade" id="nav_tabs_content_22" role="tabpanel" aria-labelledby="nav_tabs_link_22">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="sh_content">
-                        <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/299738/Macaron%20VTC.png"/>
-                        </div>
-                        <div class="sh_des">
-                          <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 31 mai, 2022</p>
-                          <h4 class="o_default_snippet_text">Comment obtenir votre Macaron VTC?</h4>
-                          <p class="truncate-p">Un Macaron VTC ou Voiture de tourisme avec chauffeur est une vignette d’identification d’un véhicule de location avec chauffeur. Il permet aux autorités de surveillance ainsi qu’aux clients de distinguer rapidement les véhicules VTC des autres véhicules. Si vous ne disposez pas de la vignette sur le véhicule et vous exercez en tant que VTC, vous risquez une amende de niveau 4 .</p>
-                          <a href="#" class="btn o_default_snippet_text">Lire la suite</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="sh_content">
-                        <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/232336/comment%20s%27inscrire%20au%20registre%20VTC%202.png"/>
-                        </div>
-                        <div class="sh_des">
-                          <p class="o_default_snippet_text"><span class="fa fa-calendar"/>23 décembre, 2021</p>
-                          <h4 class="o_default_snippet_text">Comment s’inscrire au registre VTC ?</h4>
-                          <p class="truncate-p">En France, toutes les formalités des opérateurs de VTC auprès du registre des opérateurs de VTC doivent être effectuées par voie électronique sur l'application informatique dédiée au registre des VTC en application des articles R.3122-1 et R. 3122-10 du code des transports.</p>
-                          <a href="#" class="btn o_default_snippet_text">Lire la suite</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="sh_content">
-                        <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png"/>
-                        </div>
-                        <div class="sh_des">
-                          <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 17 janvier, 2022</p>
-                          <h4 class="o_default_snippet_text">Assurance VTC : Tout ce que vous devez savoir</h4>
-                          <p class="truncate-p">Vous avez réussi votre examen VTC après avoir passé par une formation ? Vous voilà devenu chauffeur VTC, félicitations. Toutefois, même après avoir rempli les conditions nécessaires pour devenir VTC, vous serez cependant astreint à un certain nombre d’obligations, dont certaines relatives à votre véhicule.
-
-                          </p>
-                          <a href="#" class="btn o_default_snippet_text">Lire la suite</a>
-                        </div>
-                      </div>
-                    </div>
+                    <p class="p" style="line-height: 1.88182">
+                      Le Compte Personnel de Formation s'adresse à chaque actif
+                      désormais crédité de 500 € par an (somme versée autour du
+                      mois d'avril). Cela peut monter à 800 € pour les salariés
+                      moins qualifiés et les personnes en situation de handicap.
+                    </p>
                   </div>
                 </div>
-                <!-- tab 3 -->
-                <div class="tab-pane fade" id="nav_tabs_content_23" role="tabpanel" aria-labelledby="nav_tabs_link_23">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="sh_content">
-                        <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/282772/blog%207.png"/>
-                        </div>
-                        <div class="sh_des">
-                          <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 5 mai, 2022 </p>
-                          <h4 class="o_default_snippet_text">Comment devenir taxi moto indépendant ?
-                          </h4>
-                          <p class="truncate-p">Vous vous demandez comment devenir taxi-moto indépendant ? Il est vrai que face à la part importante prélevée par les agences sur les bénéfices réalisés, cette option semble la plus avantageuse. Pour devenir chauffeur de taxi moto, il faut suivre les conditions exigées par la réglementation moto taxi. En effet, vous devez suivre une formation adaptée pour être titulaire du permis moto. En fonction de vos attentes, choisissez par la suite le statut qui vous convient le mieux.</p>
-                          <a href="#" class="btn o_default_snippet_text">Lire la suite</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="sh_content">
-                        <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/287348/VMDTR%202.png"/>
-                        </div>
-                        <div class="sh_des">
-                          <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 13 mai, 2022</p>
-                          <h4 class="o_default_snippet_text">Carte professionnelle VMDTR : À quoi ça sert ?</h4>
-                          <p class="truncate-p">Comme toute activité économique dans l’Hexagone, le métier de chauffeur VMDTR pour véhicule motorisé à deux ou trois roues est strictement encadré par la loi. Cette réglementation législative a pour principal objectif d’éviter les abus souvent liés à la pratique de l’activité de chauffeur. Mais, elle vise également à s'assurer que la conduite de ce dernier respecte parfaitement les dispositions légales. Et comme tout conducteur professionnel, le chauffeur VMDTR est soumis à l’obligation stricte de se doter d’une carte professionnelle pour pouvoir exercer sereinement son activité et en toute légalité. Et cela, qu’il souhaite exercer en tant que conducteur indépendant ou chez une agence spécialisée.</p>
-                          <a href="#" class="btn o_default_snippet_text">Lire la suite</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="sh_content">
-                        <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/229858/MCMACADEMY%20-%20moto-taxi.png"/>
-                        </div>
-                        <div class="sh_des">
-                          <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 20 septembre, 2021</p>
-                          <h4 class="o_default_snippet_text">Comment devenir taxi moto</h4>
-                          <p class="truncate-p">Le métier de chauffeur VMDTR (véhicule motorisé à deux ou trois roues), comme toute activité économique en France, est évidemment encadré par une législation lui étant propre. La règlementation taxi moto vise à éviter tout abus inhérent à la pratique de l’activité de conducteur et cela, pour mieux s’assurer que la conduite du chauffeur soit parfaitement respectueuse de la loi. C’est au nom de ce principe qu’une réglementation aura été mise en place afin que personne ne puisse pratiquer la conduite d’un taxi moto en tant que chauffeur indépendant ou chez une agence sans être au préalable doté d’une carte professionnelle.</p>
-                          <a href="#" class="btn o_default_snippet_text">Lire la suite</a>
-                        </div>
-                      </div>
-                    </div>
+              </div>
+              <div class="col-lg-4 pb16 pt16 s_col_no_bgcolor js-scroll slide-right">
+                <div class="bg-white card">
+                  <img class="card-img-top lazy" data-srcSafari="/mcm_website_theme/static/src/img/financement/Financer-votre-formation-cpf.webp" data-src="/mcm_website_theme/static/src/img/financement/Financer-votre-formation-cpf.webp" alt="Interface mobile financement formation taxi cpf" title="Interface mobile financement formation taxi cpf" aria-describedby="tooltip14515" />
+                  <div class="card-body">
+                    <h3 class="card-title" style="font-size: 22px; font-weight: 600">
+                      Financer votre formation
+                    </h3>
+                    <p class="p" style="line-height: 1.88182">
+                      Vous n'avez qu'à entrer votre numéro de sécurité sociale
+                      et une adresse mail valide. La page qui s'affiche ensuite
+                      vous donne les droits ainsi que le montant en euros (et
+                      non plus en heures) de votre capital formation.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-      
+        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="background-color: rgb(253, 209, 5)">
+          <div class="container js-scroll fade-in-top">
+            <h3 style="color: rgb(0, 0, 0); font-size: 24px">
+              Comment mobiliser mon CPF ?
+            </h3>
+            <p class="text">TELECHARGEZ NOTRE GUIDE</p>
+            <a class="animated-button-black" href="/mcm_website_theme/static/pdf/comment mobiliser mon CPF -MCM.pdf" data-original-title="" title="Comment mobiliser mon CPF">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              JE TELECHARGE
+            </a>
+          </div>
+        </section>
+        <section class="pt32 s_text_image" data-name="Image - Text">
+          <div class="container">
+            <div class="align-items-center row">
+              <div class="col-lg-6 pb16 pt16 js-scroll slide-left" style="border-style: none; border-width: 0px">
+                <img data-srcSafari="/mcm_website_theme/static/src/img/financement/Qui-peut-bénéficier-du-CPF.png" data-src="/mcm_website_theme/static/src/img/financement/Qui-peut-bénéficier-du-CPF.webp" class="img img-fluid mx-auto lazy" alt="candidats éligibles financement cpf" title="candidats éligibles financement cpf" aria-describedby="tooltip604679" />
+              </div>
+              <div class="col-lg-6 pt16 js-scroll slide-right" style="border-style: none; border-width: 0px">
+                <h3 style="color: rgb(0, 0, 0); font-size: 24px; font-weight: 700">
+                  Qui peut bénéficier du CPF ?
+                </h3>
+
+                <p class="p">
+                  Le compte personnel de formation s’adresse à différentes
+                  catégories de personnes qui sont en activité professionnelle
+                  et qui sont âgés plus de 16 ans (15 ans pour un jeune qui a
+                  signé son premier contrat comme apprenti).
+                  <br />
+                  Non rattaché au contrat de travail, il reste valable tout au
+                  long de sa vie professionnelle jusqu’à son départ à la
+                  retraite, même en période de chômage. De ce fait, le droit est
+                  ouvert pour les catégories suivantes: Les demandeurs d'emploi,
+                  les salariés et les travailleurs indépendants.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="pb32 s_text_image pt0" data-name="Text - Image">
+          <div class="container">
+            <div class="align-items-center row">
+              <div class="col-lg-12 pb16 pt16 js-scroll fade-in-top" style="border-style: none; border-width: 0px">
+
+                <h3 style="color: rgb(0, 0, 0); font-size: 24px; font-weight: 700">
+                  Quelles sont les formations éligibles au CPF ?
+                </h3>
+
+                <p class="p">
+                  Le compte personnel de formation n’autorise et ne finance que
+                  les formations jugées « éligibles ».
+                  <br />
+                  Il s’agit uniquement des formations
+                  <b>qualifiantes</b>
+                  ou
+                  <b>certifiantes</b>
+                  , qui satisfont les besoins du marché de
+                  l’emploi.
+                  <br />
+                  Soyez donc vigilant en choisissant votre formation.
+                  <br />
+                  Pour qu’une formation soit éligible, elle doit respecter l’un
+                  des critères suivants de l’article
+                  <b>L6323-6</b>
+                  :
+                  <br />
+                  <ul>
+                    <li style="font-size: 18px;">L’obtention d’un titre professionnel, d’un diplôme ou d’un
+                    certificat de qualification.</li>
+                    <li style="font-size: 18px;">L’acquisition du socle commun de connaissances et de
+                    compétences.</li>
+                    <li style="font-size: 18px;">Le bilan de compétences.</li>
+                    <li style="font-size: 18px;">La validation des acquis de l’expérience ou la VAE.</li>
+                    <li style="font-size: 18px;">La création ou la reprise d’une entreprise.</li>
+                    <li style="font-size: 18px;">
+                      L'interface
+                      <a href="https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche" target="_blank" rel="noopener" style="color: rgb(52, 57, 150)">
+                        recherche de formation sur le site Mon compte Formation</a>
+                    </li>
+
+                    <!-- test-->
+                  </ul>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- PRICING TABLE-->
+        <div id="pricing" class="pb32">
+          <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+          <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
+            <div class="container">
+              <div class="sh_title js-scroll fade-in-top">
+                <h2>
+                  <b>Inscrivez-vous dès maintenant !</b>
+                  <br />
+                </h2>
+                <h3 style="                   margin-top: 20px;                   margin-bottom: 0.5rem;                   font-size: 18px;                                   ">
+                                    Choisissez le pack qui vous convient&amp;nbsp;
+                                </h3>
+                <p>
+                  <br />
+                </p>
+              </div>
+              <div class="row">
+                <div class="col-md-4 sh_animation_part js-scroll slide-left" style="border-style: none; border-width: 0px">
+                  <div class="sh_pricing">
+                    <t t-foreach="mcm_products" t-as="product">
+                      <t t-if="product.default_code=='vtc'">
+                        <form action="/shop/cart/update" method="post" id="form-1-1">
+                          <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
+                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+
+                          <h3 style="max-width: 100%; font-size:35px;">PACK VTC</h3>
+                          <h4 style="color: #636161; font-size: 1.09375rem">Éligible au CPF</h4>
+
+                          <h4 t-if="not promo">
+                            <span t-esc="round(product.list_price)" />
+                            <span style="color: #fdd105;" t-esc="product.currency_id.symbol" />
+                          </h4>
+                          <h4 t-if="promo">
+                            <t t-foreach="promo.item_ids" t-as="item">
+                              <t t-if="item.product_id.id==product.id">
+                                <span t-esc="round(item.fixed_price)" />
+                                <span t-esc="product.currency_id.symbol" style="color: #fdd105;" />
+                              </t>
+                            </t>
+                          </h4>
+                          <ul class="">
+                            <li>Formation 70 h (100 % en ligne)</li>
+                            <li>Accès à + de 12 examens d'entraînement</li>
+                            <li>Assistance par mail</li>
+                            <li>Assistance&amp;nbsp;par téléphone</li>
+                            <li>Assistance&amp;nbsp;par visioconférence</li>
+                            <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+                            <li>Révision du programme avant examen</li>
+                          </ul>
+                          <br />
+                          <t t-if="promo">
+                            <p class="
+                              text-center
+                              font-weight-bolder
+                              text-secondary
+                            ">
+                              <b style="font-size: 50%">
+                                <t>90</t>
+                                <span t-esc="product.currency_id.symbol" style="color: #fdd105;" />
+                                <span style="text-transform: none !important;">avec le
+                                                                    code</span>
+                                <t t-esc="promo.code" />
+                              </b>
+                            </p>
+                          </t>
+                          <div class="sh_btn">
+                            <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
+                            Je m'inscris
+                                                </a> -->
+                            <!-- Call Mircorsoft ads script onclick-->
+
+                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){  document.getElementById('form-1-1').submit();return false;})();return false;">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              Je m'inscris
+                            </a>
+                            <div>
+                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
+                                                            Paiement 1 ou 2 fois
+                              </span>
+                            </div>
+
+                          </div>
+                        </form>
+                      </t>
+                    </t>
+                  </div>
+                </div>
+                <div class="col-md-4 sh_animation_part js-scroll fade-in-top">
+                  <div class="sh_pricing">
+                    <t t-foreach="mcm_products" t-as="product">
+                      <t t-if="product.default_code=='taxi'">
+                        <form action="/shop/cart/update" method="post" id="form-1-2">
+                          <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
+                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+
+                          <h3 style="max-width: 100%; font-size:35px;">PACK TAXI</h3>
+                          <h4 style="color: #636161; font-size: 1.09375rem">Éligible au CPF</h4>
+
+                          <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span style="
+    color: #fdd105;
+" t-esc="product.currency_id.symbol" />
+
+                          </h4>
+                          <ul class="">
+                            <li>Formation 70 h (100 % en ligne)</li>
+                            <li>Accès à + de 12 examens d'entraînement</li>
+                            <li>Assistance&amp;nbsp;par mail</li>
+                            <li>Assistance&amp;nbsp;par téléphone</li>
+                            <li>Assistance&amp;nbsp;par visioconférence</li>
+                            <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+                            <li>Révision du programme avant examen</li>
+                          </ul>
+                          <br />
+                          <t t-if="promo">
+                            <p class="text-center
+                                                                    font-weight-bolder
+                                                                    text-secondary
+                                                                    ">
+                              <b style="font-size: 50%">
+                                <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                              </b>
+                            </p>
+                          </t>
+                          <div class="sh_btn">
+                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){ document.getElementById('form-1-2').submit();return false;})();return false;">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              Je m'inscris
+                            </a>
+                            <div>
+                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
+                                                            Paiement 1 ou 2 fois
+                              </span>
+                            </div>
+                          </div>
+                        </form>
+                      </t>
+                    </t>
+                  </div>
+                </div>
+                <div class="col-md-4 sh_animation_part js-scroll slide-right">
+                  <div class="sh_pricing">
+                    <t t-foreach="mcm_products" t-as="product">
+                      <t t-if="product.default_code=='vmdtr'">
+                        <form action="/shop/cart/update" method="post" id="form-1-3">
+                          <input type="hidden" class="product_id" name="product_id" id="vmdtr_product" t-att-value="product.id" />
+                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+
+                          <h3 style="max-width: 100%; font-size:35px;">PACK TAXI-MOTO</h3>
+                          <h4 style="color: #636161; font-size: 1.09375rem">&amp;nbsp; &amp;nbsp;&amp;nbsp; &amp;nbsp;</h4>
+                          <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span style="color: #fdd105;" t-esc="product.currency_id.symbol" />
+
+                          </h4>
+                          <ul class="">
+                            <li>Formation 70 h (100 % en ligne)</li>
+                            <li>Accès à + de 12 examens d'entraînement</li>
+                            <li>Assistance&amp;nbsp;par mail</li>
+                            <li>Assistance&amp;nbsp;par téléphone</li>
+                            <li>Assistance&amp;nbsp;par visioconférence</li>
+                            <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+                            <li>Révision du programme avant examen</li>
+                          </ul>
+                          <br />
+                          <t t-if="promo">
+                            <p class="
+                              text-center
+                              font-weight-bolder
+                              text-secondary
+                            ">
+                              <b style="font-size: 50%">
+                                <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                              </b>
+                            </p>
+                          </t>
+                          <div class="sh_btn">
+                            <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip196298">
+                            Je m'inscris
+                                                </a> -->
+
+                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){  document.getElementById('form-1-3').submit();return false;})();return false;">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              Je m'inscris
+                            </a>
+                            <div>
+                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
+                                                            Paiement 1 ou 3 fois
+                              </span>
+                            </div>
+                          </div>
+                        </form>
+                      </t>
+                    </t>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- FIN PRICING TABLE-->
+        <style>
+           .center-logo {
+          display: flex;
+          flex-direction: row;
+          align-content: center;
+          justify-content: space-between;
+          align-items: center;
+        }
+        @media all and (max-width: 575px) {
+          .center-logo {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: space-between;
+            align-items: center;
+          }
+        </style>
+        <section class="pt40 pb32">
+          <div class="container js-scroll fade-in-top">
+            <div class="center-logo">
+              <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
+                <a href="/bolt" target="_blank" rel="noopner">
+                  <img data-src="/mcm_website_theme/static/src/img/logos/logo-bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-bolt.png" class="img-fluid lazy" style="width: 100px; margin-top: 25px" alt="Logo partenaire MCM-ACADEMY" title="Bolt partenaire MCM ACADEMY" />
+                </a>
+              </div>
+              <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
+                <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
+                  <img class="img-fluid lazy" style="width: 94px" data-src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" />
+                </a>
+              </div>
+              <div class="pt32" t-if="partenaire=='' or partenaire !='bolt'">
+                <a href="https://www.artisanat.fr/">
+                  <img class="img-fluid lazy" style="width: 100px" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-CMA.png" data-src="/mcm_website_theme/static/src/img/logos/logo-CMA.png" title="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" alt="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" />
+                </a>
+              </div>
+
+              <div class="pt32" t-if="partenaire=='' or not partenaire ">
+                <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
+                  <img class="img-fluid lazy" style="width: 250px" data-src="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" title="Joel partenaire MCM ACADEMY" alt="Joel partenaire MCM ACADEMY" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
     </t>
   </template>
