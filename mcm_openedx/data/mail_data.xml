@@ -154,26 +154,14 @@
             <field name="partner_to">${object.id}</field>
             <field name="body_html" type="html">
                 <div>
-                      <p>Bonjour ${object.name},</p>
-
-
-                        <br/>
-                        À la suite de l'annulation de votre dossier CPF nous vous informons que votre accès à notre
-                        plateforme a été suspendu.
-                        <br/>
-
-                        Vous serez contacté par notre service clientèle pour plus d'informations.
-                        <br/>
-                        <br/>
-                        Cordialement
-                        <br/>
-                        MCM Academy
-
-                        <br/>
-
-
-
-
+                    <p>Bonjour ${object.name},</p>
+                    À la suite de l'annulation de votre dossier CPF nous vous informons que votre accès à notre
+                    plateforme a été suspendu.
+                    <br/>
+                    Vous serez contacté par notre service clientèle pour plus d'informations.
+                    Cordialement
+                    <br/>
+                    MCM Academy
                     <span align="center" style="border:1px">
                         <p style="font-size: 12px;font-weight:500">
                             Si vous souhaitez avoir plus de renseignements, n'hésitez
