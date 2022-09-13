@@ -32,6 +32,7 @@
         'security/ir.model.access.csv',
         'views/mail_server_view.xml',
         'views/alias_mail_view.xml',
+        'data/mail_data.xml',
     ],
     'qweb': [],
     "license": "Other proprietary",
