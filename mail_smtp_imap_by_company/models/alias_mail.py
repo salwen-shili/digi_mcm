@@ -59,7 +59,7 @@ class MailThreadInherit(models.AbstractModel):
         catchall_alias = self.env['ir.config_parameter'].sudo().get_param("mail.catchall.alias")
         bounce_alias = self.env['ir.config_parameter'].sudo().get_param("mail.bounce.alias")
         fallback_model = model
-        
+
         # get email.message.Message variables for future processing
         local_hostname = socket.gethostname()
         message_id = message_dict['message_id']
@@ -67,7 +67,8 @@ class MailThreadInherit(models.AbstractModel):
         # compute references to find if message is a reply to an existing thread
         thread_references = message_dict['references'] or message_dict['in_reply_to']
         msg_references = [ref for ref in tools.mail_header_msgid_re.findall(thread_references) if 'reply_to' not in ref]
-        mail_messages = self.env['mail.message'].sudo().search([('message_id', 'in', msg_references)], limit=1, order='id desc, message_id')
+        mail_messages = self.env['mail.message'].sudo().search([('message_id', 'in', msg_references)], limit=1,
+                                                               order='id desc, message_id')
         is_a_reply = bool(mail_messages)
         reply_model, reply_thread_id = mail_messages.model, mail_messages.res_id
 
@@ -76,14 +77,12 @@ class MailThreadInherit(models.AbstractModel):
         email_from_localpart = (tools.email_split(email_from) or [''])[0].split('@', 1)[0].lower()
         email_to = message_dict['to']
         email_to_localpart = (tools.email_split(email_to) or [''])[0].split('@', 1)[0].lower()
-        
-        
+
         # Delivered-To is a safe bet in most modern MTAs, but we have to fallback on To + Cc values
         # for all the odd MTAs out there, as there is no standard header for the envelope's `rcpt_to` value.
         rcpt_tos_localparts = [e.split('@')[0].lower() for e in tools.email_split(message_dict['recipients'])]
         email_to_alias_domain_list = [e.split('@')[1].lower() for e in tools.email_split(message_dict['recipients'])]
-        
-        
+
         # 0. Handle bounce: verify whether this is a bounced email and use it to collect bounce data and update notifications for customers
         #    Bounce regex: typical form of bounce is bounce_alias+128-crm.lead-34@domain
         #       group(1) = the mail ID; group(2) = the model (if any); group(3) = the record ID 
@@ -136,26 +135,26 @@ class MailThreadInherit(models.AbstractModel):
 
             # check it does not directly contact catchall
             if catchall_alias and catchall_alias in email_to_localpart:
-                _logger.info('Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce', email_from, email_to, message_id)
-                company_id = 1
-                if 'digimoov' in email_to :
-                    company_id = 2
-                company = self.env['res.company'].sudo().search([('id',"=",company_id)])
-                body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
-                    'message': message,'company' : company if company else self.env.company
+                _logger.info('Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce',
+                             email_from, email_to, message_id)
+                body = self.env.ref('mail.mail_bounce_catchall').render({
+                    'message': message,
                 }, engine='ir.qweb')
-                self._routing_create_bounce_email(email_from, body, message, reply_to=company.email if company else self.env.company.email)
+                self._routing_create_bounce_email(email_from, body, message, reply_to=self.env.company.email)
                 return []
-            alias_domain_id = self.env['alias.mail'].search([('domain_name','in',email_to_alias_domain_list)])
+            alias_domain_id = self.env['alias.mail'].search([('domain_name', 'in', email_to_alias_domain_list)])
             dest_aliases = False
             if alias_domain_id:
-                dest_aliases = self.env['mail.alias'].search([('alias_domain','in',alias_domain_id.ids),('alias_name', 'in', rcpt_tos_localparts)])
-            
+                dest_aliases = self.env['mail.alias'].search(
+                    [('alias_domain', 'in', alias_domain_id.ids), ('alias_name', 'in', rcpt_tos_localparts)])
+
             if dest_aliases:
                 routes = []
                 for alias in dest_aliases:
                     user_id = self._mail_find_user_for_gateway(email_from, alias=alias).id or self._uid
-                    route = (alias.alias_model_id.model, alias.alias_force_thread_id, safe_eval(alias.alias_defaults), user_id, alias)
+                    route = (
+                    alias.alias_model_id.model, alias.alias_force_thread_id, safe_eval(alias.alias_defaults), user_id,
+                    alias)
                     route = self._routing_check_route(message, message_dict, route, raise_exception=True)
                     if route:
                         _logger.info(
@@ -163,7 +162,7 @@ class MailThreadInherit(models.AbstractModel):
                             email_from, email_to, message_id, route)
                         routes.append(route)
                 return routes
-            
+
         # 3. Fallback to the provided parameters, if they work
         if fallback_model:
             # no route found for a matching reference (or reply), so parent is invalid
@@ -178,7 +177,7 @@ class MailThreadInherit(models.AbstractModel):
                     'Routing mail from %s to %s with Message-Id %s: fallback to model:%s, thread_id:%s, custom_values:%s, uid:%s',
                     email_from, email_to, message_id, fallback_model, thread_id, custom_values, user_id)
                 return [route]
-                
+
         # ValueError if no routes found and if no bounce occured
         raise ValueError(
             'No possible route found for incoming message from %s to %s (Message-Id %s:). '
