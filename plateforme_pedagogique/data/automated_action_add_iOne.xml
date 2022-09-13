@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- automated action to delete client from all list of prospect in all sessions when the state of client become won -->
+    <!-- automated action to add client to 360 learning -->
     <record id="rule_on_write_add_ione" model="base.automation">
         <field name="name">Base Automation: Ajouter Client à la plateforme 360</field>
         <field name="model_id" ref="base.model_res_partner"/>
         <field name="trigger">on_write</field>
         <field name="trigger_field_ids" eval="[(4,ref('plateforme_pedagogique.field_res_partner__statut'))]"/>
+        <field name="active" eval="True"/>
+        <field name="state">code</field>
+
+        <field name="code">
+            model.ajouter_iOne_manuelle(record)
+
+        </field>
+    </record>
+    <record id="rule_on_write_add_ione" model="base.automation">
+        <field name="name">Base Automation: Ajouter Client à la plateforme 360</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="trigger">on_write</field>
+        <field name="trigger_field_ids" eval="[(4,ref('plateforme_pedagogique.field_sale_order__state'))]"/>
         <field name="active" eval="True"/>
         <field name="state">code</field>
 
