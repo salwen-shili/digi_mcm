@@ -740,10 +740,10 @@
                             <div class="card-header">
                                 <ul class="nav nav-tabs card-header-tabs " role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link o_default_snippet_text" id="nav_tabs_link_23" data-toggle="tab" href="#nav_tabs_content_23" role="tab" aria-controls="nav_tabs_content_23" aria-selected="true">Examens</a>
+                                        <a class="nav-link active o_default_snippet_text" id="nav_tabs_link_23" data-toggle="tab" href="#nav_tabs_content_23" role="tab" aria-controls="nav_tabs_content_23" aria-selected="true">Examens</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active o_default_snippet_text" id="nav_tabs_link_21" data-toggle="tab" href="#nav_tabs_content_21" role="tab" aria-controls="nav_tabs_content_21" aria-selected="false">Transport Léger</a>
+                                        <a class="nav-link  o_default_snippet_text" id="nav_tabs_link_21" data-toggle="tab" href="#nav_tabs_content_21" role="tab" aria-controls="nav_tabs_content_21" aria-selected="false">Transport Léger</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link o_default_snippet_text" id="nav_tabs_link_22" data-toggle="tab" href="#nav_tabs_content_22" role="tab" aria-controls="nav_tabs_content_22" aria-selected="false">Transport Lourd</a>
