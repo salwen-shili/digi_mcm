@@ -399,16 +399,7 @@
                                                 <span>%</span>
                                             </td>
                                         </th>
-                                        <th style="background:#FFFF00;">Non présentation à la formation
-                                            <td class="td">
-                                                <span></span>
-                                            </td>
 
-                                            <td class="td">
-                                                <span></span>
-                                                <span>%</span>
-                                            </td>
-                                        </th>
                                         <th class="th">Nombre d'admis
                                             <td class="td">
                                                 <span t-esc="docs.nbr_recus_solo()"/>
@@ -425,13 +416,13 @@
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th class="th">Nombre d'admis
+                                        <th style="background:#FFFF00;">Non présentation à la formation
                                             <td class="td">
-                                                <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
+                                                <span></span>
                                             </td>
 
                                             <td class="td">
-                                                <span t-esc="docs.pourcentage_client_recu(pourcentage)"/>
+                                                <span></span>
                                                 <span>%</span>
                                             </td>
                                         </th>
@@ -450,6 +441,18 @@
                                             </td>
                                             <td class="td">
                                                 <span t-esc="docs.taux_de_reussite_repassage()"/>
+                                                <span>%</span>
+                                            </td>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="th">Nombre d'admis
+                                            <td class="td">
+                                                <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
+                                            </td>
+
+                                            <td class="td">
+                                                <span t-esc="docs.pourcentage_client_recu(pourcentage)"/>
                                                 <span>%</span>
                                             </td>
                                         </th>
