@@ -596,6 +596,312 @@
                         </div>
                     </div>
                 </section>
+                
+
+
+                <style>
+                          .truncate-p {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                          }
+                          #sh_corpomate_theme_section_203 {
+             padding: 50px 0 0;
+             margin-top: 50px;
+             background: #fff;
+        }
+         #sh_corpomate_theme_section_203 .card {
+             border: 0;
+             background: transparent !important;
+        }
+         #sh_corpomate_theme_section_203 .card .card-header {
+             background: transparent;
+             border: 0;
+        }
+         #sh_corpomate_theme_section_203 .card .card-body {
+             padding-left: 0;
+             padding-right: 0;
+        }
+         #sh_corpomate_theme_section_203 .sh_heading {
+             margin: 25px 0;
+             font-size: 30px;
+             padding: 0;
+             font-weight: 700;
+             color: #242424;
+             text-transform: uppercase;
+             text-align: left;
+        }
+         #sh_corpomate_theme_section_203 .sh_heading h3 {
+             font-weight: 700;
+             color: #242424;
+             text-transform: capitalize;
+        }
+         #sh_corpomate_theme_section_203 .sh_heading .sh_description {
+             border-left: 1px solid #838383;
+             padding-left: 41px;
+             text-align: left;
+             font-size: 18px;
+             margin: 0;
+        }
+         #sh_corpomate_theme_section_203 .sh_description p {
+             font-size: 16px;
+             color: #6b7b90;
+             display: -webkit-box;
+             -webkit-line-clamp: 3;
+             -webkit-box-orient: vertical;
+             overflow: hidden;
+        }
+         #sh_corpomate_theme_section_203 .sh_description {
+             border-left: 1px solid #838383;
+             padding-left: 41px;
+             text-align: left;
+             font-size: 18px;
+             margin: 0;
+        }
+         #sh_corpomate_theme_section_203 .card .card-header ul {
+             justify-content: center;
+        }
+         #sh_corpomate_theme_section_203 .nav-tabs .nav-link {
+             border: 0;
+             border-radius: 0;
+             background: #fff;
+             margin: 15px 5px;
+             font-weight: 600;
+             letter-spacing: 1px;
+             color: #414141;
+        }
+         #sh_corpomate_theme_section_203 .nav-tabs .nav-link.active, #sh_corpomate_theme_section_203 .nav-tabs .nav-item.show .nav-link {
+             background: #000;
+             color: #fff;
+             border-radius: 0px 10px 0px 10px;
+        }
+         #sh_corpomate_theme_section_203 .sh_content .sh_img img {
+             width: 100%;
+             height: 225px;
+             object-fit: cover;
+        }
+         #sh_corpomate_theme_section_203 .sh_content .sh_des {
+             padding: 15px 0;
+             background: #fff;
+        }
+         #sh_corpomate_theme_section_203 .sh_content .sh_des h4 a {
+             color: #414141;
+             font-size: 20px;
+             margin-bottom: 15px;
+             display: -webkit-box;
+             -webkit-line-clamp: 1;
+             -webkit-box-orient: vertical;
+             overflow: hidden;
+        }
+         #sh_corpomate_theme_section_203 .sh_content .sh_des p {
+             color: #616161;
+             margin-bottom: 15px;
+        }
+         #sh_corpomate_theme_section_203 .sh_content .sh_des p span {
+             color: #000;
+             padding-right: 5px;
+        }
+         #sh_corpomate_theme_section_203 .sh_content .sh_des a.btn {
+             padding: 0;
+             font-weight: 600;
+             font-size: 16px;
+             letter-spacing: 1px;
+             border-bottom: 1px solid;
+             border-radius: 0;
+             box-shadow: none;
+        }
+         #sh_corpomate_theme_section_203 .sh_content {
+             margin-bottom: 20px;
+        }
+        #sh_corpomate_theme_section_203 .sh_content h4{
+           color: black;
+       }
+         
+                        </style>
+                <section id="sh_corpomate_theme_section_203" class="" data-name="blog 2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12">
+                                <div class="sh_heading">
+                                    <h3 class="o_default_snippet_text">Le Blog</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-9 col-sm-12">
+                                <div class="sh_description">
+                                    <p class="o_default_snippet_text">Vous souhaitez créer votre entreprise de transport de marchandises ? Ou travailler en tant que livreur pour le compte des meilleures plateformes de livraison en France ?
+                                    Retrouvez sur notre blog, toutes les informations utiles pour avancer sur votre projet et vous familiariser avec le secteur du transport.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card ">
+                            <div class="card-header">
+                                <ul class="nav nav-tabs card-header-tabs " role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active o_default_snippet_text" id="nav_tabs_link_23" data-toggle="tab" href="#nav_tabs_content_23" role="tab" aria-controls="nav_tabs_content_23" aria-selected="true">Examens</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link  o_default_snippet_text" id="nav_tabs_link_21" data-toggle="tab" href="#nav_tabs_content_21" role="tab" aria-controls="nav_tabs_content_21" aria-selected="false">Transport Léger</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link o_default_snippet_text" id="nav_tabs_link_22" data-toggle="tab" href="#nav_tabs_content_22" role="tab" aria-controls="nav_tabs_content_22" aria-selected="false">Transport Lourd</a>
+                                    </li>
+                                 
+                                </ul>
+                            </div>
+                            <div class="card-body tab-content ">
+                                  <!-- tab Examens -->
+                                  <div class="tab-pane fade show active" id="nav_tabs_content_23" role="tabpanel" aria-labelledby="nav_tabs_link_23">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="sh_content">
+                                                <div class="sh_img">
+                                                    <img src="https://www.digimoov.fr/web/image/341773/examen-transport%20lourd-digimoov.png" alt="examen-transport lourd digimoov" />
+                                                </div>
+                                                <div class="sh_des">
+                                                    <!-- <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 5 mai, 2022 </p> -->
+                                                    <h4 class="o_default_snippet_text">Examen en capacité de transport plus de 3t5
+                                          </h4>
+                                                    <p class="truncate-p">Vous êtes attiré par le métier de routier ? Vous aimeriez faire une carrière dans le transport de marchandises ? Pour ce faire, et surtout pour le transport routier des marchandises avec un véhicule de 3t5, vous avez besoin d'avoir une capacité de transport. Maintenant, les questions qui se posent sont : comment se passe l'examen ? Comment obtenir une attestation pour créer sa société de routier de marchandises ? Quels sont les modules de l'examen pour attestation en capacité de transport de plus de 3t5 ? Nous vous y répondrons une par une !</p>
+                                                    <a href="https://www.digimoov.fr/blog/examen-en-capacite-de-transport-plus-de-3t5" alt="Examen en capacité de transport plus de 3t5">Lire la suite</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="sh_content">
+                                                <div class="sh_img">
+                                                    <img alt="Le type de transport de marchandises" src="https://www.digimoov.fr/web/image/29784/transporteur%20de%20marchandise.png?access_token=84d60bae-01f4-4818-ae75-85a791ba9fd0" />
+                                                </div>
+                                                <div class="sh_des">
+                                                    <!-- <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 13 mai, 2022</p> -->
+                                                    <h4 class="o_default_snippet_text">J'ai réussi mon examen de capacité de transport de marchandise, que faire ensuite ?</h4>
+                                                    <p class="truncate-p">Être un livreur indépendant, devenir un transporteur personnel ou bien de marchandises ? Le choix est rude. En effet, plusieurs élèves qui ont obtenu leur capacité de transport de marchandises se demandent : que faire après ? Quel métier avec capacité de transport ? Le meilleur conseil que l’on puisse vous donner c’est de créer votre propre entreprise de transport de marchandises.</p>
+                                                    <a href="https://www.digimoov.fr/blog/j-ai-reussi-mon-examen-de-capacite-de-transport-de-marchandise-que-faire-ensuite">Lire la suite</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="sh_content">
+                                                <div class="sh_img">
+                                                    <img alt="Devenir partenaire des enseignes à grand volume de colis expédiés
+                                          " src="https://www.digimoov.fr/web/image/25164/Livreur-ind%C3%A9pendant-grand-volume-colis-expedi%C3%A9s.png?access_token=b665cfee-20b3-43f5-9a05-561cd53a7130" />
+                                                </div>
+                                                <div class="sh_des">
+                                                    <!-- <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 20 septembre, 2021</p> -->
+                                                    <h4 class="o_default_snippet_text">Les meilleurs conseils pour trouver des clients en tant que transporteur</h4>
+                                                    <p class="truncate-p">Gérer une entreprise de transport routier ou aérien, de marchandises ou de personnes, requiert une certaine habileté dans la recherche de clients. Cela touche aussi le maritime et le ferroviaire. À noter toutefois que cette activité n’a rien de difficile. Il faut juste des actions concrètes et, quels que soient vos moyens de transport, il faut agir pour améliorer votre visibilité. Pour cela, de nombreuses possibilités s’offrent à vous. Et afin de mettre toutes les chances de votre côté, il est recommandé de les exploiter toutes. Comment procéder ?</p>
+                                                    <a href="https://www.digimoov.fr/blog/les-meilleurs-conseils-pour-trouver-des-clients-en-tant-que-transporteur">Lire la suite</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- tab Transport Léger -->
+                                <div class="tab-pane fade " id="nav_tabs_content_21" role="tabpanel" aria-labelledby="nav_tabs_link_21">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="sh_content">
+                                                <div class="sh_img">
+                                                    <img alt="
+                                        Comment devenir auto-entrepreneur dans le domaine du transport?" src="https://www.digimoov.fr/web/image/227163/Comment_devenir_%20auto-entrepreneur_%20dans%20_le%20_domaine_%20du%20_transport.png" />
+                                                </div>
+                                                <div class="sh_des">
+                                                    <h4 class="o_default_snippet_text">
+                                                Comment devenir auto-entrepreneur dans le domaine du transport?</h4>
+
+                                                    <p class="truncate-p">
+                                                        L’activité de transporteur ou de livreur en véhicule léger est à portée à chacun grâce aux réglementations accessibles. Il est en effet donné à tous de bénéficier des avantages inhérents à une pareille activité professionnelle. Toutefois, avant d’exercer ce métier, vous serez tenus de respecter différentes démarches préalables.
+                                                        <a href="#">Lire la suite</a>
+                                                    </p>
+                                                    <a href="https://www.digimoov.fr/blog/comment-devenir-auto-entrepreneur-dans-le-domaine-du-transport">Lire la suite</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="sh_content">
+                                                <div class="sh_img">
+                                                    <img src="https://www.digimoov.fr/web/image/256955/%C3%80%20quoi%20sert%20l%27attestation%20en%20capacit%C3%A9%20de%20transport%20l%C3%A9ger.png" alt="attestation de capacité de transport de marchandises" />
+                                                </div>
+                                                <div class="sh_des">
+                                                    <!-- <p class="o_default_snippet_text"><span class="fa fa-calendar"/>23 décembre, 2021</p> -->
+                                                    <h4 class="o_default_snippet_text">À quoi sert l'attestation de capacité de transport léger ?</h4>
+                                                    <p class="truncate-p">
+                                            Pour créer une entreprise de transport routier léger ou de location de voitures ne dépassant pas 3,5 tonnes PTAC, vous devez obtenir une attestation de capacité professionnelle en transport routier léger. Cela permet à l’entreprise de s’inscrire au registre des transporteurs et loueurs tenus par la DREAL.
+                                             
+                                      </p>
+                                                    <a href="https://www.digimoov.fr/blog/a-quoi-sert-l-attestation-de-capacite-en-transport-leger">Lire la suite</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="sh_content">
+                                                <div class="sh_img">
+                                                    <img src="https://www.digimoov.fr/web/image/285152/blog%206.png" />
+                                                </div>
+                                                <div class="sh_des">
+                                                    <!-- <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 17 janvier, 2022</p> -->
+                                                    <h4 class="o_default_snippet_text">Louer sa capacité de transport : est-ce possible ?</h4>
+                                                    <p class="truncate-p">Avec près de 37 000 entreprises, le secteur du transport routier français est en plein essor. Toutefois, pour pouvoir exercer une activité de transport, des réglementations strictes sont à suivre. En particulier, cela nécessite de justifier d’une attestation de capacité de transport routier de marchandises ou de personnes pour pouvoir créer une entreprise de transport. Toutefois, devenir capacitaire exige de passer un examen qui s’avère être difficile à réussir sans s’inscrire dans un centre de formation agréé comme Digimoov. D’ailleurs, de nombreux dossiers de demande de création d’entreprises de transport routier, qui ne respectent pas les sévères conditions en vigueur, sont refusés par la DREAL chaque année. Chez Digimoov, nous vous formons et vous accompagnons jusqu’à ce que vous soyez capacitaire de transport routier.
+                                        </p>
+                                                    <a href="https://www.digimoov.fr/blog/louer-sa-capacite-de-transport-est-ce-possible">Lire la suite</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Transport Lourd-->
+                                <div class="tab-pane fade" id="nav_tabs_content_22" role="tabpanel" aria-labelledby="nav_tabs_link_22">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="sh_content">
+                                                <div class="sh_img">
+                                                    <img src="https://www.digimoov.fr/web/image/282855/blog%201.png" alt="Comment devenir transporteur routier ?" />
+                                                </div>
+                                                <div class="sh_des">
+                                                    <!-- <p class="o_default_snippet_text"><span class="fa fa-calendar"/>26 janvier, 2022</p> -->
+                                                    <h4 class="o_default_snippet_text ">Comment devenir transporteur routier ?</h4>
+                                                    <p class="truncate-p ">Depuis quelques années, les achats en ligne ont connu une forte croissance. Les sociétés de transport trouvent leur compte dans les livraisons. De ce fait, la profession de transporteur est actuellement en pleine expansion. Si vous êtes passionné dans la conduite de différents engins, devenir transporteur routier est le travail qu’il vous faut. Pour le transport léger ou du poids lourd, exercer la profession nécessite quelques connaissances et une formation de conducteur routier. Le transport routier de marchandises offre diverses opportunités pour le conducteur ou la conductrice.
+                                            </p>
+                                                    <a href="https://www.digimoov.fr/blog/comment-devenir-transporteur-routier">Lire La suite</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="sh_content">
+                                                <div class="sh_img">
+                                                    <img src="https://www.digimoov.fr/web/image/298577/poids%20lourd.png?access_token=a12747d3-0dd8-4af4-b82e-07568ade1f3f" alt="Capacité financière poids lourd : ce qu'il faut savoir" />
+                                                </div>
+                                                <div class="sh_des">
+                                                    <!-- <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 24 mai, 2022</p> -->
+                                                    <h4 class="o_default_snippet_text">Capacité financière poids lourd : ce qu'il faut savoir</h4>
+                                                    <p class="truncate-p ">Pour créer une entreprise de transport de marchandises, il faudrait disposer d’une capacité financière poids lourd. En effet, le créateur doit être titulaire d’une attestation professionnelle qui prouve qu’il a les ressources financières suffisantes pour exercer une activité de transport. Qu’est-ce que la capacité financière et comment obtenir une attestation ?</p>
+                                                    <a href="https://www.digimoov.fr/blog/capacite-financiere-poids-lourd-ce-qu-il-faut-savoir">Lire la suite</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="sh_content">
+                                                <div class="sh_img">
+                                                    <img src="https://www.digimoov.fr/web/image/247947/Capacit%C3%A9-de-%20transport-%20poids-%20lourd-digimoov.png" alt="Comment obtenir la capacité de transport poids lourd ?" />
+                                                </div>
+                                                <div class="sh_des">
+                                                    <!-- <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 2 septembre, 2022</p> -->
+                                                    <h4 class="o_default_snippet_text">Comment obtenir la capacité de transport poids lourd ?</h4>
+                                                    <p class="truncate-p ">La mondialisation parachevant ses effets vertueux sur les économies du globe, le secteur du transport routier sera naturellement très sollicité pour les années à venir. Les chauffeurs poids lourd plus encore compte tenu de la contenance de leur cargaison et l’importance stratégique que recouvre leur activité.</p>
+                                                    <a href="https://www.digimoov.fr/blog/capacite-de-transport-poids-lourd-comment-l-obtenir">Lire la suite</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </t>
 
