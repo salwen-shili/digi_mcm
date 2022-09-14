@@ -399,6 +399,16 @@
                                                 <span>%</span>
                                             </td>
                                         </th>
+                                        <th style="background:#FFFF00;">Non présentation à la formation
+                                            <td class="td">
+                                                <span></span>
+                                            </td>
+
+                                            <td class="td">
+                                                <span></span>
+                                                <span>%</span>
+                                            </td>
+                                        </th>
                                         <th class="th">Nombre d'admis
                                             <td class="td">
                                                 <span t-esc="docs.nbr_recus_solo()"/>
