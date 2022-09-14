@@ -196,7 +196,7 @@ class enattente(models.Model):
                                                                                                                                       7:]
                                                 partner_cancled.phone = phone
                                                 _logger.info(partner_cancled.phone)
-                                            body = "Bonjour %s, A la suite de l'annulation de votre dossier CPF. Nous vous informons que votre accès à notre plateforme a été suspendu." % (
+                                            body = "Bonjour %s, A la suite de l'annulation de votre dossier CPF. Nous vous informons que votre accès à notre plateforme a été suspendu!" % (
                                                 partner_cancled.name)
                                             if body:
                                                 sms = self.env['mail.message'].sudo().search(

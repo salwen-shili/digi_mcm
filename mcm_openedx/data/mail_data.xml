@@ -155,13 +155,20 @@
             <field name="body_html" type="html">
                 <div>
                     <p>Bonjour ${object.name},</p>
-                    À la suite de l'annulation de votre dossier CPF nous vous informons que votre accès à notre
-                    plateforme a été suspendu.
+                    <br/>
+                    À la suite de l'annulation de votre dossier CPF, nous vous informons que votre accès à notre
+                    plateforme a été suspendu !
+                    <br/>
                     <br/>
                     Vous serez contacté par notre service clientèle pour plus d'informations.
+                    <br/>
+                    <br/>
                     Cordialement
                     <br/>
+                    <br/>
                     MCM Academy
+                    <br/>
+                    <br/>
                     <span align="center" style="border:1px">
                         <p style="font-size: 12px;font-weight:500">
                             Si vous souhaitez avoir plus de renseignements, n'hésitez
@@ -170,8 +177,8 @@
                             <span
                                     style=" font-size:17;color: rgb(219, 172, 15); font-weight: bold;">
                                 <a href="https://www.mcm-academy.fr/service-clientele">service clients</a>,
-                                disponible du lundi au vendredi
-                                de 9h à 17h.
+                                disponible du lundi au vendredi:
+                                09 86 87 88 67.
                             </span>
                         </p>
                     </span>
