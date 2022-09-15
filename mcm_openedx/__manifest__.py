@@ -39,7 +39,7 @@
         'security/ir.model.access.csv',
         'security/security.xml',
         "views/partner.xml",
-        "views/calendly.xml",
+        #"views/calendly.xml",
         "views/en_attentee.xml",
         "views/gerer_user_ir_cron.xml",
         "views/statestique.xml",
