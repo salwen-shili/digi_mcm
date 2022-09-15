@@ -253,13 +253,13 @@
           border-color: hsl(199, 85%, 36%);
           color: hsl(199, 85%, 36%);
         }
-        #tidio-chat-iframe{
+        <!-- #tidio-chat-iframe{
         
           top: 37% !important;
      
           height: 215px !important;
       
-        }
+        } -->
       </style>
 
 
@@ -427,6 +427,7 @@
           right: 6px;
           top: 11vh;
           width: 30px;
+          display:none;
         }
         .icon {
             display: flex;
