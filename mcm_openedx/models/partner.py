@@ -115,32 +115,33 @@ class partner(models.Model):
     def supp_Réussie(self):
         for partner in self.env['res.partner'].sudo().search(
                 [('company_id', '=', 1), ('resultat', "=", "Réussi(e)"), ('state', '!=', "ancien")]):
-            # supprimer l'apprenats en verifiant le module choisit
-            partner.state = "supprimé"
-            for record in partner:
-                # comment = "testttttttttttt"
-                values = {
-                    'record_name': partner.name,
-                    'model': 'res.partner',
-                    'message_type': 'comment',
-                    'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-                    'res_id': partner.id,
-                    'author_id': partner.env.user.partner_id.id,
-                    'date': datetime.now(),
-                    'body': "Apprenant supprimé de la plate-forme => Admis à l’examen théorique CMA."
-                }
-                partner.env['mail.message'].sudo().create(values)
-                record.comment = ''
-                print("test")
-            if (partner.module_id.product_id.default_code == "taxi"):
-                self.desinscriteTaxi(partner)
-                partner.supprimerdemoocit = date.today()
-            elif (partner.module_id.product_id.default_code == "vtc"):
-                self.desinscriteVTC(partner)
-                partner.supprimerdemoocit = date.today()
-            elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                self.desinscriteVTC(partner)
-                partner.supprimerdemoocit = date.today()
+            if (partner.state != "supprimé"):
+                # supprimer l'apprenats en verifiant le module choisit
+                partner.state = "supprimé"
+                for record in partner:
+                    # comment = "testttttttttttt"
+                    values = {
+                        'record_name': partner.name,
+                        'model': 'res.partner',
+                        'message_type': 'comment',
+                        'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                        'res_id': partner.id,
+                        'author_id': partner.env.user.partner_id.id,
+                        'date': datetime.now(),
+                        'body': "Apprenant supprimé de la plate-forme => Admis à l’examen théorique CMA."
+                    }
+                    partner.env['mail.message'].sudo().create(values)
+                    record.comment = ''
+                    print("test")
+                if (partner.module_id.product_id.default_code == "taxi"):
+                    self.desinscriteTaxi(partner)
+                    partner.supprimerdemoocit = date.today()
+                elif (partner.module_id.product_id.default_code == "vtc"):
+                    self.desinscriteVTC(partner)
+                    partner.supprimerdemoocit = date.today()
+                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                    self.desinscriteVTC(partner)
+                    partner.supprimerdemoocit = date.today()
 
     # Ajout d'une fonction pour filtrer les Anciens iOnes et les supprimer
     def anicen_app(self):
@@ -619,7 +620,7 @@ class partner(models.Model):
                     _logger.info('avant email mcm_openedx %s' % str(partner.name))
                     # tester si l'apprenat a deja recu un mail
                     message = self.env['mail.message'].search(
-                        [('res_id', "=", partner.id), ('subject', "ilike", "CPF cancled")])
+                        [('res_id', "=", partner.id), ('subject', "ilike", "Bienvenue chez MCM Academy")])
                     if not message:
                         template_id = int(self.env['ir.config_parameter'].sudo().get_param(
                             'mcm_openedx.mail_template_add_ione_MOOcit'))

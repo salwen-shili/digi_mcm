@@ -145,58 +145,50 @@
             <field name="auto_delete" eval="False"/>
         </record>
 
-        <!--
-                <record id="mail_cpf_annulé" model="mail.template">
-                    <field name="name">Contact : Supprimer l'apprenant CPF</field>
-                    <field name="model_id" ref="base.model_res_partner"/>
-                    <field name="subject">CPF cancled
-                    </field>
-                    <field name="email_from">${object.partner_cancled.company_id.email}</field>
-                    <field name="partner_to">${object.id}</field>
-                    <field name="body_html" type="html">
-                        <div>
-                            <style>
-                                .img-email {
-                                max-width: 45%;
-                                height: auto;
-                                }
-                                @media screen and (min-width: 40em) {
-                                .img-email {
-                                max-width: 66%;
-                                height: auto;
-                                }
-                                }
-                            </style>
-                            <center>
+        <record id="mail_cpf_annulé" model="mail.template">
+            <field name="name">Contact : Supprimer l'apprenant CPF</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">CPF cancled
+            </field>
+            <field name="email_from">${object.company_id.email}</field>
+            <field name="partner_to">${object.id}</field>
+            <field name="body_html" type="html">
+                <div>
+                    <p>Bonjour ${object.name},</p>
+                    <br/>
+                    À la suite de l'annulation de votre dossier CPF, nous vous informons que votre accès à notre
+                    plateforme a été suspendu !
+                    <br/>
+                    <br/>
+                    Vous serez contacté par notre service clientèle pour plus d'informations.
+                    <br/>
+                    <br/>
+                    Cordialement
+                    <br/>
+                    <br/>
+                    MCM Academy
+                    <br/>
+                    <br/>
+                    <span align="center" style="border:1px">
+                        <p style="font-size: 12px;font-weight:500">
+                            Si vous souhaitez avoir plus de renseignements, n'hésitez
+                            pas à contacter notre
 
-                                <p style="font-size: 18px;">Bonjour ${object.name},</p>
+                            <span
+                                    style=" font-size:17;color: rgb(219, 172, 15); font-weight: bold;">
+                                <a href="https://www.mcm-academy.fr/service-clientele">service clients</a>,
+                                disponible du lundi au vendredi:
+                                09 86 87 88 67.
+                            </span>
+                        </p>
+                    </span>
+                </div>
 
-                                <h2>
-
-
-                                    <br/>
-                                    À la suite de l'annulation de votre dossier CPF nous vous informons que votre accès à notre
-                                    plateforme a été suspendu.
-                                    <br/>
-
-                                    Vous serez contacté par notre service clientèle pour plus d'informations.
-                                    Cordialement
-                                    <br/>
-                                    MCM Academy
-
-                                    <br/>
-
-                                </h2>
-
-                            </center>
-                        </div>
-
-                    </field>
-                    <field name="lang">${object.lang}</field>
-                    <field name="user_signature" eval="False"/>
-                    <field name="auto_delete" eval="False"/>
-                </record>
-        -->
+            </field>
+            <field name="lang">${object.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="False"/>
+        </record>
 
     </data>
 
