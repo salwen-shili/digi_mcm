@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record model="ir.ui.view" id="calendly_tree_view">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_integration</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="active"/>
+                <field name="created_at"/>
+                <field name="owner"/>
+                <field name="scheduling_url"/>
+                <field name="updated_at"/>
+                <field name="uri"/>
+                <field name="name"/>
+                <field name="slug"/>
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="calendly_kanban">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_integration</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="active">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div>
+                            <div class="oe_dropdown_kanban">
+                                <!-- dropdown menu -->
+                                <div class="oe_dropdown_toggle">
+                                    <i class="fa fa-bars fa-lg"/>
+                                    <ul class="oe_dropdown_menu">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+                                <field name="active"/>
+                                <field name="created_at"/>
+                                <field name="owner"/>
+                                <field name="scheduling_url"/>
+                                <field name="updated_at"/>
+                                <field name="uri"/>
+                                <field name="name"/>
+                                <field name="slug"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="calendly_form_view">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_integration</field>
+        <field name="arch" type="xml">
+            <form string="Course Form">
+                <sheet>
+                    <group>
+                        <field name="active"/>
+                        <field name="created_at"/>
+                        <field name="owner"/>
+                        <field name="scheduling_url"/>
+                        <field name="updated_at"/>
+                        <field name="uri"/>
+                        <field name="name"/>
+                        <field name="slug"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="calendly_list_action">
+        <field name="name">CAlendly</field>
+        <field name="res_model">mcm_openedx.calendly_integration</field>
+        <field name="view_mode">tree,form,kanban,graph</field>
+
+    </record>
+    <menuitem id="calendly_menu" name="Calendly" parent="main_mcm_openedx_menu" action="calendly_list_action"/>
+
+</odoo>
