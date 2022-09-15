@@ -330,7 +330,7 @@ class partner(models.Model):
         if (count == len(documents) and count != 0):
             # _logger.info("++++++++++++Cron DOC VALIDER++++++++++++++++++++++")
             document_valide = True
-        if self.mode_de_financement == "particulier":
+        if partner.mode_de_financement == "particulier":
             if ((sale_order) and (document_valide)):
                 # Vérifier si contrat signé ou non
                 if (sale_order.state == 'sale') and (sale_order.signature):
@@ -341,7 +341,7 @@ class partner(models.Model):
                     if not partner.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
                         self.ajouter_iOne(partner)
         """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au futur """
-        if self.mode_de_financement == "cpf":
+        if partner.mode_de_financement == "cpf":
             if (document_valide) and (partner.mcm_session_id.date_exam) and (
                     partner.mcm_session_id.date_exam > date.today()):
                 if (partner.renounce_request):
@@ -363,6 +363,69 @@ class partner(models.Model):
                         dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
                         if dateDebutSession <= datetime.today():
                             self.ajouter_iOne(partner)
+    def ajouter_iOne_button(self):
+        _logger.info("++++++++++++Cron ajouter_iOne_manuelle++++++++++++++++++++++")
+        product_name = partner.module_id.product_id.name
+        sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', self.id),
+                                                           ('session_id', '=', self.mcm_session_id.id),
+                                                           ('module_id', '=', self.module_id.id),
+                                                           ('state', '=', 'sale'),
+                                                           ], limit=1, order="id desc")
+        _logger.info("sale order %s" % sale_order)
+        # Pour chaque apprenant chercher sa facture
+        # facture = self.env['account.move'].sudo().search([('session_id', '=', self.mcm_session_id.id),
+        #                                                   ('module_id', '=', self.module_id.id),
+        #                                                   ('state', '=', 'posted')
+        #                                                   ], order="invoice_date desc", limit=1)
+        # date_facture = facture.invoice_date
+        # Calculer date d'ajout apres 14jours de date facture
+        # date_ajout = date_facture + timedelta(days=14)
+        today = datetime.today()
+        # Récupérer les documents et vérifier si ils sont validés ou non
+        documents = self.env['documents.document'].sudo().search([('partner_id', '=', self.id)])
+        document_valide = False
+        count = 0
+        for document in documents:
+            if (document.state == "validated"):
+                count = count + 1
+                print('valide')
+        print('count', count, 'len', len(documents))
+        if (count == len(documents) and count != 0):
+            # _logger.info("++++++++++++Cron DOC VALIDER++++++++++++++++++++++")
+            document_valide = True
+        if self.mode_de_financement == "particulier":
+            if ((sale_order) and (document_valide)):
+                # Vérifier si contrat signé ou non
+                if (sale_order.state == 'sale') and (sale_order.signature):
+                    # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                    if (self.renounce_request):
+                        self.ajouter_iOne(self)
+                    # si non il doit attendre 14jours pour etre ajouté
+                    if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
+                        self.ajouter_iOne(self)
+        """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au futur """
+        if self.mode_de_financement == "cpf":
+            if (document_valide) and (self.mcm_session_id.date_exam) and (
+                    self.mcm_session_id.date_exam > date.today()):
+                if (self.renounce_request):
+                    self.ajouter_iOne(self)
+                if not (self.renounce_request) and self.numero_cpf:
+                    """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
+                    headers = {
+                        'accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-API-KEY': partner.company_id.wedof_api_key,
+                    }
+                    responsesession = requests.get('https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
+                                                   headers=headers)
+                    dossier = responsesession.json()
+                    dateDebutSession_str = ""
+                    _logger.info('session %s' % str(dossier))
+                    if "trainingActionInfo" in dossier:
+                        dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
+                        dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
+                        if dateDebutSession <= datetime.today():
+                            self.ajouter_iOne(self)
 
     def ajouter_iOne(self, partner):
         new_email = ""
@@ -2124,18 +2187,21 @@ class partner(models.Model):
                                                                                                   7:]
             partner.phone = phone
             name = partner.name
-            composer = self.env['sms.composer'].with_context(
-                default_res_model='res.partner',
-                default_res_id=partner.id,
-                default_composition_mode='comment',
-            ).sudo().create({
-                'body': body,
-                'mass_keep_log': True,
-                'mass_force_send': False,
-                'use_active_domain': False,
-            })
-            _logger.info('phooooneee ======================== %s' % str(partner.phone))
-            composer.action_send_sms()  # we send sms.
+            sms = self.env['mail.message'].sudo().search(
+                [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
+            if not sms:
+                composer = self.env['sms.composer'].with_context(
+                    default_res_model='res.partner',
+                    default_res_id=partner.id,
+                    default_composition_mode='comment',
+                ).sudo().create({
+                    'body': body,
+                    'mass_keep_log': True,
+                    'mass_force_send': False,
+                    'use_active_domain': False,
+                })
+                _logger.info('phooooneee ======================== %s' % str(partner.phone))
+                composer.action_send_sms()  # we send sms.
             if partner.phone:
                 partner.phone = '0' + str(partner.phone.replace(' ', ''))[
                                       -9:]

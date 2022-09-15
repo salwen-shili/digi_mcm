@@ -1,4 +1,19 @@
 # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+import functools
+import xmlrpc.client
+import requests
+from requests.structures import CaseInsensitiveDict
+from datetime import datetime, timedelta, date
+import re
+import json
+from odoo import _
+import locale
+from unidecode import unidecode
+import logging
+import pyshorteners
+
+_logger = logging.getLogger(__name__)
 
 from odoo import api, fields, models
 
