@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 import locale
-
+import logging
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 import random
@@ -9,6 +9,7 @@ from num2words import num2words
 
 from datetime import datetime
 
+_logger = logging.getLogger(__name__)
 
 class Session(models.Model):
     _name = 'mcmacademy.session'
@@ -202,6 +203,17 @@ class Session(models.Model):
                     [('session_id', "=", self.id), ('presence', "=", 'absence_justifiee')])
                 total_absence_justifiée = nbr_absence
                 return total_absence_justifiée
+
+    def calculer_zero_min_formation_gagne(self, zero_min_formation_gagne):
+        """ Non présentation à la formation """
+        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
+            if examen:
+                zero_min = examen.env['info.examen'].search_count(
+                    [('session_id', "=", self.id)]).filtered(lambda sw: sw.partner_id.statut == 'won' and sw.partner_id.temps_minute > 0)
+                temps_minute_360 = zero_min.partner_id.temps_minute
+                _logger.info("calculer_zero_min_formation_gagne %s" % str(zero_min.partner_id.temps_minute))
+                zero_min_formation_gagne = zero_min
+                return zero_min_formation_gagne
 
     def pourcentage_absence_justifiée(self, resultat):
         """ pourcentage absence justifiée """
