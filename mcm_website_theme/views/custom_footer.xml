@@ -217,7 +217,7 @@
             top: 11vh;
             width: 30px;
             max-width: 50px;
-            display:none;
+            <!-- display:none; -->
           }
           .icon {
             display: flex;
