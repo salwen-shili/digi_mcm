@@ -423,7 +423,7 @@
 
                                             <td class="td">
                                                 <span></span>
-                                                <span>%</span>
+                                                <span t-esc="docs.pourcentage_calculer_formation_gagne(resultat)">%</span>
                                             </td>
                                         </th>
                                         <th class="th">Taux de réussite

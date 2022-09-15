@@ -209,11 +209,22 @@ class Session(models.Model):
         for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
             if examen:
                 zero_min = self.client_ids.filtered(lambda sw: sw.statut == 'won' and sw.temps_minute == 0)
-                temps_minute_360 = zero_min.partner_id.temps_minute
+                temps_minute_360 = len(zero_min)
                 _logger.info("calculer_zero_min_formation_gagne %s" % str(temps_minute_360))
-                zero_min_formation_gagne = zero_min
+                zero_min_formation_gagne = temps_minute_360
                 return zero_min_formation_gagne
 
+    def pourcentage_calculer_formation_gagne(self, resultat):
+        """ pourcentage calculer_zero_min_formation_gagne """
+        zero_min = self.calculer_zero_min_formation_gagne(self)
+        nbr_inscrit = self.nbr_client_par_session(self)
+        res = (zero_min * 100 / nbr_inscrit)
+        if res > 0:
+            resultat = f'{res:.2f}'.replace('.00', '')
+            return resultat
+        else:
+            resultat = f'{res:.0f}'
+            return resultat
     def pourcentage_absence_justifiée(self, resultat):
         """ pourcentage absence justifiée """
         nbr_absence_justifiee = self.calculer_nombre_absence_justifiée(self)
