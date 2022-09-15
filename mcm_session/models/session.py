@@ -208,10 +208,9 @@ class Session(models.Model):
         """ Non présentation à la formation """
         for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
             if examen:
-                zero_min = examen.env['info.examen'].search_count(
-                    [('session_id', "=", self.id)]).filtered(lambda sw: sw.partner_id.statut == 'won' and sw.partner_id.temps_minute > 0)
+                zero_min = self.client_ids.filtered(lambda sw: sw.partner_id.statut == 'won' and sw.partner_id.temps_minute == 0)
                 temps_minute_360 = zero_min.partner_id.temps_minute
-                _logger.info("calculer_zero_min_formation_gagne %s" % str(zero_min.partner_id.temps_minute))
+                _logger.info("calculer_zero_min_formation_gagne %s" % str(temps_minute_360))
                 zero_min_formation_gagne = zero_min
                 return zero_min_formation_gagne
 
