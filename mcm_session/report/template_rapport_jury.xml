@@ -582,12 +582,22 @@
                                             </t>
                                         </td>
                                     </t>
-                                    <t t-if="session.resultat == 'ajourne' and session.presence != 'present'">
+                                    <t t-if="session.resultat == 'ajourne' and session.presence != 'present' and session.temps_minute &gt; 0">
                                         <td class="td" style="background-color:#E9967A;">
                                             <t t-set="session"
                                                t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
                                             <strong>
                                                 <span>Absent</span>
+                                            </strong>
+                                        </td>
+                                    </t>
+
+                                    <t t-if="session.resultat == 'ajourne' and session.presence != 'present' and session.temps_minute == 0">
+                                        <td class="td" style="background-color:#E9967A;">
+                                            <t t-set="session"
+                                               t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
+                                            <strong>
+                                                <span>Non présentation à la formation</span>
                                             </strong>
                                         </td>
                                     </t>
