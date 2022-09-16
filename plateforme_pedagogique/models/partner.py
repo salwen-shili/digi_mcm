@@ -2094,25 +2094,25 @@ class partner(models.Model):
         if not partner.lang:
             partner.lang = 'fr_FR'
         _logger.info('avant email %s' % str(partner.name))
-        message = self.env['mail.message'].search(
-            [('res_id', "=", partner.id), ('subject', "ilike", "Digimoov - Accès à la plateforme en ligne")])
-        if not message:
-            template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
-            template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-            if not template_id:
-                template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                    'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
-                    raise_if_not_found=False)
-            if not template_id:
-                template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                    'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
-                    raise_if_not_found=False)
-            if template_id:
-                partner.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                 composition_mode='comment',
-                                                                                 )
-            _logger.info('if template  %s' % str(partner.name))
+        # message = self.env['mail.message'].search(
+        #     [('res_id', "=", partner.id), ('subject', "ilike", "Digimoov - Accès à la plateforme en ligne")])
+        # if not message:
+        template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
+        template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+        if not template_id:
+            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                raise_if_not_found=False)
+        if not template_id:
+            template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                raise_if_not_found=False)
+        if template_id:
+            partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                             composition_mode='comment',
+                                                                             )
+        _logger.info('if template  %s' % str(partner.name))
 
     def send_email_manuel(self):
         """check if user added to plateform"""
@@ -2187,21 +2187,22 @@ class partner(models.Model):
                                                                                                   7:]
             partner.phone = phone
             name = partner.name
-            sms = self.env['mail.message'].sudo().search(
-                [("body", "like", body), ("message_type", "=", 'sms'), ('res_id', '=', partner.id),('model',"=","res.partner")])
-            if not sms:
-                composer = self.env['sms.composer'].with_context(
-                    default_res_model='res.partner',
-                    default_res_id=partner.id,
-                    default_composition_mode='comment',
-                ).sudo().create({
-                    'body': body,
-                    'mass_keep_log': True,
-                    'mass_force_send': False,
-                    'use_active_domain': False,
-                })
-                _logger.info('phooooneee ======================== %s' % str(partner.phone))
-                composer.action_send_sms()  # we send sms.
+            # sms = self.env['mail.message'].sudo().search(
+            #     [("body", "like", body), ("message_type", "=", 'sms'), ('res_id', '=', partner.id),('model',"=","res.partner")])
+            # if not sms:
+            composer = self.env['sms.composer'].with_context(
+                default_res_model='res.partner',
+                default_res_id=partner.id,
+                default_composition_mode='comment',
+            ).sudo().create({
+                
+                'body': body,
+                'mass_keep_log': True,
+                'mass_force_send': False,
+                'use_active_domain': False,
+            })
+            _logger.info('phooooneee ======================== %s' % str(partner.phone))
+            composer.action_send_sms()  # we send sms.
             if partner.phone:
                 partner.phone = '0' + str(partner.phone.replace(' ', ''))[
                                       -9:]
