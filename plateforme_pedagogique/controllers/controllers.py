@@ -294,7 +294,8 @@ class WebhookController(http.Controller):
                 client.num_voie = num_voie
                 client.nom_voie = nom_voie
                 client.voie = voie
-                client.zip = code_postal
+                if code_postal != "":
+                    client.zip = code_postal
                 client.city = ville
                 client.diplome = diplome  # attestation capacitév ....
                 client.date_cpf = lastupd
