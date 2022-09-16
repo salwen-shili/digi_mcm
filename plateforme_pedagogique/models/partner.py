@@ -2188,7 +2188,7 @@ class partner(models.Model):
             partner.phone = phone
             name = partner.name
             sms = self.env['mail.message'].sudo().search(
-                [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
+                [("body", "=", body), ("message_type", "=", 'sms'), ("res_partner_id", "=", partner.id)])
             if not sms:
                 composer = self.env['sms.composer'].with_context(
                     default_res_model='res.partner',
