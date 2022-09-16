@@ -7,10 +7,12 @@
         <field name="model">mcm_openedx.calendly_integration</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="owner"/>
+
                 <field name="name"/>
                 <field name="active"/>
                 <field name="created_at"/>
-                 <field name="scheduling_url"/>
+                <field name="scheduling_url"/>
                 <button name="test_url" string="Lien event" class="oe_highlight" type="object"
                 />
                 <field name="updated_at"/>
@@ -28,10 +30,11 @@
             <form string="Course Form">
                 <sheet>
                     <group>
+                        <field name="owner"/>
                         <field name="name"/>
                         <field name="active"/>
                         <field name="created_at"/>
-                         <field name="scheduling_url"/>
+                        <field name="scheduling_url"/>
                         <field name="updated_at"/>
                         <field name="uri"/>
                         <field name="slug"/>

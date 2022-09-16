@@ -15,8 +15,8 @@
                 <field name="location"/>
                  <field name="start_at"/>
                 <field name="status"/>
-                <button name="test_url" string="Info" class="oe_highlight"                />
-
+                <button name="test_url" string="Lien event" class="oe_highlight" type="object"
+                />
 
             </tree>
         </field>

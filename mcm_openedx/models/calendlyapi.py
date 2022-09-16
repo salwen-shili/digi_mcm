@@ -11,6 +11,8 @@ _logger = logging.getLogger(__name__)
 import requests
 
 
+# integer Api calendly
+# get TypeEvent
 class calendly_integration(models.Model):
     _name = 'mcm_openedx.calendly_integration'
     _description = "mcm_openedx.calendly_integration"
@@ -37,11 +39,9 @@ class calendly_integration(models.Model):
         response = requests.get('https://api.calendly.com/event_types', headers=headers, params=querystring)
         event = response.json()["collection"]
         for events in event:
-            print("Test send mail calendly APPII TESTT", events)
             active = events['active']
             name = events['name']
             owner = name.split("-")
-            print("naaaaaaaaaaaaaaaaaaame",owner[2])
             slug = events['slug']
             created_at = events['created_at']
             # owner = events['profile']['owner']
@@ -49,15 +49,10 @@ class calendly_integration(models.Model):
             updated_at = events['updated_at']
             uri = events['uri']
             uuid_eventtype = uri.split("/")
-            print("okookokookook", uuid_eventtype[4])
-
             for existt in self.env['mcm_openedx.calendly_integration'].sudo().search(
                     [('id', '!=', False)]):
-                print("poooooooooooooooooo", existt.name)
                 existe = self.env['mcm_openedx.calendly_integration'].sudo().search(
                     [('name', "like", events['name'])])
-                print(existe.name)
-
                 if not existe:
                     print("dont exist")
                     new = self.env['mcm_openedx.calendly_integration'].sudo().create({
@@ -73,13 +68,10 @@ class calendly_integration(models.Model):
                     print(new)
 
     def test_url(self):
-            print("ooooooooooooooooooooooooooo")
-
-            return {
-                "url": self.scheduling_url,
-                "type": "ir.actions.act_url"
-            }
-
+        return {
+            "url": self.scheduling_url,
+            "type": "ir.actions.act_url"
+        }
 
 
 class event_calendly(models.Model):
@@ -109,15 +101,12 @@ class event_calendly(models.Model):
         print("hahah", r.json()["collection"])
         shevent = r.json()["collection"]
         for shevents in shevent:
-
             scheduling_url_uri = shevents['uri']
             scheduling_url_name = shevents['name']
             print(scheduling_url_name)
             scheduling_url_created_at = shevents['created_at']
             scheduling_url_updated_at = shevents['updated_at']
             uuid_eventtype = scheduling_url_uri.split("/")
-            print("okookokookook", uuid_eventtype[4])
-
             params = {
                 'statuts': 'active'
             }
@@ -129,23 +118,15 @@ class event_calendly(models.Model):
             rep = requests.get('https://api.calendly.com/scheduled_events/%s' % (uuid_eventtype[4]),
                                headers=headers, params=params)
             response = rep.json()['resource']
-
-            print("okookokreponseeni", response)
             event_name = response['name']
-            print("w", event_name)
             location = response['location']['location']
             start_at = response['start_time']
             status = response['status']
 
             for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
                     [('id', '!=', False)]):
-                print("mcm_openedx.calendly_event", existt.scheduling_url_name)
                 existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                    [('scheduling_url_name', "like", shevents['name'])])
-
-
-                print(existe.scheduling_url_name)
-
+                    [('scheduling_url_created_at', '=', shevents['created_at'])])
                 if not existe:
                     print("dont exist")
                     new = self.env['mcm_openedx.calendly_event'].sudo().create({
@@ -157,14 +138,11 @@ class event_calendly(models.Model):
                         'location': location,
                         'start_at': start_at,
                         'status': status,
-
                     })
                     print(new)
 
     def test_url(self):
-        if self.id:
-            return {
-                'type': 'ir.actions.act_url',
-                'url': 'https://www.abc.com?statementid=%s' % (self.id),
-                'target': 'new',
-            }
+        return {
+            "url": self.location,
+            "type": "ir.actions.act_url"
+        }
