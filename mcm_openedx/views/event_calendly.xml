@@ -13,8 +13,9 @@
                 <field name="scheduling_url_created_at"/>
                 <field name="scheduling_url_updated_at"/>
                 <field name="location"/>
-                 <field name="start_at"/>
+                <field name="start_at"/>
                 <field name="status"/>
+
                 <button name="test_url" string="Lien event" class="oe_highlight" type="object"
                 />
 
@@ -36,6 +37,7 @@
                         <field name="location"/>
                         <field name="start_at"/>
                         <field name="status"/>
+                        <field name="scheduling_url_uri"/>
                     </group>
                 </sheet>
             </form>

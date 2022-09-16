@@ -96,6 +96,7 @@ class event_calendly(models.Model):
                        "organization": "https://api.calendly.com/organizations/c7e28d20-f7eb-475f-954a-7ae1a36705e3",
                        "status": "active", "min_start_time": date.today()}
 
+        # Returns a list of Events.
         r = requests.get('https://api.calendly.com/scheduled_events',
                          headers=headers, params=querystring)
         print("hahah", r.json()["collection"])
@@ -103,10 +104,11 @@ class event_calendly(models.Model):
         for shevents in shevent:
             scheduling_url_uri = shevents['uri']
             scheduling_url_name = shevents['name']
-            print(scheduling_url_name)
+            print("scheduling_url_namescheduling_url_name", scheduling_url_name)
             scheduling_url_created_at = shevents['created_at']
             scheduling_url_updated_at = shevents['updated_at']
             uuid_eventtype = scheduling_url_uri.split("/")
+            # Returns information about a specified Event.
             params = {
                 'statuts': 'active'
             }
@@ -114,6 +116,7 @@ class event_calendly(models.Model):
                 "Content-Type": "application/json",
                 "Authorization": "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjYzMTQ4NjA2LCJqdGkiOiJkZDUwYWIxNy04ZDM3LTQyMjYtOGMzYy02NzMyNzI1MTM2NmUiLCJ1c2VyX3V1aWQiOiI1YWE5NWU3Mi0zNWFiLTQzOTEtOGZmNi0zNGNkZDRlMzRmODYifQ.TKiAMPGQFUdBODBHq8H-0LgQnbkldxW5V_hFacDyJgn53B-MbTQcBHLqwPx8uN_CiLfJahF_NJ1V4cc0Z5gmqg"
             }
+
 
             rep = requests.get('https://api.calendly.com/scheduled_events/%s' % (uuid_eventtype[4]),
                                headers=headers, params=params)
@@ -123,10 +126,13 @@ class event_calendly(models.Model):
             start_at = response['start_time']
             status = response['status']
 
+
             for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
                     [('id', '!=', False)]):
                 existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                    [('scheduling_url_created_at', '=', shevents['created_at'])])
+                    [('event_name', '=', shevents['name']), ('start_at', '=', response['start_time'])])
+
+
                 if not existe:
                     print("dont exist")
                     new = self.env['mcm_openedx.calendly_event'].sudo().create({
