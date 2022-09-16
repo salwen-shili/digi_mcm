@@ -38,7 +38,7 @@
 
         <field name="code">
             if(record['renounce_request']==True):
-                record.partner_id.ajouter_iOne_manuelle(record.partner_id)
+                record.ajouter_iOne_manuelle(record)
 
         </field>
     </record>
