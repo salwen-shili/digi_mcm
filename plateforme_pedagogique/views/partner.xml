@@ -58,13 +58,13 @@
         <field name="arch" type="xml">
             <xpath expr="//form//sheet" position="before">
                 <header>
-                    <button name="send_email_manuel" string="Envoyer invitation 360"
+                    <button name="send_email_manuel" string="Envoyer invitation 360Learning"
                             type="object" attrs="{'invisible': [('company_id', '=', 1)]}"></button>
-                    <button name="supprimer_ione_manuelle" string="Supprimer de 360"
+                    <button name="supprimer_ione_manuelle" string="Supprimer de 360Learning"
                             attrs="{'invisible': [('company_id', '=', 1)]}"
                             type="object" confirm="Êtes-vous sûr de vouloir supprimer cet apprenant de la plateforme?"
                             groups="crm_marketing_automation.group_user"/>
-                     <button name="ajouter_iOne_button" string="Ajouter sur 360"
+                     <button name="ajouter_iOne_button" string="Ajouter sur 360Learning"
                             type="object" groups="crm_marketing_automation.group_user"
                             attrs="{'invisible': [('company_id', '=', 1)]}"></button>
                 </header>
