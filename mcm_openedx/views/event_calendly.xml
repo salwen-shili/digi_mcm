@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record model="ir.ui.view" id="event_calendly_tree_view">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_event</field>
+        <field name="arch" type="xml">
+            <tree>
+
+
+                <field name="event_name"/>
+                <field name="scheduling_url_created_at"/>
+                <field name="scheduling_url_updated_at"/>
+                <field name="location"/>
+                 <field name="start_at"/>
+                <field name="status"/>
+                <button name="test_url" string="Info" class="oe_highlight"                />
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="event_calendly_form_view">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_event</field>
+        <field name="arch" type="xml">
+            <form string="Course Form">
+                <sheet>
+                    <group>
+                        <field name="event_name"/>
+                        <field name="scheduling_url_created_at"/>
+                        <field name="scheduling_url_updated_at"/>
+                        <field name="location"/>
+                        <field name="start_at"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="calendly_event_list_action">
+        <field name="name">Event Calendly</field>
+        <field name="res_model">mcm_openedx.calendly_event</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="event_calendly_menu" name="Event" parent="calendly_menu" action="calendly_event_list_action"/>
+
+</odoo>

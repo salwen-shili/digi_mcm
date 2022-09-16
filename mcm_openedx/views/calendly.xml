@@ -2,87 +2,55 @@
 <odoo>
 
 
-    <record model="ir.ui.view" id="calendly_tree_view">
+    <record model="ir.ui.view" id="type_event_calendly_tree_view">
         <field name="name">Calendly Events</field>
         <field name="model">mcm_openedx.calendly_integration</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="name"/>
                 <field name="active"/>
                 <field name="created_at"/>
-                <field name="owner"/>
-                <field name="scheduling_url"/>
+                 <field name="scheduling_url"/>
+                <button name="test_url" string="Lien event" class="oe_highlight" type="object"
+                />
                 <field name="updated_at"/>
                 <field name="uri"/>
-                <field name="name"/>
                 <field name="slug"/>
 
             </tree>
         </field>
     </record>
-    <record model="ir.ui.view" id="calendly_kanban">
-        <field name="name">Calendly Events</field>
-        <field name="model">mcm_openedx.calendly_integration</field>
-        <field name="arch" type="xml">
-            <kanban default_group_by="active">
-                <templates>
-                    <t t-name="kanban-box">
-                        <div>
-                            <div class="oe_dropdown_kanban">
-                                <!-- dropdown menu -->
-                                <div class="oe_dropdown_toggle">
-                                    <i class="fa fa-bars fa-lg"/>
-                                    <ul class="oe_dropdown_menu">
-                                        <li>
-                                            <a type="delete">Delete</a>
-                                        </li>
 
-                                    </ul>
-                                </div>
-                                <div class="oe_clear"></div>
-                            </div>
-                            <div t-attf-class="oe_kanban_content">
-                                <field name="active"/>
-                                <field name="created_at"/>
-                                <field name="owner"/>
-                                <field name="scheduling_url"/>
-                                <field name="updated_at"/>
-                                <field name="uri"/>
-                                <field name="name"/>
-                                <field name="slug"/>
-                            </div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-
-    <record model="ir.ui.view" id="calendly_form_view">
+    <record model="ir.ui.view" id="type_event_calendly_form_view">
         <field name="name">Calendly Events</field>
         <field name="model">mcm_openedx.calendly_integration</field>
         <field name="arch" type="xml">
             <form string="Course Form">
                 <sheet>
                     <group>
+                        <field name="name"/>
                         <field name="active"/>
                         <field name="created_at"/>
-                        <field name="owner"/>
-                        <field name="scheduling_url"/>
+                         <field name="scheduling_url"/>
                         <field name="updated_at"/>
                         <field name="uri"/>
-                        <field name="name"/>
                         <field name="slug"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="calendly_list_action">
-        <field name="name">CAlendly</field>
-        <field name="res_model">mcm_openedx.calendly_integration</field>
-        <field name="view_mode">tree,form,kanban,graph</field>
 
+
+    <record model="ir.actions.act_window" id="calendly_type_event_list_action">
+        <field name="name">Type Event Calendly</field>
+        <field name="res_model">mcm_openedx.calendly_integration</field>
+        <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="calendly_menu" name="Calendly" parent="main_mcm_openedx_menu" action="calendly_list_action"/>
+
+
+    <menuitem id="calendly_menu" name="Calendly" parent="main_mcm_openedx_menu"/>
+    <menuitem id="type_event_calendly_menu" name="Type Event" parent="calendly_menu"
+              action="calendly_type_event_list_action"/>
 
 </odoo>
