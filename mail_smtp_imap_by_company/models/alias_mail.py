@@ -77,7 +77,8 @@ class MailThreadInherit(models.AbstractModel):
         email_from_localpart = (tools.email_split(email_from) or [''])[0].split('@', 1)[0].lower()
         email_to = message_dict['to']
         email_to_localpart = (tools.email_split(email_to) or [''])[0].split('@', 1)[0].lower()
-
+        _logger.info('mail smtp imap by company : Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce',
+                     message_dict['email_from'], message_dict['to'], str(message_dict))
         # Delivered-To is a safe bet in most modern MTAs, but we have to fallback on To + Cc values
         # for all the odd MTAs out there, as there is no standard header for the envelope's `rcpt_to` value.
         rcpt_tos_localparts = [e.split('@')[0].lower() for e in tools.email_split(message_dict['recipients'])]
