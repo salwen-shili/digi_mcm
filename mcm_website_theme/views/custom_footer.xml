@@ -217,7 +217,7 @@
             top: 11vh;
             width: 30px;
             max-width: 50px;
-            <!-- display:none; -->
+           
           }
           .icon {
             display: flex;
@@ -230,7 +230,7 @@
             border: 1px solid #ffc10782;
             border-bottom: 0;
             cursor: pointer;
-          }
+        }
           
           .icon:last-child {
             border-bottom: 1px solid #ffc10782 !important;
@@ -288,7 +288,7 @@
           }
           .svg-social-media {
             fill: #000000;
-          }
+        }
 
           
           .icon:hover {
