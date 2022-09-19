@@ -35,11 +35,11 @@ class OnfidoController(http.Controller):
         _logger.info('partner_id %s' % str(folder_id))
         website = request.env['website'].get_current_website()
         document_state = "waiting"
-        if data_onfido:
-            if data_onfido.validation_onfido=="clear":
-                document_state = "validated"
-            if data_onfido.validation_onfido=="fail":
-                document_state = "refused"
+        # if data_onfido:
+        #     if data_onfido.validation_onfido=="clear":
+        #         document_state = "validated"
+        #     if data_onfido.validation_onfido=="fail":
+        #         document_state = "refused"
         if 'document_front' in data:
             document_front_id=data['document_front']['id']
             name_front = str(data['document_front']['type']) + "_" + str(data['document_front']['side'])
@@ -89,11 +89,12 @@ class OnfidoController(http.Controller):
                     country=_(nationality.name)
                     _logger.info("translated_nationality %s" % str(translation))
                     _logger.info("translated_nationality %s" % str(country))
-
                     partner.nationality = country
                     partner.nationality= pycountry.countries.get(alpha_3=code_pays)
                 if 'place_of_birth' in extraction['extracted_data']:
                     partner.birth_city = extraction['extracted_data']['place_of_birth']
+                if 'gender' in extraction['extracted_data']:
+                    partner.civilte=extraction['extracted_data']['gender']
                 if 'document_number' in extraction['extracted_data'] and 'document_type' in extraction['extracted_data']:
                     if extraction['extracted_data']['document_type'] =="national_identity_card" :
                         partner.numero_carte_identite=extraction['extracted_data']['document_number']
@@ -223,7 +224,6 @@ class OnfidoController(http.Controller):
                 if not ticket:
                     new_ticket = request.env['helpdesk.ticket'].sudo().create(
                         vals)
-                return True
             if str(workflow_runs['finished']) == 'True' and workflow_runs['state'] == 'clear':
                 _logger.info('else state document %s' % str(workflow_runs['state']))
                 currentUser.validation_onfido = "clear"
@@ -248,7 +248,7 @@ class OnfidoController(http.Controller):
                             for document in documents:
                                 document.state = "validated"
 
-            return True
+        return True
 
     """send state of document to frontend """
 

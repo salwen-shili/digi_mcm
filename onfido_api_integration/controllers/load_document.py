@@ -61,6 +61,7 @@ class LoadDocument(Website):
 
             })
             data_onfido.partner_id=partner
+            partner.validation_onfido = "in_progress"
         return request.render("onfido_api_integration.load_document",
                               values)
         # else:
