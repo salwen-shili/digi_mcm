@@ -117,7 +117,6 @@ class event_calendly(models.Model):
                 "Authorization": "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjYzMTQ4NjA2LCJqdGkiOiJkZDUwYWIxNy04ZDM3LTQyMjYtOGMzYy02NzMyNzI1MTM2NmUiLCJ1c2VyX3V1aWQiOiI1YWE5NWU3Mi0zNWFiLTQzOTEtOGZmNi0zNGNkZDRlMzRmODYifQ.TKiAMPGQFUdBODBHq8H-0LgQnbkldxW5V_hFacDyJgn53B-MbTQcBHLqwPx8uN_CiLfJahF_NJ1V4cc0Z5gmqg"
             }
 
-
             rep = requests.get('https://api.calendly.com/scheduled_events/%s' % (uuid_eventtype[4]),
                                headers=headers, params=params)
             response = rep.json()['resource']
@@ -126,12 +125,14 @@ class event_calendly(models.Model):
             start_at = response['start_time']
             status = response['status']
 
-
             for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
                     [('id', '!=', False)]):
+                if existt:
+                    if existt.start_at < date.today():
+                        print("existeee nameeeee")
+                        existt.browse(existt.id).sudo().unlink()
                 existe = self.env['mcm_openedx.calendly_event'].sudo().search(
                     [('event_name', '=', shevents['name']), ('start_at', '=', response['start_time'])])
-
 
                 if not existe:
                     print("dont exist")
@@ -152,3 +153,24 @@ class event_calendly(models.Model):
             "url": self.location,
             "type": "ir.actions.act_url"
         }
+
+    def send_invitation(self):
+        print("envoyer invitation au apprenant selon leur formation")
+        for partner in self.env['res.partner'].sudo().search(
+                [('statut', "=", "won"),
+                 ('company_id', '=', 1),
+                 ('state', "=", "en_formation"),
+                 ('email', '=', "khouloudachour.97@gmail.com")
+                 ]):
+            print(partner.name)
+            for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
+                    [('id', '!=', False)]):
+                print(existe.event_name)
+                if existe.start_at == date.today():
+                    calendly = self.env['calendly.rendezvous'].sudo().create({
+                        'partner_id': partner.id,
+                        'event_starttime': existe.start_at,
+                        'event_endtime': existe.start_at,
+                        'name': existe.event_name,
+
+                    })

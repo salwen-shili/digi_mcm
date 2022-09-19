@@ -15,6 +15,7 @@
                 <field name="location"/>
                 <field name="start_at"/>
                 <field name="status"/>
+                <button name="send_invitation" string="Envoyer Invitation" class="oe_highlight" type="object"                />
 
                 <button name="test_url" string="Lien event" class="oe_highlight" type="object"
                 />
