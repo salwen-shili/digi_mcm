@@ -52,6 +52,7 @@
         'data/automation_action_add_evalbox.xml',
         'views/dashboard.xml',
 
+
     ],
 
     # only loaded in demonstration mode
