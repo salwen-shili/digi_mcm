@@ -8,4 +8,5 @@ from . import parcours
 from . import session
 from . import user_stats
 from . import mail_message
+from . import sale_order
 
