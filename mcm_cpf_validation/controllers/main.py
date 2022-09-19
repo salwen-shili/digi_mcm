@@ -34,7 +34,8 @@ class ClientCPFController(http.Controller):
                 client.numero_cpf = dossier
                 client.phone = tel
                 client.street = address
-                client.zip = code_postal
+                if code_postal != "":
+                    client.zip = code_postal
                 client.city = ville
                 client.email = email
         partner = user.partner_id
