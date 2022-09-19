@@ -393,7 +393,7 @@
                   </p>
                 </div>
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.png" class="img img-fluid mx-auto" alt="Chauffeur vtc femme mcm academy" />
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.png" class="img img-fluid mx-auto lazy" alt="Chauffeur vtc femme mcm academy" />
                 </div>
               </div>
             </div>
