@@ -88,13 +88,24 @@ class Session(models.Model):
          La fonction est utilisé dans la template de rapport jury"""
         nbr_inscrits = 0
         today = date.today()
-        nbr_partner_annule= self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('partner_id.mode_de_financement','=', 'cpf'),('partner_id.statut','=', 'canceled'),('date_creation', "<", self.date_creation + timedelta(days=14))])
-        _logger.info("nbr_partner_won_cpf %s" % str(nbr_partner_annule))
-        nbr_partner_won_cpf  = self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('partner_id.mode_de_financement','=', 'cpf'), ('partner_id.statut','=', 'won')])
-        _logger.info("nbr_partner_annule %s" % str(nbr_partner_won_cpf ))
-        return len(nbr_partner_annule)
+        nbr_partner_cpf_annule= self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('client_id.mode_de_financement','=', 'cpf'),('client_id.statut','=', 'canceled'),('date_creation', "<", self.date_exam + timedelta(days=14))])
+        _logger.info("nbr_partner_annule %s" % str(nbr_partner_cpf_annule))
+        nbr_partner_won_cpf = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('client_id.statut','=', 'won')])
+        _logger.info("nbr_partner_won_cpf %s" % str(nbr_partner_won_cpf))
+
+        nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('client_id.mode_de_financement','=', 'particulier'), ('client_id.statut','=', 'canceled')])
+        count_per_an = False
+        for sale in nbr_partner_personel_annule:
+
+            if sale.client_id.signed_on > self.date_exam + timedelta(days=14):
+                count_per_an += 1
+        counter_per_an = count_per_an
+        _logger.info("nbr_partner_personel_annule %s" % str(nbr_partner_personel_annule))
+        nbr_inscrits = len(nbr_partner_cpf_annule) + len(nbr_partner_won_cpf) + counter_per_an
+        return nbr_inscrits
         # for examen in nbr_partner_sessions:
         #     if nbr_partner_sessions.mode_de_financement == 'cpf' and nbr_partner_sessions.partner_id.statut == 'won':
         #         nbr_inscrits += 1
@@ -118,9 +129,10 @@ class Session(models.Model):
     def prc_present(self, prc_present):
         nbr_present = self.nbr_present_par_session(self)
         nbr_inscrit = self.nbr_client_par_session(self)
-        res = (nbr_present * 100 / nbr_inscrit)
-        prc_present = f'{res:.2f}'.replace('.00', '')
-        return prc_present
+        if nbr_inscrit > 0:
+            res = (nbr_present * 100 / nbr_inscrit)
+            prc_present = f'{res:.2f}'.replace('.00', '')
+            return prc_present
 
     def nbr_recus_par_session(self, total_nbr_recu):
         """ Nombre de recus par session"""
@@ -176,8 +188,9 @@ class Session(models.Model):
         """ Calculer pourcentage clients reçus"""
         nbr_recu_total = self.nbr_recus_par_session(self)
         nbr_inscrits_total = self.nbr_client_par_session(self)
-        pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
-        if pourcentage_without_round > 0:
+        pourcentage_without_round = 0
+        if nbr_inscrits_total > 0:
+            pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
             pourcentage = f'{pourcentage_without_round:.2f}'.replace('.00',
                                                                      '')  # Garder justes deux chiddre après la virgule
             return pourcentage
@@ -213,13 +226,14 @@ class Session(models.Model):
         """ Pourcentage pour les absences par session"""
         nbr_absence = self.calculer_nombre_absence(self)
         nbr_inscrit = self.nbr_client_par_session(self)
-        res = (nbr_absence * 100 / nbr_inscrit)
-        if res > 0:
-            resultat = f'{res:.2f}'.replace('.00', '')
-            return resultat
-        else:
-            resultat = f'{res:.0f}'
-            return resultat
+        if nbr_inscrit > 0:
+            res = (nbr_absence * 100 / nbr_inscrit)
+            if res > 0:
+                resultat = f'{res:.2f}'.replace('.00', '')
+                return resultat
+            else:
+                resultat = f'{res:.0f}'
+                return resultat
 
     def calculer_nombre_absence_justifiée(self, total_absence_justifiée):
         """ Calculer la somme des absences justifiées par session"""
@@ -244,36 +258,39 @@ class Session(models.Model):
         """ pourcentage calculer_zero_min_formation_gagne """
         zero_min = self.calculer_zero_min_formation_gagne(self)
         nbr_inscrit = self.nbr_client_par_session(self)
-        res = (zero_min * 100 / nbr_inscrit)
-        if res > 0:
-            resultat = f'{res:.2f}'.replace('.00', '')
-            return resultat
-        else:
-            resultat = f'{res:.0f}'
-            return resultat
+        if nbr_inscrit > 0:
+            res = (zero_min * 100 / nbr_inscrit)
+            if res > 0:
+                resultat = f'{res:.2f}'.replace('.00', '')
+                return resultat
+            else:
+                resultat = f'{res:.0f}'
+                return resultat
     def pourcentage_absence_justifiée(self, resultat):
         """ pourcentage absence justifiée """
         nbr_absence_justifiee = self.calculer_nombre_absence_justifiée(self)
         nbr_inscrit = self.nbr_client_par_session(self)
-        res = (nbr_absence_justifiee * 100 / nbr_inscrit)
-        if res > 0:
-            resultat = f'{res:.2f}'.replace('.00', '')
-            return resultat
-        else:
-            resultat = f'{res:.0f}'
-            return resultat
+        if nbr_inscrit > 0:
+            res = (nbr_absence_justifiee * 100 / nbr_inscrit)
+            if res > 0:
+                resultat = f'{res:.2f}'.replace('.00', '')
+                return resultat
+            else:
+                resultat = f'{res:.0f}'
+                return resultat
 
     def pourcentage_abandon(self, prc_abandon):
         """ Calculer pourcentage d'abandon par session """
         nbr_absence_abandon = self.count_annule
         nbr_inscrit = self.nbr_client_par_session(self)
-        res = (nbr_absence_abandon * 100 / nbr_inscrit)
-        if res > 0:
-            prc_abandon = f'{res:.2f}'.replace('.00', '')
-            return prc_abandon
-        else:
-            prc_abandon = f'{res:.0f}'
-            return prc_abandon
+        if nbr_inscrit > 0:
+            res = (nbr_absence_abandon * 100 / nbr_inscrit)
+            if res > 0:
+                prc_abandon = f'{res:.2f}'.replace('.00', '')
+                return prc_abandon
+            else:
+                prc_abandon = f'{res:.0f}'
+                return prc_abandon
 
     def nbr_echec(self, nbr_echec):
         """ Calculer nombre d'echec :
@@ -289,13 +306,14 @@ class Session(models.Model):
         """ Calculer pourcentage des clients (echec)"""
         nbr_echec = self.nbr_echec(self)
         nbr_inscrit = self.nbr_client_par_session(self)
-        res = (nbr_echec * 100 / nbr_inscrit)
-        if res > 0:
-            prc_echec = f'{res:.2f}'.replace('.00', '')
-            return prc_echec
-        else:
-            prc_echec = f'{res:.0f}'
-            return prc_echec
+        if nbr_inscrit > 0:
+            res = (nbr_echec * 100 / nbr_inscrit)
+            if res > 0:
+                prc_echec = f'{res:.2f}'.replace('.00', '')
+                return prc_echec
+            else:
+                prc_echec = f'{res:.0f}'
+                return prc_echec
 
     def pack_solo_inscrit(self, sum_solo_inscrit):
         """ Calculer le nombre du client inscrit par session selon le pack solo """
