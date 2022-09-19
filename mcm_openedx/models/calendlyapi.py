@@ -127,7 +127,7 @@ class event_calendly(models.Model):
 
             for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
                     [('id', '!=', False)]):
-                if existt:
+                if existt.start_at:
                     if existt.start_at < date.today():
                         print("existeee nameeeee")
                         existt.browse(existt.id).sudo().unlink()
