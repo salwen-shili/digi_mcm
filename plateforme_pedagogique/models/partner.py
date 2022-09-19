@@ -2052,7 +2052,6 @@ class partner(models.Model):
                                                                                 )
             _logger.info('if template  %s' % str(partner.name))
 
-
     def send_email_manuel(self):
         """check if user added to plateform"""
         """send mail with button"""
@@ -2112,6 +2111,64 @@ class partner(models.Model):
                 }
             }
 
-    def action_cancel_partner(self):
-        for record in self:
-            record.statut = "canceled"
+
+
+    def send_sms(self, body, partner):
+        """Changer format du numero de tel pour envoyer le sms"""
+        _logger.info("send  sms %s" % str(partner.email))
+        if partner.phone:
+            _logger.info("send  sms %s" % str(partner.email))
+            phone = str(partner.phone.replace(' ', ''))[-9:]
+            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                        3:5] + ' ' + phone[
+                                                                                     5:7] + ' ' + phone[
+                                                                                                  7:]
+            partner.phone = phone
+            name = partner.name
+            # sms = self.env['mail.message'].sudo().search(
+            #     [("body", "like", body), ("message_type", "=", 'sms'), ('res_id', '=', partner.id),('model',"=","res.partner")])
+            # if not sms:
+            composer = self.env['sms.composer'].with_context(
+                default_res_model='res.partner',
+                default_res_id=partner.id,
+                default_composition_mode='comment',
+            ).sudo().create({
+                
+                'body': body,
+                'mass_keep_log': True,
+                'mass_force_send': False,
+                'use_active_domain': False,
+            })
+            _logger.info('phooooneee ======================== %s' % str(partner.phone))
+            composer.action_send_sms()  # we send sms.
+            if partner.phone:
+                partner.phone = '0' + str(partner.phone.replace(' ', ''))[
+                                      -9:]
+
+    def add_user_plateforme(self, partner):
+        if partner.statut == "won":
+            """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au futur """
+            if partner.mode_de_financement == "cpf":
+                if (document_valide) and (partner.mcm_session_id.date_exam) and (
+                        partner.mcm_session_id.date_exam > date.today()):
+                    if (partner.renounce_request):
+                        self.ajouter_iOne(partner)
+                    if not (self.renounce_request) and self.numero_cpf:
+                        """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
+                        headers = {
+                            'accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'X-API-KEY': partner.company_id.wedof_api_key,
+                        }
+                        responsesession = requests.get(
+                            'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
+                            headers=headers)
+                        dossier = responsesession.json()
+                        dateDebutSession_str = ""
+                        _logger.info('session %s' % str(dossier))
+                        if "trainingActionInfo" in dossier:
+                            dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
+                            dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
+                            if dateDebutSession <= datetime.today():
+                                self.ajouter_iOne(partner)
+
