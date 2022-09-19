@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="tidio_digimoov_script_layout" name="Tidio: Website Layout" inherit_id="website.layout">
+        <xpath expr="//body" position="inside">
+            <!-- tidio script -->
+            <script src="//code.tidio.co/261j3wyvialdgues6efz7q1bjoiwvczv.js"></script>
+            <!-- End tidio script -->
+        </xpath>
+    </template>
+</odoo>
