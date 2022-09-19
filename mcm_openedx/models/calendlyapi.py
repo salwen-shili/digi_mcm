@@ -20,6 +20,7 @@ class calendly_integration(models.Model):
     # Ajouter champs
     name = fields.Char(string="name")
     slug = fields.Char(string="nom de cour")
+    color = fields.Char()
 
     active = fields.Boolean(string="active")
     created_at = fields.Date(string="created_at")
@@ -41,7 +42,11 @@ class calendly_integration(models.Model):
         for events in event:
             active = events['active']
             name = events['name']
-            owner = name.split("-")
+            if '-' in name:
+                ownerr = name.split("-")
+                owner = ownerr[2]
+            else:
+                owner = name
             slug = events['slug']
             created_at = events['created_at']
             # owner = events['profile']['owner']
@@ -60,7 +65,8 @@ class calendly_integration(models.Model):
                         'slug': slug,
                         'active': active,
                         'created_at': created_at,
-                        'owner': owner[2],
+                        'owner': owner,
+
                         'scheduling_url': scheduling_url,
                         'updated_at': updated_at,
                         'uri': uri,
@@ -71,6 +77,14 @@ class calendly_integration(models.Model):
         return {
             "url": self.scheduling_url,
             "type": "ir.actions.act_url"
+        }
+
+    def eventevnt(self):
+        return {
+            'view_mode': 'tree',
+            'res_model': 'mcm_openedx.calendly_event',
+            'type': 'ir.actions.act_window',
+            'target': 'new',
         }
 
 
