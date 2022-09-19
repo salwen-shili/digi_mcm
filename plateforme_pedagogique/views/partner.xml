@@ -221,6 +221,15 @@
               parent="statistique_menu"
               action="contact_list_action">
     </menuitem>
+    <record model="ir.actions.server" id="action_cancel_partner">
+        <field name="name">Annuler Client</field>
+        <field name="model_id" ref="plateforme_pedagogique.model_res_partner"/>
+        <field name="binding_model_id" ref="plateforme_pedagogique.model_res_partner"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="sequence">5</field>
+        <field name="code">record.action_cancel_partner()</field>
+    </record>
 
 
 </odoo>

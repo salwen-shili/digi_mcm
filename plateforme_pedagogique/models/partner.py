@@ -2111,3 +2111,7 @@ class partner(models.Model):
                     'className': 'bg-danger'
                 }
             }
+
+    def action_cancel_partner(self):
+        for record in self:
+            record.statut = "canceled"
