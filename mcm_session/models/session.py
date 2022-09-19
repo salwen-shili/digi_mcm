@@ -7,7 +7,7 @@ from odoo.exceptions import ValidationError
 import random
 from num2words import num2words
 
-from datetime import datetime
+from datetime import datetime, timedelta, date
 
 _logger = logging.getLogger(__name__)
 
@@ -80,8 +80,15 @@ class Session(models.Model):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
          La fonction est utilisé dans la template de rapport jury"""
         nbr_inscrits = 0
-        nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu + self.count_perdu
+        today = date.today()
+        nbr = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('date_creation', "<", self.date_creation + timedelta(days=14))])
+        for examen in nbr:
+            if nbr.module_id.product_id.default_code == "avancee":
+                nbr_inscrits += 1
         return nbr_inscrits
+
+        nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu + self.count_perdu
 
     def nbr_present_par_session(self, nbr_present):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
