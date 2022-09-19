@@ -83,18 +83,30 @@ class Session(models.Model):
         nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu + self.count_perdu
         return nbr_inscrits
 
-    # def nbr_client_par_session(self, nbr_inscrits):
-    #     """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
-    #      La fonction est utilisé dans la template de rapport jury"""
-    #     nbr_inscrits = 0
-    #     today = date.today()
-    #     nbr = self.env['partner.sessions'].sudo().search(
-    #         [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('date_creation', "<", self.date_creation + timedelta(days=14))])
-    #     for examen in nbr:
-    #         if nbr.module_id.product_id.default_code == "avancee":
-    #             nbr_inscrits += 1
-    #     return nbr_inscrits
-    #
+    def nbr_client_par_session(self, nbr_inscrits):
+        """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
+         La fonction est utilisé dans la template de rapport jury"""
+        nbr_inscrits = 0
+        today = date.today()
+        nbr_partner_annule= self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('partner_id.mode_de_financement','=', 'cpf'),('partner_id.statut','=', 'canceled'),('date_creation', "<", self.date_creation + timedelta(days=14))])
+        _logger.info("nbr_partner_won_cpf %s" % str(nbr_partner_annule))
+        nbr_partner_won_cpf  = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('partner_id.mode_de_financement','=', 'cpf'), ('partner_id.statut','=', 'won')])
+        _logger.info("nbr_partner_annule %s" % str(nbr_partner_won_cpf ))
+        return len(nbr_partner_annule)
+        # for examen in nbr_partner_sessions:
+        #     if nbr_partner_sessions.mode_de_financement == 'cpf' and nbr_partner_sessions.partner_id.statut == 'won':
+        #         nbr_inscrits += 1
+        #     return nbr_inscrits
+        # if nbr_partner_sessions.mode_de_financement == 'particulier':
+        #     sale_order = self.env['sale.order'].sudo().search([('session_id.id', '=',
+        #                                                         self.id),
+        #                                                        ('module_id', '=', self.module_id.id),
+        #                                                        ('session_id.date_exam', '>',
+        #                                                         date.today())], limit=1)
+        #     for sale in sale_order:
+        #         sign_date = sale.signed_on
     #     nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu + self.count_perdu
 
     def nbr_present_par_session(self, nbr_present):
