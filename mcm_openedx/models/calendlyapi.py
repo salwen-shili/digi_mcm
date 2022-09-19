@@ -100,6 +100,7 @@ class event_calendly(models.Model):
     location = fields.Char(string="Location")
     start_at = fields.Date(string="start_at")
     status = fields.Boolean(string="active")
+    owner = fields.Char(string="Formateur")
 
     def event(self):
         headers = {
@@ -135,6 +136,11 @@ class event_calendly(models.Model):
                                headers=headers, params=params)
             response = rep.json()['resource']
             event_name = response['name']
+            if '-' in event_name:
+                ownerr =event_name.split("-")
+                owner = ownerr[2]
+            else:
+                owner = event_name
             location = response['location']['location']
             start_at = response['start_time']
             status = response['status']
@@ -159,6 +165,7 @@ class event_calendly(models.Model):
                         'location': location,
                         'start_at': start_at,
                         'status': status,
+                        'owner': owner,
                     })
                     print(new)
 
@@ -176,15 +183,24 @@ class event_calendly(models.Model):
                  ('state', "=", "en_formation"),
                  ('email', '=', "khouloudachour.97@gmail.com")
                  ]):
+
             print(partner.name)
+            # APi si il existe des event
             for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
                     [('id', '!=', False)]):
-                print(existe.event_name)
-                if existe.start_at == date.today():
-                    calendly = self.env['calendly.rendezvous'].sudo().create({
-                        'partner_id': partner.id,
-                        'event_starttime': existe.start_at,
-                        'event_endtime': existe.start_at,
-                        'name': existe.event_name,
+                # Fiche Client odoo chercher si event
 
-                    })
+                exist_event = self.env['calendly.rendezvous'].sudo().search(
+                    [('name', '=', existe.event_name),('event_starttime','=',existe.start_at)])
+                print("exist_event.name",exist_event.name)
+
+                print(existe.event_name)
+                if not exist_event:
+                    if existe.start_at == date.today():
+                        calendly = self.env['calendly.rendezvous'].sudo().create({
+                            'partner_id': partner.id,
+                            'event_starttime': existe.start_at,
+                            'event_endtime': existe.start_at,
+                            'name': existe.event_name,
+
+                        })

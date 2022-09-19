@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
+    <record id="calendly_type_eventt_search_view" model="ir.ui.view">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_integration</field>
+        <field name="arch" type="xml">
+            <search>
+                                <field name="owner" filter_domain="[('owner','ilike',self)]"></field>
 
+                 <filter name="group_owner" string="Formateur" icon="terp-partner"
+                        context="{'group_by':'owner'}"/>
+            </search>
+        </field>
+    </record>
     <record model="ir.ui.view" id="type_event_calendly_tree_view">
         <field name="name">Calendly Events</field>
         <field name="model">mcm_openedx.calendly_integration</field>
