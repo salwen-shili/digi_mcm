@@ -359,11 +359,12 @@ class Session(models.Model):
     def pack_premium_present(self, sum_premium_present):
         """ Calculer le nombre du client present par session selon le pack premium """
         nbr_from_examen_premium = 0
-        for examen in self.env['info.examen'].search(
-                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
-            if examen.module_id.product_id.default_code == "premium":
-                nbr_from_examen_premium += 1
-        sum_premium_present = nbr_from_examen_premium
+        nbr_premium = self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present'), ('module_id.product_id.default_code', '=', 'premium' )])
+            # if examen.module_id.product_id.default_code == "premium":
+            #     nbr_from_examen_premium += 1
+        for examen in nbr_premium:
+            sum_premium_present = len(examen)
         return sum_premium_present
 
     def pack_repassage_present(self, sum_repassage_present):
