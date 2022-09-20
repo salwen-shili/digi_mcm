@@ -186,17 +186,17 @@ class OnfidoController(http.Controller):
             if str(workflow_runs['finished']) == 'True' and workflow_runs['state'] == 'fail':
                 _logger.info('state document %s' % str(workflow_runs['state']))
                 currentUser.validation_onfido = "fail"
-            if data_onfido:
-                data_onfido.validation_onfido = "fail"
-                data_onfido.motif = motif_fiche
-                _logger.info(
-                    '*************************************currentUser.validation_onfido***************** %s' % str(
-                        currentUser.id))
-                documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
-                _logger.info("document %s" % str(documents))
-                if documents:
-                    for document in documents:
-                        document.state = "refused"
+                if data_onfido:
+                    data_onfido.validation_onfido = "fail"
+                    data_onfido.motif = motif_fiche
+                    _logger.info(
+                        '*************************************currentUser.validation_onfido***************** %s' % str(
+                            currentUser.id))
+                    documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
+                    _logger.info("document %s" % str(documents))
+                    if documents:
+                        for document in documents:
+                            document.state = "refused"
                 # self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"refused",currentUser)
                 # self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"refused",currentUser)
                 #
