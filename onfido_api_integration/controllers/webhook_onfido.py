@@ -264,6 +264,7 @@ class OnfidoController(http.Controller):
             if partner.validation_onfido == "fail":
                 if data_onfido and data_onfido.motif:
                     return {'validation_onfido': partner.validation_onfido, 'motif': data_onfido.motif}
+            return {'validation_onfido': partner.validation_onfido,'motif': False}
         else:
             return {'validation_onfido': "partner not found", 'motif': False}
     
