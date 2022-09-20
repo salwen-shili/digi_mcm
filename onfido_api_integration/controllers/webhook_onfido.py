@@ -159,14 +159,11 @@ class OnfidoController(http.Controller):
         if currentUser:
             """get report document"""
             check = currentUser.get_checks(applicant_id, website.onfido_api_key_live)
-            report_id = check['checks'][0]['report_ids'][0]
-            _logger.info("report_id %s" % str(report_id))
-            report = currentUser.get_report(report_id, website.onfido_api_key_live)
-            _logger.info("reppooort %s" % str(report))
-            """get result of validation, if fail we check the reason in brakdown and notify the user"""
-            if str(workflow_runs['finished']) == 'True' and workflow_runs['state'] == 'fail':
-                _logger.info('state document %s' % str(workflow_runs['state']))
-                currentUser.validation_onfido = "fail"
+            if check['checks'] != []:
+                report_id = check['checks'][0]['report_ids'][0]
+                _logger.info("report_id %s" % str(report_id))
+                report = currentUser.get_report(report_id, website.onfido_api_key_live)
+                _logger.info("reppooort %s" % str(report))
                 breakdown_origin = report['breakdown']['visual_authenticity']
                 breakdown_quality = report['breakdown']['image_integrity']
                 breakdown_expiration = report['breakdown']['data_validation']['breakdown']['document_expiration']
@@ -183,6 +180,10 @@ class OnfidoController(http.Controller):
                     motif_fiche = "Documents expirés"
                     message_ticket = "Motif: Documents expirés."
                     _logger.info('breakdown %s' % str(breakdown_expiration['result']))
+            """get result of validation, if fail we check the reason in brakdown and notify the user"""
+            if str(workflow_runs['finished']) == 'True' and workflow_runs['state'] == 'fail':
+                _logger.info('state document %s' % str(workflow_runs['state']))
+                currentUser.validation_onfido = "fail"
             if data_onfido:
                 data_onfido.validation_onfido = "fail"
                 data_onfido.motif = motif_fiche
@@ -264,7 +265,7 @@ class OnfidoController(http.Controller):
             if partner.validation_onfido == "fail":
                 if data_onfido and data_onfido.motif:
                     return {'validation_onfido': partner.validation_onfido, 'motif': data_onfido.motif}
-            return {'validation_onfido': partner.validation_onfido,'motif': False}
+            return {'validation_onfido': partner.validation_onfido,'motif': data_onfido.motif}
         else:
             return {'validation_onfido': "partner not found", 'motif': False}
     
