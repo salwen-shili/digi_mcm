@@ -4,7 +4,6 @@
         <record id="mail_template_add_ione_to_plateforme_digimoov_mcm" model="mail.template">
             <field name="name">Contact : ajouter apprenant à la platforme</field>
             <field name="model_id" ref="base.model_res_partner"/>
-            <field name="model_id" ref="base.model_mcm_openedx.calendly_event"/>
             <field name="subject">Digimoov - Accès à la plateforme en ligne</field>
             <field name="email_from">${object.company_id.email}</field>
             <field name="partner_to">${object.id}</field>

@@ -177,7 +177,7 @@ class event_calendly(models.Model):
             "type": "ir.actions.act_url"
         }
 
-    def send_invitation(self,partner):
+    def send_invitation(self):
         print("envoyer invitation au apprenant selon leur formation")
         for partner in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"),
@@ -185,23 +185,24 @@ class event_calendly(models.Model):
                  ('state', "=", "en_formation"),
                  ('email', '=', "khouloudachour.97@gmail.com")
                  ]):
-            self = self.with_user(SUPERUSER_ID)
-            template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                'mcm_openedx.calendlyy'))
-            template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-            if not template_id:
-                template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                    'mcm_openedx.calendlyy',
-                    raise_if_not_found=False)
-            if not template_id:
-                template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                    'mcm_openedx.calendlyy',
-                    raise_if_not_found=False)
-            if template_id:
-                partner.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                    composition_mode='comment', )
 
-                print(partner.name)
+            #self = self.with_user(SUPERUSER_ID)
+            # template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+            #     'mcm_openedx.calendlyy'))
+            # template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+            # if not template_id:
+            #     template_id = self.env['ir.model.data'].xmlid_to_res_id(
+            #         'mcm_openedx.calendlyy',
+            #         raise_if_not_found=False)
+            # if not template_id:
+            #     template_id = self.env['ir.model.data'].xmlid_to_res_id(
+            #         'mcm_openedx.calendlyy',
+            #         raise_if_not_found=False)
+            # if template_id:
+            #     partner.with_context(force_send=True).message_post_with_template(template_id,
+            #                                                                         composition_mode='comment', )
+            #
+            #     print(partner.name)
             # APi si il existe des event
             for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
                     [('id', '!=', False)]):

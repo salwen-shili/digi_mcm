@@ -140,7 +140,7 @@
                 </div>
 
             </field>
-            <field name="lang">${object.lang}</field>
+            <field name="lang">${object.partner_id.lang}</field>
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="False"/>
         </record>
@@ -189,7 +189,7 @@
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="False"/>
         </record>
-        <record id="calendlyy" model="mail.template">
+     <!--   <record id="calendlyy" model="mail.template">
             <field name="name">Contact : Cours en direct</field>
             <field name="model_id" ref="model_mcm_openedx_calendly_event"/>
             <field name="subject">Cours en direct
@@ -243,7 +243,7 @@
             <field name="lang">${object.partner.lang}</field>
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="False"/>
-        </record>
+        </record>-->
 
     </data>
 
