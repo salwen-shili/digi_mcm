@@ -215,7 +215,7 @@ class OnfidoController(http.Controller):
                 vals = {
                     'partner_email': '',
                     'partner_id': currentUser.id,
-                    'description': currentUser.name + "" + message_ticket,
+                    'description': message_ticket,
                     'name': 'Documents refusés',
                     'team_id': request.env['helpdesk.team'].sudo().search(
                         [('name', "like", _('Client')), ('company_id', "=", 2)],
