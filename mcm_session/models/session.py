@@ -76,12 +76,12 @@ class Session(models.Model):
         date_en_lettre = yearformat_txt + " " + dayformat_txt
         return date_en_lettre
 
-    def nbr_client_par_session(self, nbr_inscrits):
-        """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
-         La fonction est utilisé dans la template de rapport jury"""
-        nbr_inscrits = 0
-        nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu + self.count_perdu
-        return nbr_inscrits
+    # def nbr_client_par_session(self, nbr_inscrits):
+    #     """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
+    #      La fonction est utilisé dans la template de rapport jury"""
+    #     nbr_inscrits = 0
+    #     nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu + self.count_perdu
+    #     return nbr_inscrits
 
     def nbr_client_par_session(self, nbr_inscrits):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
@@ -376,6 +376,23 @@ class Session(models.Model):
         sum_repassage_present = nbr_from_examen_repassage
         return sum_repassage_present
 
+    def nbr_canceled_state_after_14_day(self, cal_days):
+        """ Calculer nbr_canceled_state_after_14_day """
+        nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled')])
+        nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+             ('date_creation', "<", self.date_exam + timedelta(days=14))])
+        count_per_an = False
+        for sale in nbr_partner_personel_annule:
+            if sale.client_id.signed_on > self.date_exam + timedelta(days=14):
+                count_per_an += 1
+        counter_per_an = count_per_an
+        cal_days = counter_per_an + len(nbr_partner_cpf_annule) + len(nbr_partner_personel_annule)
+        return cal_days
+
     def pack_pro_inscrit(self, sum_pro_inscrit):
         """ Calculer le nombre du client inscrit par session selon le pack pro """
         nbr_from_examen_pro = 0
@@ -384,7 +401,13 @@ class Session(models.Model):
             if examen.module_id.product_id.default_code == "avancee":
                 nbr_from_examen_pro += 1
         nbr_canceled_prospect_pro = 0
-        tot = nbr_from_examen_pro
+        tot = nbr_from_examen_pro + self.nbr_canceled_state_after_14_day()
+        sum_pro_inscrit = tot
+        return sum_pro_inscrit
+
+
+
+
         # for nbr_inscrit_pack_pro in self.canceled_prospect_ids:
         #     if nbr_inscrit_pack_pro.mcm_session_id.id == self.id:
         #         if nbr_inscrit_pack_pro.module_id.product_id.default_code == "avancee":
