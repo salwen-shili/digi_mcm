@@ -159,7 +159,7 @@ class OnfidoController(http.Controller):
         if currentUser:
             """get report document"""
             check = currentUser.get_checks(applicant_id, website.onfido_api_key_live)
-            if check['checks'] != []:
+            if check['checks']:
                 report_id = check['checks'][0]['report_ids'][0]
                 _logger.info("report_id %s" % str(report_id))
                 report = currentUser.get_report(report_id, website.onfido_api_key_live)
@@ -267,7 +267,7 @@ class OnfidoController(http.Controller):
                     return {'validation_onfido': partner.validation_onfido, 'motif': data_onfido.motif}
             return {'validation_onfido': partner.validation_onfido,'motif': data_onfido.motif}
         else:
-            return {'validation_onfido': "partner not found", 'motif': False}
+            return {'validation_onfido': "partner not found", 'motif': motif_fiche}
     
 
     def create_document(self,document_id,side,type,state,currentUser):
