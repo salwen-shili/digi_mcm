@@ -263,7 +263,7 @@ class OnfidoController(http.Controller):
         _logger.info("partner.validation_onfido %s" % str(partner.validation_onfido))
         if partner:
             if partner.validation_onfido == "fail":
-                if data_onfido and data_onfido.motif:
+                if data_onfido:
                     return {'validation_onfido': partner.validation_onfido, 'motif': data_onfido.motif}
             return {'validation_onfido': partner.validation_onfido,'motif': data_onfido.motif}
         else:
