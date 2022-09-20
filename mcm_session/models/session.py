@@ -391,10 +391,10 @@ class Session(models.Model):
                     nbr_canceled_prospect_pro += 1
                     tot = nbr_canceled_prospect_pro + nbr_from_examen_pro
         nbr_panier_perdu_pro = 0
-        for nbr_inscrit_pack_pro_perdu in self.panier_perdu_ids:
-            if nbr_inscrit_pack_pro_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_pro_perdu.module_id.product_id.default_code == "avancee":
-                nbr_panier_perdu_pro += 1
-        sum_pro_inscrit = tot + nbr_panier_perdu_pro
+        # for nbr_inscrit_pack_pro_perdu in self.panier_perdu_ids:
+        #     if nbr_inscrit_pack_pro_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_pro_perdu.module_id.product_id.default_code == "avancee":
+        #         nbr_panier_perdu_pro += 1
+        sum_pro_inscrit = tot
         return sum_pro_inscrit
 
     def pack_premium_inscrit(self, sum_premium_inscrit):
