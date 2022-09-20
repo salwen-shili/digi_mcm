@@ -175,7 +175,7 @@ class OnfidoController(http.Controller):
                     if breakdown_quality['result'] != 'clear':
                         motif_fiche = "Documents de mauvaise qualité."
                         message_ticket = "Motif: Documents de mauvaise qualité."
-                        _logger.info('breakdown %s' % str(breakdown_origin['result']))
+                        _logger.info('breakdown %s' % str(breakdown_quality['result']))
                 if 'data_validation' in report['breakdown'] and 'document_expiration' in report['breakdown']['data_validation']['breakdown'] :
                     breakdown_expiration = report['breakdown']['data_validation']['breakdown']['document_expiration']
                     if breakdown_expiration['result'] != 'clear':
