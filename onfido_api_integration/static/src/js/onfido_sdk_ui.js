@@ -121,8 +121,8 @@ const exceedWaitingCheck = () => {
       .catch((err) => {
         console.log(err);
       });
-    
-  }, 24000);
+  // exceedWaiting / make an API call each 4 seconds
+  }, 4000);
 }; ////////////////////////////////////////////////////////////////
 //  Function to dispaly a popup, it takes a value in
 //  exceedWaiting,waiting,success,fail
@@ -195,6 +195,7 @@ const setPopups = () => {
       })
       .catch((err) => {});
     console.log("getDocumentState...");
+    // Make a call each 2.5 seconds in waiting popup
   }, 2500);
 
   const waitingInterval = setTimeout(() => {
@@ -202,8 +203,8 @@ const setPopups = () => {
     clearInterval(getDocumentState);
     exceedWaiting();
     //Change waiting interval
-    // @ines a changer
-  }, 10000);
+    // 20 seconds
+  }, 20000);
 };
 
 //Function to call XMLHttpRequest which takes method("GET/POST"), url, and "Data"
