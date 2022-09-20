@@ -262,12 +262,11 @@ class OnfidoController(http.Controller):
         _logger.info("request.env.user.partner_id %s name=%s" % (str(partner_id.id), str(partner_id.name)))
         _logger.info("partner.validation_onfido %s" % str(partner.validation_onfido))
         if partner:
-            if partner.validation_onfido == "fail":
-                if data_onfido:
-                    return {'validation_onfido': partner.validation_onfido, 'motif': data_onfido.motif}
-            return {'validation_onfido': partner.validation_onfido,'motif': data_onfido.motif}
+            # if partner.validation_onfido == "fail":
+            return {'validation_onfido': partner.validation_onfido}
+           
         else:
-            return {'validation_onfido': "partner not found", 'motif':data_onfido.motif}
+            return {'validation_onfido': "partner not found"}
     
 
     def create_document(self,document_id,side,type,state,currentUser):
