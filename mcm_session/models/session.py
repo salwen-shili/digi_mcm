@@ -393,7 +393,7 @@ class Session(models.Model):
         cal_days = counter_per_an + len(nbr_partner_cpf_annule) + len(nbr_partner_personel_annule)
         return cal_days
 
-    def pack_pro_inscrit(self, sum_pro_inscrit):
+    def pack_pro_inscrit(self, sum_pro_inscrit, cal_days):
         """ Calculer le nombre du client inscrit par session selon le pack pro """
         nbr_from_examen_pro = 0
         for examen in self.env['info.examen'].search(
@@ -401,7 +401,7 @@ class Session(models.Model):
             if examen.module_id.product_id.default_code == "avancee":
                 nbr_from_examen_pro += 1
         nbr_canceled_prospect_pro = 0
-        tot = nbr_from_examen_pro + self.nbr_canceled_state_after_14_day()
+        tot = nbr_from_examen_pro + self.nbr_canceled_state_after_14_day(cal_days)
         sum_pro_inscrit = tot
         return sum_pro_inscrit
 
