@@ -593,7 +593,7 @@
                                                 </strong>
                                             </td>
                                         </t>
-                                        <t t-else="int(session.temps_minute) == 0">
+                                        <t t-else="int(session.temps_minute) == 0 and session.partner_id.statut == 'won'">
                                             <td class="td" style="background:#FFFF00;">
                                                 <t t-set="session"
                                                    t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
