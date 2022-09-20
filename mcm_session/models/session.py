@@ -364,7 +364,7 @@ class Session(models.Model):
             # if examen.module_id.product_id.default_code == "premium":
             #     nbr_from_examen_premium += 1
         for examen in nbr_premium:
-            sum_premium_present = len(examen)
+            sum_premium_present = len(nbr_premium)
         return sum_premium_present
 
     def pack_repassage_present(self, sum_repassage_present):
