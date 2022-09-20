@@ -231,6 +231,7 @@ class OnfidoController(http.Controller):
                 _logger.info('else state document %s' % str(workflow_runs['state']))
                 currentUser.validation_onfido = "clear"
                 if data_onfido:
+                    
                     data_onfido.validation_onfido = "clear"
                     documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
                     _logger.info("document %s" % str(documents))
