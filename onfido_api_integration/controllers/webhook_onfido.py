@@ -93,8 +93,8 @@ class OnfidoController(http.Controller):
                     partner.nationality= pycountry.countries.get(alpha_3=code_pays)
                 if 'place_of_birth' in extraction['extracted_data']:
                     partner.birth_city = extraction['extracted_data']['place_of_birth']
-                if 'gender' in extraction['extracted_data']:
-                    partner.civilte=extraction['extracted_data']['gender']
+                # if 'gender' in extraction['extracted_data']:
+                #     partner.civilte=extraction['extracted_data']['gender']
                 if 'document_number' in extraction['extracted_data'] and 'document_type' in extraction['extracted_data']:
                     if extraction['extracted_data']['document_type'] =="national_identity_card" :
                         partner.numero_carte_identite=extraction['extracted_data']['document_number']
@@ -168,19 +168,19 @@ class OnfidoController(http.Controller):
                     breakdown_origin = report['breakdown']['visual_authenticity']
                     if breakdown_origin['result'] != 'clear':
                         motif_fiche = "Documents non originaux."
-                        message_ticket = "Motif: type de documents scannés ou capture d'écran."
+                        message_ticket = "Motif : type de documents scannés ou capture d'écran."
                         _logger.info('breakdown %s' % str(breakdown_origin['result']))
                 if 'image_integrity' in report['breakdown']:
                     breakdown_quality = report['breakdown']['image_integrity']
                     if breakdown_quality['result'] != 'clear':
                         motif_fiche = "Documents de mauvaise qualité."
-                        message_ticket = "Motif: Documents de mauvaise qualité."
+                        message_ticket = "Motif : Documents de mauvaise qualité."
                         _logger.info('breakdown %s' % str(breakdown_quality['result']))
                 if 'data_validation' in report['breakdown'] and 'document_expiration' in report['breakdown']['data_validation']['breakdown'] :
                     breakdown_expiration = report['breakdown']['data_validation']['breakdown']['document_expiration']
                     if breakdown_expiration['result'] != 'clear':
                         motif_fiche = "Documents expirés"
-                        message_ticket = "Motif: Documents expirés."
+                        message_ticket = "Motif : Documents expirés."
                         _logger.info('breakdown %s' % str(breakdown_expiration['result']))
             """get result of validation, if fail we check the reason in brakdown and notify the user"""
             if str(workflow_runs['finished']) == 'True' and workflow_runs['state'] == 'fail':
@@ -221,11 +221,7 @@ class OnfidoController(http.Controller):
                         [('name', "like", _('Client')), ('company_id', "=", 2)],
                         limit=1).id,
                 }
-                description = currentUser.name + ":" + message_ticket
-                ticket = request.env['helpdesk.ticket'].sudo().search(
-                    [('description', 'ilike', description)])
-                if not ticket:
-                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                new_ticket = request.env['helpdesk.ticket'].sudo().create(
                         vals)
             if str(workflow_runs['finished']) == 'True' and workflow_runs['state'] == 'clear':
                 _logger.info('else state document %s' % str(workflow_runs['state']))
