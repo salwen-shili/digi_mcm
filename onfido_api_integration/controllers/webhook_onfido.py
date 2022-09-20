@@ -267,7 +267,7 @@ class OnfidoController(http.Controller):
                     return {'validation_onfido': partner.validation_onfido, 'motif': data_onfido.motif}
             return {'validation_onfido': partner.validation_onfido,'motif': data_onfido.motif}
         else:
-            return {'validation_onfido': "partner not found", 'motif': data_onfido.motif}
+            return {'validation_onfido': "partner not found", 'motif':data_onfido.motif}
     
 
     def create_document(self,document_id,side,type,state,currentUser):
