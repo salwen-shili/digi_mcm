@@ -175,7 +175,7 @@ class OnfidoController(http.Controller):
                     if breakdown_quality['result'] != 'clear':
                         motif_fiche = "Documents de mauvaise qualité."
                         message_ticket = "Motif: Documents de mauvaise qualité."
-                        _logger.info('breakdown %s' % str(breakdown_origin['result']))
+                        _logger.info('breakdown %s' % str(breakdown_quality['result']))
                 if 'data_validation' in report['breakdown'] and 'document_expiration' in report['breakdown']['data_validation']['breakdown'] :
                     breakdown_expiration = report['breakdown']['data_validation']['breakdown']['document_expiration']
                     if breakdown_expiration['result'] != 'clear':
@@ -186,17 +186,17 @@ class OnfidoController(http.Controller):
             if str(workflow_runs['finished']) == 'True' and workflow_runs['state'] == 'fail':
                 _logger.info('state document %s' % str(workflow_runs['state']))
                 currentUser.validation_onfido = "fail"
-            if data_onfido:
-                data_onfido.validation_onfido = "fail"
-                data_onfido.motif = motif_fiche
-                _logger.info(
-                    '*************************************currentUser.validation_onfido***************** %s' % str(
-                        currentUser.id))
-                documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
-                _logger.info("document %s" % str(documents))
-                if documents:
-                    for document in documents:
-                        document.state = "refused"
+                if data_onfido:
+                    data_onfido.validation_onfido = "fail"
+                    data_onfido.motif = motif_fiche
+                    _logger.info(
+                        '*************************************currentUser.validation_onfido***************** %s' % str(
+                            currentUser.id))
+                    documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
+                    _logger.info("document %s" % str(documents))
+                    if documents:
+                        for document in documents:
+                            document.state = "refused"
                 # self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"refused",currentUser)
                 # self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"refused",currentUser)
                 #
@@ -231,6 +231,7 @@ class OnfidoController(http.Controller):
                 _logger.info('else state document %s' % str(workflow_runs['state']))
                 currentUser.validation_onfido = "clear"
                 if data_onfido:
+                    
                     data_onfido.validation_onfido = "clear"
                     documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
                     _logger.info("document %s" % str(documents))
