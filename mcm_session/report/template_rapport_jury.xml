@@ -586,8 +586,6 @@
                                     <t t-if="session.resultat == 'ajourne' and session.presence != 'present'">
                                         <t t-if="int(session.temps_minute) &gt; 0">
                                             <td class="td" style="background-color:#E9967A;">
-                                                <t t-set="session"
-                                                   t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
                                                 <strong>
                                                     <span>Absent</span>
                                                 </strong>
@@ -595,8 +593,6 @@
                                         </t>
                                         <t t-else="int(session.temps_minute) == 0 and session.partner_id.statut == 'won'">
                                             <td class="td" style="background:#FFFF00;">
-                                                <t t-set="session"
-                                                   t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
                                                 <strong>
                                                     <span>Non présentation à la formation</span>
                                                 </strong>
