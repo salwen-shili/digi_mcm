@@ -4,7 +4,7 @@ from datetime import date
 
 import werkzeug
 
-from odoo import models, http, fields
+from odoo import models, http, fields, SUPERUSER_ID
 import http.client
 
 _logger = logging.getLogger(__name__)
@@ -90,6 +90,7 @@ class calendly_integration(models.Model):
 
 class event_calendly(models.Model):
     _name = 'mcm_openedx.calendly_event'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     scheduling_url_name = fields.Char(string="name")
     scheduling_url_created_at = fields.Date(string="created_at")
@@ -101,6 +102,7 @@ class event_calendly(models.Model):
     start_at = fields.Date(string="start_at")
     status = fields.Boolean(string="active")
     owner = fields.Char(string="Formateur")
+    partner_id = fields.Many2one('res.partner')
 
     def event(self):
         headers = {
@@ -137,7 +139,7 @@ class event_calendly(models.Model):
             response = rep.json()['resource']
             event_name = response['name']
             if '-' in event_name:
-                ownerr =event_name.split("-")
+                ownerr = event_name.split("-")
                 owner = ownerr[2]
             else:
                 owner = event_name
@@ -175,7 +177,7 @@ class event_calendly(models.Model):
             "type": "ir.actions.act_url"
         }
 
-    def send_invitation(self):
+    def send_invitation(self,partner):
         print("envoyer invitation au apprenant selon leur formation")
         for partner in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"),
@@ -183,16 +185,30 @@ class event_calendly(models.Model):
                  ('state', "=", "en_formation"),
                  ('email', '=', "khouloudachour.97@gmail.com")
                  ]):
+            self = self.with_user(SUPERUSER_ID)
+            template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                'mcm_openedx.calendlyy'))
+            template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+            if not template_id:
+                template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                    'mcm_openedx.calendlyy',
+                    raise_if_not_found=False)
+            if not template_id:
+                template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                    'mcm_openedx.calendlyy',
+                    raise_if_not_found=False)
+            if template_id:
+                partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                    composition_mode='comment', )
 
-            print(partner.name)
+                print(partner.name)
             # APi si il existe des event
             for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
                     [('id', '!=', False)]):
                 # Fiche Client odoo chercher si event
-
                 exist_event = self.env['calendly.rendezvous'].sudo().search(
-                    [('name', '=', existe.event_name),('event_starttime','=',existe.start_at)])
-                print("exist_event.name",exist_event.name)
+                    [('name', '=', existe.event_name), ('event_starttime', '=', existe.start_at)])
+                print("exist_event.name", exist_event.name)
 
                 print(existe.event_name)
                 if not exist_event:
@@ -202,5 +218,4 @@ class event_calendly(models.Model):
                             'event_starttime': existe.start_at,
                             'event_endtime': existe.start_at,
                             'name': existe.event_name,
-
                         })
