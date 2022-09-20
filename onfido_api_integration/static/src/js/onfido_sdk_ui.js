@@ -17,7 +17,7 @@ const popup = {
     <h1 style="color:#000000;margin-top:1rem">
         Un instant!
     </h1>
-    <p>Nous traitons actuellement vos <b>documents</b>. Cela pourrait prendre quelques secondes.</p>
+    <p>Nous traitons actuellement vos <b>documents</b>. Cela pourrait prendre quelques minutes.</p>
 </div>
 </div>`,
   success: `<div id="popup1" class="overlay">
@@ -93,14 +93,15 @@ const exceedWaitingCheck = () => {
     sendHttpRequest("POST", "/onfido/get_state_document", {})
       .then((responseData) => {
         console.log(
-          "******************* onfido/get_state_document - responseData.result.validation_onfido",
-          responseData.result.validation_onfido
+          "******************* onfido/get_state_document - responseData",
+          responseData
         );
         if (responseData.result) {
           console.log(
             "responseData.result.validation_onfido",
             responseData.result.validation_onfido
           );
+          if ( responseData.result.hasOwnProperty("validation_onfido") ) {
           const validation_onfido = responseData.result.validation_onfido;
           ///////// logics for setting popups
           if (validation_onfido != "in_progress") {
@@ -114,13 +115,14 @@ const exceedWaitingCheck = () => {
               clearInterval(getDocumentState);
             }
           }
+          }
         }
       })
       .catch((err) => {
         console.log(err);
       });
-    console.log("getDocumentState...");
-  }, 4000);
+    
+  }, 24000);
 }; ////////////////////////////////////////////////////////////////
 //  Function to dispaly a popup, it takes a value in
 //  exceedWaiting,waiting,success,fail
@@ -193,7 +195,7 @@ const setPopups = () => {
       })
       .catch((err) => {});
     console.log("getDocumentState...");
-  }, 1500);
+  }, 2500);
 
   const waitingInterval = setTimeout(() => {
     console.log("waiting...");
