@@ -212,11 +212,11 @@ class OnfidoController(http.Controller):
                 """créer ticket pour service client"""
                 vals = {
                     'partner_email': '',
-                    'partner_id': False,
-                    'description': currentUser.name + ":" + message_ticket,
+                    'partner_id': currentUser,
+                    'description': currentUser.name + "" + message_ticket,
                     'name': 'Documents refusés',
                     'team_id': request.env['helpdesk.team'].sudo().search(
-                        [('name', "like", _('Client')), ('company_id', "=", 1)],
+                        [('name', "like", _('Client')), ('company_id', "=", 2)],
                         limit=1).id,
                 }
                 description = currentUser.name + ":" + message_ticket
