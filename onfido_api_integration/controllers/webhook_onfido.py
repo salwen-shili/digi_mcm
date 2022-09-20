@@ -266,6 +266,7 @@ class OnfidoController(http.Controller):
             return {'validation_onfido': partner.validation_onfido}
            
         else:
+            
             return {'validation_onfido': "partner not found"}
     
 
