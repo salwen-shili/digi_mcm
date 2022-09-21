@@ -102,6 +102,8 @@ class event_calendly(models.Model):
     start_at = fields.Date(string="start_at")
     status = fields.Boolean(string="active")
     owner = fields.Char(string="Formateur")
+    reschedule_url = fields.Char(string="reschedule_url")
+    cancel_url = fields.Char(string="Cancel URL")
     partner_id = fields.Many2one('res.partner')
 
     def event(self):
@@ -137,6 +139,12 @@ class event_calendly(models.Model):
             rep = requests.get('https://api.calendly.com/scheduled_events/%s' % (uuid_eventtype[4]),
                                headers=headers, params=params)
             response = rep.json()['resource']
+            print(response)
+            rep_inv = requests.get('https://api.calendly.com/scheduled_events/%s/invitees' % (uuid_eventtype[4]),
+                                   headers=headers, params=params)
+            response_inv = rep_inv.json()['collection']
+            print("response_inv response_inv ", response_inv)
+
             event_name = response['name']
             if '-' in event_name:
                 ownerr = event_name.split("-")
@@ -146,6 +154,8 @@ class event_calendly(models.Model):
             location = response['location']['location']
             start_at = response['start_time']
             status = response['status']
+            cancel_url = response_inv[0]['cancel_url']
+            reschedule_url = response_inv[0]['reschedule_url']
 
             for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
                     [('id', '!=', False)]):
@@ -166,6 +176,8 @@ class event_calendly(models.Model):
                         'event_name': event_name,
                         'location': location,
                         'start_at': start_at,
+                        'reschedule_url': reschedule_url,
+                        'cancel_url': cancel_url,
                         'status': status,
                         'owner': owner,
                     })
@@ -179,30 +191,30 @@ class event_calendly(models.Model):
 
     def send_invitation(self):
         print("envoyer invitation au apprenant selon leur formation")
-        for partner in self.env['res.partner'].sudo().search(
+        for partner_id in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"),
                  ('company_id', '=', 1),
                  ('state', "=", "en_formation"),
                  ('email', '=', "khouloudachour.97@gmail.com")
                  ]):
 
-            #self = self.with_user(SUPERUSER_ID)
-            # template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-            #     'mcm_openedx.calendlyy'))
-            # template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-            # if not template_id:
-            #     template_id = self.env['ir.model.data'].xmlid_to_res_id(
-            #         'mcm_openedx.calendlyy',
-            #         raise_if_not_found=False)
-            # if not template_id:
-            #     template_id = self.env['ir.model.data'].xmlid_to_res_id(
-            #         'mcm_openedx.calendlyy',
-            #         raise_if_not_found=False)
-            # if template_id:
-            #     partner.with_context(force_send=True).message_post_with_template(template_id,
-            #                                                                         composition_mode='comment', )
-            #
-            #     print(partner.name)
+            self = self.with_user(SUPERUSER_ID)
+            template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                'mcm_openedx.calendlyy'))
+            template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+            if not template_id:
+                template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                    'mcm_openedx.calendlyy',
+                    raise_if_not_found=False)
+            if not template_id:
+                template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                    'mcm_openedx.calendlyy',
+                    raise_if_not_found=False)
+            if template_id:
+                partner_id.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                    composition_mode='comment', )
+
+                print(partner_id.name)
             # APi si il existe des event
             for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
                     [('id', '!=', False)]):
@@ -215,7 +227,7 @@ class event_calendly(models.Model):
                 if not exist_event:
                     if existe.start_at == date.today():
                         calendly = self.env['calendly.rendezvous'].sudo().create({
-                            'partner_id': partner.id,
+                            'partner_id': partner_id.id,
                             'event_starttime': existe.start_at,
                             'event_endtime': existe.start_at,
                             'name': existe.event_name,

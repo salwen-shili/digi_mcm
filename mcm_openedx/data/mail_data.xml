@@ -189,61 +189,67 @@
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="False"/>
         </record>
-     <!--   <record id="calendlyy" model="mail.template">
+        <record id="calendlyy" model="mail.template">
             <field name="name">Contact : Cours en direct</field>
             <field name="model_id" ref="model_mcm_openedx_calendly_event"/>
             <field name="subject">Cours en direct
             </field>
-            <field name="email_from">${object.partner.company_id.email}</field>
-            <field name="partner_to">${object.partner.id}</field>
+            <field name="email_from">${object.partner_id.company_id.email}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
             <field name="body_html" type="html">
                 <div>
 
-                    <br/>
                     <center>
-                        <p>Bonjour ${object.partner.name},</p>
-                         <span align="center" style="border:1px">Cours en Direct -
+                        <img src="https://mcm-academy.odoo.com/web/image/website/1/logo/MCM%20ACADEMY?unique=bb4cb5b"
+                             width="10%"></img>
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <p style="border:1px;color: rgb(0, 0, 0)">Bonjour ${object.partner_id.name},</p>
+                        <span align="center" style="border:1px;color: rgb(0, 0, 0)">
+                            Cours en Direct
+                            -
                             ${object.event_name}, avec MCM Academy à ${object.start_at} .
-                            <br/>
-                            Lieu: https://us02web.zoom.us/j/3872196838
                             <br/>
 
                             <br/>
-                            Modifier cet événement:
                             <center>
                                 <a class="v1action"
-                                   href="https://click.calendly.com/ls/click?upn=iv9HLNn5AOyjxPwviujPh7DR4RzMLa7qT4jYRMhqG6I4JuXO9Q3POMXDYbkvdHDWlzty2wbNF2mRSLYG4Am8q-2F8t7O6f-2Fa8Gyji-2BgGw0cP8TNshBXkLJFeJD0JOsMcZe1suQ_QjVghowPVHd8NqOM42cunSoAYuyyibKDsBmNfGUNCTw3J1pjNFgd832G-2BXk26ETwgXiwbnZcTH6n-2BlgF96TKnRJHLuTUjHwFaA1ud61XNgMFGgT3XFJwSqkao91I8fhmKUbjclX-2B6D4EH-2B6p1lYcB2ZMQ3swvkN3opDEwXdQfRkXxOlWbuXsS8Is-2Btv2BtWKI4W6TzuyLWljqCQhloWckYqO55ZWPsJfu8hSSRjS3uCAVA6iShtm3DoDb-2BgungA-2BQQ47XO5d-2F1GYivv5NBVinw-3D-3D"
-                                   style="font-family: &quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: transparent; border: 1px solid #d0d0d0; color: rgba(26, 26, 26, 0.6)"
+                                   href="https://us02web.zoom.us/j/3872196838"
+
+                                   style="font-family:&quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: rgb(0, 0, 0)
+; border: 1px solid #d0d0d0; color: rgb(255, 255, 255);font-weight: bold;"
+                                   target="_blank" rel="noreferrer">
+                                    Accéder au cours
+                                </a>
+                                <a class="v1action"
+                                   href="${object.reschedule_url}"
+                                   style="font-family: &quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: rgb(0, 0, 0)
+; border: 1px solid #d0d0d0; color: rgb(255, 255, 255);font-weight: bold;
+"
                                    target="_blank" rel="noreferrer">
                                     Replanifier
                                 </a>
-                                <a class="v1action"
-                                   href="https://click.calendly.com/ls/click?upn=iv9HLNn5AOyjxPwviujPh08UKT60H1-2B-2BZvagw2H5AlDnf5GqzKihRXXXjNOGraD7HMb2XRIkJG3EvkFEHOfbrkqUovxx7MgEMAYv3hHiC3G0YvdaZOV3AL12DJadO0YdpdEK_QjVghowPVHd8NqOM42cunSoAYuyyibKDsBmNfGUNCTw3J1pjNFgd832G-2BXk26ETwk4hcVvblXuUflri2wIF8rninmwyjElG2ASDbFXZe9RTA6QPxDhK-2BR9nPjEI7tkF-2FjhK58cA3zVAXmHxDEe-2F6GSGBeBWjRI5-2BzVwDNz-2F3jfV9g7TY9ccYWENrnSvwW81NlME928GMpJr4iXYT0WXlEAvGRV6Fs-2FdSNhnfFBgX0POP9Ua17fFqt7IUei2mxgPx1NhJ-2FxHz8az84x15wOC66Q-3D-3D"
-                                   style="font-family: &quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: transparent; border: 1px solid #d0d0d0; color: rgba(26, 26, 26, 0.6)"
-                                   target="_blank" rel="noreferrer">
-                                    Annuler
-                                </a>
+
+
                             </center>
                             <br/>
                         </span>
 
 
                         <br/>
-                        Cordialement
-                        <br/>
-                        <br/>
-                        MCM Academy
-                        <br/>
+
                         <br/>
                     </center>
 
                 </div>
 
             </field>
-            <field name="lang">${object.partner.lang}</field>
+            <field name="lang">${object.lang}</field>
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="False"/>
-        </record>-->
+        </record>
 
     </data>
 

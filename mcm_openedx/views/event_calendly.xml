@@ -5,7 +5,7 @@
         <field name="model">mcm_openedx.calendly_event</field>
         <field name="arch" type="xml">
             <search>
-                                <field name="owner" filter_domain="[('owner','ilike',self)]"></field>
+                <field name="owner" filter_domain="[('owner','ilike',self)]"></field>
 
                 <filter name="group_owner" string="Formateur" icon="terp-partner"
                         context="{'group_by':'owner'}"/>
@@ -51,6 +51,8 @@
                         <field name="location"/>
                         <field name="start_at"/>
                         <field name="status"/>
+                        <field name="reschedule_url"/>
+                        <field name="cancel_url"/>
                         <field name="scheduling_url_uri"/>
                     </group>
                 </sheet>

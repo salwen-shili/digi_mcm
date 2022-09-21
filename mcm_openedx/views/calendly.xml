@@ -26,6 +26,7 @@
                 <field name="scheduling_url"/>
                 <button name="test_url" string="Lien event" class="oe_highlight" type="object"/>
                 <field name="updated_at"/>
+
                 <field name="uri"/>
                 <field name="slug"/>
 
