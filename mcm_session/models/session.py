@@ -359,12 +359,11 @@ class Session(models.Model):
     def pack_premium_present(self, sum_premium_present):
         """ Calculer le nombre du client present par session selon le pack premium """
         nbr_from_examen_premium = 0
-        nbr_premium = self.env['info.examen'].search(
-                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present'), ('module_id.product_id.default_code', '=', 'premium' )])
-            # if examen.module_id.product_id.default_code == "premium":
-            #     nbr_from_examen_premium += 1
-        for examen in nbr_premium:
-            sum_premium_present = len(nbr_premium)
+        examen = self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('presence', "=", 'present'), ('module_id.product_id.default_code', '=', "premium")])
+        #if examen.module_id.product_id.default_code == "premium":
+        #nbr_from_examen_premium += 1
+        sum_premium_present = len(examen)
         return sum_premium_present
 
     def pack_repassage_present(self, sum_repassage_present):
@@ -435,11 +434,11 @@ class Session(models.Model):
                 if nbr_inscrit_pack_premium.module_id.product_id.default_code == "premium":
                     nbr_canceled_prospect_premium += 1
                     tot_premium = tot_premium + nbr_canceled_prospect_premium
-        nbr_panier_perdu_premium = 0
-        for nbr_inscrit_pack_premium_perdu in self.panier_perdu_ids:
-            if nbr_inscrit_pack_premium_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_premium_perdu.module_id.product_id.default_code == "premium":
-                nbr_panier_perdu_premium += 1
-        sum_premium_inscrit = tot_premium + nbr_panier_perdu_premium
+        #nbr_panier_perdu_premium = 0
+        # for nbr_inscrit_pack_premium_perdu in self.panier_perdu_ids:
+        #     if nbr_inscrit_pack_premium_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_premium_perdu.module_id.product_id.default_code == "premium":
+        #         nbr_panier_perdu_premium += 1
+        sum_premium_inscrit = tot_premium
         return sum_premium_inscrit
 
     def pack_repassage_inscrit(self, sum_repassage_inscrit):
