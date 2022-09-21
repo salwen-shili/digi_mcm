@@ -39,8 +39,8 @@ class AccountMove(models.Model):
     amount = fields.Monetary(string='Montant', compute='_compute_payments_widget_to_reconcile_info', store=True)
     amount_paye = fields.Monetary(string='Montant payé', store=True, readonly=True)
     restamount = fields.Monetary(string='Reste à payé ', compute='_compute_change_amount', store=True, readonly=True)
-    module_id = fields.Many2one('mcmacademy.module', 'Module')
-    session_id = fields.Many2one('mcmacademy.session', 'Session')
+    module_id = fields.Many2one('mcmacademy.module', 'Module',track_visibility='always') #track visibility of module
+    session_id = fields.Many2one('mcmacademy.session', 'Session',track_visibility='always') #track visibility of session
     pricelist_id = fields.Many2one('product.pricelist', 'Liste de prix')
     methodes_payment = fields.Selection(selection=[('cpf', 'CPF'), ('cartebleu', 'Carte bleue')],
                                         String='Méthode de payment')

@@ -8,8 +8,8 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
 
-    session_id=fields.Many2one('mcmacademy.session',required=False)
-    module_id=fields.Many2one('mcmacademy.module',required=False)
+    session_id = fields.Many2one('mcmacademy.session',required=False,track_visibility='always') #track visibility of session
+    module_id=fields.Many2one('mcmacademy.module',required=False,track_visibility='always')#track visibility of module
     conditions =fields.Boolean(default=False)
     failures = fields.Boolean(default=False)
     accompagnement = fields.Boolean(default=False)
