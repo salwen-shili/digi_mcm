@@ -60,52 +60,55 @@ class IdenfyCustomPortal(CustomerPortal):
 
     @http.route('/charger_mes_documents', type="http", auth="user", website=True)
     def create_documents_digimoov(self, **kw):
-        return werkzeug.utils.redirect("/charger_mes_documents_manual", 301)
-        order = request.website.sale_get_order()
-        if not order:
-            return request.redirect("/pricing")
+        if request.website.id == 2:
+            return werkzeug.utils.redirect("/charger_documents", 301)
         else:
-            default_code_bolt = False
-            if order.order_line:
-                for line in order.order_line:
-                    if (line.product_id.default_code == 'vtc_bolt'):
-                        default_code_bolt = True
-                if default_code_bolt:
-                    survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
-                                                                        limit=1)
-                    if survey:
-                        print(survey)
-                        survey_user = request.env['survey.user_input'].sudo().search(
-                            [('partner_id', "=", request.env.user.partner_id.id),
-                             ('survey_id', '=', survey.id)],
-                            order='create_date asc', limit=1)
-                        if not survey_user:
-                            url = '/survey/start/'+str(survey.access_token)
-                            return werkzeug.utils.redirect(url, 301)
-                        if survey_user and survey_user.state == 'new':
-                            url = '/survey/start/'+str(survey.access_token)
-                            return werkzeug.utils.redirect(url, 301)
-                        if survey_user and survey_user.state == 'skip':
-                            return werkzeug.utils.redirect(
-                                str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
-                        if survey_user and survey_user.state == 'done':
-                            if not survey_user.quizz_passed:
-                                return werkzeug.utils.redirect('/bolt', 301)
-        name = http.request.env.user.name
-        email = http.request.env.user.email
-        partner_id = http.request.env.user.partner_id
-        if not partner_id.check_status(request.website):
-            request.website.generate_idenfy_token(
-                user_id=http.request.env.user.id)
-            # called because updating status in the idenfy record.
-            partner_id.idenfy_document_data_id.write({'status': 'ACTIVE'})
-        status = partner_id.idenfy_document_data_id.status
-        if partner_id and status and (status != 'APPROVED' or status == 'ACTIVE'):
-            if request.website.id == 2:  # id 2 of website in database means website DIGIMOOV
-                return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents', {
-                    'email': email, 'name': name, 'partner_id': partner_id, 'ex_warning': '', 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
-            elif request.website.id == 1:  # id 1 of website in database means website MCM ACADEMY
-                return http.request.render('mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm', {
-                    'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
-        else:
-            return request.redirect("/shop/cart/")
+            return werkzeug.utils.redirect("/charger_mes_documents_manual", 301)
+            order = request.website.sale_get_order()
+            if not order:
+                return request.redirect("/pricing")
+            else:
+                default_code_bolt = False
+                if order.order_line:
+                    for line in order.order_line:
+                        if (line.product_id.default_code == 'vtc_bolt'):
+                            default_code_bolt = True
+                    if default_code_bolt:
+                        survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
+                                                                            limit=1)
+                        if survey:
+                            print(survey)
+                            survey_user = request.env['survey.user_input'].sudo().search(
+                                [('partner_id', "=", request.env.user.partner_id.id),
+                                 ('survey_id', '=', survey.id)],
+                                order='create_date asc', limit=1)
+                            if not survey_user:
+                                url = '/survey/start/'+str(survey.access_token)
+                                return werkzeug.utils.redirect(url, 301)
+                            if survey_user and survey_user.state == 'new':
+                                url = '/survey/start/'+str(survey.access_token)
+                                return werkzeug.utils.redirect(url, 301)
+                            if survey_user and survey_user.state == 'skip':
+                                return werkzeug.utils.redirect(
+                                    str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
+                            if survey_user and survey_user.state == 'done':
+                                if not survey_user.quizz_passed:
+                                    return werkzeug.utils.redirect('/bolt', 301)
+            name = http.request.env.user.name
+            email = http.request.env.user.email
+            partner_id = http.request.env.user.partner_id
+            if not partner_id.check_status(request.website):
+                request.website.generate_idenfy_token(
+                    user_id=http.request.env.user.id)
+                # called because updating status in the idenfy record.
+                partner_id.idenfy_document_data_id.write({'status': 'ACTIVE'})
+            status = partner_id.idenfy_document_data_id.status
+            if partner_id and status and (status != 'APPROVED' or status == 'ACTIVE'):
+                if request.website.id == 2:  # id 2 of website in database means website DIGIMOOV
+                    return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents', {
+                        'email': email, 'name': name, 'partner_id': partner_id, 'ex_warning': '', 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
+                elif request.website.id == 1:  # id 1 of website in database means website MCM ACADEMY
+                    return http.request.render('mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm', {
+                        'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
+            else:
+                return request.redirect("/shop/cart/")

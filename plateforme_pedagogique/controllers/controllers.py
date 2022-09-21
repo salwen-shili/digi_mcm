@@ -658,6 +658,16 @@ class WebhookController(http.Controller):
                     #     so.action_cancel()
                     #     so.unlink()
                     user.partner_id.statut = 'won'
+                    # create vals of wizard change state
+                    vals = {
+                        'partner_id': user.partner_id.id,
+                        'statut': 'won',
+                        'session_id': module_id.session_id.id,
+                        'module_id': module_id.id,
+                    }
+                    session_wizard = request.env['res.partner.session.wizard'].sudo().create(
+                        vals) #create wizard with vals
+                    session_wizard.action_modify_partner() #call action of modify partner
                     if not user.partner_id.renounce_request and product_id.default_code != 'habilitation-electrique':
                         if user.partner_id.phone:
                             phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
@@ -763,7 +773,16 @@ class WebhookController(http.Controller):
                     #     so.action_cancel()
                     #     so.unlink()
                     user.partner_id.statut = 'won'
-
+                    #create vals of wizard change state
+                    vals = {
+                        'partner_id': user.partner_id.id,
+                        'statut': 'won',
+                        'session_id': module_id.session_id.id,
+                        'module_id': module_id.id,
+                    }
+                    session_wizard = request.env['res.partner.session.wizard'].sudo().create(
+                        vals) #create wizard with vals
+                    session_wizard.action_modify_partner() #call action of modify partner
 
                     # mail_compose_message = request.env['mail.compose.message']
                     # mail_compose_message.fetch_sendinblue_template()
@@ -1059,6 +1078,17 @@ class WebhookController(http.Controller):
                 if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism":
                     if user.partner_id.numero_cpf == externalId:
                         user.partner_id.statut_cpf = "canceled"
+                        if user.partner_id.mcm_session_id and user.partner_id.module_id :
+                            vals = {
+                                'partner_id': user.partner_id.id,
+                                'statut': 'canceled',
+                                'session_id': user.partner_id.mcm_session_id.id,
+                                'module_id': user.partner_id.module_id.id,
+                            }
+
+                            session_wizard = request.env['res.partner.session.wizard'].sudo().create(
+                                vals)
+                            session_wizard.action_modify_partner()
                         user.partner_id.statut = "canceled"
                         user.partner_id.date_cpf = lastupd
                         user.partner_id.diplome = diplome

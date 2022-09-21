@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_onfido_info_user,onfido_info,model_onfido_info,,1,1,1,1
