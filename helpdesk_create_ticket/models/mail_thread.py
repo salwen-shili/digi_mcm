@@ -52,7 +52,7 @@ class MailThread(models.AbstractModel):
         values.update(msg_kwargs)
         new_message = MailThread._message_create(values)
         if new_message.model in ['helpdesk.ticket',
-                                 'sale.order'] and new_message.message_type == 'user_notification':  # check if odoo send mail of assignment for helpdesk and sale order models
+                                 'sale.order','account.move','res.partner'] and new_message.message_type == 'user_notification':  # check if odoo send mail of assignment for helpdesk,sale order,account move or res partner models
 
             return new_message  # don't send mail of assignment for new tickets and new sale orders
         else:
