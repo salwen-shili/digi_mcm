@@ -749,7 +749,6 @@ class Routes_Site(http.Controller):
         vals["company_id"] = partner.company_id.id
         # get the value of redirection sent from a form of questionnaire
         redirection = kw.get("redirection")
-
         new_quetionnaire = request.env["questionnaire"].sudo().create(vals)
         # Si le client a choisi un pack
         if order:

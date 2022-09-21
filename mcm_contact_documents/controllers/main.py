@@ -713,16 +713,19 @@ class CustomerPortal(CustomerPortal):
 
     @http.route('/charger_mes_documents', type="http", auth="user", website=True)
     def create_documents_digimoov(self, **kw):
-        return werkzeug.utils.redirect("/charger_mes_documents_manual", 301)
-        name = http.request.env.user.name
-        email = http.request.env.user.email
-        partner_id = http.request.env.user.partner_id
-        if request.website.id == 2:  # id 2 of website in database means website DIGIMOOV
-            return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents', {
-                'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
-        elif request.website.id == 1:  # id 1 of website in database means website MCM ACADEMY
-            return http.request.render('mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm', {
-                'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
+        if request.website.id == 2:
+            return werkzeug.utils.redirect("/charger_documents", 301)
+        else:
+            return werkzeug.utils.redirect("/charger_mes_documents_manual", 301)
+            name = http.request.env.user.name
+            email = http.request.env.user.email
+            partner_id = http.request.env.user.partner_id
+            if request.website.id == 2:  # id 2 of website in database means website DIGIMOOV
+                return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents', {
+                    'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
+            elif request.website.id == 1:  # id 1 of website in database means website MCM ACADEMY
+                return http.request.render('mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm', {
+                    'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
 
     @http.route('/charger_mes_documents_manual', type="http", auth="user", website=True)
     def create_documents_manual(self, **kw):
