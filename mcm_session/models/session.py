@@ -400,7 +400,6 @@ class Session(models.Model):
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
             if examen.module_id.product_id.default_code == "avancee":
                 nbr_from_examen_pro += 1
-        nbr_canceled_prospect_pro = 0
         tot = nbr_from_examen_pro + self.nbr_canceled_state_after_14_day(self)
         sum_pro_inscrit = tot
         return sum_pro_inscrit
@@ -448,18 +447,18 @@ class Session(models.Model):
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
             if examen.module_id.product_id.default_code == "examen":
                 nbr_from_examen_repassage += 1
-        nbr_canceled_prospect_repassage = 0
+        #nbr_canceled_prospect_repassage = 0
         tot = nbr_from_examen_repassage
-        for nbr_inscrit_pack_repassage in self.canceled_prospect_ids:
-            if nbr_inscrit_pack_repassage.mcm_session_id.id == self.id:
-                if nbr_inscrit_pack_repassage.module_id.product_id.default_code == "examen":
-                    nbr_canceled_prospect_repassage += 1
-                    tot = tot + nbr_from_examen_repassage
-        nbr_panier_perdu_repassage = 0
-        for nbr_inscrit_pack_repassage_perdu in self.panier_perdu_ids:
-            if nbr_inscrit_pack_repassage_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_repassage_perdu.module_id.product_id.default_code == "examen":
-                nbr_panier_perdu_repassage += 1
-        sum_repassage_inscrit = tot + nbr_panier_perdu_repassage
+        # for nbr_inscrit_pack_repassage in self.canceled_prospect_ids:
+        #     if nbr_inscrit_pack_repassage.mcm_session_id.id == self.id:
+        #         if nbr_inscrit_pack_repassage.module_id.product_id.default_code == "examen":
+        #             nbr_canceled_prospect_repassage += 1
+        #             tot = tot + nbr_from_examen_repassage
+        # nbr_panier_perdu_repassage = 0
+        # for nbr_inscrit_pack_repassage_perdu in self.panier_perdu_ids:
+        #     if nbr_inscrit_pack_repassage_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_repassage_perdu.module_id.product_id.default_code == "examen":
+        #         nbr_panier_perdu_repassage += 1
+        sum_repassage_inscrit = tot
         return sum_repassage_inscrit
 
     def taux_de_presence_solo(self):
