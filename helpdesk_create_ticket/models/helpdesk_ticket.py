@@ -23,7 +23,8 @@ class HelpdeskTicket(models.Model):
                 if not user:
                     partner = self.env['res.partner'].sudo().search([('id', "=", rec['partner_id'])])
                     if partner:
-                        partner.sudo().unlink() # supprimer la fiche contact de client si le client n'a pas de compte
+                        if not partner.est_surveillant and not partner.est_intervenant : #check if partner is not  'surveillan' or 'intervenant'
+                            partner.sudo().unlink() # supprimer la fiche contact de client si le client n'a pas de compte
         # if tickets :
         #     for ticket in tickets:
         #         if ticket.partner_email:
