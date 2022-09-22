@@ -83,6 +83,12 @@ class Session(models.Model):
     #     nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu + self.count_perdu
     #     return nbr_inscrits
 
+    def nombre_abandon(self, nbr_ab):
+        """ Nombre d'abandon"""
+        nbr_ab = 0
+        nbr_ab = self.nbr_canceled_state_after_14_day(self)
+        return nbr_ab
+
     def nbr_client_par_session(self, nbr_inscrits):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
          La fonction est utilisé dans la template de rapport jury"""

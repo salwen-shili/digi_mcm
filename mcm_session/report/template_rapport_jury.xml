@@ -391,7 +391,7 @@
                                     <tr>
                                         <th class="th">Nombre d'abandon
                                             <td class="td">
-                                                <span t-esc="o.count_annule"/>
+                                                <span t-esc="docs.nombre_abandon(nbr_ab)"/>
                                             </td>
 
                                             <td class="td">
