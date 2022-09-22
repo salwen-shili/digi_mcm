@@ -16,7 +16,16 @@
             <input type="hidden" id="api_token" t-att-value="api_token"></input>
             <style>
 
-            .popup .content {
+                @media (max-width: 479px)
+                {
+                    .onfido-sdk-ui-Modal-inner {
+                
+                        height: 80vh; max-block-size: max-content;
+                
+                    }
+                }
+                  
+                .popup .content {
                 max-height: 30%;
                 overflow: unset;
             }
