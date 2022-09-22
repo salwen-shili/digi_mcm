@@ -620,7 +620,7 @@ class Session(models.Model):
                 print("examen", examen)
                 sum_qcm += sum(examen.mapped('epreuve_a'))
         if nbr_present > 0:
-            moyenne_qcm = sum_qcm / nbr_present
+            moyenne_qcm = sum_qcm
             return f'{moyenne_qcm:.2f}'.replace('.00', '')
         else:
             return 0
@@ -637,7 +637,7 @@ class Session(models.Model):
                 print("examen", examen.epreuve_b)
                 sum_qro += sum(examen.mapped('epreuve_b'))
         if nbr_present > 0:
-            moyenne_qro = sum_qro / nbr_present
+            moyenne_qro = sum_qro
             return f'{moyenne_qro:.2f}'.replace('.00', '')
         else:
             return 0
@@ -653,8 +653,7 @@ class Session(models.Model):
                     [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
                 sum_qcm_qro += sum(examen.mapped('moyenne_generale'))
         if nbr_present > 0:
-            moyenne_qcm_qro = sum_qcm_qro / nbr_present
-            print("f'{moyenne_qcm_qro:.2f}'", f'{moyenne_qcm_qro:.2f}'.split('.')[1])
+            moyenne_qcm_qro = sum_qcm_qro
             return f'{moyenne_qcm_qro:.2f}'.replace('.00', '')
         else:
             return 0
