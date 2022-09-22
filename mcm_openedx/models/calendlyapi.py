@@ -207,29 +207,25 @@ class event_calendly(models.Model):
 
                     # APi si il existe des event
                     for existe in self.env['mcm_openedx.calendly_event'].sudo().search([]):
-
                         # Fiche Client odoo chercher si event
-                        exist_events = self.env['calendly.rendezvous'].sudo().search(
+                        exist_event = self.env['calendly.rendezvous'].sudo().search(
                             [('name', "like", existe.event_name), ('event_starttime', '=', existe.start_at)], limit=1)
-
-                        print("exist_event.name", exist_events.name)
+                        print("exist_event.name", exist_event.name)
                         print(existe.event_name)
-
                         if partner.module_id.product_id.default_code == "taxi":
                             print("Taxiiiiii")
                             print(date.today())
                             print(existe.start_at)
-                            if existe.event_name != "Cours en direct - Développement Commercial - Préscilia" or existe.event_name != "Cours en direct - Réglementation VTC - Eric  1H":
-                                if not exist_events:
-                                    if existe.start_at == date.today():
-                                        calendly = self.env['calendly.rendezvous'].sudo().create({
-                                            'partner_id': partner.id,
-                                            'event_starttime': existe.start_at,
-                                            'event_endtime': existe.start_at,
-                                            'name': existe.event_name,
-                                            'zoomlink': existe.location,
-                                        })
-
+                            if not exist_event:
+                                print("not exist ")
+                            if existe.start_at == date.today():
+                                calendly = self.env['calendly.rendezvous'].sudo().create({
+                                    'partner_id': partner.id,
+                                    'event_starttime': existe.start_at,
+                                    'event_endtime': existe.start_at,
+                                    'name': existe.event_name,
+                                    'zoomlink': existe.location,
+                                })
 
                             print("taxiiiiiiiiii")
 
