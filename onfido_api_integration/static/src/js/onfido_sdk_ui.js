@@ -45,11 +45,11 @@ const popup = {
   </div>
   <!--/.icon-->
   <h1 style="color:#000000;margin-top:1rem">
-      Validation échouée!
+  Oups...!
   </h1>
-  <p>Vous pouvez quand même poursuivre votre inscription et choisir votre ville et date d'examen. <br/>Notre service clientèle vous contactera pour valider vos documents.
+  <p>Votre document n'a pas été validé par notre système. <br/> Nous vous invitons à continuer votre inscription le temps de procéder à une vérification humaine. Notre service client se chargera de vous contacter.
   </p>
-  <button onclick="window.location.href='/shop/cart'" type="button" style="background-color:#f44336 !important" class="ods-button shake -action--primary onfido-sdk-ui-Theme-button-centered onfido-sdk-ui-Theme-button-lg">Continuer</button>
+  <button onclick="window.location.href='/shop/cart'" type="button" style="background-color:#4caf50 !important" class="ods-button shake -action--primary onfido-sdk-ui-Theme-button-centered onfido-sdk-ui-Theme-button-lg">Continuer</button>
   
   </div>
   </div>`,

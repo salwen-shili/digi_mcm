@@ -3,7 +3,7 @@
         <t t-call="website.layout">
             <style>
 
-         #onfido-mount{margin: 60px 0;}
+         #onfido-mount{margin: 10px 0px 60px 0;}
          </style>
         
             <!-- Css Calls-->
