@@ -218,7 +218,7 @@ class Session(models.Model):
         for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
             if examen.partner_id.statut == 'won':
                 nbr_absence = examen.env['info.examen'].search_count(
-                    [('session_id', "=", self.id), ('presence', "!=", 'present')])
+                    [('session_id', "=", self.id), ('presence', "=", 'Absent')])
             total_absence = nbr_absence
             return total_absence
 
