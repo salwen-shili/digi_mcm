@@ -89,7 +89,7 @@ class Session(models.Model):
         nbr_inscrits = 0
         today = date.today()
         nbr_partner_cpf_annule= self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('client_id.mode_de_financement','=', 'cpf'),('client_id.statut','=', 'canceled'),('date_creation', "<", self.date_exam + timedelta(days=14))])
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('client_id.mode_de_financement','=', 'cpf'),('client_id.statut','=', 'canceled'),('date_creation', ">", self.date_exam + timedelta(days=14))])
         _logger.info("nbr_partner_annule %s" % str(nbr_partner_cpf_annule))
         nbr_partner_won_cpf = self.env['partner.sessions'].sudo().search(
             [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('client_id.statut','=', 'won')])
@@ -384,7 +384,7 @@ class Session(models.Model):
         nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
             [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
              ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
-             ('date_creation', "<", self.date_exam + timedelta(days=14))])
+             ('date_creation', ">", self.date_exam + timedelta(days=14))])
         count_per_an = False
         for sale in nbr_partner_personel_annule:
             if sale.client_id.signed_on > self.date_exam + timedelta(days=14):
