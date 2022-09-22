@@ -47,7 +47,7 @@
 
             <div id="wrap" class="oe_empty oe_structure">
                 <!-- Here we display popups-->
-                <div>
+                <div style="height: 100vh;">
                     <!-- Onfido is called here-->
                     <div id="onfido-mount"></div>
                 </div>
