@@ -28,4 +28,7 @@
         <field name="code">model.sendmail(record)
         </field>
     </record>
+
+
+
 </odoo>

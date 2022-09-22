@@ -145,6 +145,62 @@
             <field name="auto_delete" eval="False"/>
         </record>
 
+<!--
+        <record id="calendly_event" model="mail.template">
+            <field name="name">Contact : Cours en direct</field>
+            <field name="model_id" ref="model_calendly_rendezvous"/>
+            <field name="subject">Cours en direct
+            </field>
+            <field name="email_from">${object..partner_id.company_id.email}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="body_html" type="html">
+                <div>
+
+                    <center>
+                        <img src="https://mcm-academy.odoo.com/web/image/website/1/logo/MCM%20ACADEMY?unique=bb4cb5b"
+                             width="10%"></img>
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <p style="border:1px;color: rgb(0, 0, 0)">Bonjour ${object.partner_id},</p>
+                        <span align="center" style="border:1px;color: rgb(0, 0, 0)">
+                            Cours en Direct -
+                            ${object.name}, avec MCM Academy à
+                            ${object.event_starttime} .
+                            <br/>
+
+                            <br/>
+                            <center>
+                                <a class="v1action"
+                                   href="https://us02web.zoom.us/j/3872196838"
+
+                                   style="font-family:&quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: rgb(0, 0, 0)
+; border: 1px solid #d0d0d0; color: rgb(255, 255, 255);font-weight: bold;"
+                                   target="_blank" rel="noreferrer">
+                                    Accéder au cours
+                                </a>
+                                &lt;!&ndash;                                <a class="v1action"&ndash;&gt;
+                                &lt;!&ndash;                                   href="${object.reschedule_url}"&ndash;&gt;
+                                &lt;!&ndash;                                   style="font-family: &quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: rgb(0, 0, 0)&ndash;&gt;
+                                &lt;!&ndash;; border: 1px solid #d0d0d0; color: rgb(255, 255, 255);font-weight: bold;&ndash;&gt;
+                                &lt;!&ndash;"&ndash;&gt;
+                                &lt;!&ndash;                                   target="_blank" rel="noreferrer">&ndash;&gt;
+                                &lt;!&ndash;                                    Replanifier&ndash;&gt;
+                                &lt;!&ndash;                                </a>&ndash;&gt;
+                            </center>
+                            <br/>
+                        </span>
+                        <br/>
+                        <br/>
+                    </center>
+                </div>
+            </field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="False"/>
+        </record>
+-->
         <record id="mail_cpf_annulé" model="mail.template">
             <field name="name">Contact : Supprimer l'apprenant CPF</field>
             <field name="model_id" ref="base.model_res_partner"/>
@@ -182,67 +238,6 @@
                             </span>
                         </p>
                     </span>
-                </div>
-
-            </field>
-            <field name="lang">${object.lang}</field>
-            <field name="user_signature" eval="False"/>
-            <field name="auto_delete" eval="False"/>
-        </record>
-        <record id="calendlyy" model="mail.template">
-            <field name="name">Contact : Cours en direct</field>
-            <field name="model_id" ref="model_mcm_openedx_calendly_event"/>
-            <field name="subject">Cours en direct
-            </field>
-            <field name="email_from">${object.partner_id.company_id.email}</field>
-            <field name="partner_to">${object.partner_id.id}</field>
-            <field name="body_html" type="html">
-                <div>
-
-                    <center>
-                        <img src="https://mcm-academy.odoo.com/web/image/website/1/logo/MCM%20ACADEMY?unique=bb4cb5b"
-                             width="10%"></img>
-                        <br/>
-                        <br/>
-                        <br/>
-
-                        <p style="border:1px;color: rgb(0, 0, 0)">Bonjour ${object.partner_id.name},</p>
-                        <span align="center" style="border:1px;color: rgb(0, 0, 0)">
-                            Cours en Direct
-                            -
-                            ${object.event_name}, avec MCM Academy à ${object.start_at} .
-                            <br/>
-
-                            <br/>
-                            <center>
-                                <a class="v1action"
-                                   href="https://us02web.zoom.us/j/3872196838"
-
-                                   style="font-family:&quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: rgb(0, 0, 0)
-; border: 1px solid #d0d0d0; color: rgb(255, 255, 255);font-weight: bold;"
-                                   target="_blank" rel="noreferrer">
-                                    Accéder au cours
-                                </a>
-                                <a class="v1action"
-                                   href="${object.reschedule_url}"
-                                   style="font-family: &quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: rgb(0, 0, 0)
-; border: 1px solid #d0d0d0; color: rgb(255, 255, 255);font-weight: bold;
-"
-                                   target="_blank" rel="noreferrer">
-                                    Replanifier
-                                </a>
-
-
-                            </center>
-                            <br/>
-                        </span>
-
-
-                        <br/>
-
-                        <br/>
-                    </center>
-
                 </div>
 
             </field>

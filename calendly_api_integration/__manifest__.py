@@ -13,12 +13,13 @@
     ],
     'data': [
         'data/api_data.xml',
+        'data/mail_data.xml',
         'security/ir.model.access.csv',
         'views/calendly_rendezvous.xml',
         'views/partner.xml',
         'views/menu.xml',
         'views/calendly.xml',
-    ],
+     ],
     'demo': [
     ],
     'development_status': '',

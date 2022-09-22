@@ -17,8 +17,9 @@ class CalendlyRendezVous(models.Model):
     _description = "Rendez Vous Calendly"
 
     partner_id = fields.Many2one('res.partner',readonly=True)
-    event_starttime = fields.Char('Date de début',readonly=True)
+    event_starttime = fields.Char('Date de début')
     event_endtime = fields.Char('Date de fin',readonly=True)
     name = fields.Char("Nom de l'évènement",readonly=True)
+    zoomlink = fields.Char("Lien de l'évènement")
 
 
