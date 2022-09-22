@@ -195,10 +195,10 @@ class event_calendly(models.Model):
         print("envoyer invitation au apprenant selon leur formation")
         for partner in self.env['res.partner'].sudo().search(
                 [
-                 ('company_id', '=', 1),
-                 ('mcm_session_id.date_exam', '!=', False),
-                 ('email', "=", "khouloudachourtaxi@gmail.com")
-                 ]):
+                    ('company_id', '=', 1),
+                    ('mcm_session_id.date_exam', '!=', False),
+                    ('email', '=', "khouloudachour.97@gmail.com")
+                ]):
 
             if partner.mcm_session_id.date_exam:
                 if partner.mcm_session_id.date_exam.month == todays_date.month:
@@ -210,17 +210,28 @@ class event_calendly(models.Model):
                             [('id', '!=', False)]):
 
                         # Fiche Client odoo chercher si event
-                        exist_events = self.env['calendly.rendezvous'].sudo().search(
-                            [('name', '=', existe.event_name), ('event_starttime', '=', existe.start_at)])
-                        print("exist_event.name", exist_events.name)
-                        print(existe.event_name)
-                        if (partner.module_id.product_id.default_code == "taxi"):
-                            print("Taxiiiiii")
-                            if existe.event_name != "Cours en direct - Développement Commercial - Préscilia" and existe.event_name != "Cours en direct - Réglementation VTC - Eric  1H":
+                        for exist_events in self.env['calendly.rendezvous'].sudo().search(
+                                [('name', '=', existe.event_name),('event_starttime', '=', existe.start_at)]):
+                            print("exist_event.name", exist_events.name)
+                            print(existe.event_name)
+                            if (partner.module_id.product_id.default_code == "taxi"):
+                                print("Taxiiiiii")
+                                if existe.event_name != "Cours en direct - Développement Commercial - Préscilia" and existe.event_name != "Cours en direct - Réglementation VTC - Eric  1H":
+                                    if existe.start_at == date.today():
+                                        if not exist_events:
+                                            calendly = self.env['calendly.rendezvous'].sudo().create({
+                                                'partner_id': partner.id,
+                                                'event_starttime': existe.start_at,
+                                                'event_endtime': existe.start_at,
+                                                'name': existe.event_name,
+                                                'zoomlink': existe.location,
+                                            })
+
+                                    print("taxiiiiiiiiii")
+
+                            elif (partner.module_id.product_id.default_code == "vtc") or partner.module_id.product_id.default_code == "vtc_bolt":
+                                print("vtcccccccccccccc")
                                 if existe.start_at == date.today():
-                                    if exist_events:
-                                        print("existe")
-                                    print("okokokokokokok")
                                     if not exist_events:
                                         print("not exist")
                                         print(date.today())
@@ -233,25 +244,4 @@ class event_calendly(models.Model):
                                             'zoomlink': existe.location,
                                         })
 
-                                print("taxiiiiiiiiii")
-
-                        elif (
-                                partner.module_id.product_id.default_code == "vtc") or partner.module_id.product_id.default_code == "vtc_bolt":
-                            print("vtcccccccccccccc")
-                            if existe.start_at == date.today():
-                                if exist_events:
-                                    print("existe")
-                                print("okokokokokokok")
-                                if not exist_events:
-                                    print("not exist")
-                                    print(date.today())
-                                    print(existe.start_at)
-                                    calendly = self.env['calendly.rendezvous'].sudo().create({
-                                        'partner_id': partner.id,
-                                        'event_starttime': existe.start_at,
-                                        'event_endtime': existe.start_at,
-                                        'name': existe.event_name,
-                                        'zoomlink': existe.location,
-                                    })
-
-                            print(count)
+                                print(count)
