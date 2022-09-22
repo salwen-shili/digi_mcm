@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
       url: `/coordonnees?${Math.floor(Math.random() * 100)}`,
     },
     documents: {
-      message: `<b>Félicitations!</b> Vous avez terminé l'étape <b>Coordonnées</b> de votre inscription. Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité et cliquer sur continuer. :`,
+      message: `<b>Félicitations!</b> Vous avez terminé l'étape <b>Coordonnées</b> de votre inscription. Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre pièce d'identité et cliquer sur continuer. :`,
       url: `/charger_mes_documents?${Math.floor(Math.random() * 100)}`,
     },
     financement: {
