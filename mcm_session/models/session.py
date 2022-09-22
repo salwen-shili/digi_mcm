@@ -187,10 +187,10 @@ class Session(models.Model):
     def pourcentage_client_recu(self, pourcentage):
         """ Calculer pourcentage clients reçus"""
         nbr_recu_total = self.nbr_recus_par_session(self)
-        nbr_inscrits_total = self.nbr_client_par_session(self)
+        nbr_present_total = self.nbr_present_par_session(self)
         pourcentage_without_round = 0
-        if nbr_inscrits_total > 0:
-            pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
+        if nbr_present_total > 0:
+            pourcentage_without_round = (nbr_recu_total * 100 / nbr_present_total)
             pourcentage = f'{pourcentage_without_round:.2f}'.replace('.00',
                                                                      '')  # Garder justes deux chiddre après la virgule
             return pourcentage
@@ -244,6 +244,23 @@ class Session(models.Model):
                 total_absence_justifiée = nbr_absence
                 return total_absence_justifiée
 
+    def nbr_canceled_state_after_14_day_0min(self, res_calc):
+        """ Calculer nbr canceled state after 14 day 0min """
+        nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'), ('client_id.temps_minute', '=', 0)])
+        nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+             ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
+        count_per_an = False
+        for sale in nbr_partner_personel_annule:
+            if sale.client_id.signed_on > self.date_exam + timedelta(days=14):
+                count_per_an += 1
+        counter_per_an = count_per_an
+        res_calc = counter_per_an + len(nbr_partner_cpf_annule)
+        return res_calc
+
     def calculer_zero_min_formation_gagne(self, zero_min_formation_gagne):
         """ Non présentation à la formation """
         for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
@@ -251,7 +268,7 @@ class Session(models.Model):
                 zero_min = self.client_ids.filtered(lambda sw: sw.statut == 'won' and sw.temps_minute == 0)
                 temps_minute_360 = len(zero_min)
                 _logger.info("calculer_zero_min_formation_gagne %s" % str(temps_minute_360))
-                zero_min_formation_gagne = temps_minute_360
+                zero_min_formation_gagne = temps_minute_360 + self.nbr_canceled_state_after_14_day_0min(self)
                 return zero_min_formation_gagne
 
     def pourcentage_calculer_formation_gagne(self, resultat):
@@ -305,9 +322,9 @@ class Session(models.Model):
     def pourcentage_echec(self, prc_echec):
         """ Calculer pourcentage des clients (echec)"""
         nbr_echec = self.nbr_echec(self)
-        nbr_inscrit = self.nbr_client_par_session(self)
-        if nbr_inscrit > 0:
-            res = (nbr_echec * 100 / nbr_inscrit)
+        nbr_present_tot = self.nbr_present_par_session(self)
+        if nbr_present_tot > 0:
+            res = (nbr_echec * 100 / nbr_present_tot)
             if res > 0:
                 prc_echec = f'{res:.2f}'.replace('.00', '')
                 return prc_echec
@@ -464,9 +481,9 @@ class Session(models.Model):
     def taux_de_presence_solo(self):
         """ Calculer taux de presence par session selon le pack solo """
         pack_solo_present = self.pack_solo_present(self)
-        nbr_inscrit = self.pack_solo_inscrit(self)
-        if nbr_inscrit > 0:
-            taux_de_presence = pack_solo_present * 100 / nbr_inscrit
+        nbr_inscrit_solo = self.pack_solo_inscrit(self)
+        if nbr_inscrit_solo > 0:
+            taux_de_presence = pack_solo_present * 100 / nbr_inscrit_solo
             if taux_de_presence > 0:
                 taux_de_presence_solo = f'{taux_de_presence:.2f}'.replace('.00', '')
                 return taux_de_presence_solo
@@ -480,9 +497,9 @@ class Session(models.Model):
     def taux_de_presence_pro(self):
         """ Calculer taux de presence par session selon le pack pro """
         pack_pro_present = self.pack_pro_present(self)
-        nbr_inscrit = self.pack_pro_inscrit(self)
-        if nbr_inscrit > 0:
-            taux_de_presence = pack_pro_present * 100 / nbr_inscrit
+        nbr_inscrit_pro = self.pack_pro_inscrit(self)
+        if nbr_inscrit_pro > 0:
+            taux_de_presence = pack_pro_present * 100 / nbr_inscrit_pro
             if taux_de_presence > 0:
                 taux_de_presence_pro = f'{taux_de_presence:.2f}'.replace('.00', '')
                 return taux_de_presence_pro
