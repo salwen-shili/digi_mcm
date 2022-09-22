@@ -83,14 +83,14 @@ class OnfidoController(http.Controller):
                     partner.birthday = extraction['extracted_data']['date_of_birth']
                 if 'nationality' in extraction['extracted_data']:
                     code_pays = extraction['extracted_data']['nationality']
-                    # nationality = pycountry.countries.get(alpha_3=code_pays)
+                    nationality = pycountry.countries.get(alpha_3=code_pays)
                     translation = gettext.translation('iso3166', pycountry.LOCALES_DIR,languages = ['fr'])
                     translation.install()
                     country=_(nationality.name)
                     _logger.info("translated_nationality %s" % str(translation))
                     _logger.info("translated_nationality %s" % str(country))
                     partner.nationality = country
-                    partner.nationality= pycountry.countries.get(alpha_3=code_pays)
+                    # partner.nationality= pycountry.countries.get(alpha_3=code_pays)
                 if 'place_of_birth' in extraction['extracted_data']:
                     partner.birth_city = extraction['extracted_data']['place_of_birth']
                 # if 'gender' in extraction['extracted_data']:
