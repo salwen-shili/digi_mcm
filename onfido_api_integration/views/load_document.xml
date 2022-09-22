@@ -15,14 +15,7 @@
             <input type="hidden" id="workflow_run_id" t-att-value="workflow_run_id"></input>
             <input type="hidden" id="api_token" t-att-value="api_token"></input>
             <style>
-@media (max-width: 479px)
-{
-    .onfido-sdk-ui-Modal-inner {
 
-        height: 60vh !important;
-
-    }
-}
             .popup .content {
                 max-height: 30%;
                 overflow: unset;
