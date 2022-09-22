@@ -59,8 +59,8 @@ class ResPartner(models.Model):
         }
         data = {
             "applicant_id": applicant_id,
-            "referrer": "http://localhost:8069/*",
-            #  "referrer": "https://www.digimoov.fr/*"
+            # "referrer": "http://localhost:8069/*",
+             "referrer": "https://www.digimoov.fr/*"
         }
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk = response_token.json()
