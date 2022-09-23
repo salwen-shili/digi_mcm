@@ -260,6 +260,7 @@ class Session(models.Model):
              ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
              ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
         count_per_an = False
+        # si le financement de client est personel
         for sale in nbr_partner_personel_annule:
             if sale.client_id.signed_on > self.date_exam + timedelta(days=14):
                 count_per_an += 1
@@ -274,7 +275,7 @@ class Session(models.Model):
                 zero_min = self.client_ids.filtered(lambda sw: sw.statut == 'won' and sw.temps_minute == 0)
                 temps_minute_360 = len(zero_min)
                 _logger.info("calculer_zero_min_formation_gagne %s" % str(temps_minute_360))
-                zero_min_formation_gagne = temps_minute_360 + self.nbr_canceled_state_after_14_day_0min(self)
+                zero_min_formation_gagne = temps_minute_360 + self.nbr_canceled_state_after_14_day_0min(self) #Somme nombre des clients gagnés avec nombre des clients annulés
                 return zero_min_formation_gagne
 
     def pourcentage_calculer_formation_gagne(self, resultat):
@@ -343,20 +344,26 @@ class Session(models.Model):
         nbr_from_examen = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-            if examen.module_id.product_id.default_code == "basique":
+            if examen.module_id.product_id.default_code == "basique" and examen.partner_id.statut == 'won':
                 nbr_from_examen += 1
-        nbr_canceled_prospect = 0
-        tot_solo_inscrit = nbr_from_examen
-        for nbr_inscrit_pack_solo in self.canceled_prospect_ids:
-            if nbr_inscrit_pack_solo.mcm_session_id.id == self.id:
-                if nbr_inscrit_pack_solo.module_id.product_id.default_code == "basique":
-                    nbr_canceled_prospect += 1
-                    tot_solo_inscrit = tot_solo_inscrit + nbr_canceled_prospect
-        nbr_panier_perdu = 0
-        for nbr_inscrit_pack_solo_perdu in self.panier_perdu_ids:
-            if nbr_inscrit_pack_solo.mcm_session_id.id == self.id and nbr_inscrit_pack_solo_perdu.module_id.product_id.default_code == "basique":
-                nbr_panier_perdu += 1
-        sum_solo_inscrit = tot_solo_inscrit + nbr_panier_perdu
+                # Appliquer regle si client a dépassé les 14 jours
+            nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+                [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+                 ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
+                 ('client_id.temps_minute', '=', 0), ('client_id.module_id.product_id.default_code', '=' 'basique')])
+            nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
+                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+                 ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+                 ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
+            count_per_an = False
+            # Si le financement de client est personel
+            for sale in nbr_partner_personel_annule:
+                if sale.client_id.signed_on > self.date_exam + timedelta(days=14) and sale.client_id.module_id.product_id.default_code == "basique":
+                    count_per_an += 1
+            counter_per_an = count_per_an
+            res_calc = counter_per_an + len(nbr_partner_cpf_annule)
+
+        sum_solo_inscrit = nbr_from_examen + res_calc
         return sum_solo_inscrit
 
     def pack_solo_present(self, sum_solo_present):
