@@ -22,6 +22,14 @@ class Questionnaire(models.Model):
         ('Documents en ligne', 'En lisant des documents PDF en ligne'),
         ('En mode audio', 'En écoutant les cours en mode audio'),
         ('Alternance entre tous ces modes', 'En alternant entre tous ces modes d’apprentissage')])
+    availability = fields.Selection([
+      ('Le matin', 'Le matin'),
+        ("L'après-midi", "L'après-midi"),
+        ('Le soir', 'Le soir'),
+        ('Le week-end', 'Le week-end'),
+        ('Peu importe', 'Peu importe'),
+        ('Je ne souhaite pas être coaché', 'Je ne souhaite pas être coaché'),
+        ],string="Disponibilité")
     attentes = fields.Text()
     company_id = fields.Many2one('res.company', string='Société', default=lambda self: self.env.company)
 

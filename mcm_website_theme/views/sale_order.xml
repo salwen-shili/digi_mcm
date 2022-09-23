@@ -28,6 +28,11 @@
                         <field name="support_formation"/>
                     </div>
                     <div>
+                        <label for="availability"
+                               string="Disponibilité"/>
+                        <field name="availability"/>
+                    </div>
+                    <div>
                         <label for="attentes" string="Qu’attendez vous de votre formation ? "/>
                         <field name="attentes"/>
                     </div>

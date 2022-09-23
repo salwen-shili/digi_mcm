@@ -728,6 +728,8 @@ class Routes_Site(http.Controller):
         vals["type_besoins"] = kw.get("type_besoins")
         vals["raison_choix"] = kw.get("group2")
         vals["support_formation"] = kw.get("group3")
+        vals["availability"] = kw.get("group4")
+
         vals["attentes"] = kw.get("attentes")
         partner = http.request.env.user.partner_id
         # Étape suivante est documents
