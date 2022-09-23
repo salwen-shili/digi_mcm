@@ -428,18 +428,16 @@ class Session(models.Model):
         nbr_from_examen_pro = False
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-
             if examen.module_id.product_id.default_code == "avancee" and examen.partner_id.statut == 'won':
                 nbr_from_examen_pro += 1
-            # Appliquer regle si client a dépassé les 14 jours
+        # Appliquer regle si client a dépassé les 14 jours
         nbr_partner_personel_annule_pro = self.env['partner.sessions'].sudo().search(
             [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
-             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
-             ('client_id.temps_minute', '=', 0)])
+             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled')])
         nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
             [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
              ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
-             ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
+             ('date_creation', ">", self.date_exam + timedelta(days=14))])
         count_per_an = False
         # Si le financement de client est personel
         for sale in nbr_partner_personel_annule_pro:
