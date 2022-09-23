@@ -9,17 +9,19 @@
     'category': 'API',
     'author': 'MCM ACADEMY',
     'website': '',
-    'depends': ['base','mcm_session','crm','website','mcm_website_theme','partner_exam',
-    ],
+    'depends': ['base', 'mcm_session', 'crm', 'website', 'mcm_website_theme', 'partner_exam',
+                ],
     'data': [
         'data/api_data.xml',
         'data/mail_data.xml',
+        'data/automation_action_add_evalbox.xml',
+
         'security/ir.model.access.csv',
         'views/calendly_rendezvous.xml',
         'views/partner.xml',
         'views/menu.xml',
         'views/calendly.xml',
-     ],
+    ],
     'demo': [
     ],
     'development_status': '',

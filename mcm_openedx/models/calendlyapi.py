@@ -158,7 +158,7 @@ class event_calendly(models.Model):
             start_at_char = str(start_at_char).replace('T', ' ')
             start_at_char = start_at_char.split(".")
             start_at_char = start_at_char[0]
-            print("start_at_charstart_at_char",start_at_char)
+            print("start_at_charstart_at_char", start_at_char)
             status = response['status']
             cancel_url = response_inv[0]['cancel_url']
             reschedule_url = response_inv[0]['reschedule_url']
@@ -229,11 +229,13 @@ class event_calendly(models.Model):
                                 if existe.start_at == todays_date:
                                     calendly = self.env['calendly.rendezvous'].sudo().create({
                                         'partner_id': partner.id,
+                                        'email': partner.email,
+                                        'phone': partner.phone,
                                         'name': existe.event_name,
                                         'zoomlink': existe.event_name,
                                     })
                                     calendly.event_starttime = existe.start_at
-                                    calendly.event_starttime = existe.start_at_char
+                                    calendly.event_starttime_char = existe.start_at_char
                                     calendly.event_endtime = existe.start_at
                     if partner.module_id.product_id.default_code == "vtc" or partner.module_id.product_id.default_code == "vtc_bolt":
                         count = count + 1
