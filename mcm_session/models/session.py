@@ -362,8 +362,8 @@ class Session(models.Model):
                     count_per_an += 1
             counter_per_an = count_per_an
             res_calc = counter_per_an + len(nbr_partner_cpf_annule)
-
-        sum_solo_inscrit = nbr_from_examen + res_calc
+        tot = res_calc
+        sum_solo_inscrit = nbr_from_examen + tot
         return sum_solo_inscrit
 
     def pack_solo_present(self, sum_solo_present):
