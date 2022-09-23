@@ -312,6 +312,8 @@ class Routes_Site(http.Controller):
             mcm_products = request.env["product.product"].sudo().search([("company_id", "=", 1)], order="list_price")
             values = {
                 "mcm_products": mcm_products,  # send mcm product to formation passerelle taxi
+                "signup_enabled" : True,
+                "reset_password_enabled" : True,
             }
             return request.render("mcm_website_theme.formation-passerelle-taxi-en-ligne", values)
         else:

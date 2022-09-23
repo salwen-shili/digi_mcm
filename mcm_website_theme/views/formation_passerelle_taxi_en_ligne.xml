@@ -72,13 +72,14 @@
                                         <form method="post" action="/web/signup" class="form" id="form1">
                                             <h2 class="form__title">Sign Up</h2>
                                              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                            <input type="hidden" class="input" name="passerelle" value="passerelle"/>
                                             <input type="text" placeholder="Nom*" class="input" name="lastName"/>
                                             <input type="text" placeholder="Prénom" class="input" name="firstname"/>
                                             <input type="text" placeholder="Téléphone *" class="input" name="phone"/>
                                             <input type="text" placeholder="Code postal *" class="input" name="zip"/>
                                             <input type="text" placeholder="Adresse postal *" class="input"
                                                    name="street"/>
-                                            <input type="email" placeholder="Email" class="input" name="name"/>
+                                            <input type="email" placeholder="Email" class="input" name="login"/>
                                             <input type="password" placeholder="Password" class="input"
                                                    name="password"/>
                                             <button type="submit" class="btn btn-primary" style="width:50%">
