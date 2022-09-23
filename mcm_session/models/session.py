@@ -483,23 +483,27 @@ class Session(models.Model):
 
     def pack_repassage_inscrit(self, sum_repassage_inscrit):
         """ Calculer le nombre du client inscrit par session selon le pack repassage """
-        nbr_from_examen_repassage = 0
+        nbr_from_examen = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-            if examen.module_id.product_id.default_code == "examen":
-                nbr_from_examen_repassage += 1
-        #nbr_canceled_prospect_repassage = 0
-        tot = nbr_from_examen_repassage
-        # for nbr_inscrit_pack_repassage in self.canceled_prospect_ids:
-        #     if nbr_inscrit_pack_repassage.mcm_session_id.id == self.id:
-        #         if nbr_inscrit_pack_repassage.module_id.product_id.default_code == "examen":
-        #             nbr_canceled_prospect_repassage += 1
-        #             tot = tot + nbr_from_examen_repassage
-        # nbr_panier_perdu_repassage = 0
-        # for nbr_inscrit_pack_repassage_perdu in self.panier_perdu_ids:
-        #     if nbr_inscrit_pack_repassage_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_repassage_perdu.module_id.product_id.default_code == "examen":
-        #         nbr_panier_perdu_repassage += 1
-        sum_repassage_inscrit = tot
+            if examen.module_id.product_id.default_code == "examen" and examen.partner_id.statut == 'won':
+                nbr_from_examen += 1
+        # Appliquer regle si client a dépassé les 14 jours
+        nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
+             ('client_id.temps_minute', '=', 0)])
+        nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+             ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
+        count_per_an = False
+        # Si le financement de client est personel
+        for sale in nbr_partner_personel_annule:
+            if sale.client_id.signed_on > self.date_exam + timedelta(
+                    days=14) and sale.client_id.module_id.product_id.default_code == "examen":
+                count_per_an += 1
+        sum_repassage_inscrit = count_per_an + len(nbr_partner_cpf_annule) + nbr_from_examen
         return sum_repassage_inscrit
 
     def taux_de_presence_solo(self):
