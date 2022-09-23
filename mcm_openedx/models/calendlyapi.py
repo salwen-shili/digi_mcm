@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
-from datetime import date
-
 import werkzeug
+from datetime import date
 
 from odoo import models, http, fields, SUPERUSER_ID
 import http.client
@@ -215,13 +214,14 @@ class event_calendly(models.Model):
                                 [('name', '=', existe.event_name), ('event_starttime', '=', existe.start_at)])
                             print("exist_event.name", exist_event.name)
                             print(existe.event_name)
-                            if not exist_event and (
-                                    existe.event_name != "Cours en direct - Développement Commercial - Préscilia" or existe.event_name != "Cours en direct - Réglementation VTC - Eric  1H"):
-                                if existe.start_at == date.today():
-                                    calendly = self.env['calendly.rendezvous'].sudo().create({
-                                        'partner_id': partner.id,
-                                        'event_starttime': existe.start_at,
-                                        'event_endtime': existe.start_at,
-                                        'name': existe.event_name,
-                                        'zoomlink': existe.location,
-                                    })
+                            if existe.event_name != "Cours en direct - Développement Commercial - Préscilia":
+                                if existe.event_name != "Cours en direct - Réglementation VTC - Eric 1H":
+                                    if not exist_event:
+                                        if existe.start_at == todays_date:
+                                            calendly = self.env['calendly.rendezvous'].sudo().create({
+                                                'partner_id': partner.id,
+                                                'name': existe.event_name,
+                                                'zoomlink': existe.event_name,
+                                            })
+                                            calendly.event_starttime = existe.start_at
+                                            calendly.event_endtime = existe.start_at
