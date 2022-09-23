@@ -232,6 +232,68 @@
 
 
                                     </fieldset>
+
+                                    <fieldset class="col-12 text-left " id="group4">
+                                        <h4>
+                                            Veuillez nous indiquer vos disponibilités :
+
+                                        </h4>
+                                        <label for="rad-20" class="radio ">
+                                            <input id="rad-20" type="radio" value="Le matin" name="group4" />
+                                            <span class="label">Le matin
+                                            </span>
+
+                                            <span class="col-lg-12 pt16 " style=""></span>
+                                        </label>
+                                        <br/>
+                                        <label for="rad-21" class="radio ">
+                                            <input id="rad-21" type="radio" value="L'après-midi" name="group4" />
+                                            <span class="label">L'après-midi
+                                            </span>
+
+                                            <span class="col-lg-12 pt16 " style=""></span>
+                                        </label>
+                                        <br/>
+                                        <label for="rad-22" class="radio ">
+                                            <input id="rad-22" type="radio" value="Le week-end" name="group4" />
+                                            <span class="label">Le week-end
+                                            </span>
+
+                                            <span class="col-lg-12 pt16 " style=""></span>
+                                        </label>
+                                        <br/>
+                                        <label for="rad-23" class="radio ">
+                                            <input id="rad-23" type="radio" value="Peu importe" name="group4" />
+                                            <span class="label">Peu importe
+                                            </span>
+
+                                            <span class="col-lg-12 pt16 " style=""></span>
+                                        </label>
+                                        <br/>
+                                        <label for="rad-24" class="radio ">
+                                            <input id="rad-24" type="radio" value="Je ne souhaite pas être coaché" name="group4" />
+                                            <span class="label">Je ne souhaite pas être coaché
+                                            </span>
+
+                                            <span class="col-lg-12 pt16 " style=""></span>
+                                        </label>
+                                       
+                                       
+                                        <p style="    font-style: italic;
+    color: #000000;
+    background: #fff47d69;
+    margin: 0;
+    padding: 6px;
+    margin-right: 20px;
+    font-size: revert; display:none" id="error3"></p>
+                                        <div class="btn-container">
+                                            <input type="button" name="next" class="next action-button" value="Suivant" />
+                                            <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
+                                        </div>
+
+
+                                    </fieldset>
+                                  
                                     <fieldset class="col-12 text-left " id="5">
                                         <h4>
                                             Qu’attendez vous de votre formation ?
@@ -256,8 +318,10 @@
                                         <input type="hidden" value="" id="redirection" name="redirection" />
 
                                     </fieldset>
+                                 
 
                                     <div style="text-align:center;margin-top:40px;">
+                                        <span class="step"></span>
                                         <span class="step"></span>
                                         <span class="step"></span>
                                         <span class="step"></span>

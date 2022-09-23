@@ -16,6 +16,7 @@
                             <field name="type_besoins"/>
                             <field name="raison_choix"/>
                             <field name="support_formation"/>
+                            <field name="availability" string="Disponibilité"/>
                             <field name="attentes"/>
                             <field name="company_id"/>
                         </div>
@@ -36,7 +37,9 @@
                     <field name="type_besoins"/>
                     <field name="raison_choix"/>
                     <field name="support_formation"/>
+                    <field name="availability"/>
                     <field name="attentes"/>
+                   
                     <field name="company_id"/>
                 </tree>
 

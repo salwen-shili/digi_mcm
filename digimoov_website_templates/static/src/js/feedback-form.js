@@ -32,6 +32,7 @@ $(document).ready(function () {
   const group1 = $('input[type=radio][name=group1]');
   const group2 = $('input[type=radio][name=group2]');
   const group3 = $('input[type=radio][name=group3]');
+  const group4 = $('input[type=radio][name=group4]');
   //   const textarea1 = $("#text1");
   const textarea2 = $('#text2');
   var error;
@@ -51,8 +52,12 @@ $(document).ready(function () {
       case 3:
         pass = check('group3');
         error = $('#error3');
-        break;
-      case 4:
+      break;
+        case 4:
+        pass = check('group4');
+        error = $('#error4');
+      break;
+      case 5:
         pass = textarea2.val();
         error = $('#error4');
         break;
@@ -64,7 +69,7 @@ $(document).ready(function () {
       next_fs = $(this).parent().parent().next();
       // 4 is the final step
       // if partner has documents submit the form if not show the notification popup
-      if (current == 4) {
+      if (current == 5) {
         pass = 0;
         error.text('');
         error.hide();
@@ -72,7 +77,7 @@ $(document).ready(function () {
         window.location.href = '#popup1';
         return false;
       }
-      if (current == 4) return;
+      if (current == 5) return;
       next_fs.show();
       //hide the current fieldset with style
       current_fs.animate(
@@ -101,7 +106,7 @@ $(document).ready(function () {
       error.hide();
     }
 
-    // if (pass.length > 1 && current === 4) {
+    // if (pass.length > 1 && current === 5) {
     //   console.log(pass.length);
     else {
       error.text('Veuillez répondre à la question');
