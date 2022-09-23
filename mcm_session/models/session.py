@@ -425,15 +425,12 @@ class Session(models.Model):
 
     def pack_pro_inscrit(self, sum_pro_inscrit):
         """ Calculer le nombre du client inscrit par session selon le pack pro """
-        nbr_from_examen_pro = 0
-        nbr_from_examen = False
+        nbr_from_examen_pro = False
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-            if examen.module_id.product_id.default_code == "avancee":
-                nbr_from_examen_pro += 1
 
-        if examen.module_id.product_id.default_code == "avancee" and examen.partner_id.statut == 'won':
-            nbr_from_examen += 1
+            if examen.module_id.product_id.default_code == "avancee" and examen.partner_id.statut == 'won':
+                nbr_from_examen_pro += 1
             # Appliquer regle si client a dépassé les 14 jours
         nbr_partner_personel_annule_pro = self.env['partner.sessions'].sudo().search(
             [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
@@ -456,39 +453,32 @@ class Session(models.Model):
         return sum_pro_inscrit
 
 
-
-
-        # for nbr_inscrit_pack_pro in self.canceled_prospect_ids:
-        #     if nbr_inscrit_pack_pro.mcm_session_id.id == self.id:
-        #         if nbr_inscrit_pack_pro.module_id.product_id.default_code == "avancee":
-        #             nbr_canceled_prospect_pro += 1
-        #             tot = nbr_canceled_prospect_pro + nbr_from_examen_pro
-        nbr_panier_perdu_pro = 0
-        # for nbr_inscrit_pack_pro_perdu in self.panier_perdu_ids:
-        #     if nbr_inscrit_pack_pro_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_pro_perdu.module_id.product_id.default_code == "avancee":
-        #         nbr_panier_perdu_pro += 1
-        sum_pro_inscrit = tot
-        return sum_pro_inscrit
-
     def pack_premium_inscrit(self, sum_premium_inscrit):
         """ Calculer le nombre du client inscrit par session selon le pack premium """
         nbr_from_examen_premium = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-            if examen.module_id.product_id.default_code == "premium":
+
+            if examen.module_id.product_id.default_code == "premium" and examen.partner_id.statut == 'won':
                 nbr_from_examen_premium += 1
-        nbr_canceled_prospect_premium = 0
-        tot_premium = nbr_from_examen_premium
-        for nbr_inscrit_pack_premium in self.canceled_prospect_ids:
-            if nbr_inscrit_pack_premium.mcm_session_id.id == self.id:
-                if nbr_inscrit_pack_premium.module_id.product_id.default_code == "premium":
-                    nbr_canceled_prospect_premium += 1
-                    tot_premium = tot_premium + nbr_canceled_prospect_premium
-        #nbr_panier_perdu_premium = 0
-        # for nbr_inscrit_pack_premium_perdu in self.panier_perdu_ids:
-        #     if nbr_inscrit_pack_premium_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_premium_perdu.module_id.product_id.default_code == "premium":
-        #         nbr_panier_perdu_premium += 1
-        sum_premium_inscrit = tot_premium
+        # Appliquer regle si client a dépassé les 14 jours
+        nbr_partner_personel_annule_premium = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
+             ('client_id.temps_minute', '=', 0)])
+        nbr_partner_cpf_annule_premium = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+             ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
+        count_per_an_premium = False
+        # Si le financement de client est personel
+        for sale in nbr_partner_personel_annule_premium:
+            if sale.client_id.signed_on > self.date_exam + timedelta(
+                    days=14) and sale.client_id.module_id.product_id.default_code == "premium":
+                count_per_an_premium += 1
+        counter_per_an = count_per_an_premium
+        res_calc_premium = counter_per_an + len(nbr_partner_cpf_annule_premium) + nbr_from_examen_premium
+        sum_premium_inscrit = res_calc_premium
         return sum_premium_inscrit
 
     def pack_repassage_inscrit(self, sum_repassage_inscrit):
