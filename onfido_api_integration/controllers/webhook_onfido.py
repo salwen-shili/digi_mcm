@@ -102,7 +102,6 @@ class OnfidoController(http.Controller):
             document_back_id=data['document_back']['id']
             name_back=str(data['document_back']['type'])+"_"+str(data['document_back']['side'])
             download_document_back = partner.downloadDocument(document_back_id, website.onfido_api_key_live)
-            download_face_photo = partner.downloadFace(partner.onfido_applicant_id, website.onfido_api_key_live)
             image_back_binary = base64.b64encode(download_document_back)
             attachement_back = request.env['documents.document'].sudo().create(
                 {
@@ -118,8 +117,10 @@ class OnfidoController(http.Controller):
                 data_onfido.id_document_back = document_back_id
             # _logger.info('back %s' % str(attachement_back))
         if 'face' in data:
+            download_face_photo = partner.downloadFace(partner.onfido_applicant_id, website.onfido_api_key_live)
             face_id=data['face']['id']
             face_binary = base64.b64encode(download_face_photo)
+            _logger.info('face %s' % str(face_binary))
             attachement_face = request.env['documents.document'].sudo().create(
                 {
                     'name': "Visage",
@@ -167,8 +168,8 @@ class OnfidoController(http.Controller):
                 if 'visual_authenticity' in  report['breakdown']:
                     breakdown_origin = report['breakdown']['visual_authenticity']
                     if breakdown_origin['result'] != 'clear':
-                        motif_fiche = "Documents non originaux."
-                        message_ticket = "Motif : type de documents scannés ou capture d'écran."
+                        motif_fiche = "Type de documents scannés ou capture d'écran."
+                        message_ticket = "Motif : Type de documents scannés ou capture d'écran."
                         _logger.info('breakdown %s' % str(breakdown_origin['result']))
                 if 'image_integrity' in report['breakdown']:
                     breakdown_quality = report['breakdown']['image_integrity']
