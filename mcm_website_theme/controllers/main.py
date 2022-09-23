@@ -306,6 +306,17 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_template_taxi", values)
 
+    @http.route("/formation-passerelle-taxi-en-ligne", type="http", auth="public", website=True)
+    def passerelle_taxi(self):
+        if request.website.id == 1:
+            mcm_products = request.env["product.product"].sudo().search([("company_id", "=", 1)], order="list_price")
+            values = {
+                "mcm_products": mcm_products,  # send mcm product to formation passerelle taxi
+            }
+            return request.render("mcm_website_theme.formation-passerelle-taxi-en-ligne", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
     @http.route("/formation-chauffeur-taxi", type="http", auth="public", website=True)
     def chauffeur_taxi(self):
         if request.website.id == 1:
