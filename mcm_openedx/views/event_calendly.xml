@@ -25,6 +25,7 @@
                 <field name="scheduling_url_created_at"/>
                 <field name="scheduling_url_updated_at"/>
                 <field name="location"/>
+                <field name="start_at_char"/>
                 <field name="start_at"/>
                 <field name="status"/>
                 <button name="send_invitation" string="Envoyer Invitation" class="oe_highlight" type="object"/>
@@ -50,6 +51,8 @@
                         <field name="scheduling_url_updated_at"/>
                         <field name="location"/>
                         <field name="start_at"/>
+                        <field name="start_at_char"/>
+
                         <field name="status"/>
                         <field name="reschedule_url"/>
                         <field name="cancel_url"/>

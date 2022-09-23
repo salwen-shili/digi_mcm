@@ -28,7 +28,7 @@ class calendly_integration(models.Model):
     updated_at = fields.Date(string="updated_at")
     uri = fields.Char(string="uri ")
 
-    def khou(self):
+    def type_event(self):
         querystring = {"active": "true",
                        "organization": "https://api.calendly.com/organizations/c7e28d20-f7eb-475f-954a-7ae1a36705e3",
                        "user": "https://api.calendly.com/users/5aa95e72-35ab-4391-8ff6-34cdd4e34f86"}
@@ -99,6 +99,7 @@ class event_calendly(models.Model):
     event_name = fields.Char(string="name")
     location = fields.Char(string="Location")
     start_at = fields.Date(string="start_at")
+    start_at_char = fields.Char(string="start_at")
     status = fields.Boolean(string="active")
     owner = fields.Char(string="Formateur")
     reschedule_url = fields.Char(string="reschedule_url")
@@ -106,6 +107,7 @@ class event_calendly(models.Model):
     partner_id = fields.Many2one('res.partner')
 
     def event(self):
+        new_format = '%d %B, %Y, %H:%M:%S'
         headers = {
             "Content-Type": "application/json",
             "Authorization": "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjYzMTQ4NjA2LCJqdGkiOiJkZDUwYWIxNy04ZDM3LTQyMjYtOGMzYy02NzMyNzI1MTM2NmUiLCJ1c2VyX3V1aWQiOiI1YWE5NWU3Mi0zNWFiLTQzOTEtOGZmNi0zNGNkZDRlMzRmODYifQ.TKiAMPGQFUdBODBHq8H-0LgQnbkldxW5V_hFacDyJgn53B-MbTQcBHLqwPx8uN_CiLfJahF_NJ1V4cc0Z5gmqg"
@@ -152,6 +154,11 @@ class event_calendly(models.Model):
                 owner = event_name
             location = response['location']['location']
             start_at = response['start_time']
+            start_at_char = response['start_time']
+            start_at_char = str(start_at_char).replace('T', ' ')
+            start_at_char = start_at_char.split(".")
+            start_at_char = start_at_char[0]
+            print("start_at_charstart_at_char",start_at_char)
             status = response['status']
             cancel_url = response_inv[0]['cancel_url']
             reschedule_url = response_inv[0]['reschedule_url']
@@ -175,6 +182,7 @@ class event_calendly(models.Model):
                         'event_name': event_name,
                         'location': location,
                         'start_at': start_at,
+                        'start_at_char': start_at_char,
                         'reschedule_url': reschedule_url,
                         'cancel_url': cancel_url,
                         'status': status,
@@ -225,6 +233,7 @@ class event_calendly(models.Model):
                                         'zoomlink': existe.event_name,
                                     })
                                     calendly.event_starttime = existe.start_at
+                                    calendly.event_starttime = existe.start_at_char
                                     calendly.event_endtime = existe.start_at
                     if partner.module_id.product_id.default_code == "vtc" or partner.module_id.product_id.default_code == "vtc_bolt":
                         count = count + 1
@@ -245,8 +254,11 @@ class event_calendly(models.Model):
                                 if existe.start_at == todays_date:
                                     calendly = self.env['calendly.rendezvous'].sudo().create({
                                         'partner_id': partner.id,
+                                        'email': partner.email,
+                                        'phone': partner.phone,
                                         'name': existe.event_name,
                                         'zoomlink': existe.event_name,
                                     })
                                     calendly.event_starttime = existe.start_at
+                                    calendly.event_starttime_char = existe.start_at_char
                                     calendly.event_endtime = existe.start_at
