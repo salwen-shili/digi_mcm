@@ -208,20 +208,45 @@ class event_calendly(models.Model):
                         # APi si il existe des event
                         # APi si il existe des event
                         for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
-                                [('id', '!=', False)]):
+                                [('id', '!=', False),
+                                 ('event_name', '!=', ["Cours en direct - Développement Commercial - Préscilia",
+                                                       "Cours en direct - Réglementation VTC - Eric 1H"])]):
+                            print(existe.event_name)
                             # Fiche Client odoo chercher si event
                             exist_event = self.env['calendly.rendezvous'].sudo().search(
                                 [('name', '=', existe.event_name), ('event_starttime', '=', existe.start_at)])
                             print("exist_event.name", exist_event.name)
                             print(existe.event_name)
-                            if existe.event_name != "Cours en direct - Développement Commercial - Préscilia":
-                                if existe.event_name != "Cours en direct - Réglementation VTC - Eric 1H":
-                                    if not exist_event:
-                                        if existe.start_at == todays_date:
-                                            calendly = self.env['calendly.rendezvous'].sudo().create({
-                                                'partner_id': partner.id,
-                                                'name': existe.event_name,
-                                                'zoomlink': existe.event_name,
-                                            })
-                                            calendly.event_starttime = existe.start_at
-                                            calendly.event_endtime = existe.start_at
+                            if not exist_event:
+                                if existe.start_at == todays_date:
+                                    calendly = self.env['calendly.rendezvous'].sudo().create({
+                                        'partner_id': partner.id,
+                                        'name': existe.event_name,
+                                        'zoomlink': existe.event_name,
+                                    })
+                                    calendly.event_starttime = existe.start_at
+                                    calendly.event_endtime = existe.start_at
+                    if partner.module_id.product_id.default_code == "vtc" or partner.module_id.product_id.default_code == "vtc_bolt":
+                        count = count + 1
+                        print(partner.email)
+
+                        # APi si il existe des event
+                        # APi si il existe des event
+                        for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
+                                [('id', '!=', False),
+                                 ]):
+                            print(existe.event_name)
+                            # Fiche Client odoo chercher si event
+                            exist_event = self.env['calendly.rendezvous'].sudo().search(
+                                [('name', '=', existe.event_name), ('event_starttime', '=', existe.start_at)])
+                            print("exist_event.name", exist_event.name)
+                            print(existe.event_name)
+                            if not exist_event:
+                                if existe.start_at == todays_date:
+                                    calendly = self.env['calendly.rendezvous'].sudo().create({
+                                        'partner_id': partner.id,
+                                        'name': existe.event_name,
+                                        'zoomlink': existe.event_name,
+                                    })
+                                    calendly.event_starttime = existe.start_at
+                                    calendly.event_endtime = existe.start_at
