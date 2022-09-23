@@ -450,7 +450,6 @@ class Session(models.Model):
         sum_pro_inscrit = tot
         return sum_pro_inscrit
 
-
     def pack_premium_inscrit(self, sum_premium_inscrit):
         """ Calculer le nombre du client inscrit par session selon le pack premium """
         nbr_from_examen_premium = 0
