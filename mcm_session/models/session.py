@@ -350,7 +350,7 @@ class Session(models.Model):
             nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
                 [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
                  ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
-                 ('client_id.temps_minute', '=', 0), ('client_id.module_id.product_id.default_code', '=' 'basique')])
+                 ('client_id.temps_minute', '=', 0), ('client_id.module_id.product_id.default_code', '=' "basique")])
             nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
                  ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
