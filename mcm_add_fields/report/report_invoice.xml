@@ -123,7 +123,7 @@
                         <!--                        </h6>-->
                         <h6 t-if="o.methodes_payment=='cpf'">
                              <span>Prix de la formation:</span>
-                            <span t-field="o.module_id.product_id.lst_price" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                         </h6>
                     </div>
                     <div class="col-auto mw-200 mb-4" name="reference" invisible="1" style="visibility:hidden;">
@@ -592,10 +592,6 @@
                             <div>
                                 <span t-field="company.partner_id.zip"/>
                                 <span t-field="company.partner_id.city"/>
-                            </div>
-                            <div>
-                                Email:
-                                <span t-field="company.partner_id.email"/>
                             </div>
                             <div>
                                 Tel:
