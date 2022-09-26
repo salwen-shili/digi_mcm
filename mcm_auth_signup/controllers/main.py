@@ -102,18 +102,21 @@ class AuthSignupHome(AuthSignupHome):
                 kw['login'] = qcontext.get('login').replace(' ', '').lower()
                 user_sudo = request.env['res.users'].sudo().search(
                     [('login', "=", qcontext.get('login').replace(' ', '').lower())])
+                _logger.info('qcontext1 : %s' % str(qcontext))
                 if 'passerelle' in qcontext :
-                    print("passerelle:",qcontext.get('passerelle'))
-                    print('user_sudo : ',user_sudo)
-                    print('post qcontext : ',qcontext)
+                    _logger.info('passerelle: %s' % str(qcontext.get('passerelle')))
+                    _logger.info('user sudo : %s' % str(user_sudo))
+                    _logger.info('post qcontext : %s' % str(qcontext))
                     if user_sudo:
                         product_id = request.env['product.product'].sudo().search(
-                            [('default_code', "=", "taxi"), ('company_id', "=", 1)], limit=1)
+                            [('default_code', "=", "passerelle-taxi"), ('company_id', "=", 1)], limit=1)
                         if product_id:
+
                             so = request.env['sale.order'].sudo().create({
                                 'partner_id': user_sudo.partner_id.id,
                                 'company_id': 1,
-                                'website_id': 1
+                                'website_id': 1,
+                                'fiscal_position_id':1,
                             })
 
                             so_line = request.env['sale.order.line'].sudo().create({
@@ -123,11 +126,15 @@ class AuthSignupHome(AuthSignupHome):
                                 'product_uom': product_id.uom_id.id,
                                 'price_unit': product_id.list_price,
                                 'order_id': so.id,
+                                'price_subtotal': product_id.list_price,
                                 'tax_id': product_id.taxes_id,
                                 'company_id': 1,
                             })
                             if so :
+                                so.amount_untaxed = product_id.list_price
                                 kw['redirect'] = 'felicitations'
+                    else:
+                        _logger.info('kw : %s' % str(kw))
                 return self.web_login(*args, **kw)
             except UserError as e:
                 qcontext['error'] = e.name or e.value
