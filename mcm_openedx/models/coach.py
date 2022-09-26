@@ -249,7 +249,7 @@ class enattente(models.Model):
                             'lastName': lastName,
                             'firstName': firstName,
                         })
-                        print(new)
+                        _logger.info(new)
 
 
 class Coach(models.Model):
