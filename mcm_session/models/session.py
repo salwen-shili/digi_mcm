@@ -680,9 +680,11 @@ class Session(models.Model):
                 sum_qcm_qro = moy_qcm + moy_qro
         if nbr_present > 0:
             moyenne_qcm_qro = sum_qcm_qro
-            return f'{moyenne_qcm_qro:.2f}'.replace('.00', '')
-        else:
-            return 0
+            return moyenne_qcm_qro
+        #     moyenne_qcm_qro = sum_qcm_qro
+        #     return f'{moyenne_qcm_qro:.2f}'.replace('.00', '')
+        # else:
+        #     return 0
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
