@@ -736,8 +736,15 @@ class CustomerPortal(CustomerPortal):
             return http.request.render('mcm_contact_documents.digimoov_documents_manual', {
                 'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
         elif request.website.id == 1:  # id 1 of website in database means website MCM ACADEMY
+            order = request.website.sale_get_order()
+            passerelle = False
+            if order :
+                if order.order_line :
+                    for line in order.order_line :
+                        if line.product_id.default_code == "passerelle-taxi":
+                            passerelle = True
             return http.request.render('mcm_contact_documents.mcm_documents_manual', {
-                'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
+                'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': '','passerelle':passerelle})
 
     def _document_get_page_view_values(self, document, access_token, **kwargs):
         values = {
