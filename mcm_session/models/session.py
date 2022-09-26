@@ -224,7 +224,7 @@ class Session(models.Model):
         for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
             if examen.partner_id.statut == 'won':
                 nbr_absence = examen.env['info.examen'].search_count(
-                    [('session_id', "=", self.id), ('presence', "=", 'Absent')])
+                    [('session_id', "=", self.id), ('presence', "=", 'Absent'), ('temps_minute', "!=", 0)])
             total_absence = nbr_absence
             return total_absence
 
@@ -270,13 +270,13 @@ class Session(models.Model):
 
     def calculer_zero_min_formation_gagne(self, zero_min_formation_gagne):
         """ Non présentation à la formation """
+        zero_min = 0
         for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
-            if examen:
-                zero_min = self.client_ids.filtered(lambda sw: sw.statut == 'won' and sw.temps_minute == 0)
-                temps_minute_360 = len(zero_min)
-                _logger.info("calculer_zero_min_formation_gagne %s" % str(temps_minute_360))
-                zero_min_formation_gagne = temps_minute_360 + self.nbr_canceled_state_after_14_day_0min(self) #Somme nombre des clients gagnés avec nombre des clients annulés
-                return zero_min_formation_gagne
+            if examen.temps_minute == 0:
+                zero_min += 1
+            zero_min_formation_gagne = zero_min + self.nbr_canceled_state_after_14_day_0min(self) #Somme nombre des clients gagnés avec nombre des clients annulés
+            _logger.info("calculer_zero_min_formation_gagne_takwa %s" % str(zero_min_formation_gagne))
+        return zero_min_formation_gagne
 
     def pourcentage_calculer_formation_gagne(self, resultat):
         """ pourcentage calculer_zero_min_formation_gagne """

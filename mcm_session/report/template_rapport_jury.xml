@@ -122,7 +122,7 @@
                                 <p>B) Nombre de candidats reçus à l’examen
                                     <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
                                     sur
-                                    <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                                    <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
                                 </p>
                                 <p>- Le taux de réussite est donc de
                                     <span
@@ -231,7 +231,7 @@
                             </p>
                             <p>
                                 <b>Heure :</b>
-                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%H:%M:%S')"/>
+                                <span t-field="o.heure_jury"/>
                             </p>
                             <p>
                                 <b>Signature :</b>
