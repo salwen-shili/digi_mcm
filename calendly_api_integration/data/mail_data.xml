@@ -25,7 +25,7 @@
 
                             ${object.name}, avec MCM Academy à
                             ${object.event_starttime_char}.
-                            ${object.event_starttime}.
+                           
                             <br/>
 
                             <br/>
