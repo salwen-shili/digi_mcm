@@ -305,7 +305,7 @@ class Session(models.Model):
 
     def pourcentage_abandon(self, prc_abandon):
         """ Calculer pourcentage d'abandon par session """
-        nbr_absence_abandon = self.count_annule
+        nbr_absence_abandon = self.nombre_abandon(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         if nbr_inscrit > 0:
             res = (nbr_absence_abandon * 100 / nbr_inscrit)
