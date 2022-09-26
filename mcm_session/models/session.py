@@ -642,7 +642,7 @@ class Session(models.Model):
             for examen in self.env['info.examen'].sudo().search(
                     [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
                 print("examen", examen)
-                sum_qcm += sum(examen.mapped('epreuve_a'))
+                sum_qcm += sum(examen.mapped('epreuve_a')) / nbr_present
         if nbr_present > 0:
             moyenne_qcm = sum_qcm
             return f'{moyenne_qcm:.2f}'.replace('.00', '')
@@ -659,7 +659,7 @@ class Session(models.Model):
             for examen in self.env['info.examen'].sudo().search(
                     [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
                 print("examen", examen.epreuve_b)
-                sum_qro += sum(examen.mapped('epreuve_b'))
+                sum_qro += sum(examen.mapped('epreuve_b')) / nbr_present
         if nbr_present > 0:
             moyenne_qro = sum_qro
             return f'{moyenne_qro:.2f}'.replace('.00', '')
@@ -671,11 +671,13 @@ class Session(models.Model):
         """ CALCULER moyenne de somme de la note QRO et QCM par session"""
         sum_qcm_qro = 0
         moyenne_qcm_qro = 0
+        moy_qcm = self.moyenne_qro()
+        moy_qro = self.moyenne_qcm()
         nbr_present = self.nbr_present_par_session(self)
         for rec in self.client_ids:
             for examen in self.env['info.examen'].sudo().search(
                     [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
-                sum_qcm_qro += sum(examen.mapped('moyenne_generale'))
+                sum_qcm_qro = moy_qcm + moy_qro
         if nbr_present > 0:
             moyenne_qcm_qro = sum_qcm_qro
             return f'{moyenne_qcm_qro:.2f}'.replace('.00', '')
