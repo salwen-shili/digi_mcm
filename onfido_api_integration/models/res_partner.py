@@ -157,6 +157,19 @@ class ResPartner(models.Model):
         face = response_download.content
         type_data = type(response_download)
         return face
+    def downloadLivephoto(self,live_photo_id,token):
+        """récupérer la version binaire de face photo """
+        url_face_download = "https://api.eu.onfido.com/v3.4/live_photos/"+live_photo_id +"/download"
+        headers = {
+            'Authorization': 'Token token=' + token,
+            # Already added when you pass json= but not when you pass data=
+            #     'Content-Type': 'application/json',
+        }
+        response_download = requests.get(url_face_download, headers=headers)
+        face = response_download.content
+        type_data = type(response_download)
+        _logger.info("response face %s" %str(face))
+        return face
 
     def autofill(self, document_id, token):
         """récupérer les informations récupérées à partir des documents"""
