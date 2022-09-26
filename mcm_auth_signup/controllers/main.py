@@ -54,7 +54,7 @@ class AuthSignupHome(AuthSignupHome):
         values['notification_type'] = 'email'  # make default notificatication type by email for new users
         # Concatenate first name and last name into name
         if values['firstname'] and values['lastName']:
-            values['name'] = values['firstname'] + ' ' + values['lastName']
+            values['name'] = values['firstname'].capitalize() + ' ' + values['lastName'].upper()
         # Mettre par défaut France dans le pays
         values['country_id'] = request.env['res.country'].sudo().search([('code', 'ilike', 'FR')]).id
         self._signup_with_values(qcontext.get('token'), values)

@@ -48,7 +48,7 @@ class AuthSignupHome(AuthSignupHome):
         values['step'] = "coordonnées"
         values['notification_type'] = 'email'  # make default notificatication type by email for new users
         if values['firstname'] and values['lastName']:
-            values['name'] = values['firstname'] + ' ' + values['lastName']
+            values['name'] = values['firstname'] + ' ' + values['lastName'].upper()
         values['country_id'] = request.env['res.country'].sudo().search([('code', 'ilike', 'FR')]).id
         self._signup_with_values(qcontext.get('token'), values)
         request.env.cr.commit()
