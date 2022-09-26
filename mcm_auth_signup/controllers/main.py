@@ -111,10 +111,12 @@ class AuthSignupHome(AuthSignupHome):
                         product_id = request.env['product.product'].sudo().search(
                             [('default_code', "=", "taxi"), ('company_id', "=", 1)], limit=1)
                         if product_id:
+
                             so = request.env['sale.order'].sudo().create({
                                 'partner_id': user_sudo.partner_id.id,
                                 'company_id': 1,
-                                'website_id': 1
+                                'website_id': 1,
+                                'fiscal_position_id':1,
                             })
 
                             so_line = request.env['sale.order.line'].sudo().create({
@@ -124,6 +126,7 @@ class AuthSignupHome(AuthSignupHome):
                                 'product_uom': product_id.uom_id.id,
                                 'price_unit': product_id.list_price,
                                 'order_id': so.id,
+                                'price_subtotal': product_id.list_price,
                                 'tax_id': product_id.taxes_id,
                                 'company_id': 1,
                             })
