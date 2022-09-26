@@ -98,15 +98,16 @@ class event_calendly(models.Model):
 
     event_name = fields.Char(string="name")
     location = fields.Char(string="Location")
-    start_at = fields.Date(string="start_at")
-    start_at_char = fields.Char(string="start_at")
-    status = fields.Boolean(string="active")
+    start_at = fields.Date(string="Start_at")
+    start_at_char = fields.Char(string="Start_at")
+    status = fields.Boolean(string="Active")
     owner = fields.Char(string="Formateur")
     reschedule_url = fields.Char(string="reschedule_url")
     cancel_url = fields.Char(string="Cancel URL")
     partner_id = fields.Many2one('res.partner')
 
     def event(self):
+
         new_format = '%d %B, %Y, %H:%M:%S'
         headers = {
             "Content-Type": "application/json",
@@ -166,7 +167,7 @@ class event_calendly(models.Model):
             for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
                     [('id', '!=', False)]):
                 if existt.start_at:
-                    if existt.start_at < date.today():
+                     if existt.start_at < date.today():
                         print("existeee nameeeee")
                         existt.browse(existt.id).sudo().unlink()
                 existe = self.env['mcm_openedx.calendly_event'].sudo().search(

@@ -22,9 +22,10 @@
 
                         <p style="border:1px;color: rgb(0, 0, 0)">Bonjour ${object.partner_id.name},</p>
                         <span align="center" style="border:1px;color: rgb(0, 0, 0)">
-                            -
+
                             ${object.name}, avec MCM Academy à
                             ${object.event_starttime_char}.
+                            ${object.event_starttime}.
                             <br/>
 
                             <br/>

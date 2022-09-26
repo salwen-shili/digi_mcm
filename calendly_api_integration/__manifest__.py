@@ -14,7 +14,7 @@
     'data': [
         'data/api_data.xml',
         'data/mail_data.xml',
-        'data/automation_action_add_evalbox.xml',
+        'data/automation_action_add_calendly.xml',
 
         'security/ir.model.access.csv',
         'views/calendly_rendezvous.xml',
