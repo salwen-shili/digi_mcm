@@ -109,7 +109,7 @@ class AuthSignupHome(AuthSignupHome):
                     _logger.info('post qcontext : %s' % str(qcontext))
                     if user_sudo:
                         product_id = request.env['product.product'].sudo().search(
-                            [('default_code', "=", "taxi"), ('company_id', "=", 1)], limit=1)
+                            [('default_code', "=", "passerelle-taxi"), ('company_id', "=", 1)], limit=1)
                         if product_id:
 
                             so = request.env['sale.order'].sudo().create({
@@ -131,6 +131,7 @@ class AuthSignupHome(AuthSignupHome):
                                 'company_id': 1,
                             })
                             if so :
+                                so.amount_untaxed = product_id.list_price
                                 kw['redirect'] = 'felicitations'
                     else:
                         _logger.info('kw : %s' % str(kw))
