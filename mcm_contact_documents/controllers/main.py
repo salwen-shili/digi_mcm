@@ -237,6 +237,13 @@ class CustomerPortal(CustomerPortal):
         files_identity_verso = request.httprequest.files.getlist('identity2')
         files_permis = request.httprequest.files.getlist('permis')
         files_permis_verso = request.httprequest.files.getlist('permis1')
+        order = request.website.sale_get_order()
+        passerelle = False
+        if order:  # check if user has order
+            if order.order_line:
+                for line in order.order_line:
+                    if line.product_id.default_code == "passerelle-taxi":  # check if client chose formation passerelle taxi as product
+                        passerelle = True
         if (len(files_identity) > 2 or len(files_permis) > 2):
             name = http.request.env.user.name
             email = http.request.env.user.email
@@ -388,6 +395,42 @@ class CustomerPortal(CustomerPortal):
                     {'name': "Permis de conduire Recto/Verso"})
             except Exception as e:
                 logger.exception("Fail to upload document Carte d'identité ")
+            if passerelle :
+                try:
+                    files = request.httprequest.files.getlist('justificatifVTC')
+                    if files:
+                        vals_list = []
+                        # charge le modele de la carte d'identité [un seul modele pour deux attachements]
+                        # on a pris les precaution au cas ou un client télécharge le recto et le verso avec le meme upload file
+                        # on a supprimer datas=False
+                        vals = {
+                            'name': "Justificatif de réussite à l'examen VTC",
+                            'folder_id': int(folder_id),
+                            'code_document': 'reussite_examen_vtc',
+                            'confirmation': kw.get('confirm_justificatif'),
+                            'attachment_number': '',
+                            'type': 'binary',
+                            'partner_id': False,
+                            'owner_id': False}
+                        vals_list.append(vals)
+                        document = request.env['documents.document'].sudo().create(
+                            vals_list)
+                        if document:
+                            uid = document.create_uid
+                            document.sudo().write(
+                                {'owner_id': uid, 'partner_id': uid.partner_id,
+                                 'name': document.name + ' ' + str(uid.name)})
+                        datas_justificatifVTC = base64.encodebytes(
+                            files[0].read())
+                        request.env['ir.attachment'].sudo().create({
+                            'name': "Permis de conduire Recto",
+                            'type': 'binary',
+                            'datas': datas_justificatifVTC,
+                            'res_model': 'documents.document',
+                            'res_id': document.id
+                        })
+                except Exception as e:
+                    logger.exception("Fail to upload document Carte d'identité ")
         except:
             logger.exception("Fail to upload documents")
         # suppression des documents qui ont mimetype de type octet_stream

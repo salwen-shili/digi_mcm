@@ -200,18 +200,18 @@ background-color: #000000;
 
                                                     <div class="form-group row form-field o_website_form_required" t-if="passerelle">
                                                         <div class="col-lg-12 col-md-12">
-                                                            <label class="col-form-label" style="font-weight:600 ;     margin-bottom: 0.5rem;">Justificatif de réussite à l'examen VTC ( Daté de moins de 3 ans par rapport à la date d'examen )</label>
+                                                            <label class="col-form-label" style="font-weight:600 ;     margin-bottom: 0.5rem;">Justificatif de réussite à l'examen VTC</label>
                                                         </div>
                                                         <div class="col-lg-12 col-md-12">
                                                             <label class="col-form-label" for="justificatif vtc">Charger le Justificatif de réussite à l'examen VTC : (*.jpg,*.png,*.pdf)  </label>
                                                         </div>
                                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                                             <!--  <input type="file" name="identity" required="1" id="identity" placeholder="Veuillez Charger 1 fichier Recto verso ou 2 fichiers " class="form-control o_website_form_input" />  -->
-                                                            <div class="file-upload" id="file-upload1" style="cursor:pointer">
+                                                            <div class="file-upload" id="file-upload5" style="cursor:pointer">
                                                                 <div class="file-select">
-                                                                    <div class="file-select-button" id="fileName1">Choisir un fichier</div>
-                                                                    <div class="file-select-name" id="noFile1">Aucun fichier choisi...</div>
-                                                                    <input type="file" accept="image/png, image/jpeg, application/pdf" name="identity" id="identity" required="required" />
+                                                                    <div class="file-select-button" id="fileName5">Choisir un fichier</div>
+                                                                    <div class="file-select-name" id="noFile5">Aucun fichier choisi...</div>
+                                                                    <input type="file" accept="image/png, image/jpeg, application/pdf" name="justificatifVTC" id="justificatifVTC" required="required" />
                                                                 </div>
                                                             </div>
 
