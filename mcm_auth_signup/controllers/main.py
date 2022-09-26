@@ -102,10 +102,11 @@ class AuthSignupHome(AuthSignupHome):
                 kw['login'] = qcontext.get('login').replace(' ', '').lower()
                 user_sudo = request.env['res.users'].sudo().search(
                     [('login', "=", qcontext.get('login').replace(' ', '').lower())])
+                _logger.info('qcontext1 : %s' % str(qcontext))
                 if 'passerelle' in qcontext :
-                    print("passerelle:",qcontext.get('passerelle'))
-                    print('user_sudo : ',user_sudo)
-                    print('post qcontext : ',qcontext)
+                    _logger.info('passerelle: %s' % str(qcontext.get('passerelle')))
+                    _logger.info('user sudo : %s' % str(user_sudo))
+                    _logger.info('post qcontext : %s' % str(qcontext))
                     if user_sudo:
                         product_id = request.env['product.product'].sudo().search(
                             [('default_code', "=", "taxi"), ('company_id', "=", 1)], limit=1)
@@ -128,6 +129,8 @@ class AuthSignupHome(AuthSignupHome):
                             })
                             if so :
                                 kw['redirect'] = 'felicitations'
+                    else:
+                        _logger.info('kw : %s' % str(kw))
                 return self.web_login(*args, **kw)
             except UserError as e:
                 qcontext['error'] = e.name or e.value
