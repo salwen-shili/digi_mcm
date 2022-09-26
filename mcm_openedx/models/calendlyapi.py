@@ -167,7 +167,7 @@ class event_calendly(models.Model):
             for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
                     [('id', '!=', False)]):
                 if existt.start_at:
-                     if existt.start_at < date.today():
+                    if existt.start_at < date.today():
                         print("existeee nameeeee")
                         existt.browse(existt.id).sudo().unlink()
                 existe = self.env['mcm_openedx.calendly_event'].sudo().search(
@@ -202,16 +202,11 @@ class event_calendly(models.Model):
         count = 0
         print("envoyer invitation au apprenant selon leur formation")
         for partner in self.env['res.partner'].sudo().search(
-                [
-                    ('company_id', '=', 1),
-                    ('mcm_session_id.date_exam', '!=', False),
-                    ('email', '=', "khouloudachour.97@gmail.com")
-                ]):
-
+                [('company_id', '=', 1), ('mcm_session_id.date_exam', '!=', False)]):
             if partner.mcm_session_id.date_exam:
                 if partner.mcm_session_id.date_exam.month == todays_date.month:
+                    count = count + 1
                     if partner.module_id.product_id.default_code == "taxi":
-                        count = count + 1
                         print(partner.email)
 
                         # APi si il existe des event
@@ -223,7 +218,8 @@ class event_calendly(models.Model):
                             print(existe.event_name)
                             # Fiche Client odoo chercher si event
                             exist_event = self.env['calendly.rendezvous'].sudo().search(
-                                [('name', '=', existe.event_name), ('event_starttime', '=', existe.start_at)])
+                                [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
+                                 ('event_starttime', '=', existe.start_at)])
                             print("exist_event.name", exist_event.name)
                             print(existe.event_name)
                             if not exist_event:
@@ -239,9 +235,7 @@ class event_calendly(models.Model):
                                     calendly.event_starttime_char = existe.start_at_char
                                     calendly.event_endtime = existe.start_at
                     if partner.module_id.product_id.default_code == "vtc" or partner.module_id.product_id.default_code == "vtc_bolt":
-                        count = count + 1
                         print(partner.email)
-
                         # APi si il existe des event
                         # APi si il existe des event
                         for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
@@ -250,7 +244,8 @@ class event_calendly(models.Model):
                             print(existe.event_name)
                             # Fiche Client odoo chercher si event
                             exist_event = self.env['calendly.rendezvous'].sudo().search(
-                                [('name', '=', existe.event_name), ('event_starttime', '=', existe.start_at)])
+                                [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
+                                 ('event_starttime', '=', existe.start_at)])
                             print("exist_event.name", exist_event.name)
                             print(existe.event_name)
                             if not exist_event:
@@ -265,3 +260,6 @@ class event_calendly(models.Model):
                                     calendly.event_starttime = existe.start_at
                                     calendly.event_starttime_char = existe.start_at_char
                                     calendly.event_endtime = existe.start_at
+
+                                    print("created", calendly)
+            print(count)
