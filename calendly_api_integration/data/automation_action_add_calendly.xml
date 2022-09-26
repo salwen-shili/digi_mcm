@@ -8,6 +8,9 @@
         <field name="trigger_field_ids"
                eval="[(4,ref('calendly_api_integration.field_calendly_rendezvous__event_starttime_char'))]"/>
         <field name="active" eval="True"/>
+        <field name="sms_template_id" ref="calendly_api_integration.sms_template_calendly"/>
+
+
         <field name="state">sms</field>
         <field name="filter_pre_domain"/>
         <field name="filter_domain">[('partner_id.company_id', '=', 1),('event_starttime_char', '!=', False)]</field>
@@ -18,6 +21,7 @@
         <field name="name">Base Automation: envoit invitation calaendly (EMAIL)</field>
         <field name="model_id" ref="model_calendly_rendezvous"/>
         <field name="trigger">on_write</field>
+        <field name="template_id" ref="calendly_api_integration.calendly_event"/>
         <field name="trigger_field_ids"
                eval="[(4,ref('calendly_api_integration.field_calendly_rendezvous__event_starttime_char'))]"/>
         <field name="active" eval="True"/>

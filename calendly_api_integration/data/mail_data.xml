@@ -25,7 +25,7 @@
 
                             ${object.name}, avec MCM Academy à
                             ${object.event_starttime_char}.
-                           
+
                             <br/>
 
                             <br/>
@@ -58,7 +58,13 @@
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="False"/>
         </record>
-
+        <record id="sms_template_calendly" model="sms.template">
+            <field name="name">Customer: automated SMS</field>
+            <field name="model_id" ref="model_calendly_rendezvous"/>
+            <field name="body">Bonjour ${object.partner_id.name}, ${object.name} avec MCM Academy à
+                ${object.event_starttime_char} Cliquez ici https://www.mcm-academy.fr/r/epg.
+            </field>
+        </record>
     </data>
 
 
