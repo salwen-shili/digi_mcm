@@ -46,7 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (
     windowUrl.includes("formation-pro") ||
     windowUrl.includes("formation-solo") ||
-    windowUrl.includes("formation-premium")
+    windowUrl.includes("formation-premium") ||
+    windowUrl.includes("repassage")
   ) {
     var selectCenter = document.getElementById("centre_examen");
     indexOption = 0;
