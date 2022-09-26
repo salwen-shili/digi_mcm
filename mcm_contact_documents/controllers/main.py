@@ -423,7 +423,7 @@ class CustomerPortal(CustomerPortal):
                         datas_justificatifVTC = base64.encodebytes(
                             files[0].read())
                         request.env['ir.attachment'].sudo().create({
-                            'name': "Permis de conduire Recto",
+                            'name': "Justificatif de réussite à l'examen VTC",
                             'type': 'binary',
                             'datas': datas_justificatifVTC,
                             'res_model': 'documents.document',
