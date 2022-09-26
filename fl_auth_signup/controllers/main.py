@@ -65,6 +65,7 @@ class AuthSignupHome(AuthSignupHome):
         SIGN_UP_REQUEST_PARAMS.add('street')
         SIGN_UP_REQUEST_PARAMS.add('street2')
         SIGN_UP_REQUEST_PARAMS.add('question_signup') #add question_signup in params of signup
+        SIGN_UP_REQUEST_PARAMS.add('passerelle') #add question_signup in params of signup
         #add keys to SIGN_UP_REQUEST_PARAMS to get datas from signup form
         qcontext = {k: v for (k, v) in request.params.items() if k in SIGN_UP_REQUEST_PARAMS}
         qcontext.update(self.get_auth_signup_config())
@@ -136,7 +137,7 @@ class AuthSignupHome(AuthSignupHome):
                     if AssertionError:
                         _logger.error("name %s", AssertionError)
                     qcontext['error'] = _("Could not create a new account.")
-
+        print('qcontext:',qcontext)
         response = request.render('auth_signup.signup', qcontext)
         # response = request.render('mcm_website_theme.mcm_template', qcontext)
         _logger.info('STATUS %s', response.status_code)

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="mcm_website_theme.formation-passerelle-taxi-en-ligne" name="Formation passerelle taxi en ligne">
+        <t t-call="website.layout">
+            <script defer="defer" type="text/javascript"
+                    src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
+            <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css"/>
+            <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.min.css"/>
+            <div id="wrap" class="oe_structure oe_empty"
+                 style="word-break: break-word; position: relative; z-index: 0;">
+                <section class="s_text_image pt32 pb0" data-name="Image - Text">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                                <h1>
+                                    <b>
+                                        <font style="font-size: 48px;">FORMATION PASSERELLE&amp;nbsp;TAXI</font>
+                                    </b>
+                                    <span style="font-weight: 700;">
+                                        <font style="font-size: 48px;">&amp;nbsp;</font>
+                                    </span>
+                                    <br/>
+                                    <b style="font-size: 2.1875rem;">
+                                        <font style="font-size: 48px;">EN LIGNE à&amp;nbsp;</font>
+                                        <font style="color: rgb(253, 209, 5); font-size: 48px;">250&amp;nbsp;</font>
+                                    </b>
+                                    <font style="color: rgb(253, 209, 5); font-size: 48px;">€</font>
+                                </h1>
+                                <blockquote>
+                                    <font style="font-size: 18px;">Vous êtes chauffeur VTC et vous avez votre carte VTC
+                                        depuis moins de 3 ans ? Vous voulez vous reconvertir en chauffeur taxi ?
+                                        <br/>
+                                        Notre centre de formation spécialisé en métiers de transport T3P depuis plus de
+                                        10 ans, vous propose une formation théorique en ligne de 14 heures orchestrée
+                                        par des experts métier, à suivre à votre rythme et selon vos disponibilités.
+                                        Vous attendez quoi pour vous lancer ?
+                                    </font>
+                                </blockquote>
+                                <div class="s_btn text-left pt16 pb16" data-name="Button"
+                                     t-if="request.website.is_public_user()==False">
+                                    <t t-foreach="mcm_products" t-as="product">
+                                        <t t-if="product.default_code=='passrelle-taxi'">
+                                            <form action="/shop/cart/update" method="post" id="form-1-3">
+                                                <input type="hidden" class="product_id" name="product_id"
+                                                       id="taxi_product" t-att-value="product.id"/>
+                                                <div class="sh_btn">
+                                                    <a class="animated-button-yellow" href="#pricing"
+                                                       onClick="(function(){document.getElementById('form-1-3').submit();return false;})();return false;">
+                                                        <span/>
+                                                        <span/>
+                                                        <span/>
+                                                        <span/>
+                                                        Je m'inscris
+                                                    </a>
+                                                </div>
+                                            </form>
+                                        </t>
+                                    </t>
+                                </div>
+                                <mci-extension data-role="overlay" id="overlay-root"/>
+                            </div>
+                            <div class="col-lg-6 pt16 pb16" t-if="request.website.is_public_user()==False">
+                                <img src="/mcm_website_theme/static/src/img/paserelle_taxi/taxi-passerelle.png"
+                                     class="img img-fluid mx-auto"
+                                     alt="Odoo • Image et Texte" data-original-title="" title=""
+                                     aria-describedby="tooltip225871"/>
+                            </div>
+                            <div class="col-lg-6 pt16 pb16" t-if="request.website.is_public_user()==True">
+                                <div class="container right-panel-active">
+
+                                    <div class="container__form container--signup">
+                                        <form method="post" action="/web/signup" class="form" id="form1">
+                                            <h2 class="form__title">Sign Up</h2>
+                                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                            <input type="hidden" class="input" name="passerelle" value="passerelle"/>
+                                            <input type="text" placeholder="Nom*" class="input" name="lastName"/>
+                                            <input type="text" placeholder="Prénom" class="input" name="firstname"/>
+                                            <input type="text" placeholder="Téléphone *" class="input" name="phone"/>
+                                            <input type="text" placeholder="Code postal *" class="input" name="zip"/>
+                                            <input type="text" placeholder="Adresse postal *" class="input"
+                                                   name="street"/>
+                                            <input type="email" placeholder="Email" class="input" name="login"/>
+                                            <input type="password" placeholder="Password" class="input"
+                                                   name="password"/>
+                                            <button type="submit" class="btn btn-primary" style="width:50%">
+                                                s'inscrire
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_features_grid pb24 pt0" data-name="Features Grid">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 s_col_no_bgcolor pb24" style="border-style: none; border-width: 0px;">
+                                <div class="row">
+                                    <div class="pb24 col-lg-12" data-name="Box">
+                                        <h2>
+                                            <b>
+                                                <font style="font-size: 36px;">Prérequis de la formation</font>
+                                            </b>
+                                        </h2>
+                                        <h5 class="text-primary">
+                                            <span style="color: rgb(33, 37, 41); font-size: 18px;">Pour pouvoir suivre
+                                                la formation passerelle VTC TAXI, il faut être éligible à certains
+                                                prérequis comme suit :
+                                            </span>
+                                            <br/>
+                                        </h5>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <i class="bg-primary fa fa-2x fa-vcard-o rounded-circle s_features_grid_icon"
+                                           data-original-title="" title="" aria-describedby="tooltip641206"
+                                           style="color: rgb(239, 198, 49);"/>
+                                        <div class="s_features_grid_content">
+                                            <h3>Un Permis B valide</h3>
+                                            <p>Avoir un permis de conduire de catégorie B en cours de validité et non
+                                                affecté par le délai probatoire prévu à l’article L.223-1 du code de la
+                                                route.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <i class="bg-primary fa fa-2x fa-automobile rounded-circle s_features_grid_icon"
+                                           data-original-title="" title="" aria-describedby="tooltip790206"
+                                           style="color: rgb(239, 198, 49);"/>
+                                        <div class="s_features_grid_content">
+                                            <h3>Être un chauffeur VTC</h3>
+                                            <p>Être titulaire de la carte professionnelle de VTC depuis au moins 3
+                                                ans.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <i class="bg-primary fa fa-2x fa-folder-open rounded-circle s_features_grid_icon"
+                                           data-original-title="" title="" aria-describedby="tooltip111441"
+                                           style="color: rgb(239, 198, 49);"/>
+                                        <div class="s_features_grid_content">
+                                            <h3>Avoir un casier vierge</h3>
+                                            <p>Disposer d’un casier judiciaire (bulletin n°2) ne comportant aucune des
+                                                condamnations incompatibles avec l’exercice de la profession.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 s_col_no_bgcolor pb24" style="border-style: none; border-width: 0px;">
+                                <div class="row">
+                                    <div class="col-lg-12 pb24" data-name="Box"
+                                         style="border-style: none; border-width: 0px;">
+                                        <br/>
+                                        <h2>
+                                            <br/>
+                                        </h2>
+                                        <h2>
+                                            <br/>
+                                        </h2>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <i class="bg-secondary fa fa-2x rounded s_features_grid_icon fa-remove"
+                                           data-original-title="" title="" aria-describedby="tooltip172347"
+                                           style="color: rgb(239, 198, 49);"/>
+                                        <div class="s_features_grid_content">
+                                            <h3>Pas de retrait de la carte professionnelle</h3>
+                                            <p>Ne pas avoir fait l’objet d’un retrait de carte taxi, VTC ou VMDTR, dans
+                                                les 10 dernières années,
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <i class="bg-secondary fa fa-2x fa-file-o rounded s_features_grid_icon"
+                                           data-original-title="" title="" aria-describedby="tooltip737811"
+                                           style="color: rgb(239, 198, 49);"/>
+                                        <div class="s_features_grid_content">
+                                            <h3>Pas de fraude enregistrée</h3>
+                                            <p>Ne pas avoir fait l’objet d’une exclusion pour fraude aux examens de
+                                                taxi, VTC ou VMDTR, dans les 5 dernières années.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <i class="bg-secondary fa fa-2x fa-user-md rounded s_features_grid_icon"
+                                           data-original-title="" title="" aria-describedby="tooltip281489"
+                                           style="color: rgb(239, 198, 49);"/>
+                                        <div class="s_features_grid_content">
+                                            <h3>Aptitude physique et morale à exercer le métier</h3>
+                                            <p>Être reconnu apte à l’exercice de la profession par un médecin agréé par
+                                                l’Etat.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image pt32 pb32" data-name="Image - Text">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                                <img src="/mcm_website_theme/static/src/img/paserelle_taxi/formation-passerelle-taxi.png"
+                                     class="img img-fluid mx-auto"
+                                     alt="Odoo • Image et Texte" data-original-title="" title=""
+                                     aria-describedby="tooltip783859"/>
+                            </div>
+                            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                                <h2>
+                                    <b>
+                                        <font style="font-size: 36px;">La formation passerelle taxi&amp;nbsp;</font>
+                                    </b>
+                                </h2>
+                                <h3>Objectif de la formation&amp;nbsp;</h3>
+                                <h3/>
+                                <h3>
+                                    <blockquote>
+                                        <font style="font-size: 18px;">Acquérir les compétences nécessaires à l'exercice
+                                            du métier de conducteur taxi.
+                                        </font>
+                                        <font style="font-size: 18px;">
+                                            <br/>
+                                        </font>
+                                        <font style="font-size: 18px;">
+                                            <br/>
+                                        </font>
+                                        <span style="font-size: 1.53125rem;">Déroulement de la formation
+                                        </span>
+                                    </blockquote>
+                                </h3>
+                                <h3/>
+                                <h3>
+                                    <span style="font-size: 18px;">Formation théorique de 14h&amp;nbsp;à suivre à
+                                        distance sur notre plateforme de formation, et durant laquelle un coaching
+                                        personnalisé vous sera offert par nos formateurs pour vous aider à bien
+                                        assimiler les informations requises à la réussite de l'examen.
+                                    </span>
+                                    <br/>
+                                    <br/>
+                                    <span style="">Contenu de la formation</span>
+                                    <br/>
+                                    <span style="font-size: 18px;">Depuis mai 2017, il est possible pour un stagiaire
+                                        qui a réussi l’examen VTC de tronc commun de bénéficier d’une passerelle VTC
+                                        TAXI . Il devra donc passer deux modules théoriques : Une épreuve « F (T) »
+                                        portant sur la connaissance du territoire et la réglementation locale , d’une
+                                        durée de vingt minutes. Et une épreuve « G (T) » portant sur la réglementation
+                                        nationale de l’activité taxis ainsi que sur la gestion propre à cette activité
+                                        d’une durée de trente minutes.
+                                    </span>
+                                    <br/>
+                                </h3>
+                                <div class="pb16 pt16 s_btn text-left" data-name="Button">
+                                    <a href="#" class="btn btn-outline-primary" spellcheck="false"
+                                       data-mci-spellchecked="true"
+                                       style="word-break: break-word; position: relative; z-index: 0;"
+                                       data-original-title="" title="" aria-describedby="tooltip887817">Télécharger le
+                                        programme de formation
+                                    </a>
+                                </div>
+                                <mci-extension data-role="overlay" id="overlay-root"/>
+                                <mci-extension data-role="overlay" id="overlay-root"/>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image pt32 pb32" data-name="Text - Image">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                                <h2>
+                                    <b>Examen passerelle taxi</b>
+                                </h2>
+                                <blockquote>
+                                    <font style="font-size: 18px;"><b>Examen théorique</b>:
+                                    </font>
+                                    <font style="font-size: 18px;">
+                                        <br/>
+                                    </font>
+                                    <font style="font-size: 18px;">Le test théorique sera porté sur les modules suivants
+                                        sous forme de QCM :
+                                    </font>
+                                    <br/>
+                                    <font style="font-size: 18px;">- Gestion d'entreprise et comptabilité</font>
+                                    <br/>
+                                    <font style="font-size: 18px;">- Réglementation sur l'activité de taxi</font>
+                                    <br/>
+                                    <font style="font-size: 18px;">- Règles de sécurité routière</font>
+                                    <br/>
+                                    <font style="font-size: 18px;">- Maîtrise du français et de l'anglais</font>
+                                </blockquote>
+                                <p class="lead">
+                                    <b>Examen pratique :</b>
+                                </p>
+                                <blockquote>
+                                    <font style="font-size: 18px;">Parcours de 20 minutes de conduite en tant que
+                                        chauffeur de taxi. Vous devez le préparer, le sécuriser (anticiper les
+                                        difficultés, les travaux, faciliter le trajet) et l'effectuer.
+                                    </font>
+                                    <font style="font-size: 18px;">
+                                        <br/>
+                                    </font>
+                                    <font style="font-size: 18px;">L'examinateur vérifie ensuite les points suivants :
+                                    </font>
+                                    <font style="font-size: 18px;">
+                                        <br/>
+                                    </font>
+                                    <font style="font-size: 18px;">Vos connaissances sur le territoire parcouru
+                                        (géographiques, culturelles, touristiques)
+                                    </font>
+                                    <font style="font-size: 18px;">
+                                        <br/>
+                                    </font>
+                                    <font style="font-size: 18px;">Votre capacité à accueillir un client Votre capacité
+                                        à facturer un client et à utiliser le terminal de carte bancaire.
+                                    </font>
+                                </blockquote>
+                                <mci-extension data-role="overlay" id="overlay-root"/>
+                            </div>
+                            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                                <img src="/mcm_website_theme/static/src/img/paserelle_taxi/examen-passerelle-taxi.png"
+                                     class="img img-fluid mx-auto"
+                                     alt="Odoo • Texte et Image" data-original-title="" title=""
+                                     aria-describedby="tooltip483620"/>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>
