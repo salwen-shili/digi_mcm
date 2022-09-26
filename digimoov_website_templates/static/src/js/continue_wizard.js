@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
     flex-direction: row;
 ">
                                     <div class="">
-                                        <a id="button-continuer" href="/charger_mes_documents_manual?${Math.floor(
+                                        <a id="button-continuer" href="/charger_mes_documents?${Math.floor(
                                           Math.random() * 100
                                         )}" style="margin-right: 8px;">
                                             <button id="btn-action" class="rkmd-btn btn-blue  ripple-effect ripple-yellow" type="submit" style="font-size: 11px;width:116px">
