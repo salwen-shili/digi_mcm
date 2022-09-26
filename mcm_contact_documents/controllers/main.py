@@ -738,10 +738,10 @@ class CustomerPortal(CustomerPortal):
         elif request.website.id == 1:  # id 1 of website in database means website MCM ACADEMY
             order = request.website.sale_get_order()
             passerelle = False
-            if order :
+            if order : #check if user has order
                 if order.order_line :
                     for line in order.order_line :
-                        if line.product_id.default_code == "passerelle-taxi":
+                        if line.product_id.default_code == "passerelle-taxi": #check if client chose formation passerelle taxi as product
                             passerelle = True
             return http.request.render('mcm_contact_documents.mcm_documents_manual', {
                 'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': '','passerelle':passerelle})
