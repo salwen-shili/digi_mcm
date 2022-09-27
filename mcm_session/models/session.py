@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 import locale
-
+import logging
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 import random
 from num2words import num2words
 
-from datetime import datetime
+from datetime import datetime, timedelta, date
 
+_logger = logging.getLogger(__name__)
 
 class Session(models.Model):
     _name = 'mcmacademy.session'
@@ -75,12 +76,55 @@ class Session(models.Model):
         date_en_lettre = yearformat_txt + " " + dayformat_txt
         return date_en_lettre
 
+    # def nbr_client_par_session(self, nbr_inscrits):
+    #     """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
+    #      La fonction est utilisé dans la template de rapport jury"""
+    #     nbr_inscrits = 0
+    #     nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu + self.count_perdu
+    #     return nbr_inscrits
+
+    def nombre_abandon(self, nbr_ab):
+        """ Nombre d'abandon"""
+        nbr_ab = 0
+        nbr_ab = self.nbr_canceled_state_after_14_day(self)
+        return nbr_ab
+
     def nbr_client_par_session(self, nbr_inscrits):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
          La fonction est utilisé dans la template de rapport jury"""
         nbr_inscrits = 0
-        nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu + self.count_perdu
+        today = date.today()
+        nbr_partner_cpf_annule= self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('client_id.mode_de_financement','=', 'cpf'),('client_id.statut','=', 'canceled'),('date_creation', ">", self.date_exam + timedelta(days=14))])
+        _logger.info("nbr_partner_annule %s" % str(nbr_partner_cpf_annule))
+        nbr_partner_won_cpf = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('client_id.statut','=', 'won')])
+        _logger.info("nbr_partner_won_cpf %s" % str(nbr_partner_won_cpf))
+
+        nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('client_id.mode_de_financement','=', 'particulier'), ('client_id.statut','=', 'canceled')])
+        count_per_an = False
+        for sale in nbr_partner_personel_annule:
+
+            if sale.client_id.signed_on > self.date_exam + timedelta(days=14):
+                count_per_an += 1
+        counter_per_an = count_per_an
+        _logger.info("nbr_partner_personel_annule %s" % str(nbr_partner_personel_annule))
+        nbr_inscrits = len(nbr_partner_cpf_annule) + len(nbr_partner_won_cpf) + counter_per_an
         return nbr_inscrits
+        # for examen in nbr_partner_sessions:
+        #     if nbr_partner_sessions.mode_de_financement == 'cpf' and nbr_partner_sessions.partner_id.statut == 'won':
+        #         nbr_inscrits += 1
+        #     return nbr_inscrits
+        # if nbr_partner_sessions.mode_de_financement == 'particulier':
+        #     sale_order = self.env['sale.order'].sudo().search([('session_id.id', '=',
+        #                                                         self.id),
+        #                                                        ('module_id', '=', self.module_id.id),
+        #                                                        ('session_id.date_exam', '>',
+        #                                                         date.today())], limit=1)
+        #     for sale in sale_order:
+        #         sign_date = sale.signed_on
+    #     nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu + self.count_perdu
 
     def nbr_present_par_session(self, nbr_present):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
@@ -91,9 +135,10 @@ class Session(models.Model):
     def prc_present(self, prc_present):
         nbr_present = self.nbr_present_par_session(self)
         nbr_inscrit = self.nbr_client_par_session(self)
-        res = (nbr_present * 100 / nbr_inscrit)
-        prc_present = f'{res:.2f}'.replace('.00', '')
-        return prc_present
+        if nbr_inscrit > 0:
+            res = (nbr_present * 100 / nbr_inscrit)
+            prc_present = f'{res:.2f}'.replace('.00', '')
+            return prc_present
 
     def nbr_recus_par_session(self, total_nbr_recu):
         """ Nombre de recus par session"""
@@ -148,9 +193,10 @@ class Session(models.Model):
     def pourcentage_client_recu(self, pourcentage):
         """ Calculer pourcentage clients reçus"""
         nbr_recu_total = self.nbr_recus_par_session(self)
-        nbr_inscrits_total = self.nbr_client_par_session(self)
-        pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
-        if pourcentage_without_round > 0:
+        nbr_present_total = self.nbr_present_par_session(self)
+        pourcentage_without_round = 0
+        if nbr_present_total > 0:
+            pourcentage_without_round = (nbr_recu_total * 100 / nbr_present_total)
             pourcentage = f'{pourcentage_without_round:.2f}'.replace('.00',
                                                                      '')  # Garder justes deux chiddre après la virgule
             return pourcentage
@@ -178,7 +224,7 @@ class Session(models.Model):
         for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
             if examen.partner_id.statut == 'won':
                 nbr_absence = examen.env['info.examen'].search_count(
-                    [('session_id', "=", self.id), ('presence', "!=", 'present')])
+                    [('session_id', "=", self.id), ('presence', "=", 'Absent'), ('temps_minute', "!=", 0)])
             total_absence = nbr_absence
             return total_absence
 
@@ -186,13 +232,14 @@ class Session(models.Model):
         """ Pourcentage pour les absences par session"""
         nbr_absence = self.calculer_nombre_absence(self)
         nbr_inscrit = self.nbr_client_par_session(self)
-        res = (nbr_absence * 100 / nbr_inscrit)
-        if res > 0:
-            resultat = f'{res:.2f}'.replace('.00', '')
-            return resultat
-        else:
-            resultat = f'{res:.0f}'
-            return resultat
+        if nbr_inscrit > 0:
+            res = (nbr_absence * 100 / nbr_inscrit)
+            if res > 0:
+                resultat = f'{res:.2f}'.replace('.00', '')
+                return resultat
+            else:
+                resultat = f'{res:.0f}'
+                return resultat
 
     def calculer_nombre_absence_justifiée(self, total_absence_justifiée):
         """ Calculer la somme des absences justifiées par session"""
@@ -203,29 +250,71 @@ class Session(models.Model):
                 total_absence_justifiée = nbr_absence
                 return total_absence_justifiée
 
+    def nbr_canceled_state_after_14_day_0min(self, res_calc):
+        """ Calculer nbr canceled state after 14 day 0min """
+        nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'), ('client_id.temps_minute', '=', 0)])
+        nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+             ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
+        count_per_an = False
+        # si le financement de client est personel
+        for sale in nbr_partner_personel_annule:
+            if sale.client_id.signed_on > self.date_exam + timedelta(days=14):
+                count_per_an += 1
+        counter_per_an = count_per_an
+        res_calc = counter_per_an + len(nbr_partner_cpf_annule)
+        return res_calc
+
+    def calculer_zero_min_formation_gagne(self, zero_min_formation_gagne):
+        """ Non présentation à la formation """
+        zero_min = 0
+        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
+            if examen.temps_minute == 0:
+                zero_min += 1
+            zero_min_formation_gagne = zero_min + self.nbr_canceled_state_after_14_day_0min(self) #Somme nombre des clients gagnés avec nombre des clients annulés
+            _logger.info("calculer_zero_min_formation_gagne_takwa %s" % str(zero_min_formation_gagne))
+        return zero_min_formation_gagne
+
+    def pourcentage_calculer_formation_gagne(self, resultat):
+        """ pourcentage calculer_zero_min_formation_gagne """
+        zero_min = self.calculer_zero_min_formation_gagne(self)
+        nbr_inscrit = self.nbr_client_par_session(self)
+        if nbr_inscrit > 0:
+            res = (zero_min * 100 / nbr_inscrit)
+            if res > 0:
+                resultat = f'{res:.2f}'.replace('.00', '')
+                return resultat
+            else:
+                resultat = f'{res:.0f}'
+                return resultat
     def pourcentage_absence_justifiée(self, resultat):
         """ pourcentage absence justifiée """
         nbr_absence_justifiee = self.calculer_nombre_absence_justifiée(self)
         nbr_inscrit = self.nbr_client_par_session(self)
-        res = (nbr_absence_justifiee * 100 / nbr_inscrit)
-        if res > 0:
-            resultat = f'{res:.2f}'.replace('.00', '')
-            return resultat
-        else:
-            resultat = f'{res:.0f}'
-            return resultat
+        if nbr_inscrit > 0:
+            res = (nbr_absence_justifiee * 100 / nbr_inscrit)
+            if res > 0:
+                resultat = f'{res:.2f}'.replace('.00', '')
+                return resultat
+            else:
+                resultat = f'{res:.0f}'
+                return resultat
 
     def pourcentage_abandon(self, prc_abandon):
         """ Calculer pourcentage d'abandon par session """
-        nbr_absence_abandon = self.count_annule
+        nbr_absence_abandon = self.nombre_abandon(self)
         nbr_inscrit = self.nbr_client_par_session(self)
-        res = (nbr_absence_abandon * 100 / nbr_inscrit)
-        if res > 0:
-            prc_abandon = f'{res:.2f}'.replace('.00', '')
-            return prc_abandon
-        else:
-            prc_abandon = f'{res:.0f}'
-            return prc_abandon
+        if nbr_inscrit > 0:
+            res = (nbr_absence_abandon * 100 / nbr_inscrit)
+            if res > 0:
+                prc_abandon = f'{res:.2f}'.replace('.00', '')
+                return prc_abandon
+            else:
+                prc_abandon = f'{res:.0f}'
+                return prc_abandon
 
     def nbr_echec(self, nbr_echec):
         """ Calculer nombre d'echec :
@@ -240,34 +329,40 @@ class Session(models.Model):
     def pourcentage_echec(self, prc_echec):
         """ Calculer pourcentage des clients (echec)"""
         nbr_echec = self.nbr_echec(self)
-        nbr_inscrit = self.nbr_client_par_session(self)
-        res = (nbr_echec * 100 / nbr_inscrit)
-        if res > 0:
-            prc_echec = f'{res:.2f}'.replace('.00', '')
-            return prc_echec
-        else:
-            prc_echec = f'{res:.0f}'
-            return prc_echec
+        nbr_present_tot = self.nbr_present_par_session(self)
+        if nbr_present_tot > 0:
+            res = (nbr_echec * 100 / nbr_present_tot)
+            if res > 0:
+                prc_echec = f'{res:.2f}'.replace('.00', '')
+                return prc_echec
+            else:
+                prc_echec = f'{res:.0f}'
+                return prc_echec
 
     def pack_solo_inscrit(self, sum_solo_inscrit):
         """ Calculer le nombre du client inscrit par session selon le pack solo """
         nbr_from_examen = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-            if examen.module_id.product_id.default_code == "basique":
+            if examen.module_id.product_id.default_code == "basique" and examen.partner_id.statut == 'won':
                 nbr_from_examen += 1
-        nbr_canceled_prospect = 0
-        tot_solo_inscrit = nbr_from_examen
-        for nbr_inscrit_pack_solo in self.canceled_prospect_ids:
-            if nbr_inscrit_pack_solo.mcm_session_id.id == self.id:
-                if nbr_inscrit_pack_solo.module_id.product_id.default_code == "basique":
-                    nbr_canceled_prospect += 1
-                    tot_solo_inscrit = tot_solo_inscrit + nbr_canceled_prospect
-        nbr_panier_perdu = 0
-        for nbr_inscrit_pack_solo_perdu in self.panier_perdu_ids:
-            if nbr_inscrit_pack_solo.mcm_session_id.id == self.id and nbr_inscrit_pack_solo_perdu.module_id.product_id.default_code == "basique":
-                nbr_panier_perdu += 1
-        sum_solo_inscrit = tot_solo_inscrit + nbr_panier_perdu
+                # Appliquer regle si client a dépassé les 14 jours
+        nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
+             ('client_id.temps_minute', '=', 0)])
+        nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+             ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
+        count_per_an = False
+        # Si le financement de client est personel
+        for sale in nbr_partner_personel_annule:
+            if sale.client_id.signed_on > self.date_exam + timedelta(days=14) and sale.client_id.module_id.product_id.default_code == "basique":
+                count_per_an += 1
+        counter_per_an = count_per_an
+        res_calc = counter_per_an + len(nbr_partner_cpf_annule)
+        sum_solo_inscrit = nbr_from_examen + res_calc
         return sum_solo_inscrit
 
     def pack_solo_present(self, sum_solo_present):
@@ -293,11 +388,11 @@ class Session(models.Model):
     def pack_premium_present(self, sum_premium_present):
         """ Calculer le nombre du client present par session selon le pack premium """
         nbr_from_examen_premium = 0
-        for examen in self.env['info.examen'].search(
-                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
-            if examen.module_id.product_id.default_code == "premium":
-                nbr_from_examen_premium += 1
-        sum_premium_present = nbr_from_examen_premium
+        examen = self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('presence', "=", 'present'), ('module_id.product_id.default_code', '=', "premium")])
+        #if examen.module_id.product_id.default_code == "premium":
+        #nbr_from_examen_premium += 1
+        sum_premium_present = len(examen)
         return sum_premium_present
 
     def pack_repassage_present(self, sum_repassage_present):
@@ -310,25 +405,48 @@ class Session(models.Model):
         sum_repassage_present = nbr_from_examen_repassage
         return sum_repassage_present
 
+    def nbr_canceled_state_after_14_day(self, cal_days):
+        """ Calculer nbr_canceled_state_after_14_day """
+        nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled')])
+        nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+             ('date_creation', ">", self.date_exam + timedelta(days=14))])
+        count_per_an = False
+        for sale in nbr_partner_personel_annule:
+            if sale.client_id.signed_on > self.date_exam + timedelta(days=14):
+                count_per_an += 1
+        counter_per_an = count_per_an
+        cal_days = counter_per_an + len(nbr_partner_cpf_annule) + len(nbr_partner_personel_annule)
+        return cal_days
+
     def pack_pro_inscrit(self, sum_pro_inscrit):
         """ Calculer le nombre du client inscrit par session selon le pack pro """
-        nbr_from_examen_pro = 0
+        nbr_from_examen_pro = False
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-            if examen.module_id.product_id.default_code == "avancee":
+            if examen.module_id.product_id.default_code == "avancee" and examen.partner_id.statut == 'won':
                 nbr_from_examen_pro += 1
-        nbr_canceled_prospect_pro = 0
-        tot = nbr_from_examen_pro
-        for nbr_inscrit_pack_pro in self.canceled_prospect_ids:
-            if nbr_inscrit_pack_pro.mcm_session_id.id == self.id:
-                if nbr_inscrit_pack_pro.module_id.product_id.default_code == "avancee":
-                    nbr_canceled_prospect_pro += 1
-                    tot = nbr_canceled_prospect_pro + nbr_from_examen_pro
-        nbr_panier_perdu_pro = 0
-        for nbr_inscrit_pack_pro_perdu in self.panier_perdu_ids:
-            if nbr_inscrit_pack_pro_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_pro_perdu.module_id.product_id.default_code == "avancee":
-                nbr_panier_perdu_pro += 1
-        sum_pro_inscrit = tot + nbr_panier_perdu_pro
+        # Appliquer regle si client a dépassé les 14 jours
+        nbr_partner_personel_annule_pro = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled')])
+        nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+             ('date_creation', ">", self.date_exam + timedelta(days=14))])
+        count_per_an = False
+        # Si le financement de client est personel
+        for sale in nbr_partner_personel_annule_pro:
+            if sale.client_id.signed_on > self.date_exam + timedelta(
+                    days=14) and sale.client_id.module_id.product_id.default_code == "avancee":
+                count_per_an += 1
+        counter_per_an = count_per_an
+        res_calc = counter_per_an + len(nbr_partner_cpf_annule)
+        tot = nbr_from_examen_pro + res_calc
+        sum_pro_inscrit = tot
         return sum_pro_inscrit
 
     def pack_premium_inscrit(self, sum_premium_inscrit):
@@ -336,49 +454,60 @@ class Session(models.Model):
         nbr_from_examen_premium = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-            if examen.module_id.product_id.default_code == "premium":
+
+            if examen.module_id.product_id.default_code == "premium" and examen.partner_id.statut == 'won':
                 nbr_from_examen_premium += 1
-        nbr_canceled_prospect_premium = 0
-        tot_premium = nbr_from_examen_premium
-        for nbr_inscrit_pack_premium in self.canceled_prospect_ids:
-            if nbr_inscrit_pack_premium.mcm_session_id.id == self.id:
-                if nbr_inscrit_pack_premium.module_id.product_id.default_code == "premium":
-                    nbr_canceled_prospect_premium += 1
-                    tot_premium = tot_premium + nbr_canceled_prospect_premium
-        nbr_panier_perdu_premium = 0
-        for nbr_inscrit_pack_premium_perdu in self.panier_perdu_ids:
-            if nbr_inscrit_pack_premium_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_premium_perdu.module_id.product_id.default_code == "premium":
-                nbr_panier_perdu_premium += 1
-        sum_premium_inscrit = tot_premium + nbr_panier_perdu_premium
+        # Appliquer regle si client a dépassé les 14 jours
+        nbr_partner_personel_annule_premium = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
+             ('client_id.temps_minute', '=', 0)])
+        nbr_partner_cpf_annule_premium = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+             ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
+        count_per_an_premium = False
+        # Si le financement de client est personel
+        for sale in nbr_partner_personel_annule_premium:
+            if sale.client_id.signed_on > self.date_exam + timedelta(
+                    days=14) and sale.client_id.module_id.product_id.default_code == "premium":
+                count_per_an_premium += 1
+        counter_per_an = count_per_an_premium
+        res_calc_premium = counter_per_an + len(nbr_partner_cpf_annule_premium) + nbr_from_examen_premium
+        sum_premium_inscrit = res_calc_premium
         return sum_premium_inscrit
 
     def pack_repassage_inscrit(self, sum_repassage_inscrit):
         """ Calculer le nombre du client inscrit par session selon le pack repassage """
-        nbr_from_examen_repassage = 0
+        nbr_from_examen = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-            if examen.module_id.product_id.default_code == "examen":
-                nbr_from_examen_repassage += 1
-        nbr_canceled_prospect_repassage = 0
-        tot = nbr_from_examen_repassage
-        for nbr_inscrit_pack_repassage in self.canceled_prospect_ids:
-            if nbr_inscrit_pack_repassage.mcm_session_id.id == self.id:
-                if nbr_inscrit_pack_repassage.module_id.product_id.default_code == "examen":
-                    nbr_canceled_prospect_repassage += 1
-                    tot = tot + nbr_from_examen_repassage
-        nbr_panier_perdu_repassage = 0
-        for nbr_inscrit_pack_repassage_perdu in self.panier_perdu_ids:
-            if nbr_inscrit_pack_repassage_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_repassage_perdu.module_id.product_id.default_code == "examen":
-                nbr_panier_perdu_repassage += 1
-        sum_repassage_inscrit = tot + nbr_panier_perdu_repassage
+            if examen.module_id.product_id.default_code == "examen" and examen.partner_id.statut == 'won':
+                nbr_from_examen += 1
+        # Appliquer regle si client a dépassé les 14 jours
+        nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
+             ('client_id.temps_minute', '=', 0)])
+        nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+             ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
+        count_per_an = False
+        # Si le financement de client est personel
+        for sale in nbr_partner_personel_annule:
+            if sale.client_id.signed_on > self.date_exam + timedelta(
+                    days=14) and sale.client_id.module_id.product_id.default_code == "examen":
+                count_per_an += 1
+        sum_repassage_inscrit = count_per_an + len(nbr_partner_cpf_annule) + nbr_from_examen
         return sum_repassage_inscrit
 
     def taux_de_presence_solo(self):
         """ Calculer taux de presence par session selon le pack solo """
         pack_solo_present = self.pack_solo_present(self)
-        nbr_inscrit = self.pack_solo_inscrit(self)
-        if nbr_inscrit > 0:
-            taux_de_presence = pack_solo_present * 100 / nbr_inscrit
+        nbr_inscrit_solo = self.pack_solo_inscrit(self)
+        if nbr_inscrit_solo > 0:
+            taux_de_presence = pack_solo_present * 100 / nbr_inscrit_solo
             if taux_de_presence > 0:
                 taux_de_presence_solo = f'{taux_de_presence:.2f}'.replace('.00', '')
                 return taux_de_presence_solo
@@ -392,9 +521,9 @@ class Session(models.Model):
     def taux_de_presence_pro(self):
         """ Calculer taux de presence par session selon le pack pro """
         pack_pro_present = self.pack_pro_present(self)
-        nbr_inscrit = self.pack_pro_inscrit(self)
-        if nbr_inscrit > 0:
-            taux_de_presence = pack_pro_present * 100 / nbr_inscrit
+        nbr_inscrit_pro = self.pack_pro_inscrit(self)
+        if nbr_inscrit_pro > 0:
+            taux_de_presence = pack_pro_present * 100 / nbr_inscrit_pro
             if taux_de_presence > 0:
                 taux_de_presence_pro = f'{taux_de_presence:.2f}'.replace('.00', '')
                 return taux_de_presence_pro
@@ -513,9 +642,9 @@ class Session(models.Model):
             for examen in self.env['info.examen'].sudo().search(
                     [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
                 print("examen", examen)
-                sum_qcm += sum(examen.mapped('epreuve_a'))
+                sum_qcm += sum(examen.mapped('epreuve_a')) / nbr_present
         if nbr_present > 0:
-            moyenne_qcm = sum_qcm / nbr_present
+            moyenne_qcm = sum_qcm
             return f'{moyenne_qcm:.2f}'.replace('.00', '')
         else:
             return 0
@@ -530,9 +659,9 @@ class Session(models.Model):
             for examen in self.env['info.examen'].sudo().search(
                     [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
                 print("examen", examen.epreuve_b)
-                sum_qro += sum(examen.mapped('epreuve_b'))
+                sum_qro += sum(examen.mapped('epreuve_b')) / nbr_present
         if nbr_present > 0:
-            moyenne_qro = sum_qro / nbr_present
+            moyenne_qro = sum_qro
             return f'{moyenne_qro:.2f}'.replace('.00', '')
         else:
             return 0
@@ -542,17 +671,17 @@ class Session(models.Model):
         """ CALCULER moyenne de somme de la note QRO et QCM par session"""
         sum_qcm_qro = 0
         moyenne_qcm_qro = 0
+        moy_qcm = float(self.moyenne_qro())
+        moy_qro = float(self.moyenne_qcm())
         nbr_present = self.nbr_present_par_session(self)
-        for rec in self.client_ids:
-            for examen in self.env['info.examen'].sudo().search(
-                    [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
-                sum_qcm_qro += sum(examen.mapped('moyenne_generale'))
+        sum_qcm_qro = moy_qcm + moy_qro
         if nbr_present > 0:
-            moyenne_qcm_qro = sum_qcm_qro / nbr_present
-            print("f'{moyenne_qcm_qro:.2f}'", f'{moyenne_qcm_qro:.2f}'.split('.')[1])
-            return f'{moyenne_qcm_qro:.2f}'.replace('.00', '')
-        else:
-            return 0
+            moyenne_qcm_qro = sum_qcm_qro
+            return moyenne_qcm_qro
+        #     moyenne_qcm_qro = sum_qcm_qro
+        #     return f'{moyenne_qcm_qro:.2f}'.replace('.00', '')
+        # else:
+        #     return 0
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):

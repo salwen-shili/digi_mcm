@@ -122,7 +122,7 @@
                                 <p>B) Nombre de candidats reçus à l’examen
                                     <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
                                     sur
-                                    <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                                    <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
                                 </p>
                                 <p>- Le taux de réussite est donc de
                                     <span
@@ -231,7 +231,7 @@
                             </p>
                             <p>
                                 <b>Heure :</b>
-                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%H:%M:%S')"/>
+                                <span t-field="o.heure_jury"/>
                             </p>
                             <p>
                                 <b>Signature :</b>
@@ -391,7 +391,7 @@
                                     <tr>
                                         <th class="th">Nombre d'abandon
                                             <td class="td">
-                                                <span t-esc="o.count_annule"/>
+                                                <span t-esc="docs.nombre_abandon(nbr_ab)"/>
                                             </td>
 
                                             <td class="td">
@@ -399,6 +399,7 @@
                                                 <span>%</span>
                                             </td>
                                         </th>
+
                                         <th class="th">Nombre d'admis
                                             <td class="td">
                                                 <span t-esc="docs.nbr_recus_solo()"/>
@@ -415,13 +416,13 @@
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th class="th">Nombre d'admis
+                                        <th style="background:#FFFF00;">Non présentation à la formation
                                             <td class="td">
-                                                <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
+                                                <span t-esc="docs.calculer_zero_min_formation_gagne(zero_min_formation_gagne)"/>
                                             </td>
 
                                             <td class="td">
-                                                <span t-esc="docs.pourcentage_client_recu(pourcentage)"/>
+                                                <span t-esc="docs.pourcentage_calculer_formation_gagne(resultat)"/>
                                                 <span>%</span>
                                             </td>
                                         </th>
@@ -440,6 +441,18 @@
                                             </td>
                                             <td class="td">
                                                 <span t-esc="docs.taux_de_reussite_repassage()"/>
+                                                <span>%</span>
+                                            </td>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="th">Nombre d'admis
+                                            <td class="td">
+                                                <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
+                                            </td>
+
+                                            <td class="td">
+                                                <span t-esc="docs.pourcentage_client_recu(pourcentage)"/>
                                                 <span>%</span>
                                             </td>
                                         </th>
@@ -570,13 +583,20 @@
                                         </td>
                                     </t>
                                     <t t-if="session.resultat == 'ajourne' and session.presence != 'present'">
-                                        <td class="td" style="background-color:#E9967A;">
-                                            <t t-set="session"
-                                               t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
-                                            <strong>
-                                                <span>Absent</span>
-                                            </strong>
-                                        </td>
+                                        <t t-if="int(session.temps_minute) &gt; 0">
+                                            <td class="td" style="background-color:#E9967A;">
+                                                <strong>
+                                                    <span>Absent</span>
+                                                </strong>
+                                            </td>
+                                        </t>
+                                        <t t-else="int(session.temps_minute) == 0 and session.partner_id.statut == 'won'">
+                                            <td class="td" style="background:#FFFF00;">
+                                                <strong>
+                                                    <span>Non présentation à la formation</span>
+                                                </strong>
+                                            </td>
+                                        </t>
                                     </t>
 
                                     <td class="td">
