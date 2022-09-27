@@ -60,7 +60,7 @@
 
                                 </div>
                                 <div class="col-md-6 img-anim">
-                                    <img class="img img-fluid" src="/digimoov_website_templates/static/img/Formation capacité de transport léger.gif" alt="Formation capacité transport léger de marchandises" data-original-title="" title="Formation capacité de transport leger de marchandise" aria-describedby="tooltip407937" />
+                                    <img class="img img-fluid lazy" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Formation capacité de transport léger.webp" data-src="/digimoov_website_templates/static/img/Homepage/Formation capacité de transport léger.png" alt="Formation capacité transport léger de marchandises" data-original-title="" title="Formation capacité de transport leger de marchandise" aria-describedby="tooltip407937" />
                                 </div>
                             </div>
                         </div>
@@ -100,7 +100,8 @@
                     <!-- Formation capacité de transport 100 % en ligne-->
 
                     <section class="s_web_agency_video_with_three_block_image bg-100 spacer feature29 p-b-0 pb16">
-                        <div class="container wrap-feature-29">
+                        <div class="container wrap-feature-29" style="    margin-top: 11px;
+    margin-bottom: 16px;">
                             <div class="row justify-content-center">
                                 <div class="col-md-7 text-center">
                                     <h2 class="subtitle fs-36 black ">
@@ -111,7 +112,7 @@
                                         <br />
 
                                         <br />
-                                        <p class="para mb40">
+                                        <p class="para">
                                             éligible au
                                             <a href="/mon-compte-de-formation-cpf">
                                                 <b>
@@ -122,7 +123,7 @@
                                     </h2>
                                 </div>
                             </div>
-                            <div class="row wrap-feature-29 text-white">
+                            <div class="row wrap-feature-29 text-white" style="margin-top:0px">
                                 <div class="col-lg-4 col-md-4 text-center">
                                     <span class="display-5 fa fa-3x fa-rocket icon-color" />
                                     <p class="title black">
@@ -131,7 +132,9 @@
             </p>
                                 </div>
                                 <div class="col-lg-4 col-md-4 text-center">
-                                    <img data-src="/digimoov_website_templates/static/img/Formation 100 pour cent en ligne.webp" data-srcsafari="/digimoov_website_templates/static/img/compressed/2-_Formation_100_pour_cent_en_ligne.png" class="img-responsive pos-img-Formation_100_pour_cent lazy" alt="Livreur indépendant formation en ligne" data-original-title="" title="Formation 100 pour cent en ligne" aria-describedby="tooltip183706" />
+                                    <img data-src="/digimoov_website_templates/static/img/Formation-100-pour-cent-en-ligne.webp" data-srcsafari="/digimoov_website_templates/static/img/Formation-100-pour-cent-en-ligne.webp" class="img-responsive pos-img-Formation_100_pour_cent lazy" alt="Livreur indépendant formation en ligne" data-original-title="" title="Formation 100 pour cent en ligne" style="    width: 54%;
+                                    margin-top: 44px;
+                                    margin-bottom: 42px;" aria-describedby="tooltip183706" />
                                 </div>
                                 <div class="col-lg-4 col-md-4 text-center m-b-30">
                                     <span class="display-5 fa fa-3x fa-flag purple-v" aria-describedby="tooltip158070" />
@@ -152,7 +155,7 @@
                                     <div class="col-md-4 wrap-feature1-box">
                                         <div class="card-body text-center">
                                             <div class="icon-space">
-                                                <img data-src="/digimoov_website_templates/static/img/Apprenez à votre rythme - Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Apprenez à votre rythme - Digimoov.jpg" alt="Choisir pour combien de temps apprendre" class="img img-fluid lazy lazy" title="Apprenez à votre rythme" />
+                                                <img data-src="/digimoov_website_templates/static/img/Apprenez à votre rythme - Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/Apprenez à votre rythme - Digimoov.png" alt="Choisir pour combien de temps apprendre" class="img img-fluid lazy lazy" title="Apprenez à votre rythme" style="width:30%"/>
                                             </div>
                                             <h3 class="icon-title mt24 mb24 ">Apprenez à votre rythme</h3>
                                             <p class="para black-v">
@@ -164,7 +167,7 @@
                                     <div class="col-md-4 wrap-feature1-box">
                                         <div class="card-body text-center">
                                             <div class="icon-space">
-                                                <img data-src="/digimoov_website_templates/static/img/Des formateurs Qualifiés - Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Des_formateurs_Qualifiés_-_Digimoov.jpg" alt="des formateurs Qualifiés chez Digimoov" class="img img-fluid lazy" title="Des formateurs Qualifiés chez Digimoov" />
+                                                <img data-src="/digimoov_website_templates/static/img/Des formateurs Qualifiés - Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/Des formateurs Qualifiés - Digimoov.png" alt="des formateurs Qualifiés chez Digimoov" class="img img-fluid lazy" title="Des formateurs Qualifiés chez Digimoov" style="width:30%"/>
                                             </div>
                                             <h3 class="icon-title mt24 mb24">Des formateurs qualifiés</h3>
                                             <p class="para black-v">
@@ -176,7 +179,7 @@
                                     <div class="col-md-4 wrap-feature1-box">
                                         <div class="card-body text-center">
                                             <div class="icon-space">
-                                                <img data-src="/digimoov_website_templates/static/img/Examens Blancs capacité de transport léger - Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Examens Blancs capacité de transport léger - Digimoov.jpg" alt="Examens Blancs pour entraînement" class="img img-fluid lazy" title="Examens Blancs capacité de transport léger chez Digimoov" />
+                                                <img data-src="/digimoov_website_templates/static/img/Examens Blancs capacité de transport léger - Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/Examens Blancs capacité de transport léger - Digimoov.png" alt="Examens Blancs pour entraînement" class="img img-fluid lazy" title="Examens Blancs capacité de transport léger chez Digimoov" style="width:30%"/>
                                             </div>
                                             <h3 class="icon-title mt24 mb24">Examens blancs</h3>
                                             <p class="para black-v">
@@ -257,13 +260,13 @@
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-md-5 ">
-                                        <img data-src="/digimoov_website_templates/static/img/compressed/formation en ligne.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/formation en ligne.jpg" alt="Apprenant en formation à distance" class="img-responsive img img-fluid lazy pos-formation" title="formation en ligne" />
+                                        <img data-src="/digimoov_website_templates/static/img/formation-en-ligne.webp" data-srcsafari="/digimoov_website_templates/static/img/formation-en-ligne.png" alt="Apprenant en formation à distance" class="img-responsive img img-fluid lazy pos-formation" title="formation en ligne" />
                                     </div>
                                 </div>
                                 <!--2 L'examen de l'attestation de capacité de transport-->
                                 <div class="row wrap-feature-26 m-t-40 p-t-30">
                                     <div class="col-md-6 col-md-6 ">
-                                        <img data-src="/digimoov_website_templates/static/img/compressed/Examen capacité de marchandise.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/Examen capacité de marchandise.jpg" alt="Candidat passe l'examen de capacité en transport léger" class="img-responsive img img-fluid lazy feature-pos-2" title="Examen capacité de marchandise" />
+                                        <img data-src="/digimoov_website_templates/static/img/Examen-capacité-de-marchandise.webp" data-srcsafari="/digimoov_website_templates/static/img/Examen-capacité-de-marchandise.png" alt="Candidat passe l'examen de capacité en transport léger" class="img-responsive img img-fluid lazy feature-pos-2" title="Examen capacité de marchandise" />
                                     </div>
                                     <div class="col-md-6 align-self-center">
                                         <div class="max-box">
@@ -329,7 +332,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-md-5">
-                                        <img data-src="/digimoov_website_templates/static/img/Diplome attestation de capacité de transport léger.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Diplome attestation de capacité de transport léger.jpg" alt="Homme et Femme diplomés après réussite" class="img-responsive img img-fluid lazy" data-original-title="" title="Diplome attestation de capacité de transport léger" aria-describedby="tooltip805036" />
+                                        <img data-src="/digimoov_website_templates/static/img/Diplome-attestation-de-capacité-de-transport-léger.webp" data-srcSafari="/digimoov_website_templates/static/img/Diplome-attestation-de-capacité-de-transport-léger.png" alt="Femme diplomée après réussite" class="img-responsive img img-fluid lazy" data-original-title="" title="Diplome attestation de capacité de transport léger" aria-describedby="tooltip805036" />
                                     </div>
                                 </div>
                             </div>
@@ -341,7 +344,7 @@
                         <div class="container" style="border-style: none; border-width: 0px;">
                             <div class="row align-items-center">
                                 <div class="col-lg-6 pt16 pb16">
-                                    <img src="/digimoov_website_templates/static/img/Homepage/blog (5).png" class="img img-fluid mx-auto" alt="partenaire de livraison avec Amazon" data-original-title="" title="" aria-describedby="tooltip768727" />
+                                    <img data-src="/digimoov_website_templates/static/img/Attestation-en-capacité-de-transport-lourd-de-marchandises.webp" data-srcsafari="/digimoov_website_templates/static/img/Attestation-en-capacité-de-transport-lourd-de-marchandises.png" class="img img-fluid mx-auto lazy" alt="partenaire de livraison avec Amazon" data-original-title="" title="" aria-describedby="tooltip768727" />
                                 </div>
                                 <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
                                     <h2>
