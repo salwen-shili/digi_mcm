@@ -81,28 +81,28 @@ class rapport(models.Model):
                 print(acceptedDate, "acettectctetett")
 
                 print("statut_dossier", statut_dossier)
-                for existe in self.env['mcm_openedx.rapport'].sudo().search([]):
-                    if existe:
-                        for partner in self.env['res.partner'].search(
-                                [('numero_cpf', '=', existe.numero_dossier), ('statut_cpf', '!=', 'canceled')]):
-                            if partner.numero_cpf == existe.numero_dossier:
-                                print("ookokokokokokokokkkkkkkkkkkk", partner.id)
-                                print("ookokokokokokokokkkkkkkkkkkk", existe.partner_id)
+                existe = self.env['mcm_openedx.rapport'].sudo().search([('numero_dossier','=',dossier['externalId'])])
+                if not existe:
+                    new = self.env['mcm_openedx.rapport'].sudo().create({
+                        'numero_dossier': externalId,
+                        'name': name,
+                        'prenom': prenom,
+                        'statut_dossier': statut_dossier,
+                        'montant_formation': montant_formation,
+                        'date_debut_session': date_,
+                        'date_fin_session': date_fin_session,
+                        'acceptedDate': acceptedDate,
+                        'numero_formation': numero_formation.split("/")[0].split("_", 1)[1],
+                        'numero_action': numero_formation.split("/")[0].split("_", 1)[1].split("_20")[0],
+                        'numero_session': numero_formation.split("/")[0].split("_", 1)[1].split("_20")[0],
+                    })
+                    _logger.info(new)
+
+                for partner in self.env['res.partner'].search(
+                        [('numero_cpf', '=', existe.numero_dossier), ('statut_cpf', '!=', 'canceled')]):
+                    if partner.numero_cpf == existe.numero_dossier:
+                        print("ookokokokokokokokkkkkkkkkkkk", partner.id)
+                        print("ookokokokokokokokkkkkkkkkkkk", existe.partner_id)
 
 
-                                existe.partner_id = partner.id
-                    if not existe:
-                        new = self.env['mcm_openedx.rapport'].sudo().create({
-                            'numero_dossier': externalId,
-                            'name': name,
-                            'prenom': prenom,
-                            'statut_dossier': statut_dossier,
-                            'montant_formation': montant_formation,
-                            'date_debut_session': date_,
-                            'date_fin_session': date_fin_session,
-                            'acceptedDate': acceptedDate,
-                            'numero_formation': numero_formation.split("/")[0].split("_", 1)[1],
-                            'numero_action': numero_formation.split("/")[0].split("_", 1)[1].split("_20")[0],
-                            'numero_session': numero_formation.split("/")[0].split("_", 1)[1].split("_20")[0],
-                        })
-                        _logger.info(new)
+                        existe.partner_id = partner.id
