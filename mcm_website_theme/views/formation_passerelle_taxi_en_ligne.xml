@@ -637,7 +637,7 @@
                         </div>
                     </div>
                 </section>
-                <div class="s_btn text-left pt16 pb16" data-name="Button" t-if="request.website.is_public_user()==False"
+                <div data-name="Button" t-if="request.website.is_public_user()==False"
                      style="text-align:center">
                     <t t-foreach="mcm_products" t-as="product">
                         <t t-if="product.default_code=='passerelle-taxi'">
@@ -658,7 +658,7 @@
                         </t>
                     </t>
                 </div>
-                <div class="s_btn text-left pt16 pb16" data-name="Button" t-if="request.website.is_public_user()==True"
+                <div data-name="Button" t-if="request.website.is_public_user()==True"
                      style="text-align:center">
                     <div class="sh_btn">
                         <a class="animated-button-yellow" href="#form1">
@@ -671,7 +671,6 @@
                     </div>
                 </div>
             </div>
-            form1
             <script defer="defer" type="text/javascript"
                     src="/fl_auth_signup/static/js/jquery.min.js"/>
 
