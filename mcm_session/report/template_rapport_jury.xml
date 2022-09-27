@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="header_rapport_jury">
-
         <t t-if="o.ville_jury_id.name_ville != 'Paris'">
             <div class="row">
                 <br/>
-                <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="2000"/>
+                <img src='/mcm_session/static/src/img/header_jury.png' height="360" width="2000" style="margin-right:-15px;"/>
             </div>
         </t>
         <t t-else="">
             <div class="row">
                 <br/>
-                <img src='/mcm_session/static/src/img/La_DRIEAT_Ile-de-France.png' height="300"
-                     width="2000"/>
+                <img src='/mcm_session/static/src/img/La_DRIEAT_Ile-de-France.png' height="370"
+                     width="2000" style="margin-right:-15px;"/>
             </div>
         </t>
     </template>
@@ -90,7 +89,7 @@
 
                         <p style="page-break-after:always;"/>
                         <div class="row">
-                            <img src='/mcm_session/static/src/img/header_middle.png' height="60" width="2000"/>
+                            <img src='/mcm_session/static/src/img/header_middle.png' height="60" width="2000" style="margin-right:-15px;"/>
                         </div>
                         <div class="page" style="margin-left:10%;margin-right:10%;">
 
@@ -671,8 +670,8 @@
                     </div>
                 </t>
             </t>
-            <div class="footer" style="position:absolute; margin:0px; padding:0px">
-                <img src='/mcm_session/static/src/img/footer_jury.png'
+            <div class="footer" style="position:absolute; margin:0px; padding:0px;margin-left:-15px;">
+                <img src='/mcm_session/static/src/img/footer.png'
                      height="80" width="2000"/>
             </div>
         </t>

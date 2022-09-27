@@ -22,7 +22,6 @@
             report_type="qweb-pdf"
             name="mcm_session.template_raport_jury_ids"
             file="mcm_session.template_raport_jury_ids"
-            attachment_use="False"
             paperformat="mcm_session.paperformat_rapport_jury"
     />
 </odoo>
