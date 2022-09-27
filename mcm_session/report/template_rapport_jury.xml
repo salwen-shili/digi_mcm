@@ -672,7 +672,7 @@
                 </t>
             </t>
             <div class="footer" style="position:absolute; margin:0px; padding:0px">
-                <img src='/mcm_session/static/src/img/footer_jury.png'
+                <img src='/mcm_session/static/src/img/footer.png'
                      height="80" width="2000"/>
             </div>
         </t>
