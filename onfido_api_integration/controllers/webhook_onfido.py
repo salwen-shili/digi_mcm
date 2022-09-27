@@ -155,7 +155,7 @@ class OnfidoController(http.Controller):
         data_onfido = request.env['onfido.info'].sudo().search([('partner_id', '=', currentUser.id)], limit=1,
                                                                order="id desc")
         list_document = partner.get_listDocument(applicant_id, website.onfido_api_key_live)
-        _logger.info('*************************************DOCUMENT***************** %s' % str(list_document))
+        _logger.info('*************************************DOCUMENT***************** %s' % str(currentUser))
         if currentUser:
             """get report document"""
             check = currentUser.get_checks(applicant_id, website.onfido_api_key_live)
