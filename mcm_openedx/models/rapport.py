@@ -14,6 +14,7 @@ class rapport(models.Model):
     numero_dossier = fields.Char(string="NUMERO_DOSSIER")
     partner_id = fields.Many2one('res.partner')
     name = fields.Char(string="NOM")
+    company = fields.Char(string="Company")
     prenom = fields.Char(string="PRENOM")
     montant_formation = fields.Char(string="MONTANT FORMATION")
     statut_dossier = fields.Char(string="STATUT DOSSIER")
@@ -81,7 +82,7 @@ class rapport(models.Model):
                 print(acceptedDate, "acettectctetett")
 
                 print("statut_dossier", statut_dossier)
-                existe = self.env['mcm_openedx.rapport'].sudo().search([('numero_dossier','=',dossier['externalId'])])
+                existe = self.env['mcm_openedx.rapport'].sudo().search([('numero_dossier', '=', dossier['externalId'])])
                 if not existe:
                     new = self.env['mcm_openedx.rapport'].sudo().create({
                         'numero_dossier': externalId,
@@ -101,8 +102,18 @@ class rapport(models.Model):
                 for partner in self.env['res.partner'].search(
                         [('numero_cpf', '=', existe.numero_dossier), ('statut_cpf', '!=', 'canceled')]):
                     if partner.numero_cpf == existe.numero_dossier:
+                        existe.company = partner.company_id.name
                         print("ookokokokokokokokkkkkkkkkkkk", partner.id)
                         print("ookokokokokokokokkkkkkkkkkkk", existe.partner_id)
 
-
                         existe.partner_id = partner.id
+
+
+class rapportstripe(models.Model):
+    _name = 'mcm_openedx.rapportstripe'
+    _description = "Rapport Marketing Finance"
+    seller_message = fields.Char(string="Seller_message")
+    created = fields.Char(string="Created")
+    amount = fields.Char(string="Amount")
+    customer_email = fields.Char(string="Customer_email")
+    captured = fields.Boolean(string="Captured")
