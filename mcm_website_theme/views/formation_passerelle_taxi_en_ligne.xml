@@ -261,7 +261,7 @@
                             inputmode="numeric" name="zip" required="required" autofocus="autofocus"
                               autocapitalize="off" class="form-control" style="width: 101px; margin-right: 10px" />
               
-                            <input type="text" placeholder="Adresse postal*" name="street" required="required" autofocus="autofocus"
+                            <input type="text" placeholder="Adresse postal*" name="voie" required="required" autofocus="autofocus"
                               autocapitalize="off" class="form-control" style="" />
                           </div>
               
