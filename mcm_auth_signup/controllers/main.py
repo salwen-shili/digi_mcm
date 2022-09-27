@@ -193,7 +193,16 @@ class Home(Home):
                         'tax_id': product_id.taxes_id,
                         'company_id': 1,
                     })
+                    if so_line :
+                        so_line.sudo().write({
+                            'price_subtotal' : product_id.list_price
+                        })
+                        
                     if so:
+                        so.sudo().write({
+                            'amount_untaxed' : product_id.list_price,
+                            'amount_total' : product_id.list_price,
+                        })
                         redirect = '/felicitations'
 
         partner = request.env['res.partner'].sudo().search([('email', "=", login)], limit=1)
