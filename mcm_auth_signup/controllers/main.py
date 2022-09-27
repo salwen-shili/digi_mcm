@@ -100,6 +100,8 @@ class AuthSignupHome(AuthSignupHome):
                     if user_sudo:
                         user_sudo.street = str(request.website.name)
                 kw['login'] = qcontext.get('login').replace(' ', '').lower()
+                if 'passerelle' in qcontext:
+                    kw['passerelle'] = True
                 return self.web_login(*args, **kw)
             except UserError as e:
                 qcontext['error'] = e.name or e.value
@@ -116,21 +118,62 @@ class AuthSignupHome(AuthSignupHome):
                     if AssertionError:
                         _logger.error("name %s", AssertionError)
                     qcontext['error'] = _("Could not create a new account.")
-        print('token:',qcontext.get('token'))
-        print('qcontext1:', qcontext)
         response = request.render('auth_signup.signup', qcontext)
         _logger.info('STATUS %s', response.status_code)
         response.headers['X-Frame-Options'] = 'DENY'
-        user_sudo = request.env['res.users'].sudo().search(
-            [('login', "=", qcontext.get('login').replace(' ', '').lower())])
-        _logger.info('qcontext1 : %s' % str(qcontext))
-        if 'passerelle' in qcontext:
-            _logger.info('passerelle: %s' % str(qcontext.get('passerelle')))
-            _logger.info('user sudo : %s' % str(user_sudo))
-            _logger.info('post qcontext : %s' % str(qcontext))
-            if user_sudo:
+        # user_sudo = request.env['res.users'].sudo().search(
+        #     [('login', "=", qcontext.get('login').replace(' ', '').lower())])
+        # _logger.info('qcontext1 : %s' % str(qcontext))
+        # if 'passerelle' in qcontext:
+        #     _logger.info('passerelle: %s' % str(qcontext.get('passerelle')))
+        #     _logger.info('user sudo : %s' % str(user_sudo))
+        #     _logger.info('post qcontext : %s' % str(qcontext))
+        #     if user_sudo:
+        #         product_id = request.env['product.product'].sudo().search(
+        #             [('default_code', "=", "passerelle-taxi"), ('company_id', "=", 1)], limit=1)
+        #         if product_id:
+        #
+        #             so = request.env['sale.order'].sudo().create({
+        #                 'partner_id': user_sudo.partner_id.id,
+        #                 'company_id': 1,
+        #                 'website_id': 1,
+        #                 'fiscal_position_id': 1,
+        #             })
+        #
+        #             so_line = request.env['sale.order.line'].sudo().create({
+        #                 'name': product_id.name,
+        #                 'product_id': product_id.id,
+        #                 'product_uom_qty': 1,
+        #                 'product_uom': product_id.uom_id.id,
+        #                 'price_unit': product_id.list_price,
+        #                 'order_id': so.id,
+        #                 'price_subtotal': product_id.list_price,
+        #                 'tax_id': product_id.taxes_id,
+        #                 'company_id': 1,
+        #             })
+        #             if so:
+        #                 so.amount_untaxed = product_id.list_price
+        #                 kw['redirect'] = 'felicitations'
+        #     else:
+        #         _logger.info('kw : %s' % str(kw))
+        if response.status_code != 204:
+            return response
+
+
+class Home(Home):
+
+    @http.route('/web/login', type='http', auth="public")
+    def web_login(self, redirect=None, **kw):
+        login = ""
+        if 'login' in request.params:
+            request.params['login'] = request.params['login'].replace(' ', '').lower()
+            login = request.params['login']
+        response = super(Home, self).web_login(redirect=redirect, **kw)
+        partner = request.env['res.partner'].sudo().search([('email', "=", login)], limit=1)
+        if partner:
+            if 'passerelle' in kw:
                 product_id = request.env['product.product'].sudo().search(
-                    [('default_code', "=", "passerelle-taxi"), ('company_id', "=", 1)], limit=1)
+                            [('default_code', "=", "passerelle-taxi"), ('company_id', "=", 1)], limit=1)
                 if product_id:
 
                     so = request.env['sale.order'].sudo().create({
@@ -147,28 +190,12 @@ class AuthSignupHome(AuthSignupHome):
                         'product_uom': product_id.uom_id.id,
                         'price_unit': product_id.list_price,
                         'order_id': so.id,
-                        'price_subtotal': product_id.list_price,
                         'tax_id': product_id.taxes_id,
                         'company_id': 1,
                     })
                     if so:
-                        so.amount_untaxed = product_id.list_price
-                        kw['redirect'] = 'felicitations'
-            else:
-                _logger.info('kw : %s' % str(kw))
-        if response.status_code != 204:
-            return response
+                        redirect = '/felicitations'
 
-
-class Home(Home):
-
-    @http.route('/web/login', type='http', auth="public")
-    def web_login(self, redirect=None, **kw):
-        login = ""
-        if 'login' in request.params:
-            request.params['login'] = request.params['login'].replace(' ', '').lower()
-            login = request.params['login']
-        response = super(Home, self).web_login(redirect=redirect, **kw)
         partner = request.env['res.partner'].sudo().search([('email', "=", login)], limit=1)
         order = request.env['sale.order'].sudo().search([('partner_id', "=", partner.id)], order='create_date desc',
                                                         limit=1)
