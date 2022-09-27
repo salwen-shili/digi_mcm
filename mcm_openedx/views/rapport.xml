@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--
+        <record id="rapport_search_view" model="ir.ui.view">
+            <field name="name">Sessions</field>
+            <field name="model">mcm_openedx.rapport</field>
+            <field name="arch" type="xml">
+                <search>
+
+                </search>
+            </field>
+        </record>-->
+    <!-- Vue Form session-->
+    <record model="ir.ui.view" id="rapport_form_view">
+        <field name="name">Rapport Finance</field>
+        <field name="model">mcm_openedx.rapport</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group>
+
+                        <field name="numero_dossier"/>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="prenom"/>
+                        <field name="montant_formation"/>
+                        <field name="statut_dossier"/>
+                        <field name="date_debut_session"/>
+                        <field name="date_fin_session"/>
+                        <field name="numero_formation"/>
+                        <field name="numero_action"/>
+                        <field name="numero_session"/>
+                        <field name="acceptedDate"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="rapport_tree_view">
+        <field name="name">Rapport Finance</field>
+        <field name="model">mcm_openedx.rapport</field>
+        <field name="arch" type="xml">
+
+            <tree>
+
+                <field name="numero_dossier"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="prenom"/>
+                <field name="montant_formation"/>
+                <field name="statut_dossier"/>
+                <field name="date_debut_session"/>
+                <field name="date_fin_session"/>
+                <field name="numero_formation"/>
+                <field name="numero_action"/>
+                <field name="numero_session"/>
+                <field name="acceptedDate"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="mcm_openedx.rapport_list_action">
+        <field name="name">Rapport Finance</field>
+        <field name="res_model">mcm_openedx.rapport</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+    <!-- menu des villes sera afficher apres menu configuration dans l'interface de convocation-->
+    <menuitem id="rapport_action" name="Rapport Marketing/Finance"
+              parent="contacts.menu_contacts"
+              action="mcm_openedx.rapport_list_action"
+              sequence="5"/>
+
+</odoo>
+
+  
