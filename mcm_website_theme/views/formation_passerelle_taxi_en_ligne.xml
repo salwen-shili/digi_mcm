@@ -8,6 +8,15 @@
             <link href="/mcm_contact_documents/static/src/css/button.min.css" rel="stylesheet" />
             <!-- -->
             <style>
+              .h1-size{
+                font-size: 48px;
+              
+              }
+              @media (max-width: 375px) {
+                .h1-size{
+                  font-size: 33px;
+                }
+              }
                 .hide {
                     display: none;
                   }
@@ -180,17 +189,17 @@
                       <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
                         <h1>
                           <b>
-                            <font style="font-size: 48px">FORMATION PASSERELLE&amp;nbsp;TAXI</font>
+                            <font class="h1-size">FORMATION PASSERELLE&amp;nbsp;TAXI</font>
                           </b>
                           <span style="font-weight: 700">
-                            <font style="font-size: 48px">&amp;nbsp;</font>
+                            <font class="h1-size">&amp;nbsp;</font>
                           </span>
                           <br />
                           <b style="font-size: 2.1875rem">
-                            <font style="font-size: 48px">EN LIGNE à&amp;nbsp;</font>
-                            <font style="color: rgb(253, 209, 5); font-size: 48px">250&amp;nbsp;</font>
+                            <font class="h1-size">EN LIGNE à&amp;nbsp;</font>
+                            <font class="h1-size" style="color: rgb(253, 209, 5);">250&amp;nbsp;</font>
                           </b>
-                          <font style="color: rgb(253, 209, 5); font-size: 48px">€</font>
+                          <font class="h1-size" style="color: rgb(253, 209, 5);">€</font>
                         </h1>
                         <blockquote>
                           <font style="font-size: 18px">
