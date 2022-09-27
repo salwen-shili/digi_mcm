@@ -416,21 +416,21 @@
                             <div class="col-lg-6 s_col_no_bgcolor pb24" style="border-style: none; border-width: 0px">
                                 <div class="row">
                                     <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <i class="bg-primary fa fa-2x fa-vcard-o rounded-circle s_features_grid_icon"
+                                        <i class="bg-secondary fa fa-2x rounded fa-vcard-o s_features_grid_icon"
                                            data-original-title=""
                                            title="" aria-describedby="tooltip641206"
                                            style="color: rgb(239, 198, 49)"></i>
                                         <div class="s_features_grid_content">
                                             <h3>Un Permis B valide</h3>
                                             <p>
-                                                Avoir un permis de conduire de catégorie B en cours de
+                                                Avoir un permis de catégorie B en cours de
                                                 validité et non affecté par le délai probatoire prévu à
                                                 l’article L.223-1 du code de la route.
                                             </p>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <i class="bg-primary fa fa-2x fa-automobile rounded-circle s_features_grid_icon"
+                                        <i class="bg-secondary fa fa-2x fa-automobile rounded s_features_grid_icon"
                                            data-original-title=""
                                            title="" aria-describedby="tooltip790206"
                                            style="color: rgb(239, 198, 49)"></i>
@@ -443,7 +443,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <i class="bg-primary fa fa-2x fa-folder-open rounded-circle s_features_grid_icon"
+                                        <i class="bg-secondary fa fa-2x fa-folder-open rounded s_features_grid_icon"
                                            data-original-title=""
                                            title="" aria-describedby="tooltip111441"
                                            style="color: rgb(239, 198, 49)"></i>
@@ -461,11 +461,11 @@
                             <div class="col-lg-6 s_col_no_bgcolor pb24" style="border-style: none; border-width: 0px">
                                 <div class="row">
                                     <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <i class="bg-secondary fa fa-2x rounded-circle rounded s_features_grid_icon fa-remove"
+                                        <i class="bg-secondary fa fa-2x rounded s_features_grid_icon fa-remove"
                                            data-original-title="" title=""
                                            aria-describedby="tooltip172347" style="color: rgb(239, 198, 49)"></i>
                                         <div class="s_features_grid_content">
-                                            <h3>Pas de retrait de la carte professionnelle</h3>
+                                            <h3>Pas de retrait de carte pro</h3>
                                             <p>
                                                 Ne pas avoir fait l’objet d’un retrait de carte taxi, VTC ou
                                                 VMDTR, dans les 10 dernières années,
@@ -473,7 +473,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <i class="bg-secondary fa fa-2x rounded-circle fa-file-o rounded s_features_grid_icon"
+                                        <i class="bg-secondary fa fa-2x rounded fa-file-o rounded s_features_grid_icon"
                                            data-original-title="" title=""
                                            aria-describedby="tooltip737811" style="color: rgb(239, 198, 49)"></i>
                                         <div class="s_features_grid_content">
@@ -485,11 +485,11 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <i class="bg-secondary fa fa-2x rounded-circle fa-user-md rounded s_features_grid_icon"
+                                        <i class="bg-secondary fa fa-2x fa-user-md rounded s_features_grid_icon"
                                            data-original-title="" title=""
                                            aria-describedby="tooltip281489" style="color: rgb(239, 198, 49)"></i>
                                         <div class="s_features_grid_content">
-                                            <h3>Aptitude physique et morale à exercer le métier</h3>
+                                            <h3>Aptitude physique et morale</h3>
                                             <p>
                                                 Être reconnu apte à l’exercice de la profession par un médecin
                                                 agréé par l’Etat.
