@@ -177,7 +177,7 @@ class Home(Home):
                 if product_id:
 
                     so = request.env['sale.order'].sudo().create({
-                        'partner_id': user_sudo.partner_id.id,
+                        'partner_id': partner.id,
                         'company_id': 1,
                         'website_id': 1,
                         'fiscal_position_id': 1,
