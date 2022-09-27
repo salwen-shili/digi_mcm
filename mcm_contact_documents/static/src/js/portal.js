@@ -59,6 +59,16 @@ odoo.define('mcm_contact_documents.portal', function (require) {
           $('#noFile4').text(filename.replace('C:\\fakepath\\', ''));
         }
       });
+      $('#justificatifVTC').bind('change', function () {
+        var filename = $('#justificatifVTC').val();
+        if (/^\s*$/.test(filename)) {
+          $('#file-upload5').removeClass('active');
+          $('#noFile5').text('No file chosen...');
+        } else {
+          $('#file-upload5').addClass('active');
+          $('#noFile5').text(filename.replace('C:\\fakepath\\', ''));
+        }
+      });
     }
     if (website.attr('data-website-id') == 2) {
       $('#identity').bind('change', function () {
@@ -81,6 +91,8 @@ odoo.define('mcm_contact_documents.portal', function (require) {
           $('#noFile2').text(filename.replace('C:\\fakepath\\', ''));
         }
       });
+
+      
       // $("#permis").bind("change", function () {
       //   var filename = $("#permis").val();
       //   if (/^\s*$/.test(filename)) {
