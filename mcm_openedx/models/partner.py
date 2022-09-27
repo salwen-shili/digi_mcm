@@ -925,6 +925,7 @@ class partner(models.Model):
     def supprimer_IOne_MCM(self):
         departement = self.state_id.code
         _logger.info(departement)
+        self.state = "supprimé"
         # supprimer l'apprenats en verifiant le module choisit
         if (self.module_id.product_id.default_code == "taxi"):
             self.desinscriteTaxi(self)
