@@ -67,18 +67,6 @@ class OnfidoController(http.Controller):
             on fait la mise à jour de la fiche client """
             if 'extracted_data' in extraction:
                 _logger.info("extract date %s" % str(extraction['extracted_data']))
-                if 'issuing_country' in extraction['document_classification']:
-                    code_pays = extraction['document_classification']['issuing_country']
-                    _logger.info("extract date %s" % str(pycountry.countries.get(alpha_3=code_pays)))
-                    nationality = pycountry.countries.get(alpha_3=code_pays)
-                    translation = gettext.translation('iso3166', pycountry.LOCALES_DIR,
-                                                                 languages=['fr'])
-                    translation.install()
-                    country = _(nationality.name)
-                    _logger.info("translated_nationality %s" % str(translation))
-                    _logger.info("translated_nationality %s" % str(country))
-                    _logger.info("translated_nationality %s" % str(translation))
-                    partner.nationality =country
                 if 'date_of_birth' in extraction['extracted_data']:
                     partner.birthday = extraction['extracted_data']['date_of_birth']
                 if 'nationality' in extraction['extracted_data']:
@@ -98,6 +86,17 @@ class OnfidoController(http.Controller):
                 if 'document_number' in extraction['extracted_data'] and 'document_type' in extraction['extracted_data']:
                     if extraction['extracted_data']['document_type'] =="national_identity_card" :
                         partner.numero_carte_identite=extraction['extracted_data']['document_number']
+                        if 'issuing_country' in extraction['document_classification']:
+                            code_pays = extraction['document_classification']['issuing_country']
+                            _logger.info("issuing_country %s" % str(pycountry.countries.get(alpha_3=code_pays)))
+                            nationality = pycountry.countries.get(alpha_3=code_pays)
+                            translation = gettext.translation('iso3166', pycountry.LOCALES_DIR,
+                                                              languages=['fr'])
+                            translation.install()
+                            country = _(nationality.name)
+                            _logger.info("translated_nationality %s" % str(country))
+                            _logger.info("translated_nationality %s" % str(translation))
+                            partner.nationality = country
         if 'document_back' in data:
             document_back_id=data['document_back']['id']
             name_back=str(data['document_back']['type'])+"_"+str(data['document_back']['side'])
