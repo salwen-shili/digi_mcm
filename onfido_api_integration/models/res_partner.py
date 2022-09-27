@@ -15,7 +15,7 @@ _logger = logging.getLogger(__name__)
 class ResPartner(models.Model):
     _inherit = "res.partner"
     onfido_sdk_token = fields.Char("SDK Token")
-    onfido_applicant_id = fields.Char('Applicant ID')
+    onfido_applicant_id = fields.Char('Applicant ID', track_visibility='always')
     exp_date_sdk_token = fields.Datetime("Date d'expiration sdk token")
     validation_onfido = fields.Selection(selection=[
         ('clear', 'Validé'),
