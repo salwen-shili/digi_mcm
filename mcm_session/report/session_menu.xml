@@ -7,7 +7,7 @@
         <field name="page_height">0</field>
         <field name="page_width">0</field>
         <field name="orientation">Landscape</field>
-        <field name="margin_top">1</field>
+        <field name="margin_top">5</field>
         <field name="margin_bottom">20</field>
         <field name="margin_left">0</field>
         <field name="margin_right">0</field>
@@ -22,7 +22,6 @@
             report_type="qweb-pdf"
             name="mcm_session.template_raport_jury_ids"
             file="mcm_session.template_raport_jury_ids"
-            attachment_use="False"
             paperformat="mcm_session.paperformat_rapport_jury"
     />
 </odoo>

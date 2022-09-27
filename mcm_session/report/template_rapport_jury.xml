@@ -5,13 +5,13 @@
         <t t-if="o.ville_jury_id.name_ville != 'Paris'">
             <div class="row">
                 <br/>
-                <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="2000"/>
+                <img src='/mcm_session/static/src/img/header_jury.png' height="350" width="2000"/>
             </div>
         </t>
         <t t-else="">
             <div class="row">
                 <br/>
-                <img src='/mcm_session/static/src/img/La_DRIEAT_Ile-de-France.png' height="300"
+                <img src='/mcm_session/static/src/img/La_DRIEAT_Ile-de-France.png' height="350"
                      width="2000"/>
             </div>
         </t>
