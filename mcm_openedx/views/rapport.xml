@@ -87,7 +87,7 @@
     </record>
     <!-- menu des villes sera afficher apres menu configuration dans l'interface de convocation-->
     <menuitem id="rapport_action" name="Rapport Marketing/Finance"
-              parent="sale_menu_root"
+              parent="account.menu_finance"
               sequence="5"/>
     <menuitem id="rapport_action_cpf" name="Rapport Marketing/Finance"
               parent="rapport_action"
