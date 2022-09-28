@@ -1962,34 +1962,32 @@ class partner(models.Model):
                                 _logger.info(
                                     "§§§§§§§§§§§§§else  %s" % str(users.partner_id.display_name))
                                 users.partner_id.etat_financement_cpf_cb = users.partner_id.statut_cpf
-                        else:
-                            _logger.info(
-                                "$$$$$$$$$$$$$$$$else personnel $$$$$$$$$$$$$$$%s" % str(
-                                    users.partner_id.display_name))
-                            # client with particulier mode
-                            # for partner in self.env['res.partner'].search(
-                            #         [('statut', "=", "won"), ("mode_de_financement", "=",
-                            #                                   "particulier")]):  # Récupérer les clients qui sont gagnés et sont modes de financement carte bleu
-                            for invoice in self.env['account.move'].sudo().search(
-                                    [('partner_id', "=", users.partner_id.id)],
-                                    order='create_date asc'):
-                                _logger.info(
-                                    "user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(
-                                        invoice.invoice_payment_state))
-                                _logger.info(
-                                    "user Partner id----------------°°°°°°°°°°°°°°° %s " % str(
-                                        invoice.partner_id.display_name))
-                                if invoice and invoice.invoice_payment_state:
-                                    etat_financement_cpf_cb = invoice.invoice_payment_state
-                                    if invoice.invoice_payment_state == "in_payment":
-                                        etat_financement_cpf_cb = invoice.invoice_payment_state
-                                        invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_payment'})
-                                    elif invoice.invoice_payment_state == "paid":
-                                        etat_financement_cpf_cb = invoice.invoice_payment_state
-                                        invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'paid'})
-                                    elif invoice.invoice_payment_state == "not_paid":
-                                        etat_financement_cpf_cb = invoice.invoice_payment_state
-                                        invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
+        #client with particulier mode
+        for partner in self.env['res.partner'].search(
+                [('statut', "=", "won"), ('mcm_session.date_exam', '>', '01/05/2022')]):  # Récupérer les clients qui sont gagnés et sont modes de financement carte bleu
+            if partner.mode_de_financement == 'particulier':
+                for invoice in self.env['account.move'].sudo().search(
+                        [('partner_id', "=", partner.id)],
+                        order='create_date asc'):
+                    _logger.info(
+                        "user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(
+                            invoice.invoice_payment_state))
+                    _logger.info(
+                        "user Partner id----------------°°°°°°°°°°°°°°° %s " % str(
+                            invoice.partner_id.display_name))
+                    if invoice and invoice.invoice_payment_state:
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        if invoice.invoice_payment_state == "in_payment":
+                            etat_financement_cpf_cb = invoice.invoice_payment_state
+                            invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_payment'})
+                        elif invoice.invoice_payment_state == "paid":
+                            etat_financement_cpf_cb = invoice.invoice_payment_state
+                            invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'paid'})
+                        elif invoice.invoice_payment_state == "not_paid":
+                            etat_financement_cpf_cb = invoice.invoice_payment_state
+                            invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
+            elif partner.statut_cpf == 'bill':
+                partner.sudo().write({'etat_financement_cpf_cb': 'bill'})
 
     def get_session(self):
 
