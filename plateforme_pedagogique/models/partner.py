@@ -1920,11 +1920,11 @@ class partner(models.Model):
                     }
                     response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
                                             params=params_wedof)
-                    _logger.info(
-                        "^^^^^^^^^^^Response WEDOF^^^^^^^^^^^^^ %s" % str(response))
+
                     registrations = response.json()
+                    _logger.info(
+                        "^^^^^^^^^^^Response WEDOF^^^^^^^^^^^^^ %s" % str(registrations))
                     for dossier in registrations:
-                        externalId = dossier['externalId']
                         email = dossier['attendee']['email']
                         email = email.replace("%", ".")  # remplacer % par .
                         email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
