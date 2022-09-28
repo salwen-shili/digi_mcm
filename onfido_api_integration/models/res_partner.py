@@ -44,7 +44,11 @@ class ResPartner(models.Model):
         applicant = response.json()
         _logger.info('ressssssssssppp %s' % str(applicant))
         if applicant['id']:
-            partner.onfido_applicant_id = applicant['id']
+            applicant_id=str(applicant['id'])
+            self._cr.execute(
+                """UPDATE res_partner SET onfido_applicant_id = %s WHERE id=%s""", (applicant_id, partner.id,))
+            self._cr.commit()
+            # partner.onfido_applicant_id = applicant['id']
         return applicant['id']
 
     def generateSdktoken(self, applicant_id, token, partner):
