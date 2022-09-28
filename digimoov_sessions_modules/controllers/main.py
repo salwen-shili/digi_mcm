@@ -182,6 +182,7 @@ class WebsiteSale(WebsiteSale):
                 return request.redirect("/charger_mes_documents")
         # if order.company_id.id == 1 and (partenaire or product):
         #     r eturn request.redirect("/shop/cart/")
+        is_taxi = False
         if order and order.company_id.id == 1:
             request.env.user.company_id = 1  # change default company
             request.env.user.company_ids = [1, 2]  # change default companies
@@ -189,7 +190,9 @@ class WebsiteSale(WebsiteSale):
             if order:
                 for line in order.order_line:
                     product_id = line.product_id
-
+                    if product_id : 
+                        if 'taxi' in product_id.name :
+                            is_taxi = True
             if not product and not partenaire and product_id:
                 product = True
                 partenaire = True
@@ -425,6 +428,7 @@ class WebsiteSale(WebsiteSale):
             'from_habilitation_electrique': from_habilitation_electrique,
             'list_villes_habilitation_electrique': list_villes_habilitation_electrique,
             'france_departments': france_departments,
+            'is_taxi': is_taxi,
         })
         # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb digimoov pour que le client peut choisir une ville parmis la liste
         list_villes = request.env['session.ville'].sudo().search(
