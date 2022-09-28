@@ -413,6 +413,7 @@ class WebsiteSale(WebsiteSale):
                     ).search([('company_id', '=', 2), ('ville_formation', "=", True)])
         if request.env.user.partner_id.bolt == True:
             from_bolt = 'True'
+        france_departments = request.env["res.country.state"].sudo().search([("country_id.code", "ilike", "FR")], order="code asc")
         values.update({
             'modules_digimoov': list_modules_digimoov,
             'modules_mcm': list_modules_mcm,
@@ -423,6 +424,7 @@ class WebsiteSale(WebsiteSale):
             'from_bolt': from_bolt,
             'from_habilitation_electrique': from_habilitation_electrique,
             'list_villes_habilitation_electrique': list_villes_habilitation_electrique,
+            'france_departments': france_departments,
         })
         # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb digimoov pour que le client peut choisir une ville parmis la liste
         list_villes = request.env['session.ville'].sudo().search(
@@ -474,7 +476,7 @@ class WebsiteSale(WebsiteSale):
             cartIsEmpty = "True"
         if order and not order.order_line:
             cartIsEmpty = "True"
-
+        
         values.update({
             'rdvIsBooked': rdvIsBooked,
             'cartIsEmpty': cartIsEmpty,
