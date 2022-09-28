@@ -1937,6 +1937,8 @@ class partner(models.Model):
                             etat_financement_cpf_cb = dossier['state']
                             _logger.info(
                                 "state user WEDOF::::::::::::::::::::: %s" % str(users.partner_id.display_name))
+                            _logger.info(
+                                "state user WEDOF::::::::::::::::::::: %s" % str(etat_financement_cpf_cb))
                             if etat_financement_cpf_cb == "untreated":
                                 users.partner_id.sudo().write({
                                     'etat_financement_cpf_cb': 'untreated'})  # write la valeur untreated dans le champ etat_financement_cpf_cb
