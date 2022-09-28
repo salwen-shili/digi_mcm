@@ -1964,7 +1964,7 @@ class partner(models.Model):
                                 users.partner_id.etat_financement_cpf_cb = users.partner_id.statut_cpf
         #client with particulier mode
         for partner in self.env['res.partner'].search(
-                [('statut', "=", "won"), ('mcm_session.date_exam', '>', '01/05/2022')]):  # Récupérer les clients qui sont gagnés et sont modes de financement carte bleu
+                [('statut', "=", "won"), ('mcm_session_id.date_exam', '>', '01/05/2022')]):  # Récupérer les clients qui sont gagnés et sont modes de financement carte bleu
             if partner.mode_de_financement == 'particulier':
                 for invoice in self.env['account.move'].sudo().search(
                         [('partner_id', "=", partner.id)],
