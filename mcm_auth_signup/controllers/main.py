@@ -195,6 +195,7 @@ class Home(Home):
                         'price_reduce_taxexcl': product_id.list_price,
                         'price_reduce_taxinc': product_id.list_price,
                         'price_subtotal': product_id.list_price,
+                        'currency_id': product_id.currency_id.id,
                         'order_id': so.id,
                         'tax_id': product_id.taxes_id,
                         'company_id': 1,
