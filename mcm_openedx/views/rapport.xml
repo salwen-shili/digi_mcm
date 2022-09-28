@@ -7,10 +7,13 @@
         <field name="model">mcm_openedx.rapport</field>
         <field name="arch" type="xml">
             <search>
-                <filter name="group_numero_action" string="Formation" icon="terp-partner"
-                        context="{'group_by':'numero_action'}"/>
                 <filter name="group_company" string="Societé" icon="terp-partner"
                         context="{'group_by':'company'}"/>
+
+                <filter name="group_numero_action" string="Formation" icon="terp-partner"
+                        context="{'group_by':'numero_action'}"/>
+                <filter name="group_type_financement" string="Type Financement" icon="terp-partner"
+                        context="{'group_by':'type_financement'}"/>
 
             </search>
         </field>
@@ -84,7 +87,7 @@
     </record>
     <!-- menu des villes sera afficher apres menu configuration dans l'interface de convocation-->
     <menuitem id="rapport_action" name="Rapport Marketing/Finance"
-              parent="contacts.menu_contacts"
+              parent="sale_menu_root"
               sequence="5"/>
     <menuitem id="rapport_action_cpf" name="Rapport Marketing/Finance"
               parent="rapport_action"
