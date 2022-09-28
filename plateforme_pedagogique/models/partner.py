@@ -1906,7 +1906,7 @@ class partner(models.Model):
                     ('order', 'desc'),
                     ('type', 'all'),
                     ('state',
-                     'bill,accepted,validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
+                     'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
                     ('billingState', 'all'),
                     ('certificationState', 'all'),
                     ('sort', 'lastUpdate'),
