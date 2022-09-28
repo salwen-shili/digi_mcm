@@ -24,6 +24,14 @@ class rapport(models.Model):
     numero_formation = fields.Char(string=" NUMERO FORMATION")
     numero_action = fields.Char(string="  NUMERO ACTION")
     numero_session = fields.Char(string="NUMERO SESSION")
+    seller_message = fields.Char(string="Seller_message")
+    created = fields.Char(string="Created")
+    amount = fields.Char(string="Amount")
+    customer_email = fields.Char(string="Customer Email")
+    captured = fields.Boolean(string="Captured")
+    type_financement = fields.Selection([('cpf', 'CPF'),
+                              ('stripe', 'Carte Bleu'),
+                              ])
 
     def rapport_wedof(self):
         companies = self.env['res.company'].sudo().search([('id', "!=", False)])
@@ -108,12 +116,3 @@ class rapport(models.Model):
 
                         existe.partner_id = partner.id
 
-
-class rapportstripe(models.Model):
-    _name = 'mcm_openedx.rapportstripe'
-    _description = "Rapport Marketing Finance"
-    seller_message = fields.Char(string="Seller_message")
-    created = fields.Char(string="Created")
-    amount = fields.Char(string="Amount")
-    customer_email = fields.Char(string="Customer_email")
-    captured = fields.Boolean(string="Captured")
