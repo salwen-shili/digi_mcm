@@ -82,7 +82,8 @@
                                                 </td>
                                                 <td align="center" style="height: 80px; width: 80px;">
                                                     <strong>
-                                                        <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
+                                                        <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>:
+                                                        <span t-esc="o.session_adresse_examen.adresse_centre_examen"/>
                                                     </strong>
                                                 </td>
                                             </tr>
