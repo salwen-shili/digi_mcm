@@ -1921,7 +1921,7 @@ class partner(models.Model):
                     response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
                                             params=params_wedof)
                     _logger.info(
-                        "^^^^^^^^^^^Response WEDOF^^^^^^^^^^^^^ %s" % str(users.partner_id.display_name))
+                        "^^^^^^^^^^^Response WEDOF^^^^^^^^^^^^^ %s" % str(response))
                     registrations = response.json()
                     for dossier in registrations:
                         print('dosssier', dossier['attendee']['address'])
