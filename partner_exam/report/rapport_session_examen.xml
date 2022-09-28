@@ -83,7 +83,7 @@
                                                 <td align="center" style="height: 80px; width: 80px;">
                                                     <strong>
                                                         <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>:
-                                                        <span t-esc="o.session_adresse_examen.adresse_centre_examen"/>
+                                                        <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>
                                                     </strong>
                                                 </td>
                                             </tr>
@@ -233,8 +233,8 @@
                                     et présentant les garanties d'honorabilité suffisantes, demeurant au
                                     <strong>
                                         <span t-raw="'%s' % o.street if o.street else '..............'"/>
-                                        <span t-raw="'%s' % o.zip if o.zip else '..............'"/>
-                                        <span t-raw="'%s' % o.city if o.city else '..............'"/>
+<!--                                        <span t-raw="'%s' % o.zip if o.zip else '..............'"/>-->
+<!--                                        <span t-raw="'%s' % o.city if o.city else '..............'"/>-->
                                     </strong>
                                     <br/>
                                     <br/>
