@@ -1924,7 +1924,6 @@ class partner(models.Model):
                         "^^^^^^^^^^^Response WEDOF^^^^^^^^^^^^^ %s" % str(response))
                     registrations = response.json()
                     for dossier in registrations:
-                        print('dosssier', dossier['attendee']['address'])
                         externalId = dossier['externalId']
                         email = dossier['attendee']['email']
                         email = email.replace("%", ".")  # remplacer % par .
