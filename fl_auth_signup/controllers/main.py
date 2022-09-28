@@ -35,6 +35,8 @@ class AuthSignupHome(AuthSignupHome):
         #         raise UserError(_("Les emails ne correspondent pas, veuillez les saisir à nouveau."))
         if (values['num_voie'] and values['voie'] and values['nom_voie']):
             values['street'] = values['num_voie'] + " " + values['voie'] + " " + values['nom_voie']
+        if 'passerelle' in qcontext:
+            values['street'] = values['nom_voie']
         supported_lang_codes = [code for code, _ in request.env['res.lang'].get_installed()]
         lang = request.context.get('lang', '').split('_')[0]
         if lang in supported_lang_codes:
@@ -48,7 +50,7 @@ class AuthSignupHome(AuthSignupHome):
         values['step'] = "coordonnées"
         values['notification_type'] = 'email'  # make default notificatication type by email for new users
         if values['firstname'] and values['lastName']:
-            values['name'] = values['firstname'] + ' ' + values['lastName']
+            values['name'] = values['firstname'] + ' ' + values['lastName'].upper()
         values['country_id'] = request.env['res.country'].sudo().search([('code', 'ilike', 'FR')]).id
         self._signup_with_values(qcontext.get('token'), values)
         request.env.cr.commit()
@@ -65,6 +67,7 @@ class AuthSignupHome(AuthSignupHome):
         SIGN_UP_REQUEST_PARAMS.add('street')
         SIGN_UP_REQUEST_PARAMS.add('street2')
         SIGN_UP_REQUEST_PARAMS.add('question_signup') #add question_signup in params of signup
+        SIGN_UP_REQUEST_PARAMS.add('passerelle') #add question_signup in params of signup
         #add keys to SIGN_UP_REQUEST_PARAMS to get datas from signup form
         qcontext = {k: v for (k, v) in request.params.items() if k in SIGN_UP_REQUEST_PARAMS}
         qcontext.update(self.get_auth_signup_config())
@@ -136,7 +139,7 @@ class AuthSignupHome(AuthSignupHome):
                     if AssertionError:
                         _logger.error("name %s", AssertionError)
                     qcontext['error'] = _("Could not create a new account.")
-
+        print('qcontext:',qcontext)
         response = request.render('auth_signup.signup', qcontext)
         # response = request.render('mcm_website_theme.mcm_template', qcontext)
         _logger.info('STATUS %s', response.status_code)

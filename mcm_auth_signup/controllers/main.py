@@ -40,6 +40,8 @@ class AuthSignupHome(AuthSignupHome):
         # Concatenate num_voie, voie and nom_voie inti street
         if (values['num_voie'] and values['voie'] and values['nom_voie']):
             values['street'] = values['num_voie'] + " " + values['voie'] + " " + values['nom_voie']
+        if 'passerelle' in qcontext :
+            values['street'] = values['nom_voie']
         supported_lang_codes = [code for code, _ in request.env['res.lang'].get_installed()]
         lang = request.context.get('lang', '').split('_')[0]
         if lang in supported_lang_codes:
@@ -54,7 +56,7 @@ class AuthSignupHome(AuthSignupHome):
         values['notification_type'] = 'email'  # make default notificatication type by email for new users
         # Concatenate first name and last name into name
         if values['firstname'] and values['lastName']:
-            values['name'] = values['firstname'] + ' ' + values['lastName']
+            values['name'] = values['firstname'].capitalize() + ' ' + values['lastName'].upper()
         # Mettre par défaut France dans le pays
         values['country_id'] = request.env['res.country'].sudo().search([('code', 'ilike', 'FR')]).id
         self._signup_with_values(qcontext.get('token'), values)
@@ -100,6 +102,8 @@ class AuthSignupHome(AuthSignupHome):
                     if user_sudo:
                         user_sudo.street = str(request.website.name)
                 kw['login'] = qcontext.get('login').replace(' ', '').lower()
+                if 'passerelle' in qcontext:
+                    kw['passerelle'] = True
                 return self.web_login(*args, **kw)
             except UserError as e:
                 qcontext['error'] = e.name or e.value
@@ -116,10 +120,44 @@ class AuthSignupHome(AuthSignupHome):
                     if AssertionError:
                         _logger.error("name %s", AssertionError)
                     qcontext['error'] = _("Could not create a new account.")
-
         response = request.render('auth_signup.signup', qcontext)
         _logger.info('STATUS %s', response.status_code)
         response.headers['X-Frame-Options'] = 'DENY'
+        # user_sudo = request.env['res.users'].sudo().search(
+        #     [('login', "=", qcontext.get('login').replace(' ', '').lower())])
+        # _logger.info('qcontext1 : %s' % str(qcontext))
+        # if 'passerelle' in qcontext:
+        #     _logger.info('passerelle: %s' % str(qcontext.get('passerelle')))
+        #     _logger.info('user sudo : %s' % str(user_sudo))
+        #     _logger.info('post qcontext : %s' % str(qcontext))
+        #     if user_sudo:
+        #         product_id = request.env['product.product'].sudo().search(
+        #             [('default_code', "=", "passerelle-taxi"), ('company_id', "=", 1)], limit=1)
+        #         if product_id:
+        #
+        #             so = request.env['sale.order'].sudo().create({
+        #                 'partner_id': user_sudo.partner_id.id,
+        #                 'company_id': 1,
+        #                 'website_id': 1,
+        #                 'fiscal_position_id': 1,
+        #             })
+        #
+        #             so_line = request.env['sale.order.line'].sudo().create({
+        #                 'name': product_id.name,
+        #                 'product_id': product_id.id,
+        #                 'product_uom_qty': 1,
+        #                 'product_uom': product_id.uom_id.id,
+        #                 'price_unit': product_id.list_price,
+        #                 'order_id': so.id,
+        #                 'price_subtotal': product_id.list_price,
+        #                 'tax_id': product_id.taxes_id,
+        #                 'company_id': 1,
+        #             })
+        #             if so:
+        #                 so.amount_untaxed = product_id.list_price
+        #                 kw['redirect'] = 'felicitations'
+        #     else:
+        #         _logger.info('kw : %s' % str(kw))
         if response.status_code != 204:
             return response
 
@@ -133,6 +171,41 @@ class Home(Home):
             request.params['login'] = request.params['login'].replace(' ', '').lower()
             login = request.params['login']
         response = super(Home, self).web_login(redirect=redirect, **kw)
+        partner = request.env['res.partner'].sudo().search([('email', "=", login)], limit=1)
+        if partner:
+            if 'passerelle' in kw:
+                product_id = request.env['product.product'].sudo().search(
+                            [('default_code', "=", "passerelle-taxi"), ('company_id', "=", 1)], limit=1)
+                if product_id:
+                    request.uid = odoo.SUPERUSER_ID
+                    so = request.env['sale.order'].sudo().create({
+                        'partner_id': partner.id,
+                        'company_id': 1,
+                        'website_id': 1,
+                        'fiscal_position_id': 1,
+                    })
+
+                    so_line = request.env['sale.order.line'].sudo().create({
+                        'name': product_id.name,
+                        'product_id': product_id.id,
+                        'product_uom_qty': 1,
+                        'product_uom': product_id.uom_id.id,
+                        'price_unit': product_id.list_price,
+                        'price_reduce': product_id.list_price,
+                        'price_reduce_taxexcl': product_id.list_price,
+                        'price_reduce_taxinc': product_id.list_price,
+                        'price_subtotal': product_id.list_price,
+                        'currency_id': product_id.currency_id.id,
+                        'order_id': so.id,
+                        'tax_id': product_id.taxes_id,
+                        'company_id': 1,
+                    })
+                    if so:
+                        so.sudo().write({
+                            'amount_untaxed': product_id.list_price,
+                        })
+                        redirect = '/felicitations'
+
         partner = request.env['res.partner'].sudo().search([('email', "=", login)], limit=1)
         order = request.env['sale.order'].sudo().search([('partner_id', "=", partner.id)], order='create_date desc',
                                                         limit=1)
