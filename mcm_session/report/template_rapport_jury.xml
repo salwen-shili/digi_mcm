@@ -77,7 +77,6 @@
                                                 <td class="td" align="center" style="height: 80px; width: 80px;">
                                                     <strong>
                                                         <span t-raw="'%s' % o.ville_jury_id.name_ville"/>:
-                                                        <span t-raw="'%s' % o.adresse_jury_id.adresse_centre_examen"/>
                                                     </strong>
                                                 </td>
                                             </tr>
