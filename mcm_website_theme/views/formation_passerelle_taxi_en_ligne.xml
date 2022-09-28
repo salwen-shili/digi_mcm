@@ -215,100 +215,162 @@
                         <mci-extension data-role="overlay" id="overlay-root"/>
                       </div>
                       <div class="col-lg-6 pt16 pb16" t-if="request.website.is_public_user()==False">
-                        <img src="/mcm_website_theme/static/src/img/paserelle_taxi/taxi-passerelle.png" class="img img-fluid mx-auto" alt="passerlle taxi" data-original-title="" title="" aria-describedby="tooltip225871"/>
+                        <img src="/mcm_website_theme/static/src/img/paserelle_taxi/taxi-passerelle.png" class="img img-fluid mx-auto"
+                          alt="passerlle taxi" data-original-title="" title="" aria-describedby="tooltip225871" />
                       </div>
-                      <div class="col-lg-6 pt16 pb16 ma-l-r" t-if="request.website.is_public_user()==True">
-                        <form method="post" action="/web/signup" class="form" id="form1">
-                          <div class="cnx-title">INSCRIVEZ-VOUS MAINTENANT!</div>
-                          <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                          <input type="hidden" class="input" name="passerelle" value="passerelle"/>
-                          <div class="form-group">
-                            <input type="text" pattern="[A-Z,a-z,À-ÿ '-]{2,}" inputmode="latin-name" placeholder="Nom*" name="lastName" required="required" autofocus="autofocus" autocapitalize="on" class="form-control" style="text-transform:uppercase"/>
-                          </div>
-                          <div class="form-group">
-                            <input type="text" pattern="[A-Z,a-z,À-ÿ '-]{2,}" inputmode="latin-name" placeholder="Prénom*" name="firstname" required="required" autofocus="autofocus" autocapitalize="off" class="form-control" style="text-transform:capitalize"/>
-                          </div>
-                          <div class="form-group">
-                            <input type="text" placeholder="Téléphone*" name="phone" autofocus="autofocus" autocapitalize="off" class="form-control" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" id="phone"/>
-                            <span style="font-size: 12.5px;margin-left:10px" class="message-phone">
-                                                      Votre numéro de téléphone doit commencer par 06 ou 07 suivie par 8 chiffres.
-                                                  </span>
-                          </div>
-                          <div class="form-group" style="display: flex">
-                            <input type="text" placeholder="Code postal*" maxlength="5" pattern="[0-9]{5,5}" inputmode="numeric" name="zip" required="required" autofocus="autofocus" autocapitalize="off" class="form-control" style="width: 101px; margin-right: 10px"/>
-                            <input type="text" placeholder="Adresse postal*" name="voie" required="required" autofocus="autofocus" autocapitalize="off" class="form-control" style=""/>
-                          </div>
-                          <div class="form-group">
-                            <input type="email" id="email" placeholder="Adresse email*" name="login" required="required" autofocus="autofocus" autocapitalize="off" class="form-control" inputmode="email"/>
-                          </div>
-                          <div class="form-group" style="position: relative">
-                            <input type="password" maxlength="75" minlength="8" placeholder="Mot de passe*" name="password" id="password" required="required" autocomplete="current-password" class="form-control" onfocus="showPasswordPopover()"/>
-                            <i class="fa fa-eye toggle-password" style="                             display: initial;                             position: absolute;                             top: 2.3rem;                             right: 0rem;                             cursor: pointer;                             color: #000;                               "/>
-                          </div>
-                          <!-- -->
-                          <div id="popover-password" class="hide">
-                            <div class="" style="clear: both; overflow: hidden; margin-block-start: 10px">
-                              <div class="" style="float: left; font-weight: bold; width: 35%">
-                                <div class="nivTxt">
-                                                              Sécurité
-                                                              <span class="nivLevel niv-level-1">faible</span>
-                                                          </div>
-                              </div>
-                              <div class="">
-                                <div class="progress" style="                                     margin-top: 5px;                                                    float: right;                                                    width: 50%;                                   ">
-                                  <div id="password-strength" class="" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="                                       width: 10%;                                       display: block;                                       height: 100%;                                       border-radius: 5px; /* width: 0%; */                                     "/>
-                                </div>
-                              </div>
+
+                            <div class="col-lg-6 pt16 pb16 ma-l-r" t-if="request.website.is_public_user()==True">
+                                <form method="post" action="/web/signup" class="form" id="form1">
+                                    <div class="cnx-title">INSCRIVEZ-VOUS MAINTENANT!</div>
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <input type="hidden" class="input" name="passerelle" value="passerelle"/>
+
+                                    <div class="form-group">
+                                        <input type="text" pattern="[A-Z,a-z,À-ÿ '-]{2,}" inputmode="latin-name"
+                                               placeholder="Nom*"
+                                               name="lastName" required="required" autofocus="autofocus"
+                                               autocapitalize="on" class="form-control"
+                                               style="text-transform:uppercase"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" pattern="[A-Z,a-z,À-ÿ '-]{2,}" inputmode="latin-name"
+                                               placeholder="Prénom*"
+                                               name="firstname" required="required" autofocus="autofocus"
+                                               autocapitalize="off" class="form-control"
+                                               style="text-transform:capitalize"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Téléphone*" name="phone" autofocus="autofocus"
+                                               autocapitalize="off"
+                                               class="form-control" maxlength="10" pattern="(07|06)[0-9]\d{7}"
+                                               required="required"
+                                               inputmode="numeric" id="phone"/>
+                                        <span style="font-size: 12.5px;margin-left:10px" class="message-phone">
+                                            Votre numéro de téléphone doit commencer par 06 ou 07 suivie par 8 chiffres.
+                                        </span>
+                                    </div>
+
+                                    <div class="form-group" style="display: flex">
+                                        <input type="text" placeholder="Code postal*" maxlength="5" pattern="[0-9]{5,5}"
+                                               inputmode="numeric" name="zip" required="required" autofocus="autofocus"
+                                               autocapitalize="off" class="form-control"
+                                               style="width: 101px; margin-right: 10px"/>
+
+                                        <input type="text" placeholder="Adresse postal*" name="nom_voie" required="required"
+                                               autofocus="autofocus"
+                                               autocapitalize="off" class="form-control" style=""/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="email" id="email" placeholder="Adresse email*" name="login"
+                                               required="required"
+                                               autofocus="autofocus" autocapitalize="off" class="form-control"
+                                               inputmode="email"/>
+                                    </div>
+
+                                    <div class="form-group" style="position: relative">
+                                        <input type="password" maxlength="75" minlength="8" placeholder="Mot de passe*"
+                                               name="password"
+                                               id="password" required="required" autocomplete="current-password"
+                                               class="form-control"
+                                               onfocus="showPasswordPopover()"/>
+                                        <i class="fa fa-eye toggle-password" style="
+                            display: initial;
+                            position: absolute;
+                            top: 2.3rem;
+                            right: 0rem;
+                            cursor: pointer;
+                            color: #000;
+                              "></i>
+                                    </div>
+                                    <!-- -->
+                                    <div id="popover-password" class="hide">
+                                        <div class="" style="clear: both; overflow: hidden; margin-block-start: 10px">
+                                            <div class="" style="float: left; font-weight: bold; width: 35%">
+                                                <div class="nivTxt">
+                                                    Sécurité
+                                                    <span class="nivLevel niv-level-1">faible</span>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <div class="progress" style="
+                                    margin-top: 5px;
+              
+                                    float: right;
+              
+                                    width: 50%;
+                                  ">
+                                                    <div id="password-strength" class="" role="progressbar"
+                                                         aria-valuenow="40" aria-valuemin="0"
+                                                         aria-valuemax="100" style="
+                                      width: 10%;
+                                      display: block;
+                                      height: 100%;
+                                      border-radius: 5px; /* width: 0%; */
+                                    "></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style="color: #000000d6; margin: 5px 0">
+                                            Pour votre sécurité, utilisez un mot de passe contenant :
+                                        </div>
+                                        <ul class="list-unstyled">
+                                            <li class="">
+                                                <span class="eight-character">
+                                                    <i class="fa fa-check-circle fa-uncheck"></i>
+                                                    Au minimum 8 caractères
+                                                </span>
+                                            </li>
+                                            <li class="">
+                                                <span class="low-upper-case">
+                                                    <i class="fa fa-check-circle fa-uncheck"></i>
+                                                    1 lettre minuscule et 1 lettre majuscule
+                                                </span>
+                                            </li>
+                                            <li class="">
+                                                <span class="one-number">
+                                                    <i class="fa fa-check-circle fa-uncheck"></i>
+                                                    1 chiffre (0-9)
+                                                </span>
+                                            </li>
+                                            <t t-if="request.website.id == 1">
+                                                <li class="">
+                                                    <span class="one-special-char">
+                                                        <i class="fa fa-check-circle fa-uncheck"></i>
+                                                        Un caractère spécial (!@#$%^*)
+                                                    </span>
+                                                </li>
+                                            </t>
+
+                                            <t t-if="request.website.id == 1">
+                                                <li class="">
+                                                    <span class="checkpassword">
+                                                        <i class="fa fa-check-circle fa-uncheck"></i>
+                                                        Votre mot de passe doit être différant de votre nom,
+                                                        prénom et adresse enail.
+                                                    </span>
+                                                </li>
+                                            </t>
+                                        </ul>
+                                    </div>
+                                    <!-- -->
+
+                                    <div class="clearfix oe_login_buttons text-center mb-1">
+                                        <input class="animated-button-yellow" type="submit" value=" Je m'inscris">
+                                            <span/>
+                                            <span/>
+                                            <span/>
+                                            <span/>
+
+                                        </input>
+                                    </div>
+                                </form>
                             </div>
-                            <div style="color: #000000d6; margin: 5px 0">
-                                                      Pour votre sécurité, utilisez un mot de passe contenant :
-                                                  </div>
-                            <ul class="list-unstyled">
-                              <li class="">
-                                <span class="eight-character"><i class="fa fa-check-circle fa-uncheck"/>
-                                                              Au minimum 8 caractères
-                                                          </span>
-                              </li>
-                              <li class="">
-                                <span class="low-upper-case"><i class="fa fa-check-circle fa-uncheck"/>
-                                                              1 lettre minuscule et 1 lettre majuscule
-                                                          </span>
-                              </li>
-                              <li class="">
-                                <span class="one-number"><i class="fa fa-check-circle fa-uncheck"/>
-                                                              1 chiffre (0-9)
-                                                          </span>
-                              </li>
-                              <t t-if="request.website.id == 1">
-                                <li class="">
-                                  <span class="one-special-char"><i class="fa fa-check-circle fa-uncheck"/>
-                                                                  Un caractère spécial (!@#$%^*)
-                                                              </span>
-                                </li>
-                              </t>
-                              <t t-if="request.website.id == 1">
-                                <li class="">
-                                  <span class="checkpassword"><i class="fa fa-check-circle fa-uncheck"/>
-                                                                  Votre mot de passe doit être différant de votre nom,
-                                                                  prénom et adresse enail.
-                                                              </span>
-                                </li>
-                              </t>
-                            </ul>
-                          </div>
-                          <!-- -->
-                          <div class="clearfix oe_login_buttons text-center mb-1">
-                            <input class="animated-button-yellow" type="submit" value=" Je m'inscris">
-                              <span/>
-                              <span/>
-                              <span/>
-                              <span/>
-                            </input>
-                          </div>
-                        </form>
-                      </div>
+                        </div>
                     </div>
-                  </div>
                 </section>
                 <section class="s_features_grid pb24 pt0" data-name="Features Grid" style="word-break: break-word; position: relative; z-index: 0;">
                   <div class="container">
