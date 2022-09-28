@@ -3,11 +3,11 @@
 {
     'name': 'Onfido',
     'summary': """
-        Onfido api integration""",
+        Onfido api integration, OnfidoIDV SDK 9.0.0-beta.5""",
     'version': '1.0',
     'license': 'AGPL-3',
     'category': 'API',
-    'author': 'Ines Lahmer',
+    'author': 'Ines Lahmer, Salwen SHILI',
     'website': '',
     'depends': ['web','base','mcm_session','crm','website','mcm_website_theme','partner_exam','portal'
     ],
