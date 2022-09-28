@@ -363,6 +363,7 @@ class partner(models.Model):
                         dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
                         if dateDebutSession <= datetime.today():
                             self.ajouter_iOne(partner)
+
     def ajouter_iOne_button(self):
         _logger.info("++++++++++++Cron ajouter_iOne_manuelle++++++++++++++++++++++")
         product_name = self.module_id.product_id.name
@@ -626,7 +627,7 @@ class partner(models.Model):
                     self.send_email(partner)
                     """"we send sms to client contains link to register in 360learning."""
                     body = "Digimoov vous confirme votre inscription à la Formation capacité de transport de marchandises. RDV sur notre plateforme https://www.digimoov.fr/r/SnB"
-                    self.send_sms(body,partner)
+                    self.send_sms(body, partner)
                 if not (create):
                     """Créer des tickets contenant le message  d'erreur pour service client et service IT
                     si l'apprenant n'est pas ajouté sur 360"""
@@ -1185,7 +1186,7 @@ class partner(models.Model):
                         email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
                         email = str(
                             email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
-                        #Takwa removed code of cpf mode financement to the cron with  personnel mode code
+                        # Takwa removed code of cpf mode financement to the cron with  personnel mode code
                         idform = dossier['trainingActionInfo']['externalId']
                         training_id = ""
                         if "_" in idform:
@@ -1472,7 +1473,7 @@ class partner(models.Model):
                 client.num_voie = num_voie
                 client.nom_voie = nom_voie
                 client.voie = voie
-                if code_postal !="":
+                if code_postal != "":
                     client.zip = code_postal
                 client.city = ville
                 client.diplome = diplome  # attestation capacitév ....
@@ -1905,7 +1906,7 @@ class partner(models.Model):
                         ('order', 'desc'),
                         ('type', 'all'),
                         ('state',
-                         'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
+                         'bill,accepted,validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
                         ('billingState', 'all'),
                         ('certificationState', 'all'),
                         ('sort', 'lastUpdate'),
@@ -1919,6 +1920,8 @@ class partner(models.Model):
                     }
                     response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
                                             params=params_wedof)
+                    _logger.info(
+                        "^^^^^^^^^^^Response WEDOF^^^^^^^^^^^^^ %s" % str(users.partner_id.display_name))
                     registrations = response.json()
                     for dossier in registrations:
                         print('dosssier', dossier['attendee']['address'])
@@ -1961,17 +1964,21 @@ class partner(models.Model):
                                     users.partner_id.etat_financement_cpf_cb = users.partner_id.statut_cpf
                             else:
                                 _logger.info(
-                                    "$$$$$$$$$$$$$$$$else personnel $$$$$$$$$$$$$$$%s" % str(users.partner_id.display_name))
+                                    "$$$$$$$$$$$$$$$$else personnel $$$$$$$$$$$$$$$%s" % str(
+                                        users.partner_id.display_name))
                                 # client with particulier mode
                                 # for partner in self.env['res.partner'].search(
                                 #         [('statut', "=", "won"), ("mode_de_financement", "=",
                                 #                                   "particulier")]):  # Récupérer les clients qui sont gagnés et sont modes de financement carte bleu
-                                for invoice in self.env['account.move'].sudo().search([('partner_id', "=", users.partner_id.id)],
-                                                                                      order='create_date asc'):
-                                    _logger.info("user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(
-                                        invoice.invoice_payment_state))
+                                for invoice in self.env['account.move'].sudo().search(
+                                        [('partner_id', "=", users.partner_id.id)],
+                                        order='create_date asc'):
                                     _logger.info(
-                                        "user Partner id----------------°°°°°°°°°°°°°°° %s " % str(invoice.partner_id.display_name))
+                                        "user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(
+                                            invoice.invoice_payment_state))
+                                    _logger.info(
+                                        "user Partner id----------------°°°°°°°°°°°°°°° %s " % str(
+                                            invoice.partner_id.display_name))
                                     if invoice and invoice.invoice_payment_state:
                                         etat_financement_cpf_cb = invoice.invoice_payment_state
                                         if invoice.invoice_payment_state == "in_payment":
@@ -2238,7 +2245,7 @@ class partner(models.Model):
                 default_res_id=partner.id,
                 default_composition_mode='comment',
             ).sudo().create({
-                
+
                 'body': body,
                 'mass_keep_log': True,
                 'mass_force_send': False,
