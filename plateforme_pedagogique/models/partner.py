@@ -2256,30 +2256,5 @@ class partner(models.Model):
                 partner.phone = '0' + str(partner.phone.replace(' ', ''))[
                                       -9:]
 
-    def add_user_plateforme(self, partner):
-        if partner.statut == "won":
-            """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au futur """
-            if partner.mode_de_financement == "cpf":
-                if (document_valide) and (partner.mcm_session_id.date_exam) and (
-                        partner.mcm_session_id.date_exam > date.today()):
-                    if (partner.renounce_request):
-                        self.ajouter_iOne(partner)
-                    if not (self.renounce_request) and self.numero_cpf:
-                        """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
-                        headers = {
-                            'accept': 'application/json',
-                            'Content-Type': 'application/json',
-                            'X-API-KEY': partner.company_id.wedof_api_key,
-                        }
-                        responsesession = requests.get(
-                            'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
-                            headers=headers)
-                        dossier = responsesession.json()
-                        dateDebutSession_str = ""
-                        _logger.info('session %s' % str(dossier))
-                        if "trainingActionInfo" in dossier:
-                            dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
-                            dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
-                            if dateDebutSession <= datetime.today():
-                                self.ajouter_iOne(partner)
+    
 
