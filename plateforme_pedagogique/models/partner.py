@@ -1935,10 +1935,6 @@ class partner(models.Model):
                         if users and users.partner_id.mode_de_financement == "cpf":
                             # Initialisation de champ etat_financement_cpf_cb
                             etat_financement_cpf_cb = dossier['state']
-                            _logger.info(
-                                "state user WEDOF::::::::::::::::::::: %s" % str(users.partner_id.display_name))
-                            _logger.info(
-                                "state user WEDOF::::::::::::::::::::: %s" % str(etat_financement_cpf_cb))
                             if etat_financement_cpf_cb == "untreated":
                                 users.partner_id.sudo().write({
                                     'etat_financement_cpf_cb': 'untreated'})  # write la valeur untreated dans le champ etat_financement_cpf_cb
@@ -1954,8 +1950,6 @@ class partner(models.Model):
                                 users.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
                             elif etat_financement_cpf_cb == "serviceDoneValidated":
                                 users.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_validated'})
-                            elif etat_financement_cpf_cb == "bill":
-                                users.partner_id.sudo().write({'etat_financement_cpf_cb': 'bill'})
                             elif etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
                                 users.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
                             else:
@@ -1986,8 +1980,12 @@ class partner(models.Model):
                         elif invoice.invoice_payment_state == "not_paid":
                             etat_financement_cpf_cb = invoice.invoice_payment_state
                             invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
-            elif partner.statut_cpf == 'bill':
-                partner.sudo().write({'etat_financement_cpf_cb': 'bill'})
+            elif partner.etat_financement_cpf_cb is not True:
+                if partner.statut_cpf == 'bill':
+                    partner.sudo().write({'etat_financement_cpf_cb': 'bill'})
+                elif partner.statut_cpf == 'service_declared':
+                    partner.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
+
 
     def get_session(self):
 
