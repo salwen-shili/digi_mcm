@@ -8,6 +8,7 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
   var session = require('web.session');
   var rpc = require('web.rpc');
   var QWeb = core.qweb;
+
   //if user has comeback to the page after selecting cpf the input checkbox will be stuck on
   // cpf and the btn will show passer au paiement so we force credit card payment is checked as default
   document.getElementById('stripe_pm').checked = true;
@@ -308,12 +309,48 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
         }
       }
 
-      if ($('#options-date').value) {
-        document.getElementById('date_insert').removeChild('#date_insert select');
+      
+
+      //Filter departement by region
+      var departementOptions = '';
+      if ($('#departement_examen_data option')){
+        $('#departement_examen_data option').each(function () {
+          var departement =  this;
+          
+           
+          
+           if (departement.value.toUpperCase() === center.toUpperCase()) {
+          
+             var departementText = departement.text;
+            
+        
+               departementOptions += `<option  value=${departement.value} id=${departement.id}>
+                ${departementText}
+               </option>`;
+          
+   
+        
+           }
+           
+         });
+
+         var select_departement = `<select  name="departement_examen" id="departement_examen" class="form-control search-slt hide ">
+         <option value="all" id="all">
+         Sélectionnez votre département d'examen
+                               </option>                  
+         ${departementOptions}
+                           </select>`;
+         if (document.getElementById('departement_examen')){
+           document.getElementById('departement_examen').innerHTML = select_departement;
+         }
       }
+   
 
+      
+      //end filter departement
+      
+      
       var dateOptions = '';
-
       $('#exam_date option').each(function () {
         var self = this;
         var select_option = $(this);
@@ -325,6 +362,7 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
         } else {
           ios = false;
         }
+       
         if (self.value === center) {
           datenb++;
           var date = self.text;

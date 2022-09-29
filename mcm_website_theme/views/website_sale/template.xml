@@ -532,6 +532,7 @@
                 <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%;" id="exam_center">
+                            
                             <select name="region_examen" id="region_examen" class="form-control search-slt " t-if="modules_mcm" onclick="showDepartement()">
                                 <option value="all" id="all">Sélectionnez votre région d'examen</option>
                                 <t t-if="from_bolt == 'False'">
@@ -560,20 +561,25 @@
                             <br/>
                           
                             <t t-if="is_taxi == 'True'  "  >
-                                <select name="departement_examen" id="departement_examen" class="form-control search-slt hide " t-if="modules_mcm">
-                                    <option value="all" id="all">Sélectionnez votre département</option>
+                                <select name="departement_examen_data" id="departement_examen_data" class="form-control search-slt  " t-if="modules_mcm" style="display:none">
+                                    <option value="all" id="all"> Sélectionnez votre département d'examen</option>
                                 
                                         <t t-foreach="france_departments" t-as="departement">
                                             <t t-if="departement">
                                                 <b>
-                                                    <option t-att-value="departement.name">
+                                                    <option t-att-value="departement.session_ville_id.name_ville" t-att-id="departement.id">
                                                         <t t-esc="departement.name" />
                                                     </option>
                                                 </b>
                                             </t>
-                             
-                                   
                                          </t>
+                                </select>
+                                <select name="departement_examen" id="departement_examen" class="form-control search-slt hide " t-if="modules_mcm">
+                                    <option value="all" id="all">
+                                        Sélectionnez votre département d'examen
+                                    </option>
+                                
+                                        
                                 </select>
                             </t>
                             

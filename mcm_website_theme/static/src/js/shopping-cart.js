@@ -885,10 +885,11 @@ function paiementBolt() {
 
 //Show departement for taxi 
 function showDepartement(){
-  const departement = document.getElementById("departement_examen")
-  if ( departement.classList.contains("hide")){
-    departement.classList.remove("hide");
-  }
-  return
-  
+  if (document.getElementById("departement_examen")){
+    const departement = document.getElementById("departement_examen")
+    if ( departement.classList.contains("hide")){
+      departement.classList.remove("hide");
+    }
+    return 
+}
 }
