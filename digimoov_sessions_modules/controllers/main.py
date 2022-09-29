@@ -417,6 +417,7 @@ class WebsiteSale(WebsiteSale):
         if request.env.user.partner_id.bolt == True:
             from_bolt = 'True'
         france_departments = request.env["res.country.state"].sudo().search([("country_id.code", "ilike", "FR")], order="code asc")
+        _logger.info('is taxi : %s' % str(is_taxi))
         values.update({
             'modules_digimoov': list_modules_digimoov,
             'modules_mcm': list_modules_mcm,
