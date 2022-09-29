@@ -202,7 +202,7 @@ class event_calendly(models.Model):
         count = 0
         print("envoyer invitation au apprenant selon leur formation")
         for partner in self.env['res.partner'].sudo().search(
-                [('company_id', '=', 1),('state', '=', "en_formation"),
+                [('company_id', '=', 1),('state', '=', "en_formation"),('statut', "=", "won"),
                  ('mcm_session_id.date_exam', '!=', False), ('email', '=', "khouloudachour.97@gmail.com")]):
             if partner.mcm_session_id.date_exam:
                 if partner.mcm_session_id.date_exam.month == todays_date.month:
