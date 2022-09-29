@@ -182,7 +182,7 @@ class WebsiteSale(WebsiteSale):
                 return request.redirect("/charger_mes_documents")
         # if order.company_id.id == 1 and (partenaire or product):
         #     r eturn request.redirect("/shop/cart/")
-        is_taxi = False
+        is_taxi = "False"
         if order and order.company_id.id == 1:
             request.env.user.company_id = 1  # change default company
             request.env.user.company_ids = [1, 2]  # change default companies
@@ -192,7 +192,7 @@ class WebsiteSale(WebsiteSale):
                     product_id = line.product_id
                     if product_id : 
                         if 'taxi' in product_id.name :
-                            is_taxi = True
+                            is_taxi = "True"
             if not product and not partenaire and product_id:
                 product = True
                 partenaire = True
