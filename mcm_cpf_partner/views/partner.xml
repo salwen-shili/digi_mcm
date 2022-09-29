@@ -8,7 +8,7 @@
             <xpath expr="//group[@name='financement']" position="inside">
                 <field name="numero_cpf" string="N° de Dossier CPF"
                        attrs="{'invisible': [('mode_de_financement', '!=', 'cpf')]}"/>
-                <field name="statut_cpf" string="Statut de dossier CPF"
+                <field name="statut_cpf" string="Statut CPF"
                        attrs="{'invisible': [('mode_de_financement', '!=', 'cpf')]}"/>
                 <field name="date_cpf" string="Date CPF"
                        attrs="{'invisible': [('mode_de_financement', '!=', 'cpf')]}"/>
