@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="calendly_type_eventt_search_view" model="ir.ui.view">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_integration</field>
+        <field name="arch" type="xml">
+            <search>
+                                <field name="owner" filter_domain="[('owner','ilike',self)]"></field>
+
+                 <filter name="group_owner" string="Formateur" icon="terp-partner"
+                        context="{'group_by':'owner'}"/>
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="type_event_calendly_tree_view">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_integration</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="owner"/>
+
+                <field name="name"/>
+                <field name="active"/>
+                <field name="created_at"/>
+                <field name="scheduling_url"/>
+                <button name="test_url" string="Lien event" class="oe_highlight" type="object"/>
+                <field name="updated_at"/>
+
+                <field name="uri"/>
+                <field name="slug"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="type_event_calendly_form_view">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_integration</field>
+        <field name="arch" type="xml">
+            <form string="Course Form">
+                <sheet>
+                    <group>
+                        <field name="owner"/>
+                        <field name="name"/>
+                        <field name="active"/>
+                        <field name="created_at"/>
+                        <field name="scheduling_url"/>
+                        <field name="updated_at"/>
+                        <field name="uri"/>
+                        <field name="slug"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_openacad_calendly_kanban">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_integration</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="owner">
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div
+                                t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                            <div class="oe_dropdown_kanban">
+                                <!-- dropdown menu -->
+                                <div class="o_kanban_image">
+                                    <center>
+                                        <button string="Event" name="eventevnt"
+                                                type="object">
+                                            <img class="o_kanban_image" alt=""
+                                                 src="https://assets.calendly.com/packs/frontend/media/logo-square-cd364a3c33976d32792a.png"
+                                            />
+                                        </button>
+                                    </center>
+                                </div>
+
+
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div class="oe_dropdown_toggle">
+                                    <i class="fa fa-bars fa-lg"/>
+                                    <ul class="oe_dropdown_menu">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+                                        <li>
+                                            <ul class="oe_kanban_colorpicker"
+                                                data-field="color"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+                                <group>
+                                    <h4>Formateur:</h4>
+                                    <field name="owner"/>
+                                    <br/>
+                                    <h4>Formation:</h4>
+
+                                    <field name="name"/>
+                                    <br/>
+
+                                    <br/>
+                                    <h4>Date Creation:</h4>
+
+                                    <field name="created_at"/>
+                                    <br/>
+
+                                </group>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="calendly_type_event_list_action">
+        <field name="name">Type Event Calendly</field>
+        <field name="res_model">mcm_openedx.calendly_integration</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+
+    <menuitem id="calendly_menu" name="Calendly" parent="main_mcm_openedx_menu"/>
+    <menuitem id="type_event_calendly_menu" name="Type Event" parent="calendly_menu"
+              action="calendly_type_event_list_action"/>
+
+</odoo>

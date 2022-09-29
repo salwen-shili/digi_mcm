@@ -13,7 +13,12 @@
                                 <field name="partner_id"/>
                                 <field name="event_starttime"/>
                                 <field name="event_endtime"/>
+                                <field name="event_starttime_char"/>
                                 <field name="name"/>
+                                <field name="zoomlink"/>
+                                <field name="email"/>
+                                <field name="phone"/>
+
                             </group>
                         </group>
                     </sheet>
@@ -34,7 +39,11 @@
                     <field name="name"/>
                     <field name="partner_id"/>
                     <field name="event_starttime"/>
+                    <field name="event_starttime_char"/>
                     <field name="event_endtime"/>
+                    <field name="zoomlink"/>
+                    <field name="email"/>
+                    <field name="phone"/>
                 </tree>
             </field>
         </record>

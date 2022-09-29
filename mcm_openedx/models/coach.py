@@ -85,8 +85,7 @@ class enattente(models.Model):
 
     def wedof_api_integration_moocit(self):
         todays_date = date.today()
-
-        companies = self.env['res.company'].sudo().search([('id', "!=", False)])
+        companies = self.env['res.company'].sudo().search([])
         print(companies)
         api_key = ""
         for companiess in companies:

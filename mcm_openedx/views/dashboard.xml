@@ -38,17 +38,7 @@
         <field name="name">My Dashboard</field>
         <field name="model">board.board</field>
         <field name="arch" type="xml">
-            <t t-name="CustomDashBoard">
-                <div class="oh_dashboards" style="margin-top: 30px;">
-                    <div class="container-fluid o_pj_dashboard">
-                        <center>
-                            <img src="https://so2-static.s3.eu-west-3.amazonaws.com/digimoov/logo.png" width="10%" alt="img"/>
-                        </center>
 
-                    </div>
-                </div>
-
-            </t>
             <form string="My Dashboard">
                 <board style="1-1">
                     <column>

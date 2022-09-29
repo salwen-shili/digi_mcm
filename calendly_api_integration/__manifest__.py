@@ -9,10 +9,13 @@
     'category': 'API',
     'author': 'MCM ACADEMY',
     'website': '',
-    'depends': ['base','mcm_session','crm','website','mcm_website_theme','partner_exam',
-    ],
+    'depends': ['base', 'mcm_session', 'crm', 'website', 'mcm_website_theme', 'partner_exam',
+                ],
     'data': [
         'data/api_data.xml',
+        'data/mail_data.xml',
+        'data/automation_action_add_calendly.xml',
+
         'security/ir.model.access.csv',
         'views/calendly_rendezvous.xml',
         'views/partner.xml',

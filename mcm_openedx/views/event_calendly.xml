@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="calendly_event_search_view" model="ir.ui.view">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_event</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="owner" filter_domain="[('owner','ilike',self)]"></field>
+
+                <filter name="group_owner" string="Formateur" icon="terp-partner"
+                        context="{'group_by':'owner'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="event_calendly_tree_view">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_event</field>
+        <field name="arch" type="xml">
+            <tree>
+
+                <field name="owner"/>
+
+                <field name="event_name"/>
+                <field name="scheduling_url_created_at"/>
+                <field name="scheduling_url_updated_at"/>
+                <field name="location"/>
+                <field name="start_at_char"/>
+                <field name="start_at"/>
+                <field name="status"/>
+                <button name="send_invitation" string="Envoyer Invitation" class="oe_highlight" type="object"/>
+
+                <button name="test_url" string="Lien event" class="oe_highlight" type="object"
+                />
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="event_calendly_form_view">
+        <field name="name">Calendly Events</field>
+        <field name="model">mcm_openedx.calendly_event</field>
+        <field name="arch" type="xml">
+            <form string="Course Form">
+                <sheet>
+                    <group>
+                        <field name="owner"/>
+                        <field name="event_name"/>
+                        <field name="scheduling_url_created_at"/>
+                        <field name="scheduling_url_updated_at"/>
+                        <field name="location"/>
+                        <field name="start_at"/>
+                        <field name="start_at_char"/>
+
+                        <field name="status"/>
+                        <field name="reschedule_url"/>
+                        <field name="cancel_url"/>
+                        <field name="scheduling_url_uri"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="calendly_event_list_action">
+        <field name="name">Event Calendly</field>
+        <field name="res_model">mcm_openedx.calendly_event</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="event_calendly_menu" name="Event" parent="calendly_menu" action="calendly_event_list_action"/>
+
+</odoo>

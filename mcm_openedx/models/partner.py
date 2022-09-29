@@ -937,7 +937,6 @@ class partner(models.Model):
         elif (self.module_id.product_id.default_code == "vtc"):
             self.desinscriteVTC(self)
             self.supprimerdemoocit = date.today()
-            self.write({'state': 'supprimé'})
             _logger.info('state: supprimé')
 
 
