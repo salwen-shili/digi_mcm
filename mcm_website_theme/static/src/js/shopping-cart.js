@@ -1,4 +1,10 @@
+document.onreadystatechange = function () {
+  if (document.readyState == "complete") {
+    document.getElementById("cover-spin").remove();
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
+  
   displayInstalmentPayment();
   var formation;
   if (document.getElementById('cpf_pm')) {
@@ -875,4 +881,14 @@ function paiementBolt() {
   } else {
     document.getElementById('error_choix_bolt').style.display = 'block';
   }
+}
+
+//Show departement for taxi 
+function showDepartement(){
+  const departement = document.getElementById("departement_examen")
+  if ( departement.classList.contains("hide")){
+    departement.classList.remove("hide");
+  }
+  return
+  
 }
