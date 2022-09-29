@@ -12,6 +12,10 @@
                        attrs="{'invisible': [('mode_de_financement', '!=', 'cpf'),('company_id', '=', 1)]}"/>
                 <field name="ville"
                        attrs="{'invisible': [('mode_de_financement', '!=', 'cpf'),('company_id', '=', 1)]}"/>
+                <field name="inscription_cpf" string="Inscription" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"></field>
+<!--                  attrs="{'invisible': [('inscription_cpf', '=', False)]}"-->
+                      />
+
             </xpath>
         </field>
     </record>

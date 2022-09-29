@@ -1415,7 +1415,8 @@ class partner(models.Model):
                         'notification_type': 'email',
                         'website_id': 2,
                         'company_ids': [2],
-                        'company_id': 2
+                        'company_id': 2,
+                        'inscription_cpf': "moncompteformation.gouv.fr"
                     })
                     user.company_id = 2
                     user.partner_id.company_id = 2
@@ -1428,7 +1429,8 @@ class partner(models.Model):
                         'notification_type': 'email',
                         'website_id': 1,
                         'company_ids': [1],
-                        'company_id': 1
+                        'company_id': 1,
+                        'inscription_cpf':"moncompteformation.gouv.fr"
 
                     })
                     user.company_id = 1
