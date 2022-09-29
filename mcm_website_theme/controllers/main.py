@@ -2828,6 +2828,18 @@ class MCM_SIGNUP(http.Controller):
                     return True
         return True
 
+    @http.route(["/webhook_stripe_mcm"], type="json", auth="public", methods=["POST"])
+    def mcm_stripe_event(self):
+        event = None
+        request.uid = odoo.SUPERUSER_ID
+        dataa = json.loads(request.httprequest.data)
+        _logger.info("webhoooooooooook %s" % str(dataa))
+        event = dataa.get("type")
+        object = dataa.get("data", []).get("object")
+        _logger.info("event : %s" % str(event))
+
+
+
     @http.route("/inscription-bolt", type="http", auth="public", website=True)
     def inscription_bolt_jotform(
             self,

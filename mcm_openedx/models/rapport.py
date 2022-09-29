@@ -105,6 +105,7 @@ class rapport(models.Model):
                         'numero_action': numero_formation.split("/")[0].split("_", 1)[1].split("_20")[0],
                         'numero_session': numero_formation.split("/")[0].split("_", 1)[1].split("_20")[0],
                     })
+                    new.type_financement = "cpf"
                     _logger.info(new)
 
                 for partner in self.env['res.partner'].search(
