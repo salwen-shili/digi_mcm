@@ -191,7 +191,7 @@ class WebsiteSale(WebsiteSale):
                 for line in order.order_line:
                     product_id = line.product_id
                     if product_id : 
-                        if 'taxi' in product_id.default_code :
+                        if 'taxi' in str(product_id.name.lower()) :
                             is_taxi = "True"
             if not product and not partenaire and product_id:
                 product = True
