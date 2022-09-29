@@ -1893,7 +1893,7 @@ class partner(models.Model):
                 invoice.numero_cpf = partner.numero_cpf
                 _logger.info(' if invoice %s' % str(invoice.numero_cpf))
 
-    def update_carte_bleu_cpfpartner_field_financement(self):
+    def update_carte_bleu_cpf_partner_field_financement(self):
         """ Tache cron pour remplir le champ financement dans la fiche client avec état de paiement
         de (paid, not paid, in paiement) à partir de la dernière facture de client"""
         try:
@@ -1987,6 +1987,10 @@ class partner(models.Model):
                         partner.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
                     elif partner.statut_cpf == 'accepted':
                         partner.sudo().write({'etat_financement_cpf_cb': 'accepted'})
+                    elif partner.statut_cpf == 'in_training':
+                        partner.sudo().write({'etat_financement_cpf_cb': 'in_training'})
+                    elif partner.statut_cpf == 'validated':
+                        partner.sudo().write({'etat_financement_cpf_cb': 'validated'})
         except Exception:
             self.env.cr.rollback()
 
