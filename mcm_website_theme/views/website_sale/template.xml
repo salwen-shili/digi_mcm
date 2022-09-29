@@ -514,6 +514,25 @@
                                     </t>
                                 </t>
                             </select>
+                            <input type="text" t-att-value="is_taxi"></input>
+                            <t t-if="is_taxi"  >
+                                <select name="departement_examen" id="departement_examen" class="form-control search-slt " t-if="modules_mcm">
+                                    <option value="all" id="all">Sélectionnez votre département</option>
+                                
+                                        <t t-foreach="france_departments" t-as="departement">
+                                            <t t-if="departement">
+                                                <b>
+                                                    <option t-att-value="departement.name">
+                                                        <t t-esc="departement.name" />
+                                                    </option>
+                                                </b>
+                                            </t>
+                             
+                                   
+                                         </t>
+                                </select>
+                            </t>
+                            
                             <!-- <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
                                 Vous devez Selectionnez une Région
                             </p> -->
