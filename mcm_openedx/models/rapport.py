@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import requests
 from datetime import datetime, timedelta, date
+
+import stripe
+
 from odoo import models, fields, api, SUPERUSER_ID
 from odoo.tools import datetime
 import logging

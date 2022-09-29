@@ -1,3 +1,5 @@
+import stripe
+
 from odoo import http
 from odoo.http import request
 from odoo.addons.http_routing.models.ir_http import slug
@@ -2830,6 +2832,7 @@ class MCM_SIGNUP(http.Controller):
 
     @http.route(["/webhook_stripe_mcm"], type="json", auth="public", methods=["POST"])
     def mcm_stripe_event(self):
+
         event = None
         request.uid = odoo.SUPERUSER_ID
         dataa = json.loads(request.httprequest.data)
@@ -2837,8 +2840,28 @@ class MCM_SIGNUP(http.Controller):
         event = dataa.get("type")
         object = dataa.get("data", []).get("object")
         _logger.info("event : %s" % str(event))
+        if event == "payment_intent.succeeded":
+            _logger.info("teeeeeeest %s" % str(object))
+            """Cas de paiement une seule fois : créer une facture lié à ce paiement """
+            acquirer = object["id"]
+            receipt_email = object["receipt_email"]
+            invoice_id = object["invoice"]
+            description = str(object["description"])
+            amount = int(object["amount"] / 100)
+            stripe.api_key = "sk_test_UIcjGwgstBKleRmE3GIiZm8O000wMrOfL0"
+            id = object["customer"]
+            test = stripe.Customer.retrieve(id)
+            _logger.info("Returns the Customer object for a valid identifier %s" % str(test))
+            costumer_email = test['email']
 
-
+            new = request.env['mcm_openedx.rapport'].sudo().create({
+                'customer_email': costumer_email,
+                'created': date.today(),
+                'amount': amount,
+            })
+            new.type_financement = "stripe"
+            # new.captured = object["captured"]
+            new.seller_message = object['outcome']['seller_message']
 
     @http.route("/inscription-bolt", type="http", auth="public", website=True)
     def inscription_bolt_jotform(
