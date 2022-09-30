@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const departement_examen = document.getElementById("departement_examen")
     departement_examen.addEventListener('change', function(){
       const departementId= departement_examen.options[departement_examen.selectedIndex].id
-      console.log("departement_examen_id",departementId)
+      console.log("departementId",departementId)
       if (departementId == "all"){
         sendExamDepartement('all')
       }else{
