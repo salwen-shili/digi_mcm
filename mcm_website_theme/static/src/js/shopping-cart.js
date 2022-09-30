@@ -51,6 +51,20 @@ document.addEventListener('DOMContentLoaded', function () {
       displayInstalmentPayment();
     });
   }
+
+  // send departement_examen data if pack taxi 
+  if (document.getElementById("departement_examen")){
+    const departement_examen = document.getElementById("departement_examen")
+    departement_examen.addEventListener('change', function(){
+      const departementId= departement_examen.options[departement_examen.selectedIndex].id
+      console.log("departement_examen_id",departementId)
+      if (departementId != "all"){
+        sendExamDepartement(departementId)
+      }
+    })
+  }
+
+  // add on change event listener to deepartment department in case 
 });
 
 //animation
@@ -893,3 +907,53 @@ function showDepartement(){
     return 
 }
 }
+
+const sendExamDepartement = (department_id) => {
+  sendHttpRequest('POST', '/shop/cart/update_exam_department', {
+    params: {
+      department_id: department_id,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+
+
+
+
+//Get user partner Data information 
+//HTTP REQUEST CALL
+// const partnerInformation = async () => {
+//   try {
+//     // const res = await JSON.parse(sendHttpRequest('POST', '/get_data_user_connected', {}));
+//     const res = await sendHttpRequest('POST', '/get_data_user_connected', {});
+//     const partner = JSON.parse(res.result);
+//     // console.log(partner.response);
+//     // console.log(partner.response[0]);
+//     return partner.response[0];
+//   } catch (e) {
+//     return 'error partnerInformation()';
+//   }
+// }
+
+// const partnerInformation = async () => {
+//   const data = await sendHttpRequest('POST', '/get_data_user_connected', {})
+//     .then((res) => {
+      
+//       const partner = await JSON.parse(data.result);
+//       console.log(partner)
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+
+
+//   }
+
+

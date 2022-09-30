@@ -558,9 +558,10 @@
                                     </t>
                                 </t>
                             </select>
-                            <br/>
+
                           
                             <t t-if="is_taxi == 'True'  "  >
+                                <br/>
                                 <select name="departement_examen_data" id="departement_examen_data" class="form-control search-slt  " t-if="modules_mcm" style="display:none">
                                     <option value="all" id="all"> Sélectionnez votre département d'examen</option>
                                 
@@ -622,7 +623,6 @@
                             Vous devez sélectionner votre date d'examen
                         </p>
                     </b>
-
                 </p>
 
             </div>
