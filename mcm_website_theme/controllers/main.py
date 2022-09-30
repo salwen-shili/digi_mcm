@@ -2832,14 +2832,13 @@ class MCM_SIGNUP(http.Controller):
 
     @http.route(["/webhook_stripe_mcm"], type="json", auth="public", methods=["POST"])
     def mcm_stripe_event(self):
+
         event = None
         request.uid = odoo.SUPERUSER_ID
         dataa = json.loads(request.httprequest.data)
         _logger.info("webhoooooooooook MCM %s" % str(dataa))
         event = dataa.get("type")
         object = dataa.get("data", []).get("object")
-        charges = dataa.get("data", []).get("object")
-        _logger.info("event : %s" % str(event))
         if event == "payment_intent.succeeded":
             _logger.info("teeeeeeest %s" % str(object))
             """Cas de paiement une seule fois : créer une facture lié à ce paiement """
@@ -2864,10 +2863,10 @@ class MCM_SIGNUP(http.Controller):
                 for captureds in captured:
                     cap = captureds
                     print("aeeeea", str(cap["captured"]))
-            new.captured = object["captured"]
+            new.captured = str(cap["captured"])
             if "outcome" in object:
                 new.seller_message = object["outcome"]["seller_message"]
-
+                
     @http.route("/inscription-bolt", type="http", auth="public", website=True)
     def inscription_bolt_jotform(
             self,
