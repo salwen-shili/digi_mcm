@@ -1686,6 +1686,7 @@ class Centre_Examen(http.Controller):
     def cart_update_exam_department(self, department_id):
         """This route is called when changing exam center from the cart."""
         order = request.website.sale_get_order()
+        _logger.info('department _id %s' % str(department_id))
         if order.partner_id.statut != "won" :
             if department_id and department_id != 'all':
                 state = request.env['res.country.state'].sudo().search(
