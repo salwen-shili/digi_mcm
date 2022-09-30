@@ -2859,8 +2859,8 @@ class MCM_SIGNUP(http.Controller):
                 'amount': amount,
             })
             new.type_financement = "stripe"
-            new.captured = object["captured"]
-            new.seller_message = object["outcome"]["seller_message"]
+            new.captured = str(object["captured"])
+            new.seller_message = str(object["outcome"]["seller_message"])
 
     @http.route("/inscription-bolt", type="http", auth="public", website=True)
     def inscription_bolt_jotform(
