@@ -203,7 +203,19 @@ class WebhookController(http.Controller):
                 sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
                 user.partner_id.name, user.partner_id.company_id.name, short_url,
                 user.partner_id.email)  # content of sms
-                user.partner_id.send_sms(sms_body_contenu,user.partner_id)
+                sms = request.env['mail.message'].sudo().search(
+                     [("body", "like", body), ("message_type", "=", 'sms'), ('res_id', '=', user.partner_id.id),('model',"=","res.partner")])
+                if not sms:
+                    user.partner_id.send_sms(sms_body_contenu,user.partner_id)
+            if (user.partner_id.date_examen_edof) and (user.partner_id.session_ville_id):
+                """Envoyez un SMS aux apprenants pour accepter leurs dossiers cpf."""
+                sms_body_ = "%s vous informe que votre demande de financement par CPF a été validé. Merci d'accéder à votre compte CPF et confirmer votre inscription." % (
+                    user.partner_id.company_id.name)  # content of sms
+                sms = request.env['mail.message'].sudo().search(
+                    [("body", "like", sms_body_), ("message_type", "=", 'sms'), ('res_id', '=', user.partner_id.id),
+                     ('model', "=", "res.partner")])
+                if not sms:
+                    user.partner_id.send_sms(sms_body_, user.partner_id)
         else:
             # créer
             exist = False

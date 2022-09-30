@@ -595,7 +595,7 @@
                             </div>
                             <div>
                                 Web:
-                                <span t-field="company.website"/>
+                             <span t-raw="'%s' % company.website[8:-1]"/>
                             </div>
                         </div>
                         <div class="col-6" name="company_logo">
@@ -613,7 +613,7 @@
                 <ul class="list-inline mb4">
                     <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
                          adding d-inline class fixes the problem-->
-                    <li t-if="company.website" class="list-inline-item d-inline">Web: <span t-field="company.website"/></li>
+                    <li t-if="company.website" class="list-inline-item d-inline">Web: <span t-raw="'%s' % company.website[8:-1]"/></li>
                 </ul>
             </xpath>
 
