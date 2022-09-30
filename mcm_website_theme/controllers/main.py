@@ -2853,15 +2853,14 @@ class MCM_SIGNUP(http.Controller):
             test = stripe.Customer.retrieve(id)
             _logger.info("Returns the Customer object for a valid identifier %s" % str(test))
             costumer_email = test['email']
-
             new = request.env['mcm_openedx.rapport'].sudo().create({
                 'customer_email': costumer_email,
                 'created': date.today(),
                 'amount': amount,
             })
             new.type_financement = "stripe"
-            # new.captured = object["captured"]
-            new.seller_message = object['seller_message']
+            new.captured = object["captured"]
+            new.seller_message = object["outcome"]["seller_message"]
 
     @http.route("/inscription-bolt", type="http", auth="public", website=True)
     def inscription_bolt_jotform(

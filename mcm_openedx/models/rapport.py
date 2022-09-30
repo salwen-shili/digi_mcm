@@ -31,10 +31,10 @@ class rapport(models.Model):
     created = fields.Char(string="Created")
     amount = fields.Char(string="Amount")
     customer_email = fields.Char(string="Customer Email")
-    captured = fields.Boolean(string="Captured")
+    captured = fields.Char(string="Captured")
     type_financement = fields.Selection([('cpf', 'CPF'),
-                              ('stripe', 'Carte Bleu'),
-                              ])
+                                         ('stripe', 'Carte Bleu'),
+                                         ])
 
     def rapport_wedof(self):
         companies = self.env['res.company'].sudo().search([('id', "!=", False)])
@@ -119,4 +119,3 @@ class rapport(models.Model):
                         print("ookokokokokokokokkkkkkkkkkkk", existe.partner_id)
 
                         existe.partner_id = partner.id
-
