@@ -1686,19 +1686,20 @@ class Centre_Examen(http.Controller):
     def cart_update_exam_department(self, department_id):
         """This route is called when changing exam center from the cart."""
         order = request.website.sale_get_order()
-        if department_id and department_id != 'all':
-            state = request.env['res.country.state'].sudo().search(
-                [('id', "=", department_id)], limit=1)
-            if state:
+        if order.partner_id.statut != "won" :
+            if department_id and department_id != 'all':
+                state = request.env['res.country.state'].sudo().search(
+                    [('id', "=", department_id)], limit=1)
+                if state:
+                    order.partner_id.sudo().write({
+                        'state_id': state.id,
+                    })
+                    request.env.cr.commit()
+            else:
                 order.partner_id.sudo().write({
-                    'state_id': state.id,
+                    'state_id': False
                 })
                 request.env.cr.commit()
-        else:
-            order.partner_id.sudo().write({
-                'state_id': False
-            })
-            request.env.cr.commit()
         return order.partner_id
 
     @http.route(['/cpf/update_exam_center'], type='json', auth="public", methods=['POST'], website=True)
