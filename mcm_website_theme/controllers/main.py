@@ -2865,8 +2865,9 @@ class MCM_SIGNUP(http.Controller):
                     print("aeeeea", str(cap["captured"]))
             new.captured = str(cap["captured"])
             if "outcome" in object:
-                new.seller_message = object["outcome"]["seller_message"]
-                
+                outcome = object["outcome"]["seller_message"]
+            new.seller_message = outcome
+
     @http.route("/inscription-bolt", type="http", auth="public", website=True)
     def inscription_bolt_jotform(
             self,
