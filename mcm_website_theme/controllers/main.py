@@ -2836,7 +2836,7 @@ class MCM_SIGNUP(http.Controller):
         event = None
         request.uid = odoo.SUPERUSER_ID
         dataa = json.loads(request.httprequest.data)
-        _logger.info("webhoooooooooook %s" % str(dataa))
+        _logger.info("webhoooooooooook MCM %s" % str(dataa))
         event = dataa.get("type")
         object = dataa.get("data", []).get("object")
         _logger.info("event : %s" % str(event))
@@ -2861,7 +2861,7 @@ class MCM_SIGNUP(http.Controller):
             })
             new.type_financement = "stripe"
             # new.captured = object["captured"]
-            new.seller_message = object['outcome']['seller_message']
+            new.seller_message = object['seller_message']
 
     @http.route("/inscription-bolt", type="http", auth="public", website=True)
     def inscription_bolt_jotform(
