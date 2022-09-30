@@ -21,7 +21,7 @@
                                 <div class="col-md-6 align-self-center">
                                     <t t-if="partenaire=='' or partenaire!='box2home'">
                                         <h1 class="title-1 type-write" t-if="partenaire=='' or partenaire!='box2home'">
-                                            FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE
+                                            FORMATION CAPACITÉ DE TRANSPORT LÉGER DE
                                             <text class="stabiloblue">MARCHANDISES</text>
                                             &amp;nbsp;+/- 3T5 POUR DEVENIR LIVREUR EN
                                             <text class="typewrite" data-period="2000" data-type="[ &quot;SCOOTER&quot;, &quot;VOITURE&quot;, &quot;CAMIONNETTE&quot;]">
@@ -31,7 +31,7 @@
                                     </t>
                                     <t t-if="partenaire=='box2home'">
                                         <h1 class="title-1" t-if="partenaire=='box2home'">
-                                            <b>FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE</b>
+                                            <b>FORMATION CAPACITÉ DE TRANSPORT LÉGER DE</b>
                                             <text class="stabiloblue">MARCHANDISES</text>
                                             <b>POUR DEVENIR LIVREUR EN
                 </b>
