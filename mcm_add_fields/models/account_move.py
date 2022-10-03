@@ -285,7 +285,7 @@ class AccountMove(models.Model):
                                 })
                                 so.module_id = user.module_id
                                 _logger.info("SO module id %s "% str(so.module_id.name) )
-                                so.session_id = user.session_id
+                                so.session_id = user.mcm_session_id
                                 """Créer une ligne de vente avec le montant CGU récupéré depuis cpf"""
                                 so_line = self.env['sale.order.line'].sudo().create({
                                     'name': product_id.name,
@@ -322,9 +322,7 @@ class AccountMove(models.Model):
                                         for line in move.invoice_line_ids:
                                             line.price_unit = amountCGU
                                             print('line', line.price_unit)
-                                        """Calculer l'es 'acompte 25% du montant total de la formation """
 
-                                        move.amount_paye = ( product_id.lst_price * invoice.pourcentage_acompte) / 100
 
                                         print('acompte', move.acompte_invoice, product_id.lst_price,move.amount_paye)
                                         if so.pricelist_id.code:
@@ -370,7 +368,8 @@ class AccountMove(models.Model):
                                                 newformat = "%d/%m/%Y"
                                                 trdateform = trdate.strftime(newformat)
                                                 date_acompte = datetime.strptime(trdateform, "%d/%m/%Y")
-                                                _logger.info("paiement %s" % str(acompte_amount))
+                                                _logger.info("paiement acompte %s" % str(acompte_amount))
+
                                                 payment_method = self.env['account.payment.method'].sudo().search(
                                                     [('code', 'ilike', 'electronic')])
                                                 payment = self.env['account.payment'].sudo().create(
@@ -425,7 +424,7 @@ class AccountMove(models.Model):
                                     'company_id': 1,
                                 })
                                 so.module_id = user.module_id
-                                so.session_id = user.session_id
+                                so.session_id = user.mcm_session_id
                                 """Créer une ligne de vente avec le montant CGU récupéré depuis cpf"""
                                 so_line = self.env['sale.order.line'].sudo().create({
                                     'name': product_id.name,
@@ -714,7 +713,13 @@ class AccountMove(models.Model):
                                  })
                             payment.post()
 
-
+    def remplir_session(self):
+        invoices = self.env['account.move'].sudo().search([("methodes_payment", "=", 'cpf'),
+                                                           ("session_id", "=", False)])
+        for invoice in invoices:
+            if invoice.partner_id.mcm_session_id:
+                invoice.session_id=invoice.partner_id.mcm_session_id
+                
 
 
 
