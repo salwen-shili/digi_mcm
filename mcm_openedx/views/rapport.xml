@@ -3,7 +3,7 @@
 
 
     <record id="rapport_search_view" model="ir.ui.view">
-        <field name="name">Formation</field>
+        <field name="name">Rapport Marketing</field>
         <field name="model">mcm_openedx.rapport</field>
         <field name="arch" type="xml">
             <search>
@@ -20,13 +20,14 @@
     </record>
     <!-- Vue Form session-->
     <record model="ir.ui.view" id="rapport_form_view">
-        <field name="name">Rapport Finance</field>
+        <field name="name">Rapport Marketing</field>
         <field name="model">mcm_openedx.rapport</field>
         <field name="arch" type="xml">
 
             <form>
                 <sheet>
                     <group>
+                        <field name="description"/>
                         <field name="numero_dossier"/>
                         <field name="name"/>
                         <field name="partner_id"/>
@@ -51,10 +52,11 @@
         </field>
     </record>
     <record model="ir.ui.view" id="rapportcpf_tree_view">
-        <field name="name">Rapport Finance</field>
+        <field name="name">Rapport Marketing</field>
         <field name="model">mcm_openedx.rapport</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="customer_email"/>
                 <field name="numero_dossier"/>
                 <field name="name"/>
                 <field name="partner_id"/>
@@ -70,18 +72,19 @@
                 <field name="seller_message"/>
                 <field name="created"/>
                 <field name="amount"/>
-                <field name="customer_email"/>
                 <field name="captured"/>
+                                <field name="description"/>
+
             </tree>
         </field>
     </record>
 
 
     <record model="ir.actions.act_window" id="mcm_openedx.rapportcpf_list_action">
-        <field name="name">Rapport Finance</field>
+        <field name="name">Rapport Marketing</field>
         <field name="res_model">mcm_openedx.rapport</field>
         <field name="view_mode">tree,form</field>
-        <field name="context">{'search_default_group_company': 1}</field>
+        <field name="context">{'search_default_group_type_financement': 1}</field>
 
 
     </record>

@@ -2722,6 +2722,38 @@ class MCM_SIGNUP(http.Controller):
             invoice_id = object["invoice"]
             description = str(object["description"])
             amount = int(object["amount"] / 100)
+            stripe.api_key = "sk_test_62TVrL9rX962c43ZzDm892Ef"
+            id = object["customer"]
+            test = stripe.Customer.retrieve(id)
+            _logger.info("Returns the Customer object for a valid identifier %s" % str(test))
+            costumer_email = test['email']
+            for existe in request.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
+                for partner in request.env['res.partner'].search(
+                        [('email', '=', existe.customer_email)]):
+                    if partner.email == existe.customer_email:
+                        existe.company = partner.company_id.name
+                        _logger.info(partner.id)
+                        _logger.info("ookokokokokokokokkkkkkkkkkkk")
+                        existe.partner_id = partner.id
+
+            new = request.env['mcm_openedx.rapport'].sudo().create({
+                'customer_email': costumer_email,
+                'created': date.today(),
+                'acceptedDate': date.today(),
+                'amount': amount,
+                'description': description
+            })
+            new.type_financement = "stripe"
+            if "outcome" in object:
+                new.seller_message = object["outcome"]["seller_message"]
+                _logger.info("new.seller_messag %s" % str(object["outcome"]["seller_message"]))
+
+            if "charges" in object:
+                captured = object["charges"]["data"]
+                for captureds in captured:
+                    cap = captureds
+                    _logger.info("aeeeea")
+            new.captured = str(cap["captured"])
             self.search = request.env['res.users'].sudo().search(
                 [('login', "=", str(receipt_email).replace(' ', '').lower())])
             user = self.search
@@ -2729,6 +2761,7 @@ class MCM_SIGNUP(http.Controller):
             _logger.info("description : %s" % str(description))
             _logger.info("receipt_email : %s" % str(receipt_email))
             _logger.info("user : %s" % str(user))
+
             if user:
                 if not (description.startswith('S') and '-' in description):
                     moves = request.env['account.move'].sudo().search(
@@ -2864,7 +2897,9 @@ class MCM_SIGNUP(http.Controller):
             new = request.env['mcm_openedx.rapport'].sudo().create({
                 'customer_email': costumer_email,
                 'created': date.today(),
+                'acceptedDate': date.today(),
                 'amount': amount,
+                'description': description
             })
             new.type_financement = "stripe"
             if "outcome" in object:

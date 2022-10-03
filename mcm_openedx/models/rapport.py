@@ -26,6 +26,7 @@ class rapport(models.Model):
     date_fin_session = fields.Date(string=" DATE FIN SESSION")
     numero_formation = fields.Char(string=" NUMERO FORMATION")
     numero_action = fields.Char(string="  NUMERO ACTION")
+    description =  fields.Char(string="Description")
     numero_session = fields.Char(string="NUMERO SESSION")
     seller_message = fields.Char(string="Seller_message")
     created = fields.Char(string="Created")
@@ -127,6 +128,8 @@ class rapport(models.Model):
                         if partner.email == existe.customer_email:
                             existe.company = partner.company_id.name
                             existe.numero_formation = sale_order.order_line.product_id.id_edof
+                            existe.numero_action = sale_order.order_line.product_id.id_edof
+                            existe.numero_session = sale_order.order_line.product_id.id_edof
 
                             _logger.info(partner.id)
                             _logger.info("ookokokokokokokokkkkkkkkkkkk")
