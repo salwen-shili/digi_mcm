@@ -1258,6 +1258,7 @@ class Routes_Site(http.Controller):
                 "exam_state": exam_state,
                 "ipJotForm": partner.ipjotform,
                 "evalbox": partner.numero_evalbox,
+                "statut":partner.statut,
             }
         ]
         partner = json.dumps(res)

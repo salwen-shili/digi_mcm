@@ -182,6 +182,7 @@ class WebsiteSale(WebsiteSale):
                 return request.redirect("/charger_mes_documents")
         # if order.company_id.id == 1 and (partenaire or product):
         #     r eturn request.redirect("/shop/cart/")
+        is_taxi = "False"
         if order and order.company_id.id == 1:
             request.env.user.company_id = 1  # change default company
             request.env.user.company_ids = [1, 2]  # change default companies
@@ -189,7 +190,9 @@ class WebsiteSale(WebsiteSale):
             if order:
                 for line in order.order_line:
                     product_id = line.product_id
-
+                    if product_id : 
+                        if 'taxi' in str(product_id.name.lower()) :
+                            is_taxi = "True" #check if the name  of product put in shop cart contains taxi
             if not product and not partenaire and product_id:
                 product = True
                 partenaire = True
@@ -413,6 +416,8 @@ class WebsiteSale(WebsiteSale):
                     ).search([('company_id', '=', 2), ('ville_formation', "=", True)])
         if request.env.user.partner_id.bolt == True:
             from_bolt = 'True'
+        france_departments = request.env["res.country.state"].sudo().search([("country_id.code", "ilike", "FR")], order="code asc") #get list of france departments
+        _logger.info('is taxi : %s' % str(is_taxi))
         values.update({
             'modules_digimoov': list_modules_digimoov,
             'modules_mcm': list_modules_mcm,
@@ -423,6 +428,8 @@ class WebsiteSale(WebsiteSale):
             'from_bolt': from_bolt,
             'from_habilitation_electrique': from_habilitation_electrique,
             'list_villes_habilitation_electrique': list_villes_habilitation_electrique,
+            'france_departments': france_departments, #send departments of france to the view of shop cart
+            'is_taxi': is_taxi,
         })
         # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb digimoov pour que le client peut choisir une ville parmis la liste
         list_villes = request.env['session.ville'].sudo().search(
@@ -474,7 +481,7 @@ class WebsiteSale(WebsiteSale):
             cartIsEmpty = "True"
         if order and not order.order_line:
             cartIsEmpty = "True"
-
+        
         values.update({
             'rdvIsBooked': rdvIsBooked,
             'cartIsEmpty': cartIsEmpty,
@@ -1674,6 +1681,27 @@ class Centre_Examen(http.Controller):
                 'session_ville_id': False
             })
         return order.session_ville_id
+
+    @http.route(['/shop/cart/update_exam_department'], type='json', auth="public", methods=['POST'], website=True)
+    def cart_update_exam_department(self, department_id):
+        """This route is called when changing exam department from the cart."""
+        order = request.website.sale_get_order()
+        _logger.info('department _id %s' % str(department_id))
+        if order.partner_id.statut != "won" :
+            if department_id and department_id != 'all':
+                state = request.env['res.country.state'].sudo().search(
+                    [('id', "=", department_id)], limit=1)
+                if state:
+                    order.partner_id.sudo().write({
+                        'state_id': state.id,
+                    })
+                    request.env.cr.commit()
+            else:
+                order.partner_id.sudo().write({
+                    'state_id': False
+                })
+                request.env.cr.commit()
+        return order.partner_id
 
     @http.route(['/cpf/update_exam_center'], type='json', auth="public", methods=['POST'], website=True)
     def partner_update_exam_center(self, center):

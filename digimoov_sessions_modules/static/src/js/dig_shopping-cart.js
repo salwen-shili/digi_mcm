@@ -1,3 +1,8 @@
+document.onreadystatechange = function () {
+  if (document.readyState == "complete") {
+    document.getElementById("cover-spin").remove();
+  }
+}
 var villeLourd = [
   "PARIS",
   "NANTES",
@@ -1088,3 +1093,11 @@ const updateExamDate = (props) => {
     .then((responseData) => {})
     .catch((err) => {});
 };
+
+//Show departement only for taxi 
+function showDepartement(){
+ 
+  return
+  
+}
+

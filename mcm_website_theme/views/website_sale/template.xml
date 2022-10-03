@@ -478,6 +478,49 @@
                     </div>
                 </div>
             </div>
+           <!-- SPINNER FOR LOADING SCREEN-->
+           <style>
+
+            #cover-spin {
+                position:fixed;
+                width:100%;
+                left:0;right:0;top:0;bottom:0;
+                background-color: rgb(0 0 0 / 73%);
+                z-index:9999;
+               
+            }
+            
+            @-webkit-keyframes spin {
+                from {-webkit-transform:rotate(0deg);}
+                to {-webkit-transform:rotate(360deg);}
+            }
+            
+            @keyframes spin {
+                from {transform:rotate(0deg);}
+                to {transform:rotate(360deg);}
+            }
+            
+            #cover-spin::after {
+                content:'';
+                display:block;
+                position:absolute;
+                left:48%;top:40%;
+                width:40px;height:40px;
+                border-style:solid;
+                border-color: white;
+                border-top-color:transparent;
+                border-width: 4px;
+                border-radius:50%;
+                -webkit-animation: spin .8s linear infinite;
+                animation: spin .8s linear infinite;
+            }
+              
+
+        </style>
+        <div id="cover-spin"></div>
+
+           <!-- End SPINNER -->
+        
             <div style="margin:auto;background-color:#fff;border-color:#585959;" t-if="request.website.is_public_user()==False and modules_mcm" id="region_date_examen">
 
                 <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;">
@@ -489,7 +532,8 @@
                 <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%;" id="exam_center">
-                            <select name="region_examen" id="region_examen" class="form-control search-slt " t-if="modules_mcm">
+                            
+                            <select name="region_examen" id="region_examen" class="form-control search-slt " t-if="modules_mcm" onclick="showDepartement()">
                                 <option value="all" id="all">Sélectionnez votre région d'examen</option>
                                 <t t-if="from_bolt == 'False'">
                                     <t t-foreach="list_villes_mcm" t-as="ville">
@@ -514,6 +558,32 @@
                                     </t>
                                 </t>
                             </select>
+
+                          
+                            <t t-if="is_taxi == 'True'  "  >
+                                <br/>
+                                <select name="departement_examen_data" id="departement_examen_data" class="form-control search-slt  " t-if="modules_mcm" style="display:none">
+                                    <option value="all" id="all"> Sélectionnez votre département d'examen</option>
+                                
+                                        <t t-foreach="france_departments" t-as="departement">
+                                            <t t-if="departement">
+                                                <b>
+                                                    <option t-att-value="departement.session_ville_id.name_ville" t-att-id="departement.id">
+                                                        <t t-esc="departement.name" />
+                                                    </option>
+                                                </b>
+                                            </t>
+                                         </t>
+                                </select>
+                                <select name="departement_examen" id="departement_examen" class="form-control search-slt hide " t-if="modules_mcm">
+                                    <option value="all" id="all">
+                                        Sélectionnez votre département d'examen
+                                    </option>
+                                
+                                        
+                                </select>
+                            </t>
+                            
                             <!-- <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
                                 Vous devez Selectionnez une Région
                             </p> -->
@@ -553,7 +623,6 @@
                             Vous devez sélectionner votre date d'examen
                         </p>
                     </b>
-
                 </p>
 
             </div>
