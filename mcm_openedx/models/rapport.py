@@ -26,7 +26,7 @@ class rapport(models.Model):
     date_fin_session = fields.Date(string=" DATE FIN SESSION")
     numero_formation = fields.Char(string=" NUMERO FORMATION")
     numero_action = fields.Char(string="  NUMERO ACTION")
-    description =  fields.Char(string="Description")
+    description = fields.Char(string="Description")
     numero_session = fields.Char(string="NUMERO SESSION")
     seller_message = fields.Char(string="Seller_message")
     created = fields.Char(string="Created")
@@ -112,25 +112,29 @@ class rapport(models.Model):
                     new.type_financement = "cpf"
                     _logger.info(new)
 
-                for partner in self.env['res.partner'].search(
-                        [('numero_cpf', '=', existe.numero_dossier), ('statut_cpf', '!=', 'canceled')]):
+                for partner in self.env['res.partner'].search([('numero_cpf', '!=', False)]):
                     if partner.numero_cpf == existe.numero_dossier:
-                        existe.company = partner.company_id.name
-                        print("ookokokokokokokokkkkkkkkkkkk", partner.id)
-                        print("ookokokokokokokokkkkkkkkkkkk", existe.partner_id)
-                        existe.partner_id = partner.id
-                for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
-                    for partner in self.env['res.partner'].search(
-                            [('email', '=', existe.customer_email)]):
-                        sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-
-                                                                           ], limit=1, order="id desc")
-                        if partner.email == existe.customer_email:
+                        if partner.numero_cpf == existe.numero_dossier:
                             existe.company = partner.company_id.name
-                            existe.numero_formation = sale_order.order_line.product_id.id_edof
-                            existe.numero_action = sale_order.order_line.product_id.id_edof
-                            existe.numero_session = sale_order.order_line.product_id.id_edof
-
-                            _logger.info(partner.id)
-                            _logger.info("ookokokokokokokokkkkkkkkkkkk")
+                            print("ookokokokokokokokkkkkkkkkkkk", partner.id)
+                            print("ookokokokokokokokkkkkkkkkkkk", existe.partner_id)
                             existe.partner_id = partner.id
+                            if partner.statut_cpf == "canceled":
+                                print("aaaaaaaaaaaaaaaaaaaaaaaaaaa", partner.name)
+                                existe.statut_dossier = partner.statut_cpf
+
+                    for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
+                        for partner in self.env['res.partner'].search(
+                                [('email', '=', existe.customer_email)]):
+                            sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+
+                                                                               ], limit=1, order="id desc")
+                            if partner.email == existe.customer_email:
+                                existe.company = partner.company_id.name
+                                existe.numero_formation = sale_order.order_line.product_id.id_edof
+                                existe.numero_action = sale_order.order_line.product_id.id_edof
+                                existe.numero_session = sale_order.order_line.product_id.id_edof
+
+                                _logger.info(partner.id)
+                                _logger.info("ookokokokokokokokkkkkkkkkkkk")
+                                existe.partner_id = partner.id
