@@ -192,7 +192,7 @@ class WebsiteSale(WebsiteSale):
                     product_id = line.product_id
                     if product_id : 
                         if 'taxi' in str(product_id.name.lower()) :
-                            is_taxi = "True"
+                            is_taxi = "True" #check if the name  of product put in shop cart contains taxi
             if not product and not partenaire and product_id:
                 product = True
                 partenaire = True
@@ -416,7 +416,7 @@ class WebsiteSale(WebsiteSale):
                     ).search([('company_id', '=', 2), ('ville_formation', "=", True)])
         if request.env.user.partner_id.bolt == True:
             from_bolt = 'True'
-        france_departments = request.env["res.country.state"].sudo().search([("country_id.code", "ilike", "FR")], order="code asc")
+        france_departments = request.env["res.country.state"].sudo().search([("country_id.code", "ilike", "FR")], order="code asc") #get list of france departments
         _logger.info('is taxi : %s' % str(is_taxi))
         values.update({
             'modules_digimoov': list_modules_digimoov,
@@ -428,7 +428,7 @@ class WebsiteSale(WebsiteSale):
             'from_bolt': from_bolt,
             'from_habilitation_electrique': from_habilitation_electrique,
             'list_villes_habilitation_electrique': list_villes_habilitation_electrique,
-            'france_departments': france_departments,
+            'france_departments': france_departments, #send departments of france to the view of shop cart
             'is_taxi': is_taxi,
         })
         # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb digimoov pour que le client peut choisir une ville parmis la liste
@@ -1684,7 +1684,7 @@ class Centre_Examen(http.Controller):
 
     @http.route(['/shop/cart/update_exam_department'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_exam_department(self, department_id):
-        """This route is called when changing exam center from the cart."""
+        """This route is called when changing exam department from the cart."""
         order = request.website.sale_get_order()
         _logger.info('department _id %s' % str(department_id))
         if order.partner_id.statut != "won" :
