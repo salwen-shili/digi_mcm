@@ -2852,25 +2852,33 @@ class MCM_SIGNUP(http.Controller):
             test = stripe.Customer.retrieve(id)
             _logger.info("Returns the Customer object for a valid identifier %s" % str(test))
             costumer_email = test['email']
+            for existe in request.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
+                for partner in request.env['res.partner'].search(
+                        [('email', '=', existe.customer_email)]):
+                    if partner.email == existe.customer_email:
+                        existe.company = partner.company_id.name
+                        _logger.info(partner.id)
+                        _logger.info("ookokokokokokokokkkkkkkkkkkk")
+                        existe.partner_id = partner.id
+
             new = request.env['mcm_openedx.rapport'].sudo().create({
                 'customer_email': costumer_email,
                 'created': date.today(),
                 'amount': amount,
             })
             new.type_financement = "stripe"
+            if "outcome" in object:
+                new.seller_message = object["outcome"]["seller_message"]
+                _logger.info("new.seller_messag %s" % str(object["outcome"]["seller_message"]))
+
             if "charges" in object:
                 captured = object["charges"]["data"]
                 for captureds in captured:
                     cap = captureds
-                    print("aeeeea", str(cap["captured"]))
+                    _logger.info("aeeeea")
             new.captured = str(cap["captured"])
-            if "outcome" in object:
-                ok = object["outcome"]["seller_message"]
-                _logger.info("new.seller_message  %s" % str(ok))
-                new.seller_message = str(ok)
 
-
-@http.route("/inscription-bolt", type="http", auth="public", website=True)
+    @http.route("/inscription-bolt", type="http", auth="public", website=True)
     def inscription_bolt_jotform(
             self,
             **kw,
