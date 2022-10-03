@@ -718,6 +718,7 @@ class AccountMove(models.Model):
                                                            ("session_id", "=", False)])
         for invoice in invoices:
             if invoice.partner_id.mcm_session_id:
+                _logger.info("remplir invoice %s" %invoice.partner_id.mcm_session_id)
                 invoice.session_id=invoice.partner_id.mcm_session_id
                 
 
