@@ -116,25 +116,22 @@ class rapport(models.Model):
                     if partner.numero_cpf == existe.numero_dossier:
                         if partner.numero_cpf == existe.numero_dossier:
                             existe.company = partner.company_id.name
-                            print("ookokokokokokokokkkkkkkkkkkk", partner.id)
-                            print("ookokokokokokokokkkkkkkkkkkk", existe.partner_id)
                             existe.partner_id = partner.id
                             if partner.statut_cpf == "canceled":
-                                print("aaaaaaaaaaaaaaaaaaaaaaaaaaa", partner.name)
                                 existe.statut_dossier = partner.statut_cpf
 
-                    for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
-                        for partner in self.env['res.partner'].search(
-                                [('email', '=', existe.customer_email)]):
-                            sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+                for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
+                    for partner in self.env['res.partner'].search(
+                            [('email', '=', existe.customer_email)]):
+                        sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
 
-                                                                               ], limit=1, order="id desc")
-                            if partner.email == existe.customer_email:
-                                existe.company = partner.company_id.name
-                                existe.numero_formation = sale_order.order_line.product_id.id_edof
-                                existe.numero_action = sale_order.order_line.product_id.id_edof
-                                existe.numero_session = sale_order.order_line.product_id.id_edof
+                                                                           ], limit=1, order="id desc")
+                        if partner.email == existe.customer_email:
+                            existe.company = partner.company_id.name
+                            existe.numero_formation = sale_order.order_line.product_id.id_edof
+                            existe.numero_action = sale_order.order_line.product_id.id_edof
+                            existe.numero_session = sale_order.order_line.product_id.id_edof
 
-                                _logger.info(partner.id)
-                                _logger.info("ookokokokokokokokkkkkkkkkkkk")
-                                existe.partner_id = partner.id
+                            _logger.info(partner.id)
+                            _logger.info("ookokokokokokokokkkkkkkkkkkk")
+                            existe.partner_id = partner.id
