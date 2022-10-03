@@ -113,6 +113,10 @@ class WebsiteSale(WebsiteSale):
             sale_order.partner_id.customer_rank=1
         if promo:
             print(promo)
+        if sale_order :
+            if sale_order.company_id.id == 1 and product:
+                if 'taxi' not in str(product.name).lower() and sale_order.partner_id.statut != "won":
+                    sale_order.partner_id.state_id = False 
         if product_id:
             if module != '' and module !='all':
                 module = request.env['mcmacademy.module'].sudo().search(
