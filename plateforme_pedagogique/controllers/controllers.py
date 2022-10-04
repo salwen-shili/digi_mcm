@@ -215,6 +215,7 @@ class WebhookController(http.Controller):
                     [("body", "like", sms_body_), ("message_type", "=", 'sms'), ('partner_ids', 'in', user.partner_id.id),
                      ('model', "=", "res.partner")])
                 if not sms:
+                    
                     user.partner_id.send_sms(sms_body_, user.partner_id)
         else:
             # créer
