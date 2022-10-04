@@ -207,16 +207,7 @@ class WebhookController(http.Controller):
                      [("body", "like", short_url), ("message_type", "=", 'sms'), ('partner_ids', 'in', user.partner_id.id),('model',"=","res.partner")])
                 if not sms:
                     user.partner_id.send_sms(sms_body_contenu,user.partner_id)
-            if (user.partner_id.date_examen_edof) and (user.partner_id.session_ville_id):
-                """Envoyez un SMS aux apprenants pour accepter leurs dossiers cpf."""
-                sms_body_ = "%s vous informe que votre demande de financement par CPF a été validé. Merci d'accéder à votre compte CPF et confirmer votre inscription." % (
-                    user.partner_id.company_id.name)  # content of sms
-                sms = request.env['mail.message'].sudo().search(
-                    [("body", "like", sms_body_), ("message_type", "=", 'sms'), ('partner_ids', 'in', user.partner_id.id),
-                     ('model', "=", "res.partner")])
-                if not sms:
-                    
-                    user.partner_id.send_sms(sms_body_, user.partner_id)
+               
         else:
             # créer
             exist = False
@@ -298,6 +289,15 @@ class WebhookController(http.Controller):
             if client:
                 _logger.info("if client %s" % str(client.email))
                 _logger.info("dossier %s" % str(dossier))
+                """Envoyez un SMS aux apprenants pour accepter leurs dossiers cpf."""
+                sms_body_ = "%s! Votre demande de financement par CPF a été validée. Connectez-vous sur moncompteformation.gouv.fr en partant dans l’onglet. Dossiers, Proposition de l’organisme, Financement, ensuite confirmer mon inscription." % (
+                    user.partner_id.company_id.name)  # content of sms
+                sms = request.env['mail.message'].sudo().search(
+                    [("body", "like", sms_body_), ("message_type", "=", 'sms'),
+                     ('partner_ids', 'in', user.partner_id.id),
+                     ('model', "=", "res.partner")])
+                if not sms:
+                    user.partner_id.send_sms(sms_body_, user.partner_id)
                 client.mode_de_financement = 'cpf'
                 client.funding_type = 'cpf'
                 client.numero_cpf = dossier
