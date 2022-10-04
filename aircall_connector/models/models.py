@@ -436,6 +436,8 @@ class ResUser(models.Model):
                                             [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                                              ('res_id', '=', odoo_contact.id), ('subject', "=",
                                                                                 subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
+                                        if message:
+                                            _logger.info("aircall message found not call_rec: %s " % (str(message.body)))
                                 if not message and odoo_contact:
                                     # Create new Note in view contact
                                     message = self.env['mail.message'].sudo().create({
@@ -493,7 +495,8 @@ class ResUser(models.Model):
                                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                                          ('res_id', '=', odoo_contact.id), ('subject', "=",
                                                                             subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
-                                
+                                    if message : 
+                                        _logger.info("aircall message found : %s" %(str(message.body)))
                                 if not message:
                                     #Create new Note in view contact
                                     message = self.env['mail.message'].sudo().create({
