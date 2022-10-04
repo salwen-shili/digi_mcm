@@ -96,7 +96,6 @@ class rapport(models.Model):
                 print("statut_dossier", statut_dossier)
                 existe = self.env['mcm_openedx.rapport'].sudo().search([('numero_dossier', '=', dossier['externalId'])])
 
-
                 if not existe:
                     new = self.env['mcm_openedx.rapport'].sudo().create({
                         'numero_dossier': externalId,
@@ -122,8 +121,6 @@ class rapport(models.Model):
                             if partner.statut_cpf == "canceled":
                                 existe.statut_dossier = partner.statut_cpf
 
-
-
                 for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
 
                     for partner in self.env['res.partner'].search(
@@ -142,7 +139,8 @@ class rapport(models.Model):
                             existe.partner_id = partner.id
 
                 if existe.description:
-                    if (existe.description, "ilike", "Invoice"):
-                        print("aaaaaaaaaaaaaaaaaaaaaaaa", existe.description)
-                        print("aaaaaaaaaaaaaaaaaaaaaaaa", existe.id)
-                    self.browse(existe.id).sudo().unlink()
+                    desc = existe.description.split(" ")
+                    invoice = desc[0]
+                    if invoice == "Invoice":
+                        print("aaaaaaaaaaaaaaaaaaaaaaaa", existe.customer_email)
+                        existe.browse(existe.id).sudo().unlink()
