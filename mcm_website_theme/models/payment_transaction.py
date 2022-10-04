@@ -5,7 +5,7 @@ from odoo import api, fields, models, _, SUPERUSER_ID
 import logging
 import requests
 _logger = logging.getLogger(__name__)
-
+import pyshorteners
 class PaymentTransaction(models.Model):
     _inherit = "payment.transaction"
     # """Créer une facture lorsque l'etat de transaction sera done"""
@@ -91,8 +91,5 @@ class PaymentTransaction(models.Model):
                         url)  # convert the url to be short using pyshorteners library
                     sms_body_ = "Afin d'intégrer notre plateforme de formation de suite, veuillez renoncer à votre droit de rétractation sur votre espace client %s" % (
                         short_url) # content of sms
-                    sms = self.env['mail.message'].sudo().search(
-                        [("body", "like", sms_body_), ("message_type", "=", 'sms'), ('res_id', '=', sale.partner_id.id),
-                         ('model', "=", "res.partner")])
-                    if not sms:
-                        sale.partner_id.send_sms(sms_body_, sale.partner_id)
+
+                    sale.partner_id.send_sms(sms_body_, sale.partner_id)

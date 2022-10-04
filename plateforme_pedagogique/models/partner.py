@@ -1401,8 +1401,9 @@ class partner(models.Model):
                     sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
                         user.partner_id.name, user.partner_id.company_id.name, short_url,
                         user.partner_id.email)  # content of sms
+                    
                     sms = self.env['mail.message'].sudo().search(
-                        [("body", "like", sms_body_contenu), ("message_type", "=", 'sms'), ('res_id', '=', partner.id),
+                        [("body", "like", short_url), ("message_type", "=", 'sms'), ('partner_ids', 'in', partner.id),
                          ('model', "=", "res.partner")])
                     if not sms:
                         _logger.info('if not sms %s' %str(sms_body_contenu))
@@ -1412,7 +1413,7 @@ class partner(models.Model):
                     sms_body_ = "%s vous informe que votre demande de financement par CPF a été validé. Merci d'accéder à votre compte CPF et confirmer votre inscription." % (
                         user.partner_id.company_id.name)  # content of sms
                     sms = self.env['mail.message'].sudo().search(
-                        [("body", "like", sms_body_), ("message_type", "=", 'sms'), ('res_id', '=', partner.id),
+                        [("body", "like", sms_body_), ("message_type", "=", 'sms'), ('partner_ids', 'in', partner.id),
                          ('model', "=", "res.partner")])
                     if not sms:
                         _logger.info('if not sms %s' %str(sms_body_))
@@ -1798,8 +1799,8 @@ class partner(models.Model):
                                             short_url)
                                         # content of sms
                                         sms = self.env['mail.message'].sudo().search(
-                                            [("body", "like", sms_body_), ("message_type", "=", 'sms'),
-                                             ('res_id', '=', user.partner_id.id),
+                                            [("body", "like", short_url), ("message_type", "=", "sms"),
+                                             ('partner_ids', 'in', user.partner_id.id),
                                              ('model', "=", "res.partner")])
                                         if not sms:
                                             self.send_sms(sms_body_, user.partner_id)
@@ -1893,8 +1894,8 @@ class partner(models.Model):
                                         sms_body_ = "Afin d'intégrer notre plateforme de formation de suite, veuillez renoncer à votre droit de rétractation sur votre espace client %s" % (short_url)
                                         # content of sms
                                         sms = self.env['mail.message'].sudo().search(
-                                            [("body", "like", sms_body_), ("message_type", "=", 'sms'),
-                                             ('res_id', '=', user.partner_id.id),
+                                            [("body", "like", short_url), ("message_type", "=", "sms"),
+                                             ('partner_ids', 'in', user.partner_id.id),
                                              ('model', "=", "res.partner")])
                                         if not sms:
                                             self.send_sms(sms_body_, user.partner_id)
@@ -2135,7 +2136,7 @@ class partner(models.Model):
                 print("template", template_id)
                 message = self.env['mail.message'].sudo().search(
                     [('subject', "=", "Avis de changement de Login"),
-                     ('model', "=", 'res.partner'), ('res_id', "=", partner.id)],
+                     ('model', "=", 'res.partner'), ('partner_ids', 'in', partner.id)],
                     limit=1)  # check if we have already sent the email
                 if not message:
                     print('hiiii')
