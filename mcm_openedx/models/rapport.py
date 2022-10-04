@@ -92,10 +92,11 @@ class rapport(models.Model):
                 montant_formation = dossier['trainingActionInfo']['totalExcl']
                 lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
                 acceptedDate = dossier['history']['acceptedDate'].split("T")[0]
-                print(acceptedDate, "acettectctetett")
 
                 print("statut_dossier", statut_dossier)
                 existe = self.env['mcm_openedx.rapport'].sudo().search([('numero_dossier', '=', dossier['externalId'])])
+
+
                 if not existe:
                     new = self.env['mcm_openedx.rapport'].sudo().create({
                         'numero_dossier': externalId,
@@ -121,7 +122,10 @@ class rapport(models.Model):
                             if partner.statut_cpf == "canceled":
                                 existe.statut_dossier = partner.statut_cpf
 
+
+
                 for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
+
                     for partner in self.env['res.partner'].search(
                             [('email', '=', existe.customer_email)]):
                         sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
@@ -136,3 +140,9 @@ class rapport(models.Model):
                             _logger.info(partner.id)
                             _logger.info("ookokokokokokokokkkkkkkkkkkk")
                             existe.partner_id = partner.id
+
+                if existe.description:
+                    if (existe.description, "ilike", "Invoice"):
+                        print("aaaaaaaaaaaaaaaaaaaaaaaa", existe.description)
+                        print("aaaaaaaaaaaaaaaaaaaaaaaa", existe.id)
+                    self.browse(existe.id).sudo().unlink()
