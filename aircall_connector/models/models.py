@@ -497,6 +497,10 @@ class ResUser(models.Model):
                                                                             subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
                                     if message : 
                                         _logger.info("aircall message found : %s" %(str(message.body)))
+                                        if content not in message.body : 
+                                            message.sudo().write({
+                                                'body' : message.body + '\n' + str(content + note['content'])
+                                            })
                                 if not message:
                                     #Create new Note in view contact
                                     message = self.env['mail.message'].sudo().create({
