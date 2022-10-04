@@ -195,6 +195,9 @@
         <field name="inherit_id" ref="mcm_cpf_partner.mcmacademy_cpf_view_res_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//group/field[@name='mode_de_financement']" position="after">
+                  <field name="inscription_cpf" string="Inscription"
+                   style="font-weight: 500;font-size:17;color:rgb(22, 64, 148);"
+                        attrs="{'invisible': [('inscription_cpf', '=', False)]}"></field>
                 <field name="is_pole_emploi" string="Pole Emploi"
                        attrs="{'invisible': ['|',('mode_de_financement', '!=', 'cpf'),('is_pole_emploi','=',False)]}"/>
             </xpath>

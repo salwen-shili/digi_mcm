@@ -22,7 +22,7 @@ class resPartner(models.Model):
     mode_de_financement = fields.Selection(selection=[
         ('particulier', 'Personnel'),
         ('cpf', 'Mon Compte Formation, CPF'),
-        ('chpf', 'Région Hauts-de-France, CHPF'),
+        # ('chpf', 'Région Hauts-de-France, CHPF'),
         ('aif', 'Pôle emploi, AIF'),
     ], string='Mode de financement', domain="[('customer_rank', '>', 0)]", default="particulier", track_visibility='always')
     code_pole_emploi = fields.Char('Code Pôle Emploi')
@@ -35,7 +35,7 @@ class resPartner(models.Model):
     numero_carte_identite = fields.Char("Numéro de Carte d'identité")
     lastName = fields.Char()
     # choosed_product=fields.Integer('Produit choisi')
-
+    inscription_cpf=fields.Char('Inscription')
 
 
     @api.constrains('code_pole_emploi')

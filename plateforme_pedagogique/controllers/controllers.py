@@ -203,7 +203,11 @@ class WebhookController(http.Controller):
                 sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
                 user.partner_id.name, user.partner_id.company_id.name, short_url,
                 user.partner_id.email)  # content of sms
-                user.partner_id.send_sms(sms_body_contenu,user.partner_id)
+                sms = request.env['mail.message'].sudo().search(
+                     [("body", "like", short_url), ("message_type", "=", 'sms'), ('partner_ids', 'in', user.partner_id.id),('model',"=","res.partner")])
+                if not sms:
+                    user.partner_id.send_sms(sms_body_contenu,user.partner_id)
+               
         else:
             # créer
             exist = False
@@ -217,7 +221,8 @@ class WebhookController(http.Controller):
                     'notification_type': 'email',
                     'website_id': 2,
                     'company_ids': [2],
-                    'company_id': 2
+                    'company_id': 2,
+                    'insciption_cpf':"moncompteformation.gouv.fr"
                 })
                 user.company_id = 2
                 user.partner_id.company_id = 2
@@ -230,7 +235,8 @@ class WebhookController(http.Controller):
                     'notification_type': 'email',
                     'website_id': 1,
                     'company_ids': [1],
-                    'company_id': 1
+                    'company_id': 1,
+                    'insciption_cpf': "moncompteformation.gouv.fr"
 
                 })
                 user.company_id = 1
@@ -283,6 +289,15 @@ class WebhookController(http.Controller):
             if client:
                 _logger.info("if client %s" % str(client.email))
                 _logger.info("dossier %s" % str(dossier))
+                """Envoyez un SMS aux apprenants pour accepter leurs dossiers cpf."""
+                sms_body_ = "%s! Votre demande de financement par CPF a été validée. Connectez-vous sur moncompteformation.gouv.fr en partant dans l’onglet. Dossiers, Proposition de l’organisme, Financement, ensuite confirmer mon inscription." % (
+                    user.partner_id.company_id.name)  # content of sms
+                sms = request.env['mail.message'].sudo().search(
+                    [("body", "like", sms_body_), ("message_type", "=", 'sms'),
+                     ('partner_ids', 'in', user.partner_id.id),
+                     ('model', "=", "res.partner")])
+                if not sms:
+                    user.partner_id.send_sms(sms_body_, user.partner_id)
                 client.mode_de_financement = 'cpf'
                 client.funding_type = 'cpf'
                 client.numero_cpf = dossier

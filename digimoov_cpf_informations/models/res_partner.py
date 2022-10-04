@@ -6,7 +6,7 @@ from odoo import api, fields, models
 class resPartner(models.Model):
     _inherit = "res.partner"
 
-    id_edof = fields.Char('ID Produit en edof')
+    id_edof = fields.Char('ID Produit en EDOF')
     date_examen_edof = fields.Date("Date d'examen choisi")
     ville = fields.Selection(selection=[
         ('bordeaux', 'Bordeaux'),
