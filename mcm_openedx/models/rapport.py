@@ -121,26 +121,30 @@ class rapport(models.Model):
                             if partner.statut_cpf == "canceled":
                                 existe.statut_dossier = partner.statut_cpf
 
-                for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
+        for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
 
-                    for partner in self.env['res.partner'].search(
-                            [('email', '=', existe.customer_email)]):
-                        sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+            for partner in self.env['res.partner'].search(
+                    [('email', '=', existe.customer_email)]):
+                sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
 
-                                                                           ], limit=1, order="id desc")
-                        if partner.email == existe.customer_email:
-                            existe.company = partner.company_id.name
-                            existe.numero_formation = sale_order.order_line.product_id.id_edof
-                            existe.numero_action = sale_order.order_line.product_id.id_edof
-                            existe.numero_session = sale_order.order_line.product_id.id_edof
+                                                                   ], limit=1, order="id desc")
+                if partner.email == existe.customer_email:
+                    existe.company = partner.company_id.name
+                    existe.numero_formation = sale_order.order_line.product_id.id_edof
+                    existe.numero_action = sale_order.order_line.product_id.id_edof
+                    existe.numero_session = sale_order.order_line.product_id.id_edof
 
-                            _logger.info(partner.id)
-                            _logger.info("ookokokokokokokokkkkkkkkkkkk")
-                            existe.partner_id = partner.id
+                    _logger.info(partner.id)
+                    _logger.info("ookokokokokokokokkkkkkkkkkkk")
+                    existe.partner_id = partner.id
 
-                if existe.description:
-                    desc = existe.description.split(" ")
-                    invoice = desc[0]
-                    if invoice == "Invoice":
-                        print("aaaaaaaaaaaaaaaaaaaaaaaa", existe.customer_email)
-                        existe.browse(existe.id).sudo().unlink()
+            if existe.description:
+                desc = existe.description.split(" ")
+                invoice = desc[0]
+                if invoice == "Invoice":
+                    existe.browse(existe.id).sudo().unlink()
+
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }

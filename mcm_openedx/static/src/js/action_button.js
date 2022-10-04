@@ -3,7 +3,6 @@ odoo.define('mcm_openedx.action_button', function (require) {
 /**
  * Button 'Create' is replaced by Custom Button
 **/
-
 var core = require('web.core');
 var ListController = require('web.ListController');
 ListController.include({
@@ -12,20 +11,19 @@ ListController.include({
        if (this.$buttons) {
          this.$buttons.find('.oe_action_button').click(this.proxy('action_def'));
          this.$buttons.find('.oe_actif_button').click(this.proxy('actif_def'));
-         this.$buttons.find('.oe_rapport_button').click(this.proxy('rapport_def'));
-       }
-    },
+         this.$buttons.find('.oe_rap_button').click(this.proxy('rap_def'));
 
+       }
+   },
     //--------------------------------------------------------------------------
     // Define Handler for new Custom Button
     // code ===> https://www.odoo.com/fr_FR/forum/aide-1/add-button-on-top-of-tree-view-32006
     //--------------------------------------------------------------------------
-
     /**
      * @private
      * @param {MouseEvent} event
      */
-    action_def: function (e) {
+   action_def: function (e) {
         var self = this;
         var active_id = this.model.get(this.handle).getContext()['active_ids'];
         var model_name = this.model.get(this.handle).getContext()['active_model'];
@@ -37,7 +35,19 @@ ListController.include({
                     self.do_action(result);
                 });
    },
-    actif_def: function (e) {
+    rap_def: function (e) {
+        var self = this;
+        var active_id = this.model.get(this.handle).getContext()['active_ids'];
+        var model_name = this.model.get(this.handle).getContext()['active_model'];
+            this._rpc({
+                    model: 'mcm_openedx.rapport',
+                    method: 'rapport_wedof',
+                    args: [""],
+                }).then(function (result) {
+                    self.do_action(result);
+                });
+   },
+   actif_def: function (e) {
         var self = this;
         var active_id = this.model.get(this.handle).getContext()['active_ids'];
         var model_name = this.model.get(this.handle).getContext()['active_model'];
@@ -50,17 +60,5 @@ ListController.include({
                 });
    },
 
-   rapport_def: function (e) {
-        var self = this;
-        var active_id = this.model.get(this.handle).getContext()['active_ids'];
-        var model_name = this.model.get(this.handle).getContext()['active_model'];
-            this._rpc({
-                    model: 'mcm_openedx.rapport',
-                    method: 'rapport_wedof',
-                    args: [""],
-                }).then(function (result) {
-                    self.do_action(result);
-                });
-   },
 });
 });
