@@ -427,7 +427,7 @@
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Séance en Live pour corriger l’examen</b>
+                                                        <b>Consultation de votre copie d'examen*</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
@@ -548,7 +548,7 @@
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-lg fa-check-circle mr-2 text-success" />
-                                                        <b>Séance en Live pour corriger l’examen</b>
+                                                        <b>Consultation de votre copie d'examen*</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-lg fa-times-circle mr-2 text-success" />
@@ -587,6 +587,10 @@
                                 </t>
                             </div>
                         </div>
+                        <span style="
+    color: #3b3b3b;
+    font-size: 12px;
+">*Cette option est valable sur rendez-vous</span>
                     </div>
                 </div>
                 <!-- End pricing table-->
