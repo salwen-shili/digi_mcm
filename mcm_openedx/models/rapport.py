@@ -38,6 +38,7 @@ class rapport(models.Model):
                                          ])
 
     def rapport_wedof(self):
+        print("rapport wedof")
         companies = self.env['res.company'].sudo().search([('id', "!=", False)])
         print(companies)
         api_key = ""

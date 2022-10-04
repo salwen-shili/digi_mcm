@@ -5,9 +5,14 @@
  <button t-if="widget.modelName == 'mcm_openedx.course_stat'"
          class="btn btn-primary oe_action_button"
          type="button">Supprimer Doublons</button>
- <button t-if="widget.modelName == 'mcm_openedx.state'"
-         class="btn btn-primary oe_actif_button"
-         type="button">Supprimer Doublons</button>
+     <button t-if="widget.modelName == 'mcm_openedx.state'"
+             class="btn btn-primary oe_actif_button"
+             type="button">Supprimer Doublons</button>
+
+     <button t-if="widget.modelName == 'mcm_openedx.rapport'"
+             class="btn btn-primary oe_rapport_button"
+             type="button">Mise A jour Rapport</button>
  </t>
  </t>
+
  </template>
