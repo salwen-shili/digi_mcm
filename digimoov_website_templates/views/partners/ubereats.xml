@@ -375,7 +375,7 @@
                                                 </p>
                                                 <t t-if="promo and promo.name!='box2home'">
                                                     <p class="text-center font-weight-bolder text-secondary"
-                                                       style="margin-top:68px">
+                                                       style="margin-top:20px">
                                                         <b class="promo-code">
                                                             <t class="paiement medium text-center font-weight-bolder text-secondary">
                                                                 avec le code
@@ -385,7 +385,7 @@
                                                     </p>
                                                 </t>
                                                 <p class="paiement medium text-center font-weight-bolder text-secondary">
-                                                    Paiement 1 ou 2 fois
+                                                    Paiement 1 ou <t t-esc="product.instalment_number"/> fois
                                                 </p>
                                                 <!--                                                        <p class="medium text-center font-weight-bolder text-secondary paiement" t-if="not partenaire or partenaire==''">-->
                                                 <!--                    Paiement en 1 seule fois-->
@@ -524,7 +524,7 @@
                                                     </p>
                                                 </t>
                                                 <p class="paiement medium text-center font-weight-bolder text-secondary">
-                                                    Paiement 1 ou 3 fois
+                                                    Paiement 1 ou <t t-esc="product.instalment_number"/> fois
                                                 </p>
 
                                                 <br/>
@@ -647,7 +647,7 @@
                                                     </p>
                                                 </t>
                                                 <p class="paiement medium text-center font-weight-bolder text-secondary">
-                                                    Paiement 1 ou 3 fois
+                                                    Paiement 1 ou <t t-esc="product.instalment_number"/> fois
                                                 </p>
 
                                                 <br/>
