@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record id="rapport_search_view" model="ir.ui.view">
+        <field name="name">Rapport Marketing</field>
+        <field name="model">mcm_openedx.rapport</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="group_company" string="Societé" icon="terp-partner"
+                        context="{'group_by':'company'}"/>
+
+                <filter name="group_numero_action" string="Formation" icon="terp-partner"
+                        context="{'group_by':'numero_action'}"/>
+                <filter name="group_type_financement" string="Type Financement" icon="terp-partner"
+                        context="{'group_by':'type_financement'}"/>
+
+            </search>
+        </field>
+    </record>
+    <!-- Vue Form session-->
+    <record model="ir.ui.view" id="rapport_form_view">
+        <field name="name">Rapport Marketing</field>
+        <field name="model">mcm_openedx.rapport</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group>
+                        <field name="description"/>
+                        <field name="numero_dossier"/>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="prenom"/>
+                        <field name="montant_formation"/>
+                        <field name="statut_dossier"/>
+                        <field name="date_debut_session"/>
+                        <field name="date_fin_session"/>
+                        <field name="numero_formation"/>
+                        <field name="numero_action"/>
+                        <field name="numero_session"/>
+                        <field name="acceptedDate"/>
+                        <field name="seller_message"/>
+                        <field name="created"/>
+                        <field name="amount"/>
+                        <field name="customer_email"/>
+                        <field name="captured"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="rapportcpf_tree_view">
+        <field name="name">Rapport Marketing</field>
+        <field name="model">mcm_openedx.rapport</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="statut_dossier == 'canceled'"  decoration-success="statut_dossier=='accepted'">
+                <field name="customer_email"/>
+                <field name="numero_dossier"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="prenom"/>
+                <field name="montant_formation"/>
+                <field name="statut_dossier"
+                />
+                <field name="date_debut_session"/>
+                <field name="date_fin_session"/>
+                <field name="numero_formation"/>
+                <field name="numero_action"/>
+                <field name="numero_session"/>
+                <field name="acceptedDate"/>
+                <field name="seller_message"/>
+                <field name="created"/>
+                <field name="amount"/>
+                <field name="captured"/>
+                <field name="description"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="mcm_openedx.rapportcpf_list_action">
+        <field name="name">Rapport Marketing</field>
+        <field name="res_model">mcm_openedx.rapport</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_group_type_financement': 1}</field>
+
+
+    </record>
+    <!-- menu des villes sera afficher apres menu configuration dans l'interface de convocation-->
+    <menuitem id="rapport_action" name="Rapport Marketing/Finance"
+              parent="account.menu_finance"
+              sequence="5"/>
+    <menuitem id="rapport_action_cpf" name="Rapport Marketing/Finance"
+              parent="rapport_action"
+              action="mcm_openedx.rapportcpf_list_action"
+    />
+
+</odoo>
+
+  

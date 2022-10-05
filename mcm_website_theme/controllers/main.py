@@ -1,3 +1,5 @@
+import stripe
+
 from odoo import http
 from odoo.http import request
 from odoo.addons.http_routing.models.ir_http import slug
@@ -46,10 +48,10 @@ class Website(Home):
         website=True,
     )
     def index(
-        self,
-        state="",
-        partenaire="",
-        **kw,
+            self,
+            state="",
+            partenaire="",
+            **kw,
     ):
         # homepage=super(Website, self).index()
         print("partenaire:", partenaire)
@@ -149,8 +151,8 @@ class Website(Home):
         if list_villes:
             values["list_villes"] = list_villes
         if (
-            partenaire in ["", "ubereats", "deliveroo", "coursierjob", "box2home", "coursier2roues"]
-            and request.website.id == 2
+                partenaire in ["", "ubereats", "deliveroo", "coursierjob", "box2home", "coursier2roues"]
+                and request.website.id == 2
         ):
             values["partenaire"] = partenaire
             if promo:
@@ -528,10 +530,10 @@ class Routes_Site(http.Controller):
         website=True,
     )
     def felicitations(
-        self,
-        product=None,
-        partenaire=None,
-        **kw,
+            self,
+            product=None,
+            partenaire=None,
+            **kw,
     ):
         # dynamic felicitations url
         if request.website.id == 1:
@@ -774,11 +776,11 @@ class Routes_Site(http.Controller):
                 documents = request.env["documents.document"].sudo().search([("partner_id", "=", order.partner_id.id)])
                 if order and not documents:
                     if (
-                        redirection == "automatique"
+                            redirection == "automatique"
                     ):  # check if the value of redirection is auto to redirect the client to upload his documents using idenfy
                         return werkzeug.utils.redirect("/charger_mes_documents", 301)
                     elif (
-                        redirection == "manuelle"
+                            redirection == "manuelle"
                     ):  # check if the value of redirection is manual to redirect the client to upload his documents manually
                         return werkzeug.utils.redirect("/charger_mes_documents_manual", 301)
                     else:
@@ -1476,8 +1478,8 @@ class Routes_Site(http.Controller):
         email = str(email).lower()  # recupérer l'email en minuscule
         user = request.env["res.users"].sudo().search([("login", "=", email)], limit=1)
         description = (
-            "Zoé n'a pas pu créer un compte Evalbox pour %s en raison de l'absence d'un mot de passe contenant les critères requis ou d'une autre raison. merci de contacter le client afin de l'accompagner dans la création de son compte. "
-            % (str(user.name) if user else str(email))
+                "Zoé n'a pas pu créer un compte Evalbox pour %s en raison de l'absence d'un mot de passe contenant les critères requis ou d'une autre raison. merci de contacter le client afin de l'accompagner dans la création de son compte. "
+                % (str(user.name) if user else str(email))
         )
         name = "Evalbox : Erreur lors de la création du compte de %s" % (str(user.name) if user else str(email))
         vals = {
@@ -1528,16 +1530,16 @@ class WebsiteSale(WebsiteSale):
         sitemap=False,
     )
     def shop(
-        self,
-        page=0,
-        category=None,
-        state="",
-        taxi_state="",
-        vmdtr_state="",
-        vtc_state="",
-        search="",
-        ppg=False,
-        **post,
+            self,
+            page=0,
+            category=None,
+            state="",
+            taxi_state="",
+            vmdtr_state="",
+            vtc_state="",
+            search="",
+            ppg=False,
+            **post,
     ):
         if 'product.public.category' not in str(type(category)):
             return werkzeug.utils.redirect("/#pricing", 301)
@@ -1924,7 +1926,7 @@ class WebsiteSale(WebsiteSale):
                     order.partner_invoice_id = partner_id
                     if not kw.get("use_same"):
                         kw["callback"] = kw.get("callback") or (
-                            not order.only_services and (mode[0] == "edit" and "/shop/checkout" or "/shop/address")
+                                not order.only_services and (mode[0] == "edit" and "/shop/checkout" or "/shop/address")
                         )
                 elif mode[1] == "shipping":
                     order.partner_shipping_id = partner_id
@@ -1934,9 +1936,9 @@ class WebsiteSale(WebsiteSale):
                     return request.redirect(kw.get("callback") or "/shop/confirm_order")
 
         country = (
-            "country_id" in values
-            and values["country_id"] != ""
-            and request.env["res.country"].browse(int(values["country_id"]))
+                "country_id" in values
+                and values["country_id"] != ""
+                and request.env["res.country"].browse(int(values["country_id"]))
         )
         country = country and country.exists() or def_country_id
         fr_country = request.env["res.country"].sudo().search([("code", "ilike", "FR")], limit=1)
@@ -1973,7 +1975,7 @@ class WebsiteSale(WebsiteSale):
         required_fields = [f for f in (all_form_values.get("field_required") or "").split(",") if f]
         # Required fields from mandatory field function
         required_fields += (
-            mode[1] == "shipping" and self._get_mandatory_shipping_fields() or self._get_mandatory_billing_fields()
+                mode[1] == "shipping" and self._get_mandatory_shipping_fields() or self._get_mandatory_billing_fields()
         )
         # Check if state required
         country = request.env["res.country"]
@@ -2474,8 +2476,8 @@ class CustomerPortal(CustomerPortal):
 class MCM_SIGNUP(http.Controller):
     @http.route("/sign_up", type="http", auth="public", website=True)
     def formvtc(
-        self,
-        **kw,
+            self,
+            **kw,
     ):
         if request.website.id == 2:
             return 0
@@ -2486,8 +2488,8 @@ class MCM_SIGNUP(http.Controller):
 class MCM_SIGNUP(http.Controller):
     @http.route("/sign_up", type="http", auth="public", website=True)
     def formvtc(
-        self,
-        **kw,
+            self,
+            **kw,
     ):
         if request.website.id == 2:
             return 0
@@ -2506,15 +2508,15 @@ class MCM_SIGNUP(http.Controller):
         object = dataa.get("data", []).get("object")
         _logger.info("event : %s" % str(event))
         charges = False
-        if event == "payment_intent.payment_failed": #check if the event sended from webhook is payment_intent.payment_failed
+        if event == "payment_intent.payment_failed":  # check if the event sended from webhook is payment_intent.payment_failed
             failure_message = False
-            if object and 'charges' in object: #check if charges in response
+            if object and 'charges' in object:  # check if charges in response
                 charges = object['charges']
             if charges:
-                datas = charges['data'] #check if data in charges of response
+                datas = charges['data']  # check if data in charges of response
                 if datas:
                     for data in datas:
-                        if 'failure_message' in data: # get failure message of payment
+                        if 'failure_message' in data:  # get failure message of payment
                             _logger.info("failure_message : %s" % str(data['failure_message']))
                             failure_message = str(data['failure_message'])
             amount = int(object["amount"] / 100)
@@ -2528,7 +2530,8 @@ class MCM_SIGNUP(http.Controller):
                 subtype_id = request.env.ref('mail.mt_note')
             _logger.info("subtype_id : %s" % str(subtype_id))
             if user:
-                message = request.env['mail.message'].sudo().create({ #create note in client record contains payment failure message
+                message = request.env['mail.message'].sudo().create({
+                    # create note in client record contains payment failure message
                     'subject': 'Échec de paiement',
                     'model': 'res.partner',
                     'res_id': user.partner_id.id,
@@ -2540,7 +2543,7 @@ class MCM_SIGNUP(http.Controller):
                 })
             _logger.info("message : %s" % str(message))
             return True
-        if event == "invoice.payment_failed": #check if the event sended from webhook is invoice.payment_failed
+        if event == "invoice.payment_failed":  # check if the event sended from webhook is invoice.payment_failed
             receipt_email = object["customer_email"]
             user = request.env['res.users'].sudo().search(
                 [('login', "=", str(receipt_email).replace(' ', '').lower())])
@@ -2548,31 +2551,33 @@ class MCM_SIGNUP(http.Controller):
             prod_id = False
             product = False
             amount = False
-            if object and 'lines' in object: #check if object in response contains lines
+            if object and 'lines' in object:  # check if object in response contains lines
                 lines = object['lines']
             if lines:
-                datas = lines['data'] # get data from lines of response object
+                datas = lines['data']  # get data from lines of response object
                 if datas:
                     for data in datas:
                         if 'amount' in data:
-                            amount = int(data["amount"] / 100) # get amount of payment
+                            amount = int(data["amount"] / 100)  # get amount of payment
                         if 'plan' in data:
-                            _logger.info("plan : %s" % str(data['plan'])) #get plan from response
+                            _logger.info("plan : %s" % str(data['plan']))  # get plan from response
                             plan = data['plan']
-                            if plan and 'product' in plan: #get stripe product_id
+                            if plan and 'product' in plan:  # get stripe product_id
                                 prod_id = plan['product']
             _logger.info("prod_id : %s" % str(prod_id))
             _logger.info("amount : %s" % str(amount))
             if prod_id:
                 product = request.env['product.template'].sudo().search(
-                    [('id_stripe', "=", str(prod_id).replace(' ', ''))]) #search product in odoo with same stripe product_id
+                    [('id_stripe', "=",
+                      str(prod_id).replace(' ', ''))])  # search product in odoo with same stripe product_id
             subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
             if not subtype_id:
                 subtype_id = request.env.ref('mail.mt_note')
             _logger.info("subtype_id : %s" % str(subtype_id))
             _logger.info("product : %s" % str(product))
             if user:
-                message = request.env['mail.message'].sudo().create({#create note in client record contains invoice failure message
+                message = request.env['mail.message'].sudo().create({
+                    # create note in client record contains invoice failure message
                     'subject': 'Échec de paiement',
                     'model': 'res.partner',
                     'res_id': user.partner_id.id,
@@ -2584,8 +2589,8 @@ class MCM_SIGNUP(http.Controller):
                 })
             _logger.info("message : %s" % str(message))
             return True
-        if event == "charge.succeeded": #check if the event sended from webhook is charge.succeeded
-            receipt_email = object["receipt_email"]  #get receipt_email
+        if event == "charge.succeeded":  # check if the event sended from webhook is charge.succeeded
+            receipt_email = object["receipt_email"]  # get receipt_email
             amount = int(object["amount"] / 100)
             user = request.env['res.users'].sudo().search(
                 [('login', "=", str(receipt_email).replace(' ', '').lower())])
@@ -2596,7 +2601,8 @@ class MCM_SIGNUP(http.Controller):
                 subtype_id = request.env.ref('mail.mt_note')
             _logger.info("subtype_id : %s" % str(subtype_id))
             if user:
-                message = request.env['mail.message'].sudo().create({ #create note in client record contains amount charge succeeded
+                message = request.env['mail.message'].sudo().create({
+                    # create note in client record contains amount charge succeeded
                     'subject': 'Montant débité',
                     'model': 'res.partner',
                     'res_id': user.partner_id.id,
@@ -2606,11 +2612,11 @@ class MCM_SIGNUP(http.Controller):
                 })
                 _logger.info("message : %s" % str(message))
             return True
-        if event == "customer.subscription.created": #check if the event sended from webhook is customer.subscription.created
-            customer_id = object["customer"] if 'customer' in object else False #get stripe customer_id from webhook
+        if event == "customer.subscription.created":  # check if the event sended from webhook is customer.subscription.created
+            customer_id = object["customer"] if 'customer' in object else False  # get stripe customer_id from webhook
             product = False
             prod_id = False
-            items = object['items'] #get items from response webhook
+            items = object['items']  # get items from response webhook
             acquirer = False
             email = False
             user = False
@@ -2621,21 +2627,23 @@ class MCM_SIGNUP(http.Controller):
                 datas = items['data']
                 if datas:
                     for data in datas:
-                        plan = data['plan'] #get plan from items of response
+                        plan = data['plan']  # get plan from items of response
                         _logger.info("plan : %s" % str(plan))
                         if plan and 'product' in plan:
-                            prod_id = plan['product'] #get stripe product_id from response
+                            prod_id = plan['product']  # get stripe product_id from response
             _logger.info("prod_id : %s" % str(prod_id))
             if prod_id:
                 product = request.env['product.template'].sudo().search(
-                    [('id_stripe', "=", str(prod_id).replace(' ', ''))]) #search product in odoo using stripe_product_id
+                    [('id_stripe', "=",
+                      str(prod_id).replace(' ', ''))])  # search product in odoo using stripe_product_id
             _logger.info("product : %s" % str(product))
             acquirer = request.env["payment.acquirer"].sudo().search(
                 [("name", "ilike", 'Stripe'), ("company_id", "=", 2)], limit=1)
             _logger.info("acquirer : %s" % str(acquirer))
             if customer_id and acquirer:
                 response = requests.get('https://api.stripe.com/v1/customers/%s' % (str(customer_id)),
-                                        auth=(str(acquirer.stripe_secret_key), '')) #using stripe api search customer email using stripe customer id
+                                        auth=(str(acquirer.stripe_secret_key),
+                                              ''))  # using stripe api search customer email using stripe customer id
                 json_data = json.loads(response.text)
                 _logger.info("json_data : %s" % (json_data))
                 if 'email' in json_data:
@@ -2651,7 +2659,8 @@ class MCM_SIGNUP(http.Controller):
                     subtype_id = request.env.ref('mail.mt_note')
                 _logger.info("subtype_id : %s" % str(subtype_id))
                 if user:
-                    message = request.env['mail.message'].sudo().create({  #create note in client record contains subscription created info
+                    message = request.env['mail.message'].sudo().create({
+                        # create note in client record contains subscription created info
                         'subject': 'Abonnement créé',
                         'model': 'res.partner',
                         'res_id': user.partner_id.id,
@@ -2661,11 +2670,11 @@ class MCM_SIGNUP(http.Controller):
                     })
                     _logger.info("message : %s" % str(message))
             return True
-        if event == "customer.subscription.deleted": #check if the event sended from webhook is customer.subscription.deleted
+        if event == "customer.subscription.deleted":  # check if the event sended from webhook is customer.subscription.deleted
             customer_id = object["customer"] if 'customer' in object else False
             product = False
             prod_id = False
-            items = object['items'] #get items from response webhook
+            items = object['items']  # get items from response webhook
             acquirer = False
             email = False
             user = False
@@ -2676,21 +2685,23 @@ class MCM_SIGNUP(http.Controller):
                 datas = items['data']
                 if datas:
                     for data in datas:
-                        plan = data['plan'] #get plan from items of response
+                        plan = data['plan']  # get plan from items of response
                         _logger.info("plan : %s" % str(plan))
                         if plan and 'product' in plan:
-                            prod_id = plan['product'] #get stripe product_id from response
+                            prod_id = plan['product']  # get stripe product_id from response
             _logger.info("prod_id : %s" % str(prod_id))
             if prod_id:
                 product = request.env['product.template'].sudo().search(
-                    [('id_stripe', "=", str(prod_id).replace(' ', ''))])  #search product in odoo using stripe_product_id
+                    [('id_stripe', "=",
+                      str(prod_id).replace(' ', ''))])  # search product in odoo using stripe_product_id
             _logger.info("product : %s" % str(product))
             acquirer = request.env["payment.acquirer"].sudo().search(
                 [("name", "ilike", 'Stripe'), ("company_id", "=", 2)], limit=1)
             _logger.info("acquirer : %s" % str(acquirer))
             if customer_id and acquirer:
                 response = requests.get('https://api.stripe.com/v1/customers/%s' % (str(customer_id)),
-                                        auth=(str(acquirer.stripe_secret_key), '')) #using stripe api search customer email using stripe customer id
+                                        auth=(str(acquirer.stripe_secret_key),
+                                              ''))  # using stripe api search customer email using stripe customer id
                 json_data = json.loads(response.text)
                 _logger.info("json_data : %s" % (json_data))
                 if 'email' in json_data:
@@ -2706,7 +2717,8 @@ class MCM_SIGNUP(http.Controller):
                     subtype_id = request.env.ref('mail.mt_note')
                 _logger.info("subtype_id : %s" % str(subtype_id))
                 if user:
-                    message = request.env['mail.message'].sudo().create({ #create note in client record contains subscription canceled info
+                    message = request.env['mail.message'].sudo().create({
+                        # create note in client record contains subscription canceled info
                         'subject': 'Abonnement Annulé',
                         'model': 'res.partner',
                         'res_id': user.partner_id.id,
@@ -2724,12 +2736,46 @@ class MCM_SIGNUP(http.Controller):
             invoice_id = object["invoice"]
             description = str(object["description"])
             amount = int(object["amount"] / 100)
-            user = request.env['res.users'].sudo().search(
+            stripe.api_key = "sk_test_62TVrL9rX962c43ZzDm892Ef"
+            id = object["customer"]
+            test = stripe.Customer.retrieve(id)
+            _logger.info("Returns the Customer object for a valid identifier %s" % str(test))
+            costumer_email = test['email']
+            for existe in request.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
+                for partner in request.env['res.partner'].search(
+                        [('email', '=', existe.customer_email)]):
+                    if partner.email == existe.customer_email:
+                        existe.company = partner.company_id.name
+                        _logger.info(partner.id)
+                        _logger.info("ookokokokokokokokkkkkkkkkkkk")
+                        existe.partner_id = partner.id
+
+            new = request.env['mcm_openedx.rapport'].sudo().create({
+                'customer_email': costumer_email,
+                'created': date.today(),
+                'acceptedDate': date.today(),
+                'amount': amount,
+                'description': description
+            })
+            new.type_financement = "stripe"
+            if "outcome" in object:
+                new.seller_message = object["outcome"]["seller_message"]
+                _logger.info("new.seller_messag %s" % str(object["outcome"]["seller_message"]))
+
+            if "charges" in object:
+                captured = object["charges"]["data"]
+                for captureds in captured:
+                    cap = captureds
+                    _logger.info("aeeeea")
+            new.captured = str(cap["captured"])
+            self.search = request.env['res.users'].sudo().search(
                 [('login', "=", str(receipt_email).replace(' ', '').lower())])
+            user = self.search
             _logger.info("invoice_id : %s" % str(invoice_id))
             _logger.info("description : %s" % str(description))
             _logger.info("receipt_email : %s" % str(receipt_email))
             _logger.info("user : %s" % str(user))
+
             if user:
                 if not (description.startswith('S') and '-' in description):
                     moves = request.env['account.move'].sudo().search(
@@ -2783,7 +2829,8 @@ class MCM_SIGNUP(http.Controller):
                 """Cas de paiement sur plusieur fois : Mettre à jour la facture lié à l'abonnement sur stripe """
                 # partner=request.env['res.partner'].sudo().search([('email',"=",receipt_email)],limit=1)
                 invoice = request.env["account.move"].sudo().search([("stripe_sub_reference", "=", subsciption),
-                                                                     ("partner_id.email", "=", customer_email)], limit=1)
+                                                                     ("partner_id.email", "=", customer_email)],
+                                                                    limit=1)
                 _logger.info("invoice %s" % str(invoice.name))
                 _logger.info("invoice ************* %s" % str(invoice.stripe_sub_reference))
                 payment_method = request.env["account.payment.method"].sudo().search([("code", "ilike", "electronic")],
@@ -2830,12 +2877,62 @@ class MCM_SIGNUP(http.Controller):
                     return True
         return True
 
+    @http.route(["/webhook_stripe_mcm"], type="json", auth="public", methods=["POST"])
+    def mcm_stripe_event(self):
+
+        event = None
+        request.uid = odoo.SUPERUSER_ID
+        dataa = json.loads(request.httprequest.data)
+        _logger.info("webhoooooooooook MCM %s" % str(dataa))
+        event = dataa.get("type")
+        object = dataa.get("data", []).get("object")
+        if event == "payment_intent.succeeded":
+            _logger.info("teeeeeeest %s" % str(object))
+            """Cas de paiement une seule fois : créer une facture lié à ce paiement """
+            acquirer = object["id"]
+            receipt_email = object["receipt_email"]
+            invoice_id = object["invoice"]
+            description = str(object["description"])
+            amount = int(object["amount"] / 100)
+            stripe.api_key = "sk_test_UIcjGwgstBKleRmE3GIiZm8O000wMrOfL0"
+            id = object["customer"]
+            test = stripe.Customer.retrieve(id)
+            _logger.info("Returns the Customer object for a valid identifier %s" % str(test))
+            costumer_email = test['email']
+            for existe in request.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
+                for partner in request.env['res.partner'].search(
+                        [('email', '=', existe.customer_email)]):
+                    if partner.email == existe.customer_email:
+                        existe.company = partner.company_id.name
+                        _logger.info(partner.id)
+                        _logger.info("ookokokokokokokokkkkkkkkkkkk")
+                        existe.partner_id = partner.id
+
+            new = request.env['mcm_openedx.rapport'].sudo().create({
+                'customer_email': costumer_email,
+                'created': date.today(),
+                'acceptedDate': date.today(),
+                'amount': amount,
+                'description': description
+            })
+            new.type_financement = "stripe"
+            if "outcome" in object:
+                new.seller_message = object["outcome"]["seller_message"]
+                _logger.info("new.seller_messag %s" % str(object["outcome"]["seller_message"]))
+
+            if "charges" in object:
+                captured = object["charges"]["data"]
+                for captureds in captured:
+                    cap = captureds
+                    _logger.info("aeeeea")
+            new.captured = str(cap["captured"])
+
     @http.route("/inscription-bolt", type="http", auth="public", website=True)
     def inscription_bolt_jotform(
-        self,
-        **kw,
+            self,
+            **kw,
     ):
-    
+
         if request.website.id == 1:
             return request.render("mcm_website_theme.mcm_bolt_documents_new_process")
         else:
@@ -2843,8 +2940,8 @@ class MCM_SIGNUP(http.Controller):
 
     @http.route("/examen-blanc", type="http", auth="public", website=True)
     def examen_bolt_jotform(
-        self,
-        **kw,
+            self,
+            **kw,
     ):
         return werkzeug.utils.redirect("/bolt", 301)
         if request.website.id == 1:
@@ -2854,8 +2951,8 @@ class MCM_SIGNUP(http.Controller):
 
     @http.route("/contrat-mcm-bolt", type="http", auth="public", website=True)
     def contrat_bolt_jotform(
-        self,
-        **kw,
+            self,
+            **kw,
     ):
         if request.website.id == 1:
             return request.render("mcm_website_theme.mcm_bolt_contract")
@@ -2973,7 +3070,7 @@ class AuthSignupHome(AuthSignupHome):
                 email).lower().replace(' ', ''))], limit=1)  # search contact using email
             _logger.info("user founded using email : %s" % (odoo_contact))
         else:
-            if 'jfFormUserSCL_emailSentTo' in rawRequest :
+            if 'jfFormUserSCL_emailSentTo' in rawRequest:
                 email = str(rawRequest['jfFormUserSCL_emailSentTo'])
                 odoo_contact = res_user.sudo().search([('login', "=", str(
                     email).lower().replace(' ', ''))], limit=1)  # search contact using email
@@ -3108,7 +3205,7 @@ class AuthSignupHome(AuthSignupHome):
                         [('default_code', "=", 'vtc_bolt')], limit=1)
                     module_id = False
                     _logger.info("ville_id : %s and product_id : %s and date_exam : %s" % (
-                    str(ville_id), str(product_id), str(date_exam)))
+                        str(ville_id), str(product_id), str(date_exam)))
                     if ville_id and date_exam and product_id:
                         module_id = request.env['mcmacademy.module'].sudo().search(
                             [('company_id', "=", 1), ('session_ville_id', "=", ville_id.id),
@@ -3240,7 +3337,7 @@ class AuthSignupHome(AuthSignupHome):
         if odoo_contact:
             if 'q114_resultatExamen' in rawRequest:  # check if the result in the response of webhook
                 _logger.info("q114_resultatExamen of %s est %s" % (
-                str(odoo_contact.name), str(rawRequest['q114_resultatExamen'])))
+                    str(odoo_contact.name), str(rawRequest['q114_resultatExamen'])))
                 result = str(rawRequest['q114_resultatExamen'])
                 if result and result != '':
                     note_exam = float(result)
