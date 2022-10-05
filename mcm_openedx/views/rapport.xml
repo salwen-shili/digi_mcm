@@ -40,7 +40,6 @@
                         <field name="numero_action"/>
                         <field name="numero_session"/>
                         <field name="acceptedDate"/>
-                        <field name="seller_message"/>
                         <field name="created"/>
                         <field name="amount"/>
                         <field name="customer_email"/>
@@ -55,7 +54,7 @@
         <field name="name">Rapport Marketing</field>
         <field name="model">mcm_openedx.rapport</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="statut_dossier == 'canceled'"  decoration-success="statut_dossier=='accepted'">
+            <tree decoration-danger="statut_dossier == 'canceled'" decoration-success="statut_dossier=='accepted'">
                 <field name="customer_email"/>
                 <field name="numero_dossier"/>
                 <field name="name"/>
@@ -70,7 +69,6 @@
                 <field name="numero_action"/>
                 <field name="numero_session"/>
                 <field name="acceptedDate"/>
-                <field name="seller_message"/>
                 <field name="created"/>
                 <field name="amount"/>
                 <field name="captured"/>
