@@ -49,8 +49,8 @@ class Partner(models.Model):
             if (self.numero_evalbox) and (self.statut != "won"):
                 raise ValidationError('Merci de vérifier le statut!')
             # Vérifier longeur du numéro d'Eval_box CMA
-            if len(self.numero_evalbox) <= 9:
-                raise ValidationError('Numéro evalbox doit contenir minimum 10 caractères')
+            # if len(self.numero_evalbox) <= 9:
+            #     raise ValidationError('Numéro evalbox doit contenir minimum 10 caractères')
 
                 # Vérifier Si Client n'est pas bolt
             if not (bolt):
