@@ -11,7 +11,7 @@
 
      <button t-if="widget.modelName == 'mcm_openedx.rapport'"
              class="btn btn-primary oe_rap_button"
-             type="button">Supprimer Doublons</button>
+             type="button">Update Report</button>
 
 
  </t>
