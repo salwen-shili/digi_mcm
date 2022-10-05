@@ -106,6 +106,7 @@ class rapport(models.Model):
                         'date_debut_session': date_,
                         'date_fin_session': date_fin_session,
                         'acceptedDate': acceptedDate,
+                        'created': acceptedDate,
                         'numero_formation': numero_formation.split("/")[0].split("_", 1)[1],
                         'numero_action': numero_formation.split("/")[0].split("_", 1)[1].split("_20")[0],
                         'numero_session': numero_formation.split("/")[0].split("_", 1)[1].split("_20")[0],

@@ -44,7 +44,7 @@
         "views/statestique.xml",
         "views/session.xml",
         "views/coach.xml",
-        "views/rapport.xml",
+        #"views/rapport.xml",
         "views/actif_inactif.xml",
         "views/assets.xml",
         'data/mail_data.xml',

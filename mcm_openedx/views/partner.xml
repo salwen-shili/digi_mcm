@@ -213,7 +213,6 @@
                 <field name="client"/>
                 <field name="coach_peda"/>
                 <field name="state"/>
-                <field name="partner_id"/>
 
             </graph>
         </field>
