@@ -1480,7 +1480,7 @@ class partner(models.Model):
                 sms_body_ = "%s! Votre demande de financement par CPF a été validée. Connectez-vous sur moncompteformation.gouv.fr en partant dans l’onglet. Dossiers, Proposition de l’organisme, Financement, ensuite confirmer mon inscription." % (
                     user.partner_id.company_id.name)  # content of sms
                 sms = self.env['mail.message'].sudo().search(
-                    [("body", "like", sms_body_), ("message_type", "=", 'sms'), ('partner_ids', 'in', partner.id),
+                    [("body", "like", sms_body_), ("message_type", "=", 'sms'), ('partner_ids', 'in',  user.partner_id.id),
                      ('model', "=", "res.partner")])
                 if not sms:
                     _logger.info('if not sms %s' % str(sms_body_))
