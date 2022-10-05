@@ -36,7 +36,10 @@ class rapport(models.Model):
     type_financement = fields.Selection([('cpf', 'CPF'),
                                          ('stripe', 'Carte Bleu'),
                                          ])
-
+    #add mcm controller
+    #add repport
+    #add button to update report
+    # add comapny filter and Grouped by CPF / Carte bleu
     def rapport_wedof(self):
         print("rapport wedof")
         companies = self.env['res.company'].sudo().search([('id', "!=", False)])
@@ -98,6 +101,7 @@ class rapport(models.Model):
 
                 if not existe:
                     new = self.env['mcm_openedx.rapport'].sudo().create({
+                        'customer_email': email,
                         'numero_dossier': externalId,
                         'name': name,
                         'prenom': prenom,
