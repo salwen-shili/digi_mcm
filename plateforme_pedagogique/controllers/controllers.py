@@ -222,7 +222,7 @@ class WebhookController(http.Controller):
                     'website_id': 2,
                     'company_ids': [2],
                     'company_id': 2,
-                    'insciption_cpf':"moncompteformation.gouv.fr"
+                    'inscription_cpf':"moncompteformation.gouv.fr"
                 })
                 user.company_id = 2
                 user.partner_id.company_id = 2
@@ -236,7 +236,7 @@ class WebhookController(http.Controller):
                     'website_id': 1,
                     'company_ids': [1],
                     'company_id': 1,
-                    'insciption_cpf': "moncompteformation.gouv.fr"
+                    'inscription_cpf': "moncompteformation.gouv.fr"
 
                 })
                 user.company_id = 1
