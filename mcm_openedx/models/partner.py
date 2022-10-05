@@ -33,6 +33,7 @@ class partner(models.Model):
     mooc_temps_passe_min = fields.Integer()
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
+    #partner_id = fields.Many2one('res.partner', readonly=True)
 
     # Ajouter Des condition pour supprimer apprenant
     # Si absence justifiée  => ne sort pas de la formation
@@ -958,18 +959,13 @@ class partner(models.Model):
 
     # Affecter la date de suppression
     def update_datesupp(self):
-        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1),
-                                                              ('inscrit_mcm', '!=', False),
-                                                              ('mcm_session_id.date_exam', '!=', False),
-
+        for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
+                                                              ('numero_evalbox', '!=', False),
+                                                              ('statut_cpf', "!=", "canceled")
                                                               ]):
+
             if (partner):
-                print(partner.mcm_session_id.date_exam)
-                for rec in partner:
-                    if (partner.state == "en_attente"):
-                        partner.sudo().write({'state': 'en_formation'})
-                        partner.supprimerdemoocit = partner.mcm_session_id.date_exam + timedelta(days=5)
-                        _logger.info("supprimer aprex 5 j")
+                partner.partner_id = partner.id
 
     # Suppression automatique du iOne
     def supprimer_automatique(self):

@@ -19,3 +19,5 @@ class resComapny(models.Model):
         ('canceled', 'Annulé'),
     ], string='Statut CPF')
     date_cpf=fields.Datetime('Date CPF')
+
+  

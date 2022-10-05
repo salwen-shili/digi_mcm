@@ -70,7 +70,14 @@
                         Coach
                     </label>
                     <field name="est_coach" widget="boolean_toggle" modifiers="{}"/>
+<br/>
+                    <!--<label for="partner_id" string="Partner_id:" modifiers="{}">
+                        Partner_id
+                    </label>
+                    <field name="partner_id" modifiers="{}"/>-->
                 </div>
+
+
             </xpath>
 
             <xpath expr="//group//div[@class='row form-panel']//div[1]//div[3]//div[5]" position="after">
@@ -206,6 +213,7 @@
                 <field name="client"/>
                 <field name="coach_peda"/>
                 <field name="state"/>
+
             </graph>
         </field>
     </record>

@@ -203,7 +203,11 @@ class WebhookController(http.Controller):
                 sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
                 user.partner_id.name, user.partner_id.company_id.name, short_url,
                 user.partner_id.email)  # content of sms
-                user.partner_id.send_sms(sms_body_contenu,user.partner_id)
+                sms = request.env['mail.message'].sudo().search(
+                     [("body", "like", short_url), ("message_type", "=", 'sms'), ('partner_ids', 'in', user.partner_id.id),('model',"=","res.partner")])
+                if not sms:
+                    user.partner_id.send_sms(sms_body_contenu,user.partner_id)
+               
         else:
             # créer
             exist = False
@@ -217,7 +221,8 @@ class WebhookController(http.Controller):
                     'notification_type': 'email',
                     'website_id': 2,
                     'company_ids': [2],
-                    'company_id': 2
+                    'company_id': 2,
+                    'inscription_cpf':"moncompteformation.gouv.fr"
                 })
                 user.company_id = 2
                 user.partner_id.company_id = 2
@@ -230,52 +235,53 @@ class WebhookController(http.Controller):
                     'notification_type': 'email',
                     'website_id': 1,
                     'company_ids': [1],
-                    'company_id': 1
+                    'company_id': 1,
+                    'inscription_cpf': "moncompteformation.gouv.fr"
 
                 })
                 user.company_id = 1
                 user.partner_id.company_id = 1
-            if user:
-                phone = str(tel.replace(' ', ''))[-9:]
-                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                               5:7] + ' ' + phone[
-                                                                                                            7:]  # convert the number in this format : +33 x xx xx xx xx
-                url = str(user.signup_url)  # get the signup_url
-                short_url = pyshorteners.Shortener()
-                short_url = short_url.tinyurl.short(
-                    url)  # convert the signup_url to be short using pyshorteners library
-                body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
-                user.partner_id.name, user.partner_id.company_id.name, short_url,
-                user.partner_id.email)  # content of sms
-                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
-                user.partner_id.name, user.partner_id.company_id.name, short_url,
-                user.partner_id.email)  # content of sms
-                sms = request.env['sms.sms'].sudo().create({
-                    'partner_id': user.partner_id.id,
-                    'number': phone,
-                    'body': str(body)
-                })  # create sms
-                sms_id = sms.id
-                if (sms):
-                    sms.send()  # send the sms
-                    subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mt_note')
-                    body = False
-                    sms = request.env["sms.sms"].sudo().search(
-                        [("id", "=", sms_id)], limit=1)
-                    if (sms):
-                        if sms.state == 'error':
-                            body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
-                    else:
-                        body = "Le SMS suivant a été bien envoyé : %s " % (sms_body_contenu)
-                    if body:
-                        message = request.env['mail.message'].sudo().create({
-                            'subject': 'Invitation de rejoindre le site par sms',
-                            'model': 'res.partner',
-                            'res_id': user.partner_id.id,
-                            'message_type': 'notification',
-                            'subtype_id': subtype_id,
-                            'body': body,
-                        })  # create note in client view
+            # if user:
+                # phone = str(tel.replace(' ', ''))[-9:]
+                # phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                #                                                                                5:7] + ' ' + phone[
+                #                                                                                             7:]  # convert the number in this format : +33 x xx xx xx xx
+                # url = str(user.signup_url)  # get the signup_url
+                # short_url = pyshorteners.Shortener()
+                # short_url = short_url.tinyurl.short(
+                #     url)  # convert the signup_url to be short using pyshorteners library
+                # body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                # user.partner_id.name, user.partner_id.company_id.name, short_url,
+                # user.partner_id.email)  # content of sms
+                # sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                # user.partner_id.name, user.partner_id.company_id.name, short_url,
+                # user.partner_id.email)  # content of sms
+                # sms = request.env['sms.sms'].sudo().create({
+                #     'partner_id': user.partner_id.id,
+                #     'number': phone,
+                #     'body': str(body)
+                # })  # create sms
+                # sms_id = sms.id
+                # if (sms):
+                #     sms.send()  # send the sms
+                #     subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mt_note')
+                #     body = False
+                #     sms = request.env["sms.sms"].sudo().search(
+                #         [("id", "=", sms_id)], limit=1)
+                #     if (sms):
+                #         if sms.state == 'error':
+                #             body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
+                #     else:
+                #         body = "Le SMS suivant a été bien envoyé : %s " % (sms_body_contenu)
+                #     if body:
+                #         message = request.env['mail.message'].sudo().create({
+                #             'subject': 'Invitation de rejoindre le site par sms',
+                #             'model': 'res.partner',
+                #             'res_id': user.partner_id.id,
+                #             'message_type': 'notification',
+                #             'subtype_id': subtype_id,
+                #             'body': body,
+                #         })  # create note in client view
         # user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
             client = request.env['res.partner'].sudo().search(
@@ -283,6 +289,15 @@ class WebhookController(http.Controller):
             if client:
                 _logger.info("if client %s" % str(client.email))
                 _logger.info("dossier %s" % str(dossier))
+                """Envoyez un SMS aux apprenants pour accepter leurs dossiers cpf."""
+                sms_body_ = "%s! Votre demande de financement par CPF a été validée. Connectez-vous sur moncompteformation.gouv.fr en partant dans l’onglet. Dossiers, Proposition de l’organisme, Financement, ensuite confirmer mon inscription." % (
+                    user.partner_id.company_id.name)  # content of sms
+                sms = request.env['mail.message'].sudo().search(
+                    [("body", "like", sms_body_), ("message_type", "=", 'sms'),
+                     ('partner_ids', 'in', user.partner_id.id),
+                     ('model', "=", "res.partner")])
+                if not sms:
+                    user.partner_id.send_sms(sms_body_, user.partner_id)
                 client.mode_de_financement = 'cpf'
                 client.funding_type = 'cpf'
                 client.numero_cpf = dossier
@@ -381,7 +396,7 @@ class WebhookController(http.Controller):
 
 
 
-    """Mettre à jour statut cpf accepté et création de facture pour digimoov  apres l'acceptation sur edof """
+    """Mettre à jour la fiche client  apres l'acceptation sur edof """
     @http.route(['/accepte_cpf'], type='json', auth="public", methods=['POST'])
     def accepted_cpf_statut(self, **kw):
         request.uid = odoo.SUPERUSER_ID

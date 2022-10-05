@@ -1401,7 +1401,16 @@ class partner(models.Model):
                     sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
                         user.partner_id.name, user.partner_id.company_id.name, short_url,
                         user.partner_id.email)  # content of sms
-                    self.send_sms(sms_body_contenu, user.partner_id)
+                    
+                    sms = self.env['mail.message'].sudo().search(
+                        [("body", "like", short_url), ("message_type", "=", 'sms'), ('partner_ids', 'in', partner.id),
+                         ('model', "=", "res.partner")])
+                    if not sms:
+                        _logger.info('if not sms %s' %str(sms_body_contenu))
+                        self.send_sms(sms_body_contenu, user.partner_id)
+
+
+
             if not user:
                 # créer
                 exist = False
@@ -1415,7 +1424,8 @@ class partner(models.Model):
                         'notification_type': 'email',
                         'website_id': 2,
                         'company_ids': [2],
-                        'company_id': 2
+                        'company_id': 2,
+                        'inscription_cpf': "moncompteformation.gouv.fr"
                     })
                     user.company_id = 2
                     user.partner_id.company_id = 2
@@ -1428,7 +1438,8 @@ class partner(models.Model):
                         'notification_type': 'email',
                         'website_id': 1,
                         'company_ids': [1],
-                        'company_id': 1
+                        'company_id': 1,
+                        'inscription_cpf':"moncompteformation.gouv.fr"
 
                     })
                     user.company_id = 1
@@ -1448,11 +1459,16 @@ class partner(models.Model):
                     sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
                         user.partner_id.name, user.partner_id.company_id.name, short_url,
                         user.partner_id.email)  # content of sms
+
+                    
                     sms = self.env['sms.sms'].sudo().create({
                         'partner_id': user.partner_id.id,
                         'number': phone,
                         'body': str(body)
                     })  # create sms
+                    # sms = self.env['mail.message'].sudo().search(
+                    #     [("body", "like", body), ("message_type", "=", 'sms'), ('res_id', '=', partner.id),('model',"=","res.partner")])
+                    # if not sms:
                     sms_id = sms.id
 
         # user = request.env['res.users'].sudo().search([('login', "=", email)])
@@ -1460,6 +1476,15 @@ class partner(models.Model):
             client = self.env['res.partner'].sudo().search(
                 [('id', '=', user.partner_id.id)], limit=1)
             if client:
+                """Envoyez un SMS aux apprenants pour accepter leurs dossiers cpf."""
+                sms_body_ = "%s! Votre demande de financement par CPF a été validée. Connectez-vous sur moncompteformation.gouv.fr en partant dans l’onglet. Dossiers, Proposition de l’organisme, Financement, ensuite confirmer mon inscription." % (
+                    user.partner_id.company_id.name)  # content of sms
+                sms = self.env['mail.message'].sudo().search(
+                    [("body", "like", sms_body_), ("message_type", "=", 'sms'), ('partner_ids', 'in',  user.partner_id.id),
+                     ('model', "=", "res.partner")])
+                if not sms:
+                    _logger.info('if not sms %s' % str(sms_body_))
+                    self.send_sms(sms_body_, user.partner_id)
                 _logger.info("if client %s" % str(client.email))
                 _logger.info("dossier %s" % str(dossier))
                 client.mode_de_financement = 'cpf'
@@ -1641,6 +1666,79 @@ class partner(models.Model):
                                     user = utilisateur
                         else:
                             user = users
+
+                        if not user:
+                            # créer
+                            exist = False
+
+                            if "digimoov" in str(training_id):  # module from wedof
+                                user = self.env['res.users'].sudo().create({
+                                    'name': str(prenom) + " " + str(nom),
+                                    'login': str(email),
+                                    'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
+                                    'email': email,
+                                    'notification_type': 'email',
+                                    'website_id': 2,
+                                    'company_ids': [2],
+                                    'company_id': 2
+                                })
+                                user.company_id = 2
+                                user.partner_id.company_id = 2
+                            else:
+                                user = self.env['res.users'].sudo().create({
+                                    'name': str(prenom) + " " + str(nom),
+                                    'login': str(email),
+                                    'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
+                                    'email': email,
+                                    'notification_type': 'email',
+                                    'website_id': 1,
+                                    'company_ids': [1],
+                                    'company_id': 1
+
+                                })
+                                user.company_id = 1
+                                user.partner_id.company_id = 1
+                            if user:
+                                phone = str(tel.replace(' ', ''))[-9:]
+                                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                                                                                                               5:7] + ' ' + phone[
+                                                                                                                            7:]  # convert the number in this format : +33 x xx xx xx xx
+                                url = str(user.signup_url)  # get the signup_url
+                                short_url = pyshorteners.Shortener()
+                                short_url = short_url.tinyurl.short(
+                                    url)  # convert the signup_url to be short using pyshorteners library
+                                body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                                    user.partner_id.name, user.partner_id.company_id.name, short_url,
+                                    user.partner_id.email)  # content of sms
+                                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                                    user.partner_id.name, user.partner_id.company_id.name, short_url,
+                                    user.partner_id.email)  # content of sms
+                                sms = self.env['sms.sms'].sudo().create({
+                                    'partner_id': user.partner_id.id,
+                                    'number': phone,
+                                    'body': str(body)
+                                })  # create sms
+                                sms_id = sms.id
+                                if (sms):
+                                    sms.send()  # send the sms
+                                    subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
+                                    body = False
+                                    sms = self.env["sms.sms"].sudo().search(
+                                        [("id", "=", sms_id)], limit=1)
+                                    if (sms):
+                                        if sms.state == 'error':
+                                            body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
+                                    else:
+                                        body = "Le SMS suivant a été bien envoyé : %s " % (sms_body_contenu)
+                                    if body:
+                                        message = self.env['mail.message'].sudo().create({
+                                            'subject': 'Invitation de rejoindre le site par sms',
+                                            'model': 'res.partner',
+                                            'res_id': user.partner_id.id,
+                                            'message_type': 'notification',
+                                            'subtype_id': subtype_id,
+                                            'body': body,
+                                        })  # create note in client view
                         if user:
                             """mettre à jour les informations sur fiche client"""
                             print("if user", user.login, user.partner_id.statut_cpf)
@@ -1764,6 +1862,21 @@ class partner(models.Model):
                                             'module_id': module_id.id,
                                             'company_id': 2,
                                         })
+                                    if not user.partner_id.renounce_request:
+                                        """Envoyer SMS pour renoncer au droit de rétractation"""
+                                        url = '%smy' % str(user.partner_id.company_id.website)
+                                        short_url = pyshorteners.Shortener()
+                                        short_url = short_url.tinyurl.short(
+                                            url)  # convert the url to be short using pyshorteners library
+                                        sms_body_ = "Afin d'intégrer notre plateforme de formation de suite, veuillez renoncer à votre droit de rétractation sur votre espace client %s" % (
+                                            short_url)
+                                        # content of sms
+                                        sms = self.env['mail.message'].sudo().search(
+                                            [("body", "like", short_url), ("message_type", "=", "sms"),
+                                             ('partner_ids', 'in', user.partner_id.id),
+                                             ('model', "=", "res.partner")])
+                                        if not sms:
+                                            self.send_sms(sms_body_, user.partner_id)
 
                             elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
                                 _logger.info('if product_id mcm %s' % str(product_id))
@@ -1845,7 +1958,20 @@ class partner(models.Model):
                                             'module_id': module_id.id,
                                             'company_id': 1,
                                         })
-
+                                    if not user.partner_id.renounce_request:
+                                        """Envoyer SMS pour renoncer au droit de rétractation"""
+                                        url = '%smy' % str(user.partner_id.company_id.website) 
+                                        short_url = pyshorteners.Shortener()
+                                        short_url = short_url.tinyurl.short(
+                                            url)  # convert the url to be short using pyshorteners library
+                                        sms_body_ = "Afin d'intégrer notre plateforme de formation de suite, veuillez renoncer à votre droit de rétractation sur votre espace client %s" % (short_url)
+                                        # content of sms
+                                        sms = self.env['mail.message'].sudo().search(
+                                            [("body", "like", short_url), ("message_type", "=", "sms"),
+                                             ('partner_ids', 'in', user.partner_id.id),
+                                             ('model', "=", "res.partner")])
+                                        if not sms:
+                                            self.send_sms(sms_body_, user.partner_id)
                             else:
                                 if 'digimoov' in str(training_id):
                                     vals = {
@@ -2083,7 +2209,7 @@ class partner(models.Model):
                 print("template", template_id)
                 message = self.env['mail.message'].sudo().search(
                     [('subject', "=", "Avis de changement de Login"),
-                     ('model', "=", 'res.partner'), ('res_id', "=", partner.id)],
+                     ('model', "=", 'res.partner'), ('partner_ids', 'in', partner.id)],
                     limit=1)  # check if we have already sent the email
                 if not message:
                     print('hiiii')

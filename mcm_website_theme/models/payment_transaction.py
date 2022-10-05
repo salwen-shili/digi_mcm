@@ -5,7 +5,7 @@ from odoo import api, fields, models, _, SUPERUSER_ID
 import logging
 import requests
 _logger = logging.getLogger(__name__)
-
+import pyshorteners
 class PaymentTransaction(models.Model):
     _inherit = "payment.transaction"
     # """Créer une facture lorsque l'etat de transaction sera done"""
@@ -82,3 +82,14 @@ class PaymentTransaction(models.Model):
                                                        composition_mode='comment',
                                                        email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
                                                       )
+                
+                if sale.partner_id.renounce_request == False:
+                    """Envoyer sms pour renoncer au droit de rétractation """
+                    url = '%smy' % str(sale.partner_id.company_id.website)
+                    short_url = pyshorteners.Shortener()
+                    short_url = short_url.tinyurl.short(
+                        url)  # convert the url to be short using pyshorteners library
+                    sms_body_ = "Afin d'intégrer notre plateforme de formation de suite, veuillez renoncer à votre droit de rétractation sur votre espace client %s" % (
+                        short_url) # content of sms
+
+                    sale.partner_id.send_sms(sms_body_, sale.partner_id)
