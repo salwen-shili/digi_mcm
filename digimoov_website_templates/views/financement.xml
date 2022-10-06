@@ -245,7 +245,10 @@
                                 </li>
                                 <li class="mb-4">
                                   <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success"/>
-                                  <b>Consultation de votre copie d'examen*</b>
+                                  <b>Consultation de votre copie d'examen<span style="
+    font-weight: 500;
+    color: red;
+">*</span></b>
                                 </li>
                                 <li class="mb-4">
                                   <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
@@ -358,7 +361,10 @@
                                 </li>
                                 <li class="mb-4">
                                   <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success"/>
-                                  <b>Consultation de votre copie d'examen*</b>
+                                  <b>Consultation de votre copie d'examen<span style="
+    font-weight: 500;
+    color: red;
+">*</span></b>
                                 </li>
                                 <li class="mb-4">
                                   <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success"/>
@@ -483,9 +489,16 @@
                         </t>
                       </t>
                     </div>
-                    <span style="     color: #3b3b3b;     font-size: 12px; ">*Cette option est valable sur rendez-vous</span>
+                   
                   </div>
+                 
                 </div>
+                <div class="text-left">
+                    <span style="     color: #3b3b3b;     font-size: 12px; "><span style="
+    font-weight: 500;
+    color: red;
+">*</span>Cette option est valable sur rendez-vous</span>
+                  </div>
               </div>
               <section class="s_faq_collapse pt48 pb32" data-name="Accordion">
                 <div class="container">
