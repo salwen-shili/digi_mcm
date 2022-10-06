@@ -42,8 +42,8 @@ class rapport(models.Model):
     # add comapny filter and Grouped by CPF / Carte bleu
     def rapport_wedof(self):
         print("rapport wedof")
-        for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False),('numero_formation','=',False)]):
 
+        for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False),('numero_formation','=',False)]):
             for partner in self.env['res.partner'].search(
                     [('email', '=', existe.customer_email)]):
                 sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id)], limit=1, order="id desc")

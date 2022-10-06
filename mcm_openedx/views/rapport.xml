@@ -29,7 +29,7 @@
         <field name="model">mcm_openedx.rapport</field>
         <field name="arch" type="xml">
 
-            <form>
+            <form delete="false">
                 <sheet>
                     <group>
                         <field name="description"/>
@@ -59,7 +59,7 @@
         <field name="name">Rapport Marketing</field>
         <field name="model">mcm_openedx.rapport</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="statut_dossier == 'canceled'" decoration-success="statut_dossier=='accepted'">
+            <tree decoration-danger="statut_dossier == 'canceled'" decoration-success="statut_dossier=='accepted'" delete="false">
                 <field name="customer_email"/>
                 <field name="numero_dossier"/>
                 <field name="name"/>
@@ -86,14 +86,16 @@
         <field name="name">Rapport Marketing</field>
         <field name="model">mcm_openedx.rapport</field>
         <field name="arch" type="xml">
-            <pivot string="Rapport" disable_linking="True">
+            <pivot string="Rapport" disable_linking="True" >
                 <field name="numero_formation" type="col"/>
                 <field name="numero_dossier" type="row"/>
 
             </pivot>
         </field>
     </record>
-
+<!--
+  Add pivot view
+-->
 
     <record model="ir.actions.act_window" id="mcm_openedx.rapportcpf_list_action">
         <field name="name">Rapport Marketing</field>
