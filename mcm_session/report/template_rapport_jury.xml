@@ -205,7 +205,7 @@
                                                 <span t-esc="lines.fonction_id.name"/>
                                             </td>
                                             <td class="td" style="height:60px;width:200px;">
-                                                <span t-esc="(o.date_exam).strftime('%d/%m/%Y')"/>
+                                                <span t-esc="(o.date_jury).strftime('%d/%m/%Y')"/>
                                             </td>
                                             <td class="td" style="height:60px;width:200px;">
                                                 <span></span>
