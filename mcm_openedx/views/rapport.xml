@@ -83,17 +83,16 @@
         </field>
     </record>
     <record id="rapport_report_view_pivot" model="ir.ui.view">
-             <field name="name">Rapport Marketing</field>
-             <field name="model">mcm_openedx.rapport</field>
-             <field name="arch" type="xml">
-                <pivot string="Rapport" disable_linking="True">
-                    <field name="numero_formation" type="col"/>
+        <field name="name">Rapport Marketing</field>
+        <field name="model">mcm_openedx.rapport</field>
+        <field name="arch" type="xml">
+            <pivot string="Rapport" disable_linking="True">
+                <field name="numero_formation" type="col"/>
                 <field name="numero_dossier" type="row"/>
-                <field name="created" type="row"/>
-                <field name="name"/>
-                </pivot>
-            </field>
-        </record>
+
+            </pivot>
+        </field>
+    </record>
 
 
     <record model="ir.actions.act_window" id="mcm_openedx.rapportcpf_list_action">
@@ -101,7 +100,6 @@
         <field name="res_model">mcm_openedx.rapport</field>
         <field name="view_mode">tree,form,pivot</field>
         <field name="context">{'search_default_group_type_financement': 1,'search_default_group_company': 1}</field>
-
 
 
     </record>
