@@ -49,6 +49,7 @@
                         <field name="amount"/>
                         <field name="customer_email"/>
                         <field name="captured"/>
+                        <field name="type_financement"/>
 
                     </group>
                 </sheet>
