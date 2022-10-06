@@ -76,7 +76,7 @@
                                                 </td>
                                                 <td class="td" align="center" style="height: 80px; width: 80px;">
                                                     <strong>
-                                                        <span t-raw="'%s' % o.ville_jury_id.name_ville"/>:
+<!--                                                        <span t-raw="'%s' % o.ville_jury_id.name_ville"/>:-->
                                                         <span t-raw="'%s' % o.adresse_jury_id.adresse_centre_examen"/>
                                                     </strong>
                                                 </td>
@@ -672,7 +672,7 @@
             </t>
             <div class="footer" style="position:absolute; margin:0px; padding:0px;margin-left:-15px;">
                 <img src='/mcm_session/static/src/img/footer.png'
-                     height="80" width="2000"/>
+                     height="60" width="2000"/>
             </div>
         </t>
     </template>
