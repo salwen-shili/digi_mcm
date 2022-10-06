@@ -36,9 +36,10 @@ class rapport(models.Model):
     type_financement = fields.Selection([('cpf', 'CPF'),
                                          ('stripe', 'Carte Bleu'),
                                          ])
-    #add mcm controller
-    #add repport
-    #add button to update report
+
+    # add mcm controller
+    # add repport
+    # add button to update report
     # add comapny filter and Grouped by CPF / Carte bleu
     def rapport_wedof(self):
         print("rapport wedof")
@@ -96,7 +97,18 @@ class rapport(models.Model):
                 lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
                 acceptedDate = dossier['history']['acceptedDate'].split("T")[0]
                 print("statut_dossier", statut_dossier)
+                # search Cpf file
+                #if not existe Create record
+                #search in partner Cpf
+                #add comapny_id to record
                 existe = self.env['mcm_openedx.rapport'].sudo().search([('numero_dossier', '=', dossier['externalId'])])
+                for partner in self.env['res.partner'].search([('numero_cpf', '!=', False)]):
+                    if partner.numero_cpf == existe.numero_dossier:
+                        if partner.numero_cpf == existe.numero_dossier:
+                            existe.company = partner.company_id.name
+                            existe.partner_id = partner.id
+                            if partner.statut_cpf == "canceled":
+                                existe.statut_dossier = partner.statut_cpf
                 if not existe:
                     new = self.env['mcm_openedx.rapport'].sudo().create({
                         'customer_email': email,
@@ -115,15 +127,9 @@ class rapport(models.Model):
                     })
                     new.type_financement = "cpf"
                     _logger.info(new)
-
-                for partner in self.env['res.partner'].search([('numero_cpf', '!=', False)]):
-                    if partner.numero_cpf == existe.numero_dossier:
-                        if partner.numero_cpf == existe.numero_dossier:
-                            existe.company = partner.company_id.name
-                            existe.partner_id = partner.id
-                            if partner.statut_cpf == "canceled":
-                                existe.statut_dossier = partner.statut_cpf
-
+        #search in report Personal
+        #add sale order name
+        #add company_id
         for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
 
             for partner in self.env['res.partner'].search(
@@ -141,6 +147,7 @@ class rapport(models.Model):
                     _logger.info("ookokokokokokokokkkkkkkkkkkk")
                     existe.partner_id = partner.id
 
+            #if invoice unlink
             if existe.description:
                 desc = existe.description.split(" ")
                 invoice = desc[0]
