@@ -29,7 +29,7 @@ class rapport(models.Model):
     description = fields.Char(string="Description")
     numero_session = fields.Char(string="NUMERO SESSION")
     seller_message = fields.Char(string="Seller_message")
-    created = fields.Char(string="Created")
+    created = fields.Date(string="Created")
     amount = fields.Char(string="Amount")
     customer_email = fields.Char(string="Customer Email")
     captured = fields.Char(string="Captured")
@@ -95,10 +95,8 @@ class rapport(models.Model):
                 montant_formation = dossier['trainingActionInfo']['totalExcl']
                 lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
                 acceptedDate = dossier['history']['acceptedDate'].split("T")[0]
-
                 print("statut_dossier", statut_dossier)
                 existe = self.env['mcm_openedx.rapport'].sudo().search([('numero_dossier', '=', dossier['externalId'])])
-
                 if not existe:
                     new = self.env['mcm_openedx.rapport'].sudo().create({
                         'customer_email': email,

@@ -7,6 +7,11 @@
         <field name="model">mcm_openedx.rapport</field>
         <field name="arch" type="xml">
             <search>
+                <field name="created" filter_domain="[('created','ilike',self)]" icon="terp-partner"
+                       string="Date Creation"></field>
+                <field name="customer_email" filter_domain="[('customer_email','ilike',self)]"></field>
+                <field name="numero_dossier" filter_domain="[('numero_dossier','ilike',self)]"></field>
+
                 <filter name="group_company" string="Societé" icon="terp-partner"
                         context="{'group_by':'company'}"/>
 
@@ -77,16 +82,30 @@
             </tree>
         </field>
     </record>
+    <record id="rapport_report_view_pivot" model="ir.ui.view">
+             <field name="name">Rapport Marketing</field>
+             <field name="model">mcm_openedx.rapport</field>
+             <field name="arch" type="xml">
+                <pivot string="Rapport" disable_linking="True">
+                    <field name="numero_formation" type="col"/>
+                <field name="numero_dossier" type="row"/>
+                <field name="created" type="row"/>
+                <field name="name"/>
+                </pivot>
+            </field>
+        </record>
 
 
     <record model="ir.actions.act_window" id="mcm_openedx.rapportcpf_list_action">
         <field name="name">Rapport Marketing</field>
         <field name="res_model">mcm_openedx.rapport</field>
-        <field name="view_mode">tree,form</field>
-        <field name="context">{'search_default_group_type_financement': 1}</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="context">{'search_default_group_type_financement': 1,'search_default_group_company': 1}</field>
+
 
 
     </record>
+
     <!-- menu des villes sera afficher apres menu configuration dans l'interface de convocation-->
     <menuitem id="rapport_action" name="Rapport Marketing/Finance"
               parent="account.menu_finance"
