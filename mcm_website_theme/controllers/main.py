@@ -2736,7 +2736,7 @@ class MCM_SIGNUP(http.Controller):
             invoice_id = object["invoice"]
             description = str(object["description"])
             amount = int(object["amount"] / 100)
-            stripe.api_key = "sk_test_62TVrL9rX962c43ZzDm892Ef"
+            stripe.api_key = "sk_live_XyE0NEmIjazDnzENV27WUF3T00rVGyLyGZ"
             id = object["customer"]
             test = stripe.Customer.retrieve(id)
             _logger.info("Returns the Customer object for a valid identifier %s" % str(test))
@@ -2894,7 +2894,7 @@ class MCM_SIGNUP(http.Controller):
             invoice_id = object["invoice"]
             description = str(object["description"])
             amount = int(object["amount"] / 100)
-            stripe.api_key = "sk_test_UIcjGwgstBKleRmE3GIiZm8O000wMrOfL0"
+            stripe.api_key = "sk_live_m9piML49w0iJG8MMpMhlm01m00DuRXb7Fh"
             id = object["customer"]
             test = stripe.Customer.retrieve(id)
             _logger.info("Returns the Customer object for a valid identifier %s" % str(test))
@@ -2905,7 +2905,6 @@ class MCM_SIGNUP(http.Controller):
                     if partner.email == existe.customer_email:
                         existe.company = partner.company_id.name
                         _logger.info(partner.id)
-                        _logger.info("ookokokokokokokokkkkkkkkkkkk")
                         existe.partner_id = partner.id
 
             new = request.env['mcm_openedx.rapport'].sudo().create({
