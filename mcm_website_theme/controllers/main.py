@@ -2736,38 +2736,44 @@ class MCM_SIGNUP(http.Controller):
             invoice_id = object["invoice"]
             description = str(object["description"])
             amount = int(object["amount"] / 100)
-            stripe.api_key = "sk_live_XyE0NEmIjazDnzENV27WUF3T00rVGyLyGZ"
-            id = object["customer"]
-            test = stripe.Customer.retrieve(id)
-            _logger.info("Returns the Customer object for a valid identifier %s" % str(test))
-            costumer_email = test['email']
-            for existe in request.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
-                for partner in request.env['res.partner'].search(
-                        [('email', '=', existe.customer_email)]):
-                    if partner.email == existe.customer_email:
-                        existe.company = partner.company_id.name
-                        _logger.info(partner.id)
-                        _logger.info("ookokokokokokokokkkkkkkkkkkk")
-                        existe.partner_id = partner.id
+            acquirer = request.env['payment.acquirer'].sudo().search(
+                [('name', 'ilike', 'stripe'), ('company_id', "=", 2)])
+            _logger.info("acquirer : %s" % (str(acquirer)))
+            if acquirer:
+                _logger.info("acquirer : %s" %
+                             (str(acquirer.stripe_secret_key)))
+                stripe.api_key = acquirer.stripe_secret_key
+                id = object["customer"]
+                test = stripe.Customer.retrieve(id)
+                _logger.info("Returns the Customer object for a valid identifier %s" % str(test))
+                costumer_email = test['email']
+                for existe in request.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
+                    for partner in request.env['res.partner'].search(
+                            [('email', '=', existe.customer_email)]):
+                        if partner.email == existe.customer_email:
+                            existe.company = partner.company_id.name
+                            _logger.info(partner.id)
+                            _logger.info("ookokokokokokokokkkkkkkkkkkk")
+                            existe.partner_id = partner.id
 
-            new = request.env['mcm_openedx.rapport'].sudo().create({
-                'customer_email': costumer_email,
-                'created': date.today(),
-                'acceptedDate': date.today(),
-                'amount': amount,
-                'description': description
-            })
-            new.type_financement = "stripe"
-            if "outcome" in object:
-                new.seller_message = object["outcome"]["seller_message"]
-                _logger.info("new.seller_messag %s" % str(object["outcome"]["seller_message"]))
+                new = request.env['mcm_openedx.rapport'].sudo().create({
+                    'customer_email': costumer_email,
+                    'created': date.today(),
+                    'acceptedDate': date.today(),
+                    'amount': amount,
+                    'description': description
+                })
+                new.type_financement = "stripe"
+                if "outcome" in object:
+                    new.seller_message = object["outcome"]["seller_message"]
+                    _logger.info("new.seller_messag %s" % str(object["outcome"]["seller_message"]))
 
-            if "charges" in object:
-                captured = object["charges"]["data"]
-                for captureds in captured:
-                    cap = captureds
-                    _logger.info("aeeeea")
-            new.captured = str(cap["captured"])
+                if "charges" in object:
+                    captured = object["charges"]["data"]
+                    for captureds in captured:
+                        cap = captureds
+                        _logger.info("aeeeea")
+                new.captured = str(cap["captured"])
             self.search = request.env['res.users'].sudo().search(
                 [('login', "=", str(receipt_email).replace(' ', '').lower())])
             user = self.search
@@ -2894,37 +2900,43 @@ class MCM_SIGNUP(http.Controller):
             invoice_id = object["invoice"]
             description = str(object["description"])
             amount = int(object["amount"] / 100)
-            stripe.api_key = "sk_live_m9piML49w0iJG8MMpMhlm01m00DuRXb7Fh"
-            id = object["customer"]
-            test = stripe.Customer.retrieve(id)
-            _logger.info("Returns the Customer object for a valid identifier %s" % str(test))
-            costumer_email = test['email']
-            for existe in request.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
-                for partner in request.env['res.partner'].search(
-                        [('email', '=', existe.customer_email)]):
-                    if partner.email == existe.customer_email:
-                        existe.company = partner.company_id.name
-                        _logger.info(partner.id)
-                        existe.partner_id = partner.id
+            acquirer = request.env['payment.acquirer'].sudo().search(
+                [('name', 'ilike', 'stripe'), ('company_id', "=", 1)])
+            _logger.info("acquirer : %s" % (str(acquirer)))
+            if acquirer:
+                _logger.info("acquirer : %s" %
+                             (str(acquirer.stripe_secret_key)))
+                stripe.api_key = acquirer.stripe_secret_key
+                id = object["customer"]
+                test = stripe.Customer.retrieve(id)
+                _logger.info("Returns the Customer object for a valid identifier %s" % str(test))
+                costumer_email = test['email']
+                for existe in request.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
+                    for partner in request.env['res.partner'].search(
+                            [('email', '=', existe.customer_email)]):
+                        if partner.email == existe.customer_email:
+                            existe.company = partner.company_id.name
+                            _logger.info(partner.id)
+                            existe.partner_id = partner.id
 
-            new = request.env['mcm_openedx.rapport'].sudo().create({
-                'customer_email': costumer_email,
-                'created': date.today(),
-                'acceptedDate': date.today(),
-                'amount': amount,
-                'description': description
-            })
-            new.type_financement = "stripe"
-            if "outcome" in object:
-                new.seller_message = object["outcome"]["seller_message"]
-                _logger.info("new.seller_messag %s" % str(object["outcome"]["seller_message"]))
+                new = request.env['mcm_openedx.rapport'].sudo().create({
+                    'customer_email': costumer_email,
+                    'created': date.today(),
+                    'acceptedDate': date.today(),
+                    'amount': amount,
+                    'description': description
+                })
+                new.type_financement = "stripe"
+                if "outcome" in object:
+                    new.seller_message = object["outcome"]["seller_message"]
+                    _logger.info("new.seller_messag %s" % str(object["outcome"]["seller_message"]))
 
-            if "charges" in object:
-                captured = object["charges"]["data"]
-                for captureds in captured:
-                    cap = captureds
-                    _logger.info("aeeeea")
-            new.captured = str(cap["captured"])
+                if "charges" in object:
+                    captured = object["charges"]["data"]
+                    for captureds in captured:
+                        cap = captureds
+                        _logger.info("aeeeea")
+                new.captured = str(cap["captured"])
 
     @http.route("/inscription-bolt", type="http", auth="public", website=True)
     def inscription_bolt_jotform(
