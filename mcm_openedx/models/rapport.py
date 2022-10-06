@@ -29,7 +29,7 @@ class rapport(models.Model):
     description = fields.Char(string="Description")
     numero_session = fields.Char(string="NUMERO SESSION")
     seller_message = fields.Char(string="Seller_message")
-    created = fields.Char(string="Created")
+    created = fields.Date(string="Created")
     amount = fields.Char(string="Amount")
     customer_email = fields.Char(string="Customer Email")
     captured = fields.Char(string="Captured")
@@ -42,6 +42,27 @@ class rapport(models.Model):
     # add comapny filter and Grouped by CPF / Carte bleu
     def rapport_wedof(self):
         print("rapport wedof")
+        for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
+
+            for partner in self.env['res.partner'].search(
+                    [('email', '=', existe.customer_email)]):
+                sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id)], limit=1, order="id desc")
+                if partner.email == existe.customer_email:
+                    existe.company = partner.company_id.name
+                    existe.numero_formation = sale_order.order_line.product_id.id_edof
+                    existe.numero_action = sale_order.order_line.product_id.id_edof
+                    existe.numero_session = sale_order.order_line.product_id.id_edof
+
+                    _logger.info(partner.id)
+                    _logger.info("ookokokokokokokokkkkkkkkkkkk")
+                    existe.partner_id = partner.id
+
+            if existe.description:
+                desc = existe.description.split(" ")
+                invoice = desc[0]
+                if invoice == "Invoice":
+                    existe.browse(existe.id).sudo().unlink()
+
         companies = self.env['res.company'].sudo().search([('id', "!=", False)])
         print(companies)
         api_key = ""
@@ -126,28 +147,6 @@ class rapport(models.Model):
                             if partner.statut_cpf == "canceled":
                                 existe.statut_dossier = partner.statut_cpf
 
-        for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False)]):
-
-            for partner in self.env['res.partner'].search(
-                    [('email', '=', existe.customer_email)]):
-                sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-
-                                                                   ], limit=1, order="id desc")
-                if partner.email == existe.customer_email:
-                    existe.company = partner.company_id.name
-                    existe.numero_formation = sale_order.order_line.product_id.id_edof
-                    existe.numero_action = sale_order.order_line.product_id.id_edof
-                    existe.numero_session = sale_order.order_line.product_id.id_edof
-
-                    _logger.info(partner.id)
-                    _logger.info("ookokokokokokokokkkkkkkkkkkk")
-                    existe.partner_id = partner.id
-
-            if existe.description:
-                desc = existe.description.split(" ")
-                invoice = desc[0]
-                if invoice == "Invoice":
-                    existe.browse(existe.id).sudo().unlink()
 
         return {
             'type': 'ir.actions.client',
