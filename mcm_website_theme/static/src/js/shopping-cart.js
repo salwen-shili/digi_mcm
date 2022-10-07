@@ -355,6 +355,7 @@ function showPopup() {
     document.getElementById('error_no_date').style.display = 'inline-block';
     return;
   }
+  
   document.getElementById('error_no_date').style.display = 'none';
   var optionsDate = document.getElementById('options-date').value;
   var cpfChecked = false;
@@ -373,11 +374,25 @@ function showPopup() {
 
   if (optionsDate != 'all' && optionsDate != '') {
     document.getElementById('error_choix_date_popup').style.display = 'none';
-    continueBtn.innerText = textbtn;
-    window.location.href = '#popup1';
+    
   } else {
     document.getElementById('error_choix_date').style.display = 'inline-block';
+    return
   }
+  let departement ='' ;
+if (document.getElementById("departement_examen")){
+  departement = document.getElementById("departement_examen").value;
+  if (departement != 'all' && departement != '') {
+    document.getElementById('error_choix_departement').style.display = 'none';
+  
+  } else {
+    document.getElementById('error_choix_departement').style.display = 'inline-block';
+    return
+  }
+} 
+  
+  continueBtn.innerText = textbtn;
+  window.location.href = '#popup1';
 }
 
 //
