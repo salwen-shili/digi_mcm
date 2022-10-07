@@ -49,7 +49,7 @@ class rapport(models.Model):
                 sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id)], limit=1, order="id desc")
                 if partner.email == existe.customer_email:
                     existe.company = partner.company_id.name
-                    existe.numero_formation = sale_order.order_line.product_id.id_edof
+                    existe.numero_formation = sale_order.order_line.product_id.default_code
                     existe.numero_action = sale_order.order_line.product_id.id_edof
                     existe.numero_session = sale_order.order_line.product_id.id_edof
 
