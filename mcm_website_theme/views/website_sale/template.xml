@@ -582,6 +582,9 @@
                                 
                                         
                                 </select>
+                                <p id="error_choix_departement" class="alert alert-warning" style="margin-top:10px; margin-left:0%; display:none;">
+                                    Vous devez sélectionner votre département d'examen
+                                </p>
                             </t>
                             
                             <!-- <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
