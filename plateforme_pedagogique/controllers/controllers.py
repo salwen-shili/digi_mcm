@@ -192,21 +192,21 @@ class WebhookController(http.Controller):
                 if not user:
                     res_users = request.env["res.users"]
                     user = res_users.find_user_with_phone(str(tel))
-        if user:
-            if not(user.partner_id.date_examen_edof) or not(user.partner_id.session_ville_id):
-                """Envoyez un SMS aux apprenants qui arrivent de CPF."""
-                url = '%smy' %str(user.partner_id.company_id.website)  # get the signup_url
-                short_url = pyshorteners.Shortener()
-                short_url = short_url.tinyurl.short(
-                    url)  # convert the url to be short using pyshorteners library
-
-                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
-                user.partner_id.name, user.partner_id.company_id.name, short_url,
-                user.partner_id.email)  # content of sms
-                sms = request.env['mail.message'].sudo().search(
-                     [("body", "like", short_url), ("message_type", "=", 'sms'), ('partner_ids', 'in', user.partner_id.id),('model',"=","res.partner")])
-                if not sms:
-                    user.partner_id.send_sms(sms_body_contenu,user.partner_id)
+        # if user:
+        #     if not(user.partner_id.date_examen_edof) or not(user.partner_id.session_ville_id):
+        #         """Envoyez un SMS aux apprenants qui arrivent de CPF."""
+        #         url = '%smy' %str(user.partner_id.company_id.website)  # get the signup_url
+        #         short_url = pyshorteners.Shortener()
+        #         short_url = short_url.tinyurl.short(
+        #             url)  # convert the url to be short using pyshorteners library
+        #
+        #         sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+        #         user.partner_id.name, user.partner_id.company_id.name, short_url,
+        #         user.partner_id.email)  # content of sms
+        #         sms = request.env['mail.message'].sudo().search(
+        #              [("body", "like", short_url), ("message_type", "=", 'sms'), ('partner_ids', 'in', user.partner_id.id),('model',"=","res.partner")])
+        #         if not sms:
+        #             user.partner_id.send_sms(sms_body_contenu,user.partner_id)
                
         else:
             # créer
@@ -491,6 +491,25 @@ class WebhookController(http.Controller):
                     user = utilisateur
         else:
             user = users
+        if user:
+            if not (user.partner_id.date_examen_edof) or not (user.partner_id.session_ville_id):
+                """Envoyez un SMS aux apprenants qui arrivent de CPF."""
+                url = '%smy' % str(user.partner_id.company_id.website)  # get the signup_url
+                short_url = pyshorteners.Shortener()
+                short_url = short_url.tinyurl.short(
+                    url)  # convert the url to be short using pyshorteners library
+
+                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                    user.partner_id.name, user.partner_id.company_id.name, short_url,
+                    user.partner_id.email)  # content of sms
+
+                sms = request.env['mail.message'].sudo().search(
+                    [("body", "like", short_url), ("message_type", "=", 'sms'), ('partner_ids', 'in', user.partner_id.id),
+                     ('model', "=", "res.partner")])
+                if not sms:
+                    _logger.info('if not sms %s' % str(sms_body_contenu))
+                    self.send_sms(sms_body_contenu, user.partner_id)
+
         if not user:
             # créer
             exist = False
