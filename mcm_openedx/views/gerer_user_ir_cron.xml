@@ -62,33 +62,7 @@
         <field name="numbercall">-1</field>
         <field name="priority" eval="4"/>
     </record>
-    <!-- tache cron pour affecter les coaches selon la premiere personne qui a ecrit un comm -->
-    <!--<record id="ir_cron_aff_coach" model="ir.cron">
-        <field name="name">affecter les coaches selon la premiere personne qui a ecrit comm
-        </field>
-        <field name="model_id" ref="model_mcm_openedx_coach"/>
-        <field name="active" eval="False"></field>
-        <field name="state">code</field>
-        <field name="code">model.aff_coach()</field>
-        <field name="interval_number">1</field>
-        <field name="interval_type">days</field>
-        <field name="numbercall">-1</field>
-        <field name="priority" eval="3"/>
-    </record>-->
-    <!-- tache cron pour  supprimer les apprenants
 
-        <record id="ir_cron_supprimer_app" model="ir.cron">
-            <field name="name">tache cron pour supprimer les apprenants</field>
-            <field name="model_id" ref="model_res_partner"/>
-            <field name="active" eval="False"></field>
-            <field name="state">code</field>
-            <field name="code">model.supprimer_automatique()</field>
-            <field name="interval_number">1</field>
-            <field name="interval_type">days</field>
-            <field name="numbercall">-1</field>
-            <field name="priority" eval="2"/>
-        </record>
-  repasage_exman-->
     <!-- tache cron poursupprimer les apprenant reussit-->
     <record id="ir_cron_supp_admis" model="ir.cron">
         <field name="name">Supprimer les apprenant ayant resulta (Admis)
@@ -140,4 +114,32 @@
         <field name="numbercall">-1</field>
         <field name="priority" eval="3"/>
     </record>
+
+    <!-- tache cron pour affecter les coaches selon la premiere personne qui a ecrit un comm -->
+    <!--<record id="ir_cron_aff_coach" model="ir.cron">
+        <field name="name">affecter les coaches selon la premiere personne qui a ecrit comm
+        </field>
+        <field name="model_id" ref="model_mcm_openedx_coach"/>
+        <field name="active" eval="False"></field>
+        <field name="state">code</field>
+        <field name="code">model.aff_coach()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="priority" eval="3"/>
+    </record>-->
+    <!-- tache cron pour  supprimer les apprenants
+
+        <record id="ir_cron_supprimer_app" model="ir.cron">
+            <field name="name">tache cron pour supprimer les apprenants</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="active" eval="False"></field>
+            <field name="state">code</field>
+            <field name="code">model.supprimer_automatique()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="priority" eval="2"/>
+        </record>
+  repasage_exman-->
 </odoo>
