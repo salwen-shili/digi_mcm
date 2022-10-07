@@ -28,7 +28,7 @@
         'views/template.xml',
         'views/sale_portal_templates.xml',
         'views/sale_order_report.xml',
-        'views/sign_request.xml',
+        #'views/sign_request.xml',
         'views/sign_template.xml',
         #'views/document_sign.xml',
         'data/sign_data.xml',
