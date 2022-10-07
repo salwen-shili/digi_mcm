@@ -1493,4 +1493,11 @@
 
             </body>
     </template>
+    <template id="footer_external_layout_standard"
+                  inherit_id="web.external_layout_standard" >
+            <xpath expr="//div[@class='footer o_standard_footer']//div//ul" position="replace">
+                <span>Hello</span>
+            </xpath>
+
+        </template>
 </odoo>
