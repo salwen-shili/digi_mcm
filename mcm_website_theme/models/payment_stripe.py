@@ -47,7 +47,7 @@ class PaymentStripeAcquirer(models.Model):
                     print('*************resultvalidate', result)
                     return result
                 else:
-                    """on cas d'erreur on met à jour l'etat de transaction comme erreur"""
+                    """en cas d'erreur on met à jour l'etat de transaction comme erreur"""
                     print('erreuur')
                     msg = "Abonnement stripe non effectué "
                     self._set_transaction_error(msg)
@@ -72,7 +72,7 @@ class PaymentStripeAcquirer(models.Model):
         instalment_number = (sale.instalment_number)
         print('name product instalment', nom_produit, instalment_number)
         today = date.today()
-        canceled = str(today + relativedelta(months=instalment_number) + timedelta(days=1))
+        canceled = str(today + relativedelta(months=instalment_number))
         date_canceled = int(datetime.strptime(canceled, "%Y-%m-%d").timestamp())
         params = (('limit', '100'),)
         url = "products/%s" % (id_produit)
@@ -92,8 +92,8 @@ class PaymentStripeAcquirer(models.Model):
             subscription_data = {
                 'customer': self.payment_token_id.acquirer_ref,
                 'items[0][price]': RECURRING_PRICE_ID,
-                'default_payment_method': self.payment_token_id.stripe_payment_method
-                # 'cancel_at': date_canceled
+                'default_payment_method': self.payment_token_id.stripe_payment_method,
+                'cancel_at': date_canceled
             }
             _logger.info('_create_stripe_subsription: Sending values to stripe, values:\n%s',
                          pprint.pformat(subscription_data))
