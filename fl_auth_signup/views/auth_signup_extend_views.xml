@@ -640,36 +640,7 @@
                         
                                                 se connecter
                                             </a>
-                                            <t t-if="request.website.id == 1">
-                                                <!-- <button id="inscrire" type="submit" t-if="not name or not last_login"
-                                                        class="rkmd-btn btn-black ripple-effect ripple-yellow"
-                                                        data-oe-model="ir.ui.view" data-oe-id="1730"
-                                                        data-oe-field="arch"
-                                                        data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
-                                                    S'inscrire
-                                                    <i class="material-icons right">send</i>
-                                                </button> -->
-                                                <button id="inscrire" type="submit"
-                                                        class="rkmd-btn btn-black ripple-effect ripple-yellow"
-                                                        t-if="last_login">
-                                                    Confirmer
-                                                </button>
-                                            </t>
-                                            <t t-if="request.website.id == 2">
-                                                <button id="inscrire" type="submit" t-if="not name or not last_login"
-                                                        class="rkmd-btn btn-blue ripple-effect ripple-yellow"
-                                                        data-oe-model="ir.ui.view" data-oe-id="1730"
-                                                        data-oe-field="arch"
-                                                        data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
-                                                    S'inscrire
-                                                    <i class="material-icons right">send</i>
-                                                </button>
-                                                <button type="submit"
-                                                        class="rkmd-btn btn-black ripple-effect ripple-yellow"
-                                                        t-if="last_login">
-                                                    Confirmer
-                                                </button>
-                                            </t>
+                                           
                         
                                            
                         
@@ -680,6 +651,36 @@
                                         <link href="/mcm_contact_documents/static/src/css/button.min.css"
                                               rel="stylesheet"/>
                                     </fieldset>
+                                    <t t-if="request.website.id == 1">
+                                        <!-- <button id="inscrire" type="submit" t-if="not name or not last_login"
+                                                class="rkmd-btn btn-black ripple-effect ripple-yellow"
+                                                data-oe-model="ir.ui.view" data-oe-id="1730"
+                                                data-oe-field="arch"
+                                                data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
+                                            S'inscrire
+                                            <i class="material-icons right">send</i>
+                                        </button> -->
+                                        <button id="inscrire" type="submit"
+                                                class="rkmd-btn btn-black ripple-effect ripple-yellow"
+                                                t-if="last_login">
+                                            Confirmer
+                                        </button>
+                                    </t>
+                                    <t t-if="request.website.id == 2">
+                                        <button id="inscrire" type="submit" t-if="not name or not last_login"
+                                                class="rkmd-btn btn-blue ripple-effect ripple-yellow"
+                                                data-oe-model="ir.ui.view" data-oe-id="1730"
+                                                data-oe-field="arch"
+                                                data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
+                                            S'inscrire
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                        <button type="submit"
+                                                class="rkmd-btn btn-indigo ripple-effect ripple-yellow" style="width:200px;     place-self: center;"
+                                                t-if="last_login">
+                                            Confirmer
+                                        </button>
+                                    </t>
                                     <div style="overflow:auto;">
                                         <div style="float:right;">
                                           <t t-if="request.website.id == 1">
