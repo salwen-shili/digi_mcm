@@ -1390,24 +1390,24 @@ class partner(models.Model):
                                 user = self.env["res.users"].sudo().search(
                                     [("phone", "like", phone.replace(' ', ''))], limit=1)
 
-            if user:
-                if not (user.partner_id.date_examen_edof) or not (user.partner_id.session_ville_id):
-                    """Envoyez un SMS aux apprenants qui arrivent de CPF."""
-                    url = '%smy' % str(user.partner_id.company_id.website)  # get the signup_url
-                    short_url = pyshorteners.Shortener()
-                    short_url = short_url.tinyurl.short(
-                        url)  # convert the url to be short using pyshorteners library
-
-                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
-                        user.partner_id.name, user.partner_id.company_id.name, short_url,
-                        user.partner_id.email)  # content of sms
-                    
-                    sms = self.env['mail.message'].sudo().search(
-                        [("body", "like", short_url), ("message_type", "=", 'sms'), ('partner_ids', 'in', partner.id),
-                         ('model', "=", "res.partner")])
-                    if not sms:
-                        _logger.info('if not sms %s' %str(sms_body_contenu))
-                        self.send_sms(sms_body_contenu, user.partner_id)
+            # if user:
+            #     if not (user.partner_id.date_examen_edof) or not (user.partner_id.session_ville_id):
+            #         """Envoyez un SMS aux apprenants qui arrivent de CPF."""
+            #         url = '%smy' % str(user.partner_id.company_id.website)  # get the signup_url
+            #         short_url = pyshorteners.Shortener()
+            #         short_url = short_url.tinyurl.short(
+            #             url)  # convert the url to be short using pyshorteners library
+            # 
+            #         sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+            #             user.partner_id.name, user.partner_id.company_id.name, short_url,
+            #             user.partner_id.email)  # content of sms
+            #         
+            #         sms = self.env['mail.message'].sudo().search(
+            #             [("body", "like", short_url), ("message_type", "=", 'sms'), ('partner_ids', 'in', partner.id),
+            #              ('model', "=", "res.partner")])
+            #         if not sms:
+            #             _logger.info('if not sms %s' %str(sms_body_contenu))
+            #             self.send_sms(sms_body_contenu, user.partner_id)
 
 
 
@@ -1444,32 +1444,32 @@ class partner(models.Model):
                     })
                     user.company_id = 1
                     user.partner_id.company_id = 1
-                if user:
-                    phone = str(tel.replace(' ', ''))[-9:]
-                    phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                                   5:7] + ' ' + phone[
-                                                                                                                7:]  # convert the number in this format : +33 x xx xx xx xx
-                    url = str(user.signup_url)  # get the signup_url
-                    short_url = pyshorteners.Shortener()
-                    short_url = short_url.tinyurl.short(
-                        url)  # convert the signup_url to be short using pyshorteners library
-                    body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
-                        user.partner_id.name, user.partner_id.company_id.name, short_url,
-                        user.partner_id.email)  # content of sms
-                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
-                        user.partner_id.name, user.partner_id.company_id.name, short_url,
-                        user.partner_id.email)  # content of sms
-
-                    
-                    sms = self.env['sms.sms'].sudo().create({
-                        'partner_id': user.partner_id.id,
-                        'number': phone,
-                        'body': str(body)
-                    })  # create sms
-                    # sms = self.env['mail.message'].sudo().search(
-                    #     [("body", "like", body), ("message_type", "=", 'sms'), ('res_id', '=', partner.id),('model',"=","res.partner")])
-                    # if not sms:
-                    sms_id = sms.id
+                # if user:
+                #     phone = str(tel.replace(' ', ''))[-9:]
+                #     phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                #                                                                                    5:7] + ' ' + phone[
+                #                                                                                                 7:]  # convert the number in this format : +33 x xx xx xx xx
+                #     url = str(user.signup_url)  # get the signup_url
+                #     short_url = pyshorteners.Shortener()
+                #     short_url = short_url.tinyurl.short(
+                #         url)  # convert the signup_url to be short using pyshorteners library
+                #     body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                #         user.partner_id.name, user.partner_id.company_id.name, short_url,
+                #         user.partner_id.email)  # content of sms
+                #     sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                #         user.partner_id.name, user.partner_id.company_id.name, short_url,
+                #         user.partner_id.email)  # content of sms
+                # 
+                #     
+                #     sms = self.env['sms.sms'].sudo().create({
+                #         'partner_id': user.partner_id.id,
+                #         'number': phone,
+                #         'body': str(body)
+                #     })  # create sms
+                #     # sms = self.env['mail.message'].sudo().search(
+                #     #     [("body", "like", body), ("message_type", "=", 'sms'), ('res_id', '=', partner.id),('model',"=","res.partner")])
+                #     # if not sms:
+                #     sms_id = sms.id
 
         # user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
@@ -1666,6 +1666,26 @@ class partner(models.Model):
                                     user = utilisateur
                         else:
                             user = users
+
+                        if user:
+                            if not (user.partner_id.date_examen_edof) or not (user.partner_id.session_ville_id):
+                                """Envoyez un SMS aux apprenants qui arrivent de CPF."""
+                                url = '%smy' % str(user.partner_id.company_id.website)  # get the signup_url
+                                short_url = pyshorteners.Shortener()
+                                short_url = short_url.tinyurl.short(
+                                    url)  # convert the url to be short using pyshorteners library
+
+                                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                                    user.partner_id.name, user.partner_id.company_id.name, short_url,
+                                    user.partner_id.email)  # content of sms
+
+                                sms = self.env['mail.message'].sudo().search(
+                                    [("body", "like", short_url), ("message_type", "=", 'sms'),
+                                     ('partner_ids', 'in', user.partner_id.id),
+                                     ('model', "=", "res.partner")])
+                                if not sms:
+                                    _logger.info('if not sms %s' % str(sms_body_contenu))
+                                    self.send_sms(sms_body_contenu, user.partner_id)
 
                         if not user:
                             # créer
