@@ -52,6 +52,19 @@ class MailThreadInherit(models.AbstractModel):
     
     _inherit = 'mail.thread'
     
+    def _routing_create_bounce_email(self, email_from, body_html, message, **mail_values):
+        bounce_to = tools.decode_message_header(message, 'Return-Path') or email_from
+        bounce_mail_values = {
+            'body_html': body_html,
+            'subject': 'Re: %s' % message.get('subject'),
+            'email_to': bounce_to,
+            'auto_delete': True,
+        }
+        bounce_from = self.env['ir.mail_server']._get_default_bounce_address()
+        if bounce_from:
+            bounce_mail_values['email_from'] = 'MAILER-DAEMON <%s>' % bounce_from
+        bounce_mail_values.update(mail_values)
+        self.env['mail.mail'].create(bounce_mail_values).send()
     @api.model
     def message_route(self, message, message_dict, model=None, thread_id=None, custom_values=None):
         if not isinstance(message, Message):
@@ -93,12 +106,14 @@ class MailThreadInherit(models.AbstractModel):
         #       we also need to verify if the message come from "mailer-daemon"
         #    If not a bounce: reset bounce information
         if bounce_alias and bounce_alias in email_to_localpart:
+            _logger.info('email_to_localpart')
             bounce_re = re.compile("%s\+(\d+)-?([\w.]+)?-?(\d+)?" % re.escape(bounce_alias), re.UNICODE)
             bounce_match = bounce_re.search(email_to)
             if bounce_match:
                 self._routing_handle_bounce(message, message_dict)
                 return []
         if message.get_content_type() == 'multipart/report' or email_from_localpart == 'mailer-daemon':
+            _logger.info('multipart/report')
             self._routing_handle_bounce(message, message_dict)
             return []
         self._routing_reset_bounce(message, message_dict)
@@ -136,6 +151,8 @@ class MailThreadInherit(models.AbstractModel):
             # check it does not directly contact catchall
             if catchall_alias and catchall_alias in email_to_localpart:
                 _logger.info('Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce', email_from, email_to, message_id)
+                _logger.info('multipart/report')
+                _logger.info('multipart/report1 %s' %(str(email_to)))
                 body = self.env.ref('mail.mail_bounce_catchall').render({
                     'message': message,
                 }, engine='ir.qweb')
