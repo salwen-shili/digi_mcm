@@ -8,16 +8,16 @@
                 <p>The email sent to
                     <t t-esc="message['to']"/>
                     cannot be processed. This address
-                    is used to collect replies and should not be used to directly contact<t t-esc="company.name"/>.
+                    is used to collect replies and should not be used to directly contact <t t-esc="message_company.name"/>.
                 </p>
                 <p>Please contact us
-                    <a t-att-href="%scontact' % company.website">
-                        here
-                    </a>
+<a t-att-href="'%scontact' % message_company.website">
+                            here
+                        </a>
                 </p>
                 <p>Regards,</p>
                 <p>The
-                    <t t-esc="company.name"/>
+                    <t t-esc="message_company.name"/>
                     team.
                 </p>
             </div>

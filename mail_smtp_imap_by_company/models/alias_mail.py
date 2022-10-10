@@ -150,11 +150,16 @@ class MailThreadInherit(models.AbstractModel):
             message_dict.pop('parent_id', None)
             # check it does not directly contact catchall
             if catchall_alias and catchall_alias in email_to_localpart:
-                _logger.info('Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce', email_from, email_to, message_id)
+                logger.info('Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce',
+                            email_from, email_to, message_id)
                 _logger.info('multipart/report')
-                _logger.info('multipart/report1 %s' %(str(email_to)))
-                body = self.env.ref('mail.mail_bounce_catchall').render({
-                    'message': message,
+                _logger.info('multipart/report1 %s' % (str(email_to)))
+                company = 1
+                if 'digimoov' in email_to:
+                    company = 2
+                message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
+                body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
+                    'message': message, 'message_company': message_company,
                 }, engine='ir.qweb')
                 self._routing_create_bounce_email(email_from, body, message, reply_to=self.env.company.email)
                 return []
