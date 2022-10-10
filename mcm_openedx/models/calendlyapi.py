@@ -202,65 +202,76 @@ class event_calendly(models.Model):
         count = 0
         print("envoyer invitation au apprenant selon leur formation")
         for partner in self.env['res.partner'].sudo().search(
-                [('company_id', '=', 1),('state', '=', "en_formation"),('statut', "=", "won"),
+                [('company_id', '=', 1), ('state', '=', "en_formation"), ('statut', "=", "won"),
                  ('mcm_session_id.date_exam', '!=', False), ('email', '=', "khouloudachour.97@gmail.com")]):
-            if partner.mcm_session_id.date_exam:
-                if partner.mcm_session_id.date_exam.month == todays_date.month:
-                    count = count + 1
-                    if partner.module_id.product_id.default_code == "taxi":
-                        print(partner.email)
+            try:
+                if partner.mcm_session_id.date_exam:
+                    if partner.mcm_session_id.date_exam.month == todays_date.month:
+                        count = count + 1
+                        if partner.module_id.product_id.default_code == "taxi":
+                            print(partner.email)
 
-                        # APi si il existe des event
-                        # APi si il existe des event
-                        for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
-                                [('id', '!=', False),
-                                 ('event_name', '!=', ["Cours en direct - Développement Commercial - Préscilia",
-                                                       "Cours en direct - Réglementation VTC - Eric 1H"])]):
-                            print(existe.event_name)
-                            # Fiche Client odoo chercher si event
-                            exist_event = self.env['calendly.rendezvous'].sudo().search(
-                                [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
-                                 ('event_starttime', '=', existe.start_at)])
-                            print("exist_event.name", exist_event.name)
-                            print(existe.event_name)
-                            if not exist_event:
-                                if existe.start_at == todays_date:
-                                    calendly = self.env['calendly.rendezvous'].sudo().create({
-                                        'partner_id': partner.id,
-                                        'email': partner.email,
-                                        'phone': partner.phone,
-                                        'name': existe.event_name,
-                                        'zoomlink': existe.event_name,
-                                    })
-                                    calendly.event_starttime = existe.start_at
-                                    calendly.event_starttime_char = existe.start_at_char
-                                    calendly.event_endtime = existe.start_at
-                    if partner.module_id.product_id.default_code == "vtc" or partner.module_id.product_id.default_code == "vtc_bolt":
-                        print(partner.email)
-                        # APi si il existe des event
-                        # APi si il existe des event
-                        for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
-                                [('id', '!=', False),
-                                 ]):
-                            print(existe.event_name)
-                            # Fiche Client odoo chercher si event
-                            exist_event = self.env['calendly.rendezvous'].sudo().search(
-                                [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
-                                 ('event_starttime', '=', existe.start_at)])
-                            print("exist_event.name", exist_event.name)
-                            print(existe.event_name)
-                            if not exist_event:
-                                if existe.start_at == todays_date:
-                                    calendly = self.env['calendly.rendezvous'].sudo().create({
-                                        'partner_id': partner.id,
-                                        'email': partner.email,
-                                        'phone': partner.phone,
-                                        'name': existe.event_name,
-                                        'zoomlink': existe.event_name,
-                                    })
-                                    calendly.event_starttime = existe.start_at
-                                    calendly.event_starttime_char = existe.start_at_char
-                                    calendly.event_endtime = existe.start_at
+                            # APi si il existe des event
+                            # APi si il existe des event
+                            for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
+                                    [('id', '!=', False),
+                                     ('event_name', '!=', ["Cours en direct - Développement Commercial - Préscilia",
+                                                           "Cours en direct - Réglementation VTC - Eric 1H"])]):
+                                print(existe.event_name)
+                                # Fiche Client odoo chercher si event
+                                exist_event = self.env['calendly.rendezvous'].sudo().search(
+                                    [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
+                                     ('event_starttime', '=', existe.start_at)])
+                                print("exist_event.name", exist_event.name)
+                                print(existe.event_name)
+                                if not exist_event:
+                                    if existe.start_at == todays_date:
+                                        calendly = self.env['calendly.rendezvous'].sudo().create({
+                                            'partner_id': partner.id,
+                                            'email': partner.email,
+                                            'phone': partner.phone,
+                                            'name': existe.event_name,
+                                            'zoomlink': existe.event_name,
+                                        })
+                                        calendly.event_starttime = existe.start_at
+                                        calendly.event_starttime_char = existe.start_at_char
+                                        calendly.event_endtime = existe.start_at
+                        if partner.module_id.product_id.default_code == "vtc" or partner.module_id.product_id.default_code == "vtc_bolt":
+                            print(partner.email)
+                            # APi si il existe des event
+                            # APi si il existe des event
+                            for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
+                                    [('id', '!=', False),
+                                     ]):
+                                print(existe.event_name)
+                                # Fiche Client odoo chercher si event
+                                exist_event = self.env['calendly.rendezvous'].sudo().search(
+                                    [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
+                                     ('event_starttime', '=', existe.start_at)])
+                                print("exist_event.name", exist_event.name)
+                                print(existe.event_name)
+                                if not exist_event:
+                                    if existe.start_at == todays_date:
+                                        calendly = self.env['calendly.rendezvous'].sudo().create({
+                                            'partner_id': partner.id,
+                                            'email': partner.email,
+                                            'phone': partner.phone,
+                                            'name': existe.event_name,
+                                            'zoomlink': existe.event_name,
+                                        })
+                                        calendly.event_starttime = existe.start_at
+                                        calendly.event_starttime_char = existe.start_at_char
+                                        calendly.event_endtime = existe.start_at
 
-                                    print("created", calendly)
-            print(count)
+                                        print("created", calendly)
+                print(count)
+                # ajouter les apprenants manuellemnt a partire de  la fiche Client
+                self.env.cr.commit()
+                # self.env.cr.rollback() cancels the transaction's write operations since the last commit, or all if no commit was done.
+            except Exception:
+                self.env.cr.rollback()
+
+                _logger.info(" except Exception:")
+
+
+
