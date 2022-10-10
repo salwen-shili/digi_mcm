@@ -8,10 +8,11 @@
         <field name="state">code</field>
         <field name="code">model.test_coach()</field>
         <field name="interval_number">1</field>
-        <field name="interval_type">days</field>
+        <field name="interval_type">weeks</field>
         <field name="numbercall">-1</field>
-        <field name="priority" eval="1"/>
+        <field name="priority" eval="5"/>
     </record>
+    <!--  tache cron pour Tester si un Client bolt -->
     <record id="ir_cron_affecter_societe" model="ir.cron">
         <field name="name">Tester si un Client bolt
         </field>
@@ -19,22 +20,22 @@
         <field name="active" eval="True"></field>
         <field name="state">code</field>
         <field name="code">model.Bolt()</field>
-        <field name="interval_number">59</field>
-        <field name="interval_type">minutes</field>
-        <field name="numbercall">-1</field>
-        <field name="priority" eval="1"/>
-    </record>
-    <record id="ir_cron_egaliter_coach" model="ir.cron">
-        <field name="name">Egalité entre les coachhes</field>
-        <field name="model_id" ref="model_mcm_openedx_coach"/>
-        <field name="active" eval="False"></field>
-        <field name="state">code</field>
-        <field name="code">model.egalité()</field>
-        <field name="interval_number">59</field>
+        <field name="interval_number">7</field>
         <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
         <field name="priority" eval="1"/>
     </record>
+    <!-- <record id="ir_cron_egaliter_coach" model="ir.cron">
+         <field name="name">Egalité entre les coachhes</field>
+         <field name="model_id" ref="model_mcm_openedx_coach"/>
+         <field name="active" eval="False"></field>
+         <field name="state">code</field>
+         <field name="code">model.egalité()</field>
+         <field name="interval_number">59</field>
+         <field name="interval_type">days</field>
+         <field name="numbercall">-1</field>
+         <field name="priority" eval="1"/>
+     </record>-->
     <!-- tache cron pour ajouter les apprenants -->
     <record id="ir_cron_ajouter" model="ir.cron">
         <field name="name">ajout automatique des apprennats a moocit
@@ -44,7 +45,7 @@
         <field name="state">code</field>
         <field name="code">model.ajoutMoocit_automatique()</field>
         <field name="interval_number">1</field>
-        <field name="interval_type">days</field>
+        <field name="interval_type">weeks</field>
         <field name="numbercall">-1</field>
         <field name="priority" eval="3"/>
     </record>
@@ -61,21 +62,61 @@
         <field name="numbercall">-1</field>
         <field name="priority" eval="4"/>
     </record>
-    <!-- tache cron pour update_datesupp -->
-    <record id="ir_cron_update_datesupp" model="ir.cron">
-        <field name="name">update_datesupp
+
+    <!-- tache cron poursupprimer les apprenant reussit-->
+    <record id="ir_cron_supp_admis" model="ir.cron">
+        <field name="name">Supprimer les apprenant ayant resulta (Admis)
         </field>
         <field name="model_id" ref="model_res_partner"/>
         <field name="active" eval="True"></field>
         <field name="state">code</field>
-        <field name="code">model.update_datesupp()</field>
-        <field name="interval_number">1</field>
+        <field name="code">model.supp_Réussie()</field>
+        <field name="interval_number">30</field>
         <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
-        <field name="priority" eval="5"/>
+        <field name="priority" eval="3"/>
     </record>
+    <!-- tache cron pour supprimer les apprenant repassage exman-->
+    <record id="ir_cron_rep_exman" model="ir.cron">
+        <field name="name">Reppasage exmman Vtc/TAXI
+        </field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="active" eval="True"></field>
+        <field name="state">code</field>
+        <field name="code">model.repasage_exman()</field>
+        <field name="interval_number">30</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="priority" eval="3"/>
+    </record>
+    <!-- tache cron pour importer la liste des event sur calendly -->
+    <record id="ir_crontype_event" model="ir.cron">
+        <field name="name">Ajouter Type event
+        </field>
+        <field name="model_id" ref="model_mcm_openedx_calendly_event"/>
+        <field name="active" eval="True"></field>
+        <field name="state">code</field>
+        <field name="code">model.event()</field>
+        <field name="interval_number">6</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="priority" eval="3"/>
+    </record>
+    <record id="ir_cron_event" model="ir.cron">
+        <field name="name">Ajouter event
+        </field>
+        <field name="model_id" ref="model_mcm_openedx_calendly_integration"/>
+        <field name="active" eval="True"></field>
+        <field name="state">code</field>
+        <field name="code">model.type_event()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">weeks</field>
+        <field name="numbercall">-1</field>
+        <field name="priority" eval="3"/>
+    </record>
+
     <!-- tache cron pour affecter les coaches selon la premiere personne qui a ecrit un comm -->
-    <record id="ir_cron_aff_coach" model="ir.cron">
+    <!--<record id="ir_cron_aff_coach" model="ir.cron">
         <field name="name">affecter les coaches selon la premiere personne qui a ecrit comm
         </field>
         <field name="model_id" ref="model_mcm_openedx_coach"/>
@@ -86,7 +127,7 @@
         <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
         <field name="priority" eval="3"/>
-    </record>
+    </record>-->
     <!-- tache cron pour  supprimer les apprenants
 
         <record id="ir_cron_supprimer_app" model="ir.cron">
@@ -100,42 +141,5 @@
             <field name="numbercall">-1</field>
             <field name="priority" eval="2"/>
         </record>
--->
-    <record id="ir_cron_aff_coach" model="ir.cron">
-        <field name="name">Supprimer les apprenant ayant resulta (Admis)
-        </field>
-        <field name="model_id" ref="model_res_partner"/>
-        <field name="active" eval="True"></field>
-        <field name="state">code</field>
-        <field name="code">model.supp_Réussie()</field>
-        <field name="interval_number">10</field>
-        <field name="interval_type">hours</field>
-        <field name="numbercall">-1</field>
-        <field name="priority" eval="3"/>
-    </record>
-
-    <record id="ir_crontype_event" model="ir.cron">
-        <field name="name">Ajouter Type event
-        </field>
-        <field name="model_id" ref="model_mcm_openedx_calendly_event"/>
-        <field name="active" eval="True"></field>
-        <field name="state">code</field>
-        <field name="code">model.event()</field>
-        <field name="interval_number">1</field>
-        <field name="interval_type">hours</field>
-        <field name="numbercall">-1</field>
-        <field name="priority" eval="3"/>
-    </record>
-    <record id="ir_cron_event" model="ir.cron">
-        <field name="name">Ajouter event
-        </field>
-        <field name="model_id" ref="model_mcm_openedx_calendly_integration"/>
-        <field name="active" eval="True"></field>
-        <field name="state">code</field>
-        <field name="code">model.type_event()</field>
-        <field name="interval_number">1</field>
-        <field name="interval_type">hours</field>
-        <field name="numbercall">-1</field>
-        <field name="priority" eval="3"/>
-    </record>
+  repasage_exman-->
 </odoo>

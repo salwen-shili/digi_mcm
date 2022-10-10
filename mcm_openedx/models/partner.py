@@ -957,15 +957,7 @@ class partner(models.Model):
                 }
             }
 
-    # Affecter la date de suppression
-    def update_datesupp(self):
-        for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                              ('numero_evalbox', '!=', False),
-                                                              ('statut_cpf', "!=", "canceled")
-                                                              ]):
 
-            if (partner):
-                partner.partner_id = partner.id
 
     # Suppression automatique du iOne
     def supprimer_automatique(self):
