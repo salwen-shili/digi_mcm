@@ -150,7 +150,7 @@ class MailThreadInherit(models.AbstractModel):
             message_dict.pop('parent_id', None)
             # check it does not directly contact catchall
             if catchall_alias and catchall_alias in email_to_localpart:
-                logger.info('Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce',
+                _logger.info('Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce',
                             email_from, email_to, message_id)
                 _logger.info('multipart/report')
                 _logger.info('multipart/report1 %s' % (str(email_to)))
