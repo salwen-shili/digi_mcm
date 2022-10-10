@@ -1322,73 +1322,8 @@ class partner(models.Model):
                     [("phone", "=", str(tel))], limit=1)
                 if not user:
                     phone_number = str(tel).replace(' ', '')
-                    if '+33' not in str(phone_number):  # check if edof api send the number of client with +33
-                        phone = phone_number[0:2]
-                        if str(phone) == '33' and ' ' not in str(
-                                tel):  # check if edof api send the number of client in this format (number_format: 33xxxxxxx)
-                            phone = '+' + str(tel)
-                            user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
-                            if not user:
-                                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
-                                                                                                 6:8] + ' ' + phone[
-                                                                                                              8:10] + ' ' + phone[
-                                                                                                                            10:]
-                                user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
-                            if not user:
-                                phone = '0' + str(phone[4:])
-                                user = self.env["res.users"].sudo().search(
-                                    ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
-                        phone = phone_number[0:2]
-                        if str(phone) == '33' and ' ' in str(
-                                tel):  # check if edof api send the number of client in this format (number_format: 33 x xx xx xx)
-                            phone = '+' + str(tel)
-                            user = self.env["res.users"].sudo().search(
-                                ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
-                            if not user:
-                                phone = '0' + str(phone[4:])
-                                user = self.env["res.users"].sudo().search(
-                                    ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
-                        phone = phone_number[0:2]
-                        if str(phone) in ['06', '07'] and ' ' not in str(
-                                tel):  # check if edof api send the number of client in this format (number_format: 07xxxxxx)
-                            user = self.env["res.users"].sudo().search(
-                                ['|', ("phone", "=", str(tel)), ("phone", "=", str('+33' + tel.replace(' ', '')[-9:]))],
-                                limit=1)
-                            if not user:
-                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
-                                                                                                 6:8] + ' ' + phone[8:]
-                                user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
-                            if not user:
-                                phone = '0' + str(phone[4:])
-                                user = self.env["res.users"].sudo().search(
-                                    ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
-                        phone = phone_number[0:2]
-                        if str(phone) in ['06', '07'] and ' ' in str(
-                                tel):  # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
-                            user = self.env["res.users"].sudo().search(
-                                ['|', ("phone", "=", str(tel)), str(tel).replace(' ', '')], limit=1)
-                            if not user:
-                                phone_number = str(tel[1:])
-                                user = self.env["res.users"].sudo().search(
-                                    ['|', ("phone", "=", str('+33' + phone_number)),
-                                     ("phone", "=", ('+33' + phone_number.replace(' ', '')))], limit=1)
-                    else:  # check if edof api send the number of client with+33
-                        if ' ' not in str(tel):
-                            phone = str(tel)
-                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
-                                                                                                                8:10] + ' ' + phone[
-                                                                                                                              10:]
-                            user = self.env["res.users"].sudo().search(
-                                [("phone", "=", phone)], limit=1)
-                        if not user:
-                            user = self.env["res.users"].sudo().search(
-                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
-                            if not user:
-                                phone = str(phone_number)
-                                phone = phone[3:]
-                                phone = '0' + str(phone)
-                                user = self.env["res.users"].sudo().search(
-                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
+                    res_users = self.env["res.users"]
+                    user = res_users.find_user_with_phone(str(tel))
 
             # if user:
             #     if not (user.partner_id.date_examen_edof) or not (user.partner_id.session_ville_id):
@@ -1476,15 +1411,6 @@ class partner(models.Model):
             client = self.env['res.partner'].sudo().search(
                 [('id', '=', user.partner_id.id)], limit=1)
             if client:
-                """Envoyez un SMS aux apprenants pour accepter leurs dossiers cpf."""
-                sms_body_ = "%s! Votre demande de financement par CPF a été validée. Connectez-vous sur moncompteformation.gouv.fr en partant dans l’onglet. Dossiers, Proposition de l’organisme, Financement, ensuite confirmer mon inscription." % (
-                    user.partner_id.company_id.name)  # content of sms
-                sms = self.env['mail.message'].sudo().search(
-                    [("body", "like", sms_body_), ("message_type", "=", 'sms'), ('partner_ids', 'in',  user.partner_id.id),
-                     ('model', "=", "res.partner")])
-                if not sms:
-                    _logger.info('if not sms %s' % str(sms_body_))
-                    self.send_sms(sms_body_, user.partner_id)
                 _logger.info("if client %s" % str(client.email))
                 _logger.info("dossier %s" % str(dossier))
                 client.mode_de_financement = 'cpf'
@@ -1506,6 +1432,16 @@ class partner(models.Model):
                 client.name = str(prenom) + " " + str(nom)
                 module_id = False
                 product_id = False
+                """Envoyez un SMS aux apprenants pour accepter leurs dossiers cpf."""
+                sms_body_ = "%s! Votre demande de financement par CPF a été validée. Connectez-vous sur moncompteformation.gouv.fr en partant dans l’onglet. Dossiers, Proposition de l’organisme, Financement, ensuite confirmer mon inscription." % (
+                    user.partner_id.company_id.name)  # content of sms
+                sms = self.env['mail.message'].sudo().search(
+                    [("body", "like", sms_body_), ("message_type", "=", 'sms'),
+                     ('partner_ids', 'in', user.partner_id.id),
+                     ('model', "=", "res.partner")])
+                if not sms:
+                    _logger.info('if not sms %s' % str(sms_body_))
+                    self.send_sms(sms_body_, user.partner_id)
                 if "digimoov" in str(module):
                     user.write({'company_ids': [1, 2], 'company_id': 2})
                     product_id = self.env['product.template'].sudo().search(
