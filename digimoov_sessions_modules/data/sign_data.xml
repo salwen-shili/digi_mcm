@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template inherit_id="sign.sign_template_mail_request" name="Document sign mail template">
+    <template id="sign.sign_template_mail_request" name="Document sign mail template">
             <head>
                 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -1493,10 +1493,4 @@
 
             </body>
     </template>
-    <template name="Inherit mail notification light" inherit_id="mail.mail_notification_light">
-            <xpath expr="//table/tbody" position="replace">
-                <span>Hello</span>
-            </xpath>
-
-        </template>
 </odoo>
