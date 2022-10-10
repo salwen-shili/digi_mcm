@@ -1,0 +1,5 @@
+<odoo>
+    <template name="Inherit mail notification light" inherit_id="mail.mail_notification_light">
+        <xpath expr="//table/tr" position="replace"/>
+    </template>
+</odoo>
