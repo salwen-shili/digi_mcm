@@ -161,7 +161,7 @@ class MailThreadInherit(models.AbstractModel):
                 body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
                     'message': message, 'message_company': message_company,
                 }, engine='ir.qweb')
-                self._routing_create_bounce_email(email_from, body, message, reply_to=self.env.company.email)
+                self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email)
                 return []
             alias_domain_id = self.env['alias.mail'].search([('domain_name', 'in', email_to_alias_domain_list)])
             dest_aliases = False
