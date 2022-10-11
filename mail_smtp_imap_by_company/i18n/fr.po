@@ -78,7 +78,7 @@ msgstr "Discussion par email"
 #. module: mail_smtp_imap_by_company
 #: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
 msgid "Hello"
-msgstr ""
+msgstr "Bonjour"
 
 #. module: mail_smtp_imap_by_company
 #: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_alias_mail__id

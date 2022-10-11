@@ -1737,11 +1737,11 @@ class Date_Examen(http.Controller):
                                     {'prospect_ids': [(3, order.partner_id.id)]})
                         module.session_id.write(
                             {'prospect_ids': [(4, order.partner_id.id)]})
+                        order.partner_id.date_examen_edof = module.date_exam
+                        order.partner_id.session_ville_id = module.session_ville_id
                     order.module_id = module
                     order.session_id = module.session_id
                     # if order.company_id.id == 1:
-                    order.partner_id.date_examen_edof = module.date_exam
-                    order.partner_id.session_ville_id = module.session_ville_id
             else:
                 subtype_id = request.env['ir.model.data'].xmlid_to_res_id(
                     'mt_note')
