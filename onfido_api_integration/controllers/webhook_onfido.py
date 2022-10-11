@@ -197,6 +197,8 @@ class OnfidoController(http.Controller):
                     if documents:
                         for document in documents:
                             document.state = "refused"
+                            request.env.cr.commit()
+
                 # self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"refused",currentUser)
                 # self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"refused",currentUser)
                 #
@@ -234,6 +236,7 @@ class OnfidoController(http.Controller):
                     if documents:
                         for document in documents:
                             document.state = "validated"
+                            request.env.cr.commit()
                     # self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"validated",currentUser)
                     # self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"validated",currentUser)
                     # else:

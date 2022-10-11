@@ -481,10 +481,34 @@ class partner(models.Model):
                 # if(resp_invit.status_code == 200):
                 #     invit=True
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
+                reactivated_id_user = False
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
                     # password = str(user.password360.encode('utf-8'))
                     email = partner.email
+
+                    # Ajouter i-One to table user
+
+                    data_user = {"mail": partner.email,
+                                 "password": partner.password360,
+                                 "firstName": partner.firstName,
+                                 "lastName": partner.lastName,
+                                 "phone": partner.phone,
+                                 "lang": "fr",
+                                 "sendCredentials": "false"}
+                    resp = requests.post(urluser, headers=headers, data=json.dumps(data_user))
+                    _logger.info('data_user %s' % str(data_user))
+                    respo = str(json.loads(resp.text))
+                    responce_api = json.loads(resp.text)
+                    _logger.info('response addd  %s' % respo)
+                    if (resp.status_code == 200):
+                        if responce_api['status'] == 'user_reactivated':
+                            reactivated_id_user = responce_api['_id']
+                        create = True
+                data_group = {}
+                # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
+                if (create):
+                    _logger.info('create %s' % user.login)
                     # Désactiver les notifications par email
                     data_email = json.dumps({
                         "usersEmails": [
@@ -494,26 +518,6 @@ class partner(models.Model):
                     resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers,
                                                     data=data_email)
                     _logger.info('desactiver email %s' % str(resp_unsub_email))
-                    # Ajouter i-One to table user
-
-                    data_user = {"mail": partner.email,
-                                 "password": partner.password360,
-                                 "firstName": partner.firstName,
-                                 "lastName": partner.lastName,
-                                 "phone": partner.phone,
-                                 "lang": "fr",
-                                 "sendCredentials": "true"}
-                    resp = requests.post(urluser, headers=headers, data=json.dumps(data_user))
-                    _logger.info('data_user %s' % str(data_user))
-                    respo = str(json.loads(resp.text))
-                    responce_api = json.loads(resp.text)
-                    _logger.info('response addd  %s' % respo)
-                    if (resp.status_code == 200):
-                        create = True
-                data_group = {}
-                # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
-                if (create):
-                    _logger.info('create %s' % user.login)
                     today = date.today()
                     new_format = '%d/%m/%Y'
                     # Changer format de date et la mettre en majuscule
@@ -524,7 +528,13 @@ class partner(models.Model):
                     #     """UPDATE res_partner SET date_creation = %s WHERE id=%s""", (date_ajout, partner.id,))
                     # self._cr.commit()
                     _logger.info('date_inscrit %s' % str(partner.date_creation))
+                    # if reactivated_id_user:
+                    # data_update_user_group={'groups': [], 'totalTimeSpentInMinutes':'false'}
 
+                    # id_user='63443c0cf7b84352954a4043'
+                    # userr_update=requests.put('https://digimoov.staging.360learning-dev.com/api/v1/users/'+id_user,params=params,headers=headers,data=data_update_user_group)
+                    # userrrr_update = json.loads(userr_update.text)
+                    # _logger.info('updatee userrr %s '%str(userrrr_update))
                     # Affecter i-One to groupe digimoov-bienvenue
                     urlgroup_Bienvenue = ' https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
 
@@ -628,6 +638,7 @@ class partner(models.Model):
                     """"we send sms to client contains link to register in 360learning."""
                     body = "Digimoov vous confirme votre inscription à la Formation capacité de transport de marchandises. RDV sur notre plateforme https://www.digimoov.fr/r/SnB"
                     self.send_sms(body, partner)
+                    self.env.cr.commit()
                 if not (create):
                     """Créer des tickets contenant le message  d'erreur pour service client et service IT
                     si l'apprenant n'est pas ajouté sur 360"""
