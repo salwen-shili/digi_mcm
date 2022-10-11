@@ -1,9 +1,14 @@
+var paymentMethod = 'all';
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     document.getElementById("cover-spin").remove();
-  }
+
+    // tourguide.start();
+
+}
 }
 document.addEventListener('DOMContentLoaded', function () {
+
   
   displayInstalmentPayment();
   var formation;
@@ -19,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .setAttribute('src', 'https://www.youtube.com/embed/vLIr9mckz8M');
   }
 
-  onchangeTextButton1();
+  // onchangeTextButton1();
 
   //event listener on change sale conditions input
   // send post request to update sale conditions for the client on server
@@ -69,16 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // add on change event listener to deepartment department in case 
 });
 
-//animation
-const sendData = (condition) => {
-  sendHttpRequest('POST', '/shop/payment/update_condition', {
-    params: {
-      condition: condition,
-    },
-  })
-    .then((responseData) => {})
-    .catch((err) => {});
-};
+
 var colors = ['#000000', '#fdd105', '#959595', '#d5a376', '#ff1e00'];
 function frame() {
   confetti({
@@ -96,34 +92,7 @@ function frame() {
     colors: colors,
   });
 }
-//xmlhttprequest
-const sendHttpRequest = (method, url, data) => {
-  const promise = new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open(method, url);
 
-    xhr.responseType = 'json';
-
-    if (data) {
-      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    }
-
-    xhr.onload = () => {
-      if (xhr.status >= 400) {
-        reject(xhr.response);
-      } else {
-        resolve(xhr.response);
-      }
-    };
-
-    xhr.onerror = () => {
-      reject('Something went wrong!');
-    };
-
-    xhr.send(JSON.stringify(data));
-  });
-  return promise;
-};
 //
 const addUserPlateform = () => {
   document.getElementById(
@@ -191,18 +160,7 @@ const addUserPlateform = () => {
     }
   });
 };
-//cpf accepted
-const cpfAccepted = () => {
-  sendHttpRequest('POST', '/shop/cpf_accepted', {})
-    .then((res) => {
-      if (res.result.state) {
-        addUserPlateform();
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+
 
 function onChangeCheckButton() {
   if (document.getElementById('options-date')) {
@@ -263,10 +221,10 @@ function verify_payment_method() {
     }
   }
 
-  stripe_pm = document.getElementById('stripe_pm');
+  var stripe_pm = document.getElementById('stripe_pm');
 
   if (stripe_pm) {
-    if (stripe_pm.checked == true) {
+    if (paymentMethod=="stripe_pm") {
       if (document.getElementById('from_bolt').value != 'False') {
         addcheckBoxBolt();
       } else {
@@ -276,20 +234,18 @@ function verify_payment_method() {
   }
   pole_emploi_pm = document.getElementById('pole_emploi_pm');
   if (pole_emploi_pm) {
-    if (pole_emploi_pm.checked == true) {
+    if (paymentMethod== "pole_emploi_pm") {
       window.location.href = '/new/ticket/pole_emploi';
     }
   }
-  cpf_pm = document.getElementById('cpf_pm');
+  var cpf_pm = document.getElementById('cpf_pm');
   // var state = 'accepted';
   var state = document.getElementById('state').value;
 
   if (cpf_pm) {
-    var emploichecked = false;
-    if (document.getElementById('pole_emploi_checkbox')) {
-      emploichecked = pole_emploi_checkbox.checked;
-    }
-    if (cpf_pm.checked == true || emploichecked == true) {
+    var emploichecked = paymentMethod == "pole_emploi_pm" ? true : false;
+    
+    if (paymentMethod == "cpf_pm" || emploichecked == true) {
       if (cpf_pm.value == 'Formation à distance TAXI') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
@@ -355,17 +311,23 @@ function showPopup() {
     document.getElementById('error_no_date').style.display = 'inline-block';
     return;
   }
+  if (!['pole_emploi_pm', 'stripe_pm' , 'cpf_pm'].includes(paymentMethod)){
+    document.getElementById('error_no_method').style.display = 'inline-block';
+    return;
+  }
+  document.getElementById('error_no_method').style.display = 'none';
   document.getElementById('error_no_date').style.display = 'none';
   var optionsDate = document.getElementById('options-date').value;
   var cpfChecked = false;
   if (document.getElementById('cpf_pm')) {
-    cpfChecked = document.getElementById('cpf_pm').checked;
+    cpfChecked = paymentMethod == "cpf_pm" ? true: false;
   }
   var continueBtn = document.getElementById('continueBtn');
   var textbtn;
   var polechecked = false;
-  if (document.getElementById('pole_emploi_checkbox')) {
-    polechecked = pole_emploi_checkbox.checked;
+  if (document.getElementById('pole_emploi_pm')) {
+    polechecked = paymentMethod == "pole_emploi_pm" ? true: false;
+   
   }
   cpfChecked || polechecked
     ? (textbtn = 'Mobiliser mon CPF')
@@ -448,9 +410,9 @@ function closepopup(msg) {
 function hidePoleEmploiDetails() {
   if (document.getElementById('pole-emploi-details')) {
     document.getElementById('pole-emploi-details').classList.add('hide');
-    if (document.getElementById('arrow-down-pole-emploi')) {
-      document.getElementById('arrow-down-pole-emploi').classList.add('hide');
-    }
+    // if (document.getElementById('arrow-down-pole-emploi')) {
+    //   document.getElementById('arrow-down-pole-emploi').classList.add('hide');
+    // }
   }
 }
 //show pole emploie details
@@ -467,18 +429,18 @@ function showPoleEmploiDetails() {
 function hideCpfDetails() {
   if (document.getElementById('cpf-details')) {
     document.getElementById('cpf-details').classList.add('hide');
-    if (document.getElementById('arrow-down')) {
-      document.getElementById('arrow-down').classList.add('hide');
-    }
+    // if (document.getElementById('arrow-down')) {
+    //   document.getElementById('arrow-down').classList.add('hide');
+    // }
   }
 }
 //show pole emploie details
 function showCpfDetails() {
   if (document.getElementById('cpf-details')) {
     document.getElementById('cpf-details').classList.remove('hide');
-    if (document.getElementById('arrow-down')) {
-      document.getElementById('arrow-down').classList.remove('hide');
-    }
+    // if (document.getElementById('arrow-down')) {
+    //   document.getElementById('arrow-down').classList.remove('hide');
+    // }
   }
 }
 
@@ -487,28 +449,19 @@ function showCpfDetails() {
 
 function onchangeTextButton() {
   //hide cpf details when pole_emploi is checked
-  if (document.getElementById('pole_emploi_checkbox')) {
-    if (pole_emploi_checkbox.checked) {
+  if (document.getElementById('pole_emploi_pm')) {
+    if (paymentMethod == "pole_emploi_pm") {
       //send pole emploi checked = true
       //hide cpf details
-      hideCpfDetails();
-      //show pole emploi details
-      showPoleEmploiDetails();
-      sendPoleEmploiState(pole_emploi_checkbox.checked);
-      if (document.getElementById('cpf-details')) {
-        document.getElementById('cpf-details').classList.add('hide');
-        if (document.getElementById('arrow-down')) {
-          document.getElementById('arrow-down').classList.add('hide');
-        }
-      }
-    } else if (cpf_pm.checked){
+      poleEmploieFixDisplay();
+    } else if (paymentMethod == "cpf_pm"){
       //show cpf 
       showCpfDetails();
       //hide poleEmploi details
       hidePoleEmploiDetails();
 
       //send pole emploi checked
-      sendPoleEmploiState(pole_emploi_checkbox.checked);
+      sendPoleEmploiState(paymentMethod == "pole_emploi_pm");
     } else{
      
         //show cpf 
@@ -517,7 +470,7 @@ function onchangeTextButton() {
         hidePoleEmploiDetails();
   
         //send pole emploi checked
-        sendPoleEmploiState(pole_emploi_checkbox.checked);
+        sendPoleEmploiState(paymentMethod == "pole_emploi_pm");
     }
   }
   if (document.getElementById('pm_shop_checkout2')) {
@@ -533,11 +486,19 @@ function onchangeTextButton() {
     order_amount_to_pay.style.display = 'none';
   }
 }
+function poleEmploieFixDisplay() {
+  hideCpfDetails();
+  //show pole emploi details
+  showPoleEmploiDetails();
+  sendPoleEmploiState(paymentMethod == "pole_emploi_pm");
+  
+}
+// carte bleu selected
 function onchangeTextButton1() {
-  if (document.getElementById('pole_emploi_checkbox')) {
+  if (document.getElementById('pole_emploi_pm')) {
     //hide poleEmploi details
 
-    sendPoleEmploiState(pole_emploi_checkbox.checked);
+    sendPoleEmploiState(false);
     //send pole emploi checked
     hidePoleEmploiDetails();
   }
@@ -548,12 +509,7 @@ function onchangeTextButton1() {
   if (document.getElementById('pm_shop_checkout2')) {
     document.getElementById('pm_shop_checkout2').innerText = 'Passer au paiement';
   }
-  if (document.getElementById('cpf-details')) {
-    document.getElementById('cpf-details').classList.add('hide');
-    if (document.getElementById('arrow-down')) {
-      document.getElementById('arrow-down').classList.add('hide');
-    }
-  }
+  hideCpfDetails()
 
   displayInstalmentPayment(); //show instalment
   displayPromo(); //show promo
@@ -653,7 +609,7 @@ function displayInstalmentPayment() {
 }
 function displayPromo() {
   if (document.getElementById('stripe_pm')) {
-    if (document.getElementById('stripe_pm').checked) {
+    if (paymentMethod == "stripe_pm") {
       showPromo();
     } else {
       hidePromo();
@@ -713,35 +669,7 @@ function hidePromo() {
 //   }
 // }
 
-const update_driver_licence = (driver_licence) => {
-  sendHttpRequest('POST', '/shop/update_driver_licence', {
-    params: {
-      driver_licence: driver_licence,
-    },
-  })
-    .then((responseData) => {})
-    .catch((err) => {});
-};
 
-const update_license_suspension = (license_suspension) => {
-  sendHttpRequest('POST', '/shop/update_license_suspension', {
-    params: {
-      license_suspension: license_suspension,
-    },
-  })
-    .then((responseData) => {})
-    .catch((err) => {});
-};
-
-const update_criminal_record = (criminal_record) => {
-  sendHttpRequest('POST', '/shop/update_criminal_record ', {
-    params: {
-      criminal_record: criminal_record,
-    },
-  })
-    .then((responseData) => {})
-    .catch((err) => {});
-};
 //boltPopupContent
 const popContent = `
 <b>
@@ -859,23 +787,9 @@ const addcheckBoxBolt = () => {
     update_criminal_record(inputCriminalRecord.checked);
   });
 };
-//emploie state value
-// Création d'une fonction showpoleemploidetails pour afficher les détails de pole emploi et hidepoleemploidetails pour masquer les détails pole emploi.
-// // Création d'une fonction sendpoleemploistate qui récupère l'état de radio button et envoyer cet état au backend avec un post request vers /shop/cart/update_pole_emploi  (checked : true ou false)
-// // Cette méthode est utilise à chaque clic d'un radio button
-const sendPoleEmploiState = (pole_emploi_state) => {
-  sendHttpRequest('POST', '/shop/cart/update_pole_emploi', {
-    params: {
-      pole_emploi_state: pole_emploi_state,
-    },
-  })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+
+
+
 function resetPopupBolt() {
   var popupcontent = document.getElementById('popupcontent');
   popupcontent.innerHTML = popupContentinit;
@@ -900,7 +814,7 @@ function paiementBolt() {
 }
 
 //Show departement for taxi 
-function showDepartement(){
+ function showDepartement(){
   if (document.getElementById("departement_examen")){
     const departement = document.getElementById("departement_examen")
     if ( departement.classList.contains("hide")){
@@ -910,19 +824,7 @@ function showDepartement(){
 }
 }
 
-const sendExamDepartement = (department_id) => {
-  sendHttpRequest('POST', '/shop/cart/update_exam_department', {
-    params: {
-      department_id: department_id,
-    },
-  })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+
 
 
 
@@ -957,5 +859,225 @@ const sendExamDepartement = (department_id) => {
 
 
 //   }
+
+// Base function mode de financement
+
+function modeFinancement(mode){
+ paymentMethod= mode;
+  switch (mode) {
+
+    case "stripe_pm":
+      onchangeTextButton1();
+      update_cartebleu(true)
+      
+    break;
+    case "cpf_pm":
+      onchangeTextButton();
+      
+      update_cpf(true);
+      showCpfDetails();
+      fixDisplay()
+      
+    break;
+    case "pole_emploi_pm" :
+      onchangeTextButton();
+      sendPoleEmploiState(true);
+      
+      fixDisplay()
+      poleEmploieFixDisplay()
+    break;
+    case "pm_none":
+      hideCpfDetails();
+      hidePoleEmploiDetails();
+    break;
+  
+    default:
+    break;
+  }
+}
+
+ 
+// fix display whene selecting pole emploi or cpf 
+// paiement en plusieur fois 
+// code promo 
+function fixDisplay(){
+  
+
+   if (document.getElementById('promo_code')) {
+     document.getElementById('promo_code').style.display = 'none';
+   }
+   if (document.getElementById('promo_button')) {
+     document.getElementById('promo_button').style.display = 'none';
+   }
+   if (document.getElementById('promo_input')) {
+     document.getElementById('promo_input').style.display = 'none';
+   }
+   if (document.getElementById('order_instalment')) {
+     document.getElementById('order_instalment').style.display = 'none';
+     document.getElementById('order_instalment_number').style.visibility =
+       'hidden';
+     if (document.getElementById('order_instalment_number_order')) {
+       document.getElementById('order_instalment_number_order').style.visibility =
+         'hidden';
+     }
+     document.getElementById('order_amount_to_pay').style.display = 'none';
+     if (document.getElementById('order_amount_to_pay_amount')) {
+       document.getElementById('order_amount_to_pay_amount').style.display =
+         'none';
+     }
+   }
+}
+
+// 
+
+
+//animation
+const sendData = (condition) => {
+  sendHttpRequest('POST', '/shop/payment/update_condition', {
+    params: {
+      condition: condition,
+    },
+  })
+    .then((responseData) => {})
+    .catch((err) => {});
+};
+
+//cpf accepted
+const cpfAccepted = () => {
+  sendHttpRequest('POST', '/shop/cpf_accepted', {})
+    .then((res) => {
+      if (res.result.state) {
+        addUserPlateform();
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+ const update_driver_licence = (driver_licence) => {
+  sendHttpRequest('POST', '/shop/update_driver_licence', {
+    params: {
+      driver_licence: driver_licence,
+    },
+  })
+    .then((responseData) => {})
+    .catch((err) => {});
+};
+
+ const update_license_suspension = (license_suspension) => {
+  sendHttpRequest('POST', '/shop/update_license_suspension', {
+    params: {
+      license_suspension: license_suspension,
+    },
+  })
+    .then((responseData) => {})
+    .catch((err) => {});
+};
+
+ const update_criminal_record = (criminal_record) => {
+  sendHttpRequest('POST', '/shop/update_criminal_record ', {
+    params: {
+      criminal_record: criminal_record,
+    },
+  })
+    .then((responseData) => {})
+    .catch((err) => {});
+};
+
+//emploie state value
+// Création d'une fonction showpoleemploidetails pour afficher les détails de pole emploi et hidepoleemploidetails pour masquer les détails pole emploi.
+// // Création d'une fonction sendpoleemploistate qui récupère l'état de radio button et envoyer cet état au backend avec un post request vers /shop/cart/update_pole_emploi  (checked : true ou false)
+// // Cette méthode est utilise à chaque clic d'un radio button
+const sendPoleEmploiState = (pole_emploi_state) => {
+  sendHttpRequest('POST', '/shop/cart/update_pole_emploi', {
+    params: {
+      pole_emploi_state: pole_emploi_state,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+ const sendExamDepartement = (department_id) => {
+  sendHttpRequest('POST', '/shop/cart/update_exam_department', {
+    params: {
+      department_id: department_id,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// send carte_bleu selection
+const update_cartebleu = (cartebleu) => {
+  sendHttpRequest('POST', '/shop/payment/update_cartebleu',
+   {
+    params: {
+      cartebleu: cartebleu,
+    }
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// send cpf selection
+const update_cpf = (cpf) => {
+  sendHttpRequest('POST', '/shop/payment/update_cpf',
+   {
+    params: { cpf: cpf }
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+
+
+
+//xmlhttprequest
+const sendHttpRequest = (method, url, data) => {
+  const promise = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+
+    xhr.responseType = 'json';
+
+    if (data) {
+      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    }
+
+    xhr.onload = () => {
+      if (xhr.status >= 400) {
+        reject(xhr.response);
+      } else {
+        resolve(xhr.response);
+      }
+    };
+
+    xhr.onerror = () => {
+      reject('Something went wrong!');
+    };
+
+    xhr.send(JSON.stringify(data));
+  });
+  return promise;
+};
 
 

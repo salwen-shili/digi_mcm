@@ -62,7 +62,6 @@
 
     <template id="mcm_website_sale_total" inherit_id="website_sale.total">
 
-
         <xpath expr="//tr[@id='order_total_taxes']" position="after">
             <tr id="order_instalment" t-if="website_sale_order.instalment_number&gt;1 and website_sale_order.pricelist_id and website_sale_order.pricelist_id.id==1" style="visibility:visible">
                 <td class="text-right border-0">
@@ -86,6 +85,29 @@
                 </tr>
             </body>
         </xpath>
+
+        <xpath expr="//tr[@id='order_total_untaxed']" position="before">
+            <t t-foreach="website_sale_order.website_order_line" t-as="line">
+              
+                  
+                    <tr t-if="line.product_id.product_tmpl_id" class="tr-product_name">
+                        <div style="    margin-right: 11px;">
+                            <t t-call="website_sale.cart_line_product_link">
+                                <strong t-field="line.name_short"/>
+                            </t>
+                            <span class="td-action float-right">
+                                <a href="#" aria-label="Remove from cart" title="Remove from cart" class="js_delete_product no-decoration"> <small><i class="fa fa-trash-o"/></small></a>
+                            </span>
+                        </div>
+                      
+                     
+                    </tr>
+                   
+                  
+                    
+            
+            </t>
+        </xpath>
         <xpath expr="//tr[@id='order_total']" position="after">
             <body>
                 <tr id="order_amount_to_pay" style="visibility: hidden;">
@@ -105,7 +127,12 @@
     <!-- change mode de financement and cpf details  -->
     <template id="mcm_website_sale_cart_lines" inherit_id="website_sale.cart_lines">
         <xpath expr="//td[4]" position="replace">
-            <div class="css_quantity input-group mx-auto" style="visibility:hidden;">
+            <style>
+                #cart_products{
+                    display:none;
+                }
+            </style>
+            <div class="css_quantity input-group mx-auto" style="display:none">
                 <div class="input-group-prepend">
                     <a t-attf-href="#" class="btn btn-link js_add_cart_json d-none d-md-inline-block" aria-label="Remove one" title="Remove one">
                         <i class="fa fa-minus"></i>
@@ -129,17 +156,31 @@
             </p>
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
                 <!-- Mode de financement -->
-                <h3 class="" style="margin-top: 1rem; font-weight: 600;font-size:19px">
+                <h3 class="" style="margin-top: 1rem; font-weight: 600;font-size:19px" data-tour="step: 3; title: Mode de financement; content:Apres selectionner votre date vous pouvez choisir votre mode de financement Carte de credit ou CPF ou Pole emploie">
                     Mode de financement
                 </h3>
-            </t>
-            <div class="card-body o_payment_acquirer_select " style="padding-bottom: 0px !important;">
+          
+            <select id="financement" onchange="modeFinancement(this.options[this.selectedIndex].id)">
+                <option value="all" id="pm_none">Selectionner votre mode de financement</option>
+                <option id="stripe_pm" name="pm_method" class="" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short">Carte de crédit</option>
+               <t t-if="line.product_id.product_tmpl_id.cpf_available">
+                <option id="cpf_pm" name="pm_method" data-acquirer-id="16" data-form-payment="True" data-provider="transfer" class=""  t-att-value="line.name_short" >CPF</option>
+                <option id="pole_emploi_pm" t-att-value="line.name_short">Pôle emploi</option>
+               </t>
+            </select>
+            <br/>
+            <p id="error_no_method" class="alert alert-warning" style="margin-left:0%;display:none;">
+                Sélectionner votre mode de financement.
+            </p>
+        </t>
+            
+            <!-- <div class="card-body o_payment_acquirer_select " style="padding-bottom: 0px !important;">
                 <t t-foreach="website_sale_order.website_order_line" t-as="line">
                     <label for="stripe_pm" class="radio ">
                         <input id="stripe_pm" type="radio" name="pm_method" class="hidden" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short" checked="True" t-attf-onclick="onchangeTextButton1()" />
                         <span class="label"></span>
                         Carte de crédit
-                        <span class="col-lg-12  " style=""></span>
+                        <span class="col-lg-12" style=""></span>
                         <t t-if="website_sale_order.instalment_number>1 and website_sale_order.pricelist_id.id==1">
                             <p style="font-style: italic;font-size: 12px; margin-bottom: 0rem !important;padding-left: 31px;">
                                 <span>Paiement en</span>
@@ -171,9 +212,9 @@
                         </li>
                     </ul>
                 </t>
-            </div>
+            </div> -->
 
-            <div class="card-body o_payment_acquirer_select cpf_spacing">
+            <!-- <div class="card-body o_payment_acquirer_select cpf_spacing">
                 <t t-foreach="website_sale_order.website_order_line" t-as="line">
                     <label for="cpf_pm" class="radio " t-if="line.product_id.product_tmpl_id.cpf_available">
                         <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True" data-provider="transfer" class="hidden" id="cpf_pm" t-att-value="line.name_short" t-attf-onclick="onchangeTextButton()" />
@@ -204,7 +245,7 @@
                         </li>
                     </ul>
                 </t>
-            </div>
+            </div> -->
 
             <div id="cpf-details" class="hide">
                 <h5 style="
@@ -244,7 +285,7 @@
                 </div>
             </div>
             <!-- pole emploie radui button-->
-            <div class="card-body o_payment_acquirer_select cpf_spacing">
+            <!-- <div class="card-body o_payment_acquirer_select cpf_spacing">
                 <t t-foreach="website_sale_order.website_order_line" t-as="line">
                     <label for="pole_emploi_checkbox" class="radio" t-if="line.product_id.product_tmpl_id.cpf_available">
                         <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True" data-provider="transfer" class="hidden" id="pole_emploi_checkbox" t-att-value="line.name_short" t-attf-onclick="onchangeTextButton()" />
@@ -254,8 +295,8 @@
                             Financer votre formation avec pôle emploi
                         </p>
                     </label>
-                    <!-- logo and arrow down pole emploi-->
-                    <!-- Ajouter le logo et une phrase descriptive-->
+                    logo and arrow down pole emploi
+                    Ajouter le logo et une phrase descriptive
                     <ul class="cpf_position" t-if="line.product_id.product_tmpl_id.cpf_available">
                         <li class="list-inline-item">
                             <span>
@@ -276,7 +317,7 @@
                         </li>
                     </ul>
                 </t>
-            </div>
+            </div> -->
             <!-- Intégrer la vidéo explicative pour pole emploie-->
             <div id="pole-emploi-details" class="hide">
                 <h5 style="
@@ -478,7 +519,9 @@
                     </div>
                 </div>
             </div>
-           <!-- SPINNER FOR LOADING SCREEN-->
+            <!-- Tour guide css-->
+            <link href="/mcm_website_theme/static/src/css/tourguide.css " rel="stylesheet" type="text/css" />
+            <!-- SPINNER FOR LOADING SCREEN-->
            <style>
 
             #cover-spin {
@@ -518,12 +561,12 @@
 
         </style>
         <div id="cover-spin"></div>
-
            <!-- End SPINNER -->
+          
         
             <div style="margin:auto;background-color:#fff;border-color:#585959;" t-if="request.website.is_public_user()==False and modules_mcm" id="region_date_examen">
 
-                <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;">
+                <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;" >
                     Veuillez sélectionner votre date d'examen
                 </h3>
 
@@ -533,7 +576,7 @@
                     <b>
                         <div style="margin-left:0%;" id="exam_center">
                             
-                            <select name="region_examen" id="region_examen" class="form-control search-slt " t-if="modules_mcm" onclick="showDepartement()">
+                            <select name="region_examen" id="region_examen" class="form-control search-slt " t-if="modules_mcm" onclick="showDepartement()" data-tour="step: 1; title: Region d'examen; content: Vous commencez par choisir votre region d'examen">
                                 <option value="all" id="all">Sélectionnez votre région d'examen</option>
                                 <t t-if="from_bolt == 'False'">
                                     <t t-foreach="list_villes_mcm" t-as="ville">
@@ -562,7 +605,7 @@
                           
                             <t t-if="is_taxi == 'True'  "  >
                                 <br/>
-                                <select name="departement_examen_data" id="departement_examen_data" class="form-control search-slt  " t-if="modules_mcm" style="display:none">
+                                <select name="departement_examen_data" id="departement_examen_data" class="form-control search-slt  " t-if="modules_mcm" style="display:none" >
                                     <option value="all" id="all"> Sélectionnez votre département d'examen</option>
                                 
                                         <t t-foreach="france_departments" t-as="departement">
@@ -575,7 +618,7 @@
                                             </t>
                                          </t>
                                 </select>
-                                <select name="departement_examen" id="departement_examen" class="form-control search-slt hide " t-if="modules_mcm">
+                                <select name="departement_examen" id="departement_examen" class="form-control search-slt  " t-if="modules_mcm" data-tour="step: 2; title: Département d'examen; content: Une fois que vous avez choisi votre région, vous devez choisir votre  département d'examen.">
                                     <option value="all" id="all">
                                         Sélectionnez votre département d'examen
                                     </option>
@@ -613,7 +656,7 @@
                             </p> -->
                         </div>
                         <div id="select-date" style="margin-left: 0%">
-                            <select name="date_examen" id="options-date" class="form-control search-slt" style="display:none">
+                            <select name="date_examen" id="options-date" class="form-control search-slt" style="" data-tour="step: 3; title: Date d'examen ; content: Apres choisir votre region, vous devez choisir la date de votre d'examen.">
                                 <option value="all" id="all">
                                     Sélectionnez votre date d'examen
                                 </option>
@@ -632,11 +675,12 @@
 
     <template id="mcm_website_sale_short_cart_summary" inherit_id="website_sale.short_cart_summary">
         <xpath expr="//a[@class='btn btn-secondary float-right d-none d-xl-inline-block']" position="replace">
-            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right d-none d-xl-inline-block disabled" id="pm_shop_checkout" onclick="showPopup()">
+            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right d-none d-xl-inline-block disabled" id="pm_shop_checkout" onclick="showPopup()" >
                 <span id="pm_shop_checkout_text">Passer au paiement</span>
             </button>
         </xpath>
     </template>
+ 
 
     <template id="mcm_website_sale_product_quantity" inherit_id="website_sale.product_quantity">
         <xpath expr="//div[@class='css_quantity input-group']" position="replace"></xpath>
@@ -751,11 +795,23 @@
                 <meta name="robots" content="noindex" />
             </t>
         </xpath>
+        <xpath expr="//div[@id='wrap']" position="after">
+              <!-- JS assets at the end of code-->
+            <script  type="text/javascript" src="/mcm_website_theme/static/src/js/tourguide.min.js" ></script>
+            <script>
+                var tourguide = new Tourguide({
+     
+                  
+                  
+                  });
+            </script>
+             <!-- JS assets at the end of code-->
+        </xpath>
         <!-- hide the second button return to shop on bottom-->
         <xpath expr="//a[@class='btn btn-secondary mb32']" position="replace"></xpath>
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
 
-            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right disabled" id="pm_shop_checkout2" onclick="showPopup()">
+            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right disabled" id="pm_shop_checkout2" onclick="showPopup()" data-tour="step: 4; title: Payement; content: Vous pouvez maintenant procéder au paiement en cliquant sur le bouton passer au paiement.">
                 <span id="pm_shop_checkout_text">Passer au paiement</span>
             </button>
         </xpath>
