@@ -41,13 +41,13 @@ class partner(models.Model):
     # Si ajournée + absence sans justification == > Supprimer
     # Si présent  + échec = > Supprimer ==> 100 Euro => Ajouter
     # Si ajournée + Absente = > Supprimer == > 200 Euro => Ajouter
-    # def test_url(self):
-    #     return {
-    #         "type": "ir.actions.act_window",
-    #         "res_model": self._name,
-    #         "view_mode": "form",
-    #         "res_id": self.id
-    #     }
+    def test_url(self):
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": self._name,
+            "view_mode": "form",
+            "res_id": self.id
+        }
     def repasage_exman(self):
         for partner in self.env['res.partner'].sudo().search(
                 [('company_id', '=', 1), ('module_id', '!=', False), ('state', '!=', "ancien")]):
