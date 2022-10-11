@@ -31,9 +31,8 @@ class search(models.Model):
         sessions = super(search, self).write(vals)
         last_session_line = self.env['partner.sessions'].search(
             [('client_id', '=', self.id), ('session_id', '=', self.mcm_session_id.id)], limit=1)
-        if 'total_time_hours' in vals or 'date_creation' in vals or 'reactions' in vals or 'averageScore' in vals or 'last_login' in vals or 'mode_de_financement' in vals or 'etat_financement_cpf_cb' in vals or 'numero_cpf' in vals:
+        if 'total_time_hours' in vals or 'date_creation' in vals or 'averageScore' in vals or 'last_login' in vals or 'mode_de_financement' in vals or 'etat_financement_cpf_cb' in vals or 'numero_cpf' in vals:
             last_session_line.date_creation = self.date_creation
-            last_session_line.reactions = self.reactions
             last_session_line.average_score = self.averageScore
             last_session_line.last_login = self.last_login
             last_session_line.folder_number_cpf = self.numero_cpf
