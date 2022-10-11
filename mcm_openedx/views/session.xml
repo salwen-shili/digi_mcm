@@ -15,7 +15,7 @@
             </search>
         </field>
     </record>
-     Vue Form session
+  <!--   Vue Form session
   <record model="ir.ui.view" id="learning_session_form_view">
         <field name="name">Session</field>
         <field name="model">mcmacademy.session</field>
@@ -31,7 +31,7 @@
                 />
             </field>
         </field>
-    </record>
+    </record>-->
     <record model="ir.ui.view" id="session_tree_view">
         <field name="name">Sessions</field>
         <field name="model">mcmacademy.session</field>
