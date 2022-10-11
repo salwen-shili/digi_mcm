@@ -52,19 +52,6 @@ class MailThreadInherit(models.AbstractModel):
     
     _inherit = 'mail.thread'
     
-    def _routing_create_bounce_email(self, email_from, body_html, message, **mail_values):
-        bounce_to = tools.decode_message_header(message, 'Return-Path') or email_from
-        bounce_mail_values = {
-            'body_html': body_html,
-            'subject': 'Re: %s' % message.get('subject'),
-            'email_to': bounce_to,
-            'auto_delete': True,
-        }
-        bounce_from = self.env['ir.mail_server']._get_default_bounce_address()
-        if bounce_from:
-            bounce_mail_values['email_from'] = 'MAILER-DAEMON <%s>' % bounce_from
-        bounce_mail_values.update(mail_values)
-        self.env['mail.mail'].create(bounce_mail_values).send()
     @api.model
     def message_route(self, message, message_dict, model=None, thread_id=None, custom_values=None):
         if not isinstance(message, Message):
@@ -161,7 +148,7 @@ class MailThreadInherit(models.AbstractModel):
                 body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
                     'message': message, 'message_company': message_company,
                 }, engine='ir.qweb')
-                self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email)
+                self._routing_create_bounce_email(email_from, body, message, reply_to=self.env.company.email)
                 return []
             alias_domain_id = self.env['alias.mail'].search([('domain_name', 'in', email_to_alias_domain_list)])
             dest_aliases = False
