@@ -109,7 +109,7 @@
 
     <!-- menu des villes sera afficher apres menu configuration dans l'interface de convocation-->
     <menuitem id="rapport_action" name="Rapport Marketing/Finance"
-              parent="account.menu_finance"
+              parent="main_mcm_openedx_menu"
               sequence="5"/>
     <menuitem id="rapport_action_cpf" name="Rapport Marketing/Finance"
               parent="rapport_action"
