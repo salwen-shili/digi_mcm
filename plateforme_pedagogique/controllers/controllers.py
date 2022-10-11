@@ -508,7 +508,7 @@ class WebhookController(http.Controller):
                      ('model', "=", "res.partner")])
                 if not sms:
                     _logger.info('if not sms %s' % str(sms_body_contenu))
-                    self.send_sms(sms_body_contenu, user.partner_id)
+                    user.partner_id.send_sms(sms_body_contenu, user.partner_id)
 
         if not user:
             # créer
@@ -890,6 +890,7 @@ class WebhookController(http.Controller):
                                     [("body", "=", body), ("message_type", "=", 'sms'),
                                      ("res_id", "=", user.partner_id.id)])
                                 if not sms:
+                                    
                                     composer.action_send_sms()  # we send sms to client contains link to register in cma.
                                 if user.partner_id.phone:
                                     user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
