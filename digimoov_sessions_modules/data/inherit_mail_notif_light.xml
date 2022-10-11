@@ -1,9 +1,47 @@
 <odoo>
     <template name="Inherit mail notification light" id="mail.mail_notification_light">
-        <xpath expr="//table/tr" position="replace">
-            <div>
-                <t t-call="sign.sign_template_mail_request"/>
-            </div>
+        <xpath expr="//table" position="replace">
+            <tr>
+                <td align="center">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590"
+                           style="padding: 24px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tbody>
+                            <!-- HEADER -->
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%"
+                                           style="background-color: white; padding: 0; border-collapse:separate;">
+                                        <tr>
+                                            <td valign="middle" align="right">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align:center;">
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <!-- CONTENT -->
+                            <tr>
+                                <td style="min-width: 590px;">
+                                    <t t-raw="message.body"/>
+                                </td>
+                            </tr>
+                            <!-- FOOTER -->
+                            <tr>
+                                <td align="center" style="min-width: 590px; padding: 0 8px 0 8px; font-size:11px;">
+
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <!-- POWERED BY -->
+            <tr></tr>
         </xpath>
     </template>
 </odoo>
