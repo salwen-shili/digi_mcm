@@ -93,7 +93,7 @@ class PaymentStripeAcquirer(models.Model):
                 'customer': self.payment_token_id.acquirer_ref,
                 'items[0][price]': RECURRING_PRICE_ID,
                 'default_payment_method': self.payment_token_id.stripe_payment_method,
-                'cancel_at': date_canceled
+                #'cancel_at': date_canceled
             }
             _logger.info('_create_stripe_subsription: Sending values to stripe, values:\n%s',
                          pprint.pformat(subscription_data))
