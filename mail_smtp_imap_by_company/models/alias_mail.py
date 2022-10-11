@@ -145,12 +145,12 @@ class MailThreadInherit(models.AbstractModel):
                 if 'digimoov' in email_to:
                     company = 2
                 _logger.info('multipart/report1 %s' % (str(email_to)))
-                _logger.info('reply to :  %s' % (str(self.env.company.email)))
-                _logger.info('reply to1 :  %s' % (str(message_company.email)))
                 message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
                 body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
                     'message': message, 'message_company': message_company,
                 }, engine='ir.qweb')
+                _logger.info('reply to :  %s' % (str(self.env.company.email)))
+                _logger.info('reply to1 :  %s' % (str(message_company.email)))
                 self._routing_create_bounce_email(email_from, body, message, reply_to=self.env.company.email)
                 return []
             alias_domain_id = self.env['alias.mail'].search([('domain_name', 'in', email_to_alias_domain_list)])
