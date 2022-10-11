@@ -1,3 +1,7 @@
+:root {
+  --blue-shop: #086ce3;
+  --green-shop: #009929;
+}
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +11,17 @@ html {
   height: 100%;
   /* background: #232121 !important; */
 }
+.select-shop{
+  color: var(--green-shop);
+  font-weight: 700;
+
+}
+.btn-shop{
+  background-color: var(--blue-shop);
+  border-color:var(--blue-shop) ;
+  font-weight: 700;
+}
+
 
 .p_class {
   color: #000000d4;

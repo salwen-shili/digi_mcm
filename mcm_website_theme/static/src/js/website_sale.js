@@ -380,3 +380,16 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
   });
 });
 //
+
+  publicWidget.registry.websiteSaleCart = publicWidget.Widget.extend({
+     selector: '.oe_website_sale .oe_cart',
+     events: {
+         'click .js_delete_product': '_onClickDeleteProduct',
+     },
+  
+      _onClickDeleteProduct: function (ev) {
+         ev.preventDefault();
+         console.log('_onClickDeleteProduct digimoov');
+         $(ev.currentTarget).closest('tr').find('.js_quantity').val(0).trigger('change');
+     }
+  });

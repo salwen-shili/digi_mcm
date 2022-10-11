@@ -305,6 +305,11 @@ function verify_payment_method() {
   }
 }
 
+function hideError_no_method(){
+  if (document.getElementById('error_no_method').style.display == 'inline-block') document.getElementById('error_no_method').style.display = 'none';
+
+}
+
 //show popup if date is selected
 function showPopup() {
   if (!document.getElementById('options-date')) {
@@ -335,11 +340,25 @@ function showPopup() {
 
   if (optionsDate != 'all' && optionsDate != '') {
     document.getElementById('error_choix_date_popup').style.display = 'none';
-    continueBtn.innerText = textbtn;
-    window.location.href = '#popup1';
+    
   } else {
     document.getElementById('error_choix_date').style.display = 'inline-block';
+    return
   }
+  let departement ='' ;
+if (document.getElementById("departement_examen")){
+  departement = document.getElementById("departement_examen").value;
+  if (departement != 'all' && departement != '') {
+    document.getElementById('error_choix_departement').style.display = 'none';
+  
+  } else {
+    document.getElementById('error_choix_departement').style.display = 'inline-block';
+    return
+  }
+} 
+  
+  continueBtn.innerText = textbtn;
+  window.location.href = '#popup1';
 }
 
 //
@@ -486,6 +505,7 @@ function onchangeTextButton() {
     order_amount_to_pay.style.display = 'none';
   }
 }
+
 function poleEmploieFixDisplay() {
   hideCpfDetails();
   //show pole emploi details
@@ -493,6 +513,7 @@ function poleEmploieFixDisplay() {
   sendPoleEmploiState(paymentMethod == "pole_emploi_pm");
   
 }
+
 // carte bleu selected
 function onchangeTextButton1() {
   if (document.getElementById('pole_emploi_pm')) {
@@ -577,6 +598,7 @@ function showInstalment() {
     document.getElementById('order_amount_to_pay').style.display = 'revert';
   }
 }
+
 function hideInstalment() {
   if (document.getElementById('order_instalment_number')) {
     document.getElementById('order_instalment_number').style.visibility = 'hidden';
@@ -585,6 +607,7 @@ function hideInstalment() {
     document.getElementById('order_amount_to_pay').style.visibility = 'hidden';
   }
 }
+
 function displayInstalmentPayment() {
   if (document.getElementById('order_instalment')) {
     var orderInstalment = document.getElementById('order_instalment');
@@ -607,6 +630,7 @@ function displayInstalmentPayment() {
     }
   }
 }
+
 function displayPromo() {
   if (document.getElementById('stripe_pm')) {
     if (paymentMethod == "stripe_pm") {
@@ -616,6 +640,7 @@ function displayPromo() {
     }
   }
 }
+
 function showPromo() {
   if (document.getElementById('promo_code')) {
     //when promo button is shown we don't need to show promo_code
@@ -635,6 +660,7 @@ function showPromo() {
     document.getElementById('promo_input').style.display = 'inline';
   }
 }
+
 function hidePromo() {
   if (document.getElementById('promo_code')) {
     document.getElementById('promo_code').style.display = 'none';
@@ -730,6 +756,7 @@ const popContent = `
   </button>
 </div>
 `;
+
 //BoltinitPopup
 const popupContentinit = `<div class="input checkbox" style="width:90%">
                                 <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
@@ -770,6 +797,7 @@ const popupContentinit = `<div class="input checkbox" style="width:90%">
                             </button>
                         </div>`;
 
+
 const addcheckBoxBolt = () => {
   var popupcontent = document.getElementById('popupcontent');
   popupcontent.innerHTML = popContent;
@@ -788,12 +816,11 @@ const addcheckBoxBolt = () => {
   });
 };
 
-
-
 function resetPopupBolt() {
   var popupcontent = document.getElementById('popupcontent');
   popupcontent.innerHTML = popupContentinit;
 }
+
 function checkInputBolt() {
   var inputDriverLicence = document.getElementById('driver-licence').checked;
   var inputLicenceSuspension = document.getElementById('license_suspension').checked;
@@ -802,6 +829,7 @@ function checkInputBolt() {
     return true;
   } else return false;
 }
+
 function paiementBolt() {
   if (checkInputBolt()) {
     document.getElementById('error_choix_bolt').style.display = 'none';
@@ -868,7 +896,8 @@ function modeFinancement(mode){
 
     case "stripe_pm":
       onchangeTextButton1();
-      update_cartebleu(true)
+      update_cartebleu(true);
+      hideError_no_method();
       
     break;
     case "cpf_pm":
@@ -876,7 +905,9 @@ function modeFinancement(mode){
       
       update_cpf(true);
       showCpfDetails();
-      fixDisplay()
+      fixDisplay();
+      hideError_no_method();;
+
       
     break;
     case "pole_emploi_pm" :
@@ -884,7 +915,8 @@ function modeFinancement(mode){
       sendPoleEmploiState(true);
       
       fixDisplay()
-      poleEmploieFixDisplay()
+      poleEmploieFixDisplay();
+      hideError_no_method();
     break;
     case "pm_none":
       hideCpfDetails();

@@ -88,7 +88,7 @@
 
         <xpath expr="//tr[@id='order_total_untaxed']" position="before">
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
-              
+                
                   
                     <tr t-if="line.product_id.product_tmpl_id" class="tr-product_name">
                         <div style="    margin-right: 11px;">
@@ -107,6 +107,7 @@
                     
             
             </t>
+            
         </xpath>
         <xpath expr="//tr[@id='order_total']" position="after">
             <body>
@@ -120,6 +121,7 @@
                 </tr>
             </body>
         </xpath>
+        
 
 
     </template>
@@ -159,10 +161,20 @@
                 <h3 class="" style="margin-top: 1rem; font-weight: 600;font-size:19px" data-tour="step: 3; title: Mode de financement; content:Apres selectionner votre date vous pouvez choisir votre mode de financement Carte de credit ou CPF ou Pole emploie">
                     Mode de financement
                 </h3>
-          
-            <select id="financement" onchange="modeFinancement(this.options[this.selectedIndex].id)">
+               
+            <select id="financement" onchange="modeFinancement(this.options[this.selectedIndex].id)" class="form-control search-slt select-shop  ">
                 <option value="all" id="pm_none">Selectionner votre mode de financement</option>
-                <option id="stripe_pm" name="pm_method" class="" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short">Carte de crédit</option>
+                <option id="stripe_pm" name="pm_method" class="" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short">
+                    
+                    Carte de crédit | 
+                    <t t-if="website_sale_order.instalment_number>1 and website_sale_order.pricelist_id.id==1">
+                    
+                       Paiement en
+                        <t t-esc="website_sale_order.instalment_number" />
+                        fois sans frais
+                    
+                    </t>
+            </option>
                <t t-if="line.product_id.product_tmpl_id.cpf_available">
                 <option id="cpf_pm" name="pm_method" data-acquirer-id="16" data-form-payment="True" data-provider="transfer" class=""  t-att-value="line.name_short" >CPF</option>
                 <option id="pole_emploi_pm" t-att-value="line.name_short">Pôle emploi</option>
@@ -576,7 +588,7 @@
                     <b>
                         <div style="margin-left:0%;" id="exam_center">
                             
-                            <select name="region_examen" id="region_examen" class="form-control search-slt " t-if="modules_mcm" onclick="showDepartement()" data-tour="step: 1; title: Region d'examen; content: Vous commencez par choisir votre region d'examen">
+                            <select name="region_examen" id="region_examen" class="form-control search-slt select-shop " t-if="modules_mcm" onclick="showDepartement()" data-tour="step: 1; title: Region d'examen; content: Vous commencez par choisir votre region d'examen">
                                 <option value="all" id="all">Sélectionnez votre région d'examen</option>
                                 <t t-if="from_bolt == 'False'">
                                     <t t-foreach="list_villes_mcm" t-as="ville">
@@ -605,7 +617,7 @@
                           
                             <t t-if="is_taxi == 'True'  "  >
                                 <br/>
-                                <select name="departement_examen_data" id="departement_examen_data" class="form-control search-slt  " t-if="modules_mcm" style="display:none" >
+                                <select name="departement_examen_data" id="departement_examen_data" class="form-control search-slt select-shop  " t-if="modules_mcm" style="display:none" >
                                     <option value="all" id="all"> Sélectionnez votre département d'examen</option>
                                 
                                         <t t-foreach="france_departments" t-as="departement">
@@ -618,7 +630,7 @@
                                             </t>
                                          </t>
                                 </select>
-                                <select name="departement_examen" id="departement_examen" class="form-control search-slt  " t-if="modules_mcm" data-tour="step: 2; title: Département d'examen; content: Une fois que vous avez choisi votre région, vous devez choisir votre  département d'examen.">
+                                <select name="departement_examen" id="departement_examen" class="form-control search-slt select-shop  " t-if="modules_mcm" data-tour="step: 2; title: Département d'examen; content: Une fois que vous avez choisi votre région, vous devez choisir votre  département d'examen.">
                                     <option value="all" id="all">
                                         Sélectionnez votre département d'examen
                                     </option>
@@ -637,7 +649,7 @@
                 <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%; display:none">
-                            <select id="exam_date" class="form-control search-slt " t-if="modules_mcm" style="display:none">
+                            <select id="exam_date" class="form-control search-slt select-shop " t-if="modules_mcm" style="display:none">
                                 <option value="all" id="all">Sélectionnez votre date d'examen</option>
                                 <t t-foreach="modules_mcm" t-as="module">
                                     <t t-if="module">
@@ -656,7 +668,7 @@
                             </p> -->
                         </div>
                         <div id="select-date" style="margin-left: 0%">
-                            <select name="date_examen" id="options-date" class="form-control search-slt" style="" data-tour="step: 3; title: Date d'examen ; content: Apres choisir votre region, vous devez choisir la date de votre d'examen.">
+                            <select name="date_examen" id="options-date" class="form-control search-slt select-shop" style="" data-tour="step: 3; title: Date d'examen ; content: Apres choisir votre region, vous devez choisir la date de votre d'examen.">
                                 <option value="all" id="all">
                                     Sélectionnez votre date d'examen
                                 </option>
@@ -675,7 +687,7 @@
 
     <template id="mcm_website_sale_short_cart_summary" inherit_id="website_sale.short_cart_summary">
         <xpath expr="//a[@class='btn btn-secondary float-right d-none d-xl-inline-block']" position="replace">
-            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right d-none d-xl-inline-block disabled" id="pm_shop_checkout" onclick="showPopup()" >
+            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-shop float-right d-none d-xl-inline-block disabled" id="pm_shop_checkout" onclick="showPopup()" >
                 <span id="pm_shop_checkout_text">Passer au paiement</span>
             </button>
         </xpath>
@@ -689,7 +701,7 @@
     <template id="mcm_website_sale_products_add_to_cart" inherit_id="website_sale.products_add_to_cart">
         <xpath expr="//t[@t-if='product_variant_id']" position="replace">
             <t t-if="product_variant_id">
-                <a t-if="request.website.is_public_user()==False" href="#" role="button" class="btn btn-secondary a-submit" aria-label="Shopping cart" title="Shopping cart">
+                <a t-if="request.website.is_public_user()==False" href="#" role="button" class="btn btn-shop a-submit" aria-label="Shopping cart" title="Shopping cart">
                     <span class="fa fa-shopping-cart" />
                 </a>
             </t>
@@ -811,7 +823,7 @@
         <xpath expr="//a[@class='btn btn-secondary mb32']" position="replace"></xpath>
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
 
-            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right disabled" id="pm_shop_checkout2" onclick="showPopup()" data-tour="step: 4; title: Payement; content: Vous pouvez maintenant procéder au paiement en cliquant sur le bouton passer au paiement.">
+            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-shop float-right disabled" id="pm_shop_checkout2" onclick="showPopup()" data-tour="step: 4; title: Payement; content: Vous pouvez maintenant procéder au paiement en cliquant sur le bouton passer au paiement.">
                 <span id="pm_shop_checkout_text">Passer au paiement</span>
             </button>
         </xpath>
