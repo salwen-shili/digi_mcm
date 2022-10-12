@@ -144,7 +144,7 @@ msgstr "L'email envoyé à "
 #. module: mail_smtp_imap_by_company
 #: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
 msgid "The team of"
-msgstr ""
+msgstr "L'équipe"
 
 #. module: mail_smtp_imap_by_company
 #: code:addons/mail_smtp_imap_by_company/models/mail_server.py:0
