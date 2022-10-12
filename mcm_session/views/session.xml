@@ -203,6 +203,12 @@
                                             <create name="add_line_control" string="Ajouter un stagiaire"/>
                                         </control>
                                         <field name="name"/>
+                <!--                          <button
+                        name="test_url"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-address-book"
+                />-->
                                         <field name="statut"/>
                                         <field name="module_id"/>
                                         <field name="state_id" string="Département"/>
@@ -229,6 +235,12 @@
                                             <create name="add_line_control" string="Ajouter un prospect"/>
                                         </control>
                                         <field name="name"/>
+      <!--                                    <button
+                        name="test_url"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-address-book"
+                />-->
                                         <field name="statut"/>
                                         <field name="module_id"/>
                                         <field name="state_id" string="Département"/>
@@ -258,6 +270,12 @@
                                             <create name="add_line_control" string="Ajouter un prospect annule"/>
                                         </control>
                                         <field name="name"/>
+       <!--                                   <button
+                        name="test_url"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-address-book"
+                />-->
                                         <field name="statut"/>
                                         <field name="module_id"/>
                                         <field name="state_id" string="Département"/>
@@ -284,6 +302,12 @@
                                             <create name="add_line_control" string="Ajouter un client perdu"/>
                                         </control>
                                         <field name="name"/>
+          <!--                                <button
+                        name="test_url"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-address-book"
+                />-->
                                         <field name="statut"/>
                                         <field name="module_id"/>
                                         <field name="state_id" string="Département"/>

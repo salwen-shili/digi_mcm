@@ -33,121 +33,139 @@ class partner(models.Model):
     mooc_temps_passe_min = fields.Integer()
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
-    #partner_id = fields.Many2one('res.partner', readonly=True)
+
+    # partner_id = fields.Many2one('res.partner', readonly=True)
 
     # Ajouter Des condition pour supprimer apprenant
     # Si absence justifiée  => ne sort pas de la formation
     # Si ajournée + absence sans justification == > Supprimer
     # Si présent  + échec = > Supprimer ==> 100 Euro => Ajouter
     # Si ajournée + Absente = > Supprimer == > 200 Euro => Ajouter
+    def test_url(self):
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": self._name,
+            "view_mode": "form",
+            "res_id": self.id
+        }
     def repasage_exman(self):
         for partner in self.env['res.partner'].sudo().search(
                 [('company_id', '=', 1), ('module_id', '!=', False), ('state', '!=', "ancien")]):
-            if (partner.module_id.name != "Repassage VTC") or (partner.module_id.name != "Repassage TAXI") and (
-                    partner.state != "supprimé"):
-                if (partner.presence == "Présent(e)") and (partner.resultat == "Ajourné(e)"):
-                    _logger.info(" suppprimer et Repassage 100 EUROOOO")
-                    partner.state = "supprimé"
-                    partner.supprimerdemoocit = date.today()
-                    for record in partner:
-                        # comment = "testttttttttttt"
+            try:
+                if (partner.module_id.name != "Repassage VTC") or (partner.module_id.name != "Repassage TAXI") and (
+                        partner.state != "supprimé"):
+                    if (partner.presence == "Présent(e)") and (partner.resultat == "Ajourné(e)"):
+                        _logger.info(" suppprimer et Repassage 100 EUROOOO")
+                        partner.state = "supprimé"
+                        partner.supprimerdemoocit = date.today()
+                        for record in partner:
+                            # comment = "testttttttttttt"
 
-                        values = {
-                            'record_name': partner.name,
-                            'model': 'res.partner',
-                            'message_type': 'comment',
-                            'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-                            'res_id': partner.id,
-                            'author_id': partner.env.user.partner_id.id,
-                            'date': datetime.now(),
-                            'body': "Apprenant supprimé de la plate-forme => Ajourné(e) à l’examen théorique CMA."
-                        }
-                        partner.env['mail.message'].sudo().create(values)
-                        record.comment = ''
+                            values = {
+                                'record_name': partner.name,
+                                'model': 'res.partner',
+                                'message_type': 'comment',
+                                'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                                'res_id': partner.id,
+                                'author_id': partner.env.user.partner_id.id,
+                                'date': datetime.now(),
+                                'body': "Apprenant supprimé de la plate-forme => Ajourné(e) à l’examen théorique CMA."
+                            }
+                            partner.env['mail.message'].sudo().create(values)
+                            record.comment = ''
 
-                    # self.desinscriteVTC(partner)
-                    # self.desinscriteTaxi(partner)
-                if (partner.presence == "Absence justifiée") and (partner.resultat == "Ajourné(e)"):
-                    _logger.info(" suppprimer et Repassage 100 EUROOOO")
-                    partner.state = "supprimé"
-                    partner.supprimerdemoocit = date.today()
-                    for record in partner:
-                        # comment = "testttttttttttt"
+                        # self.desinscriteVTC(partner)
+                        # self.desinscriteTaxi(partner)
+                    if (partner.presence == "Absence justifiée") and (partner.resultat == "Ajourné(e)"):
+                        _logger.info(" suppprimer et Repassage 100 EUROOOO")
+                        partner.state = "supprimé"
+                        partner.supprimerdemoocit = date.today()
+                        for record in partner:
+                            # comment = "testttttttttttt"
 
-                        values = {
-                            'record_name': partner.name,
-                            'model': 'res.partner',
-                            'message_type': 'comment',
-                            'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-                            'res_id': partner.id,
-                            'author_id': partner.env.user.partner_id.id,
-                            'date': datetime.now(),
-                            'body': "Apprenant supprimé de la plate-forme => Absence justifiée."
-                        }
-                        partner.env['mail.message'].sudo().create(values)
-                        record.comment = ''
+                            values = {
+                                'record_name': partner.name,
+                                'model': 'res.partner',
+                                'message_type': 'comment',
+                                'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                                'res_id': partner.id,
+                                'author_id': partner.env.user.partner_id.id,
+                                'date': datetime.now(),
+                                'body': "Apprenant supprimé de la plate-forme => Absence justifiée."
+                            }
+                            partner.env['mail.message'].sudo().create(values)
+                            record.comment = ''
 
-                    # self.desinscriteVTC(partner)
-                    # self.desinscriteTaxi(partner)
-                if (partner.presence == "Absent(e)") and (partner.resultat == "Ajourné(e)"):
-                    _logger.info("supprimer")
-                    partner.state = "supprimé"
-                    partner.supprimerdemoocit = date.today()
-                    for record in partner:
-                        # comment = "testttttttttttt"
+                        self.desinscriteVTC(partner)
+                        self.desinscriteTaxi(partner)
+                    if (partner.presence == "Absent(e)") and (partner.resultat == "Ajourné(e)"):
+                        _logger.info("supprimer")
+                        partner.state = "supprimé"
+                        partner.supprimerdemoocit = date.today()
+                        for record in partner:
+                            # comment = "testttttttttttt"
 
-                        values = {
-                            'record_name': partner.name,
-                            'model': 'res.partner',
-                            'message_type': 'comment',
-                            'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-                            'res_id': partner.id,
-                            'author_id': partner.env.user.partner_id.id,
-                            'date': datetime.now(),
-                            'body': "Apprenant supprimé de la plate-forme => Absence sans justification."
-                        }
-                        partner.env['mail.message'].sudo().create(values)
-                        record.comment = ''
+                            values = {
+                                'record_name': partner.name,
+                                'model': 'res.partner',
+                                'message_type': 'comment',
+                                'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                                'res_id': partner.id,
+                                'author_id': partner.env.user.partner_id.id,
+                                'date': datetime.now(),
+                                'body': "Apprenant supprimé de la plate-forme => Absence sans justification."
+                            }
+                            partner.env['mail.message'].sudo().create(values)
+                            record.comment = ''
 
-                    # self.desinscriteVTC(partner)
-                    # self.desinscriteTaxi(partner)
+                        self.desinscriteVTC(partner)
+                        self.desinscriteTaxi(partner)
+                self.env.cr.commit()
+            except Exception:
+                self.env.cr.rollback()
+                _logger.info(" except Exception:")
 
     # Supprimer iOne  Resulta = Réussi(e)
     def supp_Réussie(self):
         for partner in self.env['res.partner'].sudo().search(
                 [('company_id', '=', 1), ('resultat', "=", "Réussi(e)"), ('state', '!=', "ancien")]):
-            if (partner.state != "supprimé"):
-                # supprimer l'apprenats en verifiant le module choisit
-                partner.state = "supprimé"
-                for record in partner:
-                    # comment = "testttttttttttt"
-                    values = {
-                        'record_name': partner.name,
-                        'model': 'res.partner',
-                        'message_type': 'comment',
-                        'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-                        'res_id': partner.id,
-                        'author_id': partner.env.user.partner_id.id,
-                        'date': datetime.now(),
-                        'body': "Apprenant supprimé de la plate-forme => Admis à l’examen théorique CMA."
-                    }
-                    partner.env['mail.message'].sudo().create(values)
-                    record.comment = ''
-                    print("test")
-                if (partner.module_id.product_id.default_code == "taxi"):
-                    self.desinscriteTaxi(partner)
-                    partner.supprimerdemoocit = date.today()
-                elif (partner.module_id.product_id.default_code == "vtc"):
-                    self.desinscriteVTC(partner)
-                    partner.supprimerdemoocit = date.today()
-                elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                    self.desinscriteVTC(partner)
-                    partner.supprimerdemoocit = date.today()
+            try:
+                if (partner.state != "supprimé"):
+                    # supprimer l'apprenats en verifiant le module choisit
+                    partner.state = "supprimé"
+                    for record in partner:
+                        # comment = "testttttttttttt"
+                        values = {
+                            'record_name': partner.name,
+                            'model': 'res.partner',
+                            'message_type': 'comment',
+                            'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                            'res_id': partner.id,
+                            'author_id': partner.env.user.partner_id.id,
+                            'date': datetime.now(),
+                            'body': "Apprenant supprimé de la plate-forme => Admis à l’examen théorique CMA."
+                        }
+                        partner.env['mail.message'].sudo().create(values)
+                        record.comment = ''
+                        print("test")
+                    if (partner.module_id.product_id.default_code == "taxi"):
+                        self.desinscriteTaxi(partner)
+                        partner.supprimerdemoocit = date.today()
+                    elif (partner.module_id.product_id.default_code == "vtc"):
+                        self.desinscriteVTC(partner)
+                        partner.supprimerdemoocit = date.today()
+                    elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                        self.desinscriteVTC(partner)
+                        partner.supprimerdemoocit = date.today()
+
+                self.env.cr.commit()
+            except Exception:
+                self.env.cr.rollback()
+                _logger.info(" except Exception:")
 
     # Ajout d'une fonction pour filtrer les Anciens iOnes et les supprimer
     def anicen_app(self):
         todays_date = date.today()
-
         for partner in self.env['res.partner'].sudo().search(
                 [('company_id', '=', 1), ('state', '!=', "en_formation")]):
             if partner.create_date.year < todays_date.year:
@@ -327,91 +345,101 @@ class partner(models.Model):
                                                                   ('company_id', '=', 1),
                                                                   ('numero_evalbox', '!=', False),
                                                                   ('statut_cpf', "!=", "canceled")
-                                                                  ]):
-                _logger.info(partner.name)
-                _logger.info(partner.module_id.id)
-                today = date.today()
-                # ajout automatique  des utilsateur sur MOOCit
-                # verifier staut de sale
-                sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-                                                                   ('session_id', '=', partner.mcm_session_id.id),
-                                                                   ('module_id', '=', partner.module_id.id),
-                                                                   ('state', '=', 'sale'),
-                                                                   ('session_id.date_exam', '>', date.today()),
-                                                                   ], limit=1, order="id desc")
-                _logger.info(sale_order.name)
+                                                                      ]):
+                #self.env.cr.commit() commits the transaction's buffered write operations.
 
-                if (partner.numero_evalbox != False):
-                    bolt = partner.bolt
-                    if (bolt):
-                        self.ajouter_IOne_MCM(partner)
-                    else:
-                        # Récupérer les documents et vérifier si ils sont validés ou non
-                        documentss = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)
-                                                                                   ])
-                        document_valide = False
-                        count = 0
-                        for document in documentss:
-                            if (document.state == "validated"):
-                                count = count + 1
-                                _logger.info('valide')
-                                _logger.info(document.state)
-                        _logger.info('count', count, 'len', len(documentss))
-                        if (count == len(documentss) and count != 0 and (bolt == False)):
-                            document_valide = True
-                        _logger.info("document %s" % str(document_valide))
-                        _logger.info("sale_order %s" % str(sale_order.state))
-                        # en va changer numero_evalbox avec numero eval ..
-                        # verifier si la case evalbox est True
-                        print(partner.numero_evalbox)
-                        # defenir le mode de financement
-                        if partner.mode_de_financement == "particulier":
-                            # verifier si le sale et les documents et satut sont valides
-                            if ((sale_order) and (document_valide) and (bolt == False)):
-                                _logger.info('document et sale valide Condition 1 validee')
-                                # Vérifier si contrat signé ou non
-                                if (sale_order.state == 'sale') and (sale_order.signature) and (bolt == False):
-                                    # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                try:
+                    _logger.info(partner.name)
+                    _logger.info(partner.module_id.id)
+                    today = date.today()
+                    # ajout automatique  des utilsateur sur MOOCit
+                    # verifier staut de sale
+                    sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+                                                                       ('session_id', '=', partner.mcm_session_id.id),
+                                                                       ('module_id', '=', partner.module_id.id),
+                                                                       ('state', '=', 'sale'),
+                                                                       ('session_id.date_exam', '>', date.today()),
+                                                                       ], limit=1, order="id desc")
+                    _logger.info(sale_order.name)
+
+                    if (partner.numero_evalbox != False):
+                        bolt = partner.bolt
+                        if (bolt):
+                            self.ajouter_IOne_MCM(partner)
+                        else:
+                            # Récupérer les documents et vérifier si ils sont validés ou non
+                            documentss = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)
+                                                                                       ])
+                            document_valide = False
+                            count = 0
+                            for document in documentss:
+                                if (document.state == "validated"):
+                                    count = count + 1
+                                    _logger.info('valide')
+                                    _logger.info(document.state)
+                            _logger.info('count', count, 'len', len(documentss))
+                            if (count == len(documentss) and count != 0 and (bolt == False)):
+                                document_valide = True
+                            _logger.info("document %s" % str(document_valide))
+                            _logger.info("sale_order %s" % str(sale_order.state))
+                            # en va changer numero_evalbox avec numero eval ..
+                            # verifier si la case evalbox est True
+                            print(partner.numero_evalbox)
+                            # defenir le mode de financement
+                            if partner.mode_de_financement == "particulier":
+                                # verifier si le sale et les documents et satut sont valides
+                                if ((sale_order) and (document_valide) and (bolt == False)):
+                                    _logger.info('document et sale valide Condition 1 validee')
+                                    # Vérifier si contrat signé ou non
+                                    if (sale_order.state == 'sale') and (sale_order.signature) and (bolt == False):
+                                        # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                                        if (partner.renounce_request):
+                                            self.ajouter_IOne_MCM(partner)
+                                            _logger.info(' tout est valide %s')
+                                        # si non il doit attendre 14jours pour etre ajouté a la platform
+                                        if not partner.renounce_request and (
+                                                sale_order.signed_on + timedelta(days=14)) <= today:
+                                            self.ajouter_IOne_MCM(partner)
+                                            _logger.info(' tout est valide %s')
+                            if partner.mode_de_financement == "cpf":
+                                _logger.info(partner.mode_de_financement)
+                                _logger.info(partner.numero_evalbox)
+                                _logger.info(partner.mcm_session_id.date_exam)
+                                _logger.info(partner.mcm_session_id.date_exam)
+                                if (document_valide) and (bolt == False) and (partner.mcm_session_id.date_exam) and (
+                                        partner.mcm_session_id.date_exam > date.today()):
                                     if (partner.renounce_request):
                                         self.ajouter_IOne_MCM(partner)
                                         _logger.info(' tout est valide %s')
-                                    # si non il doit attendre 14jours pour etre ajouté a la platform
-                                    if not partner.renounce_request and (
-                                            sale_order.signed_on + timedelta(days=14)) <= today:
-                                        self.ajouter_IOne_MCM(partner)
-                                        _logger.info(' tout est valide %s')
-                        if partner.mode_de_financement == "cpf":
-                            _logger.info(partner.mode_de_financement)
-                            _logger.info(partner.numero_evalbox)
-                            _logger.info(partner.mcm_session_id.date_exam)
-                            _logger.info(partner.mcm_session_id.date_exam)
-                            if (document_valide) and (bolt == False) and (partner.mcm_session_id.date_exam) and (
-                                    partner.mcm_session_id.date_exam > date.today()):
-                                if (partner.renounce_request):
-                                    self.ajouter_IOne_MCM(partner)
-                                    _logger.info(' tout est valide %s')
-                                if not (partner.renounce_request) and partner.numero_cpf:
-                                    """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
-                                    headers = {
-                                        'accept': 'application/json',
-                                        'Content-Type': 'application/json',
-                                        'X-API-KEY': partner.company_id.wedof_api_key,
-                                    }
-                                    responsesession = requests.get(
-                                        'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
-                                        headers=headers)
-                                    dossier = responsesession.json()
-                                    dateDebutSession_str = ""
-                                    _logger.info('session %s' % str(dossier))
-                                    if "trainingActionInfo" in dossier:
-                                        dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
-                                        dateDebutSession = datetime.strptime(dateDebutSession_str,
-                                                                             '%Y-%m-%dT%H:%M:%S.%fz')
-                                        if dateDebutSession <= datetime.today():
-                                            self.ajouter_IOne_MCM(partner)
-                                            _logger.info(' tout est valide %s')
+                                    if not (partner.renounce_request) and partner.numero_cpf:
+                                        """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
+                                        headers = {
+                                            'accept': 'application/json',
+                                            'Content-Type': 'application/json',
+                                            'X-API-KEY': partner.company_id.wedof_api_key,
+                                        }
+                                        responsesession = requests.get(
+                                            'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
+                                            headers=headers)
+                                        dossier = responsesession.json()
+                                        dateDebutSession_str = ""
+                                        _logger.info('session %s' % str(dossier))
+                                        if "trainingActionInfo" in dossier:
+                                            dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
+                                            dateDebutSession = datetime.strptime(dateDebutSession_str,
+                                                                                 '%Y-%m-%dT%H:%M:%S.%fz')
+                                            if dateDebutSession <= datetime.today():
+                                                self.ajouter_IOne_MCM(partner)
+                                                _logger.info(' tout est valide %s')
 
-                # ajouter les apprenants manuellemnt a partire de  la fiche Client
+                    # ajouter les apprenants manuellemnt a partire de  la fiche Client
+
+                    self.env.cr.commit()
+                #self.env.cr.rollback() cancels the transaction's write operations since the last commit, or all if no commit was done.
+                except Exception:
+                    self.env.cr.rollback()
+                    _logger.info(" except Exception:")
+
 
     # Ajout manuelle apprenant à moocit
     def ajoutMoocit_manuelle(self):
@@ -956,8 +984,6 @@ class partner(models.Model):
                     'className': 'bg-danger'
                 }
             }
-
-
 
     # Suppression automatique du iOne
     def supprimer_automatique(self):
