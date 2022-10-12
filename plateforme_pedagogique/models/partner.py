@@ -1579,6 +1579,15 @@ class partner(models.Model):
                             tel = dossier['attendee']['phoneNumber']
                         else:
                             tel = ""
+                        if 'firstName' in dossier['attendee']['firstName']:
+                            nom = dossier['attendee']['firstName']
+                        else:
+                            nom = ""
+
+                        if "lastName" in dossier['attendee']['lastName']:
+                            prenom = dossier['attendee']['lastName']
+                        else:
+                            prenom = ""
                         diplome = dossier['trainingActionInfo']['title']
                         print('training', training_id)
                         today = date.today()
