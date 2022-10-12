@@ -16,9 +16,8 @@
                         </a>
                 </p>
                 <p>Regards,</p>
-                <p>The
+                <p>The team of
                     <t t-esc="message_company.name"/>
-                    team.
                 </p>
             </div>
             <blockquote>
