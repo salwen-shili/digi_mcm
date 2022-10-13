@@ -539,7 +539,7 @@
             <div style="margin:auto;background-color:#fff;border-color:#585959;" t-if="request.website.is_public_user()==False and modules_mcm" id="region_date_examen">
 
                 <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;;font-size:18px" >
-                    Votre région
+                    Votre région d'examen
                 </h3>
 
                 <!-- state from backend-->
@@ -578,7 +578,7 @@
                           
                             <t t-if="is_taxi == 'True'  "  >
                                 <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;font-size:18px" >
-                                    Votre Département
+                                    Votre département
                                 </h3>
                                 
                               
