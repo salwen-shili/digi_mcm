@@ -35,10 +35,8 @@
               ">
                         <div class="form-section">
                             <div class="card px-0 pb-0 mt-1  bg-c">
-                                <h2 id="heading">Inscription</h2>
-                                <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
-                                    suivante
-                                </p>
+                                <h2 id="heading">FINANCER MA FORMATION</h2>
+                                <p class="p_class">Veuillez sélectionner votre région, date d’examen, et le mode de financement souhaités.</p>
 
                                 <!-- progressbar -->
                                 <ul id="progressbar">

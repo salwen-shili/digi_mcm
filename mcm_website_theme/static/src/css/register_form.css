@@ -1,3 +1,7 @@
+:root {
+  --blue-shop: #086ce3;
+  --green-shop: #2f8e2f;
+}
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +11,27 @@ html {
   height: 100%;
   /* background: #232121 !important; */
 }
+.select-shop{
+  color: var(--green-shop);
+  font-weight: 700;
+
+}
+.btn-shop{
+  background-color: var(--green-shop);
+    border-color: var(--green-shop);
+   
+    padding: 10px 26px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.form-control {
+  max-width: 600px;
+}
+
+.card-body:last-child {
+  font-size: 14px;}
+
 
 .p_class {
   color: #000000d4;
@@ -37,7 +62,7 @@ html {
 
 #heading {
   text-transform: uppercase;
-  color: #262223;
+  color: #333;
   font-weight: 700;
   font-size: 2rem;
   letter-spacing: 1px;
@@ -87,13 +112,13 @@ html {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  border: 1px solid #262223;
+  border: 1px solid #2f8e2f;
   outline-width: 0;
 }
 
 #msform .action-button {
   width: 100px;
-  background: #262223;
+  background: #2f8e2f;
   font-weight: bold;
   color: white;
   border: 0 none;
@@ -152,13 +177,13 @@ html {
 }
 
 .purple-text {
-  color: #262223;
+  color: #2f8e2f;
   font-weight: normal;
 }
 
 .steps {
   font-size: 25px;
-  color: #262223;
+  color: #2f8e2f;
   margin-top: 1rem;
   font-weight: normal;
   text-align: right;
@@ -239,7 +264,7 @@ html {
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-  background: #262223;
+  background: #000000;
 }
 
 .progress {
@@ -247,7 +272,7 @@ html {
 }
 
 .progress-bar {
-  background-color: #262223;
+  background-color: #2f8e2f;
 }
 
 .fit-image {

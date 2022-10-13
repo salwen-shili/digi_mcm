@@ -239,7 +239,7 @@ html {
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-  background: #262223;
+  background: #000000;
 }
 
 .progress {
