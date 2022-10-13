@@ -367,7 +367,7 @@
                         </td>
                         <td class="text-center o_price_total" style="border: 1px solid black; padding: 5px">
                             <strong>
-                                <span t-field="o.amount_paye" t-if="o.methodes_payment == 'cpf'"></span>
+                                <span t-field="o.cpf_acompte_amount" t-if="o.methodes_payment == 'cpf'"></span>
                                 <span t-field="o.module_id.product_id.list_price"
                                       t-if="o.methodes_payment == 'cartebleu'"/>
                             </strong>
@@ -625,8 +625,7 @@
                                 <span t-field="company.partner_id.city"/>
                             </div>
                             <div>
-                                Web:
-                                <span t-field="company.website"/>
+                                <span t-field="company.website[8:-1]"/>
                             </div>
                         </div>
                         <div class="col-6" name="company_logo">
@@ -644,8 +643,8 @@
                 <ul class="list-inline mb4">
                     <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
                          adding d-inline class fixes the problem-->
-                    <li t-if="company.website" class="list-inline-item d-inline">Web:
-                        <span t-field="company.website"/>
+                    <li t-if="company.website" class="list-inline-item d-inline">
+                        <span t-field="company.website[8:-1]"/>
                     </li>
                 </ul>
             </xpath>
