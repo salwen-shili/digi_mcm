@@ -6,6 +6,15 @@
         <field name="inherit_id" ref="partner_exam.view_signature_company_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='suivi_formation']" position="after">
+                <page string="Integration 360Learning" name="plateforme">
+                    <group>
+                        <group>
+                            <field name="plateforme_api_key" string="clé API"/>
+                            <field name="plateforme_company_key" string="ID Société"/>
+
+                        </group>
+                    </group>
+                </page>
                 <page string="Integration Wedof" name="wedof">
                     <group>
                         <group>
