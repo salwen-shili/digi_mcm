@@ -170,17 +170,23 @@ function onChangeCheckButton() {
     ) {
       document.getElementById('pm_shop_checkout').setAttribute('disabled', 'true');
       document.getElementById('pm_shop_checkout').classList.add('disabled');
+      document.getElementById('pm_shop_checkout2').setAttribute('disabled', 'true');
+      document.getElementById('pm_shop_checkout2').classList.add('disabled');
     } else if (
       document.getElementById('options-date').value !== 'all' &&
       document.getElementById('region_examen').value !== 'all'
     ) {
       document.getElementById('pm_shop_checkout').removeAttribute('disabled');
       document.getElementById('pm_shop_checkout').classList.remove('disabled');
+      document.getElementById('pm_shop_checkout2').removeAttribute('disabled');
+      document.getElementById('pm_shop_checkout2').classList.remove('disabled');
       document.getElementById('error_choix_date').style.display = 'none';
     }
   } else {
     document.getElementById('pm_shop_checkout').setAttribute('disabled', 'true');
     document.getElementById('pm_shop_checkout').classList.add('disabled');
+    document.getElementById('pm_shop_checkout2').setAttribute('disabled', 'true');
+    document.getElementById('pm_shop_checkout2').classList.add('disabled');
   }
 }
 
@@ -232,12 +238,12 @@ function verify_payment_method() {
       }
     }
   }
-  pole_emploi_pm = document.getElementById('pole_emploi_pm');
-  if (pole_emploi_pm) {
-    if (paymentMethod== "pole_emploi_pm") {
-      window.location.href = '/new/ticket/pole_emploi';
-    }
-  }
+  pole_emploi_pm = document.getElementById('pole_emploi_pm') ?? false;
+  // if (pole_emploi_pm) {
+  //   if (paymentMethod== "pole_emploi_pm") {
+  //     window.location.href = '/new/ticket/pole_emploi';
+  //   }
+  // }
   var cpf_pm = document.getElementById('cpf_pm');
   // var state = 'accepted';
   var state = document.getElementById('state').value;
@@ -315,7 +321,7 @@ function scrollToError(){
 }
 //show popup if date is selected
 function showPopup() {
-
+let departement;
   if (document.getElementById("departement_examen")){
     departement = document.getElementById("departement_examen").value;
     if (departement != 'all' && departement != '') {
@@ -367,7 +373,7 @@ function showPopup() {
     scrollToError();
     return
   }
-  let departement ='' ;
+
 
   
   continueBtn.innerText = textbtn;
