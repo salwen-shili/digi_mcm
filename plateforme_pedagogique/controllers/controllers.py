@@ -444,12 +444,12 @@ class WebhookController(http.Controller):
             ville = dossier['attendee']['address']['city']
         else:
             ville = ""
-        if 'firstName' in dossier['attendee']['firstName']:
+        if 'firstName' in dossier['attendee']:
             nom = dossier['attendee']['firstName']
         else:
             nom = ""
 
-        if "lastName" in dossier['attendee']['lastName']:
+        if "lastName" in dossier['attendee']:
             prenom = dossier['attendee']['lastName']
         else:
             prenom = ""

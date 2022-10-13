@@ -1016,12 +1016,12 @@ class partner(models.Model):
                             ville = dossier['attendee']['address']['city']
                         else:
                             ville = ""
-                        if 'firstName' in dossier['attendee']['firstName']:
+                        if 'firstName' in dossier['attendee']:
                             nom = dossier['attendee']['firstName']
                         else:
                             nom = ""
 
-                        if "lastName" in dossier['attendee']['lastName']:
+                        if "lastName" in dossier['attendee']:
                             prenom = dossier['attendee']['lastName']
                         else:
                             prenom = ""
@@ -1238,12 +1238,12 @@ class partner(models.Model):
                         if "residence" in dossier['attendee']['address']:
                             residence = dossier['attendee']['address']['residence']
                         nom = ""
-                        if 'firstName' in dossier['attendee']['firstName']:
+                        if 'firstName' in dossier['attendee']:
                             nom = dossier['attendee']['firstName']
                             nom = unidecode(nom)
 
                         prenom = ""
-                        if "lastName" in dossier['attendee']['lastName']:
+                        if "lastName" in dossier['attendee']:
                             prenom = dossier['attendee']['lastName']
                             prenom = unidecode(prenom)
                         diplome = dossier['trainingActionInfo']['title']
@@ -1579,12 +1579,12 @@ class partner(models.Model):
                             tel = dossier['attendee']['phoneNumber']
                         else:
                             tel = ""
-                        if 'firstName' in dossier['attendee']['firstName']:
+                        if 'firstName' in dossier['attendee']:
                             nom = dossier['attendee']['firstName']
                         else:
                             nom = ""
 
-                        if "lastName" in dossier['attendee']['lastName']:
+                        if "lastName" in dossier['attendee']:
                             prenom = dossier['attendee']['lastName']
                         else:
                             prenom = ""
