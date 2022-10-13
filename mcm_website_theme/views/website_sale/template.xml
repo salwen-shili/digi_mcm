@@ -164,20 +164,26 @@
                     Mode de financement
                 </h3>
                
-            <select id="financement" onchange="modeFinancement(this.options[this.selectedIndex].id)" style="font-size: 15px; font-weight: 600;" class="form-control search-slt " data-tour="step: 3; title: Mode de financement; content: Sélectionnez le mode de paiement souhaité" >
+            <select id="financement" onchange="modeFinancement(this.options[this.selectedIndex].id, this.selectedIndex)" style="font-size: 15px; font-weight: 600;" class="form-control search-slt " data-tour="step: 3; title: Mode de financement; content: Sélectionnez le mode de paiement souhaité" >
                 <option value="all" id="pm_none" disabled="disabled" selected="selected" hidden="hidden">Cliquez ici 
                 </option>
-                <option id="stripe_pm" name="pm_method" class="" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short">
+                <option id="stripe_pm" name="pm_method" class="" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short" >
                     
-                    Carte de crédit | 
-                    <t t-if="website_sale_order.instalment_number>1 and website_sale_order.pricelist_id.id==1">
+                    Carte de crédit | Paiement en une seule fois         
+            </option>
+            <t t-if="website_sale_order.instalment_number>1 and website_sale_order.pricelist_id.id==1">
+                <option id="stripe_pm" name="pm_method" class="" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short" >
                     
-                       Paiement en
+                    Carte de crédit 
+                   
+                    
+                        | Paiement en
                         <t t-esc="website_sale_order.instalment_number" />
                         fois sans frais
                     
-                    </t>
+                   
             </option>
+        </t>
                <t t-if="line.product_id.product_tmpl_id.cpf_available">
                 <option id="cpf_pm" name="pm_method" data-acquirer-id="16" data-form-payment="True" data-provider="transfer" class=""  t-att-value="line.name_short" >CPF</option>
                 <option id="pole_emploi_pm" t-att-value="line.name_short">Pôle emploi</option>

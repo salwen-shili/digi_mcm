@@ -899,14 +899,20 @@ function paiementBolt() {
 
 // Base function mode de financement
 
-function modeFinancement(mode){
+function modeFinancement(mode, index){
  paymentMethod= mode;
+ console.log("indexxxx",index)
   switch (mode) {
 
     case "stripe_pm":
       onchangeTextButton1();
       update_cartebleu(true);
       hideError_no_method();
+      if (index==1){
+        checkPaiementInstalment(false)
+      }else {
+        checkPaiementInstalment(true)
+      }
       
     break;
     case "cpf_pm":
@@ -1122,4 +1128,17 @@ const sendHttpRequest = (method, url, data) => {
   return promise;
 };
 
+function checkPaiementInstalment(check){
+  let checkbox 
+
+  if (document.getElementById("checkbox_instalment")){
+    checkbox = document.getElementById("checkbox_instalment")
+    
+  }
+  else return
+  if (check != checkbox.checked)
+  {
+checkbox.click()
+  }
+}
 

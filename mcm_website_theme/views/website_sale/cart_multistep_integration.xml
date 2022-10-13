@@ -41,8 +41,7 @@
                                 <!-- progressbar -->
                                 <ul id="progressbar">
                                     <li class="active" id="account">
-                                        <strong>Je crée mon compte
-</strong>
+                                        <strong>Je crée mon compte</strong>
                                     </li>
                                     <li id="personal" class="active">
                                         <strong>J'insère mes documents</strong>
