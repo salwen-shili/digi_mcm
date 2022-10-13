@@ -597,6 +597,11 @@ function showInstalment() {
     document.getElementById('order_amount_to_pay').style.visibility = 'unset';
     document.getElementById('order_amount_to_pay').style.display = 'revert';
   }
+  if (document.getElementById('promo_code')) {
+    document.getElementById('promo_code').style.display =
+      'none';
+  }
+
 }
 
 function hideInstalment() {
@@ -605,6 +610,10 @@ function hideInstalment() {
   }
   if (document.getElementById('order_amount_to_pay')) {
     document.getElementById('order_amount_to_pay').style.visibility = 'hidden';
+  }
+  if (document.getElementById('promo_code')) {
+    document.getElementById('promo_code').style.display =
+      'unset';
   }
 }
 
@@ -957,6 +966,7 @@ function fixDisplay(){
        document.getElementById('order_amount_to_pay_amount').style.display =
          'none';
      }
+     
    }
 }
 
