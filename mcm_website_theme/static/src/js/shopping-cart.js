@@ -3,7 +3,7 @@ document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     document.getElementById("cover-spin").remove();
 
-    // tourguide.start();
+    tourguide.start();
 
 }
 }
@@ -309,17 +309,38 @@ function hideError_no_method(){
   if (document.getElementById('error_no_method').style.display == 'inline-block') document.getElementById('error_no_method').style.display = 'none';
 
 }
-
+function scrollToError(){
+  if (document.getElementById('options-date'))
+  document.getElementById('options-date').scrollIntoView({ behavior: 'smooth', block: 'center'});
+}
 //show popup if date is selected
 function showPopup() {
+
+  if (document.getElementById("departement_examen")){
+    departement = document.getElementById("departement_examen").value;
+    if (departement != 'all' && departement != '') {
+      document.getElementById('error_choix_departement').style.display = 'none';
+    
+    } else {
+      document.getElementById('error_choix_departement').style.display = 'inline-block';
+      scrollState = true;
+      scrollToError()
+      return
+    }
+  } 
   if (!document.getElementById('options-date')) {
     document.getElementById('error_no_date').style.display = 'inline-block';
+    scrollState = true;
+    scrollToError()
     return;
   }
   if (!['pole_emploi_pm', 'stripe_pm' , 'cpf_pm'].includes(paymentMethod)){
     document.getElementById('error_no_method').style.display = 'inline-block';
+    scrollState = true;
+    scrollToError()
     return;
   }
+  
   document.getElementById('error_no_method').style.display = 'none';
   document.getElementById('error_no_date').style.display = 'none';
   var optionsDate = document.getElementById('options-date').value;
@@ -343,19 +364,11 @@ function showPopup() {
     
   } else {
     document.getElementById('error_choix_date').style.display = 'inline-block';
+    scrollToError();
     return
   }
   let departement ='' ;
-if (document.getElementById("departement_examen")){
-  departement = document.getElementById("departement_examen").value;
-  if (departement != 'all' && departement != '') {
-    document.getElementById('error_choix_departement').style.display = 'none';
-  
-  } else {
-    document.getElementById('error_choix_departement').style.display = 'inline-block';
-    return
-  }
-} 
+
   
   continueBtn.innerText = textbtn;
   window.location.href = '#popup1';

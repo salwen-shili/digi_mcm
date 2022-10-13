@@ -160,12 +160,12 @@
             </p>
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
                 <!-- Mode de financement -->
-                <h3 class="" style="margin-top: 1rem; font-weight: 600;font-size:19px" data-tour="step: 3; title: Mode de financement; content:Apres selectionner votre date vous pouvez choisir votre mode de financement Carte de credit ou CPF ou Pole emploie">
+                <h3 class="" style="margin-top: 1rem; font-weight: 600;font-size:18px" >
                     Mode de financement
                 </h3>
                
-            <select id="financement" onchange="modeFinancement(this.options[this.selectedIndex].id)" class="form-control search-slt " >
-                <option value="all" id="pm_none" disabled="disabled" selected="selected" hidden="hidden">( Cliquez ici )
+            <select id="financement" onchange="modeFinancement(this.options[this.selectedIndex].id)" style="font-size: 15px; font-weight: 600;" class="form-control search-slt " data-tour="step: 3; title: Mode de financement; content: Sélectionnez le mode de paiement souhaité" >
+                <option value="all" id="pm_none" disabled="disabled" selected="selected" hidden="hidden">Cliquez ici 
                 </option>
                 <option id="stripe_pm" name="pm_method" class="" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short">
                     
@@ -581,7 +581,7 @@
         
             <div style="margin:auto;background-color:#fff;border-color:#585959;" t-if="request.website.is_public_user()==False and modules_mcm" id="region_date_examen">
 
-                <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;;font-size:19px" >
+                <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;;font-size:18px" >
                     Votre région
                 </h3>
 
@@ -591,8 +591,8 @@
                     <b>
                         <div style="margin-left:0%;" id="exam_center">
                             
-                            <select name="region_examen" id="region_examen" class="form-control search-slt "  t-if="modules_mcm" onclick="showDepartement()" data-tour="step: 1; title: Region d'examen; content: Vous commencez par choisir votre region d'examen">
-                                <option value="all" id="all" disabled="disabled" selected="selected" hidden="hidden">( Cliquez ici )
+                            <select name="region_examen" id="region_examen" class="form-control search-slt " style="font-size: 15px;font-weight: 600;"  t-if="modules_mcm" onclick="showDepartement()" data-tour="step: 1; title: Region d'examen; content: Vous commencez par choisir votre région">
+                                <option value="all" id="all" disabled="disabled" selected="selected" hidden="hidden">Cliquez ici 
                                 </option>
                                 <t t-if="from_bolt == 'False'">
                                     <t t-foreach="list_villes_mcm" t-as="ville">
@@ -620,21 +620,21 @@
 
                           
                             <t t-if="is_taxi == 'True'  "  >
-                                <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;;font-size:19px" >
+                                <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;font-size:18px" >
                                     Votre Département
                                 </h3>
                                 
                               
-                                <select name="departement_examen" id="departement_examen" class="form-control search-slt "   t-if="modules_mcm" data-tour="step: 2; title: Département d'examen; content: Une fois que vous avez choisi votre région, vous devez choisir votre  département d'examen.">
+                                <select name="departement_examen" id="departement_examen" class="form-control search-slt "   style="font-size: 15px; font-weight: 600;" t-if="modules_mcm" data-tour="step: 2; title: Département d'examen; content: Une fois que vous avez choisi votre région, vous devez choisir votre  département d'examen.">
                                     <option value="all" id="all" disabled="disabled" selected="selected" hidden="hidden">
-                                        ( Cliquez ici )
+                                        Cliquez ici 
 
                                     </option>
                                 
                                         
                                 </select>
-                                <select name="departement_examen_data" id="departement_examen_data"  t-if="modules_mcm" style="display:none" >
-                                    <option value="all" id="all"> ( Cliquez ici )
+                                <select name="departement_examen_data" id="departement_examen_data"  t-if="modules_mcm" style="display:none; " >
+                                    <option value="all" id="all"> Cliquez ici 
                                     </option>
                                 
                                         <t t-foreach="france_departments" t-as="departement">
@@ -662,8 +662,8 @@
                 <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%; display:none">
-                            <select id="exam_date" class="form-control search-slt  " t-if="modules_mcm" style="display:none; ">
-                                <option value="all" disabled="disabled" selected="selected" hidden="hidden" id="all">( Cliquez ici )
+                            <select id="exam_date" class="form-control search-slt  " t-if="modules_mcm" style="display:none;font-size: 15px; font-weight: 600;" >
+                                <option value="all" disabled="disabled" selected="selected" hidden="hidden" id="all">Cliquez ici 
                                 </option>
                                 <t t-foreach="modules_mcm" t-as="module">
                                     <t t-if="module">
@@ -681,14 +681,14 @@
                                 Vous devez Selectionnez une date
                             </p> -->
                         </div>
-                        <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;;font-size:19px" >
-                            Votre Date d'examen
+                        <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;;font-size:18px" >
+                            Votre date d'examen
                         </h3>
                         <div id="select-date" style="margin-left: 0%">
                             
-                            <select name="date_examen" id="options-date" class="form-control search-slt "  data-tour="step: 3; title: Date d'examen ; content: Apres choisir votre region, vous devez choisir la date de votre d'examen.">
+                            <select name="date_examen" id="options-date" class="form-control search-slt " style="font-size: 15px; font-weight: 600;"  data-tour="step: 3; title: Date d'examen ; content: Maintenant, choisissez votre date d'examen.">
                                 <option value="all" disabled="disabled" selected="selected" hidden="hidden" id="all">
-                                    ( Cliquez ici )
+                                    Cliquez ici 
 
                                 </option>
                             </select>
@@ -842,7 +842,7 @@
         <xpath expr="//a[@class='btn btn-secondary mb32']" position="replace"></xpath>
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
 
-            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-shop float-right disabled" id="pm_shop_checkout2" onclick="showPopup()" data-tour="step: 4; title: Payement; content: Vous pouvez maintenant procéder au paiement en cliquant sur le bouton Je paye maintenant !.">
+            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-shop float-right disabled" id="pm_shop_checkout2" onclick="showPopup()" data-tour="step: 4; title: Payement; content: Vous pouvez maintenant procéder au paiement en cliquant sur le bouton Je paye maintenant !">
                 <span id="pm_shop_checkout_text">Je paye maintenant !</span>
             </button>
         </xpath>

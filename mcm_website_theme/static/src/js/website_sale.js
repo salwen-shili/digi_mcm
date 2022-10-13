@@ -324,7 +324,7 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
       });
 
       if (dateOptions) {
-        var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()" >
+        var select = `<select name="date_examen" id="options-date" style="font-size: 15px; font-weight: 600;" class="form-control search-slt" onchange="onChangeCheckButton()" >
           <option value="all" id="all">
           Cliquez ici 
                                 </option>                  
