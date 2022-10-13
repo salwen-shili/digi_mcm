@@ -10,7 +10,7 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
   var QWeb = core.qweb;
 
   //if user has comeback to the page after selecting cpf the input checkbox will be stuck on
-  // cpf and the btn will show passer au paiement so we force credit card payment is checked as default
+  // cpf and the btn will show Je paye maintenant ! so we force credit card payment is checked as default
   // document.getElementById('stripe_pm').checked = true;
 
   publicWidget.registry.WebsiteSale.include({
@@ -266,8 +266,8 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
          });
 
          var select_departement = `<select  name="departement_examen" id="departement_examen" class="form-control search-slt hide ">
-         <option value="all" id="all">
-         Sélectionnez votre département d'examen
+         <option value="all" id="all" hidden="hidden" disabled="disabled" selected="true">
+         Cliquez ici
                                </option>                  
          ${departementOptions}
                            </select>`;
@@ -325,7 +325,7 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
 
       if (dateOptions) {
         var select = `<select name="date_examen" id="options-date" style="font-size: 15px; font-weight: 600;" class="form-control search-slt" onchange="onChangeCheckButton()" >
-          <option value="all" id="all">
+          <option value="all" id="all" hidden="hidden" disabled="disabled" selected="true">
           Cliquez ici 
                                 </option>                  
           ${dateOptions}

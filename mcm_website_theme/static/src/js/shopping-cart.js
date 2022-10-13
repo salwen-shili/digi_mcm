@@ -112,7 +112,7 @@ const addUserPlateform = () => {
                                  <br/>
                                 </p>
                          <div style="text-align:center">
-                            <a onclick='window.open("${res.result.url}");return false;'> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
+                            <a onclick='window.open("${res.result.url}");return false;'> <button type="button" class="btn btn-shop shake" style="padding: 6px 34px;"> Continuer </button></a>
                         </div>     
          `;
           }
@@ -125,7 +125,7 @@ const addUserPlateform = () => {
                                  ${res.result.ajout}     
                             </p>
                             <div style="text-align:center">
-                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()"  style="padding: 8px 29px;" > Fermer </button></a>
+                                <a href="#"> <button type="button" class="btn btn-shop" onclick="closepopup()"  style="padding: 8px 29px;" > Fermer </button></a>
 
                             </div>
          `;
@@ -135,7 +135,7 @@ const addUserPlateform = () => {
                                  ${res.result.ajout}     
                             </p>
                             <div style="text-align:center">
-                                <a href="#"> <button type="button" class="btn btn-secondary action-button"  onclick="closepopup()" style="padding: 8px 29px;" > Fermer </button></a>
+                                <a href="#"> <button type="button" class="btn btn-shop"  onclick="closepopup()" style="padding: 8px 29px;" > Fermer </button></a>
                             </div>
          `;
           }
@@ -149,8 +149,8 @@ const addUserPlateform = () => {
                                  ${res.result.ajout}     
                             </p>
                             <div style="text-align:center">
-                              <button type="button" class="btn btn-secondary action-button" id="non_renonce" style="padding: 7.5px 38.5px;" onclick="closepopup('/my/home')">Attendre 14 jours</button>
-                                <button type="button" class="btn btn-secondary action-button shake" style="padding: 7.5px 38.5px;" onclick="renonce()" > Continuer </button>
+                              <button type="button" class="btn btn-shop" id="non_renonce" style="padding: 7.5px 38.5px;" onclick="closepopup('/my/home')">Attendre 14 jours</button>
+                                <button type="button" class="btn btn-shop shake" style="padding: 7.5px 38.5px;" onclick="renonce()" > Continuer </button>
                             </div>
 
          `;
@@ -363,7 +363,7 @@ let departement;
   }
   cpfChecked || polechecked
     ? (textbtn = 'Mobiliser mon CPF')
-    : (textbtn = 'Passer au paiement');
+    : (textbtn = 'Je paye maintenant !');
 
   if (optionsDate != 'all' && optionsDate != '') {
     document.getElementById('error_choix_date_popup').style.display = 'none';
@@ -440,7 +440,7 @@ function closepopup(msg) {
                         
 
                         <div style="text-align:center">
-                            <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
+                            <button type="button" class="btn btn-shop shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
                         </div>`;
 }
 
@@ -544,10 +544,10 @@ function onchangeTextButton1() {
   }
   //onchange carte de credit
   if (document.getElementById('pm_shop_checkout')) {
-    document.getElementById('pm_shop_checkout').innerText = 'Passer au paiement';
+    document.getElementById('pm_shop_checkout').innerText = 'Je paye maintenant !';
   }
   if (document.getElementById('pm_shop_checkout2')) {
-    document.getElementById('pm_shop_checkout2').innerText = 'Passer au paiement';
+    document.getElementById('pm_shop_checkout2').innerText = 'Je paye maintenant !';
   }
   hideCpfDetails()
 
@@ -589,8 +589,8 @@ function renonce() {
                         </p> 
 
                             <div style="text-align:center">
-                             <button type="button" class="btn btn-secondary action-button" id="Précédent"  style="padding: 8px 29px;" onclick="cpfAccepted()">Précédent</button>
-                             <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()"style="padding: 8px 29px  ;   margin-left: 11px;">Continuer</button>
+                             <button type="button" class="btn btn-shop" id="Précédent"  style="padding: 8px 29px;" onclick="cpfAccepted()">Précédent</button>
+                             <button type="button" class="btn btn-shop shake" id="continueBtn" onclick="verify_payment_method()"style="padding: 8px 29px  ;   margin-left: 11px;">Continuer</button>
                           </div>
          `;
 }
@@ -775,12 +775,12 @@ const popContent = `
 <div style="text-align: center">
   <button
     type="button"
-    class="btn btn-secondary action-button"
+    class="btn btn-shop"
     style="margin-top: 19px"
     id="continueBtn"
     onclick="paiementBolt()"
   >
-    Passer au paiement
+    Je paye maintenant !
   </button>
 </div>
 `;
@@ -821,7 +821,7 @@ const popupContentinit = `<div class="input checkbox" style="width:90%">
                         
 
                         <div style="text-align:center">
-                            <button type="button" class="btn btn-secondary action-button" id="continueBtn" onclick="verify_payment_method()">Continuer
+                            <button type="button" class="btn btn-shop" id="continueBtn" onclick="verify_payment_method()">Continuer
                             </button>
                         </div>`;
 

@@ -351,7 +351,7 @@ function showPopup() {
   }
   cpfChecked || polechecked
     ? (textbtn = "Mobiliser mon CPF")
-    : (textbtn = "Passer au paiement");
+    : (textbtn = "Je paye maintenant !");
 
   if (optionsDate != "all" && optionsDate != "") {
     if (document.getElementById("error_choix_date_popup")) {
@@ -774,11 +774,11 @@ function onchangeTextButton1() {
 
   if (document.getElementById("pm_shop_checkout")) {
     document.getElementById("pm_shop_checkout").innerText =
-      "Passer au paiement";
+      "Je paye maintenant !";
   }
   if (document.getElementById("pm_shop_checkout2")) {
     document.getElementById("pm_shop_checkout2").innerText =
-      "Passer au paiement";
+      "Je paye maintenant !";
   }
   if (document.getElementById("cpf-details")) {
     document.getElementById("cpf-details").classList.add("hide");
@@ -826,11 +826,11 @@ function onchangeTextButton1() {
       document.getElementById("arrow-down").classList.add("hide");
       if (document.getElementById("pm_shop_checkout")) {
         document.getElementById("pm_shop_checkout").innerHTML =
-          "Passer au paiement";
+          "Je paye maintenant !";
       }
       if (document.getElementById("pm_shop_checkout2")) {
         document.getElementById("pm_shop_checkout2").innerText =
-          "Passer au paiement";
+          "Je paye maintenant !";
       }
     }
 

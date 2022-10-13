@@ -399,7 +399,7 @@
                             <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
                                 <div id="default">
 
-                                    <button id="btn-action" class="rkmd-btn btn-black">Continuer</button>
+                                    <button id="btn-action" class="btn btn-shop">Continuer</button>
 
                                 </div>
                             </div>
@@ -523,7 +523,7 @@
 
                         </style>
                         <div style="text-align:center">
-                            <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer
+                            <button type="button" class="btn btn-shop action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer
                             </button>
                         </div>
 
@@ -847,7 +847,7 @@
             </button>
         </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" onclick="verify_payment_method()" href="" id="pm_shop_check">
+            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn  btn-shop float-right d-none d-xl-inline-block" onclick="verify_payment_method()" href="" id="pm_shop_check">
                 <span id="pm_shop_check_text">Je paye maintenant !</span>
                 <span class="fa fa-chevron-right" />
             </a>
