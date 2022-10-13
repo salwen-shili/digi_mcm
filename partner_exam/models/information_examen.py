@@ -389,6 +389,8 @@ class NoteExamen(models.Model):
         api_key = ""
         if company:
             api_key = company.wedof_api_key
+            plateforme_company=company.plateforme_company_key
+            plateforme_api_key=company.plateforme_api_key
         headers = {
             'accept': 'application/json',
             'Content-Type': 'application/json',
@@ -402,8 +404,8 @@ class NoteExamen(models.Model):
             ('limit', '100'),
         )
         param_360 = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', plateforme_company),
+            ('apiKey', plateforme_api_key),
             ('deleted', 'false')
         )
         data1 = '{}'

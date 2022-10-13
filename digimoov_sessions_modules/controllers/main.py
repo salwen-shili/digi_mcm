@@ -780,16 +780,15 @@ class WebsiteSale(WebsiteSale):
 
     @http.route(['/shop/adduser_plateform'], type='json', auth="user", methods=['POST'], website=True)
     def add_partner_plateforme(self):
-
         user = request.env.user
         partner = user.partner_id
         if partner.statut == "won" and partner.statut_cpf != "canceled":
             params = (
-                ('company', '56f5520e11d423f46884d593'),
-                ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+                ('company', user.company_id.plateforme_company_key),
+                ('apiKey', user.company_id.plateforme_api_key),
             )
-            company_id = '56f5520e11d423f46884d593'
-            api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+            company_id = user.company_id.plateforme_company_key
+            api_key = user.company_id.plateforme_api_key
             headers = CaseInsensitiveDict()
             headers["Content-Type"] = "application/json"
 
@@ -925,11 +924,11 @@ class WebsiteSale(WebsiteSale):
     def ajouter_iOne(self, partner):
 
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', request.env.user.company_id.plateforme_company_key),
+            ('apiKey', request.env.user.company_id.plateforme_api_key),
         )
-        company_id = '56f5520e11d423f46884d593'
-        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+        company_id = request.env.user.company_id.plateforme_company_key
+        api_key = request.env.user.company_id.plateforme_api_key
         headers = CaseInsensitiveDict()
         headers["Content-Type"] = "application/json"
         if not request.env.user.lang:

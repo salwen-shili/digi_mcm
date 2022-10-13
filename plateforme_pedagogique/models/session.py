@@ -20,14 +20,14 @@ class Session(models.Model):
             # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
             # du compte dans odoo
             locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-            company_id = '56f5520e11d423f46884d593'
-            api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+            company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
+            params = (
+                ('company', company.plateforme_company_key),
+                ('apiKey', company.wedof_api_key),
+            )
             headers = CaseInsensitiveDict()
             headers["Accept"] = "*/*"
-            params = (
-                ('company', '56f5520e11d423f46884d593'),
-                ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
-            )
+           
             url_groups = 'https://app.360learning.com/api/v1/groups'
             response_grps = requests.get(url_groups, params=params)
             groupes = response_grps.json()
@@ -65,14 +65,16 @@ class Session(models.Model):
 
     # Supprimer session manuellement de plateforme 360
     def supprimer_session_manuelle (self):
-        company_id = '56f5520e11d423f46884d593'
-        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+        company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
+        params = (
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.plateforme_api_key),
+        )
+        company_id = company.plateforme_company_key
+        api_key = company.plateforme_api_key
         headers = CaseInsensitiveDict()
         headers["Accept"] = "*/*"
-        params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
-        )
+    
         url_groups = 'https://app.360learning.com/api/v1/groups'
         response_grps = requests.get(url_groups, params=params)
         existe = False
