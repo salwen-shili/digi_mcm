@@ -41,16 +41,17 @@
                                 <!-- progressbar -->
                                 <ul id="progressbar">
                                     <li class="active" id="account">
-                                        <strong>Coordonnées</strong>
+                                        <strong>Je crée mon compte
+</strong>
                                     </li>
                                     <li id="personal" class="active">
-                                        <strong>Documents</strong>
+                                        <strong>J'insère mes documents</strong>
                                     </li>
                                     <li id="payment" class="active">
-                                        <strong>Financement</strong>
+                                        <strong>Je finance ma formation</strong>
                                     </li>
                                     <li id="confirm">
-                                        <strong>Validation</strong>
+                                        <strong>Je valide mon inscription</strong>
                                     </li>
                                 </ul>
                                 <div class="progress">
@@ -104,16 +105,17 @@
                                 <!-- progressbar -->
                                 <ul id="progressbar">
                                     <li class="active" id="account">
-                                        <strong>Coordonnées</strong>
+                                        <strong>Je crée mon compte
+</strong>
                                     </li>
                                     <li id="personal" class="active">
-                                        <strong>Documents</strong>
+                                        <strong>J'insère mes documents</strong>
                                     </li>
                                     <li id="payment" class="active">
-                                        <strong>Financement</strong>
+                                        <strong>Je finance ma formation</strong>
                                     </li>
                                     <li id="confirm">
-                                        <strong>Validation</strong>
+                                        <strong>Je valide mon inscription</strong>
                                     </li>
                                 </ul>
                                 <div class="progress">
@@ -178,16 +180,17 @@
                                 <!-- progressbar -->
                                 <ul id="progressbar">
                                     <li class="active" id="account">
-                                        <strong>Coordonnées</strong>
+                                        <strong>Je crée mon compte
+</strong>
                                     </li>
                                     <li id="personal" class="active">
-                                        <strong>Documents</strong>
+                                        <strong>J'insère mes documents</strong>
                                     </li>
                                     <li id="payment" class="active">
-                                        <strong>Financement</strong>
+                                        <strong>Je finance ma formation</strong>
                                     </li>
                                     <li id="confirm">
-                                        <strong>Validation</strong>
+                                        <strong>Je valide mon inscription</strong>
                                     </li>
                                 </ul>
                                 <div class="progress">
