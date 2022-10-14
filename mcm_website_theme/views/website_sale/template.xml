@@ -161,7 +161,7 @@
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
                 <!-- Mode de financement -->
                 <h3 class="" style="margin-top: 1rem; font-weight: 600;font-size:18px" >
-                    Mode de financement
+                    Sélectionnez votre mode de financement
                 </h3>
                
             <select id="financement" onchange="modeFinancement(this.options[this.selectedIndex].id, this.selectedIndex)" style="font-size: 15px; font-weight: 600;" class="form-control search-slt " data-tour="step: 3; title: Mode de financement; content: Sélectionnez le mode de paiement souhaité" >
@@ -545,7 +545,7 @@
             <div style="margin:auto;background-color:#fff;border-color:#585959;" t-if="request.website.is_public_user()==False and modules_mcm" id="region_date_examen">
 
                 <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;;font-size:18px" >
-                    Votre région d'examen
+                    Sélectionnez votre région d'examen
                 </h3>
 
                 <!-- state from backend-->
@@ -580,11 +580,14 @@
                                     </t>
                                 </t>
                             </select>
+                            <p id="error_choix_region_examen" class="alert alert-warning" style="margin-top:10px; margin-left:0%; display:none; max-width:600px;">
+                                Vous devez sélectionner votre région d'examen
+                            </p>
 
                           
                             <t t-if="is_taxi == 'True'  "  >
                                 <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;font-size:18px" >
-                                    Votre département
+                                    Sélectionnez Votre département
                                 </h3>
                                 
                               
@@ -621,6 +624,7 @@
                         </div>
                     </b>
                 </p>
+               
 
                 <p t-if="modules_mcm">
                     <b>
@@ -645,7 +649,7 @@
                             </p> -->
                         </div>
                         <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;;font-size:18px" >
-                            Votre date d'examen
+                            Sélectionnez votre date d'examen
                         </h3>
                         <div id="select-date" style="margin-left: 0%">
                             

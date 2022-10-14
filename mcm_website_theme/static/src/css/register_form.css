@@ -1,12 +1,16 @@
 :root {
   --blue-shop: #086ce3;
-  --green-shop: #2f8e2f;
+  --green-shop: #005a00;
+  --green-hover: #047404;
 }
 * {
   margin: 0;
   padding: 0;
 }
-
+.btn:hover{
+color: #fff !important;
+background-color: var(--green-hover) !important;
+}
 html {
   height: 100%;
   /* background: #232121 !important; */
@@ -272,7 +276,7 @@ html {
 }
 
 .progress-bar {
-  background-color: #2f8e2f;
+  background-color: #005a00;
 }
 
 .fit-image {
