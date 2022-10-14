@@ -278,7 +278,7 @@ class event_calendly(models.Model):
                 # self.env.cr.rollback() cancels the transaction's write operations since the last commit, or all if no commit was done.
             except Exception:
                 self.env.cr.rollback()
-                _logger.info(" except Exception:")
+                _logger.info("except Exception:")
 
 
 

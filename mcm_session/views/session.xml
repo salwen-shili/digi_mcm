@@ -196,22 +196,22 @@
                             </div>
                             <div class="col-8">
 
-                                <field name="client_ids" string="" mode="tree,kanban"
+                                <field name="client_ids"  string="" mode="tree,kanban"
                                        domain="['|',('statut', '=', 'won'),('statut', '=', 'finalized')]">
-                                    <tree>
+                                    <tree >
                                         <control>
                                             <create name="add_line_control" string="Ajouter un stagiaire"/>
                                         </control>
-                                        <field name="name"/>
-                <!--                          <button
+                                        <field name="name" style="pointer-events: none;"/>
+                                          <button
                         name="test_url"
                         type="object"
                         class="oe_stat_button"
                         icon="fa-address-book"
-                />-->
-                                        <field name="statut"/>
-                                        <field name="module_id"/>
-                                        <field name="state_id" string="Département"/>
+                />
+                                        <field name="statut" style="pointer-events: none;" />
+                                        <field name="module_id" style="pointer-events: none;"/>
+                                        <field name="state_id" string="Département" style="pointer-events: none;"/>
                                     </tree>
                                 </field>
                             </div>
@@ -229,21 +229,21 @@
                             </div>
                             <div class="col-8">
                                 <field name="prospect_ids" string="" mode="tree,kanban"
-                                       domain="[('statut', '=', 'indecis')]">
+                                       domain="[('statut', '=', 'indecis')]" >
                                     <tree>
                                         <control>
                                             <create name="add_line_control" string="Ajouter un prospect"/>
                                         </control>
-                                        <field name="name"/>
-      <!--                                    <button
+                                        <field name="name" style="pointer-events:none;"/>
+                                          <button
                         name="test_url"
                         type="object"
                         class="oe_stat_button"
                         icon="fa-address-book"
-                />-->
-                                        <field name="statut"/>
-                                        <field name="module_id"/>
-                                        <field name="state_id" string="Département"/>
+                />
+                                        <field name="statut" style="pointer-events:none;"/>
+                                        <field name="module_id"  style="pointer-events:none;"/>
+                                        <field name="state_id"  style="pointer-events:none;" string="Département"/>
                                     </tree>
                                 </field>
                             </div>
@@ -269,16 +269,16 @@
                                         <control>
                                             <create name="add_line_control" string="Ajouter un prospect annule"/>
                                         </control>
-                                        <field name="name"/>
-       <!--                                   <button
-                        name="test_url"
-                        type="object"
-                        class="oe_stat_button"
-                        icon="fa-address-book"
-                />-->
-                                        <field name="statut"/>
-                                        <field name="module_id"/>
-                                        <field name="state_id" string="Département"/>
+                                        <field name="name" style="pointer-events: none;" />
+                                          <button
+                                name="test_url"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-address-book"
+                        />
+                                        <field name="statut" style="pointer-events: none;" />
+                                        <field name="module_id" style="pointer-events: none;" />
+                                        <field name="state_id" string="Département" style="pointer-events: none;" />
                                     </tree>
                                 </field>
                             </div>
@@ -301,22 +301,23 @@
                                         <control>
                                             <create name="add_line_control" string="Ajouter un client perdu"/>
                                         </control>
-                                        <field name="name"/>
-          <!--                                <button
+                                        <field name="name" style="pointer-events: none;"  />
+                                        <button
                         name="test_url"
                         type="object"
                         class="oe_stat_button"
                         icon="fa-address-book"
-                />-->
-                                        <field name="statut"/>
-                                        <field name="module_id"/>
-                                        <field name="state_id" string="Département"/>
+                />
+                                        <field name="statut" style="pointer-events: none;" />
+                                        <field name="module_id" style="pointer-events: none;" />
+                                        <field name="state_id" string="Département" style="pointer-events: none;" />
                                     </tree>
                                 </field>
                             </div>
                             <div class="col-2">
                             </div>
                         </div>
+
                     </div>
                     <footer>
                         <div class="oe_chatter">
