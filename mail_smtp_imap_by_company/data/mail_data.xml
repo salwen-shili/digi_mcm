@@ -3,14 +3,12 @@
     <data noupdate="0">
         <template id="mail_bounce_catchall_by_company">
             <div>
-                <p>Hello<t t-esc="message['email_from']"/>,
+                <p>Hello,
                 </p>
-                <p>The email sent to
-                    <t t-esc="message['to']"/>
-                    cannot be processed. This address
-                    is used to collect replies and should not be used to directly contact <t t-esc="message_company.name"/>.
+                <p>
+                    To proceed with your request, please contact the service concerned by clicking
                 </p>
-                <p>Please contact us
+                <p>
 <a t-att-href="'%scontact' % message_company.website">
                             here
                         </a>
