@@ -60,7 +60,11 @@
         <field name="name">Rapport Marketing</field>
         <field name="model">mcm_openedx.rapport</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="statut_dossier == 'canceled'" decoration-success="statut_dossier=='accepted'" delete="false">
+            <tree decoration-danger="statut_dossier == 'canceled'"
+                  decoration-success="statut_dossier=='accepted'"
+                  decoration-info="statut_dossier=='in_training'"
+                  decoration-warning="statut_dossier=='out_training'"
+                  delete="false">
                 <field name="customer_email"/>
                 <field name="numero_dossier"/>
                 <field name="name"/>
@@ -108,13 +112,10 @@
     </record>
 
     <!-- menu des villes sera afficher apres menu configuration dans l'interface de convocation-->
-    <menuitem id="rapport_action" name="Rapport Marketing/Finance"
-              parent="main_mcm_openedx_menu"
-              sequence="5"/>
-    <menuitem id="rapport_action_cpf" name="Rapport Marketing/Finance"
-              parent="rapport_action"
-              action="mcm_openedx.rapportcpf_list_action"
-    />
+    <menuitem id="rapport_action" name="Rapport Marketing"
+parent="mcm_session.mcm_academy_session_root_menu"               action="mcm_openedx.rapportcpf_list_action"
+             sequence="20" />
+
 
 </odoo>
 
