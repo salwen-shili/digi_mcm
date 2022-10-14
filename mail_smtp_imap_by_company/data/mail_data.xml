@@ -6,12 +6,10 @@
                 <p>Hello,
                 </p>
                 <p>
-                  To proceed with your request, please contact the service concerned by clicking
+                  To proceed with your request, please contact the service concerned by clicking <a t-att-href="'%scontact' % message_company.website">here </a>
                 </p>
                 <p>
-                    <a t-att-href="'%scontact' % message_company.website">
-                            here
-                    </a>
+
                 </p>
                 <p>Regards,</p>
                 <p>The team of
