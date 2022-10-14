@@ -315,9 +315,10 @@ class FINANCEMENT(http.Controller):
                                                                                                      'coursierjob',
                                                                                                      'box2home',
                                                                                                      'coursier2roues']:
-                return request.redirect("/%s#pricing" % str(user_connected.partner_id.partner_from))
+                return werkzeug.utils.redirect("/%s#pricing" % str(user_connected.partner_id.partner_from),301)
+            
             else:
-                return request.redirect("/#pricing")
+                return werkzeug.utils.redirect("/#pricing",301)
 
 
 class DIGIEXAMEN(http.Controller):
