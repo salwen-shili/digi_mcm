@@ -36,17 +36,20 @@ class rapport(models.Model):
     type_financement = fields.Selection([('cpf', 'CPF'),
                                          ('stripe', 'Carte Bleu'),
                                          ])
-    #add mcm controller
-    #add repport
-    #add button to update report
+
+    # add mcm controller
+    # add repport
+    # add button to update report
     # add comapny filter and Grouped by CPF / Carte bleu
     def rapport_wedof(self):
         print("rapport wedof")
 
-        for existe in self.env['mcm_openedx.rapport'].sudo().search([('customer_email', '!=', False),('numero_formation','=',False)]):
+        for existe in self.env['mcm_openedx.rapport'].sudo().search(
+                [('customer_email', '!=', False), ('numero_formation', '=', False)]):
             for partner in self.env['res.partner'].search(
                     [('email', '=', existe.customer_email)]):
-                sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id)], limit=1, order="id desc")
+                sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id)], limit=1,
+                                                                  order="id desc")
                 if partner.email == existe.customer_email:
                     existe.company = partner.company_id.name
                     existe.numero_formation = sale_order.order_line.product_id.default_code
@@ -139,14 +142,14 @@ class rapport(models.Model):
                     new.type_financement = "cpf"
                     _logger.info(new)
 
-                for partner in self.env['res.partner'].search([('numero_cpf', '!=', False)]):
-                    if partner.numero_cpf == existe.numero_dossier:
-                        if partner.numero_cpf == existe.numero_dossier:
-                            existe.company = partner.company_id.name
-                            existe.partner_id = partner.id
-                            if partner.statut_cpf == "canceled":
-                                existe.statut_dossier = partner.statut_cpf
-
+        for existee in self.env['mcm_openedx.rapport'].sudo().search([('numero_dossier', '!=', False)]):
+            for partner in self.env['res.partner'].search([('numero_cpf', '!=', False)]):
+                if partner.numero_cpf == existee.numero_dossier:
+                    if partner.numero_cpf == existee.numero_dossier:
+                        existee.company = partner.company_id.name
+                        existee.partner_id = partner.id
+                        if partner.statut_cpf != "accepted":
+                            existee.statut_dossier = partner.statut_cpf
 
         return {
             'type': 'ir.actions.client',
