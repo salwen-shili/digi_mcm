@@ -1261,7 +1261,7 @@ class partner(models.Model):
                             users = self.env['res.users'].sudo().search(
                                 [('login', "=", email)])  # search user with same email sended
                             user = False
-                            if len(users) > 1:
+                            if users and len(users) > 1:
                                 user = users[1]
                                 print('userss', users)
                                 for utilisateur in users:
@@ -1604,7 +1604,8 @@ class partner(models.Model):
                                     users = res_users.find_user_with_phone(str(tel))
 
                         user = False
-                        if len(users) > 1:
+
+                        if users and len(users) > 1:
                             user = users[1]
                             for utilisateur in users:
                                 if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.ville:
