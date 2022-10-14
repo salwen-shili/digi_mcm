@@ -27,6 +27,8 @@ class calendly_integration(models.Model):
     scheduling_url = fields.Char(string="scheduling_ur")
     updated_at = fields.Date(string="updated_at")
     uri = fields.Char(string="uri ")
+    calendly_api_key = fields.Char("Jetons d'API Calendly ") #jeton d'api visible seulement en mode developpeur
+
 
     def type_event(self):
         querystring = {"active": "true",
