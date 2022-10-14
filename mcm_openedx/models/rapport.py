@@ -142,15 +142,14 @@ class rapport(models.Model):
                     new.type_financement = "cpf"
                     _logger.info(new)
 
-                for partner in self.env['res.partner'].search([('numero_cpf', '!=', False)]):
-                    if partner.numero_cpf == existe.numero_dossier:
-                        if partner.numero_cpf == existe.numero_dossier:
-                            existe.company = partner.company_id.name
-                            existe.partner_id = partner.id
-                            if partner.statut_cpf == "canceled":
-                                existe.statut_dossier = partner.statut_cpf
-                            if partner.statut_cpf != "accepted":
-                                existe.statut_dossier = partner.statut_cpf
+        for existee in self.env['mcm_openedx.rapport'].sudo().search([('numero_dossier', '!=', False)]):
+            for partner in self.env['res.partner'].search([('numero_cpf', '!=', False)]):
+                if partner.numero_cpf == existee.numero_dossier:
+                    if partner.numero_cpf == existee.numero_dossier:
+                        existee.company = partner.company_id.name
+                        existee.partner_id = partner.id
+                        if partner.statut_cpf != "accepted":
+                            existee.statut_dossier = partner.statut_cpf
 
         return {
             'type': 'ir.actions.client',
