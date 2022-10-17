@@ -184,6 +184,7 @@ class partner(models.Model):
 
     # Dsinscrire l'apprenant  des cours VTC
     def desinscriteVTC(self, partner):
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
         user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -203,7 +204,7 @@ class partner(models.Model):
         header = {
             'Access-Control-Request-Headers': 'authorization',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+            'Authorization':  company.moocit_api_key
         }
 
         response = requests.request("POST", url, headers=header, data=payload)
@@ -212,6 +213,8 @@ class partner(models.Model):
 
     # Ajouter l'apprenant au cours VTC
     def inscriteVTC(self, partner):
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
+
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
             'auto_enroll': 'true',
@@ -230,7 +233,7 @@ class partner(models.Model):
         header = {
             'Access-Control-Request-Headers': 'authorization',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+            'Authorization': company.moocit_api_key
         }
         response = requests.request("POST", url, headers=header, data=payload)
 
@@ -239,6 +242,8 @@ class partner(models.Model):
 
     # Desinscrire l'apprenant des cours TAXI
     def desinscriteTaxi(self, partner):
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
+
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
             'auto_enroll': 'true',
@@ -259,7 +264,7 @@ class partner(models.Model):
         header = {
             'Access-Control-Request-Headers': 'authorization',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+            'Authorization': company.moocit_api_key
         }
         response = requests.request("POST", url, headers=header, data=payload)
         _logger.info('response.text de linscripstion  ou desincs cour %s' % str(response.text))
@@ -269,6 +274,8 @@ class partner(models.Model):
     # Ajouter l'apprenant au cours de formation taxi
     # Ajouter cours connaisances locale 2022
     def inscriteTaxi(self, partner):
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
+
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
             'auto_enroll': 'true',
@@ -288,7 +295,7 @@ class partner(models.Model):
         header = {
             'Access-Control-Request-Headers': 'authorization',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+            'Authorization': company.moocit_api_key
         }
         response = requests.request("POST", url, headers=header, data=payload)
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
@@ -296,6 +303,8 @@ class partner(models.Model):
 
     # Ajouter l'apprenant au cours de conaissance locale département(Pas-de-Calais)
     def ajoutconnaisancelocalpasdecalais(self, partner):
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
+
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
             'auto_enroll': 'true',
@@ -308,7 +317,7 @@ class partner(models.Model):
         header = {
             'Access-Control-Request-Headers': 'authorization',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+            'Authorization': company.moocit_api_key
         }
         response = requests.request("POST", url, headers=header, data=payload)
         _logger.info('response.text de linscripstion  ou desincs cour %s' % str(response.text))
@@ -316,6 +325,8 @@ class partner(models.Model):
 
     # Ajouter l'apprenant au cours de conaissance locale département (Nord)
     def ajoutconnaisancelocalNord(self, partner):
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
+
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
             'auto_enroll': 'true',
@@ -328,7 +339,7 @@ class partner(models.Model):
         header = {
             'Access-Control-Request-Headers': 'authorization',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+            'Authorization': company.moocit_api_key
         }
         resp = requests.request("POST", url, headers=header, data=payload)
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(resp.status_code))
@@ -607,6 +618,7 @@ class partner(models.Model):
 
     # Fonction d'affectation des apprenants à la plateforme et aux cours.
     def ajouter_IOne_MCM(self, partner):
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
         print(partner)
         _logger.info('E-mail de lapprenant %s' % str(partner.email))
         user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
@@ -626,7 +638,7 @@ class partner(models.Model):
             headers = {
                 'Access-Control-Request-Headers': 'authorization',
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+                'Authorization': company.moocit_api_key
             }
             response_ajouter_iOne_MCM = requests.request("POST", url, headers=headers, data=payload)
             _logger.info(
