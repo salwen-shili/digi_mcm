@@ -184,6 +184,9 @@ class partner(models.Model):
 
     # Dsinscrire l'apprenant  des cours VTC
     def desinscriteVTC(self, partner):
+        # search for comany
+        #get api key
+        #add xml view
         company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
         user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
