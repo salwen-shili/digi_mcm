@@ -1617,6 +1617,7 @@ class partner(models.Model):
                             if user.state == "new":
                                 """Si un nouveau utilisateur envoyer 
                                 une invitation de réinitialisation de mot de passe"""
+                                
                                 user.action_reset_password()
                             else:
                                 if not (user.partner_id.date_examen_edof) or not (user.partner_id.session_ville_id):
