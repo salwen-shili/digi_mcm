@@ -64,7 +64,7 @@ class rapport(models.Model):
                                                                   order="id desc")
                 if partner.email == existe.customer_email:
                     existe.company = partner.company_id.name
-                    existe.numero_formation = sale_order.order_line.product_id.default_code
+                    existe.numero_formation = sale_order.order_line.product_id.name
                     existe.numero_action = sale_order.order_line.product_id.id_edof
                     existe.numero_session = sale_order.order_line.product_id.id_edof
 
