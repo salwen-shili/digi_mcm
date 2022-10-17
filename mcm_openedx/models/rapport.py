@@ -20,7 +20,19 @@ class rapport(models.Model):
     company = fields.Char(string="Company")
     prenom = fields.Char(string="PRENOM")
     montant_formation = fields.Char(string="MONTANT FORMATION")
-    statut_dossier = fields.Char(string="STATUT DOSSIER")
+    statut_dossier = fields.Selection([('untreated', 'Non Traité'),
+                                       ('validated', 'Validé'),
+                                       ('accepted', 'Accepté'),
+                                       ('in_training', 'En Formation'),
+                                       ('out_training', 'Sortie de Formation'),
+                                       ('service_declared', 'Service Fait Declaré'),
+                                       ('service_validated', 'Service Fait Validé'),
+                                       ('bill', 'Facturé'),
+                                       ('canceled', 'Annulé'),
+                                       ('paid', 'Payé'),
+                                       ('not_paid', 'Non payées'),
+                                       ('in_payment', 'En paiement')],
+                                      string="Financement", default=False)
     date_debut_session = fields.Date(string="   DATE DEBUT SESSION")
     acceptedDate = fields.Date(string="   AcceptedDate")
     date_fin_session = fields.Date(string=" DATE FIN SESSION")
