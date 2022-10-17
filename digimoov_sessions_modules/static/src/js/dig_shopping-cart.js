@@ -482,6 +482,21 @@ function closepopup(msg) {
     window.location.href = msg;
     return;
   }
+  let lourd = ""
+  if (window.location.href.includes("lourd")){
+    lourd = `   <div class="input checkbox" id="input_lourd" style="display:none;margin-top: 12px;">
+    <input type="checkbox" id="checkbox_lourd" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
+        <label for="conditions" style="display:inline">
+            Je m'engage à régler le montant de reste à charge de
+            <b>190€</b>
+            une fois mon financement CPF de
+            <b>2000€</b>
+            accepté
+        </label>
+    </input>
+  
+  </div>`
+  }
   document.getElementById("popupcontent").innerHTML = `
   <p id="notifMessage">
                             <div class="input checkbox" style="width:90%">
@@ -493,18 +508,7 @@ function closepopup(msg) {
                                     </label>
                                 </input>
                             </div>
-                            <div class="input checkbox" id="input_lourd" style="display:none;margin-top: 12px;">
-                                <input type="checkbox" id="checkbox_lourd" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
-                                    <label for="conditions" style="display:inline">
-                                        Je m'engage à régler le montant de reste à charge de
-                                        <b>190€</b>
-                                        une fois mon financement CPF de
-                                        <b>2000€</b>
-                                        accepté
-                                    </label>
-                                </input>
-
-                            </div>
+                           ${lourd}
                             <div class="input checkbox" style="margin-top: 12px;">
                                 <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
                                     <label for="conditions" style="display:inline">
