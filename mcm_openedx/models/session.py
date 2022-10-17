@@ -20,7 +20,7 @@ class Session(models.Model):
 
     def test_url(self):
         return {
-            "type" : "ir.actions.act_window",
+        "type" : "ir.actions.act_window",
         "res_model" : self._name,
         "view_mode": "form",
         "res_id": self.id
