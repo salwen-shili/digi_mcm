@@ -6,7 +6,8 @@
                 <p>Hello,
                 </p>
                 <p>
-                  To proceed with your request, please contact the service concerned by clicking &#128073; <a t-att-href="'%scontact' % message_company.website">here </a>
+                    To proceed with your request, please contact the service concerned by clicking &#128073;
+                    <a t-att-href="'%scontact' % message_company.website">here</a>
                 </p>
                 <p>
 
@@ -14,6 +15,10 @@
                 <p>Regards,</p>
                 <p>The team of
                     <t t-esc="message_company.name"/>
+                </p>
+                <p>
+                    <a t-attf-href="tel:#{message_company.phone}">
+                    </a>
                 </p>
             </div>
             <blockquote>
