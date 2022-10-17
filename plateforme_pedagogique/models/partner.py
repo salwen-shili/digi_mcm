@@ -1616,9 +1616,22 @@ class partner(models.Model):
 
                             if user.state == "new":
                                 """Si un nouveau utilisateur envoyer 
-                                une invitation de réinitialisation de mot de passe"""
-                                
-                                user.action_reset_password()
+                                un sms d'invitation"""
+
+                                url = str(user.signup_url)  # get the signup_url
+                                short_url = pyshorteners.Shortener()
+                                short_url = short_url.tinyurl.short(
+                                    url)  # convert the signup_url to be short using pyshorteners library
+                                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                                    user.partner_id.name, user.partner_id.company_id.name, short_url,
+                                    user.partner_id.email)  # content of sms
+                                sms = self.env['mail.message'].sudo().search(
+                                    [("body", "like", short_url), ("message_type", "=", 'sms'),
+                                     ('partner_ids', 'in', user.partner_id.id),
+                                     ('model', "=", "res.partner")])
+                                if not sms:
+                                    _logger.info('if not sms %s' % str(sms_body_contenu))
+                                    self.send_sms(sms_body_contenu, user.partner_id)
                             else:
                                 if not (user.partner_id.date_examen_edof) or not (user.partner_id.session_ville_id):
                                     """Envoyez un SMS aux apprenants qui arrivent de CPF."""
