@@ -1,13 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="digimoov_sign_request_form" model="ir.ui.view">
-        <field name="name">sign.request.form</field>
-        <field name="model">sign.request</field>
-        <field name="inherit_id" ref="sign.sign_request_view_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//h1" position="after">
-                <field name="company_id"/>
-            </xpath>
-        </field>
-    </record>
+    <template id="sign.doc_sign" name="Remove logo odoo from sign doc">
+        <t t-call="web.layout">
+            <t t-set="head">
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+                <t t-call-assets="web.assets_common" t-js="false"/>
+                <t t-call-assets="web.assets_frontend" t-js="false"/>
+                <link rel="stylesheet" type="text/scss" href="/web_enterprise/static/src/scss/modal_mobile.scss"/>
+                <t t-call-assets="web.assets_common" t-css="false"/>
+                <t t-call-assets="web.assets_frontend" t-css="false"/>
+                <t t-call="web.conditional_assets_tests"/>
+                <script type="text/javascript">
+                    odoo.define("sign.document_custom_page", function (require) {
+                    var ajax = require("web.ajax");
+                    var core = require("web.core");
+                    var document_signing = require("sign.document_signing");
+                    var rootWidget = require('root.widget');
+                    // YTI FIXME We need the tour to wait the Tip template to be loaded
+                    odoo.__TipTemplateDef = ajax.loadXML("/web_tour/static/src/xml/tip.xml", core.qweb).then(function ()
+                    {
+                    ajax.loadXML("/sign/static/src/xml/sign_common.xml", core.qweb).then(function () {
+                    document_signing.initDocumentToSign(rootWidget);
+                    });
+                    });
+                    });
+                </script>
+            </t>
+            <div class="o_sign_document">
+                <header>
+                    <div>
+                        <div class="col-lg-4">
+                            <div class="o_logo">
+                                <a href="/">
+                                    <img src="/logo.png" alt="Logo" style="width:61px;height:78px;padding-top:20px;"/>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div t-if="sign_request" class="o_sign_header_instruction">
+                                <t t-if="not current_request_item">Need to sign? Check your inbox to get your secure
+                                    access
+                                </t>
+                                <t t-if="current_request_item and current_request_item.state == 'sent'">Veuillez réviser
+                                    et statuer sur ce document
+                                </t>
+                                <t t-if="current_request_item and current_request_item.state == 'completed'">You have
+                                    completed the document
+                                </t>
+                            </div>
+                        </div>
+                        <!--                        <div class="col-lg-4">-->
+                        <!--                            <div class="o_odoo">-->
+                        <!--                                <a href="https://www.odoo.com/page/sign?utm_source=db&amp;utm_medium=sign">-->
+                        <!--                                    <img src="/sign/static/img/odoo_signed.png" alt="Signed"/>-->
+                        <!--                                </a>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                </header>
+                <t t-call="sign._doc_sign"/>
+            </div>
+        </t>
+
+    </template>
 </odoo>
+        <!--<?xml version="1.0" encoding="utf-8"?>-->
+        <!--<odoo>-->
+        <!--    <record id="digimoov_sign_request_form" model="ir.ui.view">-->
+        <!--        <field name="name">sign.request.form</field>-->
+        <!--        <field name="model">sign.request</field>-->
+        <!--        <field name="inherit_id" ref="sign.sign_request_view_form"/>-->
+        <!--        <field name="arch" type="xml">-->
+        <!--            <xpath expr="//h1" position="after">-->
+        <!--                <field name="company_id"/>-->
+        <!--            </xpath>-->
+        <!--        </field>-->
+        <!--    </record>-->
+        <!--</odoo>-->
