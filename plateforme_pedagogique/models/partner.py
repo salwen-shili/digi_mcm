@@ -1261,7 +1261,7 @@ class partner(models.Model):
                             users = self.env['res.users'].sudo().search(
                                 [('login', "=", email)])  # search user with same email sended
                             user = False
-                            if len(users) > 1:
+                            if users and len(users) > 1:
                                 user = users[1]
                                 print('userss', users)
                                 for utilisateur in users:
@@ -1594,47 +1594,37 @@ class partner(models.Model):
                         date_min = today - relativedelta(months=2)
                         users = self.env['res.users'].sudo().search([('login', "=", email)])
                         """si apprenant non trouvé par email on cherche par numero telephone"""
+                        _logger.info("tel******* %s" %str(tel))
                         if not users:
-                            if '+33' not in str(tel):
-                                users = self.env["res.users"].sudo().search(
-                                    [("phone", "=", str(tel).replace(' ', ''))], limit=1)
-                                if not users:
-                                    phone = str(tel)
-                                    phone = phone[1:]
-                                    phone = '+33' + str(phone)
-                                    users = self.env["res.users"].sudo().search(
-                                        [("phone", "=", phone.replace(' ', ''))], limit=1)
-                            else:
-                                users = self.env["res.users"].sudo().search(
-                                    [("phone", "=", str(tel).replace(' ', ''))], limit=1)
-                                if not users:
-                                    phone = str(tel)
-                                    phone = phone[3:]
-                                    phone = '0' + str(phone)
-                                    users = self.env["res.users"].sudo().search(
-                                        [("phone", "=", phone.replace(' ', ''))], limit=1)
+                            if tel:
+                                user = self.env["res.users"].sudo().search(
+                                    [("phone", "=", str(tel))], limit=1)
+                                if not user:
+                                    res_users = self.env["res.users"]
+                                    users = res_users.find_user_with_phone(str(tel))
 
                         user = False
-                        if len(users) > 1:
+
+                        if users and len(users) > 1:
                             user = users[1]
                             for utilisateur in users:
                                 if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.ville:
                                     user = utilisateur
                         else:
                             user = users
-
                         if user:
-                            if not (user.partner_id.date_examen_edof) or not (user.partner_id.session_ville_id):
-                                """Envoyez un SMS aux apprenants qui arrivent de CPF."""
-                                url = '%smy' % str(user.partner_id.company_id.website)  # get the signup_url
+
+                            if user.state == "new":
+                                """Si un nouveau utilisateur envoyer 
+                                un sms d'invitation"""
+
+                                url = str(user.signup_url)  # get the signup_url
                                 short_url = pyshorteners.Shortener()
                                 short_url = short_url.tinyurl.short(
-                                    url)  # convert the url to be short using pyshorteners library
-
+                                    url)  # convert the signup_url to be short using pyshorteners library
                                 sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
                                     user.partner_id.name, user.partner_id.company_id.name, short_url,
                                     user.partner_id.email)  # content of sms
-
                                 sms = self.env['mail.message'].sudo().search(
                                     [("body", "like", short_url), ("message_type", "=", 'sms'),
                                      ('partner_ids', 'in', user.partner_id.id),
@@ -1642,6 +1632,25 @@ class partner(models.Model):
                                 if not sms:
                                     _logger.info('if not sms %s' % str(sms_body_contenu))
                                     self.send_sms(sms_body_contenu, user.partner_id)
+                            else:
+                                if not (user.partner_id.date_examen_edof) or not (user.partner_id.session_ville_id):
+                                    """Envoyez un SMS aux apprenants qui arrivent de CPF."""
+                                    url = '%smy' % str(user.partner_id.company_id.website)  # get the signup_url
+                                    short_url = pyshorteners.Shortener()
+                                    short_url = short_url.tinyurl.short(
+                                        url)  # convert the url to be short using pyshorteners library
+
+                                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                                        user.partner_id.name, user.partner_id.company_id.name, short_url,
+                                        user.partner_id.email)  # content of sms
+
+                                    sms = self.env['mail.message'].sudo().search(
+                                        [("body", "like", short_url), ("message_type", "=", 'sms'),
+                                         ('partner_ids', 'in', user.partner_id.id),
+                                         ('model', "=", "res.partner")])
+                                    if not sms:
+                                        _logger.info('if not sms %s' % str(sms_body_contenu))
+                                        self.send_sms(sms_body_contenu, user.partner_id)
 
                         if not user:
                             # créer
@@ -1717,7 +1726,7 @@ class partner(models.Model):
                                         })  # create note in client view
                         if user:
                             """mettre à jour les informations sur fiche client"""
-                            print("if user", user.login, user.partner_id.statut_cpf)
+                            _logger.info("if user", user.login, user.partner_id.statut_cpf)
                             user.partner_id.mode_de_financement = 'cpf'
                             user.partner_id.statut_cpf = 'accepted'
                             user.partner_id.date_cpf = lastupd

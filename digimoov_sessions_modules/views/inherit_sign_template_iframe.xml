@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sign.items_view" name="Digital Signatures - Items View">
+        <iframe class="o_sign_pdf_iframe" t-att-readonly="'readonly' if readonly else None" style="padding-top:30px;"/>
+
+        <input id="o_sign_input_attachment_location" type="hidden" t-attf-value="/sign/download/{{sign_request.id}}/{{sign_request.access_token}}/origin"/>
+        <input id="o_sign_input_current_role" type="hidden" t-att-value="role"/>
+
+        <t t-call="sign.items_input_info"/>
+        <t t-call="sign.item_types_input_info"/>
+        <t t-call="sign.item_select_options_input_info"/>
+    </template>
+</odoo>

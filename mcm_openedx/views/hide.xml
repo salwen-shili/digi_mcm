@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mcm_inherit_view_company_form" model="ir.ui.view">
+        <field name="name">res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="partner_exam.view_signature_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='suivi_formation']" position="after">
+                <page string="Integration MOOCIT" >
+                    <group>
+                        <group>
+                            <field name="calendly_api_key" string="Clé API"/>
+                         </group>
+                    </group>
+                </page>
+                <page string="Integration Calendly" >
+                    <group>
+                        <group>
+                            <field name="moocit_api_key" string="Cle MOOCIT"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

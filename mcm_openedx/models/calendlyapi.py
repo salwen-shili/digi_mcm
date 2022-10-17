@@ -27,14 +27,17 @@ class calendly_integration(models.Model):
     scheduling_url = fields.Char(string="scheduling_ur")
     updated_at = fields.Date(string="updated_at")
     uri = fields.Char(string="uri ")
+ 
 
     def type_event(self):
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
+
         querystring = {"active": "true",
                        "organization": "https://api.calendly.com/organizations/c7e28d20-f7eb-475f-954a-7ae1a36705e3",
                        "user": "https://api.calendly.com/users/5aa95e72-35ab-4391-8ff6-34cdd4e34f86"}
         headers = {
             "Content-Type": "application/json",
-            "Authorization": "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjYzMTQ4NjA2LCJqdGkiOiJkZDUwYWIxNy04ZDM3LTQyMjYtOGMzYy02NzMyNzI1MTM2NmUiLCJ1c2VyX3V1aWQiOiI1YWE5NWU3Mi0zNWFiLTQzOTEtOGZmNi0zNGNkZDRlMzRmODYifQ.TKiAMPGQFUdBODBHq8H-0LgQnbkldxW5V_hFacDyJgn53B-MbTQcBHLqwPx8uN_CiLfJahF_NJ1V4cc0Z5gmqg"
+            "Authorization":  company.calendly_api_key
         }
         response = requests.get('https://api.calendly.com/event_types', headers=headers, params=querystring)
         event = response.json()["collection"]
@@ -107,12 +110,12 @@ class event_calendly(models.Model):
     partner_id = fields.Many2one('res.partner')
 
     def event(self):
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
 
         new_format = '%d %B, %Y, %H:%M:%S'
         headers = {
             "Content-Type": "application/json",
-            "Authorization": "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjYzMTQ4NjA2LCJqdGkiOiJkZDUwYWIxNy04ZDM3LTQyMjYtOGMzYy02NzMyNzI1MTM2NmUiLCJ1c2VyX3V1aWQiOiI1YWE5NWU3Mi0zNWFiLTQzOTEtOGZmNi0zNGNkZDRlMzRmODYifQ.TKiAMPGQFUdBODBHq8H-0LgQnbkldxW5V_hFacDyJgn53B-MbTQcBHLqwPx8uN_CiLfJahF_NJ1V4cc0Z5gmqg"
-        }
+            "Authorization": company.calendly_api_key}
         querystring = {"user": "https://api.calendly.com/users/5aa95e72-35ab-4391-8ff6-34cdd4e34f86",
                        "organization": "https://api.calendly.com/organizations/c7e28d20-f7eb-475f-954a-7ae1a36705e3",
                        "status": "active", "min_start_time": date.today()}
@@ -136,8 +139,7 @@ class event_calendly(models.Model):
                 }
                 headers = {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjYzMTQ4NjA2LCJqdGkiOiJkZDUwYWIxNy04ZDM3LTQyMjYtOGMzYy02NzMyNzI1MTM2NmUiLCJ1c2VyX3V1aWQiOiI1YWE5NWU3Mi0zNWFiLTQzOTEtOGZmNi0zNGNkZDRlMzRmODYifQ.TKiAMPGQFUdBODBHq8H-0LgQnbkldxW5V_hFacDyJgn53B-MbTQcBHLqwPx8uN_CiLfJahF_NJ1V4cc0Z5gmqg"
-                }
+                    "Authorization": company.calendly_api_key        }
 
                 rep = requests.get('https://api.calendly.com/scheduled_events/%s' % (uuid_eventtype[4]),
                                    headers=headers, params=params)
@@ -206,6 +208,7 @@ class event_calendly(models.Model):
         }
 
     def send_invitation(self):
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
         todays_date = date.today()
         count = 0
         print("envoyer invitation au apprenant selon leur formation")

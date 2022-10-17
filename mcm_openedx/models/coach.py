@@ -28,6 +28,8 @@ class enattente(models.Model):
 
     # Dsinscrire l'apprenant  des cours VTC
     def desinscriteVTC(self, partner):
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
+
         user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
@@ -47,7 +49,7 @@ class enattente(models.Model):
         header = {
             'Access-Control-Request-Headers': 'authorization',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+            'Authorization': company.moocit_api_key
         }
 
         response = requests.request("POST", url, headers=header, data=payload)
@@ -56,6 +58,8 @@ class enattente(models.Model):
 
     # Desinscrire l'apprenant des cours TAXI
     def desinscriteTaxi(self, partner_cancled):
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
+
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
         payload = {
             'auto_enroll': 'true',
@@ -76,7 +80,7 @@ class enattente(models.Model):
         header = {
             'Access-Control-Request-Headers': 'authorization',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
+            'Authorization': company.moocit_api_key
         }
         response = requests.request("POST", url, headers=header, data=payload)
         _logger.info('response.text de linscripstion  ou desincs cour %s' % str(response.text))
