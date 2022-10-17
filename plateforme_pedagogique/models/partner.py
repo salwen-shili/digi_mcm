@@ -123,9 +123,10 @@ class partner(models.Model):
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+        company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.plateforme_api_key),
         )
         response = requests.get('https://app.360learning.com/api/v1/users', params=params)
         users = response.json()
@@ -207,9 +208,10 @@ class partner(models.Model):
 
     # Recuperer les statistique par session de 360learning
     def getstats_session(self):
+        company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.plateforme_api_key),
         )
         response = requests.get('https://app.360learning.com/api/v1/courses', params=params)
         sessions = response.json()
@@ -429,6 +431,7 @@ class partner(models.Model):
                             self.ajouter_iOne(self)
 
     def ajouter_iOne(self, partner):
+        company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
         new_email = ""
         # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
         # du compte dans odoo
@@ -461,11 +464,11 @@ class partner(models.Model):
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
                 id_Digimoov_Examen_Attestation = '5f9af8dae5769d1a2c9d5047'
                 params = (
-                    ('company', '56f5520e11d423f46884d593'),
-                    ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+                    ('company', company.plateforme_company_key),
+                    ('apiKey', company.plateforme_api_key),
                 )
-                company_id = '56f5520e11d423f46884d593'
-                api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+                company_id = company.plateforme_company_key
+                api_key = company.plateforme_api_key
                 urluser = ' https://app.360learning.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
                 url_groups = 'https://app.360learning.com/api/v1/groups'
                 url_unsubscribeToEmailNotifications = ' https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
@@ -750,13 +753,14 @@ class partner(models.Model):
 
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            company_id = '56f5520e11d423f46884d593'
-            api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+            company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+            company_id = company.plateforme_company_key
+            api_key = company.plateforme_api_key
             headers = CaseInsensitiveDict()
             headers["Accept"] = "*/*"
             params = (
-                ('company', '56f5520e11d423f46884d593'),
-                ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+                ('company', company.plateforme_company_key),
+                ('apiKey',  company.plateforme_api_key),
             )
             response = requests.get('https://app.360learning.com/api/v1/users', params=params)
             users = response.json()
@@ -791,8 +795,9 @@ class partner(models.Model):
     def supprimer_ione_manuelle(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            company_id = '56f5520e11d423f46884d593'
-            api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+            company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+            company_id = company.plateforme_company_key
+            api_key = company.plateforme_api_key
             headers = CaseInsensitiveDict()
             headers["Accept"] = "*/*"
             url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
@@ -831,6 +836,9 @@ class partner(models.Model):
             api_key = ""
             if companies:
                 api_key = companies.wedof_api_key
+                plateforme_api_key=companies.plateforme_api_key
+                plateforme_company_key=companies.plateforme_company_key
+
             headers = {
                 'accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -845,8 +853,8 @@ class partner(models.Model):
                 ('sort', 'lastUpdate'),
             )
             param_360 = (
-                ('company', '56f5520e11d423f46884d593'),
-                ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+                ('company', plateforme_company_key),
+                ('apiKey', plateforme_api_key),
             )
             data = '{}'
             response = requests.get('https://www.wedof.fr/api/registrationFolders', headers=headers,
@@ -2205,14 +2213,14 @@ class partner(models.Model):
                 # partner.email = new_email
 
     def test_api(self):
-
-        company_id = '56f5520e11d423f46884d593'
-        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+        company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+        company_id = company.plateforme_company_key
+        api_key = company.wedof_api_key
         headers = CaseInsensitiveDict()
         headers["Accept"] = "*/*"
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.wedof_api_key),
         )
         get_custom_fields = requests.get(
             "https://app.360learning.com/api/v1/customfields?company=" + company_id + "&apiKey=" + api_key,
@@ -2281,13 +2289,14 @@ class partner(models.Model):
     def send_email_manuel(self):
         """check if user added to plateform"""
         """send mail with button"""
-        company_id = '56f5520e11d423f46884d593'
-        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+        company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+        company_id = company.plateforme_company_key
+        api_key = company.wedof_api_key
         headers = CaseInsensitiveDict()
         headers["Accept"] = "*/*"
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.plateforme_api_key),
         )
         response = requests.get('https://app.360learning.com/api/v1/users', params=params)
         users = response.json()

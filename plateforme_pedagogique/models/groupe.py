@@ -23,9 +23,10 @@ class Groupe(models.Model):
     parcours_count = fields.Integer(string="Nb.Parcours", compute="_getParcours_count")
 
     def getParcours(self):
+        company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.plateforme_api_key),
         )
         resgroupe = requests.get('https://app.360learning.com/api/v1/groups', params=params)
         for groupe in resgroupe.json():
@@ -91,9 +92,10 @@ class Groupe(models.Model):
 
     # Récuperer les apprenants de chaque groupe
     def getusers_groupe(self):
+        company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.plateforme_api_key),
         )
         resgroupe = requests.get('https://app.360learning.com/api/v1/groups', params=params)
         # Parcours sur chaque groupe et reperer les données de chaque groupe
