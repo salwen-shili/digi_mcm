@@ -44,6 +44,7 @@
         "views/en_attentee.xml",
         "views/gerer_user_ir_cron.xml",
         "views/statestique.xml",
+        #"views/hide.xml",
         "views/session.xml",
         "views/coach.xml",
         "views/rapport.xml",
