@@ -824,8 +824,8 @@ class partner(models.Model):
                                 _logger.info("Ajouter a Repassage ")
 
                 # Ajout ticket pour notiifer le service client pour changer mp
-                """Créer des tickets contenant le message  d'erreur pour service client  si l'apprenant n'est pas ajouté sur moocit   """
-            if (response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation'):
+                #ajouter condition sur ticket
+            if (response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation' and partner.numero_evalbox != False):
 
                 _logger.info('Utilisateur  mot de passe invalide %s')
                 vals = {
