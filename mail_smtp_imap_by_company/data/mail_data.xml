@@ -18,6 +18,7 @@
                 </p>
                 <p>
                     <a t-attf-href="tel:#{message_company.phone}">
+                        Tel
                     </a>
                 </p>
             </div>
