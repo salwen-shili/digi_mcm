@@ -6,7 +6,7 @@
                 <p>Hello,
                 </p>
                 <p>
-                  To proceed with your request, please contact the service concerned by clicking <a t-att-href="'%scontact' % message_company.website">here </a>
+                  To proceed with your request, please contact the service concerned by clicking &#128073; <a t-att-href="'%scontact' % message_company.website">here </a>
                 </p>
                 <p>
 
