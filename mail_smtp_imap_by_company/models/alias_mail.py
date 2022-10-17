@@ -93,12 +93,14 @@ class MailThreadInherit(models.AbstractModel):
         #       we also need to verify if the message come from "mailer-daemon"
         #    If not a bounce: reset bounce information
         if bounce_alias and bounce_alias in email_to_localpart:
+            _logger.info('email_to_localpart')
             bounce_re = re.compile("%s\+(\d+)-?([\w.]+)?-?(\d+)?" % re.escape(bounce_alias), re.UNICODE)
             bounce_match = bounce_re.search(email_to)
             if bounce_match:
                 self._routing_handle_bounce(message, message_dict)
                 return []
         if message.get_content_type() == 'multipart/report' or email_from_localpart == 'mailer-daemon':
+            _logger.info('multipart/report')
             self._routing_handle_bounce(message, message_dict)
             return []
         self._routing_reset_bounce(message, message_dict)
@@ -135,11 +137,21 @@ class MailThreadInherit(models.AbstractModel):
             message_dict.pop('parent_id', None)
             # check it does not directly contact catchall
             if catchall_alias and catchall_alias in email_to_localpart:
-                _logger.info('Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce', email_from, email_to, message_id)
-                body = self.env.ref('mail.mail_bounce_catchall').render({
-                    'message': message,
+                _logger.info('Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce',
+                            email_from, email_to, message_id)
+                _logger.info('multipart/report')
+                _logger.info('multipart/report1 %s' % (str(email_to)))
+                company = 1
+                if 'digimoov' in email_to:
+                    company = 2
+                _logger.info('multipart/report1 %s' % (str(email_to)))
+                message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
+                body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
+                    'message': message, 'message_company': message_company,
                 }, engine='ir.qweb')
-                self._routing_create_bounce_email(email_from, body, message, reply_to=self.env.company.email)
+                _logger.info('reply to :  %s' % (str(self.env.company.email)))
+                _logger.info('reply to1 :  %s' % (str(message_company.email)))
+                self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email)
                 return []
             alias_domain_id = self.env['alias.mail'].search([('domain_name', 'in', email_to_alias_domain_list)])
             dest_aliases = False

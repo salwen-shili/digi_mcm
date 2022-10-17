@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 11:05+0000\n"
-"PO-Revision-Date: 2022-09-13 11:05+0000\n"
+"POT-Creation-Date: 2022-10-12 09:47+0000\n"
+"PO-Revision-Date: 2022-10-12 09:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -78,7 +78,7 @@ msgstr "Discussion par email"
 #. module: mail_smtp_imap_by_company
 #: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
 msgid "Hello"
-msgstr ""
+msgstr "Bonjour"
 
 #. module: mail_smtp_imap_by_company
 #: model:ir.model.fields,field_description:mail_smtp_imap_by_company.field_alias_mail__id
@@ -138,13 +138,13 @@ msgstr "Salutations"
 
 #. module: mail_smtp_imap_by_company
 #: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
-msgid "The"
-msgstr "Le"
+msgid "The email sent to"
+msgstr "L'email envoyé à "
 
 #. module: mail_smtp_imap_by_company
 #: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
-msgid "The email sent to"
-msgstr "L'email envoyé à "
+msgid "The team of"
+msgstr "L'équipe"
 
 #. module: mail_smtp_imap_by_company
 #: code:addons/mail_smtp_imap_by_company/models/mail_server.py:0
@@ -165,15 +165,14 @@ msgstr ""
 
 #. module: mail_smtp_imap_by_company
 #: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
-msgid "cannot be processed. This address is used to collect replies and should not be used to directly contact"
-msgstr "ne peut pas être traité. Cette adresse est utilisée pour recevoir les réponses et ne doit pas être utilisée pour contacter directement"
+msgid ""
+"cannot be processed. This address\n"
+"                    is used to collect replies and should not be used to directly contact"
+msgstr ""
+"ne peut pas être traité. Cette adresse est utilisée pour recevoir les "
+"réponses et ne doit pas être utilisée pour contacter directement"
 
 #. module: mail_smtp_imap_by_company
 #: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
 msgid "here"
 msgstr "ici"
-
-#. module: mail_smtp_imap_by_company
-#: model_terms:ir.ui.view,arch_db:mail_smtp_imap_by_company.mail_bounce_catchall_by_company
-msgid "team."
-msgstr "équipe."
