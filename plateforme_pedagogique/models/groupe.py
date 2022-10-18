@@ -30,65 +30,70 @@ class Groupe(models.Model):
         )
         resgroupe = requests.get('https://app.360learning.com/api/v1/groups', params=params)
         for groupe in resgroupe.json():
-            id_groupe = groupe['_id']
-            namegroupe = groupe['name']
-            print('groupe', groupe)
-            resparcours = requests.get('https://app.360learning.com/api/v1/groups/' + id_groupe + '/programs',
-                                       params=params)
-            find_groupe = self.env['plateforme_pedagogique.groupe'].sudo().search([('name', "=", namegroupe)])
-            if not (find_groupe):
-               print('on ne doit pas créer un groupe',find_groupe)
-               find_groupe=self.env['plateforme_pedagogique.groupe'].create({
-                   'name': namegroupe,
-               })
-            if find_groupe:
-             list = []
-             for parcours in resparcours.json():
-                startDate = str(parcours['startDate'])
-                start_Date = ""
-                endDate = str(parcours['endDate'])
-                end_Date = ""
-                if len(endDate) > 0:
-                    date_split = endDate[0:19]
-                    date = datetime.strptime(date_split, "%Y-%m-%dT%H:%M:%S")
-                    new_format = '%d %B, %Y, %H:%M:%S'
-                    end_Date = date.strftime(new_format)
-                if len(startDate) > 0:
-                    date_split = startDate[0:19]
-                    date = datetime.strptime(date_split, "%Y-%m-%dT%H:%M:%S")
-                    new_format =  '%d %B, %Y, %H:%M:%S'
-                    start_Date = date.strftime(new_format)
-                durée = ''
-                type_durée = ''
-                if 'programDurationType' in parcours:
-                    type_durée = parcours['programDurationType']
-                if 'programDuration' in parcours:
-                    durée = parcours['programDuration']
-                print('parcours***************', len(resparcours.json()), parcours)
-                name_parcours = parcours['name']
-                id_parcours = ['_id']
-                if parcours:
-                    start_date_string=str(start_Date)
-                    exist = False
-                    for parc_grp in find_groupe.parcours_ids:
-                        # On compare le user d'api avec chaque user de groupe sur odoo si existant on l'ajoute à une liste
-                        if ((parc_grp.startDate == start_date_string) and (parc_grp.name == name_parcours)):
-                            exist = True
-                            list.append(parc_grp.id)
-                            print('exist', parc_grp.name , parc_grp.startDate)
-                    # Apres le parcours si on a pas trouvé partner on doit verifier la table user
-                    if not (exist):
-                      print('n\'existe pas dans groupe')
-                      find_parcours = self.env['plateforme_pedagogique.parcours'].sudo().search([('name', "=", name_parcours ),('startDate',"=",start_date_string)])
-                      if not(find_parcours):
-                        print('on ne doit pas créer parcours')
-                      if (find_parcours):
-                        print('existedans parcours',find_parcours.id)
-                        list.append(find_parcours.id)
-                        print('list',list)
-                    find_groupe.sudo().write({
-                            'parcours_ids': [(6,0,list)],
-                        })
+            try :
+                id_groupe = groupe['_id']
+                namegroupe = groupe['name']
+                print('groupe', groupe)
+                resparcours = requests.get('https://app.360learning.com/api/v1/groups/' + id_groupe + '/programs',
+                                           params=params)
+                find_groupe = self.env['plateforme_pedagogique.groupe'].sudo().search([('name', "=", namegroupe)])
+                if not (find_groupe):
+                   print('on ne doit pas créer un groupe',find_groupe)
+                   find_groupe=self.env['plateforme_pedagogique.groupe'].create({
+                       'name': namegroupe,
+                   })
+                if find_groupe:
+                 list = []
+                 for parcours in resparcours.json():
+                    startDate = str(parcours['startDate'])
+                    start_Date = ""
+                    endDate = str(parcours['endDate'])
+                    end_Date = ""
+                    if len(endDate) > 0:
+                        date_split = endDate[0:19]
+                        date = datetime.strptime(date_split, "%Y-%m-%dT%H:%M:%S")
+                        new_format = '%d %B, %Y, %H:%M:%S'
+                        end_Date = date.strftime(new_format)
+                    if len(startDate) > 0:
+                        date_split = startDate[0:19]
+                        date = datetime.strptime(date_split, "%Y-%m-%dT%H:%M:%S")
+                        new_format =  '%d %B, %Y, %H:%M:%S'
+                        start_Date = date.strftime(new_format)
+                    durée = ''
+                    type_durée = ''
+                    if 'programDurationType' in parcours:
+                        type_durée = parcours['programDurationType']
+                    if 'programDuration' in parcours:
+                        durée = parcours['programDuration']
+                    print('parcours***************', len(resparcours.json()), parcours)
+                    name_parcours = parcours['name']
+                    id_parcours = ['_id']
+                    if parcours:
+                        start_date_string=str(start_Date)
+                        exist = False
+                        for parc_grp in find_groupe.parcours_ids:
+                            # On compare le user d'api avec chaque user de groupe sur odoo si existant on l'ajoute à une liste
+                            if ((parc_grp.startDate == start_date_string) and (parc_grp.name == name_parcours)):
+                                exist = True
+                                list.append(parc_grp.id)
+                                print('exist', parc_grp.name , parc_grp.startDate)
+                        # Apres le parcours si on a pas trouvé partner on doit verifier la table user
+                        if not (exist):
+                          print('n\'existe pas dans groupe')
+                          find_parcours = self.env['plateforme_pedagogique.parcours'].sudo().search([('name', "=", name_parcours ),('startDate',"=",start_date_string)])
+                          if not(find_parcours):
+                            print('on ne doit pas créer parcours')
+                          if (find_parcours):
+                            print('existedans parcours',find_parcours.id)
+                            list.append(find_parcours.id)
+                            print('list',list)
+                        find_groupe.sudo().write({
+                                'parcours_ids': [(6,0,list)],
+                            })
+                 self.env.cr.commit()       
+            except Exception:
+                self.env.cr.rollback()
+                _logger.exception("Failure with get stats")
 
     # Récuperer les apprenants de chaque groupe
     def getusers_groupe(self):

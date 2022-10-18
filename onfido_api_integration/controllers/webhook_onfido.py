@@ -46,7 +46,6 @@ class OnfidoController(http.Controller):
             """Telecharger les documents sous format binaire par l'api onfido"""
             download_document_front = partner.downloadDocument(document_front_id, website.onfido_api_key_live)
             image_front_binary = base64.b64encode(download_document_front)
-            print('document from api %s' % str(document_front_id))
             """Creer les documents pour l'utilisateur courant"""
 
             attachement_front = request.env['documents.document'].sudo().create(
@@ -75,7 +74,7 @@ class OnfidoController(http.Controller):
                     translation = gettext.translation('iso3166', pycountry.LOCALES_DIR,languages = ['fr'])
                     translation.install()
                     country=_(nationality.name)
-                    _logger.info("translated_nationality %s" % str(translation))
+                    # _logger.info("translated_nationality %s" % str(translation))
                     _logger.info("translated_nationality %s" % str(country))
                     partner.nationality = country
                     # partner.nationality= pycountry.countries.get(alpha_3=code_pays)
@@ -95,7 +94,7 @@ class OnfidoController(http.Controller):
                             translation.install()
                             country = _(nationality.name)
                             _logger.info("translated_nationality %s" % str(country))
-                            _logger.info("translated_nationality %s" % str(translation))
+                            # _logger.info("translated_nationality %s" % str(translation))
                             partner.nationality = country
         if 'document_back' in data:
             document_back_id=data['document_back']['id']
@@ -119,7 +118,7 @@ class OnfidoController(http.Controller):
             face_id = data['face']['id']
             download_face_photo = partner.downloadLivephoto(face_id, website.onfido_api_key_live)
             face_binary = base64.b64encode(download_face_photo)
-            _logger.info('face %s' % str(face_binary))
+            # _logger.info('face %s' % str(face_binary))
             attachement_face = request.env['documents.document'].sudo().create(
                 {
                     'name': "Visage",
@@ -130,7 +129,7 @@ class OnfidoController(http.Controller):
                     'state': document_state
                 }
             )
-            _logger.info('face %s' % str(attachement_face))
+            # _logger.info('face %s' % str(attachement_face))
         return True
 
     """get event workflowrund is completed with webhook """
@@ -161,7 +160,7 @@ class OnfidoController(http.Controller):
             check = currentUser.get_checks(applicant_id, website.onfido_api_key_live)
             if check['checks']:
                 report_id = check['checks'][0]['report_ids'][0]
-                _logger.info("report_id %s" % str(report_id))
+                # _logger.info("report_id %s" % str(report_id))
                 report = currentUser.get_report(report_id, website.onfido_api_key_live)
                 _logger.info("reppooort %s" % str(report))
                 if 'visual_authenticity' in  report['breakdown']:
@@ -261,8 +260,7 @@ class OnfidoController(http.Controller):
         partner = request.env['res.partner'].sudo().search([('id', "=", partner_id.id)])
         data_onfido = request.env['onfido.info'].sudo().search([('partner_id', "=", partner_id.id)],
         limit = 1, order = "id desc")
-        _logger.info("request.env.user.partner_id %s name=%s" % (str(partner_id.id), str(partner_id.name)))
-        _logger.info("partner.validation_onfido %s" % str(partner.validation_onfido))
+        _logger.info("request.env.user.partner_id %s name=%s" % (str(partner.validation_onfido), str(partner_id.name)))
         if partner:
             # if partner.validation_onfido == "fail":
             return {'validation_onfido': partner.validation_onfido}
@@ -282,7 +280,6 @@ class OnfidoController(http.Controller):
         """Telecharger les documents sous format binaire par l'api onfido"""
         download_document= currentUser.downloadDocument(document_id, website.onfido_api_key_live)
         image_binary = base64.b64encode(download_document)
-        print('document from api %s' % str(document_id))
         """Creer les documents pour l'utilisateur courant"""
         attachement = request.env['documents.document'].sudo().create(
                 {
@@ -295,5 +292,4 @@ class OnfidoController(http.Controller):
                 }
             )
 
-        _logger.info('front %s' % str(attachement))
         return True
