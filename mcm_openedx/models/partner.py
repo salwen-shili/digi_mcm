@@ -36,7 +36,7 @@ class partner(models.Model):
     niveau = fields.Selection([('débutant', 'Débutant'),
                                ('moyen', 'Moyen'),
                                ('avancé', 'Avancé'),
-                               ])
+                               ] , track_visibility='onchange')
 
     # partner_id = fields.Many2one('res.partner', readonly=True)
 
