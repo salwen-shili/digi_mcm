@@ -190,7 +190,7 @@ class MailThreadInherit(models.AbstractModel):
                 return [route]
 
         # ValueError if no routes found and if no bounce occured
-        raise ValueError(
+        _logger.info(
             'No possible route found for incoming message from %s to %s (Message-Id %s:). '
             'Create an appropriate mail.alias or force the destination model.' %
             (email_from, email_to, message_id)
