@@ -151,3 +151,4 @@
         name="sign.sign_request_logs_user"
         file="sign.sign_request_logs_user"
         report_type="qweb-pdf"/>
+</odoo>
