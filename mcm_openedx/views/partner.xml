@@ -89,7 +89,8 @@
                 <field name="inscrit_mcm" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                 <field name="supprimerdemoocit" attrs="{'invisible': [('company_id', '=', 2)]}"/>
 
-                <field name="coach_peda" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                <field name="coach_peda" />
+                <field name="niveau" />
 
 
             </xpath>

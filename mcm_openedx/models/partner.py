@@ -33,6 +33,10 @@ class partner(models.Model):
     mooc_temps_passe_min = fields.Integer()
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
+    niveau = fields.Selection([('débutant', 'Débutant'),
+                               ('moyen', 'Moyen'),
+                               ('avancé', 'Avancé'),
+                               ])
 
     # partner_id = fields.Many2one('res.partner', readonly=True)
 
@@ -48,6 +52,7 @@ class partner(models.Model):
             "view_mode": "form",
             "res_id": self.id
         }
+
     def repasage_exman(self):
         for partner in self.env['res.partner'].sudo().search(
                 [('company_id', '=', 1), ('module_id', '!=', False), ('state', '!=', "ancien")]):
@@ -185,8 +190,8 @@ class partner(models.Model):
     # Dsinscrire l'apprenant  des cours VTC
     def desinscriteVTC(self, partner):
         # search for comany
-        #get api key
-        #add xml view
+        # get api key
+        # add xml view
         company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
         user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
@@ -207,7 +212,7 @@ class partner(models.Model):
         header = {
             'Access-Control-Request-Headers': 'authorization',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization':  company.moocit_api_key
+            'Authorization': company.moocit_api_key
         }
 
         response = requests.request("POST", url, headers=header, data=payload)
@@ -359,8 +364,8 @@ class partner(models.Model):
                                                                   ('company_id', '=', 1),
                                                                   ('numero_evalbox', '!=', False),
                                                                   ('statut_cpf', "!=", "canceled")
-                                                                      ]):
-                #self.env.cr.commit() commits the transaction's buffered write operations.
+                                                                  ]):
+                # self.env.cr.commit() commits the transaction's buffered write operations.
 
                 try:
                     _logger.info(partner.name)
@@ -449,11 +454,10 @@ class partner(models.Model):
                     # ajouter les apprenants manuellemnt a partire de  la fiche Client
 
                     self.env.cr.commit()
-                #self.env.cr.rollback() cancels the transaction's write operations since the last commit, or all if no commit was done.
+                # self.env.cr.rollback() cancels the transaction's write operations since the last commit, or all if no commit was done.
                 except Exception:
                     self.env.cr.rollback()
                     _logger.info(" except Exception:")
-
 
     # Ajout manuelle apprenant à moocit
     def ajoutMoocit_manuelle(self):
@@ -824,8 +828,9 @@ class partner(models.Model):
                                 _logger.info("Ajouter a Repassage ")
 
                 # Ajout ticket pour notiifer le service client pour changer mp
-                #ajouter condition sur ticket
-            if (response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation' and partner.numero_evalbox != False):
+                # ajouter condition sur ticket
+            if (
+                    response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation' and partner.numero_evalbox != False):
 
                 _logger.info('Utilisateur  mot de passe invalide %s')
                 vals = {
