@@ -33,9 +33,9 @@ class partner(models.Model):
     mooc_temps_passe_min = fields.Integer()
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
-    niveau = fields.Selection([('débutant', 'Débutant'),
-                               ('moyen', 'Moyen'),
-                               ('avancé', 'Avancé'),
+    niveau = fields.Selection([('niveau1', 'Niveau 1'),
+                               ('niveau2', 'Niveau 2'),
+                               ('niveau3', 'Niveau 3'),
                                ] , track_visibility='onchange')
 
     # partner_id = fields.Many2one('res.partner', readonly=True)
