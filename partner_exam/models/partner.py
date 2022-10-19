@@ -38,7 +38,7 @@ class resComapny(models.Model):
     other_cases = fields.Char(string="Nom de l'Etat pour les autres cas")
     age = fields.Char()
     nom_evalbox = fields.Char(string="Nom Evalbox")
-    prenom_evalbox = fields.Char(string="Prénom Evalbox")
+    prenom_evalbox = fields.Char(string="Prénom Evalbox", track_visibility='always')
     code_evalbox = fields.Char()
     zip = fields.Char(change_default=True)
 
