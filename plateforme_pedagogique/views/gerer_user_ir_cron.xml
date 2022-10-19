@@ -2,6 +2,7 @@
 <odoo>
 
 <!--        Get stat_users from 360learning-->
+        <data noupdate="1">
         <record id="ir_cron_get_stat_users" model="ir.cron">
             <field name="name">Géneration des statistiques</field>
             <field name="model_id" ref="model_res_partner"/>
@@ -13,7 +14,9 @@
             <field name="numbercall">-1</field>
             <field name="priority" eval="7"/>
         </record>
+    </data>
 <!--        supprimer i-One de 360learning -->
+    <data noupdate="1">
        <record id="ir_cron_delete_users" model="ir.cron">
             <field name="name">Suppression automatique d'i-Ones</field>
             <field name="model_id" ref="model_res_partner"/>
@@ -26,8 +29,9 @@
             <field name="numbercall">-1</field>
            <field name="priority" eval="4" />
         </record>
-
+    </data>
   <!--        supprimer groupe de session de 360learning -->
+    <data noupdate="1">
        <record id="ir_cron_delete_session" model="ir.cron">
             <field name="name">Suppression automatique des sessions</field>
             <field name="model_id" ref="model_mcmacademy_session"/>
@@ -38,24 +42,27 @@
             <field name="interval_number">24</field>
             <field name="interval_type">hours</field>
             <field name="numbercall">-1</field>
-           <field name="priority" eval="4" />
+           <field name="priority" eval="7" />
 
 
         </record>
-
+   </data>
        <!-- Ajouter i-One sur 360learning après 14jours si Délai de rétractation n'est pas coché-->
-       <record id="ir_cron_delete_groups" model="ir.cron">
+    <data noupdate="1" >
+    <record id="ir_cron_delete_groups" model="ir.cron">
             <field name="name">Ajouter i-One sur 360learning  </field>
             <field name="model_id" ref="model_res_partner"/>
              <field name="active" eval="True"></field>
             <field name="state">code</field>
             <field name="code">model.Ajouter_iOne_auto()</field>
-            <field name="interval_number">15</field>
-            <field name="interval_type">minutes</field>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
             <field name="numbercall">-1</field>
            <field name="priority" eval="0" />
         </record>
+    </data>
         <!--Changer etat de dossier sur edof avec api  !-->
+    <data noupdate="1">
      <record id="ir_cron_wedof_api" model="ir.cron">
      <field name="name">Mettre en formation les dossiers cpf </field>
      <field name="model_id" ref="model_res_partner"/>
@@ -67,19 +74,23 @@
      <field name="numbercall">-1</field>
      <field name="priority" eval="3" />
      </record>
+    </data>
          <!--Valider etat de dossier sur edof avec api !-->
+    <data noupdate="1">
      <record id="ir_cron_validate_api" model="ir.cron">
      <field name="name">Valider les dossiers cpf</field>
      <field name="model_id" ref="model_res_partner"/>
      <field name="active" eval="True"></field>
      <field name="state">code</field>
      <field name="code">model.change_state_wedof_validate()</field>
-     <field name="interval_number">5</field>
+     <field name="interval_number">15</field>
      <field name="interval_type">minutes</field>
      <field name="numbercall">-1</field>
      <field name="priority" eval="1" />
      </record>
+    </data>
         <!--mettre à jour les statuts cpf  !-->
+      <data noupdate="1">
      <record id="ir_cron_update_api" model="ir.cron">
      <field name="name">Mettre à jour statut cpf</field>
      <field name="model_id" ref="model_res_partner"/>
@@ -89,9 +100,11 @@
      <field name="interval_number">1</field>
      <field name="interval_type">days</field>
      <field name="numbercall">-1</field>
-     <field name="priority" eval="1" />
+     <field name="priority" eval="5" />
      </record>
+    </data>
         <!--changer  statuts cpf vers accepté!-->
+     <data noupdate="1">
      <record id="ir_cron_accept_api" model="ir.cron">
      <field name="name">Mettre à jour statut cpf Accepté</field>
      <field name="model_id" ref="model_res_partner"/>
@@ -103,6 +116,6 @@
      <field name="numbercall">-1</field>
      <field name="priority" eval="1" />
      </record>
-
+  </data>
 
 </odoo>

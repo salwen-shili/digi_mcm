@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
    <!--Classer  dans crm lead les apprenants existant déja -->
+    <data noupdate="1">
         <record id="ir_cron_classe_stage_lead" model="ir.cron">
             <field name="name">Mettre à jour le pipeline de crm  </field>
             <field name="model_id" ref="model_res_partner"/>
-            <field name="active" eval="True"></field>
+            <field name="active" eval="False"></field>
             <field name="state">code</field>
             <field name="code">model.change_crm_lead_existant()</field>
-            <field name="interval_number">15</field>
-            <field name="interval_type">minutes</field>
+            <field name="interval_number">24</field>
+            <field name="interval_type">hours</field>
             <field name="numbercall">-1</field>
         </record>
+    </data>
     <!--Supprimer les doublons apres l'importation à partir d'edof -->
-
+    <data noupdate="1">
     <record id="ir_cron_load_lead" model="ir.cron">
         <field name="name">Supprimer les doublons</field>
         <field name="model_id" ref="model_crm_lead"/>
@@ -20,11 +22,12 @@
         <field name="state">code</field>
         <field name="code">model.crm_import_data()</field>
         <field name="interval_number">23</field>
-        <field name="interval_type">minutes</field>
+        <field name="interval_type">hours</field>
         <field name="numbercall">-1</field>
     </record>
-
+    </data>
      <!-- Remplir champ société dans les fiches clients -->
+    <data noupdate="1">
     <record id="ir_cron_company_id" model="ir.cron">
         <field name="name">Remplir champ société</field>
         <field name="model_id" ref="model_res_partner"/>
@@ -32,7 +35,8 @@
         <field name="state">code</field>
         <field name="code">model.remplir_société()</field>
         <field name="interval_number">5</field>
-        <field name="interval_type">minutes</field>
+        <field name="interval_type">hours</field>
         <field name="numbercall">1</field>
     </record>
+    </data>
 </odoo>

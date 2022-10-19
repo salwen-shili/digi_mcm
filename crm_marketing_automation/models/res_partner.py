@@ -321,9 +321,10 @@ class Partner(models.Model):
         old_leads = self.env['crm.lead'].sudo().search([('stage_id.name', '=', 'Plateforme de formation')])
         if old_leads:
             old_leads.unlink()
+        company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.plateforme_api_key),
         )
         _logger.info('import360 %s' % name)
         response = requests.get('https://app.360learning.com/api/v1/users', params=params)

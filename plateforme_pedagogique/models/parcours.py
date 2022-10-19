@@ -28,9 +28,10 @@ class Parcours(models.Model):
     #Récupérer la liste des parcours
     def getParcours(self):
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+        company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.plateforme_api_key),
         )
         resp_session_parcours=requests.get('https://app.360learning.com/api/v1/programs/sessions',params=params)
         sessions_parcours=resp_session_parcours.json()
@@ -105,10 +106,10 @@ class Parcours(models.Model):
     #Récupérer les statistiques des utilisateurs de chaque parcours
     def getUser_Stats(self):
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-
+        company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.plateforme_api_key),
         )
         resp_session_parcours = requests.get('https://app.360learning.com/api/v1/programs/sessions', params=params)
         sessions_parcours = resp_session_parcours.json()

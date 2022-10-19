@@ -123,93 +123,100 @@ class partner(models.Model):
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+        company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.plateforme_api_key),
         )
         response = requests.get('https://app.360learning.com/api/v1/users', params=params)
         users = response.json()
         # Faire un parcours sur chaque user et extraire ses statistiques
         for user in users:
-            iduser = user['_id']
-            email = user['mail']
-            _logger.info('user %s' % str(user))
-            response_user = requests.get('https://app.360learning.com/api/v1/users/' + iduser, params=params)
-            table_user = response_user.json()
-            lastlogin = ""
-            if 'lastLoginAt' in table_user:
-                lastlogin = str(table_user['lastLoginAt'])
-            _logger.info('user date supp %s' % table_user['lastLoginAt'])
-            times = ''
-            time = 0
-            # Ecrire le temps récupéré de 360 sous forme d'heures et minutes
-            if 'totalTimeSpentInMinutes' in table_user:
-                time = int(table_user['totalTimeSpentInMinutes'])
-                heure = time // 60
-                minute = time % 60
-                times = str(heure) + 'h' + str(minute) + 'min'
-                _logger.info("heuurs %s" % str(times))
-                _logger.info("user %s" % str(email))
-                if (heure == 0):
-                    times = str(minute) + 'min'
-                    _logger.info("timers %s" % str(times))
-                if (minute == 0):
-                    _logger.info("minute 0 %s" % str(times))
-                    times = '0min'
-            average = ''
+            try :
+                iduser = user['_id']
+                email = user['mail']
+                _logger.info('user %s' % str(user))
+                response_user = requests.get('https://app.360learning.com/api/v1/users/' + iduser, params=params)
+                table_user = response_user.json()
+                lastlogin = ""
+                if 'lastLoginAt' in table_user:
+                    lastlogin = str(table_user['lastLoginAt'])
+                _logger.info('user date supp %s' % table_user['lastLoginAt'])
+                times = ''
+                time = 0
+                # Ecrire le temps récupéré de 360 sous forme d'heures et minutes
+                if 'totalTimeSpentInMinutes' in table_user:
+                    time = int(table_user['totalTimeSpentInMinutes'])
+                    heure = time // 60
+                    minute = time % 60
+                    times = str(heure) + 'h' + str(minute) + 'min'
+                    _logger.info("heuurs %s" % str(times))
+                    _logger.info("user %s" % str(email))
+                    if (heure == 0):
+                        times = str(minute) + 'min'
+                        _logger.info("timers %s" % str(times))
+                    if (minute == 0):
+                        _logger.info("minute 0 %s" % str(times))
+                        times = '0min'
+                average = ''
 
-            # Vérifier l'existance de champ dans table_user
-            if 'averageScore' in table_user:
-                average = str(table_user['averageScore'])
-                print(average)
-            # Si lastlogin n'est pas vide on change le format de date sous forme "01 mars, 2021"
-            if (len(lastlogin) > 0):
-                date_split = lastlogin[0:19]
-                date = datetime.strptime(date_split, "%Y-%m-%dT%H:%M:%S")
-                new_format = '%d %B, %Y'
-                new_format = '%d %B, %Y'
-                last_login = str(date.strftime(new_format))
-            message = "0"
-            if ('messages' in table_user):
-                message = table_user['messages']
-            # publication = ''
-            # if ('publications' in table_user):
-            #     publication = table_user['publications']
-            comment = "0"
-            if ('comments' in table_user):
-                comments = table_user['comments']
-            reaction = "0"
-            if ('reactions' in table_user):
-                reaction = table_user['reactions']
-            # Chercher par email le meme client pour lui affecter les stats de 360
-            partners = self.env['res.partner'].sudo().search([('email', "=", email)])
-            for partner in partners:
-                if partners:
-                    """get first value of lastLoginAt as date inscription"""
-                    if not partner.date_creation and not partner.last_login:
+                # Vérifier l'existance de champ dans table_user
+                if 'averageScore' in table_user:
+                    average = str(table_user['averageScore'])
+                    print(average)
+                # Si lastlogin n'est pas vide on change le format de date sous forme "01 mars, 2021"
+                if (len(lastlogin) > 0):
+                    date_split = lastlogin[0:19]
+                    date = datetime.strptime(date_split, "%Y-%m-%dT%H:%M:%S")
+                    new_format = '%d %B, %Y'
+                    new_format = '%d %B, %Y'
+                    last_login = str(date.strftime(new_format))
+                message = "0"
+                if ('messages' in table_user):
+                    message = table_user['messages']
+                # publication = ''
+                # if ('publications' in table_user):
+                #     publication = table_user['publications']
+                comment = "0"
+                if ('comments' in table_user):
+                    comments = table_user['comments']
+                reaction = "0"
+                if ('reactions' in table_user):
+                    reaction = table_user['reactions']
+                # Chercher par email le meme client pour lui affecter les stats de 360
+                partners = self.env['res.partner'].sudo().search([('email', "=", email)])
+                for partner in partners:
+                    if partners:
+                        """get first value of lastLoginAt as date inscription"""
+                        if not partner.date_creation and not partner.last_login:
+                            partner.sudo().write({
+                                'date_creation': last_login
+                            })
                         partner.sudo().write({
-                            'date_creation': last_login
-                        })
-                    partner.sudo().write({
-                        'last_login': last_login,
-                        'averageScore': average,
-                        'comments': comment,
-                        'reactions': reaction,
-                        'messages': message,
-                        'totalTimeSpentInMinutes': times,
-                        'assignedPrograms': table_user['assignedPrograms'],
-                        'toDeactivateAt': table_user['toDeactivateAt'],
-                        'apprenant': True,
-                        'temps_minute': time
+                            'last_login': last_login,
+                            'averageScore': average,
+                            'comments': comment,
+                            'reactions': reaction,
+                            'messages': message,
+                            'totalTimeSpentInMinutes': times,
+                            'assignedPrograms': table_user['assignedPrograms'],
+                            'toDeactivateAt': table_user['toDeactivateAt'],
+                            'apprenant': True,
+                            'temps_minute': time
 
-                    })
-                    print("partner", partner.name, partner.last_login)
+                        })
+                        self.env.cr.commit()
+                        print("partner", partner.name, partner.last_login)
+            except exception:
+                self.env.cr.rollback()
+                _logger.exception("Failure with get user stats")
 
     # Recuperer les statistique par session de 360learning
     def getstats_session(self):
+        company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.plateforme_api_key),
         )
         response = requests.get('https://app.360learning.com/api/v1/courses', params=params)
         sessions = response.json()
@@ -240,64 +247,75 @@ class partner(models.Model):
             # if company:
             #     api_key=company.wedof_api_key
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                                  ('statut_cpf', "!=", "canceled")
+                                                                  ('statut_cpf', "!=", "canceled"),
+                                                                  ('mcm_session_id.date_exam','>',date.today())
                                                                   ]):
-                # Pour chaque apprenant chercher son contrat
-                sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-                                                                   ('session_id', '=', partner.mcm_session_id.id),
-                                                                   ('module_id', '=', partner.module_id.id),
-                                                                   ('state', '=', 'sale'),
-                                                                   ('session_id.date_exam', '>', date.today())
-                                                                   ], limit=1, order="id desc")
+                try:
+                    # Pour chaque apprenant chercher son contrat
+                    sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+                                                                       ('session_id', '=', partner.mcm_session_id.id),
+                                                                       ('module_id', '=', partner.module_id.id),
+                                                                       ('state', '=', 'sale'),
+                                                                       ('session_id.date_exam', '>', date.today())
+                                                                       ], limit=1, order="id desc")
 
-                today = date.today()
-                _logger.info('sale order %s ' % sale_order.name)
-                # Récupérer les documents et vérifier si ils sont validés ou non
-                documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
-                document_valide = False
-                count = 0
-                for document in documents:
-                    if (document.state == "validated"):
-                        count = count + 1
-                if (count == len(documents) and count != 0):
-                    document_valide = True
-                # Cas particulier on doit Vérifier si partner a choisi une formation et si ses documents sont validés
-                if partner.mode_de_financement == "particulier":
-                    if ((sale_order) and (document_valide)):
-                        statut = partner.statut
-                        # Vérifier si contrat signé ou non
-                        if (sale_order.state == 'sale') and (sale_order.signature):
+                    today = date.today()
+                    _logger.info('sale order %s ' % sale_order.name)
+                    # Récupérer les documents et vérifier si ils sont validés ou non
+                    documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
+                    document_valide = False
+                    count = 0
+                    for document in documents:
+                        if (document.state == "validated"):
+                            count = count + 1
+                    if (count == len(documents) and count != 0):
+                        document_valide = True
+                    # Cas particulier on doit Vérifier si partner a choisi une formation et si ses documents sont validés
+                    if partner.mode_de_financement == "particulier":
+                        if ((sale_order) and (document_valide)):
+                            statut = partner.statut
+                            # Vérifier si contrat signé ou non
+                            if (sale_order.state == 'sale') and (sale_order.signature):
 
-                            # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                                # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                                if partner.renounce_request:
+                                    self.ajouter_iOne(partner)
+                                    self.env.cr.commit()
+                                # si non il doit attendre 14jours pour etre ajouté
+                                if not partner.renounce_request and (
+                                        sale_order.signed_on + timedelta(days=14)) <= datetime.today():
+                                    self.ajouter_iOne(partner)
+                                    self.env.cr.commit()
+                    """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au futur """
+                    if partner.mode_de_financement == "cpf":
+                        if document_valide and partner.mcm_session_id.date_exam and (
+                                partner.mcm_session_id.date_exam > date.today()):
                             if partner.renounce_request:
                                 self.ajouter_iOne(partner)
-                            # si non il doit attendre 14jours pour etre ajouté
-                            if not partner.renounce_request and (
-                                    sale_order.signed_on + timedelta(days=14)) <= datetime.today():
-                                self.ajouter_iOne(partner)
-                """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au futur """
-                if partner.mode_de_financement == "cpf":
-                    if document_valide and partner.mcm_session_id.date_exam and (
-                            partner.mcm_session_id.date_exam > date.today()):
-                        if partner.renounce_request:
-                            self.ajouter_iOne(partner)
-                        if not partner.renounce_request and partner.numero_cpf:
-                            """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
-                            headers = {
-                                'accept': 'application/json',
-                                'Content-Type': 'application/json',
-                                'X-API-KEY': partner.company_id.wedof_api_key,
-                            }
-                            responsesession = requests.get(
-                                'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf, headers=headers)
-                            dossier = responsesession.json()
-                            _logger.info('session %s' % str(dossier))
-                            dateDebutSession_str = ""
-                            if "trainingActionInfo" in dossier:
-                                dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
-                                dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
-                                if dateDebutSession <= datetime.today():
-                                    self.ajouter_iOne(partner)
+                                self.env.cr.commit()
+                            if not partner.renounce_request and partner.numero_cpf:
+                                """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
+                                headers = {
+                                    'accept': 'application/json',
+                                    'Content-Type': 'application/json',
+                                    'X-API-KEY': partner.company_id.wedof_api_key,
+                                }
+                                responsesession = requests.get(
+                                    'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf, headers=headers)
+                                dossier = responsesession.json()
+                                _logger.info('session %s' % str(dossier))
+                                dateDebutSession_str = ""
+                                if "trainingActionInfo" in dossier:
+                                    dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
+                                    dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
+                                    if dateDebutSession <= datetime.today():
+                                        self.ajouter_iOne(partner)
+                                        self.env.cr.commit()
+                except Exception:
+                    self.env.cr.rollback()
+                    _logger.exception("Failure with inscription 360")
+
+
 
     # Ajouter ione manuellement
     def ajouter_iOne_manuelle(self, partner):
@@ -429,6 +447,7 @@ class partner(models.Model):
                             self.ajouter_iOne(self)
 
     def ajouter_iOne(self, partner):
+        digimoov=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
         new_email = ""
         # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
         # du compte dans odoo
@@ -446,7 +465,6 @@ class partner(models.Model):
         new_format = '%d %B %Y'
         if (partner.mcm_session_id.date_exam) and (partner.mcm_session_id.session_ville_id.name_ville):
             ville = str(partner.mcm_session_id.session_ville_id.name_ville).upper()
-            _logger.info('----ville %s' % ville)
             date_exam = partner.mcm_session_id.date_exam
             # Changer format de date et la mettre en majuscule
             datesession = str(date_exam.strftime(new_format).upper())
@@ -454,18 +472,16 @@ class partner(models.Model):
             responce_api = False
             # Récuperer le mot de passe à partir de res.users
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
-            _logger.info('avant if login user %s' % user.login)
             _logger.info('avant if partner email %s' % partner.email)
-
             if user:
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
                 id_Digimoov_Examen_Attestation = '5f9af8dae5769d1a2c9d5047'
                 params = (
-                    ('company', '56f5520e11d423f46884d593'),
-                    ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+                    ('company', digimoov.plateforme_company_key),
+                    ('apiKey', digimoov.plateforme_api_key),
                 )
-                company_id = '56f5520e11d423f46884d593'
-                api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+                company_id = digimoov.plateforme_company_key
+                api_key = digimoov.plateforme_api_key
                 urluser = ' https://app.360learning.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
                 url_groups = 'https://app.360learning.com/api/v1/groups'
                 url_unsubscribeToEmailNotifications = ' https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
@@ -521,13 +537,13 @@ class partner(models.Model):
                     today = date.today()
                     new_format = '%d/%m/%Y'
                     # Changer format de date et la mettre en majuscule
-                    date_ajout = today.strftime(new_format)
+                    # date_ajout = today.strftime(new_format)
                     # partner.date_creation = date_ajout
                     """Remplir champs date_creation  """
                     # self._cr.execute(
                     #     """UPDATE res_partner SET date_creation = %s WHERE id=%s""", (date_ajout, partner.id,))
                     # self._cr.commit()
-                    _logger.info('date_inscrit %s' % str(partner.date_creation))
+                    # _logger.info('date_inscrit %s' % str(partner.date_creation))
                     # if reactivated_id_user:
                     # data_update_user_group={'groups': [], 'totalTimeSpentInMinutes':'false'}
 
@@ -539,7 +555,6 @@ class partner(models.Model):
                     urlgroup_Bienvenue = ' https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
 
                     respgroupe = requests.put(urlgroup_Bienvenue, headers=headers, data=data_group)
-                    print('bienvenue ', respgroupe.status_code, partner.date_creation)
                     partner.apprenant = True
                     # Affecter i-One à un pack et session choisi
                     response_grps = requests.get(url_groups, params=params)
@@ -550,7 +565,6 @@ class partner(models.Model):
                     for groupe in groupes:
                         # Convertir le nom en majuscule
                         nom_groupe = str(groupe['name']).upper()
-                        print('nom groupe', groupe)
                         id_groupe = groupe['_id']
                         # affecter à groupe digimoov
                         digimoov_examen_leger = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t (léger)"
@@ -574,7 +588,6 @@ class partner(models.Model):
                                 # Affecter à un pack solo
                             packsolo = "Digimoov - Pack Solo"
                             if (("solo" in product_name) and (nom_groupe == packsolo.upper())):
-                                print(partner.module_id.name)
                                 urlgrp_solo = ' https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_solo = requests.put(urlgrp_solo, headers=headers, data=data_group)
                                 print('affecté à solo', respgrp_solo.status_code)
@@ -582,13 +595,11 @@ class partner(models.Model):
                             # Affecter à un pack pro
                             pack_pro = "Digimoov - Pack Pro"
                             if (("pro" in product_name) and (nom_groupe == pack_pro.upper())):
-                                print(partner.module_id.name)
                                 urlgrp_pro = ' https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_pro = requests.put(urlgrp_pro, headers=headers, data=data_group)
                             # Affecter à unpremium
                             packprem = "Digimoov - Pack Premium"
                             if (("premium" in product_name) and (nom_groupe == packprem.upper())):
-                                print(partner.module_id.name)
                                 urlgrp_prim = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_prim = requests.put(urlgrp_prim, headers=headers, data=data_group)
 
@@ -616,11 +627,9 @@ class partner(models.Model):
                     if not (existe):
                         nom = ville + ' - ' + date_session
                         nomgroupe = unidecode(nom)
-                        print(nomgroupe)
                         urlgroups = 'https://app.360learning.com/api/v1/groups?company=' + company_id + '&apiKey=' + api_key
                         data_session = '{"name":"' + nomgroupe + '","parent":"' + id_Digimoov_Examen_Attestation + '"  , "public":"false" }'
                         create_session = requests.post(urlgroups, headers=headers, data=data_session)
-                        print('creer  une session', create_session.status_code)
                         response_grpss = requests.get(url_groups, params=params)
                         groupess = response_grpss.json()
                         for groupe in groupess:
@@ -632,7 +641,6 @@ class partner(models.Model):
                                 existe = True
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
-                                print(existe, 'ajouter à son session', respsession.status_code)
 
                     self.send_email(partner)
                     """"we send sms to client contains link to register in 360learning."""
@@ -750,13 +758,14 @@ class partner(models.Model):
 
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            company_id = '56f5520e11d423f46884d593'
-            api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+            company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+            company_id = company.plateforme_company_key
+            api_key = company.plateforme_api_key
             headers = CaseInsensitiveDict()
             headers["Accept"] = "*/*"
             params = (
-                ('company', '56f5520e11d423f46884d593'),
-                ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+                ('company', company.plateforme_company_key),
+                ('apiKey',  company.plateforme_api_key),
             )
             response = requests.get('https://app.360learning.com/api/v1/users', params=params)
             users = response.json()
@@ -783,20 +792,24 @@ class partner(models.Model):
                     today = date.today()
                     if (date_suppression <= today):
                         email = partner.email
-                        print('date_sup', email, date_suppression, today, email)
                         _logger.info('liste à supprimé %s' % str(email))
                         url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
                         resp = requests.delete(url)
+                        if resp.status_code==204:
+                            partner.state = "supprimé"
 
     def supprimer_ione_manuelle(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            company_id = '56f5520e11d423f46884d593'
-            api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+            company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+            company_id = company.plateforme_company_key
+            api_key = company.plateforme_api_key
             headers = CaseInsensitiveDict()
             headers["Accept"] = "*/*"
             url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
             resp = requests.delete(url)
+            if resp.status_code == 204:
+                self.state="supprimé"
 
     # Extraire firstName et lastName à partir du champs name
     def diviser_nom(self, partner):
@@ -831,6 +844,9 @@ class partner(models.Model):
             api_key = ""
             if companies:
                 api_key = companies.wedof_api_key
+                plateforme_api_key=companies.plateforme_api_key
+                plateforme_company_key=companies.plateforme_company_key
+
             headers = {
                 'accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -845,8 +861,8 @@ class partner(models.Model):
                 ('sort', 'lastUpdate'),
             )
             param_360 = (
-                ('company', '56f5520e11d423f46884d593'),
-                ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+                ('company', plateforme_company_key),
+                ('apiKey', plateforme_api_key),
             )
             data = '{}'
             response = requests.get('https://www.wedof.fr/api/registrationFolders', headers=headers,
@@ -2066,6 +2082,7 @@ class partner(models.Model):
                                     users.partner_id.etat_financement_cpf_cb = users.partner_id.statut_cpf
         except Exception:
             self.env.cr.rollback()
+
         try:
             #client with particulier mode
             for partner in self.env['res.partner'].search(
@@ -2205,14 +2222,14 @@ class partner(models.Model):
                 # partner.email = new_email
 
     def test_api(self):
-
-        company_id = '56f5520e11d423f46884d593'
-        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+        company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+        company_id = company.plateforme_company_key
+        api_key = company.wedof_api_key
         headers = CaseInsensitiveDict()
         headers["Accept"] = "*/*"
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.wedof_api_key),
         )
         get_custom_fields = requests.get(
             "https://app.360learning.com/api/v1/customfields?company=" + company_id + "&apiKey=" + api_key,
@@ -2281,13 +2298,14 @@ class partner(models.Model):
     def send_email_manuel(self):
         """check if user added to plateform"""
         """send mail with button"""
-        company_id = '56f5520e11d423f46884d593'
-        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+        company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+        company_id = company.plateforme_company_key
+        api_key = company.wedof_api_key
         headers = CaseInsensitiveDict()
         headers["Accept"] = "*/*"
         params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('company', company.plateforme_company_key),
+            ('apiKey', company.plateforme_api_key),
         )
         response = requests.get('https://app.360learning.com/api/v1/users', params=params)
         users = response.json()
