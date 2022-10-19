@@ -358,7 +358,8 @@ class Coach(models.Model):
                             _logger.info('nombre d apprenant par coach %s' % str(nombre_apprenant))
                 self.env.cr.commit()
  # Chercher les nombres des apprenants qui n'ont pas des coachs
-# Chercher le nombre d'apprenants par  coach pour voir la différence et affecter les apprenat aux coachs qui a le nombre inférieur aux autres
+
+ # Chercher le nombre d'apprenants par  coach pour voir la différence et affecter les apprenat aux coachs qui a le nombre inférieur aux autres
 
     # Tester le nombre des coachs et le nombre d'apprenant pour chaque un, pour contrôler l'affectation des apprenants pour chaque
     def test_coach(self):
