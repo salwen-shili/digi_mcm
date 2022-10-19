@@ -91,8 +91,8 @@
                 <field name="inscrit_mcm" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                 <field name="supprimerdemoocit" attrs="{'invisible': [('company_id', '=', 2)]}"/>
 
-                <field name="coach_peda" />
-                <field name="niveau" />
+                <field name="coach_peda" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="niveau"  widget="many2many_tags" options="{'color_field': 'color'}"  />
 
 
             </xpath>
