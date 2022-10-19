@@ -142,7 +142,7 @@ class MailThreadInherit(models.AbstractModel):
                 _logger.info('multipart/report')
                 _logger.info('multipart/report1 %s' % (str(email_to)))
                 company = 1
-                if 'digimoov' in email_to:
+                if 'digimoov' in email_to: #check if email_to contains digimoov
                     company = 2
                 _logger.info('multipart/report1 %s' % (str(email_to)))
                 message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
@@ -189,7 +189,7 @@ class MailThreadInherit(models.AbstractModel):
                     email_from, email_to, message_id, fallback_model, thread_id, custom_values, user_id)
                 return [route]
 
-        # ValueError if no routes found and if no bounce occured
+        # logger info if no routes found and if no bounce occured
         _logger.info(
             'No possible route found for incoming message from %s to %s (Message-Id %s:). '
             'Create an appropriate mail.alias or force the destination model.' %
