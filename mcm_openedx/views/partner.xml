@@ -26,6 +26,8 @@
                 <filter name="group_state" string="Statut" icon="terp-partner" context="{'group_by':'state'}"/>
                 <filter name="group_coach_peda" string="Coach" icon="terp-partner"
                         context="{'group_by':'coach_peda'}"/>
+                   <filter name="group_niveau" string="Niveau" icon="terp-partner"
+                        context="{'group_by':'niveau'}"/>
 
 
             </search>
