@@ -36,7 +36,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div t-if="sign_request" class="o_sign_header_instruction">
                                 <t t-if="not current_request_item">Besoin de signer ? Vérifiez votre boîte de réception pour obtenir votre accès sécurisé
                                 </t>
