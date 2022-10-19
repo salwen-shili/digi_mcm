@@ -285,31 +285,35 @@ class Coach(models.Model):
     def aff_coach(self):
         count_apprennat = 0
         todays_date = date.today()
-
         for partner in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"),
                  ('company_id', '=', 2),
                  ]):
             if partner.mcm_session_id.date_exam:
                 if (partner.mcm_session_id.date_exam.year >= todays_date.year):
-                    count_apprennat = count_apprennat + 1
-                if partner.coach_peda.id is False:
-                    count_apprennat = count_apprennat + 1
-                    # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
-                    message = self.env['mail.message'].search(
-                        [('res_id', "=", partner.id), ('author_id.est_coach', '=', 'True'), ('company_id', '=', 2)],
-                        order="create_date asc",
-                        limit=1)
-                    # if (coaches.name, 'ilike', message.author_id.name):
-                    # print("coaches.name", coaches.name)
-                    _logger.info('partner.name %s' % str(partner.name))
-                    _logger.info('partner.coach_peda == Falsee %s' % str(count_apprennat))
-                    partner.coach_peda = message.author_id
-                count_apprennat = 0
-                # determiner le nombre total des apprenants
-                for apprenant in self.env['res.partner'].sudo().search(
-                        [('statut', "=", "won"), ('company_id', '=', 2)
-                         ]):
+                    if partner.coach_peda.id is False:
+                        count_apprennat = count_apprennat + 1
+                        # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
+                        message = self.env['mail.message'].search(
+                            [('res_id', "=", partner.id), ('author_id.est_coach', '=', 'True'), ('company_id', '=', 2)],
+                            order="create_date asc",
+                            limit=1)
+                        # if (coaches.name, 'ilike', message.author_id.name):
+                        # print("coaches.name", coaches.name)
+                        _logger.info('partner.name %s' % str(partner.name))
+                        _logger.info('partner.coach_peda == Falsee %s' % str(count_apprennat))
+                        partner.coach_peda = message.author_id
+                    count_apprennat = 0
+
+    def coach_digi(self):
+        count_apprennat = 0
+        todays_date = date.today()
+        # determiner le nombre total des apprenants
+        for apprenant in self.env['res.partner'].sudo().search(
+                [('statut', "=", "won"), ('company_id', '=', 2),('coach_peda', '=', False)
+                 ]):
+            if apprenant.mcm_session_id.date_exam:
+                if (apprenant.mcm_session_id.date_exam.year >= todays_date.year):
                     count_apprennat = count_apprennat + 1
                     # definir si le partner et coach
                     listcoach = []
@@ -322,7 +326,7 @@ class Coach(models.Model):
                         listapprenant = []
                         for rec in self.env['res.partner'].sudo().search(
                                 [('coach_peda', 'like', coach.name), ('company_id', '=', 2),
-                                  ]):
+                                 ]):
                             if (rec.coach_peda.name == coach.name):
                                 count = count + 1
                                 # stoker dans la liste les apprennats
@@ -350,18 +354,11 @@ class Coach(models.Model):
                                 newcoach.nombre_apprenant = nombre_apprenant
                                 newcoach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
                                                        })
-
                             _logger.info('nombre d apprenant par coach nom coach %s' % str(coach_name))
                             _logger.info('nombre d apprenant par coach %s' % str(nombre_apprenant))
-
-                return {
-                    'type': 'ir.actions.client',
-                    'tag': 'reload',
-                }
-
-                # Chercher les nombres des apprenants qui n'ont pas des coachs
-                # Chercher le nombre d'apprenants par  coach pour voir la différence et affecter les apprenat aux coachs qui a le nombre inférieur aux autres
-
+                self.env.cr.commit()
+ # Chercher les nombres des apprenants qui n'ont pas des coachs
+# Chercher le nombre d'apprenants par  coach pour voir la différence et affecter les apprenat aux coachs qui a le nombre inférieur aux autres
 
     # Tester le nombre des coachs et le nombre d'apprenant pour chaque un, pour contrôler l'affectation des apprenants pour chaque
     def test_coach(self):
@@ -430,6 +427,7 @@ class Coach(models.Model):
 
         # Chercher les nombres des apprenants qui n'ont pas des coachs
         # Chercher le nombre d'apprenants par  coach pour voir la différence et affecter les apprenat aux coachs qui a le nombre inférieur aux autres
+
 
     def egalité(self):
         # ctrlf8
