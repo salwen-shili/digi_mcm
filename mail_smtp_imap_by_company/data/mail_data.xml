@@ -14,7 +14,11 @@
                 </p>
                 <p>Regards,</p>
                 <p>The team of
-                    <t t-esc="message_company.name"/> | <a t-attf-href="tel:#{message_company.phone}">
+                    <t t-esc="message_company.name"/>
+                </p>
+                <br/>
+                <p>
+                    <a t-attf-href="tel:#{message_company.phone}">
                         <t t-esc="message_company.phone"/>
                     </a>
                 </p>
