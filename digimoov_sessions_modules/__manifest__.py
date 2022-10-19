@@ -28,7 +28,7 @@
         'views/template.xml',
         'views/sale_portal_templates.xml',
         'views/sale_order_report.xml',
-        'views/sign_request.xml',
+        #'views/sign_request.xml',
         'views/inherit_template_doc_sign.xml',
         'views/inherit_sign_template_iframe.xml',
         #'views/sign_template.xml',
