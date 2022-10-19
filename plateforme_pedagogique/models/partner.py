@@ -795,6 +795,8 @@ class partner(models.Model):
                         _logger.info('liste à supprimé %s' % str(email))
                         url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
                         resp = requests.delete(url)
+                        if resp.status_code==200:
+                            partner.state = "supprimé"
 
     def supprimer_ione_manuelle(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
@@ -806,6 +808,8 @@ class partner(models.Model):
             headers["Accept"] = "*/*"
             url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
             resp = requests.delete(url)
+            if resp.status_code == 200:
+                self.state="supprimé"
 
     # Extraire firstName et lastName à partir du champs name
     def diviser_nom(self, partner):
