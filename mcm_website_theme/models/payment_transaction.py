@@ -55,6 +55,7 @@ class PaymentTransaction(models.Model):
         if self.reference:
             data = self.reference.split("-")
             sale = self.env['sale.order'].sudo().search([('name', 'ilike', data[0])])
+            _logger.info("_reconcile_after_transaction_done state %s and state_of_transaction %s and sale is : %s" % (str(self.stripe_payment_intent), str(self.state), str(sale)))
             if (self.stripe_payment_intent and self.state == 'done' and sale):
                 sale.action_confirm()
                 sale.partner_id.mcm_session_id=sale.session_id
@@ -62,6 +63,7 @@ class PaymentTransaction(models.Model):
                 sale.partner_id.sudo().write({'statut': 'won'})
                 sale.partner_id.mode_de_financement ='particulier'
                 moves = sale._create_invoices(final=False)
+                _logger.info("_reconcile_after_transaction_done moves %s" %str(moves))
                 for move in moves:
                     move.type_facture='web'
                     move.methodes_payment = 'cartebleu'
