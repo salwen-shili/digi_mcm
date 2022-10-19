@@ -38,14 +38,12 @@
                         </div>
                         <div class="col-lg-4">
                             <div t-if="sign_request" class="o_sign_header_instruction">
-                                <t t-if="not current_request_item">Need to sign? Check your inbox to get your secure
-                                    access
+                                <t t-if="not current_request_item">Besoin de signer ? Vérifiez votre boîte de réception pour obtenir votre accès sécurisé
                                 </t>
                                 <t t-if="current_request_item and current_request_item.state == 'sent'">Veuillez réviser
                                     et statuer sur ce document
                                 </t>
-                                <t t-if="current_request_item and current_request_item.state == 'completed'">You have
-                                    completed the document
+                                <t t-if="current_request_item and current_request_item.state == 'completed'">Vous avez rempli le document
                                 </t>
                             </div>
                         </div>
