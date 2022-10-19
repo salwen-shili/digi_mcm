@@ -795,7 +795,7 @@ class partner(models.Model):
                         _logger.info('liste à supprimé %s' % str(email))
                         url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
                         resp = requests.delete(url)
-                        if resp.status_code==200:
+                        if resp.status_code==204:
                             partner.state = "supprimé"
 
     def supprimer_ione_manuelle(self):
@@ -808,7 +808,7 @@ class partner(models.Model):
             headers["Accept"] = "*/*"
             url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
             resp = requests.delete(url)
-            if resp.status_code == 200:
+            if resp.status_code == 204:
                 self.state="supprimé"
 
     # Extraire firstName et lastName à partir du champs name
