@@ -129,7 +129,7 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
         if (dateOptions) {
           var habilitation = "Sélectionnez votre date d'examen";
           
-          var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()" style="text-transform: capitalize;" >
+          var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()" style="text-transform: capitalize; font-weight:700" >
           <option value="all" disabled="disabled" selected="selected" hidden="hidden" id="all">
           Cliquez ici 
       </option>                 

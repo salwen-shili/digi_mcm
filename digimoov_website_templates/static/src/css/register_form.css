@@ -7,21 +7,18 @@
   --blue-shop: #086ce3;
   --green-shop: #005a00;
   --green-hover: #047404;
+  --red-shop:#5a0000;
+  --red-shop-hover:#910000;
 }
 
-.btn{
+.btn-shop{
   color: #fff !important;
   
   }
 
-.btn:hover{
+.btn-shop:hover{
 color: #fff !important;
 background-color: var(--green-hover) !important;
-}
-.select-shop{
-  color: var(--green-shop);
-  font-weight: 700;
-
 }
 .btn-shop{
   background-color: var(--green-shop);
@@ -31,7 +28,28 @@ background-color: var(--green-hover) !important;
     font-weight: 700;
     font-size: 16px;
 }
+.select-shop{
+  color: var(--green-shop);
+  font-weight: 700;
 
+}
+.btn-shop-close{
+  color: #fff !important;
+  
+  }
+
+.btn-shop-close:hover{
+color: #fff !important;
+background-color: var(--red-shop-hover) !important;
+}
+.btn-shop-close{
+  background-color: var(--red-shop);
+    border-color: var(--red-shop);
+    margin-bottom: 9px;
+    padding: 10px 30px;
+    font-weight: 700;
+    font-size: 16px;
+}
 .form-control {
   max-width: 600px;
 }

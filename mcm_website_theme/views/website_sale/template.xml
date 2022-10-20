@@ -696,7 +696,7 @@
     <template id="mcm_website_sale_products_add_to_cart" inherit_id="website_sale.products_add_to_cart">
         <xpath expr="//t[@t-if='product_variant_id']" position="replace">
             <t t-if="product_variant_id">
-                <a t-if="request.website.is_public_user()==False" href="#" role="button" class="btn btn-secondary a-submit" aria-label="Shopping cart" title="Shopping cart">
+                <a t-if="request.website.is_public_user()==False" href="#" role="button" class="btn btn-shop a-submit" aria-label="Shopping cart" title="Shopping cart">
                     <span class="fa fa-shopping-cart" />
                 </a>
             </t>
@@ -832,7 +832,7 @@
 
     <template id="mcm_reduction_code" inherit_id="website_sale.reduction_code" customize_show="True" name="Promo Code">
         <xpath expr="//a[hasclass('show_coupon')]" position="replace">
-            <a href="#" class="show_coupon" id="promo_code" style="display:inline;">J'ai
+            <a href="#" class="show_coupon"  id="promo_code" style="display:inline;color: var(--blue-shop); font-weight:700 ">J'ai
                 un code promo
             </a>
         </xpath>
@@ -844,7 +844,7 @@
         </xpath>
         <xpath expr="//div[hasclass('input-group-append')]" position="replace">
             <div class="input-group-append" id="promo_button" style="display:inline;">
-                <a href="#" role="button" class="btn btn-secondary a-submit" style="height:39px ; margin-left:4px">
+                <a href="#" role="button" class="btn btn-shop a-submit" style="    padding: 7px 21px;">
                     Appliquer
                 </a>
             </div>
@@ -912,6 +912,14 @@
         </xpath>
         <xpath expr="//label[@for='street2']" position="replace"></xpath>
         <xpath expr="//input[@name='street2']" position="replace"></xpath>
+    </template>
+
+    <template id="popup_shop_cart" inherit_id="website_sale.cart">
+        <xpath expr="//div[@id='wrap']" position="before">
+           
+      
+        </xpath>
+
     </template>
 
 

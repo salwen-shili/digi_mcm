@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   displayInstalmentPayment();
-  onchangeTextButton1();
+  // onchangeTextButton1();
   document
     .getElementById("checkbox_conditions")
     .addEventListener("change", function () {
@@ -208,7 +208,7 @@ const addUserPlateform = () => {
                                      ${res.result.ajout}     
                                 </p>
                                 <div style="text-align:center">
-                                    <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" style="padding: 8px 29px;" > Fermer </button></a>
+                                    <a href="#"> <button type="button" class="btn btn-shop-close" onclick="closepopup()"  > Fermer </button></a>
     
                                 </div>
              `;
@@ -218,7 +218,7 @@ const addUserPlateform = () => {
                                      ${res.result.ajout}
                                 </p>
                                 <div style="text-align:center">
-                                    <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" style="padding: 8px 29px;" > Fermer </button></a>
+                                    <a href="#"> <button type="button" class="btn btn-shop-close" onclick="closepopup()"  > Fermer </button></a>
                                 </div>
              `;
             if (
@@ -230,7 +230,7 @@ const addUserPlateform = () => {
                                        ${res.result.ajout}     
                                   </p>
                                   <div style="text-align:center">
-                                      <button type="button" class="btn btn-secondary action-button" id="non_renonce" style="padding: 7.5px 38.5px;" onclick="closepopup('/my/home')">Attendre 14 jours</button>
+                                      <button type="button" class="btn btn-shop-close" id="non_renonce" style="padding: 7.5px 38.5px;" onclick="closepopup('/my/home')">Attendre 14 jours</button>
                                       <button type="button" class="btn btn-shop shake" style="padding: 7.5px 38.5px;" onclick="renonce()" > Continuer </button>
                                   </div>
                `;
@@ -242,7 +242,7 @@ const addUserPlateform = () => {
   });
 
   //                        <div style="text-align:center">
-  //                           <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button" onclick="()=>window.location.href=${res.result.url} > Continuer </button></a>
+  //                           <a href="${res.result.url}"> <button type="button" class="btn btn-shop-close" onclick="()=>window.location.href=${res.result.url} > Continuer </button></a>
   //                       </div>
 
   //        `;
@@ -253,7 +253,7 @@ const addUserPlateform = () => {
   //                               </p>
 
   //                        <div style="text-align:center">
-  //                           <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
+  //                           <a href="#"> <button type="button" class="btn btn-shop-close" onclick="closepopup()" > Fermer </button></a>
   //                       </div>
 
   //        `;
@@ -331,13 +331,13 @@ function showPopup() {
 
   
 
-  if (document.getElementById("region_examen")) {
-    let region = document.getElementById("region_examen").value
+  if (document.getElementById("centre_examen")) {
+    let region = document.getElementById("centre_examen").value
     if (region != 'all') {
-      document.getElementById('error_choix_region_examen').style.display = 'none';
+      document.getElementById('error_choix_centre_examen').style.display = 'none';
       console.log("blingos")
     } else {
-      document.getElementById('error_choix_region_examen').style.display = 'inline-block';
+      document.getElementById('error_choix_centre_examen').style.display = 'inline-block';
       scrollToError();
       return
     }
@@ -360,7 +360,13 @@ function showPopup() {
     scrollToError()
     return;
   }
-    document.getElementById('error_no_method').style.display = 'none';
+  if (!['pole_emploi_pm', 'stripe_pm', 'cpf_pm'].includes(paymentMethod)) {
+    document.getElementById('error_no_method').style.display = 'inline-block';
+    scrollState = true;
+    scrollToError()
+    return;
+  }
+  hideError_no_method()
 
   document.getElementById("error_no_date").style.display = "none";
 
@@ -595,7 +601,7 @@ function closepopup(msg) {
 
                         <div style="text-align:center">
                         <a href="#">  
-                        <button type="button" class="btn btn-secondary action-button" id="Précédent"  style="padding: 8px 29px;">Fermer</button>
+                        <button type="button" class="btn btn-shop-close" id="Précédent"  >Fermer</button>
                         </a>
                             <button type="button" class="btn btn-shop shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
                         </div>`;
@@ -628,8 +634,8 @@ function renonce() {
                        
                           
                             <div style="text-align:center">
-                             <button type="button" class="btn btn-secondary action-button" id="Précédent"  style="padding: 8px 29px;" onclick="cpfAccepted()">Précédent</button>
-                             <button type="button" class="btn btn-shop shake" id="continueBtn" onclick="verify_payment_method()"style="padding: 8px 29px;">Continuer</button>
+                             <button type="button" class="btn btn-shop-close" id="Précédent"   onclick="cpfAccepted()">Précédent</button>
+                             <button type="button" class="btn btn-shop shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
                           </div>
          `;
 }
@@ -966,8 +972,8 @@ function selectPaymentInstallmentOption(instalment) {
 }
 
 function displayPromo() {
-  if (document.getElementById("stripe_pm")) {
-    if (document.getElementById("stripe_pm").checked) {
+  if (document.getElementById('stripe_pm')) {
+    if (paymentMethod == "stripe_pm") {
       showPromo();
     } else {
       hidePromo();

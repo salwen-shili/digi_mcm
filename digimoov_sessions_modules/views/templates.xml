@@ -66,6 +66,9 @@
                             </select>
                         </div>
                     </b>
+                    <p id="error_choix_centre_examen" class="alert alert-warning" style="margin-top:10px; margin-left:0%; display:none; max-width:600px;">
+                        Vous devez sélectionner votre ville d'examen
+                    </p>
                 </p>
 
 

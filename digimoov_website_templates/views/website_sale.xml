@@ -13,19 +13,14 @@
                                 <a onclick="(function(){if (document.getElementById('js_delete_cart')){document.getElementById('js_delete_cart').click();}})()" href="#" aria-label="Remove from cart" title="Remove from cart" class="js_delete_product no-decoration"> <small><i class="fa fa-trash-o"/></small></a>
                             </span>
                         </div>
-                      
-                     
                     </tr>
-                   
-                  
-                    
-            
+           
             </t>
             
         </xpath>
         <xpath expr="//tr[@id='order_total_taxes']" position="after">
             <tr id="order_instalment" t-if="website_sale_order.instalment_number&gt;1 and website_sale_order.pricelist_id and website_sale_order.pricelist_id.id==1" style="visibility:visible">
-                <td class="text-right border-0">
+                <td class="text-right border-0" style="color: var(--blue-shop);  font-weight: 700;">
                     <label for="checkbox_instalment">
                         <span>Paiement en </span>
                         <span t-field="website_sale_order.instalment_number" style="white-space: nowrap;" />
