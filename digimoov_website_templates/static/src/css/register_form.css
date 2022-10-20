@@ -45,7 +45,7 @@ background-color: var(--red-shop-hover) !important;
 .btn-shop-close{
   background-color: var(--red-shop);
     border-color: var(--red-shop);
-    margin-bottom: 9px;
+   
     padding: 10px 30px;
     font-weight: 700;
     font-size: 16px;
