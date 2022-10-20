@@ -43,6 +43,15 @@ class PaymentStripeAcquirer(models.Model):
                 print('res subscription ', res)
                 if res:
                     """si l'abonnement est créé on valide la transaction et on fait la mise à jour des informations"""
+                    """desactiver prorata"""
+                    subscription_id=res['id']
+                    subscription_data = {
+                        'id': subscription_id,
+                        'proration_behavior': "none",
+                    }
+                    set_url="subscriptions/%s" %subscription_id
+                    update_prorata=self.acquirer_id._stripe_request(set_url,data=subscription_data,method="POST")
+                    _logger.info("update prorataaaaa %s" %str(update_prorata))
                     result = self._stripe_s2s_validate_tree_subscription(res)
                     print('*************resultvalidate', result)
                     return result
