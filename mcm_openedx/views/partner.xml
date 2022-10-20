@@ -60,7 +60,7 @@
                             state="mail envoyé"></button>
 
                     <field name="state" widget="statusbar" statusbar_visible="ancien,en_attente,en_formation,supprimé"
-                           attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                           />
 
                 </header>
 

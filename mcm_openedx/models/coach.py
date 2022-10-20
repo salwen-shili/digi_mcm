@@ -292,6 +292,7 @@ class Coach(models.Model):
             try:
                 if partner.mcm_session_id.date_exam:
                     if (partner.mcm_session_id.date_exam.year >= todays_date.year):
+
                         if partner.coach_peda.id is False:
                             count_apprennat = count_apprennat + 1
                             # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
@@ -304,7 +305,11 @@ class Coach(models.Model):
                             _logger.info('partner.name %s' % str(partner.name))
                             _logger.info('partner.coach_peda == Falsee %s' % str(count_apprennat))
                             partner.coach_peda = message.author_id
-                        count_apprennat = 0
+                        else:
+                            partner.state = "en_formation"
+
+
+
                 self.env.cr.commit()
             except Exception:
                 self.env.cr.rollback()
