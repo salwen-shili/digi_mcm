@@ -33,6 +33,7 @@ class partner(models.Model):
     mooc_temps_passe_min = fields.Integer()
     mooc_temps_passe_seconde = fields.Integer()
     date_imortation_stat = fields.Date()
+
     niveau = fields.Selection([('niveau1', 'Niveau 1'),
                                ('niveau2', 'Niveau 2'),
                                ('niveau3', 'Niveau 3'),
@@ -501,7 +502,7 @@ class partner(models.Model):
                         'params': {
                             'title': _('Merci de vérifier les documents !   '),
                             'message': _('Merci de vérifier les documents ! ️'),
-                            'sticky': True,
+                            'sticky': False,
                             'className': 'bg-danger'
                         }
                     }
@@ -533,7 +534,7 @@ class partner(models.Model):
                             'params': {
                                 'title': _('Merci de vérifier le contrat de formation !'),
                                 'message': _('Merci de vérifier le contrat de formation !'),
-                                'sticky': True,
+                                'sticky': False,
                                 'className': 'bg-danger'
                             }
                         }
@@ -584,7 +585,7 @@ class partner(models.Model):
                                 'params': {
                                     'title': _('Merci de vérifier la date d’examen ? '),
                                     'title': _('Merci de vérifier la date d’examen ? '),
-                                    'sticky': True,
+                                    'sticky': False,
                                     'className': 'bg-danger'
                                 }
                             }
@@ -595,7 +596,7 @@ class partner(models.Model):
                 'tag': 'display_notification',
                 'params': {
                     'title': _('Manque numéro d’Evalbox-CMA !'),
-                    'sticky': True,
+                    'sticky': False,
                     'className': 'bg-danger'
                 }
             }
@@ -965,7 +966,7 @@ class partner(models.Model):
                 'params': {
                     'title': _(' Mail non envoyé  '),
                     'message': _('Manque numéro d’Evalbox-CMA !️'),
-                    'sticky': True,
+                    'sticky': False,
                     'className': 'bg-danger'
                 }
             }
@@ -1000,7 +1001,7 @@ class partner(models.Model):
                 'tag': 'display_notification',
                 'params': {
                     'title': _('Merci de vérifier dans Session-module !'),
-                    'sticky': True,
+                    'sticky': False,
                     'className': 'bg-danger'
                 }
             }
