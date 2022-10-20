@@ -289,21 +289,25 @@ class Coach(models.Model):
                 [('statut', "=", "won"),
                  ('company_id', '=', 2),
                  ]):
-            if partner.mcm_session_id.date_exam:
-                if (partner.mcm_session_id.date_exam.year >= todays_date.year):
-                    if partner.coach_peda.id is False:
-                        count_apprennat = count_apprennat + 1
-                        # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
-                        message = self.env['mail.message'].search(
-                            [('res_id', "=", partner.id), ('author_id.est_coach', '=', 'True'), ('company_id', '=', 2)],
-                            order="create_date asc",
-                            limit=1)
-                        # if (coaches.name, 'ilike', message.author_id.name):
-                        # print("coaches.name", coaches.name)
-                        _logger.info('partner.name %s' % str(partner.name))
-                        _logger.info('partner.coach_peda == Falsee %s' % str(count_apprennat))
-                        partner.coach_peda = message.author_id
-                    count_apprennat = 0
+            try:
+                if partner.mcm_session_id.date_exam:
+                    if (partner.mcm_session_id.date_exam.year >= todays_date.year):
+                        if partner.coach_peda.id is False:
+                            count_apprennat = count_apprennat + 1
+                            # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
+                            message = self.env['mail.message'].search(
+                                [('res_id', "=", partner.id), ('author_id.est_coach', '=', 'True'), ('company_id', '=', 2)],
+                                order="create_date asc",
+                                limit=1)
+                            # if (coaches.name, 'ilike', message.author_id.name):
+                            # print("coaches.name", coaches.name)
+                            _logger.info('partner.name %s' % str(partner.name))
+                            _logger.info('partner.coach_peda == Falsee %s' % str(count_apprennat))
+                            partner.coach_peda = message.author_id
+                        count_apprennat = 0
+                self.env.cr.commit()
+            except Exception:
+                self.env.cr.rollback()
 
     def coach_digi(self):
         count_apprennat = 0
@@ -312,51 +316,55 @@ class Coach(models.Model):
         for apprenant in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"), ('company_id', '=', 2),('coach_peda', '=', False)
                  ]):
-            if apprenant.mcm_session_id.date_exam:
-                if (apprenant.mcm_session_id.date_exam.year >= todays_date.year):
-                    count_apprennat = count_apprennat + 1
-                    # definir si le partner et coach
-                    listcoach = []
-                    for coach in self.env['res.partner'].sudo().search(
-                            [('est_coach', '=', 'True'), ('company_id', '=', 2)]):
-                        count = 0
-                        listcoach.append(coach.id)
-                        # extraire les client ganger ayant le meme nom de coach dans la liste des partner
-                        # crer une liste pour stocker les apprennats ayant les informations que en est en train de chercher
-                        listapprenant = []
-                        for rec in self.env['res.partner'].sudo().search(
-                                [('coach_peda', 'like', coach.name), ('company_id', '=', 2),
-                                 ]):
-                            if (rec.coach_peda.name == coach.name):
-                                count = count + 1
-                                # stoker dans la liste les apprennats
-                                listapprenant.append(rec.id)
-                        nombre_apprenant = count
-                        # si le partner est un coach alors en va verifier si il existe deja dans la liste des coach pour lui affecter les apprenants
-                        if (coach):
-                            coach_name = coach.name
-                            name = coach.name
-                            _logger.info('coachs names %s' % str(coach_name))
-                            # verfier dans la class Coach si il existe un coach ayant le meme nom que le coach affecter pour les apprenants
-                            exist = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '=', coach.id)])
-                            # si le coach existe alors en va lui affecter la liste des apprenats ayant le nom de ce caoch
-                            _logger.info('exist %s' % str(exist))
-                            if (exist):
-                                exist.seats = count_apprennat
-                                exist.nombre_apprenant = nombre_apprenant
-                                exist.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
-                                                    })
-                            # si non en va creé le coach
-                            if not exist:
-                                newcoach = self.env['mcm_openedx.coach'].sudo().create({
-                                    'coach_name': coach.id, })
-                                newcoach.seats = count_apprennat
-                                newcoach.nombre_apprenant = nombre_apprenant
-                                newcoach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
-                                                       })
-                            _logger.info('nombre d apprenant par coach nom coach %s' % str(coach_name))
-                            _logger.info('nombre d apprenant par coach %s' % str(nombre_apprenant))
+            try:
+
+                if apprenant.mcm_session_id.date_exam:
+                    if (apprenant.mcm_session_id.date_exam.year >= todays_date.year):
+                        count_apprennat = count_apprennat + 1
+                        # definir si le partner et coach
+                        listcoach = []
+                        for coach in self.env['res.partner'].sudo().search(
+                                [('est_coach', '=', 'True'), ('company_id', '=', 2)]):
+                            count = 0
+                            listcoach.append(coach.id)
+                            # extraire les client ganger ayant le meme nom de coach dans la liste des partner
+                            # crer une liste pour stocker les apprennats ayant les informations que en est en train de chercher
+                            listapprenant = []
+                            for rec in self.env['res.partner'].sudo().search(
+                                    [('coach_peda', 'like', coach.name), ('company_id', '=', 2),
+                                     ]):
+                                if (rec.coach_peda.name == coach.name):
+                                    count = count + 1
+                                    # stoker dans la liste les apprennats
+                                    listapprenant.append(rec.id)
+                            nombre_apprenant = count
+                            # si le partner est un coach alors en va verifier si il existe deja dans la liste des coach pour lui affecter les apprenants
+                            if (coach):
+                                coach_name = coach.name
+                                name = coach.name
+                                _logger.info('coachs names %s' % str(coach_name))
+                                # verfier dans la class Coach si il existe un coach ayant le meme nom que le coach affecter pour les apprenants
+                                exist = self.env['mcm_openedx.coach'].sudo().search([('coach_name', '=', coach.id)])
+                                # si le coach existe alors en va lui affecter la liste des apprenats ayant le nom de ce caoch
+                                _logger.info('exist %s' % str(exist))
+                                if (exist):
+                                    exist.seats = count_apprennat
+                                    exist.nombre_apprenant = nombre_apprenant
+                                    exist.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
+                                                        })
+                                # si non en va creé le coach
+                                if not exist:
+                                    newcoach = self.env['mcm_openedx.coach'].sudo().create({
+                                        'coach_name': coach.id, })
+                                    newcoach.seats = count_apprennat
+                                    newcoach.nombre_apprenant = nombre_apprenant
+                                    newcoach.sudo().write({'apprenant_name': [(6, 0, listapprenant)],
+                                                           })
+                                _logger.info('nombre d apprenant par coach nom coach %s' % str(coach_name))
+                                _logger.info('nombre d apprenant par coach %s' % str(nombre_apprenant))
                 self.env.cr.commit()
+            except Exception:
+                self.env.cr.rollback()
  # Chercher les nombres des apprenants qui n'ont pas des coachs
 
  # Chercher le nombre d'apprenants par  coach pour voir la différence et affecter les apprenat aux coachs qui a le nombre inférieur aux autres

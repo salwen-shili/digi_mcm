@@ -26,6 +26,8 @@
                 <filter name="group_state" string="Statut" icon="terp-partner" context="{'group_by':'state'}"/>
                 <filter name="group_coach_peda" string="Coach" icon="terp-partner"
                         context="{'group_by':'coach_peda'}"/>
+                <filter name="group_niveau" string="Niveau" icon="terp-partner"
+                        context="{'group_by':'niveau'}"/>
 
 
             </search>
@@ -39,6 +41,7 @@
 
             <xpath expr="//form//sheet" position="before">
                 <header>
+
                     <button name="ajoutMoocit_manuelle" string="AJOUTER SUR MOOCit"
                             attrs="{'invisible': [('company_id', '=', 2)]}"
                             type="object" confirm="Confirmation de l’ajout"
@@ -70,7 +73,7 @@
                         Coach
                     </label>
                     <field name="est_coach" widget="boolean_toggle" modifiers="{}"/>
-<br/>
+                    <br/>
                     <!--<label for="partner_id" string="Partner_id:" modifiers="{}">
                         Partner_id
                     </label>
@@ -85,12 +88,12 @@
 
             </xpath>
 
-            <xpath expr="//page/group[@name='session']/group" position="inside">
+            <xpath expr="//page/group[@name='session']/group" position="inside" >
                 <field name="inscrit_mcm" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                 <field name="supprimerdemoocit" attrs="{'invisible': [('company_id', '=', 2)]}"/>
 
-                <field name="coach_peda" />
-                <field name="niveau" />
+                <field name="coach_peda"   />
+                <field name="niveau"  />
 
 
             </xpath>
