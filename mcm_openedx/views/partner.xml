@@ -88,12 +88,12 @@
 
             </xpath>
 
-            <xpath expr="//page/group[@name='session']/group" position="inside" groups="base.group_partner_manager" >
+            <xpath expr="//page/group[@name='session']/group" position="inside" >
                 <field name="inscrit_mcm" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                 <field name="supprimerdemoocit" attrs="{'invisible': [('company_id', '=', 2)]}"/>
 
-                <field name="coach_peda"  groups="base.group_partner_manager" />
-                <field name="niveau"  groups="base.group_partner_manager"/>
+                <field name="coach_peda"   />
+                <field name="niveau"  />
 
 
             </xpath>
