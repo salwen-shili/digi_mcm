@@ -130,6 +130,10 @@ class MailThreadInherit(models.AbstractModel):
                 _logger.info(
                     'Routing mail from %s to %s with Message-Id %s: direct reply to msg: model: %s, thread_id: %s, custom_values: %s, uid: %s',
                     email_from, email_to, message_id, reply_model, reply_thread_id, custom_values, self._uid)
+                reply_message = self.env['mail.message'].sudo().search([('message_id', "=", str(message_id))], limit=1,
+                                                               order='id desc, message_id')
+                if reply_message :
+                    _logger.info("message_route reply_message : %s" %(str(reply_message)))
                 return [route]
             elif route is False:
                 return []
