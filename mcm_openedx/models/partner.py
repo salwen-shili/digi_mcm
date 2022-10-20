@@ -23,7 +23,7 @@ class partner(models.Model):
     coach = fields.Selection([('coach1', 'Safa'),
                               ('coachh2', 'Sara'),
                               ])
-    coach_peda = fields.Many2one('res.partner', track_visibility='onchange', string="Coach_Pedagogique",
+    coach_peda = fields.Many2one('res.partner', track_visibility='onchange', groups="base.group_partner_manager", string="Coach_Pedagogique",
                                  domain=[('est_coach', '=', True), ])
     state = fields.Selection([('ancien', 'Ancien'), ('en_attente', 'En attente'), ('en_formation', 'En Formation'),
                               ('supprimé', 'Supprimée')],
@@ -37,7 +37,7 @@ class partner(models.Model):
     niveau = fields.Selection([('niveau1', 'Niveau 1'),
                                ('niveau2', 'Niveau 2'),
                                ('niveau3', 'Niveau 3'),
-                               ] , track_visibility='onchange')
+                               ] ,groups="base.group_partner_manager"  , track_visibility='onchange')
 
     # partner_id = fields.Many2one('res.partner', readonly=True)
 
