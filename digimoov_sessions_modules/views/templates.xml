@@ -9,20 +9,41 @@
             </style>
             <div style="margin: auto; background-color: #fff; border-color: #585959" t-if="request.website.is_public_user()==False and modules_digimoov" id="centre_date_examen">
                 <h3 t-if="modules_digimoov and not from_habilitation_electrique" class="" style="margin-top: 1rem; font-weight: 600; font-size:19px">
-                Veuillez sélectionner votre date d'examen
+                    Sélectionnez votre ville d'examen
                 </h3>
                 <h3 t-if="modules_digimoov and from_habilitation_electrique" class="" style="margin-top: 1rem; font-weight: 600; font-size:19px">
-                Veuillez sélectionner votre ville et période de formation
+                    Veuillez sélectionner votre ville et période de formation
                 </h3>
                 <p t-if="modules_digimoov">
                     <b>
                         <div style="margin-left: 0%" id="exam_center">
-                            <select name="centre_examen" id="centre_examen" class="form-control search-slt" t-if="modules_digimoov">
-                                <option value="all" id="all" t-if="not from_habilitation_electrique">
-                                    Sélectionnez votre ville d'examen
+                            <select   name="centre_examen" id="centre_examen" class="form-control search-slt" style="font-weight:600" data-tour="step: 1; title: Ville d'examen; content: Vous commencez par choisir votre ville d'examen">
+                               <b>
+                                <option value="all" id="all" disabled="disabled" selected="selected" hidden="hidden" >Cliquez ici 
                                 </option>
-                                <option value="all" id="all" t-if="from_habilitation_electrique">
-                                    Sélectionnez votre ville
+                               </b>
+                                <t t-foreach="list_villes" t-as="ville" t-if="not from_habilitation_electrique">
+                                    <t t-if="ville">
+                                        <b>
+                                            <option t-att-value="ville.name_ville">
+                                                <t t-esc="ville.name_ville" />
+                                            </option>
+                                        </b>
+                                    </t>
+                                </t>
+                                <t t-foreach="list_villes_habilitation_electrique" t-as="ville" t-if="from_habilitation_electrique">
+                                    <t t-if="ville">
+                                        <b>
+                                            <option t-att-value="ville.name_ville">
+                                                <t t-esc="ville.name_ville" />
+                                            </option>
+                                        </b>
+                                    </t>
+                                </t>
+                            </select>
+                                <select t-if="modules_digimoov and from_habilitation_electrique" name="centre_examen" id="centre_examen" class="form-control search-slt"  data-tour="step: 1; title: Ville d'examen; content: Vous commencez par choisir votre ville ">
+
+                                <option value="all" id="all" disabled="disabled" selected="selected" hidden="hidden">Cliquez ici 
                                 </option>
                                 <t t-foreach="list_villes" t-as="ville" t-if="not from_habilitation_electrique">
                                     <t t-if="ville">
@@ -49,13 +70,15 @@
 
 
                 <p t-if="modules_digimoov">
+                    <h3 class="" style="margin-top: 1rem; font-weight: 600;;font-size:18px" t-if="not from_habilitation_electrique">
+                        Sélectionnez votre date d'examen
+                    </h3>
+                    <h3 class="" style="margin-top: 1rem; font-weight: 600;;font-size:18px" t-if="from_habilitation_electrique">
+                        Sélectionnez votre date d'examen
+                    </h3>
                     <div style="margin-left: 0%; display:none ">
                         <select id="exam_date" class="form-control search-slt" t-if="modules_digimoov">
-                            <option value="all" id="all" t-if="not from_habilitation_electrique">
-                                    Sélectionnez votre date d'examen
-                            </option>
-                            <option value="all" id="all" t-if="from_habilitation_electrique">
-                                    Sélectionnez le mois
+                            <option value="all" id="all" disabled="disabled" selected="selected" hidden="hidden">Cliquez ici 
                             </option>
                             <t t-foreach="modules_digimoov" t-as="module">
                                 <t t-if="module">
@@ -75,24 +98,27 @@
                     <b>
                         <input type="hidden" value="false" id="habilitation" t-if="not from_habilitation_electrique" />
                         <input type="hidden" value="true" id="habilitation" t-if="from_habilitation_electrique" />
-                        <div id="select-date" style="margin-left: 0%">
-                            <select name="date_examen" id="options-date" class="form-control search-slt" style="display:none">
-                                <option value="all" id="all" t-if="not from_habilitation_electrique">
-                                    Sélectionnez votre date d'examen
-                                </option>
-                                <option value="all" id="all" t-if="from_habilitation_electrique">
-                                    Sélectionnez le mois
-                                </option>
-                            </select>
-                        </div>
+                        
                     </b>
+                    <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;;font-size:18px" >
+                        Sélectionnez votre date d'examen
+                    </h3>
+                    <div id="select-date" style="margin-left: 0%">
+                            
+                        <select name="date_examen" id="options-date" class="form-control search-slt " style="font-size: 15px; font-weight: 600;"  data-tour="step: 3; title: Date d'examen ; content: Maintenant, choisissez votre date d'examen.">
+                            <option value="all" disabled="disabled" selected="selected" hidden="hidden" id="all">
+                                Cliquez ici 
+                            </option>
+                            
+                        </select>
+                    </div>
 
                     <p id="error_choix_date" class="alert alert-warning" style="margin-top:10px;margin-left:0%;display:none;">
                                 Vous devez sélectionner votre date d'examen
                     </p>
                     <p id="error_choix_date_4" class="alert alert-warning" style="margin-top:10px;margin-left:0%;display:none;">
                         Malheureusement vous ne pouvez pas réserver cette date d'examen pour le moment car vous ne pouvez pas dépasser 4 mois entre la date d'inscription à la formation et le passage du premier examen.
-La date d'examen choisie sera disponible à partir du
+                        La date d'examen choisie sera disponible à partir du
                         <span id="available-date"></span>
                         .
                         <br />
@@ -125,14 +151,26 @@ La date d'examen choisie sera disponible à partir du
     </template>
 
     <template id="digimoov_website_sale_cart_script" inherit_id="website_sale.cart">
+        <xpath expr="//div[@id='wrap']" position="after">
+            <!-- JS assets at the end of code-->
+          <script  type="text/javascript" src="/mcm_website_theme/static/src/js/tourguide.min.js" ></script>
+          <script>
+              var tourguide = new Tourguide({
+   
+                
+                
+                });
+          </script>
+           <!-- JS assets at the end of code-->
+      </xpath>
         <xpath expr="//div[@id='wrap']" position="before">
             <t t-set="head">
                 <meta name="robots" content="noindex" />
             </t>
         </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
-            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right disabled" id="pm_shop_checkout2" onclick="showPopup()">
-                <span id="pm_shop_checkout_text">Passer au paiement 2</span>
+            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-shop float-right disabled" id="pm_shop_checkout2" onclick="showPopup()" data-tour="step: 4; title: Payement; content: Vous pouvez maintenant procéder au paiement en cliquant sur le bouton Je paye maintenant !">
+                <span id="pm_shop_checkout_text">Je paye maintenant ! 2</span>
             </button>
             <div t-if="request.website.id==2">
                 <script></script>
@@ -141,8 +179,8 @@ La date d'examen choisie sera disponible à partir du
 
         </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" href="" id="pm_shop_check">
-                <span id="pm_shop_check_text">Passer au paiement</span>
+            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-shop float-right disabled" href="" id="pm_shop_check">
+                <span id="pm_shop_check_text">Je paye maintenant !</span>
                 <span class="fa fa-chevron-right" />
             </a>
         </xpath>
@@ -157,4 +195,6 @@ La date d'examen choisie sera disponible à partir du
             <script></script>
         </xpath>
     </template>
+
+    
 </odoo>

@@ -1,10 +1,15 @@
+var paymentMethod = 'all';
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     document.getElementById("cover-spin").remove();
+
+    tourguide.start();
+
   }
 }
 document.addEventListener('DOMContentLoaded', function () {
-  
+
+
   displayInstalmentPayment();
   var formation;
   if (document.getElementById('cpf_pm')) {
@@ -19,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .setAttribute('src', 'https://www.youtube.com/embed/vLIr9mckz8M');
   }
 
-  onchangeTextButton1();
+  // onchangeTextButton1();
 
   //event listener on change sale conditions input
   // send post request to update sale conditions for the client on server
@@ -53,14 +58,14 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // send departement_examen data if pack taxi 
-  if (document.getElementById("departement_examen")){
+  if (document.getElementById("departement_examen")) {
     const departement_examen = document.getElementById("departement_examen")
-    departement_examen.addEventListener('change', function(){
-      const departementId= departement_examen.options[departement_examen.selectedIndex].id
-      console.log("departementId",departementId)
-      if (departementId == "all"){
+    departement_examen.addEventListener('change', function () {
+      const departementId = departement_examen.options[departement_examen.selectedIndex].id
+      console.log("departementId", departementId)
+      if (departementId == "all") {
         sendExamDepartement('all')
-      }else{
+      } else {
         sendExamDepartement(departementId)
       }
     })
@@ -69,16 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // add on change event listener to deepartment department in case 
 });
 
-//animation
-const sendData = (condition) => {
-  sendHttpRequest('POST', '/shop/payment/update_condition', {
-    params: {
-      condition: condition,
-    },
-  })
-    .then((responseData) => {})
-    .catch((err) => {});
-};
+
 var colors = ['#000000', '#fdd105', '#959595', '#d5a376', '#ff1e00'];
 function frame() {
   confetti({
@@ -96,34 +92,7 @@ function frame() {
     colors: colors,
   });
 }
-//xmlhttprequest
-const sendHttpRequest = (method, url, data) => {
-  const promise = new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open(method, url);
 
-    xhr.responseType = 'json';
-
-    if (data) {
-      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    }
-
-    xhr.onload = () => {
-      if (xhr.status >= 400) {
-        reject(xhr.response);
-      } else {
-        resolve(xhr.response);
-      }
-    };
-
-    xhr.onerror = () => {
-      reject('Something went wrong!');
-    };
-
-    xhr.send(JSON.stringify(data));
-  });
-  return promise;
-};
 //
 const addUserPlateform = () => {
   document.getElementById(
@@ -143,7 +112,7 @@ const addUserPlateform = () => {
                                  <br/>
                                 </p>
                          <div style="text-align:center">
-                            <a onclick='window.open("${res.result.url}");return false;'> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
+                            <a onclick='window.open("${res.result.url}");return false;'> <button type="button" class="btn btn-shop shake" style="padding: 6px 34px;"> Continuer </button></a>
                         </div>     
          `;
           }
@@ -156,7 +125,7 @@ const addUserPlateform = () => {
                                  ${res.result.ajout}     
                             </p>
                             <div style="text-align:center">
-                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()"  style="padding: 8px 29px;" > Fermer </button></a>
+                                <a href="#"> <button type="button" class="btn btn-shop" onclick="closepopup()"  style="padding: 8px 29px;" > Fermer </button></a>
 
                             </div>
          `;
@@ -166,22 +135,22 @@ const addUserPlateform = () => {
                                  ${res.result.ajout}     
                             </p>
                             <div style="text-align:center">
-                                <a href="#"> <button type="button" class="btn btn-secondary action-button"  onclick="closepopup()" style="padding: 8px 29px;" > Fermer </button></a>
+                                <a href="#"> <button type="button" class="btn btn-shop"  onclick="closepopup()" style="padding: 8px 29px;" > Fermer </button></a>
                             </div>
          `;
           }
           if (
             res.result.ajout &&
             res.result.ajout ==
-              'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'
+            'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'
           ) {
             document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px;text-align: justify;">                              
                                  ${res.result.ajout}     
                             </p>
                             <div style="text-align:center">
-                              <button type="button" class="btn btn-secondary action-button" id="non_renonce" style="padding: 7.5px 38.5px;" onclick="closepopup('/my/home')">Attendre 14 jours</button>
-                                <button type="button" class="btn btn-secondary action-button shake" style="padding: 7.5px 38.5px;" onclick="renonce()" > Continuer </button>
+                              <button type="button" class="btn btn-shop" id="non_renonce" style="padding: 7.5px 38.5px;" onclick="closepopup('/my/home')">Attendre 14 jours</button>
+                                <button type="button" class="btn btn-shop shake" style="padding: 7.5px 38.5px;" onclick="renonce()" > Continuer </button>
                             </div>
 
          `;
@@ -191,18 +160,7 @@ const addUserPlateform = () => {
     }
   });
 };
-//cpf accepted
-const cpfAccepted = () => {
-  sendHttpRequest('POST', '/shop/cpf_accepted', {})
-    .then((res) => {
-      if (res.result.state) {
-        addUserPlateform();
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+
 
 function onChangeCheckButton() {
   if (document.getElementById('options-date')) {
@@ -210,19 +168,25 @@ function onChangeCheckButton() {
       document.getElementById('options-date').value === 'all' ||
       document.getElementById('region_examen').value === 'all'
     ) {
-      document.getElementById('pm_shop_checkout').setAttribute('disabled', 'true');
+
       document.getElementById('pm_shop_checkout').classList.add('disabled');
+
+      document.getElementById('pm_shop_checkout2').classList.add('disabled');
     } else if (
       document.getElementById('options-date').value !== 'all' &&
       document.getElementById('region_examen').value !== 'all'
     ) {
-      document.getElementById('pm_shop_checkout').removeAttribute('disabled');
+
       document.getElementById('pm_shop_checkout').classList.remove('disabled');
+
+      document.getElementById('pm_shop_checkout2').classList.remove('disabled');
       document.getElementById('error_choix_date').style.display = 'none';
     }
   } else {
-    document.getElementById('pm_shop_checkout').setAttribute('disabled', 'true');
+
     document.getElementById('pm_shop_checkout').classList.add('disabled');
+
+    document.getElementById('pm_shop_checkout2').classList.add('disabled');
   }
 }
 
@@ -263,10 +227,10 @@ function verify_payment_method() {
     }
   }
 
-  stripe_pm = document.getElementById('stripe_pm');
+  var stripe_pm = document.getElementById('stripe_pm');
 
   if (stripe_pm) {
-    if (stripe_pm.checked == true) {
+    if (paymentMethod == "stripe_pm") {
       if (document.getElementById('from_bolt').value != 'False') {
         addcheckBoxBolt();
       } else {
@@ -274,22 +238,20 @@ function verify_payment_method() {
       }
     }
   }
-  pole_emploi_pm = document.getElementById('pole_emploi_pm');
-  if (pole_emploi_pm) {
-    if (pole_emploi_pm.checked == true) {
-      window.location.href = '/new/ticket/pole_emploi';
-    }
-  }
-  cpf_pm = document.getElementById('cpf_pm');
+  pole_emploi_pm = document.getElementById('pole_emploi_pm') ?? false;
+  // if (pole_emploi_pm) {
+  //   if (paymentMethod== "pole_emploi_pm") {
+  //     window.location.href = '/new/ticket/pole_emploi';
+  //   }
+  // }
+  var cpf_pm = document.getElementById('cpf_pm');
   // var state = 'accepted';
   var state = document.getElementById('state').value;
 
   if (cpf_pm) {
-    var emploichecked = false;
-    if (document.getElementById('pole_emploi_checkbox')) {
-      emploichecked = pole_emploi_checkbox.checked;
-    }
-    if (cpf_pm.checked == true || emploichecked == true) {
+    var emploichecked = paymentMethod == "pole_emploi_pm" ? true : false;
+
+    if (paymentMethod == "cpf_pm" || emploichecked == true) {
       if (cpf_pm.value == 'Formation à distance TAXI') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
@@ -348,55 +310,101 @@ function verify_payment_method() {
     }
   }
 }
+// Hide error when showing popup
+function hideError_no_method() {
+  if (document.getElementById('error_no_method').style.display == 'inline-block') document.getElementById('error_no_method').style.display = 'none';
 
-//show popup if date is selected
+}
+// Scroll to error when we have a warning 
+function scrollToError() {
+  if (document.getElementById('options-date'))
+    document.getElementById('options-date').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+//show popup function 
+// responsable of showing the popup
+// if all conditions are required to show the popup 
 function showPopup() {
+  let optionsDate = document.getElementById('options-date').value;
+  let cpfChecked = false;
+
+  let departement;
+
+  if (document.getElementById("region_examen")) {
+    let region = document.getElementById("region_examen").value
+    if (region != 'all') {
+      document.getElementById('error_choix_region_examen').style.display = 'none';
+      console.log("blingos")
+    } else {
+      document.getElementById('error_choix_region_examen').style.display = 'inline-block';
+      scrollToError();
+      return
+    }
+
+  }
+
+  if (document.getElementById("departement_examen")) {
+    console.log("1")
+    departement = document.getElementById("departement_examen").value;
+    if (departement != 'all' && departement != '') {
+      document.getElementById('error_choix_departement').style.display = 'none';
+      console.log("3")
+    } else {
+      document.getElementById('error_choix_departement').style.display = 'inline-block';
+      scrollState = true;
+      console.log("2")
+      scrollToError()
+      return
+    }
+  }
+  if (optionsDate != 'all' && optionsDate != '') {
+    document.getElementById('error_choix_date_popup').style.display = 'none';
+
+  } else {
+    document.getElementById('error_choix_date').style.display = 'inline-block';
+    scrollToError();
+    return
+  }
   if (!document.getElementById('options-date')) {
     document.getElementById('error_no_date').style.display = 'inline-block';
+    scrollState = true;
+    scrollToError()
     return;
   }
-  
+  if (!['pole_emploi_pm', 'stripe_pm', 'cpf_pm'].includes(paymentMethod)) {
+    document.getElementById('error_no_method').style.display = 'inline-block';
+    scrollState = true;
+    scrollToError()
+    return;
+  }
+
+  document.getElementById('error_no_method').style.display = 'none';
   document.getElementById('error_no_date').style.display = 'none';
-  var optionsDate = document.getElementById('options-date').value;
-  var cpfChecked = false;
+
   if (document.getElementById('cpf_pm')) {
-    cpfChecked = document.getElementById('cpf_pm').checked;
+    cpfChecked = paymentMethod == "cpf_pm" ? true : false;
   }
   var continueBtn = document.getElementById('continueBtn');
   var textbtn;
   var polechecked = false;
-  if (document.getElementById('pole_emploi_checkbox')) {
-    polechecked = pole_emploi_checkbox.checked;
+  if (document.getElementById('pole_emploi_pm')) {
+    polechecked = paymentMethod == "pole_emploi_pm" ? true : false;
+
   }
   cpfChecked || polechecked
     ? (textbtn = 'Mobiliser mon CPF')
-    : (textbtn = 'Passer au paiement');
+    : (textbtn = 'Je paye maintenant !');
 
-  if (optionsDate != 'all' && optionsDate != '') {
-    document.getElementById('error_choix_date_popup').style.display = 'none';
-    
-  } else {
-    document.getElementById('error_choix_date').style.display = 'inline-block';
-    return
-  }
-  let departement ='' ;
-if (document.getElementById("departement_examen")){
-  departement = document.getElementById("departement_examen").value;
-  if (departement != 'all' && departement != '') {
-    document.getElementById('error_choix_departement').style.display = 'none';
-  
-  } else {
-    document.getElementById('error_choix_departement').style.display = 'inline-block';
-    return
-  }
-} 
-  
+
+
+
+
   continueBtn.innerText = textbtn;
   window.location.href = '#popup1';
 }
 
-//
-
+//When closing popup 
+// recreate popup with initial content
 function closepopup(msg) {
   if (msg) {
     window.location.href = msg;
@@ -432,30 +440,11 @@ function closepopup(msg) {
                                 Vous devez fermer cette fenêtre et selectionner votre date d'examen
                             </p>
                         </p>
-                        <style>
-                            .action-button {
-                            width: 153px;
-                            background: #262223;
-                            font-weight: bold;
-                            color: white;
-                            border: 0 none;
-                            border-radius: 0px;
-                            padding: 10px 5px;
-                            }
-
-                            .action-button:hover,
-                            .action-button:focus {
-                            background: #e6e6e6;
-                            font-weight: bold;
-                            color: black;
-                            cursor: pointer;       
-                            }
-
-                        </style>
+                       
                         
 
                         <div style="text-align:center">
-                            <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
+                            <button type="button" class="btn btn-shop shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
                         </div>`;
 }
 
@@ -463,9 +452,9 @@ function closepopup(msg) {
 function hidePoleEmploiDetails() {
   if (document.getElementById('pole-emploi-details')) {
     document.getElementById('pole-emploi-details').classList.add('hide');
-    if (document.getElementById('arrow-down-pole-emploi')) {
-      document.getElementById('arrow-down-pole-emploi').classList.add('hide');
-    }
+    // if (document.getElementById('arrow-down-pole-emploi')) {
+    //   document.getElementById('arrow-down-pole-emploi').classList.add('hide');
+    // }
   }
 }
 //show pole emploie details
@@ -482,18 +471,19 @@ function showPoleEmploiDetails() {
 function hideCpfDetails() {
   if (document.getElementById('cpf-details')) {
     document.getElementById('cpf-details').classList.add('hide');
-    if (document.getElementById('arrow-down')) {
-      document.getElementById('arrow-down').classList.add('hide');
-    }
+    // if (document.getElementById('arrow-down')) {
+    //   document.getElementById('arrow-down').classList.add('hide');
+    // }
   }
 }
+
 //show pole emploie details
 function showCpfDetails() {
   if (document.getElementById('cpf-details')) {
     document.getElementById('cpf-details').classList.remove('hide');
-    if (document.getElementById('arrow-down')) {
-      document.getElementById('arrow-down').classList.remove('hide');
-    }
+    // if (document.getElementById('arrow-down')) {
+    //   document.getElementById('arrow-down').classList.remove('hide');
+    // }
   }
 }
 
@@ -502,37 +492,28 @@ function showCpfDetails() {
 
 function onchangeTextButton() {
   //hide cpf details when pole_emploi is checked
-  if (document.getElementById('pole_emploi_checkbox')) {
-    if (pole_emploi_checkbox.checked) {
+  if (document.getElementById('pole_emploi_pm')) {
+    if (paymentMethod == "pole_emploi_pm") {
       //send pole emploi checked = true
       //hide cpf details
-      hideCpfDetails();
-      //show pole emploi details
-      showPoleEmploiDetails();
-      sendPoleEmploiState(pole_emploi_checkbox.checked);
-      if (document.getElementById('cpf-details')) {
-        document.getElementById('cpf-details').classList.add('hide');
-        if (document.getElementById('arrow-down')) {
-          document.getElementById('arrow-down').classList.add('hide');
-        }
-      }
-    } else if (cpf_pm.checked){
+      poleEmploieFixDisplay();
+    } else if (paymentMethod == "cpf_pm") {
       //show cpf 
       showCpfDetails();
       //hide poleEmploi details
       hidePoleEmploiDetails();
 
       //send pole emploi checked
-      sendPoleEmploiState(pole_emploi_checkbox.checked);
-    } else{
-     
-        //show cpf 
-        hideCpfDetails
-        //hide poleEmploi details
-        hidePoleEmploiDetails();
-  
-        //send pole emploi checked
-        sendPoleEmploiState(pole_emploi_checkbox.checked);
+      sendPoleEmploiState(paymentMethod == "pole_emploi_pm");
+    } else {
+
+      //show cpf 
+      hideCpfDetails
+      //hide poleEmploi details
+      hidePoleEmploiDetails();
+
+      //send pole emploi checked
+      sendPoleEmploiState(paymentMethod == "pole_emploi_pm");
     }
   }
   if (document.getElementById('pm_shop_checkout2')) {
@@ -548,27 +529,34 @@ function onchangeTextButton() {
     order_amount_to_pay.style.display = 'none';
   }
 }
+// Display when pole emploi is selected
+function poleEmploieFixDisplay() {
+  hideCpfDetails();
+  //show pole emploi details
+  showPoleEmploiDetails();
+  sendPoleEmploiState(paymentMethod == "pole_emploi_pm");
+
+}
+
+
+// When carte bleu is selected
+// all functions
 function onchangeTextButton1() {
-  if (document.getElementById('pole_emploi_checkbox')) {
+  if (document.getElementById('pole_emploi_pm')) {
     //hide poleEmploi details
 
-    sendPoleEmploiState(pole_emploi_checkbox.checked);
+    sendPoleEmploiState(false);
     //send pole emploi checked
     hidePoleEmploiDetails();
   }
   //onchange carte de credit
   if (document.getElementById('pm_shop_checkout')) {
-    document.getElementById('pm_shop_checkout').innerText = 'Passer au paiement';
+    document.getElementById('pm_shop_checkout').innerText = 'Je paye maintenant !';
   }
   if (document.getElementById('pm_shop_checkout2')) {
-    document.getElementById('pm_shop_checkout2').innerText = 'Passer au paiement';
+    document.getElementById('pm_shop_checkout2').innerText = 'Je paye maintenant !';
   }
-  if (document.getElementById('cpf-details')) {
-    document.getElementById('cpf-details').classList.add('hide');
-    if (document.getElementById('arrow-down')) {
-      document.getElementById('arrow-down').classList.add('hide');
-    }
-  }
+  hideCpfDetails()
 
   displayInstalmentPayment(); //show instalment
   displayPromo(); //show promo
@@ -608,8 +596,8 @@ function renonce() {
                         </p> 
 
                             <div style="text-align:center">
-                             <button type="button" class="btn btn-secondary action-button" id="Précédent"  style="padding: 8px 29px;" onclick="cpfAccepted()">Précédent</button>
-                             <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()"style="padding: 8px 29px  ;   margin-left: 11px;">Continuer</button>
+                             <button type="button" class="btn btn-shop" id="Précédent"  style="padding: 8px 29px;" onclick="cpfAccepted()">Précédent</button>
+                             <button type="button" class="btn btn-shop shake" id="continueBtn" onclick="verify_payment_method()"style="padding: 8px 29px  ;   margin-left: 11px;">Continuer</button>
                           </div>
          `;
 }
@@ -635,13 +623,42 @@ function showInstalment() {
     document.getElementById('order_amount_to_pay').style.visibility = 'unset';
     document.getElementById('order_amount_to_pay').style.display = 'revert';
   }
+  if (document.getElementById('promo_code')) {
+    document.getElementById('promo_code').style.display =
+      'none';
+  }
+
 }
+
 function hideInstalment() {
   if (document.getElementById('order_instalment_number')) {
     document.getElementById('order_instalment_number').style.visibility = 'hidden';
   }
   if (document.getElementById('order_amount_to_pay')) {
     document.getElementById('order_amount_to_pay').style.visibility = 'hidden';
+  }
+  if (document.getElementById('promo_code')) {
+    document.getElementById('promo_code').style.display =
+      'unset';
+  }
+}
+function selectPaymentInstallmentOption(instalment) {
+
+  let select
+  if (document.getElementById("financement")) {
+    select = document.getElementById("financement");
+
+  } else {
+    return
+  }
+  index = document.getElementById("financement").selectedIndex
+  if ([1, 2].indexOf(index) != -1) {
+    if (instalment) {
+      select.options[2].selected = 'selected'
+
+    } else {
+      select.options[1].selected = 'selected'
+    }
   }
 }
 function displayInstalmentPayment() {
@@ -651,13 +668,14 @@ function displayInstalmentPayment() {
     orderInstalment.style.display = 'revert';
     if (document.getElementById('checkbox_instalment')) {
       var instalment = document.getElementById('checkbox_instalment').checked;
+      selectPaymentInstallmentOption(instalment)
       sendHttpRequest('POST', '/shop/payment/update_amount', {
         params: {
           instalment: instalment,
         },
       })
-        .then((responseData) => {})
-        .catch((err) => {});
+        .then((responseData) => { })
+        .catch((err) => { });
       if (instalment) {
         showInstalment();
       } else {
@@ -666,15 +684,17 @@ function displayInstalmentPayment() {
     }
   }
 }
+
 function displayPromo() {
   if (document.getElementById('stripe_pm')) {
-    if (document.getElementById('stripe_pm').checked) {
+    if (paymentMethod == "stripe_pm") {
       showPromo();
     } else {
       hidePromo();
     }
   }
 }
+
 function showPromo() {
   if (document.getElementById('promo_code')) {
     //when promo button is shown we don't need to show promo_code
@@ -694,6 +714,7 @@ function showPromo() {
     document.getElementById('promo_input').style.display = 'inline';
   }
 }
+
 function hidePromo() {
   if (document.getElementById('promo_code')) {
     document.getElementById('promo_code').style.display = 'none';
@@ -728,35 +749,7 @@ function hidePromo() {
 //   }
 // }
 
-const update_driver_licence = (driver_licence) => {
-  sendHttpRequest('POST', '/shop/update_driver_licence', {
-    params: {
-      driver_licence: driver_licence,
-    },
-  })
-    .then((responseData) => {})
-    .catch((err) => {});
-};
 
-const update_license_suspension = (license_suspension) => {
-  sendHttpRequest('POST', '/shop/update_license_suspension', {
-    params: {
-      license_suspension: license_suspension,
-    },
-  })
-    .then((responseData) => {})
-    .catch((err) => {});
-};
-
-const update_criminal_record = (criminal_record) => {
-  sendHttpRequest('POST', '/shop/update_criminal_record ', {
-    params: {
-      criminal_record: criminal_record,
-    },
-  })
-    .then((responseData) => {})
-    .catch((err) => {});
-};
 //boltPopupContent
 const popContent = `
 <b>
@@ -808,15 +801,16 @@ const popContent = `
 <div style="text-align: center">
   <button
     type="button"
-    class="btn btn-secondary action-button"
+    class="btn btn-shop"
     style="margin-top: 19px"
     id="continueBtn"
     onclick="paiementBolt()"
   >
-    Passer au paiement
+    Je paye maintenant !
   </button>
 </div>
 `;
+
 //BoltinitPopup
 const popupContentinit = `<div class="input checkbox" style="width:90%">
                                 <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
@@ -853,9 +847,10 @@ const popupContentinit = `<div class="input checkbox" style="width:90%">
                         
 
                         <div style="text-align:center">
-                            <button type="button" class="btn btn-secondary action-button" id="continueBtn" onclick="verify_payment_method()">Continuer
+                            <button type="button" class="btn btn-shop" id="continueBtn" onclick="verify_payment_method()">Continuer
                             </button>
                         </div>`;
+
 
 const addcheckBoxBolt = () => {
   var popupcontent = document.getElementById('popupcontent');
@@ -874,27 +869,12 @@ const addcheckBoxBolt = () => {
     update_criminal_record(inputCriminalRecord.checked);
   });
 };
-//emploie state value
-// Création d'une fonction showpoleemploidetails pour afficher les détails de pole emploi et hidepoleemploidetails pour masquer les détails pole emploi.
-// // Création d'une fonction sendpoleemploistate qui récupère l'état de radio button et envoyer cet état au backend avec un post request vers /shop/cart/update_pole_emploi  (checked : true ou false)
-// // Cette méthode est utilise à chaque clic d'un radio button
-const sendPoleEmploiState = (pole_emploi_state) => {
-  sendHttpRequest('POST', '/shop/cart/update_pole_emploi', {
-    params: {
-      pole_emploi_state: pole_emploi_state,
-    },
-  })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+
 function resetPopupBolt() {
   var popupcontent = document.getElementById('popupcontent');
   popupcontent.innerHTML = popupContentinit;
 }
+
 function checkInputBolt() {
   var inputDriverLicence = document.getElementById('driver-licence').checked;
   var inputLicenceSuspension = document.getElementById('license_suspension').checked;
@@ -903,6 +883,7 @@ function checkInputBolt() {
     return true;
   } else return false;
 }
+
 function paiementBolt() {
   if (checkInputBolt()) {
     document.getElementById('error_choix_bolt').style.display = 'none';
@@ -915,29 +896,17 @@ function paiementBolt() {
 }
 
 //Show departement for taxi 
-function showDepartement(){
-  if (document.getElementById("departement_examen")){
+function showDepartement() {
+  if (document.getElementById("departement_examen")) {
     const departement = document.getElementById("departement_examen")
-    if ( departement.classList.contains("hide")){
+    if (departement.classList.contains("hide")) {
       departement.classList.remove("hide");
     }
-    return 
-}
+    return
+  }
 }
 
-const sendExamDepartement = (department_id) => {
-  sendHttpRequest('POST', '/shop/cart/update_exam_department', {
-    params: {
-      department_id: department_id,
-    },
-  })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+
 
 
 
@@ -962,7 +931,7 @@ const sendExamDepartement = (department_id) => {
 // const partnerInformation = async () => {
 //   const data = await sendHttpRequest('POST', '/get_data_user_connected', {})
 //     .then((res) => {
-      
+
 //       const partner = await JSON.parse(data.result);
 //       console.log(partner)
 //     })
@@ -973,4 +942,247 @@ const sendExamDepartement = (department_id) => {
 
 //   }
 
+// Base function mode de financement
+
+function modeFinancement(mode, index) {
+  paymentMethod = mode;
+  console.log("indexxxx", index)
+  switch (mode) {
+
+    case "stripe_pm":
+      onchangeTextButton1();
+      update_cartebleu(true);
+      hideError_no_method();
+      if (index == 1) {
+        checkPaiementInstalment(false)
+      } else {
+        checkPaiementInstalment(true)
+      }
+
+      break;
+    case "cpf_pm":
+      onchangeTextButton();
+
+      update_cpf(true);
+      showCpfDetails();
+      fixDisplay();
+      hideError_no_method();;
+
+
+      break;
+    case "pole_emploi_pm":
+      onchangeTextButton();
+      sendPoleEmploiState(true);
+
+      fixDisplay()
+      poleEmploieFixDisplay();
+      hideError_no_method();
+      break;
+    case "pm_none":
+      hideCpfDetails();
+      hidePoleEmploiDetails();
+      break;
+
+    default:
+      break;
+  }
+}
+
+
+// fix display whene selecting pole emploi or cpf 
+// paiement en plusieur fois 
+// code promo 
+function fixDisplay() {
+
+
+  if (document.getElementById('promo_code')) {
+    document.getElementById('promo_code').style.display = 'none';
+  }
+  if (document.getElementById('promo_button')) {
+    document.getElementById('promo_button').style.display = 'none';
+  }
+  if (document.getElementById('promo_input')) {
+    document.getElementById('promo_input').style.display = 'none';
+  }
+  if (document.getElementById('order_instalment')) {
+    document.getElementById('order_instalment').style.display = 'none';
+    document.getElementById('order_instalment_number').style.visibility =
+      'hidden';
+    if (document.getElementById('order_instalment_number_order')) {
+      document.getElementById('order_instalment_number_order').style.visibility =
+        'hidden';
+    }
+    document.getElementById('order_amount_to_pay').style.display = 'none';
+    if (document.getElementById('order_amount_to_pay_amount')) {
+      document.getElementById('order_amount_to_pay_amount').style.display =
+        'none';
+    }
+
+  }
+}
+
+// 
+
+
+//animation
+const sendData = (condition) => {
+  sendHttpRequest('POST', '/shop/payment/update_condition', {
+    params: {
+      condition: condition,
+    },
+  })
+    .then((responseData) => { })
+    .catch((err) => { });
+};
+
+//cpf accepted
+const cpfAccepted = () => {
+  sendHttpRequest('POST', '/shop/cpf_accepted', {})
+    .then((res) => {
+      if (res.result.state) {
+        addUserPlateform();
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const update_driver_licence = (driver_licence) => {
+  sendHttpRequest('POST', '/shop/update_driver_licence', {
+    params: {
+      driver_licence: driver_licence,
+    },
+  })
+    .then((responseData) => { })
+    .catch((err) => { });
+};
+
+const update_license_suspension = (license_suspension) => {
+  sendHttpRequest('POST', '/shop/update_license_suspension', {
+    params: {
+      license_suspension: license_suspension,
+    },
+  })
+    .then((responseData) => { })
+    .catch((err) => { });
+};
+
+const update_criminal_record = (criminal_record) => {
+  sendHttpRequest('POST', '/shop/update_criminal_record ', {
+    params: {
+      criminal_record: criminal_record,
+    },
+  })
+    .then((responseData) => { })
+    .catch((err) => { });
+};
+
+//emploie state value
+// Création d'une fonction showpoleemploidetails pour afficher les détails de pole emploi et hidepoleemploidetails pour masquer les détails pole emploi.
+// // Création d'une fonction sendpoleemploistate qui récupère l'état de radio button et envoyer cet état au backend avec un post request vers /shop/cart/update_pole_emploi  (checked : true ou false)
+// // Cette méthode est utilise à chaque clic d'un radio button
+const sendPoleEmploiState = (pole_emploi_state) => {
+  sendHttpRequest('POST', '/shop/cart/update_pole_emploi', {
+    params: {
+      pole_emploi_state: pole_emploi_state,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const sendExamDepartement = (department_id) => {
+  sendHttpRequest('POST', '/shop/cart/update_exam_department', {
+    params: {
+      department_id: department_id,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// send carte_bleu selection
+const update_cartebleu = (cartebleu) => {
+  sendHttpRequest('POST', '/shop/payment/update_cartebleu',
+    {
+      params: {
+        cartebleu: cartebleu,
+      }
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// send cpf selection
+const update_cpf = (cpf) => {
+  sendHttpRequest('POST', '/shop/payment/update_cpf',
+    {
+      params: { cpf: cpf }
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+
+
+
+//xmlhttprequest
+const sendHttpRequest = (method, url, data) => {
+  const promise = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+
+    xhr.responseType = 'json';
+
+    if (data) {
+      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    }
+
+    xhr.onload = () => {
+      if (xhr.status >= 400) {
+        reject(xhr.response);
+      } else {
+        resolve(xhr.response);
+      }
+    };
+
+    xhr.onerror = () => {
+      reject('Something went wrong!');
+    };
+
+    xhr.send(JSON.stringify(data));
+  });
+  return promise;
+};
+
+function checkPaiementInstalment(check) {
+  let checkbox
+
+  if (document.getElementById("checkbox_instalment")) {
+    checkbox = document.getElementById("checkbox_instalment")
+
+  }
+  else return
+  if (check != checkbox.checked) {
+    checkbox.click()
+  }
+}
 

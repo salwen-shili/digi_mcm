@@ -28,16 +28,17 @@
                                 <!-- progressbar -->
                                 <ul id="progressbar">
                                     <li class="active" id="account">
-                                        <strong>Coordonnées</strong>
+                                        <strong>Je crée mon compte
+</strong>
                                     </li>
                                     <li id="personal" class="">
-                                        <strong>Documents</strong>
+                                        <strong>J'insère mes documents</strong>
                                     </li>
                                     <li id="payment" class="">
-                                        <strong>Financement</strong>
+                                        <strong>Je finance ma formation</strong>
                                     </li>
                                     <li id="confirm" class="">
-                                        <strong>Validation</strong>
+                                        <strong>Je valide mon inscription</strong>
                                     </li>
                                 </ul>
                                 <div class="progress">
