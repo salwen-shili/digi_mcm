@@ -43,6 +43,14 @@ class PaymentStripeAcquirer(models.Model):
                 print('res subscription ', res)
                 if res:
                     """si l'abonnement est créé on valide la transaction et on fait la mise à jour des informations"""
+                    """desactiver prorata"""
+                    subscription_id=res['id']
+                    subscription_data = {
+                        'proration_behavior': "none",
+                    }
+                    set_url="subscriptions/%s" %subscription_id
+                    update_prorata=self.acquirer_id._stripe_request(set_url,data=subscription_data,method="POST")
+                    _logger.info("update prorataaaaa %s" %str(update_prorata))
                     result = self._stripe_s2s_validate_tree_subscription(res)
                     print('*************resultvalidate', result)
                     return result
@@ -72,7 +80,7 @@ class PaymentStripeAcquirer(models.Model):
         instalment_number = (sale.instalment_number)
         print('name product instalment', nom_produit, instalment_number)
         today = date.today()
-        canceled = str(today + relativedelta(months=instalment_number))
+        canceled = str(today + relativedelta(months=instalment_number) + timedelta(days=1))
         date_canceled = int(datetime.strptime(canceled, "%Y-%m-%d").timestamp())
         params = (('limit', '100'),)
         url = "products/%s" % (id_produit)
@@ -93,7 +101,7 @@ class PaymentStripeAcquirer(models.Model):
                 'customer': self.payment_token_id.acquirer_ref,
                 'items[0][price]': RECURRING_PRICE_ID,
                 'default_payment_method': self.payment_token_id.stripe_payment_method,
-                #'cancel_at': date_canceled
+                'cancel_at': date_canceled
             }
             _logger.info('_create_stripe_subsription: Sending values to stripe, values:\n%s',
                          pprint.pformat(subscription_data))
