@@ -51,7 +51,7 @@
                             <group name="note_exam_mcm" string="Les informations"
                                    attrs="{'invisible': [('company_id', '=', 2)]}">
                                 <field name="session_id"/>
-                                <field name="module_id"/>
+                                <field name="module_id" domain="[('session_id', '=', session_id)]"/>
                                 <field name="date_exam"/>
                                 <field name="epreuve_theorique"/>
                                 <field name="epreuve_pratique"/>
