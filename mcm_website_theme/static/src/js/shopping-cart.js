@@ -366,7 +366,7 @@ function showPopup() {
     return
   }
   if (!document.getElementById('options-date')) {
-    document.getElementById('error_no_date').style.display = 'inline-block';
+    document.getElementById('error_no_date').style.display = 'block';
     scrollState = true;
     scrollToError()
     return;

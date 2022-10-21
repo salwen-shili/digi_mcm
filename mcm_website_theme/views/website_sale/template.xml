@@ -190,7 +190,7 @@
                </t>
             </select>
             <br/>
-            <p id="error_no_method" class="alert alert-warning" style="margin-left:0%;display:none;">
+            <p id="error_no_method" class="alert alert-warning" style="margin-left:0%;display:none;max-width:600px">
                 Vous devez sélectionner votre mode de financement.
             </p>
         </t>
@@ -480,7 +480,7 @@
                                 Vous devez acceptez les conditions générales de ventes
                             </p>
 
-                            <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;">
+                            <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;max-width:600px">
                                 Vous devez fermer cette fenêtre et selectionner votre date d'examen
                             </p>
                         </p>
@@ -659,7 +659,7 @@
                                 </option>
                             </select>
                         </div>
-                        <p id="error_choix_date" class="alert alert-warning" style="margin-top:10px; margin-left:0%; display:none;">
+                        <p id="error_choix_date" class="alert alert-warning" style="margin-top:10px; margin-left:0%; display:none;max-width:600px">
                             Vous devez sélectionner votre date d'examen
                         </p>
                     </b>

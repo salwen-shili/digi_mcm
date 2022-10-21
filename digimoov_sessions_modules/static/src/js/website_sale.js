@@ -144,17 +144,18 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
           //   dateOptions,
           //   document.getElementById("pm_shop_checkout")
           // );
+          document.getElementById('pm_shop_checkout').classList.remove('disabled');
+
+          document.getElementById('pm_shop_checkout2').classList.remove('disabled');
         } else {
           document.getElementById('select-date').innerHTML =
-            `            <p id="error_no_date" class="alert alert-warning" style="margin-left:0% max-width:600px">
+            `            <p id="error_no_date" class="alert alert-warning" style="margin-left:0% ; max-width:600px">
             Pas de date disponible pour le moment.
         </p>`;
-          document
-            .getElementById('pm_shop_checkout')
-            .setAttribute('disabled', 'disabled');
-          document
-            .getElementById('pm_shop_checkout2')
-            .setAttribute('disabled', 'disabled');
+       
+            document.getElementById('pm_shop_checkout').classList.add('disabled');
+
+            document.getElementById('pm_shop_checkout2').classList.add('disabled');
         }
 
         if (center_exam) {

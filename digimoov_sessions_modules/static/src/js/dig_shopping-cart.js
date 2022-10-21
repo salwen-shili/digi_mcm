@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         continueBtn.setAttribute("disabled", "disabled");
         continueBtn.classList.add("disabled");
-        error.style.display = "inline-block";
+        error.style.display = "block";
         updateCondition(condition);
       }
     });
@@ -326,7 +326,10 @@ function onChangeCheckButton() {
 
 //show popup if date is selected
 function showPopup() {
-    let optionsDate = document.getElementById('options-date').value;
+    let optionsDate = document.getElementById('options-date');
+    if (optionsDate != null){
+      optionsDate=optionsDate.value
+    }
   let cpfChecked = false;
 
   
@@ -337,7 +340,7 @@ function showPopup() {
       document.getElementById('error_choix_centre_examen').style.display = 'none';
       console.log("blingos")
     } else {
-      document.getElementById('error_choix_centre_examen').style.display = 'inline-block';
+      document.getElementById('error_choix_centre_examen').style.display = 'block';
       scrollToError();
       return
     }
@@ -349,19 +352,19 @@ function showPopup() {
     document.getElementById('error_choix_date_popup').style.display = 'none';
 
   } else {
-    document.getElementById('error_choix_date').style.display = 'inline-block';
+    document.getElementById('error_choix_date').style.display = 'block';
     scrollToError();
     return
   }
 
   if (!document.getElementById("options-date")) {
-    document.getElementById('error_no_date').style.display = 'inline-block';
+    document.getElementById('error_no_date').style.display = 'block';
     scrollState = true;
     scrollToError()
     return;
   }
   if (!['pole_emploi_pm', 'stripe_pm', 'cpf_pm'].includes(paymentMethod)) {
-    document.getElementById('error_no_method').style.display = 'inline-block';
+    document.getElementById('error_no_method').style.display = 'block';
     scrollState = true;
     scrollToError()
     return;
@@ -397,14 +400,14 @@ function showPopup() {
   } else {
     if (document.getElementById("error_choix_date")) {
       document.getElementById("error_choix_date").style.display =
-        "inline-block";
+        "block";
     }
   }
 
   //transport lourd
   if ((window.location.href.includes("lourd") && cpfChecked) || polechecked) {
     if (document.getElementById("input_lourd"))
-      document.getElementById("input_lourd").style.display = "inline-block";
+      document.getElementById("input_lourd").style.display = "block";
   }
 }
 
@@ -413,13 +416,13 @@ function verify_payment_method() {
   //that he can't pass if he didn't choose a date
   if (!document.getElementById("options-date")) {
     return (document.getElementById("error_choix_date_popup").style.display =
-      "inline-block");
+      "block");
   } else {
     var optionsDate = document.getElementById("options-date").value;
 
     if (optionsDate == "all" || optionsDate == "") {
       return (document.getElementById("error_choix_date_popup").style.display =
-        "inline-block");
+        "block");
     } else {
       if (document.getElementById("error_choix_date_popup")) {
         document.getElementById("error_choix_date_popup").style.display =
@@ -439,7 +442,7 @@ function verify_payment_method() {
       error.style.display = "none";
       condition = true;
     } else {
-      error.style.display = "inline-block";
+      error.style.display = "block";
       condition = false;
     }
     if (condition == false) {
@@ -517,7 +520,7 @@ function verify_payment_method() {
 }
 
 function hideError_no_method() {
-  if (document.getElementById('error_no_method').style.display == 'inline-block') document.getElementById('error_no_method').style.display = 'none';
+  if (document.getElementById('error_no_method').style.display == 'block') document.getElementById('error_no_method').style.display = 'none';
 
 }
 function scrollToError() {
@@ -1033,7 +1036,7 @@ function enablePaymentButton() {
 function showAlertDate() {
   if (document.getElementById("error_choix_date_4"))
     document.getElementById("error_choix_date_4").style.display =
-      "inline-block";
+      "block";
 }
 // hide the warning message for session > 4 months
 function hideAlertDate() {
