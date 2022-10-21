@@ -84,7 +84,10 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("checkbox_conditions")
     .addEventListener("change", function () {
-      var condition = document.getElementById("checkbox_conditions").checked;
+      var condition = document.getElementById("checkbox_conditions");
+      if (condition){
+        var condition = condition.checked;
+      }
       var error = document.getElementById("error_conditions");
       var continueBtn = document.getElementById("continueBtn");
       if (condition) {
