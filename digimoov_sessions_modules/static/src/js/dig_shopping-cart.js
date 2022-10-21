@@ -110,11 +110,14 @@ document.addEventListener("DOMContentLoaded", function () {
     .setAttribute("src", "https://www.youtube.com/embed/PN7gVHdT7x4");
 
   //event on click on checkbox paiement installment
-  document
-    .getElementById("checkbox_instalment")
-    .addEventListener("click", function () {
-      displayInstalmentPayment();
-    });
+  var checkboxEvent =  document.getElementById("checkbox_instalment")
+  if(checkboxEvent){
+checkboxEvent = checkboxEvent.addEventListener("click", function () {
+  displayInstalmentPayment();
+});
+  }
+  
+    
 });
 
 //animation
