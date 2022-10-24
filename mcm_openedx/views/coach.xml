@@ -149,7 +149,6 @@
         <field name="view_mode">tree,form,kanban,graph</field>
 
     </record>
-    <menuitem id="coach_menu" name="Coaches"                   parent="contacts.menu_contacts"
- action="coach_list_action"/>
+
 
 </odoo>
