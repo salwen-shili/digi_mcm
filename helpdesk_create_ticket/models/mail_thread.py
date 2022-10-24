@@ -156,6 +156,16 @@ class MailThread(models.AbstractModel):
         _logger.info('message_post : %s' % str(new_message))
         _logger.info('message_post : %s' % str(new_message.reply_to))
         _logger.info('message_post_author_id : %s' % str(new_message.author_id))
+        # if new_message:
+        #     list_of_models = ["sale.order", "helpdesk.ticket", "account.move", "documents.document"]
+        #     if str(new_message.model) in list_of_models and new_message.message_type == "email" and new_message.subtype_id.name == "Discussions":
+        #         _logger.info('message_post  new message : %s' % str(new_message))
+        #         search_record = self.env[str(new_message.model)].sudo().search([('id', "=", new_message.res_id)],
+        #                                                                        limit=1)
+        #         if search_record:
+        #             if search_record.partner_id.id == new_message.author_id.id:
+        #                 new_message.model = 'res.partner'
+        #                 new_message.res_id = search_record.partner_id.id
         if '<' in new_message.reply_to and '>' in new_message.reply_to :
             catchall_mail = re.search('<(.*)>', new_message.reply_to)
             catchall_mail = catchall_mail.group(1)
