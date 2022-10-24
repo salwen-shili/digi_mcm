@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_sign_request_tree" model="ir.ui.view">
+        <field name="name">inherit sign request tree</field>
+        <field name="model">sign.request</field>
+        <field name="inherit_id" ref="sign.sign_request_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='reference']" position="after">
+                <field name="create_date" optional="show"/>
+                <field name="create_uid" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
