@@ -173,7 +173,7 @@
         </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
             <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-shop float-right disabled" id="pm_shop_checkout2" onclick="showPopup()" data-tour="step: 4; title: Payement; content: Vous pouvez maintenant procéder au paiement en cliquant sur le bouton Je paye maintenant !">
-                <span id="pm_shop_checkout_text">Je paye maintenant ! 2</span>
+                <span id="pm_shop_checkout_text">Je paye maintenant !</span>
             </button>
             <div t-if="request.website.id==2">
                 <script></script>
