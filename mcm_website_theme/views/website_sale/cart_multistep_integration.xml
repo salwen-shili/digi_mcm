@@ -8,7 +8,7 @@
             </a>
         </xpath>
         <xpath expr="//div[hasclass('row')]" position="before">
-            <script t-if="website_sale_order" src="/mcm_website_theme/static/src/js/shopping-cart.js"></script>
+            <script t-if="website_sale_order" src="/mcm_website_theme/static/src/js/shopping-cart-1.js"></script>
         
             <style>
                 .wizard{

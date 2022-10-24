@@ -1,7 +1,7 @@
 <odoo>
     <template id="digimoov_website_sale_cart_lines" inherit_id="website_sale.cart_lines">
         <xpath expr="//table[@id='cart_products']" position="after">
-            <script src="/digimoov_sessions_modules/static/src/js/dig_shopping-cart.js"></script>
+            <script src="/digimoov_sessions_modules/static/src/js/dig_shopping-cart-1.js"></script>
             <style>
                 #pm_shop_check {
                 visibility: hidden;
