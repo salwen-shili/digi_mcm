@@ -59,7 +59,7 @@
                         			<action  name="%(apprenant_graph)d" context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2,
                         			 'group_by': ['company_id', 'coach_peda'], 'graph_measure': '__count__',
                         			  'graph_mode': 'pie', 'graph_groupbys': ['company_id', 'coach_peda'],
-                        			  'dashboard_merge_domains_contexts': False}" domain="[['company_id', '!=', False],['coach_peda', '!=', False]]" string="Les Apprenants" view_mode="graph" modifiers="{}"/>
+                        			  'dashboard_merge_domains_contexts': False}" domain="[['company_id', '!=', False],['coach_peda', '!=', False]]" string="Coches" view_mode="graph" modifiers="{}"/>
 
                     </column>
                 </board>
