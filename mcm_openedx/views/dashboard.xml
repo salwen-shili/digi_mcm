@@ -48,7 +48,7 @@
 
                         <action name="%(act_stat_graph)d" string="Statistiques Cours" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'allowed_company_ids': [1, 1, 2], 'group_by': [], 'graph_measure': 'seconde', 'graph_mode': 'bar', 'graph_groupbys': ['idcour'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[]" modifiers="{}"/>
+                                domain="[['idcour', 'ilike', '02+2']]"  modifiers="{}"/>
                     </column>
                     <column>
                         <action name="%(app_graph)d" string="Les Apprenants" view_mode="graph"
