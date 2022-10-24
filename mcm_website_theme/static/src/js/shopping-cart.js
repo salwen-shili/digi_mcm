@@ -669,17 +669,24 @@ function displayInstalmentPayment() {
     if (document.getElementById('checkbox_instalment')) {
       var instalment = document.getElementById('checkbox_instalment').checked;
       selectPaymentInstallmentOption(instalment)
-      sendHttpRequest('POST', '/shop/payment/update_amount', {
-        params: {
-          instalment: instalment,
-        },
-      })
-        .then((responseData) => { })
-        .catch((err) => { });
       if (instalment) {
         showInstalment();
+        sendHttpRequest('POST', '/shop/payment/update_amount', {
+          params: {
+            instalment: true,
+          },
+        })
+          .then((responseData) => { })
+          .catch((err) => { });
       } else {
         hideInstalment();
+        sendHttpRequest('POST', '/shop/payment/update_amount', {
+          params: {
+            instalment: false,
+          },
+        })
+          .then((responseData) => { })
+          .catch((err) => { });
       }
     }
   }
@@ -1174,15 +1181,25 @@ const sendHttpRequest = (method, url, data) => {
 };
 
 function checkPaiementInstalment(check) {
-  let checkbox
+  let checkbox = document.getElementById("checkbox_instalment")
 
-  if (document.getElementById("checkbox_instalment")) {
-    checkbox = document.getElementById("checkbox_instalment")
-
+  if (checkbox) {
+    
+    if (check != checkbox.checked) {
+      checkbox.click();
+      // Send installment when fix chekbox to the select options
+      sendHttpRequest('POST', '/shop/payment/update_amount', {
+        params: {
+          instalment: checkbox.checked,
+        },
+      })
+        .then((responseData) => { })
+        .catch((err) => { });
+      
+    }
+    else return
   }
   else return
-  if (check != checkbox.checked) {
-    checkbox.click()
-  }
+  
 }
 

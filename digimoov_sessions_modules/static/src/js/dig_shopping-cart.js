@@ -114,6 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if(checkboxEvent){
 checkboxEvent = checkboxEvent.addEventListener("click", function () {
   displayInstalmentPayment();
+  
 });
   }
   
@@ -945,17 +946,25 @@ function displayInstalmentPayment() {
     if (document.getElementById('checkbox_instalment')) {
       var instalment = document.getElementById('checkbox_instalment').checked;
       selectPaymentInstallmentOption(instalment)
-      sendHttpRequest('POST', '/shop/payment/update_amount', {
-        params: {
-          instalment: instalment,
-        },
-      })
-        .then((responseData) => { })
-        .catch((err) => { });
+      
       if (instalment) {
         showInstalment();
+        sendHttpRequest('POST', '/shop/payment/update_amount', {
+          params: {
+            instalment: true,
+          },
+        })
+          .then((responseData) => { })
+          .catch((err) => { });
       } else {
         hideInstalment();
+        sendHttpRequest('POST', '/shop/payment/update_amount', {
+          params: {
+            instalment: false,
+          },
+        })
+          .then((responseData) => { })
+          .catch((err) => { });
       }
     }
   }
@@ -973,9 +982,11 @@ function selectPaymentInstallmentOption(instalment) {
   if ([1, 2].indexOf(index) != -1) {
     if (instalment) {
       select.options[2].selected = 'selected'
+     
 
     } else {
       select.options[1].selected = 'selected'
+      
     }
   }
 }
@@ -1218,6 +1229,7 @@ function modeFinancement(mode, index) {
       hideError_no_method();
       if (index == 1) {
         checkPaiementInstalment(false)
+        
       } else {
         checkPaiementInstalment(true)
       }
@@ -1283,16 +1295,26 @@ const update_cpf = (cpf) => {
 };
 
 function checkPaiementInstalment(check) {
-  let checkbox
+  let checkbox = document.getElementById("checkbox_instalment")
 
-  if (document.getElementById("checkbox_instalment")) {
-    checkbox = document.getElementById("checkbox_instalment")
-
+  if (checkbox) {
+    
+    if (check != checkbox.checked) {
+      checkbox.click();
+      // Send installment when fix chekbox to the select options
+      sendHttpRequest('POST', '/shop/payment/update_amount', {
+        params: {
+          instalment: checkbox.checked,
+        },
+      })
+        .then((responseData) => { })
+        .catch((err) => { });
+      
+    }
+    else return
   }
   else return
-  if (check != checkbox.checked) {
-    checkbox.click()
-  }
+  
 }
 
 function poleEmploieFixDisplay() {
