@@ -3,7 +3,12 @@ from datetime import timedelta
 import requests
 from odoo import models, fields, api, exceptions
 from datetime import datetime
+from odoo.exceptions import ValidationError
+from unidecode import unidecode
+import logging
+import pyshorteners
 
+_logger = logging.getLogger(__name__)
 
 class Groupe(models.Model):
     _name = 'plateforme_pedagogique.groupe'

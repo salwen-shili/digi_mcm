@@ -10,7 +10,7 @@ from odoo import _
 import locale
 from dateutil.relativedelta import relativedelta
 
-from odoo import models, fields, api, SUPERUSER_ID
+from odoo import models, fields, api, SUPERUSER_ID,exceptions
 from odoo.exceptions import ValidationError
 from unidecode import unidecode
 import logging
