@@ -35,24 +35,22 @@
               ">
                         <div class="form-section">
                             <div class="card px-0 pb-0 mt-1  bg-c">
-                                <h2 id="heading">Inscription</h2>
-                                <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
-                                    suivante
-                                </p>
+                                <h2 id="heading">FINANCER MA FORMATION</h2>
+                                <p class="p_class">Veuillez sélectionner votre région, date d’examen, et le mode de financement souhaités.</p>
 
                                 <!-- progressbar -->
                                 <ul id="progressbar">
                                     <li class="active" id="account">
-                                        <strong>Coordonnées</strong>
+                                        <strong>Je crée mon compte</strong>
                                     </li>
                                     <li id="personal" class="active">
-                                        <strong>Documents</strong>
+                                        <strong>J'insère mes documents</strong>
                                     </li>
                                     <li id="payment" class="active">
-                                        <strong>Financement</strong>
+                                        <strong>Je finance ma formation</strong>
                                     </li>
                                     <li id="confirm">
-                                        <strong>Validation</strong>
+                                        <strong>Je valide mon inscription</strong>
                                     </li>
                                 </ul>
                                 <div class="progress">
@@ -106,16 +104,17 @@
                                 <!-- progressbar -->
                                 <ul id="progressbar">
                                     <li class="active" id="account">
-                                        <strong>Coordonnées</strong>
+                                        <strong>Je crée mon compte
+</strong>
                                     </li>
                                     <li id="personal" class="active">
-                                        <strong>Documents</strong>
+                                        <strong>J'insère mes documents</strong>
                                     </li>
                                     <li id="payment" class="active">
-                                        <strong>Financement</strong>
+                                        <strong>Je finance ma formation</strong>
                                     </li>
                                     <li id="confirm">
-                                        <strong>Validation</strong>
+                                        <strong>Je valide mon inscription</strong>
                                     </li>
                                 </ul>
                                 <div class="progress">
@@ -175,16 +174,17 @@
                                 <!-- progressbar -->
                                 <ul id="progressbar">
                                     <li class="active" id="account">
-                                        <strong>Coordonnées</strong>
+                                        <strong>Je crée mon compte
+</strong>
                                     </li>
                                     <li id="personal" class="active">
-                                        <strong>Documents</strong>
+                                        <strong>J'insère mes documents</strong>
                                     </li>
                                     <li id="payment" class="active">
-                                        <strong>Financement</strong>
+                                        <strong>Je finance ma formation</strong>
                                     </li>
                                     <li id="confirm">
-                                        <strong>Validation</strong>
+                                        <strong>Je valide mon inscription</strong>
                                     </li>
                                 </ul>
                                 <div class="progress">

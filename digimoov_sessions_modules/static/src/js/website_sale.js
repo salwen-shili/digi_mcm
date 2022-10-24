@@ -84,6 +84,7 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
         var dateOptions = '';
 
         $('#exam_date option').each(function () {
+        
           var self = this;
           var select_option = $(this);
           var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -127,16 +128,11 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
 
         if (dateOptions) {
           var habilitation = "Sélectionnez votre date d'examen";
-          if (document.getElementById('habilitation')) {
-            habilitation =
-              document.getElementById('habilitation').value == 'true'
-                ? 'Sélectionnez votre mois'
-                : "Sélectionnez votre date d'examen";
-          }
-          var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()" style="text-transform: capitalize;" >
-          <option value="all" id="all">
-                                    ${habilitation}
-                                </option>                  
+          
+          var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()" style="text-transform: capitalize; font-weight:700" >
+          <option value="all" disabled="disabled" selected="selected" hidden="hidden" id="all">
+          Cliquez ici 
+      </option>                 
           ${dateOptions}
                             </select>`;
           document.getElementById('select-date').innerHTML = select;
@@ -148,15 +144,18 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
           //   dateOptions,
           //   document.getElementById("pm_shop_checkout")
           // );
+          document.getElementById('pm_shop_checkout').classList.remove('disabled');
+
+          document.getElementById('pm_shop_checkout2').classList.remove('disabled');
         } else {
           document.getElementById('select-date').innerHTML =
-            'Pas de date disponible pour le moment.';
-          document
-            .getElementById('pm_shop_checkout')
-            .setAttribute('disabled', 'disabled');
-          document
-            .getElementById('pm_shop_checkout2')
-            .setAttribute('disabled', 'disabled');
+            `            <p id="error_no_date" class="alert alert-warning" style="margin-left:0% ; max-width:600px">
+            Pas de date disponible pour le moment.
+        </p>`;
+       
+            document.getElementById('pm_shop_checkout').classList.add('disabled');
+
+            document.getElementById('pm_shop_checkout2').classList.add('disabled');
         }
 
         if (center_exam) {

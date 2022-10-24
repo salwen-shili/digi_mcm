@@ -86,16 +86,17 @@ background-color: #000000;
                                     <!-- progressbar -->
                                     <ul id="progressbar">
                                         <li class="active" id="account">
-                                            <strong>Coordonnées</strong>
+                                            <strong>Je crée mon compte
+</strong>
                                         </li>
                                         <li class="" id="personal">
-                                            <strong>Documents</strong>
+                                            <strong>J'insère mes documents</strong>
                                         </li>
                                         <li class="" id="payment">
-                                            <strong>Financement</strong>
+                                            <strong>Je finance ma formation</strong>
                                         </li>
                                         <li class="" id="confirm">
-                                            <strong>Validation</strong>
+                                            <strong>Je valide mon inscription</strong>
                                         </li>
                                     </ul>
                                     <div class="progress">

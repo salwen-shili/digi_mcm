@@ -3,6 +3,60 @@
   padding: 0;
 }
 
+:root {
+  --blue-shop: #086ce3;
+  --green-shop: #005a00;
+  --green-hover: #047404;
+  --red-shop:#5a0000;
+  --red-shop-hover:#910000;
+}
+
+.btn-shop{
+  color: #fff !important;
+  
+  }
+
+.btn-shop:hover{
+color: #fff !important;
+background-color: var(--green-hover) !important;
+}
+.btn-shop{
+  background-color: var(--green-shop);
+    border-color: var(--green-shop);
+   
+    padding: 10px 26px;
+    font-weight: 700;
+    font-size: 16px;
+}
+.select-shop{
+  color: var(--green-shop);
+  font-weight: 700;
+
+}
+.btn-shop-close{
+  color: #fff !important;
+  
+  }
+
+.btn-shop-close:hover{
+color: #fff !important;
+background-color: var(--red-shop-hover) !important;
+}
+.btn-shop-close{
+  background-color: var(--red-shop);
+    border-color: var(--red-shop);
+   
+    padding: 10px 30px;
+    font-weight: 700;
+    font-size: 16px;
+}
+.form-control {
+  max-width: 600px;
+}
+
+.card-body:last-child {
+  font-size: 14px;}
+
 html {
   height: 100%;
   /* background: #232121 !important; */
@@ -90,6 +144,7 @@ html {
   box-shadow: none !important;
   border: 1px solid #152856;
   outline-width: 0;
+  border: 1px solid #2f8e2f;
 }
 @keyframes shake {
   0% {
@@ -122,7 +177,7 @@ html {
   height: 40px;
   width: 150px;
   font-size: 15px;
-
+  background: #2f8e2f;
   background-color: #152856;
   border: 1px solid hsl(240, 44%, 28%);
   color: #ffffff;
@@ -290,7 +345,7 @@ html {
 }
 
 .progress-bar {
-  background-color: #152856;
+  background-color: #005a00;
 }
 
 .fit-image {

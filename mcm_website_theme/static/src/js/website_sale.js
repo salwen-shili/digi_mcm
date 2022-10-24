@@ -10,8 +10,8 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
   var QWeb = core.qweb;
 
   //if user has comeback to the page after selecting cpf the input checkbox will be stuck on
-  // cpf and the btn will show passer au paiement so we force credit card payment is checked as default
-  document.getElementById('stripe_pm').checked = true;
+  // cpf and the btn will show Je paye maintenant ! so we force credit card payment is checked as default
+  // document.getElementById('stripe_pm').checked = true;
 
   publicWidget.registry.WebsiteSale.include({
     events: _.extend({}, publicWidget.registry.WebsiteSale.prototype.events, {
@@ -19,8 +19,8 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
       // "click #checkbox_conditions": "verify_conditions",
       'click #checkbox_failures': 'verify_failures',
       'click #checkbox_accompagnement': 'verify_accompagnement',
-      'click #cpf_pm': 'verify_cpf',
-      'click #stripe_pm': 'verify_cartebleu',
+      // 'click #cpf_pm': 'verify_cpf',
+      // 'click #stripe_pm': 'verify_cartebleu',
       'click #promo_code': 'show_coupon',
       //       'click #pm_shop_check': 'verify_pm',
       //       'click #pm_shop_checkout': 'verify_pm',
@@ -82,78 +82,7 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
     //     return true;
     //   });
     // },
-    verify_cpf: function (ev) {
-      var self = this;
-      var cpf = false;
-      if (document.getElementById('cpf_pm')) {
-        if (document.getElementById('cpf_pm').checked == true) {
-          cpf = true;
-          //Hide CPF video and details
-          document.getElementById('cpf-details').classList.remove('hide');
-          document.getElementById('arrow-down').classList.remove('hide');
 
-          if (document.getElementById('promo_code')) {
-            document.getElementById('promo_code').style.display = 'none';
-          }
-          if (document.getElementById('promo_button')) {
-            document.getElementById('promo_button').style.display = 'none';
-          }
-          if (document.getElementById('promo_input')) {
-            document.getElementById('promo_input').style.display = 'none';
-          }
-          if (document.getElementById('order_instalment')) {
-            document.getElementById('order_instalment').style.display = 'none';
-            document.getElementById('order_instalment_number').style.visibility =
-              'hidden';
-            if (document.getElementById('order_instalment_number_order')) {
-              document.getElementById('order_instalment_number_order').style.visibility =
-                'hidden';
-            }
-            document.getElementById('order_amount_to_pay').style.display = 'none';
-            if (document.getElementById('order_amount_to_pay_amount')) {
-              document.getElementById('order_amount_to_pay_amount').style.display =
-                'none';
-            }
-          }
-
-          // document
-          //   .getElementById("cpf-details")
-          //   .scrollIntoView({ inline: "start" });
-        } else {
-          cpf = false;
-        }
-      }
-      this._rpc({
-        route: '/shop/payment/update_cpf',
-        params: {
-          cpf: cpf,
-        },
-      }).then(function () {
-        return true;
-      });
-    },
-    verify_cartebleu: function (ev) {
-      var self = this;
-      var cartebleu = false;
-      if (document.getElementById('stripe_pm')) {
-        if (document.getElementById('stripe_pm').checked == true) {
-          cartebleu = true;
-          // document
-          //   .getElementById("cpf-details")
-          //   .scrollIntoView({ inline: "start" });
-        } else {
-          cartebleu = false;
-        }
-      }
-      this._rpc({
-        route: '/shop/payment/update_cartebleu',
-        params: {
-          cartebleu: cartebleu,
-        },
-      }).then(function () {
-        return true;
-      });
-    },
     verify_pm: function (ev) {
       stripe_pm = document.getElementById('stripe_pm');
       if (stripe_pm) {
@@ -286,8 +215,10 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
         return true;
       });
     },
+  
 
     verify_centre: function (ev) {
+      
       var datenb = 0;
       var self = this;
       var center = false;
@@ -335,8 +266,8 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
          });
 
          var select_departement = `<select  name="departement_examen" id="departement_examen" class="form-control search-slt hide ">
-         <option value="all" id="all">
-         Sélectionnez votre département d'examen
+         <option value="all" id="all" hidden="hidden" disabled="disabled" selected="true">
+         Cliquez ici
                                </option>                  
          ${departementOptions}
                            </select>`;
@@ -393,9 +324,9 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
       });
 
       if (dateOptions) {
-        var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()">
-          <option value="all" id="all">
-                                    Sélectionnez votre date d'examen
+        var select = `<select name="date_examen" id="options-date" style="font-size: 15px; font-weight: 600;" class="form-control search-slt" onchange="onChangeCheckButton()" >
+          <option value="all" id="all" hidden="hidden" disabled="disabled" selected="true">
+          Cliquez ici 
                                 </option>                  
           ${dateOptions}
                             </select>`;
@@ -449,3 +380,5 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
   });
 });
 //
+
+ 
