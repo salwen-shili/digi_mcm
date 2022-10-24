@@ -2,12 +2,12 @@
 
 <odoo>
 
-    <record model="ir.actions.act_window" id="act_coach_graph">
-        <field name="name">Coaches</field>
-        <field name="res_model">mcm_openedx.coach</field>
+   <record model="ir.actions.act_window" id="apprenant_graph">
+        <field name="name">Les Apprenants</field>
+        <field name="res_model">res.partner</field>
         <field name="view_mode">graph</field>
         <field name="view_id"
-               ref="mcm_openedx_coach_graph_view"/>
+               ref="mcm_openedx_app_graph_view"/>
     </record>
     <record model="ir.actions.act_window" id="act_stat_graph">
         <field name="name">Statestiques Cours</field>
@@ -48,17 +48,17 @@
 
                         <action name="%(act_stat_graph)d" string="Statistiques Cours" view_mode="graph"
                                 context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'allowed_company_ids': [1, 1, 2], 'group_by': [], 'graph_measure': 'seconde', 'graph_mode': 'bar', 'graph_groupbys': ['idcour'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[]" modifiers="{}"/>
+                                domain="[['idcour', 'ilike', '02+2']]"  modifiers="{}"/>
                     </column>
                     <column>
-                        <action name="%(app_graph)d" string="Les Apprenants" view_mode="graph"
-                                context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 1, 'allowed_company_ids': [1], 'group_by': ['company_id', 'state'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_id', 'state'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[['company_id', '=', 1]]" modifiers="{}"/>
 
+			<action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': ['company_id', 'state'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_id', 'state'], 'dashboard_merge_domains_contexts': False}" domain="[['company_id', '!=', False],['state', '!=', 'en_attente']]" name="%(app_graph)d"  string="DIGI/MCM" view_mode="graph" modifiers="{}"/>
 
-                        <action name="%(act_coach_graph)d" string="Coache" view_mode="graph"
-                                context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'allowed_company_ids': [1, 1, 2], 'group_by': [], 'graph_measure': 'nombre_apprenant', 'graph_mode': 'pie', 'graph_groupbys': ['coach_name'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[]" modifiers="{}"/>
+                        			<action  name="%(apprenant_graph)d" context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2,
+                        			 'group_by': ['company_id', 'coach_peda'], 'graph_measure': '__count__',
+                        			  'graph_mode': 'pie', 'graph_groupbys': ['company_id', 'coach_peda'],
+                        			  'dashboard_merge_domains_contexts': False}" domain="[['company_id', '!=', False],['coach_peda', '!=', False]]" string="Coches" view_mode="graph" modifiers="{}"/>
+
                     </column>
                 </board>
             </form>
