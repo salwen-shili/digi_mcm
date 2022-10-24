@@ -105,9 +105,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   //end
 
-  document
-    .getElementById("cpf_video")
-    .setAttribute("src", "https://www.youtube.com/embed/PN7gVHdT7x4");
+  // document
+  //   .getElementById("cpf_video")
+  //   .setAttribute("src", "https://www.youtube.com/embed/PN7gVHdT7x4");
 
   //event on click on checkbox paiement installment
   var checkboxEvent =  document.getElementById("checkbox_instalment")

@@ -268,7 +268,7 @@
                 </t>
             </div> -->
 
-            <div id="cpf-details" class="hide">
+            <!-- <div id="cpf-details" class="hide">
                 <h5 style="
                 letter-spacing: 0.5px;
                 
@@ -277,7 +277,7 @@
                     Vous souhaitez mobiliser votre droit à la formation professionnelle mais vous n'avez pas encore
                     créé votre compte CPF? Voici un tutoriel rapide pour vous guider à vous inscrire:
                 </h5>
-                <!-- <p style="letter-spacing: 1.5px; text-align: justify;">Salariés, demandeurs d’emploi ou encore travailleurs indépendants ? Vous avez tous droit à la formation professionnelle. D’où la nécessité de la mise en place du Compte personnel de formation (CPF). Besoin de tuto? lancez cette vidéo !</p> -->
+                 <p style="letter-spacing: 1.5px; text-align: justify;">Salariés, demandeurs d’emploi ou encore travailleurs indépendants ? Vous avez tous droit à la formation professionnelle. D’où la nécessité de la mise en place du Compte personnel de formation (CPF). Besoin de tuto? lancez cette vidéo !</p> 
 
                 <style>
                     .embed-container { position: relative; margin-top: 2rem; padding-bottom: 56.25%; height: 0;
@@ -304,7 +304,7 @@
                 <div class='embed-container mb40'>
                     <iframe id="cpf_video" frameborder='0' allowfullscreen="allow"></iframe>
                 </div>
-            </div>
+            </div> -->
             <!-- pole emploie radui button-->
             <!-- <div class="card-body o_payment_acquirer_select cpf_spacing">
                 <t t-foreach="website_sale_order.website_order_line" t-as="line">

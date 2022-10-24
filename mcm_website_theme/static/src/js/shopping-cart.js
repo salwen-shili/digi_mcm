@@ -15,14 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('cpf_pm')) {
     formation = document.getElementById('cpf_pm').value;
   }
-  if (formation === 'Formation à distance VTC') {
-    var urlVtc = 'https://www.youtube.com/embed/19BiYQVwZFs';
-    document.getElementById('cpf_video').setAttribute('src', urlVtc);
-  } else {
-    document
-      .getElementById('cpf_video')
-      .setAttribute('src', 'https://www.youtube.com/embed/vLIr9mckz8M');
-  }
+  // if (formation === 'Formation à distance VTC') {
+  //   var urlVtc = 'https://www.youtube.com/embed/19BiYQVwZFs';
+  //   document.getElementById('cpf_video').setAttribute('src', urlVtc);
+  // } else {
+  //   document
+  //     .getElementById('cpf_video')
+  //     .setAttribute('src', 'https://www.youtube.com/embed/vLIr9mckz8M');
+  // }
 
   // onchangeTextButton1();
 
