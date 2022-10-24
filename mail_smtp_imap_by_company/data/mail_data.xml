@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="mailing_redirect_client_response_to_partner_record" model="base.automation">
+        <field name="name">Mailing : Rediriger les réponses des cliens</field>
+        <field name="model_id" ref="mail.model_mail_message"/>
+        <field name="trigger">on_create</field>
+        <field name="active" eval="True"/>
+        <field name="state">code</field>
+        <field name="code">record.redirect_client_response()</field>
+    </record>
     <data noupdate="0">
         <template id="mail_bounce_catchall_by_company">
             <div>
