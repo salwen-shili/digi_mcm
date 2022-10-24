@@ -31,6 +31,7 @@
         'views/sign_request.xml',
         'views/inherit_template_doc_sign.xml',
         'views/inherit_sign_template_iframe.xml',
+        'views/inherit_sign_request_tree.xml',
         #'views/sign_template.xml',
         #'views/document_sign.xml',
         'data/sign_data.xml',
