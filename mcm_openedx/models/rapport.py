@@ -169,7 +169,7 @@ class rapport(models.Model):
         }
 
 
-class cma_resulta(models.Model):
+class cma(models.Model):
     _name = 'mcm_openedx.cma'
     _description = "automatiser des lignes d'examens sur les fiches client MCM ."
 
@@ -177,17 +177,12 @@ class cma_resulta(models.Model):
     partner_id = fields.Many2one('res.partner')
     name = fields.Char(string="NOM")
     email = fields.Char(string="EMAIL")
-    statut_exman = fields.Selection([
-        ('present'  'Présent'),
-        ('Absent', 'Absent'),
-        ('absence_justifiee', 'Absence justifiée')],
-        string="Présence", default=False)
+    statut_exman = fields.Char(string="Statut examen")
     report = fields.Boolean(string="Report")
     repassage = fields.Boolean(string="Repassage")
     reussi = fields.Boolean(string="Réussi")
     echec = fields.Boolean(string="Echec")
     resulta = fields.Char(string="Resultat")
-
 
     def cma_res(self):
         for existee in self.env['mcm_openedx.cma'].sudo().search(
@@ -197,15 +192,28 @@ class cma_resulta(models.Model):
                 if partner.numero_evalbox == existee.numero_dossier or partner.email == existee.email:
                     existee.partner_id = partner.id
                     _logger.info(partner.note_exam_mcm_id.partner_id.name)
-                    _logger.info(partner.note_exam_mcm_id.presence_mcm)
-                    self.env['info.examen'].search([], limit=1, order='id desc').sudo().create({
+                    _logger.info(existee.resulta)
+                    res_exm = self.env['info.examen'].search([], limit=1, order='id desc').sudo().create({
                         'partner_id': partner.id,
                         'session_id': partner.mcm_session_id.id,
                         'date_exam': partner.mcm_session_id.date_exam,
-                        'epreuve_theorique':  existee.resulta,
-                        'presence_mcm':existee.statut_exman  ,
                         'ville_id': partner.mcm_session_id.session_ville_id.id,
-                         })
+                    })
+                    if existee.resulta == "Réussi":
+                        existee.resulta = 'reussi'
+                    elif existee.resulta == "Échoué":
+                        existee.resulta = 'ajourne'
+                    res_exm.epreuve_theorique = existee.resulta,
+
+
+
+
+
+
+
+
+
+
 
 
                     # Create new line in historic sessions
@@ -213,6 +221,9 @@ class cma_resulta(models.Model):
                     #         [('partner_id', "=", partner.id), ('session_id', "=", self.id),('date_exman','=',self.date_exam)]):
                     #     _logger.info(partner_exam.epreuve_theorique)
                     #     _logger.info("oooooooooooooooooooooookokokooookokokok")
+
+
+
 
             self.env.cr.commit()
 
