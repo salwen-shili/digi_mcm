@@ -166,23 +166,23 @@ class MailThread(models.AbstractModel):
         #             if search_record.partner_id.id == new_message.author_id.id:
         #                 new_message.model = 'res.partner'
         #                 new_message.res_id = search_record.partner_id.id
-        if '<' in new_message.reply_to and '>' in new_message.reply_to :
-            catchall_mail = re.search('<(.*)>', new_message.reply_to)
-            catchall_mail = catchall_mail.group(1)
-            if catchall_mail :
-                catchall_mail = str(catchall_mail)
-                user_sudo = self.env['res.users'].sudo().search([('partner_id', "=", int(new_message.author_id))],limit=1)
-                records = self.env[new_message.model].browse([new_message.res_id])
-                _logger.info('user_sudo : %s' % str(user_sudo))
-                if records :
-                    if hasattr(records, 'company_id'):
-                        user_signature = self.env['res.user.signature'].sudo().search(
-                            [('user_id', "=", user_sudo.id), ('company_id', "=", records.company_id.id)],
-                            limit=1)
-                        if user_signature and user_signature.reply_to : #verify if 'reply_to' in the sender's user's signature elready filled
-                            _logger.info('catchall_mail : %s' % str(catchall_mail))
-                            _logger.info('user_signature.reply_to : %s' % str(user_signature.reply_to))
-                            new_reply_to = new_message.reply_to.replace(catchall_mail,user_signature.reply_to)
-                            _logger.info('new_reply_to : %s' % str(new_message.reply_to))
-                            new_message.reply_to = new_reply_to #change mail message's default reply_to by the reply_to of the user signature
+        # if '<' in new_message.reply_to and '>' in new_message.reply_to :
+        #     catchall_mail = re.search('<(.*)>', new_message.reply_to)
+        #     catchall_mail = catchall_mail.group(1)
+        #     if catchall_mail :
+        #         catchall_mail = str(catchall_mail)
+        #         user_sudo = self.env['res.users'].sudo().search([('partner_id', "=", int(new_message.author_id))],limit=1)
+        #         records = self.env[new_message.model].browse([new_message.res_id])
+        #         _logger.info('user_sudo : %s' % str(user_sudo))
+        #         if records :
+        #             if hasattr(records, 'company_id'):
+        #                 user_signature = self.env['res.user.signature'].sudo().search(
+        #                     [('user_id', "=", user_sudo.id), ('company_id', "=", records.company_id.id)],
+        #                     limit=1)
+        #                 if user_signature and user_signature.reply_to : #verify if 'reply_to' in the sender's user's signature elready filled
+        #                     _logger.info('catchall_mail : %s' % str(catchall_mail))
+        #                     _logger.info('user_signature.reply_to : %s' % str(user_signature.reply_to))
+        #                     new_reply_to = new_message.reply_to.replace(catchall_mail,user_signature.reply_to)
+        #                     _logger.info('new_reply_to : %s' % str(new_message.reply_to))
+        #                     new_message.reply_to = new_reply_to #change mail message's default reply_to by the reply_to of the user signature
         return new_message
