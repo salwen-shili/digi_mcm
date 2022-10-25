@@ -49,39 +49,24 @@ class AccountMove(models.Model):
                                          readonly=False)
     billed_cpf=fields.Boolean("Statut Facture CPF",track_visibility='always')
 
-    # @api.model_create_multi
-    # def create(self, vals_list):
-    #     #ajouter la facture à l'historique de session
-    #     rslt = super(AccountMove, self).create(vals_list)
-    #     if 'partner_id' in vals_list and 'session_id' in vals_list:
-    #         partner_id = vals_list['partner_id']
-    #         session_id = vals_list['session_id']
-    #         session = self.env['partner.sessions'].search([('client_id', '=', partner_id),
-    #                                                           ('session_id', '=', session_id)],limit=1)
-    #         if session:
-    #             if 'id' in vals_list:
-    #                 session.sudo.write({
-    #                     'invoice_id': vals_list['id']
-    #                 })
-    #
-    #             else:
-    #                 session.sudo.write({
-    #                     'invoice_id': self.id
-    #                 })
-    #
-    #     return rslt
+    def write(self, vals_list):
+        #ajouter la facture à l'historique de session
+        rslt = super(AccountMove, self).write(vals_list)
+        if  'session_id' in vals_list:
 
-    def update_session_history(self, move):
-        session=self.env['partner.sessions'].sudo().search([('client_id',move.partner_id),
-                                                            ('session_id',move.session_id)],limit=1
-                                                           )
-        _logger.info(" session %s" %str(move))
-        if session:
-            _logger.info("if session")
-            session.sudo().write({
-                'invoice_id':move.id,
-            })
-            
+            session_id = vals_list['session_id']
+            session = self.env['partner.sessions'].search([('client_id', '=', self.partner_id.id),
+                                                              ('session_id', '=', session_id.id)],limit=1)
+            if session:
+
+                    session.sudo().write({
+                        'invoice_id': self.id
+                    })
+
+
+        return rslt
+
+    
     @api.depends('amount_total', 'amount_residual')
     def _get_mcm_paid_amount(self):
         for rec in self:

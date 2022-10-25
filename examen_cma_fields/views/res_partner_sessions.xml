@@ -13,7 +13,7 @@
                             <field name="client_id" string="Client"/>
                             <field name="session_id" string="Session"/>
                             <field name="module_id" string="Module"/>
-                            <field name="invoice_id" string="Facture"/>
+                            <field name="invoice_id" string="Facture" groups="account.group_account_manager"/>
                             <field name="company_id"/>
                             <field name="justification" string="Absence justifié"
                                    attrs="{'invisible': [('paiement', '=', True)]}"/>
@@ -55,7 +55,7 @@
                     <field name="client_id" string="Client"/>
                     <field name="session_id" string="Session"/>
                     <field name="module_id" string="Module"/>
-                    <field name="invoice_id" string="Facture"/>
+                    <field name="invoice_id" string="Facture" groups="account.group_account_manager"/>
                     <field name="justification" string="Absence justifié"/>
                     <field name="paiement" string="Changement de ville"/>
                     <field name="attachment_ids" string="Justificatif d'absence" widget="many2many_binary"/>
