@@ -2,8 +2,42 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import fields, models,_,api
+from odoo.exceptions import UserError
+from werkzeug.urls import url_join
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, formataddr
 
+class InheritSignRequest(models.Model):
+    _inherit = "sign.request"
 
+    def send_signature_accesses(self, subject=None, message=None):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        for signer in self:
+            if not signer.partner_id or not signer.partner_id.email:
+                continue
+            if not signer.create_uid.email:
+                continue
+            tpl = self.env.ref('sign.sign_template_mail_request')
+            if signer.partner_id.lang:
+                tpl = tpl.with_context(lang=signer.partner_id.lang)
+            body = tpl.render({
+                'record': signer,
+                'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {'request_id': signer.sign_request_id.id, 'access_token': signer.access_token}),
+                'subject': subject,
+                'body': message if message != '<p><br></p>' else False,
+            }, engine='ir.qweb', minimal_qcontext=True)
+
+            if not signer.signer_email:
+                raise UserError(_("Please configure the signer's email address"))
+            self.env['sign.request']._message_send_mail(
+                body, 'mail.mail_notification_light',
+                {'record_name': signer.sign_request_id.reference},
+                {'model_description': 'signature', 'company': signer.create_uid.company_id},
+                {'email_from': "examen@digimoov.fr",
+                 'author_id': "Service examen DIGIMOOV",
+                 'email_to': formataddr((signer.partner_id.name, signer.partner_id.email)),
+                 'subject': subject},
+                force_send=True
+            )
 
 class SignRequest(models.Model):
     _inherit = "sign.request"
