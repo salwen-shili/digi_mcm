@@ -84,3 +84,17 @@ class MailThreadInherit(models.AbstractModel):
                                 new_reply_to = record.reply_to.replace(catchall_mail, user_signature.reply_to)
                                 _logger.info('new_reply_to : %s' % str(record.reply_to))
                                 record.reply_to = new_reply_to  # change mail message's default reply_to by the reply_to of the user signature
+            author = record.author_id
+            email = record.email_from
+            company_id = record.company_id
+            if company_id and author:  # check company of active record(sale order,helpdesk ticket,partner...etc)
+                user =  self.env['res.users'].sudo().search(
+                    [('partner_id', "=", author.id)],limit=1)
+                if user :
+                    user_signature = self.env['res.user.signature'].sudo().search(
+                        [('user_id', "=", user.id), ('company_id', "=", company_id.id)],
+                        limit=1)  # check if the mail sender has a email from related to the company already checked before
+                    if user_signature and user_signature.email_from and user.partner_id.email in email:
+                        record.email_from = tools.formataddr(
+                            (user.partner_id.name or u"False",
+                             user_signature.email_from or u"False"))  # change the sender mail

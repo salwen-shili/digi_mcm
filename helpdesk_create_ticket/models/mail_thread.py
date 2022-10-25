@@ -137,17 +137,17 @@ class MailThread(models.AbstractModel):
         when sending emails. """
         res = super(MailThread, self)._message_compute_author(author_id, email_from,
                                                               raise_exception)  # inherit function of compute author of email ( email sender )
-        author = res['author_id']
-        email = res['email_from']
-        user = self.env.user
-        company_id = self.company_id.sudo() if self and 'company_id' in self else False
-        if company_id:  # check company of active record(sale order,helpdesk ticket,partner...etc)
-            user_signature = self.env['res.user.signature'].sudo().search(
-                [('user_id', "=", user.id), ('company_id', "=", company_id.id)],
-                limit=1)  # check if the mail sender has a email from related to the company already checked before
-            if user_signature and user_signature.email_from and user.partner_id.email in email:
-                res['email_from'] = tools.formataddr(
-                    (user.partner_id.name or u"False", user_signature.email_from or u"False"))  # change the sender mail
+        # author = res['author_id']
+        # email = res['email_from']
+        # user = self.env.user
+        # company_id = self.company_id.sudo() if self and 'company_id' in self else False
+        # if company_id:  # check company of active record(sale order,helpdesk ticket,partner...etc)
+        #     user_signature = self.env['res.user.signature'].sudo().search(
+        #         [('user_id', "=", user.id), ('company_id', "=", company_id.id)],
+        #         limit=1)  # check if the mail sender has a email from related to the company already checked before
+        #     if user_signature and user_signature.email_from and user.partner_id.email in email:
+        #         res['email_from'] = tools.formataddr(
+        #             (user.partner_id.name or u"False", user_signature.email_from or u"False"))  # change the sender mail
         return res
 
     @api.returns('mail.message', lambda value: value.id)
