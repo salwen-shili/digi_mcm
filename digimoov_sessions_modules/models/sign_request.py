@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import fields, models,_,api
+from odoo import fields, models, _, api, http
 from odoo.exceptions import UserError
 from werkzeug.urls import url_join
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, formataddr
@@ -38,6 +38,31 @@ class InheritSignRequest(models.Model):
                  'subject': subject},
                 force_send=True
             )
+
+    def action_sent(self, subject=None, message=None):
+        # Send accesses by email
+        self.write({'state': 'sent'})
+        for sign_request in self:
+            ignored_partners = []
+            for request_item in sign_request.request_item_ids:
+                if request_item.state != 'draft':
+                    ignored_partners.append(request_item.partner_id.id)
+            included_request_items = sign_request.request_item_ids.filtered(lambda r: not r.partner_id or r.partner_id.id not in ignored_partners)
+
+            if sign_request.send_signature_accesses(subject, message, ignored_partners=ignored_partners):
+                Log = http.request.env['sign.log'].sudo()
+                vals = Log._prepare_vals_from_request(sign_request)
+                vals['action'] = 'create'
+                vals = Log._update_vals_with_http_request(vals)
+                Log.create(vals)
+                followers = sign_request.message_follower_ids.mapped('partner_id')
+                followers -= sign_request.create_uid.partner_id
+                followers -= sign_request.request_item_ids.mapped('partner_id')
+                if followers:
+                    sign_request.send_follower_accesses(followers, subject, message)
+                included_request_items.action_sent()
+            else:
+                sign_request.action_draft()
 
 # class SignRequest(models.Model):
 #     _inherit = "sign.request"
