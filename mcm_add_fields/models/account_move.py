@@ -47,7 +47,7 @@ class AccountMove(models.Model):
     cpf_acompte_amount = fields.Monetary("Montant d'acompte")
     pourcentage_acompte = fields.Integer(string="Pourcentage d'acompte", compute='_compute_change_amount', store=True,
                                          readonly=False)
-    billed_cpf=fields.Boolean("Statut Facture CPF",track_visibility='always')
+    billed_cpf=fields.Boolean("Facturé sur CPF",track_visibility='always')
 
     def write(self, vals_list):
         #ajouter la facture à l'historique de session
