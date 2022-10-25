@@ -53,17 +53,18 @@ class MailThreadInherit(models.AbstractModel):
     _inherit = 'mail.message'
 
     def redirect_client_response(self):
+        # an automated action to personalize email_from,reply_to and redirect response of clients when creating a new mail message
         for record in self :
             _logger.info("redirect_client_response : %s %s" % (str(record.model), str(record.res_id)))
-            if record.model and record.model in ["sale.order", "helpdesk.ticket", "account.move", "documents.document"]:
+            if record.model and record.model in ["sale.order", "helpdesk.ticket", "account.move", "documents.document"]: #check if mail message model in ["sale.order", "helpdesk.ticket", "account.move", "documents.document"]
                 if record.res_id:
                     search_record = self.env[str(record.model)].sudo().search([('id', "=", record.res_id)],
-                                                                              limit=1)
+                                                                              limit=1) #search record using new message model and res_id
                     _logger.info("redirect_client_response search_record: %s" % (str(search_record)))
                     if search_record:
                         if search_record.partner_id.id == record.author_id.id:
-                            record.model = "res.partner"
-                            record.res_id = search_record.partner_id.id
+                            record.model = "res.partner" #update new message model to res partner
+                            record.res_id = search_record.partner_id.id #update new message res_id to id of partner
             if '<' in record.reply_to and '>' in record.reply_to:
                 catchall_mail = re.search('<(.*)>', record.reply_to)
                 catchall_mail = catchall_mail.group(1)
