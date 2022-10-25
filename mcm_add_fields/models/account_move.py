@@ -47,7 +47,26 @@ class AccountMove(models.Model):
     cpf_acompte_amount = fields.Monetary("Montant d'acompte")
     pourcentage_acompte = fields.Integer(string="Pourcentage d'acompte", compute='_compute_change_amount', store=True,
                                          readonly=False)
+    billed_cpf=fields.Boolean("Facturé sur CPF",track_visibility='always')
 
+    def write(self, vals_list):
+        #ajouter la facture à l'historique de session
+        rslt = super(AccountMove, self).write(vals_list)
+        if  'session_id' in vals_list:
+
+            session_id = vals_list['session_id']
+            session = self.env['partner.sessions'].search([('client_id', '=', self.partner_id.id),
+                                                              ('session_id', '=', session_id)],limit=1)
+            if session:
+
+                    session.sudo().write({
+                        'invoice_id': self.id
+                    })
+
+
+        return rslt
+
+    
     @api.depends('amount_total', 'amount_residual')
     def _get_mcm_paid_amount(self):
         for rec in self:
@@ -177,6 +196,7 @@ class AccountMove(models.Model):
                     amount_ht=dossier['amountHt']
                     print("CGU", amountCGU,dossier)
                     bill_num=""
+                    bill=False
                     email = dossier['attendee']['email']
                     email = email.replace("%", ".")  # remplacer % par .
                     email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
@@ -274,9 +294,9 @@ class AccountMove(models.Model):
                                 invoice.module_id=user.module_id
                                 _logger.info('if invoice******** %s ' % str(invoice.module_id.name))
                                 _logger.info('if invoice******** %s ' % str(invoice.name))
-
                                 bill_num = num.replace('FA', '')
                                 bill_num = bill_num.replace('-', '')
+                                bill=invoice
                             if not invoice:
                                 _logger.info('if  not invoice digi %s')
                                 so = self.env['sale.order'].sudo().create({
@@ -336,6 +356,9 @@ class AccountMove(models.Model):
                                         num = move.name
                                         bill_num = num.replace('FA', '')
                                         bill_num = bill_num.replace('-', '')
+                                        bill=move
+
+
                                         journal_id = move.journal_id.id
                                         acquirer = self.env['payment.acquirer'].sudo().search(
                                             [('name', "=", _('stripe')), ('company_id', '=', 1)], limit=1)
@@ -389,6 +412,14 @@ class AccountMove(models.Model):
                                                 _logger.info('if not invoice %s ' % str(move.name))
 
                                                 payment.post()
+                                                """Ajouter la facture à l'hiistorique de session"""
+                                                session = self.env['partner.sessions'].search(
+                                                    [('client_id', '=', move.partner_id.id),
+                                                     ('session_id', '=', move.session_id.id)])
+                                                if session:
+                                                    history = self.env['partner.sessions'].sudo().write({
+                                                        'invoice_id': move.id,
+                                                    })
                                                 move.cpf_acompte_amount = acompte_amount
 
                                         ref = move.name
@@ -462,7 +493,7 @@ class AccountMove(models.Model):
                                             print('line', line.price_unit)
                                             line.price_unit = amountCGU
                                             print('line', line.price_unit)
-                                        """Calculer l'es 'acompte 25% du montant total de la formation """
+                                        """Calculer les acompte 25% du montant total de la formation """
                                         acompte = (product_id.lst_price * move.pourcentage_acompte) / 100
                                         move.cpf_acompte_amount=acompte
                                         print('acompte', acompte, product_id.lst_price)
@@ -474,6 +505,14 @@ class AccountMove(models.Model):
                                         # move.cpf_invoice = True
                                         move.methodes_payment = 'cpf'
                                         move.post()
+                                        """Ajouter la facture à l'hiistorique de session"""
+                                        session = self.env['partner.sessions'].search(
+                                            [('client_id', '=', move.partner_id.id),
+                                             ('session_id', '=', move.session_id.id)])
+                                        if session:
+                                            history = self.env['partner.sessions'].sudo().write({
+                                                'invoice_id': move.id,
+                                            })
                                         num = move.name
                                         bill_num = num.replace('FA', '')
                                         bill_num=bill_num.replace('-','')
@@ -484,7 +523,7 @@ class AccountMove(models.Model):
                     """Facturer le dossier cpf par l'api en utilisant la référence de la facture odoo """
                     _logger.info("billig state %s " %str(dossier['billingState']))
                     _logger.info("billig state %s " % str(bill_num.isdigit()))
-                    if bill_num.isdigit() and dossier['billingState'] =="toBill":
+                    if bill_num.isdigit() and dossier['billingState'] =="toBill" and not billed_cpf:
                         _logger.info("bill num %s" %bill_num)
                         data = '{"billNumber":"' + bill_num + '"}'
                         facturer_dossier = requests.post(
@@ -494,6 +533,9 @@ class AccountMove(models.Model):
                         _logger.info("post facture %s" % str(content))
                         if str(facturer_dossier.status_code) == "200":
                             _logger.info("post success facture %s" % str(facturer_dossier.status_code))
+                            if bill:
+                                bill.billed_cpf=True
+
 
     def get_acompte(self):
         companies = self.env['res.company'].sudo().search([])

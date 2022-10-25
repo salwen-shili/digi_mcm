@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="session_history_on_create" model="base.automation">
+            <field name="name">Base Automation: History on create</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="state">code</field>
+            <field name="trigger">on_create</field>
+            <field name="active" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">
+                    record.update_session_history(record)
+
+            </field>
+        </record>
+</odoo>

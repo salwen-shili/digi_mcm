@@ -34,7 +34,7 @@ class resPartnerSessions(models.Model):
     reactions = fields.Char()
     folder_number_cpf = fields.Char()
     total_time_hours = fields.Char()
-
+    invoice_id =fields.Many2one('account.move','Facture')
     def remove_double_session_same_session(self):
         """ Add this function to remove duplicate
         sessions in partner interface"""
