@@ -34,6 +34,7 @@
     </record>
 
     <!--My Dashboard-->
+    <!--Ajouter Domaine dans les dashbord -->
     <record model="ir.ui.view" id="mcm_openedx_dashbord">
         <field name="name">My Dashboard</field>
         <field name="model">board.board</field>
