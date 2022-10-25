@@ -1288,7 +1288,7 @@ class partner(models.Model):
                                 user = users
                             if user:  # if user finded
                                 print('if__________________user', user.partner_id.statut_cpf, user.partner_id.email)
-                                user.partner_id.mode_de_financement = 'cpf'  # update field mode de financement to cpf
+                                # user.partner_id.mode_de_financement = 'cpf'  # update field mode de financement to cpf
                                 user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
                                 print(user.partner_id.date_cpf)
 
