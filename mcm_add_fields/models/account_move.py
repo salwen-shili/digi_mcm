@@ -75,7 +75,9 @@ class AccountMove(models.Model):
         session=self.env['partner.sessions'].sudo().search([('client_id',move.partner_id),
                                                             ('session_id',move.session_id)],limit=1
                                                            )
+        _logger.info(" session %s" %str(move))
         if session:
+            _logger.info("if session")
             session.sudo().write({
                 'invoice_id':move.id,
             })
