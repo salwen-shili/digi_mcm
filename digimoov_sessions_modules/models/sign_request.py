@@ -31,7 +31,7 @@ class InheritSignRequest(models.Model):
 
             if not signer.signer_email:
                 raise UserError(_("Please configure the signer's email address"))
-            author_digimoov = signer.partner_id.sudo().search(
+            author_digimoov = signer.partner_id.search(
                 [('email', '=', 'examen@digimoov.fr'), ('company_id', "=", 2)],
                 limit=1).id
             self.env['sign.request']._message_send_mail(
