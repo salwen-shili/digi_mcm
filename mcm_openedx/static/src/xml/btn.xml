@@ -13,7 +13,9 @@
              class="btn btn-primary oe_rap_button"
              type="button">Update Report</button>
 
-
+     <button t-if="widget.modelName == 'mcm_openedx.cma'"
+             class="btn btn-primary oe_cma_button"
+             type="button">Affecter resulta</button>
  </t>
  </t>
 

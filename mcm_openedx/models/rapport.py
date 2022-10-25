@@ -183,3 +183,10 @@ class cma_resulta(models.Model):
     echec = fields.Boolean(string="Echec")
     resulta  = fields.Char(string="Resultat")
 
+    def cma_res(self):
+        for existee in self.env['mcm_openedx.cma'].sudo().search([('numero_dossier', '!=', False)]):
+
+            for partner in self.env['res.partner'].search([('numero_dossier', '!=', False)]):
+                if partner.numero_evalbox == existee.numero_dossier:
+                        existee.partner_id = partner.id
+
