@@ -71,10 +71,7 @@ ListController.include({
                     model: 'mcm_openedx.cma',
                     method: 'cma_res',
                     args: [""],
-                }).then(function (result) {
-                    self.do_action(result);
-                });
+    })
    },
-
 });
 });
