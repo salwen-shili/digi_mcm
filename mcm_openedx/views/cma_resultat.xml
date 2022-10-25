@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record id="rapport_search_view" model="ir.ui.view">
+        <field name="name">RESULTATS DE L'EPREUVE DES CANDIDATS </field>
+        <field name="model">mcm_openedx.cma</field>
+        <field name="arch" type="xml">
+            <search>
+
+            </search>
+        </field>
+    </record>
+    <!-- Vue Form session-->
+    <record model="ir.ui.view" id="rapport_form_view">
+        <field name="name">RESULTATS DE L'EPREUVE DES CANDIDATS </field>
+        <field name="model">mcm_openedx.cma</field>
+        <field name="arch" type="xml">
+
+            <form delete="false">
+                <sheet>
+                    <group>
+                        <field name="numero_dossier"/>
+                        <field name="email"/>
+                        <field name="partner_id"/>
+                        <field name="name"/>
+                        <field name="statut_exman"/>
+                        <field name="report"/>
+                        <field name="repassage"/>
+                        <field name="reussi"/>
+                        <field name="echec"/>
+                        <field name="resulta"/>
+
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="rapportcpf_tree_view">
+        <field name="name">RESULTATS DE L'EPREUVE DES CANDIDATS </field>
+        <field name="model">mcm_openedx.cma</field>
+        <field name="arch" type="xml">
+            <tree
+                   >
+  <field name="numero_dossier"/>
+                        <field name="email"/>
+                        <field name="partner_id"/>
+                        <field name="name"/>
+                        <field name="statut_exman"/>
+                        <field name="report"/>
+                        <field name="repassage"/>
+                        <field name="reussi"/>
+                        <field name="echec"/>
+                        <field name="resulta"/>
+            </tree>
+        </field>
+    </record>
+
+<!--
+  Add pivot view
+-->
+
+    <record model="ir.actions.act_window" id="mcm_openedx.rapportcpf_list_action">
+        <field name="name">RESULTATS DE L'EPREUVE DES CANDIDATS </field>
+        <field name="res_model">mcm_openedx.rapport</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="context">{'search_default_group_type_financement': 1,'search_default_group_company': 1}</field>
+
+
+    </record>
+
+    <!-- menu des villes sera afficher apres menu configuration dans l'interface de convocation-->
+    <menuitem id="rapport_action" name="Rapport Marketing"
+parent="mcm_session.mcm_academy_session_root_menu"               action="mcm_openedx.rapportcpf_list_action"
+             sequence="20" />
+
+
+</odoo>
+

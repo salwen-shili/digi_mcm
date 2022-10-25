@@ -167,3 +167,19 @@ class rapport(models.Model):
             'type': 'ir.actions.client',
             'tag': 'reload',
         }
+
+class cma_resulta(models.Model):
+    _name = 'mcm_openedx.cma'
+    _description = "automatiser des lignes d'examens sur les fiches client MCM ."
+
+    numero_dossier = fields.Char(string="NUMERO_DOSSIER")
+    partner_id = fields.Many2one('res.partner')
+    name = fields.Char(string="NOM")
+    email = fields.Char(string="EMAIL")
+    statut_exman = fields.Char(string="Statut examen")
+    report = fields.Boolean(string="Report")
+    repassage= fields.Boolean(string="Repassage")
+    reussi= fields.Boolean(string="Réussi")
+    echec = fields.Boolean(string="Echec")
+    resulta  = fields.Char(string="Resultat")
+
