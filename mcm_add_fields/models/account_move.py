@@ -56,7 +56,7 @@ class AccountMove(models.Model):
 
             session_id = vals_list['session_id']
             session = self.env['partner.sessions'].search([('client_id', '=', self.partner_id.id),
-                                                              ('session_id', '=', session_id.id)],limit=1)
+                                                              ('session_id', '=', session_id)],limit=1)
             if session:
 
                     session.sudo().write({
