@@ -6,10 +6,12 @@ from odoo.exceptions import UserError
 from werkzeug.urls import url_join
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, formataddr
 
+
 class InheritSignRequest(models.Model):
-    _inherit = "sign.request"
+    _inherit = "sign.request.item"
 
     def send_signature_accesses(self, subject=None, message=None):
+        sign = super(InheritSignRequest, self).send_signature_accesses()
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         for signer in self:
             if not signer.partner_id or not signer.partner_id.email:
@@ -21,48 +23,28 @@ class InheritSignRequest(models.Model):
                 tpl = tpl.with_context(lang=signer.partner_id.lang)
             body = tpl.render({
                 'record': signer,
-                'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {'request_id': signer.sign_request_id.id, 'access_token': signer.access_token}),
+                'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {
+                    'request_id': signer.sign_request_id.id, 'access_token': signer.access_token}),
                 'subject': subject,
                 'body': message if message != '<p><br></p>' else False,
             }, engine='ir.qweb', minimal_qcontext=True)
 
             if not signer.signer_email:
                 raise UserError(_("Please configure the signer's email address"))
+            author_digimoov = signer.partner_id.sudo().search(
+                [('email', '=', 'examen@digimoov.fr'), ('company_id', "=", 2)],
+                limit=1).id
             self.env['sign.request']._message_send_mail(
                 body, 'mail.mail_notification_light',
                 {'record_name': signer.sign_request_id.reference},
                 {'model_description': 'signature', 'company': signer.create_uid.company_id},
                 {'email_from': "examen@digimoov.fr",
-                 'author_id': "Service examen DIGIMOOV",
+                 'author_id': author_digimoov,
                  'email_to': formataddr((signer.partner_id.name, signer.partner_id.email)),
                  'subject': subject},
                 force_send=True
             )
-
-    def action_sent(self, subject=None, message=None):
-        # Send accesses by email
-        self.write({'state': 'sent'})
-        for sign_request in self:
-            ignored_partners = []
-            for request_item in sign_request.request_item_ids:
-                if request_item.state != 'draft':
-                    ignored_partners.append(request_item.partner_id.id)
-            included_request_items = sign_request.request_item_ids.filtered(lambda r: not r.partner_id or r.partner_id.id not in ignored_partners)
-
-            if sign_request.send_signature_accesses(subject, message, ignored_partners=ignored_partners):
-                Log = http.request.env['sign.log'].sudo()
-                vals = Log._prepare_vals_from_request(sign_request)
-                vals['action'] = 'create'
-                vals = Log._update_vals_with_http_request(vals)
-                Log.create(vals)
-                followers = sign_request.message_follower_ids.mapped('partner_id')
-                followers -= sign_request.create_uid.partner_id
-                followers -= sign_request.request_item_ids.mapped('partner_id')
-                if followers:
-                    sign_request.send_follower_accesses(followers, subject, message)
-                included_request_items.action_sent()
-            else:
-                sign_request.action_draft()
+            return sign
 
 # class SignRequest(models.Model):
 #     _inherit = "sign.request"
