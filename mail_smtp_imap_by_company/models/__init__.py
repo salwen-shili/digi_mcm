@@ -22,3 +22,4 @@
 
 from . import mail_server
 from . import alias_mail
+from . import mail_message

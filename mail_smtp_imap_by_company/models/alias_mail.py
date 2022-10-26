@@ -69,6 +69,7 @@ class MailThreadInherit(models.AbstractModel):
         msg_references = [ref for ref in tools.mail_header_msgid_re.findall(thread_references) if 'reply_to' not in ref]
         mail_messages = self.env['mail.message'].sudo().search([('message_id', 'in', msg_references)], limit=1,
                                                                order='id desc, message_id')
+        _logger.info('message_route mail_messages : %s' %(str(mail_messages)))
         is_a_reply = bool(mail_messages)
         reply_model, reply_thread_id = mail_messages.model, mail_messages.res_id
 
@@ -124,9 +125,15 @@ class MailThreadInherit(models.AbstractModel):
                 (reply_model, reply_thread_id, custom_values, user_id, dest_aliases),
                 raise_exception=False)
             if route:
+                _logger.info('message_route message : %s' %(str(message)))
+                _logger.info('message_route route : %s' %(str(route)))
                 _logger.info(
                     'Routing mail from %s to %s with Message-Id %s: direct reply to msg: model: %s, thread_id: %s, custom_values: %s, uid: %s',
                     email_from, email_to, message_id, reply_model, reply_thread_id, custom_values, self._uid)
+                reply_message = self.env['mail.message'].sudo().search([('message_id', "=", str(message_id))], limit=1,
+                                                               order='id desc, message_id')
+                if reply_message :
+                    _logger.info("message_route reply_message : %s" %(str(reply_message)))
                 return [route]
             elif route is False:
                 return []
