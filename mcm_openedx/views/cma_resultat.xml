@@ -12,7 +12,7 @@
         </field>
     </record>
  Vue Form session-->
-    <record model="ir.ui.view" id="cma_form_view">
+    <record model="ir.ui.view" id="cma_form_view_mcm_openedx">
         <field name="name">RESULTATS DE L'EPREUVE DES CANDIDATS </field>
         <field name="model">mcm_openedx.cma</field>
         <field name="arch" type="xml">
@@ -37,7 +37,7 @@
             </form>
         </field>
     </record>
-    <record model="ir.ui.view" id="cma_tree_view">
+    <record model="ir.ui.view" id="cma_tree_view_mcm_openedx">
         <field name="name">RESULTATS DE L'EPREUVE DES CANDIDATS </field>
         <field name="model">mcm_openedx.cma</field>
         <field name="arch" type="xml">
@@ -61,7 +61,7 @@
   Add pivot view
 -->
 
-    <record model="ir.actions.act_window" id="mcm_openedx.cma_action">
+    <record model="ir.actions.act_window" id="cma_action_mcm">
         <field name="name">RESULTATS DE L'EPREUVE DES CANDIDATS </field>
         <field name="res_model">mcm_openedx.cma</field>
         <field name="view_mode">tree,form,pivot</field>
@@ -70,8 +70,8 @@
     </record>
 
     <!-- menu des villes sera afficher apres menu configuration dans l'interface de convocation-->
-    <menuitem id="cma_action" name="CMA Resultat"
-parent="main_mcm_openedx_menu"              action="mcm_openedx.cma_action"
+    <menuitem id="cma_action_mcm_openedx" name="CMA Resultat"
+parent="main_mcm_openedx_menu"              action="cma_action_mcm"
              />
 
 
