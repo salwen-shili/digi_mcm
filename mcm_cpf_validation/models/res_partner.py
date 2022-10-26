@@ -183,22 +183,22 @@ class resPartner(models.Model):
                                     list.append(client.id)
                             previous_client_session.write({'client_ids': [(6, 0, list)]})
                         if previous_client_session:
-                            sale = self.env['sale.order'].sudo().search([('session_id', "=", previous_client_session.id)])
+                            sale = self.env['sale.order'].sudo().search([('session_id', "=", previous_client_session.id),('partner_id',"=",self.id)])
                             if sale:
                                 sale.session_id = self.mcm_session_id
                                 sale.module_id = self.module_id
                         else:
-                            sales = self.env['sale.order'].sudo().search([('session_id', "=", False)])
+                            sales = self.env['sale.order'].sudo().search([('session_id', "=", False),('partner_id',"=",self.id)])
                             for sale in sales :
                                 sale.session_id = self.mcm_session_id
                                 sale.module_id = self.module_id
                         if previous_client_session:
-                            move = self.env['account.move'].sudo().search([('session_id', "=", previous_client_session.id)])
+                            move = self.env['account.move'].sudo().search([('session_id', "=", previous_client_session.id),('partner_id',"=",self.id)])
                             if move:
                                 move.session_id = self.mcm_session_id
                                 move.module_id = self.module_id
                         else:
-                            moves = self.env['account.move'].sudo().search([('session_id', "=", False)])
+                            moves = self.env['account.move'].sudo().search([('session_id', "=", False),('partner_id',"=",self.id)])
                             for move in moves :
                                 move.session_id = self.mcm_session_id
                                 move.module_id = self.module_id
