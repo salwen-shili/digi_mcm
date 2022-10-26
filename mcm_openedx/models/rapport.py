@@ -188,22 +188,23 @@ class cma(models.Model):
         for existee in self.env['mcm_openedx.cma'].sudo().search(
                 [('numero_dossier', '!=', False)]):
 
-                for partner in self.env['res.partner'].search(
-                        [('numero_evalbox', '!=', False),('email','ilike',existee.email)]):
-                    if partner.numero_evalbox == existee.numero_dossier or partner.email == existee.email:
-                        existee.partner_id = partner.id
-                        existe = self.env['info.examen'].search([('date_exam', '=', partner.date_exam)])
+            for partner in self.env['res.partner'].search(
+                    [('numero_evalbox', '!=', False), ('email', 'ilike', existee.email)]):
+                if partner.numero_evalbox == existee.numero_dossier or partner.email == existee.email:
+                    existee.partner_id = partner.id
+                    existe = self.env['info.examen'].search(
+                        [('date_exam', '=', partner.date_exam), ('partner_id', '=', partner.id)])
 
-                        if existee.resulta == "Réussi":
-                            existee.resulta = "reussi"
-                        elif existee.resulta == "Échoué":
-                            existee.resulta = "ajourne"
+                    if existee.resulta == "Réussi":
+                        existee.resulta = "reussi"
+                    elif existee.resulta == "Échoué":
+                        existee.resulta = "ajourne"
 
-                        if existee.statut_exman == "Présent":
-                            existee.statut_exman = "present"
-                        elif existee.statut_exman == "Absent":
-                            existee.statut_exman = "Absent"
-
+                    if existee.statut_exman == "Présent":
+                        existee.statut_exman = "present"
+                    elif existee.statut_exman == "Absent":
+                        existee.statut_exman = "Absent"
+                    if not existe:
                         _logger.info(" not existe not existe not existe")
                         if existee.resulta == "reussi" or existee.resulta == "ajourne":
                             if existee.statut_exman == "present" or existee.statut_exman == "Absent":
