@@ -27,7 +27,6 @@
                 'mail',
                 'board',
                 'mcm_session',
-                'crm_marketing_automation',
                 'calendly_api_integration'],
 
     'qweb': [
@@ -47,6 +46,7 @@
         "views/hide.xml",
         "views/session.xml",
         "views/coach.xml",
+        "views/cma_resultat.xml",
         "views/rapport.xml",
         "views/actif_inactif.xml",
         "views/assets.xml",

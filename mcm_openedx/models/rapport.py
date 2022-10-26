@@ -167,3 +167,57 @@ class rapport(models.Model):
             'type': 'ir.actions.client',
             'tag': 'reload',
         }
+
+
+class cma(models.Model):
+    _name = 'mcm_openedx.cma'
+    _description = "automatiser des lignes d'examens sur les fiches client MCM ."
+
+    numero_dossier = fields.Char(string="NUMERO_DOSSIER")
+    partner_id = fields.Many2one('res.partner')
+    name = fields.Char(string="NOM")
+    email = fields.Char(string="EMAIL")
+    statut_exman = fields.Char(string="Statut examen")
+    report = fields.Boolean(string="Report")
+    repassage = fields.Boolean(string="Repassage")
+    reussi = fields.Boolean(string="Réussi")
+    echec = fields.Boolean(string="Echec")
+    resulta = fields.Char(string="Resultat")
+
+    def cma_res(self):
+        for existee in self.env['mcm_openedx.cma'].sudo().search(
+                [('numero_dossier', '!=', False)]):
+
+            for partner in self.env['res.partner'].search(
+                    [('numero_evalbox', '!=', False), ('email', 'ilike', existee.email)]):
+                if partner.numero_evalbox == existee.numero_dossier or partner.email == existee.email:
+                    existee.partner_id = partner.id
+                    existe = self.env['info.examen'].search(
+                        [('date_exam', '=', partner.date_exam), ('partner_id', '=', partner.id)])
+
+                    if existee.resulta == "Réussi":
+                        existee.resulta = "reussi"
+                    elif existee.resulta == "Échoué":
+                        existee.resulta = "ajourne"
+
+                    if existee.statut_exman == "Présent":
+                        existee.statut_exman = "present"
+                    elif existee.statut_exman == "Absent":
+                        existee.statut_exman = "Absent"
+                    if not existe:
+                        _logger.info(" not existe not existe not existe")
+                        if existee.resulta == "reussi" or existee.resulta == "ajourne":
+                            if existee.statut_exman == "present" or existee.statut_exman == "Absent":
+                                res_exm = self.env['info.examen'].sudo().create({
+                                    'partner_id': partner.id,
+                                    'session_id': partner.mcm_session_id.id,
+                                    'epreuve_theorique': existee.resulta,
+                                    'presence_mcm': existee.statut_exman,
+                                    'date_exam': partner.mcm_session_id.date_exam,
+                                    'ville_id': partner.mcm_session_id.session_ville_id.id,
+                                })
+
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
