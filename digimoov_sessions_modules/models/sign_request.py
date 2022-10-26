@@ -45,7 +45,7 @@ class InheritSignRequest(models.Model):
                      'subject': subject},
                     force_send=True
                 )
-        return super(InheritSignRequest, self).send_signature_accesses()
+        #return super(InheritSignRequest, self).send_signature_accesses()
 
 # class SignRequest(models.Model):
 #     _inherit = "sign.request"
