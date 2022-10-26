@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<template inherit_id="website.layout" id="logo_mcm_digimoov" name="logo change alt">
+    <xpath expr="//header//a[hasclass('navbar-brand')]" position="replace">
+        <!-- Change alt logo MCM-->
+        <t t-if="request.website.id==1">
+            <a href="/" class="navbar-brand logo">
+            <span data-oe-model="website" data-oe-id="1" data-oe-field="logo" data-oe-type="image" data-oe-expression="website.logo" role="img" data-oe-field-xpath="/data/xpath/a/span[1]" aria-label="Logo of MCM ACADEMY" title="MCM ACADEMY">
+                <img src="/web/image/website/1/logo/MCM%20ACADEMY?unique=c489ae3" class="img img-fluid" alt="formation taxi" />
+            </span>
+            </a>
+        </t>
+        <t t-if="request.website.id==2">
+            <a href="/" class="navbar-brand logo">
+            <span data-oe-model="website" data-oe-id="2" data-oe-field="logo" data-oe-type="image" data-oe-expression="website.logo" role="img" data-oe-field-xpath="/data/xpath/a/span[1]" aria-label="Logo of DIGIMOOV" title="DIGIMOOV">
+                <img src="/web/image/website/2/logo/DIGIMOOV?unique=a02131f" class="img img-fluid" alt="formation capacité de transport" />
+            </span>
+            </a>
+        </t>
+         <!-- Change alt logo DIGIMOOV-->
+    </xpath>
+</template>
+</odoo>
