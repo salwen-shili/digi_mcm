@@ -20,7 +20,7 @@
                                         <div class="js-scroll slide-left ">
                                             <div class="text-center">
                                                 <h1 class="slider-text-info title-mcm">
-                                                    FORMATION VTC TAXI MOTO-TAXI
+                                                    FORMATION TAXI VTC MOTO TAXI 
                                                     <br />
                                                     <span class="subtitle-mcm"> 100 % en ligne </span>
                                                 </h1>
@@ -598,6 +598,7 @@
                                                             <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
                                                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                             <h4>FORMATION VTC</h4>
+                                                            <h5 class="el-cpf">Éligible au CPF</h5>
                                                             <h5 class="el-cpf">&amp;nbsp; &amp;nbsp;&amp;nbsp; &amp;nbsp;</h5>
                                                             <h4 t-if="not promo">
                                                                 <span t-esc="round(product.list_price)" />
@@ -619,7 +620,7 @@
                                                                 <li>Assistance par visioconférence</li>
                                                                 <li>Lives avec les formateurs pour explications</li>
                                                                 <li>Révision du programme avant examen</li>
-                                                                <li style="font-weight: 900 !important;">Frais d'examen inclus<span style="color:red">*</span></li>
+                                                                <li style="font-weight: 900 !important;">Frais d'examen inclus*</li>
                                                             </ul>
                                                             <br />
                                                             <t t-if="promo">
@@ -676,7 +677,7 @@
                                                                 <li>Assistance par visioconférence</li>
                                                                 <li>Lives avec les formateurs pour explications</li>
                                                                 <li>Révision du programme avant examen</li>
-                                                                <li style="font-weight: 900 !important;">Frais d'examen inclus<span style="color:red">*</span></li>
+                                                                <li style="font-weight: 900 !important;">Frais d'examen inclus*</li>
                                                             </ul>
                                                             <br />
                                                             <t t-if="promo">
@@ -759,7 +760,7 @@
                                 </div>
                             </section>
                             <div class="text-center" style="font-weight: 700;margin-top:10px">
-                                  <span style="color:red"><b>*</b></span>  Cette offre est valable sous condition de suivre minimum 14h de formation sur la plateforme elearning.
+                                 *Cette offre est valable sous condition de suivre minimum 14h de formation sur la plateforme elearning.
                             </div>
                         </div>
                         <!-- FIN PRICING TABLE-->
