@@ -188,40 +188,33 @@ class cma(models.Model):
         for existee in self.env['mcm_openedx.cma'].sudo().search(
                 [('numero_dossier', '!=', False)]):
 
-            for partner in self.env['res.partner'].search(
-                    [('numero_evalbox', '!=', False)]):
-                if partner.numero_evalbox == existee.numero_dossier or partner.email == existee.email:
-                    existee.partner_id = partner.id
-                    existe = self.env['info.examen'].search([('date_exam', '=', partner.date_exam)])
-                    if existee.resulta == "Réussi" or existee.resulta == "Échoué":
-                        if existee.statut_exman == "Présent" or existee.statut_exman == "Absent":
-                            if existee.resulta == "Réussi":
-                                existee.resulta = "reussi"
-                            elif existee.resulta == "Échoué":
-                                existee.resulta = "ajourne"
+                for partner in self.env['res.partner'].search(
+                        [('numero_evalbox', '!=', False),('email','ilike',existee.email)]):
+                    if partner.numero_evalbox == existee.numero_dossier or partner.email == existee.email:
+                        existee.partner_id = partner.id
+                        existe = self.env['info.examen'].search([('date_exam', '=', partner.date_exam)])
 
-                            if existee.statut_exman == "Présent":
-                                existee.statut_exman = "present"
-                            elif existee.statut_exman == "Absent":
-                                existee.statut_exman = "Absent"
+                        if existee.resulta == "Réussi":
+                            existee.resulta = "reussi"
+                        elif existee.resulta == "Échoué":
+                            existee.resulta = "ajourne"
 
-                            _logger.info(" not existe not existe not existe")
-                            res_exm = self.env['info.examen'].sudo().create({
-                                'partner_id': partner.id,
-                                'session_id': partner.mcm_session_id.id,
-                                'epreuve_theorique': existee.resulta,
-                                'presence_mcm': existee.statut_exman,
-                                'date_exam': partner.mcm_session_id.date_exam,
-                                'ville_id': partner.mcm_session_id.session_ville_id.id,
-                            })
+                        if existee.statut_exman == "Présent":
+                            existee.statut_exman = "present"
+                        elif existee.statut_exman == "Absent":
+                            existee.statut_exman = "Absent"
 
-                            # Create new line in historic sessions
-                            # for partner_exam in self.env['info.examen'].search(
-                            #         [('partner_id', "=", partner.id), ('session_id', "=", self.id),('date_exman','=',self.date_exam)]):
-                            #     _logger.info(partner_exam.epreuve_theorique)
-                            #     _logger.info("oooooooooooooooooooooookokokooookokokok")
-
-                    self.env.cr.commit()
+                        _logger.info(" not existe not existe not existe")
+                        if existee.resulta == "reussi" or existee.resulta == "ajourne":
+                            if existee.statut_exman == "present" or existee.statut_exman == "Absent":
+                                res_exm = self.env['info.examen'].sudo().create({
+                                    'partner_id': partner.id,
+                                    'session_id': partner.mcm_session_id.id,
+                                    'epreuve_theorique': existee.resulta,
+                                    'presence_mcm': existee.statut_exman,
+                                    'date_exam': partner.mcm_session_id.date_exam,
+                                    'ville_id': partner.mcm_session_id.session_ville_id.id,
+                                })
 
         return {
             'type': 'ir.actions.client',

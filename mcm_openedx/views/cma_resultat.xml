@@ -60,6 +60,17 @@
 <!--
   Add pivot view
 -->
+        <record id="cma_view_mcm_openedx_pivot" model="ir.ui.view">
+                <field name="name">RESULTATS DE L'EPREUVE DES CANDIDATS </field>
+        <field name="model">mcm_openedx.cma</field>
+        <field name="arch" type="xml">
+            <pivot string="RESULTATS DE L'EPREUVE DES CANDIDATS" disable_linking="True" >
+                <field name="resulta" type="col"/>
+                <field name="email" type="row"/>
+
+            </pivot>
+        </field>
+    </record>
 
     <record model="ir.actions.act_window" id="cma_action_mcm">
         <field name="name">RESULTATS DE L'EPREUVE DES CANDIDATS </field>
