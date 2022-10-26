@@ -759,7 +759,7 @@
                                 </div>
                             </section>
                             <div class="text-center" style="font-weight: 700;margin-top:10px">
-                                  <span style="color:red">*</span>  Cette offre est valable sous condition de suivre minimum 14h de formation sur la plateforme elearning.
+                                  <span style="color:red"><b>*</b></span>  Cette offre est valable sous condition de suivre minimum 14h de formation sur la plateforme elearning.
                             </div>
                         </div>
                         <!-- FIN PRICING TABLE-->
