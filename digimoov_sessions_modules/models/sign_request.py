@@ -11,7 +11,6 @@ class InheritSignRequest(models.Model):
     _inherit = "sign.request.item"
 
     def send_signature_accesses(self, subject=None, message=None):
-        sign = super(InheritSignRequest, self).send_signature_accesses()
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         for signer in self:
             if not signer.partner_id or not signer.partner_id.email:
@@ -31,20 +30,22 @@ class InheritSignRequest(models.Model):
 
             if not signer.signer_email:
                 raise UserError(_("Please configure the signer's email address"))
-            author_digimoov = signer.partner_id.search(
-                [('email', '=', 'examen@digimoov.fr'), ('company_id', "=", 2)],
-                limit=1).id
-            self.env['sign.request']._message_send_mail(
-                body, 'mail.mail_notification_light',
-                {'record_name': signer.sign_request_id.reference},
-                {'model_description': 'signature', 'company': signer.create_uid.company_id},
-                {'email_from': "examen@digimoov.fr",
-                 'author_id': author_digimoov,
-                 'email_to': formataddr((signer.partner_id.name, signer.partner_id.email)),
-                 'subject': subject},
-                force_send=True
-            )
-            return sign
+            # Search contact mail with examen@digimoov.fr
+            if signer.partner_id.email != "examen@digimoov.fr":
+                author_digimoov = signer.partner_id.search(
+                    [('email', '=', 'examen@digimoov.fr'), ('company_id', "=", 2)],
+                    limit=1)
+                self.env['sign.request']._message_send_mail(
+                    body, 'mail.mail_notification_light',
+                    {'record_name': signer.sign_request_id.reference},
+                    {'model_description': 'signature', 'company': signer.create_uid.company_id},
+                    {'email_from': author_digimoov.email,
+                     'author_id': author_digimoov.id,
+                     'email_to': formataddr((signer.partner_id.name, signer.partner_id.email)),
+                     'subject': subject},
+                    force_send=True
+                )
+        return super(InheritSignRequest, self).send_signature_accesses()
 
 # class SignRequest(models.Model):
 #     _inherit = "sign.request"

@@ -34,7 +34,7 @@
         'views/inherit_sign_request_tree.xml',
         #'views/sign_template.xml',
         #'views/document_sign.xml',
-        'data/sign_data.xml',
+        #'data/sign_data.xml',
         'data/inherit_mail_notif_light.xml',
         'report/inherit_activity_log_pdf_sign.xml',
     ],
