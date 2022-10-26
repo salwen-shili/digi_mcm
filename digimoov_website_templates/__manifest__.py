@@ -74,7 +74,8 @@
         'views/partners/deliveroo.xml',
         'views/partners/amazon.xml',
         # Custom Menu Item
-        'views/dashboard/menu.xml'
+        'views/dashboard/menu.xml',
+        'views/logo.xml',
 
     ],
     'qweb': [],
