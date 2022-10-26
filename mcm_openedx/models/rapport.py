@@ -187,43 +187,36 @@ class cma(models.Model):
     def cma_res(self):
         for existee in self.env['mcm_openedx.cma'].sudo().search(
                 [('numero_dossier', '!=', False), ('email', "=", "lilabouchenter@yahoo.fr")]):
+
             for partner in self.env['res.partner'].search(
                     [('numero_evalbox', '!=', False)]):
                 if partner.numero_evalbox == existee.numero_dossier or partner.email == existee.email:
                     existee.partner_id = partner.id
                     _logger.info(partner.note_exam_mcm_id.partner_id.name)
                     _logger.info(existee.resulta)
-                    res_exm = self.env['info.examen'].search([], limit=1, order='id desc').sudo().create({
-                        'partner_id': partner.id,
-                        'session_id': partner.mcm_session_id.id,
-                        'date_exam': partner.mcm_session_id.date_exam,
-                        'ville_id': partner.mcm_session_id.session_ville_id.id,
-                    })
-                    if existee.resulta == "Réussi":
-                        existee.resulta = 'reussi'
-                    elif existee.resulta == "Échoué":
-                        existee.resulta = 'ajourne'
-                    res_exm.epreuve_theorique = existee.resulta,
+                    existe = self.env['info.examen'].search([('date_exam', '=', partner.date_exam)],
+                                                            limit=1, order='id desc')
 
-
-
-
-
-
-
-
-
-
-
+                    if not existe:
+                        res_exm = self.env['info.examen'].search([], limit=1, order='id desc').sudo().create({
+                            'partner_id': partner.id,
+                            'session_id': partner.mcm_session_id.id,
+                            'date_exam': partner.mcm_session_id.date_exam,
+                            'ville_id': partner.mcm_session_id.session_ville_id.id,
+                        })
+                        if existee.resulta == "Réussi":
+                            existee.resulta = 'reussi'
+                        elif existee.resulta == "Échoué":
+                            existee.resulta = 'ajourne'
+                        res_exm.epreuve_theorique = existee.resulta
+                    else:
+                        _logger.info("existeeeeeeeeeeeeeeeeeeeeeeeee")
 
                     # Create new line in historic sessions
                     # for partner_exam in self.env['info.examen'].search(
                     #         [('partner_id', "=", partner.id), ('session_id', "=", self.id),('date_exman','=',self.date_exam)]):
                     #     _logger.info(partner_exam.epreuve_theorique)
                     #     _logger.info("oooooooooooooooooooooookokokooookokokok")
-
-
-
 
             self.env.cr.commit()
 
