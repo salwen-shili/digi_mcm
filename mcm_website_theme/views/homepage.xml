@@ -599,7 +599,7 @@
                                                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                             <h4>FORMATION VTC</h4>
                                                             <h5 class="el-cpf">Éligible au CPF</h5>
-                                                            <h5 class="el-cpf">&amp;nbsp; &amp;nbsp;&amp;nbsp; &amp;nbsp;</h5>
+                                                            
                                                             <h4 t-if="not promo">
                                                                 <span t-esc="round(product.list_price)" />
                                                                 <span class="prod-cur" t-esc="product.currency_id.symbol" />
@@ -697,7 +697,7 @@
                                                                 </a>
                                                                 <div>
                                                                     <span style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
-                                                            Paiement 1 ou 2 fois
+                                                                        Paiement 1 ou 2 fois 
                                                             </span>
                                                                 </div>
                                                             </div>
