@@ -203,9 +203,10 @@ class cma(models.Model):
                     elif existee.statut_exman == "Absent":
                         existee.statut_exman = "Absent"
                     if not existe:
-                        _logger.info("not existe not existe not existe")
                         if existee.resulta == "reussi" or existee.resulta == "ajourne":
                             if existee.statut_exman == "present" or existee.statut_exman == "Absent":
+                                _logger.info("not existe not existe not existe")
+
                                 res_exm = self.env['info.examen'].sudo().create({
                                     'partner_id': partner.id,
                                     'session_id': partner.mcm_session_id.id,

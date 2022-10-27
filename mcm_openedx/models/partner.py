@@ -61,7 +61,7 @@ class partner(models.Model):
             try:
                 if (partner.module_id.name != "Repassage VTC") or (partner.module_id.name != "Repassage TAXI") and (
                         partner.state != "supprimé"):
-                    if (partner.presence == "Présent(e)") and (partner.resultat == "Ajourné(e)"):
+                    if (partner.note_exam_mcm_id.presence_mcm == "presnet") and (partner.note_exam_mcm_id.epreuve_theorique == "ajourne"):
                         _logger.info(" suppprimer et Repassage 100 EUROOOO")
                         partner.state = "supprimé"
                         partner.supprimerdemoocit = date.today()
@@ -83,7 +83,7 @@ class partner(models.Model):
 
                         # self.desinscriteVTC(partner)
                         # self.desinscriteTaxi(partner)
-                    if (partner.presence == "Absence justifiée") and (partner.resultat == "Ajourné(e)"):
+                    if (partner.note_exam_mcm_id.presence_mcm == "absence_justifiee") and (partner.note_exam_mcm_id.epreuve_theorique == "ajourne"):
                         _logger.info(" suppprimer et Repassage 100 EUROOOO")
                         partner.state = "supprimé"
                         partner.supprimerdemoocit = date.today()
@@ -105,7 +105,7 @@ class partner(models.Model):
 
                         self.desinscriteVTC(partner)
                         self.desinscriteTaxi(partner)
-                    if (partner.presence == "Absent(e)") and (partner.resultat == "Ajourné(e)"):
+                    if (partner.note_exam_mcm_id.presence_mcm == "Absent") and (partner.note_exam_mcm_id.epreuve_theorique == "ajourne"):
                         _logger.info("supprimer")
                         partner.state = "supprimé"
                         partner.supprimerdemoocit = date.today()
