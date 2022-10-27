@@ -94,12 +94,16 @@ class MailThreadInherit(models.AbstractModel):
         #       we also need to verify if the message come from "mailer-daemon"
         #    If not a bounce: reset bounce information
         if bounce_alias and bounce_alias in email_to_localpart:
-            _logger.info('email_to_localpart')
             bounce_re = re.compile("%s\+(\d+)-?([\w.]+)?-?(\d+)?" % re.escape(bounce_alias), re.UNICODE)
-            _logger.info('bounce_re : %s' % (str(bounce_re)))
-            _logger.info('bounce_re : %s' % (str(email_to)))
             bounce_match = bounce_re.search(email_to)
-            _logger.info('bounce_match : %s' %(str(bounce_match)))
+            company = 1
+            if 'digimoov' in email_to:  # check if email_to contains digimoov
+                company = 2
+            message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
+            body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
+                'message': message, 'message_company': message_company,
+            }, engine='ir.qweb')
+            self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email)
             if bounce_match:
                 company = 1
                 if 'digimoov' in email_to: #check if email_to contains digimoov
