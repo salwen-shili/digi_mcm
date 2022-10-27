@@ -97,17 +97,15 @@ class MailThreadInherit(models.AbstractModel):
             _logger.info('email_to_localpart')
             bounce_re = re.compile("%s\+(\d+)-?([\w.]+)?-?(\d+)?" % re.escape(bounce_alias), re.UNICODE)
             bounce_match = bounce_re.search(email_to)
+            _logger.info('bounce_match : %s' %(str(bounce_match)))
             if bounce_match:
                 company = 1
                 if 'digimoov' in email_to: #check if email_to contains digimoov
                     company = 2
-                _logger.info('multipart/report1 %s' % (str(email_to)))
                 message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
                 body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
                     'message': message, 'message_company': message_company,
                 }, engine='ir.qweb')
-                _logger.info('reply to :  %s' % (str(self.env.company.email)))
-                _logger.info('reply to1 :  %s' % (str(message_company.email)))
                 self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email)
                 return []
         if message.get_content_type() == 'multipart/report' or email_from_localpart == 'mailer-daemon':
@@ -135,7 +133,6 @@ class MailThreadInherit(models.AbstractModel):
                 (reply_model, reply_thread_id, custom_values, user_id, dest_aliases),
                 raise_exception=False)
             if route:
-                _logger.info('message_route message : %s' %(str(message)))
                 _logger.info('message_route route : %s' %(str(route)))
                 _logger.info(
                     'Routing mail from %s to %s with Message-Id %s: direct reply to msg: model: %s, thread_id: %s, custom_values: %s, uid: %s',
