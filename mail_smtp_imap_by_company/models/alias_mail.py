@@ -96,6 +96,8 @@ class MailThreadInherit(models.AbstractModel):
         if bounce_alias and bounce_alias in email_to_localpart:
             _logger.info('email_to_localpart')
             bounce_re = re.compile("%s\+(\d+)-?([\w.]+)?-?(\d+)?" % re.escape(bounce_alias), re.UNICODE)
+            _logger.info('bounce_re : %s' % (str(bounce_re)))
+            _logger.info('bounce_re : %s' % (str(email_to)))
             bounce_match = bounce_re.search(email_to)
             _logger.info('bounce_match : %s' %(str(bounce_match)))
             if bounce_match:
