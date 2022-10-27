@@ -518,6 +518,7 @@ class partner(models.Model):
                     responce_api = json.loads(resp.text)
                     _logger.info('response addd  %s' % respo)
                     if (resp.status_code == 200):
+                        partner.write({'state': 'en_formation'})
                         if responce_api['status'] == 'user_reactivated':
                             reactivated_id_user = responce_api['_id']
                         create = True
