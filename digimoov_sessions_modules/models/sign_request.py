@@ -20,7 +20,6 @@ class InheritSignRequest(models.Model):
             tpl = self.env.ref('sign.sign_template_mail_request')
             if signer.partner_id.lang:
                 tpl = tpl.with_context(lang=signer.partner_id.lang)
-
             body = tpl.render({
                 'record': signer,
                 'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {
