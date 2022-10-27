@@ -6,3 +6,4 @@ enattente_manager,enattente manager,model_mcm_openedx_enattente,,1,1,1,1
 calendly_event_manager,calendly_event manager,model_mcm_openedx_calendly_event,,1,1,1,1
 calendly_integration_manager,calendly_integration manager,model_mcm_openedx_calendly_integration,,1,1,1,1
 rapport_manager,rapport manager,model_mcm_openedx_rapport,,1,1,1,1
+cma_manager,cma manager,model_mcm_openedx_cma,,1,1,1,1
