@@ -35,6 +35,7 @@
         #'views/sign_template.xml',
         #'views/document_sign.xml',
         'data/inherit_mail_notif_light.xml',
+        'data/sign_data.xml',
         'report/inherit_activity_log_pdf_sign.xml',
     ],
     'qweb': [],
