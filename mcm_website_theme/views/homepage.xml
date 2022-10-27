@@ -598,7 +598,12 @@
                                                             <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
                                                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                             <h4>FORMATION VTC</h4>
-                                                            <h5 class="el-cpf">Éligible au CPF</h5>
+                                                            <h5 class="el-cpf">
+                                                                <t t-if="product.cpf_available == true">Éligible au CPF </t>
+                                                                <t t-else="">
+                                                                    &amp;nbsp;
+                                                                </t>
+                                                            </h5>
                                                             
                                                             <h4 t-if="not promo">
                                                                 <span t-esc="round(product.list_price)" />
@@ -647,7 +652,7 @@
                                                                 </a>
                                                                 <div>
                                                                     <span style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
-                                                            Paiement 1 ou 2 fois
+                                                            Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
                                                             </span>
                                                                 </div>
                                                             </div>
@@ -664,7 +669,13 @@
                                                             <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
                                                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                             <h4>FORMATION TAXI</h4>
-                                                            <h5 class="el-cpf">Éligible au CPF</h5>
+                                                            <h5 class="el-cpf">
+
+                                                                <t t-if="product.cpf_available == true">Éligible au CPF </t>
+                                                                <t t-else="">
+                                                                    &amp;nbsp;
+                                                                </t>
+                                                            </h5>
                                                             <h4>
                                                                 <span t-esc="round(product.list_price)" />
                                                                 <span class="prod-cur" t-esc="product.currency_id.symbol" />
@@ -697,7 +708,7 @@
                                                                 </a>
                                                                 <div>
                                                                     <span style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
-                                                                        Paiement 1 ou 2 fois 
+                                                                        Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
                                                             </span>
                                                                 </div>
                                                             </div>
@@ -747,7 +758,7 @@
                                                                 </a>
                                                                 <div>
                                                                     <span style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
-                                                            Paiement 1 ou 3 fois
+                                                            Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
                                                             </span>
                                                                 </div>
                                                             </div>
