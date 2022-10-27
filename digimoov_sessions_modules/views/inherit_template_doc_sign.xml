@@ -43,12 +43,15 @@
                              t-attf-src="/web/image/res.partner/#{sign_request.create_uid.partner_id.id}/image_128/32x32"
                              alt="Signature"/>
                         <t t-if="sign_request.create_uid.partner_id.name">From:
-                            <t t-esc="sign_request.create_uid.partner_id.name"/>
+<!--                            #Remplacer code odoo par les informations de digimoov-->
+<!--                            <t t-esc="sign_request.create_uid.partner_id.name"/>-->
+                            <span>Service examen DIGIMOOV</span>
                             <br/>
                         </t>
                         <t t-if="sign_request.create_uid.partner_id.email">
                             <a t-attf-href="mailto:{{sign_request.create_uid.partner_id.email}}">
-                                <t t-esc="sign_request.create_uid.partner_id.email"/>
+<!--                                <t t-esc="sign_request.create_uid.partner_id.email"/>-->
+                                <span>examen@digimoov.fr</span>
                             </a>
                             <br/>
                         </t>
