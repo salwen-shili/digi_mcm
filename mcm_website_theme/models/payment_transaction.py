@@ -86,6 +86,7 @@ class PaymentTransaction(models.Model):
                     sale.partner_id.sudo().write({'statut': 'won'})
                     sale.partner_id.mode_de_financement = 'particulier'
                     for invoice in trans.invoice_ids :
+                        invoice.post()
                         invoice.type_facture='web'
                         invoice.methodes_payment = 'cartebleu'
                         invoice.stripe_sub_reference=self.stripe_sub_reference # s'il sagit d'un paiement sur plusieur fois recupérer l'id d'abonnement sur stripe
