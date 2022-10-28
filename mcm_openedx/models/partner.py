@@ -135,11 +135,13 @@ class partner(models.Model):
     # Supprimer iOne  Resulta = Réussi(e)
     def supp_Réussie(self):
         for partner in self.env['res.partner'].sudo().search(
-                [('company_id', '=', 1), ('note_exam_mcm_id.epreuve_theorique', "=", "reussi"),
+                [('company_id', '=', 1),
                  ('state', '!=', "ancien")]):
             try:
-                #verifier si la date de l'examan et la meme date de la session d'exman
-                if partner.note_exam_mcm_id.epreuve_theorique == partner.mcm_session_id.date_exam:
+                existe = self.env['info.examen'].search(
+                    [('date_exam', '=', partner.date_exam), ('partner_id', '=', partner.id),
+                     ('epreuve_theorique', '=', 'reussi')])
+                if existe:
                     if (partner.state != "supprimé"):
                         # supprimer l'apprenats en verifiant le module choisit
                         partner.state = "supprimé"
@@ -167,6 +169,7 @@ class partner(models.Model):
                             partner.env['mail.message'].sudo().create(values)
                             record.comment = ''
                             print("test")
+
 
                 self.env.cr.commit()
             except Exception:
