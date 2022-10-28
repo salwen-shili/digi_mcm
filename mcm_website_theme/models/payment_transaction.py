@@ -51,6 +51,29 @@ class PaymentTransaction(models.Model):
         transaction=super(PaymentTransaction,self)._reconcile_after_transaction_done()
         return transaction
 
+    def _check_amount_and_confirm_order(self):
+        self.ensure_one()
+        for order in self.sale_order_ids.filtered(lambda so: so.state in ('draft', 'sent')):
+            if order.instalment :
+                if float_compare(self.amount*order.instalment_number, order.amount_total, 2) == 0:
+                    order.with_context(send_email=True).action_confirm()
+            else :
+                if float_compare(self.amount, order.amount_total, 2) == 0:
+                    order.with_context(send_email=True).action_confirm()
+                else:
+                    _logger.warning(
+                        '<%s> transaction AMOUNT MISMATCH for order %s (ID %s): expected %r, got %r',
+                        self.acquirer_id.provider,order.name, order.id,
+                        order.amount_total, self.amount,
+                    )
+                    order.message_post(
+                        subject=_("Amount Mismatch (%s)") % self.acquirer_id.provider,
+                        body=_("The order was not confirmed despite response from the acquirer (%s): order total is %r but acquirer replied with %r.") % (
+                            self.acquirer_id.provider,
+                            order.amount_total,
+                            self.amount,
+                        )
+                    )
     def _invoice_sale_orders(self):
         res = super(PaymentTransaction, self)._invoice_sale_orders()
         template = self.env['mail.template'].sudo().search([('model', '=', 'account.move')])
