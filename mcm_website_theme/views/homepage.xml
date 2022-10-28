@@ -625,7 +625,7 @@
                                                                 <li>Assistance par visioconférence</li>
                                                                 <li>Lives avec les formateurs pour explications</li>
                                                                 <li>Révision du programme avant examen</li>
-                                                                <li style="font-weight: 900 !important;">Frais d'examen inclus*</li>
+                                                                <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
                                                             </ul>
                                                             <br />
                                                             <t t-if="promo">
@@ -688,7 +688,7 @@
                                                                 <li>Assistance par visioconférence</li>
                                                                 <li>Lives avec les formateurs pour explications</li>
                                                                 <li>Révision du programme avant examen</li>
-                                                                <li style="font-weight: 900 !important;">Frais d'examen inclus*</li>
+                                                                <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
                                                             </ul>
                                                             <br />
                                                             <t t-if="promo">
@@ -770,9 +770,9 @@
                                     </div>
                                 </div>
                             </section>
-                            <div class="text-center" style="font-weight: 700;margin-top:10px">
+                            <!-- <div class="text-center" style="font-weight: 700;margin-top:10px">
                                  *Cette offre est valable sous condition de suivre minimum 14h de formation sur la plateforme elearning.
-                            </div>
+                            </div> -->
                         </div>
                         <!-- FIN PRICING TABLE-->
                         <!-- partenaires-->
