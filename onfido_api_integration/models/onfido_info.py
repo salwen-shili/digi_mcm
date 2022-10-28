@@ -17,7 +17,7 @@ class InheritConfig(models.Model):
     sdk_token = fields.Char("SDK Token")
     id_document_front = fields.Char("Id document front")
     id_document_back = fields.Char("Id document back")
-    type_front = fields.Char("Type de document front")
+    type_front = fields.Char("Type de document")
     type_back = fields.Char("Type de document back")
     exp_date_sdk_token = fields.Datetime("Date d'expiration sdk token")
     validation_onfido = fields.Selection(selection=[
