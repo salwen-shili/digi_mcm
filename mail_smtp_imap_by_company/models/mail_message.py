@@ -72,19 +72,20 @@ class MailThreadInherit(models.AbstractModel):
                     catchall_mail = str(catchall_mail)
                     user_sudo = self.env['res.users'].sudo().search([('partner_id', "=", int(record.author_id))],
                                                                     limit=1)
-                    records = self.env[record.model].browse([record.res_id])
-                    _logger.info('user_sudo : %s' % str(user_sudo))
-                    if records:
-                        if hasattr(records, 'company_id'):
-                            user_signature = self.env['res.user.signature'].sudo().search(
-                                [('user_id', "=", user_sudo.id), ('company_id', "=", records.company_id.id)],
-                                limit=1)
-                            if user_signature and user_signature.reply_to:  # verify if 'reply_to' in the sender's user's signature elready filled
-                                _logger.info('catchall_mail : %s' % str(catchall_mail))
-                                _logger.info('user_signature.reply_to : %s' % str(user_signature.reply_to))
-                                new_reply_to = record.reply_to.replace(catchall_mail, user_signature.reply_to)
-                                _logger.info('new_reply_to : %s' % str(record.reply_to))
-                                record.reply_to = new_reply_to  # change mail message's default reply_to by the reply_to of the user signature
+                    if record.res_id : #check res_id of record
+                        records = self.env[record.model].browse([record.res_id])
+                        _logger.info('user_sudo : %s' % str(user_sudo))
+                        if records:
+                            if hasattr(records, 'company_id'):
+                                user_signature = self.env['res.user.signature'].sudo().search(
+                                    [('user_id', "=", user_sudo.id), ('company_id', "=", records.company_id.id)],
+                                    limit=1)
+                                if user_signature and user_signature.reply_to:  # verify if 'reply_to' in the sender's user's signature elready filled
+                                    _logger.info('catchall_mail : %s' % str(catchall_mail))
+                                    _logger.info('user_signature.reply_to : %s' % str(user_signature.reply_to))
+                                    new_reply_to = record.reply_to.replace(catchall_mail, user_signature.reply_to)
+                                    _logger.info('new_reply_to : %s' % str(record.reply_to))
+                                    record.reply_to = new_reply_to  # change mail message's default reply_to by the reply_to of the user signature
             author = record.author_id
             email = record.email_from
             company_id = record.company_id

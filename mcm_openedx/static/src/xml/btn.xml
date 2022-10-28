@@ -15,7 +15,7 @@
 
      <button t-if="widget.modelName == 'mcm_openedx.cma'"
              class="btn btn-primary oe_cma_button"
-             type="button">Affecter resulta</button>
+             type="button">Affecter Résultat</button>
  </t>
  </t>
 
