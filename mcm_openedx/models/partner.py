@@ -143,6 +143,15 @@ class partner(models.Model):
                     if (partner.state != "supprimé"):
                         # supprimer l'apprenats en verifiant le module choisit
                         partner.state = "supprimé"
+                        if (partner.module_id.product_id.default_code == "taxi"):
+                            self.desinscriteTaxi(partner)
+                            partner.supprimerdemoocit = date.today()
+                        elif (partner.module_id.product_id.default_code == "vtc"):
+                            self.desinscriteVTC(partner)
+                            partner.supprimerdemoocit = date.today()
+                        elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                            self.desinscriteVTC(partner)
+                            partner.supprimerdemoocit = date.today()
                         for record in partner:
                             # comment = "testttttttttttt"
                             values = {
@@ -159,10 +168,9 @@ class partner(models.Model):
                             record.comment = ''
                             print("test")
 
-                    self.env.cr.commit()
+                self.env.cr.commit()
             except Exception:
                 self.env.cr.rollback()
-                _logger.info(" except Exception:")
 
     # Ajout d'une fonction pour filtrer les Anciens iOnes et les supprimer
     def anicen_app(self):
