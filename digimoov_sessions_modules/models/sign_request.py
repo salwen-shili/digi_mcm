@@ -32,15 +32,29 @@ class InheritSignRequest(models.Model):
                 raise UserError(_("Please configure the signer's email address"))
             # Search contact mail with examen@digimoov.fr
             if signer.partner_id.email != "examen@digimoov.fr":
-                author_digimoov = signer.partner_id.search(
-                    [('email', '=', 'examen@digimoov.fr'), ('company_id', "=", 2)],
+                author_digimoov = self.env['res.partner'].sudo().search(
+                    [('email', '=', 'examen@digimoov.fr'), ('company_id', "=", 2),
+                     ('display_name', '=', "Service examen DIGIMOOV")],
                     limit=1)
-                self.env['sign.request']._message_send_mail(
+                self.env['sign.request'].sudo()._message_send_mail(
                     body, 'mail.mail_notification_light',
                     {'record_name': signer.sign_request_id.reference},
                     {'model_description': 'signature', 'company': signer.create_uid.company_id},
                     {'email_from': author_digimoov.email,
                      'author_id': author_digimoov.id,
+                     'email_to': formataddr((signer.partner_id.name, signer.partner_id.email)),
+                     'subject': subject},
+                    force_send=True
+                )
+            else:  # code de odoo
+                if not signer.signer_email:
+                    raise UserError(_("Please configure the signer's email address"))
+                self.env['sign.request'].sudo()._message_send_mail(
+                    body, 'mail.mail_notification_light',
+                    {'record_name': signer.sign_request_id.reference},
+                    {'model_description': 'signature', 'company': signer.create_uid.company_id},
+                    {'email_from': formataddr((signer.create_uid.name, signer.create_uid.email)),
+                     'author_id': signer.create_uid.partner_id.id,
                      'email_to': formataddr((signer.partner_id.name, signer.partner_id.email)),
                      'subject': subject},
                     force_send=True
