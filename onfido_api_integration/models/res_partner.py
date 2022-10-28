@@ -172,7 +172,7 @@ class ResPartner(models.Model):
         response_download = requests.get(url_face_download, headers=headers)
         face = response_download.content
         type_data = type(response_download)
-        _logger.info("response face %s" %str(face))
+        # _logger.info("response face %s" %str(face))
         return face
 
     def autofill(self, document_id, token):
