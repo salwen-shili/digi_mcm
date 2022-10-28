@@ -135,14 +135,25 @@ class partner(models.Model):
     # Supprimer iOne  Resulta = Réussi(e)
     def supp_Réussie(self):
         for partner in self.env['res.partner'].sudo().search(
-                [('company_id', '=', 1), ('note_exam_mcm_id.epreuve_theorique', "=", "reussi"),
+                [('company_id', '=', 1),
                  ('state', '!=', "ancien")]):
             try:
-                #verifier si la date de l'examan et la meme date de la session d'exman
-                if partner.note_exam_mcm_id.epreuve_theorique == partner.mcm_session_id.date_exam:
+                existe = self.env['info.examen'].search(
+                    [('date_exam', '=', partner.date_exam), ('partner_id', '=', partner.id),
+                     ('epreuve_theorique', '=', 'reussi')])
+                if existe:
                     if (partner.state != "supprimé"):
                         # supprimer l'apprenats en verifiant le module choisit
                         partner.state = "supprimé"
+                        if (partner.module_id.product_id.default_code == "taxi"):
+                            self.desinscriteTaxi(partner)
+                            partner.supprimerdemoocit = date.today()
+                        elif (partner.module_id.product_id.default_code == "vtc"):
+                            self.desinscriteVTC(partner)
+                            partner.supprimerdemoocit = date.today()
+                        elif (partner.module_id.product_id.default_code == "vtc_bolt"):
+                            self.desinscriteVTC(partner)
+                            partner.supprimerdemoocit = date.today()
                         for record in partner:
                             # comment = "testttttttttttt"
                             values = {
@@ -159,10 +170,10 @@ class partner(models.Model):
                             record.comment = ''
                             print("test")
 
-                    self.env.cr.commit()
+
+                self.env.cr.commit()
             except Exception:
                 self.env.cr.rollback()
-                _logger.info(" except Exception:")
 
     # Ajout d'une fonction pour filtrer les Anciens iOnes et les supprimer
     def anicen_app(self):
