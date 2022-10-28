@@ -199,18 +199,20 @@ class OnfidoController(http.Controller):
                     _logger.info("reppooort %s" % str(report))
                     if 'visual_authenticity' in report['breakdown']:
                         breakdown_origin = report['breakdown']['visual_authenticity']['breakdown']['original_document_present']
+                        if report['breakdown']['visual_authenticity']['result'] != 'clear':
+                            message_ticket="Les éléments visuels (non textuels) sont incorrects,"
                         if breakdown_origin['result'] != 'clear':
-                            message_ticket = "Format du document non original,"
+                            message_ticket = message_ticket +"Format du document non original,"
                             _logger.info('breakdown %s' % str(breakdown_origin['result']))
                     if 'data_consistency' in report['breakdown']:
                         breakdown_data_consist = report['breakdown']['data_consistency']
                         if breakdown_data_consist['result'] != 'clear':
-                            message_ticket = "Données non cohérentes,"
+                            message_ticket = message_ticket+"Données non cohérentes,"
                             _logger.info('breakdown %s' % str(breakdown_data_consist['result']))
                     if 'age_validation' in report['breakdown']:
                         breakdown_age_validation = report['breakdown']['age_validation']
                         if breakdown_age_validation['result'] != 'clear':
-                            message_ticket = "Âge non accepté,"
+                            message_ticket =message_ticket+ "Âge non accepté,"
                             _logger.info('breakdown %s' % str(breakdown_age_validation['result']))
 
 
@@ -231,7 +233,7 @@ class OnfidoController(http.Controller):
 
                 vals = {
                     'partner_email': '',
-                    'description': "Client:"  + " " + partner.name+"message_ticket",
+                    'description': "Client:"  + " " + currentUser.name+message_ticket,
                     'name': 'Documents refusés',
                     'team_id': request.env['helpdesk.team'].sudo().search(
                         [('name', "like", _('Client')), ('company_id', "=", 2)],
