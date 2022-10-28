@@ -206,7 +206,7 @@
             <div class="container">
               <div class="sh_title js-scroll fade-in-top">
                 <h3 style="max-width:100%">
-                  <b>LET'S GO ! </b>
+                  <b>LET'S GO1 ! </b>
                   <br />
                   Inscrivez-vous dès maintenant !
                 </h3>
@@ -272,7 +272,7 @@
                             </a>
                             <div>
                               <span style="color: red !important;font-size: 17px;font-weight: 600;">
-                                                            Paiement 1 ou 2 fois
+                                                            Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
                               </span>
                             </div>
                           </div>
@@ -323,7 +323,7 @@
                             </a>
                             <div>
                               <span style="color: red !important;font-size: 17px;font-weight: 600;">
-                                                            Paiement 1 ou 2 fois
+                                                            Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
                               </span>
                             </div>
                           </div>

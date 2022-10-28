@@ -450,7 +450,7 @@
                             </a>
                             <div>
                               <span style="color: red !important;font-size: 17px;font-weight: 600;">
-                                                            Paiement 1 ou 2 fois
+                                                            Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
                               </span>
                             </div>
                           </div>
