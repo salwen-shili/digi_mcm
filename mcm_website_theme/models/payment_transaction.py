@@ -72,10 +72,11 @@ class PaymentTransaction(models.Model):
                         if sale.pricelist_id.code:
                             invoice.pricelist_id=sale.pricelist_id
                         invoice.company_id=sale.company_id
-                        invoice.message_post_with_template(int(template),
-                                                           composition_mode='comment',
-                                                           email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
-                                                          )
+                        for move in invoice.with_user(SUPERUSER_ID):
+                            move.message_post_with_template(int(template),
+                                                               composition_mode='comment',
+                                                               email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
+                                                              )
                     sale.action_cancel()
                     sale.sale_action_sent()
 
