@@ -202,6 +202,7 @@ class cma(models.Model):
                         existee.statut_exman = "present"
                     elif existee.statut_exman == "Absent":
                         existee.statut_exman = "Absent"
+
                     if not existe:
                         if existee.resulta == "reussi" or existee.resulta == "ajourne":
                             if existee.statut_exman == "present" or existee.statut_exman == "Absent":
@@ -210,11 +211,16 @@ class cma(models.Model):
                                 res_exm = self.env['info.examen'].sudo().create({
                                     'partner_id': partner.id,
                                     'session_id': partner.mcm_session_id.id,
+                                    'module_id': partner.module_id.id,
                                     'epreuve_theorique': existee.resulta,
                                     'presence_mcm': existee.statut_exman,
                                     'date_exam': partner.mcm_session_id.date_exam,
                                     'ville_id': partner.mcm_session_id.session_ville_id.id,
                                 })
+
+                    if existe:
+                        existe.module_id = partner.module_id.id
+
 
         return {
             'type': 'ir.actions.client',
