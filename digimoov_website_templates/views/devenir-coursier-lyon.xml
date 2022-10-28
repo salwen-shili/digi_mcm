@@ -263,18 +263,19 @@
                         <div class="row content-center">
                             <div class="col-md-4 col-sm-6">
                                 <div class="card border-0 shadow border-pricing">
+                                    <t t-foreach="digimoov_products" t-as="product">
+                                        <t t-if="product.default_code=='basique'">
                                     <div class="text-center text-white border-0 pack-wrap">
                                         <br />
                                         <p>
                                             <strong class="pack-name"> SOLO </strong>
                                         </p>
                                         <p class="blink-soft solo-non-cpf">
-                                            <b>NON ELIGIBLE AU CPF</b>
+                                            <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
                                     </div>
-                                    <t t-foreach="digimoov_products" t-as="product">
-                                        <t t-if="product.default_code=='basique'">
+                                 
                                             <form action="/shop/cart/update" method="post" id="form-1-1">
                                                 <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                 <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
@@ -356,7 +357,7 @@
                                                         </p>
                                                     </t>
                                                     <p class="medium text-center font-weight-bolder text-secondary paiement" t-if="not partenaire or partenaire==''">
-                    Paiement 1 ou 2 fois
+                                                        Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
                                             </p>
                                                     <br />
                                                     <button class="btn btn-block text-white btn-inscription" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();">
@@ -480,7 +481,7 @@
                                                         </p>
                                                     </t>
                                                     <p class="paiement medium text-center font-weight-bolder text-secondary">
-                    Paiement 1 ou 3 fois
+                                                        Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
                                             </p>
 
                                                     <br />
@@ -596,7 +597,7 @@
                                                         </p>
                                                     </t>
                                                     <p class="paiement medium text-center font-weight-bolder text-secondary">
-                    Paiement 1 ou 3 fois
+                                                        Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
                                             </p>
 
                                                     <br />
