@@ -132,37 +132,37 @@ class partner(models.Model):
                 self.env.cr.rollback()
                 _logger.info(" except Exception:")
 
-        # Supprimer iOne  Resulta = Réussi(e)
-        def supp_Réussie(self):
-            for partner in self.env['res.partner'].sudo().search(
-                    [('company_id', '=', 1), ('note_exam_mcm_id.epreuve_theorique', "=", "reussi"),
-                     ('state', '!=', "ancien")]):
-                try:
-                    #verifier si la date de l'examan et la meme date de la session d'exman
-                    if partner.note_exam_mcm_id.epreuve_theorique == partner.mcm_session_id.date_exam:
-                        if (partner.state != "supprimé"):
-                            # supprimer l'apprenats en verifiant le module choisit
-                            partner.state = "supprimé"
-                            for record in partner:
-                                # comment = "testttttttttttt"
-                                values = {
-                                    'record_name': partner.name,
-                                    'model': 'res.partner',
-                                    'message_type': 'comment',
-                                    'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-                                    'res_id': partner.id,
-                                    'author_id': partner.env.user.partner_id.id,
-                                    'date': datetime.now(),
-                                    'body': "Apprenant supprimé de la plate-forme => Admis à l’examen théorique CMA."
-                                }
-                                partner.env['mail.message'].sudo().create(values)
-                                record.comment = ''
-                                print("test")
+    # Supprimer iOne  Resulta = Réussi(e)
+    def supp_Réussie(self):
+        for partner in self.env['res.partner'].sudo().search(
+                [('company_id', '=', 1), ('note_exam_mcm_id.epreuve_theorique', "=", "reussi"),
+                 ('state', '!=', "ancien")]):
+            try:
+                #verifier si la date de l'examan et la meme date de la session d'exman
+                if partner.note_exam_mcm_id.epreuve_theorique == partner.mcm_session_id.date_exam:
+                    if (partner.state != "supprimé"):
+                        # supprimer l'apprenats en verifiant le module choisit
+                        partner.state = "supprimé"
+                        for record in partner:
+                            # comment = "testttttttttttt"
+                            values = {
+                                'record_name': partner.name,
+                                'model': 'res.partner',
+                                'message_type': 'comment',
+                                'subtype_id': partner.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                                'res_id': partner.id,
+                                'author_id': partner.env.user.partner_id.id,
+                                'date': datetime.now(),
+                                'body': "Apprenant supprimé de la plate-forme => Admis à l’examen théorique CMA."
+                            }
+                            partner.env['mail.message'].sudo().create(values)
+                            record.comment = ''
+                            print("test")
 
-                        self.env.cr.commit()
-                except Exception:
-                    self.env.cr.rollback()
-                    _logger.info(" except Exception:")
+                    self.env.cr.commit()
+            except Exception:
+                self.env.cr.rollback()
+                _logger.info(" except Exception:")
 
     # Ajout d'une fonction pour filtrer les Anciens iOnes et les supprimer
     def anicen_app(self):
