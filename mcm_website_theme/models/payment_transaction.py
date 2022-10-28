@@ -3,6 +3,7 @@
 import time
 from odoo import api, fields, models, _, SUPERUSER_ID
 import logging
+from odoo.tools import float_compare
 import requests
 _logger = logging.getLogger(__name__)
 import pyshorteners
