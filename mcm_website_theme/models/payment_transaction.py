@@ -50,6 +50,47 @@ class PaymentTransaction(models.Model):
     def _reconcile_after_transaction_done(self):
         transaction=super(PaymentTransaction,self)._reconcile_after_transaction_done()
         return transaction
+
+    def _invoice_sale_orders(self):
+        res = super(PaymentTransaction, self)._invoice_sale_orders()
+        template = self.env['mail.template'].sudo().search([('model', '=', 'account.move')])
+        for trans in self.filtered(lambda t: t.sale_order_ids):
+            if trans.invoice_ids :
+                for sale in trans.sale_order_ids :
+                    sale.partner_id.mcm_session_id = sale.session_id
+                    sale.partner_id.module_id = sale.module_id
+                    sale.partner_id.sudo().write({'statut': 'won'})
+                    sale.partner_id.mode_de_financement = 'particulier'
+                    for invoice in trans.invoice_ids :
+                        invoice.type_facture='web'
+                        invoice.methodes_payment = 'cartebleu'
+                        invoice.stripe_sub_reference=self.stripe_sub_reference # s'il sagit d'un paiement sur plusieur fois recupérer l'id d'abonnement sur stripe
+                        invoice.module_id=sale.module_id
+                        invoice.session_id=sale.session_id
+                        sale.partner_id.mcm_session_id = sale.session_id
+                        sale.partner_id.module_id = sale.module_id
+                        if sale.pricelist_id.code:
+                            invoice.pricelist_id=sale.pricelist_id
+                        invoice.company_id=sale.company_id
+                        invoice.message_post_with_template(int(template),
+                                                           composition_mode='comment',
+                                                           email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
+                                                          )
+                    sale.action_cancel()
+                    sale.sale_action_sent()
+
+                    if sale.partner_id.renounce_request == False:
+                        """Envoyer sms pour renoncer au droit de rétractation """
+                        url = '%smy' % str(sale.partner_id.company_id.website)
+                        short_url = pyshorteners.Shortener()
+                        short_url = short_url.tinyurl.short(
+                            url)  # convert the url to be short using pyshorteners library
+                        sms_body_ = "Afin d'intégrer notre plateforme de formation de suite, veuillez renoncer à votre droit de rétractation sur votre espace client %s" % (
+                            short_url) # content of sms
+
+                        sale.partner_id.send_sms(sms_body_, sale.partner_id)
+        return res
+
         # _logger.info("***************after transaction done")
         # invoices = self.mapped('invoice_ids')
         # template = self.env['mail.template'].sudo().search([('model', '=', 'account.move')])
