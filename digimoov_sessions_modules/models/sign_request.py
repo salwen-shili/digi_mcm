@@ -2,6 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 import base64
 import time
+import logging
 
 from odoo import fields, models, _, api, http
 from odoo.exceptions import UserError
