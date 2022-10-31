@@ -650,7 +650,7 @@ class Services(http.Controller):
                                                            limit=1)  # get only one user if there is double account with same email 
         if not user:
             user = request.env['res.users'].sudo().create({
-                'name': str(contact_name) + " " + str(contact_last_name),
+                'name': str(contact_name) + " " + str(contact_last_name).upper(),
                 'login': str(email_from),
                 'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
                 'email': email_from,
@@ -670,7 +670,7 @@ class Services(http.Controller):
             elif request.website.id == 2:
                 user.sudo().write({'company_id': 2, 'company_ids': [1, 2]})
                 user.partner_id.sudo().write(
-                    {'phone': phone, 'website_id': 2, 'email': email_from})
+                    {'phone': phone, 'website_id': 2, 'email': email_from,'firstname':str(contact_name),'lastName':str(contact_last_name).upper(),'lastname':str(contact_last_name).upper()})
         if user:
             ticket_name = 'Digimoov : ' + str(name)
             ticket = request.env['helpdesk.ticket'].sudo().search(
