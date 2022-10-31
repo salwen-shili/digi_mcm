@@ -63,6 +63,7 @@ class rapport(models.Model):
                 sale_order = self.env['sale.order'].sudo().search(
                     [('partner_id', '=', partner.id), ('invoice_status', '=', "invoiced")], limit=1,
                     order="id desc")
+
                 if existe.type_financement == "stripe" and sale_order.invoice_status == "invoiced":
                     if partner.email == existe.customer_email:
                         existe.company = partner.company_id.name
@@ -73,6 +74,7 @@ class rapport(models.Model):
                         _logger.info(partner.id)
                         _logger.info("ookokokokokokokokkkkkkkkkkkk")
                         existe.partner_id = partner.id
+                        existe.name = partner.name
 
                 if existe.description:
                     desc = existe.description.split(" ")
