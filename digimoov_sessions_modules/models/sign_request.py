@@ -8,6 +8,46 @@ from odoo.exceptions import UserError
 from werkzeug.urls import url_join
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, formataddr
 
+_logger = logging.getLogger(__name__)
+
+
+class InheritSignTemplate(models.Model):
+    _inherit = "sign.template"
+
+    # @api.model
+    # def add_default_folder(self, value):
+    #     sub_folder_name = self.name.rsplit('-', 1)[0]
+    #     folder = self.env['documents.folder'].search([('name', 'ilike', sub_folder_name)])
+    #     for fol in folder:
+    #         if fol:
+    #             self.folder_id = folder.id
+    #         else:
+    #             self.folder_id = folder if folder else self.env['documents.folder'].create({'name': sub_folder_name})
+
+    @api.model
+    def create(self, vals):
+        sub_folder_name = False
+        for values in vals:
+            if 'name' in values:
+                sub_folder_name = 'name'.rsplit('-', 1)[0]
+                _logger.info("sub_folder_name %s" % str(sub_folder_name))
+                folder = self.env['documents.folder'].search([('name', 'ilike', sub_folder_name)], limit=1)
+                _logger.info("¨¨¨¨¨¨¨¨TAKWA¨¨¨¨¨¨¨¨¨¨¨¨¨folder %s" % str(folder))
+                folder_cerfa = self.env['documents.folder'].search([('name', 'ilike', "CERFA")], limit=1)
+                _logger.info("¨¨¨¨¨¨¨¨TAKWA¨¨¨¨¨¨¨¨¨¨¨¨¨folder_cerfa %s" % str(folder_cerfa))
+                if not folder:
+                    sub = self.env['documents.folder'].sudo().create({'name': str(sub_folder_name),
+                                                                      'parent_folder_id': folder_cerfa.id if folder_cerfa else
+                                                                      self.env['documents.folder'].sudo().create(
+                                                                          {'name': "CERFA"}),
+                                                                      'company_id.id': 2})
+                    values['folder_id'] = sub.id
+                else:
+                    values['folder_id'] = folder.id
+                    values['folder_id'].parent_folder_id = folder_cerfa.id
+
+        return super(InheritSignTemplate, self).create(vals)
+
 
 class InheritSignRequest(models.Model):
     _inherit = "sign.request"
@@ -128,6 +168,8 @@ class InheritSignRequest(models.Model):
                 )
 
         return True
+
+
 class InheritSignRequestItem(models.Model):
     _inherit = "sign.request.item"
 
