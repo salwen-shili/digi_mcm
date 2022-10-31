@@ -57,7 +57,7 @@ class MailThreadInherit(models.AbstractModel):
         if not isinstance(message, Message):
             raise TypeError('message must be an email.message.Message at this point')
         catchall_alias = self.env['ir.config_parameter'].sudo().get_param("mail.catchall.alias")
-        bounce_alias = self.env['ir.config_parameter'].sudo().get_param("mail.bounce.alias")
+        bounce_alias = self.env['ir.config_parameter'].sudo().get_param("mail.bounce.alias") #get no reply boucing alias from config parameter created on ovh mailing
         fallback_model = model
 
         # get email.message.Message variables for future processing
@@ -93,7 +93,7 @@ class MailThreadInherit(models.AbstractModel):
         #        As all MTA does not respect this RFC (googlemail is one of them),
         #       we also need to verify if the message come from "mailer-daemon"
         #    If not a bounce: reset bounce information
-        if bounce_alias and bounce_alias in email_to_localpart:
+        if bounce_alias and bounce_alias in email_to_localpart: #check if email_to ( reply to ) contains no reply ( bounce_alias)
             bounce_re = re.compile("%s\+(\d+)-?([\w.]+)?-?(\d+)?" % re.escape(bounce_alias), re.UNICODE)
             bounce_match = bounce_re.search(email_to)
             company = 1
@@ -103,7 +103,7 @@ class MailThreadInherit(models.AbstractModel):
             body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
                 'message': message, 'message_company': message_company,
             }, engine='ir.qweb')
-            self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email)
+            self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
             if bounce_match:
                 company = 1
                 if 'digimoov' in email_to: #check if email_to contains digimoov
