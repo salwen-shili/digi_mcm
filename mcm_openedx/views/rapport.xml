@@ -32,19 +32,19 @@
             <form delete="false">
                 <sheet>
                     <group>
-                        <field name="description"/>
-                        <field name="numero_dossier"/>
+                        <field name="description" attrs="{'invisible': [('type_financement', '=','stripe')]}"/>
+                        <field name="numero_dossier"  attrs="{'invisible': [('type_financement', '=','stripe')]}" />
                         <field name="name"/>
                         <field name="partner_id"/>
-                        <field name="prenom"/>
-                        <field name="montant_formation"/>
-                        <field name="statut_dossier"/>
-                        <field name="date_debut_session"/>
-                        <field name="date_fin_session"/>
-                        <field name="numero_formation"/>
+                        <field name="prenom"  attrs="{'invisible': [('type_financement', '=','stripe')]}" />
+                        <field name="montant_formation" attrs="{'invisible': [('type_financement', '=','stripe')]}"/>
+                        <field name="statut_dossier"  attrs="{'invisible': [('type_financement', '=','stripe')]}"  />
+                        <field name="date_debut_session" attrs="{'invisible': [('type_financement', '=','stripe')]}" />
+                        <field name="date_fin_session" attrs="{'invisible': [('type_financement', '=','stripe')]}"/>
+                        <field name="numero_formation" />
                         <field name="numero_action"/>
                         <field name="numero_session"/>
-                        <field name="acceptedDate"/>
+                        <field name="acceptedDate" attrs="{'invisible': [('type_financement', '=','stripe')]}"/>
                         <field name="created"/>
                         <field name="amount"/>
                         <field name="customer_email"/>
@@ -66,7 +66,7 @@
                   decoration-warning="statut_dossier=='out_training'"
                   delete="false">
                 <field name="customer_email"/>
-                <field name="numero_dossier"/>
+                <field name="numero_dossier" />
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="prenom"/>
