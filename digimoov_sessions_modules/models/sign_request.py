@@ -29,7 +29,7 @@ class InheritSignTemplate(models.Model):
         res = super(InheritSignTemplate, self).create(vals)
         res['active'] = False
         _logger.info("TEEEEEEEEEEEEEEEEEEEEEEEEEEEEST sub_folder_name %s" % str(res['active']))
-        if res['name'] in res:
+        if res['name']:
             sub_folder_name = res['name'].rsplit('-', 1)[0]
             _logger.info("sub_folder_name %s" % str(sub_folder_name))
             folder = self.env['documents.folder'].search([('name', 'ilike', sub_folder_name)], limit=1)
