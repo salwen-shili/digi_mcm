@@ -160,8 +160,7 @@ class rapport(models.Model):
                     if partner.numero_cpf == existee.numero_dossier:
                         existee.company = partner.company_id.name
                         existee.partner_id = partner.id
-                        if partner.statut_cpf != "accepted":
-                            existee.statut_dossier = partner.statut_cpf
+                        existee.statut_dossier = partner.statut_cpf
 
         return {
             'type': 'ir.actions.client',
