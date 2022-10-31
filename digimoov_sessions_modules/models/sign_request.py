@@ -25,28 +25,28 @@ class InheritSignTemplate(models.Model):
     #         else:
     #             self.folder_id = folder if folder else self.env['documents.folder'].create({'name': sub_folder_name})
 
-    def write(self, vals):
-        sub_folder_name = False
-        for values in vals:
-            if 'name' in values:
-                sub_folder_name = 'name'.rsplit('-', 1)[0]
-                _logger.info("sub_folder_name %s" % str(sub_folder_name))
-                folder = self.env['documents.folder'].search([('name', 'ilike', sub_folder_name)], limit=1)
-                _logger.info("¨¨¨¨¨¨¨¨TAKWA¨¨¨¨¨¨¨¨¨¨¨¨¨folder %s" % str(folder))
-                folder_cerfa = self.env['documents.folder'].search([('name', 'ilike', "CERFA")], limit=1)
-                _logger.info("¨¨¨¨¨¨¨¨TAKWA¨¨¨¨¨¨¨¨¨¨¨¨¨folder_cerfa %s" % str(folder_cerfa))
-                if not folder:
-                    sub = self.env['documents.folder'].sudo().create({'name': str(sub_folder_name),
-                                                                      'parent_folder_id': folder_cerfa.id if folder_cerfa else
-                                                                      self.env['documents.folder'].sudo().create(
-                                                                          {'name': "CERFA"}),
-                                                                      'company_id.id': 2})
-                    values['folder_id'] = sub.id
-                else:
-                    values['folder_id'] = folder.id
-                    values['folder_id'].parent_folder_id = folder_cerfa.id
-
-        return super(InheritSignTemplate, self).write(vals)
+    def create(self, vals):
+        res = super(InheritSignTemplate, self).create(vals)
+        res['active'] = False
+        _logger.info("TEEEEEEEEEEEEEEEEEEEEEEEEEEEEST sub_folder_name %s" % str(a))
+        if res['name'] in res:
+            sub_folder_name = res['name'].rsplit('-', 1)[0]
+            _logger.info("sub_folder_name %s" % str(sub_folder_name))
+            folder = self.env['documents.folder'].search([('name', 'ilike', sub_folder_name)], limit=1)
+            _logger.info("¨¨¨¨¨¨¨¨TAKWA¨¨¨¨¨¨¨¨¨¨¨¨¨folder %s" % str(folder))
+            folder_cerfa = self.env['documents.folder'].search([('name', 'ilike', "CERFA")], limit=1)
+            _logger.info("¨¨¨¨¨¨¨¨TAKWA¨¨¨¨¨¨¨¨¨¨¨¨¨folder_cerfa %s" % str(folder_cerfa))
+            if not folder:
+                sub = self.env['documents.folder'].sudo().create({'name': str(sub_folder_name),
+                                                                  'parent_folder_id': folder_cerfa.id if folder_cerfa else
+                                                                  self.env['documents.folder'].sudo().create(
+                                                                      {'name': "CERFA"}),
+                                                                  'company_id.id': 2})
+                res['folder_id'] = sub.id
+            else:
+                res['folder_id'] = folder.id
+                res['folder_id'].parent_folder_id = folder_cerfa.id
+        return res
 
 
 class InheritSignRequest(models.Model):
