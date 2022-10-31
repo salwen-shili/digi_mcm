@@ -637,6 +637,8 @@ class Services(http.Controller):
         contact_name = kwargs.get('contact_name')
         email_from = str(kwargs.get('email_from')).replace(' ', '').lower()
         phone = kwargs.get('phone')
+        _logger.info("phone : %s" %(str(kwargs.get('phone'))))
+        _logger.info("phone_origin : %s" %(str(kwargs.get('phone_origin'))))
         name = kwargs.get('name')
         description = kwargs.get('description')
         files = request.httprequest.files.getlist('attachment')
@@ -659,15 +661,16 @@ class Services(http.Controller):
                 # 'company_id': 2
             })
         if user and name_company:
+            user.partner_id.company_name = name_company
+        if user and phone:
             if request.website.id == 1:
                 user.sudo().write({'company_id': 1, 'company_ids': [1, 2]})
                 user.partner_id.sudo().write(
-                    {'phone': phone, 'website_id': 1, 'email': email_from})
+                {'phone': phone, 'website_id': 1, 'email': email_from})
             elif request.website.id == 2:
                 user.sudo().write({'company_id': 2, 'company_ids': [1, 2]})
                 user.partner_id.sudo().write(
                     {'phone': phone, 'website_id': 2, 'email': email_from})
-            user.partner_id.company_name = name_company
         if user:
             ticket_name = 'Digimoov : ' + str(name)
             ticket = request.env['helpdesk.ticket'].sudo().search(
