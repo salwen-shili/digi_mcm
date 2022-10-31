@@ -10,57 +10,7 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, formataddr
 
 
 class InheritSignRequest(models.Model):
-    _inherit = "sign.request.item"
-
-    def send_signature_accesses(self, subject=None, message=None):
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        for signer in self:
-            if not signer.partner_id or not signer.partner_id.email:
-                continue
-            if not signer.create_uid.email:
-                continue
-            tpl = self.env.ref('sign.sign_template_mail_request')
-            if signer.partner_id.lang:
-                tpl = tpl.with_context(lang=signer.partner_id.lang)
-            body = tpl.render({
-                'record': signer,
-                'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {
-                    'request_id': signer.sign_request_id.id, 'access_token': signer.access_token}),
-                'subject': subject,
-                'body': message if message != '<p><br></p>' else False,
-            }, engine='ir.qweb', minimal_qcontext=True)
-
-            if not signer.signer_email:
-                raise UserError(_("Please configure the signer's email address"))
-            # Search contact mail with examen@digimoov.fr
-            if signer.partner_id.email != "examen@digimoov.fr":
-                author_digimoov = self.env['res.partner'].sudo().search(
-                    [('email', '=', 'examen@digimoov.fr'), ('company_id', "=", 2),
-                     ('display_name', '=', "Service examen DIGIMOOV")],
-                    limit=1)
-                self.env['sign.request'].sudo()._message_send_mail(
-                    body, 'mail.mail_notification_light',
-                    {'record_name': signer.sign_request_id.reference},
-                    {'model_description': 'signature', 'company': signer.create_uid.company_id},
-                    {'email_from': author_digimoov.email,
-                     'author_id': author_digimoov.id,
-                     'email_to': formataddr((signer.partner_id.name, signer.partner_id.email)),
-                     'subject': subject},
-                    force_send=True
-                )
-            else:  # code de odoo
-                if not signer.signer_email:
-                    raise UserError(_("Please configure the signer's email address"))
-                self.env['sign.request'].sudo()._message_send_mail(
-                    body, 'mail.mail_notification_light',
-                    {'record_name': signer.sign_request_id.reference},
-                    {'model_description': 'signature', 'company': signer.create_uid.company_id},
-                    {'email_from': formataddr((signer.create_uid.name, signer.create_uid.email)),
-                     'author_id': signer.create_uid.partner_id.id,
-                     'email_to': formataddr((signer.partner_id.name, signer.partner_id.email)),
-                     'subject': subject},
-                    force_send=True
-                )
+    _inherit = "sign.request"
 
     def send_completed_document(self):
         """ Inherit this function to change name of file Activity logs to Détails"""
@@ -118,7 +68,7 @@ class InheritSignRequest(models.Model):
                 raise UserError(_("Please configure the sender's email address"))
             if not signer.signer_email:
                 raise UserError(_("Please configure the signer's email address"))
-            if signer.partner_id.email != "examen@digimoov.fr":
+            if signer.signer_email != "examen@digimoov.fr":
                 self.env['sign.request'].sudo()._message_send_mail(
                     body, 'mail.mail_notification_light',
                     {'record_name': self.reference},
@@ -178,6 +128,58 @@ class InheritSignRequest(models.Model):
                 )
 
         return True
+class InheritSignRequestItem(models.Model):
+    _inherit = "sign.request.item"
+
+    def send_signature_accesses(self, subject=None, message=None):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        for signer in self:
+            if not signer.partner_id or not signer.partner_id.email:
+                continue
+            if not signer.create_uid.email:
+                continue
+            tpl = self.env.ref('sign.sign_template_mail_request')
+            if signer.partner_id.lang:
+                tpl = tpl.with_context(lang=signer.partner_id.lang)
+            body = tpl.render({
+                'record': signer,
+                'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {
+                    'request_id': signer.sign_request_id.id, 'access_token': signer.access_token}),
+                'subject': subject,
+                'body': message if message != '<p><br></p>' else False,
+            }, engine='ir.qweb', minimal_qcontext=True)
+
+            if not signer.signer_email:
+                raise UserError(_("Please configure the signer's email address"))
+            # Search contact mail with examen@digimoov.fr
+            if signer.partner_id.email != "examen@digimoov.fr":
+                author_digimoov = self.env['res.partner'].sudo().search(
+                    [('email', '=', 'examen@digimoov.fr'), ('company_id', "=", 2),
+                     ('display_name', '=', "Service examen DIGIMOOV")],
+                    limit=1)
+                self.env['sign.request'].sudo()._message_send_mail(
+                    body, 'mail.mail_notification_light',
+                    {'record_name': signer.sign_request_id.reference},
+                    {'model_description': 'signature', 'company': signer.create_uid.company_id},
+                    {'email_from': author_digimoov.email,
+                     'author_id': author_digimoov.id,
+                     'email_to': formataddr((signer.partner_id.name, signer.partner_id.email)),
+                     'subject': subject},
+                    force_send=True
+                )
+            else:  # code de odoo
+                if not signer.signer_email:
+                    raise UserError(_("Please configure the signer's email address"))
+                self.env['sign.request'].sudo()._message_send_mail(
+                    body, 'mail.mail_notification_light',
+                    {'record_name': signer.sign_request_id.reference},
+                    {'model_description': 'signature', 'company': signer.create_uid.company_id},
+                    {'email_from': formataddr((signer.create_uid.name, signer.create_uid.email)),
+                     'author_id': signer.create_uid.partner_id.id,
+                     'email_to': formataddr((signer.partner_id.name, signer.partner_id.email)),
+                     'subject': subject},
+                    force_send=True
+                )
 
 # class SignRequest(models.Model):
 #     _inherit = "sign.request"
