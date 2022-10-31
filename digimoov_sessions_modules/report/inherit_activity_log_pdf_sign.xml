@@ -146,7 +146,7 @@
     </template>
 
     <report id="action_sign_request_print_logs"
-        string="Activity Logs"
+        string="Détails"
         model="sign.request"
         name="sign.sign_request_logs_user"
         file="sign.sign_request_logs_user"
