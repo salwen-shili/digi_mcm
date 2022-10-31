@@ -25,8 +25,7 @@ class InheritSignTemplate(models.Model):
     #         else:
     #             self.folder_id = folder if folder else self.env['documents.folder'].create({'name': sub_folder_name})
 
-    @api.model
-    def create(self, vals):
+    def write(self, vals):
         sub_folder_name = False
         for values in vals:
             if 'name' in values:
@@ -47,7 +46,7 @@ class InheritSignTemplate(models.Model):
                     values['folder_id'] = folder.id
                     values['folder_id'].parent_folder_id = folder_cerfa.id
 
-        return super(InheritSignTemplate, self).create(vals)
+        return super(InheritSignTemplate, self).write(vals)
 
 
 class InheritSignRequest(models.Model):
