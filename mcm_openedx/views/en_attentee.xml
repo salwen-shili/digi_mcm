@@ -15,7 +15,13 @@
         <field name="name">Apprenants En attente</field>
         <field name="model">mcm_openedx.enattente</field>
         <field name="arch" type="xml">
-            <tree string="Apprennat en attente sur wedof" >
+            <tree string="Apprennat en attente sur wedof"
+            decoration-danger="state == 'canceled'"
+                  decoration-success="state=='accepted'"
+                  decoration-info="state=='in_training'"
+                  decoration-warning="state=='out_training'">
+
+
                 <field name="name"/>
                 <field name="existant"/>
                 <field name="externalId"/>
