@@ -57,26 +57,28 @@ class rapport(models.Model):
         print("rapport wedof")
 
         for existe in self.env['mcm_openedx.rapport'].sudo().search(
-                [('customer_email', '!=', False), ('numero_formation', '=', False)]):
+                [('customer_email', '!=', False)]):
             for partner in self.env['res.partner'].search(
                     [('email', '=', existe.customer_email)]):
-                sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),('invoice_status','=',"invoiced")], limit=1,
-                                                                  order="id desc")
-                if partner.email == existe.customer_email:
-                    existe.company = partner.company_id.name
-                    existe.numero_formation = sale_order.order_line.product_id.name
-                    existe.numero_action = sale_order.order_line.product_id.id_edof
-                    existe.numero_session = sale_order.order_line.product_id.id_edof
+                sale_order = self.env['sale.order'].sudo().search(
+                    [('partner_id', '=', partner.id), ('invoice_status', '=', "invoiced")], limit=1,
+                    order="id desc")
+                if existe.type_financement == "stripe" and sale_order.invoice_status == "invoiced":
+                    if partner.email == existe.customer_email:
+                        existe.company = partner.company_id.name
+                        existe.numero_formation = sale_order.order_line.product_id.name
+                        existe.numero_action = sale_order.order_line.product_id.name
+                        existe.numero_session = sale_order.order_line.product_id.name
 
-                    _logger.info(partner.id)
-                    _logger.info("ookokokokokokokokkkkkkkkkkkk")
-                    existe.partner_id = partner.id
+                        _logger.info(partner.id)
+                        _logger.info("ookokokokokokokokkkkkkkkkkkk")
+                        existe.partner_id = partner.id
 
-            if existe.description:
-                desc = existe.description.split(" ")
-                invoice = desc[0]
-                if invoice == "Invoice":
-                    existe.browse(existe.id).sudo().unlink()
+                if existe.description:
+                    desc = existe.description.split(" ")
+                    invoice = desc[0]
+                    if invoice == "Invoice":
+                        existe.browse(existe.id).sudo().unlink()
 
         companies = self.env['res.company'].sudo().search([('id', "!=", False)])
         print(companies)
@@ -219,7 +221,6 @@ class cma(models.Model):
 
                     if existe:
                         existe.module_id = partner.module_id.id
-
 
         return {
             'type': 'ir.actions.client',
