@@ -88,9 +88,12 @@ class enattente(models.Model):
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
     def wedof_api_integration_moocit(self):
-        for existee_mcm in self.env['mcm_openedx.enattente'].search([()]):
-            partner_mcm = self.env['res.partner'].search([('numero_cpf', '=', existee_mcm.externalId)])
-            existee_mcm.state = partner_mcm.statut_cpf
+        for existee_mcm in self.env['mcm_openedx.enattente'].search([('externalId', '!=', False)]):
+            for partner_mcm in self.env['res.partner'].search([('numero_cpf', '=',existee_mcm.externalId)]):
+                existee_mcm.state = partner_mcm.statut_cpf
+                if  existee_mcm.state == "in_training":
+                    existee_mcm.browse(existee_mcm.id).sudo().unlink()
+
         todays_date = date.today()
         companies = self.env['res.company'].sudo().search([])
         print(companies)
