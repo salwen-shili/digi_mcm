@@ -41,7 +41,7 @@ class InheritSignRequest(models.Model):
             public_user = self.env.user
         pdf_content, __ = report_action.with_user(public_user).sudo().render_qweb_pdf(self.id)
         attachment_log = self.env['ir.attachment'].create({
-            'name': "Les détails - %s.pdf" % time.strftime('%Y-%m-%d - %H:%M:%S'),
+            'name': "Détails - %s.pdf" % time.strftime('%Y-%m-%d - %H:%M:%S'),
             'datas': base64.b64encode(pdf_content),
             'type': 'binary',
             'res_model': self._name,
