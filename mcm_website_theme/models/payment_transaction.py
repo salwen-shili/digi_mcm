@@ -53,6 +53,7 @@ class PaymentTransaction(models.Model):
         return transaction
 
     def _check_amount_and_confirm_order(self):
+        #inherit _check_amount_and_confirm_order odoo function to deal 
         self.ensure_one()
         for order in self.sale_order_ids.filtered(lambda so: so.state in ('draft', 'sent')):
             if order.instalment :

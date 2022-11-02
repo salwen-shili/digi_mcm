@@ -58,6 +58,7 @@ class MailThreadInherit(models.AbstractModel):
             raise TypeError('message must be an email.message.Message at this point')
         catchall_alias = self.env['ir.config_parameter'].sudo().get_param("mail.catchall.alias")
         bounce_alias = self.env['ir.config_parameter'].sudo().get_param("mail.bounce.alias") #get no reply boucing alias from config parameter created on ovh mailing
+        bounce_domain = self.env['ir.config_parameter'].sudo().get_param("mail.catchall.domain") #get no reply boucing alias from config parameter created on ovh mailing
         fallback_model = model
 
         # get email.message.Message variables for future processing
@@ -103,7 +104,8 @@ class MailThreadInherit(models.AbstractModel):
             body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
                 'message': message, 'message_company': message_company,
             }, engine='ir.qweb')
-            self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
+            company_bounce = "%s@%s" %(str(bounce_alias),str(message_company.alias_domain)) if message_company.alias_domain else "%s@%s" %(str(bounce_alias),str(bounce_domain)) # get no-reply ( bounce ) email from company and ir.config_parameter
+            self._routing_create_bounce_email(email_from, body, message, reply_to=str(company_bounce)) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
             if bounce_match:
                 company = 1
                 if 'digimoov' in email_to: #check if email_to contains digimoov
@@ -112,7 +114,7 @@ class MailThreadInherit(models.AbstractModel):
                 body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
                     'message': message, 'message_company': message_company,
                 }, engine='ir.qweb')
-                self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email)
+                self._routing_create_bounce_email(email_from, body, message, reply_to=company_bounce) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
                 return []
         if message.get_content_type() == 'multipart/report' or email_from_localpart == 'mailer-daemon':
             _logger.info('multipart/report')
