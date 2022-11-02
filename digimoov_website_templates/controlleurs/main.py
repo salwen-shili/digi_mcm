@@ -669,6 +669,7 @@ class Services(http.Controller):
                 {'phone': phone, 'website_id': 1, 'email': email_from})
             elif request.website.id == 2:
                 user.sudo().write({'company_id': 2, 'company_ids': [1, 2]})
+                #fill fileds of the client ( phone , firstname , lastname )
                 user.partner_id.sudo().write(
                     {'phone': phone, 'website_id': 2, 'email': email_from,'firstname':str(contact_name),'lastName':str(contact_last_name).upper(),'lastname':str(contact_last_name).upper()})
         if user:
