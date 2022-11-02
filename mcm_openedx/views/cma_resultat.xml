@@ -8,6 +8,9 @@
             <search>
                 <filter name="group_resulta" string="Resultat" icon="terp-partner"
                         context="{'group_by':'resulta'}"/>
+                <filter name="group_statut_exman" string="exam state" icon="terp-partner"
+                        context="{'group_by':'statut_exman'}"/>
+
 
             </search>
         </field>
