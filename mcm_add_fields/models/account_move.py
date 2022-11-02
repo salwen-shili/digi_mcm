@@ -801,7 +801,7 @@ class AccountMove(models.Model):
 
                 for register in registrations:
                     externalId = register['externalId']
-                    billidd=register['billId']
+                    billidd=register['billNumber']
                     billid=""
                     if billidd:
                         """get last 4 number of invoice"""
