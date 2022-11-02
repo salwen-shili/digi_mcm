@@ -57,7 +57,7 @@ class MailThreadInherit(models.AbstractModel):
         if not isinstance(message, Message):
             raise TypeError('message must be an email.message.Message at this point')
         catchall_alias = self.env['ir.config_parameter'].sudo().get_param("mail.catchall.alias")
-        bounce_alias = self.env['ir.config_parameter'].sudo().get_param("mail.bounce.alias")
+        bounce_alias = self.env['ir.config_parameter'].sudo().get_param("mail.bounce.alias") #get no reply boucing alias from config parameter created on ovh mailing
         fallback_model = model
 
         # get email.message.Message variables for future processing
@@ -93,12 +93,26 @@ class MailThreadInherit(models.AbstractModel):
         #        As all MTA does not respect this RFC (googlemail is one of them),
         #       we also need to verify if the message come from "mailer-daemon"
         #    If not a bounce: reset bounce information
-        if bounce_alias and bounce_alias in email_to_localpart:
-            _logger.info('email_to_localpart')
+        if bounce_alias and bounce_alias in email_to_localpart: #check if email_to ( reply to ) contains no reply ( bounce_alias)
             bounce_re = re.compile("%s\+(\d+)-?([\w.]+)?-?(\d+)?" % re.escape(bounce_alias), re.UNICODE)
             bounce_match = bounce_re.search(email_to)
+            company = 1
+            if 'digimoov' in email_to:  # check if email_to contains digimoov
+                company = 2
+            message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
+            body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
+                'message': message, 'message_company': message_company,
+            }, engine='ir.qweb')
+            self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
             if bounce_match:
-                self._routing_handle_bounce(message, message_dict)
+                company = 1
+                if 'digimoov' in email_to: #check if email_to contains digimoov
+                    company = 2
+                message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
+                body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
+                    'message': message, 'message_company': message_company,
+                }, engine='ir.qweb')
+                self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email)
                 return []
         if message.get_content_type() == 'multipart/report' or email_from_localpart == 'mailer-daemon':
             _logger.info('multipart/report')
@@ -125,7 +139,6 @@ class MailThreadInherit(models.AbstractModel):
                 (reply_model, reply_thread_id, custom_values, user_id, dest_aliases),
                 raise_exception=False)
             if route:
-                _logger.info('message_route message : %s' %(str(message)))
                 _logger.info('message_route route : %s' %(str(route)))
                 _logger.info(
                     'Routing mail from %s to %s with Message-Id %s: direct reply to msg: model: %s, thread_id: %s, custom_values: %s, uid: %s',
@@ -202,6 +215,23 @@ class MailThreadInherit(models.AbstractModel):
             'Create an appropriate mail.alias or force the destination model.' %
             (email_from, email_to, message_id)
         )
+
+    def _routing_create_bounce_email(self, email_from, body_html, message, **mail_values):
+        bounce_to = tools.decode_message_header(message, 'Return-Path') or email_from
+        _logger.info('_routing_create_bounce_email bounce_to : %s' % (str(bounce_to)))
+        bounce_mail_values = {
+            'body_html': body_html,
+            'subject': 'Re: %s' % message.get('subject'),
+            'email_to': bounce_to,
+            'auto_delete': True,
+        }
+        bounce_from = self.env['ir.mail_server']._get_default_bounce_address()
+        _logger.info('_routing_create_bounce_email bounce_from : %s' % (str(bounce_from)))
+        if bounce_from:
+            bounce_mail_values['email_from'] = 'MAILER-DAEMON <%s>' % bounce_from
+        _logger.info('_routing_create_bounce_email mail_values : %s' % (str(mail_values)))
+        bounce_mail_values.update(mail_values)
+        self.env['mail.mail'].create(bounce_mail_values).send()
     
 class AliasMail(models.Model):
     _name = 'alias.mail'
