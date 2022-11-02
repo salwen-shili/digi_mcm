@@ -53,11 +53,11 @@ class PaymentTransaction(models.Model):
         return transaction
 
     def _check_amount_and_confirm_order(self):
-        #inherit _check_amount_and_confirm_order odoo function to deal 
+        #inherit _check_amount_and_confirm_order odoo function to deal the multipayment condition ( confirm order if client choose multipayment )
         self.ensure_one()
         for order in self.sale_order_ids.filtered(lambda so: so.state in ('draft', 'sent')):
-            if order.instalment :
-                if float_compare(self.amount, order.amount_total/order.instalment_number, 2) == 0:
+            if order.instalment: #check if client choosed multipayment
+                if float_compare(self.amount, order.amount_total/order.instalment_number, 2) == 0: #compare amount of transaction with amount of instalment
                     order.with_context(send_email=True).action_confirm()
                 else:
                     _logger.warning(
@@ -74,7 +74,7 @@ class PaymentTransaction(models.Model):
                                  self.amount,
                              )
                     )
-            else :
+            else : #if client did not choose multipayment leave odoo default code
                 if float_compare(self.amount, order.amount_total, 2) == 0:
                     order.with_context(send_email=True).action_confirm()
                 else:
@@ -92,16 +92,16 @@ class PaymentTransaction(models.Model):
                         )
                     )
     def _invoice_sale_orders(self):
-        res = super(PaymentTransaction, self)._invoice_sale_orders()
+        res = super(PaymentTransaction, self)._invoice_sale_orders() #inherit odoo _invoice_sale_orders function , this function has the role of creating an invoice when confirming an order after passing a payment via a transaction
         template = self.env['mail.template'].sudo().search([('model', '=', 'account.move')])
         for trans in self.filtered(lambda t: t.sale_order_ids):
-            if trans.invoice_ids :
+            if trans.invoice_ids : #check if transaction has invoices
                 for sale in trans.sale_order_ids :
                     sale.partner_id.mcm_session_id = sale.session_id
                     sale.partner_id.module_id = sale.module_id
                     sale.partner_id.sudo().write({'statut': 'won'})
                     sale.partner_id.mode_de_financement = 'particulier'
-                    for invoice in trans.invoice_ids :
+                    for invoice in trans.invoice_ids : #fill in the additional fields of the invoice ( session,module,type_facture, methodes_payment ... etc)
                         invoice.post()
                         invoice.type_facture='web'
                         invoice.methodes_payment = 'cartebleu'
