@@ -12,59 +12,6 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, formataddr
 _logger = logging.getLogger(__name__)
 
 
-class InheritSignTemplate(models.Model):
-    _inherit = "sign.template"
-
-    # @api.model
-    # def add_default_folder(self, value):
-    #     sub_folder_name = self.name.rsplit('-', 1)[0]
-    #     folder = self.env['documents.folder'].search([('name', 'ilike', sub_folder_name)])
-    #     for fol in folder:
-    #         if fol:
-    #             self.folder_id = folder.id
-    #         else:
-    #             self.folder_id = folder if folder else self.env['documents.folder'].create({'name': sub_folder_name})
-
-    @api.onchange('name', '__last_update', 'write_date', 'create_date')
-    def folder_per_model_sign(self):
-        if "cerfa" or "CERFA" in str(self.name):
-            self.active = True
-            sub_folder_name = self.name.rsplit('-', 1)[0]
-            _logger.info("sub_folder_name %s" % str(sub_folder_name))
-            folder = self.env['documents.folder'].search([('name', 'ilike', sub_folder_name)], limit=1)
-            _logger.info("¨¨¨¨¨¨¨¨TAKWA¨¨¨¨¨¨¨¨¨¨¨¨¨folder %s" % str(folder))
-            folder_cerfa = self.env['documents.folder'].search([('name', '=', "CERFA"), ('id', '!=', folder.id)],
-                                                               limit=1)
-            _logger.info("¨¨¨¨¨¨¨¨folder_cerfa¨¨¨¨¨¨¨¨¨¨¨folder_cerfa %s" % str(folder_cerfa))
-
-            if not folder:
-                sub_folder = self.env['documents.folder'].sudo().create({'name': str(sub_folder_name),
-                                                                         'parent_folder_id': folder_cerfa.id,
-                                                                         'company_id': 2})
-                if folder_cerfa:
-                    _logger.info("¨¨¨¨¨¨¨¨TAKWA¨¨¨¨¨¨¨¨¨¨¨¨¨folder_cerfa %s" % str(sub_folder))
-                    self.folder_id.parent_folder_id = folder_cerfa.id
-                else:
-                    folder_cerfa_p = self.env['documents.folder'].sudo().create({'name': "CERFA"})
-                    sub_folder.folder_id.parent_folder_id = folder_cerfa_p
-                self.folder_id = sub_folder.id
-                self.active = True
-            else:
-                self.folder_id = folder.id
-                self.folder_id.parent_folder_id = folder_cerfa.id
-                self.companu_id = 2
-                self.active = True
-
-    @api.model
-    def create(self, vals):
-        _logger.info("¨¨¨¨¨¨¨¨request str¨¨¨¨¨¨¨¨¨ %s" % str(res['folder_id'].name))
-        res = super(InheritSignTemplate, self).sudo().create(vals)
-        if "cerfa" or "CERFA" or "Cerfa" in str(self.name):
-            self.folder_per_model_sign(self)
-            _logger.info("¨¨¨¨¨¨¨¨request str¨¨¨¨¨¨¨¨¨ %s" % str(res['folder_id'].name))
-        return res
-
-
 class InheritSignRequest(models.Model):
     _inherit = "sign.request"
 
