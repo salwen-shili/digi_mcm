@@ -315,6 +315,8 @@ class Coach(models.Model):
                             _logger.info('partner.name %s' % str(partner.name))
                             _logger.info('partner.coach_peda == Falsee %s' % str(count_apprennat))
                             partner.coach_peda = message.author_id
+                            partner.state = "en_formation"
+
                         else:
                             if partner.state != "supprimé":
                                 partner.state = "en_formation"
