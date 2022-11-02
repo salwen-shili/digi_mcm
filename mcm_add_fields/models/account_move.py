@@ -774,7 +774,7 @@ class AccountMove(models.Model):
                     ('state', 'all'),
                     ('billingState', 'billed'),
                     ('sort', 'lastUpdate'),
-                    ('since', '2022-01-03'),
+                    ('since', '2022-10-01'),
                     ('limit', '1000')
                 )
 
@@ -825,6 +825,7 @@ class AccountMove(models.Model):
                             invoice_name=invoice.name
                             invoice_ref=invoice_name[-5:]
                             if billid==invoice_ref:
+                                _logger.info("if bill %s" % str(invoice_ref))
                                 invoice.billed_cpf=True
 
 
