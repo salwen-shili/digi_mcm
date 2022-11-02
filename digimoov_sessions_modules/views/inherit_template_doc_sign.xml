@@ -33,7 +33,7 @@
                     </a>
                     <a role="button" t-if="sign_request.start_sign"
                        t-attf-href="/sign/download/{{sign_request.id}}/{{sign_request.access_token}}/log"
-                       class="btn btn-secondary o_sign_download_log_button">Activity Logs
+                       class="btn btn-secondary o_sign_download_log_button">Les détails
                     </a>
                 </div>
 
