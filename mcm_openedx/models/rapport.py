@@ -70,7 +70,6 @@ class rapport(models.Model):
                         existe.numero_formation = sale_order.order_line.product_id.name
                         existe.numero_action = sale_order.order_line.product_id.name
                         existe.numero_session = sale_order.order_line.product_id.name
-
                         _logger.info(partner.id)
                         _logger.info("ookokokokokokokokkkkkkkkkkkk")
                         existe.partner_id = partner.id
