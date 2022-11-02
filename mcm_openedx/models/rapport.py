@@ -68,10 +68,10 @@ class rapport(models.Model):
                         existe.company = partner.company_id.name
                         existe.partner_id = partner.id
                         existe.name = partner.name
+                        existe.numero_action = sale_order.order_line.product_id.name
+                        existe.numero_session = sale_order.order_line.product_id.name
                         if sale_order.invoice_status == "invoiced":
                             existe.numero_formation = sale_order.order_line.product_id.name
-                            existe.numero_action = sale_order.order_line.product_id.name
-                            existe.numero_session = sale_order.order_line.product_id.name
 
                 if existe.description:
                     desc = existe.description.split(" ")
