@@ -763,6 +763,71 @@ class AccountMove(models.Model):
                 _logger.info("remplir invoice %s" %invoice.partner_id.mcm_session_id)
                 invoice.session_id=invoice.partner_id.mcm_session_id
                 
+    def remplir_billed_cpf(self):
+        companies = self.env['res.company'].sudo().search([])
+        if companies:
+            for company in companies:
+                api_key = company.wedof_api_key
+                params_wedof = (
+                    ('order', 'desc'),
+                    ('type', 'all'),
+                    ('state', 'all'),
+                    ('billingState', 'billed'),
+                    ('sort', 'lastUpdate'),
+                    ('since', '2022-01-03'),
+                    ('limit', '1000')
+                )
+
+                headers = {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-API-KEY': api_key,
+                }
+                """Récupérer à partir de wedof la liste des dossiers   ayant statut de facture acompte déposé  """
+                response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                        params=params_wedof)
+                registrations = response.json()
+                params_ = (
+                    ('order', 'desc'),
+                    ('type', 'bill'),
+                    ('state', 'issued'),
+                    ('limit', '1000'),
+                    ('since', '2022-01-03')
+                )
+
+                # response_paiement = requests.get('https://www.wedof.fr/api/payments/', headers=headers,
+                #                                  params=params_)
+                # paiements = response_paiement.json()
+
+                for register in registrations:
+                    externalId = register['externalId']
+                    billidd=register['billId']
+                    billid=""
+                    if billidd:
+                        """get last 4 number of invoice"""
+                        billid = billidd[-5:]
+
+                        """Changer format date"""
+                        # if 'transactionDate' in paiement and paiement['transactionDate']:
+                        #     transaction_date = str(paiement['transactionDate'])
+                        #     print(transaction_date)
+                        #     trdate = datetime.strptime(transaction_date, '%Y-%m-%dT%H:%M:%S.%fz')
+                        #     newformat = "%d/%m/%Y"
+                        #     trdateform = trdate.strftime(newformat)
+                        #     trans_date = datetime.strptime(trdateform, "%d/%m/%Y")
+                    _logger.info("externalId %s" % str(externalId))
+                    _logger.info("billid %s" % str(billid))
+                    invoices = self.env['account.move'].sudo().search([("numero_cpf", "=", externalId),
+                                                                       ("methodes_payment", "=", "cpf"),])
+                    if invoices:
+                         for invoice in invoices:
+                            _logger.info("invoice %s" % str(invoice.name))
+                            invoice_name=invoice.name
+                            invoice_ref=invoice_name[-5:]
+                            if billid==invoice_ref:
+                                invoice.billed_cpf=True
+
+
 
 
 
