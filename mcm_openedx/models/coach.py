@@ -320,9 +320,6 @@ class Coach(models.Model):
                         else:
                             if partner.state != "supprimé":
                                 partner.state = "en_formation"
-
-
-
                 self.env.cr.commit()
             except Exception:
                 self.env.cr.rollback()

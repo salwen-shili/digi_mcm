@@ -220,6 +220,8 @@ class cma(models.Model):
 
                     if existe:
                         existe.module_id = partner.module_id.id
+                        existe.epreuve_theorique = existee.resulta
+                        existe.presence_mcm = existee.statut_exman
 
         return {
             'type': 'ir.actions.client',
