@@ -88,6 +88,12 @@ class enattente(models.Model):
         _logger.info('response.status_code de linscripstion  ou desincs cour %s' % str(response.status_code))
 
     def wedof_api_integration_moocit(self):
+        for existee_mcm in self.env['mcm_openedx.enattente'].search([('externalId', '!=', False)]):
+            for partner_mcm in self.env['res.partner'].search([('numero_cpf', '=',existee_mcm.externalId)]):
+                existee_mcm.state = partner_mcm.statut_cpf
+                if  existee_mcm.state == "in_training":
+                    existee_mcm.browse(existee_mcm.id).sudo().unlink()
+
         todays_date = date.today()
         companies = self.env['res.company'].sudo().search([])
         print(companies)
@@ -139,6 +145,8 @@ class enattente(models.Model):
                 billingState = dossier['billingState']
                 externalId = dossier['externalId']
                 lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+
+
 
                 if (certificat == "Habilitation pour l’accès à la profession de conducteur de taxi") or (
                         certificat == "Habilitation pour l’accès à la profession de conducteur de voiture de transport avec chauffeur (VTC)"):
@@ -225,12 +233,15 @@ class enattente(models.Model):
                                                 _logger.info('sms non envoyé')
                         print("Count apprenant statut cpf Cancled", count)
                         for partner in self.env['res.partner'].search(
-                                [('numero_cpf', '=', existee.externalId), ('statut_cpf', '!=', 'canceled')]):
+                                [('numero_cpf', '=', existee.externalId)]):
                             existee.existant = True
+
+
                             _logger.info(existee.existant)
                             print("res.partner db", partner.numero_cpf)
                             for existt in self.env['mcm_openedx.course_stat'].sudo().search(
                                     [('email', "like", existee.name)]):
+                                existt.state = partner.statut_cpf
                                 existee.existantsurmooc = True
                                 print(partner.name)
                                 print(partner.email)
@@ -304,6 +315,8 @@ class Coach(models.Model):
                             _logger.info('partner.name %s' % str(partner.name))
                             _logger.info('partner.coach_peda == Falsee %s' % str(count_apprennat))
                             partner.coach_peda = message.author_id
+                            partner.state = "en_formation"
+
                         else:
                             if partner.state != "supprimé":
                                 partner.state = "en_formation"

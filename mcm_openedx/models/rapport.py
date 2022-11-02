@@ -61,20 +61,17 @@ class rapport(models.Model):
             for partner in self.env['res.partner'].search(
                     [('email', '=', existe.customer_email)]):
                 sale_order = self.env['sale.order'].sudo().search(
-                    [('partner_id', '=', partner.id), ('invoice_status', '=', "invoiced")], limit=1,
+                    [('partner_id', '=', partner.id)], limit=1,
                     order="id desc")
-
-                if existe.type_financement == "stripe" and sale_order.invoice_status == "invoiced":
+                if existe.type_financement == "stripe":
                     if partner.email == existe.customer_email:
                         existe.company = partner.company_id.name
-                        existe.numero_formation = sale_order.order_line.product_id.name
-                        existe.numero_action = sale_order.order_line.product_id.name
-                        existe.numero_session = sale_order.order_line.product_id.name
-
-                        _logger.info(partner.id)
-                        _logger.info("ookokokokokokokokkkkkkkkkkkk")
                         existe.partner_id = partner.id
                         existe.name = partner.name
+                        existe.numero_action = sale_order.order_line.product_id.name
+                        existe.numero_session = sale_order.order_line.product_id.name
+                        if sale_order.invoice_status == "invoiced":
+                            existe.numero_formation = sale_order.order_line.product_id.name
 
                 if existe.description:
                     desc = existe.description.split(" ")
