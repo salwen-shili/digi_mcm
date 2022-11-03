@@ -219,14 +219,14 @@ class OnfidoController(http.Controller):
                     if 'image_integrity' in report['breakdown']:
                         breakdown_quality = report['breakdown']['image_integrity']
                         if breakdown_quality['result'] != 'clear':
-                            message_ticket = message_ticket + "Documents de mauvaise qualité."
+                            message_ticket = message_ticket + "Document de mauvaise qualité."
                             _logger.info('breakdown %s' % str(breakdown_quality['result']))
                     if 'data_validation' in report['breakdown'] and 'document_expiration' in \
                             report['breakdown']['data_validation']['breakdown']:
                         breakdown_expiration = report['breakdown']['data_validation']['breakdown'][
                             'document_expiration']
                         if breakdown_expiration['result'] != 'clear':
-                            message_ticket = message_ticket + "Documents expirés,"
+                            message_ticket = message_ticket + "Le document expirera au bout de 4 mois,"
                             _logger.info('breakdown %s' % str(breakdown_expiration['result']))
                 """créer ticket pour service client et mettre la motif de refus sur la fiche"""
                 data_onfido.motif = message_ticket
