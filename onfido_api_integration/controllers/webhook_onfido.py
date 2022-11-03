@@ -66,6 +66,9 @@ class OnfidoController(http.Controller):
             on fait la mise à jour de la fiche client """
             if 'extracted_data' in extraction:
                 _logger.info("extract date %s" % str(extraction['extracted_data']))
+                if 'document_type' in extraction['extracted_data']:
+                    data_onfido.type_front = extraction['extracted_data']['document_type']
+                    
                 if 'date_of_birth' in extraction['extracted_data']:
                     partner.birthday = extraction['extracted_data']['date_of_birth']
                 if 'nationality' in extraction['extracted_data']:
@@ -153,41 +156,16 @@ class OnfidoController(http.Controller):
         currentUser = request.env['res.partner'].sudo().search([('onfido_applicant_id', "=", applicant_id)])
         data_onfido = request.env['onfido.info'].sudo().search([('partner_id', '=', currentUser.id)], limit=1,
                                                                order="id desc")
+
         list_document = partner.get_listDocument(applicant_id, website.onfido_api_key_live)
         _logger.info('*************************************DOCUMENT***************** %s' % str(currentUser))
         if currentUser:
-            """get report document"""
-            check = currentUser.get_checks(applicant_id, website.onfido_api_key_live)
-            if check['checks']:
-                report_id = check['checks'][0]['report_ids'][0]
-                # _logger.info("report_id %s" % str(report_id))
-                report = currentUser.get_report(report_id, website.onfido_api_key_live)
-                _logger.info("reppooort %s" % str(report))
-                if 'visual_authenticity' in  report['breakdown']:
-                    breakdown_origin = report['breakdown']['visual_authenticity']
-                    if breakdown_origin['result'] != 'clear':
-                        motif_fiche = "Type de documents scannés ou capture d'écran."
-                        message_ticket = "Motif : Type de documents scannés ou capture d'écran."
-                        _logger.info('breakdown %s' % str(breakdown_origin['result']))
-                if 'image_integrity' in report['breakdown']:
-                    breakdown_quality = report['breakdown']['image_integrity']
-                    if breakdown_quality['result'] != 'clear':
-                        motif_fiche = "Documents de mauvaise qualité."
-                        message_ticket = "Motif : Documents de mauvaise qualité."
-                        _logger.info('breakdown %s' % str(breakdown_quality['result']))
-                if 'data_validation' in report['breakdown'] and 'document_expiration' in report['breakdown']['data_validation']['breakdown'] :
-                    breakdown_expiration = report['breakdown']['data_validation']['breakdown']['document_expiration']
-                    if breakdown_expiration['result'] != 'clear':
-                        motif_fiche = "Documents expirés"
-                        message_ticket = "Motif : Documents expirés."
-                        _logger.info('breakdown %s' % str(breakdown_expiration['result']))
             """get result of validation, if fail we check the reason in brakdown and notify the user"""
             if str(workflow_runs['finished']) == 'True' and workflow_runs['state'] == 'fail':
                 _logger.info('state document %s' % str(workflow_runs['state']))
                 currentUser.validation_onfido = "fail"
                 if data_onfido:
                     data_onfido.validation_onfido = "fail"
-                    data_onfido.motif = motif_fiche
                     _logger.info(
                         '*************************************currentUser.validation_onfido***************** %s' % str(
                             currentUser.id))
@@ -212,11 +190,50 @@ class OnfidoController(http.Controller):
                 #     if documents:
                 #         for document in documents:
                 #             document.state = "refused"
-                """créer ticket pour service client"""
+                """get report document"""
+                check = currentUser.get_checks(applicant_id, website.onfido_api_key_live)
+                if check['checks']:
+                    report_id = check['checks'][0]['report_ids'][0]
+                    # _logger.info("report_id %s" % str(report_id))
+                    report = currentUser.get_report(report_id, website.onfido_api_key_live)
+                    _logger.info("reppooort %s" % str(report))
+                    if 'visual_authenticity' in report['breakdown']:
+                        breakdown_origin = report['breakdown']['visual_authenticity']['breakdown']['original_document_present']
+                        if report['breakdown']['visual_authenticity']['result'] != 'clear':
+                            message_ticket="Les éléments visuels (non textuels) sont incorrects,"
+                        if breakdown_origin['result'] != 'clear':
+                            message_ticket = message_ticket +"Format du document non original,"
+                            _logger.info('breakdown %s' % str(breakdown_origin['result']))
+                    if 'data_consistency' in report['breakdown']:
+                        breakdown_data_consist = report['breakdown']['data_consistency']
+                        if breakdown_data_consist['result'] != 'clear':
+                            message_ticket = message_ticket+"Données non cohérentes,"
+                            _logger.info('breakdown %s' % str(breakdown_data_consist['result']))
+                    if 'age_validation' in report['breakdown']:
+                        breakdown_age_validation = report['breakdown']['age_validation']
+                        if breakdown_age_validation['result'] != 'clear':
+                            message_ticket =message_ticket+ "Âge non accepté,"
+                            _logger.info('breakdown %s' % str(breakdown_age_validation['result']))
+
+
+                    if 'image_integrity' in report['breakdown']:
+                        breakdown_quality = report['breakdown']['image_integrity']
+                        if breakdown_quality['result'] != 'clear':
+                            message_ticket = message_ticket + "Document de mauvaise qualité."
+                            _logger.info('breakdown %s' % str(breakdown_quality['result']))
+                    if 'data_validation' in report['breakdown'] and 'document_expiration' in \
+                            report['breakdown']['data_validation']['breakdown']:
+                        breakdown_expiration = report['breakdown']['data_validation']['breakdown'][
+                            'document_expiration']
+                        if breakdown_expiration['result'] != 'clear':
+                            message_ticket = message_ticket + "Le document expirera au bout de 4 mois,"
+                            _logger.info('breakdown %s' % str(breakdown_expiration['result']))
+                """créer ticket pour service client et mettre la motif de refus sur la fiche"""
+                data_onfido.motif = message_ticket
+
                 vals = {
                     'partner_email': '',
-                    'partner_id': currentUser.id,
-                    'description': message_ticket,
+                    'description': "Client:"  + " " + currentUser.name+" Motif:" +message_ticket,
                     'name': 'Documents refusés',
                     'team_id': request.env['helpdesk.team'].sudo().search(
                         [('name', "like", _('Client')), ('company_id', "=", 2)],

@@ -13,6 +13,7 @@
                             <field name="sdk_token"/>
                             <field name="id_document_back" />
                             <field name="id_document_front" />
+                            <field name="type_front" />
                             <field name="validation_onfido"></field>
                             <field name="motif"></field>
                         </tree>
