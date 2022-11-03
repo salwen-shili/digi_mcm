@@ -23,7 +23,7 @@
             report_type="qweb-pdf"
             name="partner_exam.id_convocation_print_report_pdf_ids"
             file="partner_exam.id_convocation_print_report_pdf_ids"
-            print_report_name="'Convocation- %s - %s' % ((object.mcm_session_id.date_exam),(object.name).replace('/', ''))"
+            print_report_name="'Convocation - %s - %s - %s' % ((object.name).replace('/', ''),(object.mcm_session_id.session_ville_id.display_name), (object.mcm_session_id.date_exam.strftime('%d/%m/%Y')))"
             paperformat="partner_exam.paperformat_convocation"
     />
 
@@ -34,7 +34,7 @@
             report_type="qweb-pdf"
             name="partner_exam.examen_convocation_id"
             file="partner_exam.convocation_examen_ids"
-            print_report_name="'Convocation- %s - %s' % ((object.partner_id.mcm_session_id.date_exam),(object.partner_id.name).replace('/', ''))"
+            print_report_name="'Convocation - %s - %s - %s' % ((object.partner_id.name).replace('/', ''), (object.ville_id.display_name), (object.date_exam.strftime('%d/%m/%Y')))"
             paperformat="partner_exam.paperformat_convocation"
     />
 
@@ -62,7 +62,7 @@
             report_type="qweb-pdf"
             name="partner_exam.id_many_releve_note_print_report_pdf"
             file="partner_exam.report_releve_note_id"
-            print_report_name="'Relevé-de-notes %s' % (object.name).replace('/', '')"
+            print_report_name="'Relevé de notes - %s - %s - %s' % ((object.name).replace('/', ''), (object.mcm_session_id.session_ville_id.display_name), (object.mcm_session_id.date_exam.strftime('%d/%m/%Y')))"
             paperformat="partner_exam.paperformat_releve_note_id"/>
 
     <!-- This is the action to create a print pdf in module info.examen for "Générer les relevés de notes", using the template(xml) ID-->
@@ -73,7 +73,7 @@
             name="partner_exam.examen_releve_note_id"
             file="partner_exam.examen_releve_note_ids"
             menu="True"
-            print_report_name="'Relevé-de-notes- %s' % (object.partner_id.name).replace('/', '')"
+            print_report_name="'Relevé de notes - %s - %s - %s' % ((object.partner_id.name).replace('/', ''), (object.ville_id.display_name), (object.date_exam.strftime('%d/%m/%Y')))"
             paperformat="partner_exam.paperformat_releve_note_id"/>
 
     <!-- Rapport attestation de suivi de formation dans l'interface de notes des examen, le menu existe dans la session-->
@@ -84,7 +84,7 @@
             name="partner_exam.examen_attestation_suivi_formation_id"
             file="partner_exam.examen_suivi_de_formation_ids"
             menu="True"
-            print_report_name="'Attestation-suivi-formation- %s' % (object.partner_id.name).replace('/', '')"
+            print_report_name="'Attestation suivi formation - %s - %s - %s' % ((object.partner_id.name).replace('/', ''), (object.ville_id.display_name), (object.date_exam.strftime('%d/%m/%Y')))"
             paperformat="partner_exam.paperformat_releve_note_id"/>
 
     <!-- Rapport cerfa dans l'interface de notes des examen, le menu existe dans la session-->
@@ -95,7 +95,7 @@
             name="partner_exam.examen_rapport_cerfa_id"
             file="partner_exam.examen_cerfa_id"
             menu="True"
-            print_report_name="''%s' % (object.partner_id.mcm_session_id.ville_id.display_name) '%s' object.partner_id.mcm_session_id.date_exam - Cerfa / %s' % (object.partner_id.name).replace('/', '')"
+            print_report_name="'CERFA - %s - %s - %s' % ((object.partner_id.name).replace('/', ''), (object.ville_id.display_name), (object.date_exam.strftime('%d/%m/%Y')))"
             paperformat="partner_exam.paperformat_cerfa"/>
 
     <!--This is the action to create a print pdf in module res.partner for "Attestation de suivi de formation", using the template(xml) ID-->
@@ -105,7 +105,7 @@
             report_type="qweb-pdf"
             name="partner_exam.attestation_suivi_formation_id"
             file="partner_exam.id_attestation"
-            print_report_name="'Attestation-suivi-formation- %s' % (object.name).replace('/', '')"
+            print_report_name="'Attestation suivi formation - %s - %s - %s' % ((object.name).replace('/', ''), (object.mcm_session_id.session_ville_id.display_name), (object.mcm_session_id.date_exam.strftime('%d/%m/%Y')))"
             paperformat="partner_exam.paperformat_releve_note_id"/>
 
     <!--    This is used to reformat paper pdf format of cerfa report -->
@@ -166,6 +166,7 @@
             report_type="qweb-pdf"
             name="partner_exam.template_raport_cerfa"
             file="partner_exam.report_cerfa"
+            print_report_name="'CERFA - %s - %s - %s' % ((object.name).replace('/', ''), (object.mcm_session_id.session_ville_id.display_name), (object.mcm_session_id.date_exam.strftime('%d/%m/%Y')))"
             paperformat="partner_exam.paperformat_cerfa"
     />
 
@@ -176,7 +177,7 @@
             report_type="qweb-pdf"
             name="partner_exam.pdf_connection_statement_report"
             file="partner_exam.pdf_connection_statement_id"
-            print_report_name="'Relevé de connexion- %s' % (object.name).replace('/', '')"
+            print_report_name="'Relevé de connexion - %s - %s - %s' % ((object.name).replace('/', ''), (object.mcm_session_id.session_ville_id.display_name), (object.mcm_session_id.date_exam.strftime('%d/%m/%Y')))"
             paperformat="partner_exam.paperformat_connection_statement"
     />
     <!-- Connection statement in exam view (Générer un relevé de connexion)-->
@@ -186,7 +187,7 @@
             report_type="qweb-pdf"
             name="partner_exam.examen_connection_statement"
             file="partner_exam.exam_connection_statement_id"
-            print_report_name="'Relevé de connexion- %s' % (object.partner_id.name).replace('/', '')"
+            print_report_name="'Relevé de connexion - %s - %s - %s' % ((object.partner_id.name).replace('/', ''), (object.ville_id.display_name), (object.date_exam.strftime('%d/%m/%Y')))"
             paperformat="partner_exam.paperformat_connection_statement"
     />
 
@@ -197,7 +198,7 @@
             report_type="qweb-pdf"
             name="partner_exam.pdf_rapport_session_examen"
             file="partner_exam.pdf_rapport_session_examen_id"
-            print_report_name="'RAPPORT DE SESSION D’EXAMEN- %s' % (object.name).replace('/', '')"
+            print_report_name="'RAPPORT DE SESSION D’EXAMEN - %s - %s - %s' % ((object.name).replace('/', ''), (object.mcm_session_id.session_ville_id.display_name), (object.mcm_session_id.date_exam.strftime('%d/%m/%Y')))"
             paperformat="partner_exam.paperformat_connection_statement"
     />
 
