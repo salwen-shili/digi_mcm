@@ -6,6 +6,9 @@
         <field name="model">mcm_openedx.cma</field>
         <field name="arch" type="xml">
             <search>
+                <field name="email" filter_domain="[('email','ilike',self)]"></field>
+                <field name="numero_dossier" filter_domain="[('numero_dossier','ilike',self)]"></field>
+
                 <filter name="group_resulta" string="Resultat" icon="terp-partner"
                         context="{'group_by':'resulta'}"/>
                 <filter name="group_statut_exman" string="exam state" icon="terp-partner"
