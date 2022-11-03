@@ -2753,7 +2753,6 @@ class MCM_SIGNUP(http.Controller):
                         if partner.email == existe.customer_email:
                             existe.company = partner.company_id.name
                             _logger.info(partner.id)
-                            _logger.info("ookokokokokokokokkkkkkkkkkkk")
                             existe.partner_id = partner.id
 
                 new = request.env['mcm_openedx.rapport'].sudo().create({

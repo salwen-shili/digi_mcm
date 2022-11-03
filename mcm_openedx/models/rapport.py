@@ -117,7 +117,7 @@ class rapport(models.Model):
                 date_ = datetime.strptime(date_split, "%Y-%m-%d")
                 dateFormation = date_.date()
                 numero_formation = dossier['trainingActionInfo']['sessionId']
-                print("oaoaoaoaooaoa", numero_formation.split("/")[0].split("_", 1)[1])
+                #print("oaoaoaoaooaoa", numero_formation.split("/")[0].split("_", 1)[1])
                 count = 0
                 today = date.today()
                 lastupdatestr = str(dossier['lastUpdate'])
@@ -132,10 +132,8 @@ class rapport(models.Model):
                 montant_formation = dossier['trainingActionInfo']['totalExcl']
                 lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
                 acceptedDate = dossier['history']['acceptedDate'].split("T")[0]
-
                 print("statut_dossier", statut_dossier)
                 existe = self.env['mcm_openedx.rapport'].sudo().search([('numero_dossier', '=', dossier['externalId'])])
-
                 if not existe:
                     new = self.env['mcm_openedx.rapport'].sudo().create({
                         'customer_email': email,
