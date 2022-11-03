@@ -42,6 +42,16 @@ class resComapny(models.Model):
     code_evalbox = fields.Char()
     zip = fields.Char(change_default=True)
 
+    def print_report_name_partner(self):
+        """ La fonction sera utilisée dans les noms de rapport en format PDF de l'interface de contact."""
+        self.ensure_one()
+        return '- %s - %s - %s' % (self.display_name, self.mcm_session_id.session_ville_id.display_name, self.mcm_session_id.date_exam.strftime(
+                '%d/%m/%Y'))
+
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        return '%s %s' % (self.type_name, self.name)
+
     def compute_notes_exams_count(self):
         for record in self:
             record.note_exam_count = self.env['info.examen'].search_count(
@@ -121,7 +131,8 @@ class resComapny(models.Model):
             rd = relativedelta(date_exam, dt).years
             months = relativedelta(date_exam, dt).months
             jours = relativedelta(date_exam, dt).months
-            self.age = str(rd) + "ans" + " " + str(months) + "mois" + " " + str(jours) + "jours" # Affectation de l'age au champ age dans res.partner (année + mois)
+            self.age = str(rd) + "ans" + " " + str(months) + "mois" + " " + str(
+                jours) + "jours"  # Affectation de l'age au champ age dans res.partner (année + mois)
             _logger.info('rec.age date of birth-------------11111111111111111111-------- %s', self.age)
         if (
                 'nom_evalbox' in values or 'prenom_evalbox' in values or 'mcm_session_id' in values) and self.company_id.id == 2:  # If we have changed this fields
