@@ -2804,24 +2804,24 @@ class MCM_SIGNUP(http.Controller):
                                     if int(sale.amount_total) == amount:
                                         check_sale = True
                             _logger.info("check_sale : %s" % str(check_sale))
-                            if not check_sale:
-                                payment = request.env["account.payment"].sudo().create(
-                                    {
-                                        "payment_type": "inbound",
-                                        "payment_method_id": payment_method.id,
-                                        "partner_type": "customer",
-                                        "partner_id": move.partner_id.id,
-                                        "amount": amount,
-                                        "currency_id": move.currency_id.id,
-                                        "payment_date": datetime.now(),
-                                        "journal_id": acquirer.journal_id.id if acquirer else move.journal_id.id,
-                                        "communication": False,
-                                        "payment_token_id": False,
-                                        "invoice_ids": [(6, 0, move.ids)],
-                                    }
-                                )
-                                _logger.info("payment : %s" % str(payment))
-                                payment.post()
+                            # if not check_sale:
+                                # payment = request.env["account.payment"].sudo().create(
+                                #     {
+                                #         "payment_type": "inbound",
+                                #         "payment_method_id": payment_method.id,
+                                #         "partner_type": "customer",
+                                #         "partner_id": move.partner_id.id,
+                                #         "amount": amount,
+                                #         "currency_id": move.currency_id.id,
+                                #         "payment_date": datetime.now(),
+                                #         "journal_id": acquirer.journal_id.id if acquirer else move.journal_id.id,
+                                #         "communication": False,
+                                #         "payment_token_id": False,
+                                #         "invoice_ids": [(6, 0, move.ids)],
+                                #     }
+                                # )
+                                # _logger.info("payment : %s" % str(payment))
+                                # payment.post()
             return True
 
             #     _logger.info("if not invoice")
