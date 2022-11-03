@@ -61,7 +61,8 @@ class partner(models.Model):
             try:
                 if (partner.module_id.name != "Repassage VTC") or (partner.module_id.name != "Repassage TAXI") and (
                         partner.state != "supprimé"):
-                    if (partner.note_exam_mcm_id.presence_mcm == "presnet") and (partner.note_exam_mcm_id.epreuve_theorique == "ajourne"):
+                    if (partner.note_exam_mcm_id.presence_mcm == "presnet") and (
+                            partner.note_exam_mcm_id.epreuve_theorique == "ajourne"):
                         _logger.info(" suppprimer et Repassage 100 EUROOOO")
                         partner.state = "supprimé"
                         partner.supprimerdemoocit = date.today()
@@ -83,7 +84,8 @@ class partner(models.Model):
 
                         # self.desinscriteVTC(partner)
                         # self.desinscriteTaxi(partner)
-                    if (partner.note_exam_mcm_id.presence_mcm == "absence_justifiee") and (partner.note_exam_mcm_id.epreuve_theorique == "ajourne"):
+                    if (partner.note_exam_mcm_id.presence_mcm == "absence_justifiee") and (
+                            partner.note_exam_mcm_id.epreuve_theorique == "ajourne"):
                         _logger.info(" suppprimer et Repassage 100 EUROOOO")
                         partner.state = "supprimé"
                         partner.supprimerdemoocit = date.today()
@@ -105,7 +107,8 @@ class partner(models.Model):
 
                         self.desinscriteVTC(partner)
                         self.desinscriteTaxi(partner)
-                    if (partner.note_exam_mcm_id.presence_mcm == "Absent") and (partner.note_exam_mcm_id.epreuve_theorique == "ajourne"):
+                    if (partner.note_exam_mcm_id.presence_mcm == "Absent") and (
+                            partner.note_exam_mcm_id.epreuve_theorique == "ajourne"):
                         _logger.info("supprimer")
                         partner.state = "supprimé"
                         partner.supprimerdemoocit = date.today()
@@ -169,7 +172,6 @@ class partner(models.Model):
                             partner.env['mail.message'].sudo().create(values)
                             record.comment = ''
                             print("test")
-
 
                 self.env.cr.commit()
             except Exception:
@@ -834,26 +836,26 @@ class partner(models.Model):
                                 self.inscriteTaxi(partner)
                                 _logger.info("Ajouter a Repassage ")
 
-            #     # Ajout ticket pour notiifer le service client pour changer mp
-            #     # ajouter condition sur ticket
-            # if (
-            #         response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation' and partner.state != "supprimé" and partner.numero_evalbox != False):
-            #
-            #     _logger.info('Utilisateur  mot de passe invalide %s')
-            #     vals = {
-            #         'description': 'verifier mot de passe %s' % (partner.name),
-            #         'name': 'Le mot de passe est trop semblable au champ Email ',
-            #         'team_id': self.env['helpdesk.team'].sudo().search(
-            #             [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
-            #             limit=1).id,
-            #     }
-            #     description = "test " + str(partner.name)
-            #     ticket = self.env['helpdesk.ticket'].sudo().search(
-            #         [("description", "=", description)])
-            #     if not ticket:
-            #         print("cree ticket")
-            #         new_ticket = self.env['helpdesk.ticket'].sudo().create(
-            #             vals)
+                # Ajout ticket pour notiifer le service client pour changer mp
+                # ajouter condition sur ticket
+            if (
+                    response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation' and partner.state != "supprimé" and partner.numero_evalbox != False):
+
+                _logger.info('Utilisateur  mot de passe invalide %s')
+                vals = {
+                    'description': 'verifier mot de passe %s' % (partner.name),
+                    'name': 'Le mot de passe est trop semblable au champ Email ',
+                    'team_id': self.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                        limit=1).id,
+                }
+                description = "test " + str(partner.name)
+                ticket = self.env['helpdesk.ticket'].sudo().search(
+                    [("description", "=", description)])
+                if not ticket:
+                    print("cree ticket")
+                    new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                        vals)
 
     # Envoyer des e-mails aux apprenants.
     def sendmail(self, partner):
