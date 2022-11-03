@@ -838,24 +838,24 @@ class partner(models.Model):
 
                 # Ajout ticket pour notiifer le service client pour changer mp
                 # ajouter condition sur ticket
-            if (
-                    response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation' and partner.state != "supprimé" and partner.numero_evalbox != False):
-
-                _logger.info('Utilisateur  mot de passe invalide %s')
-                vals = {
-                    'description': 'verifier mot de passe %s' % (partner.name),
-                    'name': 'Le mot de passe est trop semblable au champ Email ',
-                    'team_id': self.env['helpdesk.team'].sudo().search(
-                        [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
-                        limit=1).id,
-                }
-                description = "test " + str(partner.name)
-                ticket = self.env['helpdesk.ticket'].sudo().search(
-                    [("description", "=", description)])
-                if not ticket:
-                    print("cree ticket")
-                    new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                        vals)
+            # if (
+            #         response_ajouter_iOne_MCM.status_code == 400 and partner.state != 'en_formation' and partner.state != "supprimé" and partner.numero_evalbox != False):
+            #
+            #     _logger.info('Utilisateur  mot de passe invalide %s')
+            #     vals = {
+            #         'description': 'verifier mot de passe %s' % (partner.name),
+            #         'name': 'Le mot de passe est trop semblable au champ Email ',
+            #         'team_id': self.env['helpdesk.team'].sudo().search(
+            #             [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+            #             limit=1).id,
+            #     }
+            #     description = "test " + str(partner.name)
+            #     ticket = self.env['helpdesk.ticket'].sudo().search(
+            #         [("description", "=", description)])
+            #     if not ticket:
+            #         print("cree ticket")
+            #         new_ticket = self.env['helpdesk.ticket'].sudo().create(
+            #             vals)
 
     # Envoyer des e-mails aux apprenants.
     def sendmail(self, partner):
