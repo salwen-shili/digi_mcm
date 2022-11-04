@@ -314,8 +314,9 @@ class Coach(models.Model):
                             # print("coaches.name", coaches.name)
                             _logger.info('partner.name %s' % str(partner.name))
                             _logger.info('partner.coach_peda == Falsee %s' % str(count_apprennat))
-                            partner.coach_peda = message.author_id
-                            partner.state = "en_formation"
+                            if message:
+                                partner.coach_peda = message.author_id
+                                #partner.state = "en_formation"
 
                         else:
                             if partner.state != "supprimé":

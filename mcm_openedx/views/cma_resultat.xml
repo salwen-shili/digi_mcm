@@ -81,10 +81,9 @@
         <field name="name">RESULTATS DE L'EPREUVE DES CANDIDATS</field>
         <field name="model">mcm_openedx.cma</field>
         <field name="arch" type="xml">
-            <pivot string="RESULTATS DE L'EPREUVE DES CANDIDATS" disable_linking="True">
+            <pivot string="RESULTATS DE L'EPREUVE DES CANDIDATS">
                 <field name="resulta" type="col"/>
                 <field name="email" type="row"/>
-
             </pivot>
         </field>
     </record>
