@@ -1350,4 +1350,181 @@
             </div>
         </xpath>
     </template>
+    <template id="digimoov_website_templates.pricing_table_content_solo" name="pack solo content">
+        <t t-call="web.layout">
+            <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;">
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>
+                        Formation 102h
+                        <font style="color: rgb(0, 0, 0);">(100% en ligne)</font>
+                    </b>
+                </li>
+                <li class="mb-4">
+                    <b>
+                        <span class="fa fa-times-circle fa-lg mr-2 text-danger" data-original-title="" title="" aria-describedby="tooltip550210" />
+                        <span style="font-weight: 400;" />
+                        Livre d'entraînement version électronique
+                    </b>
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+
+                    <span style="font-weight: bolder;">Accès à 5 examens d'entraînement</span>
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip996349" />
+
+                    <span style="font-weight: bolder;">Assistance par téléphone</span>
+                </li>
+                <li class="mb-4">
+                    <span class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip996349" style="font-size: 1.33333em;" />
+
+                    <span style="color: unset; font-size: 0.875rem; font-weight: bolder;">Assistance par mail</span>
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                    <b>Séances en Live avec un tuteur dédié</b>
+                </li>
+                <li class="mb-4" />
+                <li class="mb-4">
+                    <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                    <b>Révision du programme avant l'examen
+                </b>
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>Examen final en présentiel</b>
+                </li>
+             
+                <li class="mb-4">
+                    <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+
+                    <b>Consultation de votre copie d'examen*</b>
+                </li>
+                  <li class="mb-4">
+                    <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                    <b style="font-size:13.92px !Important">Assistance pour avoir la Licence de transport</b>
+                </li>
+                <li>
+                    <i />
+                </li>
+            </ul>
+        </t>
+
+    </template>
+    <template id="digimoov_website_templates.pricing_table_content_pro" name="pack pro content">
+        <t t-call="web.layout">
+            <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;">
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>
+                        Formation 102h
+                        <font style="color: rgb(0, 0, 0);">&amp;nbsp;(100% en ligne)</font>
+                    </b>
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>Livre d’entraînement version électronique</b>
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>Accès à 10 examens d'entraînement</b>
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
+                    <b>Assistance par téléphone</b>
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>Assistance par mail</b>
+                </li>
+                <li class="mb-4">
+                    <span class="desc-size fa fa-lg fa-times-circle text-danger mr-2" data-original-title="" title="" aria-describedby="tooltip288722" />
+                    <b>Séance en Live avec un tuteur dédié</b>
+                </li>
+                <li class="mb-4">
+                    <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em;" />
+                    <b>Révision du programme avant l'examen</b>
+
+                </li>
+                <li class="mb-4">
+                    <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
+
+                    <b>Examen final en présentiel &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
+                </li>
+                <li class="mb-4">
+                    <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
+
+                    <b>Consultation de votre copie d'examen*</b>
+                </li>
+                 <li class="mb-4">
+                    <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+
+                    <b>Assistance pour avoir la Licence de transport</b>
+                </li>
+                <li>
+                    <i />
+                </li>
+            </ul>
+        </t>
+
+    </template>
+    <template id="digimoov_website_templates.pricing_table_content_premium" name="pack premium content">
+        <t t-call="web.layout">
+            <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;">
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>
+                        Formation 102h
+                        <font style="color: rgb(0, 0, 0);">(100% en ligne)</font>
+                    </b>
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>Livre d’entraînement version électronique</b>
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>Accès à 14+ examens d'entraînement</b>
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>Assistance par téléphone.</b>
+                    <br />
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>Assistance par mail</b>
+                    <br />
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>Séances en Live avec un tuteur dédié</b>
+                    <br />
+                </li>
+                <li class="mb-4">
+                    <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>Révision du programme avant l'examen</b>
+                </li>
+                <li class="mb-4">
+                    <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b>Examen final en présentiel</b>
+                </li>
+                <li class="mb-4">
+                    <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
+
+                    <b>Consultation de votre copie d'examen*</b>
+                </li>
+                <li class="mb-4">
+                    <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
+                    <b style="font-size:13.92px !Important">Assistance pour avoir la Licence de transport</b>
+                </li>
+                <li>
+                    <i />
+                </li>
+            </ul>
+        </t>
+
+    </template>
 </odoo>

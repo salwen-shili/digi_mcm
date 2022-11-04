@@ -1027,18 +1027,19 @@
                             </div>
                             <div class="col-md-4 col-sm-6">
                                 <div class="card border-0 shadow" style="border-radius: 25px 25px;">
+                                    <t t-foreach="digimoov_products" t-as="product">
+                                        <t t-if="product.default_code=='avancee'">
                                     <div class="text-center text-white border-0" style="background-color:#6E209F;border-top-left-radius:25px;border-top-right-radius:25px;">
                                         <br />
                                         <h2>
                                             <strong style="color:white;">PRO</strong>
                                         </h2>
                                         <p>
-                                            <b>Éligible au CPF</b>
+                                            <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
                                     </div>
-                                    <t t-foreach="digimoov_products" t-as="product">
-                                        <t t-if="product.default_code=='avancee'">
+                                   
                                             <form action="/shop/cart/update" method="post">
                                                 <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                 <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
@@ -1123,18 +1124,19 @@
                             </div>
                             <div class="col-md-4 col-sm-12">
                                 <div class="card border-0 shadow" style="border-radius: 25px 25px;">
+                                    <t t-foreach="digimoov_products" t-as="product">
+                                        <t t-if="product.default_code=='premium'">
                                     <div class="text-center text-white border-0" style="background-color:#6E209F;border-top-left-radius:25px;border-top-right-radius:25px;">
                                         <br />
                                         <h2>
                                             <strong style="color:white">PREMIUM</strong>
                                         </h2>
                                         <p>
-                                            <b>Éligible au CPF</b>
+                                            <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
                                     </div>
-                                    <t t-foreach="digimoov_products" t-as="product">
-                                        <t t-if="product.default_code=='premium'">
+                                   
                                             <form action="/shop/cart/update" method="post">
                                                 <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                 <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />

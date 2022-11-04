@@ -151,7 +151,7 @@
 
                                         <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
                                         <p class="blink-soft">
-                                            <b>Éligible au CPF</b>
+                                            <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
                                     </div>
@@ -272,7 +272,7 @@
                                             <strong class="pack-name"> PREMIUM </strong>
                                         </p>
                                         <p class="blink-soft">
-                                            <b>Éligible au CPF</b>
+                                            <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
                                     </div>
