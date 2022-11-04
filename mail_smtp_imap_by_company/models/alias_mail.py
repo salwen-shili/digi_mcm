@@ -105,7 +105,7 @@ class MailThreadInherit(models.AbstractModel):
                 'message': message, 'message_company': message_company,
             }, engine='ir.qweb')
             company_bounce = "%s@%s" %(str(bounce_alias),str(message_company.alias_domain)) if message_company.alias_domain else "%s@%s" %(str(bounce_alias),str(bounce_domain)) # get no-reply ( bounce ) email from company and ir.config_parameter
-            # self._routing_create_bounce_email(email_from, body, message, reply_to=str(company_bounce)) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
+            self._routing_create_bounce_email(email_from, body, message, reply_to=str(company_bounce)) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
             if bounce_match:
                 company = 1
                 if 'digimoov' in email_to: #check if email_to contains digimoov
