@@ -1351,7 +1351,7 @@
         </xpath>
     </template>
     <template id="digimoov_website_templates.pricing_table_content_solo" name="pack solo content">
-        <t t-call="web.layout">
+       
             <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;">
                 <li class="mb-4">
                     <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -1410,11 +1410,11 @@
                     <i />
                 </li>
             </ul>
-        </t>
+      
 
     </template>
     <template id="digimoov_website_templates.pricing_table_content_pro" name="pack pro content">
-        <t t-call="web.layout">
+   
             <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;">
                 <li class="mb-4">
                     <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -1467,11 +1467,11 @@
                     <i />
                 </li>
             </ul>
-        </t>
+  
 
     </template>
     <template id="digimoov_website_templates.pricing_table_content_premium" name="pack premium content">
-        <t t-call="web.layout">
+  
             <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0;">
                 <li class="mb-4">
                     <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -1524,7 +1524,6 @@
                     <i />
                 </li>
             </ul>
-        </t>
-
+  
     </template>
 </odoo>
