@@ -105,4 +105,5 @@ class MailThreadInherit(models.AbstractModel):
                     body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_footer').render({
                     'message_company': record.company_id,
                     }, engine='ir.qweb')
-                    record.body +=body
+                    # record.body +=body
+                    _logger.info('mail message redirect_client_response body %s' %(str(body)))
