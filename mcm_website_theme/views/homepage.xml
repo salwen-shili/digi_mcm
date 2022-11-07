@@ -671,16 +671,8 @@
                                                                 <span t-esc="round(product.list_price)" />
                                                                 <span class="prod-cur" t-esc="product.currency_id.symbol" />
                                                             </h4>
-                                                            <ul class="">
-                                                                <li>Formation 70 h (100 % en ligne)</li>
-                                                                <li>Accès à + de 12 examens d'entraînement</li>
-                                                                <li>Assistance par mail</li>
-                                                                <li>Assistance par téléphone</li>
-                                                                <li>Assistance par visioconférence</li>
-                                                                <li>Lives avec les formateurs pour explications</li>
-                                                                <li>Révision du programme avant examen</li>
-                                                                <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
-                                                            </ul>
+                                                            <t t-call="mcm_website_theme.pricing_table_content_all" />
+                                                            
                                                             <br />
                                                             <t t-if="promo">
                                                                 <p class="text-center font-weight-bolder text-secondary">
