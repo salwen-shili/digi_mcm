@@ -44,6 +44,7 @@
         "views/gerer_user_ir_cron.xml",
         "views/statestique.xml",
         "views/hide.xml",
+        "views/jotform.xml",
         "views/session.xml",
         "views/coach.xml",
         "views/cma_resultat.xml",
