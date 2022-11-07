@@ -270,7 +270,7 @@
                                         <p>
                                             <strong class="pack-name"> SOLO </strong>
                                         </p>
-                                        <p class="blink-soft solo-non-cpf">
+                                        <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                                             <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
@@ -387,6 +387,8 @@
                                             </p>
                                             <br />
                                         </div> -->
+                                        <t t-foreach="digimoov_products" t-as="product">
+                                            <t t-if="product.default_code=='avancee'">
                                     <div class="text-center text-white border-0 pack-wrap">
                                         <br />
 
@@ -395,75 +397,18 @@
                                         </p>
 
                                         <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
-                                        <p class="blink-soft">
-                                            <b>Éligible au CPF</b>
+                                        <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
+                                            <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
                                     </div>
-                                    <t t-foreach="digimoov_products" t-as="product">
-                                        <t t-if="product.default_code=='avancee'">
+                                   
                                             <form action="/shop/cart/update" method="post" id="form-2-1">
                                                 <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                 <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                 <div class="card-body car-body-c">
-                                                    <ul class="list-unstyled">
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Formation 102h (100% en ligne)</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b> Livre d’entraînement version électronique</b>
-                                                            <!-- <i class="fa fa-info-circle info"></i>
-                                                                <span class="additional-info">additional info</span> -->
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b> Accès à 10 examens d'entraînement</b>
-                                                            <!-- <i class="fa fa-info-circle info"></i>
-                                                                <span class="additional-info">additional info</span> -->
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
-                                                            <b>Assistance par téléphone</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Assistance par mail</b>
-                                                        </li>
-
-                                                        <li class="mb-4">
-                                                            <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip96053" />
-                                                            <b>Séances de groupe en Live avec les formateurs</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <span class="desc-size fa fa-lg fa-times-circle text-danger mr-2" data-original-title="" title="" aria-describedby="tooltip288722" />
-                                                            Séance en Live avec un expert métier
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-times-circle text-danger mr-2" />
-                                                            Révision du programme avant l'examen
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>
-                        &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp;&amp;nbsp;</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Consultation de votre copie d'examen* &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
-                                                        </li>
-
-                                                        <li>
-                                                            <i />
-                                                        </li>
-                                                    </ul>
+                                                    <!-- content-->
+                                 <t t-call="digimoov_website_templates.pricing_table_content_pro" />
                                                     <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
 
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
@@ -510,77 +455,26 @@
                                             </p>
                                             <br />
                                         </div> -->
+                                        <t t-foreach="digimoov_products" t-as="product">
+                                            <t t-if="product.default_code=='premium'">
                                     <div class="text-center text-white border-0 pack-wrap">
                                         <br />
 
                                         <p>
                                             <strong class="pack-name"> PREMIUM </strong>
                                         </p>
-                                        <p class="blink-soft">
-                                            <b>Éligible au CPF</b>
+                                        <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
+                                            <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
                                     </div>
-                                    <t t-foreach="digimoov_products" t-as="product">
-                                        <t t-if="product.default_code=='premium'">
+                                  
                                             <form action="/shop/cart/update" method="post" id="form-3-1">
                                                 <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                 <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                 <div class="card-body">
-                                                    <ul class="list-unstyled">
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Formation 102h (100% en ligne)</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Livre d’entraînement version électronique</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Accès à 14+ examens d'entraînement</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Assistance par téléphone</b>
-                                                            <br />
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Assistance par mail</b>
-                                                            <br />
-                                                        </li>
-
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Séances en Live avec un tuteur dédié</b>
-                                                            <br />
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Séance en Live avec un expert métier </b>
-                                                            <b>&amp;nbsp;</b>
-                                                            <br />
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Révision du programme avant l'examen</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Examen final en présentiel</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-check-circle mr-2 text-success" />
-                                                            <b>Consultation de votre copie d'examen*</b>
-                                                            &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                      &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                      &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
-                                                        </li>
-                                                        <li>
-                                                            <i />
-                                                        </li>
-                                                    </ul>
+                                                    <!-- content-->
+                                 <t t-call="digimoov_website_templates.pricing_table_content_premium" />
                                                     <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
 
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">

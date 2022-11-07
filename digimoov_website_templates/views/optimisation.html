@@ -389,8 +389,8 @@
                                         </p>
 
                                         <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
-                                        <p class="blink-soft">
-                                            <b>Éligible au CPF</b>
+                                        <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
+                                            <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
                                     </div>
@@ -510,8 +510,8 @@
                                         <p>
                                             <strong class="pack-name"> PREMIUM </strong>
                                         </p>
-                                        <p class="blink-soft">
-                                            <b>Éligible au CPF</b>
+                                        <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
+                                            <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
                                     </div>

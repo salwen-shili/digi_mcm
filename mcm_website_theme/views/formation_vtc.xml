@@ -426,17 +426,7 @@
                             <span t-esc="round(product.list_price)" />
                             <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
                           </h4>
-                          <ul class="">
-                            <li>Formation 70 h (100 % en ligne)</li>
-                            <li>Accès à + de 12 examens d'entraînement</li>
-                            <li>Assistance par mail</li>
-                            <li>Assistance&amp;nbsp;par téléphone</li>
-                            <li>Assistance&amp;nbsp;par visioconférence</li>
-                            <li>
-                            Lives&amp;nbsp;avec les formateurs pour explications
-                          </li>
-                            <li>Révision du programme avant examen</li>
-                          </ul>
+                          <t t-call="mcm_website_theme.pricing_table_content_all" />
                           <div class="sh_btn">
                             <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                             Je m'inscris

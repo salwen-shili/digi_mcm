@@ -84,6 +84,14 @@
   color: #fff;
   background-color: #152856;
 }
+.rkmd-btn.green-shop {
+  color: #fff;
+  background-color: #005a00;
+}
+.rkmd-btn.green-shop:hover {
+  color: #fff;
+  background-color: #047404;
+}
 .rkmd-btn.btn-blue:hover {
   background-color: hsl(222, 61%, 31%);
 }

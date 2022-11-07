@@ -206,7 +206,7 @@
   <h3>La formation est éligible au CPF</h3>
   <p>
     Notons que la formation qui permet d’obtenir une capacité de transport est
-    <b>éligible au CPF</b>. Ainsi, Vous pouvez obtenir un financement si vous remplissez
+    <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>. Ainsi, Vous pouvez obtenir un financement si vous remplissez
     les conditions requises.
   </p>
   <h3>

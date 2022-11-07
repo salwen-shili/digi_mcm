@@ -236,17 +236,7 @@
                               </t>
                             </t>
                           </h4>
-                          <ul class="">
-                            <li>Formation 70 h (100 % en ligne)</li>
-                            <li>Accès à + de 12 examens d'entraînement</li>
-                            <li>Assistance par mail</li>
-                            <li>Assistance&amp;nbsp;par téléphone</li>
-                            <li>Assistance&amp;nbsp;par visioconférence</li>
-                            <li>
-                          Lives&amp;nbsp;avec les formateurs pour explications
-                        </li>
-                            <li>Révision du programme avant examen</li>
-                          </ul>
+                          <t t-call="mcm_website_theme.pricing_table_content_all" />
                           <br />
                           <t t-if="promo">
                             <p class="text-center font-weight-bolder text-secondary">
@@ -289,22 +279,12 @@
                           <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
                           <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                           <h4>PACK TAXI</h4>
-                          <h5 style="font-weight:600;color: #000">Éligible au CPF</h5>
+                          <h5 style="font-weight:600;color: #000"><t t-if="product.cpf_available == true">Éligible au CPF </t> <t t-else=""> &amp;nbsp; </t></h5>
                           <h4>
                             <span t-esc="round(product.list_price)" />
                             <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
                           </h4>
-                          <ul class="">
-                            <li>Formation 70 h (100 % en ligne)</li>
-                            <li>Accès à + de 12 examens d'entraînement</li>
-                            <li>Assistance&amp;nbsp;par mail</li>
-                            <li>Assistance&amp;nbsp;par téléphone</li>
-                            <li>Assistance&amp;nbsp;par visioconférence</li>
-                            <li>
-                          Lives&amp;nbsp;avec les formateurs pour explications
-                        </li>
-                            <li>Révision du programme avant examen</li>
-                          </ul>
+                          <t t-call="mcm_website_theme.pricing_table_content_all" />
                           <br />
                           <t t-if="promo">
                             <p class="text-center font-weight-bolder text-secondary">
@@ -345,17 +325,7 @@
                             <span t-esc="round(product.list_price)" />
                             <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
                           </h4>
-                          <ul class="">
-                            <li>Formation 70 h (100 % en ligne)</li>
-                            <li>Accès à + de 12 examens d'entraînement</li>
-                            <li>Assistance&amp;nbsp;par mail</li>
-                            <li>Assistance&amp;nbsp;par téléphone</li>
-                            <li>Assistance&amp;nbsp;par visioconférence</li>
-                            <li>
-                          Lives&amp;nbsp;avec les formateurs pour explications
-                        </li>
-                            <li>Révision du programme avant examen</li>
-                          </ul>
+                          <t t-call="mcm_website_theme.pricing_table_content_all" />
                           <br />
                           <t t-if="promo">
                             <p class="text-center font-weight-bolder text-secondary">
