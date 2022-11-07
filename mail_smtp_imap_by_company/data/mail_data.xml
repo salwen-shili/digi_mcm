@@ -35,6 +35,7 @@
             </blockquote>
         </template>
         <template id="mail_bounce_footer">
+        <br/>
             <div>
                 <p>
                     NB : To proceed with your request, please contact the service concerned by clicking &#128073;
