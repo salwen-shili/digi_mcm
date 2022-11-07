@@ -101,7 +101,7 @@ class MailThreadInherit(models.AbstractModel):
                             (user.partner_id.name or u"False",
                              user_signature.email_from or u"False"))  # change the sender mail
             if record.author_id :
-                if not record.author_id.share and record.message_type in ['email','comment','snailmail'] :
+                if not record.author_id.partner_share and record.message_type in ['email','comment','snailmail'] :
                     body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_footer').render({
                     'message_company': record.company_id,
                     }, engine='ir.qweb')
