@@ -98,6 +98,12 @@ class NoteExamen(models.Model):
                                        ('inactif', 'Inactif'),
                                        ])
 
+    def print_report_name_examen(self):
+        """ La fonction sera utilisée dans les noms de rapport en format PDF de l'interface examen."""
+        self.ensure_one()
+        return '- %s - %s - %s' % (self.display_name, self.ville_id.display_name, self.date_exam.strftime(
+                '%d/%m/%Y'))
+
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):
         for rec in self.env['info.examen'].search([]):
