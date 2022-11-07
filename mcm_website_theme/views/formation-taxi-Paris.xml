@@ -308,7 +308,7 @@ Ils sont portés sur la réglementation du transport public , la sécurité rout
                           <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
                           <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                           <h4>PACK TAXI</h4>
-                          <h5 class="el-cpf">Éligible au CPF</h5>
+                          <h5 class="el-cpf"> <t t-if="product.cpf_available == true">Éligible au CPF </t> <t t-else=""> &amp;nbsp; </t> </h5>
                           <h4>
                             <span t-esc="round(product.list_price)" />
                             <span class="prod-cur" t-esc="product.currency_id.symbol" />

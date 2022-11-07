@@ -341,7 +341,8 @@
                           <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
 
                           <h3 style="max-width: 100%; font-size:35px;">PACK VTC</h3>
-                          <h4 style="color: #636161; font-size: 1.09375rem">Éligible au CPF</h4>
+                          <h4 style="color: #636161; font-size: 1.09375rem"><t t-if="product.cpf_available == true">Éligible au CPF </t> <t t-else=""> &amp;nbsp; </t></h4>
+                    
 
                           <h4 t-if="not promo">
                             <span t-esc="round(product.list_price)" />
