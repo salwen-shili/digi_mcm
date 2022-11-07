@@ -34,5 +34,13 @@
                 <t t-esc="message['body']"/>
             </blockquote>
         </template>
+        <template id="mail_bounce_footer">
+            <div>
+                <p>
+                    NB : To proceed with your request, please contact the service concerned by clicking &#128073;
+                    <a t-att-href="'%scontact' % message_company.website">here</a>
+                </p>
+            </div>
+        </template>
     </data>
 </odoo>
