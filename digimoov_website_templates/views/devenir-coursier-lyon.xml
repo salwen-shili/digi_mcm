@@ -270,7 +270,7 @@
                                         <p>
                                             <strong class="pack-name"> SOLO </strong>
                                         </p>
-                                        <p class="blink-soft solo-non-cpf">
+                                        <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                                             <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
@@ -397,7 +397,7 @@
                                         </p>
 
                                         <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
-                                        <p class="blink-soft">
+                                        <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                                             <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />
@@ -463,7 +463,7 @@
                                         <p>
                                             <strong class="pack-name"> PREMIUM </strong>
                                         </p>
-                                        <p class="blink-soft">
+                                        <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                                             <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                         </p>
                                         <br />

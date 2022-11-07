@@ -508,7 +508,7 @@
                                                         <font style="font-size: 14px;">&amp;nbsp;</font>
                                                     </strong>
                                                 </p>
-                                                <p class="blink-soft solo-non-cpf">
+                                                <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                                                     <t t-if="not promo">
                                                         
                                                         <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
@@ -646,7 +646,7 @@
                                                     <br />
                                                 </strong>
                                             </p>
-                                            <p class="blink-soft">
+                                            <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                                                 <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                             </p>
                                             <br />
@@ -764,7 +764,7 @@
                                                     <font style="color: rgb(0, 255, 0); font-size: 12px;">&amp;nbsp;</font>
                                                 </strong>
                                             </p>
-                                            <p class="blink-soft">
+                                            <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                                                 <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                             </p>
                                             <br />

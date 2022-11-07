@@ -300,7 +300,7 @@
                                                 animation: unset !important;
                                             }
                                         </style>
-                  <p class="blink-soft solo-non-cpf">
+                                        <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                     <t t-if="not promo">
                       <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                     </t>
@@ -426,7 +426,7 @@
                     <strong class="pack-name"> PRO </strong>
                   </p>
                   <!-- <p class="paragraphe-landing">&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
-                  <p class="blink-soft">
+                  <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                     <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                   </p>
                   <br />
@@ -489,7 +489,7 @@
                   <p class="paragraphe-landing">
                     <strong class="pack-name"> PREMIUM </strong>
                   </p>
-                  <p class="blink-soft">
+                  <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                     <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                   </p>
                   <br />
