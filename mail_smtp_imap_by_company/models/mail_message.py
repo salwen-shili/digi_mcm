@@ -62,6 +62,9 @@ class MailMessageInherit(models.AbstractModel):
                                                                               limit=1) #search record using new message model and res_id
                     _logger.info("redirect_client_response search_record: %s" % (str(search_record)))
                     if search_record:
+                        if record.model == 'helpdesk.ticket' :
+                            if not search_record.description :
+                                search_record.description  = record.body.decode("utf-8")
                         if search_record.partner_id.id == record.author_id.id:
                             record.model = "res.partner" #update new message model to res partner
                             record.res_id = search_record.partner_id.id #update new message res_id to id of partner
@@ -100,12 +103,12 @@ class MailMessageInherit(models.AbstractModel):
                         record.email_from = tools.formataddr(
                             (user.partner_id.name or u"False",
                              user_signature.email_from or u"False"))  # change the sender mail
-                        if record.author_id:
-                            if not record.author_id.partner_share and record.message_type in ['email', 'comment',
-                                                                                              'snailmail']:
-                                body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_footer').render({
-                                    'message_company': record.company_id,
-                                }, engine='ir.qweb')
-                                _logger.info('mail message redirect_client_response body %s' % (str(body)))
-                                record.body += body.decode("utf-8")
+            if record.author_id:
+                if not record.author_id.partner_share and record.message_type in ['email', 'comment',
+                                                                                  'snailmail']:
+                    body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_footer').render({
+                        'message_company': record.company_id,
+                    }, engine='ir.qweb')
+                    _logger.info('mail message redirect_client_response body %s' % (str(body)))
+                    record.body += body.decode("utf-8")
     
