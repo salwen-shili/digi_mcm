@@ -29,25 +29,15 @@ class img(models.Model):
         form = response.json()["content"]
         formm = form["forms"]
         for formms in formm:
-
             _logger.info("----------ok-----------")
             _logger.info(formm[formms]["url"].split("/")[3])
-
             form_id = formm[formms]["id"]
             title = formm[formms]["title"]
             statut = formm[formms]["status"]
             url = formm[formms]["url"]
-            new = self.env['mcm_openedx.img'].sudo().create({
-                'title': title,
-                'statut': statut,
-                'url': url,
-
-            })
-            new.form_id = url.split("/")[3]
             print(new)
-
             for existe in self.env['mcm_openedx.img'].sudo().search(
-                    [('form_id', "like", url.split("/")[3])]):
+                    [('title', "like",self.title)]):
                 _logger.info("-----get form info-------")
                 response_form = requests.get(
                     'https://eu-api.jotform.com/form/%s/submissions?apikey=98b07bd5ae3cd7054da0c386c4f699df' % (
@@ -58,14 +48,12 @@ class img(models.Model):
                 # for partner in self.env['res.partner'].search(
                 #        [('email', '=', email)]):
                 #   print()
-
                 if not existe:
                     new = self.env['mcm_openedx.img'].sudo().create({
                         'form_id': url.split("/")[3],
                         'title': title,
                         'statut': statut,
                         'url': url,
-
                     })
                     print(new)
 
