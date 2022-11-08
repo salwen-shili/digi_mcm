@@ -97,8 +97,10 @@ class Document(models.Model):
         new_record = super(Document, self).create(vals)
         if new_record.partner_id and new_record.datas:
             new_record.partner_id.step = "financement"  # change step of client to financement when the documents of client uploaded manually by our services
-        # res_model : Modèle de la ressource
-        # res_id : ID de la ressource
-        if new_record.res_model == "sign.request" and new_record.res_id is True:
-            new_record.state == 'validated'
+        if new_record['res_model']:
+            # res_model : Modèle de la ressource
+            # res_id : ID de la ressource
+            if new_record['res_model'] == str("sign.request"):
+                # Auto state validated for model source in the document: sign.request
+                new_record['state'] = 'validated'
         return new_record
