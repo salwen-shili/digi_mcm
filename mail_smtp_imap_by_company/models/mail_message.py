@@ -31,6 +31,7 @@ import re
 import socket
 import time
 import threading
+import html2text
 
 from collections import namedtuple
 from email.message import Message
@@ -62,9 +63,9 @@ class MailMessageInherit(models.AbstractModel):
                                                                               limit=1) #search record using new message model and res_id
                     _logger.info("redirect_client_response search_record: %s" % (str(search_record)))
                     if search_record:
-                        if record.model == 'helpdesk.ticket' :
-                            if not search_record.description :
-                                search_record.description  = record.body.decode("utf-8")
+                        if record.model == 'helpdesk.ticket':
+                            if not search_record.description:
+                                search_record.description = str(html2text.html2text(record.body))
                         if search_record.partner_id.id == record.author_id.id:
                             record.model = "res.partner" #update new message model to res partner
                             record.res_id = search_record.partner_id.id #update new message res_id to id of partner
