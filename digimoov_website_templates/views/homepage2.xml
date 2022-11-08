@@ -1044,56 +1044,7 @@
                                                 <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                 <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                 <div class="card-body" style="background-color:white">
-                                                    <ul class="list-unstyled">
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                            Accès à la plateforme pédagogique
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                            Formation 102h (100% en ligne)
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                            Examen Final en présentiel
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                            Accompagnement avec un coach
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                            Livre d’entraînement version électronique
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                            Accès à 6 examens d'entraînement
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                            Assistance client par tchat / e-mail
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-times-circle text-danger mr-2"></i>
-                                                            Livre d’entraînement version papier
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-times-circle text-danger mr-2"></i>
-                                                            Directs avec les formateurs
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-times-circle text-danger mr-2"></i>
-                                                            Révision du programme avant examen &amp;nbsp; &amp;nbsp;
-                                                            &amp;nbsp;
-                                                            &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                            &amp;nbsp;
-                                                            &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
-                                                        </li>
-                                                        <li>
-                                                            <i></i>
-                                                        </li>
-
-                                                    </ul>
+                                                    <t t-call="digimoov_website_templates.pricing_table_content_pro" />
                                                     <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
                                                         <font>
                                                             <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">

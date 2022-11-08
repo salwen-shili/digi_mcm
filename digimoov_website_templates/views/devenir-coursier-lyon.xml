@@ -280,58 +280,7 @@
                                                 <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                 <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                 <div class="card-body bg-white">
-                                                    <ul class="list-unstyled">
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Formation 102h (100% en ligne)</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Accès à 5 examens d'entraînement</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Assistance par téléphone</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>Assistance par mail</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
-                                                            Livre d'entraînement version électronique
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                            Séances en Live avec les formateurs
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                            Séance en Live avec un expert métier
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                            Révision du programme avant l'examen
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b>
-                        &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp;&amp;nbsp;</b>
-                                                        </li>
-                                                        <li class="mb-4">
-                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                            <b> Consultation de votre copie d'examen* &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                        &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
-                                                        </li>
-                                                        <li>
-                                                            <i />
-                                                        </li>
-                                                    </ul>
+                                                    <t t-call="digimoov_website_templates.pricing_table_content_solo" />
                                                     <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
 
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0" t-if="not promo">
