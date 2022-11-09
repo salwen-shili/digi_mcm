@@ -6,7 +6,8 @@
         <field name="model">mcm_openedx.form_info</field>
         <field name="arch" type="xml">
             <tree>
-
+    <field name="email"/>
+                          <field name="partner_id"/>
 
 
             </tree>
@@ -21,7 +22,8 @@
             <form string="Course Form">
                 <sheet>
                     <group>
-                        
+                          <field name="email"/>
+                          <field name="partner_id"/>
                     </group>
                 </sheet>
             </form>
@@ -30,7 +32,7 @@
 
 
     <record model="ir.actions.act_window" id="jotform_sub_list_action">
-        <field name="name">Event Calendly</field>
+        <field name="name">JOTFORM</field>
         <field name="res_model">mcm_openedx.form_info</field>
         <field name="view_mode">tree,form</field>
     </record>

@@ -22,6 +22,7 @@ class img(models.Model):
 
     def get_form(self):
         print("get events")
+        #Get a list of forms for this account. Includes basic details such as title of the form, when it was created, number of new and total submissions.
         response = requests.get(
             'https://eu-api.jotform.com/user/folders?apikey=98b07bd5ae3cd7054da0c386c4f699df&limit=1000&orderby=status')
         form = response.json()["content"]
@@ -58,28 +59,29 @@ class form_info(models.Model):
         for existe in self.env['mcm_openedx.img'].sudo().search(
                 []):
             _logger.info("-----get form info-------")
-            #List of form responses. answers array has the submitted data. Created_at is the date of the submission.
+            # List of form responses. answers array has the submitted data. Created_at is the date of the submission.
             response_form = requests.get(
                 'https://eu-api.jotform.com/form/%s/submissions?apikey=98b07bd5ae3cd7054da0c386c4f699df' % (
                     existe.form_id))
             form_info = response_form.json()["content"]
-            _logger.info("---------PARTNERR--------")
             for form_infos in form_info:
-                _logger.info(form_infos["id"])
-
-
-
-
-
-            #     for partner in self.env['res.partner'].search(
-            #            [('email', 'ilike', existe.email)]):
-            #         _logger.info("---------PARTNERR--------")
-            #         _logger.info(partner.email)
-            #         partner_id = partner.id
-            #         new = self.env['mcm_openedx.form_info'].sudo().create({
-            #             'email': partner.email,
-            #             'partner_id': partner.id,
-            #
-            #         })
-            #         print(new)
-
+                _logger.info("---------form_infos--------")
+                # Similar to /form/{form-id}/submissions. But only get a single submission.
+                response_sub_id = requests.get(
+                    'https://eu-api.jotform.com/submission/%s?apikey=98b07bd5ae3cd7054da0c386c4f699df' % (
+                        form_infos["id"]))
+                form_info_sub = response_sub_id.json()
+                _logger.info("---------response_sub_id-------")
+                for info in form_info_sub["content"]:
+                    _logger.info(info)
+                # for partner in self.env['res.partner'].search(
+                #         [('email', 'ilike', existe.email)]):
+                #     _logger.info("---------PARTNERR--------")
+                #          _logger.info(partner.email)
+                #         partner_id = partner.id
+                #         new = self.env['mcm_openedx.form_info'].sudo().create({
+                #             'email': partner.email,
+                #             'partner_id': partner.id,
+                #
+                #         })
+                #         print(new)
