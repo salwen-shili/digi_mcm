@@ -639,7 +639,7 @@ class Services(http.Controller):
         phone = kwargs.get('phone')
         _logger.info("phone : %s" %(str(kwargs.get('phone'))))
         _logger.info("phone_origin : %s" %(str(kwargs.get('phone_origin'))))
-        name = kwargs.get('name')
+        name = kwargs.get('subject')
         description = kwargs.get('description')
         files = request.httprequest.files.getlist('attachment')
         name_company = False
@@ -820,7 +820,7 @@ class Services(http.Controller):
             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                 vals)
             return request.render("digimoov_website_templates.comptabilite_thank_you")
-        elif service == 'Pédagogique':
+        elif service == 'coaching':
             if request.website.id == 2:
                 vals = {
                     'partner_email': str(email_from),
@@ -854,6 +854,62 @@ class Services(http.Controller):
                         'res_id': new_ticket.id
                     })
             return request.render("digimoov_website_templates.pedagogique_thank_you")
+        elif service == 'examen':
+            if request.website.id == 2:
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': 'Digimoov : ' + str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Examen'), ('company_id', "=", 2)],
+                        limit=1).id,
+                }
+            elif request.website.id == 1:
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Examen'), ('company_id', "=", 1)],
+                        limit=1).id,
+                }
+            new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                vals)
+            if files:
+                for ufile in files:
+                    datas = base64.encodebytes(ufile.read())
+                    request.env['ir.attachment'].sudo().create({
+                        'name': ufile.filename,
+                        'type': 'binary',
+                        'datas': datas,
+                        'res_model': 'helpdesk.ticket',
+                        'res_id': new_ticket.id
+                    })
+            return request.render("digimoov_website_templates.pedagogique_thank_you")
+        else:
+            if request.website.id == 2:
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': 'Digimoov : ' + str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                        limit=1).id,
+                }
+            elif request.website.id == 1:
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Client'), ('company_id', "=", 1)],
+                        limit=1).id,
+                }
+
 
     # transport lourd
 

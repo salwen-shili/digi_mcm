@@ -227,7 +227,7 @@
 
         <div class="outlined-input-field mb16 bg-c" id="entreprise_container">
             <input type="text" id="entreprise" name="name_company" class="outlined-text-field" required="required" />
-            <label for="name_company">Entreprise *</label>
+            <label for="entreprise">Entreprise *</label>
             <i class="material-icons error-icon">error_outline</i>
             <div class="helper-text bg-c" id="entreprise_helper">
                 <span></span>
