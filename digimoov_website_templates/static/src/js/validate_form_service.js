@@ -28,9 +28,11 @@ $(document).ready(function () {
     'phone',
     'address',
     'email_from',
-    'objet',
+    'subject',
+    'choix-service',
     'message',
     'entreprise',
+    'service',
   ];
 
   listId.map((id) => {
