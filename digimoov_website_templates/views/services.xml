@@ -131,7 +131,7 @@
         <div class="outlined-input-field mb16 bg-c" id="objet_container">
            
             <select id="choix-service" name="choix-service" required="required" class="outlined-text-field" >
-                <option value="all" id="pm_none" disabled="disabled" selected="selected" hidden="hidden"></option>
+                <option value="" disabeld="disabled" ></option>
                 <option value="client">Service clientèle</option>
                 <option value="examen">Service examen</option>
                 <option value="coaching">Service pédagogique</option>
