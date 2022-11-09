@@ -36,6 +36,6 @@
     </record>
 
 
-    <menuitem id="jotform_sub_menu" name="Sub_JOTFORM" parent="calendly_menu" action="jotform_list_action"/>
+    <menuitem id="jotform_sub_menu" name="Sub_JOTFORM" parent="calendly_menu" action="jotform_sub_list_action"/>
 
 </odoo>

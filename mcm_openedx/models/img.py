@@ -9,8 +9,6 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-
-
 class img(models.Model):
     _name = 'mcm_openedx.img'
     _description = "Jotform"
@@ -24,7 +22,8 @@ class img(models.Model):
 
     def get_form(self):
         print("get events")
-        response = requests.get('https://eu-api.jotform.com/user/folders?apikey=98b07bd5ae3cd7054da0c386c4f699df&limit=1000&orderby=status')
+        response = requests.get(
+            'https://eu-api.jotform.com/user/folders?apikey=98b07bd5ae3cd7054da0c386c4f699df&limit=1000&orderby=status')
         form = response.json()["content"]
         formm = form["forms"]
         for formms in formm:
@@ -36,8 +35,7 @@ class img(models.Model):
             url = formm[formms]["url"]
             print(new)
             for existe in self.env['mcm_openedx.img'].sudo().search(
-                    [('title', "like",self.title)]):
-
+                    [('title', "like", self.title)]):
 
                 if not existe:
                     new = self.env['mcm_openedx.img'].sudo().create({
@@ -49,27 +47,39 @@ class img(models.Model):
                     print(new)
 
 
-
-
-
 class form_info(models.Model):
     _name = 'mcm_openedx.form_info'
-    _description = "Jotform"
+    _description = "Jotform_sub"
 
     partner_id = fields.Many2one('res.partner')
     email = fields.Char(string="EMAIL")
 
     def form_sub(self):
         for existe in self.env['mcm_openedx.img'].sudo().search(
-                [('title', "like", self.title)]):
+                []):
             _logger.info("-----get form info-------")
+            #List of form responses. answers array has the submitted data. Created_at is the date of the submission.
             response_form = requests.get(
                 'https://eu-api.jotform.com/form/%s/submissions?apikey=98b07bd5ae3cd7054da0c386c4f699df' % (
                     existe.form_id))
             form_info = response_form.json()["content"]
-            _logger.info("---------FORM submission--------")
-            _logger.info(form_info)
-            # for partner in self.env['res.partner'].search(
-            #        [('email', '=', email)]):
-            #   print()
+            _logger.info("---------PARTNERR--------")
+            for form_infos in form_info:
+                _logger.info(form_infos["id"])
+
+
+
+
+
+            #     for partner in self.env['res.partner'].search(
+            #            [('email', 'ilike', existe.email)]):
+            #         _logger.info("---------PARTNERR--------")
+            #         _logger.info(partner.email)
+            #         partner_id = partner.id
+            #         new = self.env['mcm_openedx.form_info'].sudo().create({
+            #             'email': partner.email,
+            #             'partner_id': partner.id,
+            #
+            #         })
+            #         print(new)
 
