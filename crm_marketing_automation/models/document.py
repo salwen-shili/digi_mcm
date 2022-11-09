@@ -108,6 +108,6 @@ class Document(models.Model):
                     [('id', '=', new_record['res_id'])
                      ], limit=1)
                 _logger.info('7777777777777 Sign ID 777777777777  %s' % sign_id)
-                new_record['partner_id'] = sign_id.partner_id
+                new_record['partner_id'] = sign_id.request_item_ids.partner_id[0]
                 _logger.info('7777777777777 Partner ID 777777777777  %s' % sign_id.partner_id)
         return new_record
