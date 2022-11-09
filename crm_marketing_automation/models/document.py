@@ -103,4 +103,11 @@ class Document(models.Model):
             if new_record['res_model'] == str("sign.request"):
                 # Auto state validated for model source in the document: sign.request
                 new_record['state'] = 'validated'
+            if new_record['res_id']:
+                sign_id = self.env['sign.request'].sudo().search(
+                    [('id', '=', new_record['res_id'])
+                     ], limit=1)
+                _logger.info('7777777777777 Sign ID 777777777777  %s' % sign_id)
+                new_record['partner_id'] = sign_id.partner_id
+                _logger.info('7777777777777 Partner ID 777777777777  %s' % sign_id.partner_id)
         return new_record
