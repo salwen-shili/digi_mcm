@@ -6,8 +6,8 @@
         <field name="model">mcm_openedx.form_info</field>
         <field name="arch" type="xml">
             <tree>
-    <field name="email"/>
-                          <field name="partner_id"/>
+                <field name="email"/>
+                <field name="partner_id"/>
 
 
             </tree>
@@ -22,8 +22,8 @@
             <form string="Course Form">
                 <sheet>
                     <group>
-                          <field name="email"/>
-                          <field name="partner_id"/>
+                        <field name="email"/>
+                        <field name="partner_id"/>
                     </group>
                 </sheet>
             </form>

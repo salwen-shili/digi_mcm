@@ -36,13 +36,13 @@
     </record>
 
 
-    <record model="ir.actions.act_window" id="jotform_list_action">
-        <field name="name">Event Calendly</field>
+    <record model="ir.actions.act_window" id="jotformm_list_action">
+        <field name="name">JOTFORM</field>
         <field name="res_model">mcm_openedx.img</field>
         <field name="view_mode">tree,form</field>
     </record>
 
 
-    <menuitem id="jotform_menu" name="JOTFORM" parent="calendly_menu" action="jotform_list_action"/>
+    <menuitem id="jotform_menu" name="JOTFORM" parent="calendly_menu" action="jotformm_list_action"/>
 
 </odoo>
