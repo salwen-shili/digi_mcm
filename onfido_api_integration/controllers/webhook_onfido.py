@@ -243,6 +243,13 @@ class OnfidoController(http.Controller):
                         vals)
             if str(workflow_runs['finished']) == 'True' and workflow_runs['state'] == 'clear':
                 _logger.info('else state document %s' % str(workflow_runs['state']))
+                """Si le type de document permis de conduire, on doit verifier s'il est probatoire"""
+                report = currentUser.get_report(report_id, website.onfido_api_key_live)
+                if report['document_type']=="driving_licence" and "driving_licence_information" in report:
+                    obtainment_date=report['driving_licence_information'][5]['obtainment_date']
+                    _logger.info("drive_licence %s" %str(eport['driving_licence_information'][5]))
+                    _logger.info("dateeeeeeeeeeeee %s" %str(obtainment_date))
+
                 currentUser.validation_onfido = "clear"
                 if data_onfido:
                     
