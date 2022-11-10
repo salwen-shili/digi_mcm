@@ -21,7 +21,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-lg-3 o_light_label" string="Referrer" for="Referrer"/>
-                                <field name="Referrer" class="oe_inline"/>
+                                <field name="referrer" class="oe_inline"/>
                             </div>
                         </div>
                     </div>
