@@ -80,6 +80,7 @@ class form_info(models.Model):
             for i, valeur in form_info_sub["answers"].items():
                 if form_info_sub["answers"][i]["name"] == "email":
                     _logger.info(form_info_sub["answers"][i]["answer"])
+
                     for partner in self.env['res.partner'].search(
                             [('email', 'ilike', form_info_sub["answers"][i]["answer"])]):
                         _logger.info("---------PARTNERR--------")
@@ -94,7 +95,6 @@ class form_info(models.Model):
                             print(new)
 
                 if form_info_sub["answers"][i]["name"] == "fileUpload2":
-
                     url = form_info_sub["answers"][i]["answer"][0]
                     name = form_info_sub["answers"][i]["answer"][0]
                     _logger.info("urll")
@@ -106,15 +106,17 @@ class form_info(models.Model):
                     [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                 for partner in self.env['res.partner'].search(
                         [('email', '=', "lokaha8119@lenfly.com")]):
-                    document = self.env['documents.document'].create({'name': namee,
-                                                                      'type': 'binary',
-                                                                      'partner_id': partner.id,
-                                                                      'folder_id': folder_id.id,
-                                                                      'datas': image_binary,
+                    existe_doc = self.env['documents.document'].search(
+                        [('name', '=', namee), ('partner_id', '=', partner.id)])
+                    if not existe_doc:
+                        document = self.env['documents.document'].create({'name': namee,
+                                                                          'type': 'binary',
+                                                                          'partner_id': partner.id,
+                                                                          'folder_id': folder_id.id,
+                                                                          'datas': image_binary,
+                                                                          'state': 'validated', })
 
-                                                                      'state': 'validated', })
-
-                    self.urlToirAttachement(document, url, name)
+                        self.urlToirAttachement(document, url, name)
 
             # _logger.info(i)
             # _logger.info(valeur['name'])
