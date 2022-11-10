@@ -19,6 +19,10 @@
                                 <label class="col-lg-3 o_light_label" string="Workflow Id" for="onfido_api_key_live"/>
                                 <field name="onfido_workflow_id" class="oe_inline"/>
                             </div>
+                            <div class="row">
+                                <label class="col-lg-3 o_light_label" string="Referrer" for="Referrer"/>
+                                <field name="Referrer" class="oe_inline"/>
+                            </div>
                         </div>
                     </div>
                 </div>
