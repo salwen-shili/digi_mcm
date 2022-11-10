@@ -20,7 +20,7 @@
                                 <field name="onfido_workflow_id" class="oe_inline"/>
                             </div>
                             <div class="row">
-                                <label class="col-lg-3 o_light_label" string="Referrer" for="Referrer"/>
+                                <label class="col-lg-3 o_light_label" string="Referrer" for="referrer"/>
                                 <field name="referrer" class="oe_inline"/>
                             </div>
                         </div>
