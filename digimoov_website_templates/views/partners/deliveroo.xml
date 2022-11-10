@@ -234,13 +234,13 @@
                                     <p>
                                         <strong class="pack-name">SOLO</strong>
                                     </p>
-                                    <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
+                                    <!-- <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                                         <t t-if="not promo">
                                             <b>Paiement en 1 seule fois</b>
                                         </t>
                                         <b>&amp;nbsp; &amp;nbsp;</b>
 
-                                    </p>
+                                    </p> -->
                                     <br/>
                                 </div>
                                 <t t-foreach="digimoov_products" t-as="product">
@@ -324,7 +324,7 @@
                                                 </p>
                                                 <t t-if="promo and promo.name!='box2home'">
                                                     <p class="text-center font-weight-bolder text-secondary"
-                                                       style="margin-top:68px">
+                                                       style="margin-top:48px">
                                                         <b class="promo-code">
                                                             <t class="paiement medium text-center font-weight-bolder text-secondary">
                                                                 avec le code
@@ -375,9 +375,9 @@
                                     </p>
 
                                     <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
-                                    <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
+                                    <!-- <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                                         <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
-                                    </p>
+                                    </p> -->
                                     <br/>
                                 </div>
                               
@@ -445,9 +445,9 @@
                                     <p>
                                         <strong class="pack-name">PREMIUM</strong>
                                     </p>
-                                    <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
+                                    <!-- <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                                         <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
-                                    </p>
+                                    </p> -->
                                     <br/>
                                 </div>
                              
