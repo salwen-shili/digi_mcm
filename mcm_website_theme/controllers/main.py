@@ -20,6 +20,7 @@ from odoo import fields, http, SUPERUSER_ID, tools, _
 from odoo.osv import expression
 from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
+import dateutil
 import werkzeug
 import locale
 import json
@@ -415,7 +416,86 @@ class Routes_Site(http.Controller):
             return werkzeug.utils.redirect("/formation-moto-taxi", 301)
         else:
             raise werkzeug.exceptions.NotFound()
-
+    def get_datas_user_examen(self):
+        partner = request.env.user.partner_id
+        res = {"response": []}
+        echec_examen = 'False'
+        if request.website.is_public_user() :
+            res["response"] += [
+                {
+                    "access" : 'denied',
+                    "url": "/web/signup",
+                    "echec_examen": echec_examen,
+                    "message" : "Pour réserver votre nouvelle tentative, "
+                               "merci de vous connecter ou de créer votre compte client.",
+                }]
+        else:
+            session_filtered = request.env['info.examen'].sudo().search(
+                [('partner_id', "=", partner.id)], order='date_exam asc',
+                limit=1)
+            if not session_filtered :
+                res["response"] += [
+                    {
+                        "access": 'denied',
+                        "url": '/#pricing',
+                        "echec_examen": echec_examen,
+                        "message": "vous devez avoir au moins une ligne d'examen"
+                    }]
+            else:
+                date_exam = session_filtered.session_id.date_exam
+                if date_exam :
+                    now = date.today()  # Date d'aujourd'hui
+                    date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
+                        years=1)
+                    print('date exam :',str(date_exam))
+                    if now < date_dateutil :
+                        session_filtered_ajournee = request.env['info.examen'].sudo().search(
+                            [('partner_id', "=", partner.id),('state_theorique',"=",'ajourne')], order='date_exam desc',
+                            limit=1)
+                        if not session_filtered_ajournee :
+                            res["response"] += [
+                                {
+                                    "access": 'denied',
+                                    "url": '/#pricing',
+                                    "echec_examen": echec_examen,
+                                    "message": "vous devez avoir au moins une ligne d'examen ajourné"
+                                }]
+                        else:
+                            if session_filtered_ajournee.module_id :
+                                if 'vtc' in session_filtered_ajournee.module_id.product_id.name.lower():
+                                    echec_examen = request.env['product.product'].sudo().search(
+                                        [('company_id', '=', 2), ('default_code', "=", 'examen_vtc')])
+                                elif 'taxi' in session_filtered_ajournee.module_id.product_id.name.lower():
+                                    echec_examen = request.env['product.product'].sudo().search(
+                                        [('company_id', '=', 2), ('default_code', "=", 'examen_taxi')])
+                            res["response"] += [
+                                {
+                                    "access": "authorized",
+                                    "url": '/shop/cart/update',
+                                    "echec_examen": echec_examen.id,
+                                    "message": "vous êtes autoriser à passer l'examen"
+                                }]
+                    else:
+                        res["response"] += [
+                            {
+                                "access": 'denied',
+                                "url": '/#pricing',
+                                "echec_examen": echec_examen,
+                                "message": "Vous avez dépassé la limite de 12 mois pour réserver votre nouvelle date d'examen."
+                                           "Vous devez à présent vous réinscrire à la formation pour retenter votre chance de nouveau.",
+                            }]
+                else:
+                    res["response"] += [
+                        {
+                            "access": 'denied',
+                            "url": '/#pricing',
+                            "echec_examen": echec_examen,
+                            "message": "manque date d'examen"
+                        }]
+        partner = json.dumps(res)
+        _logger.info('partner : %s' %(str(partner)))
+        print('partner : %s' %(str(partner)))
+        # return partner
     @http.route("/examen-vtc-taxi-moto-taxi", type="http", auth="public", website=True)
     def examen(self):
 
@@ -430,6 +510,7 @@ class Routes_Site(http.Controller):
         taxi_price = False
         vtc_price = False
         vmdtr_price = False
+        self.get_datas_user_examen()
         if mcm_products:
             for product in mcm_products:
                 if product.default_code == "taxi":
@@ -459,6 +540,90 @@ class Routes_Site(http.Controller):
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_examen", {})
+
+    # @http.route("/get_data_user_connected", type="json", auth="user", methods=["POST"], website=True)
+    # @http.route("/get-datas-user-examen", type="json", auth="user", methods=["POST"], website=True)
+    # def get_datas_user_examen(self):   
+
+    # @http.route("/get-datas-user-examen", type="json", auth="user", methods=["POST"], website=True)
+    # def get_datas_user_examen(self):
+    #     partner = request.env.user.partner_id
+    #     res = {"response": []}
+    #     echec_examen = 'False'
+    #     if request.website.is_public_user() :
+    #         res["response"] += [
+    #             {
+    #                 "access" : 'denied',
+    #                 "url": "/web/signup",
+    #                 "echec_examen": echec_examen,
+    #                 "message" : "Pour réserver votre nouvelle tentative, "
+    #                            "merci de vous connecter ou de créer votre compte client.",
+    #             }]
+    #     else:
+    #         session_filtered = request.env['info.examen'].sudo().search(
+    #             [('partner_id', "=", partner.id)], order='date_exam desc',
+    #             limit=1)
+    #         if not session_filtered :
+    #             res["response"] += [
+    #                 {
+    #                     "access": 'denied',
+    #                     "url": '/#pricing',
+    #                     "echec_examen": echec_examen,
+    #                     "message": "vous devez avoir au moins une ligne d'examen"
+    #                 }]
+    #         else:
+    #             date_exam = session_filtered.session_id.date_exam
+    #             if date_exam :
+    #                 now = date.today()  # Date d'aujourd'hui
+    #                 date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
+    #                     years=1)
+    #                 if now < date_dateutil :
+    #                     session_filtered_ajournee = request.env['info.examen'].sudo().search(
+    #                         [('partner_id', "=", partner.id),('state_theorique',"=",'ajourne')], order='date_exam asc',
+    #                         limit=1)
+    #                     if not session_filtered_ajournee :
+    #                         res["response"] += [
+    #                             {
+    #                                 "access": 'denied',
+    #                                 "url": '/#pricing',
+    #                                 "echec_examen": echec_examen,
+    #                                 "message": "vous devez avoir au moins une ligne d'examen ajourné"
+    #                             }]
+    #                     else:
+    #                         if session_filtered_ajournee.module_id :
+    #                             if 'vtc' in session_filtered_ajournee.module_id.product_id.name.lower():
+    #                                 echec_examen = request.env['product.product'].sudo().search(
+    #                                     [('company_id', '=', 2), ('default_code', "=", 'examen_vtc')])
+    #                             elif 'taxi' in session_filtered_ajournee.module_id.product_id.name.lower():
+    #                                 echec_examen = request.env['product.product'].sudo().search(
+    #                                     [('company_id', '=', 2), ('default_code', "=", 'examen_taxi')])
+    #                         res["response"] += [
+    #                             {
+    #                                 "access": "authorized",
+    #                                 "url": '/shop/cart/update',
+    #                                 "echec_examen": echec_examen,
+    #                                 "message": "vous êtes autoriser à passer l'examen"
+    #                             }]
+    #                 else:
+    #                     res["response"] += [
+    #                         {
+    #                             "access": 'denied',
+    #                             "url": '/#pricing',
+    #                             "echec_examen": echec_examen,
+    #                             "message": "vous devez avoir au moins une ligne d'examen ajourné"
+    #                         }]
+    #             else:
+    #                 res["response"] += [
+    #                     {
+    #                         "access": 'denied',
+    #                         "url": '/#pricing',
+    #                         "echec_examen": echec_examen,
+    #                         "message": "manque date d'examen"
+    #                     }]
+    #     partner = json.dumps(res)
+    #     _logger.info('partner : %s' %(str(partner)))
+    #     # return partner
+        
 
     @http.route("/coordonnees", type="http", auth="user", website=True, csrf=False)
     def validation_questionnaires(self, **kw):
