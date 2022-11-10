@@ -143,20 +143,38 @@ class InheritSignRequestItem(models.Model):
                 continue
             if not signer.create_uid.email:
                 continue
-            report_proces_verbal = self.env.ref('digimoov_sessions_modules.report_proces_verbal')
-            _logger.info("Rapport proces verbal %s" % report_proces_verbal)
-            _logger.info("11122222211111111 Subject Rapport proces verbal %s" % report_proces_verbal.tpl)
-            _logger.info("11122222211111111 Subject Rapport proces verbal %s" % report_proces_verbal.subject)
-            tpl = self.env.ref('sign.sign_template_mail_request')
-            if signer.partner_id.lang:
-                tpl = tpl.with_context(lang=signer.partner_id.lang)
-            body = tpl.render({
-                'record': signer,
-                'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {
-                    'request_id': signer.sign_request_id.id, 'access_token': signer.access_token}),
-                'subject': subject,
-                'body': message if message != '<p><br></p>' else False,
-            }, engine='ir.qweb', minimal_qcontext=True)
+            # Personalisation de template de signature selon name
+            if "Procès verbal" in str(self.sign_request_id.reference):
+                report_proces_verbal = self.env.ref('digimoov_sessions_modules.report_proces_verbal')
+                body = report_proces_verbal.render({
+                    'record': signer,
+                    'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {
+                        'request_id': signer.sign_request_id.id, 'access_token': signer.access_token}),
+                    'subject': subject,
+                    'body': message if message != '<p><br></p>' else False,
+                }, engine='ir.qweb', minimal_qcontext=True)
+            elif "Cerfa" in str(self.sign_request_id.reference):
+                tpl = self.env.ref('sign.sign_template_mail_request')
+                if signer.partner_id.lang:
+                    tpl = tpl.with_context(lang=signer.partner_id.lang)
+                body = tpl.render({
+                    'record': signer,
+                    'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {
+                        'request_id': signer.sign_request_id.id, 'access_token': signer.access_token}),
+                    'subject': subject,
+                    'body': message if message != '<p><br></p>' else False,
+                }, engine='ir.qweb', minimal_qcontext=True)
+            else:
+                general_sign_report = self.env.ref('digimoov_sessions_modules.report_general_sign')
+                if signer.partner_id.lang:
+                    general_sign_report = general_sign_report.with_context(lang=signer.partner_id.lang)
+                body = general_sign_report.render({
+                    'record': signer,
+                    'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {
+                        'request_id': signer.sign_request_id.id, 'access_token': signer.access_token}),
+                    'subject': subject,
+                    'body': message if message != '<p><br></p>' else False,
+                }, engine='ir.qweb', minimal_qcontext=True)
 
             if not signer.signer_email:
                 raise UserError(_("Please configure the signer's email address"))
