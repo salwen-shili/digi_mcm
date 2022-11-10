@@ -888,6 +888,40 @@ class Services(http.Controller):
                         'res_id': new_ticket.id
                     })
             return request.render("digimoov_website_templates.pedagogique_thank_you")
+        elif service == 'it':
+            if request.website.id == 2:
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': 'Digimoov : ' + str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'IT'), ('company_id', "=", 2)],
+                        limit=1).id,
+                }
+            elif request.website.id == 1:
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'IT'), ('company_id', "=", 2)],
+                        limit=1).id,
+                }
+            new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                vals)
+            if files:
+                for ufile in files:
+                    datas = base64.encodebytes(ufile.read())
+                    request.env['ir.attachment'].sudo().create({
+                        'name': ufile.filename,
+                        'type': 'binary',
+                        'datas': datas,
+                        'res_model': 'helpdesk.ticket',
+                        'res_id': new_ticket.id
+                    })
+            return request.render("digimoov_website_templates.pedagogique_thank_you")
         else:
             if request.website.id == 2:
                 vals = {
