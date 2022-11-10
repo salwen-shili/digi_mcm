@@ -69,7 +69,6 @@ class form_info(models.Model):
                             if 'answer' in form_info_sub["answers"][i]:
                                 email_form_info_sub = form_info_sub["answers"]["54"]['answer']
                                 _logger.info(email_form_info_sub)
-
                         # for partner in self.env['res.partner'].search(
                         #         [('email', 'ilike', existe.email)]):
                         #     _logger.info("---------PARTNERR--------")
