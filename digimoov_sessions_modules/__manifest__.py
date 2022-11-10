@@ -37,6 +37,7 @@
         'data/inherit_mail_notif_light.xml',
         'data/sign_data.xml',
         'report/inherit_activity_log_pdf_sign.xml',
+        'report/report_proces_verbal.xml',
     ],
     'qweb': [],
     'demo': [

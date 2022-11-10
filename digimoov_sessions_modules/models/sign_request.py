@@ -143,6 +143,10 @@ class InheritSignRequestItem(models.Model):
                 continue
             if not signer.create_uid.email:
                 continue
+            report_proces_verbal = self.env.ref('digimoov_sessions_modules.report_proces_verbal')
+            _logger.info("Rapport proces verbal %s" % report_proces_verbal)
+            _logger.info("11122222211111111 Subject Rapport proces verbal %s" % report_proces_verbal.tpl)
+            _logger.info("11122222211111111 Subject Rapport proces verbal %s" % report_proces_verbal.subject)
             tpl = self.env.ref('sign.sign_template_mail_request')
             if signer.partner_id.lang:
                 tpl = tpl.with_context(lang=signer.partner_id.lang)
