@@ -49,6 +49,7 @@
                 <span></span>
             </div>
         </div>
+        
 
         <div class="outlined-input-field mb16 bg-c" id="objet_container">
             <input type="text" id="objet" name="subject" required="required" class="outlined-text-field" autocomplete="off" />
@@ -60,8 +61,98 @@
             <label class="form__label" for="description">Message *</label>
 
         </div>
-        <div class="outlined-input-field mb16 bg-c">
-            <div class="form-group m-t-15 ">
+        <div class="outlined-input-field mb24 bg-c">
+            <div class="form-group m-t-15 mb40 ">
+                <input name="attachment" placeholder="Objet" type="file" style="height:auto !important;" multiple="True" class="outlined-text-field" />
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-12 mt32 mb32 text-center">
+
+            <button id="inscrire" type="submit" t-attf-class="rkmd-btn  ripple-effect ripple-yellow #{'btn-indigo' if request.website.id==2 else 'btn-black'}">
+                ENVOYER
+                <i class="material-icons right">send</i>
+            </button>
+            <span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12" />
+        </div>
+
+    </template>
+
+    <template id="digimoov_website_templates.common_form_contact" name="services digimoov common form">
+
+
+        <link href="/mcm_website_theme/static/src/css/commun-form.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <div class="row">
+            <div class="col-lg-6 mb16" style="margin:0">
+                <div class="outlined-input-field bg-c " id="contact_lastname_container">
+                    <input name="contact_lastname" type="text" t-attf-value="#{contact_last_name}" t-att-readonly="'true' if contact_last_name else None" id="contact_lastname" class="outlined-text-field" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
+                    <label for="contact_lastname">Nom *</label>
+                    <i class="material-icons error-icon">error_outline</i>
+                    <div class="helper-text bg-c" id="contact_lastname_helper">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb16" style="margin:0">
+                <div class="outlined-input-field bg-c bt32" id="contact_name_container">
+                    <input type="text" id="contact_name" name="contact_name" class="outlined-text-field" autocomplete="off" t-att-readonly="'true' if contact_name else None" t-attf-value="#{contact_name}" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
+                    <label for="contact_name">Prénom *</label>
+                    <i class="material-icons error-icon">error_outline</i>
+                    <div class="helper-text bg-c" id="contact_name_helper">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="outlined-input-field mb16 bg-c" id="email_from_container">
+            <input type="text" id="email_from" name="email_from" class="outlined-text-field" t-att-readonly="'true' if email_from else None" t-attf-value="#{email_from}" required="required" inputmode="email" />
+            <label for="email_from">Email *</label>
+            <i class="material-icons error-icon">error_outline</i>
+            <div class="helper-text bg-c" id="email_from_helper">
+                <span></span>
+            </div>
+        </div>
+
+        <div class="outlined-input-field mb16 bg-c" id="phone_container">
+            <input type="hidden" id="phone_copy" name="phone" />
+
+            <input type="text" id="phone" name="phone_origin" class="outlined-text-field" t-attf-value="#{phone}" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" t-att-disabled="'disabeld' if phone else None" />
+            <label for="phone">Téléphone *</label>
+            <i class="material-icons error-icon">error_outline</i>
+            <div class="helper-text bg-c" id="phone_helper">
+                <span></span>
+            </div>
+        </div>
+        <div class="outlined-input-field mb16 bg-c" id="objet_container">
+           
+            <select id="service" name="service" required="required" class="outlined-text-field" >
+                <option value="" disabeld="disabled" hidden="hidden" selected="selected" ></option>
+                <option value="client">Service clientèle</option>
+                <option value="examen">Service examen</option>
+                <option value="coaching">Service pédagogique</option>
+                <option value="it">Service Informatique</option>
+                <option value="others">Autres demandes</option>
+            </select>
+            <label for="service">Choisir le service *</label>
+        </div>
+
+        <div class="outlined-input-field mb16 bg-c" id="objet_container">
+            <input type="text" id="objet" name="subject" required="required" class="outlined-text-field" autocomplete="off" />
+            <label for="subject">Objet *</label>
+
+        </div>
+        <div class="outlined-input-field mb16 bg-c" id="message_container">
+            <textarea class="outlined-text-field" type="text" rows="4" id="message" name="description" autocomplete="off" required="required" />
+            <label class="form__label" for="description">Message *</label>
+
+        </div>
+        <div class="outlined-input-field mb24 bg-c">
+            <div class="form-group m-t-15 mb40 ">
                 <input name="attachment" placeholder="Objet" type="file" style="height:auto !important;" multiple="True" class="outlined-text-field" />
             </div>
 
@@ -158,8 +249,8 @@
             <textarea class="outlined-text-field" type="text" rows="4" id="message" name="description" autocomplete="off" required="required" />
             <label class="form__label" for="description">Message *</label>
         </div>
-        <div class="outlined-input-field mb16 bg-c">
-            <div class="form-group m-t-15 ">
+        <div class="outlined-input-field mb24 bg-c">
+            <div class="form-group m-t-15 mb40 ">
                 <input name="attachment" placeholder="Objet" type="file" style="height:auto !important;" multiple="True" class="outlined-text-field" />
             </div>
         </div>
@@ -246,7 +337,7 @@
         </div>
 
 
-        <div class="col-lg-12 mt32 mb32 text-center">
+        <div class="col-lg-12 mt40 mb32 text-center">
 
             <button id="inscrire" type="submit" t-attf-class="rkmd-btn  ripple-effect ripple-yellow #{'btn-indigo' if request.website.id==2 else 'btn-black'}">
                 ENVOYER
@@ -281,13 +372,12 @@
                 <section class="s_contact_with_img" data-name="Contact Us Two" style="">
                     <div class="contact3 mini-spacer">
                         <div class="container">
-                            <div class="row">
-                                <div class="row m-0">
+                            <div class="row ">
+                                <div class="row m-0 align-items-center">
                                     <div class="col-lg-6">
                                         <div class="card-shadow ">
                                             <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Service client Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service Clientèle Digimoov.jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208" />
                                             <img t-if="request.website.id==1" data-src="/digimoov_website_templates/static/src/img/serivce-mcm.png" data-srcSafari="/digimoov_website_templates/static/src/img/serivce-mcm.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208" />
-
                                         </div>
 
                                     </div>
@@ -296,8 +386,7 @@
                                             <span style="font-size: 28px;">Contacter le service client</span>
                                             <br />
                                             <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data" id="contact-form">
-                                             
-                                                <t t-if="request.website.id==2" t-call="digimoov_website_templates.common_form" />
+                                                <t t-if="request.website.id==2" t-call="digimoov_website_templates.common_form_contact" />
                                                 <t t-if="request.website.id==1" t-call="digimoov_website_templates.common_form_mcm" />
                                             </form>
                                         </div>
@@ -328,7 +417,7 @@
                     <div class="contact3 mini-spacer">
                         <div class="container">
                             <div class="row">
-                                <div class="row m-0">
+                                <div class="row m-0 align-items-center">
                                     <div class="col-lg-6">
                                         <div class="card-shadow ">
                                             <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Service compta Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service comptabilité Digimoov.jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip917363" />
@@ -370,11 +459,11 @@
                     <div class="contact3 mini-spacer">
                         <div class="container">
                             <div class="row">
-                                <div class="row m-0">
+                                <div class="row m-0 align-items-center">
                                     <div class="col-lg-6">
                                         <div class="card-shadow ">
                                             <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Service_pédagogique.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service pédagogique Digimoov formation (1).jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638" />
-                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/service péda 2.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/service péda 2.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638" />
+                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/service-péda-2.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/service-péda-2.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638" />
 
                                         </div>
                                     </div>
@@ -414,12 +503,12 @@
                 <section class="s_contact_with_img" data-name="Contact Us Two" style="">
                     <div class="contact3 mini-spacer">
                         <div class="container">
-                            <div class="row">
-                                <div class="row m-0">
+                            <div class="row mb64">
+                                <div class="row m-0 align-items-center">
                                     <div class="col-lg-6">
                                         <div class="card-shadow ">
                                             <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Devenir-Partenaire.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Devenir partenaire de Digimoov.jpg" class="lazy img-responsive img img-fluid " data-original-title="" title="" aria-describedby="tooltip848764" />
-                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/partenariat.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/partenariat.png" class="lazy img-responsive img img-fluid " data-original-title="" title="" aria-describedby="tooltip848764" />
+                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/partenariat-2.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/partenariat-2.png" class="lazy img-responsive img img-fluid " data-original-title="" title="" aria-describedby="tooltip848764" />
 
                                         </div>
                                     </div>
