@@ -458,7 +458,7 @@
 
                                                                                                             <div style="line-height:24px;text-align: left;">
                                                                                                                 <span style="font-size:16px;">
-                                                                                                                    Bonjour <t t-esc="record.sign_request_id.request_item_ids.partner_id.display_name"/>,
+                                                                                                                    Bonjour <t t-esc="record.sign_request_id.request_item_ids[0].partner_id.display_name"/>,
                                                                                                                 </span>
                                                                                                                 <br/>
                                                                                                                 <span style="font-size:16px;">
