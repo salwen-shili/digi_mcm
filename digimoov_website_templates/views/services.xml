@@ -678,23 +678,23 @@
 <!--                                                    </div>-->
 <!--                                                </div>-->
 <!--                                            </div>-->
-                                            <div class="col-md-4">
-                                                <div class="card card-shadow aos-init" data-aos="flip-right" data-aos-duration="1200">
-                                                    <a href="/service-pedagogique" class="img-ho">
-                                                        <img class="card-img-top lazy" data-src="/digimoov_website_templates/static/img/Service_pédagogique.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service pédagogique Digimoov formation.png" alt="bizople kit" data-original-title="" title="" aria-describedby="tooltip88003" />
-                                                    </a>
-                                                    <div class="card-body">
-                                                        <h5 class="font-medium m-b-0">
-                                                            <a href="/service-pedagogique">Service pédagogique</a>
-                                                        </h5>
-                                                        <p class="font-14 m-b-0">
-                                                            Vous êtes déjà inscris?
-                                                            <span class="fa fa-info-circle" data-original-title="" title="Service réservé aux abonnés" aria-describedby="tooltip551325" style="color: rgb(99, 74, 165);" />
-                                                            Contactez le service pédagogique de Digimoov par ici.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
+<!--                                            <div class="col-md-4">-->
+<!--                                                <div class="card card-shadow aos-init" data-aos="flip-right" data-aos-duration="1200">-->
+<!--                                                    <a href="/service-pedagogique" class="img-ho">-->
+<!--                                                        <img class="card-img-top lazy" data-src="/digimoov_website_templates/static/img/Service_pédagogique.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service pédagogique Digimoov formation.png" alt="bizople kit" data-original-title="" title="" aria-describedby="tooltip88003" />-->
+<!--                                                    </a>-->
+<!--                                                    <div class="card-body">-->
+<!--                                                        <h5 class="font-medium m-b-0">-->
+<!--                                                            <a href="/service-pedagogique">Service pédagogique</a>-->
+<!--                                                        </h5>-->
+<!--                                                        <p class="font-14 m-b-0">-->
+<!--                                                            Vous êtes déjà inscris?-->
+<!--                                                            <span class="fa fa-info-circle" data-original-title="" title="Service réservé aux abonnés" aria-describedby="tooltip551325" style="color: rgb(99, 74, 165);" />-->
+<!--                                                            Contactez le service pédagogique de Digimoov par ici.-->
+<!--                                                        </p>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
                                             <div class="col-md-4">
                                                 <div class="card card-shadow aos-init" data-aos="flip-right" data-aos-duration="1200">
                                                     <a href="/service-presse" class="img-ho">
