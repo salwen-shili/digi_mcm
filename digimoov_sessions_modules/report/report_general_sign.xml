@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_general_sign" name="Rapport génèral signature">
-        <span>Bonjour<t t-esc="record.sign_request_id.request_item_ids[0].partner_id.display_name"/>,
+        <span>Bonjour<t t-esc="record.sign_request_id.request_item_ids.partner_id.display_name"/>,
         </span>
         <p>Nous vous remercions de bien vouloir signer le présent document</p>
         <p>
