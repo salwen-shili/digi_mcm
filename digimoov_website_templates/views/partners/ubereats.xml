@@ -367,9 +367,7 @@
                                                     </p>
                                                 </t>
                                                 <p class="paiement medium text-center font-weight-bolder text-secondary">
-                                                    Paiement 1 ou
-                                                    <t t-esc="product.instalment_number"/>
-                                                    fois
+                                                    Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
                                                 </p>
                                                 <!--                                                        <p class="medium text-center font-weight-bolder text-secondary paiement" t-if="not partenaire or partenaire==''">-->
                                                 <!--                    Paiement en 1 seule fois-->
