@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_general_sign" name="Rapport génèral signature">
-        <span>Bonjour Rapport génèral signature </span>
+        <span>Bonjour<t t-esc="record.sign_request_id.request_item_ids[0].partner_id.display_name"/>,
+        </span>
+        <p>Nous vous remercions de bien vouloir signer le présent document</p>
+        <p>
+            <span style="color:#ffffff;font-weight:normal;">
+                <a t-att-href="link"
+                   style="font-size:18px;font-family:Arial,Helvetica,sans-serif; color:#ffffff; font-weight:normal; padding-left:20px; padding-right:20px; vertical-align: middle; background-color:#0092ff;border-radius:4px;border-top:0px None #000;border-right:0px None #000;border-bottom:0px None #000;border-left:0px None #000;">
+                    Signer
+                    votre
+                    document
+                </a>
+            </span>
+        </p>
+        <p>DIGIMOOV</p>
     </template>
 </odoo>
