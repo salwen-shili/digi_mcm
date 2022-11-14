@@ -943,6 +943,19 @@ class Services(http.Controller):
                         [('name', 'ilike', 'client'), ('company_id', "=", 1)],
                         limit=1).id,
                 }
+            new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                vals)
+            if files:
+                for ufile in files:
+                    datas = base64.encodebytes(ufile.read())
+                    request.env['ir.attachment'].sudo().create({
+                        'name': ufile.filename,
+                        'type': 'binary',
+                        'datas': datas,
+                        'res_model': 'helpdesk.ticket',
+                        'res_id': new_ticket.id
+                    })
+            return request.render("digimoov_website_templates.pedagogique_thank_you")
 
 
     # transport lourd
