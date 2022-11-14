@@ -45,6 +45,7 @@
         "views/statestique.xml",
         "views/hide.xml",
         "views/jotform.xml",
+        "views/form_sub.xml",
         "views/session.xml",
         "views/coach.xml",
         "views/cma_resultat.xml",
