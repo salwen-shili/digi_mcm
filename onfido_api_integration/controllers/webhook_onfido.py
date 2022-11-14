@@ -197,6 +197,11 @@ class OnfidoController(http.Controller):
                     # _logger.info("report_id %s" % str(report_id))
                     report = currentUser.get_report(report_id, website.onfido_api_key_live)
                     _logger.info("reppooort %s" % str(report))
+                    if report['document_type'] == "driving_licence" and "driving_licence_information" in report:
+                        obtainment_date = report['driving_licence_information'][5]['obtainment_date']
+                        _logger.info("drive_licence %s" % str(eport['driving_licence_information'][5]))
+                        _logger.info("dateeeeeeeeeeeee %s" % str(obtainment_date))
+
                     if 'visual_authenticity' in report['breakdown']:
                         breakdown_origin = report['breakdown']['visual_authenticity']['breakdown']['original_document_present']
                         if report['breakdown']['visual_authenticity']['result'] != 'clear':
