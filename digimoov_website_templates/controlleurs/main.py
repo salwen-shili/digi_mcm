@@ -688,7 +688,7 @@ class Services(http.Controller):
                     'description': str(description),
                     'name': 'Digimoov : ' + str(name),
                     'team_id': request.env['helpdesk.team'].sudo().search(
-                        [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                        [('name', 'ilike', 'Client'), ('company_id', "=", 2)],
                         limit=1).id,
                 }
             elif request.website.id == 1:
@@ -698,7 +698,7 @@ class Services(http.Controller):
                     'description': str(description),
                     'name': str(name),
                     'team_id': request.env['helpdesk.team'].sudo().search(
-                        [('name', 'like', 'Client'), ('company_id', "=", 1)],
+                        [('name', 'ilike', 'client'), ('company_id', "=", 1)],
                         limit=1).id,
                 }
             new_ticket = request.env['helpdesk.ticket'].sudo().create(
