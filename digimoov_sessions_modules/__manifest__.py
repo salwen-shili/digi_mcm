@@ -39,6 +39,7 @@
         'report/inherit_activity_log_pdf_sign.xml',
         'report/report_proces_verbal.xml',
         'report/report_general_sign.xml',
+        'report/sign_data.xml',
     ],
     'qweb': [],
     'demo': [
