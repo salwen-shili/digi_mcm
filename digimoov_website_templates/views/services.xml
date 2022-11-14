@@ -446,47 +446,47 @@
         </t>
     </template>
     <!-- Vue helpdesk de Digimoov pour le service pédagogique dans le siteweb -->
-    <template id="digimoov_website_templates.digimoov_template_service_pedagogique" name="Service Pédagogique Digimoov">
-        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-        <t t-set="head">
-            <meta name="robots" content="noindex" />
-        </t>
+<!--    <template id="digimoov_website_templates.digimoov_template_service_pedagogique" name="Service Pédagogique Digimoov">-->
+<!--        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />-->
+<!--        <t t-set="head">-->
+<!--            <meta name="robots" content="noindex" />-->
+<!--        </t>-->
 
-        <t t-call="digimoov_website_templates.common_js" />
-        <t t-call="website.layout">
-            <div id="wrap" class="oe_structure oe_empty">
-                <section class="s_contact_with_img" data-name="Contact Us Two" style="">
-                    <div class="contact3 mini-spacer">
-                        <div class="container">
-                            <div class="row">
-                                <div class="row m-0 align-items-center">
-                                    <div class="col-lg-6">
-                                        <div class="card-shadow ">
-                                            <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Service_pédagogique.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service pédagogique Digimoov formation (1).jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638" />
-                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/service-péda-2.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/service-péda-2.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638" />
+<!--        <t t-call="digimoov_website_templates.common_js" />-->
+<!--        <t t-call="website.layout">-->
+<!--            <div id="wrap" class="oe_structure oe_empty">-->
+<!--                <section class="s_contact_with_img" data-name="Contact Us Two" style="">-->
+<!--                    <div class="contact3 mini-spacer">-->
+<!--                        <div class="container">-->
+<!--                            <div class="row">-->
+<!--                                <div class="row m-0 align-items-center">-->
+<!--                                    <div class="col-lg-6">-->
+<!--                                        <div class="card-shadow ">-->
+<!--                                            <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Service_pédagogique.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service pédagogique Digimoov formation (1).jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638" />-->
+<!--                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/service-péda-2.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/service-péda-2.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638" />-->
 
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="contact-box ">
-                                            <span class="contact-title">Contacter le service pédagogique</span>
-                                            <br />
-                                            <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data" id="contact-form">
-                                                <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Pédagogique" />
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-lg-6">-->
+<!--                                        <div class="contact-box ">-->
+<!--                                            <span class="contact-title">Contacter le service pédagogique</span>-->
+<!--                                            <br />-->
+<!--                                            <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data" id="contact-form">-->
+<!--                                                <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Pédagogique" />-->
 
 
-                                                <t t-call="digimoov_website_templates.common_form" />
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </t>
-    </template>
+<!--                                                <t t-call="digimoov_website_templates.common_form" />-->
+<!--                                            </form>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </section>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
 
     <!-- Vue helpdesk de Digimoov pour le service partenariat dans le siteweb -->
     <template id="digimoov_website_templates.digimoov_template_service_partenariat" name="Service Partenariat | Digimoov">
