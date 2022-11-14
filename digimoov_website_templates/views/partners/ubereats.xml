@@ -308,28 +308,8 @@
                                                         <b>Assistance par mail</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
-                                                        Livre d'entraînement version électronique
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Séances en Live avec les formateurs
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Séance en Live avec un expert métier
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Révision du programme avant l'examen
-                                                    </li>
-                                                    <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Examen final en présentiel</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Séance en Live pour corriger l'examen </b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
