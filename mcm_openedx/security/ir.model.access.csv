@@ -7,3 +7,5 @@ calendly_event_manager,calendly_event manager,model_mcm_openedx_calendly_event,,
 calendly_integration_manager,calendly_integration manager,model_mcm_openedx_calendly_integration,,1,1,1,1
 rapport_manager,rapport manager,model_mcm_openedx_rapport,,1,1,1,1
 cma_manager,cma manager,model_mcm_openedx_cma,,1,1,1,1
+img_manager,img manager,model_mcm_openedx_img,,1,1,1,1
+form_info_manager,form_info manager,model_mcm_openedx_form_info,,1,1,1,1
