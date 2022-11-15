@@ -79,16 +79,17 @@ class form_info(models.Model):
             _logger.info(form_infos['id'])
             # Similar to form/form-id submissions. But only get a single submission
             response_sub_id = requests.get(
-                'https://eu-api.jotform.com/submission/%s?apikey=98b07bd5ae3cd7054da0c386c4f699dff&limit=1000&orderby=created_at' % (
+                'https://eu-api.jotform.com/submission/%s?apikey=98b07bd5ae3cd7054da0c386c4f699df&limit=1000&orderby=created_at' % (
                     form_infos['id']))
             form_info_sub = response_sub_id.json()["content"]
+            _logger.info(form_info_sub)
+
             if 'answers' in form_info_sub:
                 for i, valeur in form_info_sub["answers"].items():
                     if form_info_sub["answers"][i]["name"] == "email":
                         _logger.info(form_info_sub["answers"][i]["answer"])
                         for partner_email in self.env['res.partner'].search(
                                 [('email', 'ilike', form_info_sub["answers"][i]["answer"])]):
-                            _logger.info("---------PARTNERR--------")
                             existe_sub = self.env['mcm_openedx.form_info'].sudo().search(
                                 [('email', "like", form_info_sub["answers"][i]["answer"])])
                             existe_sub.partner_id = partner_email.id
