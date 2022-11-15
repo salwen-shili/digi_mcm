@@ -461,23 +461,9 @@ class Routes_Site(http.Controller):
                         years=1)
                     print('date exam :',str(date_exam))
                     if now < date_dateutil :
-                        session_filtered_taxi_ajournee = request.env['info.examen'].sudo().search(
-                            [('partner_id', "=", partner.id),('state_theorique',"=",'ajourne'),('module_id.product_id.default_code',"=",'taxi')], order='date_exam desc',
-                            limit=1)
-                        if not session_filtered_taxi_ajournee :
-                            res['response'].update(
-                                {
-                                "taxi": {
-                                    "access": 'denied',
-                                    "url": '/#pricing',
-                                    "echec_examen": echec_examen_taxi,
-                                    "message": "vous devez avoir au moins une ligne d'examen ajourne taxi"
-                                        },
-                                })
-                        else:
-                            if session_filtered_taxi_ajournee.module_id :
-                                echec_examen_taxi = request.env['product.product'].sudo().search(
-                                    [('company_id', '=', 2), ('default_code', "=", 'examen_taxi')])
+                        if session_filtered_taxi.state_theorique and session_filtered_taxi.state_theorique == "ajourne" :
+                            echec_examen_taxi = request.env['product.product'].sudo().search(
+                                [('company_id', '=', 2), ('default_code', "=", 'examen_taxi')])
                             res['response'].update(
                                 {
                                     "taxi": {
@@ -485,6 +471,16 @@ class Routes_Site(http.Controller):
                                         "url": '/shop/cart/update',
                                         "echec_examen": echec_examen_taxi.id,
                                         "message": "vous etes autoriser à passer l'examen taxi"
+                                    },
+                                })
+                        else:
+                            res['response'].update(
+                                {
+                                    "taxi": {
+                                        "access": 'denied',
+                                        "url": '/#pricing',
+                                        "echec_examen": echec_examen_taxi,
+                                        "message": "vous devez avoir au moins une ligne d'examen ajourne taxi"
                                     },
                                 })
                     else:
@@ -585,7 +581,7 @@ class Routes_Site(http.Controller):
         partner = json.dumps(res)
         _logger.info('partner : %s' %(str(partner)))
         print('partner : %s' %(str(partner)))
-        # return partner
+        return partner
     @http.route("/examen-vtc-taxi-moto-taxi", type="http", auth="public", website=True)
     def examen(self):
 
@@ -600,7 +596,7 @@ class Routes_Site(http.Controller):
         taxi_price = False
         vtc_price = False
         vmdtr_price = False
-        self.get_datas_user_examen()
+        repassage = self.get_datas_user_examen()
         if mcm_products:
             for product in mcm_products:
                 if product.default_code == "taxi":
@@ -618,7 +614,9 @@ class Routes_Site(http.Controller):
             "vtc_price": vtc_price if vtc_price else "",
             "vmdtr_price": vmdtr_price if vmdtr_price else "",
             "mcm_products": mcm_products,  # send mcm product to homepage
+            "repassage" : repassage
         }
+        print('values : ',str(values['repassage']))
         if request.website.id == 2:
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
@@ -632,8 +630,10 @@ class Routes_Site(http.Controller):
             return request.render("mcm_website_theme.mcm_website_examen", {})
 
     # @http.route("/get_data_user_connected", type="json", auth="user", methods=["POST"], website=True)
-    # @http.route("/get-datas-user-examen", type="json", auth="user", methods=["POST"], website=True)
-    # def get_datas_user_examen(self):   
+    @http.route("/get-datas-user-examen", type="json", auth="user", methods=["POST"], website=True)
+    def get_datas_user_examen_response(self):
+        res = self.get_datas_user_examen()
+        return res
 
     # @http.route("/get-datas-user-examen", type="json", auth="user", methods=["POST"], website=True)
     # def get_datas_user_examen(self):
