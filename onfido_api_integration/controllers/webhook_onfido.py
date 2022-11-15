@@ -173,7 +173,8 @@ class OnfidoController(http.Controller):
                 if data_onfido:
                     data_onfido.validation_onfido = "fail"
                     _logger.info(
-                        '*************************************currentUser.validation_onfido***************** %s' % str(
+                        '*************************************curreed'
+                        'ntUser.validation_onfido***************** %s' % str(
                             currentUser.id))
                     documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
                     _logger.info("document %s" % str(documents))
@@ -205,9 +206,13 @@ class OnfidoController(http.Controller):
                     _logger.info("reppooort %s" % str(report))
                     properties = report['properties']
                     if properties['document_type'] == "driving_licence" and "driving_licence_information" in properties:
-                        obtainment_date = properties['driving_licence_information'][5]['obtainment_date']
-                        _logger.info("drive_licence %s" % str(properties['driving_licence_information'][5]))
-                        _logger.info("dateeeeeeeeeeeee %s" % str(obtainment_date))
+                        driving_licence_info = properties['driving_licence_information']
+                        for info in driving_licence_info :
+                            _logger.info("drive_licence %s" % str(info))
+                            if info['category']=="B":
+                                obtainment_date_str=info['OBTAINMENT_DATE']
+                                obtainment_date = datetime.strptime(obtainment_date_str, '%Y-%m-%d')
+                                _logger.info("dateeeeeeeeeeeee %s" % str(obtainment_date))
 
                     if 'visual_authenticity' in report['breakdown']:
                         breakdown_origin = report['breakdown']['visual_authenticity']['breakdown'][
@@ -259,16 +264,18 @@ class OnfidoController(http.Controller):
                 check = currentUser.get_checks(applicant_id, website.onfido_api_key_live)
                 if check['checks']:
                     report_id = check['checks'][0]['report_ids'][0]
+                    # _logger.info("report_id %s" % str(report_id))
                     report = currentUser.get_report(report_id, website.onfido_api_key_live)
+                    _logger.info("reppooort %s" % str(report))
                     properties = report['properties']
                     if properties['document_type'] == "driving_licence" and "driving_licence_information" in properties:
-                        category = properties['driving_licence_information'][4]
-                        if category['category'] == "B":
-                            obtainment_date = properties['driving_licence_information'][4]['obtainment_date']
-                            datetime = datetime.strptime(obtainment_date, '%Y-%m-%d')
-                            _logger.info("drive_licence %s" % str(properties['driving_licence_information'][4]))
-                            _logger.info("dateeeeeeeeeeeee %s" % str(obtainment_date))
-
+                        driving_licence_info = properties['driving_licence_information']
+                        for info in driving_licence_info:
+                            _logger.info("drive_licence %s" % str(info))
+                            if info['category'] == "B":
+                                obtainment_date_str = info['OBTAINMENT_DATE']
+                                obtainment_date = datetime.strptime(obtainment_date_str, '%Y-%m-%d')
+                                _logger.info("dateeeeeeeeeeeee %s" % str(obtainment_date))
                 currentUser.validation_onfido = "clear"
                 if data_onfido:
 
