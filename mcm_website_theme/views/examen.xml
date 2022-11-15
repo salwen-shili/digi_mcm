@@ -33,7 +33,7 @@
                       <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
                           <div id="default">
                               <a target="_blank" id="btn-inside-popup">
-                                  <button class="rkmd-btn btn-black" onclick="">Continuer</button>
+                                  <button class="rkmd-btn btn-shop" onclick="">Continuer</button>
                               </a>
                           </div>
                       </div>
@@ -256,19 +256,23 @@
            <!--TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI -->
            <section id="sh_corpomate_theme_section_167" class="sh_animation_part" style="background-color: rgb(253, 209, 5); margin: 76px 0px">
             <div class="container js-scroll fade-in-top">
-              <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width: 100%">
+              <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width: 100%; margin-bottom:20px">
                 ET SI VOUS SOUHAITEZ RÉSERVER VOTRE NOUVELLE TENTATIVE D'EXAMEN ?
             </h3>
           
               <div>
-                <select onChange="onChangeSelect(this.options[this.selectedIndex].value, this.selectedIndex)">
+                <select onchange="onChangeSelect(this.options[this.selectedIndex].value, this.selectedIndex)" style="
+ 
+                    padding: 12px 26px;
+                    margin: 0 30px 19px 0;
+                ">
                   <option selected="selected" disabled="disabled">Selectionner votre formation</option>
-                  <option value="VTC" >VTC</option>
-                  <option value="TAXI" >TAXI</option>
+                  <option value="VTC">VTC</option>
+                  <option value="TAXI">TAXI</option>
                 </select>
-                <a class="btn btn-shop" > 
+                <button class="btn-shop hide " id="btn-repassage"> 
                   Dés maintenant !                         
-                  </a>
+                </button>
               </div>
             </div>
           </section>

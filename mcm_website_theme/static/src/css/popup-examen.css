@@ -130,4 +130,7 @@
       width: 60%;
     }
   }
-  
+
+  .hide{
+    display: none;
+  }
