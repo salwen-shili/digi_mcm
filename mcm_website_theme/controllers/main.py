@@ -418,80 +418,170 @@ class Routes_Site(http.Controller):
             raise werkzeug.exceptions.NotFound()
     def get_datas_user_examen(self):
         partner = request.env.user.partner_id
-        res = {"response": []}
-        echec_examen = 'False'
+        res = {"response": {}}
+        echec_examen_taxi = 'False'
+        echec_examen_vtc = 'False'
         if request.website.is_public_user() :
-            res["response"] += [
+            res['response'].update(
                 {
-                    "access" : 'denied',
+                    "taxi": {
+                    "access": 'denied',
                     "url": "/web/signup",
-                    "echec_examen": echec_examen,
-                    "message" : "Pour réserver votre nouvelle tentative, "
-                               "merci de vous connecter ou de créer votre compte client.",
-                }]
-        else:
-            session_filtered = request.env['info.examen'].sudo().search(
-                [('partner_id', "=", partner.id)], order='date_exam asc',
-                limit=1)
-            if not session_filtered :
-                res["response"] += [
-                    {
+                    "echec_examen": echec_examen_taxi,
+                    "message": "Pour réserver votre nouvelle tentative, "
+                               "merci de vous connecter ou de creer votre compte client.",
+                },
+                    "vtc": {
                         "access": 'denied',
-                        "url": '/#pricing',
-                        "echec_examen": echec_examen,
-                        "message": "vous devez avoir au moins une ligne d'examen"
-                    }]
+                        "url": "/web/signup",
+                        "echec_examen": echec_examen_vtc,
+                        "message": "Pour reserver votre nouvelle tentative, "
+                                   "merci de vous connecter ou de creer votre compte client.",
+                    }
+                })
+        else:
+            session_filtered_taxi = request.env['info.examen'].sudo().search(
+                [('partner_id', "=", partner.id),('module_id.product_id.default_code',"=",'taxi')], order='date_exam desc',
+                limit=1)
+            if not session_filtered_taxi :
+                res['response'].update(
+                    {
+                        "taxi": {
+                            "access": 'denied',
+                            "url": '/#pricing',
+                            "echec_examen": echec_examen_taxi,
+                            "message": "vous devez avoir au moins une ligne d'examen taxi"
+                        },
+                    })
             else:
-                date_exam = session_filtered.session_id.date_exam
+                date_exam = session_filtered_taxi.session_id.date_exam
                 if date_exam :
                     now = date.today()  # Date d'aujourd'hui
                     date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
                         years=1)
                     print('date exam :',str(date_exam))
                     if now < date_dateutil :
-                        session_filtered_ajournee = request.env['info.examen'].sudo().search(
-                            [('partner_id', "=", partner.id),('state_theorique',"=",'ajourne')], order='date_exam desc',
+                        session_filtered_taxi_ajournee = request.env['info.examen'].sudo().search(
+                            [('partner_id', "=", partner.id),('state_theorique',"=",'ajourne'),('module_id.product_id.default_code',"=",'taxi')], order='date_exam desc',
                             limit=1)
-                        if not session_filtered_ajournee :
-                            res["response"] += [
+                        if not session_filtered_taxi_ajournee :
+                            res['response'].update(
                                 {
+                                "taxi": {
                                     "access": 'denied',
                                     "url": '/#pricing',
-                                    "echec_examen": echec_examen,
-                                    "message": "vous devez avoir au moins une ligne d'examen ajourné"
-                                }]
+                                    "echec_examen": echec_examen_taxi,
+                                    "message": "vous devez avoir au moins une ligne d'examen ajourne taxi"
+                                        },
+                                })
                         else:
-                            if session_filtered_ajournee.module_id :
-                                if 'vtc' in session_filtered_ajournee.module_id.product_id.name.lower():
-                                    echec_examen = request.env['product.product'].sudo().search(
-                                        [('company_id', '=', 2), ('default_code', "=", 'examen_vtc')])
-                                elif 'taxi' in session_filtered_ajournee.module_id.product_id.name.lower():
-                                    echec_examen = request.env['product.product'].sudo().search(
-                                        [('company_id', '=', 2), ('default_code', "=", 'examen_taxi')])
-                            res["response"] += [
+                            if session_filtered_taxi_ajournee.module_id :
+                                echec_examen_taxi = request.env['product.product'].sudo().search(
+                                    [('company_id', '=', 2), ('default_code', "=", 'examen_taxi')])
+                            res['response'].update(
                                 {
-                                    "access": "authorized",
-                                    "url": '/shop/cart/update',
-                                    "echec_examen": echec_examen.id,
-                                    "message": "vous êtes autoriser à passer l'examen"
-                                }]
+                                    "taxi": {
+                                        "access": "authorized",
+                                        "url": '/shop/cart/update',
+                                        "echec_examen": echec_examen_taxi.id,
+                                        "message": "vous etes autoriser à passer l'examen taxi"
+                                    },
+                                })
                     else:
-                        res["response"] += [
+                        res['response'].update(
                             {
+                                "taxi": {
+                                    "access": 'denied',
+                                    "url": '/#pricing',
+                                    "echec_examen": echec_examen_taxi,
+                                    "message": "Vous avez depassé la limite de 12 mois pour reserver votre nouvelle date d'examen."
+                                               "Vous devez à present vous reinscrire à la formation taxi pour retenter votre chance de nouveau.",
+                                },
+
+                            })
+                else:
+                    res['response'].update(
+                        {
+                            "taxi": {
                                 "access": 'denied',
                                 "url": '/#pricing',
-                                "echec_examen": echec_examen,
-                                "message": "Vous avez dépassé la limite de 12 mois pour réserver votre nouvelle date d'examen."
-                                           "Vous devez à présent vous réinscrire à la formation pour retenter votre chance de nouveau.",
-                            }]
-                else:
-                    res["response"] += [
-                        {
+                                "echec_examen": echec_examen_taxi,
+                                "message": "manque date d'examen taxi"
+                            },
+                        })
+
+            session_filtered_vtc = request.env['info.examen'].sudo().search(
+                [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'vtc')],
+                order='date_exam desc',
+                limit=1)
+            if not session_filtered_vtc:
+                res['response'].update(
+                    {
+                        "vtc": {
                             "access": 'denied',
                             "url": '/#pricing',
-                            "echec_examen": echec_examen,
-                            "message": "manque date d'examen"
-                        }]
+                            "echec_examen": echec_examen_vtc,
+                            "message": "vous devez avoir au moins une ligne d'examen vtc"
+                        },
+                    })
+            else:
+                date_exam = session_filtered_vtc.session_id.date_exam
+                if date_exam:
+                    now = date.today()  # Date d'aujourd'hui
+                    date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
+                        years=1)
+                    print('date exam :', str(date_exam))
+                    if now < date_dateutil:
+                        session_filtered_vtc_ajournee = request.env['info.examen'].sudo().search(
+                            [('partner_id', "=", partner.id), ('state_theorique', "=", 'ajourne'),
+                             ('module_id.product_id.default_code', "=", 'vtc')], order='date_exam desc',
+                            limit=1)
+                        if not session_filtered_vtc_ajournee:
+                            res['response'].update(
+                                {
+                                    "vtc": {
+                                        "access": 'denied',
+                                        "url": '/#pricing',
+                                        "echec_examen": echec_examen_vtc,
+                                        "message": "vous devez avoir au moins une ligne d'examen ajourné vtc"
+                                    },
+
+                                })
+                        else:
+                            if session_filtered_vtc_ajournee.module_id:
+                                echec_examen_vtc = request.env['product.product'].sudo().search(
+                                    [('company_id', '=', 2), ('default_code', "=", 'examen_vtc')])
+                            res['response'].update(
+                                {
+                                    "vtc": {
+                                        "access": "authorized",
+                                        "url": '/shop/cart/update',
+                                        "echec_examen": echec_examen_vtc.id,
+                                        "message": "vous etes autoriser à passer l'examen vtc"
+                                    },
+                                })
+                    else:
+                        res['response'].update(
+                            {
+                                "vtc": {
+                                    "access": 'denied',
+                                    "url": '/#pricing',
+                                    "echec_examen": echec_examen_vtc,
+                                    "message": "Vous avez depassé la limite de 12 mois pour reserver votre nouvelle date d'examen."
+                                               "Vous devez à present vous reinscrire à la formation vtc pour retenter votre chance de nouveau.",
+                                },
+
+                            })
+                else:
+                    res['response'].update(
+                        {
+                            "vtc": {
+                                "access": 'denied',
+                                "url": '/#pricing',
+                                "echec_examen": echec_examen_vtc,
+                                "message": "manque date d'examen vtc"
+                            },
+                        })
         partner = json.dumps(res)
         _logger.info('partner : %s' %(str(partner)))
         print('partner : %s' %(str(partner)))
