@@ -72,57 +72,56 @@ class form_info(models.Model):
         attachment_obj.create(attachment)
 
     def form_sub(self):
-        # for existe in self.env['mcm_openedx.img'].sudo().search(
-        #          []):
-        #      _logger.info("-----get form info-------")
-        #      #List of form responses. answers array has the submitted data. Created_at is the date of the submission.
-        #      response_form = requests.get(
-        #          'https://eu-api.jotform.com/form/%s/submissions?apikey=98b07bd5ae3cd7054da0c386c4f699df' % (
-        #              existe.form_id))
-        #      form_info = response_form.json()["content"]
-        #      _logger.info("---------PARTNERR--------")
-        #      for form_infos in form_info:
-        #          _logger.info(form_infos["id"])
-        # Similar to /form/{form-id}/submissions. But only get a single submission.
-        response_sub_id = requests.get(
-            'https://eu-api.jotform.com/submission/5292146088908938095?apikey=98b07bd5ae3cd7054da0c386c4f699df')
-        form_info_sub = response_sub_id.json()["content"]
-        if 'answers' in form_info_sub:
-            for i, valeur in form_info_sub["answers"].items():
-                if form_info_sub["answers"][i]["name"] == "email":
-                    _logger.info(form_info_sub["answers"][i]["answer"])
-                    for partner_email in self.env['res.partner'].search(
-                            [('email', 'ilike', form_info_sub["answers"][i]["answer"])]):
-                        _logger.info("---------PARTNERR--------")
-                        existe_sub = self.env['mcm_openedx.form_info'].sudo().search(
-                            [('email', "like", form_info_sub["answers"][i]["answer"])])
-                        existe_sub.partner_id = partner_email.id
-                        _logger.info(existe_sub.email)
-                        if not existe_sub:
-                            new = self.env['mcm_openedx.form_info'].sudo().create({
-                                'email': form_info_sub["answers"][i]["answer"]
-                            })
-                            print(new)
+        response_form = requests.get(
+            'https://eu-api.jotform.com/form/222334146537352/submissions?apikey=98b07bd5ae3cd7054da0c386c4f699df')
+        form_info = response_form.json()["content"]
+        for form_infos in form_info:
+            _logger.info(form_infos['id'])
+            # Similar to form/form-id submissions. But only get a single submission
+            response_sub_id = requests.get(
+                'https://eu-api.jotform.com/submission/%s?apikey=98b07bd5ae3cd7054da0c386c4f699df' % (
+                    form_infos['id']))
+            form_info_sub = response_sub_id.json()["content"]
+            if 'answers' in form_info_sub:
+                for i, valeur in form_info_sub["answers"].items():
+                    if form_info_sub["answers"][i]["name"] == "email":
+                        _logger.info(form_info_sub["answers"][i]["answer"])
+                        for partner_email in self.env['res.partner'].search(
+                                [('email', 'ilike', form_info_sub["answers"][i]["answer"])]):
+                            _logger.info("---------PARTNERR--------")
+                            existe_sub = self.env['mcm_openedx.form_info'].sudo().search(
+                                [('email', "like", form_info_sub["answers"][i]["answer"])])
+                            existe_sub.partner_id = partner_email.id
+                            _logger.info(existe_sub.email)
+                            if not existe_sub:
+                                new = self.env['mcm_openedx.form_info'].sudo().create({
+                                    'email': form_info_sub["answers"][i]["answer"]
+                                })
+                                print(new)
 
-                if form_info_sub["answers"][i]["name"] == "justificatifDe" or form_info_sub["answers"][i]["name"] == "fileUpload2" or form_info_sub["answers"][i]["name"] == "permisDe" or  form_info_sub["answers"][i]["name"] == "permisDe7":
-                    url = form_info_sub["answers"][i]["answer"][0]
-                    name = form_info_sub["answers"][i]["answer"][0]
-                    _logger.info(url)
-                    image_binary = base64.b64encode(requests.get(url).content)
-                    namee = form_info_sub["answers"][i]["text"]
-                    folder_id = self.env['documents.folder'].sudo().search(
-                        [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                    if form_info_sub["answers"][i]["name"] == "justificatifDe64" or form_info_sub["answers"][i][
+                        "name"] == "attestationDhebergement" or form_info_sub["answers"][i]["name"] == "vousAvez" or \
+                            form_info_sub["answers"][i]["name"] == "pieceDidentite" or form_info_sub["answers"][i][
+                        "name"] == "pieceDidentite70":
+                        _logger.info("okokkko")
+                        url = form_info_sub["answers"][i]["answer"][0]
+                        if url:
+                            # 👉️ Check if my_var is not None (null)
+                            _logger.info(form_info_sub["answers"][i]["answer"])
+                            image_binary = base64.b64encode(requests.get(url).content)
+                            name = form_info_sub["answers"][i]["text"]
+                            folder_id = self.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in self.env['res.partner'].search(
+                                    [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
+                                existe_doc = self.env['documents.document'].search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                if not existe_doc:
+                                    document = self.env['documents.document'].create({'name': name,
+                                                                                      'type': 'binary',
+                                                                                      'partner_id': partner.id,
+                                                                                      'folder_id': folder_id.id,
+                                                                                      'datas': image_binary,
+                                                                                      'state': 'validated', })
 
-                    for partner in self.env['res.partner'].search(
-                            [('email', '=', form_info_sub["answers"]["54"]["answer"])]):
-                        existe_doc = self.env['documents.document'].search(
-                            [('name', '=', namee), ('partner_id', '=', partner.id)])
-                        if not existe_doc:
-                            document = self.env['documents.document'].create({'name': namee,
-                                                                              'type': 'binary',
-                                                                              'partner_id': partner.id,
-                                                                              'folder_id': folder_id.id,
-                                                                              'datas': image_binary,
-                                                                              'state': 'validated', })
-
-                            self.urlToirAttachement(document, url, name)
+                                    self.urlToirAttachement(document, url, name)
