@@ -108,7 +108,7 @@ class form_info(models.Model):
                             image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
-                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                                [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                             for partner in self.env['res.partner'].search(
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
@@ -119,7 +119,7 @@ class form_info(models.Model):
                                                                                       'partner_id': partner.id,
                                                                                       'folder_id': folder_id.id,
                                                                                       'datas': image_binary,
-                                                                                      'state': 'validated', })
+                                                                                      'state': 'waiting', })
 
                                     self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
                                     self.env.cr.commit()
@@ -132,7 +132,7 @@ class form_info(models.Model):
                             image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
-                                [('name', "=", ('Documents Digimoov')), ('company_id', "=", 1)], limit=1)
+                                [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                             for partner in self.env['res.partner'].search(
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
@@ -153,10 +153,10 @@ class form_info(models.Model):
                         if url:
                             # 👉️ Check if my_var is not None (null)
                             _logger.info(form_info_sub["answers"][i]["answer"])
-                            image_binary = base64.b64encode(requests.get(url.replace(" ", "%20")).content)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
-                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                                [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                             for partner in self.env['res.partner'].search(
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
@@ -167,7 +167,7 @@ class form_info(models.Model):
                                                                                       'partner_id': partner.id,
                                                                                       'folder_id': folder_id.id,
                                                                                       'datas': image_binary,
-                                                                                      'state': 'validated', })
+                                                                                      'state': 'waiting', })
 
                                     self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
                                     self.env.cr.commit()
@@ -180,7 +180,7 @@ class form_info(models.Model):
                             image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
-                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                                [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                             for partner in self.env['res.partner'].search(
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
@@ -191,7 +191,7 @@ class form_info(models.Model):
                                                                                       'partner_id': partner.id,
                                                                                       'folder_id': folder_id.id,
                                                                                       'datas': image_binary,
-                                                                                      'state': 'validated', })
+                                                                                      'state': 'waiting', })
 
                                     self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
                                     self.env.cr.commit()
@@ -204,7 +204,7 @@ class form_info(models.Model):
                             image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
-                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                                [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                             for partner in self.env['res.partner'].search(
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
@@ -215,7 +215,7 @@ class form_info(models.Model):
                                                                                       'partner_id': partner.id,
                                                                                       'folder_id': folder_id.id,
                                                                                       'datas': image_binary,
-                                                                                      'state': 'validated', })
+                                                                                      'state': 'waiting', })
 
                                     self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
                                     self.env.cr.commit()
