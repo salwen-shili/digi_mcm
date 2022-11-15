@@ -528,11 +528,19 @@ class Routes_Site(http.Controller):
                         years=1)
                     print('date exam :', str(date_exam))
                     if now < date_dateutil:
-                        session_filtered_vtc_ajournee = request.env['info.examen'].sudo().search(
-                            [('partner_id', "=", partner.id), ('state_theorique', "=", 'ajourne'),
-                             ('module_id.product_id.default_code', "=", 'vtc')], order='date_exam desc',
-                            limit=1)
-                        if not session_filtered_vtc_ajournee:
+                        if session_filtered_vtc.state_theorique and session_filtered_vtc.state_theorique == "ajourne" :
+                            echec_examen_vtc = request.env['product.product'].sudo().search(
+                                [('company_id', '=', 2), ('default_code', "=", 'examen_vtc')])
+                            res['response'].update(
+                                {
+                                    "vtc": {
+                                        "access": "authorized",
+                                        "url": '/shop/cart/update',
+                                        "echec_examen": echec_examen_vtc.id,
+                                        "message": "vous etes autoriser à passer l'examen vtc"
+                                    },
+                                })
+                        else:
                             res['response'].update(
                                 {
                                     "vtc": {
@@ -543,19 +551,7 @@ class Routes_Site(http.Controller):
                                     },
 
                                 })
-                        else:
-                            if session_filtered_vtc_ajournee.module_id:
-                                echec_examen_vtc = request.env['product.product'].sudo().search(
-                                    [('company_id', '=', 2), ('default_code', "=", 'examen_vtc')])
-                            res['response'].update(
-                                {
-                                    "vtc": {
-                                        "access": "authorized",
-                                        "url": '/shop/cart/update',
-                                        "echec_examen": echec_examen_vtc.id,
-                                        "message": "vous etes autoriser à passer l'examen vtc"
-                                    },
-                                })
+                            
                     else:
                         res['response'].update(
                             {
