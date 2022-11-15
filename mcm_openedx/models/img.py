@@ -73,13 +73,13 @@ class form_info(models.Model):
 
     def form_sub(self):
         response_form = requests.get(
-                'https://eu-api.jotform.com/form/222334146537352/submissions?apikey=98b07bd5ae3cd7054da0c386c4f699df')
+                'https://eu-api.jotform.com/form/222334146537352/submissions?apikey=98b07bd5ae3cd7054da0c386c4f699df&limit=1000&orderby=created_at')
         form_info = response_form.json()["content"]
         for form_infos in form_info:
             _logger.info(form_infos['id'])
             # Similar to form/form-id submissions. But only get a single submission
             response_sub_id = requests.get(
-                'https://eu-api.jotform.com/submission/%s?apikey=98b07bd5ae3cd7054da0c386c4f699df&limit=1000&orderby=created_at' % (
+                'https://eu-api.jotform.com/submission/%s?apikey=98b07bd5ae3cd7054da0c386c4f699df' % (
                     form_infos['id']))
             form_info_sub = response_sub_id.json()["content"]
             _logger.info(form_info_sub)
@@ -105,7 +105,7 @@ class form_info(models.Model):
                         if url:
                             # 👉️ Check if my_var is not None (null)
                             _logger.info(form_info_sub["answers"][i]["answer"])
-                            image_binary = base64.b64encode(requests.get(url[0]).content)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
@@ -121,7 +121,7 @@ class form_info(models.Model):
                                                                                       'datas': image_binary,
                                                                                       'state': 'validated', })
 
-                                    self.urlToirAttachement(document, url[0], name)
+                                    self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
                                     self.env.cr.commit()
 
                     elif form_info_sub["answers"][i]["name"] == "attestationDhebergement":
@@ -129,10 +129,10 @@ class form_info(models.Model):
                         if url:
                             # 👉️ Check if my_var is not None (null)
                             _logger.info(form_info_sub["answers"][i]["answer"])
-                            image_binary = base64.b64encode(requests.get(url[0]).content)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
-                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                                [('name', "=", ('Documents Digimoov')), ('company_id', "=", 1)], limit=1)
                             for partner in self.env['res.partner'].search(
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
@@ -143,9 +143,9 @@ class form_info(models.Model):
                                                                                       'partner_id': partner.id,
                                                                                       'folder_id': folder_id.id,
                                                                                       'datas': image_binary,
-                                                                                      'state': 'validated', })
+                                                                                      'state': 'waiting', })
 
-                                    self.urlToirAttachement(document, url[0], name)
+                                    self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
                                     self.env.cr.commit()
 
                     elif form_info_sub["answers"][i]["name"] == "vousAvez" :
@@ -153,7 +153,7 @@ class form_info(models.Model):
                         if url:
                             # 👉️ Check if my_var is not None (null)
                             _logger.info(form_info_sub["answers"][i]["answer"])
-                            image_binary = base64.b64encode(requests.get(url).content)
+                            image_binary = base64.b64encode(requests.get(url.replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
@@ -169,7 +169,7 @@ class form_info(models.Model):
                                                                                       'datas': image_binary,
                                                                                       'state': 'validated', })
 
-                                    self.urlToirAttachement(document, url[0], name)
+                                    self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
                                     self.env.cr.commit()
 
                     elif form_info_sub["answers"][i]["name"] == "pieceDidentite":
@@ -177,7 +177,7 @@ class form_info(models.Model):
                         if url:
                             # 👉️ Check if my_var is not None (null)
                             _logger.info(form_info_sub["answers"][i]["answer"])
-                            image_binary = base64.b64encode(requests.get(url[0]).content)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
@@ -193,7 +193,7 @@ class form_info(models.Model):
                                                                                       'datas': image_binary,
                                                                                       'state': 'validated', })
 
-                                    self.urlToirAttachement(document, url[0], name)
+                                    self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
                                     self.env.cr.commit()
 
                     elif form_info_sub["answers"][i]["name"] == "pieceDidentite70":
@@ -201,7 +201,7 @@ class form_info(models.Model):
                         if url:
                             # 👉️ Check if my_var is not None (null)
                             _logger.info(form_info_sub["answers"][i]["answer"])
-                            image_binary = base64.b64encode(requests.get(url[0]).content)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
@@ -217,5 +217,5 @@ class form_info(models.Model):
                                                                                       'datas': image_binary,
                                                                                       'state': 'validated', })
 
-                                    self.urlToirAttachement(document, url[0], name)
+                                    self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
                                     self.env.cr.commit()
