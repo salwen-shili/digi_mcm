@@ -152,8 +152,9 @@ class InheritSignRequestItem(models.Model):
             if not signer.create_uid.email:
                 continue
             #Template proces verbal
-            if "Procès verbal" in str(self.sign_request_id.reference):
-                report_proces_verbal = self.env.ref('digimoov_sessions_modules.report_proces_verbal')
+            template_proces_verbal = self.env['mail.template'].sudo().search([('name', '=', "Digimoov - Procès verbal jury d'examen")], limit=1)
+            if (template_proces_verbal.name in str(self.sign_request_id.reference)) or ("Procès verbal" in str(self.sign_request_id.reference)):
+                report_proces_verbal = template_proces_verbal.id
                 body = report_proces_verbal.render(body, engine='ir.qweb', minimal_qcontext=True)
                 _logger.info("11122222211111111 Subject Rapport proces verbal %s" % self.sign_request_id.reference)
             #Template Cerfa
