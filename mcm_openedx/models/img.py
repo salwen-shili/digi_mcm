@@ -73,7 +73,7 @@ class form_info(models.Model):
 
     def form_sub(self):
         response_form = requests.get(
-            'https://eu-api.jotform.com/form/222334146537352/submissions?apikey=98b07bd5ae3cd7054da0c386c4f699df')
+                'https://eu-api.jotform.com/form/222334146537352/submissions?apikey=98b07bd5ae3cd7054da0c386c4f699df')
         form_info = response_form.json()["content"]
         for form_infos in form_info:
             _logger.info(form_infos['id'])
@@ -147,7 +147,7 @@ class form_info(models.Model):
                                     self.urlToirAttachement(document, url[0], name)
                                     self.env.cr.commit()
 
-                    elif form_info_sub["answers"][i]["name"] == "vousAvez":
+                    elif form_info_sub["answers"][i]["name"] == "vousAvez" :
                         url = form_info_sub["answers"][i]["answer"]
                         if url:
                             # 👉️ Check if my_var is not None (null)
