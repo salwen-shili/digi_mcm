@@ -312,10 +312,10 @@ class Coach(models.Model):
                             # print("coaches.name", coaches.name)
                             _logger.info('partner.name %s' % str(partner.name))
                             _logger.info('partner.coach_peda == Falsee %s' % str(count_apprennat))
-                            if message and partner.mcm_session_id.date_exam.month >= todays_date.month:
+                            if message and partner.mcm_session_id.date_exam >= date.today:
                                 partner.coach_peda = message.author_id
                                 # partner.state = "en_formation"
-                            if (partner.mcm_session_id.date_exam.month >= todays_date.month):
+                            if (partner.mcm_session_id.date_exam.date_exam < date.today):
                                 partner.state = "supprimé"
 
 
