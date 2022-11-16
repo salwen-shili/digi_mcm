@@ -315,7 +315,7 @@ class Coach(models.Model):
                             if message and partner.mcm_session_id.date_exam >= date.today:
                                 partner.coach_peda = message.author_id
                                 # partner.state = "en_formation"
-                            if (partner.mcm_session_id.date_exam.date_exam < date.today):
+                            if (partner.mcm_session_id.date_exam < date.today):
                                 partner.state = "supprimé"
 
 
