@@ -133,7 +133,7 @@ class InheritSignRequest(models.Model):
         return True
 
 
-class InheritSignRequestItem(models.Model):
+class InheritMailTemplate(models.Model):
     _inherit = "mail.template"
 
     link = fields.Char(string="Sign link")
