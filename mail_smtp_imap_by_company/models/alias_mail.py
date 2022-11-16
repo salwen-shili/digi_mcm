@@ -105,7 +105,17 @@ class MailThreadInherit(models.AbstractModel):
                 'message': message, 'message_company': message_company,
             }, engine='ir.qweb')
             company_bounce = "%s@%s" %(str(bounce_alias),str(message_company.alias_domain)) if message_company.alias_domain else "%s@%s" %(str(bounce_alias),str(bounce_domain)) # get no-reply ( bounce ) email from company and ir.config_parameter
-            self._routing_create_bounce_email(email_from, body, message, reply_to=str(company_bounce)) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
+            template_bounce = False
+            if company == 2 :
+                template_bounce = self.env['mail.template'].sudo().search(
+                    [('name', "=", "Bounced mail - Digimoov"),('model_id.model',"=",'res.partner')], limit=1)
+            else:
+                template_bounce = self.env['mail.template'].sudo().search(
+                    [('name', "=", "Bounced Mail - MCM Academy"), ('model_id.model', "=", 'res.partner')], limit=1)
+            if template_bounce:
+                self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(company_bounce)) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
+            else :
+                self._routing_create_bounce_email(email_from, body, message, reply_to=str(company_bounce))
             if bounce_match:
                 company = 1
                 if 'digimoov' in email_to: #check if email_to contains digimoov
@@ -114,7 +124,11 @@ class MailThreadInherit(models.AbstractModel):
                 body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
                     'message': message, 'message_company': message_company,
                 }, engine='ir.qweb')
-                self._routing_create_bounce_email(email_from, body, message, reply_to=company_bounce) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
+                if template_bounce:
+                    self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(
+                        company_bounce))  # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
+                else:
+                    self._routing_create_bounce_email(email_from, body, message, reply_to=str(company_bounce))
                 return []
         if message.get_content_type() == 'multipart/report' or email_from_localpart == 'mailer-daemon':
             _logger.info('multipart/report')
