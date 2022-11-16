@@ -554,22 +554,16 @@
                                     <td style="padding: 0; font-size:11px;">
                                         <hr width="100%"
                                             style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 32px 0px 4px 0px;"/>
-                                        <b t-esc="company.name"/>
                                         <br/>
-                                        <div style="color: #999999">
-                                            <t t-esc="company.phone"/>
-                                            <t t-if="company.email">|
-                                                <a t-att-href="'mailto:%s' % company.email"
-                                                   style="text-decoration:none; color: #999999;">
-                                                    <t t-esc="company.email"/>
-                                                </a>
-                                            </t>
-                                            <t t-if="company.website">|
+                                        <div style="color: #999999;text-align: center;">
+                                           <t> <b t-esc="company.name"/> </t>|
+                                            <t t-if="company.website">
                                                 <a t-att-href="'%s' % company.website"
                                                    style="text-decoration:none; color: #999999;">
                                                     <t t-esc="company.website"/>
-                                                </a>
+                                                </a>|
                                             </t>
+                                            <t t-esc="company.phone"/>
                                         </div>
                                     </td>
                                 </tr>
