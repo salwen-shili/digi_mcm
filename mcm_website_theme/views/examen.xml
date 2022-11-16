@@ -60,7 +60,7 @@
                   </div>
                 </div>
                 <div class="col-lg-6 pb24 pt0 js-scroll slide-right scrolled">
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.png" class="img img-fluid mx-auto text-center lazy" alt="candidat à l’examen taxi vtc" title="homme pointant du doigt pour montrer comment devenir chauffeur taxi vtc moto-taxi" style="    width: 85%;"/>
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.png" class="img img-fluid mx-auto text-center lazy" alt="candidat à l’examen taxi vtc" title="homme pointant du doigt pour montrer comment devenir chauffeur taxi vtc moto-taxi" style="    width: 75%;"/>
                 </div>
               </div>
             </div>
@@ -69,7 +69,7 @@
             <div class="container">
               <div class="row align-items-center">
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-left scrolled">
-                  <img data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/CONDITIONS-PASSER-EXAMEN-TAXI.png" data-src="/mcm_website_theme/static/src/img/formation_taxi/CONDITIONS-PASSER-EXAMEN-TAXI.png" class="img img-fluid mx-auto lazy" alt="inscription examen taxi vtc vmdtr" title="homme devant son écran s’inscrit à l’examen taxi vtc" src="/web/image/372296/A%20P%201%20%281%29.png"/>
+                  <img data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/CONDITIONS-PASSER-EXAMEN-TAXI.png" data-src="/mcm_website_theme/static/src/img/formation_taxi/CONDITIONS-PASSER-EXAMEN-TAXI.png" class="img img-fluid mx-auto lazy" alt="inscription examen taxi vtc vmdtr" title="homme devant son écran s’inscrit à l’examen taxi vtc" />
                 </div>
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
                   <h2>LES CONDITIONS POUR PASSER L'EXAMEN TAXI/VTC</h2>
@@ -256,9 +256,9 @@
            <!--TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI -->
            <section id="sh_corpomate_theme_section_167" class="sh_animation_part" style="background-color: rgb(253, 209, 5); margin: 76px 0px">
             <div class="container js-scroll fade-in-top">
-              <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width: 100%; margin-bottom:20px">
+              <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width: 100%; margin-bottom:27px">
                 ET SI VOUS SOUHAITEZ RÉSERVER VOTRE NOUVELLE TENTATIVE D'EXAMEN ?
-            </h3>
+              </h3>
           
               <div>
                 <select onchange="onChangeSelect(this.options[this.selectedIndex].value, this.selectedIndex)" style="
