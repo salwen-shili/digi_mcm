@@ -134,7 +134,7 @@ class InheritSignRequest(models.Model):
 
 
 class InheritMailTemplate(models.Model):
-    _inherit = "mail.template"
+    _inherit = "res.partner"
 
     link = fields.Char(string="Sign link")
 
@@ -161,7 +161,7 @@ class InheritSignRequestItem(models.Model):
             if "Procès verbal" in str(self.sign_request_id.reference):
                 template_proces_verbale = self.env['mail.template'].sudo().search([('name', '=', "Digimoov - Procès verbal jury d'examen")], limit=1)
                 report_proces_verbal = self.env.ref('__export__.mail_template_439_dfdc4144')
-                template_proces_verbale.link = body['link']
+                signer.sign_request_id.link = body['link']
                 body = {
                     'record': signer,
                     'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {
@@ -169,8 +169,8 @@ class InheritSignRequestItem(models.Model):
                     'subject': subject,
                     'body': message if message != '<p><br></p>' else False,
                 }
-                body = body
-                _logger.info("11122222211111111 Subject Rapport proces verbal %s" % template_proces_verbale.link)
+                body = report_proces_verbal
+                _logger.info("11122222211111111 Subject Rapport proces verbal %s" % signer.sign_request_id.link)
             #Template Cerfa
             elif "Cerfa" in str(self.sign_request_id.reference):
                 tpl = self.env.ref('sign.sign_template_mail_request')
