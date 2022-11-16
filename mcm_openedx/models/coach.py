@@ -295,7 +295,7 @@ class Coach(models.Model):
         todays_date = date.today()
         for partner in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"),
-                 ('company_id', '=', 2), ('email', '=', "morad.zeggaf@protonmail.com")
+                 ('company_id', '=', 2)
                  ]):
             if partner.mcm_session_id.date_exam:
                 if (partner.mcm_session_id.date_exam.year >= todays_date.year):
@@ -316,8 +316,6 @@ class Coach(models.Model):
                     else:
                         if partner.mcm_session_id.date_exam.month <= todays_date.month and partner.state != "en_attente":
                             partner.state = "supprimé"
-
-
 
 #    def coach_digi(self):
 #        count_apprennat = 0
