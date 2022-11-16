@@ -207,7 +207,7 @@ class partner(models.Model):
                         })
                         self.env.cr.commit()
                         print("partner", partner.name, partner.last_login)
-            except exception:
+            except Exception:
                 self.env.cr.rollback()
                 _logger.exception("Failure with get user stats")
 
