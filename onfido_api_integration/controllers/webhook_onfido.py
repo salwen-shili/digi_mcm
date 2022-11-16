@@ -105,6 +105,10 @@ class OnfidoController(http.Controller):
                             _logger.info("translated_nationality %s" % str(country))
                             # _logger.info("translated_nationality %s" % str(translation))
                             partner.nationality = country
+                    if extraction['extracted_data']['document_type'] == "driving_licence":
+                        if 'document_number' in extraction['extracted_data']:
+                            partner.numero_permis=extraction['extracted_data']['document_number']
+
         if 'document_back' in data:
             document_back_id = data['document_back']['id']
             name_back = str(data['document_back']['type']) + "_" + str(data['document_back']['side'])
