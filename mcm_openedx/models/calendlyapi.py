@@ -27,7 +27,6 @@ class calendly_integration(models.Model):
     scheduling_url = fields.Char(string="scheduling_ur")
     updated_at = fields.Date(string="updated_at")
     uri = fields.Char(string="uri ")
- 
 
     def type_event(self):
         company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
@@ -37,7 +36,7 @@ class calendly_integration(models.Model):
                        "user": "https://api.calendly.com/users/5aa95e72-35ab-4391-8ff6-34cdd4e34f86"}
         headers = {
             "Content-Type": "application/json",
-            "Authorization":  company.calendly_api_key
+            "Authorization": company.calendly_api_key
         }
         response = requests.get('https://api.calendly.com/event_types', headers=headers, params=querystring)
         event = response.json()["collection"]
@@ -126,7 +125,7 @@ class event_calendly(models.Model):
         print("hahah", r.json()["collection"])
         shevent = r.json()["collection"]
         for shevents in shevent:
-            try :
+            try:
                 scheduling_url_uri = shevents['uri']
                 scheduling_url_name = shevents['name']
                 print("scheduling_url_namescheduling_url_name", scheduling_url_name)
@@ -139,7 +138,7 @@ class event_calendly(models.Model):
                 }
                 headers = {
                     "Content-Type": "application/json",
-                    "Authorization": company.calendly_api_key        }
+                    "Authorization": company.calendly_api_key}
 
                 rep = requests.get('https://api.calendly.com/scheduled_events/%s' % (uuid_eventtype[4]),
                                    headers=headers, params=params)
@@ -199,7 +198,6 @@ class event_calendly(models.Model):
             except Exception:
                 self.env.cr.rollback()
                 _logger.info(" except Exception:")
-
 
     def test_url(self):
         return {

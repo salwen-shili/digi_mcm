@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="jotform_sub_tree_view">
+        <field name="name">JOTFORM</field>
+        <field name="model">mcm_openedx.form_info</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="email"/>
+                <field name="partner_id"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="jotform_sub_form_view">
+        <field name="name">JOTFORM</field>
+        <field name="model">mcm_openedx.form_info</field>
+        <field name="arch" type="xml">
+            <form string="Course Form">
+                <sheet>
+                    <group>
+                        <field name="email"/>
+                        <field name="partner_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="jotform_sub_list_action">
+        <field name="name">JOTFORM</field>
+        <field name="res_model">mcm_openedx.form_info</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="jotform_sub_menu" name="Sub_JOTFORM" parent="calendly_menu" action="jotform_sub_list_action"/>
+
+</odoo>
