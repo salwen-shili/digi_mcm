@@ -134,6 +134,12 @@ class InheritSignRequest(models.Model):
 
 
 class InheritSignRequestItem(models.Model):
+    _inherit = "mail.template"
+
+    link = fields.Char(string="Sign link")
+
+
+class InheritSignRequestItem(models.Model):
     _inherit = "sign.request.item"
 
     def send_signature_accesses(self, subject=None, message=None):
@@ -152,11 +158,19 @@ class InheritSignRequestItem(models.Model):
             if not signer.create_uid.email:
                 continue
             #Template proces verbal
-            template_proces_verbal = self.env['mail.template'].sudo().search([('name', '=', "Digimoov - Procès verbal jury d'examen")], limit=1)
-            if (template_proces_verbal.name in str(self.sign_request_id.reference)) or ("Procès verbal" in str(self.sign_request_id.reference)):
-                report_proces_verbal = template_proces_verbal.id
-                body = report_proces_verbal.render(body, engine='ir.qweb', minimal_qcontext=True)
-                _logger.info("11122222211111111 Subject Rapport proces verbal %s" % self.sign_request_id.reference)
+            if "Procès verbal" in str(self.sign_request_id.reference):
+                template_proces_verbale = self.env['mail.template'].sudo().search([('name', '=', "Digimoov - Procès verbal jury d'examen")], limit=1)
+                report_proces_verbal = self.env.ref('__export__.mail_template_439_dfdc4144')
+                template_proces_verbale.link = body['link']
+                body = {
+                    'record': signer,
+                    'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {
+                        'request_id': signer.sign_request_id.id, 'access_token': signer.access_token}),
+                    'subject': subject,
+                    'body': message if message != '<p><br></p>' else False,
+                }
+                body = body
+                _logger.info("11122222211111111 Subject Rapport proces verbal %s" % template_proces_verbale.link)
             #Template Cerfa
             elif "Cerfa" in str(self.sign_request_id.reference):
                 tpl = self.env.ref('sign.sign_template_mail_request')
