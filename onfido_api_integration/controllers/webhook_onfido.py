@@ -210,7 +210,7 @@ class OnfidoController(http.Controller):
                         for info in driving_licence_info :
                             _logger.info("drive_licence %s" % str(info))
                             if info['category']=="B":
-                                obtainment_date_str=info['OBTAINMENT_DATE']
+                                obtainment_date_str=info['obtainment_date']
                                 obtainment_date = datetime.strptime(obtainment_date_str, '%Y-%m-%d')
                                 _logger.info("dateeeeeeeeeeeee %s" % str(obtainment_date))
 
@@ -269,36 +269,64 @@ class OnfidoController(http.Controller):
                     _logger.info("reppooort %s" % str(report))
                     properties = report['properties']
                     if properties['document_type'] == "driving_licence" and "driving_licence_information" in properties:
+                        """rextraire les information lié à categorie B sur le permis de conduire """
                         driving_licence_info = properties['driving_licence_information']
                         for info in driving_licence_info:
                             _logger.info("drive_licence %s" % str(info))
                             if info['category'] == "B":
-                                obtainment_date_str = info['OBTAINMENT_DATE']
+                                obtainment_date_str = info['obtainment_date']
                                 obtainment_date = datetime.strptime(obtainment_date_str, '%Y-%m-%d')
                                 _logger.info("dateeeeeeeeeeeee %s" % str(obtainment_date))
-                currentUser.validation_onfido = "clear"
-                if data_onfido:
+                                date_years=obtainment_date + relativedelta(years=3)
+                                if date_years >= datetime.today() :
+                                    message_ticket="Permis non probatoire"
+                                    _logger.info("permis non probatoire %s " %str(date_years))
+                                    currentUser.validation_onfido = "fail"
+                                    """créer ticket pour service client et mettre la motif de refus sur la fiche"""
+                                    data_onfido.motif = message_ticket
 
-                    data_onfido.validation_onfido = "clear"
-                    documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
-                    _logger.info("document %s" % str(documents))
-                    if documents:
-                        for document in documents:
-                            document.state = "validated"
-                            request.env.cr.commit()
-                    # self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"validated",currentUser)
-                    # self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"validated",currentUser)
-                    # else:
-                    #     time.sleep(9)
-                    #     _logger.info(
-                    #         '*************************************after waite clear  ***************** %s' % str(
-                    #             currentUser.id))
-                    #     documents = request.env['documents.document'].sudo().search(
-                    #         [('partner_id', "=", currentUser.id)])
-                    #     _logger.info("document %s" % str(documents))
-                    #     if documents:
-                    #         for document in documents:
-                    #             document.state = "validated"
+                                    vals = {
+                                        'partner_email': '',
+                                        'description': "Client:" + " " + currentUser.name + " Motif:" + message_ticket,
+                                        'name': 'Documents refusés',
+                                        'team_id': request.env['helpdesk.team'].sudo().search(
+                                            [('name', "like", _('Client')), ('company_id', "=", 2)],
+                                            limit=1).id,
+                                    }
+                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
+                                    if data_onfido:
+                                        data_onfido.validation_onfido = "fail"
+                                        documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
+                                        _logger.info("document %s" % str(documents))
+                                        if documents:
+                                            for document in documents:
+                                                document.state = "refused"
+                                                request.env.cr.commit()
+                                else :
+                                    currentUser.validation_onfido = "clear"
+                                    if data_onfido:
+
+                                        data_onfido.validation_onfido = "clear"
+                                        documents = request.env['documents.document'].sudo().search([('partner_id', "=", currentUser.id)])
+                                        _logger.info("document %s" % str(documents))
+                                        if documents:
+                                            for document in documents:
+                                                document.state = "validated"
+                                                request.env.cr.commit()
+                                        # self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"validated",currentUser)
+                                        # self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"validated",currentUser)
+                                        # else:
+                                        #     time.sleep(9)
+                                        #     _logger.info(
+                                        #         '*************************************after waite clear  ***************** %s' % str(
+                                        #             currentUser.id))
+                                        #     documents = request.env['documents.document'].sudo().search(
+                                        #         [('partner_id', "=", currentUser.id)])
+                                        #     _logger.info("document %s" % str(documents))
+                                        #     if documents:
+                                        #         for document in documents:
+                                        #             document.state = "validated"
 
         return True
 
