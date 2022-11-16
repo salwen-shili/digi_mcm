@@ -148,7 +148,7 @@ class form_info(models.Model):
                                     self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
                                     self.env.cr.commit()
 
-                    elif form_info_sub["answers"][i]["name"] == "vousAvez" :
+                    elif form_info_sub["answers"][i]["name"] == "vousAvez":
                         url = form_info_sub["answers"][i]["answer"]
                         if url:
                             # 👉️ Check if my_var is not None (null)
@@ -205,6 +205,7 @@ class form_info(models.Model):
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
                                 [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
+                            #chercher si la submission est
                             for partner in self.env['res.partner'].search(
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
@@ -217,5 +218,6 @@ class form_info(models.Model):
                                                                                       'datas': image_binary,
                                                                                       'state': 'waiting', })
 
+                                    #replace " " avec  %20 pour eliminer les espace
                                     self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
                                     self.env.cr.commit()
