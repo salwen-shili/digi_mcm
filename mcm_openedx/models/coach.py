@@ -314,7 +314,7 @@ class Coach(models.Model):
                                 partner.coach_peda = message.author_id
                             # partner.state = "en_formation"
                         else:
-                            if partner.mcm_session_id.date_exam.month < todays_date.month and partner.state != "en_attente":
+                            if partner.mcm_session_id.date_exam.month <= todays_date.month and partner.state != "en_attente":
                                 partner.state = "en_formation"
 
                 self.env.cr.commit()
