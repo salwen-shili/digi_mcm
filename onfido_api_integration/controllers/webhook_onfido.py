@@ -213,6 +213,13 @@ class OnfidoController(http.Controller):
                                 obtainment_date_str=info['obtainment_date']
                                 obtainment_date = datetime.strptime(obtainment_date_str, '%Y-%m-%d')
                                 _logger.info("dateeeeeeeeeeeee %s" % str(obtainment_date))
+                                date_years = obtainment_date + relativedelta(years=3)
+                                if date_years >= datetime.today():
+                                    message_ticket = "Permis non probatoire"
+                                    _logger.info("permis non probatoire %s " % str(date_years))
+                                    currentUser.validation_onfido = "fail"
+                                    """créer ticket pour service client et mettre la motif de refus sur la fiche"""
+                                    data_onfido.motif = message_ticket
 
                     if 'visual_authenticity' in report['breakdown']:
                         breakdown_origin = report['breakdown']['visual_authenticity']['breakdown'][
