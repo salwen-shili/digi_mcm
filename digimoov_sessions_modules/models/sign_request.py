@@ -133,24 +133,11 @@ class InheritSignRequest(models.Model):
         return True
 
 
-class InheritResPartner(models.Model):
-    _inherit = "res.partner"
-
-    link = fields.Char(string="Sign link")
-
-
-class InheritMailTemplate(models.Model):
-    _inherit = "mail.template"
-
-    link = fields.Char(string="Sign link")
-
-
 class InheritSignRequestItem(models.Model):
     _inherit = "sign.request.item"
 
     def send_signature_accesses(self, subject=None, message=None):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-
         for signer in self:
             body = {
                 'record': signer,
@@ -159,34 +146,40 @@ class InheritSignRequestItem(models.Model):
                 'subject': subject,
                 'body': message if message != '<p><br></p>' else False,
             }
+            # Call value from dict 'body'
+            link = body['link']
+
             if not signer.partner_id or not signer.partner_id.email:
                 continue
             if not signer.create_uid.email:
                 continue
             #Template proces verbal
             if "Procès verbal" in str(self.sign_request_id.reference):
-                template_proces_verbale = self.env['mail.template'].sudo().search([('name', '=', "Digimoov - Procès verbal jury d'examen")], limit=1)
                 report_proces_verbal = self.env.ref('__export__.mail_template_439_dfdc4144')
-                signer.link = body['link']
-                body = {
-                    'record': signer,
-                    'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {
-                        'request_id': signer.sign_request_id.id, 'access_token': signer.access_token}),
-                    'subject': subject,
-                    'body': message if message != '<p><br></p>' else False,
-                }
-                body = report_proces_verbal.body_html
-                _logger.info("11122222211111111 Subject Rapport proces verbal %s" % signer.link)
-            #Template Cerfa
+                # Remove '\n' from Template
+                body_remove_n = report_proces_verbal.body_html.replace('\n', '')
+                # Replace le code HTML link with body['link']
+                body_replace_link = body_remove_n.replace('link', link)
+                body = body_replace_link
+            # Template Cerfa
             elif "Cerfa" in str(self.sign_request_id.reference):
+                report_cerfa = self.env.ref('__export__.mail_template_439_dfdc4144')
                 tpl = self.env.ref('sign.sign_template_mail_request')
                 if signer.partner_id.lang:
                     tpl = tpl.with_context(lang=signer.partner_id.lang)
-                body = tpl.render(body, engine='ir.qweb', minimal_qcontext=True)
-            #Template génèrale
+                # Remove '\n' from Template
+                body_remove_n = report_cerfa.body_html.replace('\n', '')
+                # Replace le code HTML link with body['link']
+                body_replace_link = body_remove_n.replace('t-att-href="link"', 'href=" %s' % link + '"')
+                body = body_replace_link
+            # Template génèrale
             elif "Cerfa" not in str(self.sign_request_id.reference) and "Procès verbal" not in str(self.sign_request_id.reference):
                 general_template = self.env.ref('digimoov_sessions_modules.report_general_sign')
-                body = general_template.render(body, engine='ir.qweb', minimal_qcontext=True)
+                # Remove '\n' from Template
+                body_remove_n = general_template.body_html.replace('\n', '')
+                # Replace le code HTML link with body['link']
+                body_replace_link = body_remove_n.replace('t-att-href="link"', 'href=" %s' % link + '"')
+                body = body_replace_link
             if not signer.signer_email:
                 raise UserError(_("Please configure the signer's email address"))
             # Search contact mail with examen@digimoov.fr
