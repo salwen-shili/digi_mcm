@@ -295,37 +295,29 @@ class Coach(models.Model):
         todays_date = date.today()
         for partner in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"),
-                 ('company_id', '=', 2), ('coach_peda', '=', False)
+                 ('company_id', '=', 2), ('email', '=', "morad.zeggaf@protonmail.com")
                  ]):
-            try:
-                if partner.mcm_session_id.date_exam:
-                    if (partner.mcm_session_id.date_exam.year >= todays_date.year):
-                        if partner.coach_peda.id is False:
-                            count_apprennat = count_apprennat + 1
-                            # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
-                            message = self.env['mail.message'].search(
-                                [('res_id', "=", partner.id), ('author_id.est_coach', '=', 'True'),
-                                 ('company_id', '=', 2)],
-                                order="create_date asc",
-                                limit=1)
-                            # if (coaches.name, 'ilike', message.author_id.name):
-                            # print("coaches.name", coaches.name)
-                            _logger.info('partner.name %s' % str(partner.name))
-                            _logger.info('partner.coach_peda == Falsee %s' % str(count_apprennat))
-                            if message and partner.mcm_session_id.date_exam >= date.today:
-                                partner.coach_peda = message.author_id
-                                # partner.state = "en_formation"
-                        if (partner.mcm_session_id.date_exam < date.today):
+            if partner.mcm_session_id.date_exam:
+                if (partner.mcm_session_id.date_exam.year >= todays_date.year):
+                    if partner.coach_peda.id is False:
+                        count_apprennat = count_apprennat + 1
+                        # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
+                        message = self.env['mail.message'].search(
+                            [('res_id', "=", partner.id), ('author_id.est_coach', '=', 'True'),
+                             ('company_id', '=', 2)],
+                            order="create_date asc",
+                            limit=1)
+                        # if (coaches.name, 'ilike', message.author_id.name):
+                        # print("coaches.name", coaches.name)
+                        _logger.info('partner.name %s' % str(partner.name))
+                        if message and partner.mcm_session_id.date_exam.month >= todays_date.month:
+                            partner.coach_peda = message.author_id
+                        # partner.state = "en_formation"
+                    else:
+                        if partner.mcm_session_id.date_exam.month <= todays_date.month and partner.state = "en_attente":
                             partner.state = "supprimé"
 
 
-
-                        else:
-                            if partner.state != "supprimé":
-                                partner.state = "en_formation"
-                self.env.cr.commit()
-            except Exception:
-                self.env.cr.rollback()
 
 #    def coach_digi(self):
 #        count_apprennat = 0
