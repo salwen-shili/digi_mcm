@@ -297,7 +297,7 @@ class OnfidoController(http.Controller):
                                         'description': "Client:" + " " + currentUser.name + " Motif:" + message_ticket,
                                         'name': 'Documents refusés',
                                         'team_id': request.env['helpdesk.team'].sudo().search(
-                                            [('name', "like", _('Client')), ('company_id', "=", 2)],
+                                            [('name', "like", _('Client')), ('company_id', "=", 1)],
                                             limit=1).id,
                                     }
                                     new_ticket = request.env['helpdesk.ticket'].sudo().create(
