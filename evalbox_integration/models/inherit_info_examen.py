@@ -232,7 +232,7 @@ class InheritMcmacademySession(models.Model):
                     "email": str(client.email.lower()),
                     "custom_fields": {
                         "prenom_officiel": str(client.firstName),
-                        "nom_officiel": str(client.lastName),
+                        "nom_officiel": str(client.lastName).upper(),
                     },
                     "externid": str(val),
                 }
