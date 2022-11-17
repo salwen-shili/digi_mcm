@@ -645,7 +645,7 @@ class Services(http.Controller):
         name_company = False
         if kwargs.get('name_company'):
             name_company = kwargs.get('name_company')
-        service = kwargs.get('service')
+        service = kwargs.get('service') #get value of service sended from frontend form
         user = http.request.env['res.users'].sudo().search([('login', "=", str(email_from).replace(' ', '').lower()), '|', ('active', '=', True), ('active', '=', False)], #search for active and not active users
                                                            limit=1)  # get only one user if there is double account with same email 
         if not user:
@@ -680,6 +680,7 @@ class Services(http.Controller):
             if ticket:  # check if the customer has already sent a ticket with the same datas
                 # if ticket has already created redirect client to contact page
                 return request.redirect('/contact')
+        #redirect ticket to the concerned team
         if service == 'client':
             if request.website.id == 2:
                 vals = {
