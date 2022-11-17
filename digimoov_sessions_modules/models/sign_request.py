@@ -153,7 +153,7 @@ class InheritSignRequestItem(models.Model):
                 continue
             if not signer.create_uid.email:
                 continue
-            #Template proces verbal
+            # Template proces verbal
             if "Procès verbal" in str(self.sign_request_id.reference):
                 report_proces_verbal = self.env.ref('__export__.mail_template_439_dfdc4144')
                 # Remove '\n' from Template
@@ -181,7 +181,8 @@ class InheritSignRequestItem(models.Model):
                 body_replace_link = body_remove_n.replace('link', link)
                 body = body_replace_link
             # Template génèrale
-            elif "Cerfa" not in str(self.sign_request_id.reference) and "Procès verbal" not in str(self.sign_request_id.reference) and "SESSION D’EXAMEN" not in :
+            elif "Cerfa" not in str(self.sign_request_id.reference) and "Procès verbal" not in str(
+                    self.sign_request_id.reference) and "SESSION D’EXAMEN" not in str(self.sign_request_id.reference):
                 general_template = self.env.ref('digimoov_sessions_modules.report_general_sign')
                 # Remove '\n' from Template
                 body_remove_n = general_template.body_html.replace('\n', '')
