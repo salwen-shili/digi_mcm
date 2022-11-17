@@ -155,7 +155,7 @@ class InheritSignRequestItem(models.Model):
                 continue
             # Template proces verbal
             if "Procès verbal" in str(self.sign_request_id.reference):
-                report_proces_verbal = self.env.ref('__export__.mail_template_439_dfdc4144')
+                report_proces_verbal = self.env.ref('__export__.mail_template_781_f23720d6')
                 # Remove '\n' from Template
                 body_remove_n = report_proces_verbal.body_html.replace('\n', '')
                 # Replace le code HTML link with body['link']
@@ -163,7 +163,7 @@ class InheritSignRequestItem(models.Model):
                 body = body_replace_link
             # Template Cerfa
             elif "Cerfa" in str(self.sign_request_id.reference):
-                report_cerfa = self.env.ref('__export__.mail_template_439_dfdc4144')
+                report_cerfa = self.env.ref('__export__.mail_template_659_4c315d5e')
                 tpl = self.env.ref('sign.sign_template_mail_request')
                 if signer.partner_id.lang:
                     tpl = tpl.with_context(lang=signer.partner_id.lang)
@@ -183,7 +183,7 @@ class InheritSignRequestItem(models.Model):
             # Template génèrale
             elif "Cerfa" not in str(self.sign_request_id.reference) and "Procès verbal" not in str(
                     self.sign_request_id.reference) and "SESSION D’EXAMEN" not in str(self.sign_request_id.reference):
-                general_template = self.env.ref('digimoov_sessions_modules.report_general_sign')
+                general_template = self.env.ref('__export__.mail_template_779_f4086bda')
                 # Remove '\n' from Template
                 body_remove_n = general_template.body_html.replace('\n', '')
                 # Replace le code HTML link with body['link']
