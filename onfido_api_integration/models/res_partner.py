@@ -51,7 +51,7 @@ class ResPartner(models.Model):
             # partner.onfido_applicant_id = applicant['id']
         return applicant['id']
 
-    def generateSdktoken(self, applicant_id, token, partner):
+    def generateSdktoken(self, applicant_id,referrer, token, partner):
         """Génerer un sdk token avec API pour chaque applicant """
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         _logger.info("base urll %s" % str(base_url))
@@ -64,7 +64,7 @@ class ResPartner(models.Model):
         data = {
             "applicant_id": applicant_id,
             # "referrer": "http://localhost:8069/*",
-             "referrer": "https://www.digimoov.fr/*"
+             "referrer": referrer+"/*"
         }
         response_token = requests.post(url_sdk, headers=headers, data=json.dumps(data))
         token_sdk = response_token.json()

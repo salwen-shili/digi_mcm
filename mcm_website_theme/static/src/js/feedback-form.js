@@ -11,7 +11,7 @@ $(document).ready(function () {
     ? (document.getElementById('notifMessage').textContent =
         "Vous pouvez désormais choisir votre date et centre d'examen et financer votre formation.")
     : (document.getElementById('notifMessage').textContent =
-        "Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre pièce d'identité et cliquer sur continuer.");
+        "Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre pièce d'identité, votre permis de conduire et cliquer sur continuer.");
   console.log(hasdocument, document.getElementById('hasdocument').value);
   //console.log(hasdocument, document.getElementById('hasdocument').value);
   // console.log(
