@@ -55,25 +55,9 @@ class form_info(models.Model):
     partner_id = fields.Many2one('res.partner')
     email = fields.Char(string="EMAIL")
 
-    def urlToirAttachement(self, document, url, name):
-        _logger.info("Trying to Add url=%s to ir attachement.", url)
-        attachment_obj = self.env["ir.attachment"]
-        fileUrl = parse.urlparse(url)
-
-        if not fileUrl.scheme:
-            fileUrl = parse.urlparse("{}{}".format("http://", fileUrl))
-        attachment = {
-            "name": name,
-            "type": "url",
-            "url": fileUrl.geturl(),
-            "res_id": document.id,
-            "res_model": "documents.document",
-        }
-        attachment_obj.create(attachment)
-
     def form_sub(self):
         response_form = requests.get(
-                'https://eu-api.jotform.com/form/222334146537352/submissions?apikey=98b07bd5ae3cd7054da0c386c4f699df&limit=1000&orderby=created_at')
+            'https://eu-api.jotform.com/form/222334146537352/submissions?apikey=98b07bd5ae3cd7054da0c386c4f699df&limit=1000&orderby=created_at')
         form_info = response_form.json()["content"]
         for form_infos in form_info:
             _logger.info(form_infos['id'])
@@ -121,7 +105,7 @@ class form_info(models.Model):
                                                                                       'datas': image_binary,
                                                                                       'state': 'waiting', })
 
-                                    self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
+                                    # replace " " avec  %20 pour eliminer les espace
                                     self.env.cr.commit()
 
                     elif form_info_sub["answers"][i]["name"] == "attestationDhebergement":
@@ -145,7 +129,7 @@ class form_info(models.Model):
                                                                                       'datas': image_binary,
                                                                                       'state': 'waiting', })
 
-                                    self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
+                                    # replace " " avec  %20 pour eliminer les espace
                                     self.env.cr.commit()
 
                     elif form_info_sub["answers"][i]["name"] == "vousAvez":
@@ -169,7 +153,7 @@ class form_info(models.Model):
                                                                                       'datas': image_binary,
                                                                                       'state': 'waiting', })
 
-                                    self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
+                                    # replace " " avec  %20 pour eliminer les espace
                                     self.env.cr.commit()
 
                     elif form_info_sub["answers"][i]["name"] == "pieceDidentite":
@@ -193,7 +177,7 @@ class form_info(models.Model):
                                                                                       'datas': image_binary,
                                                                                       'state': 'waiting', })
 
-                                    self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
+                                    # replace " " avec  %20 pour eliminer les espace
                                     self.env.cr.commit()
 
                     elif form_info_sub["answers"][i]["name"] == "pieceDidentite70":
@@ -205,7 +189,7 @@ class form_info(models.Model):
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
                                 [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
-                            #chercher si la submission est
+                            # chercher si la submission est
                             for partner in self.env['res.partner'].search(
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
@@ -218,6 +202,5 @@ class form_info(models.Model):
                                                                                       'datas': image_binary,
                                                                                       'state': 'waiting', })
 
-                                    #replace " " avec  %20 pour eliminer les espace
-                                    self.urlToirAttachement(document, url[0].replace(" ", "%20"), name)
+                                    # replace " " avec  %20 pour eliminer les espace
                                     self.env.cr.commit()
