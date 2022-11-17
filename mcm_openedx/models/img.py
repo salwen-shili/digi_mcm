@@ -35,7 +35,6 @@ class img(models.Model):
             title = formm[formms]["title"]
             statut = formm[formms]["status"]
             url = formm[formms]["url"]
-            print(new)
             for existe in self.env['mcm_openedx.img'].sudo().search(
                     [('title', "like", self.title)]):
 
