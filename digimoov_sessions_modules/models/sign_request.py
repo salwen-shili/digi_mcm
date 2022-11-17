@@ -172,8 +172,16 @@ class InheritSignRequestItem(models.Model):
                 # Replace le code HTML link with body['link']
                 body_replace_link = body_remove_n.replace('link', link)
                 body = body_replace_link
+            # Template Digimoov - Rapport de session surveillant session examen
+            elif "SESSION D’EXAMEN" in str(self.sign_request_id.reference):
+                report_session_examen = self.env.ref('__export__.mail_template_777_375831e1')
+                # Remove '\n' from Template
+                body_remove_n = report_session_examen.body_html.replace('\n', '')
+                # Replace le code HTML link with body['link']
+                body_replace_link = body_remove_n.replace('link', link)
+                body = body_replace_link
             # Template génèrale
-            elif "Cerfa" not in str(self.sign_request_id.reference) and "Procès verbal" not in str(self.sign_request_id.reference):
+            elif "Cerfa" not in str(self.sign_request_id.reference) and "Procès verbal" not in str(self.sign_request_id.reference) and "SESSION D’EXAMEN" not in :
                 general_template = self.env.ref('digimoov_sessions_modules.report_general_sign')
                 # Remove '\n' from Template
                 body_remove_n = general_template.body_html.replace('\n', '')
