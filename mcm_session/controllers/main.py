@@ -77,7 +77,7 @@ class WebsiteSale(WebsiteSale):
     def cart_update(self, product_id,module='', add_qty=1, set_qty=0,promo=None, **kw):
         """This route is called when adding a product to cart (no options)."""
         product =  request.env['product.product'].sudo().search(
-                    [('id', '=', product_id)])
+                    [('id', '=', int(product_id))])
         order = request.website.sale_get_order()
         print('shop update')
         print(order)

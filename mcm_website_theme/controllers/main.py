@@ -477,7 +477,7 @@ class Routes_Site(http.Controller):
                         if now < date_dateutil :
                             if session_filtered_taxi.state_theorique and session_filtered_taxi.state_theorique == "ajourne" :
                                 echec_examen_taxi = request.env['product.product'].sudo().search(
-                                    [('company_id', '=', 2), ('default_code', "=", 'examen_taxi')])
+                                    [('company_id', '=', 1), ('default_code', "=", 'examen_taxi')])
                                 res['response'].update(
                                     {
                                         "taxi": {
@@ -558,7 +558,7 @@ class Routes_Site(http.Controller):
                         if now < date_dateutil:
                             if session_filtered_vtc.state_theorique and session_filtered_vtc.state_theorique == "ajourne" :
                                 echec_examen_vtc = request.env['product.product'].sudo().search(
-                                    [('company_id', '=', 2), ('default_code', "=", 'examen_vtc')])
+                                    [('company_id', '=', 1), ('default_code', "=", 'examen_vtc')])
                                 res['response'].update(
                                     {
                                         "vtc": {
