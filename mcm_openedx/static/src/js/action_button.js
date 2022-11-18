@@ -13,7 +13,7 @@ ListController.include({
          this.$buttons.find('.oe_actif_button').click(this.proxy('actif_def'));
          this.$buttons.find('.oe_rap_button').click(this.proxy('rap_def'));
          this.$buttons.find('.oe_cma_button').click(this.proxy('cma_def'));
-         this.$buttons.find('.oe_cma_button').click(this.proxy('sub_def'));
+         this.$buttons.find('.oe_form_sub_button').click(this.proxy('sub_def'));
 
        }
    },
