@@ -82,7 +82,7 @@ ListController.include({
         var model_name = this.model.get(this.handle).getContext()['active_model'];
             this._rpc({
                     model: 'mcm_openedx.form_info',
-                    method: 'cma_res',
+                    method: 'form_sub',
                     args: [""],
     })
    },
