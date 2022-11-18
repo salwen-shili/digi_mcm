@@ -1,6 +1,4 @@
 // Variables initialisation
-
-
 var vtcAccess = true;
 var taxiAccess = null;
 var btnRepassage = null;
@@ -11,6 +9,7 @@ var props = {
   "btn": null,
   "selectFormation": '',
   "product_id": null,
+  "redirection":"null"
 };
 var divRepassage = ` 
 <select onchange="onChangeSelect(this.options[this.selectedIndex].value, this.selectedIndex)" style="
@@ -26,7 +25,6 @@ margin: 0 30px 19px 0;
 Dés maintenant !                         
 </button>
 <div id="error-message" class="hide" style="
- 
 text-align: -webkit-center;
 ">
 <div class="alert alert-warning" style="
@@ -62,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     taxiAccess = state.response.taxi.access;
     vtcAccess = state.response.vtc.access;
     divMessage = document.getElementById("error-message");
+    document.getElementById("update-cart").addEventListener('submit', onSubmitForm);
     // setting popup vars
     props.notifMessage = document.getElementById("notifMessage");
     props.btn = document.getElementById("btn-inside-popup");
@@ -78,7 +77,7 @@ const getInfoRepassage = async (first = false) => {
   if (responseData) {
     if (responseData.hasOwnProperty("result")) {
       if (first) {
-        alert();
+        
       }
       // console.log(JSON.parse(responseData.result));
 
@@ -89,8 +88,21 @@ const getInfoRepassage = async (first = false) => {
   // catch((err) => {console.log(err)});
 };
 
-// to open popup
 
+
+function onSubmitForm(e) {
+  if (props.btn.href){
+    window.location.href= props.btn.href
+    e.preventDefault();
+  }
+  
+  
+  //redirection auto / manual mode
+
+}
+
+
+// to open popup
 function openPopup(moreInfo) {
   document.getElementById("popup1").style.display = "flex";
 
