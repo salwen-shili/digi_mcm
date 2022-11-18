@@ -81,7 +81,6 @@ class form_info(models.Model):
                                 new = self.env['mcm_openedx.form_info'].sudo().create({
                                     'email': form_info_sub["answers"][i]["answer"]
                                 })
-                                self.send_ticket(name)
 
                     if form_info_sub["answers"][i]["name"] == "justificatifDe64":
                         url = form_info_sub["answers"][i]["answer"]
