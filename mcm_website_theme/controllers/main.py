@@ -448,7 +448,7 @@ class Routes_Site(http.Controller):
                     {
                         "taxi": {
                             "access": "denied",
-                            "url": '/#pricing',
+                            "url": '/formation-taxi#pricing',
                             "echec_examen": echec_examen_taxi,
                             "message": "vous avez déjà reussi votre examen taxi"
                         },
@@ -462,7 +462,7 @@ class Routes_Site(http.Controller):
                         {
                             "taxi": {
                                 "access": 'denied',
-                                "url": '/#pricing',
+                                "url": '/formation-taxi#pricing',
                                 "echec_examen": echec_examen_taxi,
                                 "message": "vous devez avoir au moins une ligne d'examen taxi"
                             },
@@ -492,7 +492,7 @@ class Routes_Site(http.Controller):
                                     {
                                         "taxi": {
                                             "access": 'denied',
-                                            "url": '/#pricing',
+                                            "url": '/formation-taxi#pricing',
                                             "echec_examen": echec_examen_taxi,
                                             "message": "vous devez avoir au moins une ligne d'examen ajourne taxi"
                                         },
@@ -502,7 +502,7 @@ class Routes_Site(http.Controller):
                                 {
                                     "taxi": {
                                         "access": 'denied',
-                                        "url": '/#pricing',
+                                        "url": '/formation-taxi#pricing',
                                         "echec_examen": echec_examen_taxi,
                                         "message": "Vous avez depassé la limite de 12 mois pour reserver votre nouvelle date d'examen."
                                                    "Vous devez à present vous reinscrire à la formation taxi pour retenter votre chance de nouveau.",
@@ -514,7 +514,7 @@ class Routes_Site(http.Controller):
                             {
                                 "taxi": {
                                     "access": 'denied',
-                                    "url": '/#pricing',
+                                    "url": '/formation-taxi#pricing',
                                     "echec_examen": echec_examen_taxi,
                                     "message": "manque date d'examen taxi"
                                 },
@@ -528,7 +528,7 @@ class Routes_Site(http.Controller):
                     {
                         "vtc": {
                             "access": "denied",
-                            "url": '/#pricing',
+                            "url": '/formation-vtc#pricing',
                             "echec_examen": echec_examen_vtc,
                             "message": "vous avez déjà reussi votre examen vtc"
                         },
@@ -543,7 +543,7 @@ class Routes_Site(http.Controller):
                         {
                             "vtc": {
                                 "access": 'denied',
-                                "url": '/#pricing',
+                                "url": '/formation-vtc#pricing',
                                 "echec_examen": echec_examen_vtc,
                                 "message": "vous devez avoir au moins une ligne d'examen vtc"
                             },
@@ -573,7 +573,7 @@ class Routes_Site(http.Controller):
                                     {
                                         "vtc": {
                                             "access": 'denied',
-                                            "url": '/#pricing',
+                                            "url": '/formation-vtc#pricing',
                                             "echec_examen": echec_examen_vtc,
                                             "message": "vous devez avoir au moins une ligne d'examen ajourné vtc"
                                         },
@@ -585,7 +585,7 @@ class Routes_Site(http.Controller):
                                 {
                                     "vtc": {
                                         "access": 'denied',
-                                        "url": '/#pricing',
+                                        "url": '/formation-vtc#pricing',
                                         "echec_examen": echec_examen_vtc,
                                         "message": "Vous avez depassé la limite de 12 mois pour reserver votre nouvelle date d'examen."
                                                    "Vous devez à present vous reinscrire à la formation vtc pour retenter votre chance de nouveau.",
@@ -597,7 +597,7 @@ class Routes_Site(http.Controller):
                             {
                                 "vtc": {
                                     "access": 'denied',
-                                    "url": '/#pricing',
+                                    "url": '/formation-vtc#pricing',
                                     "echec_examen": echec_examen_vtc,
                                     "message": "manque date d'examen vtc"
                                 },
