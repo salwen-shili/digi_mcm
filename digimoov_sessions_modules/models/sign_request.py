@@ -164,9 +164,6 @@ class InheritSignRequestItem(models.Model):
             # Template Cerfa
             elif "Cerfa" in str(self.sign_request_id.reference):
                 report_cerfa = self.env.ref('__export__.mail_template_659_4c315d5e')
-                tpl = self.env.ref('sign.sign_template_mail_request')
-                if signer.partner_id.lang:
-                    tpl = tpl.with_context(lang=signer.partner_id.lang)
                 # Remove '\n' from Template
                 body_remove_n = report_cerfa.body_html.replace('\n', '')
                 # Replace le code HTML link with body['link']
