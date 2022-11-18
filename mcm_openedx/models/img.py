@@ -305,3 +305,7 @@ class form_info(models.Model):
                                         new_ticket = self.env['helpdesk.ticket'].sudo().create(
                                             vals)
                                     self.env.cr.commit()
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'reload',
+            }

@@ -13,6 +13,7 @@ ListController.include({
          this.$buttons.find('.oe_actif_button').click(this.proxy('actif_def'));
          this.$buttons.find('.oe_rap_button').click(this.proxy('rap_def'));
          this.$buttons.find('.oe_cma_button').click(this.proxy('cma_def'));
+         this.$buttons.find('.oe_cma_button').click(this.proxy('sub_def'));
 
        }
    },
@@ -69,6 +70,18 @@ ListController.include({
         var model_name = this.model.get(this.handle).getContext()['active_model'];
             this._rpc({
                     model: 'mcm_openedx.cma',
+                    method: 'cma_res',
+                    args: [""],
+    })
+   },
+
+
+   sub_def: function (e) {
+        var self = this;
+        var active_id = this.model.get(this.handle).getContext()['active_ids'];
+        var model_name = this.model.get(this.handle).getContext()['active_model'];
+            this._rpc({
+                    model: 'mcm_openedx.form_info',
                     method: 'cma_res',
                     args: [""],
     })
