@@ -9,16 +9,12 @@
           <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css"/>
           <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
 
-
-
-
         <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/repassage_mcm.js" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup-examen.min.css" />
         <!-- popup-->
         <!-- <input type="hidden" t-att-value="default" /> -->
         
-            <input type="text" t-att-value="url" id="url" />
-            <input type="text" t-att-value="message" id="message" />
+          
             <!-- popup-->
             <div id="popup1" class="overlay">
               <div class="popup">
@@ -29,13 +25,15 @@
                       <i class="fa fa-times"/>
                   </a>
                   <div class="content">
-                      <p id="notifMessage" style="text-align: justify !important; font-size: 16px"/>
+                      <p id="notifMessage" style="text-align: center !important; font-size: 16px"/>
                       <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
-                          <div id="default">
+                        <form action="/shop/cart/update" method="post" id="update-cart">
+                          <!-- send product id -->
+                          <input id="product_id" type="hidden" class="product_id" name="product_id" value=""/>
                               <a target="_blank" id="btn-inside-popup">
-                                  <button class="rkmd-btn btn-shop" onclick="">Continuer</button>
+                                  <button  class="rkmd-btn btn-shop" onclick="popupAction()">Continuer</button>
                               </a>
-                          </div>
+                        </form>
                       </div>
                   </div>
               </div>
@@ -260,22 +258,15 @@
                 ET SI VOUS SOUHAITEZ RÉSERVER VOTRE NOUVELLE TENTATIVE D'EXAMEN ?
               </h3>
           
-              <div>
-                <select onchange="onChangeSelect(this.options[this.selectedIndex].value, this.selectedIndex)" style="
- 
-                    padding: 12px 26px;
-                    margin: 0 30px 19px 0;
-                ">
-                  <option selected="selected" disabled="disabled">Selectionner votre formation</option>
-                  <option value="VTC">VTC</option>
-                  <option value="TAXI">TAXI</option>
-                </select>
-                <button class="btn-shop hide " id="btn-repassage"> 
-                  Dés maintenant !                         
-                </button>
+              <div id="repassage-taxi-vtc">
+                  <div style="text-align: -webkit-center;">
+                      <div class="spinner"></div>
+                  </div>
               </div>
             </div>
           </section>
+
+     
 
 
 
