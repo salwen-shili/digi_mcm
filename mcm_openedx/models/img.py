@@ -23,29 +23,26 @@ class img(models.Model):
     email = fields.Char(string="EMAIL")
 
     def get_form(self):
-        print("get events")
+        _logger.info("----------ok-----------")
         response = requests.get(
-            'https://eu-api.jotform.com/user/folders?apikey=98b07bd5ae3cd7054da0c386c4f699df&limit=1000&orderby=status')
+            'https://eu-api.jotform.com/user/forms?apikey=98b07bd5ae3cd7054da0c386c4f699df&limit=200&orderby=new')
         form = response.json()["content"]
-        formm = form["forms"]
-        for formms in formm:
-            _logger.info("----------ok-----------")
-            _logger.info(formm[formms]["url"].split("/")[3])
-            form_id = formm[formms]["id"]
-            title = formm[formms]["title"]
-            statut = formm[formms]["status"]
-            url = formm[formms]["url"]
-            for existe in self.env['mcm_openedx.img'].sudo().search(
-                    [('title', "like", self.title)]):
-
-                if not existe:
+        for forms in form:
+            form_id = forms["id"]
+            title = forms["title"]
+            statut = forms["status"]
+            url = forms["url"]
+            for existe in self.env['mcm_openedx.img'].sudo().search([('url', "!=", False)]):
+                form_sub = self.env['mcm_openedx.img'].sudo().search([('url', "=", forms["url"])])
+                if not form_sub:
+                    _logger.info(forms["id"])
+                    _logger.info(forms["url"].split("/")[3])
                     new = self.env['mcm_openedx.img'].sudo().create({
                         'form_id': url.split("/")[3],
                         'title': title,
                         'statut': statut,
                         'url': url,
                     })
-                    print(new)
 
 
 class form_info(models.Model):
@@ -55,6 +52,7 @@ class form_info(models.Model):
     email = fields.Char(string="EMAIL")
 
     def form_sub(self):
+        # parcourir la liste des submission dans le form Form Demande de Jdom + JDC v15/11/2022:
         response_form = requests.get(
             'https://eu-api.jotform.com/form/222334146537352/submissions?apikey=98b07bd5ae3cd7054da0c386c4f699df&limit=1000&orderby=created_at')
         form_info = response_form.json()["content"]
@@ -66,8 +64,9 @@ class form_info(models.Model):
                     form_infos['id']))
             form_info_sub = response_sub_id.json()["content"]
             _logger.info(form_info_sub)
-
+            # parcourir la liste des reponse pour chaque submissions
             if 'answers' in form_info_sub:
+                # parcourir la liste des reponse dans le form
                 for i, valeur in form_info_sub["answers"].items():
                     if form_info_sub["answers"][i]["name"] == "email":
                         _logger.info(form_info_sub["answers"][i]["answer"])
@@ -77,6 +76,8 @@ class form_info(models.Model):
                                 [('email', "like", form_info_sub["answers"][i]["answer"])])
                             existe_sub.partner_id = partner_email.id
                             _logger.info(existe_sub.email)
+                            # verifier si la personne existe
+                            # verifier fiche client
                             if not existe_sub:
                                 new = self.env['mcm_openedx.form_info'].sudo().create({
                                     'email': form_info_sub["answers"][i]["answer"]
@@ -96,6 +97,8 @@ class form_info(models.Model):
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
                                 if not existe_doc:
                                     document = self.env['documents.document'].create({'name': name,
                                                                                       'type': 'binary',
@@ -120,6 +123,8 @@ class form_info(models.Model):
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
                                 if not existe_doc:
                                     document = self.env['documents.document'].create({'name': name,
                                                                                       'type': 'binary',
@@ -144,6 +149,7 @@ class form_info(models.Model):
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
                                 if not existe_doc:
                                     document = self.env['documents.document'].create({'name': name,
                                                                                       'type': 'binary',
@@ -168,6 +174,7 @@ class form_info(models.Model):
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
                                 if not existe_doc:
                                     document = self.env['documents.document'].create({'name': name,
                                                                                       'type': 'binary',
@@ -193,6 +200,7 @@ class form_info(models.Model):
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
                                 existe_doc = self.env['documents.document'].search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
                                 if not existe_doc:
                                     document = self.env['documents.document'].create({'name': name,
                                                                                       'type': 'binary',
