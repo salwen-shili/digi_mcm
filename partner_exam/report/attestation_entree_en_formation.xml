@@ -20,15 +20,26 @@
                                 <span t-field="o.company_id.street"/>
                                 <br/>
                                 <span t-field="o.company_id.zip"/>
-                                <span t-field="o.company_id.state_id.name"/><br/>
+                                <t t-if="o.company_id.name=='DIGIMOOV'">
+                                    PARIS
+                                </t>
+                                <t t-if="o.company_id.name=='MCM ACADEMY'">
+                                    LILLE
+                                </t>
+                                <br/>
                                 Email: <span t-field="o.company_id.email"/>
                                 <br/>
-                                Tél: <span t-field="o.company_id.phone"/>
+                                Tél: <t t-if="o.company_id.name=='DIGIMOOV'">
+                                    09 86 87 88 66
+                                </t>
+                                <t t-if="o.company_id.name=='MCM ACADEMY'">
+                                    09 86 87 88 67
+                                </t>
                             </div>
                             <div class="col-4"></div>
                             <div class="col-4">
                                 <img t-att-src="image_data_uri(o.company_id.logo)"
-                                     style="max-height:1cm; max-width:4cm;" alt="Logo"/>
+                                     style="max-height:4cm; max-width:8cm;" alt="Logo"/>
                             </div>
                         </div>
                     </div>
