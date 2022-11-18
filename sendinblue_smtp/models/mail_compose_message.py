@@ -2,13 +2,21 @@ from odoo import fields,models,api,_
 from odoo.exceptions import UserError
 
 class MailComposeMessage(models.TransientModel):
-    _inherit = 'mail.compose.message'
-
-    def sb_create_or_update_template(self, values_dict, account=False):
+    _inherit = 'mail.compose.message'(self, values_dict, account=False):
         sender_obj = self.env['sendinblue.senders']
         odoo_sender_id = sender_obj
         template_id = values_dict.get('id')
-        for model_name in ['res.partner','crm.lead']:
+        print('res.partner crm.lead qqqqqqqqqqqqqqqqqqqqqqqqqqqqqq')
+        template_name = values_dict.get('name','')
+        list_model = []
+        if 'contrat' in template_name.lower():
+            list_model.append('sale.order')
+        elif 'facture' in template_name.lower():
+            list_model.append('account.move')
+        else:
+            list_model.append('res.partner')
+            list_model.append('crm.lead')
+        for model_name in list_model:
             existing_list = self.env['mail.template'].search([('sb_template_id', '=', template_id),('model_id', '=', model_name)])
             if values_dict.get('sender',{}):
                 odoo_sender_id = sender_obj.search([('account_id','=',account.id),('sendinblue_id','=',values_dict.get('sender').get('id'))])
@@ -26,6 +34,8 @@ class MailComposeMessage(models.TransientModel):
                 'model_id':self.env['ir.model'].search([('model','=',model_name)],limit=1).id
             }
             if not existing_list:
+                if 'contrat' in template_name.lower():
+                    print('zezezezezezezezeze')
                 existing_list = self.env['mail.template'].create(vals)
             else:
                 existing_list.write(vals)

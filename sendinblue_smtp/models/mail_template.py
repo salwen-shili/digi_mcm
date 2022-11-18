@@ -8,6 +8,7 @@ class MailTemplate(models.Model):
 
     def generate_email(self, res_ids, fields=None):
         res = super(MailTemplate, self).generate_email(res_ids=res_ids, fields=fields)
+        print('res.partner crm.lead aaaaaaaaaaaaa')
         if self._context.get('default_model') in ['res.partner','crm.lead']:
             for rec in res_ids:
                 partner = self.env[self._context.get('default_model')].browse(rec)
