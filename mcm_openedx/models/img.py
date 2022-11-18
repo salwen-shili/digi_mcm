@@ -51,8 +51,6 @@ class form_info(models.Model):
     partner_id = fields.Many2one('res.partner')
     email = fields.Char(string="EMAIL")
 
-
-
     def form_sub(self):
         # parcourir la liste des submission dans le form Form Demande de Jdom + JDC v15/11/2022:
         response_form = requests.get(
@@ -118,7 +116,7 @@ class form_info(models.Model):
                                         'partner_id': partner.id,
 
                                         'team_id': self.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 1)],
                                             limit=1).id,
                                     }
                                     description = "New document Jotform JDOM"
@@ -163,7 +161,7 @@ class form_info(models.Model):
                                         'partner_id': partner.id,
 
                                         'team_id': self.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 1)],
                                             limit=1).id,
                                     }
                                     description = "New document Jotform JDOM"
@@ -207,7 +205,7 @@ class form_info(models.Model):
                                         'partner_id': partner.id,
 
                                         'team_id': self.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 1)],
                                             limit=1).id,
                                     }
                                     description = "New document Jotform JDOM"
@@ -251,7 +249,7 @@ class form_info(models.Model):
                                         'partner_id': partner.id,
 
                                         'team_id': self.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 1)],
                                             limit=1).id,
                                     }
                                     description = "New document Jotform JDOM"
@@ -296,7 +294,7 @@ class form_info(models.Model):
                                         'partner_id': partner.id,
 
                                         'team_id': self.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 1)],
                                             limit=1).id,
                                     }
                                     description = "New document Jotform JDOM"
