@@ -109,95 +109,98 @@ class event_calendly(models.Model):
     partner_id = fields.Many2one('res.partner')
 
     def event(self):
-        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
-
+        organization = ["FHBHTA22WPOWFF2P","c7e28d20-f7eb-475f-954a-7ae1a36705e3"]
+        users = ["b6009481-4791-4c1a-aa5f-4f94fcefbe5c","68c23f1b-42a1-4eae-84f5-0f0d88098aa8","5aa95e72-35ab-4391-8ff6-34cdd4e34f86"]
+        company = self.env['res.company'].sudo().search([('id', "!=", False)], limit=1)
         new_format = '%d %B, %Y, %H:%M:%S'
         headers = {
             "Content-Type": "application/json",
             "Authorization": company.calendly_api_key}
-        querystring = {"user": "https://api.calendly.com/users/5aa95e72-35ab-4391-8ff6-34cdd4e34f86",
-                       "organization": "https://api.calendly.com/organizations/c7e28d20-f7eb-475f-954a-7ae1a36705e3",
-                       "status": "active", "min_start_time": date.today()}
+        for org in organization:
+            for user in users:
+                querystring = {"user": "https://api.calendly.com/users/%s" %user,
+                               "organization": "https://api.calendly.com/organizations/%s" %org,
+                               "status": "active", "min_start_time": date.today()}
 
-        # Returns a list of Events.
-        r = requests.get('https://api.calendly.com/scheduled_events',
-                         headers=headers, params=querystring)
-        print("hahah", r.json()["collection"])
-        shevent = r.json()["collection"]
-        for shevents in shevent:
-            try:
-                scheduling_url_uri = shevents['uri']
-                scheduling_url_name = shevents['name']
-                print("scheduling_url_namescheduling_url_name", scheduling_url_name)
-                scheduling_url_created_at = shevents['created_at']
-                scheduling_url_updated_at = shevents['updated_at']
-                uuid_eventtype = scheduling_url_uri.split("/")
-                # Returns information about a specified Event.
-                params = {
-                    'statuts': 'active'
-                }
-                headers = {
-                    "Content-Type": "application/json",
-                    "Authorization": company.calendly_api_key}
+                # Returns a list of Events.
+                r = requests.get('https://api.calendly.com/scheduled_events',
+                                 headers=headers, params=querystring)
+                print("hahah", r.json()["collection"])
+                shevent = r.json()["collection"]
+                for shevents in shevent:
+                    try:
+                        scheduling_url_uri = shevents['uri']
+                        scheduling_url_name = shevents['name']
+                        print("scheduling_url_namescheduling_url_name", scheduling_url_name)
+                        scheduling_url_created_at = shevents['created_at']
+                        scheduling_url_updated_at = shevents['updated_at']
+                        uuid_eventtype = scheduling_url_uri.split("/")
+                        # Returns information about a specified Event.
+                        params = {
+                            'statuts': 'active'
+                        }
+                        headers = {
+                            "Content-Type": "application/json",
+                            "Authorization": company.calendly_api_key}
 
-                rep = requests.get('https://api.calendly.com/scheduled_events/%s' % (uuid_eventtype[4]),
-                                   headers=headers, params=params)
-                response = rep.json()['resource']
-                print(response)
-                rep_inv = requests.get('https://api.calendly.com/scheduled_events/%s/invitees' % (uuid_eventtype[4]),
-                                       headers=headers, params=params)
-                response_inv = rep_inv.json()['collection']
-                print("response_inv response_inv ", response_inv)
+                        rep = requests.get('https://api.calendly.com/scheduled_events/%s' % (uuid_eventtype[4]),
+                                           headers=headers, params=params)
+                        response = rep.json()['resource']
+                        print(response)
+                        rep_inv = requests.get('https://api.calendly.com/scheduled_events//invitees' % (uuid_eventtype[4]),
+                                               headers=headers, params=params)
+                        response_inv = rep_inv.json()['collection']
+                        print("response_inv response_inv ", response_inv)
 
-                event_name = response['name']
-                if '-' in event_name:
-                    ownerr = event_name.split("-")
-                    owner = ownerr[2]
-                else:
-                    owner = event_name
-                location = response['location']['location']
-                start_at = response['start_time']
-                start_at_char = response['start_time']
-                start_at_char = str(start_at_char).replace('T', ' ')
-                start_at_char = start_at_char.split(".")
-                start_at_char = start_at_char[0]
-                print("start_at_charstart_at_char", start_at_char)
-                status = response['status']
-                cancel_url = response_inv[0]['cancel_url']
-                reschedule_url = response_inv[0]['reschedule_url']
+                        event_name = response['name']
+                        if '-' in event_name:
+                            ownerr = event_name.split("-")
+                            owner = ownerr[2]
+                        else:
+                            owner = event_name
+                        location = response['location']['location']
+                        start_at = response['start_time']
+                        start_at_char = response['start_time']
+                        start_at_char = str(start_at_char).replace('T', ' ')
+                        start_at_char = start_at_char.split(".")
+                        start_at_char = start_at_char[0]
+                        print("start_at_charstart_at_char", start_at_char)
+                        status = response['status']
+                        cancel_url = response_inv[0]['cancel_url']
+                        reschedule_url = response_inv[0]['reschedule_url']
 
-                for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
-                        [('id', '!=', False)]):
-                    if existt.start_at:
-                        if existt.start_at < date.today():
-                            print("existeee nameeeee")
-                            existt.browse(existt.id).sudo().unlink()
-                    existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                        [('event_name', '=', shevents['name']), ('start_at', '=', response['start_time'])])
+                        for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
+                                [('id', '!=', False)]):
+                            if existt.start_at:
+                                if existt.start_at < date.today():
+                                    print("existeee nameeeee")
+                                    existt.browse(existt.id).sudo().unlink()
+                            existe = self.env['mcm_openedx.calendly_event'].sudo().search(
+                                [('event_name', '=', shevents['name']), ('start_at', '=', response['start_time'])])
 
-                    if not existe:
-                        print("dont exist")
-                        new = self.env['mcm_openedx.calendly_event'].sudo().create({
-                            'scheduling_url_name': scheduling_url_name,
-                            'scheduling_url_created_at': scheduling_url_created_at,
-                            'scheduling_url_updated_at': scheduling_url_updated_at,
-                            'scheduling_url_uri': scheduling_url_uri,
-                            'event_name': event_name,
-                            'location': location,
-                            'start_at': start_at,
-                            'start_at_char': start_at_char,
-                            'reschedule_url': reschedule_url,
-                            'cancel_url': cancel_url,
-                            'status': status,
-                            'owner': owner,
-                        })
-                        print(new)
-                # ajouter les apprenants manuellemnt a partire de  la fiche Client
-                self.env.cr.commit()
-                # self.env.cr.rollback() cancels the transaction's write operations since the last commit, or all if no commit was done.
-            except Exception:
-                self.env.cr.rollback()
-                _logger.info(" except Exception:")
+                            if not existe:
+                                print("dont exist")
+                                new = self.env['mcm_openedx.calendly_event'].sudo().create({
+                                    'scheduling_url_name': scheduling_url_name,
+                                    'scheduling_url_created_at': scheduling_url_created_at,
+                                    'scheduling_url_updated_at': scheduling_url_updated_at,
+                                    'scheduling_url_uri': scheduling_url_uri,
+                                    'event_name': event_name,
+                                    'location': location,
+                                    'start_at': start_at,
+                                    'start_at_char': start_at_char,
+                                    'reschedule_url': reschedule_url,
+                                    'cancel_url': cancel_url,
+                                    'status': status,
+                                    'owner': owner,
+                                })
+                                print(new)
+                        # ajouter les apprenants manuellemnt a partire de  la fiche Client
+                        self.env.cr.commit()
+                        # self.env.cr.rollback() cancels the transaction's write operations since the last commit, or all if no commit was done.
+                    except Exception:
+                        self.env.cr.rollback()
+                        _logger.info(" except Exception:")
 
     def test_url(self):
         return {
