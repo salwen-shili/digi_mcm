@@ -51,6 +51,8 @@ class form_info(models.Model):
     partner_id = fields.Many2one('res.partner')
     email = fields.Char(string="EMAIL")
 
+
+
     def form_sub(self):
         # parcourir la liste des submission dans le form Form Demande de Jdom + JDC v15/11/2022:
         response_form = requests.get(
@@ -75,20 +77,18 @@ class form_info(models.Model):
                             existe_sub = self.env['mcm_openedx.form_info'].sudo().search(
                                 [('email', "like", form_info_sub["answers"][i]["answer"])])
                             existe_sub.partner_id = partner_email.id
-                            _logger.info(existe_sub.email)
                             # verifier si la personne existe
                             # verifier fiche client
                             if not existe_sub:
                                 new = self.env['mcm_openedx.form_info'].sudo().create({
                                     'email': form_info_sub["answers"][i]["answer"]
                                 })
-                                print(new)
+                                self.send_ticket(name)
 
                     if form_info_sub["answers"][i]["name"] == "justificatifDe64":
                         url = form_info_sub["answers"][i]["answer"]
                         if url:
                             # 👉️ Check if my_var is not None (null)
-                            _logger.info(form_info_sub["answers"][i]["answer"])
                             image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
@@ -108,13 +108,32 @@ class form_info(models.Model):
                                                                                       'state': 'waiting', })
 
                                     # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                                    vals = {
+
+                                        'description': 'New document Jotform JDOM %s' % (name),
+                                        'name': 'Merci de verifer le document de %s' % (partner.name),
+                                        'partner_id': partner.id,
+
+                                        'team_id': self.env['helpdesk.team'].sudo().search(
+                                            [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                                            limit=1).id,
+                                    }
+                                    description = "New document Jotform JDOM"
+                                    ticket = self.env['helpdesk.ticket'].sudo().search(
+                                        [("description", "=", description)])
+                                    if not ticket:
+                                        print("cree ticket")
+                                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                            vals)
                                     self.env.cr.commit()
 
                     elif form_info_sub["answers"][i]["name"] == "attestationDhebergement":
                         url = form_info_sub["answers"][i]["answer"]
                         if url:
                             # 👉️ Check if my_var is not None (null)
-                            _logger.info(form_info_sub["answers"][i]["answer"])
                             image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
@@ -134,13 +153,32 @@ class form_info(models.Model):
                                                                                       'state': 'waiting', })
 
                                     # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                                    vals = {
+
+                                        'description': 'New document Jotform JDOM %s' % (name),
+                                        'name': 'Merci de verifer le document de %s' % (partner.name),
+                                        'partner_id': partner.id,
+
+                                        'team_id': self.env['helpdesk.team'].sudo().search(
+                                            [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                                            limit=1).id,
+                                    }
+                                    description = "New document Jotform JDOM"
+                                    ticket = self.env['helpdesk.ticket'].sudo().search(
+                                        [("description", "=", description)])
+                                    if not ticket:
+                                        print("cree ticket")
+                                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                            vals)
                                     self.env.cr.commit()
 
                     elif form_info_sub["answers"][i]["name"] == "vousAvez":
                         url = form_info_sub["answers"][i]["answer"]
                         if url:
                             # 👉️ Check if my_var is not None (null)
-                            _logger.info(form_info_sub["answers"][i]["answer"])
                             image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
@@ -159,13 +197,32 @@ class form_info(models.Model):
                                                                                       'state': 'waiting', })
 
                                     # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                                    vals = {
+
+                                        'description': 'New document Jotform JDOM %s' % (name),
+                                        'name': 'Merci de verifer le document de %s' % (partner.name),
+                                        'partner_id': partner.id,
+
+                                        'team_id': self.env['helpdesk.team'].sudo().search(
+                                            [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                                            limit=1).id,
+                                    }
+                                    description = "New document Jotform JDOM"
+                                    ticket = self.env['helpdesk.ticket'].sudo().search(
+                                        [("description", "=", description)])
+                                    if not ticket:
+                                        print("cree ticket")
+                                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                            vals)
                                     self.env.cr.commit()
 
                     elif form_info_sub["answers"][i]["name"] == "pieceDidentite":
                         url = form_info_sub["answers"][i]["answer"]
                         if url:
                             # 👉️ Check if my_var is not None (null)
-                            _logger.info(form_info_sub["answers"][i]["answer"])
                             image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
@@ -184,13 +241,32 @@ class form_info(models.Model):
                                                                                       'state': 'waiting', })
 
                                     # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                                    vals = {
+
+                                        'description': 'New document Jotform JDOM %s' % (name),
+                                        'name': 'Merci de verifer le document de %s' % (partner.name),
+                                        'partner_id': partner.id,
+
+                                        'team_id': self.env['helpdesk.team'].sudo().search(
+                                            [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                                            limit=1).id,
+                                    }
+                                    description = "New document Jotform JDOM"
+                                    ticket = self.env['helpdesk.ticket'].sudo().search(
+                                        [("description", "=", description)])
+                                    if not ticket:
+                                        print("cree ticket")
+                                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                            vals)
                                     self.env.cr.commit()
 
                     elif form_info_sub["answers"][i]["name"] == "pieceDidentite70":
                         url = form_info_sub["answers"][i]["answer"]
                         if url:
                             # 👉️ Check if my_var is not None (null)
-                            _logger.info(form_info_sub["answers"][i]["answer"])
                             image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
@@ -210,4 +286,24 @@ class form_info(models.Model):
                                                                                       'state': 'waiting', })
 
                                     # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                                    vals = {
+
+                                        'description': 'New document Jotform JDOM %s' % (name),
+                                        'name': 'Merci de verifer le document de %s' % (partner.name),
+                                        'partner_id': partner.id,
+
+                                        'team_id': self.env['helpdesk.team'].sudo().search(
+                                            [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                                            limit=1).id,
+                                    }
+                                    description = "New document Jotform JDOM"
+                                    ticket = self.env['helpdesk.ticket'].sudo().search(
+                                        [("description", "=", description)])
+                                    if not ticket:
+                                        print("cree ticket")
+                                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                            vals)
                                     self.env.cr.commit()
