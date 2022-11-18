@@ -1,77 +1,214 @@
+// Variables initialisation
+
+
 var vtcAccess = true;
-var TaxiAccess = null;
+var taxiAccess = null;
 var btnRepassage = null;
+var state = null;
+var divMessage = null;
+var props = {
+  'notifMessage' : null,
+  "btn":null,
+  "selectFormation": '', 
+  "product_id":'',
+};
+var divRepassage = ` 
+<select onchange="onChangeSelect(this.options[this.selectedIndex].value, this.selectedIndex)" style="
+ 
+padding: 12px 26px;
+margin: 0 30px 19px 0;
+">
+<option selected="selected" disabled="disabled">Selectionner votre formation</option>
+<option value="VTC">VTC</option>
+<option value="TAXI">TAXI</option>
+</select>
+<button class="btn-shop hide " onclick="openPopup()" id="btn-repassage"> 
+Dés maintenant !                         
+</button>
+<div id="error-message" class="hide" style="
+ 
+text-align: -webkit-center;
+">
+<div class="alert alert-warning" style="
+max-width: 39%;
+color: #000;
+">
+Accès interdit pour le repassage. <a onclick="openPopup()" style="
+color: #3c39bd;
+font-weight: 600;
+text-decoration: underline !important;
+cursor: pointer;
+">Plus d'informations</a>.
+</div>
+</div>
+
+`;
 
 document.addEventListener("DOMContentLoaded", function () {
   //State
-  var vtcAccess = null;
-  var TaxiAccess = null;
-  btnRepassage = document.getElementById("btn-repassage");
+
+  state = getInfoRepassage();
+
+  state.then(function (result) {
+    // store result
+    state = result;
+
+    //Add html when promise is resolved
+    document.getElementById("repassage-taxi-vtc").innerHTML = divRepassage;
+    //setting state
+    btnRepassage = document.getElementById("btn-repassage");
+    // setting access taxi
+    taxiAccess = state.response.taxi.access;
+    vtcAccess = state.response.vtc.access;
+    divMessage = document.getElementById("error-message");
+    // setting popup vars
+    props.notifMessage = document.getElementById("notifMessage");
+    props.btn = document.getElementById("btn-inside-popup");
+    return state;
+  });
 });
 
-  
-
-  const getInfoRepassage = () => {
-    sendHttpRequest("POST", "/get-datas-user-examen", {}).then((responseData) => {
-      if (responseData){
-        if (responseData.hasOwnProperty("result")){
-          console.log(JSON.parse(responseData.result))
-        }
+const getInfoRepassage = async (first = false) => {
+  let responseData = await sendHttpRequest(
+    "POST",
+    "/get-datas-user-examen",
+    {}
+  );
+  if (responseData) {
+    if (responseData.hasOwnProperty("result")) {
+      if (first) {
+        alert();
       }
-      console.log(responseData.result)})
-    .catch((err) => {console.log(err)}); 
-  };
- // to open popup
+      // console.log(JSON.parse(responseData.result));
 
-function getRepassageInfo() {
-  console.log("get");
-}
+      return JSON.parse(responseData.result);
+    }
+  }
 
-function openPopup() {
+  // catch((err) => {console.log(err)});
+};
+
+// to open popup
+
+function openPopup(moreInfo) {
   document.getElementById("popup1").style.display = "flex";
+ 
 }
 // to close popup
 function closePopup() {
   document.getElementById("popup1").style.display = "none";
 }
+// setPopup action and message
+function setPopup(formation){
 
+    console.log("formation", formation)
+   
+    if (formation == "TAXI"){
+      props.notifMessage.innerHTML = state.response.taxi.message; 
+      // setting btn action 
+      // add product ID if allowed for submit 
+      if (state.response.taxi.echec_examen != "False"){
+      props.product_id = state.response.taxi.echec_examen
+      props.btn.setAttribute('type', 'submit')  
+      // else just set the href if not allowed 
+      }else{
+        props.btn.removeAttribute("type")
+        props.btn.href= state.response.taxi.url
+
+      }
+     
+    }else if (formation =="VTC"){
+      props.notifMessage.innerHTML = state.response.vtc.message; 
+      // setting btn action 
+      // add product ID if allowed for submit 
+      if (state.response.vtc.echec_examen != "False"){
+      props.product_id = state.response.vtc.echec_examen
+      props.btn.setAttribute('type', 'submit')  
+      // else just set the href if not allowed 
+      }else{
+        props.btn.removeAttribute("type")
+        props.btn.href= state.response.vtc.url
+       
+
+      }
+    }
+}
+
+function displayPopupBtn(display){
+  //hide btn
+  if (display){
+    props.btn.classList.add("hide"); 
+  }
+  else{
+     //show btn action
+  props.btn.classList.remove("hide")
+  }
+}
+
+
+// Select option choix repassage 
 function onChangeSelect(formation, index) {
   console.log(formation, index);
+  props.selectFormation = formation;
   switch (formation) {
     case "VTC":
-      checkVTC();
+      // All actions when selecting VTC
+      // show btn 
+      if (vtcAccess != "denied") {
+        btnRepassage.classList.remove("hide");
+        divMessage.classList.add("hide");
+        // setup popup with action-btn
+       
+ 
+        
+      // Hide btn and show error message
+      } else {
+        btnRepassage.classList.add("hide");
+        divMessage.classList.remove("hide");
+        // setup popup without action-btn
+      
+  
+       
+      }
+      setPopup("VTC")
+      
       break;
     case "TAXI":
-      checkTAXI();
+      // All actions when selecting VTC
+      if (taxiAccess != "denied") {
+        btnRepassage.classList.remove("hide");
+        divMessage.classList.add("hide");
+        // setup popup with action-btn
+       
+       
+    
+      } else {
+        btnRepassage.classList.add("hide");
+        divMessage.classList.remove("hide");
+         // setup popup without action-btn
+        
+        
+      }
+      setPopup("TAXI")
+     
     default:
       break;
   }
 }
 
-function checkVTC() {
-  vtcAccess
-    ? btnRepassage.classList.remove("hide")
-    : btnRepassage.classList.add("hide");
-}
 
-function checkTAXI() {
-  TaxiAccess
-    ? btnRepassage.classList.remove("hide")
-    : btnRepassage.classList.add("hide");
-}
+
+
 
 //xmlhttprequest
 const sendHttpRequest = (method, url, data) => {
   const promise = new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open(method, url);
-
     xhr.responseType = "json";
-
     if (data) {
       xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     }
-
     xhr.onload = () => {
       if (xhr.status >= 400) {
         reject(xhr.response);
@@ -79,7 +216,6 @@ const sendHttpRequest = (method, url, data) => {
         resolve(xhr.response);
       }
     };
-
     xhr.onerror = () => {
       reject("Something went wrong!");
     };
