@@ -42,7 +42,7 @@ class LoadDocument(Website):
             # else:
             base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
             _logger.info("base urll %s" %str(base_url) )
-            sdk_token=partner.generateSdktoken(id_applicant,base_url,
+            sdk_token=partner.generateSdktoken(id_applicant,request.website.domain,
                                                        request.website.onfido_api_key_live,partner)
 
             workflow_run_id=partner.workflow_run(id_applicant,
