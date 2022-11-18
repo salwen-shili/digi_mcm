@@ -116,7 +116,7 @@ class form_info(models.Model):
                                         'partner_id': partner.id,
 
                                         'team_id': self.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 1)],
+                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
                                             limit=1).id,
                                     }
                                     description = "New document Jotform JDOM"
@@ -161,7 +161,7 @@ class form_info(models.Model):
                                         'partner_id': partner.id,
 
                                         'team_id': self.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 1)],
+                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
                                             limit=1).id,
                                     }
                                     description = "New document Jotform JDOM"
@@ -205,7 +205,7 @@ class form_info(models.Model):
                                         'partner_id': partner.id,
 
                                         'team_id': self.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 1)],
+                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
                                             limit=1).id,
                                     }
                                     description = "New document Jotform JDOM"
@@ -249,7 +249,7 @@ class form_info(models.Model):
                                         'partner_id': partner.id,
 
                                         'team_id': self.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 1)],
+                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
                                             limit=1).id,
                                     }
                                     description = "New document Jotform JDOM"
@@ -294,7 +294,7 @@ class form_info(models.Model):
                                         'partner_id': partner.id,
 
                                         'team_id': self.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 1)],
+                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
                                             limit=1).id,
                                     }
                                     description = "New document Jotform JDOM"
