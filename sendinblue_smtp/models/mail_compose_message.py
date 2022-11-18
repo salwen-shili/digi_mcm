@@ -2,7 +2,9 @@ from odoo import fields,models,api,_
 from odoo.exceptions import UserError
 
 class MailComposeMessage(models.TransientModel):
-    _inherit = 'mail.compose.message'(self, values_dict, account=False):
+    _inherit = 'mail.compose.message'
+
+    def sb_create_or_update_template(self, values_dict, account=False):
         sender_obj = self.env['sendinblue.senders']
         odoo_sender_id = sender_obj
         template_id = values_dict.get('id')
@@ -34,8 +36,6 @@ class MailComposeMessage(models.TransientModel):
                 'model_id':self.env['ir.model'].search([('model','=',model_name)],limit=1).id
             }
             if not existing_list:
-                if 'contrat' in template_name.lower():
-                    print('zezezezezezezezeze')
                 existing_list = self.env['mail.template'].create(vals)
             else:
                 existing_list.write(vals)
