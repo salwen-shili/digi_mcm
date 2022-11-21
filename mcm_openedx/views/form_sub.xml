@@ -6,7 +6,6 @@
         <field name="arch" type="xml">
             <search>
                 <field name="form_id"></field>
-
             </search>
         </field>
     </record>
@@ -17,13 +16,9 @@
             <tree>
                 <field name="email"/>
                 <field name="partner_id"/>
-
-
             </tree>
         </field>
     </record>
-
-
     <record model="ir.ui.view" id="jotform_sub_form_view">
         <field name="name">JOTFORM</field>
         <field name="model">mcm_openedx.form_info</field>
@@ -45,7 +40,6 @@
         <field name="res_model">mcm_openedx.form_info</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 
     <menuitem id="jotform_sub_menu" name="Sub_JOTFORM" parent="jotform_menu" action="jotform_sub_list_action"/>
 
