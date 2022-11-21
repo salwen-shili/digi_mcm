@@ -28,54 +28,111 @@ class calendly_integration(models.Model):
     updated_at = fields.Date(string="updated_at")
     uri = fields.Char(string="uri ")
 
-    def type_event(self):
-        companys = self.env['res.company'].sudo().search([('id', "!=", False)])
-        listcalendlyapi = ["calendly_api_key", "calendly_api_key_marwa","calendly_api_key_abir","calendly_api_key_selmine"]
 
-        querystring = {"active": "true",
-                       "organization": "https://api.calendly.com/organizations/c7e28d20-f7eb-475f-954a-7ae1a36705e3",
-                       "user": "https://api.calendly.com/users/5aa95e72-35ab-4391-8ff6-34cdd4e34f86"}
+    def type_event_digi(self):
+        for companys in self.env['res.company'].sudo().search([('id', "=", 2)]):
+            _logger.info(companys.calendly_api_key_marwa)
+            _logger.info(companys.calendly_api_key_abir)
+            _logger.info(companys.calendly_api_key_selmine)
+
+            querystring = {"active": "true",
+                           "organization": "https://api.calendly.com/organizations/FHBHTA22WPOWFF2P",
+                           "user": "https://api.calendly.com/users/b6009481-4791-4c1a-aa5f-4f94fcefbe5c"}
         for company in companys:
-            for i_api in listcalendlyapi:
-                headers = {
-                    "Content-Type": "application/json",
-                    "Authorization": company.i_api
-                }
-                response = requests.get('https://api.calendly.com/event_types', headers=headers, params=querystring)
-                event = response.json()["collection"]
-                for events in event:
-                    active = events['active']
-                    name = events['name']
-                    if '-' in name:
-                        ownerr = name.split("-")
-                        owner = ownerr[2]
-                    else:
-                        owner = name
-                    slug = events['slug']
-                    created_at = events['created_at']
-                    # owner = events['profile']['owner']
-                    scheduling_url = events['scheduling_url']
-                    updated_at = events['updated_at']
-                    uri = events['uri']
-                    uuid_eventtype = uri.split("/")
-                    for existt in self.env['mcm_openedx.calendly_integration'].sudo().search(
-                            [('id', '!=', False)]):
-                        existe = self.env['mcm_openedx.calendly_integration'].sudo().search(
-                            [('name', "like", events['name'])])
-                        if not existe:
-                            print("dont exist")
-                            new = self.env['mcm_openedx.calendly_integration'].sudo().create({
-                                'name': name,
-                                'slug': slug,
-                                'active': active,
-                                'created_at': created_at,
-                                'owner': owner,
+            listkey = ["calendly_api_key_marwa", "calendly_api_key", "calendly_api_key_abir",
+                       "calendly_api_key_selmine"]
 
-                                'scheduling_url': scheduling_url,
-                                'updated_at': updated_at,
-                                'uri': uri,
-                            })
-                            print(new)
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": company.calendly_api_key_selmine
+            }
+            response = requests.get('https://api.calendly.com/event_types', headers=headers, params=querystring)
+            event = response.json()["collection"]
+            for events in event:
+                active = events['active']
+                name = events['name']
+                if '-' in name:
+                    ownerr = name.split("-")
+                    owner = ownerr[2]
+                else:
+                    owner = name
+                slug = events['slug']
+                created_at = events['created_at']
+                # owner = events['profile']['owner']
+                scheduling_url = events['scheduling_url']
+                updated_at = events['updated_at']
+                uri = events['uri']
+                uuid_eventtype = uri.split("/")
+                for existt in self.env['mcm_openedx.calendly_integration'].sudo().search(
+                        [('id', '!=', False)]):
+                    existe = self.env['mcm_openedx.calendly_integration'].sudo().search(
+                        [('name', "like", events['name'])])
+                    if not existe:
+                        print("dont exist")
+                        new = self.env['mcm_openedx.calendly_integration'].sudo().create({
+                            'name': name,
+                            'slug': slug,
+                            'active': active,
+                            'created_at': created_at,
+                            'owner': owner,
+
+                            'scheduling_url': scheduling_url,
+                            'updated_at': updated_at,
+                            'uri': uri,
+                        })
+                        print(new)
+    def type_event(self):
+        for companys in self.env['res.company'].sudo().search([('id', "=",2)]):
+            _logger.info(companys.calendly_api_key_marwa)
+            _logger.info(companys.calendly_api_key)
+            _logger.info(companys.calendly_api_key_abir)
+            _logger.info(companys.calendly_api_key_selmine)
+
+            querystring = {"active": "true",
+                           "organization": "https://api.calendly.com/organizations/c7e28d20-f7eb-475f-954a-7ae1a36705e3",
+                           "user": "https://api.calendly.com/users/b6009481-4791-4c1a-aa5f-4f94fcefbe5c"}
+        for company in companys:
+            listkey = ["calendly_api_key_marwa", "calendly_api_key","calendly_api_key_abir","calendly_api_key_selmine"]
+
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": company.calendly_api_key_selmine
+            }
+            response = requests.get('https://api.calendly.com/event_types', headers=headers, params=querystring)
+            event = response.json()["collection"]
+            for events in event:
+                active = events['active']
+                name = events['name']
+                if '-' in name:
+                    ownerr = name.split("-")
+                    owner = ownerr[2]
+                else:
+                    owner = name
+                slug = events['slug']
+                created_at = events['created_at']
+                # owner = events['profile']['owner']
+                scheduling_url = events['scheduling_url']
+                updated_at = events['updated_at']
+                uri = events['uri']
+                uuid_eventtype = uri.split("/")
+                for existt in self.env['mcm_openedx.calendly_integration'].sudo().search(
+                        [('id', '!=', False)]):
+                    existe = self.env['mcm_openedx.calendly_integration'].sudo().search(
+                        [('name', "like", events['name'])])
+                    if not existe:
+                        print("dont exist")
+                        new = self.env['mcm_openedx.calendly_integration'].sudo().create({
+                            'name': name,
+                            'slug': slug,
+                            'active': active,
+                            'created_at': created_at,
+                            'owner': owner,
+
+                            'scheduling_url': scheduling_url,
+                            'updated_at': updated_at,
+                            'uri': uri,
+                        })
+                        print(new)
 
     def test_url(self):
         return {
@@ -112,8 +169,9 @@ class event_calendly(models.Model):
     partner_id = fields.Many2one('res.partner')
 
     def event(self):
-        organization = ["FHBHTA22WPOWFF2P","c7e28d20-f7eb-475f-954a-7ae1a36705e3"]
-        users = ["b6009481-4791-4c1a-aa5f-4f94fcefbe5c","68c23f1b-42a1-4eae-84f5-0f0d88098aa8","5aa95e72-35ab-4391-8ff6-34cdd4e34f86"]
+        organization = ["FHBHTA22WPOWFF2P", "c7e28d20-f7eb-475f-954a-7ae1a36705e3"]
+        users = ["b6009481-4791-4c1a-aa5f-4f94fcefbe5c", "68c23f1b-42a1-4eae-84f5-0f0d88098aa8",
+                 "5aa95e72-35ab-4391-8ff6-34cdd4e34f86"]
         company = self.env['res.company'].sudo().search([('id', "!=", False)], limit=1)
         new_format = '%d %B, %Y, %H:%M:%S'
         headers = {
@@ -121,8 +179,8 @@ class event_calendly(models.Model):
             "Authorization": company.calendly_api_key}
         for org in organization:
             for user in users:
-                querystring = {"user": "https://api.calendly.com/users/%s" %user,
-                               "organization": "https://api.calendly.com/organizations/%s" %org,
+                querystring = {"user": "https://api.calendly.com/users/%s" % user,
+                               "organization": "https://api.calendly.com/organizations/%s" % org,
                                "status": "active", "min_start_time": date.today()}
 
                 # Returns a list of Events.
@@ -150,8 +208,9 @@ class event_calendly(models.Model):
                                            headers=headers, params=params)
                         response = rep.json()['resource']
                         print(response)
-                        rep_inv = requests.get('https://api.calendly.com/scheduled_events//invitees' % (uuid_eventtype[4]),
-                                               headers=headers, params=params)
+                        rep_inv = requests.get(
+                            'https://api.calendly.com/scheduled_events//invitees' % (uuid_eventtype[4]),
+                            headers=headers, params=params)
                         response_inv = rep_inv.json()['collection']
                         print("response_inv response_inv ", response_inv)
 
@@ -286,6 +345,3 @@ class event_calendly(models.Model):
             except Exception:
                 self.env.cr.rollback()
                 _logger.info("except Exception:")
-
-
-
