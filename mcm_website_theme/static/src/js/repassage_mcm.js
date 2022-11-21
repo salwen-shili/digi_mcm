@@ -91,7 +91,7 @@ const getInfoRepassage = async (first = false) => {
 
 
 function onSubmitForm(e) {
-  if (props.btn.href){
+  if ( props.product_id.value !="False"){
     window.location.href= props.btn.href
     e.preventDefault();
   }
