@@ -96,7 +96,7 @@ function onSubmitForm(e) {
     window.location.href= props.btn.href
     
   } else {
-    alert()
+ 
     document.getElementById("update-cart").submit()
   }
   
