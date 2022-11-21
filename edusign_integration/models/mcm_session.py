@@ -320,7 +320,7 @@ class mcmSession(models.Model):
         firstName = (
             name["firstName"] + " (" + str(student.code_evalbox) + ")" if student.code_evalbox else name["firstName"]
         )
-        lastName = name["lastName"]
+        lastName = name["lastName"].upper()
 
         nbAdd = 0
         nbEdit = 0
@@ -348,7 +348,7 @@ class mcmSession(models.Model):
             editStudent = (
                 checkStudent["result"]["GROUPS"] != groups
                 or checkStudent["result"]["FIRSTNAME"] != firstName
-                # or checkStudent["result"]["LASTNAME"] != lastName
+                or checkStudent["result"]["LASTNAME"] != lastName
                 or checkStudent["result"]["PHONE"] != student.phone
                 or checkStudent["result"]["TRAINING_NAME"] != self.diplome_vise
                 or checkStudent["result"]["API_ID"] != str(student.id)
@@ -379,7 +379,7 @@ class mcmSession(models.Model):
                     "student": {
                         "ID": edusignStudentID,
                         "FIRSTNAME": firstName,
-                        "LASTNAME": lastName.title(),
+                        "LASTNAME": lastName,
                         "EMAIL": student.email,
                         "FILE_NUMBER": "",
                         "PHOTO": "",
@@ -416,7 +416,7 @@ class mcmSession(models.Model):
             data = {
                 "student": {
                     "FIRSTNAME": firstName,
-                    "LASTNAME": lastName.title(),
+                    "LASTNAME": lastName,
                     "EMAIL": student.email,
                     "FILE_NUMBER": "",
                     "PHOTO": "",
@@ -593,7 +593,7 @@ class mcmSession(models.Model):
                 "professor": {
                     "ID": checkProfessor["result"]["id"],
                     "FIRSTNAME": firstName,
-                    "LASTNAME": lastName.title(),
+                    "LASTNAME": lastName,
                     "EMAIL": professor.email,
                     "PHONE": professor.phone,
                     "API_ID": professor.id,
@@ -633,7 +633,7 @@ class mcmSession(models.Model):
             data = {
                 "professor": {
                     "FIRSTNAME": firstName,
-                    "LASTNAME": lastName.title(),
+                    "LASTNAME": lastName,
                     "EMAIL": professor.email,
                     "FILE_NUMBER": "",
                     "PHOTO": "",
@@ -705,7 +705,7 @@ class mcmSession(models.Model):
                 firstName = name
                 lastName = name
 
-        return {"firstName": firstName, "lastName": lastName.title()}
+        return {"firstName": firstName, "lastName": lastName}
 
     def allowExecution(self, func):
         # if not in localhost
