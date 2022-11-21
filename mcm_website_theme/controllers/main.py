@@ -448,9 +448,9 @@ class Routes_Site(http.Controller):
                     {
                         "taxi": {
                             "access": "denied",
-                            "url": '/formation-taxi#pricing',
+                            "url": '/my',
                             "echec_examen": echec_examen_taxi,
-                            "message": "vous avez déjà reussi votre examen taxi"
+                            "message": "En vue de votre inscription et réussite à l'examen, vous n'avez plus accès à cette rubrique."
                         },
                     })
             else:
@@ -462,11 +462,10 @@ class Routes_Site(http.Controller):
                         {
                             "taxi": {
                                 "access": 'denied',
-                                "url": '/formation-taxi#pricing',
+                                "url": 'https://www.examentaxivtc.fr/',
                                 "echec_examen": echec_examen_taxi,
-                                "message": "Oups ! Vous ne pouvez pas accéder à cette option. Vous devez vous inscrire à la formation taxi pour pouvoir choisir la date de votre examen."
-                                   "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
-                                   "Pour en savoir plus, veuillez contacter notre <a href='/service-clientele'>service clientèle</a>",
+                                "message": "Cette rubrique est dédiée aux personnes ayant déjà passés et échoués à l'examen taxi/VTC.<br/>"
+                                   "Pour vous inscrire à l'examen taxi/VTC, veuillez cliquer <a href='https://www.examentaxivtc.fr/'>ici</a>",
                             },
                         })
                 else:
@@ -516,9 +515,10 @@ class Routes_Site(http.Controller):
                             {
                                 "taxi": {
                                     "access": 'denied',
-                                    "url": '/formation-taxi#pricing',
+                                    "url": 'https://www.examentaxivtc.fr/',
                                     "echec_examen": echec_examen_taxi,
-                                    "message": "manque date d'examen taxi"
+                                    "message": "Cette rubrique est dédiée aux personnes ayant déjà passés et échoués à l'examen taxi/VTC.<br/>"
+                                   "Pour vous inscrire à l'examen taxi/VTC, veuillez cliquer <a href='https://www.examentaxivtc.fr/'>ici</a>",
                                 },
                             })
             info_examen_vtc_reussi = request.env['info.examen'].sudo().search(
@@ -530,9 +530,9 @@ class Routes_Site(http.Controller):
                     {
                         "vtc": {
                             "access": "denied",
-                            "url": '/formation-vtc#pricing',
+                            "url": '/my',
                             "echec_examen": echec_examen_vtc,
-                            "message": "vous avez déjà reussi votre examen vtc"
+                            "message": "En vue de votre inscription et réussite à l'examen, vous n'avez plus accès à cette rubrique."
                         },
                     })
             else:
@@ -545,11 +545,10 @@ class Routes_Site(http.Controller):
                         {
                             "vtc": {
                                 "access": 'denied',
-                                "url": '/formation-vtc#pricing',
+                                "url": 'https://www.examentaxivtc.fr/',
                                 "echec_examen": echec_examen_vtc,
-                                "message": "Oups ! Vous ne pouvez pas accéder à cette option. Vous devez vous inscrire à la formation vtc pour pouvoir choisir la date de votre examen."
-                                   "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
-                                   "Pour en savoir plus, veuillez contacter notre <a href='/service-clientele'>service clientèle</a>",
+                                "message": "Cette rubrique est dédiée aux personnes ayant déjà passés et échoués à l'examen taxi/VTC.<br/>"
+                                   "Pour vous inscrire à l'examen taxi/VTC, veuillez cliquer <a href='https://www.examentaxivtc.fr/'>ici</a>",
                             },
                         })
                 else:
@@ -601,9 +600,10 @@ class Routes_Site(http.Controller):
                             {
                                 "vtc": {
                                     "access": 'denied',
-                                    "url": '/formation-vtc#pricing',
+                                    "url": 'https://www.examentaxivtc.fr/',
                                     "echec_examen": echec_examen_vtc,
-                                    "message": "manque date d'examen vtc"
+                                    "message": "Cette rubrique est dédiée aux personnes ayant déjà passés et échoués à l'examen taxi/VTC.<br/>"
+                                   "Pour vous inscrire à l'examen taxi/VTC, veuillez cliquer <a href='https://www.examentaxivtc.fr/'>ici</a>",
                                 },
                             })
         partner = json.dumps(res)
