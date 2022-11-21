@@ -4,13 +4,13 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.basic_layout">
-                    <!--<style>
+                    <style>
                         .page {
                         line-height: 1.75 ;
                         font-size:18px ;
 
                         }
-                    </style>-->
+                    </style>
                     <div class="page">
                         <div class="oe_structure"/>
                         <div class="row">
@@ -27,9 +27,11 @@
                                     LILLE
                                 </t>
                                 <br/>
-                                Email: <span t-field="o.company_id.email"/>
+                                Email:
+                                <span t-field="o.company_id.email"/>
                                 <br/>
-                                Tél: <t t-if="o.company_id.name=='DIGIMOOV'">
+                                Tél:
+                                <t t-if="o.company_id.name=='DIGIMOOV'">
                                     09 86 87 88 66
                                 </t>
                                 <t t-if="o.company_id.name=='MCM ACADEMY'">
@@ -38,35 +40,43 @@
                             </div>
                             <div class="col-6"></div>
                             <div class="col-2">
-                                <img t-att-src="image_data_uri(o.company_id.logo)" style="max-height:3cm; max-width:7cm;" alt="Logo"/>
+                                <img t-att-src="image_data_uri(o.company_id.logo)"
+                                     style="max-height:3cm; max-width:7cm;" alt="Logo"/>
                             </div>
                         </div>
                         <br/>
-                        <div class="row">
-                            <h2>Attestation d'entrée en formation</h2>
-                        </div>
+                        <h2>Attestation d'entrée en formation</h2>
                         <br/>
-                        <div class="row">
-                            L'organisme de formation <b><span t-field="o.company_id.name"/></b>, atteste par la présente que :<br/>
-                            <span t-field="o.display_name"/>
-                            <br/>
-                            a commencé à suivre la formation :<br/>
-                            <h2>Module (CAPACITÉ DE TRANSPORT DE MARCHANDISE DE MOINS DE 3,5 TONNES)</h2>
-                            <br/>
-                            Lieu de la formation: <b>À distance</b>
-                            <br/>
-                            Dates de formation: du <b>Date début de formation</b> au <b><span t-field="o.module_id.date_exam"
-                                              t-field-options='{"format": "dd/MM/yyyy"}'/></b>.
-                            <br/>
-                            Durée de la formation: 102h
-                            <br/>
-                            Type d'action de formation: <b>Action d'adaptation et de développement des compétences des salariés</b>
-                            <br/>
-                        </div>
+                        L'organisme de formation
+                        <b>
+                            <span t-field="o.company_id.name"/>
+                        </b>
+                        , atteste par la présente que :
                         <br/>
-                        <div class="row">
-                            Fait à <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
-                        </div>
+                        <span t-field="o.display_name"/>
+                        <br/>
+                        a commencé à suivre la formation :
+                        <br/>
+                        <h2>Module (CAPACITÉ DE TRANSPORT DE MARCHANDISE DE MOINS DE 3,5 TONNES)</h2>
+                        <br/>
+                        Lieu de la formation:
+                        <b>À distance</b>
+                        <br/>
+                        Dates de formation: du <b>Date début de formation</b> au
+                        <b>
+                            <span t-field="o.module_id.date_exam"
+                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                        </b>
+                        .
+                        <br/>
+                        Durée de la formation: 102h
+                        <br/>
+                        Type d'action de formation:
+                        <b>Action d'adaptation et de développement des compétences des salariés</b>
+                        <br/>
+                        <br/>
+                        Fait à
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                     </div>
                 </t>
             </t>
