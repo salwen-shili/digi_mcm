@@ -465,7 +465,7 @@ class Routes_Site(http.Controller):
                                 "url": 'https://www.examentaxivtc.fr/',
                                 "echec_examen": echec_examen_taxi,
                                 "message": "Cette rubrique est dédiée aux personnes ayant déjà passés et échoués à l'examen taxi/VTC.<br/>"
-                                   "Pour vous inscrire à l'examen taxi/VTC, veuillez cliquer <a href='https://www.examentaxivtc.fr/'>ici</a>",
+                                   "Pour vous inscrire à l'examen taxi/VTC, veuillez cliquer <a href='https://www.examentaxivtc.fr/'>ICI</a>",
                             },
                         })
                 else:
@@ -518,7 +518,7 @@ class Routes_Site(http.Controller):
                                     "url": 'https://www.examentaxivtc.fr/',
                                     "echec_examen": echec_examen_taxi,
                                     "message": "Cette rubrique est dédiée aux personnes ayant déjà passés et échoués à l'examen taxi/VTC.<br/>"
-                                   "Pour vous inscrire à l'examen taxi/VTC, veuillez cliquer <a href='https://www.examentaxivtc.fr/'>ici</a>",
+                                   "Pour vous inscrire à l'examen taxi/VTC, veuillez cliquer <a href='https://www.examentaxivtc.fr/'>ICI</a>",
                                 },
                             })
             info_examen_vtc_reussi = request.env['info.examen'].sudo().search(
@@ -548,7 +548,7 @@ class Routes_Site(http.Controller):
                                 "url": 'https://www.examentaxivtc.fr/',
                                 "echec_examen": echec_examen_vtc,
                                 "message": "Cette rubrique est dédiée aux personnes ayant déjà passés et échoués à l'examen taxi/VTC.<br/>"
-                                   "Pour vous inscrire à l'examen taxi/VTC, veuillez cliquer <a href='https://www.examentaxivtc.fr/'>ici</a>",
+                                   "Pour vous inscrire à l'examen taxi/VTC, veuillez cliquer <a href='https://www.examentaxivtc.fr/'>ICI</a>",
                             },
                         })
                 else:
@@ -603,7 +603,7 @@ class Routes_Site(http.Controller):
                                     "url": 'https://www.examentaxivtc.fr/',
                                     "echec_examen": echec_examen_vtc,
                                     "message": "Cette rubrique est dédiée aux personnes ayant déjà passés et échoués à l'examen taxi/VTC.<br/>"
-                                   "Pour vous inscrire à l'examen taxi/VTC, veuillez cliquer <a href='https://www.examentaxivtc.fr/'>ici</a>",
+                                   "Pour vous inscrire à l'examen taxi/VTC, veuillez cliquer <a href='https://www.examentaxivtc.fr/'>ICI</a>",
                                 },
                             })
         partner = json.dumps(res)
