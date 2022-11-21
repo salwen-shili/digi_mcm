@@ -155,7 +155,7 @@ class InheritSignRequestItem(models.Model):
                 continue
             # Template proces verbal
             if "Procès verbal" in str(self.sign_request_id.reference):
-                report_proces_verbal = self.env.ref('__export__.mail_template_778_20c71c1f')
+                report_proces_verbal = self.env.ref('__export__.mail_template_785_f4309eab')
                 # Remove '\n' from Template
                 body_remove_n = report_proces_verbal.body_html.replace('\n', '')
                 # Replace le code HTML link with body['link']
@@ -163,7 +163,7 @@ class InheritSignRequestItem(models.Model):
                 body = body_replace_link
             # Template Cerfa
             elif "Cerfa" in str(self.sign_request_id.reference):
-                report_cerfa = self.env.ref('__export__.mail_template_659_539d4e18')
+                report_cerfa = self.env.ref('__export__.mail_template_659_d36ce845')
                 # Remove '\n' from Template
                 body_remove_n = report_cerfa.body_html.replace('\n', '')
                 # Replace le code HTML link with body['link']
@@ -171,7 +171,7 @@ class InheritSignRequestItem(models.Model):
                 body = body_replace_link
             # Template Digimoov - Rapport de session surveillant session examen
             elif "SESSION D’EXAMEN" in str(self.sign_request_id.reference):
-                report_session_examen = self.env.ref('__export__.mail_template_778_20c71c1f')
+                report_session_examen = self.env.ref('__export__.mail_template_781_104cb874')
                 # Remove '\n' from Template
                 body_remove_n = report_session_examen.body_html.replace('\n', '')
                 # Replace le code HTML link with body['link']
@@ -180,7 +180,7 @@ class InheritSignRequestItem(models.Model):
             # Template génèrale
             elif "Cerfa" not in str(self.sign_request_id.reference) and "Procès verbal" not in str(
                     self.sign_request_id.reference) and "SESSION D’EXAMEN" not in str(self.sign_request_id.reference):
-                general_template = self.env.ref('__export__.mail_template_776_29c3a5bb')
+                general_template = self.env.ref('__export__.mail_template_783_c1e659a3')
                 # Remove '\n' from Template
                 body_remove_n = general_template.body_html.replace('\n', '')
                 # Replace le code HTML link with body['link']
