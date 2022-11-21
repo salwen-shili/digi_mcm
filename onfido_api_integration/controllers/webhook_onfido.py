@@ -325,19 +325,18 @@ class OnfidoController(http.Controller):
                                             for document in documents:
                                                 document.state = "validated"
                                                 request.env.cr.commit()
-                                        # self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"validated",currentUser)
-                                        # self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"validated",currentUser)
-                                        # else:
-                                        #     time.sleep(9)
-                                        #     _logger.info(
-                                        #         '*************************************after waite clear  ***************** %s' % str(
-                                        #             currentUser.id))
-                                        #     documents = request.env['documents.document'].sudo().search(
-                                        #         [('partner_id', "=", currentUser.id)])
-                                        #     _logger.info("document %s" % str(documents))
-                                        #     if documents:
-                                        #         for document in documents:
-                                        #             document.state = "validated"
+                    else:
+                        currentUser.validation_onfido = "clear"
+                        if data_onfido:
+
+                            data_onfido.validation_onfido = "clear"
+                            documents = request.env['documents.document'].sudo().search(
+                                [('partner_id', "=", currentUser.id)])
+                            _logger.info("document %s" % str(documents))
+                            if documents:
+                                for document in documents:
+                                    document.state = "validated"
+                                    request.env.cr.commit()
 
         return True
 
