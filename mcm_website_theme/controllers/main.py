@@ -464,7 +464,9 @@ class Routes_Site(http.Controller):
                                 "access": 'denied',
                                 "url": '/formation-taxi#pricing',
                                 "echec_examen": echec_examen_taxi,
-                                "message": "vous devez avoir au moins une ligne d'examen taxi"
+                                "message": "Oups ! Vous ne pouvez pas accéder à cette option. Vous devez vous inscrire à la formation taxi pour pouvoir choisir la date de votre examen."
+                                   "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
+                                   "Pour en savoir plus, veuillez contacter notre <a href='/service-clientele'>service clientèle</a>",
                             },
                         })
                 else:
@@ -535,7 +537,7 @@ class Routes_Site(http.Controller):
                     })
             else:
                 session_filtered_vtc = request.env['info.examen'].sudo().search(
-                    [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'vtc')],
+                    [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'vtc'),('session_id.date_exam','<',date.today()) ],
                     order='date_exam desc',
                     limit=1)
                 if not session_filtered_vtc:
@@ -545,7 +547,9 @@ class Routes_Site(http.Controller):
                                 "access": 'denied',
                                 "url": '/formation-vtc#pricing',
                                 "echec_examen": echec_examen_vtc,
-                                "message": "vous devez avoir au moins une ligne d'examen vtc"
+                                "message": "Oups ! Vous ne pouvez pas accéder à cette option. Vous devez vous inscrire à la formation vtc pour pouvoir choisir la date de votre examen."
+                                   "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
+                                   "Pour en savoir plus, veuillez contacter notre <a href='/service-clientele'>service clientèle</a>",
                             },
                         })
                 else:
