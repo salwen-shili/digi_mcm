@@ -28,10 +28,10 @@ Dés maintenant !
 text-align: -webkit-center;
 ">
 <div class="alert alert-warning" style="
-max-width: 39%;
+max-width: 49%;
 color: #000;
 ">
-Accès interdit pour le repassage. <a onclick="openPopup()" style="
+Vous n'êtes pas autorisé à accéder à cette rubrique. <a onclick="openPopup()" style="
 color: #3c39bd;
 font-weight: 600;
 text-decoration: underline !important;
