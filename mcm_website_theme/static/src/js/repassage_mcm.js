@@ -1,21 +1,20 @@
 // Variables initialisation
-
-
 var vtcAccess = true;
 var taxiAccess = null;
 var btnRepassage = null;
 var state = null;
 var divMessage = null;
 var props = {
-  'notifMessage' : null,
-  "btn":null,
-  "selectFormation": '', 
-  "product_id":'',
+  'notifMessage': null,
+  "btn": null,
+  "selectFormation": '',
+  "product_id": null,
+  "redirection":"null"
 };
 var divRepassage = ` 
 <select onchange="onChangeSelect(this.options[this.selectedIndex].value, this.selectedIndex)" style="
  
-padding: 12px 26px;
+padding: 12px 5px;
 margin: 0 30px 19px 0;
 ">
 <option selected="selected" disabled="disabled">Selectionner votre formation</option>
@@ -26,7 +25,6 @@ margin: 0 30px 19px 0;
 Dés maintenant !                         
 </button>
 <div id="error-message" class="hide" style="
- 
 text-align: -webkit-center;
 ">
 <div class="alert alert-warning" style="
@@ -56,11 +54,13 @@ document.addEventListener("DOMContentLoaded", function () {
     //Add html when promise is resolved
     document.getElementById("repassage-taxi-vtc").innerHTML = divRepassage;
     //setting state
+    props.product_id = document.getElementById("product_id");
     btnRepassage = document.getElementById("btn-repassage");
     // setting access taxi
     taxiAccess = state.response.taxi.access;
     vtcAccess = state.response.vtc.access;
     divMessage = document.getElementById("error-message");
+    document.getElementById("update-cart").addEventListener('submit', onSubmitForm);
     // setting popup vars
     props.notifMessage = document.getElementById("notifMessage");
     props.btn = document.getElementById("btn-inside-popup");
@@ -77,7 +77,7 @@ const getInfoRepassage = async (first = false) => {
   if (responseData) {
     if (responseData.hasOwnProperty("result")) {
       if (first) {
-        alert();
+        
       }
       // console.log(JSON.parse(responseData.result));
 
@@ -88,60 +88,67 @@ const getInfoRepassage = async (first = false) => {
   // catch((err) => {console.log(err)});
 };
 
-// to open popup
 
+
+function onSubmitForm(e) {
+  if ( props.product_id.value !="False"){
+    window.location.href= props.btn.href
+    e.preventDefault();
+  }
+  
+  
+  //redirection auto / manual mode
+
+}
+
+
+// to open popup
 function openPopup(moreInfo) {
   document.getElementById("popup1").style.display = "flex";
- 
+
 }
 // to close popup
 function closePopup() {
   document.getElementById("popup1").style.display = "none";
 }
 // setPopup action and message
-function setPopup(formation){
-
-    console.log("formation", formation)
-   
-    if (formation == "TAXI"){
-      props.notifMessage.innerHTML = state.response.taxi.message; 
-      // setting btn action 
-      // add product ID if allowed for submit 
-      if (state.response.taxi.echec_examen != "False"){
-      props.product_id = state.response.taxi.echec_examen
-      props.btn.setAttribute('type', 'submit')  
+function setPopup(formation) {
+  console.log("formation", formation)
+  if (formation == "TAXI") {
+    props.notifMessage.innerHTML = state.response.taxi.message;
+    // setting btn action 
+    // add product ID if allowed for submit 
+    if (state.response.taxi.echec_examen != "False") {
+      props.product_id.value = state.response.taxi.echec_examen
+      props.btn.setAttribute('type', 'submit')
       // else just set the href if not allowed 
-      }else{
-        props.btn.removeAttribute("type")
-        props.btn.href= state.response.taxi.url
-
-      }
-     
-    }else if (formation =="VTC"){
-      props.notifMessage.innerHTML = state.response.vtc.message; 
-      // setting btn action 
-      // add product ID if allowed for submit 
-      if (state.response.vtc.echec_examen != "False"){
-      props.product_id = state.response.vtc.echec_examen
-      props.btn.setAttribute('type', 'submit')  
-      // else just set the href if not allowed 
-      }else{
-        props.btn.removeAttribute("type")
-        props.btn.href= state.response.vtc.url
-       
-
-      }
+    } else {
+      props.btn.removeAttribute("type")
+      props.btn.href = state.response.taxi.url
     }
+  } else if (formation == "VTC") {
+    props.notifMessage.innerHTML = state.response.vtc.message;
+    // setting btn action 
+    // add product ID if allowed for submit 
+    if (state.response.vtc.echec_examen != "False") {
+      props.product_id.value = state.response.vtc.echec_examen
+      props.btn.setAttribute('type', 'submit')
+      // else just set the href if not allowed 
+    } else {
+      props.btn.removeAttribute("type")
+      props.btn.href = state.response.vtc.url
+    }
+  }
 }
 
-function displayPopupBtn(display){
+function displayPopupBtn(display) {
   //hide btn
-  if (display){
-    props.btn.classList.add("hide"); 
+  if (display) {
+    props.btn.classList.add("hide");
   }
-  else{
-     //show btn action
-  props.btn.classList.remove("hide")
+  else {
+    //show btn action
+    props.btn.classList.remove("hide")
   }
 }
 
@@ -158,20 +165,13 @@ function onChangeSelect(formation, index) {
         btnRepassage.classList.remove("hide");
         divMessage.classList.add("hide");
         // setup popup with action-btn
-       
- 
-        
-      // Hide btn and show error message
+        // Hide btn and show error message
       } else {
         btnRepassage.classList.add("hide");
         divMessage.classList.remove("hide");
         // setup popup without action-btn
-      
-  
-       
       }
       setPopup("VTC")
-      
       break;
     case "TAXI":
       // All actions when selecting VTC
@@ -179,18 +179,12 @@ function onChangeSelect(formation, index) {
         btnRepassage.classList.remove("hide");
         divMessage.classList.add("hide");
         // setup popup with action-btn
-       
-       
-    
       } else {
         btnRepassage.classList.add("hide");
         divMessage.classList.remove("hide");
-         // setup popup without action-btn
-        
-        
+        // setup popup without action-btn  
       }
       setPopup("TAXI")
-     
     default:
       break;
   }

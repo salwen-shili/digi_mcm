@@ -27,11 +27,11 @@
                   <div class="content">
                       <p id="notifMessage" style="text-align: center !important; font-size: 16px"/>
                       <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
-                        <form action="/shop/cart/update" method="post" id="update-cart">
+                        <form action="/shop/cart/update" method="post" id="update-cart" >
                           <!-- send product id -->
-                          <input id="product_id" type="hidden" class="product_id" name="product_id" value=""/>
+                          <input id="product_id" type="hidden" name="product_id" value=""/>
                               <a target="_blank" id="btn-inside-popup">
-                                  <button  class="rkmd-btn btn-shop" onclick="popupAction()">Continuer</button>
+                                  <button  class="rkmd-btn btn-shop" >Continuer</button>
                               </a>
                         </form>
                       </div>
