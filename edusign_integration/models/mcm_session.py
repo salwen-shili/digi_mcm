@@ -348,7 +348,7 @@ class mcmSession(models.Model):
             editStudent = (
                 checkStudent["result"]["GROUPS"] != groups
                 or checkStudent["result"]["FIRSTNAME"] != firstName
-                or checkStudent["result"]["LASTNAME"] != lastName
+                # or checkStudent["result"]["LASTNAME"] != lastName
                 or checkStudent["result"]["PHONE"] != student.phone
                 or checkStudent["result"]["TRAINING_NAME"] != self.diplome_vise
                 or checkStudent["result"]["API_ID"] != str(student.id)
@@ -379,7 +379,7 @@ class mcmSession(models.Model):
                     "student": {
                         "ID": edusignStudentID,
                         "FIRSTNAME": firstName,
-                        "LASTNAME": lastName,
+                        "LASTNAME": lastName.title(),
                         "EMAIL": student.email,
                         "FILE_NUMBER": "",
                         "PHOTO": "",
@@ -416,7 +416,7 @@ class mcmSession(models.Model):
             data = {
                 "student": {
                     "FIRSTNAME": firstName,
-                    "LASTNAME": lastName,
+                    "LASTNAME": lastName.title(),
                     "EMAIL": student.email,
                     "FILE_NUMBER": "",
                     "PHOTO": "",
@@ -593,7 +593,7 @@ class mcmSession(models.Model):
                 "professor": {
                     "ID": checkProfessor["result"]["id"],
                     "FIRSTNAME": firstName,
-                    "LASTNAME": lastName,
+                    "LASTNAME": lastName.title(),
                     "EMAIL": professor.email,
                     "PHONE": professor.phone,
                     "API_ID": professor.id,
@@ -633,7 +633,7 @@ class mcmSession(models.Model):
             data = {
                 "professor": {
                     "FIRSTNAME": firstName,
-                    "LASTNAME": lastName,
+                    "LASTNAME": lastName.title(),
                     "EMAIL": professor.email,
                     "FILE_NUMBER": "",
                     "PHOTO": "",
@@ -705,7 +705,7 @@ class mcmSession(models.Model):
                 firstName = name
                 lastName = name
 
-        return {"firstName": firstName, "lastName": lastName}
+        return {"firstName": firstName, "lastName": lastName.title()}
 
     def allowExecution(self, func):
         # if not in localhost
