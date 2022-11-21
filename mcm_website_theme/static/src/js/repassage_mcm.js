@@ -91,7 +91,7 @@ const getInfoRepassage = async (first = false) => {
 
 
 function onSubmitForm(e) {
-  alert();
+ 
   e.preventDefault();
   if ( props.product_id.value !="False"){
     alert()
