@@ -82,57 +82,50 @@ class calendly_integration(models.Model):
                         })
                         print(new)
     def type_event(self):
-        for companys in self.env['res.company'].sudo().search([('id', "=",2)]):
-            _logger.info(companys.calendly_api_key_marwa)
-            _logger.info(companys.calendly_api_key)
-            _logger.info(companys.calendly_api_key_abir)
-            _logger.info(companys.calendly_api_key_selmine)
+        company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
 
-            querystring = {"active": "true",
-                           "organization": "https://api.calendly.com/organizations/c7e28d20-f7eb-475f-954a-7ae1a36705e3",
-                           "user": "https://api.calendly.com/users/b6009481-4791-4c1a-aa5f-4f94fcefbe5c"}
-        for company in companys:
-            listkey = ["calendly_api_key_marwa", "calendly_api_key","calendly_api_key_abir","calendly_api_key_selmine"]
+        querystring = {"active": "true",
+                       "organization": "https://api.calendly.com/organizations/c7e28d20-f7eb-475f-954a-7ae1a36705e3",
+                       "user": "https://api.calendly.com/users/5aa95e72-35ab-4391-8ff6-34cdd4e34f86"}
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": company.calendly_api_key
+        }
+        response = requests.get('https://api.calendly.com/event_types', headers=headers, params=querystring)
+        event = response.json()["collection"]
+        for events in event:
+            active = events['active']
+            name = events['name']
+            if '-' in name:
+                ownerr = name.split("-")
+                owner = ownerr[2]
+            else:
+                owner = name
+            slug = events['slug']
+            created_at = events['created_at']
+            # owner = events['profile']['owner']
+            scheduling_url = events['scheduling_url']
+            updated_at = events['updated_at']
+            uri = events['uri']
+            uuid_eventtype = uri.split("/")
+            for existt in self.env['mcm_openedx.calendly_integration'].sudo().search(
+                    [('id', '!=', False)]):
+                existe = self.env['mcm_openedx.calendly_integration'].sudo().search(
+                    [('name', "like", events['name'])])
+                if not existe:
+                    print("dont exist")
+                    new = self.env['mcm_openedx.calendly_integration'].sudo().create({
+                        'name': name,
+                        'slug': slug,
+                        'active': active,
+                        'created_at': created_at,
+                        'owner': owner,
 
-            headers = {
-                "Content-Type": "application/json",
-                "Authorization": company.calendly_api_key_selmine
-            }
-            response = requests.get('https://api.calendly.com/event_types', headers=headers, params=querystring)
-            event = response.json()["collection"]
-            for events in event:
-                active = events['active']
-                name = events['name']
-                if '-' in name:
-                    ownerr = name.split("-")
-                    owner = ownerr[2]
-                else:
-                    owner = name
-                slug = events['slug']
-                created_at = events['created_at']
-                # owner = events['profile']['owner']
-                scheduling_url = events['scheduling_url']
-                updated_at = events['updated_at']
-                uri = events['uri']
-                uuid_eventtype = uri.split("/")
-                for existt in self.env['mcm_openedx.calendly_integration'].sudo().search(
-                        [('id', '!=', False)]):
-                    existe = self.env['mcm_openedx.calendly_integration'].sudo().search(
-                        [('name', "like", events['name'])])
-                    if not existe:
-                        print("dont exist")
-                        new = self.env['mcm_openedx.calendly_integration'].sudo().create({
-                            'name': name,
-                            'slug': slug,
-                            'active': active,
-                            'created_at': created_at,
-                            'owner': owner,
-
-                            'scheduling_url': scheduling_url,
-                            'updated_at': updated_at,
-                            'uri': uri,
-                        })
-                        print(new)
+                        'scheduling_url': scheduling_url,
+                        'updated_at': updated_at,
+                        'uri': uri,
+                    })
+                    print(new)
 
     def test_url(self):
         return {
