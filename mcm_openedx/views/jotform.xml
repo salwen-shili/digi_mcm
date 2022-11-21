@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<record id="jotform_search_view" model="ir.ui.view">
+        <field name="name">JOTFORM</field>
+        <field name="model">mcm_openedx.img</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="email"></field>
 
+            </search>
+        </field>
+    </record>
     <record model="ir.ui.view" id="jotform_tree_view">
         <field name="name">JOTFORM</field>
         <field name="model">mcm_openedx.img</field>
