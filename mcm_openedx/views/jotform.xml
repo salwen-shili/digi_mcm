@@ -14,7 +14,7 @@
         <field name="name">JOTFORM</field>
         <field name="model">mcm_openedx.img</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree delete="false">
 
    <field name="form_id"/>
                         <field name="title"/>
@@ -30,7 +30,7 @@
         <field name="name">JOTFORM</field>
         <field name="model">mcm_openedx.img</field>
         <field name="arch" type="xml">
-            <form string="Course Form">
+            <form string="Course Form" delete="false">
                 <sheet>
                     <group>
                         <field name="form_id"/>

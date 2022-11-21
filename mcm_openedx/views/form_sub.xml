@@ -13,7 +13,7 @@
         <field name="name">JOTFORM</field>
         <field name="model">mcm_openedx.form_info</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree delete="false" >
                 <field name="email"/>
                 <field name="partner_id"/>
             </tree>
@@ -23,7 +23,7 @@
         <field name="name">JOTFORM</field>
         <field name="model">mcm_openedx.form_info</field>
         <field name="arch" type="xml">
-            <form string="Course Form">
+            <form string="Course Form" delete="false">
                 <sheet>
                     <group>
                         <field name="email"/>
