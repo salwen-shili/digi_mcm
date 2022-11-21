@@ -379,7 +379,7 @@ class mcmSession(models.Model):
                     "student": {
                         "ID": edusignStudentID,
                         "FIRSTNAME": firstName,
-                        "LASTNAME": lastName,
+                        "LASTNAME": lastName.upper(),
                         "EMAIL": student.email,
                         "FILE_NUMBER": "",
                         "PHOTO": "",
@@ -416,7 +416,7 @@ class mcmSession(models.Model):
             data = {
                 "student": {
                     "FIRSTNAME": firstName,
-                    "LASTNAME": lastName,
+                    "LASTNAME": lastName,upper()
                     "EMAIL": student.email,
                     "FILE_NUMBER": "",
                     "PHOTO": "",
@@ -593,7 +593,7 @@ class mcmSession(models.Model):
                 "professor": {
                     "ID": checkProfessor["result"]["id"],
                     "FIRSTNAME": firstName,
-                    "LASTNAME": lastName,
+                    "LASTNAME": lastName,upper()
                     "EMAIL": professor.email,
                     "PHONE": professor.phone,
                     "API_ID": professor.id,
@@ -633,7 +633,7 @@ class mcmSession(models.Model):
             data = {
                 "professor": {
                     "FIRSTNAME": firstName,
-                    "LASTNAME": lastName,
+                    "LASTNAME": lastName,upper()
                     "EMAIL": professor.email,
                     "FILE_NUMBER": "",
                     "PHOTO": "",
