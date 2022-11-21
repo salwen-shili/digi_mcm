@@ -21,7 +21,7 @@ margin: 0 30px 19px 0;
 <option value="VTC">VTC</option>
 <option value="TAXI">TAXI</option>
 </select>
-<button class="btn-shop hide " onclick="openPopup()" id="btn-repassage"> 
+<button class="btn-shop hide " onclick="submitForm()" id="btn-repassage"> 
 Dés maintenant !                         
 </button>
 <div id="error-message" class="hide" style="
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     taxiAccess = state.response.taxi.access;
     vtcAccess = state.response.vtc.access;
     divMessage = document.getElementById("error-message");
-    //document.getElementById("update-cart").addEventListener('submit', onSubmitForm);
+    document.getElementById("update-cart").addEventListener('submit', onSubmitForm);
     // setting popup vars
     props.notifMessage = document.getElementById("notifMessage");
     props.btn = document.getElementById("btn-inside-popup");
@@ -91,8 +91,10 @@ const getInfoRepassage = async (first = false) => {
 
 
 function onSubmitForm(e) {
+  alert();
   e.preventDefault();
   if ( props.product_id.value !="False"){
+    alert()
     window.location.href= props.btn.href
     
   } else {
@@ -103,6 +105,11 @@ function onSubmitForm(e) {
   
   //redirection auto / manual mode
 
+}
+
+function submitForm(){
+  if (document.getElementById("update-cart"))
+  document.getElementById("update-cart").submit()
 }
 
 
