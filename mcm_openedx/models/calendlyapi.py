@@ -39,7 +39,7 @@ class calendly_integration(models.Model):
             for i_api in listcalendlyapi:
                 headers = {
                     "Content-Type": "application/json",
-                    "Authorization": company.listcalendlyapi
+                    "Authorization": company.i_api
                 }
                 response = requests.get('https://api.calendly.com/event_types', headers=headers, params=querystring)
                 event = response.json()["collection"]
