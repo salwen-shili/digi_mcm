@@ -139,21 +139,53 @@ class InheritSignRequestItem(models.Model):
     def send_signature_accesses(self, subject=None, message=None):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         for signer in self:
-            if not signer.partner_id or not signer.partner_id.email:
-                continue
-            if not signer.create_uid.email:
-                continue
-            tpl = self.env.ref('sign.sign_template_mail_request')
-            if signer.partner_id.lang:
-                tpl = tpl.with_context(lang=signer.partner_id.lang)
-            body = tpl.render({
+            body = {
                 'record': signer,
                 'link': url_join(base_url, "sign/document/mail/%(request_id)s/%(access_token)s" % {
                     'request_id': signer.sign_request_id.id, 'access_token': signer.access_token}),
                 'subject': subject,
                 'body': message if message != '<p><br></p>' else False,
-            }, engine='ir.qweb', minimal_qcontext=True)
+            }
+            # Call value from dict 'body'
+            link = body['link']
 
+            if not signer.partner_id or not signer.partner_id.email:
+                continue
+            if not signer.create_uid.email:
+                continue
+            # Template proces verbal
+            if "Procès verbal" in str(self.sign_request_id.reference):
+                report_proces_verbal = self.env.ref('__export__.mail_template_778_20c71c1f')
+                # Remove '\n' from Template
+                body_remove_n = report_proces_verbal.body_html.replace('\n', '')
+                # Replace le code HTML link with body['link']
+                body_replace_link = body_remove_n.replace('lien_signature', link)
+                body = body_replace_link
+            # Template Cerfa
+            elif "Cerfa" in str(self.sign_request_id.reference):
+                report_cerfa = self.env.ref('__export__.mail_template_659_539d4e18')
+                # Remove '\n' from Template
+                body_remove_n = report_cerfa.body_html.replace('\n', '')
+                # Replace le code HTML link with body['link']
+                body_replace_link = body_remove_n.replace('lien_signature', link)
+                body = body_replace_link
+            # Template Digimoov - Rapport de session surveillant session examen
+            elif "SESSION D’EXAMEN" in str(self.sign_request_id.reference):
+                report_session_examen = self.env.ref('__export__.mail_template_778_20c71c1f')
+                # Remove '\n' from Template
+                body_remove_n = report_session_examen.body_html.replace('\n', '')
+                # Replace le code HTML link with body['link']
+                body_replace_link = body_remove_n.replace('lien_signature', link)
+                body = body_replace_link
+            # Template génèrale
+            elif "Cerfa" not in str(self.sign_request_id.reference) and "Procès verbal" not in str(
+                    self.sign_request_id.reference) and "SESSION D’EXAMEN" not in str(self.sign_request_id.reference):
+                general_template = self.env.ref('__export__.mail_template_776_29c3a5bb')
+                # Remove '\n' from Template
+                body_remove_n = general_template.body_html.replace('\n', '')
+                # Replace le code HTML link with body['link']
+                body_replace_link = body_remove_n.replace('lien_signature', link)
+                body = body_replace_link
             if not signer.signer_email:
                 raise UserError(_("Please configure the signer's email address"))
             # Search contact mail with examen@digimoov.fr
