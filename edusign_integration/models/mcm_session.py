@@ -348,7 +348,7 @@ class mcmSession(models.Model):
             editStudent = (
                 checkStudent["result"]["GROUPS"] != groups
                 or checkStudent["result"]["FIRSTNAME"] != firstName
-                
+                or checkStudent["result"]["LASTNAME"] != lastName
                 or checkStudent["result"]["PHONE"] != student.phone
                 or checkStudent["result"]["TRAINING_NAME"] != self.diplome_vise
                 or checkStudent["result"]["API_ID"] != str(student.id)
