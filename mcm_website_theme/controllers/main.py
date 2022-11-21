@@ -455,7 +455,7 @@ class Routes_Site(http.Controller):
                     })
             else:
                 session_filtered_taxi = request.env['info.examen'].sudo().search(
-                    [('partner_id', "=", partner.id),('module_id.product_id.default_code',"=",'taxi')], order='date_exam desc',
+                    [('partner_id', "=", partner.id),('module_id.product_id.default_code',"=",'taxi'),('session_id.date_exam','<',date.today())], order='date_exam desc',
                     limit=1)
                 if not session_filtered_taxi :
                     res['response'].update(
