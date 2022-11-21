@@ -94,6 +94,8 @@ function onSubmitForm(e) {
   if ( props.product_id.value !="False"){
     window.location.href= props.btn.href
     e.preventDefault();
+  } else {
+    document.getElementById("update-cart").submit()
   }
   
   
