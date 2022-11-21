@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     taxiAccess = state.response.taxi.access;
     vtcAccess = state.response.vtc.access;
     divMessage = document.getElementById("error-message");
-    document.getElementById("update-cart").addEventListener('submit', onSubmitForm);
+    //document.getElementById("update-cart").addEventListener('submit', onSubmitForm);
     // setting popup vars
     props.notifMessage = document.getElementById("notifMessage");
     props.btn = document.getElementById("btn-inside-popup");
@@ -91,10 +91,12 @@ const getInfoRepassage = async (first = false) => {
 
 
 function onSubmitForm(e) {
+  e.preventDefault();
   if ( props.product_id.value !="False"){
     window.location.href= props.btn.href
-    e.preventDefault();
+    
   } else {
+    alert()
     document.getElementById("update-cart").submit()
   }
   
