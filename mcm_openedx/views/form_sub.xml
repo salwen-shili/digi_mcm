@@ -5,7 +5,7 @@
         <field name="model">mcm_openedx.form_info</field>
         <field name="arch" type="xml">
             <search>
-                <field name="form_id"></field>
+                <field name="email"></field>
             </search>
         </field>
     </record>

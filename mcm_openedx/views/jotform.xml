@@ -5,7 +5,7 @@
         <field name="model">mcm_openedx.img</field>
         <field name="arch" type="xml">
             <search>
-                <field name="email"></field>
+                <field name="form_id"></field>
 
             </search>
         </field>
