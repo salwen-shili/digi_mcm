@@ -41,9 +41,11 @@
                                 <img t-att-src="image_data_uri(o.company_id.logo)" style="max-height:3cm; max-width:7cm;" alt="Logo"/>
                             </div>
                         </div>
+                        <br/>
                         <div class="row">
                             <h2>Attestation d'entrée en formation</h2>
                         </div>
+                        <br/>
                         <div class="row">
                             L'organisme de formation <b><span t-field="o.company_id.name"/></b>, atteste par la présente que :<br/>
                             <span t-field="o.display_name"/>
@@ -61,6 +63,7 @@
                             Type d'action de formation: <b>Action d'adaptation et de développement des compétences des salariés</b>
                             <br/>
                         </div>
+                        <br/>
                         <div class="row">
                             Fait à <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                         </div>
