@@ -426,14 +426,14 @@ class Routes_Site(http.Controller):
                 {
                     "taxi": {
                     "access": 'denied',
-                    "url": "/web/signup",
+                    "url": "/web/login",
                     "echec_examen": echec_examen_taxi,
                     "message": "Pour réserver votre nouvelle tentative, "
                                "merci de vous connecter ou de creer votre compte client.",
                 },
                     "vtc": {
                         "access": 'denied',
-                        "url": "/web/signup",
+                        "url": "/web/login",
                         "echec_examen": echec_examen_vtc,
                         "message": "Pour reserver votre nouvelle tentative, "
                                    "merci de vous connecter ou de creer votre compte client.",
@@ -654,7 +654,7 @@ class Routes_Site(http.Controller):
             return request.render("mcm_website_theme.mcm_website_examen", {})
 
     # @http.route("/get_data_user_connected", type="json", auth="user", methods=["POST"], website=True)
-    @http.route("/get-datas-user-examen", type="json", auth="user", methods=["POST"], website=True)
+    @http.route("/get-datas-user-examen", type="json", auth="public", methods=["POST"], website=True)
     def get_datas_user_examen_response(self):
         res = self.get_datas_user_examen()
         return res
