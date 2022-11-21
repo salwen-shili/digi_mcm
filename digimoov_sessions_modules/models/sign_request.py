@@ -159,7 +159,7 @@ class InheritSignRequestItem(models.Model):
                 # Remove '\n' from Template
                 body_remove_n = report_proces_verbal.body_html.replace('\n', '')
                 # Replace le code HTML link with body['link']
-                body_replace_link = body_remove_n.replace('link', link)
+                body_replace_link = body_remove_n.replace('lien_signature', link)
                 body = body_replace_link
             # Template Cerfa
             elif "Cerfa" in str(self.sign_request_id.reference):
@@ -167,7 +167,7 @@ class InheritSignRequestItem(models.Model):
                 # Remove '\n' from Template
                 body_remove_n = report_cerfa.body_html.replace('\n', '')
                 # Replace le code HTML link with body['link']
-                body_replace_link = body_remove_n.replace('link', link)
+                body_replace_link = body_remove_n.replace('lien_signature', link)
                 body = body_replace_link
             # Template Digimoov - Rapport de session surveillant session examen
             elif "SESSION D’EXAMEN" in str(self.sign_request_id.reference):
@@ -175,7 +175,7 @@ class InheritSignRequestItem(models.Model):
                 # Remove '\n' from Template
                 body_remove_n = report_session_examen.body_html.replace('\n', '')
                 # Replace le code HTML link with body['link']
-                body_replace_link = body_remove_n.replace('link', link)
+                body_replace_link = body_remove_n.replace('lien_signature', link)
                 body = body_replace_link
             # Template génèrale
             elif "Cerfa" not in str(self.sign_request_id.reference) and "Procès verbal" not in str(
@@ -184,7 +184,7 @@ class InheritSignRequestItem(models.Model):
                 # Remove '\n' from Template
                 body_remove_n = general_template.body_html.replace('\n', '')
                 # Replace le code HTML link with body['link']
-                body_replace_link = body_remove_n.replace('link', link)
+                body_replace_link = body_remove_n.replace('lien_signature', link)
                 body = body_replace_link
             if not signer.signer_email:
                 raise UserError(_("Please configure the signer's email address"))
