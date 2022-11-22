@@ -66,12 +66,14 @@
                         a commencé à suivre la formation :
                         <br/>
                         <b class="rectangle" style="">
-                            <t t-if="o.module_id">
-                                <span t-field="o.module_id.name"/>
-                            </t>
-                            <t t-else="">
-                                <b style="color:red;">********** Le module est vide ! **********</b>
-                            </t>
+                            <center>
+                                <t t-if="o.module_id">
+                                    <span t-field="o.module_id.name"/>
+                                </t>
+                                <t t-else="">
+                                    <b style="color:red;">********** Le module est vide ! **********</b>
+                                </t>
+                            </center>
                         </b>
                         <br/>
                         <br/>
@@ -120,14 +122,12 @@
                         <br/>
                         <!--Footer-->
                         <t t-if="o.company_id.name=='DIGIMOOV'">
-                            <div class="col-12" style="padding-top:500px;">
-                                <center>
-                                    <img src='/partner_exam/static/src/img/digi_footer.png' height="45" width="1000"/>
-                                </center>
+                            <div class="col-12" style="padding-top:750px;">
+                                <img src='/partner_exam/static/src/img/digi_footer.png' height="45" width="1000"/>
                             </div>
                         </t>
                         <t t-if="o.company_id.name=='MCM ACADEMY'">
-                            <div class="col-12" style="padding-top:500px;">
+                            <div class="col-12" style="padding-top:400px;">
                                 <center>
                                     <img src='/partner_exam/static/src/img/mcm_footer.png' height="45" width="1000"/>
                                 </center>
