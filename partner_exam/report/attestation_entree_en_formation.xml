@@ -50,6 +50,7 @@
                             </div>
                         </div>
                         <br/>
+                        <br/>
                         <h2 align="center">Attestation d'entrée en formation</h2>
                         <br/>
                         L'organisme de formation
@@ -66,15 +67,16 @@
                         <br/>
                         <b class="rectangle" style="">
                             <t t-if="o.module_id">
-                            <span t-field="o.module_id.name"/>
+                                <span t-field="o.module_id.name"/>
                             </t>
                             <t t-else="">
                                 <b style="color:red;">********** Le module est vide ! **********</b>
                             </t>
-
                         </b>
                         <br/>
+                        <br/>
                         Lieu de la formation:
+                        <br/>
                         <b>À distance</b>
                         <br/>
                         Dates de formation: du <b>Date début de formation</b> au
@@ -107,11 +109,30 @@
                             F. - Français ;
                             <br/>
                             G. - Anglais ;
+                            <br/>
+                            <br/>
+                            <br/>
                         </t>
                         Fait à
                         <t t-if="o.company_id.name=='DIGIMOOV'">PARIS</t>
                         <t t-if="o.company_id.name=='MCM ACADEMY'">LILLE</t>
                         <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                        <br/>
+                        <!--Footer-->
+                        <t t-if="o.company_id.name=='DIGIMOOV'">
+                            <div class="col-12" style="padding-top:500px;">
+                                <center>
+                                    <img src='/partner_exam/static/src/img/digi_footer.png' height="45" width="1000"/>
+                                </center>
+                            </div>
+                        </t>
+                        <t t-if="o.company_id.name=='MCM ACADEMY'">
+                            <div class="col-12" style="padding-top:500px;">
+                                <center>
+                                    <img src='/partner_exam/static/src/img/mcm_footer.png' height="45" width="1000"/>
+                                </center>
+                            </div>
+                        </t>
                     </div>
                 </t>
             </t>
