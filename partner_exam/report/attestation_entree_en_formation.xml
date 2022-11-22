@@ -9,12 +9,18 @@
                         line-height: 1.75 ;
                         font-size:18px ;
                         }
-                        .rectangle {
+                        .center {
                         height: 100px;
                         width: 150px;
-                        background: #D0CDCD;
+
                         text-align:center;
                         }
+                        .table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        background: #DCDCDC;
+                        }
+
                     </style>
                     <div class="page">
                         <div class="oe_structure"/>
@@ -65,16 +71,23 @@
                         <br/>
                         a commencé à suivre la formation :
                         <br/>
-                        <center>
-                            <b class="rectangle">
-                                <t t-if="o.module_id">
-                                    <span t-field="o.module_id.name"/>
-                                </t>
-                                <t t-else="">
-                                    <b style="color:red;">********** Le module est vide ! **********</b>
-                                </t>
-                            </b>
-                        </center>
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    <center>
+                                        <b class="center">
+                                            <t t-if="o.module_id">
+                                                <span t-field="o.module_id.name"/>
+                                            </t>
+                                            <t t-else="">
+                                                <b style="color:red;">********** Le module est vide ! **********</b>
+                                            </t>
+                                        </b>
+                                    </center>
+                                </th>
+                            </tr>
+                        </table>
+
                         <br/>
                         <br/>
                         Lieu de la formation:
