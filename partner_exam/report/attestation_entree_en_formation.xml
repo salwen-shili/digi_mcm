@@ -12,7 +12,7 @@
                         .rectangle {
                         height: 100px;
                         width: 150px;
-                        background-color: #D0CDCD;
+                        background: #D0CDCD;
                         text-align:center;
                         }
                     </style>
@@ -65,16 +65,16 @@
                         <br/>
                         a commencé à suivre la formation :
                         <br/>
-                        <b class="rectangle" style="">
-                            <center>
+                        <center>
+                            <b class="rectangle">
                                 <t t-if="o.module_id">
                                     <span t-field="o.module_id.name"/>
                                 </t>
                                 <t t-else="">
                                     <b style="color:red;">********** Le module est vide ! **********</b>
                                 </t>
-                            </center>
-                        </b>
+                            </b>
+                        </center>
                         <br/>
                         <br/>
                         Lieu de la formation:
