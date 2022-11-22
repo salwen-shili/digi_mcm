@@ -81,20 +81,31 @@
                         <br/>
                         <b>À distance</b>
                         <br/>
-                        Dates de formation: du <b>Date début de formation</b> au
+                        Dates de formation: du
+                        <b>Date début de formation</b>
+                        <t t-if="o.company_id.name=='DIGIMOOV'">
+                            <span t-field="o.date_creation"
+                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                        </t>
+                        <t t-if="o.company_id.name=='MCM ACADEMY'">
+                            <span t-field="o.inscrit_mcm"
+                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                        </t>
+                        au
                         <b>
                             <span t-field="o.module_id.date_exam"
                                   t-field-options='{"format": "dd/MM/yyyy"}'/>
                         </b>
                         .
                         <br/>
-                        Durée de la formation: 102h
+                        Durée de la formation:
+                        <t t-if="o.company_id.name=='DIGIMOOV'">102h</t>
+                        <t t-if="o.company_id.name=='MCM ACADEMY'">70h</t>
                         <br/>
                         Type d'action de formation:
                         <b>Action d'adaptation et de développement des compétences des salariés</b>
                         <br/>
                         <br/>
-
                         <t t-if="o.company_id.name!='DIGIMOOV'">
                             <h3>Objectifs de la formation</h3>
                             <b>La formation comporte :</b>
