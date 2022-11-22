@@ -47,7 +47,7 @@ class calendly_integration(models.Model):
                     name = events['name']
                     if '-' in name:
                         ownerr = name.split("-")
-                        owner = ownerr[2]
+                        owner = ownerr[1]
                     else:
                         owner = name
                     slug = events['slug']
@@ -69,7 +69,6 @@ class calendly_integration(models.Model):
                                 'active': active,
                                 'created_at': created_at,
                                 'owner': owner,
-
                                 'scheduling_url': scheduling_url,
                                 'updated_at': updated_at,
                                 'uri': uri,
@@ -300,81 +299,75 @@ class event_calendly(models.Model):
                        "status": "active", "min_start_time": date.today()}
 
         # Returns a list of Events.
-        r_marwa = requests.get('https://api.calendly.com/scheduled_events&count=100',
+        r_marwa = requests.get('https://api.calendly.com/scheduled_events',
                                headers=headers, params=querystring)
         shevent_marwa = r_marwa.json()["collection"]
         for shevents in shevent_marwa:
-            try:
-                scheduling_url_uri = shevents['uri']
-                scheduling_url_name = shevents['name']
-                scheduling_url_created_at = shevents['created_at']
-                scheduling_url_updated_at = shevents['updated_at']
-                uuid_eventtype = scheduling_url_uri.split("/")
-                # Returns information about a specified Event.
-                params = {
-                    "status": "active",
-                    "min_start_time": date.today()
-                }
-                headers = {
-                    "Content-Type": "application/json",
-                    "Authorization": company.calendly_api_key_marwa}
 
-                rep = requests.get(
-                    'https://api.calendly.com/scheduled_events/%s&count=100' % (uuid_eventtype[4]),
-                    headers=headers, params=params)
-                response = rep.json()['resource']
-                rep_inv = requests.get('https://api.calendly.com/scheduled_events/%s/invitees' % (uuid_eventtype[4]),
-                                       headers=headers, params=params)
-                response_inv = rep_inv.json()['collection']
-                event_name = response['name']
-                if '-' in event_name:
-                    ownerr = event_name.split("-")
-                    owner = ownerr[2]
-                else:
-                    owner = event_name
-                if 'join_url' in response['location']:
-                    location = response['location']['join_url']
-                else:
-                    location = response['location']['location']
+            scheduling_url_uri = shevents['uri']
+            scheduling_url_name = shevents['name']
+            scheduling_url_created_at = shevents['created_at']
+            scheduling_url_updated_at = shevents['updated_at']
+            uuid_eventtype = scheduling_url_uri.split("/")
+            # Returns information about a specified Event.
+            params = {
+                "status": "active",
+                "min_start_time": date.today()
+            }
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": company.calendly_api_key_marwa}
 
-                start_at = response['start_time']
-                start_at_char = response['start_time']
-                start_at_char = str(start_at_char).replace('T', ' ')
-                start_at_char = start_at_char.split(".")
-                start_at_char = start_at_char[0]
-                status = response['status']
-                cancel_url = response_inv[0]['cancel_url']
-                reschedule_url = response_inv[0]['reschedule_url']
+            rep = requests.get(
+                'https://api.calendly.com/scheduled_events/%s' % (uuid_eventtype[4]),
+                headers=headers, params=params)
+            response = rep.json()['resource']
+            rep_inv = requests.get('https://api.calendly.com/scheduled_events/%s/invitees' % (uuid_eventtype[4]),
+                                   headers=headers, params=params)
+            response_inv = rep_inv.json()['collection']
+            event_name = response['name']
+            if '-' in event_name:
+                ownerr = event_name.split("-")
+                owner = ownerr[2]
+            else:
+                owner = event_name
+            if 'join_url' in response['location']:
+                location = response['location']['join_url']
+            else:
+                location = response['location']['location']
 
-                for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
-                        [('id', '!=', False)]):
-                    if existt.start_at:
-                        if existt.start_at < date.today():
-                            existt.browse(existt.id).sudo().unlink()
-                    existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                        [('event_name', '=', shevents['name']), ('start_at', '=', response['start_time'])])
+            start_at = response['start_time']
+            start_at_char = response['start_time']
+            start_at_char = str(start_at_char).replace('T', ' ')
+            start_at_char = start_at_char.split(".")
+            start_at_char = start_at_char[0]
+            status = response['status']
+            cancel_url = response_inv[0]['cancel_url']
+            reschedule_url = response_inv[0]['reschedule_url']
 
-                    if not existe:
-                        new = self.env['mcm_openedx.calendly_event'].sudo().create({
-                            'scheduling_url_name': scheduling_url_name,
-                            'scheduling_url_created_at': scheduling_url_created_at,
-                            'scheduling_url_updated_at': scheduling_url_updated_at,
-                            'scheduling_url_uri': scheduling_url_uri,
-                            'event_name': event_name,
-                            'location': location,
-                            'start_at': start_at,
-                            'start_at_char': start_at_char,
-                            'reschedule_url': reschedule_url,
-                            'cancel_url': cancel_url,
-                            'status': status,
-                            'owner': owner,
-                        })
-                # ajouter les apprenants manuellemnt a partire de  la fiche Client
-                self.env.cr.commit()
-                # self.env.cr.rollback() cancels the transaction's write operations since the last commit, or all if no commit was done.
-            except Exception:
-                self.env.cr.rollback()
-                _logger.info(" except Exception:")
+            for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
+                    [('id', '!=', False)]):
+                if existt.start_at:
+                    if existt.start_at < date.today():
+                        existt.browse(existt.id).sudo().unlink()
+                existe = self.env['mcm_openedx.calendly_event'].sudo().search(
+                    [('event_name', '=', shevents['name']), ('start_at', '=', response['start_time'])])
+
+                if not existe:
+                    new = self.env['mcm_openedx.calendly_event'].sudo().create({
+                        'scheduling_url_name': scheduling_url_name,
+                        'scheduling_url_created_at': scheduling_url_created_at,
+                        'scheduling_url_updated_at': scheduling_url_updated_at,
+                        'scheduling_url_uri': scheduling_url_uri,
+                        'event_name': event_name,
+                        'location': location,
+                        'start_at': start_at,
+                        'start_at_char': start_at_char,
+                        'reschedule_url': reschedule_url,
+                        'cancel_url': cancel_url,
+                        'status': status,
+                        'owner': owner,
+                    })
 
     def event_selmine(self):
         company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
@@ -411,44 +404,44 @@ class event_calendly(models.Model):
             event_name = response['name']
             if '-' in event_name:
                 ownerr = event_name.split("-")
-                owner = ownerr
+                owner = ownerr[0]
             else:
                 owner = event_name
-                start_at = response['start_time']
-                start_at_char = response['start_time']
-                if 'join_url' in response['location']:
-                    location = response['location']['join_url']
-                else:
-                    location = response['location']['location']
-                start_at_char = str(start_at_char).replace('T', ' ')
-                start_at_char = start_at_char.split(".")
-                start_at_char = start_at_char[0]
-                print("start_at_charstart_at_char", start_at_char)
-                status = response['status']
-                for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
-                        [('id', '!=', False)]):
-                    if existt.start_at:
-                        if existt.start_at < date.today():
-                            print("existeee nameeeee")
-                            existt.browse(existt.id).sudo().unlink()
-                    existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                        [('event_name', '=', shevents['name']), ('start_at', '=', response['start_time'])])
-                    if not existe:
-                        print("dont exist")
-                        new = self.env['mcm_openedx.calendly_event'].sudo().create({
-                            'scheduling_url_name': scheduling_url_name,
-                            'scheduling_url_created_at': scheduling_url_created_at,
-                            'scheduling_url_updated_at': scheduling_url_updated_at,
-                            'scheduling_url_uri': scheduling_url_uri,
-                            'event_name': event_name,
-                            'location': location,
-                            'start_at': start_at,
-                            'start_at_char': start_at_char,
-                            'status': status,
-                            'owner': owner,
-                        })
-                        print(new)
-                # ajouter les apprenants manuellemnt a partire de  la fiche Client
+            start_at = response['start_time']
+            start_at_char = response['start_time']
+            if 'join_url' in response['location']:
+                location = response['location']['join_url']
+            else:
+                location = response['location']['location']
+            start_at_char = str(start_at_char).replace('T', ' ')
+            start_at_char = start_at_char.split(".")
+            start_at_char = start_at_char[0]
+            print("start_at_charstart_at_char", start_at_char)
+            status = response['status']
+            for existt in self.env['mcm_openedx.calendly_event'].sudo().search(
+                    [('id', '!=', False)]):
+                if existt.start_at:
+                    if existt.start_at < date.today():
+                        print("existeee nameeeee")
+                        existt.browse(existt.id).sudo().unlink()
+                existe = self.env['mcm_openedx.calendly_event'].sudo().search(
+                    [('event_name', '=', shevents['name']), ('start_at', '=', response['start_time'])])
+                if not existe:
+                    print("dont exist")
+                    new = self.env['mcm_openedx.calendly_event'].sudo().create({
+                        'scheduling_url_name': scheduling_url_name,
+                        'scheduling_url_created_at': scheduling_url_created_at,
+                        'scheduling_url_updated_at': scheduling_url_updated_at,
+                        'scheduling_url_uri': scheduling_url_uri,
+                        'event_name': event_name,
+                        'location': location,
+                        'start_at': start_at,
+                        'start_at_char': start_at_char,
+                        'status': status,
+                        'owner': owner,
+                    })
+                    print(new)
+                    # ajouter les apprenants manuellemnt a partire de  la fiche Client
 
     def test_url(self):
         return {
