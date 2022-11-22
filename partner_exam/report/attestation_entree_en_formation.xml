@@ -122,12 +122,12 @@
                         <br/>
                         <!--Footer-->
                         <t t-if="o.company_id.name=='DIGIMOOV'">
-                            <div class="col-12" style="padding-top:750px;">
+                            <div class="col-12" style="padding-top:550px;">
                                 <img src='/partner_exam/static/src/img/digi_footer.png' height="45" width="1000"/>
                             </div>
                         </t>
                         <t t-if="o.company_id.name=='MCM ACADEMY'">
-                            <div class="col-12" style="padding-top:400px;">
+                            <div class="col-12" style="padding-top:350px;">
                                 <center>
                                     <img src='/partner_exam/static/src/img/mcm_footer.png' height="45" width="1000"/>
                                 </center>
