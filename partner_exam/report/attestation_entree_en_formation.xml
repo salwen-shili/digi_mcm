@@ -78,18 +78,19 @@
                         <br/>
                         <br/>
                         Lieu de la formation:
-                        <br/>
                         <b>À distance</b>
                         <br/>
                         Dates de formation: du
-                        <b><t t-if="o.company_id.name=='DIGIMOOV'">
-                            <span t-field="o.date_creation"
-                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
-                        </t>
-                        <t t-if="o.company_id.name=='MCM ACADEMY'">
-                            <span t-field="o.inscrit_mcm"
-                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
-                        </t></b>
+                        <b>
+                            <t t-if="o.company_id.name=='DIGIMOOV'">
+                                <span t-field="o.date_creation"
+                                      t-field-options='{"format": "dd/MM/yyyy"}'/>
+                            </t>
+                            <t t-if="o.company_id.name=='MCM ACADEMY'">
+                                <span t-field="o.inscrit_mcm"
+                                      t-field-options='{"format": "dd/MM/yyyy"}'/>
+                            </t>
+                        </b>
                         au
                         <b>
                             <span t-field="o.module_id.date_exam"
@@ -98,8 +99,10 @@
                         .
                         <br/>
                         Durée de la formation:
-                        <t t-if="o.company_id.name=='DIGIMOOV'">102h</t>
-                        <t t-if="o.company_id.name=='MCM ACADEMY'">70h</t>
+                        <b>
+                            <t t-if="o.company_id.name=='DIGIMOOV'">102h</t>
+                            <t t-if="o.company_id.name=='MCM ACADEMY'">70h</t>
+                        </b>
                         <br/>
                         Type d'action de formation:
                         <b>Action d'adaptation et de développement des compétences des salariés</b>
