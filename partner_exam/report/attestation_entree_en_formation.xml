@@ -8,7 +8,6 @@
                         .page {
                         line-height: 1.75 ;
                         font-size:18px ;
-
                         }
                     </style>
                     <div class="page">
@@ -45,7 +44,7 @@
                             </div>
                         </div>
                         <br/>
-                        <h2>Attestation d'entrée en formation</h2>
+                        <h2 align="center">Attestation d'entrée en formation</h2>
                         <br/>
                         L'organisme de formation
                         <b>
@@ -57,7 +56,7 @@
                         <br/>
                         a commencé à suivre la formation :
                         <br/>
-                        <h2>Module (CAPACITÉ DE TRANSPORT DE MARCHANDISE DE MOINS DE 3,5 TONNES)</h2>
+                        <h2 align="center">Module (CAPACITÉ DE TRANSPORT DE MARCHANDISE DE MOINS DE 3,5 TONNES)</h2>
                         <br/>
                         Lieu de la formation:
                         <b>À distance</b>
@@ -77,6 +76,23 @@
                         <br/>
                         Fait à
                         <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                        <t t-if="o.company_id.name!='DIGIMOOV'">
+                            <h3>Objectifs de la formation</h3>
+                            <b>La formation comporte :</b>
+                            A. - Droit du transport public particulier de personnes : T3P ;
+                            <br/>
+                            B. - Réglementation spécifique à l'activité de voiture de transport avec chauffeur ;
+                            <br/>
+                            C. - Sécurité routière ;
+                            <br/>
+                            D. - Développement commercial ;
+                            <br/>
+                            E. - Gestion d'entreprise ;
+                            <br/>
+                            F. - Français ;
+                            <br/>
+                            G. - Anglais ;
+                        </t>
                     </div>
                 </t>
             </t>
