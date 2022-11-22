@@ -9,6 +9,12 @@
                         line-height: 1.75 ;
                         font-size:18px ;
                         }
+                        .rectangle {
+                        height: 100px;
+                        width: 150px;
+                        background-color: #D0CDCD;
+                        text-align:center;
+                        }
                     </style>
                     <div class="page">
                         <div class="oe_structure"/>
@@ -52,11 +58,21 @@
                         </b>
                         , atteste par la présente que :
                         <br/>
-                        <b><span t-field="o.display_name"/></b>
+                        <b>
+                            <span t-field="o.display_name"/>
+                        </b>
                         <br/>
                         a commencé à suivre la formation :
                         <br/>
-                        <b style="background:#D0CDCD;" align="center">Module (CAPACITÉ DE TRANSPORT DE MARCHANDISE DE MOINS DE 3,5 TONNES)</b>
+                        <b class="rectangle" style="">
+                            <t t-if="o.module_id">
+                            <span t-field="o.module_id.name"/>
+                            </t>
+                            <t t-else="">
+                                <b style="color:red;">********** Le module est vide ! **********</b>
+                            </t>
+
+                        </b>
                         <br/>
                         Lieu de la formation:
                         <b>À distance</b>
