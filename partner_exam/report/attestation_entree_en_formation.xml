@@ -82,15 +82,14 @@
                         <b>À distance</b>
                         <br/>
                         Dates de formation: du
-                        <b>Date début de formation</b>
-                        <t t-if="o.company_id.name=='DIGIMOOV'">
+                        <b><t t-if="o.company_id.name=='DIGIMOOV'">
                             <span t-field="o.date_creation"
                                   t-field-options='{"format": "dd/MM/yyyy"}'/>
                         </t>
                         <t t-if="o.company_id.name=='MCM ACADEMY'">
                             <span t-field="o.inscrit_mcm"
                                   t-field-options='{"format": "dd/MM/yyyy"}'/>
-                        </t>
+                        </t></b>
                         au
                         <b>
                             <span t-field="o.module_id.date_exam"
@@ -109,6 +108,7 @@
                         <t t-if="o.company_id.name!='DIGIMOOV'">
                             <h3>Objectifs de la formation</h3>
                             <b>La formation comporte :</b>
+                            <br/>
                             A. - Droit du transport public particulier de personnes : T3P ;
                             <br/>
                             B. - Réglementation spécifique à l'activité de voiture de transport avec chauffeur ;
