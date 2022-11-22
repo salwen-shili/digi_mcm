@@ -122,8 +122,8 @@
                         <br/>
                         <!--Footer-->
                         <t t-if="o.company_id.name=='DIGIMOOV'">
-                            <div class="col-12" style="padding-top:570px;">
-                                <img src='/partner_exam/static/src/img/digi_footer.png' height="40" width="1000"/>
+                            <div class="col-12" style="padding-top:590px;">
+                                <img src='/partner_exam/static/src/img/digi_footer.png' height="35" width="1000"/>
                             </div>
                         </t>
                         <t t-if="o.company_id.name=='MCM ACADEMY'">
