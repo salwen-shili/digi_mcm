@@ -52,11 +52,11 @@
                         </b>
                         , atteste par la présente que :
                         <br/>
-                        <span t-field="o.display_name"/>
+                        <b><span t-field="o.display_name"/></b>
                         <br/>
                         a commencé à suivre la formation :
                         <br/>
-                        <h2 align="center">Module (CAPACITÉ DE TRANSPORT DE MARCHANDISE DE MOINS DE 3,5 TONNES)</h2>
+                        <h4 align="center">Module (CAPACITÉ DE TRANSPORT DE MARCHANDISE DE MOINS DE 3,5 TONNES)</h4>
                         <br/>
                         Lieu de la formation:
                         <b>À distance</b>
@@ -74,8 +74,7 @@
                         <b>Action d'adaptation et de développement des compétences des salariés</b>
                         <br/>
                         <br/>
-                        Fait à
-                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+
                         <t t-if="o.company_id.name!='DIGIMOOV'">
                             <h3>Objectifs de la formation</h3>
                             <b>La formation comporte :</b>
@@ -93,6 +92,10 @@
                             <br/>
                             G. - Anglais ;
                         </t>
+                        Fait à
+                        <t t-if="o.company_id.name=='DIGIMOOV'">PARIS</t>
+                        <t t-if="o.company_id.name=='MCM ACADEMY'">LILLE</t>
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                     </div>
                 </t>
             </t>
