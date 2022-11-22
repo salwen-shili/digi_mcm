@@ -1628,15 +1628,12 @@ class partner(models.Model):
                                         res_users = self.env["res.users"]
                                         users = res_users.find_user_with_phone(str(tel))
 
-                            user = False
 
                             if users and len(users) > 1:
                                 user = users[1]
                                 for utilisateur in users:
                                     if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.ville:
                                         user = utilisateur
-                            else:
-                                user = users
                             if user:
 
                                 if user.state == "new":
