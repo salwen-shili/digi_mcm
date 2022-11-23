@@ -95,7 +95,7 @@
                         Lieu de la formation:
                         <b>À distance</b>
                         <br/>
-                        Dates de formation: du
+                        Date de formation: du
                         <b>
                             <t t-if="o.company_id.name=='DIGIMOOV'">
                                 <span t-field="o.date_creation"
@@ -145,12 +145,12 @@
                             <br/>
                         </t>
                         Fait à
-                        <t t-if="o.company_id.name=='DIGIMOOV'">PARIS</t>
-                        <t t-if="o.company_id.name=='MCM ACADEMY'">LILLE</t>
+                        <t t-if="o.company_id.name=='DIGIMOOV'">PARIS le</t>
+                        <t t-if="o.company_id.name=='MCM ACADEMY'">LILLE le</t>
                         <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                         <br/>
                         <!--Footer-->
-                        <div class="col-12" style="color:#696969;position:absolute;bottom:-1115px">
+                        <div class="col-12" style="color:#696969;position:absolute;bottom:-1250px;font-size:14px;">
                             <center>
                                 <span>
                                     <t t-if="o.company_id.name=='DIGIMOOV'">
