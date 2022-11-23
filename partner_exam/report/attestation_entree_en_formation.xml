@@ -150,18 +150,23 @@
                         <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                         <br/>
                         <!--Footer-->
-                        <t t-if="o.company_id.name=='DIGIMOOV'">
-                            <div class="col-12" style="padding-top:590px;">
-                                <img src='/partner_exam/static/src/img/digi_footer.png' height="35" width="1000"/>
-                            </div>
-                        </t>
-                        <t t-if="o.company_id.name=='MCM ACADEMY'">
-                            <div class="col-12" style="padding-top:220px;">
-                                <center>
-                                    <img src='/partner_exam/static/src/img/mcm_footer.png' height="45" width="1000"/>
-                                </center>
-                            </div>
-                        </t>
+                        <div class="col-12" style="color:#696969;position:absolute;bottom:-1115px">
+                            <center>
+                                <span>
+                                    <t t-if="o.company_id.name=='DIGIMOOV'">
+                                        <b>DIGIMOOV</b>
+                                        | 10 rue de PENTHIEVRE PARIS 75008 | Numéro SIRET: 81121988000085 | Numéro de
+                                        déclaration d'activité: 11755542075 (auprès du préfet de région de: 75)
+                                    </t>
+                                    <t t-if="o.company_id.name=='MCM ACADEMY'">
+                                        <b>MCM ACADEMY</b>
+                                        | 229 RUE SOLFERINO LILLE 59000 | Numéro SIRET: 81121988000077 | Numéro de
+                                        déclaration
+                                        d'activité: 11755542075 (auprès du préfet de région de: 75)
+                                    </t>
+                                </span>
+                            </center>
+                        </div>
                     </div>
                 </t>
             </t>
