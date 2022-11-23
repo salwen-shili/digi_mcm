@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="attestation_entree_formation_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <style>
+                        .page {
+                        line-height: 1.75 ;
+                        font-size:18px ;
+                        }
+                        .center {
+                        height: 100px;
+                        width: 150px;
+
+                        text-align:center;
+                        }
+                        .table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        background: #DCDCDC;
+                        }
+
+                    </style>
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-4">
+                                <span t-field="o.company_id.name"/>
+                                <br/>
+                                <span t-field="o.company_id.street"/>
+                                <br/>
+                                <span t-field="o.company_id.zip"/>
+                                <t t-if="o.company_id.name=='DIGIMOOV'">
+                                    PARIS
+                                </t>
+                                <t t-if="o.company_id.name=='MCM ACADEMY'">
+                                    LILLE
+                                </t>
+                                <br/>
+                                Email:
+                                <span t-field="o.company_id.email"/>
+                                <br/>
+                                Tél:
+                                <t t-if="o.company_id.name=='DIGIMOOV'">
+                                    09 86 87 88 66
+                                </t>
+                                <t t-if="o.company_id.name=='MCM ACADEMY'">
+                                    09 86 87 88 67
+                                </t>
+                            </div>
+                            <div class="col-6"></div>
+                            <div class="col-2">
+                                <img t-att-src="image_data_uri(o.company_id.logo)"
+                                     style="max-height:3cm; max-width:7cm;" alt="Logo"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <h2 align="center">Attestation d'entrée en formation</h2>
+                        <br/>
+                        L'organisme de formation
+                        <b>
+                            <span t-field="o.company_id.name"/>
+                        </b>
+                        , atteste par la présente que :
+                        <br/>
+                        <b>
+                            <span t-field="o.display_name"/>
+                        </b>
+                        <br/>
+                        a commencé à suivre la formation :
+                        <br/>
+                        <br/>
+                        <br/>
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    <center>
+                                        <b class="center">
+                                            <t t-if="o.module_id">
+                                                <span t-field="o.module_id.name"/>
+                                            </t>
+                                            <t t-else="">
+                                                <b style="color:red;">********** Le module est vide ! **********</b>
+                                            </t>
+                                        </b>
+                                    </center>
+                                </th>
+                            </tr>
+                        </table>
+
+                        <br/>
+                        <br/>
+                        Lieu de la formation:
+                        <b>À distance</b>
+                        <br/>
+                        Période de formation: du
+                        <b>
+                            <t t-if="o.company_id.name=='DIGIMOOV'">
+                                <span t-field="o.date_creation"
+                                      t-field-options='{"format": "dd/MM/yyyy"}'/>
+                            </t>
+                            <t t-if="o.company_id.name=='MCM ACADEMY'">
+                                <span t-field="o.inscrit_mcm"
+                                      t-field-options='{"format": "dd/MM/yyyy"}'/>
+                            </t>
+                        </b>
+                        au
+                        <b>
+                            <span t-field="o.module_id.date_exam"
+                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                        </b>
+                        .
+                        <br/>
+                        Durée de la formation:
+                        <b>
+                            <t t-if="o.company_id.name=='DIGIMOOV'">102h</t>
+                            <t t-if="o.company_id.name=='MCM ACADEMY'">70h</t>
+                        </b>
+                        <br/>
+                        Type d'action de formation:
+                        <b>Action d'adaptation et de développement des compétences des salariés</b>
+                        <br/>
+                        <br/>
+                        <t t-if="o.company_id.name!='DIGIMOOV'">
+                            <h3>Objectifs de la formation</h3>
+                            <b>La formation comporte :</b>
+                            <br/>
+                            A. - Droit du transport public particulier de personnes : T3P ;
+                            <br/>
+                            <t t-if="'VTC' in o.module_id.name">
+                                B. - Réglementation spécifique à l'activité de voiture de transport avec chauffeur ;
+                            </t>
+                            <t t-if="'TAXI' in o.module_id.name">
+                                B. - Réglementation spécifique à l'activité de TAXI ;
+                            </t>
+                            <t t-if="'VMDTR' in o.module_id.name">
+                                B. - Réglementation spécifique à l'activité de VMDTR ;
+                            </t>
+                            <br/>
+                            C. - Sécurité routière ;
+                            <br/>
+                            <t t-if="'VTC' in o.module_id.name">
+                                D. - Développement commercial ;
+                            </t>
+                            <t t-if="'TAXI' in o.module_id.name">
+                                D. - Connaissance du territoire et de la réglementation locale taxi ;
+                            </t>
+                            <t t-if="'VMDTR' in o.module_id.name">
+                                D. - Prise en charge du passager et Développement commercial ;
+                            </t>
+                            <br/>
+                            E. - Gestion d'entreprise ;
+                            <br/>
+                            F. - Français ;
+                            <br/>
+                            G. - Anglais.
+                            <br/>
+                            <br/>
+                            <br/>
+                        </t>
+                        Fait à
+                        <t t-if="o.company_id.name=='DIGIMOOV'">
+                            <b>Paris</b>
+                            le
+                        </t>
+                        <t t-if="o.company_id.name=='MCM ACADEMY'">
+                            <b>Lille</b>
+                            le
+                        </t>
+                        <b>
+                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                        </b>
+                        <br/>
+                        <!--Footer-->
+                        <div class="col-12" style="color:#696969;position:absolute;bottom:-1250px;font-size:14px;">
+                            <center>
+                                <span>
+                                    <t t-if="o.company_id.name=='DIGIMOOV'">
+                                        <b>DIGIMOOV</b>
+                                        | 10 rue de PENTHIEVRE PARIS 75008 | Numéro SIRET: 81121988000085 | Numéro de
+                                        déclaration d'activité: 11755542075 (auprès du préfet de région de: 75)
+                                    </t>
+                                    <t t-if="o.company_id.name=='MCM ACADEMY'">
+                                        <b>MCM ACADEMY</b>
+                                        | 229 RUE SOLFERINO LILLE 59000 | Numéro SIRET: 81121988000077 | Numéro de
+                                        déclaration
+                                        d'activité: 11755542075 (auprès du préfet de région de: 75)
+                                    </t>
+                                </span>
+                            </center>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

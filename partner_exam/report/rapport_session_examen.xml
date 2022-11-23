@@ -283,8 +283,9 @@
                                 </h3>
                                 <p style="font-size:18px;">
                                     Nous sommes arrivés pour vous accueillir au centre de formation MCM ACADEMY à
-                                    <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
-                                    le<span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>.
+                                    ...................
+<!--                                    <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>-->
+                                    le <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>.
                                     Nous avons demandé aux candidats présents de patienter dans le Hall d’entrée, le
                                     temps
                                     de
