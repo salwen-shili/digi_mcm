@@ -27,6 +27,7 @@ class calendly_integration(models.Model):
     scheduling_url = fields.Char(string="scheduling_ur")
     updated_at = fields.Date(string="updated_at")
     uri = fields.Char(string="uri ")
+    company = fields.Char(string="Company")
 
     def type_event_digi_selmine(self):
 
@@ -69,6 +70,8 @@ class calendly_integration(models.Model):
                                 'active': active,
                                 'created_at': created_at,
                                 'owner': owner,
+                                'company': company.name,
+
                                 'scheduling_url': scheduling_url,
                                 'updated_at': updated_at,
                                 'uri': uri,
@@ -116,6 +119,7 @@ class calendly_integration(models.Model):
                                 'active': active,
                                 'created_at': created_at,
                                 'owner': owner,
+                                'company': company.name,
 
                                 'scheduling_url': scheduling_url,
                                 'updated_at': updated_at,
@@ -162,6 +166,7 @@ class calendly_integration(models.Model):
                         'active': active,
                         'created_at': created_at,
                         'owner': owner,
+                        'company': company.name,
 
                         'scheduling_url': scheduling_url,
                         'updated_at': updated_at,
@@ -202,6 +207,9 @@ class event_calendly(models.Model):
     reschedule_url = fields.Char(string="reschedule_url")
     cancel_url = fields.Char(string="Cancel URL")
     partner_id = fields.Many2one('res.partner')
+    company = fields.Char(string="Company")
+
+
 
     def event(self):
         company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
@@ -273,6 +281,7 @@ class event_calendly(models.Model):
                             'event_name': event_name,
                             'location': location,
                             'start_at': start_at,
+                            'company': company.name,
                             'start_at_char': start_at_char,
                             'reschedule_url': reschedule_url,
                             'cancel_url': cancel_url,
@@ -361,6 +370,8 @@ class event_calendly(models.Model):
                         'scheduling_url_uri': scheduling_url_uri,
                         'event_name': event_name,
                         'location': location,
+                        'company': company.name,
+
                         'start_at': start_at,
                         'start_at_char': start_at_char,
                         'reschedule_url': reschedule_url,
@@ -435,6 +446,8 @@ class event_calendly(models.Model):
                         'scheduling_url_uri': scheduling_url_uri,
                         'event_name': event_name,
                         'location': location,
+                        'company': company.name,
+
                         'start_at': start_at,
                         'start_at_char': start_at_char,
                         'status': status,
