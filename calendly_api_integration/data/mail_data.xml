@@ -73,7 +73,7 @@
          <record id="digi_calendly_event" model="mail.template">
             <field name="name">Contact : Cours en direct</field>
             <field name="model_id" ref="model_calendly_rendezvous"/>
-            <field name="subject">Cours en direct
+            <field name="subject">Digimoov-Cours en direct
             </field>
             <field name="email_from">${object.partner_id.company_id.email}</field>
             <field name="partner_to">${object.partner_id.id}</field>
@@ -81,7 +81,7 @@
                 <div>
 
                     <center>
-                        <img src="https://mcm-academy.odoo.com/web/image/website/1/logo/MCM%20ACADEMY?unique=bb4cb5b"
+                        <img src="https://partenaire.box2home.fr/static/media/digimoov.0df860b8.png"
                              width="10%"></img>
                         <br/>
                         <br/>
@@ -98,7 +98,7 @@
                             <br/>
                             <center>
                                 <a class="v1action"
-                                   href="https://us02web.zoom.us/j/3872196838"
+                                    href="${object.location}"
 
                                    style="font-family:&quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: rgb(0, 0, 0)
                                     ; border: 1px solid #d0d0d0; color: rgb(255, 255, 255);font-weight: bold;"
@@ -106,7 +106,7 @@
                                     Accéder au cours
                                 </a>
                                 <!--                                <a class="v1action"-->
-                                <!--                                   href="${object.reschedule_url}"-->
+                                <!--                                  -->
                                 <!--                                   style="font-family: &quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: rgb(0, 0, 0)-->
                                 <!--; border: 1px solid #d0d0d0; color: rgb(255, 255, 255);font-weight: bold;-->
                                 <!--"-->
