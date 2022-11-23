@@ -145,9 +145,9 @@
                             <br/>
                         </t>
                         Fait à
-                        <t t-if="o.company_id.name=='DIGIMOOV'">PARIS le</t>
-                        <t t-if="o.company_id.name=='MCM ACADEMY'">LILLE le</t>
-                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                        <t t-if="o.company_id.name=='DIGIMOOV'"><b>PARIS</b> le</t>
+                        <t t-if="o.company_id.name=='MCM ACADEMY'"><b>LILLE</b> le</t>
+                        <b><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/></b>
                         <br/>
                         <!--Footer-->
                         <div class="col-12" style="color:#696969;position:absolute;bottom:-1250px;font-size:14px;">
