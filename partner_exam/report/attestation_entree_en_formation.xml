@@ -95,7 +95,7 @@
                         Lieu de la formation:
                         <b>À distance</b>
                         <br/>
-                        Date de formation: du
+                        Période de formation: du
                         <b>
                             <t t-if="o.company_id.name=='DIGIMOOV'">
                                 <span t-field="o.date_creation"
