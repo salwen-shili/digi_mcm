@@ -22,7 +22,7 @@ margin: 0 30px 19px 0;
 <option value="TAXI">TAXI</option>
 </select>
 <button class="btn-shop hide " onclick="submitForm()" id="btn-repassage"> 
-Dés maintenant !                         
+Je m'inscris                         
 </button>
 <div id="error-message" class="hide" style="
 text-align: -webkit-center;

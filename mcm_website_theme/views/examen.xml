@@ -2,277 +2,275 @@
 <odoo>
   <template id="mcm_website_theme.mcm_website_examen" name="Examen | MCM ACADEMY">
 
-      <t t-call="website.layout">
-        <div id="wrap" class="oe_structure oe_empty" >
-          <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_examen.min.css"/>
-          <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" defer="defer"/>
-          <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css"/>
-          <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
+    <t t-call="website.layout">
+      <div id="wrap" class="oe_structure oe_empty">
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_examen.min.css" />
+        <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" defer="defer" />
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
+        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
 
         <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/repassage_mcm.js" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup-examen.min.css" />
         <!-- popup-->
         <!-- <input type="hidden" t-att-value="default" /> -->
-        
-          
-            <!-- popup-->
-            <div id="popup1" class="overlay">
-              <div class="popup">
-                  <h2 class="text-left">
-                      <i class="fa fa-info-circle" style="color: #111111"/>
-                  </h2>
-                  <a class="close" onclick="closePopup()">
-                      <i class="fa fa-times"/>
+
+
+        <!-- popup-->
+        <div id="popup1" class="overlay">
+          <div class="popup">
+            <h2 class="text-left">
+              <i class="fa fa-info-circle" style="color: #111111" />
+            </h2>
+            <a class="close" onclick="closePopup()">
+              <i class="fa fa-times" />
+            </a>
+            <div class="content">
+              <p id="notifMessage" style="text-align: center !important; font-size: 16px" />
+              <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
+                <form action="/shop/cart/update" method="post" id="update-cart">
+                  <!-- send product id -->
+                  <input id="product_id" type="hidden" name="product_id" value="" />
+                  <a target="_blank" id="btn-inside-popup">
+                    <button class="rkmd-btn btn-shop">Continuer</button>
                   </a>
-                  <div class="content">
-                      <p id="notifMessage" style="text-align: center !important; font-size: 16px"/>
-                      <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
-                        <form action="/shop/cart/update" method="post" id="update-cart" >
-                          <!-- send product id -->
-                          <input id="product_id" type="hidden" name="product_id" value=""/>
-                              <a target="_blank" id="btn-inside-popup">
-                                  <button  class="rkmd-btn btn-shop" >Continuer</button>
-                              </a>
-                        </form>
-                      </div>
-                  </div>
+                </form>
               </div>
+            </div>
           </div>
-          
-   
+        </div>
+
+
         <!-- end popup-->
 
 
-          <section id="sh_corpomate_theme_section_258 " class="pt8 sh_animation_part" data-name="Formation chauffeur TAXI">
-            <div class="container-banner">
-              <div class="row">
-                <div class="col-lg-6 js-scroll pb16 pt56 slide-left scrolled">
-                  <div class="text-center">
-                    <h1 class="slider-text-info title-mcm">
-                        EXAMENS
-                        <br/> TAXI VTC</h1>
-                    <br/>
-                    <p class="para">Passer les examens Taxi, VTC, ou Taxi-moto et les réussir, est important, pour que vous puissiez avoir votre<b> carte professionnelle</b> et devenir conducteur. Pour ce faire, nous vous conseillons de suivre nos formations pour maximiser vos chances de réussite à l’<b>examen de capacité professionnelle</b> et travailler dans le secteur de transport de personnes.<br/></p>
-                    <a class="animated-button-yellow" href="#sh_corpomate_theme_section_167" title="Inscription" alt="inscription vtc taxi taxi-moto MCM Academy ">
+        <section id="sh_corpomate_theme_section_258 " class="pt8 sh_animation_part" data-name="Formation chauffeur TAXI">
+          <div class="container-banner">
+            <div class="row">
+              <div class="col-lg-6 js-scroll pb16 pt56 slide-left scrolled">
+                <div class="text-center">
+                  <h1 class="slider-text-info title-mcm">
+                    EXAMENS
+                    <br />
+                    TAXI VTC
+                  </h1>
+                  <br />
+                  <p class="para">
+                    Passer les examens Taxi, VTC, ou Taxi-moto et les réussir, est important, pour que vous puissiez avoir votre
+                    <b> carte professionnelle</b>
+                    et devenir conducteur. Pour ce faire, nous vous conseillons de suivre nos formations pour maximiser vos chances de réussite à l’
+                    <b>examen de capacité professionnelle</b>
+                    et travailler dans le secteur de transport de personnes.
+                    <br />
+                  </p>
+                  <a class="animated-button-yellow" href="#sh_corpomate_theme_section_167" title="Inscription" alt="inscription vtc taxi taxi-moto MCM Academy ">
                     S'inscrire
                   </a>
-                  </div>
-                </div>
-                <div class="col-lg-6 pb24 pt0 js-scroll slide-right scrolled">
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.png" class="img img-fluid mx-auto text-center lazy" alt="candidat à l’examen taxi vtc" title="homme pointant du doigt pour montrer comment devenir chauffeur taxi vtc moto-taxi" style="    width: 75%;"/>
                 </div>
               </div>
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-right scrolled">
+                <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.png" class="img img-fluid mx-auto text-center lazy" alt="candidat à l’examen taxi vtc" title="homme pointant du doigt pour montrer comment devenir chauffeur taxi vtc moto-taxi" style="    width: 75%;" />
+              </div>
             </div>
-          </section>
-          <section class="s_text_image pt32 pb0" data-name="Image - Text">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-lg-6 pt16 pb16 js-scroll slide-left scrolled">
-                  <img data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/CONDITIONS-PASSER-EXAMEN-TAXI.png" data-src="/mcm_website_theme/static/src/img/formation_taxi/CONDITIONS-PASSER-EXAMEN-TAXI.png" class="img img-fluid mx-auto lazy" alt="inscription examen taxi vtc vmdtr" title="homme devant son écran s’inscrit à l’examen taxi vtc" />
-                </div>
-                <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
-                  <h2>LES CONDITIONS POUR PASSER L'EXAMEN TAXI/VTC</h2>
-                  <p dir="ltr" style="line-height:1.7999999999999998;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 12pt 0pt;">
-                    <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Afin de vous inscrire à l’examen taxi VTC, vous devez être :</span>
+          </div>
+        </section>
+        <section class="s_text_image pt32 pb0" data-name="Image - Text">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-left scrolled">
+                <img data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/CONDITIONS-PASSER-EXAMEN-TAXI.png" data-src="/mcm_website_theme/static/src/img/formation_taxi/CONDITIONS-PASSER-EXAMEN-TAXI.png" class="img img-fluid mx-auto lazy" alt="inscription examen taxi vtc vmdtr" title="homme devant son écran s’inscrit à l’examen taxi vtc" />
+              </div>
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
+                <h2>LES CONDITIONS POUR PASSER L'EXAMEN TAXI/VTC</h2>
+                <p dir="ltr" style="line-height:1.7999999999999998;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 12pt 0pt;">
+                  <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Afin de vous inscrire à l’examen taxi VTC, vous devez être :</span>
+                </p>
+                <p dir="ltr" style="line-height:1.7999999999999998;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 12pt 0pt;">
+                  <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">-- Européen ou avoir un titre de séjour vous permettant d'exercer en France.</span>
+                </p>
+                <p dir="ltr" style="line-height:1.7999999999999998;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 12pt 0pt;">
+                  <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">- Titulaire d'un permis B depuis au moins 3 ans et non soumis à une période probatoire.</span>
+                </p>
+                <p class="para">
+                  <span id="docs-internal-guid-c13d48fb-7fff-8134-c0b6-850379bd3566" />
+                  <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">- Et être en capacité physique de devenir chauffeur professionnel.</span>
+                  <br />
+                </p>
+                <p dir="ltr" style="line-height:1.7999999999999998;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 12pt 0pt;">
+                  <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Avoir un casier judiciaire vierge</span>
+                  <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> :</span>
+                </p>
+                <p class="para">
+                  <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Nul ne peut s’inscrire à l’examen si : Il a fait objet dans les dix ans qui précèdent sa demande d’un retrait définitif de sa carte professionnelle ou s'il a fait objet dans les cinq ans qui précèdent sa demande, d’une exclusion pour fraude lors d’une session à l’un des examens des professions du transport public particulier de personnes.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="sh_corpomate_theme_section_46" style="word-break: break-word; position: relative;">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 js-scroll slide-right scrolled" style="border-style: none; border-width: 0px;">
+                <div class="sh_description sh_animation_part ">
+                  <h2>COMMENT S'INSCRIRE A L'EXAMEN TAXI / VTC / VMDTR ?</h2>
+                  <p class="para">
+                    L'
+                    <b>inscription </b>
+                    aux&amp;nbsp;sessions d’examens s’effectue via ce lien
+                    <b>
+                      <a rel="noopner" target="_blank" href="https://www.examentaxivtc.fr/" style="color: blue;text-decoration: underline !important;">https://www.examentaxivtc.fr/#!/login</a>
+                    </b>
+                    &amp;nbsp;
                   </p>
-                  <p dir="ltr" style="line-height:1.7999999999999998;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 12pt 0pt;">
-                    <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">-- Européen ou avoir un titre de séjour vous permettant d'exercer en France.</span>
-                  </p>
-                  <p dir="ltr" style="line-height:1.7999999999999998;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 12pt 0pt;">
-                    <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">- Titulaire d'un permis B depuis au moins 3 ans et non soumis à une période probatoire.</span>
+                  <p class="para">Pour en savoir plus,&amp;nbsp;nous vous invitons à consulter sur cette vidéo.</p>
+                  <p dir="ltr" style="line-height:1.7999999999999998;background-color:#ffffff;margin-top:0pt;margin-bottom:12pt;">
+                    <br />
                   </p>
                   <p class="para">
-                    <span id="docs-internal-guid-c13d48fb-7fff-8134-c0b6-850379bd3566"/>
-                    <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">- Et être en capacité physique de devenir chauffeur professionnel.</span>
-                    <br/>
-                  </p>
-                  <p dir="ltr" style="line-height:1.7999999999999998;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 12pt 0pt;">
-                    <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Avoir un casier judiciaire vierge</span>
-                    <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> :</span>
-                  </p>
-                  <p class="para">
-                    <span style="font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Nul ne peut s’inscrire à l’examen si : Il a fait objet dans les dix ans qui précèdent sa demande d’un retrait définitif de sa carte professionnelle ou s'il a fait objet dans les cinq ans qui précèdent sa demande, d’une exclusion pour fraude lors d’une session à l’un des examens des professions du transport public particulier de personnes.</span>
+                    <br />
                   </p>
                 </div>
               </div>
-            </div>
-          </section>
-          <section id="sh_corpomate_theme_section_46" style="word-break: break-word; position: relative;">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-6 js-scroll slide-right scrolled" style="border-style: none; border-width: 0px;">
-                  <div class="sh_description sh_animation_part ">
-                    <h2>COMMENT S'INSCRIRE A L'EXAMEN TAXI / VTC / VMDTR ?</h2>
-                    <p class="para">
-                        L'
-                        <b>inscription </b>aux&amp;nbsp;sessions d’examens s’effectue via ce lien <b><a rel="noopner" target="_blank" href="https://www.examentaxivtc.fr/" style="color: blue;text-decoration: underline !important;">https://www.examentaxivtc.fr/#!/login</a></b>&amp;nbsp;</p>
-                    <p class="para">Pour en savoir plus,&amp;nbsp;nous vous invitons à consulter sur cette vidéo.</p>
-                    <p dir="ltr" style="line-height:1.7999999999999998;background-color:#ffffff;margin-top:0pt;margin-bottom:12pt;">
-                      <br/>
-                    </p>
-                    <p class="para">
-                      <br/>
-                    </p>
-                  </div>
-                </div>
-                <div class="col-md-6 sh_animation_part js-scroll slide-left scrolled">
-                  <div class="sh_content_right">
-                    <div class="sh_img">
-                      <div class="media_iframe_video" data-oe-expression="https://www.youtube.com/embed/GrsLyNnmghE?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1">
-                        <div class="css_editable_mode_display" data-original-title="" title="" aria-describedby="tooltip462603"/>
-                        <div class="media_iframe_video_size"/>
-                        <iframe src="https://www.youtube.com/embed/GrsLyNnmghE?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen"/>
-                      </div>
+              <div class="col-md-6 sh_animation_part js-scroll slide-left scrolled">
+                <div class="sh_content_right">
+                  <div class="sh_img">
+                    <div class="media_iframe_video" data-oe-expression="https://www.youtube.com/embed/GrsLyNnmghE?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1">
+                      <div class="css_editable_mode_display" data-original-title="" title="" aria-describedby="tooltip462603" />
+                      <div class="media_iframe_video_size" />
+                      <iframe src="https://www.youtube.com/embed/GrsLyNnmghE?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
-          <section class="s_text_image pt32 pb32" data-name="Text - Image">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-lg-6 pt16 pb16 js-scroll slide-left scrolled" style="border-style: none; border-width: 0px;">
-                  <h2>DÉROULEMENT DE L’EXAMEN</h2>
-                  <p class="para">L’examen est organisé par la chambre des métiers et de l’artisanat, vous devrez passer des épreuves d’admissibilité en tronc commun, portant sur les réglementations du transport public des personnes, &amp;nbsp;la sécurité routière, la gestion, et la maîtrise des langues française et anglaise.</p>
-                  <p class="para"> Comme il inclut les modules spécifiques à chaque profession. Pour en savoir plus, <a href="https://www.cma-hautsdefrance.fr/examen-taxi-et-vtc" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip19103">cliquez ici</a>. </p>
-                  <p class="para">Ces épreuves sont présentées sous forme de questions à choix multiples (QCM) et de questions-réponses courtes. L’épreuve d’admission, quant à elle, consiste en une mise en situation pratique de réalisation d’une course de taxi ou d’une mission de transport en VTC.<br/></p>
-                  <mci-extension data-role="overlay" id="overlay-root"/>
-                </div>
-                <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
-                  <img data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/DÉROULEMENT DE L’EXAMEN.png" data-src="/mcm_website_theme/static/src/img/formation_taxi/DÉROULEMENT DE L’EXAMEN.png" class="img img-fluid mx-auto lazy" alt="examens théoriques taxis vtc" title="homme stylo à la main passant l’examen taxi vtc" />
-                </div>
+          </div>
+        </section>
+        <section class="s_text_image pt32 pb32" data-name="Text - Image">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-left scrolled" style="border-style: none; border-width: 0px;">
+                <h2>DÉROULEMENT DE L’EXAMEN</h2>
+                <p class="para">L’examen est organisé par la chambre des métiers et de l’artisanat, vous devrez passer des épreuves d’admissibilité en tronc commun, portant sur les réglementations du transport public des personnes, &amp;nbsp;la sécurité routière, la gestion, et la maîtrise des langues française et anglaise.</p>
+                <p class="para">
+                  Comme il inclut les modules spécifiques à chaque profession. Pour en savoir plus,
+                  <a href="https://www.cma-hautsdefrance.fr/examen-taxi-et-vtc" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip19103">cliquez ici</a>
+                  .
+                </p>
+                <p class="para">
+                  Ces épreuves sont présentées sous forme de questions à choix multiples (QCM) et de questions-réponses courtes. L’épreuve d’admission, quant à elle, consiste en une mise en situation pratique de réalisation d’une course de taxi ou d’une mission de transport en VTC.
+                  <br />
+                </p>
+                <mci-extension data-role="overlay" id="overlay-root" />
+              </div>
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
+                <img data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/DÉROULEMENT DE L’EXAMEN.png" data-src="/mcm_website_theme/static/src/img/formation_taxi/DÉROULEMENT DE L’EXAMEN.png" class="img img-fluid mx-auto lazy" alt="examens théoriques taxis vtc" title="homme stylo à la main passant l’examen taxi vtc" />
               </div>
             </div>
-          </section>
-          <section class="s_text_image pt32 pb32" data-name="Image - Text">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-lg-6 pt16 pb16">
-                  <img src="/mcm_website_theme/static/src/img/formation_taxi/GRILLE DE NOTATION DES ÉPREUVES.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte"/>
+          </div>
+        </section>
+        <section class="s_text_image pt32 pb32" data-name="Image - Text">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16">
+                <img src="/mcm_website_theme/static/src/img/formation_taxi/GRILLE DE NOTATION DES ÉPREUVES.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
+              </div>
+              <div class="col-lg-6 pt16 pb16">
+                <h2>GRILLE DE NOTATION DES ÉPREUVES</h2>
+                <h3>Les épreuves d’admissibilité :&amp;nbsp;</h3>
+                <p>
+                  <font style="font-size: 18px;">Les candidats ne sont déclarés admissibles à l'examen qu'en cas d’obtention d’une note moyenne d’au moins 10/20, calculée sur l’ensemble des épreuves. d’admissibilité, pondérées de leurs coefficients respectifs et n’ayant aucune note éliminatoire aux épreuves d’admissibilité.</font>
+                </p>
+                <h3>Les épreuves d’admission :&amp;nbsp;</h3>
+                <p>
+                  <font style="font-size: 18px;">Vous ne pourrez passer à la session d’admission qu'en cas de réussite aux épreuves d’admissibilités. Cette épreuve sera organisée dans un délai maximum de deux mois suivant la publication des résultats des épreuves d’admissibilité. L’épreuve pratique comprend une phase de conduite en circulation d’une durée minimum de 20 minutes, notée sur 20 points.</font>
+                  <br />
+                </p>
+                <div class="s_btn text-left pt16 pb16" data-name="Button">
+                  <a href="#" class="btn btn-outline-primary btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip244958">Consultez la grille de notation</a>
                 </div>
-                <div class="col-lg-6 pt16 pb16">
-                  <h2>GRILLE DE NOTATION DES ÉPREUVES</h2>
-                  <h3>Les épreuves d’admissibilité :&amp;nbsp;</h3>
-                  <p>
-                    <font style="font-size: 18px;">Les candidats ne sont déclarés admissibles à l'examen qu'en cas d’obtention d’une note moyenne d’au moins 10/20, calculée sur l’ensemble des épreuves. d’admissibilité, pondérées de leurs coefficients respectifs et n’ayant aucune note éliminatoire aux épreuves d’admissibilité.</font>
-                  </p>
-                  <h3>Les épreuves d’admission :&amp;nbsp;</h3>
-                  <p>
-                    <font style="font-size: 18px;">Vous ne pourrez passer à la session d’admission qu'en cas de réussite aux épreuves d’admissibilités. Cette épreuve sera organisée dans un délai maximum de deux mois suivant la publication des résultats des épreuves d’admissibilité. L’épreuve pratique comprend une phase de conduite en circulation d’une durée minimum de 20 minutes, notée sur 20 points.</font>
-                    <br/>
-                  </p>
-                  <div class="s_btn text-left pt16 pb16" data-name="Button">
-                    <a href="#" class="btn btn-outline-primary btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip244958">Consultez la grille de notation</a>
-                  </div>
-                  <mci-extension data-role="overlay" id="overlay-root"/>
-                </div>
+                <mci-extension data-role="overlay" id="overlay-root" />
               </div>
             </div>
-          </section>
-          <section id="sh_corpomate_theme_section_5" style="background-color: rgb(8, 82, 148);" data-name="Counter">
-            <div class="sh_bg">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="row">
-                      <div class="col-lg-3 col-md-6 sh_br sh_bb">
-                        <div class="sh_counter sh_animation_part">
-                          <span class="sh_count_name">150</span>
-                          <p class="o_default_snippet_text">IN BUSINESS</p>
-                        </div>
-                      </div>
-                      <div class="col-lg-3 col-md-6 sh_br sh_bb">
-                        <div class="sh_counter sh_animation_part">
-                          <span class="sh_count_name o_default_snippet_text">650</span>
-                          <p class="o_default_snippet_text">HAPPY CLIENTS</p>
-                        </div>
-                      </div>
-                      <div class="col-lg-3 col-md-6 sh_br">
-                        <div class="sh_counter sh_animation_part">
-                          <span class="sh_count_name o_default_snippet_text">150</span>
-                          <p class="o_default_snippet_text">COMPLETED PROJECTS</p>
-                        </div>
-                      </div>
-                      <div class="col-lg-3 col-md-6 sh_br">
-                        <div class="sh_counter sh_animation_part">
-                          <span class="sh_count_name o_default_snippet_text">50</span>
-                          <p class="o_default_snippet_text">TALENTED HEALERS</p>
-                        </div>
+          </div>
+        </section>
+      
+        <section class="s_text_image pt32 pb32" data-name="Text - Image">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                <h2>
+                  <span style="font-weight:normal;" id="docs-internal-guid-0539b33c-7fff-61ee-11ed-5e891bd72253">
+                    <span style="background-color: transparent; font-family: Arial; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">LES MODALITÉS DE REPASSAGE</span>
+                    <span style="font-family: Arial; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">DE L’EXAMEN TAXIS VTC</span>
+                  </span>
+                  <br />
+                </h2>
+                <p>
+                  <font style="font-size: 18px;">En cas d’échec ou d’absence, sachez que vous avez la possibilité de repasser l’examen théorique taxi VTC autant de fois que nécessaire durant une période qui ne doit pas dépasser les 12 mois à partir de la date du passage du premier examen. </font>
+                </p>
+                <p>
+                  <font style="font-size: 18px;">Un candidat déclaré admissible peut se présenter trois fois à l’épreuve d’admission dans un délai d’un an à compter de la publication des résultats des épreuves d’admissibilité. </font>
+                </p>
+                <p>
+                  <font style="font-size: 18px;">Afin de vous rattraper et réussir votre examen lors du repassage, notre centre de formation vous propose une session de révision avec vos coachs, qui auront pour mission de vous guider sur les axes des annales de l’examen les plus importants à retravailler.</font>
+                </p>
+                <p>
+                  <font style="font-size: 18px;">
+                    <b>Frais de repassage de l’examen taxi VTC : </b>
+                    La session de Révision est proposée à 200 € en cas d’absence le jour de l’examen et à 100 € en cas d’échec.. Les frais d’inscription au repassage de l’examen auprès de la CMA s'élèvent à 208 €.
+                  </font>
+                </p>
+                <p>
+                  <font style="font-size: 18px;">
+                    <i>
+                      <b>NB:</b>
+                      Toute nouvelle inscription ou réservation de date d’examen sur le site de Evalbox, nécessite l’utilisation d’une nouvelle adresse mail.
+                    </i>
+                  </font>
+                  <br />
+                </p>
+             
+                <mci-extension data-role="overlay" id="overlay-root" />
+              </div>
+              <div class="col-lg-6 pt16 pb16">
+                <img src="/mcm_website_theme/static/src/img/formation_taxi/REPASSAGE  DE L’EXAMEN TAXIS VTC.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" />
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- repassage-->
+        <section class="s_newsletter_block pb64 oe_img_bg oe_custom_bg pt64 mb64" style="/* background-attachment: fixed; */background-size: cover;background-position: center;background-image: url('/digimoov_website_templates/static/img/sa.png');">
+          <div class="container">
+            <div class="">
+              <div class=" bg-white-75" style="
+    padding: 32px;
+">
+                <div class="text-center">
+                  <div style="color: rgb(0, 0, 0);font-size: 26px;max-width: 100%;margin-bottom: 10px;font-weight: 600;">SI VOUS SOUHAITEZ RÉSERVER VOTRE NOUVELLE TENTATIVE D'EXAMEN ?</div>
+
+                  <p class="o_default_snippet_text" style="
+    font-size: 18px;
+    font-weight: 600;
+">Inscrivez-vous dés maintenant !</p>
+
+                  
+                    <div id="repassage-taxi-vtc">
+                      <div style="text-align: -webkit-center;">
+                        <div class="spinner"></div>
                       </div>
                     </div>
-                  </div>
+                  
+
                 </div>
               </div>
             </div>
-          </section>
-          <section class="s_text_image pt32 pb32" data-name="Text - Image">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
-                  <h2>
-                    <span style="font-weight:normal;" id="docs-internal-guid-0539b33c-7fff-61ee-11ed-5e891bd72253">
-                      <span style="background-color: transparent; font-family: Arial; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">LES MODALITÉS DE REPASSAGE</span>
-                      <span style="font-family: Arial; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">DE L’EXAMEN TAXIS VTC</span>
-                    </span>
-                    <br/>
-                  </h2>
-                  <p>
-                    <font style="font-size: 18px;">En cas d’échec ou d’absence, sachez que vous avez la possibilité de repasser l’examen théorique taxi VTC autant de fois que nécessaire durant une période qui ne doit pas dépasser les 12 mois à partir de la date du passage du premier examen. </font>
-                  </p>
-                  <p>
-                    <font style="font-size: 18px;">Un candidat déclaré admissible peut se présenter trois fois à l’épreuve d’admission dans un délai d’un an à compter de la publication des résultats des épreuves d’admissibilité. </font>
-                  </p>
-                  <p>
-                    <font style="font-size: 18px;">Afin de vous rattraper et réussir votre examen lors du repassage, notre centre de formation vous propose une session de révision avec vos coachs, qui auront pour mission de vous guider sur les axes des annales de l’examen les plus importants à retravailler.</font>
-                  </p>
-                  <p>
-                    <font style="font-size: 18px;"><b>Frais de repassage de l’examen taxi VTC : </b>La session de Révision est proposée à 200 € en cas d’absence le jour de l’examen et à 100 € en cas d’échec.. Les frais d’inscription au repassage de l’examen auprès de la CMA s'élèvent à 208 €. </font>
-                  </p>
-                  <p>
-                    <font style="font-size: 18px;">
-                      <i><b>NB:</b> Toute nouvelle inscription ou réservation de date d’examen sur le site de Evalbox, nécessite l’utilisation d’une nouvelle adresse mail.</i>
-                    </font>
-                    <br/>
-                  </p>
-                  <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                    <a href="#" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip454487">
-                      <span id="docs-internal-guid-139b4fc3-7fff-75c7-78e6-3621ed258105">
-                        <span style="font-family: Arial; font-size: 12pt; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;" class="bg-gamma text-epsilon">JE M’INSCRIS À LA SESSION DE RÉVISION</span>
-                      </span>
-                    </a>
-                  </div>
-                  <mci-extension data-role="overlay" id="overlay-root"/>
-                </div>
-                <div class="col-lg-6 pt16 pb16">
-                  <img src="/mcm_website_theme/static/src/img/formation_taxi/REPASSAGE  DE L’EXAMEN TAXIS VTC.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image"/>
-                </div>
-              </div>
-            </div>
-          </section>
-          <!-- repassage-->
+          </div>
+        </section>
 
-           <!--TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI -->
-           <section id="sh_corpomate_theme_section_167" class="sh_animation_part" style="background-color: rgb(253, 209, 5); margin: 76px 0px">
-            <div class="container js-scroll fade-in-top">
-              <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width: 100%; margin-bottom:27px">
-                ET SI VOUS SOUHAITEZ RÉSERVER VOTRE NOUVELLE TENTATIVE D'EXAMEN ?
-              </h3>
-          
-              <div id="repassage-taxi-vtc">
-                  <div style="text-align: -webkit-center;">
-                      <div class="spinner"></div>
-                  </div>
-              </div>
-            </div>
-          </section>
-
-     
+       
 
 
-
-        </div>
-      </t>
+      </div>
+    </t>
 
 
   </template>
