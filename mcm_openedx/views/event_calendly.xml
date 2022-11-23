@@ -31,7 +31,7 @@
                 <field name="status"/>
                                          <field name="company"/>
 
-                <button name="send_invitation" string="Envoyer Invitation" class="oe_highlight" type="object"/>
+                <button name="send_invitation"  confirm="Confirmer l'envoit" string="Envoyer Invitation" class="oe_highlight" type="object"/>
 
                 <button name="test_url" string="Lien event" class="oe_highlight" type="object"
                 />

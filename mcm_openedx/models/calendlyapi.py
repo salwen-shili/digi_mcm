@@ -587,6 +587,7 @@ class event_calendly(models.Model):
         }
 
     def send_invitation(self):
+
         event_company = self.env['mcm_openedx.calendly_event'].sudo().search([('id', '=', self.id)])  # get current user
         context = self._context
         current_uid = context.get('uid')
@@ -659,11 +660,22 @@ class event_calendly(models.Model):
                                                 calendly.event_starttime = existe.start_at
                                                 calendly.event_starttime_char = existe.start_at_char
                                                 calendly.event_endtime = existe.start_at
+                                                return {
+                                                    'type': 'ir.actions.client',
+                                                    'tag': 'display_notification',
+                                                    'params': {
+                                                        'title': _('Envoit en cours '),
+                                                        'message': _('envoi vers %s! ️' % partner.name),
+                                                        'sticky': False,
+                                                        'className': 'bg-danger'
+                                                    }
+                                                }
 
                                                 print("created", calendly)
                         print(count)
                         # ajouter les apprenants manuellemnt a partire de  la fiche Client
                         self.env.cr.commit()
+
                         # self.env.cr.rollback() cancels the transaction's write operations since the last commit, or all if no commit was done.
                     except Exception:
                         self.env.cr.rollback()
@@ -731,6 +743,16 @@ class event_calendly(models.Model):
                                             calendly.event_endtime = existe.start_at
 
                                             print("created", calendly)
+                                            return {
+                                                'type': 'ir.actions.client',
+                                                'tag': 'display_notification',
+                                                'params': {
+                                                    'title': _('Envoit en cours '),
+                                                    'message': _('envoi vers %s! ️' % partner.name),
+                                                    'sticky': False,
+                                                    'className': 'bg-danger'
+                                                }
+                                            }
             else:
                 return {
                     'type': 'ir.actions.client',
