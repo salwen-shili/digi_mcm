@@ -15,9 +15,12 @@ class MailMessage(models.Model):
         alias=self.env['res.config.settings'].sudo().write({
             'alias_domain':self.env.company.alias_domain,
         })
-        alias_domain= self.env['ir.config_parameter'].sudo().search([('key', "=",'mail.catchall.domain')])
-        if alias_domain:
-            alias_domain.sudo().write({'value':self.env.company.alias_domain})
+        # alias_domain= self.env['ir.config_parameter'].sudo().search([('key', "=",'mail.catchall.domain')])
+        # if alias_domain:
+        #     alias_domain.sudo().write({'value':self.env.company.alias_domain})
+        icp_domain = self.env["ir.config_parameter"].sudo().get_param("mail.catchall.domain") #get mail.catchall.domain parameter
+        if alias != icp_domain: #check difference between parametre mail.catchall.domain and alias domain
+            self.env["ir.config_parameter"].sudo().set_param("mail.catchall.domain", self.env.company.alias_domain)
         for vals in values_list:
             if vals.get("model") and vals.get("res_id"):
                 current_object = self.env[vals["model"]].browse(vals["res_id"])
