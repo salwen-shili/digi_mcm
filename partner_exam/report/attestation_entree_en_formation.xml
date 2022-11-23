@@ -129,25 +129,49 @@
                             <br/>
                             A. - Droit du transport public particulier de personnes : T3P ;
                             <br/>
-                            B. - Réglementation spécifique à l'activité de voiture de transport avec chauffeur ;
+                            <t t-if="'VTC' in o.module_id.name">
+                                B. - Réglementation spécifique à l'activité de voiture de transport avec chauffeur ;
+                            </t>
+                            <t t-if="'TAXI' in o.module_id.name">
+                                B. - Réglementation spécifique à l'activité de TAXI ;
+                            </t>
+                            <t t-if="'VMDTR' in o.module_id.name">
+                                B. - Réglementation spécifique à l'activité de VMDTR ;
+                            </t>
                             <br/>
                             C. - Sécurité routière ;
                             <br/>
-                            D. - Développement commercial ;
+                            <t t-if="'VTC' in o.module_id.name">
+                                D. - Développement commercial ;
+                            </t>
+                            <t t-if="'TAXI' in o.module_id.name">
+                                D. - Connaissance du territoire et de la réglementation locale taxi ;
+                            </t>
+                            <t t-if="'VMDTR' in o.module_id.name">
+                                D. - Prise en charge du passager et Développement commercial ;
+                            </t>
                             <br/>
                             E. - Gestion d'entreprise ;
                             <br/>
                             F. - Français ;
                             <br/>
-                            G. - Anglais ;
+                            G. - Anglais.
                             <br/>
                             <br/>
                             <br/>
                         </t>
                         Fait à
-                        <t t-if="o.company_id.name=='DIGIMOOV'"><b>Paris</b> le</t>
-                        <t t-if="o.company_id.name=='MCM ACADEMY'"><b>Lille</b> le</t>
-                        <b><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/></b>
+                        <t t-if="o.company_id.name=='DIGIMOOV'">
+                            <b>Paris</b>
+                            le
+                        </t>
+                        <t t-if="o.company_id.name=='MCM ACADEMY'">
+                            <b>Lille</b>
+                            le
+                        </t>
+                        <b>
+                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                        </b>
                         <br/>
                         <!--Footer-->
                         <div class="col-12" style="color:#696969;position:absolute;bottom:-1250px;font-size:14px;">
