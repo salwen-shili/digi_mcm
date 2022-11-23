@@ -71,6 +71,8 @@
                         <br/>
                         a commencé à suivre la formation :
                         <br/>
+                        <br/>
+                        <br/>
                         <table class="table">
                             <tr>
                                 <th>
@@ -154,7 +156,7 @@
                             </div>
                         </t>
                         <t t-if="o.company_id.name=='MCM ACADEMY'">
-                            <div class="col-12" style="padding-top:350px;">
+                            <div class="col-12" style="padding-top:220px;">
                                 <center>
                                     <img src='/partner_exam/static/src/img/mcm_footer.png' height="45" width="1000"/>
                                 </center>
