@@ -1620,6 +1620,7 @@ class partner(models.Model):
                             users = self.env['res.users'].sudo().search([('login', "=", email)])
                             """si apprenant non trouvé par email on cherche par numero telephone"""
                             _logger.info("tel******* %s" %str(tel))
+                            user = False
                             if not users:
                                 if tel:
                                     user = self.env["res.users"].sudo().search(
