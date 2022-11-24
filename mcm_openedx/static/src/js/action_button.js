@@ -77,7 +77,7 @@ ListController.include({
    },
 
 
-      type_event_def:: function (e) {
+   type_event_def:: function (e) {
         var self = this;
         var active_id = this.model.get(this.handle).getContext()['active_ids'];
         var model_name = this.model.get(this.handle).getContext()['active_model'];
@@ -89,7 +89,7 @@ ListController.include({
    },
 
 
-      event_def: function (e) {
+   event_def: function (e) {
         var self = this;
         var active_id = this.model.get(this.handle).getContext()['active_ids'];
         var model_name = this.model.get(this.handle).getContext()['active_model'];
