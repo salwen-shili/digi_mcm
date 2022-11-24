@@ -43,6 +43,7 @@
         <field name="model">mcm_openedx.calendly_event</field>
         <field name="arch" type="xml">
             <form string="Course Form">
+
                 <sheet>
                     <group>
                         <field name="owner"/>
@@ -63,6 +64,7 @@
                 </sheet>
             </form>
         </field>
+
     </record>
 
 
