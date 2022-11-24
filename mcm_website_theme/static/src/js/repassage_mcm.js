@@ -27,10 +27,7 @@ Je m'inscris
 <div id="error-message" class="hide" style="
 text-align: -webkit-center;
 ">
-<div class="alert alert-warning" style="
-max-width: 49%;
-color: #000;
-">
+<div class="alert alert-warning repassage-alert">
 Vous n'êtes pas autorisé à accéder à cette rubrique. <a onclick="openPopup()" style="
 color: #3c39bd;
 font-weight: 600;
@@ -127,11 +124,14 @@ function setPopup(formation) {
   console.log("formation", formation)
   if (formation == "TAXI") {
     props.notifMessage.innerHTML = state.response.taxi.message;
+    props.btn.childNodes[1].innerText = state.response.taxi.label_btn
+    
     // setting btn action 
     // add product ID if allowed for submit 
     if (state.response.taxi.echec_examen != "False") {
       props.product_id.value = state.response.taxi.echec_examen
       props.btn.setAttribute('type', 'submit')
+      
       // else just set the href if not allowed 
     } else {
       props.btn.removeAttribute("type")
@@ -139,6 +139,7 @@ function setPopup(formation) {
     }
   } else if (formation == "VTC") {
     props.notifMessage.innerHTML = state.response.vtc.message;
+    props.btn.childNodes[1].innerText = state.response.vtc.label_btn
     // setting btn action 
     // add product ID if allowed for submit 
     if (state.response.vtc.echec_examen != "False") {
