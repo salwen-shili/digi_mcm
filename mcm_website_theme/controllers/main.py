@@ -453,9 +453,10 @@ class Routes_Site(http.Controller):
                         "taxi": {
                             "access": "denied",
                             "url": '/formation-passerelle-taxi-en-ligne#pricing',
-                            "label_btn": "Je m'inscris à la passerelle Taxi-VTC",
+                            "label_btn": "Je m'inscris",
                             "echec_examen": echec_examen_taxi,
-                            "message": "Désolé, vous n'avez plus accès à cette option, car il semble que vous ayez déjà passé et réussi l'examen Taxi.",
+                            "message": "Désolé, vous n'avez plus accès à cette option, car il semble que vous ayez déjà passé et réussi l'examen Taxi.<br/>"
+                                       "Si vous êtes intéressé(e) par la formation passerelle VTC-TAXI, cliquez sur je m'inscris.",
 
                         },
                     })
@@ -470,10 +471,10 @@ class Routes_Site(http.Controller):
                             "taxi": {
                                 "access": 'denied',
                                 "url": '/formation-taxi#pricing',
-                                "label_btn": "Je m'inscris à la formation taxi",
+                                "label_btn": "Je m'inscris",
                                 "echec_examen": echec_examen_taxi,
                                 "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
-                                           "Vous devez vous inscrire à la formation pour pouvoir choisir la date de votre examen.<br/>"
+                                           "Vous devez vous inscrire à la formation TAXI pour pouvoir choisir la date de votre examen.<br/>"
                                            "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription."
                             },
                         })
@@ -504,10 +505,10 @@ class Routes_Site(http.Controller):
                                         "taxi": {
                                             "access": 'denied',
                                             "url": '/formation-taxi#pricing',
-                                            "label_btn": "Je m'inscris à la formation taxi",
+                                            "label_btn": "Je m'inscris",
                                             "echec_examen": echec_examen_taxi,
                                             "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
-                                                       "Vous devez vous inscrire à la formation pour pouvoir choisir la date de votre examen.<br/>"
+                                                       "Vous devez vous inscrire à la formation TAXI pour pouvoir choisir la date de votre examen.<br/>"
                                                        "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
                                                        "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                                         },
@@ -518,10 +519,10 @@ class Routes_Site(http.Controller):
                                     "taxi": {
                                         "access": 'denied',
                                         "url": '/formation-taxi#pricing',
-                                        "label_btn": "Je m'inscris à la formation taxi",
+                                        "label_btn": "Je m'inscris",
                                         "echec_examen": echec_examen_taxi,
                                         "message": "Vous avez depassé la limite de 12 mois pour reserver votre nouvelle date d'examen."
-                                                   "Vous devez à present vous reinscrire à la formation taxi pour retenter votre chance de nouveau.",
+                                                   "Vous devez à present vous reinscrire à la formation TAXI pour retenter votre chance de nouveau.",
                                     },
 
                                 })
@@ -531,10 +532,10 @@ class Routes_Site(http.Controller):
                                 "taxi": {
                                     "access": 'denied',
                                     "url": '/formation-taxi#pricing',
-                                    "label_btn": "Je m'inscris à la formation taxi",
+                                    "label_btn": "Je m'inscris",
                                     "echec_examen": echec_examen_taxi,
                                     "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
-                                               "Vous devez vous inscrire à la formation pour pouvoir choisir la date de votre examen.<br/>"
+                                               "Vous devez vous inscrire à la formation TAXI pour pouvoir choisir la date de votre examen.<br/>"
                                                "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
                                                "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                                 },
@@ -549,9 +550,10 @@ class Routes_Site(http.Controller):
                         "vtc": {
                             "access": "denied",
                             "url": '/formation-passerelle-taxi-en-ligne#pricing',
-                            "label_btn": "Je m'inscris à la passerelle Taxi-VTC",
+                            "label_btn": "Je m'inscris",
                             "echec_examen": echec_examen_vtc,
-                            "message": "Désolé, vous n'avez plus accès à cette option, car il semble que vous ayez déjà passé et réussi l'examen VTC.",
+                            "message": "Désolé, vous n'avez plus accès à cette option, car il semble que vous ayez déjà passé et réussi l'examen VTC.<br/>"
+                                       "Si vous êtes intéressé(e) par la formation passerelle VTC-TAXI, cliquez sur je m'inscris.",
                         },
                     })
             else:
@@ -566,10 +568,10 @@ class Routes_Site(http.Controller):
                             "vtc": {
                                 "access": 'denied',
                                 "url": '/formation-vtc#pricing',
-                                "label_btn": "Je m'inscris à la formation vtc",
+                                "label_btn": "Je m'inscris",
                                 "echec_examen": echec_examen_vtc,
                                 "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
-                                           "Vous devez vous inscrire à la formation pour pouvoir choisir la date de votre examen.<br/>"
+                                           "Vous devez vous inscrire à la formation VTC pour pouvoir choisir la date de votre examen.<br/>"
                                            "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
                                            "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                             },
@@ -601,10 +603,10 @@ class Routes_Site(http.Controller):
                                         "vtc": {
                                             "access": 'denied',
                                             "url": '/formation-vtc#pricing',
-                                            "label_btn": "Je m'inscris à la formation vtc",
+                                            "label_btn": "Je m'inscris",
                                             "echec_examen": echec_examen_vtc,
                                             "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
-                                                       "Vous devez vous inscrire à la formation pour pouvoir choisir la date de votre examen.<br/>"
+                                                       "Vous devez vous inscrire à la formation VTC pour pouvoir choisir la date de votre examen.<br/>"
                                                        "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
                                                        "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                                         },
@@ -617,10 +619,10 @@ class Routes_Site(http.Controller):
                                     "vtc": {
                                         "access": 'denied',
                                         "url": '/formation-vtc#pricing',
-                                        "label_btn": "Je m'inscris à la formation vtc",
+                                        "label_btn": "Je m'inscris",
                                         "echec_examen": echec_examen_vtc,
                                         "message": "Vous avez depassé la limite de 12 mois pour reserver votre nouvelle date d'examen."
-                                                   "Vous devez à present vous reinscrire à la formation vtc pour retenter votre chance de nouveau.",
+                                                   "Vous devez à present vous reinscrire à la formation VTC pour retenter votre chance de nouveau.",
                                     },
 
                                 })
@@ -630,10 +632,10 @@ class Routes_Site(http.Controller):
                                 "vtc": {
                                     "access": 'denied',
                                     "url": '/formation-vtc#pricing',
-                                    "label_btn": "Je m'inscris à la formation vtc",
+                                    "label_btn": "Je m'inscris",
                                     "echec_examen": echec_examen_vtc,
                                     "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
-                                               "Vous devez vous inscrire à la formation pour pouvoir choisir la date de votre examen.<br/>"
+                                               "Vous devez vous inscrire à la formation VTC pour pouvoir choisir la date de votre examen.<br/>"
                                                "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
                                                "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                                 },
