@@ -418,11 +418,12 @@ class Routes_Site(http.Controller):
             raise werkzeug.exceptions.NotFound()
 
     def get_datas_user_examen(self):
+        #a function that handles "repassage d'examen MCM" options for customers
         partner = request.env.user.partner_id
         res = {"response": {}}
         echec_examen_taxi = 'False'
         echec_examen_vtc = 'False'
-        if request.website.is_public_user():
+        if request.website.is_public_user(): #check condition of public user
             res['response'].update(
                 {
                     "taxi": {
@@ -441,12 +442,12 @@ class Routes_Site(http.Controller):
                         "message": "Pour reserver votre nouvelle tentative, "
                                    "merci de vous connecter ou de creer votre compte client.",
                     }
-                })
+                }) #update json response of public user condition
         else:
             info_examen_taxi_reussi = request.env['info.examen'].sudo().search(
                 [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'taxi'),
                  ('state_theorique', "=", "reussi")], order='date_exam desc',
-                limit=1)
+                limit=1) #check if client has info examen taxi record with state "reussi"
             if info_examen_taxi_reussi:
                 res['response'].update(
                     {
@@ -459,7 +460,7 @@ class Routes_Site(http.Controller):
                                        "Si vous êtes intéressé(e) par la formation passerelle VTC-TAXI, cliquez sur je m'inscris.",
 
                         },
-                    })
+                    }) #update json response of client with state "reussi"
             else:
                 session_filtered_taxi = request.env['info.examen'].sudo().search(
                     [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'taxi'),
@@ -477,7 +478,7 @@ class Routes_Site(http.Controller):
                                            "Vous devez vous inscrire à la <b>formation TAXI</b> pour pouvoirr choisir la date de votre examen.<br/>"
                                            "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription."
                             },
-                        })
+                        }) #update response of client who doesn't have any info exam taxi record
                 else:
                     date_exam = session_filtered_taxi.session_id.date_exam
                     if date_exam:
@@ -498,7 +499,7 @@ class Routes_Site(http.Controller):
                                             "echec_examen": echec_examen_taxi.id,
                                             "message": "vous etes autoriser à passer l'examen taxi"
                                         },
-                                    })
+                                    }) # update response of authorized client
                             else:
                                 res['response'].update(
                                     {
@@ -512,7 +513,7 @@ class Routes_Site(http.Controller):
                                                        "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
                                                        "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                                         },
-                                    })
+                                    }) #update response of denied clients
                         else:
                             res['response'].update(
                                 {
@@ -525,7 +526,7 @@ class Routes_Site(http.Controller):
                                                    "Vous devez à present vous reinscrire à la formation TAXI pour retenter votre chance de nouveau.",
                                     },
 
-                                })
+                                }) #update response of client who have exceeded the 12-month requirement
                     else:
                         res['response'].update(
                             {
@@ -555,7 +556,7 @@ class Routes_Site(http.Controller):
                             "message": "Désolé, vous n'avez plus accès à cette option, car il semble que vous ayez déjà passé et réussi l'examen VTC.<br/>"
                                        "Si vous êtes intéressé(e) par la formation passerelle VTC-TAXI, cliquez sur je m'inscris.",
                         },
-                    })
+                    }) #update json response of client with state "reussi"
             else:
                 session_filtered_vtc = request.env['info.examen'].sudo().search(
                     [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'vtc'),
@@ -575,7 +576,7 @@ class Routes_Site(http.Controller):
                                            "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
                                            "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                             },
-                        })
+                        }) #update response of client who doesn't have any info exam vtc record
                 else:
                     date_exam = session_filtered_vtc.session_id.date_exam
                     if date_exam:
@@ -596,7 +597,7 @@ class Routes_Site(http.Controller):
                                             "echec_examen": echec_examen_vtc.id,
                                             "message": "vous etes autoriser à passer l'examen vtc"
                                         },
-                                    })
+                                    })# update response of authorized client
                             else:
                                 res['response'].update(
                                     {
@@ -611,7 +612,7 @@ class Routes_Site(http.Controller):
                                                        "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                                         },
 
-                                    })
+                                    })#update response of denied clients
 
                         else:
                             res['response'].update(
@@ -625,7 +626,7 @@ class Routes_Site(http.Controller):
                                                    "Vous devez à present vous reinscrire à la formation VTC pour retenter votre chance de nouveau.",
                                     },
 
-                                })
+                                }) #update response of client who have exceeded the 12-month requirement
                     else:
                         res['response'].update(
                             {
@@ -640,10 +641,10 @@ class Routes_Site(http.Controller):
                                                "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                                 },
                             })
-        partner = json.dumps(res)
+        partner = json.dumps(res) #convert response to json
         _logger.info('partner : %s' % (str(partner)))
         print('partner : %s' % (str(partner)))
-        return partner
+        return partner #return response
 
     @http.route("/examen-vtc-taxi-moto-taxi", type="http", auth="public", website=True)
     def examen(self):
@@ -659,7 +660,7 @@ class Routes_Site(http.Controller):
         taxi_price = False
         vtc_price = False
         vmdtr_price = False
-        repassage = self.get_datas_user_examen()
+        repassage = self.get_datas_user_examen() #get json response from get_datas_user_examen function
         if mcm_products:
             for product in mcm_products:
                 if product.default_code == "taxi":
@@ -677,7 +678,7 @@ class Routes_Site(http.Controller):
             "vtc_price": vtc_price if vtc_price else "",
             "vmdtr_price": vmdtr_price if vmdtr_price else "",
             "mcm_products": mcm_products,  # send mcm product to homepage
-            "repassage": repassage
+            "repassage": repassage #pass json response with values
         }
         print('values : ', str(values['repassage']))
         if request.website.id == 2:
@@ -695,6 +696,7 @@ class Routes_Site(http.Controller):
     # @http.route("/get_data_user_connected", type="json", auth="user", methods=["POST"], website=True)
     @http.route("/get-datas-user-examen", type="json", auth="public", methods=["POST"], website=True)
     def get_datas_user_examen_response(self):
+        #json url that returns json response of get_datas_user_examen function
         res = self.get_datas_user_examen()
         return res
 
