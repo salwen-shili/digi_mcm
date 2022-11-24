@@ -3,8 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var url;
   var message;
   if (document.getElementById('url')) {
-    url = document.getElementById('url').value;
+    
   }
+  (document.getElementById('url')) && (url = document.getElementById('url').value);
 
   if (document.getElementById('message')) {
     message = document.getElementById('message').value;

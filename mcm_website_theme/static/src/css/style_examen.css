@@ -1,3 +1,42 @@
+.spinner {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background: conic-gradient(rgb(21 40 86 / 30%), #1a1a1a);
+  position: relative;
+  animation: spin 2.6s linear infinite;
+  transform: translateZ(0);
+  margin-block-end: 13px;
+  }
+
+  .repassage-alert{
+    max-width: 49%;
+    color: #000;
+  }
+
+  .spinner::after {
+  background: #f6f6f6;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  }
+
+  @keyframes spin {
+  from {
+  transform: rotate(0deg);
+  }
+
+  to {
+  transform: rotate(360deg);
+  }
+  }
 h1 {
   text-transform: uppercase;
 }
@@ -128,6 +167,9 @@ a:hover {
 @media (max-width: 467.98px) {
   .res_height {
     height: 243px;
+  }
+  .repassage-alert{
+    max-width: 100%;
   }
 }
 

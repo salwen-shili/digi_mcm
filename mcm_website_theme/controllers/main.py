@@ -20,6 +20,7 @@ from odoo import fields, http, SUPERUSER_ID, tools, _
 from odoo.osv import expression
 from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
+import dateutil
 import werkzeug
 import locale
 import json
@@ -314,8 +315,8 @@ class Routes_Site(http.Controller):
             mcm_products = request.env["product.product"].sudo().search([("company_id", "=", 1)], order="list_price")
             values = {
                 "mcm_products": mcm_products,  # send mcm product to formation passerelle taxi
-                "signup_enabled" : True,
-                "reset_password_enabled" : True,
+                "signup_enabled": True,
+                "reset_password_enabled": True,
             }
             return request.render("mcm_website_theme.formation-passerelle-taxi-en-ligne", values)
         else:
@@ -416,6 +417,234 @@ class Routes_Site(http.Controller):
         else:
             raise werkzeug.exceptions.NotFound()
 
+    def get_datas_user_examen(self):
+        partner = request.env.user.partner_id
+        res = {"response": {}}
+        echec_examen_taxi = 'False'
+        echec_examen_vtc = 'False'
+        if request.website.is_public_user():
+            res['response'].update(
+                {
+                    "taxi": {
+                        "access": 'denied',
+                        "url": "/web/login",
+                        "label_btn": "Je me connecte",
+                        "echec_examen": echec_examen_taxi,
+                        "message": "Pour réserver votre nouvelle tentative, "
+                                   "merci de vous connecter ou de creer votre compte client.",
+                    },
+                    "vtc": {
+                        "access": 'denied',
+                        "url": "/web/login",
+                        "label_btn": "Je me connecte",
+                        "echec_examen": echec_examen_vtc,
+                        "message": "Pour reserver votre nouvelle tentative, "
+                                   "merci de vous connecter ou de creer votre compte client.",
+                    }
+                })
+        else:
+            info_examen_taxi_reussi = request.env['info.examen'].sudo().search(
+                [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'taxi'),
+                 ('state_theorique', "=", "reussi")], order='date_exam desc',
+                limit=1)
+            if info_examen_taxi_reussi:
+                res['response'].update(
+                    {
+                        "taxi": {
+                            "access": "denied",
+                            "url": '/formation-passerelle-taxi-en-ligne#pricing',
+                            "label_btn": "Je m'inscris",
+                            "echec_examen": echec_examen_taxi,
+                            "message": "Désolé, vous n'avez plus accès à cette option, car il semble que vous ayez déjà passé et réussi l'examen Taxi.<br/>"
+                                       "Si vous êtes intéressé(e) par la formation passerelle VTC-TAXI, cliquez sur je m'inscris.",
+
+                        },
+                    })
+            else:
+                session_filtered_taxi = request.env['info.examen'].sudo().search(
+                    [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'taxi'),
+                     ('session_id.date_exam', '<', date.today())], order='date_exam desc',
+                    limit=1)
+                if not session_filtered_taxi:
+                    res['response'].update(
+                        {
+                            "taxi": {
+                                "access": 'denied',
+                                "url": '/formation-taxi#pricing',
+                                "label_btn": "Je m'inscris",
+                                "echec_examen": echec_examen_taxi,
+                                "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
+                                           "Vous devez vous inscrire à la <b>formation TAXI</b> pour pouvoirr choisir la date de votre examen.<br/>"
+                                           "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription."
+                            },
+                        })
+                else:
+                    date_exam = session_filtered_taxi.session_id.date_exam
+                    if date_exam:
+                        now = date.today()  # Date d'aujourd'hui
+                        date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
+                            years=1)
+                        print('date exam :', str(date_exam))
+                        if now < date_dateutil:
+                            if session_filtered_taxi.state_theorique and session_filtered_taxi.state_theorique == "ajourne":
+                                echec_examen_taxi = request.env['product.product'].sudo().search(
+                                    [('company_id', '=', 1), ('default_code', "=", 'examen_taxi')])
+                                res['response'].update(
+                                    {
+                                        "taxi": {
+                                            "access": "authorized",
+                                            "url": '/shop/cart/update',
+                                            "label_btn": "Dès maintenant",
+                                            "echec_examen": echec_examen_taxi.id,
+                                            "message": "vous etes autoriser à passer l'examen taxi"
+                                        },
+                                    })
+                            else:
+                                res['response'].update(
+                                    {
+                                        "taxi": {
+                                            "access": 'denied',
+                                            "url": '/formation-taxi#pricing',
+                                            "label_btn": "Je m'inscris",
+                                            "echec_examen": echec_examen_taxi,
+                                            "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
+                                                       "Vous devez vous inscrire à la <b>formation TAXI</b> pour pouvoirr choisir la date de votre examen.<br/>"
+                                                       "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
+                                                       "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
+                                        },
+                                    })
+                        else:
+                            res['response'].update(
+                                {
+                                    "taxi": {
+                                        "access": 'denied',
+                                        "url": '/formation-taxi#pricing',
+                                        "label_btn": "Je m'inscris",
+                                        "echec_examen": echec_examen_taxi,
+                                        "message": "Vous avez depassé la limite de 12 mois pour reserver votre nouvelle date d'examen."
+                                                   "Vous devez à present vous reinscrire à la formation TAXI pour retenter votre chance de nouveau.",
+                                    },
+
+                                })
+                    else:
+                        res['response'].update(
+                            {
+                                "taxi": {
+                                    "access": 'denied',
+                                    "url": '/formation-taxi#pricing',
+                                    "label_btn": "Je m'inscris",
+                                    "echec_examen": echec_examen_taxi,
+                                    "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
+                                               "Vous devez vous inscrire à la <b>formation TAXI</b> pour pouvoirr choisir la date de votre examen.<br/>"
+                                               "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
+                                               "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
+                                },
+                            })
+            info_examen_vtc_reussi = request.env['info.examen'].sudo().search(
+                [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'vtc'),
+                 ('state_theorique', "=", "reussi")], order='date_exam desc',
+                limit=1)
+            if info_examen_vtc_reussi:
+                res['response'].update(
+                    {
+                        "vtc": {
+                            "access": "denied",
+                            "url": '/formation-passerelle-taxi-en-ligne#pricing',
+                            "label_btn": "Je m'inscris",
+                            "echec_examen": echec_examen_vtc,
+                            "message": "Désolé, vous n'avez plus accès à cette option, car il semble que vous ayez déjà passé et réussi l'examen VTC.<br/>"
+                                       "Si vous êtes intéressé(e) par la formation passerelle VTC-TAXI, cliquez sur je m'inscris.",
+                        },
+                    })
+            else:
+                session_filtered_vtc = request.env['info.examen'].sudo().search(
+                    [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'vtc'),
+                     ('session_id.date_exam', '<', date.today())],
+                    order='date_exam desc',
+                    limit=1)
+                if not session_filtered_vtc:
+                    res['response'].update(
+                        {
+                            "vtc": {
+                                "access": 'denied',
+                                "url": '/formation-vtc#pricing',
+                                "label_btn": "Je m'inscris",
+                                "echec_examen": echec_examen_vtc,
+                                "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
+                                           "Vous devez vous inscrire à la <b>formation VTC</b> pour pouvoirr choisir la date de votre examen.<br/>"
+                                           "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
+                                           "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
+                            },
+                        })
+                else:
+                    date_exam = session_filtered_vtc.session_id.date_exam
+                    if date_exam:
+                        now = date.today()  # Date d'aujourd'hui
+                        date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
+                            years=1)
+                        print('date exam :', str(date_exam))
+                        if now < date_dateutil:
+                            if session_filtered_vtc.state_theorique and session_filtered_vtc.state_theorique == "ajourne":
+                                echec_examen_vtc = request.env['product.product'].sudo().search(
+                                    [('company_id', '=', 1), ('default_code', "=", 'examen_vtc')])
+                                res['response'].update(
+                                    {
+                                        "vtc": {
+                                            "access": "authorized",
+                                            "url": '/shop/cart/update',
+                                            "label_btn": "Dès maintenant",
+                                            "echec_examen": echec_examen_vtc.id,
+                                            "message": "vous etes autoriser à passer l'examen vtc"
+                                        },
+                                    })
+                            else:
+                                res['response'].update(
+                                    {
+                                        "vtc": {
+                                            "access": 'denied',
+                                            "url": '/formation-vtc#pricing',
+                                            "label_btn": "Je m'inscris",
+                                            "echec_examen": echec_examen_vtc,
+                                            "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
+                                                       "Vous devez vous inscrire à la <b>formation VTC</b> pour pouvoirr choisir la date de votre examen.<br/>"
+                                                       "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
+                                                       "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
+                                        },
+
+                                    })
+
+                        else:
+                            res['response'].update(
+                                {
+                                    "vtc": {
+                                        "access": 'denied',
+                                        "url": '/formation-vtc#pricing',
+                                        "label_btn": "Je m'inscris",
+                                        "echec_examen": echec_examen_vtc,
+                                        "message": "Vous avez depassé la limite de 12 mois pour reserver votre nouvelle date d'examen."
+                                                   "Vous devez à present vous reinscrire à la formation VTC pour retenter votre chance de nouveau.",
+                                    },
+
+                                })
+                    else:
+                        res['response'].update(
+                            {
+                                "vtc": {
+                                    "access": 'denied',
+                                    "url": '/formation-vtc#pricing',
+                                    "label_btn": "Je m'inscris",
+                                    "echec_examen": echec_examen_vtc,
+                                    "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
+                                               "Vous devez vous inscrire à la <b>formation VTC</b> pour pouvoirr choisir la date de votre examen.<br/>"
+                                               "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
+                                               "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
+                                },
+                            })
+        partner = json.dumps(res)
+        _logger.info('partner : %s' % (str(partner)))
+        print('partner : %s' % (str(partner)))
+        return partner
+
     @http.route("/examen-vtc-taxi-moto-taxi", type="http", auth="public", website=True)
     def examen(self):
 
@@ -430,6 +659,7 @@ class Routes_Site(http.Controller):
         taxi_price = False
         vtc_price = False
         vmdtr_price = False
+        repassage = self.get_datas_user_examen()
         if mcm_products:
             for product in mcm_products:
                 if product.default_code == "taxi":
@@ -447,7 +677,9 @@ class Routes_Site(http.Controller):
             "vtc_price": vtc_price if vtc_price else "",
             "vmdtr_price": vmdtr_price if vmdtr_price else "",
             "mcm_products": mcm_products,  # send mcm product to homepage
+            "repassage": repassage
         }
+        print('values : ', str(values['repassage']))
         if request.website.id == 2:
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
@@ -459,6 +691,91 @@ class Routes_Site(http.Controller):
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_examen", {})
+
+    # @http.route("/get_data_user_connected", type="json", auth="user", methods=["POST"], website=True)
+    @http.route("/get-datas-user-examen", type="json", auth="public", methods=["POST"], website=True)
+    def get_datas_user_examen_response(self):
+        res = self.get_datas_user_examen()
+        return res
+
+    # @http.route("/get-datas-user-examen", type="json", auth="user", methods=["POST"], website=True)
+    # def get_datas_user_examen(self):
+    #     partner = request.env.user.partner_id
+    #     res = {"response": []}
+    #     echec_examen = 'False'
+    #     if request.website.is_public_user() :
+    #         res["response"] += [
+    #             {
+    #                 "access" : 'denied',
+    #                 "url": "/web/signup",
+    #                 "echec_examen": echec_examen,
+    #                 "message" : "Pour réserver votre nouvelle tentative, "
+    #                            "merci de vous connecter ou de créer votre compte client.",
+    #             }]
+    #     else:
+    #         session_filtered = request.env['info.examen'].sudo().search(
+    #             [('partner_id', "=", partner.id)], order='date_exam desc',
+    #             limit=1)
+    #         if not session_filtered :
+    #             res["response"] += [
+    #                 {
+    #                     "access": 'denied',
+    #                     "url": '/#pricing',
+    #                     "echec_examen": echec_examen,
+    #                     "message": "vous devez avoir au moins une ligne d'examen"
+    #                 }]
+    #         else:
+    #             date_exam = session_filtered.session_id.date_exam
+    #             if date_exam :
+    #                 now = date.today()  # Date d'aujourd'hui
+    #                 date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
+    #                     years=1)
+    #                 if now < date_dateutil :
+    #                     session_filtered_ajournee = request.env['info.examen'].sudo().search(
+    #                         [('partner_id', "=", partner.id),('state_theorique',"=",'ajourne')], order='date_exam asc',
+    #                         limit=1)
+    #                     if not session_filtered_ajournee :
+    #                         res["response"] += [
+    #                             {
+    #                                 "access": 'denied',
+    #                                 "url": '/#pricing',
+    #                                 "echec_examen": echec_examen,
+    #                                 "message": "vous devez avoir au moins une ligne d'examen ajourné"
+    #                             }]
+    #                     else:
+    #                         if session_filtered_ajournee.module_id :
+    #                             if 'vtc' in session_filtered_ajournee.module_id.product_id.name.lower():
+    #                                 echec_examen = request.env['product.product'].sudo().search(
+    #                                     [('company_id', '=', 2), ('default_code', "=", 'examen_vtc')])
+    #                             elif 'taxi' in session_filtered_ajournee.module_id.product_id.name.lower():
+    #                                 echec_examen = request.env['product.product'].sudo().search(
+    #                                     [('company_id', '=', 2), ('default_code', "=", 'examen_taxi')])
+    #                         res["response"] += [
+    #                             {
+    #                                 "access": "authorized",
+    #                                 "url": '/shop/cart/update',
+    #                                 "echec_examen": echec_examen,
+    #                                 "message": "vous êtes autoriser à passer l'examen"
+    #                             }]
+    #                 else:
+    #                     res["response"] += [
+    #                         {
+    #                             "access": 'denied',
+    #                             "url": '/#pricing',
+    #                             "echec_examen": echec_examen,
+    #                             "message": "vous devez avoir au moins une ligne d'examen ajourné"
+    #                         }]
+    #             else:
+    #                 res["response"] += [
+    #                     {
+    #                         "access": 'denied',
+    #                         "url": '/#pricing',
+    #                         "echec_examen": echec_examen,
+    #                         "message": "manque date d'examen"
+    #                     }]
+    #     partner = json.dumps(res)
+    #     _logger.info('partner : %s' %(str(partner)))
+    #     # return partner
 
     @http.route("/coordonnees", type="http", auth="user", website=True, csrf=False)
     def validation_questionnaires(self, **kw):
@@ -1260,7 +1577,7 @@ class Routes_Site(http.Controller):
                 "exam_state": exam_state,
                 "ipJotForm": partner.ipjotform,
                 "evalbox": partner.numero_evalbox,
-                "statut":partner.statut,
+                "statut": partner.statut,
             }
         ]
         partner = json.dumps(res)
@@ -2804,23 +3121,23 @@ class MCM_SIGNUP(http.Controller):
                                         check_sale = True
                             _logger.info("check_sale : %s" % str(check_sale))
                             # if not check_sale:
-                                # payment = request.env["account.payment"].sudo().create(
-                                #     {
-                                #         "payment_type": "inbound",
-                                #         "payment_method_id": payment_method.id,
-                                #         "partner_type": "customer",
-                                #         "partner_id": move.partner_id.id,
-                                #         "amount": amount,
-                                #         "currency_id": move.currency_id.id,
-                                #         "payment_date": datetime.now(),
-                                #         "journal_id": acquirer.journal_id.id if acquirer else move.journal_id.id,
-                                #         "communication": False,
-                                #         "payment_token_id": False,
-                                #         "invoice_ids": [(6, 0, move.ids)],
-                                #     }
-                                # )
-                                # _logger.info("payment : %s" % str(payment))
-                                # payment.post()
+                            # payment = request.env["account.payment"].sudo().create(
+                            #     {
+                            #         "payment_type": "inbound",
+                            #         "payment_method_id": payment_method.id,
+                            #         "partner_type": "customer",
+                            #         "partner_id": move.partner_id.id,
+                            #         "amount": amount,
+                            #         "currency_id": move.currency_id.id,
+                            #         "payment_date": datetime.now(),
+                            #         "journal_id": acquirer.journal_id.id if acquirer else move.journal_id.id,
+                            #         "communication": False,
+                            #         "payment_token_id": False,
+                            #         "invoice_ids": [(6, 0, move.ids)],
+                            #     }
+                            # )
+                            # _logger.info("payment : %s" % str(payment))
+                            # payment.post()
             return True
 
             #     _logger.info("if not invoice")
