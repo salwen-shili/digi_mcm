@@ -130,7 +130,7 @@
     <record model="ir.actions.act_window" id="calendly_type_event_list_action">
         <field name="name">Type Event Calendly</field>
         <field name="res_model">mcm_openedx.calendly_integration</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
                         <field name="context">{'search_default_group_company': 1}</field>
 
     </record>

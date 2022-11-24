@@ -238,6 +238,12 @@ class calendly_integration(models.Model):
             'target': 'new',
         }
 
+    def update(self):
+        self.type_event_digi_marwa()
+        self.type_event_digi_abirr()
+        self.type_event_digi_selmine()
+        self.type_event()
+
 
 class event_calendly(models.Model):
     _name = 'mcm_openedx.calendly_event'
@@ -764,3 +770,8 @@ class event_calendly(models.Model):
                         'className': 'bg-danger'
                     }
                 }
+    def update(self):
+        self.event()
+        self.event_abir()
+        self.event_selmine()
+        self.event_marwa()
