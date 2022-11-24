@@ -570,7 +570,7 @@ class Routes_Site(http.Controller):
                                 "echec_examen": echec_examen_vtc,
                                 "message": "Oups ! Vous ne pouvez pas accéder à cette option.<br/>"
                                            "Vous devez vous inscrire à la formation pour pouvoir choisir la date de votre examen.<br/>"
-                                           "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription."
+                                           "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
                                            "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                             },
                         })
