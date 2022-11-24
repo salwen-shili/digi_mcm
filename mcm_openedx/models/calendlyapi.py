@@ -29,6 +29,11 @@ class calendly_integration(models.Model):
     updated_at = fields.Date(string="updated_at")
     uri = fields.Char(string="uri ")
     company = fields.Char(string="Company")
+    def update(self):
+        self.type_event()
+        self.type_event_digi_selmine()
+        self.type_event_digi_abirr()
+        self.type_event_digi_marwa()
 
     def type_event_digi_selmine(self):
 
@@ -259,6 +264,11 @@ class event_calendly(models.Model):
     partner_id = fields.Many2one('res.partner')
     company = fields.Char(string="Company")
 
+    def update(self):
+        self.event()
+        self.event_abir()
+        self.event_selmine()
+        self.event_selmine()
     def event(self):
         company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
 
