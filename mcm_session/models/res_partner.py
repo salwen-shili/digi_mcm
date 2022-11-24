@@ -15,8 +15,9 @@ class resPartner(models.Model):
         ('perdu', 'Perdu'),
         ('panier_perdu', 'Panier perdu'),
         ('canceled', 'Annulé'),
+        ('abandon', 'Abandonné'),
         ('finalized', 'Finalisé'),
-        ('abandon','Abandonné'),
+
     ], string='Statut Client', domain="[('customer_rank', '>', 0)]", default="indecis", track_visibility='always')
     module_id = fields.Many2one('mcmacademy.module', track_visibility='always')
     mcm_session_id = fields.Many2one('mcmacademy.session', track_visibility='always')

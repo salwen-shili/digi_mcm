@@ -291,36 +291,36 @@
 <!--                                Panier perdu-->
 <!--                            </div>-->
 <!--                        </group>-->
-                        <div class="row">
-                            <div class="col-2">
-                            </div>
-                            <div class="col-8">
-                                <field name="panier_perdu_ids" string="" mode="tree,kanban"
-                                       domain="[('statut', '=', 'panier_perdu')]">
-                                    <tree>
-                                        <control>
-                                            <create name="add_line_control" string="Ajouter un client perdu"/>
-                                        </control>
-                                        <field name="name" style="pointer-events: none;"  />
-                                        <button
-                        name="test_url"
-                        type="object"
-                        class="oe_stat_button"
-                        icon="fa-address-book"
-                />
-                                        <field name="statut" style="pointer-events: none;" />
-                                        <field name="module_id" style="pointer-events: none;" />
-                                        <field name="state_id" string="Département" style="pointer-events: none;" />
-                                    </tree>
-                                </field>
-                            </div>
-                            <div class="col-2">
-                            </div>
-                        </div>
+<!--                        <div class="row">-->
+<!--                            <div class="col-2">-->
+<!--                            </div>-->
+<!--                            <div class="col-8">-->
+<!--                                <field name="panier_perdu_ids" string="" mode="tree,kanban"-->
+<!--                                       domain="[('statut', '=', 'panier_perdu')]">-->
+<!--                                    <tree>-->
+<!--                                        <control>-->
+<!--                                            <create name="add_line_control" string="Ajouter un client perdu"/>-->
+<!--                                        </control>-->
+<!--                                        <field name="name" style="pointer-events: none;"  />-->
+<!--                                        <button-->
+<!--                        name="test_url"-->
+<!--                        type="object"-->
+<!--                        class="oe_stat_button"-->
+<!--                        icon="fa-address-book"-->
+<!--                />-->
+<!--                                        <field name="statut" style="pointer-events: none;" />-->
+<!--                                        <field name="module_id" style="pointer-events: none;" />-->
+<!--                                        <field name="state_id" string="Département" style="pointer-events: none;" />-->
+<!--                                    </tree>-->
+<!--                                </field>-->
+<!--                            </div>-->
+<!--                            <div class="col-2">-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                         <group string="Abandonnés">
                             <div style="font-weight: bold;">
-                                <field name="count_panier_perdu"/>
+                                <field name="count_abandon"/>
                                 Abandonnés
                             </div>
                         </group>

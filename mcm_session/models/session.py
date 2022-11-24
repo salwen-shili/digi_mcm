@@ -47,6 +47,7 @@ class Session(models.Model):
     count_client = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_stagiaires = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_perdu = fields.Integer('', compute='_compute_count_clients', copy=False)
+    count_abandon=fields.Integer('',compute='_compute_count_clients',copy=False)
     count_annule = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_prospect = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_panier_perdu = fields.Integer('', compute='_compute_count_clients', copy=False)
@@ -729,7 +730,7 @@ class Session(models.Model):
                     "Impossible de supprimer une session qui contient des clients")  # raise validation error when we want to delete a session has clients
         return super(Session, self).unlink()
 
-    @api.depends('client_ids', 'prospect_ids', 'canceled_prospect_ids')
+    @api.depends('client_ids', 'prospect_ids', 'canceled_prospect_ids','abandon_ids')
     def _compute_count_clients(self):
         for rec in self:
             client_counter = 0
@@ -754,3 +755,4 @@ class Session(models.Model):
             count_prospect = 0
             rec.count_prospect = len(rec.prospect_ids)
             rec.count_panier_perdu = len(rec.panier_perdu_ids)
+            rec.count_abandon = len(rec.abandon_ids)
