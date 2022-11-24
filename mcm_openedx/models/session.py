@@ -13,6 +13,9 @@ class resCompany(models.Model):
     _inherit = "res.company"
 
     calendly_api_key = fields.Char(string='API key Calendly')
+    calendly_api_key_marwa = fields.Char(string='API key Calendly Marwa')
+    calendly_api_key_abir = fields.Char(string='API key Calendly Abir')
+    calendly_api_key_selmine = fields.Char(string='API key Calendly Selmine')
     moocit_api_key = fields.Char(string='API key MOOCIT')
 
 class Session(models.Model):

@@ -7,14 +7,17 @@
         <field name="inherit_id" ref="partner_exam.view_signature_company_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='suivi_formation']" position="after">
-                <page string="Integration MOOCIT"  attrs="{'invisible': [('id', '!=', 1)]}" >
+                <page string="Integration calendly">
                     <group>
                         <group>
-                            <field name="calendly_api_key" string="Clé API"/>
+                            <field name="calendly_api_key" string="Clé API" attrs="{'invisible': [('id', '!=', 1)]}"/>
+                            <field name="calendly_api_key_marwa" string="Clé API" attrs="{'invisible': [('id', '!=', 2)]}"/>
+                            <field name="calendly_api_key_abir" string="Clé API" attrs="{'invisible': [('id', '!=', 2)]}"/>
+                            <field name="calendly_api_key_selmine" string="Clé API" attrs="{'invisible': [('id', '!=', 2)]}"/>
                          </group>
                     </group>
                 </page>
-                <page string="Integration Calendly"  attrs="{'invisible': [('id', '!=', 1)]}">
+                <page string="Integration MOOCIT"  attrs="{'invisible': [('id', '!=', 1)]}">
                     <group>
                         <group>
                             <field name="moocit_api_key" string="Cle MOOCIT"/>
