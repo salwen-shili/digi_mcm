@@ -20,6 +20,7 @@ class SaleOrder(models.Model):
         if(template_id):
             print('template name')
             print(template_id)
+        template_id = self.env['mail.template'].search([('name', "=", "Demande de signature du contrat Test"),('model_id',"=","sale.order")]).id
         return template_id
 
     def _send_order_confirmation_mail(self):
