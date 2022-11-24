@@ -24,7 +24,7 @@
 
      <button t-if="widget.modelName == 'mcm_openedx.calendly_integration'"
              class="btn btn-primary oe_type_event_button"
-             type="button">Update Events</button>
+             type="button">Update Events/societe</button>
 
 
 
