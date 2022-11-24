@@ -4,9 +4,9 @@
     <t t-call="website.layout">
 
       <div id="wrap" class="oe_structure oe_empty">
-        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
-        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.min.css" />
+        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css"/>
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.min.css"/>
         <!-- section 1-->
         <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation chauffeur TAXI" style="">
           <div class="container-banner">
@@ -15,15 +15,14 @@
                 <div class="js-scroll slide-left ">
                   <div class="text-center">
                     <h1 class="slider-text-info title-mcm">
-                      Formation
-                      <br />
-                      <span class="subtitle-mcm-formation" style="">&amp;nbsp;VTC</span>
-                      <br />
+                      Formation &amp;nbsp;VTC
+                    
+                      <br/>
                      
-                      <span class="subtitle-mcm-formation" />
+                      <span class="subtitle-mcm-formation"/>
                     </h1>
                     <h2 style="font-size: 36px; font-weight:400">100% en ligne</h2>
-                    <br />
+                    <br/>
                     <p class="para text-center">
                       Vous voulez
                       <b>devenir chauffeur VTC</b>
@@ -34,18 +33,18 @@
                       de qualité avec un accompagnement et un suivi personnalisé pour garantir votre réussite à l’examen&amp;nbsp;.
                     </p>
                     <a class="animated-button-yellow" href="#pricing" title="Inscription">
-                      <span />
-                      <span />
-                      <span />
-                      <span />
+                      <span/>
+                      <span/>
+                      <span/>
+                      <span/>
                       S'inscrire
                     </a>
                   </div>
                 </div>
               </div>
               <div class="col-lg-6 pb48 pt16 js-scroll slide-right ">
-                <br />
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="chaffeur vtc devant sa voiture" title="Formation VTC" aria-describedby="tooltip202025" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" />
+                <br/>
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="chaffeur vtc devant sa voiture" title="Formation VTC" aria-describedby="tooltip202025" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp"/>
               </div>
             </div>
           </div>
@@ -72,19 +71,19 @@
           <div class="container js-scroll fade-in-top">
             <div class="center-logo">
               <div class="pt32">
-                <img class="img-fluid lazy" style="width: 188px;" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi" />
+                <img class="img-fluid lazy" style="width: 188px;" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi"/>
               </div>
               <div class="pt32">
-                <img class="img-fluid lazy" style="width: 100px;" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcsafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
+                <img class="img-fluid lazy" style="width: 100px;" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcsafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture"/>
               </div>
               <div class="pt32">
-                <img class="img-fluid lazy" style="width: 100px;" data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" title="Formation éligible au CPF" alt="logo mon compte de formation" />
+                <img class="img-fluid lazy" style="width: 100px;" data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" title="Formation éligible au CPF" alt="logo mon compte de formation"/>
               </div>
               <div class="pt32">
-                <img class="img-fluid lazy" data-srcsafari="/mcm_website_theme/static/src/img/charte-CPF.png" data-src="/mcm_website_theme/static/src/img/charte-CPF.webp" title="Digimoov entreprise de formation respectant la charte de déontologie CPF" alt="Charte de déontologie CPF" width="110" height="100" />
+                <img class="img-fluid lazy" data-srcsafari="/mcm_website_theme/static/src/img/charte-CPF.png" data-src="/mcm_website_theme/static/src/img/charte-CPF.webp" title="Digimoov entreprise de formation respectant la charte de déontologie CPF" alt="Charte de déontologie CPF" width="110" height="100"/>
               </div>
               <div class="pt32">
-                <img class="img-fluid lazy" style="width:263px" data-srcsafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="Investir dans vos compétences avec MCM Academy" alt="Investir dans vos compétences avec MCM Academy" />
+                <img class="img-fluid lazy" style="width:263px" data-srcsafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="Investir dans vos compétences avec MCM Academy" alt="Investir dans vos compétences avec MCM Academy"/>
               </div>
               <!-- <div class="pt32">
                                           <img class="img-fluid lazy" style="width: 110px;" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="France relance-MCM Academy" alt="France relance-MCM Academy" />
@@ -97,7 +96,7 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
-                <img src="/mcm_website_theme/static/src/img/formation_vtc/formation-vtc.png" class="img img-fluid mx-auto" title="c'est quoi un chauffeur vtc ?" alt="chauffeur vtc dans sa voiture" />
+                <img src="/mcm_website_theme/static/src/img/formation_vtc/formation-vtc.png" class="img img-fluid mx-auto" title="c'est quoi un chauffeur vtc ?" alt="chauffeur vtc dans sa voiture"/>
               </div>
               <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                 <h2 style="max-width: 70%">c'est quoi un chauffeur vtc ?</h2>
@@ -171,7 +170,7 @@
                   <b>&amp;nbsp;</b>
                   en tant que chauffeur indépendant ou pour le compte d'une
                   plateforme dédiée.
-                  <br />
+                  <br/>
                   Si vous êtes femme et vous cherchez aussi à exercer le métier, n'hésitez pas à consulter notre article :
                   <a href="/blog/comment-devenir-chauffeur-vtc-femme">
                     <b>
@@ -187,11 +186,11 @@
                       </button>
                   </a>
                 </div>
-                <mci-extension data-role="overlay" id="overlay-root" />
-                <mci-extension data-role="overlay" id="overlay-root" />
+                <mci-extension data-role="overlay" id="overlay-root"/>
+                <mci-extension data-role="overlay" id="overlay-root"/>
               </div>
               <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
-                <img src="/mcm_website_theme/static/src/img/formation_vtc/candidat-chauffeur-vtc.png" alt="chauffeur vtc" title="comment devenir chauffeur vtc" class="img img-fluid mx-auto" />
+                <img src="/mcm_website_theme/static/src/img/formation_vtc/candidat-chauffeur-vtc.png" alt="chauffeur vtc" title="comment devenir chauffeur vtc" class="img img-fluid mx-auto"/>
               </div>
             </div>
           </div>
@@ -254,7 +253,7 @@
             </div>
             <div class="row align-items-center">
               <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC" title="Chauffeur vtc dans sa voiture" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC" title="Chauffeur vtc dans sa voiture" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp"/>
               </div>
               <div class="col-lg-6 js-scroll slide-right " style="border-style: none; border-width: 0px">
                 <h3 style="                   font-size: 26px;                   color: rgb(0, 0, 0);                   margin-block-end: 1.2rem;                 ">
@@ -274,12 +273,12 @@
                   Acquérir les savoirs, savoir-être et savoir-faire nécessaires à
                   la réussite de l’examen VTC et se préparer aux épreuves
                   d’admissibilité de l’examen VTC (théorie).
-                  <br />
+                  <br/>
                 </p>
               </div>
               <div class="s_title col-lg-12 pt24 pb0 js-scroll slide-right " style="text-align: center; border-style: none; border-width: 0px">
                 <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert">
-                  <i style="margin-top: 18px;" class="fa fa-2x fa-info-circle s_alert_icon" />
+                  <i style="margin-top: 18px;" class="fa fa-2x fa-info-circle s_alert_icon"/>
                   <div class="s_alert_content">
                     <p class="para text-left">
                       Nos formations incluent les personnes en situation de
@@ -291,7 +290,7 @@
                         <span style="color: rgb(0, 0, 255)">par ici</span>
                       </a>
                       .
-                      <br />
+                      <br/>
                     </p>
                   </div>
                 </div>
@@ -306,10 +305,10 @@
               TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC
             </h3>
             <a class="animated-button-black" target="_blank" href="/mcm_website_theme/static/pdf/PROGRAMME DE  FORMATION a distance de 70H TAXI ET VTC.pdf" title="Programme de la formation VTC" alt="">
-              <span />
-              <span />
-              <span />
-              <span />
+              <span/>
+              <span/>
+              <span/>
+              <span/>
               JE TÉLÉCHARGE
             </a>
           </div>
@@ -348,10 +347,10 @@
                   <a href="/mcm_website_theme/static/pdf/PROGRAMME%20DE%20%20FORMATION%20a%20distance%20de%2070H%20TAXI%20ET%20VTC.pdf" spellcheck="false" data-mci-spellchecked="true" style="" data-original-title="" title="" aria-describedby="tooltip171761">Télécharger notre programme de formation</a>
                   ).
                 </p>
-                <mci-extension data-role="overlay" id="overlay-root" />
+                <mci-extension data-role="overlay" id="overlay-root"/>
               </div>
               <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png" class="img img-fluid mx-auto" alt="Candidat vtc suit une formation en ligne sur pc" title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png" class="img img-fluid mx-auto" alt="Candidat vtc suit une formation en ligne sur pc" title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp"/>
               </div>
             </div>
           </div>
@@ -365,7 +364,7 @@
                   <div class="media_iframe_video" data-oe-expression="//www.youtube.com/embed/vLIr9mckz8M?autoplay=1&amp;mute=1&amp;rel=0&amp;loop=1&amp;playlist=vLIr9mckz8M&amp;modestbranding=1">
                     <div class="css_editable_mode_display">&amp;nbsp;</div>
                     <div class="media_iframe_video_size">&amp;nbsp;</div>
-                    <iframe src="//www.youtube.com/embed/vLIr9mckz8M?autoplay=1&amp;mute=1&amp;rel=0&amp;loop=1&amp;playlist=vLIr9mckz8M&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen" />
+                    <iframe src="//www.youtube.com/embed/vLIr9mckz8M?autoplay=1&amp;mute=1&amp;rel=0&amp;loop=1&amp;playlist=vLIr9mckz8M&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen"/>
                   </div>
                 </div>
               </div>
@@ -378,7 +377,7 @@
                       <b>Compte de formation Personnel (CPF)</b>
                       &amp;nbsp;comme expliqué dans cette vidéo.
                     </span>
-                    <br />
+                    <br/>
                     <span style="color: rgb(0, 0, 0); letter-spacing: 0.3px">Ou par autofinancement avec des modalités assez flexibles
                       !&amp;nbsp;</span>
                     <text color="#000000">
@@ -386,7 +385,7 @@
                         tranches.
                       </span>
                     </text>
-                    <br />
+                    <br/>
                   </p>
                 </div>
               </div>
@@ -394,14 +393,14 @@
           </div>
         </section>
         <div id="pricing" class="js-scroll fade-in-top">
-          <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+          <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden"/>
           <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
             <div class="container">
               <div class="sh_title mt48 js-scroll fade-in-top">
                 <h2 style="max-width:100%">
                      Inscrivez-vous dès maintenant !
                  </h2>
-                <br />
+                <br/>
               </div>
               <div class="row" style="justify-content: center !important">
                 <div class="col-md-5 sh_animation_part" style="border-style: none; border-width: 0px">
@@ -409,8 +408,8 @@
                     <t t-foreach="mcm_products" t-as="product">
                       <t t-if="product.default_code=='vtc'">
                         <form action="/shop/cart/update" method="post" id="form-1-1">
-                          <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
-                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                          <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id"/>
+                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
                           <h3 style="max-width: 100%; font-size:35px;">PACK VTC</h3>
                           <h5 class="el-cpf">
                             <t t-if="product.cpf_available == true">Éligible au CPF </t>
@@ -419,27 +418,27 @@
                             </t>
                         </h5>
                           <h4>
-                            <span t-esc="round(product.list_price)" />
-                            <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
+                            <span t-esc="round(product.list_price)"/>
+                            <span style="color: #fdd105" t-esc="product.currency_id.symbol"/>
                           </h4>
-                          <t t-call="mcm_website_theme.pricing_table_content_all" />
+                          <t t-call="mcm_website_theme.pricing_table_content_all"/>
                           <div class="sh_btn">
                             <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                             Je m'inscris
                                                 </a> -->
                             <a class="animated-button-yellow" href="#pricing" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
-                              <span />
-                              <span />
-                              <span />
-                              <span />
+                              <span/>
+                              <span/>
+                              <span/>
+                              <span/>
                               Je m'inscris
                             </a>
                             <div>
                               <span style="color: red !important;font-size: 17px;font-weight: 600;">
                                 Paiement 1
-                                <t t-if="product.instalment_number>1">
+                                <t t-if="product.instalment_number&gt;1">
                                   ou
-                                  <t t-esc="product.instalment_number"></t>
+                                  <t t-esc="product.instalment_number"/>
                                 </t>
                                 &amp;nbsp;fois
                               </span>
@@ -462,22 +461,22 @@
             <div class="center-logo">
               <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
                 <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
-                  <img class="img-fluid lazy" style="width: 94px" data-src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" />
+                  <img class="img-fluid lazy" style="width: 94px" data-src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY"/>
                 </a>
               </div>
               <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
                 <a href="/bolt" target="_blank" rel="noopner">
-                  <img data-src="/mcm_website_theme/static/src/img/logos/logo-bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-bolt.png" class="img-fluid lazy" style="width: 100px; margin-top: 9px" alt="Logo partenaire MCM-ACADEMY" title="Bolt partenaire MCM ACADEMY" />
+                  <img data-src="/mcm_website_theme/static/src/img/logos/logo-bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-bolt.png" class="img-fluid lazy" style="width: 100px; margin-top: 9px" alt="Logo partenaire MCM-ACADEMY" title="Bolt partenaire MCM ACADEMY"/>
                 </a>
               </div>
               <div class="pt32" t-if="partenaire=='' or partenaire !='bolt'">
                 <a href="https://www.artisanat.fr/">
-                  <img class="img-fluid lazy" style="width: 100px" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-CMA.png" data-src="/mcm_website_theme/static/src/img/logos/logo-CMA.png" title="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" alt="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" />
+                  <img class="img-fluid lazy" style="width: 100px" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-CMA.png" data-src="/mcm_website_theme/static/src/img/logos/logo-CMA.png" title="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" alt="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY"/>
                 </a>
               </div>
               <div class="pt32" t-if="partenaire=='' or not partenaire ">
                 <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
-                  <img class="img-fluid lazy" style="width: 250px" data-src="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" title="Joel partenaire MCM ACADEMY" alt="Joel partenaire MCM ACADEMY" />
+                  <img class="img-fluid lazy" style="width: 250px" data-src="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" title="Joel partenaire MCM ACADEMY" alt="Joel partenaire MCM ACADEMY"/>
                 </a>
               </div>
             </div>
@@ -529,11 +528,11 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/299738/Macaron%20VTC.png" />
+                          <img src="https://www.mcm-academy.fr/web/image/299738/Macaron%20VTC.png"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
-                            <span class="fa fa-calendar" />
+                            <span class="fa fa-calendar"/>
                             31 mai, 2022
                           </p>
                           <h4 class="o_default_snippet_text">Comment obtenir votre Macaron VTC?</h4>
@@ -545,11 +544,11 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/232336/comment%20s%27inscrire%20au%20registre%20VTC%202.png" />
+                          <img src="https://www.mcm-academy.fr/web/image/232336/comment%20s%27inscrire%20au%20registre%20VTC%202.png"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
-                            <span class="fa fa-calendar" />
+                            <span class="fa fa-calendar"/>
                             23 décembre, 2021
                           </p>
                           <h4 class="o_default_snippet_text">Comment s’inscrire au registre VTC ?</h4>
@@ -561,11 +560,11 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png" />
+                          <img src="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
-                            <span class="fa fa-calendar" />
+                            <span class="fa fa-calendar"/>
                             17 janvier, 2022
                           </p>
                           <h4 class="o_default_snippet_text">Assurance VTC : Tout ce que vous devez savoir</h4>
@@ -583,11 +582,11 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="/web/image/246715/couv%20taxi%202.png" />
+                          <img src="/web/image/246715/couv%20taxi%202.png"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
-                            <span class="fa fa-calendar" />
+                            <span class="fa fa-calendar"/>
                             26 janvier, 2022
                           </p>
                           <h4 class="o_default_snippet_text ">Devenir chauffeur de taxi indépendant</h4>
@@ -599,11 +598,11 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/299010/Renouvellement%20carte%20pro.png" />
+                          <img src="https://www.mcm-academy.fr/web/image/299010/Renouvellement%20carte%20pro.png"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
-                            <span class="fa fa-calendar" />
+                            <span class="fa fa-calendar"/>
                             24 mai, 2022
                           </p>
                           <h4 class="o_default_snippet_text">Comment renouveler sa carte TAXI ou VTC ?</h4>
@@ -615,11 +614,11 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/352139/LICENCE%20ADS%20TAXI.png" />
+                          <img src="https://www.mcm-academy.fr/web/image/352139/LICENCE%20ADS%20TAXI.png"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
-                            <span class="fa fa-calendar" />
+                            <span class="fa fa-calendar"/>
                             2 septembre, 2022
                           </p>
                           <h4 class="o_default_snippet_text">Comment obtenir une Licence Taxi ADS ?</h4>
@@ -638,11 +637,11 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/282772/blog%207.png" />
+                          <img src="https://www.mcm-academy.fr/web/image/282772/blog%207.png"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
-                            <span class="fa fa-calendar" />
+                            <span class="fa fa-calendar"/>
                             5 mai, 2022
                           </p>
                           <h4 class="o_default_snippet_text">Comment devenir taxi moto indépendant ?
@@ -655,11 +654,11 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/287348/VMDTR%202.png" />
+                          <img src="https://www.mcm-academy.fr/web/image/287348/VMDTR%202.png"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
-                            <span class="fa fa-calendar" />
+                            <span class="fa fa-calendar"/>
                             13 mai, 2022
                           </p>
                           <h4 class="o_default_snippet_text">Carte professionnelle VMDTR : À quoi ça sert ?</h4>
@@ -671,11 +670,11 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/229858/MCMACADEMY%20-%20moto-taxi.png" />
+                          <img src="https://www.mcm-academy.fr/web/image/229858/MCMACADEMY%20-%20moto-taxi.png"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
-                            <span class="fa fa-calendar" />
+                            <span class="fa fa-calendar"/>
                             20 septembre, 2021
                           </p>
                           <h4 class="o_default_snippet_text">Comment devenir taxi moto</h4>
