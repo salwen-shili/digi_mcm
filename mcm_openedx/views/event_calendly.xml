@@ -31,9 +31,7 @@
                 <field name="start_at"/>
                 <field name="status"/>
                 <field name="company"/>
-                <button  string="Envoyer Invitation" class="oe_highlight"  />
-                <button class="oe_highlight"
-                />
+
 
             </tree>
         </field>
