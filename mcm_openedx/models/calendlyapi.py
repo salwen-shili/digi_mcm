@@ -270,11 +270,7 @@ class event_calendly(models.Model):
     partner_id = fields.Many2one('res.partner')
     company = fields.Char(string="Company")
 
-    def update(self):
-        self.event(self)
-        self.event_abir(self)
-        self.event_selmine(self)
-        self.event_selmine(self)
+
     def event(self):
         company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
 
