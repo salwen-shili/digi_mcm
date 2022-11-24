@@ -34,6 +34,10 @@ class calendly_integration(models.Model):
         self.type_event_digi_selmine()
         self.type_event_digi_abirr()
         self.type_event_digi_marwa()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
 
     def type_event_digi_selmine(self):
 
