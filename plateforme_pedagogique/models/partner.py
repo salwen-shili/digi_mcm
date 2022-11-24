@@ -1335,12 +1335,27 @@ class partner(models.Model):
                                             user.partner_id.id_edof = product_id.id_edof
                                     if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism":
                                         if user.partner_id.numero_cpf == externalId:
-                                            user.partner_id.statut_cpf = "canceled"
-                                            user.partner_id.statut = "canceled"
+
+                                            if user.partner_id.mcm_session_id and user.partner_id.module_id:
+                                                vals = {
+                                                    'partner_id': user.partner_id.id,
+                                                    'statut': 'canceled',
+                                                    'session_id': user.partner_id.mcm_session_id.id,
+                                                    'module_id': user.partner_id.module_id.id,
+                                                }
+
+                                                session_wizard = self.env[
+                                                    'res.partner.session.wizard'].sudo().create(
+                                                    vals)
+                                                session_wizard.action_modify_partner()
+                                            """Vérifier si le dossier en formation donc statut de dossier est abandonné si non annulé"""
+                                            if user.partner_id.statut_cpf =="intraining" :
+                                                user.partner_id.statut = "abandon"
+                                            else:
+                                                user.partner_id.statut="canceled"
+                                            user.partner_id.statut_cpf="canceled"
                                             user.partner_id.date_cpf = lastupd
                                             user.partner_id.diplome = diplome
-                                            print("product id annulé digi", user.partner_id.id_edof, training_id)
-
                                             if product_id:
                                                 user.partner_id.id_edof = product_id.id_edof
                         except Exception:

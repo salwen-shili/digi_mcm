@@ -16,6 +16,7 @@ class resPartner(models.Model):
         ('panier_perdu', 'Panier perdu'),
         ('canceled', 'Annulé'),
         ('finalized', 'Finalisé'),
+        ('abandon','Abandonné'),
     ], string='Statut Client', domain="[('customer_rank', '>', 0)]", default="indecis", track_visibility='always')
     module_id = fields.Many2one('mcmacademy.module', track_visibility='always')
     mcm_session_id = fields.Many2one('mcmacademy.session', track_visibility='always')
@@ -188,6 +189,13 @@ class resPartnerWizard(models.TransientModel):
                     if partner.id != self.partner_id.id:
                         list.append(partner.id)
                 self.partner_id.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+
+                list = []
+                for partner in self.session_id.abandon_ids:
+                    if partner.id != self.partner_id.id:
+                        list.append(partner.id)
+                self.session_id.write({'abandon_ids': [(6, 0, list)]})
+
             self.partner_id.statut=self.statut
             self.partner_id.mcm_session_id=self.session_id
             self.partner_id.module_id = self.module_id
@@ -224,6 +232,13 @@ class resPartnerWizard(models.TransientModel):
                 if partner.id != self.partner_id.id:
                     list.append(partner.id)
             self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+
+            list = []
+            for partner in self.session_id.abandon_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'abandon_ids': [(6, 0, list)]})
+
         if self.statut == 'indecis':
             if self.session_id:
                 list = []
@@ -249,6 +264,12 @@ class resPartnerWizard(models.TransientModel):
                     if partner.id != self.partner_id.id:
                         list.append(partner.id)
                 self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+
+                list = []
+                for partner in self.session_id.abandon_ids:
+                    if partner.id != self.partner_id.id:
+                        list.append(partner.id)
+                self.session_id.write({'abandon_ids': [(6, 0, list)]})
             else:
                 if self.partner_id.date_examen_edof and self.partner_id.session_ville_id : #check if state of client is canceled and the client doesn't have a session so we get the date and the city choosed by the client
                     session = self.env['mcmacademy.session'].sudo().search(
@@ -278,6 +299,12 @@ class resPartnerWizard(models.TransientModel):
                                 list.append(partner.id)
                         session.write({'panier_perdu_ids': [(6, 0, list)]})
 
+                        list = []
+                        for partner in self.session_id.abandon_ids:
+                            if partner.id != self.partner_id.id:
+                                list.append(partner.id)
+                        self.session_id.write({'abandon_ids': [(6, 0, list)]})
+
         if self.statut == 'panier_perdu':
             list = []
             for partner in self.session_id.panier_perdu_ids:
@@ -303,11 +330,50 @@ class resPartnerWizard(models.TransientModel):
                     list.append(partner.id)
             self.session_id.write({'prospect_ids': [(6, 0, list)]})
 
-        if self.statut == 'perdu' or self.statut == 'canceled' :
+            list = []
+            for partner in self.session_id.abandon_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'abandon_ids': [(6, 0, list)]})
+
+        """remplir la liste des clients abandonnés"""
+        if self.statut == 'abandon':
+            list = []
+            for partner in self.session_id.abandon_ids:
+                list.append(partner.id)
+            list.append(self.partner_id.id)
+            self.session_id.write({'abandon_ids': [(6, 0, list)]})
+
+            list = []
+            for partner in self.session_id.panier_perdu_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+
+            list = []
+            for partner in self.session_id.client_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'client_ids': [(6, 0, list)]})
+
+            list = []
+            for partner in self.session_id.canceled_prospect_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
+
+            list = []
+            for partner in self.session_id.prospect_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'prospect_ids': [(6, 0, list)]})
+
+
+        if self.statut == 'perdu' or self.statut == 'canceled':
             """désactiver l'annulation de statut pour cpf"""
             if self.partner_id.mode_de_financement=="cpf" and self.partner_id.statut_cpf != "canceled" and self.partner_id.numero_cpf: #add possibilty to canceled a client if he doesn't cpf number
                 raise UserError(_("L'apprenant doit annuler son inscription sur son compte cpf. Vous ne pouvez pas annuler manuellement un dossier cpf"))
-            if self.session_id :
+            if self.session_id:
                 list = []
                 for partner in self.session_id.canceled_prospect_ids:
                     list.append(partner.id)
@@ -331,7 +397,14 @@ class resPartnerWizard(models.TransientModel):
                     if partner.id != self.partner_id.id:
                         list.append(partner.id)
                 self.session_id.write({'prospect_ids': [(6, 0, list)]})
-            else :
+
+                list = []
+                for partner in self.session_id.abandon_ids:
+                    if partner.id != self.partner_id.id:
+                        list.append(partner.id)
+                self.session_id.write({'abandon_ids': [(6, 0, list)]})
+
+            else:
                 if self.partner_id.date_examen_edof and self.partner_id.session_ville_id : #check if state of client is canceled and the client doesn't have a session so we get the date and the city choosed by the client
                     session = self.env['mcmacademy.session'].sudo().search(
                     [('date_exam', "=", self.partner_id.date_examen_edof),('session_ville_id',"=",self.partner_id.session_ville_id.id)],limit=1) #search for the session using the date and city choosed by client
@@ -359,6 +432,12 @@ class resPartnerWizard(models.TransientModel):
                             if partner.id != self.partner_id.id:
                                 list.append(partner.id)
                         session.write({'prospect_ids': [(6, 0, list)]})
+
+                        list = []
+                        for partner in self.session_id.abandon_ids:
+                            if partner.id != self.partner_id.id:
+                                list.append(partner.id)
+                        self.session_id.write({'abandon_ids': [(6, 0, list)]})
 
         # else:
         #     raise ValidationError(_('Vous pouvez pas modifier un utilisateur interne !'))

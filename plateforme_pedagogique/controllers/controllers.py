@@ -461,6 +461,7 @@ class WebhookController(http.Controller):
         print('training', training_id)
         today = date.today()
         date_min = today - relativedelta(months=2)
+        user=False
         users = request.env['res.users'].sudo().search([('login', "=", email)])
         """si apprenant non trouvé par email on cherche par numero telephone"""
         if not users:

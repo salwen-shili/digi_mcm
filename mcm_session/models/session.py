@@ -37,6 +37,7 @@ class Session(models.Model):
                                              'prospect_id', string='', copy=False)
     panier_perdu_ids = fields.Many2many('res.partner', 'session_panier_perdu_rel', 'session_id', 'prospect_id',
                                         string='', copy=False)
+    abandon_ids=fields.Many2many('res.partner','session_abandon_rel','session_id','abandon_id',string='',copy=False)
     stage_id = fields.Many2one('mcmacademy.stage', 'État', group_expand='_read_group_stage_ids')
     color = fields.Integer(string='Color Index', copy=True)
     date_debut = fields.Date('Date de debut de session', copy=False)
@@ -55,6 +56,7 @@ class Session(models.Model):
                                     track_visibility='always')  # edit the field to be required and show field edit history
     adresse_jury_id = fields.Many2one('session.adresse.examen', "Adresse de jury")
     date_jury = fields.Date()
+
 
     @api.onchange('adresse_jury_id')
     def onchange_session_ville_id(self):
