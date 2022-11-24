@@ -151,6 +151,7 @@ class resPartnerWizard(models.TransientModel):
         ('perdu', 'Perdu'),
         ('panier_perdu', 'Panier perdu'),
         ('canceled', 'Annulé'),
+        ('abandon','Abandonné'),
         ('finalized', 'Finalisé'),
     ], string='Statut Client', domain="[('customer_rank', '>', 0)]", default="indecis")
     session_id=fields.Many2one('mcmacademy.session','Session')
