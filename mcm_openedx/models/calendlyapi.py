@@ -30,7 +30,6 @@ class calendly_integration(models.Model):
     uri = fields.Char(string="uri ")
     company = fields.Char(string="Company")
 
-
     def type_event_digi_selmine(self):
 
         for companys in self.env['res.company'].sudo().search([('id', "=", 2)]):
@@ -239,16 +238,6 @@ class calendly_integration(models.Model):
             'target': 'new',
         }
 
-    def update(self):
-        self.type_event()
-        self.type_event_digi_selmine()
-        self.type_event_digi_abirr()
-        self.type_event_digi_marwa()
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'reload',
-        }
-
 
 class event_calendly(models.Model):
     _name = 'mcm_openedx.calendly_event'
@@ -269,7 +258,6 @@ class event_calendly(models.Model):
     cancel_url = fields.Char(string="Cancel URL")
     partner_id = fields.Many2one('res.partner')
     company = fields.Char(string="Company")
-
 
     def event(self):
         company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
@@ -596,17 +584,6 @@ class event_calendly(models.Model):
         return {
             "url": self.location,
             "type": "ir.actions.act_url"
-        }
-
-
-    def update(self):
-        self.event()
-        self.event_abir()
-        self.event_selmine()
-        self.event_selmine()
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'reload',
         }
 
     def send_invitation(self):

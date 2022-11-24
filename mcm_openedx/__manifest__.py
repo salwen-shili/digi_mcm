@@ -30,7 +30,7 @@
                 'calendly_api_integration'],
 
     'qweb': [
-        'static/src/xml/btn.xml',
+        #'static/src/xml/btn.xml',
     ],
 
     # always loaded
