@@ -91,21 +91,14 @@
                             <br/>
                             <center>
                                 <a class="v1action"
-                                    href="${object.location}"
+                                    href="${object.zoomlink}"
 
                                    style="font-family:&quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: rgb(0, 0, 0)
                                     ; border: 1px solid #d0d0d0; color: rgb(255, 255, 255);font-weight: bold;"
                                    target="_blank" rel="noreferrer">
                                     Accéder au cours
                                 </a>
-                                                                <a class="v1action"
-                                                                   href="${object.location}"
-                                                                   style="font-family: &quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: rgb(0, 0, 0)
-                                ; border: 1px solid #d0d0d0; color: rgb(255, 255, 255);font-weight: bold;
-                                "
-                                                                   target="_blank" rel="noreferrer">
-                                                                    Replanifier
-                                                                </a>
+
                             </center>
                             <br/>
                         </span>
@@ -117,6 +110,15 @@
             <field name="lang">${object.partner_id.lang}</field>
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="False"/>
+        </record>
+
+
+                <record id="sms_template_digi_calendly" model="sms.template">
+            <field name="name">Customer: DIGIMOOV automated SMS</field>
+            <field name="model_id" ref="model_calendly_rendezvous"/>
+            <field name="body">${object.name} avec  DIGIMOOV à
+                ${object.event_starttime_char} cliquez => ${object.zoomlink} .
+            </field>
         </record>
     </data>
 
