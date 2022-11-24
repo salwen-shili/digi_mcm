@@ -264,6 +264,7 @@ class event_calendly(models.Model):
     cancel_url = fields.Char(string="Cancel URL")
     partner_id = fields.Many2one('res.partner')
     company = fields.Char(string="Company")
+    name_co = fields.Char(string="Coach")
 
     def event(self):
         company = self.env['res.company'].sudo().search([('id', "=", 1)], limit=1)
@@ -425,6 +426,7 @@ class event_calendly(models.Model):
                         'event_name': event_name,
                         'location': location,
                         'company': company.name,
+                        'name_co': "Marwa ben saad",
 
                         'start_at': start_at,
                         'start_at_char': start_at_char,
@@ -501,6 +503,7 @@ class event_calendly(models.Model):
                         'event_name': event_name,
                         'location': location,
                         'company': company.name,
+                        'name_co': "Selmine Tarchoun",
 
                         'start_at': start_at,
                         'start_at_char': start_at_char,
@@ -577,6 +580,7 @@ class event_calendly(models.Model):
                         'event_name': event_name,
                         'location': location,
                         'company': company.name,
+                        'name_co': "Abir Mahjoub",
 
                         'start_at': start_at,
                         'start_at_char': start_at_char,
