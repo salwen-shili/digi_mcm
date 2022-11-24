@@ -7,7 +7,8 @@
         <field name="arch" type="xml">
             <search>
                                 <field name="owner" filter_domain="[('owner','ilike',self)]"></field>
-
+  <filter name="group_company" string="Societé" icon="terp-partner"
+                        context="{'group_by':'company'}"/>
                  <filter name="group_owner" string="Formateur" icon="terp-partner"
                         context="{'group_by':'owner'}"/>
             </search>
@@ -26,6 +27,7 @@
                 <field name="scheduling_url"/>
                 <button name="test_url" string="Lien event" class="oe_highlight" type="object"/>
                 <field name="updated_at"/>
+ <field name="company"/>
 
                 <field name="uri"/>
                 <field name="slug"/>
@@ -48,6 +50,8 @@
                         <field name="scheduling_url"/>
                         <field name="updated_at"/>
                         <field name="uri"/>
+                         <field name="company"/>
+
                         <field name="slug"/>
                     </group>
                 </sheet>
@@ -127,6 +131,8 @@
         <field name="name">Type Event Calendly</field>
         <field name="res_model">mcm_openedx.calendly_integration</field>
         <field name="view_mode">kanban,tree,form</field>
+                        <field name="context">{'search_default_group_company': 1}</field>
+
     </record>
 
 
