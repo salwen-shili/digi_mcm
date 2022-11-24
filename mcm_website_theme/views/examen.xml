@@ -185,7 +185,7 @@
                   <br />
                 </p>
                 <div class="s_btn text-left pt16 pb16" data-name="Button">
-                  <a href="#" class="btn btn-outline-primary btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip244958">Consultez la grille de notation</a>
+                  <a href="https://www.cmar-paca.fr/galerie/481b195d743c20d5ba37971809dae91b.pdf" class="btn btn-outline-primary btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip244958">Grille de notation examen pratique taxi</a>
                 </div>
                 <mci-extension data-role="overlay" id="overlay-root" />
               </div>
