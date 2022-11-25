@@ -252,7 +252,9 @@
                                                             object.env['ir.config_parameter'].sudo().get_param('web.base.url')
                                                             votre nom de domaine est:
                                                             <b>
-                                                                <a href='${object.company_id.website}'>${object.company_id.website}</a>
+                                                                <a href='${object.company_id.website}'>
+                                                                    ${object.company_id.website}
+                                                                </a>
                                                             </b>
                                                             <br/>
                                                             Votre courriel de connection est:
@@ -384,8 +386,8 @@
                 </div>
 
             </field>
-<!--            <field name="report_template" ref="sale.action_report_saleorder"/>-->
-<!--            <field name="report_name">Contrat- ${(object.partner_id.name)}</field>-->
+            <!--            <field name="report_template" ref="sale.action_report_saleorder"/>-->
+            <!--            <field name="report_name">Contrat- ${(object.partner_id.name)}</field>-->
             <field name="lang">${object.partner_id.lang}</field>
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="True"/>
@@ -531,13 +533,6 @@
                                 <tr>
                                     <td style="padding: 0">
                                         <t t-raw="message.body"/>
-                                        <div t-if="is_online and not record._context.get('proforma')"
-                                             style="margin: 32px 0px 32px 0px; text-align: center;">
-                                            <a t-att-href="access_url"
-                                               style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
-                                                <t t-esc="access_name"/>
-                                            </a>
-                                        </div>
                                         <t t-if="record.user_id and not record.env.user._is_superuser()">
                                             <div style="margin: 0px; padding: 0px; font-size:13px;">
                                                 Best regards,
@@ -547,6 +542,13 @@
                                                 <div t-raw="record.user_id.sudo().signature"/>
                                             </div>
                                         </t>
+                                        <div t-if="is_online and not record._context.get('proforma')"
+                                             style="margin: 32px 0px 32px 0px; text-align: center;">
+                                            <a t-att-href="access_url"
+                                               style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                <t t-esc="access_name"/>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                                 <!-- FOOTER -->
@@ -556,12 +558,16 @@
                                             style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 32px 0px 4px 0px;"/>
                                         <br/>
                                         <div style="color: #999999;text-align: center;">
-                                           <t> <b t-esc="company.name"/> </t>|
+                                            <t>
+                                                <b t-esc="company.name"/>
+                                            </t>
+                                            |
                                             <t t-if="company.website">
                                                 <a t-att-href="'%s' % company.website"
                                                    style="text-decoration:none; color: #999999;">
                                                     <t t-esc="company.website"/>
-                                                </a>|
+                                                </a>
+                                                |
                                             </t>
                                             <t t-esc="company.phone"/>
                                         </div>
