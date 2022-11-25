@@ -28,9 +28,9 @@
                 <xpath expr="//field[@name='canceled_prospect_ids']/tree" position="attributes">
                     <attribute name="default_order">module_id</attribute>
                 </xpath>
-                <xpath expr="//field[@name='panier_perdu_ids']/tree" position="attributes">
-                    <attribute name="default_order">module_id</attribute>
-                </xpath>
+<!--                <xpath expr="//field[@name='panier_perdu_ids']/tree" position="attributes">-->
+<!--                    <attribute name="default_order">module_id</attribute>-->
+<!--                </xpath>-->
             </field>
         </record>
 

@@ -251,10 +251,10 @@
                             </div>
                         </div>
 
-                        <group string="Perdus ou annulés">
+                        <group string="Annulés">
                             <div style="font-weight: bold;">
-                                <field name="count_perdu"/>
-                                Perdu,
+                                <!--<field name="count_perdu"/>
+                                Perdu,-->
                                 <field name="count_annule"/>
                                 Annulé
                             </div>
@@ -285,7 +285,7 @@
                             <div class="col-2">
                             </div>
                         </div>
-                        <group string="Panier Perdu">
+                        <!--<group string="Panier Perdu">
                             <div style="font-weight: bold;">
                                 <field name="count_panier_perdu"/>
                                 Panier perdu
@@ -316,7 +316,7 @@
                             </div>
                             <div class="col-2">
                             </div>
-                        </div>
+                        </div>-->
 
                         <group string="Abandonnés">
                             <div style="font-weight: bold;">
