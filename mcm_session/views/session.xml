@@ -251,10 +251,10 @@
                             </div>
                         </div>
 
-                        <group string="Perdus ou annulés">
+                        <group string="Annulés">
                             <div style="font-weight: bold;">
-                                <field name="count_perdu"/>
-                                Perdu,
+                                <!--<field name="count_perdu"/>
+                                Perdu,-->
                                 <field name="count_annule"/>
                                 Annulé
                             </div>
@@ -285,7 +285,7 @@
                             <div class="col-2">
                             </div>
                         </div>
-                        <group string="Panier Perdu">
+                        <!--<group string="Panier Perdu">
                             <div style="font-weight: bold;">
                                 <field name="count_panier_perdu"/>
                                 Panier perdu
@@ -300,6 +300,40 @@
                                     <tree>
                                         <control>
                                             <create name="add_line_control" string="Ajouter un client perdu"/>
+                                        </control>
+                                        <field name="name" style="pointer-events: none;"  />
+                                        <button
+                        name="test_url"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-address-book"
+                />
+                                        <field name="statut" style="pointer-events: none;" />
+                                        <field name="module_id" style="pointer-events: none;" />
+                                        <field name="state_id" string="Département" style="pointer-events: none;" />
+                                    </tree>
+                                </field>
+                            </div>
+                            <div class="col-2">
+                            </div>
+                        </div>-->
+
+                        <group string="Abandonnés">
+                            <div style="font-weight: bold;">
+                                <field name="count_abandon"/>
+                                Abandonnés
+                            </div>
+                        </group>
+
+                        <div class="row">
+                            <div class="col-2">
+                            </div>
+                            <div class="col-8">
+                                <field name="abandon_ids" string="" mode="tree,kanban"
+                                       domain="[('statut', '=', 'abandon')]">
+                                    <tree>
+                                        <control>
+                                            <create name="add_line_control" string="Ajouter un client abandonné"/>
                                         </control>
                                         <field name="name" style="pointer-events: none;"  />
                                         <button
