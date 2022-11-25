@@ -162,7 +162,7 @@ class InheritSignRequestItem(models.Model):
                 body_replace_link = body_remove_n.replace('lien_signature', link)
                 body = body_replace_link
             # Template Cerfa
-            elif "Cerfa" in str(self.sign_request_id.reference):
+            elif "CERFA" in str(self.sign_request_id.reference):
                 report_cerfa = self.env.ref('__export__.mail_template_870_ed45b4c4')
                 # Remove '\n' from Template
                 body_remove_n = report_cerfa.body_html.replace('\n', '')
@@ -178,7 +178,7 @@ class InheritSignRequestItem(models.Model):
                 body_replace_link = body_remove_n.replace('lien_signature', link)
                 body = body_replace_link
             # Template génèrale
-            elif "Cerfa" not in str(self.sign_request_id.reference) and "Procès verbal" not in str(
+            elif "CERFA" not in str(self.sign_request_id.reference) and "Procès verbal" not in str(
                     self.sign_request_id.reference) and "SESSION D’EXAMEN" not in str(self.sign_request_id.reference):
                 general_template = self.env.ref('__export__.mail_template_783_c1e659a3')
                 # Remove '\n' from Template
