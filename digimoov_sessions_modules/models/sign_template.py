@@ -19,8 +19,8 @@ class SignRequestTemplate(models.Model):
     def create(self, vals):
         """ Affectation url jotform dans le modéle de cerfa
         lors de creation d'un nouveau modéle cerfa dans sign.template """
-        _logger.info("Sign before res %s " % str(vals))
-        res = super(SignRequestTemplate, self).create(vals['name'])
+        _logger.info("Sign before res %s " % str(vals['name']))
+        res = super(SignRequestTemplate, self).create(vals)
         _logger.info("sign model after res %s " % str(res.name))
         if "CREFA" in res.name:
             res.redirect_url = "https://form.jotform.com/222334146537352"
