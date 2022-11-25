@@ -22,7 +22,7 @@
             report_type="qweb-pdf"
             name="mcm_session.template_raport_jury_ids"
             file="mcm_session.template_raport_jury_ids"
-            print_report_name="'Procès verbal - %s' % (object.name)) and '- %s' % (object.session_ville_id.name_ville)"
+            print_report_name="'Procès verbal - %s' % (object.name)) + '- %s' % (object.session_ville_id.name_ville)"
             paperformat="mcm_session.paperformat_rapport_jury"
     />
 </odoo>
