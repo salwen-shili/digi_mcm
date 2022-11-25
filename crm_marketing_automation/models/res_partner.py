@@ -46,8 +46,8 @@ class Partner(models.Model):
             document_valide = True
             # Vérifier statut iOne
         if self.numero_evalbox:
-            if (self.numero_evalbox) and (self.statut != "won"):
-                raise ValidationError('Merci de vérifier le statut!')
+            # if (self.numero_evalbox) and (self.statut != "won"):
+            #     raise ValidationError('Merci de vérifier le statut!')
             # Vérifier longeur du numéro d'Eval_box CMA
             # if len(self.numero_evalbox) <= 9:
             #     raise ValidationError('Numéro evalbox doit contenir minimum 10 caractères')
