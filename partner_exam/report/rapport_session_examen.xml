@@ -71,7 +71,7 @@
                                                 </td>
                                                 <td class="td" align="center" style="height: 80px; width: 80px;">
                                                     <strong>
-                                                        <p>MCM ACADEMY</p>
+                                                        <p>DIGIMOOV</p>
                                                         <span t-field='o.mcm_session_id.num_agrement_jury'/>
                                                     </strong>
                                                 </td>
@@ -111,7 +111,6 @@
                                 dont le siège social se situe au 10 rue de Penthièvre 75008 Paris, est représenté par
                                 son
                                 Directeur Général en exercice, Monsieur CHERIH Nasserddine.
-                                <br/>
                                 <br/>
                                 Il est le responsable du bon déroulement de l’examen de transport public routier Léger
                                 de
@@ -259,9 +258,9 @@
                                         <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>
                                     </b>
                                     à
-                                    <b>
-                                        <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
-                                    </b>
+                                    <strong>
+                                        <span t-raw="'%s' % o.mcm_session_id.session_ville_id.name_ville"/>
+                                    </strong>
 
                                     <br/>
                                     <br/>
@@ -377,7 +376,7 @@
                                     <br/>
                                     A
                                     <strong>
-                                        <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
+                                        <span t-raw="'%s' % o.mcm_session_id.session_ville_id.name_ville"/>
                                     </strong>
                                     <br/>
                                     Le
