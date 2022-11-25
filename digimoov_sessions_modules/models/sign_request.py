@@ -131,12 +131,6 @@ class InheritSignRequest(models.Model):
                 )
 
         return True
-    @api.model
-    def create(self, vals):
-        _logger.info("Sign before res %s " % str(vals))
-        res = super(InheritSignRequest, self).create(vals['name'])
-        _logger.info("sign model after res %s " % str(res.name))
-        return res
 
 
 class InheritSignRequestItem(models.Model):
