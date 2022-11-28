@@ -71,7 +71,7 @@
                                                 </td>
                                                 <td class="td" align="center" style="height: 80px; width: 80px;">
                                                     <strong>
-                                                        <p>MCM ACADEMY</p>
+                                                        <p>DIGIMOOV</p>
                                                         <span t-field='o.mcm_session_id.num_agrement_jury'/>
                                                     </strong>
                                                 </td>
@@ -92,6 +92,17 @@
                                 </center>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12" style="color:#696969;position:absolute;margin-top:310px;">
+                                <center style="font-size:12px;">
+                                    <b>DIGIMOOV</b><br/>10 rue de Penthièvre 75008 PARIS. Déclaration d'activité enregistrée
+                                    sous le numéro 11755542075 auprès du préfet de la
+                                    région d'Ile-de-France
+                                    <br/>
+                                    <b>www.digimoov.fr</b>
+                                </center>
+                            </div>
+                        </div>
                         <p style="page-break-after:always;"/>
                         <div class="row">
                             <div class="col-4">
@@ -106,18 +117,17 @@
                         </div>
                         <div class="row" style="padding-top:60px;">
                             <div class="col-12">
-                                Le centre de d’examen MCM ACADEMY, situé au
+                                Le centre d’examen DIGIMOOV, situé au
                                 <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>
                                 dont le siège social se situe au 10 rue de Penthièvre 75008 Paris, est représenté par
                                 son
                                 Directeur Général en exercice, Monsieur CHERIH Nasserddine.
                                 <br/>
-                                <br/>
                                 Il est le responsable du bon déroulement de l’examen de transport public routier Léger
                                 de
                                 marchandises et se positionne en tant que responsable de la surveillance du centre de
                                 formation
-                                MCM ACADEMY se référant à la Décision du 3 février 2012 relative aux référentiels et
+                                DIGIMOOV se référant à la Décision du 3 février 2012 relative aux référentiels et
                                 jury
                                 d’examen et aux modèles d’attestation de capacité professionnelle pour l’exercice des
                                 activités
@@ -195,16 +205,13 @@
                         </div>
                         <br/>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12" style="color:#696969;position:absolute;margin-top:120px;">
                                 <center style="font-size:12px;">
-                                    MCM ACADEMY, 10 rue de Penthièvre 75008 PARIS.
-                                    <br/>
-                                    Déclaration d'activité enregistrée sous le numéro 11755542075 auprès du préfet de la
+                                    <b>DIGIMOOV</b><br/>10 rue de Penthièvre 75008 PARIS. Déclaration d'activité enregistrée
+                                    sous le numéro 11755542075 auprès du préfet de la
                                     région d'Ile-de-France
                                     <br/>
-                                    Responsable de formation Mr CHERIH Nasserddine
-                                    <br/>
-                                    <b>www.mcm-academy.fr</b>
+                                    <b>www.digimoov.fr</b>
                                 </center>
                             </div>
                         </div>
@@ -215,7 +222,6 @@
                                      style="max-height:100px;float:left;"/>
                             </div>
                         </div>
-
                         <div class="row" style="padding-top:60px;">
                             <div class="col-12">
                                 <b>
@@ -247,7 +253,7 @@
                                             <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>
                                         </u>
                                     </b>
-                                    dans les locaux de l’organisme de formation <b>MCM ACADEMY</b>, situé au
+                                    dans les locaux de l’organisme de formation <b>DIGIMOOV</b>, situé au
                                     <b>
                                         <u>
                                             <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>
@@ -259,9 +265,9 @@
                                         <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>
                                     </b>
                                     à
-                                    <b>
-                                        <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
-                                    </b>
+                                    <strong>
+                                        <span t-raw="'%s' % o.mcm_session_id.session_ville_id.name_ville"/>
+                                    </strong>
 
                                     <br/>
                                     <br/>
@@ -282,7 +288,7 @@
                                     </ol>
                                 </h3>
                                 <p style="font-size:18px;">
-                                    Nous sommes arrivés pour vous accueillir au centre de formation MCM ACADEMY à
+                                    Nous sommes arrivés pour vous accueillir au centre de formation DIGIMOOV à
                                     ...................
                                     <!--                                    <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>-->
                                     <span>le</span>
@@ -307,6 +313,18 @@
                                     de remettre leur sac à proximité du tableau.
                                 </p>
                                 <br/>
+                                <div class="row">
+                                    <div class="col-12" style="color:#696969;position:absolute;margin-top:190px;font-size:14px;">
+                                        <center style="font-size:12px;">
+                                            <b>DIGIMOOV</b><br/>
+                                            10 rue de Penthièvre 75008 PARIS. Déclaration d'activité enregistrée sous le
+                                            numéro 11755542075 auprès du préfet de la
+                                            région d'Ile-de-France
+                                            <br/>
+                                            <b>www.digimoov.fr</b>
+                                        </center>
+                                    </div>
+                                </div>
                                 <p style="page-break-after:always;"/>
                                 <div class="row">
                                     <div class="col-4">
@@ -374,10 +392,9 @@
                                     ce que de droit.
                                     <br/>
                                     <br/>
-                                    <br/>
                                     A
                                     <strong>
-                                        <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>
+                                        <span t-raw="'%s' % o.mcm_session_id.session_ville_id.name_ville"/>
                                     </strong>
                                     <br/>
                                     Le
@@ -386,9 +403,21 @@
                                               t-field-options='{"format": "dd/MM/yyyy"}'/>
                                     </strong>
                                     <br/>
-                                    <br/>
                                     Signature
                                 </p>
+                                <div class="row">
+                                    <div class="col-12"
+                                         style="color:#696969;position:absolute;bottom:-180px;font-size:14px;">
+                                        <center style="font-size:12px;">
+                                            <b>DIGIMOOV</b><br/>
+                                            10 rue de Penthièvre 75008 PARIS. Déclaration d'activité enregistrée sous le
+                                            numéro 11755542075 auprès du préfet de la
+                                            région d'Ile-de-France
+                                            <br/>
+                                            <b>www.digimoov.fr</b>
+                                        </center>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
