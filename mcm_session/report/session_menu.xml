@@ -22,8 +22,7 @@
             report_type="qweb-pdf"
             name="mcm_session.template_raport_jury_ids"
             file="mcm_session.template_raport_jury_ids"
-            print_report_name="'Procès verbal jury d'examen - %s - %s' % (object.session_ville_id.name_ville, object.date_exam.strftime(
-                '%d/%m/%Y'))"
+            print_report_name="'Procès verbal jury d'examen - %s - %s' % (object.session_ville_id.name_ville, object.date_exam.strftime('%d/%m/%Y'))"
             paperformat="mcm_session.paperformat_rapport_jury"
     />
 </odoo>
