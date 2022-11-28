@@ -3381,20 +3381,25 @@ class AuthSignupHome(AuthSignupHome):
     def importer_from_jotform_webhook(self, **kw):
         _logger.info("webhoook form jedom jotform %s" % (kw))
         rawRequest = kw['rawRequest']
-        _logger.info("rawRequest : %s" % (rawRequest))
         # convert response of webhook to json format
         rawRequest = json.loads(rawRequest)
         _logger.info("rawRequest1 : %s" % (rawRequest))
+        email =str(rawRequest['q85_email'])
+        justificatifDe64 = rawRequest["justificatifDe64"]
+        attestationDhebergement = rawRequest["attestationDhebergement"]
+        vousAvez = rawRequest["vousAvez"]
+        pieceDidentite = rawRequest["pieceDidentite"]
+        pieceDidentite70 = rawRequest["pieceDidentite70"]
 
-        # department = str(rawRequest['q38_dansQuel'])
-        # department_id = request.env['res.country.state'].sudo().search([('code', "=", str(
-        #     department)), ('country_id.code', 'ilike', 'FR')], limit=1)
-        # _logger.info("department : %s" % (str(department_id)))
-        # res_user = request.env['res.users']
-        # odoo_contact = res_user.sudo().search([('login', "=", str(
-        #     email).lower().replace(' ', ''))], limit=1)  # search contact using email
-        # _logger.info("user founded using email : %s" % (odoo_contact))
-        # request.uid = odoo.SUPERUSER_ID
+        _logger.info("justificatifDe6 : %s" % (justificatifDe64))
+        _logger.info("email: %s" % (email))
+        _logger.info("attestationDhebergement : %s" % (attestationDhebergement))
+        _logger.info("vousAvez  : %s" % (vousAvez ))
+        _logger.info("pieceDidentite : %s" % (pieceDidentite))
+        _logger.info("pieceDidentite70 : %s" % (pieceDidentite70))
+
+
+
 
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
