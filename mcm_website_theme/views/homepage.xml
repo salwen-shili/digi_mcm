@@ -11,7 +11,7 @@
                     <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
                     <div id="wrap" class="oe_structure">
                         <!-- section 1 Couverture -->
-                        <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" >
+                        <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8">
                             <div class="container-banner">
                                 <div class="row">
                                     <div class="col-lg-6 pb16 pt56">
@@ -490,7 +490,7 @@
                         </section>
                         <!-- End counter section-->
                         <!-- section google avis-->
-                        <section id="sh_corpomate_theme_section_155" class="" >
+                        <section id="sh_corpomate_theme_section_155" class="">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-6 align-items-center sh_animation_part js-scroll slide-left d-flex ">
