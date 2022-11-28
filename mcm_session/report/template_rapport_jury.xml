@@ -119,7 +119,6 @@
                                     <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
                                     personnes
                                 </p>
-                                <br/>
                                 <p>B) Nombre de candidats reçus à l’examen
                                     <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
                                     sur
@@ -130,17 +129,14 @@
                                             t-esc="docs.pourcentage_client_recu(pourcentage)"/>
                                     %.
                                 </p>
-                                <br/>
                                 <p>c) Liste récapitulative des candidats inscrits, absents, reçus ou ajournés en
                                     annexe.
                                 </p>
-                                <br/>
                                 <p>d) Le constat du déroulement des épreuves ainsi que la mention des éventuelles
                                     difficultés rencontrées lors du déroulement de la
                                     session :
                                 </p>
                                 <p>Aucune difficulté n’est à mentionner, tout s’est bien déroulé.</p>
-                                <br/>
                                 <p>e) Le dossier d’inscription à l’examen du candidat, accompagné du relevé des notes
                                     obtenues
                                     aux différentes épreuves ainsi que de la
@@ -148,11 +144,9 @@
                                     <br/>
                                     Ces éléments se trouvent dans le dossier de chaque candidat
                                 </p>
-                                <br/>
                             </span>
-                            <br/>
                             <style>
-                                .tr, .td , .table{
+                                .th, .tr, .td , .table{
                                 padding: 2px;
                                 border: solid;
                                 }
@@ -161,12 +155,12 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <th class="" align="center" style="height: 300px; width: 250px;">
+                                            <th class="th" align="center" style="height: 100px; width: 700px;">
                                                 <b>Remarques</b>
                                             </th>
                                         </tr>
                                         <tr>
-                                            <td class="td" align="center" style="height: 300px; width: 650px;">
+                                            <td class="td" align="center" style="height: 300px; width: 700px;">
                                             </td>
                                         </tr>
                                     </tbody>
