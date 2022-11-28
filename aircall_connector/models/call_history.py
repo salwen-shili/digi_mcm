@@ -169,7 +169,7 @@ class AirCall(models.Model):
         for record in self:
             if record.call_contact and record.notes:
                 subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
-                datas = self.reference.split("\n")
+                datas = record.notes.split("\n")
                 for data in datas :
                     message = self.env['mail.message'].sudo().search(
                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
