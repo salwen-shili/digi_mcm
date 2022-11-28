@@ -478,6 +478,8 @@ class WebhookController(http.Controller):
                 if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.ville:
                     user = utilisateur
 
+        else:
+            user = users
         if user:
              """Si un nouveau utilisateur envoyer 
              un sms d'invitation"""
@@ -486,7 +488,7 @@ class WebhookController(http.Controller):
                 short_url = pyshorteners.Shortener()
                 short_url = short_url.tinyurl.short(
                     url)  # convert the signup_url to be short using pyshorteners library
-                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s. Votre courriel de connection est: %s' % (
                     user.partner_id.name, user.partner_id.company_id.name, short_url,
                     user.partner_id.email)  # content of sms
                 sms = request.env['mail.message'].sudo().search(
@@ -505,7 +507,7 @@ class WebhookController(http.Controller):
                     short_url = short_url.tinyurl.short(
                         url)  # convert the url to be short using pyshorteners library
 
-                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s. Votre courriel de connection est: %s' % (
                         user.partner_id.name, user.partner_id.company_id.name, short_url,
                         user.partner_id.email)  # content of sms
 
@@ -556,10 +558,10 @@ class WebhookController(http.Controller):
                 short_url = pyshorteners.Shortener()
                 short_url = short_url.tinyurl.short(
                     url)  # convert the signup_url to be short using pyshorteners library
-                body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s. Votre courriel de connection est: %s' % (
                     user.partner_id.name, user.partner_id.company_id.name, short_url,
                     user.partner_id.email)  # content of sms
-                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s. Votre courriel de connection est: %s' % (
                     user.partner_id.name, user.partner_id.company_id.name, short_url,
                     user.partner_id.email)  # content of sms
                 sms = request.env['sms.sms'].sudo().create({

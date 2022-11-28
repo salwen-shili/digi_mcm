@@ -3472,7 +3472,7 @@ class AuthSignupHome(AuthSignupHome):
                         url)
                 else:
                     short_url = link_tracker.short_url
-                body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s. Votre courriel de connection est: %s' % (
                     odoo_contact.partner_id.name, odoo_contact.partner_id.company_id.name, short_url,
                     odoo_contact.partner_id.email)  # content of sms
                 if body:
