@@ -692,7 +692,6 @@ class event_calendly(models.Model):
                         self.env.cr.rollback()
                         _logger.info("except Exception:")
             else:
-
                 return {
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
