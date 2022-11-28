@@ -1,3 +1,5 @@
+import base64
+
 import stripe
 
 from odoo import http
@@ -3397,10 +3399,239 @@ class AuthSignupHome(AuthSignupHome):
         _logger.info("vousAvez  : %s" % (vousAvez ))
         _logger.info("pieceDidentite : %s" % (pieceDidentite))
         _logger.info("pieceDidentite70 : %s" % (pieceDidentite70))
+        for partner_email in request.env['res.partner'].search(
+                [('email', 'ilike', email)]):
+            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                [('email', "like", email)])
+            existe_sub.partner_id = partner_email.id
+            # verifier si la personne existe
+            # verifier fiche client
+            if not existe_sub:
+                new = request.env['mcm_openedx.form_info'].sudo().create({
+                    'email': email
+                })
 
+                if justificatifDe64:
+                    url = justificatifDe64
+                    if url:
+                        # 👉️ Check if my_var is not None (null)
+                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                        name = "Justificatif de domicile de moins de 3 mois (les factures mobile ne sont pas acceptées)"
+                        folder_id = request.env['documents.folder'].sudo().search(
+                            [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
+                        for partner in request.env['res.partner'].search(
+                                [('email', '=',email)]):
+                            existe_doc = request.env['documents.document'].search(
+                                [('name', '=', name), ('partner_id', '=', partner.id)])
+                            # verifier les document si existe avec le nom jotform, et partner
 
+                            if not existe_doc:
+                                document = request.env['documents.document'].create({'name': name,
+                                                                                  'type': 'binary',
+                                                                                  'partner_id': partner.id,
+                                                                                  'folder_id': folder_id.id,
+                                                                                  'datas': image_binary,
+                                                                                  'state': 'waiting', })
 
+                                # replace " " avec  %20 pour eliminer les espace
+                                # Ajout ticket pour notiifer le service examn pour changer mp
+                                # ajouter condition sur ticket
 
+                                vals = {
+
+                                    'description': 'New document Jotform JDOM %s' % (name),
+                                    'name': 'Merci de verifer le document de %s' % (partner.name),
+                                    'partner_id': partner.id,
+
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
+                                        limit=1).id,
+                                }
+                                description = "New document Jotform JDOM"
+                                ticket = request.env['helpdesk.ticket'].sudo().search(
+                                    [("description", "=", description)])
+                                if not ticket:
+                                    print("cree ticket")
+                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
+                                request.env.cr.commit()
+
+                if attestationDhebergement:
+                    url = attestationDhebergement
+                    if url:
+                        # 👉️ Check if my_var is not None (null)
+                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                        name = "Attestation d'hébergement"
+                        folder_id = request.env['documents.folder'].sudo().search(
+                            [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
+                        for partner in request.env['res.partner'].search(
+                                [('email', '=', email)]):
+                            existe_doc = request.env['documents.document'].search(
+                                [('name', '=', name), ('partner_id', '=', partner.id)])
+                            # verifier les document si existe avec le nom jotform, et partner
+
+                            if not existe_doc:
+                                document = request.env['documents.document'].create({'name': name,
+                                                                                  'type': 'binary',
+                                                                                  'partner_id': partner.id,
+                                                                                  'folder_id': folder_id.id,
+                                                                                  'datas': image_binary,
+                                                                                  'state': 'waiting', })
+
+                                # replace " " avec  %20 pour eliminer les espace
+                                # Ajout ticket pour notiifer le service examn pour changer mp
+                                # ajouter condition sur ticket
+
+                                vals = {
+
+                                    'description': 'New document Jotform JDOM %s' % (name),
+                                    'name': 'Merci de verifer le document de %s' % (partner.name),
+                                    'partner_id': partner.id,
+
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
+                                        limit=1).id,
+                                }
+                                description = "New document Jotform JDOM"
+                                ticket = request.env['helpdesk.ticket'].sudo().search(
+                                    [("description", "=", description)])
+                                if not ticket:
+                                    print("cree ticket")
+                                    new_ticket =request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
+                                request.env.cr.commit()
+                if vousAvez:
+                    url = vousAvez
+                    if url:
+                        # 👉️ Check if my_var is not None (null)
+                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                        name = "Vous avez moins de 25 ans, merci d'ajouter votre attestation Journée Défense et Citoyenneté"
+                        folder_id = request.env['documents.folder'].sudo().search(
+                            [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
+                        for partner in request.env['res.partner'].search(
+                                [('email', '=', email)]):
+                            existe_doc = request.env['documents.document'].search(
+                                [('name', '=', name), ('partner_id', '=', partner.id)])
+                            # verifier les document si existe avec le nom jotform, et partner
+
+                            if not existe_doc:
+                                document = request.env['documents.document'].create({'name': name,
+                                                                                  'type': 'binary',
+                                                                                  'partner_id': partner.id,
+                                                                                  'folder_id': folder_id.id,
+                                                                                  'datas': image_binary,
+                                                                                  'state': 'waiting', })
+
+                                # replace " " avec  %20 pour eliminer les espace
+                                # Ajout ticket pour notiifer le service examn pour changer mp
+                                # ajouter condition sur ticket
+
+                                vals = {
+
+                                    'description': 'New document Jotform JDOM %s' % (name),
+                                    'name': 'Merci de verifer le document de %s' % (partner.name),
+                                    'partner_id': partner.id,
+
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
+                                        limit=1).id,
+                                }
+                                description = "New document Jotform JDOM"
+                                ticket = request.env['helpdesk.ticket'].sudo().search(
+                                    [("description", "=", description)])
+                                if not ticket:
+                                    print("cree ticket")
+                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
+                                request.env.cr.commit()
+                if pieceDidentite:
+                    url = pieceDidentite
+                    if url:
+                        # 👉️ Check if my_var is not None (null)
+                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                        name = "Pièce d'identité de l'hébergeur - Face avant"
+                        folder_id = request.env['documents.folder'].sudo().search(
+                            [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
+                        for partner in request.env['res.partner'].search(
+                                [('email', '=', email)]):
+                            existe_doc = request.env['documents.document'].search(
+                                [('name', '=', name), ('partner_id', '=', partner.id)])
+                            # verifier les document si existe avec le nom jotform, et partner
+
+                            if not existe_doc:
+                                document = request.env['documents.document'].create({'name': name,
+                                                                                  'type': 'binary',
+                                                                                  'partner_id': partner.id,
+                                                                                  'folder_id': folder_id.id,
+                                                                                  'datas': image_binary,
+                                                                                  'state': 'waiting', })
+
+                                # replace " " avec  %20 pour eliminer les espace
+                                # Ajout ticket pour notiifer le service examn pour changer mp
+                                # ajouter condition sur ticket
+
+                                vals = {
+
+                                    'description': 'New document Jotform JDOM %s' % (name),
+                                    'name': 'Merci de verifer le document de %s' % (partner.name),
+                                    'partner_id': partner.id,
+
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
+                                        limit=1).id,
+                                }
+                                description = "New document Jotform JDOM"
+                                ticket = request.env['helpdesk.ticket'].sudo().search(
+                                    [("description", "=", description)])
+                                if not ticket:
+                                    print("cree ticket")
+                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
+                                request.env.cr.commit()
+                if pieceDidentite70:
+                    url = pieceDidentite70
+                    if url:
+                        # 👉️ Check if my_var is not None (null)
+                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                        name = "Pièce d'identité de l'hébergeur - Face avant"
+                        folder_id = request.env['documents.folder'].sudo().search(
+                            [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
+                        for partner in request.env['res.partner'].search(
+                                [('email', '=', email)]):
+                            existe_doc = request.env['documents.document'].search(
+                                [('name', '=', name), ('partner_id', '=', partner.id)])
+                            # verifier les document si existe avec le nom jotform, et partner
+
+                            if not existe_doc:
+                                document = request.env['documents.document'].create({'name': name,
+                                                                                  'type': 'binary',
+                                                                                  'partner_id': partner.id,
+                                                                                  'folder_id': folder_id.id,
+                                                                                  'datas': image_binary,
+                                                                                  'state': 'waiting', })
+
+                                # replace " " avec  %20 pour eliminer les espace
+                                # Ajout ticket pour notiifer le service examn pour changer mp
+                                # ajouter condition sur ticket
+
+                                vals = {
+
+                                    'description': 'New document Jotform JDOM %s' % (name),
+                                    'name': 'Merci de verifer le document de %s' % (partner.name),
+                                    'partner_id': partner.id,
+
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
+                                        limit=1).id,
+                                }
+                                description = "New document Jotform JDOM"
+                                ticket = request.env['helpdesk.ticket'].sudo().search(
+                                    [("description", "=", description)])
+                                if not ticket:
+                                    print("cree ticket")
+                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
+                                request.env.cr.commit()
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
     def webhook_integration_examen(self, **kw):
@@ -3470,7 +3701,7 @@ class AuthSignupHome(AuthSignupHome):
                         url)
                 else:
                     short_url = link_tracker.short_url
-                body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s. Votre courriel de connection est: %s' % (
                     odoo_contact.partner_id.name, odoo_contact.partner_id.company_id.name, short_url,
                     odoo_contact.partner_id.email)  # content of sms
                 if body:
