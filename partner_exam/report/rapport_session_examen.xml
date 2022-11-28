@@ -194,12 +194,12 @@
                         </div>
                         <br/>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12"
+                                 style="color:#696969;position:absolute;">
                                 <center style="font-size:12px;">
                                     <b>DIGIMOOV</b>
-                                    | 10 rue de PENTHIEVRE PARIS 75008 | Numéro SIRET: 81121988000085 | Numéro de
-                                    déclaration d'activité: 11755542075 (auprès du préfet de région de:75)
-
+                                    | 10 rue de PENTHIEVRE PARIS 75008 | Numéro SIRET: 81121988000085 | Numéro
+                                    de déclaration d'activité: 11755542075 (auprès du préfet de région de:75)
                                     <br/>
                                     <b>www.digimoov.fr</b>
                                 </center>
@@ -305,7 +305,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-12"
-                                         style="color:#696969;position:absolute;bottom:-1250px;font-size:14px;">
+                                         style="color:#696969;position:absolute;bottom:-50px;font-size:14px;">
                                         <center style="font-size:12px;">
                                             <b>DIGIMOOV</b>
                                             | 10 rue de PENTHIEVRE PARIS 75008 | Numéro SIRET: 81121988000085 | Numéro
@@ -382,7 +382,6 @@
                                     ce que de droit.
                                     <br/>
                                     <br/>
-                                    <br/>
                                     A
                                     <strong>
                                         <span t-raw="'%s' % o.mcm_session_id.session_ville_id.name_ville"/>
@@ -394,12 +393,11 @@
                                               t-field-options='{"format": "dd/MM/yyyy"}'/>
                                     </strong>
                                     <br/>
-                                    <br/>
                                     Signature
                                 </p>
                                 <div class="row">
                                     <div class="col-12"
-                                         style="color:#696969;position:absolute;bottom:-1250px;font-size:14px;">
+                                         style="color:#696969;position:absolute;bottom:-120px;font-size:14px;">
                                         <center style="font-size:12px;">
                                             <b>DIGIMOOV</b>
                                             | 10 rue de PENTHIEVRE PARIS 75008 | Numéro SIRET: 81121988000085 | Numéro
