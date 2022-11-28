@@ -162,6 +162,23 @@ class AirCall(models.Model):
                 if odoo_contact:
                     record = record.with_user(SUPERUSER_ID)
                     record.sudo().write({"call_contact": odoo_contact.partner_id.id})
+    
+    def action_update_notes(self):
+        for record in self:
+            if record.call_contact and record.notes:
+                subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
+                message = self.env['mail.message'].sudo().search(
+                    [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
+                     ('res_id', '=', odoo_contact.id), ('body', "like", record.notes)])
+                if not message :
+                    message = self.env['mail.message'].sudo().create({
+                        'subject': "call detail",
+                        'model': 'res.partner',
+                        'res_id': record.call_contact.id,
+                        'message_type': 'notification',
+                        'subtype_id': subtype_id,
+                        'body': str(record.notes),
+                    })
         
 
 

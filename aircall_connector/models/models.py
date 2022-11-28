@@ -270,6 +270,8 @@ class ResUser(models.Model):
             for call in call_response['calls']:
                 call_rec = self.env['call.detail'].sudo().search([('call_id', "=", call['id'])])
                 odoo_contact = False
+                if call_rec and not call_rec.call_contact :
+                    call_rec.action_find_user_using_phone()
                 if (call['number']['name'] == 'MCM ACADEMY'):
                     #Get calls of MCM ACADEMY using call number name from api response
                     # Creating a non existant contact
@@ -356,23 +358,34 @@ class ResUser(models.Model):
                                 message = self.env['mail.message'].sudo().search(
                                     [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                                      ('res_id', '=', odoo_contact.id), ('body', "ilike", comment)])
+                                _logger.info('aircall find message mcm %s : %s' % (
+                                    str(odoo_contact), (str(message))))
                                 if not message:
                                     subject = user_name + " " + started_at + " " + ended_at
                                     message = self.env['mail.message'].sudo().search(
                                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                                          ('res_id', '=', odoo_contact.id), ('subject', "=",
                                                                             subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
-                                if not message:
-                                    # Create new Note in view contact
-                                    message = self.env['mail.message'].sudo().create({
-                                        'subject': user_name + " " + started_at + " " + ended_at,
-                                        'model': 'res.partner',
-                                        'res_id': odoo_contact.id,
-                                        'message_type': 'notification',
-                                        'subtype_id': subtype_id,
-                                        'body': str(content) + str(note['content']),
-                                    })
-                                    message.body=message.body[2:]
+                                    _logger.info('aircall find message mcm with subject %s : %s' % (
+                                        str(odoo_contact), (str(subject))))
+                                    if message:
+                                        _logger.info("aircall message found : %s" % (str(message.body)))
+                                        if str(note['content']) not in message.body:
+                                            message.sudo().write({
+                                                'body': message.body + '\n' + str(note['content'])
+                                            })
+                            if not message and odoo_contact:
+                                # Create new Note in view contact
+                                _logger.info('create new note in view contact mcm %s : %s' % (
+                                str(odoo_contact), (str(str(content) + str(note['content'])))))
+                                message = self.env['mail.message'].sudo().create({
+                                    'subject': user_name + " " + started_at + " " + ended_at,
+                                    'model': 'res.partner',
+                                    'res_id': odoo_contact.id,
+                                    'message_type': 'notification',
+                                    'subtype_id': subtype_id,
+                                    'body': str(content) + str(note['content']),
+                                })
                         call_rec.write({'notes':notes})
                     _logger.info('call_rec : %s and odoo_contact : %s ' %(str(call_rec),str(odoo_contact)))
                     if call_rec :
@@ -430,12 +443,16 @@ class ResUser(models.Model):
                                     message = self.env['mail.message'].sudo().search(
                                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                                          ('res_id', '=', odoo_contact.id), ('body', "ilike", comment)])
+                                    _logger.info('aircall find message digi %s : %s' % (
+                                    str(odoo_contact), (str(message))))
                                     if not message:
                                         subject = user_name + " " + started_at + " " + ended_at
                                         message = self.env['mail.message'].sudo().search(
                                             [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                                              ('res_id', '=', odoo_contact.id), ('subject', "=",
                                                                                 subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
+                                        _logger.info('aircall find message digi with subject %s : %s' % (
+                                            str(odoo_contact), (str(subject))))
                                         if message:
                                             _logger.info("aircall message found : %s" % (str(message.body)))
                                             if str(note['content']) not in message.body:
@@ -444,6 +461,7 @@ class ResUser(models.Model):
                                                 })        
                                 if not message and odoo_contact:
                                     # Create new Note in view contact
+                                    _logger.info('create new note in view contact digi %s : %s' % (str(odoo_contact),(str(str(content) + str(note['content'])))))
                                     message = self.env['mail.message'].sudo().create({
                                         'subject': user_name + " " + started_at + " " + ended_at,
                                         'model': 'res.partner',
@@ -465,6 +483,7 @@ class ResUser(models.Model):
                                          'notes': comments,
                                          'company_id': 2
                                          })
+                        _logger.info('create call_rec digi : %s' %(str(call_rec)))
                     else:
                         # check if call has new comments
                         comments = ''
