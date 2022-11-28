@@ -606,10 +606,10 @@
                                                 </strong>
                                             </td>
                                         </t>
-                                        <t t-else="int(session.temps_minute) == 0 and session.partner_id.statut == 'won'">
+                                        <t t-else="session.resultat == 'ajourne' and session.presence not in ('present', 'Absent')">
                                             <td class="td" style="background:#FFFF00;">
                                                 <strong>
-                                                    <span>Non présentation à la formation</span>
+                                                    <span>Absence justifiée</span>
                                                 </strong>
                                             </td>
                                         </t>
