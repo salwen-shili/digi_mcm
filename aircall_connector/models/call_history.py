@@ -9,6 +9,7 @@ import time
 from datetime import datetime
 import requests
 import logging
+import odoo
 _logger = logging.getLogger(__name__)
 
 class AirCall(models.Model):
