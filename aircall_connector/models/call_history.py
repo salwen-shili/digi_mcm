@@ -173,7 +173,7 @@ class AirCall(models.Model):
                 for data in datas :
                     message = self.env['mail.message'].sudo().search(
                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
-                         ('res_id', '=', odoo_contact.id), ('body', "like", data)])
+                         ('res_id', '=', record.call_contact.id), ('body', "like", data)])
                     if not message :
                         message = self.env['mail.message'].sudo().create({
                             'subject': "call detail",
