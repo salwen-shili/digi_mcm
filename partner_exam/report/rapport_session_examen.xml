@@ -106,7 +106,7 @@
                         </div>
                         <div class="row" style="padding-top:60px;">
                             <div class="col-12">
-                                Le centre de d’examen MCM ACADEMY, situé au
+                                Le centre d’examen DIGIMOOV, situé au
                                 <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>
                                 dont le siège social se situe au 10 rue de Penthièvre 75008 Paris, est représenté par
                                 son
@@ -116,7 +116,7 @@
                                 de
                                 marchandises et se positionne en tant que responsable de la surveillance du centre de
                                 formation
-                                MCM ACADEMY se référant à la Décision du 3 février 2012 relative aux référentiels et
+                                DIGIMOOV se référant à la Décision du 3 février 2012 relative aux référentiels et
                                 jury
                                 d’examen et aux modèles d’attestation de capacité professionnelle pour l’exercice des
                                 activités
@@ -196,14 +196,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <center style="font-size:12px;">
-                                    MCM ACADEMY, 10 rue de Penthièvre 75008 PARIS.
+                                    <b>DIGIMOOV</b>
+                                    | 10 rue de PENTHIEVRE PARIS 75008 | Numéro SIRET: 81121988000085 | Numéro de
+                                    déclaration d'activité: 11755542075 (auprès du préfet de région de:75)
+
                                     <br/>
-                                    Déclaration d'activité enregistrée sous le numéro 11755542075 auprès du préfet de la
-                                    région d'Ile-de-France
-                                    <br/>
-                                    Responsable de formation Mr CHERIH Nasserddine
-                                    <br/>
-                                    <b>www.mcm-academy.fr</b>
+                                    <b>www.digimoov.fr</b>
                                 </center>
                             </div>
                         </div>
@@ -245,7 +243,7 @@
                                             <span t-esc="o.mcm_session_id.date_session_frensh(date_examen)"/>
                                         </u>
                                     </b>
-                                    dans les locaux de l’organisme de formation <b>MCM ACADEMY</b>, situé au
+                                    dans les locaux de l’organisme de formation <b>DIGIMOOV</b>, situé au
                                     <b>
                                         <u>
                                             <span t-esc="o.mcm_session_id.session_adresse_examen.adresse_centre_examen"/>
@@ -280,7 +278,7 @@
                                     </ol>
                                 </h3>
                                 <p style="font-size:18px;">
-                                    Nous sommes arrivés pour vous accueillir au centre de formation MCM ACADEMY à
+                                    Nous sommes arrivés pour vous accueillir au centre de formation DIGIMOOV à
                                     ...................
                                     <!--                                    <span t-raw="'%s' % o.mcm_session_id.ville_jury_id.name_ville"/>-->
                                     <span>le</span>
@@ -305,6 +303,18 @@
                                     de remettre leur sac à proximité du tableau.
                                 </p>
                                 <br/>
+                                <div class="row">
+                                    <div class="col-12"
+                                         style="color:#696969;position:absolute;bottom:-1250px;font-size:14px;">
+                                        <center style="font-size:12px;">
+                                            <b>DIGIMOOV</b>
+                                            | 10 rue de PENTHIEVRE PARIS 75008 | Numéro SIRET: 81121988000085 | Numéro
+                                            de déclaration d'activité: 11755542075 (auprès du préfet de région de:75)
+                                            <br/>
+                                            <b>www.digimoov.fr</b>
+                                        </center>
+                                    </div>
+                                </div>
                                 <p style="page-break-after:always;"/>
                                 <div class="row">
                                     <div class="col-4">
@@ -387,6 +397,18 @@
                                     <br/>
                                     Signature
                                 </p>
+                                <div class="row">
+                                    <div class="col-12"
+                                         style="color:#696969;position:absolute;bottom:-1250px;font-size:14px;">
+                                        <center style="font-size:12px;">
+                                            <b>DIGIMOOV</b>
+                                            | 10 rue de PENTHIEVRE PARIS 75008 | Numéro SIRET: 81121988000085 | Numéro
+                                            de déclaration d'activité: 11755542075 (auprès du préfet de région de:75)
+                                            <br/>
+                                            <b>www.digimoov.fr</b>
+                                        </center>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
