@@ -3385,14 +3385,7 @@ class AuthSignupHome(AuthSignupHome):
         # convert response of webhook to json format
         rawRequest = json.loads(rawRequest)
         _logger.info("rawRequest1 : %s" % (rawRequest))
-        firstname = rawRequest['q5_prenom']
-        lastName = rawRequest['q6_nom']
-        tel = str(rawRequest['q41_numeroDe41'])
-        email = str(rawRequest['q7_email']).replace(' ', '').lower()
-        street = rawRequest['q25_adresse']
-        street2 = rawRequest['q26_complementDadresse']
-        city = rawRequest['q27_ville']
-        zipcode = str(rawRequest['q29_codePostal'])
+
         # department = str(rawRequest['q38_dansQuel'])
         # department_id = request.env['res.country.state'].sudo().search([('code', "=", str(
         #     department)), ('country_id.code', 'ilike', 'FR')], limit=1)
