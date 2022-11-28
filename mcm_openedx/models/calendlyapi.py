@@ -725,7 +725,7 @@ class event_calendly(models.Model):
                                             [('id', '=', self.id)
                                              ]):
                                         name_coach = existe.owner.split(" ")
-                                        if partner_connected.name.split(" ")[0] in name_coach:
+                                        if partner_connected.name.split(".")[0] in name_coach:
                                             # Fiche Client odoo chercher si event
                                             exist_event = self.env['calendly.rendezvous'].sudo().search(
                                                 [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
