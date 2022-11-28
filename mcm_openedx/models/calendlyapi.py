@@ -711,7 +711,7 @@ class event_calendly(models.Model):
                 todays_date = date.today()
                 count = 0
                 for partner in self.env['res.partner'].sudo().search(
-                        [('company_id', '=', 2), ('state', '=', "en_formation"), ('statut', "=", "won"),
+                        [('company_id', '=', 2), ('state', '=', "en_formation"), ('statut', "=", "won"),('email','=',"khouloudachour.97@gmail.com")
                          ('mcm_session_id.date_exam', '!=', False), ('coach_peda.name', '=', partner_connected.name)
                          ]):
                     try:
