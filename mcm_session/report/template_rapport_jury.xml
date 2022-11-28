@@ -152,15 +152,15 @@
                                 }
                             </style>
                             <center style="padding-top:5pt!important;">
-                                <table class="table">
+                                <table class="table" style="width:100%;">
                                     <tbody>
                                         <tr>
-                                            <th class="th" align="center" style="height: 100px; width: 700px;">
+                                            <th class="th" align="center" style="height:18px;">
                                                 <b>Remarques</b>
                                             </th>
                                         </tr>
                                         <tr>
-                                            <td class="td" align="center" style="height: 300px; width: 700px;">
+                                            <td class="td" align="center" style="height:400px;">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -614,7 +614,6 @@
                                             </td>
                                         </t>
                                     </t>
-
                                     <td class="td">
                                         <t t-set="session"
                                            t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
