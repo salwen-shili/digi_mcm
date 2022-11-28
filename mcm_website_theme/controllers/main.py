@@ -3377,31 +3377,31 @@ class AuthSignupHome(AuthSignupHome):
                 odoo_contact.state_id = department_id if department_id else False
         return True
 
-    # @http.route(['/webhook_digi_form'], type='http', auth="public", csrf=False)
-    # def importer_from_jotform_webhook(self, **kw):
-    #     _logger.info("webhoook form jedom jotform %s" % (kw))
-    #     rawRequest = kw['rawRequest']
-    #     _logger.info("rawRequest : %s" % (rawRequest))
-    #     # convert response of webhook to json format
-    #     rawRequest = json.loads(rawRequest)
-    #     _logger.info("rawRequest1 : %s" % (rawRequest))
-    #     firstname = rawRequest['q5_prenom']
-    #     lastName = rawRequest['q6_nom']
-    #     tel = str(rawRequest['q41_numeroDe41'])
-    #     email = str(rawRequest['q7_email']).replace(' ', '').lower()
-    #     street = rawRequest['q25_adresse']
-    #     street2 = rawRequest['q26_complementDadresse']
-    #     city = rawRequest['q27_ville']
-    #     zipcode = str(rawRequest['q29_codePostal'])
-    #     # department = str(rawRequest['q38_dansQuel'])
-    #     # department_id = request.env['res.country.state'].sudo().search([('code', "=", str(
-    #     #     department)), ('country_id.code', 'ilike', 'FR')], limit=1)
-    #     # _logger.info("department : %s" % (str(department_id)))
-    #     # res_user = request.env['res.users']
-    #     # odoo_contact = res_user.sudo().search([('login', "=", str(
-    #     #     email).lower().replace(' ', ''))], limit=1)  # search contact using email
-    #     # _logger.info("user founded using email : %s" % (odoo_contact))
-    #     # request.uid = odoo.SUPERUSER_ID
+    @http.route(['/webhook_digi_form'], type='http', auth="public", csrf=False)
+    def importer_from_jotform_webhook(self, **kw):
+        _logger.info("webhoook form jedom jotform %s" % (kw))
+        rawRequest = kw['rawRequest']
+        _logger.info("rawRequest : %s" % (rawRequest))
+        # convert response of webhook to json format
+        rawRequest = json.loads(rawRequest)
+        _logger.info("rawRequest1 : %s" % (rawRequest))
+        firstname = rawRequest['q5_prenom']
+        lastName = rawRequest['q6_nom']
+        tel = str(rawRequest['q41_numeroDe41'])
+        email = str(rawRequest['q7_email']).replace(' ', '').lower()
+        street = rawRequest['q25_adresse']
+        street2 = rawRequest['q26_complementDadresse']
+        city = rawRequest['q27_ville']
+        zipcode = str(rawRequest['q29_codePostal'])
+        # department = str(rawRequest['q38_dansQuel'])
+        # department_id = request.env['res.country.state'].sudo().search([('code', "=", str(
+        #     department)), ('country_id.code', 'ilike', 'FR')], limit=1)
+        # _logger.info("department : %s" % (str(department_id)))
+        # res_user = request.env['res.users']
+        # odoo_contact = res_user.sudo().search([('login', "=", str(
+        #     email).lower().replace(' ', ''))], limit=1)  # search contact using email
+        # _logger.info("user founded using email : %s" % (odoo_contact))
+        # request.uid = odoo.SUPERUSER_ID
 
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
