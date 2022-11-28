@@ -32,7 +32,7 @@
                 <field name="status"/>
                 <field name="company"/>
                 <button name="send_invitation" confirm="Confirmer l'envoit" string="Envoyer Invitation"
-                        class="oe_highlight" type="object"/>
+                        class="oe_highlight" type="object"  attrs="{'invisible': [('location', 'ilike', +33)]}"/>
 
             </tree>
         </field>
