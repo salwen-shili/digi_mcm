@@ -3391,11 +3391,6 @@ class AuthSignupHome(AuthSignupHome):
         for partner_email in request.env['res.partner'].sudo().search(
                 [('email', "=", email)]):
             _logger.info("find partner %s" %(str(partner_email)))
-            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                [('email', "like", email)])
-            existe_sub.partner_id = partner_email.id
-            _logger.info("partner %s" %(str(existe_sub.partner_id)))
-
             if rawRequest['justificatifDe64']:
                 url = rawRequest['justificatifDe64']
 
@@ -3427,6 +3422,8 @@ class AuthSignupHome(AuthSignupHome):
                                                                                  'datas': image_binary,
                                                                                  'state': 'waiting', })
 
+                            request.env.cr.commit()
+
                             # replace " " avec  %20 pour eliminer les espace
                             # Ajout ticket pour notiifer le service examn pour changer mp
                             # ajouter condition sur ticket
@@ -3449,10 +3446,12 @@ class AuthSignupHome(AuthSignupHome):
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
 
-            elif rawRequest['attestationDhebergement']:
+            if rawRequest['attestationDhebergement']:
                 url = rawRequest['attestationDhebergement']
 
                 if url:
+                    _logger.info("attestationDhebergement %s" % (str(url)))
+
                     # 👉️ Check if my_var is not None (null)
                     image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                     name = "Attestation d'hébergement"
@@ -3464,7 +3463,7 @@ class AuthSignupHome(AuthSignupHome):
                             [('email', '=', email)]):
                         _logger.info("attaaaaaaaaa %s" % (str(partner.email)))
 
-                        existe_doc = request.env['documents.document'].sudo().sudo.search(
+                        existe_doc = request.env['documents.document'].sudo().search(
                             [('name', '=', name), ('partner_id', '=', partner.id)])
                         # verifier les document si existe avec le nom jotform, et partner
 
@@ -3478,6 +3477,8 @@ class AuthSignupHome(AuthSignupHome):
                                                                                  'datas': image_binary,
                                                                                  'state': 'waiting', })
 
+                            request.env.cr.commit()
+
                             # replace " " avec  %20 pour eliminer les espace
                             # Ajout ticket pour notiifer le service examn pour changer mp
                             # ajouter condition sur ticket
@@ -3499,9 +3500,12 @@ class AuthSignupHome(AuthSignupHome):
                                 print("cree ticket")
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
-            elif rawRequest['vousAvez']:
+            if rawRequest['vousAvez']:
+
                 url = rawRequest['vousAvez']
                 if url:
+                    _logger.info("vousAvez %s" % (str(url)))
+
                     # 👉️ Check if my_var is not None (null)
                     image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                     name = "Vous avez moins de 25 ans, merci d'ajouter votre attestation Journée Défense et Citoyenneté"
@@ -3521,6 +3525,8 @@ class AuthSignupHome(AuthSignupHome):
                                                                                  'datas': image_binary,
                                                                                  'state': 'waiting', })
 
+                            request.env.cr.commit()
+
                             # replace " " avec  %20 pour eliminer les espace
                             # Ajout ticket pour notiifer le service examn pour changer mp
                             # ajouter condition sur ticket
@@ -3542,9 +3548,11 @@ class AuthSignupHome(AuthSignupHome):
                                 print("cree ticket")
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
-            elif rawRequest['pieceDidentite']:
+            if rawRequest['pieceDidentite']:
                 url = rawRequest['pieceDidentite']
                 if url:
+                    _logger.info("pieceDidentite %s" % (str(url)))
+
                     # 👉️ Check if my_var is not None (null)
                     image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                     name = "Pièce d'identité de l'hébergeur - Face avant"
@@ -3564,6 +3572,8 @@ class AuthSignupHome(AuthSignupHome):
                                                                                  'datas': image_binary,
                                                                                  'state': 'waiting', })
 
+                            request.env.cr.commit()
+
                             # replace " " avec  %20 pour eliminer les espace
                             # Ajout ticket pour notiifer le service examn pour changer mp
                             # ajouter condition sur ticket
@@ -3585,7 +3595,7 @@ class AuthSignupHome(AuthSignupHome):
                                 print("cree ticket")
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
-            elif rawRequest['pieceDidentite70']:
+            if rawRequest['pieceDidentite70']:
                 url = rawRequest['pieceDidentite70']
                 if url:
                     # 👉️ Check if my_var is not None (null)
@@ -3606,6 +3616,8 @@ class AuthSignupHome(AuthSignupHome):
                                                                                  'folder_id': folder_id.id,
                                                                                  'datas': image_binary,
                                                                                  'state': 'waiting', })
+                            request.env.cr.commit()
+
 
                             # replace " " avec  %20 pour eliminer les espace
                             # Ajout ticket pour notiifer le service examn pour changer mp
