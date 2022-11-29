@@ -163,5 +163,14 @@
             <field name="sequence">5</field>
             <field name="code">records.action_find_user_using_phone()</field>
         </record>
+        <record model="ir.actions.server" id="action_update_notes">
+            <field name="name">Update aircall note in fiche client</field>
+            <field name="model_id" ref="aircall_connector.model_call_detail"/>
+            <field name="binding_model_id" ref="aircall_connector.model_call_detail"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="sequence">5</field>
+            <field name="code">records.action_update_notes()</field>
+        </record>
     </data>
 </odoo>
