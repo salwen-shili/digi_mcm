@@ -3442,7 +3442,7 @@ class AuthSignupHome(AuthSignupHome):
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
 
-            if rawRequest['attestationDhebergement']:
+            elif rawRequest['attestationDhebergement']:
                 url = rawRequest['attestationDhebergement']
 
                 if url:
@@ -3493,7 +3493,7 @@ class AuthSignupHome(AuthSignupHome):
                                 print("cree ticket")
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
-            if rawRequest['vousAvez']:
+            elif rawRequest['vousAvez']:
 
                 url = rawRequest['vousAvez']
                 if url:
@@ -3543,7 +3543,7 @@ class AuthSignupHome(AuthSignupHome):
                                 print("cree ticket")
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
-            if rawRequest['pieceDidentite']:
+            elif rawRequest['pieceDidentite']:
                 url = rawRequest['pieceDidentite']
                 if url:
                     _logger.info("pieceDidentite %s" % (str(url)))
@@ -3592,7 +3592,7 @@ class AuthSignupHome(AuthSignupHome):
                                 print("cree ticket")
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
-            if rawRequest['pieceDidentite70']:
+            elif rawRequest['pieceDidentite70']:
                 url = rawRequest['pieceDidentite70']
                 if url:
                     # 👉️ Check if my_var is not None (null)
