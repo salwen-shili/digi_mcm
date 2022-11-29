@@ -190,8 +190,8 @@ class AirCall(models.Model):
                         if call_response.content:
                             calls = json.loads(call_response.content)
                             call = calls['call']
-                            self.call_details(call)
-    def call_details(self, call_response):
+                            self.call_details(call,record)
+    def call_details(self, call_response,record):
         if call_response['call']:
             for call in call_response['call'] :
                 if (call['number']['name'] == 'MCM ACADEMY'):
