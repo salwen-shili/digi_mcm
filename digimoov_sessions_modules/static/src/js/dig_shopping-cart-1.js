@@ -1078,7 +1078,8 @@ function sessionIsAccessible(prop) {
   //init
   let isAccessible = false;
   //if months == 4 check toDay's day is superior to session's day
-  if (months == 4 && toDay.getFullYear() == sessionDate.getFullYear()) {
+  //wass commented && toDay.getFullYear() == sessionDate.getFullYear() 
+  if (months == 4 ) {
     console.log(
       sessionDate.getDate(),
       toDay.getDate(),
