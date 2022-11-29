@@ -90,14 +90,14 @@ class form_info(models.Model):
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
                                 [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
-                            for partner in self.env['res.partner'].search(
+                            for partner in self.env['res.partner'].sudo().search(
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
-                                existe_doc = self.env['documents.document'].search(
+                                existe_doc = self.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
                                 # verifier les document si existe avec le nom jotform, et partner
 
                                 if not existe_doc:
-                                    document = self.env['documents.document'].create({'name': name,
+                                    document = self.env['documents.document'].sudo().create({'name': name,
                                                                                       'type': 'binary',
                                                                                       'partner_id': partner.id,
                                                                                       'folder_id': folder_id.id,
@@ -142,7 +142,7 @@ class form_info(models.Model):
                                 # verifier les document si existe avec le nom jotform, et partner
 
                                 if not existe_doc:
-                                    document = self.env['documents.document'].create({'name': name,
+                                    document = self.env['documents.document'].sudo().create({'name': name,
                                                                                       'type': 'binary',
                                                                                       'partner_id': partner.id,
                                                                                       'folder_id': folder_id.id,
@@ -180,13 +180,13 @@ class form_info(models.Model):
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
                                 [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
-                            for partner in self.env['res.partner'].search(
+                            for partner in self.env['res.partner'].sudo().search(
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
-                                existe_doc = self.env['documents.document'].search(
+                                existe_doc = self.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
                                 # verifier les document si existe avec le nom jotform, et partner
                                 if not existe_doc:
-                                    document = self.env['documents.document'].create({'name': name,
+                                    document = self.env['documents.document'].sudo().create({'name': name,
                                                                                       'type': 'binary',
                                                                                       'partner_id': partner.id,
                                                                                       'folder_id': folder_id.id,
@@ -224,13 +224,13 @@ class form_info(models.Model):
                             name = form_info_sub["answers"][i]["text"]
                             folder_id = self.env['documents.folder'].sudo().search(
                                 [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
-                            for partner in self.env['res.partner'].search(
+                            for partner in self.env['res.partner'].sudo().search(
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
-                                existe_doc = self.env['documents.document'].search(
+                                existe_doc = self.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
                                 # verifier les document si existe avec le nom jotform, et partner
                                 if not existe_doc:
-                                    document = self.env['documents.document'].create({'name': name,
+                                    document = self.env['documents.document'].sudo().create({'name': name,
                                                                                       'type': 'binary',
                                                                                       'partner_id': partner.id,
                                                                                       'folder_id': folder_id.id,
@@ -269,13 +269,13 @@ class form_info(models.Model):
                             folder_id = self.env['documents.folder'].sudo().search(
                                 [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                             # chercher si la submission est
-                            for partner in self.env['res.partner'].search(
+                            for partner in self.env['res.partner'].sudo().search(
                                     [('email', '=', form_info_sub["answers"]["85"]["answer"])]):
-                                existe_doc = self.env['documents.document'].search(
+                                existe_doc = self.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
                                 # verifier les document si existe avec le nom jotform, et partner
                                 if not existe_doc:
-                                    document = self.env['documents.document'].create({'name': name,
+                                    document = self.env['documents.document'].sudo().create({'name': name,
                                                                                       'type': 'binary',
                                                                                       'partner_id': partner.id,
                                                                                       'folder_id': folder_id.id,
