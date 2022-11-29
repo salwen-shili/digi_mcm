@@ -164,8 +164,10 @@ class OnfidoController(http.Controller):
         _logger.info("workflow_run onfido response %s" % str(workflow_runs))
         applicant_id = workflow_runs['applicant_id']
         applicant=partner.get_applicant(applicant_id,website.onfido_api_key_live)
-        _logger.info("applicant******** %s" %str(applicant['id_numbers']))
-        currentUser = request.env['res.partner'].sudo().search([('onfido_applicant_id', "=", applicant_id)])
+        _logger.info("applicant******** %s" %str(applicant['id_numbers'][0][value]))
+        """récupérer partner_id on onfido applicant"""
+        id_partner=int(applicant['id_numbers'][0][value])
+        currentUser = request.env['res.partner'].sudo().search([('id', "=", id_partner)])
         data_onfido = request.env['onfido.info'].sudo().search([('partner_id', '=', currentUser.id)], limit=1,
                                                                order="id desc")
 
