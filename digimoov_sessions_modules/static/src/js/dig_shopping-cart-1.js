@@ -1045,11 +1045,11 @@ function disablePaymentButton() {
 }
 //Enable both payment buttons
 function enablePaymentButton() {
-  document.getElementById("pm_shop_checkout").setAttribute("disabled", "false");
+  document.getElementById("pm_shop_checkout").removeAttribute("disabled");
   document.getElementById("pm_shop_checkout").classList.remove("disabled");
   document
     .getElementById("pm_shop_checkout2")
-    .setAttribute("disabled", "false");
+    .removeAttribute("disabled");
   document.getElementById("pm_shop_checkout2").classList.remove("disabled");
 }
 
