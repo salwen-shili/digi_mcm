@@ -3396,24 +3396,20 @@ class AuthSignupHome(AuthSignupHome):
 
                 if url:
                     _logger.info("justificatifDe64 %s" % (str(url)))
-
                     # 👉️ Check if my_var is not None (null)
                     image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                    _logger.info("immmmm %s" % (str(image_binary)))
-
                     name = "Justificatif de domicile de moins de 3 mois (les factures mobile ne sont pas acceptées)"
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(
                             [('email', '=', email)]):
-                        _logger.info("immmmmaaaaaaaaaaaaaa %s" % (str(partner.email)))
 
                         existe_doc = request.env['documents.document'].sudo().search(
                             [('name', '=', name), ('partner_id', '=', partner.id)])
                         # verifier les document si existe avec le nom jotform, et partner
 
                         if not existe_doc:
-                            _logger.info("noooooooooooooooooooooot")
+                            _logger.info("not exist")
 
                             document = request.env['documents.document'].sudo().create({'name': name,
                                                                                  'type': 'binary',
@@ -3455,20 +3451,17 @@ class AuthSignupHome(AuthSignupHome):
                     # 👉️ Check if my_var is not None (null)
                     image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
                     name = "Attestation d'hébergement"
-                    _logger.info("att %s" % (str(url)))
-
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(
                             [('email', '=', email)]):
-                        _logger.info("attaaaaaaaaa %s" % (str(partner.email)))
 
                         existe_doc = request.env['documents.document'].sudo().search(
                             [('name', '=', name), ('partner_id', '=', partner.id)])
                         # verifier les document si existe avec le nom jotform, et partner
 
                         if not existe_doc:
-                            _logger.info("noooooooooooooooooooot")
+                            _logger.info("not exist")
 
                             document = request.env['documents.document'].sudo().create({'name': name,
                                                                                  'type': 'binary',
@@ -3518,6 +3511,8 @@ class AuthSignupHome(AuthSignupHome):
                         # verifier les document si existe avec le nom jotform, et partner
 
                         if not existe_doc:
+                            _logger.info("not exist")
+
                             document = request.env['documents.document'].sudo().create({'name': name,
                                                                                  'type': 'binary',
                                                                                  'partner_id': partner.id,
@@ -3565,6 +3560,8 @@ class AuthSignupHome(AuthSignupHome):
                         # verifier les document si existe avec le nom jotform, et partner
 
                         if not existe_doc:
+                            _logger.info("not exist")
+
                             document = request.env['documents.document'].sudo().create({'name': name,
                                                                                  'type': 'binary',
                                                                                  'partner_id': partner.id,
@@ -3610,6 +3607,8 @@ class AuthSignupHome(AuthSignupHome):
                         # verifier les document si existe avec le nom jotform, et partner
 
                         if not existe_doc:
+                            _logger.info("not exist")
+
                             document = request.env['documents.document'].sudo().create({'name': name,
                                                                                  'type': 'binary',
                                                                                  'partner_id': partner.id,
