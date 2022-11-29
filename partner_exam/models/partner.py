@@ -155,9 +155,10 @@ class resComapny(models.Model):
                 self.nom_evalbox = eval_name
                 # To concatenate (combine) multiple fields
                 self.code_evalbox = str(self.nom_evalbox) + str(self.prenom_evalbox)
+                ir_sequence.number_next_actual = ir_sequence.number_next_actual + ir_sequence.number_increment
                 _logger.info(
                     "Create function €€€€€ if res.mcm_session_id €€€€€€ %s" % str(self.code_evalbox))
-            elif 'mcm_session_id' in values and self.code_evalbox is False and self.state == 'en_formation':
+            elif 'mcm_session_id' in values and self.code_evalbox is False and self.statut == 'won':
                 prenom_evalbox = ir_sequence.number_next_actual
                 self.nom_evalbox = eval_name
                 self.prenom_evalbox = prenom_evalbox
