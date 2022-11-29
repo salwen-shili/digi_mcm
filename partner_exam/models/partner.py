@@ -135,7 +135,8 @@ class resComapny(models.Model):
             jours = relativedelta(date_exam, dt).months
             self.age = str(rd) + "ans" + " " + str(months) + "mois" + " " + str(
                 jours) + "jours"  # Affectation de l'age au champ age dans res.partner (année + mois)
-        if self.company_id.id == 2:  # If company = Digimoov
+        # code evalbox, if company = Digimoov
+        if self.company_id.id == 2:
             eval_name_actuel = self.nom_evalbox[1:0] if self.nom_evalbox else ''
             eval_name = str(self.mcm_session_id.session_ville_id.name_ville[
                             0:3]).upper() + "-" + eval_name_actuel if self.mcm_session_id.session_ville_id.name_ville else ''
@@ -144,7 +145,6 @@ class resComapny(models.Model):
             # Search in ir.sequence with name of the record
             ir_sequence = self.env['ir.sequence'].search([('name', '=', "Res Partner Evalbox")],
                                                          limit=1)
-
             # Condition if next number in ir.sequence == 1001 because we need max 100000
             if ir_sequence.number_next_actual == 100000:
                 # For one letter example: A:1-99999, B:1-99999
@@ -167,9 +167,6 @@ class resComapny(models.Model):
                 ir_sequence.number_next_actual = ir_sequence.number_next_actual + ir_sequence.number_increment
                 _logger.info("Self nom evalbox §§§§§ if mcm_session_id §§§§§ %s" % str(self.nom_evalbox))
                 _logger.info("Self prénom evalbox §§§§§ if mcm_session_id §§§§§ %s" % str(self.prenom_evalbox))
-            # else:
-            #     self.code_evalbox = str(self.nom_evalbox) + str(self.prenom_evalbox)
-            #     _logger.info("Self Code evalbox ##### else ##### %s" % str(self.code_evalbox))
         return session
 
     # @api.model
