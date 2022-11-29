@@ -318,14 +318,3 @@ class AirCall(models.Model):
                                     'subtype_id': subtype_id,
                                     'body': content + note['content'],
                                 })
-
-
-
-
-
-
-
-
-
-
-
