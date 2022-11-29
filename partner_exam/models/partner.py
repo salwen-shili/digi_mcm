@@ -135,20 +135,35 @@ class resComapny(models.Model):
             jours = relativedelta(date_exam, dt).months
             self.age = str(rd) + "ans" + " " + str(months) + "mois" + " " + str(
                 jours) + "jours"  # Affectation de l'age au champ age dans res.partner (année + mois)
-        if (
-                'nom_evalbox' in values or 'prenom_evalbox' in values or 'mcm_session_id' in values) and self.company_id.id == 2:  # If we have changed this fields
-            _logger.info("First if Evalbox in write function")
-            if 'mcm_session_id' in values:
-                eval_name_actuel = self.nom_evalbox[1:0] if self.nom_evalbox else ''
-                eval_name = str(self.mcm_session_id.session_ville_id.name_ville[
-                                0:3]).upper() + "-" + eval_name_actuel if self.mcm_session_id.session_ville_id.name_ville else ''
+        if self.company_id.id == 2:  # If company = Digimoov
+            eval_name_actuel = self.nom_evalbox[1:0] if self.nom_evalbox else ''
+            eval_name = str(self.mcm_session_id.session_ville_id.name_ville[
+                            0:3]).upper() + "-" + eval_name_actuel if self.mcm_session_id.session_ville_id.name_ville else ''
+            # Affectation: Generate a sequence number to prenom_evalbox field
+            self.env['ir.sequence'].next_by_code('res.partner') or '/'
+            # Search in ir.sequence with name of the record
+            ir_sequence = self.env['ir.sequence'].search([('name', '=', "Res Partner Evalbox")],
+                                                         limit=1)
+            # Condition if next number in ir.sequence == 1001 because we need max 100000
+            if ir_sequence.number_next_actual == 100000:
+                # For one letter example: A:1-99999, B:1-99999
+                # self.prenom_evalbox = ir_sequence.number_next_actual  # Update number_next_actual to 1
+                ir_sequence.number_next_actual = int('00001')  # Initialisation de 1
+                self.prenom_evalbox = ir_sequence.number_next_actual
                 self.nom_evalbox = eval_name
-                self.code_evalbox = eval_name + str(
-                    self.prenom_evalbox)  # Update code evalbox and # To concatenate (combine) multiple fields
-                _logger.info("Self prénom evalbox §§§§§ if mcm_session_id §§§§§ %s" % str(self.prenom_evalbox))
-            else:
+                # To concatenate (combine) multiple fields
                 self.code_evalbox = str(self.nom_evalbox) + str(self.prenom_evalbox)
-                _logger.info("Self Code evalbox ##### else ##### %s" % str(self.code_evalbox))
+                _logger.info(
+                    "Create function €€€€€ if res.mcm_session_id €€€€€€ %s" % str(self.code_evalbox))
+            elif 'mcm_session_id' in values and self.code_evalbox is False and self.state == 'en_formation':
+                self.nom_evalbox = eval_name
+                # Update code evalbox and # To concatenate (combine) multiple fields
+                self.code_evalbox = eval_name + str(self.prenom_evalbox)
+                _logger.info("Self nom evalbox §§§§§ if mcm_session_id §§§§§ %s" % str(self.nom_evalbox))
+                _logger.info("Self prénom evalbox §§§§§ if mcm_session_id §§§§§ %s" % str(self.prenom_evalbox))
+            # else:
+            #     self.code_evalbox = str(self.nom_evalbox) + str(self.prenom_evalbox)
+            #     _logger.info("Self Code evalbox ##### else ##### %s" % str(self.code_evalbox))
         return session
 
     @api.model
