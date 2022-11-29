@@ -166,70 +166,70 @@ class resComapny(models.Model):
             #     _logger.info("Self Code evalbox ##### else ##### %s" % str(self.code_evalbox))
         return session
 
-    @api.model
-    def create(self, vals):
-        """ Lors de la création d'une nouvelle fiche client le nom evalbox sera rempli par
-        un alphabet et prénom evalbox par séquence des nombres puis ça sera concaténé dans le champ evalbox"""
-        res = super(resComapny, self).create(vals)
-        if res.company_id.id == 2:
-            res.prenom_evalbox = self.env['ir.sequence'].next_by_code(
-                'res.partner') or '/'  # Affectation: Generate a sequence number to prenom_evalbox field
-            ir_sequence = self.env['ir.sequence'].search([('name', '=', "Res Partner Evalbox")],
-                                                         limit=1)  # Search in ir.sequence with name of the record
-            if ir_sequence.number_next_actual == 100000:  # Condition if next number in ir.sequence == 1001 because we need max 1000
-                # For one letter example: A:1-99999, B:1-99999
-                res.prenom_evalbox = ir_sequence.number_next_actual  # Update number_next_actual to 1
-                ir_sequence.number_next_actual = int('00001')  # Initialisation de 1
-                res.prenom_evalbox = ir_sequence.number_next_actual
-
-                char = ir_sequence.alphabet  # Global variable char to get alphabet from the search in sequence class
-                _logger.info(
-                    "ir_sequence.number_next_actual evalbox ##### if (create function)##### %s" % str(self.char))
-                if chr(ord(char) + 1) == "[":  # refaire boucle apres "Z" ==> "[" : le champ alphabet sera égale à "A"
-                    ir_sequence.alphabet = "A"
-                    char = ir_sequence.alphabet
-                    res.nom_evalbox = char
-                    if res.mcm_session_id:
-                        res.nom_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
-                        res.code_evalbox = str(res.nom_evalbox) + str(
-                            res.prenom_evalbox)  # To concatenate (combine) multiple fields
-                        _logger.info(
-                            "Create function €€€€€ if res.mcm_session_id €€€€€€ %s" % str(
-                                res.code_evalbox))
-                    else:
-                        res.code_evalbox = str(res.nom_evalbox) + str(
-                            res.prenom_evalbox)  # To concatenate (combine) multiple fields
-                        _logger.info(
-                            "Create function %%%%% else res.mcm_session_id %%%%%% %s" % str(
-                                res.code_evalbox))
-                else:
-                    char = chr(ord(char) + 1)
-                    res.nom_evalbox = char
-                    _logger.info("else %% create" % str(res.nom_evalbox))
-                    if res.mcm_session_id:
-                        res.nom_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
-                        res.code_evalbox = str(res.nom_evalbox) + str(
-                            res.prenom_evalbox)  # To concatenate (combine) multiple fields
-                        _logger.info("code_evalbox µµµ       create       µµµ %s" % str(res.code_evalbox))
-                    else:
-                        res.code_evalbox = str(res.nom_evalbox) + str(
-                            res.prenom_evalbox)  # To concatenate (combine) multiple fields
-                        _logger.info("else code_evalbox ££££       else      ££££ %s" % str(res.code_evalbox))
-
-            else:  # If number_next_actual != 100000
-                char = ir_sequence.alphabet
-                # ir_sequence.alphabet = char
-                res.nom_evalbox = char  # Get alphabet from ir.sequence class
-                res.prenom_evalbox = ir_sequence.number_next_actual
-                _logger.info("else prenom_evalbox +++++++++      else      ++++++++ %s" % str(res.prenom_evalbox))
-                if res.mcm_session_id:
-                    res.nom_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
-                    res.code_evalbox = str(res.nom_evalbox) + str(
-                        res.prenom_evalbox)  # To concatenate (combine) multiple fields
-                    _logger.info("IF code_evalbox ££££       IF      ££££ %s" % str(res.code_evalbox))
-                else:
-                    res.code_evalbox = str(
-                        res.nom_evalbox) + str(
-                        res.prenom_evalbox)  # To concatenate (combine) multiple fields
-                    _logger.info("else not session_id evalbox ££££       else      ££££ %s" % str(res.code_evalbox))
-        return res
+    # @api.model
+    # def create(self, vals):
+    #     """ Lors de la création d'une nouvelle fiche client le nom evalbox sera rempli par
+    #     un alphabet et prénom evalbox par séquence des nombres puis ça sera concaténé dans le champ evalbox"""
+    #     res = super(resComapny, self).create(vals)
+    #     if res.company_id.id == 2:
+    #         res.prenom_evalbox = self.env['ir.sequence'].next_by_code(
+    #             'res.partner') or '/'  # Affectation: Generate a sequence number to prenom_evalbox field
+    #         ir_sequence = self.env['ir.sequence'].search([('name', '=', "Res Partner Evalbox")],
+    #                                                      limit=1)  # Search in ir.sequence with name of the record
+    #         if ir_sequence.number_next_actual == 100000:  # Condition if next number in ir.sequence == 1001 because we need max 1000
+    #             # For one letter example: A:1-99999, B:1-99999
+    #             res.prenom_evalbox = ir_sequence.number_next_actual  # Update number_next_actual to 1
+    #             ir_sequence.number_next_actual = int('00001')  # Initialisation de 1
+    #             res.prenom_evalbox = ir_sequence.number_next_actual
+    #
+    #             char = ir_sequence.alphabet  # Global variable char to get alphabet from the search in sequence class
+    #             _logger.info(
+    #                 "ir_sequence.number_next_actual evalbox ##### if (create function)##### %s" % str(self.char))
+    #             if chr(ord(char) + 1) == "[":  # refaire boucle apres "Z" ==> "[" : le champ alphabet sera égale à "A"
+    #                 ir_sequence.alphabet = "A"
+    #                 char = ir_sequence.alphabet
+    #                 res.nom_evalbox = char
+    #                 if res.mcm_session_id:
+    #                     res.nom_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
+    #                     res.code_evalbox = str(res.nom_evalbox) + str(
+    #                         res.prenom_evalbox)  # To concatenate (combine) multiple fields
+    #                     _logger.info(
+    #                         "Create function €€€€€ if res.mcm_session_id €€€€€€ %s" % str(
+    #                             res.code_evalbox))
+    #                 else:
+    #                     res.code_evalbox = str(res.nom_evalbox) + str(
+    #                         res.prenom_evalbox)  # To concatenate (combine) multiple fields
+    #                     _logger.info(
+    #                         "Create function %%%%% else res.mcm_session_id %%%%%% %s" % str(
+    #                             res.code_evalbox))
+    #             else:
+    #                 char = chr(ord(char) + 1)
+    #                 res.nom_evalbox = char
+    #                 _logger.info("else %% create" % str(res.nom_evalbox))
+    #                 if res.mcm_session_id:
+    #                     res.nom_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
+    #                     res.code_evalbox = str(res.nom_evalbox) + str(
+    #                         res.prenom_evalbox)  # To concatenate (combine) multiple fields
+    #                     _logger.info("code_evalbox µµµ       create       µµµ %s" % str(res.code_evalbox))
+    #                 else:
+    #                     res.code_evalbox = str(res.nom_evalbox) + str(
+    #                         res.prenom_evalbox)  # To concatenate (combine) multiple fields
+    #                     _logger.info("else code_evalbox ££££       else      ££££ %s" % str(res.code_evalbox))
+    #
+    #         else:  # If number_next_actual != 100000
+    #             char = ir_sequence.alphabet
+    #             # ir_sequence.alphabet = char
+    #             res.nom_evalbox = char  # Get alphabet from ir.sequence class
+    #             res.prenom_evalbox = ir_sequence.number_next_actual
+    #             _logger.info("else prenom_evalbox +++++++++      else      ++++++++ %s" % str(res.prenom_evalbox))
+    #             if res.mcm_session_id:
+    #                 res.nom_evalbox = str(res.mcm_session_id.session_ville_id.name_ville[0:3]).upper() + "-" + char
+    #                 res.code_evalbox = str(res.nom_evalbox) + str(
+    #                     res.prenom_evalbox)  # To concatenate (combine) multiple fields
+    #                 _logger.info("IF code_evalbox ££££       IF      ££££ %s" % str(res.code_evalbox))
+    #             else:
+    #                 res.code_evalbox = str(
+    #                     res.nom_evalbox) + str(
+    #                     res.prenom_evalbox)  # To concatenate (combine) multiple fields
+    #                 _logger.info("else not session_id evalbox ££££       else      ££££ %s" % str(res.code_evalbox))
+    #     return res
