@@ -420,12 +420,12 @@ class Routes_Site(http.Controller):
             raise werkzeug.exceptions.NotFound()
 
     def get_datas_user_examen(self):
-        #a function that handles "repassage d'examen MCM" options for customers
+        # a function that handles "repassage d'examen MCM" options for customers
         partner = request.env.user.partner_id
         res = {"response": {}}
         echec_examen_taxi = 'False'
         echec_examen_vtc = 'False'
-        if request.website.is_public_user(): #check condition of public user
+        if request.website.is_public_user():  # check condition of public user
             res['response'].update(
                 {
                     "taxi": {
@@ -444,12 +444,12 @@ class Routes_Site(http.Controller):
                         "message": "Pour reserver votre nouvelle tentative, "
                                    "merci de vous connecter ou de creer votre compte client.",
                     }
-                }) #update json response of public user condition
+                })  # update json response of public user condition
         else:
             info_examen_taxi_reussi = request.env['info.examen'].sudo().search(
                 [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'taxi'),
                  ('state_theorique', "=", "reussi")], order='date_exam desc',
-                limit=1) #check if client has info examen taxi record with state "reussi"
+                limit=1)  # check if client has info examen taxi record with state "reussi"
             if info_examen_taxi_reussi:
                 res['response'].update(
                     {
@@ -462,7 +462,7 @@ class Routes_Site(http.Controller):
                                        "Si vous êtes intéressé(e) par la formation passerelle VTC-TAXI, cliquez sur je m'inscris.",
 
                         },
-                    }) #update json response of client with state "reussi"
+                    })  # update json response of client with state "reussi"
             else:
                 session_filtered_taxi = request.env['info.examen'].sudo().search(
                     [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'taxi'),
@@ -480,7 +480,7 @@ class Routes_Site(http.Controller):
                                            "Vous devez vous inscrire à la <b>formation TAXI</b> pour pouvoirr choisir la date de votre examen.<br/>"
                                            "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription."
                             },
-                        }) #update response of client who doesn't have any info exam taxi record
+                        })  # update response of client who doesn't have any info exam taxi record
                 else:
                     date_exam = session_filtered_taxi.session_id.date_exam
                     if date_exam:
@@ -501,7 +501,7 @@ class Routes_Site(http.Controller):
                                             "echec_examen": echec_examen_taxi.id,
                                             "message": "vous etes autoriser à passer l'examen taxi"
                                         },
-                                    }) # update response of authorized client
+                                    })  # update response of authorized client
                             else:
                                 res['response'].update(
                                     {
@@ -515,7 +515,7 @@ class Routes_Site(http.Controller):
                                                        "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
                                                        "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                                         },
-                                    }) #update response of denied clients
+                                    })  # update response of denied clients
                         else:
                             res['response'].update(
                                 {
@@ -528,7 +528,7 @@ class Routes_Site(http.Controller):
                                                    "Vous devez à present vous reinscrire à la formation TAXI pour retenter votre chance de nouveau.",
                                     },
 
-                                }) #update response of client who have exceeded the 12-month requirement
+                                })  # update response of client who have exceeded the 12-month requirement
                     else:
                         res['response'].update(
                             {
@@ -558,7 +558,7 @@ class Routes_Site(http.Controller):
                             "message": "Désolé, vous n'avez plus accès à cette option, car il semble que vous ayez déjà passé et réussi l'examen VTC.<br/>"
                                        "Si vous êtes intéressé(e) par la formation passerelle VTC-TAXI, cliquez sur je m'inscris.",
                         },
-                    }) #update json response of client with state "reussi"
+                    })  # update json response of client with state "reussi"
             else:
                 session_filtered_vtc = request.env['info.examen'].sudo().search(
                     [('partner_id', "=", partner.id), ('module_id.product_id.default_code', "=", 'vtc'),
@@ -578,7 +578,7 @@ class Routes_Site(http.Controller):
                                            "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
                                            "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                             },
-                        }) #update response of client who doesn't have any info exam vtc record
+                        })  # update response of client who doesn't have any info exam vtc record
                 else:
                     date_exam = session_filtered_vtc.session_id.date_exam
                     if date_exam:
@@ -599,7 +599,7 @@ class Routes_Site(http.Controller):
                                             "echec_examen": echec_examen_vtc.id,
                                             "message": "vous etes autoriser à passer l'examen vtc"
                                         },
-                                    })# update response of authorized client
+                                    })  # update response of authorized client
                             else:
                                 res['response'].update(
                                     {
@@ -614,7 +614,7 @@ class Routes_Site(http.Controller):
                                                        "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                                         },
 
-                                    })#update response of denied clients
+                                    })  # update response of denied clients
 
                         else:
                             res['response'].update(
@@ -628,7 +628,7 @@ class Routes_Site(http.Controller):
                                                    "Vous devez à present vous reinscrire à la formation VTC pour retenter votre chance de nouveau.",
                                     },
 
-                                }) #update response of client who have exceeded the 12-month requirement
+                                })  # update response of client who have exceeded the 12-month requirement
                     else:
                         res['response'].update(
                             {
@@ -643,10 +643,10 @@ class Routes_Site(http.Controller):
                                                "<a href='/service-clientele' style='color:#3366CC;'>Aide</a>",
                                 },
                             })
-        partner = json.dumps(res) #convert response to json
+        partner = json.dumps(res)  # convert response to json
         _logger.info('partner : %s' % (str(partner)))
         print('partner : %s' % (str(partner)))
-        return partner #return response
+        return partner  # return response
 
     @http.route("/examen-vtc-taxi-moto-taxi", type="http", auth="public", website=True)
     def examen(self):
@@ -662,7 +662,7 @@ class Routes_Site(http.Controller):
         taxi_price = False
         vtc_price = False
         vmdtr_price = False
-        repassage = self.get_datas_user_examen() #get json response from get_datas_user_examen function
+        repassage = self.get_datas_user_examen()  # get json response from get_datas_user_examen function
         if mcm_products:
             for product in mcm_products:
                 if product.default_code == "taxi":
@@ -680,7 +680,7 @@ class Routes_Site(http.Controller):
             "vtc_price": vtc_price if vtc_price else "",
             "vmdtr_price": vmdtr_price if vmdtr_price else "",
             "mcm_products": mcm_products,  # send mcm product to homepage
-            "repassage": repassage #pass json response with values
+            "repassage": repassage  # pass json response with values
         }
         print('values : ', str(values['repassage']))
         if request.website.id == 2:
@@ -698,7 +698,7 @@ class Routes_Site(http.Controller):
     # @http.route("/get_data_user_connected", type="json", auth="user", methods=["POST"], website=True)
     @http.route("/get-datas-user-examen", type="json", auth="public", methods=["POST"], website=True)
     def get_datas_user_examen_response(self):
-        #json url that returns json response of get_datas_user_examen function
+        # json url that returns json response of get_datas_user_examen function
         res = self.get_datas_user_examen()
         return res
 
@@ -3386,252 +3386,248 @@ class AuthSignupHome(AuthSignupHome):
         # convert response of webhook to json format
         rawRequest = json.loads(rawRequest)
         _logger.info("rawRequest1 : %s" % (rawRequest))
-        email =str(rawRequest['q85_email'])
-        justificatifDe64 = rawRequest["justificatifDe64"]
-        attestationDhebergement = rawRequest["attestationDhebergement"]
-        vousAvez = rawRequest["vousAvez"]
-        pieceDidentite = rawRequest["pieceDidentite"]
-        pieceDidentite70 = rawRequest["pieceDidentite70"]
-
-        _logger.info("justificatifDe6 : %s" % (justificatifDe64))
-        _logger.info("email: %s" % (email))
-        _logger.info("attestationDhebergement : %s" % (attestationDhebergement))
-        _logger.info("vousAvez  : %s" % (vousAvez ))
-        _logger.info("pieceDidentite : %s" % (pieceDidentite))
-        _logger.info("pieceDidentite70 : %s" % (pieceDidentite70))
-        for partner_email in request.env['res.partner'].search(
-                [('email', 'ilike', email)]):
+        email = str(rawRequest['q85_email']).lower().replace(' ','')
+        _logger.info("email %s" % (str(email)))
+        for partner_email in request.env['res.partner'].sudo().search(
+                [('email', "=", email)]):
+            _logger.info("find partner %s" %(str(partner_email)))
             existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
                 [('email', "like", email)])
             existe_sub.partner_id = partner_email.id
-            # verifier si la personne existe
-            # verifier fiche client
-            if not existe_sub:
-                new = request.env['mcm_openedx.form_info'].sudo().create({
-                    'email': email
-                })
+            _logger.info("partner %s" %(str(existe_sub.partner_id)))
 
-                if justificatifDe64:
-                    url = justificatifDe64
-                    if url:
-                        # 👉️ Check if my_var is not None (null)
-                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = "Justificatif de domicile de moins de 3 mois (les factures mobile ne sont pas acceptées)"
-                        folder_id = request.env['documents.folder'].sudo().search(
-                            [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
-                        for partner in request.env['res.partner'].search(
-                                [('email', '=',email)]):
-                            existe_doc = request.env['documents.document'].search(
-                                [('name', '=', name), ('partner_id', '=', partner.id)])
-                            # verifier les document si existe avec le nom jotform, et partner
+            if rawRequest['justificatifDe64']:
+                url = rawRequest['justificatifDe64']
 
-                            if not existe_doc:
-                                document = request.env['documents.document'].create({'name': name,
-                                                                                  'type': 'binary',
-                                                                                  'partner_id': partner.id,
-                                                                                  'folder_id': folder_id.id,
-                                                                                  'datas': image_binary,
-                                                                                  'state': 'waiting', })
+                if url:
+                    _logger.info("justificatifDe64 %s" % (str(url)))
 
-                                # replace " " avec  %20 pour eliminer les espace
-                                # Ajout ticket pour notiifer le service examn pour changer mp
-                                # ajouter condition sur ticket
+                    # 👉️ Check if my_var is not None (null)
+                    image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                    _logger.info("immmmm %s" % (str(image_binary)))
 
-                                vals = {
+                    name = "Justificatif de domicile de moins de 3 mois (les factures mobile ne sont pas acceptées)"
+                    folder_id = request.env['documents.folder'].sudo().search(
+                        [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
+                    for partner in request.env['res.partner'].sudo().search(
+                            [('email', '=', email)]):
+                        _logger.info("immmmmaaaaaaaaaaaaaa %s" % (str(partner.email)))
 
-                                    'description': 'New document Jotform JDOM %s' % (name),
-                                    'name': 'Merci de verifer le document de %s' % (partner.name),
-                                    'partner_id': partner.id,
+                        existe_doc = request.env['documents.document'].sudo().search(
+                            [('name', '=', name), ('partner_id', '=', partner.id)])
+                        # verifier les document si existe avec le nom jotform, et partner
 
-                                    'team_id': request.env['helpdesk.team'].sudo().search(
-                                        [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
-                                        limit=1).id,
-                                }
-                                description = "New document Jotform JDOM"
-                                ticket = request.env['helpdesk.ticket'].sudo().search(
-                                    [("description", "=", description)])
-                                if not ticket:
-                                    print("cree ticket")
-                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                                        vals)
-                                request.env.cr.commit()
+                        if not existe_doc:
+                            _logger.info("noooooooooooooooooooooot")
 
-                if attestationDhebergement:
-                    url = attestationDhebergement
-                    if url:
-                        # 👉️ Check if my_var is not None (null)
-                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = "Attestation d'hébergement"
-                        folder_id = request.env['documents.folder'].sudo().search(
-                            [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
-                        for partner in request.env['res.partner'].search(
-                                [('email', '=', email)]):
-                            existe_doc = request.env['documents.document'].search(
-                                [('name', '=', name), ('partner_id', '=', partner.id)])
-                            # verifier les document si existe avec le nom jotform, et partner
+                            document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                 'type': 'binary',
+                                                                                 'partner_id': partner.id,
+                                                                                 'folder_id': folder_id.id,
+                                                                                 'datas': image_binary,
+                                                                                 'state': 'waiting', })
 
-                            if not existe_doc:
-                                document = request.env['documents.document'].create({'name': name,
-                                                                                  'type': 'binary',
-                                                                                  'partner_id': partner.id,
-                                                                                  'folder_id': folder_id.id,
-                                                                                  'datas': image_binary,
-                                                                                  'state': 'waiting', })
+                            # replace " " avec  %20 pour eliminer les espace
+                            # Ajout ticket pour notiifer le service examn pour changer mp
+                            # ajouter condition sur ticket
 
-                                # replace " " avec  %20 pour eliminer les espace
-                                # Ajout ticket pour notiifer le service examn pour changer mp
-                                # ajouter condition sur ticket
+                            vals = {
 
-                                vals = {
+                                'description': 'New document Jotform JDOM %s' % (name),
+                                'name': 'Merci de verifer le document de %s' % (partner.name),
+                                'partner_id': partner.id,
 
-                                    'description': 'New document Jotform JDOM %s' % (name),
-                                    'name': 'Merci de verifer le document de %s' % (partner.name),
-                                    'partner_id': partner.id,
+                                'team_id': request.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description = "New document Jotform JDOM"
+                            ticket = request.env['helpdesk.ticket'].sudo().search(
+                                [("description", "=", description)])
+                            if not ticket:
+                                print("cree ticket")
+                                new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                    vals)
 
-                                    'team_id': request.env['helpdesk.team'].sudo().search(
-                                        [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
-                                        limit=1).id,
-                                }
-                                description = "New document Jotform JDOM"
-                                ticket = request.env['helpdesk.ticket'].sudo().search(
-                                    [("description", "=", description)])
-                                if not ticket:
-                                    print("cree ticket")
-                                    new_ticket =request.env['helpdesk.ticket'].sudo().create(
-                                        vals)
-                                request.env.cr.commit()
-                if vousAvez:
-                    url = vousAvez
-                    if url:
-                        # 👉️ Check if my_var is not None (null)
-                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = "Vous avez moins de 25 ans, merci d'ajouter votre attestation Journée Défense et Citoyenneté"
-                        folder_id = request.env['documents.folder'].sudo().search(
-                            [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
-                        for partner in request.env['res.partner'].search(
-                                [('email', '=', email)]):
-                            existe_doc = request.env['documents.document'].search(
-                                [('name', '=', name), ('partner_id', '=', partner.id)])
-                            # verifier les document si existe avec le nom jotform, et partner
+            elif rawRequest['attestationDhebergement']:
+                url = rawRequest['attestationDhebergement']
 
-                            if not existe_doc:
-                                document = request.env['documents.document'].create({'name': name,
-                                                                                  'type': 'binary',
-                                                                                  'partner_id': partner.id,
-                                                                                  'folder_id': folder_id.id,
-                                                                                  'datas': image_binary,
-                                                                                  'state': 'waiting', })
+                if url:
+                    # 👉️ Check if my_var is not None (null)
+                    image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                    name = "Attestation d'hébergement"
+                    _logger.info("att %s" % (str(url)))
 
-                                # replace " " avec  %20 pour eliminer les espace
-                                # Ajout ticket pour notiifer le service examn pour changer mp
-                                # ajouter condition sur ticket
+                    folder_id = request.env['documents.folder'].sudo().search(
+                        [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
+                    for partner in request.env['res.partner'].sudo().search(
+                            [('email', '=', email)]):
+                        _logger.info("attaaaaaaaaa %s" % (str(partner.email)))
 
-                                vals = {
+                        existe_doc = request.env['documents.document'].sudo().sudo.search(
+                            [('name', '=', name), ('partner_id', '=', partner.id)])
+                        # verifier les document si existe avec le nom jotform, et partner
 
-                                    'description': 'New document Jotform JDOM %s' % (name),
-                                    'name': 'Merci de verifer le document de %s' % (partner.name),
-                                    'partner_id': partner.id,
+                        if not existe_doc:
+                            _logger.info("noooooooooooooooooooot")
 
-                                    'team_id': request.env['helpdesk.team'].sudo().search(
-                                        [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
-                                        limit=1).id,
-                                }
-                                description = "New document Jotform JDOM"
-                                ticket = request.env['helpdesk.ticket'].sudo().search(
-                                    [("description", "=", description)])
-                                if not ticket:
-                                    print("cree ticket")
-                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                                        vals)
-                                request.env.cr.commit()
-                if pieceDidentite:
-                    url = pieceDidentite
-                    if url:
-                        # 👉️ Check if my_var is not None (null)
-                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = "Pièce d'identité de l'hébergeur - Face avant"
-                        folder_id = request.env['documents.folder'].sudo().search(
-                            [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
-                        for partner in request.env['res.partner'].search(
-                                [('email', '=', email)]):
-                            existe_doc = request.env['documents.document'].search(
-                                [('name', '=', name), ('partner_id', '=', partner.id)])
-                            # verifier les document si existe avec le nom jotform, et partner
+                            document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                 'type': 'binary',
+                                                                                 'partner_id': partner.id,
+                                                                                 'folder_id': folder_id.id,
+                                                                                 'datas': image_binary,
+                                                                                 'state': 'waiting', })
 
-                            if not existe_doc:
-                                document = request.env['documents.document'].create({'name': name,
-                                                                                  'type': 'binary',
-                                                                                  'partner_id': partner.id,
-                                                                                  'folder_id': folder_id.id,
-                                                                                  'datas': image_binary,
-                                                                                  'state': 'waiting', })
+                            # replace " " avec  %20 pour eliminer les espace
+                            # Ajout ticket pour notiifer le service examn pour changer mp
+                            # ajouter condition sur ticket
 
-                                # replace " " avec  %20 pour eliminer les espace
-                                # Ajout ticket pour notiifer le service examn pour changer mp
-                                # ajouter condition sur ticket
+                            vals = {
 
-                                vals = {
+                                'description': 'New document Jotform JDOM %s' % (name),
+                                'name': 'Merci de verifer le document de %s' % (partner.name),
+                                'partner_id': partner.id,
 
-                                    'description': 'New document Jotform JDOM %s' % (name),
-                                    'name': 'Merci de verifer le document de %s' % (partner.name),
-                                    'partner_id': partner.id,
+                                'team_id': request.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description = "New document Jotform JDOM"
+                            ticket = request.env['helpdesk.ticket'].sudo().search(
+                                [("description", "=", description)])
+                            if not ticket:
+                                print("cree ticket")
+                                new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                    vals)
+            elif rawRequest['vousAvez']:
+                url = rawRequest['vousAvez']
+                if url:
+                    # 👉️ Check if my_var is not None (null)
+                    image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                    name = "Vous avez moins de 25 ans, merci d'ajouter votre attestation Journée Défense et Citoyenneté"
+                    folder_id = request.env['documents.folder'].sudo().search(
+                        [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
+                    for partner in request.env['res.partner'].sudo().search(
+                            [('email', '=', email)]):
+                        existe_doc = request.env['documents.document'].sudo().search(
+                            [('name', '=', name), ('partner_id', '=', partner.id)])
+                        # verifier les document si existe avec le nom jotform, et partner
 
-                                    'team_id': request.env['helpdesk.team'].sudo().search(
-                                        [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
-                                        limit=1).id,
-                                }
-                                description = "New document Jotform JDOM"
-                                ticket = request.env['helpdesk.ticket'].sudo().search(
-                                    [("description", "=", description)])
-                                if not ticket:
-                                    print("cree ticket")
-                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                                        vals)
-                                request.env.cr.commit()
-                if pieceDidentite70:
-                    url = pieceDidentite70
-                    if url:
-                        # 👉️ Check if my_var is not None (null)
-                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = "Pièce d'identité de l'hébergeur - Face avant"
-                        folder_id = request.env['documents.folder'].sudo().search(
-                            [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
-                        for partner in request.env['res.partner'].search(
-                                [('email', '=', email)]):
-                            existe_doc = request.env['documents.document'].search(
-                                [('name', '=', name), ('partner_id', '=', partner.id)])
-                            # verifier les document si existe avec le nom jotform, et partner
+                        if not existe_doc:
+                            document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                 'type': 'binary',
+                                                                                 'partner_id': partner.id,
+                                                                                 'folder_id': folder_id.id,
+                                                                                 'datas': image_binary,
+                                                                                 'state': 'waiting', })
 
-                            if not existe_doc:
-                                document = request.env['documents.document'].create({'name': name,
-                                                                                  'type': 'binary',
-                                                                                  'partner_id': partner.id,
-                                                                                  'folder_id': folder_id.id,
-                                                                                  'datas': image_binary,
-                                                                                  'state': 'waiting', })
+                            # replace " " avec  %20 pour eliminer les espace
+                            # Ajout ticket pour notiifer le service examn pour changer mp
+                            # ajouter condition sur ticket
 
-                                # replace " " avec  %20 pour eliminer les espace
-                                # Ajout ticket pour notiifer le service examn pour changer mp
-                                # ajouter condition sur ticket
+                            vals = {
 
-                                vals = {
+                                'description': 'New document Jotform JDOM %s' % (name),
+                                'name': 'Merci de verifer le document de %s' % (partner.name),
+                                'partner_id': partner.id,
 
-                                    'description': 'New document Jotform JDOM %s' % (name),
-                                    'name': 'Merci de verifer le document de %s' % (partner.name),
-                                    'partner_id': partner.id,
+                                'team_id': request.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description = "New document Jotform JDOM"
+                            ticket = request.env['helpdesk.ticket'].sudo().search(
+                                [("description", "=", description)])
+                            if not ticket:
+                                print("cree ticket")
+                                new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                    vals)
+            elif rawRequest['pieceDidentite']:
+                url = rawRequest['pieceDidentite']
+                if url:
+                    # 👉️ Check if my_var is not None (null)
+                    image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                    name = "Pièce d'identité de l'hébergeur - Face avant"
+                    folder_id = request.env['documents.folder'].sudo().search(
+                        [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
+                    for partner in request.env['res.partner'].sudo().search(
+                            [('email', '=', email)]):
+                        existe_doc = request.env['documents.document'].sudo().search(
+                            [('name', '=', name), ('partner_id', '=', partner.id)])
+                        # verifier les document si existe avec le nom jotform, et partner
 
-                                    'team_id': request.env['helpdesk.team'].sudo().search(
-                                        [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
-                                        limit=1).id,
-                                }
-                                description = "New document Jotform JDOM"
-                                ticket = request.env['helpdesk.ticket'].sudo().search(
-                                    [("description", "=", description)])
-                                if not ticket:
-                                    print("cree ticket")
-                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                                        vals)
-                                request.env.cr.commit()
+                        if not existe_doc:
+                            document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                 'type': 'binary',
+                                                                                 'partner_id': partner.id,
+                                                                                 'folder_id': folder_id.id,
+                                                                                 'datas': image_binary,
+                                                                                 'state': 'waiting', })
+
+                            # replace " " avec  %20 pour eliminer les espace
+                            # Ajout ticket pour notiifer le service examn pour changer mp
+                            # ajouter condition sur ticket
+
+                            vals = {
+
+                                'description': 'New document Jotform JDOM %s' % (name),
+                                'name': 'Merci de verifer le document de %s' % (partner.name),
+                                'partner_id': partner.id,
+
+                                'team_id': request.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description = "New document Jotform JDOM"
+                            ticket = request.env['helpdesk.ticket'].sudo().search(
+                                [("description", "=", description)])
+                            if not ticket:
+                                print("cree ticket")
+                                new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                    vals)
+            elif rawRequest['pieceDidentite70']:
+                url = rawRequest['pieceDidentite70']
+                if url:
+                    # 👉️ Check if my_var is not None (null)
+                    image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                    name = "Pièce d'identité de l'hébergeur - Face avant"
+                    folder_id = request.env['documents.folder'].sudo().search(
+                        [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
+                    for partner in request.env['res.partner'].sudo().search(
+                            [('email', '=', email)]):
+                        existe_doc = request.env['documents.document'].sudo().search(
+                            [('name', '=', name), ('partner_id', '=', partner.id)])
+                        # verifier les document si existe avec le nom jotform, et partner
+
+                        if not existe_doc:
+                            document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                 'type': 'binary',
+                                                                                 'partner_id': partner.id,
+                                                                                 'folder_id': folder_id.id,
+                                                                                 'datas': image_binary,
+                                                                                 'state': 'waiting', })
+
+                            # replace " " avec  %20 pour eliminer les espace
+                            # Ajout ticket pour notiifer le service examn pour changer mp
+                            # ajouter condition sur ticket
+
+                            vals = {
+
+                                'description': 'New document Jotform JDOM %s' % (name),
+                                'name': 'Merci de verifer le document de %s' % (partner.name),
+                                'partner_id': partner.id,
+
+                                'team_id': request.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description = "New document Jotform JDOM"
+                            ticket = request.env['helpdesk.ticket'].sudo().search(
+                                [("description", "=", description)])
+                            if not ticket:
+                                print("cree ticket")
+                                new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                    vals)
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
     def webhook_integration_examen(self, **kw):
