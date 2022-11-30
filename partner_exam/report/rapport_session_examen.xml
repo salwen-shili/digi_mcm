@@ -266,7 +266,7 @@
                                     </b>
                                     à
                                     <strong>
-                                        <span t-raw="'%s' % o.mcm_session_id.session_ville_id.name_ville"/>
+                                        <span t-raw="'%s' % o.mcm_session_id.heure_examen_apres_midi"/>
                                     </strong>
 
                                     <br/>
