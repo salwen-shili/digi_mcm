@@ -40,7 +40,6 @@ class MailComposeMessage(models.TransientModel):
                 'name':values_dict.get('name',''),
                 'subject': values_dict.get('subject'),
                 'report_template': report_template if report_template else False,
-                'report_name': "Invoice_${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}" if report_template else False,
                 'auto_delete': True if report_template else False,
                 'lang': lang if lang else False,
                 'model_id':self.env['ir.model'].search([('model','=',model_name)],limit=1).id
@@ -49,6 +48,10 @@ class MailComposeMessage(models.TransientModel):
                 existing_list = self.env['mail.template'].create(vals)
             else:
                 existing_list.write(vals)
+            if existing_list and existing_list.model_id.name == "account.move":
+                existing_list.report_template = report_template if report_template else False
+                existing_list.auto_delete = True if report_template else False
+                existing_list.report_name = "Invoice_${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}" if report_template else False
         return True
 
     def sb_import_templates(self, account=False):
