@@ -26,7 +26,7 @@ class ResPartner(models.Model):
 
     def create_applicant(self, partner, token):
         """Creer un nouveau applicant avec api Onfido"""
-        url_post = "https://api.eu.onfido.com/v3.4/applicants"
+        url_post = "https://api.eu.onfido.com/v3.5/applicants"
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
@@ -35,9 +35,15 @@ class ResPartner(models.Model):
         partner.diviser_nom(partner)
         _logger.info('lastname %s' % str(partner.lastName))
 
+        """Créer un nouveau applicant avec l'id de la fiche client"""
         json_data = {
             "first_name": partner.firstName,
             "last_name": partner.lastName,
+            "id_numbers" :[
+                {"type":"other",
+                 "value":partner.id,
+                 }
+            ]
 
         }
         response = requests.post(url_post, headers=headers, data=json.dumps(json_data))
@@ -51,6 +57,18 @@ class ResPartner(models.Model):
             # partner.onfido_applicant_id = applicant['id']
         return applicant['id']
 
+    def get_applicant(self,applicant_id,token):
+        """recupérer les informations lié au applicant"""
+        url_applicant = "https://api.eu.onfido.com/v3.5/applicants/" + applicant_id
+        headers = {
+            'Authorization': 'Token token=' + token,
+            # Already added when you pass json= but not when you pass data=
+            #     'Content-Type': 'application/json',
+        }
+        response_applicant = requests.get(url_applicant, headers=headers)
+        applicant = response_applicant.json()
+        _logger.info('applicant %s' % str(applicant))
+        return applicant
     def generateSdktoken(self, applicant_id,website, token, partner):
         """Génerer un sdk token avec API pour chaque applicant """
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
