@@ -39,8 +39,6 @@ class MailComposeMessage(models.TransientModel):
                 'sb_template_id' : template_id,
                 'name':values_dict.get('name',''),
                 'subject': values_dict.get('subject'),
-                'report_template': report_template if report_template else False,
-                'auto_delete': True if report_template else False,
                 'lang': lang if lang else False,
                 'model_id':self.env['ir.model'].search([('model','=',model_name)],limit=1).id
             }
