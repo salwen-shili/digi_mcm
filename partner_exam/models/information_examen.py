@@ -102,7 +102,7 @@ class NoteExamen(models.Model):
         """ La fonction sera utilisée dans les noms de rapport en format PDF de l'interface examen."""
         self.ensure_one()
         return '- %s - %s - %s' % (self.display_name, self.ville_id.display_name, self.date_exam.strftime(
-                '%d/%m/%Y'))
+            '%d/%m/%Y'))
 
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):
@@ -189,12 +189,12 @@ class NoteExamen(models.Model):
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                     # self.partner_id.presence = "Présent(e)"
                     self.partner_id.resultat = "Admis(e)"
-                    self.code_evalbox = self.partner_id.code_evalbox
-                    self.temps_minute = self.partner_id.temps_minute
-                    self.total_time_visio_hour = self.partner_id.total_time_visio_hour
-                    self.total_time_appels_hour = self.partner_id.total_time_appels_hour
-                    self.total_time_hours = self.partner_id.total_time_hours
-                    self.company_id = self.partner_id.company_id.id
+                    # self.code_evalbox = self.partner_id.code_evalbox
+                    # self.temps_minute = self.partner_id.temps_minute
+                    # self.total_time_visio_hour = self.partner_id.total_time_visio_hour
+                    # self.total_time_appels_hour = self.partner_id.total_time_appels_hour
+                    # self.total_time_hours = self.partner_id.total_time_hours
+                    # self.company_id = self.partner_id.company_id.id
 
                 else:
                     # reset your fields
@@ -215,12 +215,12 @@ class NoteExamen(models.Model):
                         self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                         # self.partner_id.presence = "Présent(e)"
                         self.partner_id.resultat = "Ajourné(e)"
-                        self.code_evalbox = self.partner_id.code_evalbox
-                        self.temps_minute = self.partner_id.temps_minute
-                        self.total_time_visio_hour = self.partner_id.total_time_visio_hour
-                        self.total_time_appels_hour = self.partner_id.total_time_appels_hour
-                        self.total_time_hours = self.partner_id.total_time_hours
-                        self.company_id = self.partner_id.company_id.id
+                        # self.code_evalbox = self.partner_id.code_evalbox
+                        # self.temps_minute = self.partner_id.temps_minute
+                        # self.total_time_visio_hour = self.partner_id.total_time_visio_hour
+                        # self.total_time_appels_hour = self.partner_id.total_time_appels_hour
+                        # self.total_time_hours = self.partner_id.total_time_hours
+                        # self.company_id = self.partner_id.company_id.id
                     elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification and rec.partner_id:
                         self.session_id = self.partner_id.mcm_session_id
                         self.module_id = self.partner_id.module_id.id
@@ -229,12 +229,12 @@ class NoteExamen(models.Model):
                         self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                         # self.partner_id.update({'presence': "Absent(e)"})
                         self.partner_id.resultat = "Ajourné(e)"
-                        self.code_evalbox = self.partner_id.code_evalbox
-                        self.temps_minute = self.partner_id.temps_minute
-                        self.total_time_visio_hour = self.partner_id.total_time_visio_hour
-                        self.total_time_appels_hour = self.partner_id.total_time_appels_hour
-                        self.total_time_hours = self.partner_id.total_time_hours
-                        self.company_id = self.partner_id.company_id.id
+                        # self.code_evalbox = self.partner_id.code_evalbox
+                        # self.temps_minute = self.partner_id.temps_minute
+                        # self.total_time_visio_hour = self.partner_id.total_time_visio_hour
+                        # self.total_time_appels_hour = self.partner_id.total_time_appels_hour
+                        # self.total_time_hours = self.partner_id.total_time_hours
+                        # self.company_id = self.partner_id.company_id.id
                     elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True and rec.partner_id:
                         self.session_id = last_line.session_id
                         self.module_id = last_line.client_id.module_id.id
@@ -244,12 +244,12 @@ class NoteExamen(models.Model):
                         # self.partner_id.update({'presence': "Absence justifiée"})
                         self.partner_id.resultat = "Ajourné(e)"
                         self.partner_id.presence = "Absence justifiée"
-                        self.code_evalbox = self.partner_id.code_evalbox
-                        self.temps_minute = self.partner_id.temps_minute
-                        self.total_time_visio_hour = self.partner_id.total_time_visio_hour
-                        self.total_time_appels_hour = self.partner_id.total_time_appels_hour
-                        self.total_time_hours = self.partner_id.total_time_hours
-                        self.company_id = self.partner_id.company_id.id
+                        # self.code_evalbox = self.partner_id.code_evalbox
+                        # self.temps_minute = self.partner_id.temps_minute
+                        # self.total_time_visio_hour = self.partner_id.total_time_visio_hour
+                        # self.total_time_appels_hour = self.partner_id.total_time_appels_hour
+                        # self.total_time_hours = self.partner_id.total_time_hours
+                        # self.company_id = self.partner_id.company_id.id
             else:
                 print("for mcm academy")
                 if self.partner_id.company_id:
@@ -395,8 +395,8 @@ class NoteExamen(models.Model):
         api_key = ""
         if company:
             api_key = company.wedof_api_key
-            plateforme_company=company.plateforme_company_key
-            plateforme_api_key=company.plateforme_api_key
+            plateforme_company = company.plateforme_company_key
+            plateforme_api_key = company.plateforme_api_key
         headers = {
             'accept': 'application/json',
             'Content-Type': 'application/json',
@@ -509,7 +509,6 @@ class NoteExamen(models.Model):
         if res.partner_id.note_exam_id:
             info_exam = self.env['info.examen'].sudo().search(
                 [('partner_id', '=', res.partner_id.id), ('id', "!=", res.id)], order="id desc", limit=1)
-            _logger.info('info_exam µµµµµµµµµµµµµµ************ %s', info_exam.partner_id.display_name)
             _logger.info('info_exam µµµµµµµµµµµµµµ************ %s', info_exam.presence)
             if res.partner_id.module_id.product_id.default_code == 'examen' or info_exam.presence == 'absence_justifiee':
 
@@ -524,4 +523,11 @@ class NoteExamen(models.Model):
                     res.nombre_de_passage = 'premier'
             else:
                 res.nombre_de_passage = 'premier'
+        if res.partner_id:
+            res.code_evalbox = res.partner_id.code_evalbox
+            res.temps_minute = res.partner_id.temps_minute
+            res.total_time_visio_hour = res.partner_id.total_time_visio_hour
+            res.total_time_appels_hour = res.partner_id.total_time_appels_hour
+            res.total_time_hours = res.partner_id.total_time_hours
+            res.company_id = res.partner_id.company_id.id
         return res

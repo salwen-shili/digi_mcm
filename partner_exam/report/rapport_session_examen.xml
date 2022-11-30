@@ -95,7 +95,8 @@
                         <div class="row">
                             <div class="col-12" style="color:#696969;position:absolute;margin-top:310px;">
                                 <center style="font-size:12px;">
-                                    <b>DIGIMOOV</b><br/>10 rue de Penthièvre 75008 PARIS. Déclaration d'activité enregistrée
+                                    <b>DIGIMOOV</b>
+                                    <br/>10 rue de Penthièvre 75008 PARIS. Déclaration d'activité enregistrée
                                     sous le numéro 11755542075 auprès du préfet de la
                                     région d'Ile-de-France
                                     <br/>
@@ -207,7 +208,8 @@
                         <div class="row">
                             <div class="col-12" style="color:#696969;position:absolute;margin-top:120px;">
                                 <center style="font-size:12px;">
-                                    <b>DIGIMOOV</b><br/>10 rue de Penthièvre 75008 PARIS. Déclaration d'activité enregistrée
+                                    <b>DIGIMOOV</b>
+                                    <br/>10 rue de Penthièvre 75008 PARIS. Déclaration d'activité enregistrée
                                     sous le numéro 11755542075 auprès du préfet de la
                                     région d'Ile-de-France
                                     <br/>
@@ -266,7 +268,7 @@
                                     </b>
                                     à
                                     <strong>
-                                        <span t-raw="'%s' % o.mcm_session_id.session_ville_id.name_ville"/>
+                                        <span t-raw="'%s' % o.mcm_session_id.heure_examen_apres_midi"/>
                                     </strong>
 
                                     <br/>
@@ -314,9 +316,11 @@
                                 </p>
                                 <br/>
                                 <div class="row">
-                                    <div class="col-12" style="color:#696969;position:absolute;margin-top:190px;font-size:14px;">
+                                    <div class="col-12"
+                                         style="color:#696969;position:absolute;margin-top:190px;font-size:14px;">
                                         <center style="font-size:12px;">
-                                            <b>DIGIMOOV</b><br/>
+                                            <b>DIGIMOOV</b>
+                                            <br/>
                                             10 rue de Penthièvre 75008 PARIS. Déclaration d'activité enregistrée sous le
                                             numéro 11755542075 auprès du préfet de la
                                             région d'Ile-de-France
@@ -409,7 +413,8 @@
                                     <div class="col-12"
                                          style="color:#696969;position:absolute;bottom:-180px;font-size:14px;">
                                         <center style="font-size:12px;">
-                                            <b>DIGIMOOV</b><br/>
+                                            <b>DIGIMOOV</b>
+                                            <br/>
                                             10 rue de Penthièvre 75008 PARIS. Déclaration d'activité enregistrée sous le
                                             numéro 11755542075 auprès du préfet de la
                                             région d'Ile-de-France
