@@ -535,10 +535,10 @@
                                         <t t-raw="message.body"/>
                                         <t t-if="record.user_id and not record.env.user._is_superuser()">
                                             <div style="margin: 0px; padding: 0px; font-size:13px;">
-                                                Cordialement,
+                                                Si vous avez besoin de plus d’informations, n'hésitez pas à nous contacter.
                                             </div>
                                             <div style="margin: 0px; padding: 0px; font-size:13px;">
-                                                Si vous avez besoin de plus d’informations, n'hésitez pas à nous contacter.
+                                                Cordialement,
                                             </div>
                                             <div>&amp;nbsp;</div>
                                             <div t-if="record.user_id.sudo().signature" style="font-size: 13px;">
