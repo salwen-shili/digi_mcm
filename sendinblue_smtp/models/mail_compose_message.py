@@ -8,13 +8,17 @@ class MailComposeMessage(models.TransientModel):
         sender_obj = self.env['sendinblue.senders']
         odoo_sender_id = sender_obj
         template_id = values_dict.get('id')
-        print('res.partner crm.lead qqqqqqqqqqqqqqqqqqqqqqqqqqqqqq')
         template_name = values_dict.get('name','')
         list_model = []
+        report_template = False
+        lang = False
         if 'contrat' in template_name.lower():
             list_model.append('sale.order')
+            lang = "${object.partner_id.lang}"
         elif 'facture' in template_name.lower():
             list_model.append('account.move')
+            lang = "${object.partner_id.lang}"
+            report_template = self.env['ir.actions.report'].search([('report_name', "=", "account.report_invoice_with_payments")], limit=1)
         else:
             list_model.append('res.partner')
             list_model.append('crm.lead')
@@ -35,6 +39,10 @@ class MailComposeMessage(models.TransientModel):
                 'sb_template_id' : template_id,
                 'name':values_dict.get('name',''),
                 'subject': values_dict.get('subject'),
+                'report_template': report_template if report_template else False,
+                'report_name': "Invoice_${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}" if report_template else False,
+                'auto_delete': True if report_template else False,
+                'lang': lang if lang else False,
                 'model_id':self.env['ir.model'].search([('model','=',model_name)],limit=1).id
             }
             if not existing_list:
