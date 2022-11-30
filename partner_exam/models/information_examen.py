@@ -189,13 +189,6 @@ class NoteExamen(models.Model):
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                     # self.partner_id.presence = "Présent(e)"
                     self.partner_id.resultat = "Admis(e)"
-                    # self.code_evalbox = self.partner_id.code_evalbox
-                    # self.temps_minute = self.partner_id.temps_minute
-                    # self.total_time_visio_hour = self.partner_id.total_time_visio_hour
-                    # self.total_time_appels_hour = self.partner_id.total_time_appels_hour
-                    # self.total_time_hours = self.partner_id.total_time_hours
-                    # self.company_id = self.partner_id.company_id.id
-
                 else:
                     # reset your fields
                     rec.epreuve_a = rec.epreuve_a
@@ -215,12 +208,6 @@ class NoteExamen(models.Model):
                         self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                         # self.partner_id.presence = "Présent(e)"
                         self.partner_id.resultat = "Ajourné(e)"
-                        # self.code_evalbox = self.partner_id.code_evalbox
-                        # self.temps_minute = self.partner_id.temps_minute
-                        # self.total_time_visio_hour = self.partner_id.total_time_visio_hour
-                        # self.total_time_appels_hour = self.partner_id.total_time_appels_hour
-                        # self.total_time_hours = self.partner_id.total_time_hours
-                        # self.company_id = self.partner_id.company_id.id
                     elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification and rec.partner_id:
                         self.session_id = self.partner_id.mcm_session_id
                         self.module_id = self.partner_id.module_id.id
@@ -250,6 +237,12 @@ class NoteExamen(models.Model):
                         # self.total_time_appels_hour = self.partner_id.total_time_appels_hour
                         # self.total_time_hours = self.partner_id.total_time_hours
                         # self.company_id = self.partner_id.company_id.id
+                self.code_evalbox = self.partner_id.code_evalbox if self.code_evalbox is False else self.code_evalbox
+                self.temps_minute = self.partner_id.temps_minute if self.temps_minute is False else self.temps_minute
+                self.total_time_visio_hour = self.partner_id.total_time_visio_hour if self.total_time_visio_hour is False else self.total_time_visio_hour
+                self.total_time_appels_hour = self.partner_id.total_time_appels_hour if self.total_time_appels_hour is False else self.total_time_appels_hour
+                self.total_time_hours = self.partner_id.total_time_hours if self.total_time_hours is False else self.total_time_hours
+                self.company_id = self.partner_id.company_id.id if self.company_id is False else self.company_id
             else:
                 print("for mcm academy")
                 if self.partner_id.company_id:
