@@ -533,7 +533,14 @@
                                 <tr>
                                     <td style="padding: 0">
                                         <t t-raw="message.body"/>
-                                        <t t-if="record.user_id and not record.env.user._is_superuser()">
+                                        <div t-if="is_online and not record._context.get('proforma')"
+                                             style="margin: 32px 0px 32px 0px; text-align: center;">
+                                            <a t-att-href="access_url"
+                                               style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                <t t-esc="access_name"/>
+                                            </a>
+                                        </div>
+                                        <t t-if="record.user_id and not record.env.user._is_superuser()" style ="color:#000">
                                             <div style="margin: 0px; padding: 0px; font-size:13px;">
                                                 Si vous avez besoin de plus d’informations, n'hésitez pas à nous contacter.
                                             </div>
@@ -545,13 +552,6 @@
                                                 <div t-raw="record.user_id.sudo().signature"/>
                                             </div>
                                         </t>
-                                        <div t-if="is_online and not record._context.get('proforma')"
-                                             style="margin: 32px 0px 32px 0px; text-align: center;">
-                                            <a t-att-href="access_url"
-                                               style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
-                                                <t t-esc="access_name"/>
-                                            </a>
-                                        </div>
                                     </td>
                                 </tr>
                                 <!-- FOOTER -->
