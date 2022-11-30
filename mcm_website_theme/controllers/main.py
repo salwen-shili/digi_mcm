@@ -3990,3 +3990,10 @@ class AuthSignupHome(AuthSignupHome):
                     note_exam = note_exam * 5
                     odoo_contact.note_exam = str(note_exam)  # save the result of exam into client record
         return True
+
+    @http.route(['/webhook-digi-mcm-aircall'], type='http', auth="public", csrf=False)
+    def webhook_import_calls(self, **kw):
+        _logger.info("webhooook")
+        request.uid = odoo.SUPERUSER_ID
+        dataa = json.loads(request.httprequest.data)
+        _logger.info("aiiiiiiiiir call webhhoook  %s" % str(dataa))
