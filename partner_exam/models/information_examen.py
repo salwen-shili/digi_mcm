@@ -102,7 +102,7 @@ class NoteExamen(models.Model):
         """ La fonction sera utilisée dans les noms de rapport en format PDF de l'interface examen."""
         self.ensure_one()
         return '- %s - %s - %s' % (self.display_name, self.ville_id.display_name, self.date_exam.strftime(
-                '%d/%m/%Y'))
+            '%d/%m/%Y'))
 
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):
@@ -395,8 +395,8 @@ class NoteExamen(models.Model):
         api_key = ""
         if company:
             api_key = company.wedof_api_key
-            plateforme_company=company.plateforme_company_key
-            plateforme_api_key=company.plateforme_api_key
+            plateforme_company = company.plateforme_company_key
+            plateforme_api_key = company.plateforme_api_key
         headers = {
             'accept': 'application/json',
             'Content-Type': 'application/json',
