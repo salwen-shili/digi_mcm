@@ -18,6 +18,7 @@ class AirCall(models.Model):
     _inherit = ['mail.thread','mail.activity.mixin']
     _description = 'Call/Details'
 
+
     call_id = fields.Char(string="Air Call Id", required=False, )
     call_direction = fields.Char(string="AirCall Direction", required=False, )
     call_status = fields.Char(string="Status", required=False, )
@@ -95,7 +96,6 @@ class AirCall(models.Model):
         return res
 
     def action_find_user_using_phone(self):
-
         for record in self:
             _logger.info('phone _number : %s' % str(record.phone_number))
             if record.phone_number and not record.call_contact:
@@ -276,7 +276,7 @@ class AirCall(models.Model):
                 for note in call['comments']:
                     comments += note['content']
                     comment = str(note['content'])
-                    notes+=comment+'\n'
+                    notes += comment+'\n'
                     # subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
                     subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
                     entrant_sortant = ''

@@ -3386,14 +3386,14 @@ class AuthSignupHome(AuthSignupHome):
         # convert response of webhook to json format
         rawRequest = json.loads(rawRequest)
         _logger.info("rawRequest1 : %s" % (rawRequest))
-        email = str(rawRequest['q85_email']).lower().replace(' ','')
+        email = str(rawRequest['q85_email']).lower().replace(' ', '')
         _logger.info("email %s" % (str(email)))
         for partner_email in request.env['res.partner'].sudo().search(
                 [('email', "=", email)]):
-            _logger.info("find partner %s" %(str(partner_email)))
-            #add if Vous allez ajouter votre justificatif de domicile. Mais avant nous souhaitons savoir s'il est à votre nom
-            #if oui => 1 submission
-            #if non => 4 submission
+            _logger.info("find partner %s" % (str(partner_email)))
+            # add if Vous allez ajouter votre justificatif de domicile. Mais avant nous souhaitons savoir s'il est à votre nom
+            # if oui => 1 submission
+            # if non => 4 submission
             if rawRequest['q62_saisissezUne63'] == "Oui":
                 if rawRequest['justificatifDe64']:
                     url = rawRequest['justificatifDe64']
@@ -3416,11 +3416,11 @@ class AuthSignupHome(AuthSignupHome):
                                 _logger.info("not exist")
 
                                 document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                     'type': 'binary',
-                                                                                     'partner_id': partner.id,
-                                                                                     'folder_id': folder_id.id,
-                                                                                     'datas': image_binary,
-                                                                                     'state': 'waiting', })
+                                                                                            'type': 'binary',
+                                                                                            'partner_id': partner.id,
+                                                                                            'folder_id': folder_id.id,
+                                                                                            'datas': image_binary,
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -3467,11 +3467,11 @@ class AuthSignupHome(AuthSignupHome):
                                 _logger.info("not exist")
 
                                 document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                     'type': 'binary',
-                                                                                     'partner_id': partner.id,
-                                                                                     'folder_id': folder_id.id,
-                                                                                     'datas': image_binary,
-                                                                                     'state': 'waiting', })
+                                                                                            'type': 'binary',
+                                                                                            'partner_id': partner.id,
+                                                                                            'folder_id': folder_id.id,
+                                                                                            'datas': image_binary,
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -3518,11 +3518,11 @@ class AuthSignupHome(AuthSignupHome):
                                 _logger.info("not exist")
 
                                 document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                     'type': 'binary',
-                                                                                     'partner_id': partner.id,
-                                                                                     'folder_id': folder_id.id,
-                                                                                     'datas': image_binary,
-                                                                                     'state': 'waiting', })
+                                                                                            'type': 'binary',
+                                                                                            'partner_id': partner.id,
+                                                                                            'folder_id': folder_id.id,
+                                                                                            'datas': image_binary,
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -3567,11 +3567,11 @@ class AuthSignupHome(AuthSignupHome):
                                 _logger.info("not exist")
 
                                 document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                     'type': 'binary',
-                                                                                     'partner_id': partner.id,
-                                                                                     'folder_id': folder_id.id,
-                                                                                     'datas': image_binary,
-                                                                                     'state': 'waiting', })
+                                                                                            'type': 'binary',
+                                                                                            'partner_id': partner.id,
+                                                                                            'folder_id': folder_id.id,
+                                                                                            'datas': image_binary,
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -3614,13 +3614,12 @@ class AuthSignupHome(AuthSignupHome):
                                 _logger.info("not exist")
 
                                 document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                     'type': 'binary',
-                                                                                     'partner_id': partner.id,
-                                                                                     'folder_id': folder_id.id,
-                                                                                     'datas': image_binary,
-                                                                                     'state': 'waiting', })
+                                                                                            'type': 'binary',
+                                                                                            'partner_id': partner.id,
+                                                                                            'folder_id': folder_id.id,
+                                                                                            'datas': image_binary,
+                                                                                            'state': 'waiting', })
                                 request.env.cr.commit()
-
 
                                 # replace " " avec  %20 pour eliminer les espace
                                 # Ajout ticket pour notiifer le service examn pour changer mp
@@ -3991,9 +3990,262 @@ class AuthSignupHome(AuthSignupHome):
                     odoo_contact.note_exam = str(note_exam)  # save the result of exam into client record
         return True
 
-    @http.route(['/webhook-digi-mcm-aircall'], type='http', auth="public", csrf=False)
+    @http.route(['/webhook-digi-mcm-aircall'], type='json', auth="public", csrf=False)
     def webhook_import_calls(self, **kw):
-        _logger.info("webhooook")
         request.uid = odoo.SUPERUSER_ID
-        dataa = json.loads(request.httprequest.data)
-        _logger.info("aiiiiiiiiir call webhhoook  %s" % str(dataa))
+        call = json.loads(request.httprequest.data)
+        call_data = call["data"]
+        phone_number = call_data["raw_digits"]
+        societe = call_data["number"]["name"]
+        started_at = call_data['started_at']
+        ended_at = call_data['ended_at']
+        call_rec = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])])
+        if not call_rec:
+            if call["event"] == "call.answered":
+                _logger.info(" call.ended info %s" % str(call_data))
+                # if phone_number:
+                #     odoo_contact = request.env["res.users"].sudo().search(
+                #         [("phone", "=", str(phone_number))], limit=1)
+                #     if not odoo_contact:
+                #         phone_number = str(phone_number).replace(' ', '')
+                #         if '+33' not in str(phone_number):  # check if aircall api send the number of client with +33
+                #             phone = phone_number[0:2]
+                #             if str(phone) == '33' and ' ' not in str(
+                #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 33xxxxxxx)
+                #                 phone = '+' + str(phone_number)
+                #                 odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                #                 if not odoo_contact:
+                #                     phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                #                                                                                      6:8] + ' ' + phone[
+                #                                                                                                   8:10] + ' ' + phone[
+                #                                                                                                                 10:]
+                #                     odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                #             phone = phone_number[0:2]
+                #             if str(phone) == '33' and ' ' in str(
+                #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 33 x xx xx xx)
+                #                 phone = '+' + str(phone_number)
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                #             phone = phone_number[0:2]
+                #             if str(phone) in ['06', '07'] and ' ' not in str(
+                #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 07xxxxxx)
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     [("phone", "=", str(phone_number))], limit=1)
+                #                 print('odoo_contact5 :', odoo_contact.partner_id.name)
+                #                 if not odoo_contact:
+                #                     phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
+                #                                                                                      6:8] + ' ' + phone[
+                #                                                                                                   8:]
+                #                     odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                #             phone = phone_number[0:2]
+                #             if str(phone) in ['06', '07'] and ' ' in str(
+                #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 07 xx xx xx)
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     ['|', ("phone", "=", str(phone_number)),
+                #                      str(phone_number).replace(' ', '')], limit=1)
+                #         else:  # check if aircall api send the number of client with+33
+                #             if ' ' not in str(phone_number):
+                #                 phone = str(phone_number)
+                #                 phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
+                #                                                                                                     8:10] + ' ' + phone[
+                #                                                                                                                   10:]
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     [("phone", "=", phone)], limit=1)
+                #             if not odoo_contact:
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                #                 if not odoo_contact:
+                #                     phone = str(phone_number)
+                #                     phone = phone[3:]
+                #                     phone = '0' + str(phone)
+                #                     odoo_contact = request.env["res.users"].sudo().search(
+                #                         [("phone", "like", phone.replace(' ', ''))], limit=1)
+                #     _logger.info('odoo contact : %s' % str(odoo_contact.name))
+            if call["event"] == "call.commented":
+                _logger.info(" call.ended info %s" % str(call_data))
+                # if phone_number:
+                #     odoo_contact = request.env["res.users"].sudo().search(
+                #         [("phone", "=", str(phone_number))], limit=1)
+                #     if not odoo_contact:
+                #         phone_number = str(phone_number).replace(' ', '')
+                #         if '+33' not in str(phone_number):  # check if aircall api send the number of client with +33
+                #             phone = phone_number[0:2]
+                #             if str(phone) == '33' and ' ' not in str(
+                #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 33xxxxxxx)
+                #                 phone = '+' + str(phone_number)
+                #                 odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                #                 if not odoo_contact:
+                #                     phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                #                                                                                      6:8] + ' ' + phone[
+                #                                                                                                   8:10] + ' ' + phone[
+                #                                                                                                                 10:]
+                #                     odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                #             phone = phone_number[0:2]
+                #             if str(phone) == '33' and ' ' in str(
+                #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 33 x xx xx xx)
+                #                 phone = '+' + str(phone_number)
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                #             phone = phone_number[0:2]
+                #             if str(phone) in ['06', '07'] and ' ' not in str(
+                #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 07xxxxxx)
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     [("phone", "=", str(phone_number))], limit=1)
+                #                 print('odoo_contact5 :', odoo_contact.partner_id.name)
+                #                 if not odoo_contact:
+                #                     phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
+                #                                                                                      6:8] + ' ' + phone[
+                #                                                                                                   8:]
+                #                     odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                #             phone = phone_number[0:2]
+                #             if str(phone) in ['06', '07'] and ' ' in str(
+                #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 07 xx xx xx)
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     ['|', ("phone", "=", str(phone_number)),
+                #                      str(phone_number).replace(' ', '')], limit=1)
+                #         else:  # check if aircall api send the number of client with+33
+                #             if ' ' not in str(phone_number):
+                #                 phone = str(phone_number)
+                #                 phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
+                #                                                                                                     8:10] + ' ' + phone[
+                #                                                                                                                   10:]
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     [("phone", "=", phone)], limit=1)
+                #             if not odoo_contact:
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                #                 if not odoo_contact:
+                #                     phone = str(phone_number)
+                #                     phone = phone[3:]
+                #                     phone = '0' + str(phone)
+                #                     odoo_contact = request.env["res.users"].sudo().search(
+                #                         [("phone", "like", phone.replace(' ', ''))], limit=1)
+                #     _logger.info('odoo contact : %s' % str(odoo_contact))
+            if call["event"] == "call.created":
+                _logger.info('phone _number : %s' % str(societe))
+                # if phone_number:
+                #     odoo_contact = request.env["res.users"].sudo().search(
+                #         [("phone", "=", str(phone_number))], limit=1)
+                #     if not odoo_contact:
+                #         phone_number = str(phone_number).replace(' ', '')
+                #         if '+33' not in str(phone_number):  # check if aircall api send the number of client with +33
+                #             phone = phone_number[0:2]
+                #             if str(phone) == '33' and ' ' not in str(
+                #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 33xxxxxxx)
+                #                 phone = '+' + str(phone_number)
+                #                 odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                #                 if not odoo_contact:
+                #                     phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                #                                                                                      6:8] + ' ' + phone[
+                #                                                                                                   8:10] + ' ' + phone[
+                #                                                                                                                 10:]
+                #                     odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                #             phone = phone_number[0:2]
+                #             if str(phone) == '33' and ' ' in str(
+                #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 33 x xx xx xx)
+                #                 phone = '+' + str(phone_number)
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                #             phone = phone_number[0:2]
+                #             if str(phone) in ['06', '07'] and ' ' not in str(
+                #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 07xxxxxx)
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     [("phone", "=", str(phone_number))], limit=1)
+                #                 print('odoo_contact5 :', odoo_contact.partner_id.name)
+                #                 if not odoo_contact:
+                #                     phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
+                #                                                                                      6:8] + ' ' + phone[
+                #                                                                                                   8:]
+                #                     odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                #             phone = phone_number[0:2]
+                #             if str(phone) in ['06', '07'] and ' ' in str(
+                #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 07 xx xx xx)
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     ['|', ("phone", "=", str(phone_number)),
+                #                      str(phone_number).replace(' ', '')], limit=1)
+                #         else:  # check if aircall api send the number of client with+33
+                #             if ' ' not in str(phone_number):
+                #                 phone = str(phone_number)
+                #                 phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
+                #                                                                                                     8:10] + ' ' + phone[
+                #                                                                                                                   10:]
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     [("phone", "=", phone)], limit=1)
+                #             if not odoo_contact:
+                #                 odoo_contact = request.env["res.users"].sudo().search(
+                #                     [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                #                 if not odoo_contact:
+                #                     phone = str(phone_number)
+                #                     phone = phone[3:]
+                #                     phone = '0' + str(phone)
+                #                     odoo_contact = request.env["res.users"].sudo().search(
+                #                         [("phone", "like", phone.replace(' ', ''))], limit=1)
+                #     _logger.info('odoo contact : %s' % str(odoo_contact))
+                #     _logger.info('odoo contact : %s' % str(odoo_contact.name))
+                #     if not odoo_contact:
+                #         res_users = self.env["res.users"]
+                #         odoo_contact = res_users.find_user_with_phone(phone_number)
+                #         _logger.info('odoo contact1 : %s' % str(odoo_contact))
+            if call["event"] == "call.ended":
+                _logger.info('phone _number : %s' % str(societe))
+            if call["event"] == "call.tagged":
+                _logger.info(" call.ended info %s" % str(call_data))
+
+    # if phone_number:
+    #     odoo_contact = request.env["res.users"].sudo().search(
+    #         [("phone", "=", str(phone_number))], limit=1)
+    #     if not odoo_contact:
+    #         phone_number = str(phone_number).replace(' ', '')
+    #         if '+33' not in str(phone_number):  # check if aircall api send the number of client with +33
+    #             phone = phone_number[0:2]
+    #             if str(phone) == '33' and ' ' not in str(
+    #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 33xxxxxxx)
+    #                 phone = '+' + str(phone_number)
+    #                 odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+    #                 if not odoo_contact:
+    #                     phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+    #                                                                                      6:8] + ' ' + phone[
+    #                                                                                                   8:10] + ' ' + phone[
+    #                                                                                                                 10:]
+    #                     odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+    #             phone = phone_number[0:2]
+    #             if str(phone) == '33' and ' ' in str(
+    #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 33 x xx xx xx)
+    #                 phone = '+' + str(phone_number)
+    #                 odoo_contact = request.env["res.users"].sudo().search(
+    #                     ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+    #             phone = phone_number[0:2]
+    #             if str(phone) in ['06', '07'] and ' ' not in str(
+    #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 07xxxxxx)
+    #                 odoo_contact = request.env["res.users"].sudo().search(
+    #                     [("phone", "=", str(phone_number))], limit=1)
+    #                 print('odoo_contact5 :', odoo_contact.partner_id.name)
+    #                 if not odoo_contact:
+    #                     phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
+    #                                                                                      6:8] + ' ' + phone[
+    #                                                                                                   8:]
+    #                     odoo_contact = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+    #             phone = phone_number[0:2]
+    #             if str(phone) in ['06', '07'] and ' ' in str(
+    #                     phone_number):  # check if aircall api send the number of client in this format (number_format: 07 xx xx xx)
+    #                 odoo_contact = request.env["res.users"].sudo().search(
+    #                     ['|', ("phone", "=", str(phone_number)),
+    #                      str(phone_number).replace(' ', '')], limit=1)
+    #         else:  # check if aircall api send the number of client with+33
+    #             if ' ' not in str(phone_number):
+    #                 phone = str(phone_number)
+    #                 phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
+    #                                                                                                     8:10] + ' ' + phone[
+    #                                                                                                                   10:]
+    #                 odoo_contact = request.env["res.users"].sudo().search(
+    #                     [("phone", "=", phone)], limit=1)
+    #             if not odoo_contact:
+    #                 odoo_contact = request.env["res.users"].sudo().search(
+    #                     [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+    #                 if not odoo_contact:
+    #                     phone = str(phone_number)
+    #                     phone = phone[3:]
+    #                     phone = '0' + str(phone)
+    #                     odoo_contact = request.env["res.users"].sudo().search(
+    #                         [("phone", "like", phone.replace(' ', ''))], limit=1)
+    #     _logger.info('odoo contact : %s' % str(odoo_contact.name))
