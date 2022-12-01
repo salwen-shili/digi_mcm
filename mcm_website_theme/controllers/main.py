@@ -3994,6 +3994,7 @@ class AuthSignupHome(AuthSignupHome):
     def webhook_import_calls(self, **kw):
         request.uid = odoo.SUPERUSER_ID
         call = json.loads(request.httprequest.data)
+        _logger.info("########callll api#############")
 
         # call_rec = request.env['call.detail'].sudo().search([('call_id', "=", call['id'])])
         # if not call_rec:
@@ -4008,19 +4009,20 @@ class AuthSignupHome(AuthSignupHome):
             comments = call_data['comments']
             _logger.info('******** call.answered phone _number ********  : %s' % str(societe))
             _logger.info('phone _number : %s' % str(societe))
-            for call_rec in request.env['call.detail'].sudo().search([('call_id', "=", call_id)]):
-                date = datetime.fromtimestamp(call['started_at'])
-                call_rec.sudo().create({'call_id': call_data['id'],
-                                 'call_status': call_data['status'],
-                                 'call_direction': call_data['direction'],
-                                 'call_date': date,
-                                 'phone_number': call_data['raw_digits'],
-                                 'call_recording': call_data['asset'],
-                                 'digits': call_data['number']['digits'],
-                                 'company_name': call_data['number']['name'],
-                                 'notes': comments,
-                                 'company_id': 1
-                                 })
+            date = datetime.fromtimestamp(call_data['started_at'])
+            existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
+            if existee:
+                existee.notes = call["event"]
+            if not existee:
+                new = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
+                                                                'call_status': call_data['status'],
+                                                                'call_direction': call_data['direction'],
+                                                                'call_date': date,
+                                                                'phone_number': call_data['raw_digits'],
+                                                                'call_recording': call_data['asset'],
+                                                                'digits': call_data['number']['digits'],
+                                                                'company_name': call_data['number']['name'],
+                                                                })
                 _logger.info("########DONE#############")
 
         if call["event"] == "call.commented":
@@ -4033,20 +4035,20 @@ class AuthSignupHome(AuthSignupHome):
             voice_rec = call_data['asset']
             _logger.info('******** call.commented phone _number ********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
-            for call_rec in request.env['call.detail'].sudo().search([('call_id', "=", call_id)]):
-                date = datetime.fromtimestamp(call['started_at'])
-
-                call_rec.sudo().create({'call_id': call_data['id'],
-                                 'call_status': call_data['status'],
-                                 'call_direction': call_data['direction'],
-                                 'call_date': date,
-                                 'phone_number': call_data['raw_digits'],
-                                 'call_recording': call_data['asset'],
-                                 'digits': call_data['number']['digits'],
-                                 'company_name': call_data['number']['name'],
-                                 'notes': comments,
-                                 'company_id': 1
-                                 })
+            date = datetime.fromtimestamp(call_data['started_at'])
+            existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
+            if existee:
+                existee.notes = call["event"]
+            if not existee:
+                new = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
+                                                                'call_status': call_data['status'],
+                                                                'call_direction': call_data['direction'],
+                                                                'call_date': date,
+                                                                'phone_number': call_data['raw_digits'],
+                                                                'call_recording': call_data['asset'],
+                                                                'digits': call_data['number']['digits'],
+                                                                'company_name': call_data['number']['name'],
+                                                                })
                 _logger.info("########DONE#############")
 
         if call["event"] == "call.created":
@@ -4059,23 +4061,21 @@ class AuthSignupHome(AuthSignupHome):
             voice_rec = call_data['asset']
             _logger.info(' ********   call.created phone _number ********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
-            for call_rec in request.env['call.detail'].sudo().search([('call_id', "=", call_id)]):
-                date = datetime.fromtimestamp(call['started_at'])
-
-                call_rec.sudo().create({'call_id': call_data['id'],
-                                 'call_status': call_data['status'],
-                                 'call_direction': call_data['direction'],
-                                 'call_date': date,
-                                 'phone_number': call_data['raw_digits'],
-                                 'call_recording': call_data['asset'],
-                                 'digits': call_data['number']['digits'],
-                                 'company_name': call_data['number']['name'],
-                                 'notes': comments,
-                                 'company_id': 1
-                                 })
+            date = datetime.fromtimestamp(call_data['started_at'])
+            existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
+            if existee:
+                existee.notes = call["event"]
+            if not existee:
+                new = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
+                                                                'call_status': call_data['status'],
+                                                                'call_direction': call_data['direction'],
+                                                                'call_date': date,
+                                                                'phone_number': call_data['raw_digits'],
+                                                                'call_recording': call_data['asset'],
+                                                                'digits': call_data['number']['digits'],
+                                                                'company_name': call_data['number']['name'],
+                                                                })
                 _logger.info("########DONE#############")
-
-
         if call["event"] == "call.ended":
             call_data = call["data"]
             call_id = call_data["id"]
@@ -4086,23 +4086,21 @@ class AuthSignupHome(AuthSignupHome):
             voice_rec = call_data['asset']
             _logger.info(' ******** call.ended phone _number ******** : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
-            for call_rec in request.env['call.detail'].sudo().search([('call_id', "=", call_id)]):
-                date = datetime.fromtimestamp(call['started_at'])
-
-                call_rec.sudo().create({'call_id': call_data['id'],
-                                 'call_status': call_data['status'],
-                                 'call_direction': call_data['direction'],
-                                 'call_date': date,
-                                 'phone_number': call_data['raw_digits'],
-                                 'call_recording': call_data['asset'],
-                                 'digits': call_data['number']['digits'],
-                                 'company_name': call_data['number']['name'],
-                                 'notes': comments,
-                                 'company_id': 1
-                                 })
+            date = datetime.fromtimestamp(call_data['started_at'])
+            existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
+            if existee:
+                existee.notes = call["event"]
+            if not existee:
+                new = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
+                                                                'call_status': call_data['status'],
+                                                                'call_direction': call_data['direction'],
+                                                                'call_date': date,
+                                                                'phone_number': call_data['raw_digits'],
+                                                                'call_recording': call_data['asset'],
+                                                                'digits': call_data['number']['digits'],
+                                                                'company_name': call_data['number']['name'],
+                                                                })
                 _logger.info("########DONE#############")
-
-
 
         if call["event"] == "call.tagged":
             call_data = call["data"]
@@ -4114,19 +4112,21 @@ class AuthSignupHome(AuthSignupHome):
             voice_rec = call_data['asset']
             _logger.info('********  call.tagged  phone _number********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
-            for call_rec in request.env['call.detail'].sudo().search([('call_id', "=", call_id)]):
-                date = datetime.fromtimestamp(call['started_at'])
+            date = datetime.fromtimestamp(call_data['started_at'])
+            existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
+            if existee:
+                existee.notes = call["event"]
+                commentss = call["comments"][0]
+                _logger.info(commentss)
 
-                call_rec.sudo().create({'call_id': call_data['id'],
-                                 'call_status': call_data['status'],
-                                 'call_direction': call_data['direction'],
-                                 'call_date': date,
-                                 'phone_number': call_data['raw_digits'],
-                                 'call_recording': call_data['asset'],
-                                 'digits': call_data['number']['digits'],
-                                 'company_name': call_data['number']['name'],
-                                 'notes': comments,
-                                 'company_id': 1
-                                 })
+            if not existee:
+                new = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
+                                                                'call_status': call_data['status'],
+                                                                'call_direction': call_data['direction'],
+                                                                'call_date': date,
+                                                                'phone_number': call_data['raw_digits'],
+                                                                'call_recording': call_data['asset'],
+                                                                'digits': call_data['number']['digits'],
+                                                                'company_name': call_data['number']['name'],
+                                                                })
                 _logger.info("########DONE#############")
-
