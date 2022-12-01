@@ -115,7 +115,7 @@ class WebsiteSale(WebsiteSale):
             pricelist = request.env['product.pricelist'].sudo().search(
                 [('id', "=", promo)]) #search priclist in all companies
             if pricelist:
-                request.website.sale_get_order(code=pricelist.code)
+                request.website.sale_get_order(code=pricelist.code) #apply pricelist
         if sale_order :
             if sale_order.company_id.id == 1 and product:
                 if 'taxi' not in str(product.name).lower() and sale_order.partner_id.statut != "won":
