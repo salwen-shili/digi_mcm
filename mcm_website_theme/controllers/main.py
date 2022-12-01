@@ -4002,37 +4002,131 @@ class AuthSignupHome(AuthSignupHome):
             call_id = call_data["id"]
             phone_number = call_data["raw_digits"]
             societe = call_data["number"]["name"]
+            direction = call_data['direction']
+            status = call_data['status']
+            voice_rec = call_data['asset']
+            comments = call_data['comments']
+            _logger.info('******** call.answered phone _number ********  : %s' % str(societe))
             _logger.info('phone _number : %s' % str(societe))
-
-
+            for call_rec in request.env['call.detail'].sudo().search([('call_id', "=", call_id)]):
+                date = datetime.fromtimestamp(call['started_at'])
+                call_rec.sudo().create({'call_id': call_data['id'],
+                                 'call_status': call_data['status'],
+                                 'call_direction': call_data['direction'],
+                                 'call_date': date,
+                                 'phone_number': call_data['raw_digits'],
+                                 'call_recording': call_data['asset'],
+                                 'digits': call_data['number']['digits'],
+                                 'company_name': call_data['number']['name'],
+                                 'notes': comments,
+                                 'company_id': 1
+                                 })
+                _logger.info("########DONE#############")
 
         if call["event"] == "call.commented":
             call_data = call["data"]
             call_id = call_data["id"]
             phone_number = call_data["raw_digits"]
             societe = call_data["number"]["name"]
+            direction = call_data['direction']
+            status = call_data['status']
+            voice_rec = call_data['asset']
             _logger.info('******** call.commented phone _number ********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
+            for call_rec in request.env['call.detail'].sudo().search([('call_id', "=", call_id)]):
+                date = datetime.fromtimestamp(call['started_at'])
+
+                call_rec.sudo().create({'call_id': call_data['id'],
+                                 'call_status': call_data['status'],
+                                 'call_direction': call_data['direction'],
+                                 'call_date': date,
+                                 'phone_number': call_data['raw_digits'],
+                                 'call_recording': call_data['asset'],
+                                 'digits': call_data['number']['digits'],
+                                 'company_name': call_data['number']['name'],
+                                 'notes': comments,
+                                 'company_id': 1
+                                 })
+                _logger.info("########DONE#############")
+
         if call["event"] == "call.created":
             call_data = call["data"]
             call_id = call_data["id"]
             phone_number = call_data["raw_digits"]
             societe = call_data["number"]["name"]
+            direction = call_data['direction']
+            status = call_data['status']
+            voice_rec = call_data['asset']
             _logger.info(' ********   call.created phone _number ********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
+            for call_rec in request.env['call.detail'].sudo().search([('call_id', "=", call_id)]):
+                date = datetime.fromtimestamp(call['started_at'])
+
+                call_rec.sudo().create({'call_id': call_data['id'],
+                                 'call_status': call_data['status'],
+                                 'call_direction': call_data['direction'],
+                                 'call_date': date,
+                                 'phone_number': call_data['raw_digits'],
+                                 'call_recording': call_data['asset'],
+                                 'digits': call_data['number']['digits'],
+                                 'company_name': call_data['number']['name'],
+                                 'notes': comments,
+                                 'company_id': 1
+                                 })
+                _logger.info("########DONE#############")
+
+
         if call["event"] == "call.ended":
             call_data = call["data"]
             call_id = call_data["id"]
             phone_number = call_data["raw_digits"]
             societe = call_data["number"]["name"]
+            direction = call_data['direction']
+            status = call_data['status']
+            voice_rec = call_data['asset']
             _logger.info(' ******** call.ended phone _number ******** : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
+            for call_rec in request.env['call.detail'].sudo().search([('call_id', "=", call_id)]):
+                date = datetime.fromtimestamp(call['started_at'])
+
+                call_rec.sudo().create({'call_id': call_data['id'],
+                                 'call_status': call_data['status'],
+                                 'call_direction': call_data['direction'],
+                                 'call_date': date,
+                                 'phone_number': call_data['raw_digits'],
+                                 'call_recording': call_data['asset'],
+                                 'digits': call_data['number']['digits'],
+                                 'company_name': call_data['number']['name'],
+                                 'notes': comments,
+                                 'company_id': 1
+                                 })
+                _logger.info("########DONE#############")
+
+
 
         if call["event"] == "call.tagged":
             call_data = call["data"]
             call_id = call_data["id"]
             phone_number = call_data["raw_digits"]
             societe = call_data["number"]["name"]
-            _logger.info('********  call.tagged  phone _number ********  : %s' % str(societe))
+            direction = call_data['direction']
+            status = call_data['status']
+            voice_rec = call_data['asset']
+            _logger.info('********  call.tagged  phone _number********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
+            for call_rec in request.env['call.detail'].sudo().search([('call_id', "=", call_id)]):
+                date = datetime.fromtimestamp(call['started_at'])
+
+                call_rec.sudo().create({'call_id': call_data['id'],
+                                 'call_status': call_data['status'],
+                                 'call_direction': call_data['direction'],
+                                 'call_date': date,
+                                 'phone_number': call_data['raw_digits'],
+                                 'call_recording': call_data['asset'],
+                                 'digits': call_data['number']['digits'],
+                                 'company_name': call_data['number']['name'],
+                                 'notes': comments,
+                                 'company_id': 1
+                                 })
+                _logger.info("########DONE#############")
 
