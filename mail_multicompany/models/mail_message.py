@@ -22,7 +22,7 @@ class MailMessage(models.Model):
         # if alias_domain:
         #     alias_domain.sudo().write({'value':self.env.company.alias_domain})
         icp_domain = self.env["ir.config_parameter"].sudo().get_param("mail.catchall.domain") #get mail.catchall.domain parameter
-        _logger.info("res config setting alias domain : %s et ir config paramètres mail catchall domain : %s" %(str(alias),str(icp_domain)))
+        _logger.info("res config setting alias domain : %s et ir config paramètres mail catchall domain : %s" %(str(self.env.company.alias_domain),str(icp_domain)))
         if alias != icp_domain: #check difference between parametre mail.catchall.domain and alias domain
             try :
                 self.env["ir.config_parameter"].sudo().set_param("mail.catchall.domain", self.env.company.alias_domain)
