@@ -250,7 +250,6 @@ class NoteExamen(models.Model):
                     self.partner_id.presence = 'Absent(e)'
                 else:
                     self.partner_id.presence = 'Absence justifiée'
-        if self.epreuve_a or self.epreuve_b:
             _logger.info('************** EPREUVE A ************ %s', self.epreuve_a)
             self.code_evalbox = self.partner_id.code_evalbox if self.code_evalbox is False else self.code_evalbox
             self.temps_minute = self.partner_id.temps_minute if self.temps_minute is False else self.temps_minute
