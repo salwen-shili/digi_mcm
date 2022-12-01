@@ -27,6 +27,7 @@ class AirCall(models.Model):
     user_id = fields.Many2one(comodel_name="res.users", string="Task Assigned To",
                               required=False, )
     phone_number = fields.Char(string="Phone Number", required=False, )
+    owner = fields.Char(string="Owner", required=False, )
     user_name = fields.Char(string="User Name", required=False)
     company_name = fields.Char(string="Company Name", required=False)
     digits = fields.Char(string="Company Number", required=False)
