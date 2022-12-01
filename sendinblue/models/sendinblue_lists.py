@@ -205,7 +205,11 @@ class sendinblueLists(models.Model):
             response = rec.account_id._send_request('contacts/lists/%s' % rec.list_id, {})
             rec.create_or_update_list(response, account=rec.account_id)
         for folder in self.mapped('folder_id'):
-            folder.refresh_folder()
+            try:
+                folder.refresh_folder()
+            except Exception:
+                self.env.cr.rollback()
+                _logger.exception("Failure Sendinblue folder not refreshed")
         return True
 
     def _prepare_vals_for_to_create_partner(self, vals):
@@ -234,13 +238,13 @@ class sendinblueLists(models.Model):
                     continue
                 attributes = member.get('attributes')
                 update_partner_required = True
-                contact_id = mailing_contact_obj.search([('email', '=', member.get('email'))])
+                contact_id = mailing_contact_obj.search([('email', '=', member.get('email'))], limit=1)
                 if attributes.get('LASTNAME', '') or attributes.get('FIRSTNAME', ''):
                     name = "%s %s" % (attributes.get('LASTNAME', ''), attributes.get('FIRSTNAME', ''))
                 else:
                     name = member.get('email',' ')
                 emailBlacklisted = member.get('emailBlacklisted')
-                blacklisted_mail = mail_blacklist_obj.search([('email','ilike',member.get('email'))])
+                blacklisted_mail = mail_blacklist_obj.search([('email','ilike',member.get('email'))], limit=1)
                 prepared_vals_for_create_partner = self._prepare_vals_for_to_create_partner(member)
                 prepared_vals_for_create_partner.update({'sendinblue_id': member.get('id')})
                 if blacklisted_mail and emailBlacklisted:
