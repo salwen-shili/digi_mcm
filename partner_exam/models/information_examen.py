@@ -90,7 +90,7 @@ class NoteExamen(models.Model):
     date_resultat_officiel = fields.Date("Date Résultat officiel")
     date_exam_pratique = fields.Date("Date Examen Pratique", track_visibility='always')
     code_evalbox = fields.Char(string="Code Evalbox")
-    temps_minute = fields.Char()
+    temps_minute = fields.Integer()
     total_time_visio_hour = fields.Char()
     total_time_appels_hour = fields.Char()
     total_time_hours = fields.Char()
