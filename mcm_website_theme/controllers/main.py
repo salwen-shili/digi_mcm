@@ -4009,47 +4009,82 @@ class AuthSignupHome(AuthSignupHome):
             comm = call_data["comments"]
 
             _logger.info('******** call.answered phone _number ********  : %s' % str(societe))
-            _logger.info('phone _number : %s' % str(societe))
+            _logger.info(' call_data : %s' % str(call_data))
             date = datetime.fromtimestamp(call_data['started_at'])
             existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
+            subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
             if existee:
-
-                existee.notes = call["event"]
                 comm = call_data["comments"]
+                _logger.info('*commmmmmmmmmmmmmmm**  : %s' % str(comm))
+                if comm[0]["content"] != " ":
+                    _logger.info('*commmmmmmmmmmmmmmm notttttttt videe **  : %s' % str(comm[0]["content"]))
+                    existee.notes = comm[0]["content"]
+                if not existee.call_contact:
+                    existee.action_find_user_using_phone()
+                if existee.call_contact and existee.notes:
+                    message = request.env['mail.message'].sudo().search(
+                        [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
+                         ('res_id', '=', existee.call_contact.id), ('body', "ilike", str(existee.notes))])
+                    if not message:
+                        started_at = call_data['started_at']
+                    if started_at:
+                        started_at = str(datetime.fromtimestamp(started_at))
+                    ended_at = call_data['ended_at']
+                    if ended_at:
+                        ended_at = str(datetime.fromtimestamp(ended_at))
+                    user_name = ''
+                    if call['user']:
+                        user_name = str(call['user']['name'])
+                    else:
+                        user_name = ''
+                    subject = user_name + " " + started_at + " " + ended_at
+                    message = request.env['mail.message'].sudo().search(
+                        [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
+                         ('res_id', '=', existee.call_contact.id), ('subject', "=",
+                                                                    subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
+                    _logger.info('aircall find message mcm with subject %s : %s' % (
+                        str(existee.call_contact), (str(subject))))
+                    if message:
+                        _logger.info("aircall message found : %s" % (str(message.body)))
+                    if str(comm[0]["content"] != " ") not in message.body:
+                        message.sudo().write({
+                            'body': message.body + '\n' + str(comm[0]["content"] != " ")
+                        })
 
-                if call_data["comments"] != [""]:
-                    _logger.info('*commmmmmmmmmmmmmmm**  : %s' % str(existee.notes))
+                    existee.call_recording = call_data['asset']
+                    values = {
+                        'record_name': existee.call_contact.name,
+                        'model': 'res.partner',
+                        'message_type': 'comment',
+                        'subtype_id': existee.call_contact.env['mail.message.subtype'].search(
+                            [('name', '=', 'Note')]).id,
+                        'res_id': existee.call_contact.id,
+                        'author_id': existee.call_contact.env.user.partner_id.id,
+                        'date': datetime.now(),
+                        'body':existee.notes
+                    }
+                    existee.call_contact.env['mail.message'].sudo().create(values)
 
-                existee.call_recording = call_data['asset']
-                values = {
-                    'record_name': existee.call_contact.name,
-                    'model': 'res.partner',
-                    'message_type': 'comment',
-                    'subtype_id': existee.call_contact.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-                    'res_id': existee.call_contact.id,
-                    'author_id': existee.call_contact.env.user.partner_id.id,
-                    'date': datetime.now(),
-
-                    'body': "testttttttttttttttttttt."
-                }
-                existee.call_contact.env['mail.message'].sudo().create(values)
             if not existee:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
-                                                                            'call_direction': call_data['direction'],
+                                                                            'call_direction': call_data[
+                                                                                'direction'],
                                                                             'call_date': date,
-                                                                            'phone_number': call_data['raw_digits'],
-                                                                            'call_recording': call_data['asset'],
-                                                                            'digits': call_data['number']['digits'],
                                                                             'owner': call_data["user"]["name"],
-
-                                                                            'company_name': call_data['number']['name'],
+                                                                            'phone_number': call_data[
+                                                                                'raw_digits'],
+                                                                            'call_recording': call_data[
+                                                                                'asset'],
+                                                                            'digits': call_data['number'][
+                                                                                'digits'],
+                                                                            'company_name': call_data['number'][
+                                                                                'name'],
                                                                             })
-
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                    request.env.cr.commit()
-                    _logger.info("########DONE#############")
+                request.env.cr.commit()
+                _logger.info("########DONE#############")
 
         if call["event"] == "call.commented":
             call_data = call["data"]
@@ -4079,7 +4114,7 @@ class AuthSignupHome(AuthSignupHome):
                     'res_id': existee.call_contact.id,
                     'author_id': existee.call_contact.env.user.partner_id.id,
                     'date': datetime.now(),
-                    'body': "testttttttttttttttttttt."
+                    'body':existee.notes
                 }
                 existee.call_contact.env['mail.message'].sudo().create(values)
             if not existee:
@@ -4110,40 +4145,79 @@ class AuthSignupHome(AuthSignupHome):
             _logger.info(' call_data : %s' % str(call_data))
             date = datetime.fromtimestamp(call_data['started_at'])
             existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
+            subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
             if existee:
                 comm = call_data["comments"]
                 _logger.info('*commmmmmmmmmmmmmmm**  : %s' % str(comm))
                 if comm[0]["content"] != " ":
                     _logger.info('*commmmmmmmmmmmmmmm notttttttt videe **  : %s' % str(comm[0]["content"]))
                     existee.notes = comm[0]["content"]
+                if not existee.call_contact:
+                    existee.action_find_user_using_phone()
+                if existee.call_contact and existee.notes:
+                    message = request.env['mail.message'].sudo().search(
+                        [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
+                         ('res_id', '=', existee.call_contact.id), ('body', "ilike", str(existee.notes))])
+                    if not message:
+                        started_at = call_data['started_at']
+                    if started_at:
+                        started_at = str(datetime.fromtimestamp(started_at))
+                    ended_at = call_data['ended_at']
+                    if ended_at:
+                        ended_at = str(datetime.fromtimestamp(ended_at))
+                    user_name = ''
+                    if call['user']:
+                        user_name = str(call['user']['name'])
+                    else:
+                        user_name = ''
+                    subject = user_name + " " + started_at + " " + ended_at
+                    message = request.env['mail.message'].sudo().search(
+                        [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
+                         ('res_id', '=', existee.call_contact.id), ('subject', "=",
+                                                                    subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
+                    _logger.info('aircall find message mcm with subject %s : %s' % (
+                        str(existee.call_contact), (str(subject))))
+                    if message:
+                        _logger.info("aircall message found : %s" % (str(message.body)))
+                    if str(comm[0]["content"] != " ") not in message.body:
+                        message.sudo().write({
+                            'body': message.body + '\n' + str(comm[0]["content"] != " ")
+                        })
 
-                existee.call_recording = call_data['asset']
-                values = {
-                    'record_name': existee.call_contact.name,
-                    'model': 'res.partner',
-                    'message_type': 'comment',
-                    'subtype_id': existee.call_contact.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-                    'res_id': existee.call_contact.id,
-                    'author_id': existee.call_contact.env.user.partner_id.id,
-                    'date': datetime.now(),
-                    'body': "testttttttttttttttttttt."
-                }
-                existee.call_contact.env['mail.message'].sudo().create(values)
+                    existee.call_recording = call_data['asset']
+                    values = {
+                        'record_name': existee.call_contact.name,
+                        'model': 'res.partner',
+                        'message_type': 'comment',
+                        'subtype_id': existee.call_contact.env['mail.message.subtype'].search(
+                            [('name', '=', 'Note')]).id,
+                        'res_id': existee.call_contact.id,
+                        'author_id': existee.call_contact.env.user.partner_id.id,
+                        'date': datetime.now(),
+                        'body':existee.notes
+                    }
+                    existee.call_contact.env['mail.message'].sudo().create(values)
+
             if not existee:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
-                                                                            'call_direction': call_data['direction'],
+                                                                            'call_direction': call_data[
+                                                                                'direction'],
                                                                             'call_date': date,
                                                                             'owner': call_data["user"]["name"],
-                                                                            'phone_number': call_data['raw_digits'],
-                                                                            'call_recording': call_data['asset'],
-                                                                            'digits': call_data['number']['digits'],
-                                                                            'company_name': call_data['number']['name'],
+                                                                            'phone_number': call_data[
+                                                                                'raw_digits'],
+                                                                            'call_recording': call_data[
+                                                                                'asset'],
+                                                                            'digits': call_data['number'][
+                                                                                'digits'],
+                                                                            'company_name': call_data['number'][
+                                                                                'name'],
                                                                             })
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                    request.env.cr.commit()
-                    _logger.info("########DONE#############")
+                request.env.cr.commit()
+                _logger.info("########DONE#############")
         if call["event"] == "call.ended":
             call_data = call["data"]
             call_id = call_data["id"]
@@ -4156,40 +4230,79 @@ class AuthSignupHome(AuthSignupHome):
             _logger.info(' call_data : %s' % str(call_data))
             date = datetime.fromtimestamp(call_data['started_at'])
             existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
+            subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
             if existee:
                 comm = call_data["comments"]
                 _logger.info('*commmmmmmmmmmmmmmm**  : %s' % str(comm))
                 if comm[0]["content"] != " ":
                     _logger.info('*commmmmmmmmmmmmmmm notttttttt videe **  : %s' % str(comm[0]["content"]))
                     existee.notes = comm[0]["content"]
-                values = {
-                    'record_name': existee.call_contact.name,
-                    'model': 'res.partner',
-                    'message_type': 'comment',
-                    'subtype_id': existee.call_contact.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-                    'res_id': existee.call_contact.id,
-                    'author_id': existee.call_contact.env.user.partner_id.id,
-                    'date': datetime.now(),
-                    'body': "testttttttttttttttttttt."
-                }
-                existee.call_contact.env['mail.message'].sudo().create(values)
-                _logger.info('*commmmmmmmmmmmmmmm**  : %s' % str(comm))
+                if not existee.call_contact:
+                    existee.action_find_user_using_phone()
+                if existee.call_contact and existee.notes:
+                    message = request.env['mail.message'].sudo().search(
+                        [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
+                         ('res_id', '=', existee.call_contact.id), ('body', "ilike", str(existee.notes))])
+                    if not message:
+                        started_at = call_data['started_at']
+                    if started_at:
+                        started_at = str(datetime.fromtimestamp(started_at))
+                    ended_at = call_data['ended_at']
+                    if ended_at:
+                        ended_at = str(datetime.fromtimestamp(ended_at))
+                    user_name = ''
+                    if call['user']:
+                        user_name = str(call['user']['name'])
+                    else:
+                        user_name = ''
+                    subject = user_name + " " + started_at + " " + ended_at
+                    message = request.env['mail.message'].sudo().search(
+                        [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
+                         ('res_id', '=', existee.call_contact.id), ('subject', "=",
+                                                                    subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
+                    _logger.info('aircall find message mcm with subject %s : %s' % (
+                        str(existee.call_contact), (str(subject))))
+                    if message:
+                        _logger.info("aircall message found : %s" % (str(message.body)))
+                    if str(comm[0]["content"] != " ") not in message.body:
+                        message.sudo().write({
+                            'body': message.body + '\n' + str(comm[0]["content"] != " ")
+                        })
+
+                    existee.call_recording = call_data['asset']
+                    values = {
+                        'record_name': existee.call_contact.name,
+                        'model': 'res.partner',
+                        'message_type': 'comment',
+                        'subtype_id': existee.call_contact.env['mail.message.subtype'].search(
+                            [('name', '=', 'Note')]).id,
+                        'res_id': existee.call_contact.id,
+                        'author_id': existee.call_contact.env.user.partner_id.id,
+                        'date': datetime.now(),
+                        'body':existee.notes
+                    }
+                    existee.call_contact.env['mail.message'].sudo().create(values)
 
             if not existee:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
-                                                                            'call_direction': call_data['direction'],
+                                                                            'call_direction': call_data[
+                                                                                'direction'],
                                                                             'call_date': date,
                                                                             'owner': call_data["user"]["name"],
-                                                                            'phone_number': call_data['raw_digits'],
-                                                                            'call_recording': call_data['asset'],
-                                                                            'digits': call_data['number']['digits'],
-                                                                            'company_name': call_data['number']['name'],
+                                                                            'phone_number': call_data[
+                                                                                'raw_digits'],
+                                                                            'call_recording': call_data[
+                                                                                'asset'],
+                                                                            'digits': call_data['number'][
+                                                                                'digits'],
+                                                                            'company_name': call_data['number'][
+                                                                                'name'],
                                                                             })
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                    request.env.cr.commit()
-                    _logger.info("########DONE#############")
+                request.env.cr.commit()
+                _logger.info("########DONE#############")
 
         if call["event"] == "call.tagged":
             call_data = call["data"]
@@ -4252,7 +4365,7 @@ class AuthSignupHome(AuthSignupHome):
                         'res_id': existee.call_contact.id,
                         'author_id': existee.call_contact.env.user.partner_id.id,
                         'date': datetime.now(),
-                        'body': "testttttttttttttttttttt."
+                        'body':existee.notes
                     }
                     existee.call_contact.env['mail.message'].sudo().create(values)
 
@@ -4272,7 +4385,7 @@ class AuthSignupHome(AuthSignupHome):
                                                                             'company_name': call_data['number'][
                                                                                 'name'],
                                                                             })
-            if new_call_detail and new_call_detail.phone_number:
-                new_call_detail.action_find_user_using_phone()
-            request.env.cr.commit()
-            _logger.info("########DONE#############")
+                if new_call_detail and new_call_detail.phone_number:
+                    new_call_detail.action_find_user_using_phone()
+                request.env.cr.commit()
+                _logger.info("########DONE#############")
