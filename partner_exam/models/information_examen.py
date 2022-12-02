@@ -376,6 +376,7 @@ class NoteExamen(models.Model):
                     _logger.info('if service done %s' % info_exam.partner_id.numero_cpf)
                     info_exam.partner_id.statut_cpf = "service_declared"
                     info_exam.sorti_formation = True
+                    self.env.cr.commit()
                     info_exam.partner_id.date_cpf = lastupd
                     if product_id:
                         info_exam.partner_id.id_edof = product_id.id_edof
@@ -458,6 +459,7 @@ class NoteExamen(models.Model):
                         _logger.info('if service done %s' % info_exam.partner_id.numero_cpf)
                         info_exam.partner_id.statut_cpf = "service_declared"
                         info_exam.sorti_formation = True
+                        self.env.cr.commit()
                         info_exam.partner_id.date_cpf = lastupd
                         if product_id:
                             info_exam.partner_id.id_edof = product_id.id_edof
@@ -523,3 +525,19 @@ class NoteExamen(models.Model):
             res.total_time_hours = res.partner_id.total_time_hours
             res.company_id = res.partner_id.company_id.id
         return res
+
+
+    def change_state_sortie(self):
+
+        date_time_str = '30/11/2022'
+        date_time_obj = datetime.strptime(date_time_str, "%d/%m/%Y")
+        partners=self.env['res.partner'].sudo().search([("mcm_session_id.date_exam","=",date_time_obj),
+                                                        ("statut_cpf","=","service_declared"),
+                                                        ])
+        for partner in partners:
+            _logger.info("partner %s" %str(partner.name))
+            note_exam=self.env['info.examen'].sudo().search([("partner_id","=",partner.id),
+                                                             ("date_exam","=",partner.mcm_session_id.date_exam)],limit=1)
+            _logger.info("list des note d'examen %s" %(note_exam.partner_id.name))
+            note_exam.sorti_formation=True
+            self.env.cr.commit()
