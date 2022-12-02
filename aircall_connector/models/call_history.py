@@ -42,7 +42,6 @@ class AirCall(models.Model):
         ax_api_id = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.ax_api_id')
         is_tag = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.is_tag')
         ax_api_token = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.ax_api_token')
-
         if is_tag and 'is_imp_tag' in values and not values['is_imp_tag']:
             tag_ids = []
             auth = ax_api_id + ':' + ax_api_token

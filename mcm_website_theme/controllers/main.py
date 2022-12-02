@@ -4016,7 +4016,9 @@ class AuthSignupHome(AuthSignupHome):
             if existee:
                 comm = call_data["comments"]
                 _logger.info('*commmmmmmmmmmmmmmm**  : %s' % str(comm))
-                if comm[0]["content"] != " ":
+                if comm and comm[0]["content"]:
+
+
                     _logger.info('*commmmmmmmmmmmmmmm notttttttt videe **  : %s' % str(comm[0]["content"]))
                     existee.notes = comm[0]["content"]
                 if not existee.call_contact:
@@ -4054,7 +4056,7 @@ class AuthSignupHome(AuthSignupHome):
                     existee.call_recording = call_data['asset']
                     values = {
                         'record_name': existee.call_contact.name,
-                        'subject': existee.owner + " " + existee.started_at + " " + existee.ended_at,
+                        'subject': existee.owner + " " + started_at + " " + ended_at,
                         'model': 'res.partner',
                         'message_type': 'comment',
                         'subtype_id': existee.call_contact.env['mail.message.subtype'].search(
@@ -4062,9 +4064,10 @@ class AuthSignupHome(AuthSignupHome):
                         'res_id': existee.call_contact.id,
                         'author_id': existee.call_contact.env.user.partner_id.id,
                         'date': datetime.now(),
-                        'body':existee.notes
+                        'body': existee.notes
                     }
                     existee.call_contact.env['mail.message'].sudo().create(values)
+
 
             if not existee:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
@@ -4082,10 +4085,25 @@ class AuthSignupHome(AuthSignupHome):
                                                                             'company_name': call_data['number'][
                                                                                 'name'],
                                                                             })
+                request.env.cr.commit()
+
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                request.env.cr.commit()
-                _logger.info("########DONE#############")
+                    new_call_detail.write()
+                    if call_data['tags']:
+                        tags = []
+                        for tag in call['tags']:
+                            odoo_tag = self.env['res.partner.category'].search(
+                                ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
+                            if not odoo_tag:
+                                odoo_tag = odoo_tag.create({
+                                    'call_tag_id': tag['id'],
+                                    'name': tag['name'],
+                                })
+
+                            new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
+                                                   'is_imp_tag': True})
+                    _logger.info("########DONE#############")
 
         if call["event"] == "call.commented":
             call_data = call["data"]
@@ -4102,21 +4120,23 @@ class AuthSignupHome(AuthSignupHome):
             if existee:
                 comm = call_data["comments"]
                 _logger.info('*commmmmmmmmmmmmmmm**  : %s' % str(comm))
-                if comm[0]["content"] != " ":
+                if comm and comm[0]["content"]:
+
+
                     _logger.info('*commmmmmmmmmmmmmmm notttttttt videe **  : %s' % str(comm[0]["content"]))
                     existee.notes = comm[0]["content"]
 
                 existee.call_recording = call_data['asset']
                 values = {
                     'record_name': existee.call_contact.name,
-                        'subject': existee.owner + " " + existee.started_at + " " + existee.ended_at,
+                    'subject': existee.owner + " " + started_at + " " + ended_at,
                     'model': 'res.partner',
                     'message_type': 'comment',
                     'subtype_id': existee.call_contact.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
                     'res_id': existee.call_contact.id,
                     'author_id': existee.call_contact.env.user.partner_id.id,
                     'date': datetime.now(),
-                    'body':existee.notes
+                    'body': existee.notes
                 }
                 existee.call_contact.env['mail.message'].sudo().create(values)
             if not existee:
@@ -4130,9 +4150,24 @@ class AuthSignupHome(AuthSignupHome):
                                                                             'digits': call_data['number']['digits'],
                                                                             'company_name': call_data['number']['name'],
                                                                             })
+                request.env.cr.commit()
+
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                    request.env.cr.commit()
+                    new_call_detail.write()
+                    if call_data['tags']:
+                        tags = []
+                        for tag in call['tags']:
+                            odoo_tag = self.env['res.partner.category'].search(
+                                ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
+                            if not odoo_tag:
+                                odoo_tag = odoo_tag.create({
+                                    'call_tag_id': tag['id'],
+                                    'name': tag['name'],
+                                })
+
+                            new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
+                                                   'is_imp_tag': True})
                     _logger.info("########DONE#############")
 
         if call["event"] == "call.created":
@@ -4151,7 +4186,9 @@ class AuthSignupHome(AuthSignupHome):
             if existee:
                 comm = call_data["comments"]
                 _logger.info('*commmmmmmmmmmmmmmm**  : %s' % str(comm))
-                if comm[0]["content"] != " ":
+                if comm and comm[0]["content"]:
+
+
                     _logger.info('*commmmmmmmmmmmmmmm notttttttt videe **  : %s' % str(comm[0]["content"]))
                     existee.notes = comm[0]["content"]
                 if not existee.call_contact:
@@ -4189,7 +4226,7 @@ class AuthSignupHome(AuthSignupHome):
                     existee.call_recording = call_data['asset']
                     values = {
                         'record_name': existee.call_contact.name,
-                        'subject': existee.owner + " " + existee.started_at + " " + existee.ended_at,
+                        'subject': existee.owner + " " + started_at + " " + ended_at,
                         'model': 'res.partner',
                         'message_type': 'comment',
                         'subtype_id': existee.call_contact.env['mail.message.subtype'].search(
@@ -4197,7 +4234,7 @@ class AuthSignupHome(AuthSignupHome):
                         'res_id': existee.call_contact.id,
                         'author_id': existee.call_contact.env.user.partner_id.id,
                         'date': datetime.now(),
-                        'body':existee.notes
+                        'body': existee.notes
                     }
                     existee.call_contact.env['mail.message'].sudo().create(values)
 
@@ -4217,10 +4254,26 @@ class AuthSignupHome(AuthSignupHome):
                                                                             'company_name': call_data['number'][
                                                                                 'name'],
                                                                             })
+                request.env.cr.commit()
+
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                request.env.cr.commit()
-                _logger.info("########DONE#############")
+                    new_call_detail.write()
+                    if call_data['tags']:
+                        tags = []
+                        for tag in call['tags']:
+                            odoo_tag = self.env['res.partner.category'].search(
+                                ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
+                            if not odoo_tag:
+                                odoo_tag = odoo_tag.create({
+                                    'call_tag_id': tag['id'],
+                                    'name': tag['name'],
+                                })
+
+                            new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
+                                                   'is_imp_tag': True})
+                    _logger.info("########DONE#############")
+
         if call["event"] == "call.ended":
             call_data = call["data"]
             call_id = call_data["id"]
@@ -4237,7 +4290,9 @@ class AuthSignupHome(AuthSignupHome):
             if existee:
                 comm = call_data["comments"]
                 _logger.info('*commmmmmmmmmmmmmmm**  : %s' % str(comm))
-                if comm[0]["content"] != " ":
+                if comm and comm[0]["content"]:
+
+
                     _logger.info('*commmmmmmmmmmmmmmm notttttttt videe **  : %s' % str(comm[0]["content"]))
                     existee.notes = comm[0]["content"]
                 if not existee.call_contact:
@@ -4276,7 +4331,7 @@ class AuthSignupHome(AuthSignupHome):
                     existee.call_recording = call_data['asset']
                     values = {
                         'record_name': existee.call_contact.name,
-                        'subject': existee.owner + " " + existee.started_at + " " + existee.ended_at,
+                        'subject': existee.owner + " " + started_at + " " + ended_at,
                         'model': 'res.partner',
                         'message_type': 'comment',
                         'subtype_id': existee.call_contact.env['mail.message.subtype'].search(
@@ -4284,7 +4339,7 @@ class AuthSignupHome(AuthSignupHome):
                         'res_id': existee.call_contact.id,
                         'author_id': existee.call_contact.env.user.partner_id.id,
                         'date': datetime.now(),
-                        'body':existee.notes
+                        'body': existee.notes
                     }
                     existee.call_contact.env['mail.message'].sudo().create(values)
 
@@ -4304,10 +4359,25 @@ class AuthSignupHome(AuthSignupHome):
                                                                             'company_name': call_data['number'][
                                                                                 'name'],
                                                                             })
+                request.env.cr.commit()
+
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                request.env.cr.commit()
-                _logger.info("########DONE#############")
+                    new_call_detail.write()
+                    if call_data['tags']:
+                        tags = []
+                        for tag in call['tags']:
+                            odoo_tag = self.env['res.partner.category'].search(
+                                ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
+                            if not odoo_tag:
+                                odoo_tag = odoo_tag.create({
+                                    'call_tag_id': tag['id'],
+                                    'name': tag['name'],
+                                })
+
+                            new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
+                                                   'is_imp_tag': True})
+                    _logger.info("########DONE#############")
 
         if call["event"] == "call.tagged":
             call_data = call["data"]
@@ -4325,7 +4395,9 @@ class AuthSignupHome(AuthSignupHome):
             if existee:
                 comm = call_data["comments"]
                 _logger.info('*commmmmmmmmmmmmmmm**  : %s' % str(comm))
-                if comm[0]["content"] != " ":
+                if comm and comm[0]["content"]:
+
+
                     _logger.info('*commmmmmmmmmmmmmmm notttttttt videe **  : %s' % str(comm[0]["content"]))
                     existee.notes = comm[0]["content"]
                 if not existee.call_contact:
@@ -4363,7 +4435,7 @@ class AuthSignupHome(AuthSignupHome):
                     existee.call_recording = call_data['asset']
                     values = {
                         'record_name': existee.call_contact.name,
-                        'subject': existee.owner + " " + existee.started_at + " " + existee.ended_at,
+                        'subject': existee.owner + " " + started_at + " " + ended_at,
                         'model': 'res.partner',
                         'message_type': 'comment',
                         'subtype_id': existee.call_contact.env['mail.message.subtype'].search(
@@ -4371,7 +4443,7 @@ class AuthSignupHome(AuthSignupHome):
                         'res_id': existee.call_contact.id,
                         'author_id': existee.call_contact.env.user.partner_id.id,
                         'date': datetime.now(),
-                        'body':existee.notes
+                        'body': existee.notes
                     }
                     existee.call_contact.env['mail.message'].sudo().create(values)
 
@@ -4391,7 +4463,22 @@ class AuthSignupHome(AuthSignupHome):
                                                                             'company_name': call_data['number'][
                                                                                 'name'],
                                                                             })
+                request.env.cr.commit()
+
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                request.env.cr.commit()
-                _logger.info("########DONE#############")
+                    new_call_detail.write()
+                    if call_data['tags']:
+                        tags = []
+                        for tag in call['tags']:
+                            odoo_tag = self.env['res.partner.category'].search(
+                                ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
+                            if not odoo_tag:
+                                odoo_tag = odoo_tag.create({
+                                    'call_tag_id': tag['id'],
+                                    'name': tag['name'],
+                                })
+
+                            new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
+                                            'is_imp_tag': True})
+                    _logger.info("########DONE#############")
