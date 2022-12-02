@@ -17,12 +17,12 @@
     <xpath expr="//a[@href='/shop/cart']" position="replace">
       <a href="/shop/cart" disabled="disabled" id="document_next">
         <t t-if="partner_id.is_idenfy_approved">
-          <button type="button" style="color: #fff; margin:0px 5px  " class="rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button">
+          <button type="button" style="color: #fff; margin:0px 5px  " class="rkmd-btn green-shop ripple-effect ripple-yellow " id="submit_documents_next_button">
                     Suivant
           </button>
         </t>
         <t>
-          <button type="button" style="color: #fff; margin:0px 5px  " class="rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
+          <button type="button" style="color: #fff; margin:0px 5px  " class="rkmd-btn green-shop ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
                     Suivant
           </button>
         </t>

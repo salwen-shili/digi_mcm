@@ -120,7 +120,7 @@
                                                             Précédent </button>
                                             </a>
 
-                                            <button type="submit" style=" color: #fff;  margin:0px 5px  " class="rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button">
+                                            <button type="submit" style=" color: #fff;  margin:0px 5px  " class="rkmd-btn green-shop ripple-effect ripple-yellow " id="submit_documents_next_button">
                                                            Suivant </button>
                                             <span id="o_website_form_result" />
                                         </div>
@@ -146,10 +146,10 @@
                             </a>
                             <div class="content text-center">
                                 <p id="notifMessage">
-Vous pourrez désormais choisir votre date et centre d'examen et financer votre formation.
+                                        Vous pourrez désormais choisir votre date et centre d'examen et financer votre formation.
                                 </p>
                                 <div class="" style="margin-block-start: 1.5rem;">
-                                    <input type="button" href="#" class="text-center next action-button" style="float: unset !important;" value="Continuer" onclick="onClickBtn()" />
+                                    <input type="button" href="#" class="rkmd-btn green-shop ripple-effect" style="float: unset !important;" value="Continuer" onclick="onClickBtn()" />
 
                                 </div>
                             </div>

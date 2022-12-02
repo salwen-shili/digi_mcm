@@ -449,7 +449,7 @@ class WebsiteSale(WebsiteSale):
                 'list_villes_mcm': list_villes_mcm,
             })
         partner_orders_signed = request.env['sale.order'].sudo().search(
-            [('partner_id', '=', request.env.user.partner_id.id), ('company_id', '=', 1), ('state', "=", 'sale')])
+            [('partner_id', '=', request.env.user.partner_id.id), ('company_id', '=', 2), ('state', "=", 'sale')])
         isSigned = "False"
         if partner_orders_signed:
             for order in partner_orders_signed:
@@ -457,19 +457,21 @@ class WebsiteSale(WebsiteSale):
                     for line in order.order_line:
                         if (line.product_id.default_code == 'vtc_bolt'):
                             isSigned = "True"
-        bolt_order = False
+        sale_order = False
         partner_orders_not_signed = request.env['sale.order'].sudo().search(
-            [('partner_id', '=', request.env.user.partner_id.id), ('company_id', '=', 1), ('state', "=", 'sent')])
+            [('partner_id', '=', request.env.user.partner_id.id), ('company_id', '=', 2), ('state', "=", 'sent')],order = "id desc", limit =1)
+        
+        print(partner_orders_not_signed)
+       
         if partner_orders_not_signed:
             for order in partner_orders_not_signed:
                 if order.order_line:
                     for line in order.order_line:
-                        if (line.product_id.default_code == 'vtc_bolt'):
-                            bolt_order = order
-        bolt_contract_uri = "False"
-        if bolt_order:
-            bolt_contract_uri = "/my/orders/%s?access_token=%s" % (
-                str(bolt_order.id), str(bolt_order.access_token))
+                        sale_order = order
+        contract_uri = ""
+        if sale_order:
+            contract_uri = "/my/orders/%s?access_token=%s" % (
+                str(sale_order.id), str(sale_order.access_token))
         rdvIsBooked = "False"
         rendezvous = request.env['calendly.rendezvous'].sudo().search(
             [('partner_id', '=', request.env.user.partner_id.id)], limit=1)
@@ -486,7 +488,7 @@ class WebsiteSale(WebsiteSale):
             'rdvIsBooked': rdvIsBooked,
             'cartIsEmpty': cartIsEmpty,
             'isSigned': isSigned,
-            'bolt_contract_uri': bolt_contract_uri
+            'contract_uri': contract_uri
         })
         return request.render("website_sale.cart", values)
 

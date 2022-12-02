@@ -101,6 +101,16 @@ class CustomerPortal(CustomerPortal):
         if bolt_order:
             bolt_contract_uri = "/my/orders/%s?access_token=%s" % (
                 str(bolt_order.id), str(bolt_order.access_token))
+        sale_order= False
+        if request.env.user.company_id.id == 2 :
+            partner_orders_not_signed = request.env['sale.order'].sudo().search(
+            [('partner_id', '=', request.env.user.partner_id.id), ('company_id', '=', 2), ('state', "=", 'sent')],order="id desc",limit=1)
+        if partner_orders_not_signed:
+            for order in partner_orders_not_signed:
+                if order.order_line:
+                    for line in order.order_line:
+                            sale_order = order
+
         rdvIsBooked = "False"
         rendezvous = request.env['calendly.rendezvous'].sudo().search(
             [('partner_id', '=', request.env.user.partner_id.id)], limit=1)
@@ -126,6 +136,9 @@ class CustomerPortal(CustomerPortal):
             'boltWrongProduct': boltWrongProduct,
             'partner': request.env.user.partner_id,
         })
+        if request.env.user.company_id.id == 2 and sale_order :
+            values['bolt_contract_uri'] = "/my/orders/%s?access_token=%s" % (
+                str(sale_order.id), str(sale_order.access_token))
         return values
 
     # def _document_check_access(self, document_id):
