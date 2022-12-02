@@ -4054,6 +4054,7 @@ class AuthSignupHome(AuthSignupHome):
                     existee.call_recording = call_data['asset']
                     values = {
                         'record_name': existee.call_contact.name,
+                        'subject': existee.owner + " " + existee.started_at + " " + existee.ended_at,
                         'model': 'res.partner',
                         'message_type': 'comment',
                         'subtype_id': existee.call_contact.env['mail.message.subtype'].search(
@@ -4108,6 +4109,7 @@ class AuthSignupHome(AuthSignupHome):
                 existee.call_recording = call_data['asset']
                 values = {
                     'record_name': existee.call_contact.name,
+                        'subject': existee.owner + " " + existee.started_at + " " + existee.ended_at,
                     'model': 'res.partner',
                     'message_type': 'comment',
                     'subtype_id': existee.call_contact.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
@@ -4187,6 +4189,7 @@ class AuthSignupHome(AuthSignupHome):
                     existee.call_recording = call_data['asset']
                     values = {
                         'record_name': existee.call_contact.name,
+                        'subject': existee.owner + " " + existee.started_at + " " + existee.ended_at,
                         'model': 'res.partner',
                         'message_type': 'comment',
                         'subtype_id': existee.call_contact.env['mail.message.subtype'].search(
@@ -4259,7 +4262,8 @@ class AuthSignupHome(AuthSignupHome):
                     message = request.env['mail.message'].sudo().search(
                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                          ('res_id', '=', existee.call_contact.id), ('subject', "=",
-                                                                    subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
+                                                                    subject)])
+                    # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
                     _logger.info('aircall find message mcm with subject %s : %s' % (
                         str(existee.call_contact), (str(subject))))
                     if message:
@@ -4272,6 +4276,7 @@ class AuthSignupHome(AuthSignupHome):
                     existee.call_recording = call_data['asset']
                     values = {
                         'record_name': existee.call_contact.name,
+                        'subject': existee.owner + " " + existee.started_at + " " + existee.ended_at,
                         'model': 'res.partner',
                         'message_type': 'comment',
                         'subtype_id': existee.call_contact.env['mail.message.subtype'].search(
@@ -4358,6 +4363,7 @@ class AuthSignupHome(AuthSignupHome):
                     existee.call_recording = call_data['asset']
                     values = {
                         'record_name': existee.call_contact.name,
+                        'subject': existee.owner + " " + existee.started_at + " " + existee.ended_at,
                         'model': 'res.partner',
                         'message_type': 'comment',
                         'subtype_id': existee.call_contact.env['mail.message.subtype'].search(
