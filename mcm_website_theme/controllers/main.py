@@ -4010,10 +4010,10 @@ class AuthSignupHome(AuthSignupHome):
             comm = call_data["comments"]
             started_at = call_data['started_at']
             if started_at:
-                started_at = str(datetime.fromtimestamp(started_at))
+                started_at = (datetime.fromtimestamp(started_at))
             ended_at = call_data['ended_at']
             if ended_at:
-                ended_at = str(datetime.fromtimestamp(ended_at))
+                ended_at = (datetime.fromtimestamp(ended_at))
 
             _logger.info('******** call.answered phone _number ********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
@@ -4038,16 +4038,12 @@ class AuthSignupHome(AuthSignupHome):
                     if not message:
                         started_at = call_data['started_at']
                     if started_at:
-                        started_at = str(datetime.fromtimestamp(started_at))
+                        started_at = (datetime.fromtimestamp(started_at))
                     ended_at = call_data['ended_at']
                     if ended_at:
-                        ended_at = str(datetime.fromtimestamp(ended_at))
-                    user_name = ''
-                    if call['user']:
-                        user_name = str(call['user']['name'])
-                    else:
-                        user_name = ''
-                    subject = user_name + " " + started_at + " " + ended_at
+                        ended_at = (datetime.fromtimestamp(ended_at))
+
+                    subject = existee.owner + " " + started_at + " " + ended_at
                     message = request.env['mail.message'].sudo().search(
                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                          ('res_id', '=', existee.call_contact.id), ('subject', "=",
@@ -4079,38 +4075,35 @@ class AuthSignupHome(AuthSignupHome):
             if not existee:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
-                                                                            'call_direction': call_data[
-                                                                                'direction'],
+                                                                            'call_direction': call_data['direction'],
                                                                             'call_date': date,
-                                                                            'owner': call_data["user"]["name"],
-                                                                            'phone_number': call_data[
-                                                                                'raw_digits'],
-                                                                            'call_recording': call_data[
-                                                                                'asset'],
-                                                                            'digits': call_data['number'][
-                                                                                'digits'],
-                                                                            'company_name': call_data['number'][
-                                                                                'name'],
+                                                                            'phone_number': call_data['raw_digits'],
+                                                                            'call_recording': call_data['asset'],
+                                                                            'digits': call_data['number']['digits'],
+                                                                            'company_name': call_data['number']['name'],
                                                                             })
+                if call_data["user"]["name"]:
+                    new_call_detail.owner = call_data["user"]["name"]
                 request.env.cr.commit()
 
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                    new_call_detail.write()
-                    if call_data['tags']:
-                        tags = []
-                        for tag in call['tags']:
-                            odoo_tag = request.env['res.partner.category'].search(
-                                ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
-                            if not odoo_tag:
-                                odoo_tag = odoo_tag.create({
-                                    'call_tag_id': tag['id'],
-                                    'name': tag['name'],
-                                })
 
-                            new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
-                                                   'is_imp_tag': True})
-                    _logger.info("########DONE#############")
+                    new_call_detail.write()
+                if call_data['tags']:
+                    tags = []
+                    for tag in call['tags']:
+                        odoo_tag = request.env['res.partner.category'].search(
+                            ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
+                        if not odoo_tag:
+                            odoo_tag = odoo_tag.create({
+                                'call_tag_id': tag['id'],
+                                'name': tag['name'],
+                            })
+
+                        new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
+                                               'is_imp_tag': True})
+                _logger.info("########DONE#############")
 
         if call["event"] == "call.commented":
             call_data = call["data"]
@@ -4122,10 +4115,10 @@ class AuthSignupHome(AuthSignupHome):
             voice_rec = call_data['asset']
             started_at = call_data['started_at']
             if started_at:
-                started_at = str(datetime.fromtimestamp(started_at))
+                started_at = (datetime.fromtimestamp(started_at))
             ended_at = call_data['ended_at']
             if ended_at:
-                ended_at = str(datetime.fromtimestamp(ended_at))
+                ended_at = (datetime.fromtimestamp(ended_at))
             _logger.info('******** call.commented phone _number ********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
             existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
@@ -4157,12 +4150,13 @@ class AuthSignupHome(AuthSignupHome):
                                                                             'call_status': call_data['status'],
                                                                             'call_direction': call_data['direction'],
                                                                             'call_date': date,
-                                                                            'owner': call_data["user"]["name"],
                                                                             'phone_number': call_data['raw_digits'],
                                                                             'call_recording': call_data['asset'],
                                                                             'digits': call_data['number']['digits'],
                                                                             'company_name': call_data['number']['name'],
                                                                             })
+                if call_data["user"]["name"]:
+                    new_call_detail.owner = call_data["user"]["name"]
                 request.env.cr.commit()
 
                 if new_call_detail and new_call_detail.phone_number:
@@ -4193,10 +4187,10 @@ class AuthSignupHome(AuthSignupHome):
             voice_rec = call_data['asset']
             started_at = call_data['started_at']
             if started_at:
-                started_at = str(datetime.fromtimestamp(started_at))
+                started_at = (datetime.fromtimestamp(started_at))
             ended_at = call_data['ended_at']
             if ended_at:
-                ended_at = str(datetime.fromtimestamp(ended_at))
+                ended_at = (datetime.fromtimestamp(ended_at))
             _logger.info(' ********   call.created phone _number ********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
             existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
@@ -4204,7 +4198,6 @@ class AuthSignupHome(AuthSignupHome):
             date = datetime.fromtimestamp(call_data['started_at'])
 
             if existee:
-
 
                 comm = call_data["comments"]
                 existee.call_recording = call_data['asset']
@@ -4221,16 +4214,12 @@ class AuthSignupHome(AuthSignupHome):
                     if not message:
                         started_at = call_data['started_at']
                     if started_at:
-                        started_at = str(datetime.fromtimestamp(started_at))
+                        started_at = (datetime.fromtimestamp(started_at))
                     ended_at = call_data['ended_at']
                     if ended_at:
-                        ended_at = str(datetime.fromtimestamp(ended_at))
-                    user_name = ''
-                    if call['user']:
-                        user_name = str(call['user']['name'])
-                    else:
-                        user_name = ''
-                    subject = user_name + " " + started_at + " " + ended_at
+                        ended_at = (datetime.fromtimestamp(ended_at))
+
+                    subject = existee.owner + " " + started_at + " " + ended_at
                     message = request.env['mail.message'].sudo().search(
                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                          ('res_id', '=', existee.call_contact.id), ('subject', "=",
@@ -4262,19 +4251,15 @@ class AuthSignupHome(AuthSignupHome):
             if not existee:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
-                                                                            'call_direction': call_data[
-                                                                                'direction'],
+                                                                            'call_direction': call_data['direction'],
                                                                             'call_date': date,
-                                                                            'owner': call_data["user"]["name"],
-                                                                            'phone_number': call_data[
-                                                                                'raw_digits'],
-                                                                            'call_recording': call_data[
-                                                                                'asset'],
-                                                                            'digits': call_data['number'][
-                                                                                'digits'],
-                                                                            'company_name': call_data['number'][
-                                                                                'name'],
+                                                                            'phone_number': call_data['raw_digits'],
+                                                                            'call_recording': call_data['asset'],
+                                                                            'digits': call_data['number']['digits'],
+                                                                            'company_name': call_data['number']['name'],
                                                                             })
+                if call_data["user"]["name"]:
+                    new_call_detail.owner = call_data["user"]["name"]
                 request.env.cr.commit()
 
                 if new_call_detail and new_call_detail.phone_number:
@@ -4305,10 +4290,10 @@ class AuthSignupHome(AuthSignupHome):
             voice_rec = call_data['asset']
             started_at = call_data['started_at']
             if started_at:
-                started_at = str(datetime.fromtimestamp(started_at))
+                started_at = (datetime.fromtimestamp(started_at))
             ended_at = call_data['ended_at']
             if ended_at:
-                ended_at = str(datetime.fromtimestamp(ended_at))
+                ended_at = (datetime.fromtimestamp(ended_at))
             _logger.info(' ******** call.ended phone _number ******** : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
             existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
@@ -4332,16 +4317,11 @@ class AuthSignupHome(AuthSignupHome):
                     if not message:
                         started_at = call_data['started_at']
                     if started_at:
-                        started_at = str(datetime.fromtimestamp(started_at))
+                        started_at = (datetime.fromtimestamp(started_at))
                     ended_at = call_data['ended_at']
                     if ended_at:
-                        ended_at = str(datetime.fromtimestamp(ended_at))
-                    user_name = ''
-                    if call['user']:
-                        user_name = str(call['user']['name'])
-                    else:
-                        user_name = ''
-                    subject = user_name + " " + started_at + " " + ended_at
+                        ended_at = (datetime.fromtimestamp(ended_at))
+                    subject = existee.owner + " " + started_at + " " + ended_at
                     message = request.env['mail.message'].sudo().search(
                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                          ('res_id', '=', existee.call_contact.id), ('subject', "=",
@@ -4355,7 +4335,6 @@ class AuthSignupHome(AuthSignupHome):
                         message.sudo().write({
                             'body': message.body + '\n' + str(comm[0]["content"] != " ")
                         })
-
                     existee.call_recording = call_data['asset']
                     values = {
                         'record_name': existee.call_contact.name,
@@ -4374,19 +4353,15 @@ class AuthSignupHome(AuthSignupHome):
             if not existee:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
-                                                                            'call_direction': call_data[
-                                                                                'direction'],
+                                                                            'call_direction': call_data['direction'],
                                                                             'call_date': date,
-                                                                            'owner': call_data["user"]["name"],
-                                                                            'phone_number': call_data[
-                                                                                'raw_digits'],
-                                                                            'call_recording': call_data[
-                                                                                'asset'],
-                                                                            'digits': call_data['number'][
-                                                                                'digits'],
-                                                                            'company_name': call_data['number'][
-                                                                                'name'],
+                                                                            'phone_number': call_data['raw_digits'],
+                                                                            'call_recording': call_data['asset'],
+                                                                            'digits': call_data['number']['digits'],
+                                                                            'company_name': call_data['number']['name'],
                                                                             })
+                if call_data["user"]["name"]:
+                    new_call_detail.owner = call_data["user"]["name"]
                 request.env.cr.commit()
 
                 if new_call_detail and new_call_detail.phone_number:
@@ -4417,17 +4392,15 @@ class AuthSignupHome(AuthSignupHome):
             voice_rec = call_data['asset']
             started_at = call_data['started_at']
             if started_at:
-                started_at = str(datetime.fromtimestamp(started_at))
+                started_at = (datetime.fromtimestamp(started_at))
             ended_at = call_data['ended_at']
             if ended_at:
-                ended_at = str(datetime.fromtimestamp(ended_at))
+                ended_at = (datetime.fromtimestamp(ended_at))
             _logger.info('********  call.tagged  phone _number********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
             existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
             subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
             date = datetime.fromtimestamp(call_data['started_at'])
-
-
             if existee:
                 comm = call_data["comments"]
                 existee.call_recording = call_data['asset']
@@ -4444,16 +4417,12 @@ class AuthSignupHome(AuthSignupHome):
                     if not message:
                         started_at = call_data['started_at']
                     if started_at:
-                        started_at = str(datetime.fromtimestamp(started_at))
+                        started_at = (datetime.fromtimestamp(started_at))
                     ended_at = call_data['ended_at']
                     if ended_at:
-                        ended_at = str(datetime.fromtimestamp(ended_at))
-                    user_name = ''
-                    if call['user']:
-                        user_name = str(call['user']['name'])
-                    else:
-                        user_name = ''
-                    subject = user_name + " " + started_at + " " + ended_at
+                        ended_at = (datetime.fromtimestamp(ended_at))
+
+                    subject = existee.owner + " " + started_at + " " + ended_at
                     message = request.env['mail.message'].sudo().search(
                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                          ('res_id', '=', existee.call_contact.id), ('subject', "=",
@@ -4466,7 +4435,6 @@ class AuthSignupHome(AuthSignupHome):
                         message.sudo().write({
                             'body': message.body + '\n' + str(comm[0]["content"] != " ")
                         })
-
                     existee.call_recording = call_data['asset']
                     values = {
                         'record_name': existee.call_contact.name,
@@ -4481,28 +4449,23 @@ class AuthSignupHome(AuthSignupHome):
                         'body': existee.notes
                     }
                     existee.call_contact.env['mail.message'].sudo().create(values)
-
             if not existee:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
-                                                                            'call_direction': call_data[
-                                                                                'direction'],
+                                                                            'call_direction': call_data['direction'],
                                                                             'call_date': date,
-                                                                            'owner': call_data["user"]["name"],
-                                                                            'phone_number': call_data[
-                                                                                'raw_digits'],
-                                                                            'call_recording': call_data[
-                                                                                'asset'],
-                                                                            'digits': call_data['number'][
-                                                                                'digits'],
-                                                                            'company_name': call_data['number'][
-                                                                                'name'],
+                                                                            'phone_number': call_data['raw_digits'],
+                                                                            'call_recording': call_data['asset'],
+                                                                            'digits': call_data['number']['digits'],
+                                                                            'company_name': call_data['number']['name'],
                                                                             })
+                if call_data["user"]["name"]:
+                    new_call_detail.owner = call_data["user"]["name"]
                 request.env.cr.commit()
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
                     new_call_detail.write()
-                if new_call_detail and call_data['tags']:
+                if call_data['tags']:
                     tags = []
                     for tag in call['tags']:
                         odoo_tag = request.env['res.partner.category'].search(
@@ -4515,7 +4478,4 @@ class AuthSignupHome(AuthSignupHome):
 
                         new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
                                                'is_imp_tag': True})
-
-                        _logger.info("########testttttttttttttttttt#############")
-
                 _logger.info("########DONE#############")
