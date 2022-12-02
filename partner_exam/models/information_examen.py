@@ -529,9 +529,13 @@ class NoteExamen(models.Model):
 
 
     def change_state_sortie(self):
-        partners=self.env['res.partner'].sudo().search([("mcm_session_id.date_exam","=","30/11/2022"),
-                                                        ("statut_cpf","=","service_declared"),
+        partners=self.env['res.partner'].sudo().search([("mcm_session_id.date_exam","=","28/09/2022"),
+                                                        ("statut_cpf","=","bill"),
                                                         ])
         for partner in partners:
             _logger.info("partner %s" %str(partner.name))
-            note_exam=self.env['info.examen'].sudo().search([("")])
+            note_exam=self.env['info.examen'].sudo().search([("partner_id","=",partner.id),
+                                                             ("date_exam","=",mcm_session_id.date_exam)],limit=1)
+            _logger.info("list des note d'examen %s" %(note_exam.partner_id.name))
+            note_exam.sorti_formation=True
+            self.env.cr.commit()
