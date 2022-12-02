@@ -61,24 +61,24 @@
                         <br/>
                         <br/>
                         % if object.invoice_payment_state == 'paid':
-                        Suite au paiement que vous avez effectué sur notre site <a href="www.mcm-academy.fr">www.mcm-academy.fr</a>  relatif à votre inscription à la ${object.module_id.product_id.name} , veuillez trouver, ci-jointe, votre facture ${object.name}.
+                        Suite au paiement que vous avez effectué sur notre site <a href="www.mcm-academy.fr">www.mcm-academy.fr</a>  relatif à votre inscription à % if object.module_id: la ${object.module_id.product_id.name} % else : notre formation % endif , veuillez trouver, ci-jointe, votre facture ${object.name}.
                         <br/>
                         <br/>
-                        Si vous avez besoin de plus d’informations, n’hésitez pas à <a href="/service-clientele">nous contacter.</a>
+                        Si vous avez besoin de plus d’informations, n’hésitez pas à <a href="/service-clientele">nous contacter</a>.
                         <br/>
                         <br/>
-                        Cordialement
+                        Cordialement.
                         % else :
-                        Suite à votre inscription à la ${object.module_id.product_id.name}, veuillez trouver ci-jointe, votre facture référencée sous le numéro <strong> ${object.name} </strong>, et s'élevant à <strong> ${format_amount(object.amount_total, object.currency_id)} </strong>.
+                        Suite à votre inscription à % if object.module_id: la ${object.module_id.product_id.name} % else : notre formation % endif, veuillez trouver ci-jointe, votre facture référencée sous le numéro <strong> ${object.name} </strong>, et s'élevant à <strong> ${format_amount(object.amount_total, object.currency_id)} </strong>.
                         <br/>
                         <br/>
                         Veuillez procéder au paiement dans les meilleurs délais.
                         <br/>
                         <br/>
-                        Si vous avez besoin de plus d’informations, n’hésitez pas à <a href="/service-clientele">nous contacter.</a>.
+                        Si vous avez besoin de plus d’informations, n’hésitez pas à <a href="/service-clientele">nous contacter</a>.
                         <br/>
                         <br/>
-                        Cordialement
+                        Cordialement.
                         % endif
                     </p>
                 </div>
@@ -106,10 +106,10 @@
                         Suite au paiement que vous avez effectué sur notre site <a href="www.digimoov.fr">www.digimoov.fr</a>  relatif à votre inscription à la formation capacité de transport , veuillez trouver, ci-jointe, votre facture ${object.name}.
                         <br/>
                         <br/>
-                        Si vous avez besoin de plus d’informations, n’hésitez pas à <a href="/service-clientele">nous contacter.</a>
+                        Si vous avez besoin de plus d’informations, n’hésitez pas à <a href="/service-clientele">nous contacter</a>.
                         <br/>
                         <br/>
-                        Cordialement
+                        Cordialement.
                         % else :
                         Suite à votre inscription à la formation du capacité de transport, veuillez trouver ci-jointe, votre facture référencée sous le numéro <strong> ${object.name} </strong>, et s'élevant à <strong> ${format_amount(object.amount_total, object.currency_id)} </strong>.
                         <br/>
@@ -117,10 +117,10 @@
                         Veuillez procéder au paiement dans les meilleurs délais.
                         <br/>
                         <br/>
-                        Si vous avez besoin de plus d’informations, n’hésitez pas à <a href="/service-clientele">nous contacter.</a>.
+                        Si vous avez besoin de plus d’informations, n’hésitez pas à <a href="/service-clientele">nous contacter</a>.
                         <br/>
                         <br/>
-                        Cordialement
+                        Cordialement.
                         % endif
                     </p>
                 </div>
