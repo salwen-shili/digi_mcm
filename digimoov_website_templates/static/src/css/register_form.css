@@ -11,6 +11,7 @@
   --red-shop-hover:#910000;
 }
 
+
 .btn-shop{
   color: #fff !important;
   
@@ -177,9 +178,9 @@ html {
   height: 40px;
   width: 150px;
   font-size: 15px;
-  background: #2f8e2f;
-  background-color: #152856;
-  border: 1px solid hsl(240, 44%, 28%);
+  background: #2b852b;
+
+  border: 1px solid #2b852b;
   color: #ffffff;
   font-weight: 600;
   border-radius: 5px;
@@ -202,9 +203,9 @@ html {
 
 #msform .action-button:hover,
 #msform .action-button:focus {
-  background-color: #ffffff;
-  border: 1px solid hsl(240, 44%, 28%);
-  color: #000000;
+  background-color: #047404;
+  border: 1px solid #047404;
+  color: #fff;
   transition: all 0.2s ease-out;
 }
 
@@ -227,9 +228,9 @@ html {
 
 #msform .action-button-previous:hover,
 #msform .action-button-previous:focus {
-  background-color: #ffffff;
+  background-color: #047404 ;
   border: 1px solid hsl(0, 0%, 48%);
-  color: #000000;
+ 
   transition: all 0.2s ease-out;
 }
 

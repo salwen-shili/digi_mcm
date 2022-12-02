@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
       url: `/coordonnees?${Math.floor(Math.random() * 100)}`,
     },
     documents: {
-      message: `<b>Félicitations!</b> Vous avez terminé l'étape <b>Coordonnées</b> de votre inscription. Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre pièce d'identité et cliquer sur continuer. :`,
+      message: `<b>Félicitations!</b> Vous avez terminé l'étape <b>Coordonnées</b> de votre inscription. Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre pièce d'identité et cliquer sur continuer.`,
       url: `/charger_mes_documents?${Math.floor(Math.random() * 100)}`,
     },
     financement: {
@@ -84,16 +84,28 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   };
 
+  if (document.getElementById('cartIsEmpty').value == 'True' &&
+  document.getElementById('contract_uri').value == 'False')
+  
+ {
+  //not a bolt user with empty cart
+  btnContinuer.setAttribute('href', messageAction.cartIsEmpty.nonBolt.url);
+  textDescription.innerHTML = messageAction.cartIsEmpty.nonBolt.message;
+  return 
+}
+
   var step = 1;
   //console.log('step', current.value);
   switch (current.value) {
     case 'coordonnées':
+     
       step = 1;
 
       // btnContinuer.setAttribute('href', questionnaireUrl);
       btnContinuer.setAttribute('href', messageAction.coordonnees.url);
       textDescription.innerHTML = messageAction.coordonnees.message;
 
+     
       break;
     case 'document':
       step = 2;
@@ -115,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                         <a id="button-continuer" href="/charger_mes_documents?${Math.floor(
                                           Math.random() * 100
                                         )}" style="margin-right: 8px;">
-                                            <button id="btn-action" class="rkmd-btn btn-blue  ripple-effect ripple-yellow" type="submit" style="font-size: 11px;width:116px">
+                                            <button id="btn-action" class="rkmd-btn green-shop  ripple-effect ripple-yellow" type="submit" style="font-size: 11px;width:116px">
                                             
                                             Continuer
                                         </button>
@@ -132,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
       //    >
       //      <button
       //        id='btn-action'
-      //        class='rkmd-btn btn-blue  ripple-effect ripple-yellow'
+      //        class='rkmd-btn green-shop  ripple-effect ripple-yellow'
       //        type='submit'
       //        style='font-size: 11px;width:116px;'
       //      >
@@ -142,16 +154,41 @@ document.addEventListener('DOMContentLoaded', function () {
       //  </div>;
 
       finished.innerHTML = uploadDocumentBtns;
-
+     
       break;
     case 'financement':
       step = 3;
       documents.classList.add('active');
       financement.classList.add('active');
-
       textDescription.innerHTML = messageAction.financement.message;
       btnContinuer.setAttribute('href', messageAction.financement.url);
 
+      
+      
+      //has not signed his contract
+      //he has paid so he must has a contract
+      //we recheck if we have an url
+      if (document.getElementById('cartIsEmpty').value == 'True') {
+        console.log("empty")
+        if (document.getElementById('contract_uri').value != 'False') {
+          console.log("contract_uri")
+    
+
+          if (document.getElementById('button-continuer')) {
+            textDescription.textContent = `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.`;
+            
+            btnContinuer.innerHTML = `<button class="rkmd-btn green-shop ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
+            <i class="material-icons right">send</i>
+            Signer mon contrat
+        </button>` ;
+           
+            btnContinuer.setAttribute('href', document.getElementById('contract_uri').value);
+          }
+        } 
+
+        break;
+      }
+     
       break;
     case 'validation':
       step = 4;
@@ -182,3 +219,5 @@ document.addEventListener('DOMContentLoaded', function () {
   //console.log(step);
   document.getElementsByClassName('progress-bar')[0].style.width = progressBarValue + '%';
 });
+
+
