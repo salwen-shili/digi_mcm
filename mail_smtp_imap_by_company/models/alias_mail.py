@@ -115,7 +115,7 @@ class MailThreadInherit(models.AbstractModel):
             if template_bounce:
                 self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(company_bounce)) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
             else :
-                self._routing_create_bounce_email(email_from, body, message, reply_to=str(company_bounce))
+                self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(company_bounce))
             if bounce_match:
                 company = 1
                 if 'digimoov' in email_to: #check if email_to contains digimoov
@@ -128,7 +128,7 @@ class MailThreadInherit(models.AbstractModel):
                     self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(
                         company_bounce))  # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
                 else:
-                    self._routing_create_bounce_email(email_from, body, message, reply_to=str(company_bounce))
+                    self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(company_bounce))
                 return []
         if message.get_content_type() == 'multipart/report' or email_from_localpart == 'mailer-daemon':
             _logger.info('multipart/report')
