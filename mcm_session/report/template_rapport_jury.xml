@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="header_rapport_jury">
-        <t t-if="o.ville_jury_id.name_ville != 'Paris'">
+        <t t-if="o.session_ville_id.name_ville != 'Paris'">
             <div class="row">
                 <br/>
-                <img src='/mcm_session/static/src/img/header_jury.png' height="360" width="2000" style="margin-right:-15px;"/>
+                <img src='/mcm_session/static/src/img/header_jury.png' height="360" width="2000"
+                     style="margin-right:-15px;"/>
             </div>
         </t>
         <t t-else="">
@@ -65,7 +66,7 @@
                                                 </td>
                                                 <td class="td" align="center" style="height: 80px; width: 80px;">
                                                     <strong>
-                                                        <p>MCM ACADEMY</p>
+                                                        <p>DIGIMOOV</p>
                                                         <span t-field='o.num_agrement_jury'/>
                                                     </strong>
                                                 </td>
@@ -76,8 +77,8 @@
                                                 </td>
                                                 <td class="td" align="center" style="height: 80px; width: 80px;">
                                                     <strong>
-<!--                                                        <span t-raw="'%s' % o.ville_jury_id.name_ville"/>:-->
-                                                        <span t-raw="'%s' % o.adresse_jury_id.adresse_centre_examen"/>
+                                                        <!--                                                        <span t-raw="'%s' % o.ville_jury_id.name_ville"/>:-->
+                                                        <span t-raw="'%s' % o.session_adresse_examen.adresse_centre_examen"/>
                                                     </strong>
                                                 </td>
                                             </tr>
@@ -89,7 +90,8 @@
 
                         <p style="page-break-after:always;"/>
                         <div class="row">
-                            <img src='/mcm_session/static/src/img/header_middle.png' height="60" width="2000" style="margin-right:-15px;"/>
+                            <img src='/mcm_session/static/src/img/header_middle.png' height="60" width="2000"
+                                 style="margin-right:-15px;"/>
                         </div>
                         <div class="page" style="margin-left:10%;margin-right:10%;">
 
@@ -117,7 +119,6 @@
                                     <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
                                     personnes
                                 </p>
-                                <br/>
                                 <p>B) Nombre de candidats reçus à l’examen
                                     <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
                                     sur
@@ -128,17 +129,14 @@
                                             t-esc="docs.pourcentage_client_recu(pourcentage)"/>
                                     %.
                                 </p>
-                                <br/>
                                 <p>c) Liste récapitulative des candidats inscrits, absents, reçus ou ajournés en
                                     annexe.
                                 </p>
-                                <br/>
                                 <p>d) Le constat du déroulement des épreuves ainsi que la mention des éventuelles
                                     difficultés rencontrées lors du déroulement de la
                                     session :
                                 </p>
                                 <p>Aucune difficulté n’est à mentionner, tout s’est bien déroulé.</p>
-                                <br/>
                                 <p>e) Le dossier d’inscription à l’examen du candidat, accompagné du relevé des notes
                                     obtenues
                                     aux différentes épreuves ainsi que de la
@@ -146,23 +144,23 @@
                                     <br/>
                                     Ces éléments se trouvent dans le dossier de chaque candidat
                                 </p>
-                                <br/>
                             </span>
-                            <br/>
                             <style>
-                                .tr, .td , .table{
+                                .th, .tr, .td , .table{
                                 padding: 2px;
                                 border: solid;
                                 }
                             </style>
-                            <center style="padding-top:10pt!important;">
-                                <table class="table">
+                            <center style="padding-top:5pt!important;">
+                                <table class="table" style="width:100%;">
                                     <tbody>
                                         <tr>
-                                            <td class="td" align="center" style="height: 200px; width: 200px;">
+                                            <th class="th" align="center" style="height:18px;">
                                                 <b>Remarques</b>
-                                            </td>
-                                            <td class="td" align="center" style="height: 200px; width: 600px;">
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td class="td" align="center" style="height:400px;">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -388,7 +386,7 @@
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th class="th">Nombre d'abandon
+                                        <!--<th class="th">Nombre d'abandon
                                             <td class="td">
                                                 <span t-esc="docs.nombre_abandon(nbr_ab)"/>
                                             </td>
@@ -397,8 +395,17 @@
                                                 <span t-esc="docs.pourcentage_abandon(prc_abandon)"/>
                                                 <span>%</span>
                                             </td>
-                                        </th>
+                                        </th>-->
+                                        <th class="th">Nombre d'admis
+                                            <td class="td">
+                                                <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
+                                            </td>
 
+                                            <td class="td">
+                                                <span t-esc="docs.pourcentage_client_recu(pourcentage)"/>
+                                                <span>%</span>
+                                            </td>
+                                        </th>
                                         <th class="th">Nombre d'admis
                                             <td class="td">
                                                 <span t-esc="docs.nbr_recus_solo()"/>
@@ -415,13 +422,23 @@
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th style="background:#FFFF00;">Non présentation à la formation
+                                        <!-- <th style="background:#FFFF00;">Non présentation à la formation
+                                             <td class="td">
+                                                 <span t-esc="docs.calculer_zero_min_formation_gagne(zero_min_formation_gagne)"/>
+                                             </td>
+
+                                             <td class="td">
+                                                 <span t-esc="docs.pourcentage_calculer_formation_gagne(resultat)"/>
+                                                 <span>%</span>
+                                             </td>
+                                         </th>-->
+                                        <th class="th">Nombre d'échec
                                             <td class="td">
-                                                <span t-esc="docs.calculer_zero_min_formation_gagne(zero_min_formation_gagne)"/>
+                                                <span t-esc="docs.nbr_echec(nbr_echec)"/>
                                             </td>
 
                                             <td class="td">
-                                                <span t-esc="docs.pourcentage_calculer_formation_gagne(resultat)"/>
+                                                <span t-esc="docs.pourcentage_echec(prc_echec)"/>
                                                 <span>%</span>
                                             </td>
                                         </th>
@@ -444,7 +461,7 @@
                                             </td>
                                         </th>
                                     </tr>
-                                    <tr>
+                                    <!--<tr>
                                         <th class="th">Nombre d'admis
                                             <td class="td">
                                                 <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
@@ -455,8 +472,8 @@
                                                 <span>%</span>
                                             </td>
                                         </th>
-                                    </tr>
-                                    <tr>
+                                    </tr>-->
+                                    <!--<tr>
                                         <th class="th">Nombre d'échec
                                             <td class="td">
                                                 <span t-esc="docs.nbr_echec(nbr_echec)"/>
@@ -467,7 +484,7 @@
                                                 <span>%</span>
                                             </td>
                                         </th>
-                                    </tr>
+                                    </tr>-->
                                 </tbody>
                             </table>
                         </div>
@@ -589,15 +606,14 @@
                                                 </strong>
                                             </td>
                                         </t>
-                                        <t t-else="int(session.temps_minute) == 0 and session.partner_id.statut == 'won'">
+                                        <t t-else="session.resultat == 'ajourne' and session.presence not in ('present', 'Absent')">
                                             <td class="td" style="background:#FFFF00;">
                                                 <strong>
-                                                    <span>Non présentation à la formation</span>
+                                                    <span>Absence justifiée</span>
                                                 </strong>
                                             </td>
                                         </t>
                                     </t>
-
                                     <td class="td">
                                         <t t-set="session"
                                            t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>

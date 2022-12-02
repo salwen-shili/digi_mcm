@@ -13,6 +13,9 @@ ListController.include({
          this.$buttons.find('.oe_actif_button').click(this.proxy('actif_def'));
          this.$buttons.find('.oe_rap_button').click(this.proxy('rap_def'));
          this.$buttons.find('.oe_cma_button').click(this.proxy('cma_def'));
+         this.$buttons.find('.oe_form_sub_button').click(this.proxy('sub_def'));
+         this.$buttons.find('.oe_event_button').click(this.proxy('event_def'));
+         this.$buttons.find('.oe_type_event_button').click(this.proxy('type_event_def'));
 
        }
    },
@@ -24,6 +27,29 @@ ListController.include({
      * @private
      * @param {MouseEvent} event
      */
+
+
+     event_def: function (e) {
+        var self = this;
+        var active_id = this.model.get(this.handle).getContext()['active_ids'];
+        var model_name = this.model.get(this.handle).getContext()['active_model'];
+            this._rpc({
+                    model: 'mcm_openedx.calendly_event',
+                    method: 'update',
+                    args: [""],
+    })
+   },
+
+    type_event_def: function (e) {
+        var self = this;
+        var active_id = this.model.get(this.handle).getContext()['active_ids'];
+        var model_name = this.model.get(this.handle).getContext()['active_model'];
+            this._rpc({
+                    model: 'mcm_openedx.calendly_integration',
+                    method: 'update',
+                    args: [""],
+    })
+   },
    action_def: function (e) {
         var self = this;
         var active_id = this.model.get(this.handle).getContext()['active_ids'];
@@ -36,6 +62,8 @@ ListController.include({
                     self.do_action(result);
                 });
    },
+
+
     rap_def: function (e) {
         var self = this;
         var active_id = this.model.get(this.handle).getContext()['active_ids'];
@@ -70,6 +98,18 @@ ListController.include({
             this._rpc({
                     model: 'mcm_openedx.cma',
                     method: 'cma_res',
+                    args: [""],
+    })
+   },
+
+
+    sub_def: function (e) {
+        var self = this;
+        var active_id = this.model.get(this.handle).getContext()['active_ids'];
+        var model_name = this.model.get(this.handle).getContext()['active_model'];
+            this._rpc({
+                    model: 'mcm_openedx.form_info',
+                    method: 'form_sub',
                     args: [""],
     })
    },

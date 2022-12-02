@@ -461,6 +461,7 @@ class WebhookController(http.Controller):
         print('training', training_id)
         today = date.today()
         date_min = today - relativedelta(months=2)
+        user=False
         users = request.env['res.users'].sudo().search([('login', "=", email)])
         """si apprenant non trouvé par email on cherche par numero telephone"""
         if not users:
@@ -471,12 +472,12 @@ class WebhookController(http.Controller):
                     res_users = request.env["res.users"]
                     users = res_users.find_user_with_phone(str(tel))
 
-        user = False
         if users and len(users) > 1:
             user = users[1]
             for utilisateur in users:
                 if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.ville:
                     user = utilisateur
+
         else:
             user = users
         if user:
@@ -487,7 +488,7 @@ class WebhookController(http.Controller):
                 short_url = pyshorteners.Shortener()
                 short_url = short_url.tinyurl.short(
                     url)  # convert the signup_url to be short using pyshorteners library
-                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s. Votre courriel de connection est: %s' % (
                     user.partner_id.name, user.partner_id.company_id.name, short_url,
                     user.partner_id.email)  # content of sms
                 sms = request.env['mail.message'].sudo().search(
@@ -506,7 +507,7 @@ class WebhookController(http.Controller):
                     short_url = short_url.tinyurl.short(
                         url)  # convert the url to be short using pyshorteners library
 
-                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s. Votre courriel de connection est: %s' % (
                         user.partner_id.name, user.partner_id.company_id.name, short_url,
                         user.partner_id.email)  # content of sms
 
@@ -557,10 +558,10 @@ class WebhookController(http.Controller):
                 short_url = pyshorteners.Shortener()
                 short_url = short_url.tinyurl.short(
                     url)  # convert the signup_url to be short using pyshorteners library
-                body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s. Votre courriel de connection est: %s' % (
                     user.partner_id.name, user.partner_id.company_id.name, short_url,
                     user.partner_id.email)  # content of sms
-                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s. Votre courriel de connection est: %s' % (
                     user.partner_id.name, user.partner_id.company_id.name, short_url,
                     user.partner_id.email)  # content of sms
                 sms = request.env['sms.sms'].sudo().create({
@@ -1093,23 +1094,38 @@ class WebhookController(http.Controller):
                         user.partner_id.id_edof = product_id.id_edof
                 if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism":
                     if user.partner_id.numero_cpf == externalId:
-                        user.partner_id.statut_cpf = "canceled"
-                        if user.partner_id.mcm_session_id and user.partner_id.module_id :
-                            vals = {
-                                'partner_id': user.partner_id.id,
-                                'statut': 'canceled',
-                                'session_id': user.partner_id.mcm_session_id.id,
-                                'module_id': user.partner_id.module_id.id,
-                            }
+                        """Vérifier si le dossier en formation donc statut de dossier est abandonné si non annulé"""
+                        if user.partner_id.statut_cpf == "intraining":
+                            user.partner_id.statut = "abandon"
+                            if user.partner_id.mcm_session_id and user.partner_id.module_id:
+                                vals = {
+                                    'partner_id': user.partner_id.id,
+                                    'statut': 'abandon',
+                                    'session_id': user.partner_id.mcm_session_id.id,
+                                    'module_id': user.partner_id.module_id.id,
+                                }
 
-                            session_wizard = request.env['res.partner.session.wizard'].sudo().create(
-                                vals)
-                            session_wizard.action_modify_partner()
-                        user.partner_id.statut = "canceled"
+                                session_wizard = request.env[
+                                    'res.partner.session.wizard'].sudo().create(
+                                    vals)
+                                session_wizard.action_modify_partner()
+                        elif user.partner_id.statut_cpf != "canceled":
+                            user.partner_id.statut = "canceled"
+                            if user.partner_id.mcm_session_id and user.partner_id.module_id:
+                                vals = {
+                                    'partner_id': user.partner_id.id,
+                                    'statut': 'canceled',
+                                    'session_id': user.partner_id.mcm_session_id.id,
+                                    'module_id': user.partner_id.module_id.id,
+                                }
+
+                                session_wizard = request.env[
+                                    'res.partner.session.wizard'].sudo().create(
+                                    vals)
+                                session_wizard.action_modify_partner()
+                        user.partner_id.statut_cpf = "canceled"
                         user.partner_id.date_cpf = lastupd
                         user.partner_id.diplome = diplome
-                        print("product id annulé digi", user.partner_id.id_edof, training_id)
-
                         if product_id:
                             user.partner_id.id_edof = product_id.id_edof
 

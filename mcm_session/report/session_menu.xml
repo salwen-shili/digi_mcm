@@ -1,7 +1,7 @@
 <odoo>
     <!-- This is used to reformat paper format of report PDF rapport jury-->
     <record id="paperformat_rapport_jury" model="report.paperformat">
-        <field name="name">Rapport jury</field>
+        <field name="name">Procès verbal</field>
         <field name="default" eval="False"/>
         <field name="format">A4</field>
         <field name="page_height">0</field>
@@ -17,11 +17,12 @@
     </record>
     <!-- This report action create a print pdf for "rapport jury", using the template(xml) ID in contact view-->
     <report id="report_jury_pdf_ids"
-            string="Rapport jury"
+            string="Procès verbal"
             model="mcmacademy.session"
             report_type="qweb-pdf"
             name="mcm_session.template_raport_jury_ids"
             file="mcm_session.template_raport_jury_ids"
+            print_report_name="'Procès verbal jury d’examen - %s - %s' % (object.session_ville_id.name_ville, object.date_exam.strftime('%d/%m/%Y'))"
             paperformat="mcm_session.paperformat_rapport_jury"
     />
 </odoo>

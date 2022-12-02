@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
+    <record id="jotform_sub_search_view" model="ir.ui.view">
+        <field name="name">JOTFORM</field>
+        <field name="model">mcm_openedx.form_info</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="email"></field>
+            </search>
+        </field>
+    </record>
     <record model="ir.ui.view" id="jotform_sub_tree_view">
         <field name="name">JOTFORM</field>
         <field name="model">mcm_openedx.form_info</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree delete="false" >
                 <field name="email"/>
                 <field name="partner_id"/>
-
-
             </tree>
         </field>
     </record>
-
-
     <record model="ir.ui.view" id="jotform_sub_form_view">
         <field name="name">JOTFORM</field>
         <field name="model">mcm_openedx.form_info</field>
         <field name="arch" type="xml">
-            <form string="Course Form">
+            <form string="Course Form" delete="false">
                 <sheet>
                     <group>
                         <field name="email"/>
@@ -37,7 +41,6 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-
-    <menuitem id="jotform_sub_menu" name="Sub_JOTFORM" parent="calendly_menu" action="jotform_sub_list_action"/>
+    <menuitem id="jotform_sub_menu" name="Submissions" parent="jotform_menu" action="jotform_sub_list_action"/>
 
 </odoo>

@@ -42,22 +42,21 @@ class mcmSession(models.Model):
 
         if len(professorsEmails) == 0:
             return
-        professor1 = ""
-        professor2 = ""
-        if len(professorsEmails) > 0:
-            # Use checkExistance to get Professor ID by API ID
+        #Initilize pofessorsIDs expecting 5 max professors (intervenants) for each course
+        professorsIDs= ["","","","",""]
+        
+        
+        for i in range(len(professorsEmails)):
+             # Use checkExistance to get Professor ID by API ID
             checkProfessor = self.checkExistance(
-                "https://ext.edusign.fr/v1/professor/by-email/", professorsEmails[0], headers
+                "https://ext.edusign.fr/v1/professor/by-email/", professorsEmails[i], headers
             )
             if "status" in checkProfessor:
                 if checkProfessor["status"] == "success":
-                    professor1 = checkProfessor["result"]["ID"]
-                if len(professorsEmails) == 2:
-                    checkProfessor = self.checkExistance(
-                        "https://ext.edusign.fr/v1/professor/by-email/", professorsEmails[1], headers
-                    )
-                    if checkProfessor["status"] == "success":
-                        professor2 = checkProfessor["result"]["ID"]
+                    professorsIDs[i] = checkProfessor["result"]["ID"]
+                
+        _logger.info("================>professorsIDs")  
+        _logger.info(professorsIDs)
 
         nbAdd = 0
         nbEdit = 0
@@ -84,8 +83,8 @@ class mcmSession(models.Model):
                 or checkCrouse["result"]["CLASSROOM"] != classroom
                 or checkCrouse["result"]["START"] != startDate
                 or checkCrouse["result"]["END"] != endDate
-                or checkCrouse["result"]["PROFESSOR"] != professor1
-                or checkCrouse["result"]["PROFESSOR_2"] != professor2
+                or checkCrouse["result"]["PROFESSOR"] != professorsIDs[0]
+                or checkCrouse["result"]["PROFESSOR_2"] != professorsIDs[1]
                 or checkCrouse["result"]["SCHOOL_GROUP"] != [session.id_group_edusign]
                 or checkCrouse["result"]["API_ID"] != session.name
             )
@@ -94,8 +93,8 @@ class mcmSession(models.Model):
                 checkCrouse["result"]["CLASSROOM"] != classroom,
                 checkCrouse["result"]["START"] != startDate,
                 checkCrouse["result"]["END"] != endDate,
-                checkCrouse["result"]["PROFESSOR"] != professor1,
-                checkCrouse["result"]["PROFESSOR_2"] != professor2,
+                checkCrouse["result"]["PROFESSOR"] != professorsIDs[0],
+                checkCrouse["result"]["PROFESSOR_2"] != professorsIDs[1],
                 checkCrouse["result"]["SCHOOL_GROUP"] != [session.id_group_edusign],
                 checkCrouse["result"]["API_ID"] != session.name,
             )
@@ -107,9 +106,9 @@ class mcmSession(models.Model):
                         "Today = %s <= Exam date = %s, launching a patch request"
                         % (str(date.today()), str(session.date_exam))
                     )
-                    _logger.info("A course with the same ID exists already.")
+                    _logger.info("launching a patch request, course with the same ID already exists.")
                     patchUrl = "https://ext.edusign.fr/v1/course/?id=" + session.id_session_edusign
-
+                    
                     data = {
                         "course": {
                             "ID": session.id_session_edusign,
@@ -119,14 +118,18 @@ class mcmSession(models.Model):
                             "CLASSROOM": classroom,
                             "START": startDate,
                             "END": endDate,
-                            "PROFESSOR": professor1,
-                            "PROFESSOR_2": professor2,
+                            "PROFESSOR": professorsIDs[0],
+                            "PROFESSOR_2": professorsIDs[1],
+                            "PROFESSOR_3": professorsIDs[2],
+                            "PROFESSOR_4": professorsIDs[3],
+                            "PROFESSOR_5": professorsIDs[4],
                             "SCHOOL_GROUP": [session.id_group_edusign],
                             "ZOOM": 0,
                             "API_ID": session.name,
                         }
                     }
-                    print(data)
+                    _logger.info("------------------------------------==============")
+                    _logger.info(data)
 
                     # Edit by student ID
                     result = requests.patch(patchUrl, data=json.dumps(data), headers=headers)
@@ -157,8 +160,11 @@ class mcmSession(models.Model):
                         "CLASSROOM": classroom,
                         "START": startDate,
                         "END": endDate,
-                        "PROFESSOR": professor1,
-                        "PROFESSOR_2": professor2,
+                        "PROFESSOR": professorsIDs[0],
+                        "PROFESSOR_2": professorsIDs[1],
+                        "PROFESSOR_3": professorsIDs[2],
+                        "PROFESSOR_4": professorsIDs[3],
+                        "PROFESSOR_5": professorsIDs[4],
                         "SCHOOL_GROUP": [session.id_group_edusign],
                         "ZOOM": 0,
                         "API_ID": session.name,
@@ -320,7 +326,7 @@ class mcmSession(models.Model):
         firstName = (
             name["firstName"] + " (" + str(student.code_evalbox) + ")" if student.code_evalbox else name["firstName"]
         )
-        lastName = name["lastName"]
+        lastName = name["lastName"].upper()
 
         nbAdd = 0
         nbEdit = 0
@@ -379,7 +385,7 @@ class mcmSession(models.Model):
                     "student": {
                         "ID": edusignStudentID,
                         "FIRSTNAME": firstName,
-                        "LASTNAME": lastName,
+                        "LASTNAME": lastName.upper(),
                         "EMAIL": student.email,
                         "FILE_NUMBER": "",
                         "PHOTO": "",
@@ -416,7 +422,7 @@ class mcmSession(models.Model):
             data = {
                 "student": {
                     "FIRSTNAME": firstName,
-                    "LASTNAME": lastName,
+                    "LASTNAME": lastName.upper(),
                     "EMAIL": student.email,
                     "FILE_NUMBER": "",
                     "PHOTO": "",
@@ -593,7 +599,7 @@ class mcmSession(models.Model):
                 "professor": {
                     "ID": checkProfessor["result"]["id"],
                     "FIRSTNAME": firstName,
-                    "LASTNAME": lastName,
+                    "LASTNAME": lastName.upper(),
                     "EMAIL": professor.email,
                     "PHONE": professor.phone,
                     "API_ID": professor.id,
@@ -633,7 +639,7 @@ class mcmSession(models.Model):
             data = {
                 "professor": {
                     "FIRSTNAME": firstName,
-                    "LASTNAME": lastName,
+                    "LASTNAME": lastName.upper(),
                     "EMAIL": professor.email,
                     "FILE_NUMBER": "",
                     "PHOTO": "",
@@ -705,7 +711,7 @@ class mcmSession(models.Model):
                 firstName = name
                 lastName = name
 
-        return {"firstName": firstName, "lastName": lastName}
+        return {"firstName": firstName, "lastName": lastName.upper()}
 
     def allowExecution(self, func):
         # if not in localhost

@@ -1045,11 +1045,11 @@ function disablePaymentButton() {
 }
 //Enable both payment buttons
 function enablePaymentButton() {
-  document.getElementById("pm_shop_checkout").setAttribute("disabled", "false");
+  document.getElementById("pm_shop_checkout").removeAttribute("disabled");
   document.getElementById("pm_shop_checkout").classList.remove("disabled");
   document
     .getElementById("pm_shop_checkout2")
-    .setAttribute("disabled", "false");
+    .removeAttribute("disabled");
   document.getElementById("pm_shop_checkout2").classList.remove("disabled");
 }
 
@@ -1078,7 +1078,8 @@ function sessionIsAccessible(prop) {
   //init
   let isAccessible = false;
   //if months == 4 check toDay's day is superior to session's day
-  if (months == 4 && toDay.getFullYear() == sessionDate.getFullYear()) {
+  //wass commented && toDay.getFullYear() == sessionDate.getFullYear() 
+  if (months == 4 ) {
     console.log(
       sessionDate.getDate(),
       toDay.getDate(),

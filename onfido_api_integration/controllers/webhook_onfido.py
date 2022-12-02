@@ -163,7 +163,11 @@ class OnfidoController(http.Controller):
         workflow_runs = partner.get_workflow_runs(workflow_run_id, website.onfido_api_key_live)
         _logger.info("workflow_run onfido response %s" % str(workflow_runs))
         applicant_id = workflow_runs['applicant_id']
-        currentUser = request.env['res.partner'].sudo().search([('onfido_applicant_id', "=", applicant_id)])
+        applicant=partner.get_applicant(applicant_id,website.onfido_api_key_live)
+        _logger.info("applicant******** %s" %str(applicant['id_numbers'][0]['value']))
+        """récupérer partner_id on onfido applicant"""
+        id_partner=int(applicant['id_numbers'][0]['value'])
+        currentUser = request.env['res.partner'].sudo().search([('id', "=", id_partner)])
         data_onfido = request.env['onfido.info'].sudo().search([('partner_id', '=', currentUser.id)], limit=1,
                                                                order="id desc")
 
@@ -264,7 +268,7 @@ class OnfidoController(http.Controller):
                     'description': "Client:" + " " + currentUser.name + " Motif:" + message_ticket,
                     'name': 'Documents refusés',
                     'team_id': request.env['helpdesk.team'].sudo().search(
-                        [('name', "like", _('Client')), ('company_id', "=", 2)],
+                        [('name', "ilike", _('Client')), ('company_id', "=", website.company_id.id)],
                         limit=1).id,
                 }
                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
@@ -301,7 +305,7 @@ class OnfidoController(http.Controller):
                                         'description': "Client:" + " " + currentUser.name + " Motif:" + message_ticket,
                                         'name': 'Documents refusés',
                                         'team_id': request.env['helpdesk.team'].sudo().search(
-                                            [('name', "like", _('Client')), ('company_id', "=", 1)],
+                                            [('name', "ilike", _('Client')), ('company_id', "=", website.company_id.id)],
                                             limit=1).id,
                                     }
                                     new_ticket = request.env['helpdesk.ticket'].sudo().create(
@@ -325,19 +329,18 @@ class OnfidoController(http.Controller):
                                             for document in documents:
                                                 document.state = "validated"
                                                 request.env.cr.commit()
-                                        # self.create_document(data_onfido.id_document_front,"front",data_onfido.type_front,"validated",currentUser)
-                                        # self.create_document(data_onfido.id_document_back,"back",data_onfido.type_back,"validated",currentUser)
-                                        # else:
-                                        #     time.sleep(9)
-                                        #     _logger.info(
-                                        #         '*************************************after waite clear  ***************** %s' % str(
-                                        #             currentUser.id))
-                                        #     documents = request.env['documents.document'].sudo().search(
-                                        #         [('partner_id', "=", currentUser.id)])
-                                        #     _logger.info("document %s" % str(documents))
-                                        #     if documents:
-                                        #         for document in documents:
-                                        #             document.state = "validated"
+                    else:
+                        currentUser.validation_onfido = "clear"
+                        if data_onfido:
+
+                            data_onfido.validation_onfido = "clear"
+                            documents = request.env['documents.document'].sudo().search(
+                                [('partner_id', "=", currentUser.id)])
+                            _logger.info("document %s" % str(documents))
+                            if documents:
+                                for document in documents:
+                                    document.state = "validated"
+                                    request.env.cr.commit()
 
         return True
 

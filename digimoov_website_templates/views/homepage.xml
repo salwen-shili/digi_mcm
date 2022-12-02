@@ -426,7 +426,7 @@
                                 <div class="row m-t-40">
 
                                     <div class="col-md-4 wrap-feature7-box">
-                                        <img class="rounded img-responsive lazy scooter-pos" data-src="/digimoov_website_templates/static/img/Transport léger sur scooter.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger sur scooter.png" alt="Scooter pour faire de la livraison" title="Transport léger sur scooter" />
+                                        <img class="rounded img-responsive lazy scooter-pos" data-src="/digimoov_website_templates/static/img/Transport léger sur scooter.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger sur scooter.png" alt="Scooter pour faire de la livraison" style="transform: scaleX(-1);" title="Transport léger sur scooter" />
                                         <div class="m-t-30">
                                             <h3 class="font-medium text-center">
                   Devenir livreur en scooter
@@ -440,7 +440,7 @@
                                     </div>
 
                                     <div class="col-md-4 wrap-feature7-box">
-                                        <img class="rounded img-responsive lazy voiture-pos" data-src="/digimoov_website_templates/static/img/Transport léger  sur voiture.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger  sur voiture.png" alt="Voiture pour Transport léger de marchandise" title="Transport léger  sur voiture" />
+                                        <img class="rounded img-responsive lazy voiture-pos" data-src="/digimoov_website_templates/static/img/Transport léger  sur voiture.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger  sur voiture.png" alt="Voiture pour Transport léger de marchandise" style="transform: scaleX(-1);" title="Transport léger  sur voiture" />
                                         <div class="m-t-30">
                                             <h3 class="font-medium text-center">
                     Devenir livreur en voiture
@@ -454,7 +454,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 wrap-feature7-box">
-                                        <img class="rounded img-responsive lazy camionnette-pos" data-src="/digimoov_website_templates/static/img/Transport léger sur camionnette 3,5t.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger sur camionnette 3,5t.png" alt="camionnette pour transport -3.5t PTAC" title="Transport léger sur camionnette 3,5t" />
+                                        <img class="rounded img-responsive lazy camionnette-pos" data-src="/digimoov_website_templates/static/img/Transport léger sur camionnette 3,5t.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger sur camionnette 3,5t.png" alt="camionnette pour transport -3.5t PTAC" style="transform: scaleX(-1);" title="Transport léger sur camionnette 3,5t" />
                                         <div class="m-t-30">
                                             <h3 class="font-medium text-center">
                     Devenir livreur en camionnette

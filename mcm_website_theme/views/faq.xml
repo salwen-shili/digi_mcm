@@ -1,510 +1,464 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="mcm_website_faq" name="FAQ | MCM ACADEMY" t-name="mcm_website_theme.mcm_website_faq">
-        <t t-call="website.layout">
-            <t t-set="head">
-                    <!--script of structured data-->
-                    <script type="application/ld+json">
-                        {
-                        "@context": "https://schema.org",
-                        "@type": "FAQPage",
-                        "mainEntity": [{
-                        "@type": "Question",
-                        "name": "Qui est concerné par la formation Taxi ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Notre formation s’adresse à toute personne majeure intéressée par les métiers de transport
-                        , en recherche d’emploi stable , souhaitant devenir auto-entrepreneur, ou en reconversion
-                        professionnelle , témoignant des prérequis suivants : Permis B non probatoire , Aptitude médicale
-                        auprès d’un médecin agréé par la préfecture, et un Casier judiciaire B2 non affecté de certaines
-                        condamnations."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Peut-on devenir chauffeur Taxi sans être de nationalité française ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Oui c'est possible pour les ressortissants de l'union européenne. Mais, pour les autres
-                        nationalités, c'est possible aussi à condition d’être en possession d’un titre de séjour qui vous
-                        autorise à travailler."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Quelles sont les modalités de paiement de la formation ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "MCM Academy vous offre la possibilité de bénéficier d'une formation gratuite en mobilisant
-                        votre compte personnel de formation .
-                        Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500 € par an (somme
-                        versée autour du mois d'avril) et cela peut monter à 800 € pour les salariés moins qualifiés et les
-                        personnes en situation d'handicap. Comme nous vous offrons la possibilité de financer directement
-                        votre formation en ligne par carte bleue . Ce mode de paiement est à privilégier si vous souhaitez
-                        démarrer votre activité et rentabiliser votre formation au plus vite."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Quelle est la différence entre un chauffeur Taxi et un VTC ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Le VTC est un service de voiture de tourisme avec chauffeur. Contrairement à un taxi, un
-                        VTC fonctionne uniquement par réservation (immédiate ou à l’avance). Les véhicules VTC ne sont pas
-                        équipés de compteurs, contrairement aux taxis. Le prix de la course est déterminé à l'avance lors de
-                        la réservation. Le chauffeur VTC conduit ses passagers dans un véhicule de standing dépourvu de
-                        plaque lumineuse, à la différence d’un taxi qui dispose de signes extérieurs visibles. Le taxi a le
-                        droit de stationner sur la voie publique en attente de clients et le prix de ses courses est
-                        déterminé par un compteur par contre une voiture avec chauffeur VTC n’a pas le droit de stationner
-                        sur la voie publique en attente de clients. La course doit être réservée par mail, fax ou bon de
-                        commande"
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Comment devenir chauffeur Taxi ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "La profession de chauffeur TAXI est réglementée. Pour l'exercer, il faut remplir plusieurs
-                        conditions :
-                        1- Être titulaire du permis B en cours de validité depuis au moins 3 ans
-                        2- Passer une visite médicale auprès d’un médecin agrée par la Préfecture de son département
-                        3- Réussir son examen officiel taxi : une épreuve théorique puis une épreuve pratique
-                        4- Avoir la carte professionnelle après l'examen du certificat de capacité professionnelle
-                        5- Avoir un casier judiciaire vierge"
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Quels papiers d'identité sont demandés pour l'inscription à la formation TAXI ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Lors de l’inscription pour la formation TAXI, il vous sera demandé les justificatifs
-                        suivants :
-                        1-Votre pièce d’identité (passeport, carte d’identité en recto/verso, titre de séjour)
-                        2- Votre permis de conduire B (recto/verso)"
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Comment puis-je évaluer les acquis de la formation ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "1. Au démarrage de votre formation, vous trouverez sur la plateforme un espace nommé «
-                        auto-évaluation » où on vous proposera un temps d’auto-évaluation des acquis.
-                        2. Au cours de la formation, les acquis sont évalués à travers les questions posées sous forme des
-                        QCM et des textes à trous après chaque sous module. 3. A la fin de chaque module, vous trouverez un
-                        quiz final et des examens blancs (QCM, QRO). Pour ce faire, il est primordial de se mettre en
-                        conditions réelles d'examen.
-                        4. A la fin de la formation, grâce à la fiche de suivi qui est disponible sur la plateforme vous
-                        pouvez visualiser votre taux d’accomplissement de la formation. (NB : la fiche de suivi est à votre
-                        disposition tout au long de la formation).
-                        Voir"
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Je viens de passer mon examen théorique Taxi, comment se passe la location du véhicule
-                        double commandes ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Contactez-nous par mail , et nous vous enverrons les coordonnées de notre partenaire le
-                        plus proche de chez vous , pour vous aider dans votre procédure de location et vous proposer le
-                        véhicule adéquat pour passer votre examen."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Comment se déroule l'examen pratique Taxi ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Il s’agit d’une épreuve de mise en situation (à bord d’un véhicule taxi) d’une durée totale
-                        de 45 minutes, durant laquelle le jury (composé d’un membre de la Chambre des Métiers et de
-                        l’Artisanat et d’un professionnel TAXI ) tiendra le rôle des clients et vous évaluera notamment sur
-                        votre capacité à choisir un itinéraire, la qualité de votre prise en charge, votre conduite et votre
-                        relationnel.
-                        Vous serez déclaré reçu à l’examen si vous obtenez une note moyenne supérieure ou égale à 12/20 à
-                        l’ensemble de l’examen pratique et qu'aucune faute éliminatoire n'a été commise.
-                        Les résultats sont communiqués aussitôt après concertation et délibération des membres du jury."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Après la réussite de mes examens, quand est-ce-que je pourrais avoir ma carte pro ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Il faut que vous vous connectiez sur le site de la Préfecture à laquelle vous êtes
-                        rattaché, puis que vous téléchargiez le dossier à compléter, joindre les documents demandés et
-                        renvoyer ce dossier à la Préfecture.
-    
-                        Après avoir envoyé votre dossier, l'imprimerie nationale vous enverra votre carte professionnelle
-                        TAXI. Il faudra patienter environ 1 mois selon les préfectures.
-    
-                        Depuis le 1er juillet 2017, vous devez effectuer un paiement en faveur de l'imprimerie nationale qui
-                        fabriquera votre carte TAXI. L'équipe d'MCM ACADEMY est là pour vous assister et vous aider à
-                        compléter votre dossier ."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Puis-je faire la formation avec un permis obtenu dans un pays étranger ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Vous pouvez passer votre formation TAXI avec n'importe quel permis de la communauté
-                        européenne. Pour les permis d'autres nationalités, vous devez procéder à l’échange contre un permis
-                        français auprès de la préfecture de votre département de domicile."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Que se passe t-il si je rate mon examen ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Vous avez la possibilité de repasser l’examen maximum 2 fois en vous inscrivant à la CMA
-                        (chambre des métiers et de l’artisanat) en candidat libre ou bien vous pouvez repasser la formation
-                        au sein de notre centre."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Comment estimer le prix d'une course Taxi ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "L'estimation du montant de la course en taxi se fait grâce au taximètre, un compteur
-                        kilométrique qui doit équiper d'office le véhicule taxi. De multiples critères sont inclus dans le
-                        calcul du tarif d'un trajet en taxi : Le coût de prise en charge (somme affichée à l'enclenchement
-                        du compteur). Les tarifs sont très variables et changent selon le département , l'heure et le nombre
-                        de kilométrage ."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "C'est quoi une licence ADS Taxi ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Après avoir réussi l’épreuve théorique et pratique, et obtenu la carte professionnelle, le
-                        chauffeur TAXI doit, pour pouvoir exercer son activité, soit être titulaire d’une autorisation de
-                        stationnement (ADS), communément appelée “licence de taxi” ou “plaque”, soit exercer comme locataire
-                        ou salarié pour le compte d’un exploitant titulaire d’une ADS.
-    
-                        C’est le maire (ou le préfet de police à Paris pour les “taxis parisiens”) qui, après avis de la
-                        commission des taxis et des voitures de petite remise, fixe par arrêté le nombre d’autorisations de
-                        stationnement, c’est-à-dire le nombre de taxis admis à être exploités dans la commune.
-    
-                        Il faut s’inscrire sur une liste d’attente en vue de la délivrance de nouvelles autorisations. Le
-                        délai d’attente peut être particulièrement long dans certaines villes. La liste d’attente doit
-                        mentionner la date de dépôt et le numéro d’enregistrement de chaque demande.
-    
-                        Pour s’inscrire sur la liste d’attente, le demandeur doit respecter les conditions suivantes :
-                        - Disposer d’une carte professionnelle en cours de validité dans le département où la licence est
-                        sollicitée,
-                        - Ne pas être déjà détenteur d’une licence, quel que soit le lieu de délivrance,
-                        - Ne pas être inscrit sur plus d’une liste d’attente."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Comment reprendre une entreprise de Taxi ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Le métier de taxi est réglementé, il nécessite de passer un diplôme et d'acquérir une
-                        licence.
-                        A Paris et en Île-de-France , la licence de taxi est onéreuse mais compte tenu de leur rareté, les
-                        banques acceptent de les financer."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Quel est le salaire d'un chauffeur Taxi ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "En tant que salarié un « taxi » peut envisager, en ville, un salaire moyen autour de 1 700
-                        € par mois. En tant qu'artisan certains avancent des revenus possibles de l'ordre de 3 000 à 3 200 €
-                        mensuels."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Quels sont les motifs de retrait de la carte professionnelle Taxi ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Ils en existe plusieurs : Toute condamnation prononcée par une juridiction française ou
-                        étrangère à une peine criminelle ou correctionnelle d'au moins 6 mois d'emprisonnement pour vol,
-                        escroquerie, abus de confiance, atteinte volontaire à l'intégrité de la personne, agression sexuelle
-                        ou infraction à la législation sur les stupéfiants."
-                        }
-                        },{
-                        "@type": "Question",
-                        "name": "Quel âge doit-on avoir pour exercer le métier de chauffeur Taxi ?",
-                        "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Il suffit d'avoir 3 ans de permis de conduire catégorie B, donc 21 ans au minimum et pas
-                        d'âge maximum. Dans le cas de l'obtention du permis avec une conduite accompagnée, la durée de
-                        permis est réduite à 2 ans."
-                        }
-                        }]
-                        }
-                    </script>
-                    <link rel="stylesheet" href="/mcm_website_theme/static/src/css/faq.min.css" />
-             </t>
+      <t t-call="website.layout">
+        <t t-set="head">
+          <!--script of structured data-->
+          <script type="application/ld+json">
+                            {
+                            "@context": "https://schema.org",
+                            "@type": "FAQPage",
+                            "mainEntity": [{
+                            "@type": "Question",
+                            "name": "Qui est concerné par la formation Taxi ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Notre formation s’adresse à toute personne majeure intéressée par les métiers de transport
+                            , en recherche d’emploi stable , souhaitant devenir auto-entrepreneur, ou en reconversion
+                            professionnelle , témoignant des prérequis suivants : Permis B non probatoire , Aptitude médicale
+                            auprès d’un médecin agréé par la préfecture, et un Casier judiciaire B2 non affecté de certaines
+                            condamnations."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Peut-on devenir chauffeur Taxi sans être de nationalité française ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Oui c'est possible pour les ressortissants de l'union européenne. Mais, pour les autres
+                            nationalités, c'est possible aussi à condition d’être en possession d’un titre de séjour qui vous
+                            autorise à travailler."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Quelles sont les modalités de paiement de la formation ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "MCM Academy vous offre la possibilité de bénéficier d'une formation gratuite en mobilisant
+                            votre compte personnel de formation .
+                            Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500 € par an (somme
+                            versée autour du mois d'avril) et cela peut monter à 800 € pour les salariés moins qualifiés et les
+                            personnes en situation d'handicap. Comme nous vous offrons la possibilité de financer directement
+                            votre formation en ligne par carte bleue . Ce mode de paiement est à privilégier si vous souhaitez
+                            démarrer votre activité et rentabiliser votre formation au plus vite."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Quelle est la différence entre un chauffeur Taxi et un VTC ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Le VTC est un service de voiture de tourisme avec chauffeur. Contrairement à un taxi, un
+                            VTC fonctionne uniquement par réservation (immédiate ou à l’avance). Les véhicules VTC ne sont pas
+                            équipés de compteurs, contrairement aux taxis. Le prix de la course est déterminé à l'avance lors de
+                            la réservation. Le chauffeur VTC conduit ses passagers dans un véhicule de standing dépourvu de
+                            plaque lumineuse, à la différence d’un taxi qui dispose de signes extérieurs visibles. Le taxi a le
+                            droit de stationner sur la voie publique en attente de clients et le prix de ses courses est
+                            déterminé par un compteur par contre une voiture avec chauffeur VTC n’a pas le droit de stationner
+                            sur la voie publique en attente de clients. La course doit être réservée par mail, fax ou bon de
+                            commande"
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Comment devenir chauffeur Taxi ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "La profession de chauffeur TAXI est réglementée. Pour l'exercer, il faut remplir plusieurs
+                            conditions :
+                            1- Être titulaire du permis B en cours de validité depuis au moins 3 ans
+                            2- Passer une visite médicale auprès d’un médecin agrée par la Préfecture de son département
+                            3- Réussir son examen officiel taxi : une épreuve théorique puis une épreuve pratique
+                            4- Avoir la carte professionnelle après l'examen du certificat de capacité professionnelle
+                            5- Avoir un casier judiciaire vierge"
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Quels papiers d'identité sont demandés pour l'inscription à la formation TAXI ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Lors de l’inscription pour la formation TAXI, il vous sera demandé les justificatifs
+                            suivants :
+                            1-Votre pièce d’identité (passeport, carte d’identité en recto/verso, titre de séjour)
+                            2- Votre permis de conduire B (recto/verso)"
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Comment puis-je évaluer les acquis de la formation ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "1. Au démarrage de votre formation, vous trouverez sur la plateforme un espace nommé «
+                            auto-évaluation » où on vous proposera un temps d’auto-évaluation des acquis.
+                            2. Au cours de la formation, les acquis sont évalués à travers les questions posées sous forme des
+                            QCM et des textes à trous après chaque sous module. 3. A la fin de chaque module, vous trouverez un
+                            quiz final et des examens blancs (QCM, QRO). Pour ce faire, il est primordial de se mettre en
+                            conditions réelles d'examen.
+                            4. A la fin de la formation, grâce à la fiche de suivi qui est disponible sur la plateforme vous
+                            pouvez visualiser votre taux d’accomplissement de la formation. (NB : la fiche de suivi est à votre
+                            disposition tout au long de la formation).
+                            Voir"
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Je viens de passer mon examen théorique Taxi, comment se passe la location du véhicule
+                            double commandes ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Contactez-nous par mail , et nous vous enverrons les coordonnées de notre partenaire le
+                            plus proche de chez vous , pour vous aider dans votre procédure de location et vous proposer le
+                            véhicule adéquat pour passer votre examen."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Comment se déroule l'examen pratique Taxi ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Il s’agit d’une épreuve de mise en situation (à bord d’un véhicule taxi) d’une durée totale
+                            de 45 minutes, durant laquelle le jury (composé d’un membre de la Chambre des Métiers et de
+                            l’Artisanat et d’un professionnel TAXI ) tiendra le rôle des clients et vous évaluera notamment sur
+                            votre capacité à choisir un itinéraire, la qualité de votre prise en charge, votre conduite et votre
+                            relationnel.
+                            Vous serez déclaré reçu à l’examen si vous obtenez une note moyenne supérieure ou égale à 12/20 à
+                            l’ensemble de l’examen pratique et qu'aucune faute éliminatoire n'a été commise.
+                            Les résultats sont communiqués aussitôt après concertation et délibération des membres du jury."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Après la réussite de mes examens, quand est-ce-que je pourrais avoir ma carte pro ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Il faut que vous vous connectiez sur le site de la Préfecture à laquelle vous êtes
+                            rattaché, puis que vous téléchargiez le dossier à compléter, joindre les documents demandés et
+                            renvoyer ce dossier à la Préfecture.
+        
+                            Après avoir envoyé votre dossier, l'imprimerie nationale vous enverra votre carte professionnelle
+                            TAXI. Il faudra patienter environ 1 mois selon les préfectures.
+        
+                            Depuis le 1er juillet 2017, vous devez effectuer un paiement en faveur de l'imprimerie nationale qui
+                            fabriquera votre carte TAXI. L'équipe d'MCM ACADEMY est là pour vous assister et vous aider à
+                            compléter votre dossier ."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Puis-je faire la formation avec un permis obtenu dans un pays étranger ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Vous pouvez passer votre formation TAXI avec n'importe quel permis de la communauté
+                            européenne. Pour les permis d'autres nationalités, vous devez procéder à l’échange contre un permis
+                            français auprès de la préfecture de votre département de domicile."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Que se passe t-il si je rate mon examen ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Vous avez la possibilité de repasser l’examen maximum 2 fois en vous inscrivant à la CMA
+                            (chambre des métiers et de l’artisanat) en candidat libre ou bien vous pouvez repasser la formation
+                            au sein de notre centre."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Comment estimer le prix d'une course Taxi ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "L'estimation du montant de la course en taxi se fait grâce au taximètre, un compteur
+                            kilométrique qui doit équiper d'office le véhicule taxi. De multiples critères sont inclus dans le
+                            calcul du tarif d'un trajet en taxi : Le coût de prise en charge (somme affichée à l'enclenchement
+                            du compteur). Les tarifs sont très variables et changent selon le département , l'heure et le nombre
+                            de kilométrage ."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "C'est quoi une licence ADS Taxi ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Après avoir réussi l’épreuve théorique et pratique, et obtenu la carte professionnelle, le
+                            chauffeur TAXI doit, pour pouvoir exercer son activité, soit être titulaire d’une autorisation de
+                            stationnement (ADS), communément appelée “licence de taxi” ou “plaque”, soit exercer comme locataire
+                            ou salarié pour le compte d’un exploitant titulaire d’une ADS.
+        
+                            C’est le maire (ou le préfet de police à Paris pour les “taxis parisiens”) qui, après avis de la
+                            commission des taxis et des voitures de petite remise, fixe par arrêté le nombre d’autorisations de
+                            stationnement, c’est-à-dire le nombre de taxis admis à être exploités dans la commune.
+        
+                            Il faut s’inscrire sur une liste d’attente en vue de la délivrance de nouvelles autorisations. Le
+                            délai d’attente peut être particulièrement long dans certaines villes. La liste d’attente doit
+                            mentionner la date de dépôt et le numéro d’enregistrement de chaque demande.
+        
+                            Pour s’inscrire sur la liste d’attente, le demandeur doit respecter les conditions suivantes :
+                            - Disposer d’une carte professionnelle en cours de validité dans le département où la licence est
+                            sollicitée,
+                            - Ne pas être déjà détenteur d’une licence, quel que soit le lieu de délivrance,
+                            - Ne pas être inscrit sur plus d’une liste d’attente."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Comment reprendre une entreprise de Taxi ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Le métier de taxi est réglementé, il nécessite de passer un diplôme et d'acquérir une
+                            licence.
+                            A Paris et en Île-de-France , la licence de taxi est onéreuse mais compte tenu de leur rareté, les
+                            banques acceptent de les financer."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Quel est le salaire d'un chauffeur Taxi ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "En tant que salarié un « taxi » peut envisager, en ville, un salaire moyen autour de 1 700
+                            € par mois. En tant qu'artisan certains avancent des revenus possibles de l'ordre de 3 000 à 3 200 €
+                            mensuels."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Quels sont les motifs de retrait de la carte professionnelle Taxi ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Ils en existe plusieurs : Toute condamnation prononcée par une juridiction française ou
+                            étrangère à une peine criminelle ou correctionnelle d'au moins 6 mois d'emprisonnement pour vol,
+                            escroquerie, abus de confiance, atteinte volontaire à l'intégrité de la personne, agression sexuelle
+                            ou infraction à la législation sur les stupéfiants."
+                            }
+                            },{
+                            "@type": "Question",
+                            "name": "Quel âge doit-on avoir pour exercer le métier de chauffeur Taxi ?",
+                            "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Il suffit d'avoir 3 ans de permis de conduire catégorie B, donc 21 ans au minimum et pas
+                            d'âge maximum. Dans le cas de l'obtention du permis avec une conduite accompagnée, la durée de
+                            permis est réduite à 2 ans."
+                            }
+                            }]
+                            }
+                        </script>
+          <link rel="stylesheet" href="/mcm_website_theme/static/src/css/faq.min.css"/>
+        </t>
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/faq.min.css"/>
-          <!-- partial:index.partial.html -->
-        <div class="master-box">
-            <div class="faq-header">
-              <h1 class="title" style="font-size:55px">FAQ</h1>
-              <hr />
-              <h4 class="subtitle">Une question ? Une réponse !</h4>
-              <div class="filter-search">
-                <input
-                  type="text"
-                  id="myInput"
-                  onkeyup="searchFunction()"
-                  placeholder="Rechercher"
-                />
-                <div id="myBtnContainer">
-         
-                  <button class="btn active-btn" onclick="filterSelection('account')">
-                    FORMATIONS
-                  </button>
-                  <button class="btn" onclick="filterSelection('orders')">EXAMENS</button>
-                  <button class="btn" onclick="filterSelection('bugs')">DIVERS</button>
-                  <button class="btn" onclick="filterSelection('promotions')">
-                    FINANCEMENT
-                  </button>
-                </div>
+        <!-- partial:index.partial.html -->
+        <div class="master-box" style="word-break: break-word; position: relative; z-index: 0;">
+          <div class="faq-header">
+            <h1 class="title" style="font-size:55px">FAQ</h1>
+            <hr/>
+            <h4 class="subtitle">Une question ? Une réponse !</h4>
+            <div class="filter-search">
+              <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Rechercher"/>
+              <div id="myBtnContainer">
+                <button class="btn" onclick="filterSelection('account')" spellcheck="false">
+                        FORMATIONS
+                      </button>
+                <button class="btn active-btn" onclick="filterSelection('orders')" spellcheck="false">EXAMENS</button>
+                <button class="btn" onclick="filterSelection('bugs')" spellcheck="false">DIVERS</button>
+                <button class="btn" onclick="filterSelection('promotions')" spellcheck="false">
+                        FINANCEMENT
+                      </button>
               </div>
             </div>
-          
-            <ul id="myUL">
-              <li class="filterDiv account">
-                <span class="accordion-thumb"
-                  >Quels documents dois-je préparer pour m'inscrire à la formation VTC
-                  /formation TAXI ?</span
-                >
-                <p class="accordion-panel">
-                  Votre pièce d’identité (passeport, carte d’identité, titre de séjour),
-                  un Permis B non probatoire de plus de 3 ans.
-                </p>
-              </li>
-              <li class="filterDiv account">
-                <span class="accordion-thumb"
-                  >Comment se passe la formation en ligne ?</span
-                >
-                <p class="accordion-panel">
-                  Notre formation est 100% théorique, à suivre sur une plateforme
-                  e-learning assez simple d'utilisation. Elle est de 70 h, durant
-                  lesquelles vous allez pouvoir découvrir et vous former sur les 7
-                  matières principales sur lesquelles vous allez passer l'examen
-                  d'admissibilité.Pour pouvoir tester vos connaissances, vous aurez droit
-                  à la fin de chaque matière à des QCM et des QCR (questions à réponses
-                  courtes) ainsi que des examens blancs à passer ensuite à corriger avec
-                  votre tuteur.
-                </p>
-              </li>
-              <li class="filterDiv account">
-                <span class="accordion-thumb"
-                  >Aurais-je droit à une aide lors de la formation ?
-                </span>
-                <p class="accordion-panel">
-                  Oui, lors de votre parcours vous allez pouvoir être assisté par mail,
-                  par téléphone et vous aurez droit à des Live organisés par les
-                  formateurs afin de répondre à vos questions et avoir plus d'explications
-                  sur les modules.
-                </p>
-              </li>
-              <li class="filterDiv account">
-                <span class="accordion-thumb"
-                  >Quels sont les modalités de financement offerts pour financer les
-                  formations ?</span
-                >
-                <p class="accordion-panel">
-                  MCM Academy vous offre la possibilité de mobiliser votre compte
-                  personnel de formation (CPF). Pour en savoir plus cliquez ici 
-                  <a style="color:blue" href="https://youtu.be/19BiYQVwZFs">👈</a>
-                </p>
-              </li>
-              <li class="filterDiv account">
-                <span class="accordion-thumb"
-                  >Je n'arrive plus à me connecter sur la plateforme elearning que faire
-                  ?</span
-                >
-                <p class="accordion-panel">
-                  Vous avez la possibilité de nous contacter sur la rubrique assistance.
-                  Un de nous conseillers prendra contact avec vous dans les 24h.
-                </p>
-              </li>
-              <li class="filterDiv orders">
-                <span class="accordion-thumb"
-                  >Comment puis-je m'inscrire à l'examen Taxi, VTC ou Moto-taxi ?</span
-                >
-                <p class="accordion-panel">
-                  L'inscription aux sessions d’examen s’effectue via ce lien
-                  https://www.examentaxivtc.fr
-                </p>
-              </li>
-              <li class="filterDiv orders">
-                <span class="accordion-thumb"
-                  >Quelles sont les conditions pour s'inscrire à l'examen TAXI/VTC ?</span
-                >
-                <p class="accordion-panel">
-                  Pour s'inscrire à l' examen TAXI/VTC, le candidat doit être : <br/> -
-                  Européen ou avoir un titre de séjour lui permettant d'exercer en France.
-                  <br />
-                  - Titulaire d'un permis B depuis au moins 3 ans et non soumis à une
-                  période probatoire.<br />
-                  - En capacité physique de devenir chauffeur professionnel.
-                  <br/><br/>
-                  Nul ne peut s’inscrire à l’examen si : Il a fait objet dans les dix ans
-                    qui précèdent sa demande d’un retrait définitif de sa carte
-                    professionnelle ou s'il a fait objet dans les cinq ans qui précèdent sa
-                    demande, d’une exclusion pour fraude lors d’une session à l’un des
-                    examens des professions du transport public particulier de personnes.
-                </p>
-               
-              </li>
-              <li class="filterDiv orders">
-                <span class="accordion-thumb"
-                  >Comment se déroule l'examen taxi VTC ou taxi moto ?</span
-                >
-                <p class="accordion-panel">
-                  L'examen organisé par la chambre des métiers et de l'artisanat, vous
-                  devrez passer des épreuves théoriques d’ admissibilité, sous forme de
-                  questions à choix multiples et de questions (QCM) à réponses courtes, et
-                  d’une épreuve pratique d’ admission, qui consiste en une mise en
-                  situation pratique de réalisation d’une course de taxi/moto-taxi ou
-                  d’une mission de transport en VTC.
-                </p>
-              </li>
-              <li class="filterDiv orders">
-                <span class="accordion-thumb"
-                  >Je viens de réussir mon examen théorique et pratique, comment puis-je
-                  avoir ma carte professionnelle ?</span
-                >
-                <p class="accordion-panel">
-                  "Vous devez transmettre à la Préfecture les copies des documents
-                  suivants : Carte d’identité (CNI) recto/verso ou passeport Permis de
-                  conduire en cours de validité Attestation de réussite à l’examen Avis
-                  médical positif (cerfa n°14880) Attestation de brevet de secourisme
-                  uniquement pour les taxis (formation PSC1) 2 photos récentes "
-                </p>
-              </li>
-              <li class="filterDiv orders">
-                <span class="accordion-thumb"
-                  >Que se passera t-il si je rate mon examen théorique ?
-                </span>
-                <p class="accordion-panel">
-                  Vous avez la possibilité de repasser l’examen en vous inscrivant à la
-                  CMA, tout en prévoyant des frais s'élevant à 200 euros pour refaire la
-                  formation.
-                </p>
-              </li>
-              <li class="filterDiv orders">
-                <span class="accordion-thumb"
-                  >Je viens de passer l'examen quand est-ce que je pourrais avoir mes
-                  résultats ?</span
-                >
-                <p class="accordion-panel">
-                  La correction des copies d’examens est attribuée à la Chambre des
-                  Métiers et de l’Artisanat. Celle-ci se charge aussi de la communication
-                  des résultats. En général, Cela prend environ 2 semaines.
-                </p>
-              </li>
-              <li class="filterDiv bugs">
-                <span class="accordion-thumb"
-                  >Peut-on devenir chauffeur Taxi/VTC/Moto-taxi sans avoir la nationalité
-                  française ?
-                </span>
-                <p class="accordion-panel">
-                  Oui c'est possible pour les ressortissants de l'union européenne. Mais,
-                  pour les autres nationalités, c'est possible aussi à condition d’être en
-                  possession d’un titre de séjour qui vous autorise à travailler.
-                </p>
-              </li>
-              <li class="filterDiv bugs">
-                <span class="accordion-thumb">Comment obtenir une Licence ADS ? </span>
-                <p class="accordion-panel">
-                  "Pour connaitre les démarches merci de consulter notre article de blog
-                  en cliquant ici ; https://bit.ly/3IHCFOz conduire le lien vers le
-                  paragraphe ; Obtenir l’autorisation de stationnement pour taxi à Paris "
-                </p>
-              </li>
-              <li class="filterDiv bugs">
-                <span class="accordion-thumb"
-                  >Comment reprendre une entreprise de taxi ?
-                </span>
-                <p class="accordion-panel">
-                  "Le métier de taxi est réglementé, il nécessite de passer un diplôme et
-                  d'acquérir une licence. Par exemple : À Paris et en Île-de-France la
-                  licence de taxi est onéreuse mais compte tenu de leur rareté, les
-                  banques acceptent de les financer."
-                </p>
-              </li>
-              <li class="filterDiv bugs">
-                <span class="accordion-thumb"
-                  >Quel est le salaire d'un chauffeur de taxi ?
-                </span>
-                <p class="accordion-panel">
-                  Un salarié « taxi » touche un salaire moyen autour de 1 700 € par mois.
-                </p>
-              </li>
-              <li class="filterDiv bugs">
-                <span class="accordion-thumb"
-                  >À quel âge peut-on exercer le métier de chauffeur taxi ?
-                </span>
-                <p class="accordion-panel">
-                  Il suffit d'avoir 3 ans de permis de conduire catégorie B, donc 21 ans
-                  au minimum et pas d'âge maximum. Dans le cas de l'obtention du permis
-                  avec une conduite accompagnée, la durée de permis est réduite à 2 ans.
-                </p>
-              </li>
-              <li class="filterDiv bugs">
-                <span class="accordion-thumb"
-                  >Quelle est la différence entre un chauffeur VTC et un chauffeur TAXI ?
-                </span>
-                <p class="accordion-panel">
-                  Contrairement à un taxi, un VTC fonctionne uniquement par réservation
-                  (immédiate ou à l’avance). Les véhicules VTC sont pas équipés de
-                  compteurs, contrairement aux taxis. Le prix de la course est déterminé à
-                  l'avance lors de la réservation. Le chauffeur VTC conduit ses passagers
-                  dans un véhicule de standing dépourvu de plaque lumineuse, à la
-                  différence d’un taxi qui dispose de signes extérieurs visibles. Le taxi
-                  a le droit de stationner sur la voie publique en attente de clients et
-                  le prix de ses courses est déterminé par un compteur par contre une
-                  voiture avec chauffeur VTC n’a pas le droit de stationner sur la voie
-                  publique en attente de clients.
-                </p>
-              </li>
-          
-              <li class="filterDiv bugs">
-                <span class="accordion-thumb"
-                  >Êtes-vous un centre de formation agrée ?
-                </span>
-                <p class="accordion-panel">
-                  Oui, nous sommes agréé par la préfecture sous le numéro VTC 59-16-03 |
-                  TAXI 18-03-59
-                </p>
-              </li>
-          
-              <li class="filterDiv promotions">
-                <span class="accordion-thumb">Comment financer ma formation ?</span>
-                <p class="accordion-panel">
-                  Chez MCM Academy nous offrons à nos candidats la possibilité de financer
-                  leurs formation Taxi VTC et VMDTR en mobilisant leurs Compte de
-                  formation Personnel ou par auto-financement avec des modalités assez
-                  flexibles !
-                </p>
-              </li>
-              <li class="filterDiv promotions">
-                <span class="accordion-thumb">C'est quoi le CPF ?</span>
-                <p class="accordion-panel">
-                  Le compte personnel de formation sert à accompagner le titulaire dans le
-                  cadre de l’évolution, la reconversion et la sécurisation de son parcours
-                  professionnel. Une fois alimenté, il permet de financer tout ou une
-                  partie d’une formation éligible au dispositif, en ligne ou en
-                  présentiel. Salariés, demandeurs d’emploi ou encore travailleurs
-                  indépendants, vous avez tous des droits à la formation professionnelle.
-                </p>
-              </li>
-              <li class="filterDiv promotions">
-                <span class="accordion-thumb">Comment mobiliser mon CPF ?</span>
-                <p class="accordion-panel">
-                  Pour connaître les démarches cliquez ici 
-                  <a style="color:blue" href="https://youtu.be/19BiYQVwZFs">
-                    👈</a
-                  >
-                </p>
-              </li>
-            </ul>
           </div>
-      <!-- partial -->
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-        <script src='https://use.fontawesome.com/f1279cd51c.js'></script>
+          <ul id="myUL">
+            <li class="filterDiv account">
+              <span class="accordion-thumb">Quels documents dois-je préparer pour m'inscrire à la formation VTC
+                      /formation TAXI ?</span>
+              <p class="accordion-panel">
+                      Votre pièce d’identité (passeport, carte d’identité, titre de séjour),
+                      un Permis B non probatoire de plus de 3 ans.
+                    </p>
+            </li>
+            <li class="filterDiv account">
+              <span class="accordion-thumb">Comment se passe la formation en ligne ?</span>
+              <p class="accordion-panel" style="display: none;"> Notre formation est théorique et se déroule sur une plateforme e-learning assez simple d'utilisation. Il s'agit de 70 heures de formation, durant lesquelles vous pourrez découvrir et vous entraîner pour réussir les 7 matières principales de l'examen taxi VTC. Vous aurez droit à des QCM et des questions à réponses courtes, à la fin de chaque module, ainsi qu'un accès à des examens blancs, passés et corrigés, avec votre tuteur. </p>
+            </li>
+            <li class="filterDiv account">
+              <span class="accordion-thumb">Aurais-je droit à une aide lors de la formation ?
+                    </span>
+              <p class="accordion-panel" style="display: none;">
+                      Oui, lors de votre parcours vous allez pouvoir être assisté par mail,
+                      par téléphone et vous aurez droit à des Live organisés par les
+                      formateurs afin de répondre à vos questions et avoir plus d'explications
+                      sur les modules.
+                    </p>
+            </li>
+            <li class="filterDiv account">
+              <span class="accordion-thumb">Quels sont les modalités de financement offerts pour financer les
+                      formations ?</span>
+              <p class="accordion-panel" style="display: none;">
+                      MCM Academy vous offre la possibilité de mobiliser votre compte
+                      personnel de formation (CPF). Pour en savoir plus cliquez ici 
+                      <a style="color:blue" href="https://youtu.be/19BiYQVwZFs">👈</a>
+                    </p>
+            </li>
+            <li class="filterDiv account">
+              <span class="accordion-thumb">Je n'arrive plus à me connecter sur la plateforme elearning que faire
+                      ?</span>
+              <p class="accordion-panel" style="display: none;">
+                      Vous avez la possibilité de nous contacter sur la rubrique assistance.
+                      Un de nous conseillers prendra contact avec vous dans les 24h.
+                    </p>
+            </li>
+            <li class="filterDiv orders show">
+              <span class="accordion-thumb">Comment puis-je m'inscrire à l'examen Taxi, VTC ou Moto-taxi ?</span>
+              <p class="accordion-panel" style="display: none;">
+                      L'inscription aux sessions d’examen s’effectue via ce lien
+                      https://www.examentaxivtc.fr
+                    </p>
+            </li>
+            <li class="filterDiv orders show is-active">
+              <span class="accordion-thumb">Quelles sont les conditions pour s'inscrire à l'examen TAXI/VTC ?</span>
+              <p class="accordion-panel" style="display: block;">
+                      Pour s'inscrire à l’examen TAXI/VTC, le candidat doit être : <br/> -
+                      Européen ou avoir un titre de séjour lui permettant d'exercer en France.
+                      <br/>
+                      - Titulaire d'un permis de conduire catégorie B depuis au moins 3 ans et non soumis à une
+                      période probatoire.<br/>
+                      - En capacité physique de devenir chauffeur professionnel.
+                      <br/><br/>
+                      Nul ne peut s’inscrire à l’examen si : Il a fait objet dans les dix ans
+                        qui précèdent sa demande d’un retrait définitif de sa carte
+                        professionnelle ou s'il a fait objet dans les cinq ans qui précèdent sa
+                        demande, d’une exclusion pour fraude lors d’une session à l’un des
+                        examens des professions du transport public particulier de personnes.
+                    </p>
+            </li>
+            <li class="filterDiv orders show">
+              <span class="accordion-thumb">Comment se déroule l'examen taxi VTC ou taxi moto ?</span>
+              <p class="accordion-panel" style="display: none;">
+                      L'examen organisé par la chambre des métiers et de l'artisanat, vous
+                      devrez passer des épreuves théoriques d’ admissibilité, sous forme de
+                      questions à choix multiples et de questions (QCM) à réponses courtes, et
+                      d’une épreuve pratique d’ admission, qui consiste en une mise en
+                      situation pratique de réalisation d’une course de taxi/moto-taxi ou
+                      d’une mission de transport en VTC.
+                    </p>
+            </li>
+            <li class="filterDiv orders show">
+              <span class="accordion-thumb">Je viens de réussir mon examen théorique et pratique, comment puis-je
+                      avoir ma carte professionnelle ?</span>
+              <p class="accordion-panel" style="display: none;">
+                      "Vous devez transmettre à la Préfecture les copies des documents
+                      suivants : Carte d’identité (CNI) recto/verso ou passeport Permis de
+                      conduire en cours de validité Attestation de réussite à l’examen Avis
+                      médical positif (cerfa n°14880) Attestation de brevet de secourisme
+                      uniquement pour les taxis (formation PSC1) 2 photos récentes "
+                    </p>
+            </li>
+            <li class="filterDiv orders show">
+              <span class="accordion-thumb">Que se passera t-il si je rate mon examen théorique ?
+                    </span>
+              <p class="accordion-panel" style="display: none;">
+                      Vous avez la possibilité de repasser l’examen en vous inscrivant à la
+                      CMA, tout en prévoyant des frais s'élevant à 200 euros pour refaire la
+                      formation.
+                    </p>
+            </li>
+            <li class="filterDiv orders show">
+              <span class="accordion-thumb">Je viens de passer l'examen quand est-ce que je pourrais avoir mes
+                      résultats ?</span>
+              <p class="accordion-panel" style="display: none;">
+                      La correction des copies d’examens est attribuée à la Chambre des
+                      Métiers et de l’Artisanat. Celle-ci se charge aussi de la communication
+                      des résultats. En général, Cela prend environ 2 semaines.
+                    </p>
+            </li>
+            <li class="filterDiv bugs">
+              <span class="accordion-thumb">Peut-on devenir chauffeur Taxi/VTC/Moto-taxi sans avoir la nationalité
+                      française ?
+                    </span>
+              <p class="accordion-panel" style="display: none;">
+                      Oui c'est possible pour les ressortissants de l'union européenne. Mais,
+                      pour les autres nationalités, c'est possible aussi à condition d’être en
+                      possession d’un titre de séjour qui vous autorise à travailler.
+                    </p>
+            </li>
+            <li class="filterDiv bugs">
+              <span class="accordion-thumb">Comment obtenir une Licence ADS ? </span>
+              <p class="accordion-panel" style="display: none;">
+                      "Pour connaitre les démarches merci de consulter notre article de blog
+                      en cliquant ici ; https://bit.ly/3IHCFOz conduire le lien vers le
+                      paragraphe ; Obtenir l’autorisation de stationnement pour taxi à Paris "
+                    </p>
+            </li>
+            <li class="filterDiv bugs">
+              <span class="accordion-thumb">Comment reprendre une entreprise de taxi ?
+                    </span>
+              <p class="accordion-panel" style="display: none;">
+                      "Le métier de taxi est réglementé, il nécessite de passer un diplôme et
+                      d'acquérir une licence. Par exemple : À Paris et en Île-de-France la
+                      licence de taxi est onéreuse mais compte tenu de leur rareté, les
+                      banques acceptent de les financer."
+                    </p>
+            </li>
+            <li class="filterDiv bugs">
+              <span class="accordion-thumb">Quel est le salaire d'un chauffeur de taxi ?
+                    </span>
+              <p class="accordion-panel" style="display: none;">
+                      Un salarié « taxi » touche un salaire moyen autour de 1 700 € par mois.
+                    </p>
+            </li>
+            <li class="filterDiv bugs">
+              <span class="accordion-thumb">À quel âge peut-on exercer le métier de chauffeur taxi ?
+                    </span>
+              <p class="accordion-panel" style="display: none;">
+                      Il suffit d'avoir 3 ans de permis de conduire catégorie B, donc 21 ans
+                      au minimum et pas d'âge maximum. Dans le cas de l'obtention du permis
+                      avec une conduite accompagnée, la durée de permis est réduite à 2 ans.
+                    </p>
+            </li>
+            <li class="filterDiv bugs">
+              <span class="accordion-thumb">Quelle est la différence entre un chauffeur VTC et un chauffeur TAXI ?
+                    </span>
+              <p class="accordion-panel" style="display: none;">
+                      Contrairement à un taxi, un VTC fonctionne uniquement par réservation
+                      (immédiate ou à l’avance). Les véhicules VTC sont pas équipés de
+                      compteurs, contrairement aux taxis. Le prix de la course est déterminé à
+                      l'avance lors de la réservation. Le chauffeur VTC conduit ses passagers
+                      dans un véhicule de standing dépourvu de plaque lumineuse, à la
+                      différence d’un taxi qui dispose de signes extérieurs visibles. Le taxi
+                      a le droit de stationner sur la voie publique en attente de clients et
+                      le prix de ses courses est déterminé par un compteur par contre une
+                      voiture avec chauffeur VTC n’a pas le droit de stationner sur la voie
+                      publique en attente de clients.
+                    </p>
+            </li>
+            <li class="filterDiv bugs">
+              <span class="accordion-thumb">Êtes-vous un centre de formation agrée ?
+                    </span>
+              <p class="accordion-panel" style="display: none;">
+                      Oui, nous sommes agréé par la préfecture sous le numéro VTC 59-16-03 |
+                      TAXI 18-03-59
+                    </p>
+            </li>
+            <li class="filterDiv promotions">
+              <span class="accordion-thumb">Comment financer la formation taxi/VTC ?</span>
+              <p class="accordion-panel" style="display: none;">
+                      Chez MCM Academy nous offrons à nos candidats la possibilité de financer
+                      leurs formation Taxi VTC et VMDTR en mobilisant leurs Compte de
+                      formation Personnel ou par auto-financement avec des modalités assez
+                      flexibles !
+                    </p>
+            </li>
+            <li class="filterDiv promotions">
+              <span class="accordion-thumb">C'est quoi le CPF ?</span>
+              <p class="accordion-panel" style="display: none;">
+                      Le compte personnel de formation sert à accompagner le titulaire dans le
+                      cadre de l’évolution, la reconversion et la sécurisation de son parcours
+                      professionnel. Une fois alimenté, il permet de financer tout ou une
+                      partie d’une formation éligible au dispositif, en ligne ou en
+                      présentiel. Salariés, demandeurs d’emploi ou encore travailleurs
+                      indépendants, vous avez tous des droits à la formation professionnelle.
+                    </p>
+            </li>
+            <li class="filterDiv promotions">
+              <span class="accordion-thumb">Comment mobiliser mon CPF ?</span>
+              <p class="accordion-panel" style="display: none;">
+                      Pour connaître les démarches cliquez ici 
+                      <a style="color:blue" href="https://youtu.be/19BiYQVwZFs">
+                        👈</a>
+                    </p>
+            </li>
+          </ul>
+        </div>
+        <!-- partial -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"/>
+        <script src="https://use.fontawesome.com/f1279cd51c.js"/>
         <script type="text/javascript" src="/mcm_website_theme/static/src/js/faq.js"/>
+      </t>
     
-            </t>
     </template>
 </odoo>

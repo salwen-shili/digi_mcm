@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="jotform_search_view" model="ir.ui.view">
+        <field name="name">JOTFORM</field>
+        <field name="model">mcm_openedx.img</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="group_form_id" string="Form" icon="terp-partner"
 
+                        context="{'group_by':'form_id'}"/>
+            </search>
+        </field>
+    </record>
     <record model="ir.ui.view" id="jotform_tree_view">
         <field name="name">JOTFORM</field>
         <field name="model">mcm_openedx.img</field>
         <field name="arch" type="xml">
             <tree>
 
-   <field name="form_id"/>
-                        <field name="title"/>
-                        <field name="statut"/>
-                        <field name="url"/>
+                <field name="form_id"/>
+                <field name="title"/>
+                <field name="statut"/>
+                <field name="url"/>
 
             </tree>
         </field>
@@ -21,7 +31,7 @@
         <field name="name">JOTFORM</field>
         <field name="model">mcm_openedx.img</field>
         <field name="arch" type="xml">
-            <form string="Course Form">
+            <form string="Course Form" delete="false">
                 <sheet>
                     <group>
                         <field name="form_id"/>
@@ -43,6 +53,7 @@
     </record>
 
 
-    <menuitem id="jotform_menu" name="JOTFORM" parent="calendly_menu" action="jotformm_list_action"/>
+    <menuitem id="jotform_menu" name="JOTFORM" web_icon="mcm_openedx,static/src/jot.png"/>
+    <menuitem id="jotform_menu-sub" name="Formulaire" parent="jotform_menu" action="jotformm_list_action"/>
 
 </odoo>

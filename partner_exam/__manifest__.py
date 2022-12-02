@@ -45,6 +45,7 @@
         'report/examen_cerfa.xml',
         'report/examen_convocation.xml',
         'report/examen_connection_statement.xml',
+        'report/attestation_entree_en_formation.xml',
         'data/mail_template_suivi_formation.xml',
         'data/ir_cron.xml',
         'data/ir_actions.server.xml',

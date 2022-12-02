@@ -325,7 +325,8 @@ function scrollToError() {
 // responsable of showing the popup
 // if all conditions are required to show the popup 
 function showPopup() {
-  let optionsDate = document.getElementById('options-date').value;
+  let optionsDate = document.getElementById('options-date');
+  if (optionsDate) optionsDate = optionsDate.value
   let cpfChecked = false;
 
   let departement;

@@ -202,4 +202,15 @@
             paperformat="partner_exam.paperformat_connection_statement"
     />
 
+    <!--  Menu de rapport pdf "Attestation d'entrée en formation" MCM_DIGI -->
+    <report id="pdf_rapport_entree_formation_id"
+            string="Attestation d'entrée en formation"
+            model="res.partner"
+            report_type="qweb-pdf"
+            name="partner_exam.attestation_entree_formation_report"
+            file="partner_exam.pdf_rapport_entree_formation_id"
+            print_report_name="'Attestation d’entrée en formation ' + (object.print_report_name_partner())"
+            paperformat="partner_exam.paperformat_connection_statement"
+    />
+
 </odoo>

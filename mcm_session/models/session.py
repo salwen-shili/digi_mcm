@@ -37,6 +37,7 @@ class Session(models.Model):
                                              'prospect_id', string='', copy=False)
     panier_perdu_ids = fields.Many2many('res.partner', 'session_panier_perdu_rel', 'session_id', 'prospect_id',
                                         string='', copy=False)
+    abandon_ids=fields.Many2many('res.partner','session_abandon_rel','session_id','abandon_id',string='',copy=False)
     stage_id = fields.Many2one('mcmacademy.stage', 'État', group_expand='_read_group_stage_ids')
     color = fields.Integer(string='Color Index', copy=True)
     date_debut = fields.Date('Date de debut de session', copy=False)
@@ -46,6 +47,7 @@ class Session(models.Model):
     count_client = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_stagiaires = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_perdu = fields.Integer('', compute='_compute_count_clients', copy=False)
+    count_abandon=fields.Integer('',compute='_compute_count_clients',copy=False)
     count_annule = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_prospect = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_panier_perdu = fields.Integer('', compute='_compute_count_clients', copy=False)
@@ -55,6 +57,7 @@ class Session(models.Model):
                                     track_visibility='always')  # edit the field to be required and show field edit history
     adresse_jury_id = fields.Many2one('session.adresse.examen', "Adresse de jury")
     date_jury = fields.Date()
+
 
     @api.onchange('adresse_jury_id')
     def onchange_session_ville_id(self):
@@ -727,7 +730,7 @@ class Session(models.Model):
                     "Impossible de supprimer une session qui contient des clients")  # raise validation error when we want to delete a session has clients
         return super(Session, self).unlink()
 
-    @api.depends('client_ids', 'prospect_ids', 'canceled_prospect_ids')
+    @api.depends('client_ids', 'prospect_ids', 'canceled_prospect_ids','abandon_ids')
     def _compute_count_clients(self):
         for rec in self:
             client_counter = 0
@@ -752,3 +755,4 @@ class Session(models.Model):
             count_prospect = 0
             rec.count_prospect = len(rec.prospect_ids)
             rec.count_panier_perdu = len(rec.panier_perdu_ids)
+            rec.count_abandon = len(rec.abandon_ids)

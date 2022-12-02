@@ -16,6 +16,22 @@
      <button t-if="widget.modelName == 'mcm_openedx.cma'"
              class="btn btn-primary oe_cma_button"
              type="button">Affecter Résultat</button>
+
+
+     <button t-if="widget.modelName == 'mcm_openedx.calendly_event'"
+             class="btn btn-primary oe_event_button"
+             type="button">Update Events</button>
+
+     <button t-if="widget.modelName == 'mcm_openedx.calendly_integration'"
+             class="btn btn-primary oe_type_event_button"
+             type="button">Update Events/societe</button>
+
+
+
+
+     <button t-if="widget.modelName == 'mcm_openedx.form_info'"
+             class="btn btn-primary oe_form_sub_button"
+             type="button">Update Submissions</button>
  </t>
  </t>
 
