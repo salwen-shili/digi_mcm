@@ -47,6 +47,80 @@
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="True"/>
         </record>
+        <record id="mcm_email_template_invoice" model="mail.template">
+            <field name="name">MCM Invoice: Send by email</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="subject"> Facture ${object.name} - MCM ACADEMY</field>
+            <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="body_html" type="html">
+                <div style="margin:0px;padding: 0px;">
+                    <p style="padding: 0px; font-size: 13px;">
+                        % set doc_name = 'Facture'
+                        Bonjour ${object.partner_id.name},
+                        <br/>
+                        <br/>
+                        % if object.invoice_payment_state == 'paid':
+                        Suite au paiement que vous avez effectué sur notre site <a href="www.mcm-academy.fr">www.mcm-academy.fr</a>  relatif à votre inscription à la ${object.module_id.product_id.name} , veuillez trouver, ci-jointe, votre facture ${object.name}.
+                        <br/>
+                        Si vous avez besoin de plus d’informations, n’hésitez pas à <a href="/service-clientele">nous contacter.</a>
+                        <br/>
+                        Cordialement
+                        % else :
+                        Suite à votre inscription à la ${object.module_id.product_id.name}, veuillez trouver ci-jointe, votre facture référencée sous le numéro <strong> ${object.name} </strong>, et s'élevant à <strong> ${format_amount(object.amount_total, object.currency_id)} </strong>.
+                        <br/>
+                        Veuillez procéder au paiement dans les meilleurs délais.
+                        <br/>
+                        Si vous avez besoin de plus d’informations, n’hésitez pas à <a href="/service-clientele">nous contacter.</a>.
+                        <br/>
+                        Cordialement
+                        % endif
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="account.account_invoices"/>
+            <field name="report_name">Facture_${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        <record id="digi_email_template_invoice" model="mail.template">
+            <field name="name">DIGIMOOV Invoice: Send by email</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="subject"> Facture ${object.name} - DIGIMOOV</field>
+            <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="body_html" type="html">
+                <div style="margin:0px;padding: 0px;">
+                    <p style="padding: 0px; font-size: 13px;">
+                        % set doc_name = 'Facture'
+                        Bonjour ${object.partner_id.name},
+                        <br/>
+                        <br/>
+                        % if object.invoice_payment_state == 'paid':
+                        Suite au paiement que vous avez effectué sur notre site <a href="www.digimoov.fr">www.digimoov.fr</a>  relatif à votre inscription à la formation capacité de transport , veuillez trouver, ci-jointe, votre facture ${object.name}.
+                        <br/>
+                        Si vous avez besoin de plus d’informations, n’hésitez pas à <a href="/service-clientele">nous contacter.</a>
+                        <br/>
+                        Cordialement
+                        % else :
+                        Suite à votre inscription à la formation du capacité de transport, veuillez trouver ci-jointe, votre facture référencée sous le numéro <strong> ${object.name} </strong>, et s'élevant à <strong> ${format_amount(object.amount_total, object.currency_id)} </strong>.
+                        <br/>
+                        Veuillez procéder au paiement dans les meilleurs délais.
+                        <br/>
+                        Si vous avez besoin de plus d’informations, n’hésitez pas à <a href="/service-clientele">nous contacter.</a>.
+                        <br/>
+                        Cordialement
+                        % endif
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="account.account_invoices"/>
+            <field name="report_name">Facture_${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
 
         <record id="mcm_reset_password_email" model="mail.template">
             <field name="name">Auth Signup: Reset Password</field>
