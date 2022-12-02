@@ -93,7 +93,7 @@ class PaymentTransaction(models.Model):
                     )
     def _invoice_sale_orders(self):
         res = super(PaymentTransaction, self)._invoice_sale_orders() #inherit odoo _invoice_sale_orders function , this function has the role of creating an invoice when confirming an order after passing a payment via a transaction
-        template = self.env['mail.template'].sudo().search([('model', '=', 'account.move')])
+        template = False
         for trans in self.filtered(lambda t: t.sale_order_ids):
             if trans.invoice_ids : #check if transaction has invoices
                 for sale in trans.sale_order_ids :
@@ -113,11 +113,16 @@ class PaymentTransaction(models.Model):
                         if sale.pricelist_id.code:
                             invoice.pricelist_id=sale.pricelist_id
                         invoice.company_id=sale.company_id
+                        if invoice.company_id.id == 2:
+                            template = self.env['mail.template'].sudo().search([('model', "=", 'account.move'),("name","=","DIGIMOOV Invoice: Send by email")],limit=1)
+                        else:
+                            template = self.env['mail.template'].sudo().search([('model', "=", 'account.move'), ("name", "=", "MCM Invoice: Send by email")],limit=1)
                         for move in invoice.with_user(SUPERUSER_ID):
-                            move.message_post_with_template(int(template),
-                                                               composition_mode='comment',
-                                                               email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
-                                                              )
+                            if template :
+                                move.message_post_with_template(int(template),
+                                                                   composition_mode='comment',
+                                                                   email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
+                                                                  )
                     sale.action_cancel()
                     sale.sale_action_sent()
 
