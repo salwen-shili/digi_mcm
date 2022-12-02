@@ -80,7 +80,6 @@
                                 <field name="nombre_de_passage"/>
                                 <field name="company_id"/>
                                 <field name="mode_de_financement"/>
-                                <field name="temps_minute"/>
                                 <field name="sorti_formation" attrs="{'invisible': [('company_id', '!=', 2)]}"/>
                                 <field name="code_evalbox" attrs="{'invisible': [('company_id', '!=', 2)]}"/>
                             </group>

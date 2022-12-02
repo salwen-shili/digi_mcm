@@ -54,7 +54,6 @@ class NoteExamen(models.Model):
     session_id = fields.Many2one('mcmacademy.session')
     # For automation action conditions use.
     this_is_exam_technical_field = fields.Boolean(readonly=True, default=True)
-    temps_minute = fields.Integer(related="partner_id.temps_minute")
     sorti_formation = fields.Boolean(string="Sorti de formation")
     is_recu = fields.Boolean(default=False)
     is_ajourne = fields.Boolean(default=False)
