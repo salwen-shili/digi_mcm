@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-16 15:36+0000\n"
-"PO-Revision-Date: 2020-03-16 15:36+0000\n"
+"POT-Creation-Date: 2022-11-25 14:21+0000\n"
+"PO-Revision-Date: 2022-11-25 14:21+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,11 +29,24 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"#contenu {\n"
+"            font:Verdana, Geneva, sans-serif;\n"
+"            font-size:18px;\n"
+"            text-align:left;\n"
+"            height:50px;\n"
+"            vertical-align:middle;\n"
+"            line-height: 50px;\n"
+"            }"
+msgstr ""
+
+#. module: portal_contract
 #: model:mail.template,subject:portal_contract.mcm_mail_template_sale_confirmation
 msgid ""
 "${object.company_id.name}\n"
 "                ${(object.get_portal_last_transaction().state == 'pending') and 'Contrat' or 'Contrat'}\n"
-"                ${object.partner_id.name or 'n/a' })\n"
+"                ${object.partner_id.name or 'n/a' }\n"
 "            "
 msgstr ""
 
@@ -41,18 +54,21 @@ msgstr ""
 #: model:mail.template,subject:portal_contract.mcm_email_template_edi_sale
 msgid ""
 "${object.company_id.name}\n"
-"                ${object.state in ('draft', 'sent') and 'Contrat-' or 'Contrat-'} ${object.partner_id.name}\n"
+"                ${object.state in ('draft', 'sent') and 'Contrat-' or 'Contrat-'} ${object.partner_id.name or 'n/a' })\n"
 "            "
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
-msgid "&amp;times;"
-msgstr ""
+#: model:mail.template,subject:portal_contract.mcm_set_password_email
+msgid ""
+"${object.create_uid.name} de ${object.company_id.name} vous invite à vous connecter à\n"
+"                MCM Academy\n"
+"            "
+msgstr "Invitation à vous connecter sur ${object.company_id.name}"
 
 #. module: portal_contract
-#: model:ir.actions.report,print_report_name:portal_contract.action_report_saleorder
-msgid "'Contrat de %s' % (object.partner_id.name)"
+#: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
+msgid "&amp;times;"
 msgstr ""
 
 #. module: portal_contract
@@ -71,17 +87,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "<b>Contrat de\n"
-"                                        formation\n"
-"                                        professionnelle\n"
-"                                    </b>"
+"                                            formation\n"
+"                                            professionnelle\n"
+"                                        </b>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "<br/>\n"
-"                                (ci-après nommé l'organisme de\n"
-"                                formation)"
+"                                (ci-après nommé le bénéficiaire)"
 msgstr ""
 
 #. module: portal_contract
@@ -94,175 +109,80 @@ msgstr ""
 #. module: portal_contract
 #: model:mail.template,body_html:portal_contract.mcm_mail_template_sale_confirmation
 msgid ""
-"<div style=\"margin: 0px; padding: 0px;\">\n"
-"                    <p style=\"margin: 0px; padding: 0px; font-size: 12px;\">\n"
+"<div style=\"margin:0px;padding: 0px;\">\n"
+"                    <p style=\"padding: 0px; font-size: 13px;\">\n"
+"                        % set doc_name = 'Contrat' if object.state in ('draft', 'sent') else 'Contrat'\n"
 "                        Bonjour,\n"
 "                        <br/>\n"
 "                        <br/>\n"
-"                        % set transaction = object.get_portal_last_transaction()\n"
-"                        Votre Contrat <strong>${object.name}</strong> D'un montant de\n"
-"                        <strong>${format_amount(object.amount_total, object.currency_id)}</strong>\n"
-"                        % if object.state == 'sale' or (transaction and transaction.state in ('done', 'authorized')) :\n"
-"                        a été confirmé\n"
-"                        <br/>\n"
-"                        Merci pour votre confiance\n"
-"                        % elif transaction and transaction.state == 'pending' :\n"
-"                        est en attente. Il sera confirmé lors de la réception du paiement.\n"
-"                        % if object.reference:\n"
-"                        Votre référence de paiement est <strong>${object.reference}</strong>.\n"
+"                        Votre\n"
+"                        % if ctx.get('proforma'):\n"
+"                        Facture pro forma pour ${doc_name}\n"
+"                        <strong>${object.name}</strong>\n"
+"                        % if object.origin:\n"
+"                        (en référence: ${object.origin} )\n"
 "                        % endif\n"
+"                        d'un montant de <strong>${format_amount(object.amount_total, object.pricelist_id.currency_id)}\n"
+"                    </strong> est disponible.\n"
+"                        % else:\n"
+"                        ${doc_name}\n"
+"                        <strong>${object.name}</strong>\n"
+"                        % if object.origin:\n"
+"                        (with reference: ${object.origin} )\n"
+"                        % endif\n"
+"                        d'un montant de <strong>${format_amount(object.amount_total, object.pricelist_id.currency_id)}\n"
+"                    </strong> est prêt pour signature.\n"
 "                        % endif\n"
 "                        <br/>\n"
 "                        <br/>\n"
-"                        N'hésitez pas à nous contacter si vous avez des questions\n"
+"                        N'hésitez pas à nous contacter si vous avez des questions.\n"
 "                        <br/>\n"
-"                        <br/>\n"
-"                        % if object.website_id:\n"
-"                        <table width=\"100%\" style=\"color: #454748; font-size: 12px; border-collapse: collapse;\">\n"
-"                            <tr style=\"border-bottom: 2px solid #dee2e6;\">\n"
-"                                <td width=\"18%\">\n"
-"                                    <strong>Produits</strong>\n"
-"                                </td>\n"
-"                                <td/>\n"
-"                                <td>\n"
-"                                    <strong>Quantité</strong>\n"
-"                                </td>\n"
-"                                <td width=\"10%\" align=\"center\">\n"
-"                                    <strong>Prix</strong>\n"
-"                                </td>\n"
-"                            </tr>\n"
-"                            % for line in object.order_line:\n"
-"                            % if not line.is_delivery:\n"
-"                            <tr style=\"${loop.cycle('background-color: #f2f2f2', 'background-color: #ffffff')}\">\n"
-"                                % if line.display_type == 'line_section':\n"
-"                                <td colspan=\"4\">\n"
-"                                    <strong>${line.name}</strong>\n"
-"                                </td>\n"
-"                                % elif line.display_type == 'line_note':\n"
-"                                <td colspan=\"4\">\n"
-"                                    <i>${line.name}</i>\n"
-"                                </td>\n"
-"                                % else:\n"
-"                                <td style=\"width: 150px;\">\n"
-"                                    <img src=\"/web/image/product.product/${line.product_id.id}/image_128\" style=\"width: 64px; height: 64px; object-fit: contain;\" alt=\"Product image\"/>\n"
-"                                </td>\n"
-"                                <td align=\"left\">${line.product_id.name}</td>\n"
-"                                <td>${line.product_uom_qty}</td>\n"
-"                                % if object.user_id.has_group('account.group_show_line_subtotals_tax_excluded'):\n"
-"                                <td align=\"right\">${format_amount(line.price_reduce_taxexcl, object.currency_id)}</td>\n"
-"                                % endif\n"
-"                                % if object.user_id.has_group('account.group_show_line_subtotals_tax_included'):\n"
-"                                <td align=\"right\">${format_amount(line.price_reduce_taxinc, object.currency_id)}</td>\n"
-"                                % endif\n"
-"                                % endif\n"
-"                            </tr>\n"
-"                            % endif\n"
-"                            % endfor\n"
-"                        </table>\n"
-"                        <table width=\"40%\" style=\"color: #454748; font-size: 12px; border-spacing: 0px 4px;\" align=\"right\">\n"
-"                            % if object.carrier_id:\n"
-"                            <tr>\n"
-"                                <td style=\"border-top: 1px solid #dee2e6;\" align=\"right\">\n"
-"                                    <strong>Livraison:</strong>\n"
-"                                </td>\n"
-"                                <td style=\"border-top: 1px solid #dee2e6;\" align=\"right\">\n"
-"                                    ${format_amount(object.amount_delivery, object.currency_id)}\n"
-"                                </td>\n"
-"                            </tr>\n"
-"                            <tr>\n"
-"                                <td width=\"30%\" align=\"right\">\n"
-"                                    <strong>Sous-total</strong>\n"
-"                                </td>\n"
-"                                <td align=\"right\">${format_amount(object.amount_untaxed, object.currency_id)}</td>\n"
-"                            </tr>\n"
-"                            % else:\n"
-"                            <tr>\n"
-"                                <td style=\"border-top: 1px solid #dee2e6;\" width=\"30%\" align=\"right\">\n"
-"                                    <strong>Sous-total</strong>\n"
-"                                </td>\n"
-"                                <td style=\"border-top: 1px solid #dee2e6;\" align=\"right\">\n"
-"                                    ${format_amount(object.amount_untaxed, object.currency_id)}\n"
-"                                </td>\n"
-"                            </tr>\n"
-"                            % endif\n"
-"                            <tr>\n"
-"                                <td align=\"right\">\n"
-"                                    <strong>Taxes:</strong>\n"
-"                                </td>\n"
-"                                <td align=\"right\">${format_amount(object.amount_tax, object.currency_id)}</td>\n"
-"                            </tr>\n"
-"                            <tr>\n"
-"                                <td style=\"border-top: 1px solid #dee2e6;\" align=\"right\">\n"
-"                                    <strong>Total:</strong>\n"
-"                                </td>\n"
-"                                <td style=\"border-top: 1px solid #dee2e6;\" align=\"right\">\n"
-"                                    ${format_amount(object.amount_total, object.currency_id)}\n"
-"                                </td>\n"
-"                            </tr>\n"
-"                        </table>\n"
-"                        <br/>\n"
-"                        <table width=\"100%\" style=\"color: #454748; font-size: 12px;\">\n"
-"                            % if object.partner_invoice_id:\n"
-"                            <tr>\n"
-"                                <td style=\"padding-top: 10px;\">\n"
-"                                    <strong>Facturation:</strong>\n"
-"                                    ${object.partner_invoice_id.street or ''}\n"
-"                                    ${object.partner_invoice_id.city or ''}\n"
-"                                    ${object.partner_invoice_id.state_id.name or ''}\n"
-"                                    ${object.partner_invoice_id.zip or ''}\n"
-"                                    ${object.partner_invoice_id.country_id.name or ''}\n"
-"                                </td>\n"
-"                            </tr>\n"
-"                            <tr>\n"
-"                                <td>\n"
-"                                    <strong>Méthode de paiement:</strong>\n"
-"                                    % if transaction.payment_token_id:\n"
-"                                    ${transaction.payment_token_id.name}\n"
-"                                    % else:\n"
-"                                    ${transaction.acquirer_id.name}\n"
-"                                    % endif\n"
-"                                    (${format_amount(transaction.amount, object.currency_id)})\n"
-"                                </td>\n"
-"                            </tr>\n"
-"                            % endif\n"
-"                            % if object.partner_shipping_id and not object.only_services:\n"
-"                            <tr>\n"
-"                                <td>\n"
-"                                    <br/>\n"
-"                                    <strong>Livraison à:</strong>\n"
-"                                    ${object.partner_shipping_id.street or ''}\n"
-"                                    ${object.partner_shipping_id.city or ''}\n"
-"                                    ${object.partner_shipping_id.state_id.name or ''}\n"
-"                                    ${object.partner_shipping_id.zip or ''}\n"
-"                                    ${object.partner_shipping_id.country_id.name or ''}\n"
-"                                </td>\n"
-"                            </tr>\n"
-"                            % if object.carrier_id:\n"
-"                            <tr>\n"
-"                                <td>\n"
-"                                    <strong>Méthode de Livraison:</strong>\n"
-"                                    ${object.carrier_id.name}\n"
-"                                    % if object.carrier_id.fixed_price == 0.0:\n"
-"                                    (Free)\n"
-"                                    % else:\n"
-"                                    (${format_amount(object.carrier_id.fixed_price, object.currency_id)})\n"
-"                                    % endif\n"
-"                                </td>\n"
-"                            </tr>\n"
-"                            % endif\n"
-"                            % endif\n"
-"                        </table>\n"
-"                        % endif\n"
+"                        Cordialement.\n"
 "                    </p>\n"
 "                </div>\n"
+"\n"
 "            "
 msgstr ""
+"<div style=\"font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;margin:0px;padding: 0px;\">\n"
+"                    <p style=\"margin:0px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;padding:0px;font-size: 13px;\">\n"
+"                        % set doc_name = 'Contrat' if object.state in ('draft', 'sent') else 'Contrat'\n"
+"                        Bonjour ${object.partner_id.name},\n"
+"                        <br>\n"
+"                        <br>\n"
+"                        Votre\n"
+"                        % if ctx.get('proforma'):\n"
+"                        Facture pro forma pour ${doc_name}\n"
+"                        <strong style=\"font-weight:bolder;\">${object.name}</strong>\n"
+"                        % if object.origin:\n"
+"                        (en référence: ${object.origin} )\n"
+"                        % endif\n"
+"                        d'un montant de <strong style=\"font-weight:bolder;\">${format_amount(object.amount_total, object.pricelist_id.currency_id)}\n"
+"                    </strong> est disponible.\n"
+"                        % else:\n"
+"                        ${doc_name}\n"
+"                        <strong style=\"font-weight:bolder;\">${object.name}</strong>\n"
+"                        % if object.origin:\n"
+"                        (with reference: ${object.origin} )\n"
+"                        % endif\n"
+"                        d'un montant de <strong style=\"font-weight:bolder;\">${format_amount(object.amount_total, object.pricelist_id.currency_id)}\n"
+"                    </strong> est prêt pour signature.\n"
+"                        % endif\n"
+"                        <br>\n"
+"                        <br>\n"
+"                        N'hésitez pas à nous contacter si vous avez des questions.\n"
+"                        <br>\n"
+"                        <br>\n"
+"                        Cordialement.\n"
+"                    </p>\n"
+"                </div>\n"
+"\n"
+"            "
 
 #. module: portal_contract
 #: model:mail.template,body_html:portal_contract.mcm_email_template_edi_sale
 msgid ""
-"<div style=\"margin: 0px; padding: 0px;\">\n"
-"                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"<div style=\"margin:0px;padding: 0px;\">\n"
+"                    <p style=\"padding: 0px; font-size: 13px;\">\n"
 "                        % set doc_name = 'Contrat' if object.state in ('draft', 'sent') else 'Contrat'\n"
 "                        Bonjour,\n"
 "                        <br/>\n"
@@ -293,6 +213,35 @@ msgid ""
 "                </div>\n"
 "            "
 msgstr ""
+"<div style=\"font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;margin:0px;padding: 0px;\">\n"
+"                    <p style=\"margin:0px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;padding:0px;font-size: 13px;\">\n"
+"                        % set doc_name = 'Contrat' if object.state in ('draft', 'sent') else 'Contrat'\n"
+"                        Bonjour ${object.partner_id.name},\n"
+"                        <br>\n"
+"                        <br>\n"
+"                        Votre\n"
+"                        % if ctx.get('proforma'):\n"
+"                        Facture pro forma pour ${doc_name}\n"
+"                        <strong style=\"font-weight:bolder;\">${object.name}</strong>\n"
+"                        % if object.origin:\n"
+"                        (en référence: ${object.origin} )\n"
+"                        % endif\n"
+"                        d'un montant de <strong style=\"font-weight:bolder;\">${format_amount(object.amount_total, object.pricelist_id.currency_id)}\n"
+"                    </strong> est disponible.\n"
+"                        % else:\n"
+"                        ${doc_name}\n"
+"                        <strong style=\"font-weight:bolder;\">${object.name}</strong>\n"
+"                        % if object.origin:\n"
+"                        (with reference: ${object.origin} )\n"
+"                        % endif\n"
+"                        d'un montant de <strong style=\"font-weight:bolder;\">${format_amount(object.amount_total, object.pricelist_id.currency_id)}\n"
+"                    </strong> est prêt pour signature.\n"
+"                        % endif\n"
+"                        <br>\n"
+"                        <br>\n"
+"                        N'hésitez pas à nous contacter si vous avez des questions.</p><p style=\"margin:0px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;padding:0px;font-size: 13px;\"><br></p><p style=\"margin:0px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;padding:0px;font-size: 13px;\">Cordialement.</p>\n"
+"                </div>\n"
+"            "
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
@@ -329,55 +278,173 @@ msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:10px\">, Numéro SIRET:</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:10px\">Déclaration d'activité n°</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
-"<span style=\"font-size:10px\">Est conclue la convention suivante en application des\n"
-"                                dispositions du livre IX du\n"
-"                                Code du travail portant sur l'organisation de la\n"
-"                                formation professionnelle continue dans le cadre de l’éducation permanente.\n"
+"<span style=\"font-size:10px;font-style: italic;\">(ci-après nommé l'organisme de\n"
+"                                formation)\n"
 "                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:10px\">Le bénéficiaire entend faire participer une partie de son\n"
-"                                personnel à l’action de\n"
-"                                formation suivante organisée par l’organisme de formation.\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:10px\">Représenté par:</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:10px\">Situé:</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:11px\">Entre l'organisme de formation:</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:11px\">Et le bénéficiaire:</span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                        , le\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                        A compter de la date de signature du présent contrat, le bénéficiaire a un délai\n"
+"                                        de\n"
+"                                        10 jours pour se rétracter. Le délai de rétractation est porté à 14 jours\n"
+"                                        (article\n"
+"                                        L.121-16 du Code de la consommation) pour les contrats conclus « à distance » et\n"
+"                                        les\n"
+"                                        contrats conclus « hors établissement ». Il en informe l’organisme de\n"
+"                                        formation par lettre recommandée avec accusé de réception. Dans ce cas, aucune\n"
+"                                        somme\n"
+"                                        ne peut être exigée du bénéficiaire.\n"
+"                                        Si le bénéficiaire est empêché de suivre la formation par suite de force majeure\n"
+"                                        dûment reconnue, le contrat de formation professionnelle est résilié. Dans ce\n"
+"                                        cas,\n"
+"                                        seules les prestations effectivement dispensées sont dues au prorata temporis de\n"
+"                                        leur valeur prévue au présent contrat.\n"
+"                                        En cas de renoncement par le bénéficiaire avant le début du programme de\n"
+"                                        formation\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                        En application de l’article L.6353-1 du Code du Travail, une attestation\n"
+"                                        mentionnant\n"
+"                                        les matiéres, la nature et la durée de l’action et les résultats de l’évaluation\n"
+"                                        des\n"
+"                                        acquis de la formation sera remise au(x) stagiaire(s) à l’issue de la formation.\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                        En application de l’article L6354-1 du Code du travail, il est convenu entre les\n"
+"                                        signataires de la présente convention, que faute de résiliation totale ou\n"
+"                                        partielle\n"
+"                                        de la\n"
+"                                        prestation de formation, l’organisme prestataire doit rembourser au\n"
+"                                        cocontractant\n"
+"                                        les sommes indûment perçues de ce fait.\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                        En cas d’absence du stagiaire, le remboursement ne pourra être demandé qu’en cas\n"
+"                                        de\n"
+"                                        force majeur et au prorata du nombre de jour d’absence et sur présentation\n"
+"                                        de justificatif.\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                        Feuille d'émargement individuelle pour les formations en présentiel, plus\n"
+"                                        attestation assiduité.\n"
+"                                        Relevé de connexion pour les formations à distance, plus attestation assiduité.\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                        Le bénéficiaire s’engage à verser la somme due selon les modalités de paiement\n"
+"                                        suivantes :\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                        Le paiement sera dû à réception d'une facture émise par l'organisme de formation\n"
+"                                        à\n"
+"                                        destination du bénéficiaire.\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                        Offre valable qu'une seule fois et non cumulable.\n"
+"                                        Merci de noter que vous n'aurez accès à la formation et la prise en charge de\n"
+"                                        votre examen qu'après avoir réussi un test avec une note supérieure à 06/20. Il\n"
+"                                        est également impératif de répondre aux questions rédigées de l'examen blanc. En\n"
+"                                        cas de note inférieur à 06/20 ou en cas de non réponse aux questions rédigées\n"
+"                                        vous ne pourrez pas bénéficier de l'offre et vous recevrez un remboursement de\n"
+"                                        20€.\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                        Pour la formation pratique, le bénéficiaire de la formation s’engage à respecter\n"
+"                                        les\n"
+"                                        règles du Code de la route durant la formation et durant l’examen.\n"
+"                                        Il est rappelé que le stagiaire demeure responsable des fautes commises dans le\n"
+"                                        cadre de sa conduite.\n"
+"                                        En cas d’infraction au Code de la route, le conducteur pourra être déclaré\n"
+"                                        responsable pécuniairement en qualité d’auteur véritable de l’infraction et\n"
+"                                        identifié au\n"
+"                                        moment où l’infraction a été commise. En outre, il est rappelé qu’une franchise\n"
+"                                        est\n"
+"                                        prévue en cas de dommages (tous accidents) qui s’élèvent à la somme de 400\n"
+"                                        euros. En cas d’accident responsable, le montant de la franchise sera à la\n"
+"                                        charge du\n"
+"                                        locataire. Il est rappelé expressément, qu’en cas d’annulation de la réservation\n"
+"                                        dans un délai inférieur à 72 heures, aucun remboursement ne pourra être demandé\n"
+"                                        à\n"
+"                                        MCM ACADEMY, sauf cas de force majeur justifié.\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                        Si une contestation ou un différend ne peuvent pas être réglés à l’amiable, le\n"
+"                                        Tribunal de \n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                        Voir le programme de formation en annexe détaillant les moyens mis en œuvre pour\n"
+"                                        réaliser techniquement l'action, suivre son exécution et apprécier ses\n"
+"                                        résultats. Une feuille d’émargement signée par le(s) stagiaire(s) et le\n"
+"                                        formateur,\n"
+"                                        par demi-journée de formation, permettra de justifier de la réalisation de la\n"
+"                                        prestation.\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">\n"
 "                                    , le\n"
@@ -385,7 +452,7 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">\n"
 "                                    A compter de la date de signature du présent contrat, le bénéficiaire a un délai de\n"
@@ -403,7 +470,7 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">\n"
 "                                    En application de l’article L.6353-1 du Code du Travail, une attestation mentionnant\n"
@@ -413,7 +480,7 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">\n"
 "                                    En application de l’article L6354-1 du Code du travail, il est convenu entre les\n"
@@ -425,7 +492,7 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">\n"
 "                                    En cas d’absence du stagiaire, le remboursement ne pourra être demandé qu’en cas de\n"
@@ -435,7 +502,7 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">\n"
 "                                    Feuille d'émargement individuelle pour les formations en présentiel, plus\n"
@@ -445,7 +512,7 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">\n"
 "                                    Le bénéficiaire s’engage à verser la somme due selon les modalités de paiement\n"
@@ -454,7 +521,7 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">\n"
 "                                    Le paiement sera dû à réception d'une facture émise par l'organisme de formation à\n"
@@ -463,7 +530,7 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">\n"
 "                                    Pour la formation pratique, le bénéficiaire de la formation s’engage à respecter les\n"
@@ -486,13 +553,31 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "<span style=\"font-size:12px\">\n"
+"                                    Pour le bénéficiaire\n"
+"                                </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
 "                                    Si une contestation ou un différend ne peuvent pas être réglés à l’amiable, le\n"
 "                                    Tribunal de \n"
 "                                </span>"
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                    Sous réserve des dispositions de l’article L 6353-6 du Code du travail, le paiement\n"
+"                                    du solde de la formation à la charge du stagiaire pourra être, à sa demande, réglé\n"
+"                                    en un seul versement.\n"
+"                                </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">\n"
 "                                    Voir le programme de formation en annexe détaillant les moyens mis en œuvre pour\n"
@@ -507,32 +592,241 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "<span style=\"font-size:12px\">\n"
-"                                Pour le bénéficiaire\n"
+"                                , le\n"
 "                            </span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
-msgid "<span style=\"font-size:12px\">Coût unitaire HT :</span>"
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                Aucun remboursement ne pourra être demandé à MCM ACADEMY, sauf cas de force majeur\n"
+"                                justifié.\n"
+"                            </span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
-msgid "<span style=\"font-size:12px\">Date de la formation : </span>"
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                En cas d’accident responsable, le montant de la franchise sera à la charge du locataire.\n"
+"                            </span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                En effet, il est rappelé que le stagiaire demeure responsable des fautes commises dans\n"
+"                                le cadre de sa conduite. En cas d’infraction au Code de la\n"
+"                                route, le conducteur pourra être déclaré responsable pécuniairement en qualité d’auteur\n"
+"                                véritable de l’infraction et identifié au moment où\n"
+"                                l’infraction a été commise.\n"
+"                            </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                En outre, il est rappelé au conducteur/stagiaire que les véhicules mis en location par\n"
+"                                MCM ACADEMY sont assurés par contrat n°AA40403788,\n"
+"                                Crédit Mutuel assurance, et qu’une franchise est prévue en cas de dommages (tous\n"
+"                                accidents) qui s’élèvent à la somme de 400 euros.\n"
+"                            </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                Le locataire s’engage à informer MCM ACADEMY de tout accident causé par le véhicule loué\n"
+"                                afin que celui-ci puisse effectuer la déclaration dans\n"
+"                                un délai de 48H.\n"
+"                            </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                MCM ACADEMY met à disposition du stagiaire/locataire, un véhicule double commande(TAXI\n"
+"                                ou VTC) de marque TOYOTA AURIS 136H\n"
+"                                COLLECTION, immatriculé FD-508-DW, à titre onéreux dans le cadre des actions de\n"
+"                                formations organisées par MCM ACADEMY.\n"
+"                            </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                Pour la formation pratique, le bénéficiaire de la formation s’engage à respecter les\n"
+"                                règles du Code de la route durant la formation et durant\n"
+"                                l’examen\n"
+"                            </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                                Si une contestation ou un différend ne peuvent pas être réglés à l’amiable, le Tribunal\n"
+"                                de LILLE sera seul compétent pour régler le litige.\n"
+"                                Document réalisé en 2 exemplaires\n"
+"                            </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                            , le\n"
+"                        </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                            Aucun remboursement ne pourra être demandé à MCM ACADEMY, sauf cas de force majeur justifié.\n"
+"                        </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                            En cas d’accident responsable, le montant de la franchise sera à la charge du locataire.\n"
+"                        </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                            En effet, il est rappelé que le stagiaire demeure responsable des fautes commises dans\n"
+"                            le cadre de sa conduite. En cas d’infraction au Code de la\n"
+"                            route, le conducteur pourra être déclaré responsable pécuniairement en qualité d’auteur\n"
+"                            véritable de l’infraction et identifié au moment où\n"
+"                            l’infraction a été commise.\n"
+"                        </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                            En outre, il est rappelé au conducteur/stagiaire que les véhicules mis en location par\n"
+"                            MCM ACADEMY sont assurés par contrat n°AA40403788,\n"
+"                            Crédit Mutuel assurance, et qu’une franchise est prévue en cas de dommages (tous\n"
+"                            accidents) qui s’élèvent à la somme de 400 euros.\n"
+"                        </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                            Le locataire s’engage à informer MCM ACADEMY de tout accident causé par le véhicule loué\n"
+"                            afin que celui-ci puisse effectuer la déclaration dans\n"
+"                            un délai de 48H.\n"
+"                        </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                            MCM ACADEMY met à disposition du stagiaire/locataire, un véhicule double commande(TAXI\n"
+"                            ou VTC) de marque TOYOTA AURIS 136H\n"
+"                            COLLECTION, immatriculé FD-508-DW, à titre onéreux dans le cadre des actions de\n"
+"                            formations organisées par MCM ACADEMY.\n"
+"                        </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                            Pour l'organisme de formation,\n"
+"                        </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                            Pour la formation pratique, le bénéficiaire de la formation s’engage à respecter les\n"
+"                            règles du Code de la route durant la formation et durant\n"
+"                            l’examen\n"
+"                        </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                            Pour le bénéficiaire\n"
+"                        </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">\n"
+"                            Si une contestation ou un différend ne peuvent pas être réglés à l’amiable, le Tribunal\n"
+"                            de LILLE sera seul compétent pour régler le litige.\n"
+"                            Document réalisé en 2 exemplaires\n"
+"                        </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid "<span style=\"font-size:12px\">Coût unitaire horaire HT :</span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">Date et lieu d'éxamen : Chambre de métiers et de\n"
+"                                        l’artisanat de\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">Date et lieu d'éxamen : Chambre de métiers et de\n"
+"                                    l’artisanat de\n"
+"                                </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid "<span style=\"font-size:12px\">Diplôme visé :</span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid "<span style=\"font-size:12px\">Durée de la formation :</span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">En contrepartie de cette action de formation, le\n"
+"                                        bénéficiaire s'acquittera des\n"
+"                                        coûts suivants qui couvrent l'intégralité des frais engagés par l'organisme de\n"
+"                                        formation pour cette session:\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">En contrepartie de cette action de formation, le\n"
 "                                    bénéficiaire s'acquittera des\n"
@@ -543,11 +837,18 @@ msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
-msgid "<span style=\"font-size:12px\">Horraires :</span>"
+msgid ""
+"<span style=\"font-size:12px\">La description détaillée du programme de formation et\n"
+"                                        du\n"
+"                                        formateur est fournie en\n"
+"                                        annexe. Le niveau de connaissances préalables requis pour suivre la formation et\n"
+"                                        obtenir les qualifications auxquelles elle prépare est détaillé dans ce\n"
+"                                        programme.\n"
+"                                    </span>"
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">La description détaillée du programme de formation et du\n"
 "                                    formateur est fournie en\n"
@@ -559,14 +860,33 @@ msgstr ""
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
+"<span style=\"font-size:12px\">Le bénéficiaire entend faire participer une partie de\n"
+"                                        son\n"
+"                                        personnel à l’action de formation suivante organisée par l’organisme de\n"
+"                                        formation.\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
 "<span style=\"font-size:12px\">Le bénéficiaire entend faire participer une partie de son\n"
-"                                    personnel à l’action de formation suivante organisée par l’organisme de formation.\n"
-"                                </span>\n"
-"                                <br/>"
+"                                    personnel à l’action de\n"
+"                                    formation suivante organisée par l’organisme de formation.\n"
+"                                </span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">Le bénéficiaire s’engage à assurer\n"
+"                                        sa présence aux dates et lieux prévus\n"
+"                                        ci-dessus.\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">Le bénéficiaire s’engage à assurer\n"
 "                                    sa présence aux dates et lieux prévus\n"
@@ -576,6 +896,7 @@ msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid "<span style=\"font-size:12px\">Lieu de la formation:</span>"
 msgstr ""
 
@@ -583,16 +904,32 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "<span style=\"font-size:12px\">L’organisme de formation atteste être exonéré de TVA.\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:12px\">L’organisme de formation atteste être exonéré de TVA.\n"
 "                                </span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid "<span style=\"font-size:12px\">TOTAL NET DE TAXES:</span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">Type d’action de formation (art. L6313-1 du code du\n"
+"                                        travail):\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">Type d’action de formation (art. L6313-1 du code du\n"
 "                                    travail):\n"
@@ -601,11 +938,21 @@ msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
-msgid "<span style=\"font-size:12px\">au</span>"
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid "<span style=\"font-size:12px\">le</span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<span style=\"font-size:12px\">sera seul compétent pour régler le litige.\n"
+"\n"
+"                                        Document réalisé en 2 exemplaires à\n"
+"                                    </span>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:12px\">sera seul compétent pour régler le litige.\n"
 "\n"
@@ -615,6 +962,7 @@ msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid "<span style=\"font-size:12px;margin-left:200px\">ou</span>"
 msgstr ""
 
@@ -622,27 +970,31 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "<span style=\"font-size:12px;margin-top:20px\">\n"
-"                                    Sous réserve des dispositions de l’article L 6353-6 du Code du travail, le paiement\n"
-"                                    du solde de la formation à la charge du stagiaire pourra être, à sa demande, réglé\n"
-"                                    en un seul versement.\n"
-"                                </span>"
+"                                        Sous réserve des dispositions de l’article L 6353-6 du Code du travail, le\n"
+"                                        paiement\n"
+"                                        du solde de la formation à la charge du stagiaire pourra être, à sa demande,\n"
+"                                        réglé\n"
+"                                        en un seul versement.\n"
+"                                    </span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "<span style=\"font-size:13px\">\n"
-"                                Pour l'organisme de formation,\n"
-"                            </span>"
+"                                    Pour l'organisme de formation,\n"
+"                                </span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid "<span style=\"font-size:14px\">, Numéro SIRET:</span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid "<span style=\"font-size:14px\">Déclaration d'activité n°</span>"
 msgstr ""
 
@@ -657,12 +1009,24 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<span style=\"font-size:14px\">Est conclue la convention suivante en application des\n"
+"                                dispositions du livre IX du\n"
+"                                Code du travail portant sur l'organisation de la\n"
+"                                formation professionnelle continue dans le cadre de l’éducation permanente.\n"
+"                            </span>"
+msgstr ""
+
+#. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid "<span style=\"font-size:14px\">Représenté par:</span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid "<span style=\"font-size:14px\">Situé:</span>"
 msgstr ""
 
@@ -676,6 +1040,7 @@ msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span style=\"font-size:18px\">\n"
 "                                <b>Entre l'organisme de formation:</b>\n"
@@ -684,260 +1049,13 @@ msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                                , le\n"
-"                            </span>"
+msgid "<span style=\"font-size:18px\">Et le bénéficiaire:</span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
-"<span style=\"font-size:9px\">\n"
-"                                A compter de la date de signature du présent contrat, le bénéficiaire a un délai de\n"
-"                                10 jours pour se rétracter. Le délai de rétractation est porté à 14 jours (article\n"
-"                                L.121-16 du Code de la consommation) pour les contrats conclus « à distance » et les\n"
-"                                contrats conclus « hors établissement ». Il en informe l’organisme de\n"
-"                                formation par lettre recommandée avec accusé de réception. Dans ce cas, aucune somme\n"
-"                                ne peut être exigée du bénéficiaire.\n"
-"                                Si le bénéficiaire est empêché de suivre la formation par suite de force majeure\n"
-"                                dûment reconnue, le contrat de formation professionnelle est résilié. Dans ce cas,\n"
-"                                seules les prestations effectivement dispensées sont dues au prorata temporis de\n"
-"                                leur valeur prévue au présent contrat.\n"
-"                                En cas de renoncement par le bénéficiaire avant le début du programme de formation\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                                En application de l’article L.6353-1 du Code du Travail, une attestation mentionnant\n"
-"                                les matiéres, la nature et la durée de l’action et les résultats de l’évaluation des\n"
-"                                acquis de la formation sera remise au(x) stagiaire(s) à l’issue de la formation.\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                                En application de l’article L6354-1 du Code du travail, il est convenu entre les\n"
-"                                signataires de la présente convention, que faute de résiliation totale ou partielle\n"
-"                                de la\n"
-"                                prestation de formation, l’organisme prestataire doit rembourser au cocontractant\n"
-"                                les sommes indûment perçues de ce fait.\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                                En cas d’absence du stagiaire, le remboursement ne pourra être demandé qu’en cas de\n"
-"                                force majeur et au prorata du nombre de jour d’absence et sur présentation\n"
-"                                de justificatif.\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                                Feuille d'émargement individuelle pour les formations en présentiel, plus\n"
-"                                attestation assiduité.\n"
-"                                Relevé de connexion pour les formations à distance, plus attestation assiduité.\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                                Le bénéficiaire s’engage à verser la somme due selon les modalités de paiement\n"
-"                                suivantes :\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                                Le paiement sera dû à réception d'une facture émise par l'organisme de formation à\n"
-"                                destination du bénéficiaire.\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                                Pour la formation pratique, le bénéficiaire de la formation s’engage à respecter les\n"
-"                                règles du Code de la route durant la formation et durant l’examen.\n"
-"                                Il est rappelé que le stagiaire demeure responsable des fautes commises dans le\n"
-"                                cadre de sa conduite.\n"
-"                                En cas d’infraction au Code de la route, le conducteur pourra être déclaré\n"
-"                                responsable pécuniairement en qualité d’auteur véritable de l’infraction et\n"
-"                                identifié au\n"
-"                                moment où l’infraction a été commise. En outre, il est rappelé qu’une franchise est\n"
-"                                prévue en cas de dommages (tous accidents) qui s’élèvent à la somme de 400\n"
-"                                euros. En cas d’accident responsable, le montant de la franchise sera à la charge du\n"
-"                                locataire. Il est rappelé expressément, qu’en cas d’annulation de la réservation\n"
-"                                dans un délai inférieur à 72 heures, aucun remboursement ne pourra être demandé à\n"
-"                                MCM ACADEMY, sauf cas de force majeur justifié.\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                                Si une contestation ou un différend ne peuvent pas être réglés à l’amiable, le\n"
-"                                Tribunal de \n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                                Sous réserve des dispositions de l’article L 6353-6 du Code du travail, le paiement\n"
-"                                du solde de la formation à la charge du stagiaire pourra être, à sa demande, réglé\n"
-"                                en un seul versement.\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                                Voir le programme de formation en annexe détaillant les moyens mis en œuvre pour\n"
-"                                réaliser techniquement l'action, suivre son exécution et apprécier ses\n"
-"                                résultats. Une feuille d’émargement signée par le(s) stagiaire(s) et le formateur,\n"
-"                                par demi-journée de formation, permettra de justifier de la réalisation de la\n"
-"                                prestation.\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                            Pour l'organisme de formation,\n"
-"                        </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">\n"
-"                            Pour le bénéficiaire\n"
-"                        </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:9px\">Coût unitaire HT :</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:9px\">Date de la formation : </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:9px\">Diplôme visé :</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:9px\">Durée de la formation :</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">En contrepartie de cette action de formation, le\n"
-"                                bénéficiaire s'acquittera des\n"
-"                                coûts suivants qui couvrent l'intégralité des frais engagés par l'organisme de\n"
-"                                formation pour cette session:\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:9px\">Horraires :</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">La description détaillée du programme de formation et du\n"
-"                                formateur est fournie en\n"
-"                                annexe. Le niveau de connaissances préalables requis pour suivre la formation et\n"
-"                                obtenir les qualifications auxquelles elle prépare est détaillé dans ce programme.\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">Le bénéficiaire s’engage à assurer\n"
-"                                sa présence aux dates et lieux prévus\n"
-"                                ci-dessus.\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:9px\">Lieu de la formation:</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">L’organisme de formation atteste être exonéré "
-"de TVA.</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:9px\">TOTAL NET DE TAXES:</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">Type d’action de formation (art. L6313-1 du code du\n"
-"                                travail):\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:9px\">au</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid "<span style=\"font-size:9px\">ou</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px\">sera seul compétent pour régler le litige.\n"
-"\n"
-"                                Document réalisé en 2 exemplaires à\n"
-"                            </span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<span style=\"font-size:9px;font-style: italic;\">(ci-après nommé l'organisme de\n"
-"                                formation)\n"
+"<span style=\"font-size:9px;font-style: italic;\">(ci-après nommé le bénéficiaire)\n"
 "                            </span>"
 msgstr ""
 
@@ -945,26 +1063,21 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "<span>\n"
-"                                        <strong style=\"font-size:12px\">Stagiaires:</strong>\n"
-"                                    </span>"
+"                                            <strong style=\"font-size:12px\">Stagiaires:</strong>\n"
+"                                        </span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<span>\n"
-"                                    <strong style=\"font-size:9px\">Stagiaires:</strong>\n"
-"                                </span>"
+"                                        <strong style=\"font-size:12px\">Stagiaires:</strong>\n"
+"                                    </span>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
 msgid "<span>Accepté au nom de :</span>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.portal_my_home_menu_sale
-msgid "<span>Contrat</span>"
 msgstr ""
 
 #. module: portal_contract
@@ -988,12 +1101,28 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "<strong>\n"
+"                                                        <span style=\"font-size:12px\">Description</span>\n"
+"                                                    </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                                        <span style=\"font-size:12px\">Prix</span>\n"
+"                                                    </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<strong>\n"
 "                                                    <span style=\"font-size:12px\">Description</span>\n"
 "                                                </strong>"
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<strong>\n"
 "                                                    <span style=\"font-size:12px\">Prix</span>\n"
@@ -1001,27 +1130,51 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "<strong>\n"
-"                                                <span style=\"font-size:9px\">Description</span>\n"
-"                                            </strong>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<strong>\n"
-"                                                <span style=\"font-size:9px\">Prix</span>\n"
-"                                            </strong>"
+"                                            <span style=\"font-size:12px\">\n"
+"                                                <b>10. Moyen de contrôle de l'assiduité</b>\n"
+"                                            </span>\n"
+"                                        </strong>"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "<strong>\n"
-"                                        <span style=\"font-size:12px\">\n"
-"                                            <b>10. Moyen de contrôle de l'assiduité</b>\n"
+"                                            <span style=\"font-size:16px\">\n"
+"                                                <b>5. Modalités de règlement</b>\n"
+"                                            </span>\n"
+"                                        </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                            <span style=\"font-size:16px\">\n"
+"                                                <b>8. Non réalisation de la prestation de formation</b>\n"
+"                                            </span>\n"
+"                                        </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                            <span style=\"font-size:16px\">\n"
+"                                                <b>9. Dédommagement, réparation ou dédit</b>\n"
+"                                            </span>\n"
+"                                        </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                        <span style=\"font-size:16px\">\n"
+"                                            <b>1. Objet, nature et durée de la formation</b>\n"
 "                                        </span>\n"
 "                                    </strong>"
 msgstr ""
@@ -1031,7 +1184,7 @@ msgstr ""
 msgid ""
 "<strong>\n"
 "                                        <span style=\"font-size:16px\">\n"
-"                                            <b>5. Modalités de règlement</b>\n"
+"                                            <b>11. Litiges</b>\n"
 "                                        </span>\n"
 "                                    </strong>"
 msgstr ""
@@ -1041,7 +1194,7 @@ msgstr ""
 msgid ""
 "<strong>\n"
 "                                        <span style=\"font-size:16px\">\n"
-"                                            <b>8. Non réalisation de la prestation de formation</b>\n"
+"                                            <b>2. Programme de la formation et formateur</b>\n"
 "                                        </span>\n"
 "                                    </strong>"
 msgstr ""
@@ -1051,7 +1204,62 @@ msgstr ""
 msgid ""
 "<strong>\n"
 "                                        <span style=\"font-size:16px\">\n"
-"                                            <b>9. Dédommagement, réparation ou dédit</b>\n"
+"                                            <b>3. Engagement de participation à l'action de\n"
+"                                                formation\n"
+"                                            </b>\n"
+"                                        </span>\n"
+"                                    </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                        <span style=\"font-size:16px\">\n"
+"                                            <b>4. Prix de la formation</b>\n"
+"                                        </span>\n"
+"                                    </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                        <span style=\"font-size:16px\">\n"
+"                                            <b>6.1 Modalités de déroulement : Moyens pédagogiques et\n"
+"                                                techniques mis en\n"
+"                                                œuvre\n"
+"                                            </b>\n"
+"                                        </span>\n"
+"                                    </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                        <span style=\"font-size:16px\">\n"
+"                                            <b>6.2 Modalités relatives à la location de voiture</b>\n"
+"                                        </span>\n"
+"                                    </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                        <span style=\"font-size:16px\">\n"
+"                                            <b>7. Sanction de la formation</b>\n"
+"                                        </span>\n"
+"                                    </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                        <span style=\"font-size:16px\">\n"
+"                                            <b>IL A ETE CONVENU CE QUI SUIT :</b>\n"
 "                                        </span>\n"
 "                                    </strong>"
 msgstr ""
@@ -1060,7 +1268,74 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<strong>\n"
-"                                    <span style=\"font-size:11px\">5. Modalités de règlement</span>\n"
+"                                        <span style=\"font-size:16px\">10. Moyen de contrôle de l'assiduité\n"
+"                                        </span>\n"
+"                                    </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<strong>\n"
+"                                        <span style=\"font-size:16px\">5. Modalités de règlement</span>\n"
+"                                    </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<strong>\n"
+"                                        <span style=\"font-size:16px\">8. Non réalisation de la prestation de formation\n"
+"                                        </span>\n"
+"                                    </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<strong>\n"
+"                                        <span style=\"font-size:16px\">9. Dédommagement, réparation ou dédit\n"
+"                                        </span>\n"
+"                                    </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                    <span style=\"font-size:12px\">\n"
+"                                        <b>1. Identification du véhicule</b>\n"
+"                                    </span>\n"
+"                                </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                    <span style=\"font-size:12px\">\n"
+"                                        <b>2. Rappel des modalités particulières de la location de véhicule</b>\n"
+"                                    </span>\n"
+"                                </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                    <span style=\"font-size:12px\">\n"
+"                                        <b>3. Modalités de remboursement</b>\n"
+"                                    </span>\n"
+"                                </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"<strong>\n"
+"                                    <span style=\"font-size:12px\">\n"
+"                                        <b>4. En cas de litige</b>\n"
+"                                    </span>\n"
 "                                </strong>"
 msgstr ""
 
@@ -1068,7 +1343,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<strong>\n"
-"                                    <span style=\"font-size:11px\">8. Non réalisation de la prestation de formation\n"
+"                                    <span style=\"font-size:16px\">\n"
+"                                        <b>IL A ETE CONVENU CE QUI SUIT :</b>\n"
 "                                    </span>\n"
 "                                </strong>"
 msgstr ""
@@ -1077,7 +1353,70 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<strong>\n"
-"                                    <span style=\"font-size:11px\">9. Dédommagement, réparation ou dédit\n"
+"                                    <span style=\"font-size:16px\">1. Objet, nature et durée de la formation</span>\n"
+"                                </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<strong>\n"
+"                                    <span style=\"font-size:16px\">11. Litiges\n"
+"                                    </span>\n"
+"                                </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<strong>\n"
+"                                    <span style=\"font-size:16px\">2. Programme de la formation et formateur</span>\n"
+"                                </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<strong>\n"
+"                                    <span style=\"font-size:16px\">3. Engagement de participation à l'action de\n"
+"                                        formation\n"
+"                                    </span>\n"
+"                                </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<strong>\n"
+"                                    <span style=\"font-size:16px\">4. Prix de la formation</span>\n"
+"                                </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<strong>\n"
+"                                    <span style=\"font-size:16px\">6.1 Modalités de déroulement : Moyens pédagogiques et\n"
+"                                        techniques mis en\n"
+"                                        œuvre\n"
+"                                    </span>\n"
+"                                </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<strong>\n"
+"                                    <span style=\"font-size:16px\">6.2 Modalités relatives à la location de voiture\n"
+"                                    </span>\n"
+"                                </strong>"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"<strong>\n"
+"                                    <span style=\"font-size:16px\">7. Sanction de la formation\n"
 "                                    </span>\n"
 "                                </strong>"
 msgstr ""
@@ -1086,109 +1425,19 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "<strong>\n"
-"                                    <span style=\"font-size:16px\">\n"
-"                                        <b>1. Objet, nature et durée de la formation</b>\n"
-"                                    </span>\n"
-"                                </strong>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
-msgid ""
-"<strong>\n"
-"                                    <span style=\"font-size:16px\">\n"
-"                                        <b>11. Litiges</b>\n"
-"                                    </span>\n"
-"                                </strong>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
-msgid ""
-"<strong>\n"
-"                                    <span style=\"font-size:16px\">\n"
-"                                        <b>2. Programme de la formation et formateur</b>\n"
-"                                    </span>\n"
-"                                </strong>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
-msgid ""
-"<strong>\n"
-"                                    <span style=\"font-size:16px\">\n"
-"                                        <b>3. Engagement de participation à l'action de\n"
-"                                            formation\n"
+"                                    <span>\n"
+"                                        <b>Contrat de Location TAXI/VTC dispositions particulières\n"
 "                                        </b>\n"
 "                                    </span>\n"
 "                                </strong>"
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
-msgid ""
-"<strong>\n"
-"                                    <span style=\"font-size:16px\">\n"
-"                                        <b>4. Prix de la formation</b>\n"
-"                                    </span>\n"
-"                                </strong>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
-msgid ""
-"<strong>\n"
-"                                    <span style=\"font-size:16px\">\n"
-"                                        <b>6.1 Modalités de déroulement : Moyens pédagogiques et\n"
-"                                            techniques mis en\n"
-"                                            œuvre\n"
-"                                        </b>\n"
-"                                    </span>\n"
-"                                </strong>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
-msgid ""
-"<strong>\n"
-"                                    <span style=\"font-size:16px\">\n"
-"                                        <b>6.2 Modalités relatives à la location de voiture</b>\n"
-"                                    </span>\n"
-"                                </strong>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
-msgid ""
-"<strong>\n"
-"                                    <span style=\"font-size:16px\">\n"
-"                                        <b>7. Sanction de la formation</b>\n"
-"                                    </span>\n"
-"                                </strong>"
-msgstr ""
-
-#. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<strong>\n"
-"                                    <span style=\"font-size:9px\">10. Moyen de contrôle de l'assiduité\n"
-"                                    </span>\n"
-"                                </strong>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<strong>\n"
-"                                <span style=\"font-size:11px\">1. Objet, nature et durée de la formation</span>\n"
-"                            </strong>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<strong>\n"
-"                                <span style=\"font-size:11px\">11. Litiges\n"
+"                                <span style=\"font-size:12px\">\n"
+"                                    <b>1. Identification du véhicule</b>\n"
 "                                </span>\n"
 "                            </strong>"
 msgstr ""
@@ -1197,16 +1446,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<strong>\n"
-"                                <span style=\"font-size:11px\">2. Programme de la formation et formateur</span>\n"
-"                            </strong>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<strong>\n"
-"                                <span style=\"font-size:11px\">3. Engagement de participation à l'action de\n"
-"                                    formation\n"
+"                                <span style=\"font-size:12px\">\n"
+"                                    <b>2. Rappel des modalités particulières de la location de véhicule</b>\n"
 "                                </span>\n"
 "                            </strong>"
 msgstr ""
@@ -1215,17 +1456,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<strong>\n"
-"                                <span style=\"font-size:11px\">4. Prix de la formation</span>\n"
-"                            </strong>"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"<strong>\n"
-"                                <span style=\"font-size:11px\">6.1 Modalités de déroulement : Moyens pédagogiques et\n"
-"                                    techniques mis en\n"
-"                                    œuvre\n"
+"                                <span style=\"font-size:12px\">\n"
+"                                    <b>3. Modalités de remboursement</b>\n"
 "                                </span>\n"
 "                            </strong>"
 msgstr ""
@@ -1234,7 +1466,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<strong>\n"
-"                                <span style=\"font-size:11px\">6.2 Modalités relatives à la location de voiture\n"
+"                                <span style=\"font-size:12px\">\n"
+"                                    <b>4. En cas de litige</b>\n"
 "                                </span>\n"
 "                            </strong>"
 msgstr ""
@@ -1243,7 +1476,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "<strong>\n"
-"                                <span style=\"font-size:11px\">7. Sanction de la formation\n"
+"                                <span>\n"
+"                                    <b>Contrat de Location TAXI/VTC dispositions particulières\n"
+"                                    </b>\n"
 "                                </span>\n"
 "                            </strong>"
 msgstr ""
@@ -1256,32 +1491,495 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
+#: model:mail.template,body_html:portal_contract.mcm_set_password_email
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                    <tr>\n"
+"                        <td align=\"center\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                                <tbody>\n"
+"                                    <!-- HEADER -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\">\n"
+"                                                        <span style=\"font-size: 10px;\">Bienvenue à MCM Academy</span>\n"
+"                                                        <br/>\n"
+"                                                        <span style=\"font-size: 20px; font-weight: bold;\">\n"
+"                                                            ${object.name}\n"
+"                                                        </span>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <!-- CONTENT -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                        <div>\n"
+"                                                            Chere(e) ${object.name},\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            Vous avez été invité par ${object.create_uid.name} de\n"
+"                                                            ${object.company_id.name} à rejoindre le site.\n"
+"                                                            <div style=\"margin: 16px 0px 16px 0px;\">\n"
+"                                                                <a href=\"${object.signup_url}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
+"                                                                    Accept invitation\n"
+"                                                                </a>\n"
+"                                                            </div>\n"
+"                                                            % set website_url =\n"
+"                                                            object.env['ir.config_parameter'].sudo().get_param('web.base.url')\n"
+"                                                            votre nom de domaine est:\n"
+"                                                            <b>\n"
+"                                                                <a href=\"${object.company_id.website}\">\n"
+"                                                                    ${object.company_id.website}\n"
+"                                                                </a>\n"
+"                                                            </b>\n"
+"                                                            <br/>\n"
+"                                                            Votre courriel de connection est:\n"
+"                                                            <b>\n"
+"                                                                <a href=\"/web/login?login=${object.email}\" target=\"_blank\">${object.email}\n"
+"                                                                </a>\n"
+"                                                            </b>\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            --<br/>L'équipe ${object.company_id.name}\n"
+"                                                        </div>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <!-- FOOTER -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\">\n"
+"                                                        ${object.company_id.name}\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                        ${object.company_id.phone}\n"
+"                                                        % if object.company_id.email\n"
+"                                                        |\n"
+"                                                        <a href=\"'mailto:%s' % ${object.company_id.email}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            ${object.company_id.email}\n"
+"                                                        </a>\n"
+"                                                        % endif\n"
+"                                                        % if object.company_id.website\n"
+"                                                        |\n"
+"                                                        <a href=\"'%s' % ${object.company_id.website}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            ${object.company_id.website}\n"
+"                                                        </a>\n"
+"                                                        % endif\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                </tbody>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <!-- POWERED BY -->\n"
+"                    <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;\">\n"
+"                                <tr>\n"
+"                                    <td style=\"text-align: center; font-size: 13px;\">\n"
+"                                        Propulsé par\n"
+"                                        <a target=\"_blank\" href=\"https://www.mcm-academy.fr/\" style=\"color: #875A7B;\">MCM Academy\n"
+"                                        </a>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </table>\n"
+"            "
+msgstr ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                    <tr>\n"
+"                        <td align=\"center\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                                <tbody>\n"
+"                                    <!-- HEADER -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\">\n"
+"                                                        <span style=\"font-size: 10px;\">Bienvenue à MCM Academy</span>\n"
+"                                                        <br/>\n"
+"                                                        <span style=\"font-size: 20px; font-weight: bold;\">\n"
+"                                                            ${object.name}\n"
+"                                                        </span>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <!-- CONTENT -->\n"
+"                                    <tr>\n"
+"        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                <tr><td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                    <div>\n"
+"                        Chere(e) ${object.name},<br/><br/>\n"
+"                        Vous avez été invité par ${object.create_uid.name} de ${object.company_id.name} à rejoindre le site.\n"
+"                        <div style=\"margin: 16px 0px 16px 0px;\">\n"
+"                            <a href=\"${object.signup_url}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
+"                                Accept invitation\n"
+"                            </a>\n"
+"                        </div>\n"
+"                        % set website_url = object.env['ir.config_parameter'].sudo().get_param('web.base.url')\n"
+"                        votre nom de domaine est: <b><a href=\"${object.company_id.website}\">${object.company_id.website}</a></b><br/>\n"
+"                        Votre courriel de connection est: <b><a href=\"/web/login?login=${object.email}\" target=\"_blank\">${object.email}</a></b><br/><br/>\n"
+"\n"
+"                        <br/><br/>\n"
+"                        <br/><br/>\n"
+"                       <br/>\n"
+"                        --<br/>L'équipe ${object.company_id.name}\n"
+"                    </div>\n"
+"                </td></tr>\n"
+"                <tr><td style=\"text-align:center;\">\n"
+"                  <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                </td></tr>\n"
+"            </table>\n"
+"        </td>\n"
+"    </tr>\n"
+"                                    <!-- FOOTER -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\">\n"
+"                                                        ${object.company_id.name}\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                        ${object.company_id.phone}\n"
+"                                                        % if object.company_id.email\n"
+"                                                        |\n"
+"                                                        <a href=\"'mailto:%s' % ${object.company_id.email}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            ${object.company_id.email}\n"
+"                                                        </a>\n"
+"                                                        % endif\n"
+"                                                        % if object.company_id.website\n"
+"                                                        |\n"
+"                                                        <a href=\"'%s' % ${object.company_id.website}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            ${object.company_id.website}\n"
+"                                                        </a>\n"
+"                                                        % endif\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                </tbody>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <!-- POWERED BY -->\n"
+"                    <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;\">\n"
+"                                <tr>\n"
+"                                    <td style=\"text-align: center; font-size: 13px;\">\n"
+"                                        Propulsé par\n"
+"                                        <a target=\"_blank\" href=\"https://www.mcm-academy.fr/\" style=\"color: #875A7B;\">MCM Academy\n"
+"                                        </a>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </table>\n"
+"           "
+
+#. module: portal_contract
+#: model:mail.template,body_html:portal_contract.mcm_reset_password_email
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                    <tr>\n"
+"                        <td align=\"center\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                                <tbody>\n"
+"                                    <!-- HEADER -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\">\n"
+"                                                        <span style=\"font-size: 10px;\">Votre compte</span>\n"
+"                                                        <br/>\n"
+"                                                        <span style=\"font-size: 20px; font-weight: bold;\">\n"
+"                                                            ${object.name}\n"
+"                                                        </span>\n"
+"                                                    </td>\n"
+"                                                    <td valign=\"middle\" align=\"right\">\n"
+"                                                        <img src=\"/logo.png?company=${object.company_id.id}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${object.company_id.name}\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <!-- CONTENT -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                        <div>\n"
+"                                                            Cher(e) ${object.name},\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            Nous avons reçu une demande de réinitialisation de mot de\n"
+"                                                            passe pour votre compte.\n"
+"                                                            Cliquez sur ce lien (valable 24 heures) pour le changer:\n"
+"                                                            <br/>\n"
+"                                                            <div style=\"margin: 16px 0px 16px 0px;\">\n"
+"                                                                <a href=\"${object.signup_url}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
+"                                                                    Changer mon mot de passe\n"
+"                                                                </a>\n"
+"                                                            </div>\n"
+"                                                            Si vous n'êtes pas à l'origine de cette demande, ignorez-cet\n"
+"                                                            email.\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            Merci,\n"
+"                                                            <br/>\n"
+"                                                            ${user.signature | safe}\n"
+"                                                            <br/>\n"
+"                                                        </div>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <!-- FOOTER -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\">\n"
+"                                                        ${object.company_id.name}\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                        ${object.company_id.phone}\n"
+"                                                        % if object.company_id.email\n"
+"                                                        |\n"
+"                                                        <a href=\"'mailto:%s' % ${object.company_id.email}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            ${object.company_id.email}\n"
+"                                                        </a>\n"
+"                                                        % endif\n"
+"                                                        % if object.company_id.website\n"
+"                                                        |\n"
+"                                                        <a href=\"'%s' % ${object.company_id.website}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            ${object.company_id.website}\n"
+"                                                        </a>\n"
+"                                                        % endif\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                </tbody>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <!-- POWERED BY -->\n"
+"                    <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;\">\n"
+"                                <tr>\n"
+"                                    <td style=\"text-align: center; font-size: 13px;\">\n"
+"                                        Propulsé par\n"
+"                                        <a target=\"_blank\" href=\"https://www.mcm-academy.fr/\" style=\"color: #875A7B;\">MCM Academy\n"
+"                                        </a>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </table>\n"
+"            "
+msgstr ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;padding-top:16px;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                    <tbody><tr>\n"
+"                        <td align=\"center\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"border-collapse:collapse;padding:16px;background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                                <tbody>\n"
+"                                    <!-- HEADER -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width:590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"border-collapse:collapse;min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tbody><tr>\n"
+"                                                    <td valign=\"middle\">\n"
+"                                                        <span style=\"font-size:10px;\">Votre compte</span>\n"
+"                                                        <br>\n"
+"                                                        <span style=\"font-size:20px;font-weight: bold;\">\n"
+"                                                            ${object.name}\n"
+"                                                        </span>\n"
+"                                                    </td>\n"
+"                                                    <td valign=\"middle\" align=\"right\">\n"
+"                                                        \n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"margin:1rem 0 1rem 0;border-top-color:rgba(0, 0, 0, 0.1);border-top-style:solid;border-top-width:1px;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;overflow-y:visible;overflow-x:visible;height:0px;box-sizing:content-box;background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\">\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </tbody></table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <!-- CONTENT -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width:590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"border-collapse:collapse;min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tbody><tr>\n"
+"                                                    <td valign=\"top\" style=\"font-size:13px;\">\n"
+"                                                        <div style=\"font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
+"                                                            Cher(e) ${object.name},\n"
+"                                                            <br>\n"
+"                                                            <br>\n"
+"                                                            Nous avons reçu une demande de changement de mot de\n"
+"                                                            passe.\n"
+"                                                            Cliquez sur ce lien (valable 24 heures) pour le changer:\n"
+"                                                            <br>\n"
+"                                                            <div style=\"font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;margin:16px 0px 16px 0px;\">\n"
+"                                                                <a href=\"${object.signup_url}\" style=\"text-decoration-thickness:initial;color:rgb(0, 135, 132);background-color:#875A7B;padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
+"                                                                    Changer le mot de passe\n"
+"                                                                \n"
+"                                                            </a></div>Si vous n'êtes pas à l'origine de cette demande, ignorez cet email.<br><br><br>N'hésitez pas de nous contacter pour toute question ou assistance.<br><br>Cordialement.<br>--<br>L'équipe ${object.company_id.name}<br>\n"
+"                                                        </div>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"margin:1rem 0 1rem 0;border-top-color:rgba(0, 0, 0, 0.1);border-top-style:solid;border-top-width:1px;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;overflow-y:visible;overflow-x:visible;height:0px;box-sizing:content-box;background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\">\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </tbody></table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <!-- FOOTER -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width:590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"border-collapse:collapse;min-width:590px;background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tbody><tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\">\n"
+"                                                        ${object.company_id.name}\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\" style=\"opacity:0.7;\">\n"
+"                                                        ${object.company_id.phone}\n"
+"                                                        % if object.company_id.email\n"
+"                                                        |\n"
+"                                                        <a href=\"'mailto:%s' % ${object.company_id.email}\" style=\"background-color:transparent;text-decoration-thickness:initial;color:#454748;\">\n"
+"                                                            ${object.company_id.email}\n"
+"                                                        </a>\n"
+"                                                        % endif\n"
+"                                                        % if object.company_id.website\n"
+"                                                        |\n"
+"                                                        <a href=\"'%s' % ${object.company_id.website}\" style=\"background-color:transparent;text-decoration-thickness:initial;color:#454748;\">\n"
+"                                                            ${object.company_id.website}\n"
+"                                                        </a>\n"
+"                                                        % endif\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </tbody></table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                </tbody>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <!-- POWERED BY -->\n"
+"                    <tr>\n"
+"                        <td align=\"center\" style=\"min-width:590px;\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"border-collapse:collapse;min-width:590px;background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;\">\n"
+"                                <tbody><tr>\n"
+"                                    <td style=\"text-align:center;font-size: 13px;\">\n"
+"                                        <a target=\"_blank\" href=\"https://www.mcm-academy.fr/\" style=\"background-color:transparent;text-decoration-thickness:initial;color:#875A7B;\">\n"
+"                                        </a>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </tbody></table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </tbody></table>\n"
+"            "
+
+#. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
 msgid "Accepter et signer"
-msgstr ""
+msgstr "Accepter et signer"
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_mail_notification_paynow_online
 msgid "Acceptez &amp; Payez Contrat"
-msgstr ""
+msgstr "Accepter et Payer le Contrat"
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_mail_notification_paynow_online
 msgid "Acceptez &amp; Signez Contrat"
-msgstr "Acceptez &amp; Signez Contrat"
+msgstr "Accepter et Signer le Contrat"
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "Accueil des stagiaires dans une salle dédiée à la\n"
-"                                        formation."
+"                                            formation."
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "Accueil des stagiaires dans une salle dédiée à la\n"
-"                                    formation."
+"                                        formation."
 msgstr ""
 
 #. module: portal_contract
@@ -1296,6 +1994,11 @@ msgid "Action Type"
 msgstr ""
 
 #. module: portal_contract
+#: model:ir.model,name:portal_contract.model_res_company
+msgid "Ajouter une signature dans l'interface de la société"
+msgstr ""
+
+#. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid "Après un délai de rétractation de :"
@@ -1304,6 +2007,16 @@ msgstr ""
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
+"Après un délai de rétractation mentionné à l’article\n"
+"                                            11\n"
+"                                            du\n"
+"                                            présent contrat, le\n"
+"                                            stagiaire effectue un premier versement d’un montant de 30% du total."
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
 "Après un délai de rétractation mentionné à l’article 11\n"
 "                                        du\n"
 "                                        présent contrat, le\n"
@@ -1311,22 +2024,16 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"Après un délai de rétractation mentionné à l’article 11 du\n"
-"                                    présent contrat, le\n"
-"                                    stagiaire effectue un premier versement d’un montant de 30% du total."
+#: code:addons/portal_contract/models/res_users.py:0
+#, python-format
+msgid "Cannot send email: user %s has no email address."
 msgstr ""
+"Impossible d'envoyer l'email : l'utilisateur %s n'a pas d'adresse email."
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
 msgid "Close"
 msgstr ""
-
-#. module: portal_contract
-#: model:ir.model,name:portal_contract.model_res_company
-msgid "Companies"
-msgstr "Sociétés"
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
@@ -1340,7 +2047,6 @@ msgid "Contact"
 msgstr ""
 
 #. module: portal_contract
-#: model:ir.actions.report,name:portal_contract.action_report_saleorder
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 #: model_terms:ir.ui.view,arch_db:portal_contract.portal_my_quotations
 msgid "Contrat"
@@ -1350,9 +2056,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "Contrat\n"
-"                                de\n"
-"                                formation\n"
-"                                professionnelle"
+"                                    de\n"
+"                                    formation\n"
+"                                    professionnelle"
 msgstr ""
 
 #. module: portal_contract
@@ -1368,20 +2074,12 @@ msgid "Contrat signé par %s"
 msgstr ""
 
 #. module: portal_contract
-#: model:mail.template,report_name:portal_contract.mcm_email_template_edi_sale
-#: model:mail.template,report_name:portal_contract.mcm_mail_template_sale_confirmation
-msgid "Contrat- ${(object.partner_id.name)}"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.portal_my_home_menu_sale
 #: model_terms:ir.ui.view,arch_db:portal_contract.portal_my_home_sale
 #: model_terms:ir.ui.view,arch_db:portal_contract.portal_my_quotations
 msgid "Contrats non signés"
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.portal_my_home_menu_sale
 #: model_terms:ir.ui.view,arch_db:portal_contract.portal_my_home_sale
 #: model_terms:ir.ui.view,arch_db:portal_contract.portal_my_orders
 msgid "Contrats signés"
@@ -1391,38 +2089,44 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
 "Convention\n"
-"                                    de formation\n"
-"                                    professionnelle"
+"                                        de formation\n"
+"                                        professionnelle"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "Convention\n"
-"                                de formation\n"
-"                                professionnelle"
+"                                    de formation\n"
+"                                    professionnelle"
 msgstr ""
 
 #. module: portal_contract
 #: model:ir.model.fields,field_description:portal_contract.field_mcm_action_formation__create_uid
-#: model:ir.model.fields,field_description:portal_contract.field_product_template_details__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: portal_contract
 #: model:ir.model.fields,field_description:portal_contract.field_mcm_action_formation__create_date
-#: model:ir.model.fields,field_description:portal_contract.field_product_template_details__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: portal_contract
 #: model:ir.model.fields,field_description:portal_contract.field_mcm_session__currency_id
-#: model:ir.model.fields,field_description:portal_contract.field_product_template_details__currency_id
 msgid "Currency"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"Dans un délai inférieur à 2 semaines avant le début\n"
+"                                            de la\n"
+"                                            formation : 100 % du\n"
+"                                            coût de la formation est dû."
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "Dans un délai inférieur à 2 semaines avant le début de la\n"
 "                                        formation : 100 % du\n"
@@ -1430,27 +2134,20 @@ msgid ""
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
-"Dans un délai inférieur à 2 semaines avant le début de la\n"
-"                                    formation : 100 % du\n"
-"                                    coût de la formation est dû."
+"Dans un délai inférieur à 3 semaines avant le début\n"
+"                                            de la\n"
+"                                            formation : 50 % du\n"
+"                                            coût de la formation est dû."
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "Dans un délai inférieur à 3 semaines avant le début de la\n"
 "                                        formation : 50 % du\n"
 "                                        coût de la formation est dû."
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
-msgid ""
-"Dans un délai inférieur à 3 semaines avant le début de la\n"
-"                                    formation : 50 % du\n"
-"                                    coût de la formation est dû."
 msgstr ""
 
 #. module: portal_contract
@@ -1473,25 +2170,23 @@ msgid "De (Matin)"
 msgstr ""
 
 #. module: portal_contract
-#: model:ir.model.fields,field_description:portal_contract.field_product_product__product_details_ids
-#: model:ir.model.fields,field_description:portal_contract.field_product_template__product_details_ids
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_portal_view_product_template_common_form
-msgid "Description"
-msgstr ""
-
-#. module: portal_contract
 #: model:ir.model.fields,field_description:portal_contract.field_mcm_session__targeted_diploma
 msgid "Diplôme visé"
 msgstr ""
 
 #. module: portal_contract
 #: model:ir.model.fields,field_description:portal_contract.field_mcm_action_formation__display_name
-#: model:ir.model.fields,field_description:portal_contract.field_product_template_details__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+msgid ""
+"Dix jours à compter de la date de signature du\n"
+"                                            contrat ;"
+msgstr ""
+
+#. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid "Dix jours à compter de la date de signature du contrat ;"
 msgstr ""
@@ -1514,11 +2209,6 @@ msgid "Download"
 msgstr ""
 
 #. module: portal_contract
-#: model:ir.model.fields,field_description:portal_contract.field_product_template_details__product_tmpl_id
-msgid "Formation"
-msgstr ""
-
-#. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.action_formation_form_view
 msgid "Formation Action Form"
 msgstr ""
@@ -1530,12 +2220,25 @@ msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
+msgid ""
+"Félicitation ! Votre contrat est bien signé, vous allez recevoir vos accès à la\n"
+"                            plateforme de formation très prochainement."
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
+msgid ""
+"Félicitation ! Votre contrat est bien signé, vous allez recevoir vos accès à la plateforme\n"
+"                            de formation très prochainement."
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
 msgid "Historique"
 msgstr ""
 
 #. module: portal_contract
 #: model:ir.model.fields,field_description:portal_contract.field_mcm_action_formation__id
-#: model:ir.model.fields,field_description:portal_contract.field_product_template_details__id
 msgid "ID"
 msgstr ""
 
@@ -1564,34 +2267,32 @@ msgstr ""
 
 #. module: portal_contract
 #: model:ir.model.fields,field_description:portal_contract.field_mcm_action_formation____last_update
-#: model:ir.model.fields,field_description:portal_contract.field_product_template_details____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: portal_contract
 #: model:ir.model.fields,field_description:portal_contract.field_mcm_action_formation__write_uid
-#: model:ir.model.fields,field_description:portal_contract.field_product_template_details__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: portal_contract
 #: model:ir.model.fields,field_description:portal_contract.field_mcm_action_formation__write_date
-#: model:ir.model.fields,field_description:portal_contract.field_product_template_details__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
-"Mise à disposition en ligne de documents supports à la\n"
-"                                        suite de la formation."
+"Mise à disposition en ligne de documents supports à\n"
+"                                            la\n"
+"                                            suite de la formation."
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "Mise à disposition en ligne de documents supports à la\n"
-"                                    suite de la formation."
+"                                        suite de la formation."
 msgstr ""
 
 #. module: portal_contract
@@ -1599,9 +2300,19 @@ msgstr ""
 #: code:addons/portal_contract/controllers/portal.py:0
 #: model:ir.model.fields,field_description:portal_contract.field_mcm_action_formation__name
 #: model:ir.model.fields,field_description:portal_contract.field_mcm_session__name
-#: model:ir.model.fields,field_description:portal_contract.field_product_template_details__name
 #, python-format
 msgid "Nom"
+msgstr ""
+
+#. module: portal_contract
+#: model:mail.template,subject:portal_contract.mcm_reset_password_email
+msgid "Password reset"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid "Permis n° :"
 msgstr ""
 
 #. module: portal_contract
@@ -1610,52 +2321,23 @@ msgid "Print"
 msgstr ""
 
 #. module: portal_contract
-#: model:ir.model.fields,field_description:portal_contract.field_product_template_details__price
-msgid "Prix"
-msgstr ""
-
-#. module: portal_contract
 #: model:ir.model.fields,field_description:portal_contract.field_mcm_session__price_untaxed
 msgid "Prix Unitaire HT"
 msgstr ""
 
 #. module: portal_contract
-#: model:ir.ui.menu,name:portal_contract.product_tempalte_details_menu
-msgid "Product Details"
-msgstr ""
-
-#. module: portal_contract
-#: model:ir.actions.act_window,name:portal_contract.product_tempalte_details_list_action
-msgid "Product Tempalte Details"
-msgstr ""
-
-#. module: portal_contract
-#: model:ir.model,name:portal_contract.model_product_template
-msgid "Product Template"
-msgstr "Modèle d'article"
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.product_tempalte_details_form_view
-msgid "Product Template Details Form"
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.product_tempalte_details_tree_view
-msgid "Product Template Details Tree"
-msgstr ""
-
-#. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid ""
-"Quatorze jours pour les contrats conclus à distance ou\n"
-"                                        hors d’établissement,"
+"Quatorze jours pour les contrats conclus à distance\n"
+"                                            ou\n"
+"                                            hors d’établissement,"
 msgstr ""
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid ""
 "Quatorze jours pour les contrats conclus à distance ou\n"
-"                                    hors d’établissement,"
+"                                        hors d’établissement,"
 msgstr ""
 
 #. module: portal_contract
@@ -1663,6 +2345,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
 msgid "Quiz en salle"
 msgstr ""
+
+#. module: portal_contract
+#: code:addons/portal_contract/controllers/portal.py:0
+#, python-format
+msgid "Quotation viewed by customer %s"
+msgstr "Devis vu par le client %s"
 
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_portal_view_res_partner_form
@@ -1687,6 +2375,11 @@ msgid "Signature"
 msgstr ""
 
 #. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
+msgid "Signature contrat"
+msgstr ""
+
+#. module: portal_contract
 #: code:addons/portal_contract/controllers/portal.py:0
 #, python-format
 msgid "Signature is missing."
@@ -1695,7 +2388,7 @@ msgstr "La signature est manquante."
 #. module: portal_contract
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_mail_notification_paynow_online
 msgid "Signez &amp; Payez Contrat"
-msgstr ""
+msgstr "Signer et Payer le Contrat"
 
 #. module: portal_contract
 #: model:ir.model.fields,field_description:portal_contract.field_res_partner__special_tarif
@@ -1704,20 +2397,13 @@ msgid "Tarif spéciale"
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
-msgid "VTC S1 2020"
-msgstr ""
+#: model:ir.model,name:portal_contract.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
-msgid ""
-"Votre contrat a été\n"
-"                            signé."
-msgstr ""
-
-#. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.sale_order_portal_template
-msgid "Votre contrat a été signé"
+#: model:ir.model,name:portal_contract.model_mcm_action_formation
+msgid "action de formation"
 msgstr ""
 
 #. module: portal_contract
@@ -1746,23 +2432,17 @@ msgid "e.x. 17:00"
 msgstr ""
 
 #. module: portal_contract
-#: model:ir.model,name:portal_contract.model_mcm_action_formation
-msgid "mcm.action.formation"
+#: code:addons/portal_contract/models/session.py:0
+#: code:addons/portal_contract/models/session.py:0
+#: code:addons/portal_contract/models/session.py:0
+#: code:addons/portal_contract/models/session.py:0
+#, python-format
+msgid "le format d'horaire rempli est faux,Veuillez respectez le format hh:mm"
 msgstr ""
 
 #. module: portal_contract
 #: model:ir.model,name:portal_contract.model_mcm_session
-msgid "mcm.session"
-msgstr ""
-
-#. module: portal_contract
-#: model:ir.model,name:portal_contract.model_product_template_details
-msgid "product.template.details"
-msgstr ""
-
-#. module: portal_contract
-#: model:ir.model.fields,field_description:portal_contract.field_product_template_details__formation_time
-msgid "temps de formation"
+msgid "session de formation"
 msgstr ""
 
 #. module: portal_contract
@@ -1776,7 +2456,13 @@ msgid "À (Matin) "
 msgstr ""
 
 #. module: portal_contract
-#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 #: model_terms:ir.ui.view,arch_db:portal_contract.mcm_sale_order_portal_content
+msgid ""
+"à\n"
+"                                    distance"
+msgstr ""
+
+#. module: portal_contract
+#: model_terms:ir.ui.view,arch_db:portal_contract.mcm_report_saleorder_document
 msgid "à distance"
 msgstr ""

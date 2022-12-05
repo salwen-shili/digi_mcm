@@ -47,6 +47,70 @@
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="True"/>
         </record>
+        <record id="mcm_email_template_invoice" model="mail.template">
+            <field name="name">MCM Invoice: Send by email</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="subject"> Facture ${object.name} - MCM ACADEMY</field>
+            <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="body_html" type="html">
+                <div style="margin:0px;padding: 0px;">
+                    <p style="padding: 0px; font-size: 13px;">
+                        % set doc_name = 'Facture'
+                        Bonjour ${object.partner_id.name},
+                        <br/>
+                        <br/>
+                        % if object.invoice_payment_state == 'paid':
+                        Suite au paiement que vous avez effectué sur notre site <a href="www.mcm-academy.fr">www.mcm-academy.fr</a>  relatif à votre inscription à % if object.module_id: la ${object.module_id.product_id.name} % else : notre formation % endif , veuillez trouver, ci-jointe, votre facture ${object.name}.
+                        % else :
+                        Suite à votre inscription à % if object.module_id: la ${object.module_id.product_id.name} % else : notre formation % endif, veuillez trouver ci-jointe, votre facture référencée sous le numéro <strong> ${object.name} </strong>, et s'élevant à <strong> ${format_amount(object.amount_total, object.currency_id)} </strong>.
+                        <br/>
+                        <br/>
+                        Veuillez procéder au paiement dans les meilleurs délais.
+                        % endif
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="account.account_invoices"/>
+            <field name="report_name">Facture_${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        <record id="digi_email_template_invoice" model="mail.template">
+            <field name="name">DIGIMOOV Invoice: Send by email</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="subject"> Facture ${object.name} - DIGIMOOV</field>
+            <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="body_html" type="html">
+                <div style="margin:0px;padding: 0px;">
+                    <p style="padding: 0px; font-size: 13px;">
+                        % set doc_name = 'Facture'
+                        Bonjour ${object.partner_id.name},
+                        <br/>
+                        <br/>
+                        % if object.invoice_payment_state == 'paid':
+                        Suite au paiement que vous avez effectué sur notre site <a href="www.digimoov.fr">www.digimoov.fr</a>  relatif à votre inscription à la formation capacité de transport , veuillez trouver, ci-jointe, votre facture ${object.name}.
+                        <br/>
+                        <br/>
+                        % else :
+                        Suite à votre inscription à la formation du capacité de transport, veuillez trouver ci-jointe, votre facture référencée sous le numéro <strong> ${object.name} </strong>, et s'élevant à <strong> ${format_amount(object.amount_total, object.currency_id)} </strong>.
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        Veuillez procéder au paiement dans les meilleurs délais.
+                        % endif
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="account.account_invoices"/>
+            <field name="report_name">Facture_${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
 
         <record id="mcm_reset_password_email" model="mail.template">
             <field name="name">Auth Signup: Reset Password</field>
@@ -252,7 +316,9 @@
                                                             object.env['ir.config_parameter'].sudo().get_param('web.base.url')
                                                             votre nom de domaine est:
                                                             <b>
-                                                                <a href='${object.company_id.website}'>${object.company_id.website}</a>
+                                                                <a href='${object.company_id.website}'>
+                                                                    ${object.company_id.website}
+                                                                </a>
                                                             </b>
                                                             <br/>
                                                             Votre courriel de connection est:
@@ -375,17 +441,12 @@
                         d'un montant de <strong>${format_amount(object.amount_total, object.pricelist_id.currency_id)}
                     </strong> est prêt pour signature.
                         % endif
-                        <br/>
-                        <br/>
-                        N'hésitez pas à nous contacter si vous avez des questions.
-                        <br/>
-                        Cordialement.
                     </p>
                 </div>
 
             </field>
-<!--            <field name="report_template" ref="sale.action_report_saleorder"/>-->
-<!--            <field name="report_name">Contrat- ${(object.partner_id.name)}</field>-->
+            <!--            <field name="report_template" ref="sale.action_report_saleorder"/>-->
+            <!--            <field name="report_name">Contrat- ${(object.partner_id.name)}</field>-->
             <field name="lang">${object.partner_id.lang}</field>
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="True"/>
@@ -532,15 +593,18 @@
                                     <td style="padding: 0">
                                         <t t-raw="message.body"/>
                                         <div t-if="is_online and not record._context.get('proforma')"
-                                             style="margin: 32px 0px 32px 0px; text-align: center;">
+                                             style="margin: -13px 0px -13px 0px; text-align: center;">
                                             <a t-att-href="access_url"
                                                style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
                                                 <t t-esc="access_name"/>
                                             </a>
                                         </div>
-                                        <t t-if="record.user_id and not record.env.user._is_superuser()">
-                                            <div style="margin: 0px; padding: 0px; font-size:13px;">
-                                                Best regards,
+                                        <t style ="color:#000">
+                                            <div style="margin-top: 35px; padding-left: 13px; font-size:13px;">
+                                                Si vous avez besoin de plus d’informations, n'hésitez pas à <a href="/service-clientele">nous contacter.</a>
+                                            </div>
+                                            <div style="margin-top: 35px; padding-left: 13px; font-size:13px;">
+                                                Cordialement,
                                             </div>
                                             <div>&amp;nbsp;</div>
                                             <div t-if="record.user_id.sudo().signature" style="font-size: 13px;">
@@ -556,12 +620,16 @@
                                             style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 32px 0px 4px 0px;"/>
                                         <br/>
                                         <div style="color: #999999;text-align: center;">
-                                           <t> <b t-esc="company.name"/> </t>|
+                                            <t>
+                                                <b t-esc="company.name"/>
+                                            </t>
+                                            |
                                             <t t-if="company.website">
                                                 <a t-att-href="'%s' % company.website"
                                                    style="text-decoration:none; color: #999999;">
                                                     <t t-esc="company.website"/>
-                                                </a>|
+                                                </a>
+                                                |
                                             </t>
                                             <t t-esc="company.phone"/>
                                         </div>
@@ -588,18 +656,18 @@
         <template id="mcm_mail_notification_paynow_online" inherit_id="sale.mail_notification_paynow_online">
             <xpath expr="//t[@t-if='record.has_to_be_signed(include_draft=True)']" position="replace">
                 <t t-if="record.has_to_be_signed(include_draft=True)">
-                    <t t-if="record.has_to_be_paid()" t-set="access_name">Signez &amp; Payez Contrat</t>
-                    <t t-else="" t-set="access_name">Acceptez &amp; Signez Contrat</t>
+                    <t t-if="record.has_to_be_paid()" t-set="access_name">Signer et Payer le Contrat</t>
+                    <t t-else="" t-set="access_name">Accepter et Signer le Contrat</t>
                 </t>
 
             </xpath>
             <xpath expr="//t[@t-elif='record.has_to_be_paid(include_draft=True)']//t[@t-set='access_name']"
                    position="replace">
-                <t t-set="access_name">Acceptez &amp; Payez Contrat</t>
+                <t t-set="access_name">Accepter et Payer le Contrat</t>
             </xpath>
             <xpath expr="/t//t[1]" position="before">
                 <t t-if="record.state in ('sale', 'sent')">
-                    <t t-set="access_name">Acceptez &amp; Signez Contrat</t>
+                    <t t-set="access_name">Acceptez et Signer le Contrat</t>
                 </t>
             </xpath>
         </template>

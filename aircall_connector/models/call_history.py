@@ -180,7 +180,7 @@ class AirCall(models.Model):
                     'Authorization': 'Basic :{}'.format(encoded_auth)
                 }
                 call_response = requests.get(
-                    'https://api.aircall.io/v1/calls/%s' %(str(record.call_id)),  # max api get calls is 50
+                    'https://api.aircall.io/v1/calls/%s' %(str(record.call_id)),  # get call details using call_id as param
                     headers=header,
                 )
                 if call_response.status_code == 400 or call_response.status_code == 404:
