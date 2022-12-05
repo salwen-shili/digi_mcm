@@ -178,5 +178,17 @@
         <menuitem id="info_examen_info" name="Notes des examens"
                   parent="mcm_session.mcm_academy_session_root_menu" action="action_info_examen" sequence="12"
                   groups="mcm_session.group_session_module_manager"/>
+
+        <!-- Action send from info.exam -->
+        <record id="send_mail_id" model="ir.actions.act_window">
+            <field name="name">Envoyer un email</field>
+            <field name="res_model">mail.compose.message</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="mail.email_compose_message_wizard_form"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="partner_exam.model_info_examen"/>
+            <field name="binding_view_types">list</field>
+        </record>
     </data>
 </odoo>
