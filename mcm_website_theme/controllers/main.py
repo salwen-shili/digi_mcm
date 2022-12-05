@@ -3998,7 +3998,8 @@ class AuthSignupHome(AuthSignupHome):
         # call_rec = request.env['call.detail'].sudo().search([('call_id', "=", call['id'])])
         # if not call_rec:
 
-        if call["event"] == "call.answered" or call["event"] == "call.commented" or call["event"] == "call.created" or call["event"] == "call.tagged"or call["event"] == "call.ended":
+        if call["event"] == "call.answered" or call["event"] == "call.commented" or call["event"] == "call.created" or \
+                call["event"] == "call.tagged" or call["event"] == "call.ended":
             call_data = call["data"]
             societe = call_data["number"]["name"]
             started_at = call_data['started_at']
@@ -4015,7 +4016,7 @@ class AuthSignupHome(AuthSignupHome):
             if ended_at:
                 ended_at = str(datetime.fromtimestamp(ended_at))
             owner = ''
-            if call_data['user']:
+            if "user" in call_data:
                 owner = str(call_data['user']['name'])
             else:
                 owner = ""
@@ -4025,16 +4026,17 @@ class AuthSignupHome(AuthSignupHome):
             if (call_data['direction']) and call_data['direction'] == 'outbound':
                 entrant_sortant = 'Appel Sortant'
 
-
             _logger.info(entrant_sortant)
             _logger.info(started_at)
             _logger.info(ended_at)
-            content = "<b>" + call_data['user']['name'] + " " + str(entrant_sortant) + " " + " " + str(started_at) + " " + "</b><br/>"
-            comm = call_data["comments"]
+            content = "<b>" + owner + " " + str(entrant_sortant) + " " + " " + str(started_at) + " " + "</b><br/>"
+
             if existee:
                 existee.call_recording = call_data['asset']
-                if comm and comm[0]["content"]:
-                    existee.notes = comm[0]["content"]
+                if not existee.call_recording:
+                    existee.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
+                existee.owner = owner
+
                 if not existee.call_contact:
                     existee.action_find_user_using_phone()
                 if existee.call_contact and existee.notes:
@@ -4064,9 +4066,6 @@ class AuthSignupHome(AuthSignupHome):
                             'body': str(content) + existee.notes,
                         })
 
-
-
-
             if not existee:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
@@ -4077,8 +4076,17 @@ class AuthSignupHome(AuthSignupHome):
                                                                             'digits': call_data['number']['digits'],
                                                                             'company_name': call_data['number']['name'],
                                                                             })
-                new_call_detail.owner = owner
 
+                comments = ''
+                comment = False
+                notes = ''
+                comm = call_data["comments"]
+                for note in comm:
+                    comments += note['content']
+                    comment = str(note['content'])
+                    notes += comment + '\n'
+                    new_call_detail.write({'notes': comment + '\n'})
+                new_call_detail.owner = owner
                 if call_data['tags']:
                     tags = []
                     for tag in call_data['tags']:
@@ -4094,15 +4102,9 @@ class AuthSignupHome(AuthSignupHome):
                             _logger.info("odooooooooo tag : %s" % (odoo_tag))
                         _logger.info("odooooooooo tag : %s" % (odoo_tag))
                         new_call_detail.sudo().write({'air_call_tag': [(4, odoo_tag.id)],
-                                        'is_imp_tag': True})
-
-
+                                                      'is_imp_tag': True})
                 request.env.cr.commit()
 
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                    new_call_detail.write()
                     request.env.cr.commit()
-
-
-
