@@ -52,7 +52,7 @@
             <field name="name">call.detail.tree</field>
             <field name="model">call.detail</field>
             <field name="arch" type="xml">
-                <tree string="Call Detail" default_order="id desc">
+                <tree string="Call Detail" default_order="id asc"  delete="false">
                     <field name="call_contact"/>
                     <field name="phone_number"/>
                     <field name="company_name"/>

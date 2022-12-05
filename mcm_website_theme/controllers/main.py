@@ -3995,7 +3995,6 @@ class AuthSignupHome(AuthSignupHome):
         request.uid = odoo.SUPERUSER_ID
         call = json.loads(request.httprequest.data)
         _logger.info("########callll api#############")
-
         # call_rec = request.env['call.detail'].sudo().search([('call_id', "=", call['id'])])
         # if not call_rec:
         if call["event"] == "call.answered":
@@ -4104,7 +4103,6 @@ class AuthSignupHome(AuthSignupHome):
                         new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
                                                'is_imp_tag': True})
                 _logger.info("########DONE#############")
-
         if call["event"] == "call.commented":
             call_data = call["data"]
             call_id = call_data["id"]
@@ -4176,7 +4174,6 @@ class AuthSignupHome(AuthSignupHome):
                         new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
                                                'is_imp_tag': True})
                 _logger.info("########DONE#############")
-
         if call["event"] == "call.created":
             call_data = call["data"]
             call_id = call_data["id"]
@@ -4279,7 +4276,6 @@ class AuthSignupHome(AuthSignupHome):
                         new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
                                                'is_imp_tag': True})
                 _logger.info("########DONE#############")
-
         if call["event"] == "call.ended":
             call_data = call["data"]
             call_id = call_data["id"]
@@ -4381,7 +4377,6 @@ class AuthSignupHome(AuthSignupHome):
                         new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
                                                'is_imp_tag': True})
                 _logger.info("########DONE#############")
-
         if call["event"] == "call.tagged":
             call_data = call["data"]
             call_id = call_data["id"]
