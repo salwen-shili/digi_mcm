@@ -8,7 +8,21 @@ class MailComposeMessage(models.TransientModel):
         sender_obj = self.env['sendinblue.senders']
         odoo_sender_id = sender_obj
         template_id = values_dict.get('id')
-        for model_name in ['res.partner','crm.lead']:
+        template_name = values_dict.get('name','')
+        list_model = []
+        report_template = False
+        lang = False
+        if 'contrat' in template_name.lower():
+            list_model.append('sale.order')
+            lang = "${object.partner_id.lang}"
+        elif 'facture' in template_name.lower():
+            list_model.append('account.move')
+            lang = "${object.partner_id.lang}"
+            report_template = self.env['ir.actions.report'].search([('report_name', "=", "account.report_invoice_with_payments")], limit=1)
+        else:
+            list_model.append('res.partner')
+            list_model.append('crm.lead')
+        for model_name in list_model:
             existing_list = self.env['mail.template'].search([('sb_template_id', '=', template_id),('model_id', '=', model_name)])
             if values_dict.get('sender',{}):
                 odoo_sender_id = sender_obj.search([('account_id','=',account.id),('sendinblue_id','=',values_dict.get('sender').get('id'))])
@@ -20,15 +34,22 @@ class MailComposeMessage(models.TransientModel):
                 'sb_sender_id': odoo_sender_id.id,
                 'email_from': odoo_sender_id and '%s <%s>' % (odoo_sender_id.name, odoo_sender_id.email) or '',
                 'body_html': body_html,
+                'partner_to':values_dict.get('toField',''),
+                'reply_to':values_dict.get('replyTo','') if 'DEFAULT_REPLY_TO' not in values_dict.get('replyTo','') else False,
                 'sb_template_id' : template_id,
                 'name':values_dict.get('name',''),
                 'subject': values_dict.get('subject'),
+                'lang': lang if lang else False,
                 'model_id':self.env['ir.model'].search([('model','=',model_name)],limit=1).id
             }
             if not existing_list:
                 existing_list = self.env['mail.template'].create(vals)
             else:
                 existing_list.write(vals)
+            if existing_list and existing_list.model_id.name == "account.move":
+                existing_list.report_template = report_template if report_template else False
+                existing_list.auto_delete = True if report_template else False
+                existing_list.report_name = "Invoice_${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}" if report_template else False
         return True
 
     def sb_import_templates(self, account=False):
