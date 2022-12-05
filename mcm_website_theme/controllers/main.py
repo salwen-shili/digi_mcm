@@ -4092,5 +4092,7 @@ class AuthSignupHome(AuthSignupHome):
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
                     new_call_detail.write()
+                    request.env.cr.commit()
+
 
 
