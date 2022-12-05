@@ -50,9 +50,10 @@ class PaymentTransaction(models.Model):
 
     def _reconcile_after_transaction_done(self):
         transaction=super(PaymentTransaction,self)._reconcile_after_transaction_done()
-        invoices = self.mapped('invoice_ids')
+        invoices = self.mapped('invoice_ids') #get invoices related to transaction
         for invoice in invoices.with_user(SUPERUSER_ID):
             template = False
+            #check invoice's company
             if invoice.company_id.id == 2:
                 template = self.env['mail.template'].sudo().search(
                     [('model', "=", 'account.move'), ("name", "=", "DIGIMOOV Invoice: Send by email")], limit=1)
@@ -60,6 +61,7 @@ class PaymentTransaction(models.Model):
                 template = self.env['mail.template'].sudo().search(
                     [('model', "=", 'account.move'), ("name", "=", "MCM Invoice: Send by email")], limit=1)
             if template :
+                #send invoice ti customer
                 invoice.message_post_with_template(int(template),
                                                    composition_mode='comment',
                                                    email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"

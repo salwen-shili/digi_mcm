@@ -22,10 +22,10 @@ class SaleOrder(models.Model):
                 if not template_id:
                     template_id = self.env['ir.model.data'].xmlid_to_res_id(
                         'portal_contract.mcm_email_template_edi_sale', raise_if_not_found=False)
-            elif self.company_id.id == 2 :
+            elif self.company_id.id == 2 : #get template of sign request digimoov
                 template_id = self.env['mail.template'].search(
                     [('name', "=", "Demande de signature du contrat"), ('model_id', "=", "sale.order")]).id
-            elif self.company_id.id == 1:
+            elif self.company_id.id == 1: #get template of sign request mcm academy
                 template_id = self.env['mail.template'].search(
                     [('name', "=", "Demande de signature de contrat - MCM Academy"), ('model_id', "=", "sale.order")]).id
         if not template_id :
