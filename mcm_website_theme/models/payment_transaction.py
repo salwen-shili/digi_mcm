@@ -50,6 +50,20 @@ class PaymentTransaction(models.Model):
 
     def _reconcile_after_transaction_done(self):
         transaction=super(PaymentTransaction,self)._reconcile_after_transaction_done()
+        invoices = self.mapped('invoice_ids')
+        for invoice in invoices.with_user(SUPERUSER_ID):
+            template = False
+            if invoice.company_id.id == 2:
+                template = self.env['mail.template'].sudo().search(
+                    [('model', "=", 'account.move'), ("name", "=", "DIGIMOOV Invoice: Send by email")], limit=1)
+            else:
+                template = self.env['mail.template'].sudo().search(
+                    [('model', "=", 'account.move'), ("name", "=", "MCM Invoice: Send by email")], limit=1)
+            if template :
+                invoice.message_post_with_template(int(template),
+                                                   composition_mode='comment',
+                                                   email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
+                                                  )
         return transaction
 
     def _check_amount_and_confirm_order(self):
@@ -115,16 +129,6 @@ class PaymentTransaction(models.Model):
                         invoice.company_id=sale.company_id
                         _logger.info('_invoice_sale_orders invoice_payment_state :%s' % (str(invoice.invoice_payment_state)))
                         _logger.info('_invoice_sale_orders amount_residual : %s' % (str(invoice.amount_residual)))
-                        if invoice.company_id.id == 2:
-                            template = self.env['mail.template'].sudo().search([('model', "=", 'account.move'),("name","=","DIGIMOOV Invoice: Send by email")],limit=1)
-                        else:
-                            template = self.env['mail.template'].sudo().search([('model', "=", 'account.move'), ("name", "=", "MCM Invoice: Send by email")],limit=1)
-                        for move in invoice.with_user(SUPERUSER_ID):
-                            if template :
-                                move.message_post_with_template(int(template),
-                                                                   composition_mode='comment',
-                                                                   email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
-                                                                  )
                     sale.action_cancel()
                     sale.sale_action_sent()
 
