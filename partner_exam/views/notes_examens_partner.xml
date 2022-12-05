@@ -1,13 +1,5 @@
 <odoo>
     <data>
-        <record id="action_email_compose_message_wizard" model="ir.actions.act_window">
-            <field name="name">Compose Email</field>
-            <field name="res_model">mail.compose.message</field>
-            <field name="binding_model_id" ref="mail.model_mail_compose_message"/>
-            <field name="type">ir.actions.act_window</field>
-            <field name="view_mode">form</field>
-            <field name="target">new</field>
-        </record>
         <!-- Action -->
         <record id="action_info_examen" model="ir.actions.act_window">
             <field name="name">Examen Informations</field>
@@ -186,5 +178,17 @@
         <menuitem id="info_examen_info" name="Notes des examens"
                   parent="mcm_session.mcm_academy_session_root_menu" action="action_info_examen" sequence="12"
                   groups="mcm_session.group_session_module_manager"/>
+
+        <!-- Action test mail -->
+        <record id="partner_address_class_exams_wizard_view" model="ir.actions.act_window">
+            <field name="name">Planification des salles d'examens</field>
+            <field name="res_model">address.class.examen.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="partner_address_class_exams_wizard_form_view"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="base.model_res_partner"/>
+            <field name="binding_view_types">form</field>
+        </record>
     </data>
 </odoo>
