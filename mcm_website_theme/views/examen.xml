@@ -68,7 +68,7 @@
                 </div>
               </div>
               <div class="col-lg-6 pb24 pt0 js-scroll slide-right scrolled">
-                <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.png" class="img img-fluid mx-auto text-center lazy" alt="candidat à l’examen taxi vtc" title="homme pointant du doigt pour montrer comment devenir chauffeur taxi vtc moto-taxi" style="    width: 75%;" />
+                <img data-src="/mcm_website_theme/static/src/img/examen/EXAMEN-TAXI-VTC.webp" data-srcsafari="/mcm_website_theme/static/src/img/examen/EXAMEN-TAXI-VTC.png" class="img img-fluid mx-auto text-center lazy" alt="candidat à l’examen taxi vtc" title="homme pointant du doigt pour montrer comment devenir chauffeur taxi vtc moto-taxi" style="    width: 75%;" />
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16 js-scroll slide-left scrolled">
-                <img data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/CONDITIONS-PASSER-EXAMEN-TAXI.png" data-src="/mcm_website_theme/static/src/img/formation_taxi/CONDITIONS-PASSER-EXAMEN-TAXI.png" class="img img-fluid mx-auto lazy" alt="inscription examen taxi vtc vmdtr" title="homme devant son écran s’inscrit à l’examen taxi vtc" />
+                <img data-srcsafari="/mcm_website_theme/static/src/img/examen/formation taxi vtc.png" data-src="/mcm_website_theme/static/src/img/examen/formation taxi vtc.webp" class="img img-fluid mx-auto lazy " alt="formation taxi vtc " title="homme devant son écran s’inscrit à l’examen taxi vtc" />
               </div>
               <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
                 <h2>LES CONDITIONS POUR PASSER L'EXAMEN TAXI/VTC</h2>
@@ -162,7 +162,7 @@
                 <mci-extension data-role="overlay" id="overlay-root" />
               </div>
               <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
-                <img data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/DÉROULEMENT DE L’EXAMEN.png" data-src="/mcm_website_theme/static/src/img/formation_taxi/DÉROULEMENT DE L’EXAMEN.png" class="img img-fluid mx-auto lazy" alt="examens théoriques taxis vtc" title="homme stylo à la main passant l’examen taxi vtc" />
+                <img data-srcsafari="/mcm_website_theme/static/src/img/examen/candidats-passant-l’examen-taxi-vtc.png" data-src="/mcm_website_theme/static/src/img/examen/candidats-passant-l’examen-taxi-vtc.webp" class="img img-fluid mx-auto lazy" alt="examens théoriques taxis vtc" title="homme stylo à la main passant l’examen taxi vtc" />
               </div>
             </div>
           </div>
@@ -171,7 +171,7 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
-                <img src="/mcm_website_theme/static/src/img/formation_taxi/GRILLE DE NOTATION DES ÉPREUVES.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
+                <img data-srcsafari="/mcm_website_theme/static/src/img/examen/examinatrice-épreuve-d’admissibilité.png" data-src="/mcm_website_theme/static/src/img/examen/examinatrice-épreuve-d’admissibilité.png" class="img img-fluid mx-auto lazy" alt=" grille de notation examen taxi vtc" />
               </div>
               <div class="col-lg-6 pt16 pb16">
                 <h2>GRILLE DE NOTATION DES ÉPREUVES</h2>
@@ -232,7 +232,7 @@
                 <mci-extension data-role="overlay" id="overlay-root" />
               </div>
               <div class="col-lg-6 pt16 pb16">
-                <img src="/mcm_website_theme/static/src/img/formation_taxi/REPASSAGE  DE L’EXAMEN TAXIS VTC.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" />
+                <img data-src="/mcm_website_theme/static/src/img/examen/candidate-passant-l’examen-taxi-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/examen/candidate-passant-l’examen-taxi-vtc.png" class="img img-fluid mx-auto lazy" alt="repassage examen taxi vtc" />
               </div>
             </div>
           </div>
