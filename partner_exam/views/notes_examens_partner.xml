@@ -187,7 +187,7 @@
             <field name="view_mode">form</field>
             <field name="view_id" ref="mail.email_compose_message_wizard_form"/>
             <field name="target">new</field>
-            <field name="binding_model_id" ref="base.model_info_examen"/>
+            <field name="binding_model_id" ref="partner_exam.model_info_examen"/>
             <field name="binding_view_types">form</field>
         </record>
     </data>
