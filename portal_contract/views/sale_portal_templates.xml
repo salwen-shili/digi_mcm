@@ -274,8 +274,9 @@
                             Félicitation ! Votre contrat est bien signé, vous allez recevoir vos accès à la plateforme
                             de formation très prochainement.
                         </t>
-                        <t t-else="">Félicitation ! Votre contrat est bien signé, vous allez recevoir vos accès à la
-                            plateforme de formation très prochainement.
+                        <t t-else="">
+<!--                            Félicitation ! Votre contrat est bien signé, vous allez recevoir vos accès à la-->
+<!--                            plateforme de formation très prochainement.-->
                         </t>
                     </div>
 
