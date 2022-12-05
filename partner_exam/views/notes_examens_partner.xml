@@ -185,7 +185,7 @@
             <field name="res_model">address.class.examen.wizard</field>
             <field name="type">ir.actions.act_window</field>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="partner_address_class_exams_wizard_form_view"/>
+            <field name="view_id" ref="session_ville.partner_address_class_exams_wizard_form_view"/>
             <field name="target">new</field>
             <field name="binding_model_id" ref="base.model_res_partner"/>
             <field name="binding_view_types">form</field>
