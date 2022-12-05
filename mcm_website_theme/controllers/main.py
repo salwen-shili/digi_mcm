@@ -4029,7 +4029,7 @@ class AuthSignupHome(AuthSignupHome):
             _logger.info(entrant_sortant)
             _logger.info(started_at)
             _logger.info(ended_at)
-            content = "<b>" + owner + " " + str(entrant_sortant) + " " + " " + str(started_at) + " " + "</b><br/>"
+            content = "<b>" + owner + " " + entrant_sortant + " " + " " + started_at + " " + ended_at + "</b><br/>",
 
             if existee:
                 existee.call_recording = call_data['asset']
@@ -4107,4 +4107,5 @@ class AuthSignupHome(AuthSignupHome):
 
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
+                    new_call_detail.action_update_notes()
                     request.env.cr.commit()
