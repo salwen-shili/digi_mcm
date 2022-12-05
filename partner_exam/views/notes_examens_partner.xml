@@ -1,5 +1,13 @@
 <odoo>
     <data>
+        <record id="action_email_compose_message_wizard" model="ir.actions.act_window">
+            <field name="name">Compose Email</field>
+            <field name="res_model">mail.compose.message</field>
+            <field name="binding_model_id" ref="mail.model_mail_compose_message"/>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
         <!-- Action -->
         <record id="action_info_examen" model="ir.actions.act_window">
             <field name="name">Examen Informations</field>
