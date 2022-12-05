@@ -3997,6 +3997,7 @@ class AuthSignupHome(AuthSignupHome):
         _logger.info("########callll api#############")
         # call_rec = request.env['call.detail'].sudo().search([('call_id', "=", call['id'])])
         # if not call_rec:
+
         if call["event"] == "call.answered" or call["event"] == "call.commented" or call["event"] == "call.created" or call["event"] == "call.tagged"or call["event"] == "call.ended":
             call_data = call["data"]
             societe = call_data["number"]["name"]
@@ -4016,17 +4017,19 @@ class AuthSignupHome(AuthSignupHome):
             owner = ''
             if call_data['user']:
                 owner = str(call_data['user']['name'])
-                request.env.cr
             else:
-                owner = ''
+                owner = ""
             entrant_sortant = ''
             if (call_data['direction']) and call_data['direction'] == 'inbound':
                 entrant_sortant = 'Appel Entrant'
             if (call_data['direction']) and call_data['direction'] == 'outbound':
                 entrant_sortant = 'Appel Sortant'
-            content = "<b>" + call_data["user"][
-                "name"] + " " + entrant_sortant + " " + " " + started_at + " " + ended_at + "</b><br/>"
-            message = False
+
+
+            _logger.info(entrant_sortant)
+            _logger.info(started_at)
+            _logger.info(ended_at)
+            content = "<b>" + call_data['user']['name'] + " " + str(entrant_sortant) + " " + " " + str(started_at) + " " + "</b><br/>"
             comm = call_data["comments"]
             if existee:
                 existee.call_recording = call_data['asset']
@@ -4039,7 +4042,7 @@ class AuthSignupHome(AuthSignupHome):
                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                          ('res_id', '=', existee.call_contact.id), ('body', "ilike", str(existee.notes))])
                     if not message:
-                        subject = + " " + started_at + " " + ended_at
+                        subject = + " " + str(started_at) + " "
                         message = request.env['mail.message'].sudo().search(
                             [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                              ('res_id', '=', existee.call_contact.id), ('subject', "=",
@@ -4058,18 +4061,9 @@ class AuthSignupHome(AuthSignupHome):
                             'res_id': existee.call_contact.id,
                             'message_type': 'notification',
                             'subtype_id': subtype_id,
-                            'body': content + existee.notes,
+                            'body': str(content) + existee.notes,
                         })
-                if call_data['tags']:
-                    tags = []
-                    for tag in call_data['tags']:
-                        odoo_tag = self.env['res.partner.category'].search(
-                            ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
-                        if not odoo_tag:
-                            odoo_tag = odoo_tag.create({
-                                'call_tag_id': tag['id'],
-                                'name': tag['name'],
-                            })
+
 
 
 
@@ -4083,9 +4077,25 @@ class AuthSignupHome(AuthSignupHome):
                                                                             'digits': call_data['number']['digits'],
                                                                             'company_name': call_data['number']['name'],
                                                                             })
-                new_call_detail.write({'air_call_tag': [(4, odoo_tag.id)],
-                                'is_imp_tag': True})
-                new_call_detail.owner = call_data["user"]["name"]
+                new_call_detail.owner = owner
+
+                if call_data['tags']:
+                    tags = []
+                    for tag in call_data['tags']:
+                        _logger.info("odooooooooo tag : %s" % (tag))
+
+                        odoo_tag = request.env['res.partner.category'].sudo().search(
+                            ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
+                        if not odoo_tag:
+                            odoo_tag = request.env['res.partner.category'].sudo().create({
+                                'call_tag_id': tag['id'],
+                                'name': tag['name'],
+                            })
+                            _logger.info("odooooooooo tag : %s" % (odoo_tag))
+                        _logger.info("odooooooooo tag : %s" % (odoo_tag))
+                        new_call_detail.sudo().write({'air_call_tag': [(4, odoo_tag.id)],
+                                        'is_imp_tag': True})
+
 
                 request.env.cr.commit()
 
