@@ -4029,7 +4029,7 @@ class AuthSignupHome(AuthSignupHome):
             _logger.info(entrant_sortant)
             _logger.info(started_at)
             _logger.info(ended_at)
-            content = "<b>" + owner + " " + entrant_sortant + " " + " " + started_at + " " + ended_at + "</b><br/>",
+            content = "<b>"     + entrant_sortant + " " + " " + started_at + " " + ended_at + "</b><br/>",
 
             if existee:
                 existee.call_recording = call_data['asset']
