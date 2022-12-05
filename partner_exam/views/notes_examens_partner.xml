@@ -181,13 +181,13 @@
 
         <!-- Action test mail -->
         <record id="partner_address_class_exams_wizard_view" model="ir.actions.act_window">
-            <field name="name">Planification des salles d'examens</field>
-            <field name="res_model">address.class.examen.wizard</field>
+            <field name="name">Test FF</field>
+            <field name="res_model" ref="mail.model_mail_compose_message"/>
             <field name="type">ir.actions.act_window</field>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="session_ville.partner_address_class_exams_wizard_form_view"/>
+            <field name="view_id" ref="mail.email_compose_message_wizard_form"/>
             <field name="target">new</field>
-            <field name="binding_model_id" ref="base.model_res_partner"/>
+            <field name="binding_model_id" ref="base.model_info_examen"/>
             <field name="binding_view_types">form</field>
         </record>
     </data>
