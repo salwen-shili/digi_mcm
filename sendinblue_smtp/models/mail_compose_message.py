@@ -19,6 +19,8 @@ class MailComposeMessage(models.TransientModel):
             list_model.append('account.move')
             lang = "${object.partner_id.lang}"
             report_template = self.env['ir.actions.report'].search([('report_name', "=", "account.report_invoice_with_payments")], limit=1)
+        elif "EXAMEN - DIGIMOOV RÉUSSITE À LEXAMEN DE CAPACITÉ DE TRANSPORT DE MARCHANDISES -3,5T: Attestation de fin de formation" in template_name.lower():
+            list_model.append('info.examen')
         else:
             list_model.append('res.partner')
             list_model.append('crm.lead')
@@ -46,6 +48,7 @@ class MailComposeMessage(models.TransientModel):
                 existing_list = self.env['mail.template'].create(vals)
             else:
                 existing_list.write(vals)
+            # Facture report
             if existing_list and existing_list.model_id.name == "account.move":
                 existing_list.report_template = report_template if report_template else False
                 existing_list.auto_delete = True if report_template else False
