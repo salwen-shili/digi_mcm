@@ -3997,18 +3997,17 @@ class AuthSignupHome(AuthSignupHome):
         request.uid = odoo.SUPERUSER_ID
         call = json.loads(request.httprequest.data)
         _logger.info("########callll api#############")
-        if call["event"] == "call.answered" or call["event"] == "call.commented" or call["event"] == "call.created" or \
-                call["event"] == "call.tagged" or call["event"] == "call.ended":
+        if call["event"] in ["call.answered", "call.commented", "call.created", "call.tagged", "call.ended"]:
             call_data = call["data"]
             societe = call_data["number"]["name"]
             started_at = call_data['started_at']
             _logger.info('******** call.phone _number ********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
-            date = datetime.fromtimestamp(call_data['started_at'])
+            start_call_date = datetime.fromtimestamp(call_data['started_at'])
             subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
             # Get calls of DIGIMOOV using call number name from api response
             owner = str(call_data['user']['name'])
-            existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
+            existee = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])])
             if existee:
                 existee.call_recording = call_data['asset']
                 existee.owner = owner
@@ -4021,29 +4020,33 @@ class AuthSignupHome(AuthSignupHome):
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
                                                                             'call_direction': call_data['direction'],
-                                                                            'call_date': date,
+                                                                            'call_date': start_call_date,
                                                                             'phone_number': call_data['raw_digits'],
                                                                             'call_recording': call_data['asset'],
                                                                             'digits': call_data['number']['digits'],
                                                                             'company_name': call_data['number']['name'],
                                                                             })
+                if new_call_detail and new_call_detail.phone_number:
+                    new_call_detail.action_find_user_using_phone()
+                    # new_call_detail.action_update_notes()
+                    # request.env.cr.commit()
                 comments = ''
                 comment = False
                 notes = ''
-                comm = call_data["comments"]
-                if comm:
-                    for note in comm:
-                        comments += note['content']
+                call_data_comments = call_data["comments"]
+                if call_data_comments:
+                    for note in call_data_comments:
+                        comments += str(note['content']) + '\n'
                         comment = str(note['content'])
                         notes += comment + '\n'
-                        new_call_detail.write({'notes': comment + '\n'})
-                new_call_detail.owner = owner
+                    new_call_detail.write({'notes': comments})
+                if owner :
+                    new_call_detail.owner = owner
                 if call_data['tags']:
                     tags = []
                     for tag in call_data['tags']:
                         _logger.info("odooooooooo tag : %s" % (tag))
-                        odoo_tag = request.env['res.partner.category'].sudo().search(
-                            ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
+                        odoo_tag = request.env['res.partner.category'].sudo().search(['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
                         if not odoo_tag:
                             odoo_tag = request.env['res.partner.category'].sudo().create({
                                 'call_tag_id': tag['id'],
@@ -4051,9 +4054,11 @@ class AuthSignupHome(AuthSignupHome):
                             })
                             _logger.info("odooooooooo tag : %s" % (odoo_tag))
                         _logger.info("odooooooooo tag : %s" % (odoo_tag))
-                        new_call_detail.sudo().write({'air_call_tag': [(4, odoo_tag.id)],
-                                                      'is_imp_tag': True})
-                request.env.cr.commit()
+                        if odoo_tag :
+                            tags.append(odoo_tag.id)
+                    if tags:
+                        new_call_detail.sudo().write({'air_call_tag': [(6, 0, tags)]})
+                # request.env.cr.commit()
 
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
