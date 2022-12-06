@@ -19,16 +19,16 @@ class MailMessage(models.Model):
             'alias_domain':self.env.company.alias_domain,
         })
         alias_domain= self.env['ir.config_parameter'].sudo().search([('key', "=",'mail.catchall.domain')])
-        if alias_domain:
-            alias_domain.sudo().write({'value':self.env.company.alias_domain})
+        # if alias_domain:
+        #     alias_domain.sudo().write({'value':self.env.company.alias_domain})
         icp_domain = self.env["ir.config_parameter"].sudo().get_param("mail.catchall.domain") #get mail.catchall.domain parameter
         _logger.info("new ir config parameter is: %s et ir config paramètres mail catchall domain : %s" %(str(self.env.company.alias_domain),str(icp_domain)))
         # if alias != icp_domain: #check difference between parametre mail.catchall.domain and alias domain
-        #     try :
-        #         self.env["ir.config_parameter"].sudo().set_param("mail.catchall.domain", self.env.company.alias_domain)
-        #         self._cr.commit()
-        #     except Exception:
-        #         _logger.exception("Failure to update mail catchall domain from %s to %s" %(str(icp_domain),str(self.env.company.alias_domain)))
+        try :
+            self.env["ir.config_parameter"].sudo().set_param("mail.catchall.domain", self.env.company.alias_domain)
+            # self._cr.commit()
+        except Exception:
+            _logger.exception("Failure to update mail catchall domain from %s to %s" %(str(icp_domain),str(self.env.company.alias_domain)))
                 
         for vals in values_list:
             if vals.get("model") and vals.get("res_id"):
