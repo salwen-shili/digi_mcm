@@ -828,6 +828,138 @@ class AccountMove(models.Model):
                                 _logger.info("if bill %s" % str(invoice_ref))
                                 invoice.billed_cpf=True
 
+    def create_invoice_bolt(self):
+        emails = [
+            'djamalsang89@gmail.com',
+            'TRIKIHAMZA89@GMAIL.COM',
+            'ismail.toure@kisio.com',
+            'abdelyacine@outlook.fr',
+            'syrinelamine@gmail.com',
+            'jeremy.mgaya@yahoo.fr',
+            'brahimakberthe88@gmail.com',
+            'slamasalah89@gmail.com',
+            'abdelrahimtenes02@gmail.com',
+            'Terga2009@yahoo.fr',
+            'belhadjgacemabdelhadi@gmail.com',
+            'sofianejabri97@gmail.com',
+            'transportsbandb@gmail.com',
+            'montard7@gmail.com',
+            'rabs75@hotmail.fr',
+            'maximejules75@gmail.com',
+            'ylabriti@gmail.com',
+            'ouellafhicham97@gmail.com',
+        ]
+        for email in emails:
+            user = self.env['res.users'].sudo().search([("login", "=", email)])
+            if user:
+                _logger.info("partner %s" % str(user.name))
+                sale_order = self.env['sale.order'].sudo().search([('partner_id', "=", user.partner_id.id),
+                                                                   ('module_id.product_id.default_code', "=",
+                                                                    "vtc_bolt")])
+                _logger.info("sale order %s" % str(sale_order.name))
+            else:
+                _logger.info('create new partner')
+                user = self.env['res.users'].with_context(no_reset_password=True
+                                                          ).sudo().create({
+                    'name': str(email),
+                    'login': str(email),
+                    'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
+                    'email': email,
+                    'notification_type': 'inbox',
+                    'website_id': 1,
+                    'company_ids': [1],
+                    'company_id': 1,
+
+                })
+                user.company_id = 1
+                user.partner_id.company_id = 1
+                user.partner_id.bolt = True
+                message = self.env["mail.message"].create(
+                    {
+                        "subject": "Client bolt de stripe",
+                        "message_type": "comment",
+                        "model": "res.partner",
+                        "res_id": user.partner_id.id,
+                        "partner_ids": [(4, user.partner_id.id)],
+                        "body": "<p>Ancien client BOLT provient de stripe pour garder les factures</p>",
+                    }
+                )
+
+            if user:
+
+                session_ville = self.env['session.ville'].sudo().search([('name_ville', "=", "Hauts-de-France")])
+                date_time_str = '28/06/2022'
+                date_time_obj = datetime.strptime(date_time_str, "%d/%m/%Y")
+                product_id = self.env['product.template'].sudo().search(
+                    [('default_code', "=", "vtc_bolt"), ('company_id', "=", 1)], limit=1)
+                if session_ville and product_id:
+                    module_id = self.env['mcmacademy.module'].sudo().search(
+                        [('company_id', "=", 1),
+                         ('session_ville_id', "=", session_ville.id),
+                         ('date_exam', "=", date_time_obj),
+                         ('product_id', "=", product_id.id),
+                         ('session_id.number_places_available', '>', 0)], limit=1)
+                    _logger.info('before if modulee %s' % str(module_id))
+                    if module_id:
+                        _logger.info('if modulee %s' % str(module_id))
+                        user.partner_id.module_id = module_id
+                        user.partner_id.mcm_session_id = module_id.session_id
+                        product_id = self.env['product.product'].sudo().search(
+                            [('product_tmpl_id', '=', module_id.product_id.id)])
+                        list = []
+                        for client in module_id.session_id.client_ids:  # get list of existing clients ids
+                            list.append(client.id)
+                        list.append(user.partner_id.id)  # append partner to the list
+                        module_id.session_id.write(
+                            {'client_ids': [(6, 0, list)]})  # update the list of clients
+                        invoice = self.env['account.move'].sudo().search(
+                            [('module_id', "=", module_id.id),
+                             ('state', "=", 'posted'),
+                             ('partner_id', "=", user.partner_id.id)], limit=1)
+                        print('invoice', invoice)
+                        if not invoice:
+                            print('if  not invoice mcm')
+                            so = self.env['sale.order'].sudo().create({
+                                'partner_id': user.partner_id.id,
+                                'company_id': 1,
+                            })
+                            self.env['sale.order.line'].sudo().create({
+                                'name': product_id.name,
+                                'product_id': product_id.id,
+                                'product_uom_qty': 1,
+                                'product_uom': product_id.uom_id.id,
+                                'price_unit': product_id.list_price,
+                                'order_id': so.id,
+                                'tax_id': product_id.taxes_id,
+                                'company_id': 1
+                            })
+                            # Enreggistrement des valeurs de la facture
+                            # Parser le pourcentage d'acompte
+                            # Creation de la facture étape Finale
+                            # Facture comptabilisée
+                            so.action_confirm()
+                            so.module_id = module_id
+                            so.session_id = module_id.session_id
+                            moves = so._create_invoices(final=True)
+                            for move in moves:
+                                move.type_facture = 'interne'
+                                move.module_id = so.module_id
+                                # move.cpf_acompte_invoice=True
+                                # move.cpf_invoice =True
+                                move.methodes_payment = 'cartebleu'
+                                move.session_id = so.session_id
+                                move.company_id = so.company_id
+                                move.website_id = 1
+                                for line in move.invoice_line_ids:
+                                    if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
+                                        line.account_id = line.product_id.property_account_income_id
+                                move.post()
+
+
+
+
+
+
 
 
 
