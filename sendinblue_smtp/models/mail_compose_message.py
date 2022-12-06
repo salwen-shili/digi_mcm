@@ -19,7 +19,7 @@ class MailComposeMessage(models.TransientModel):
             list_model.append('account.move')
             lang = "${object.partner_id.lang}"
             report_template = self.env['ir.actions.report'].search([('report_name', "=", "account.report_invoice_with_payments")], limit=1)
-        elif "EXAMEN - DIGIMOOV RÉUSSITE À LEXAMEN DE CAPACITÉ DE TRANSPORT DE MARCHANDISES -3,5T: Attestation de fin de formation" in template_name.lower():
+        elif "EXAMEN - DIGIMOOV RÉUSSITE À LEXAMEN DE CAPACITÉ DE TRANSPORT DE MARCHANDISES -3,5T: Attestation de fin de formation" in template_name:
             list_model.append('info.examen')
         else:
             list_model.append('res.partner')
