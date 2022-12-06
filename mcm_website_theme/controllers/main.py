@@ -3995,77 +3995,26 @@ class AuthSignupHome(AuthSignupHome):
         request.uid = odoo.SUPERUSER_ID
         call = json.loads(request.httprequest.data)
         _logger.info("########callll api#############")
-        # call_rec = request.env['call.detail'].sudo().search([('call_id', "=", call['id'])])
-        # if not call_rec:
-
         if call["event"] == "call.answered" or call["event"] == "call.commented" or call["event"] == "call.created" or \
                 call["event"] == "call.tagged" or call["event"] == "call.ended":
             call_data = call["data"]
             societe = call_data["number"]["name"]
             started_at = call_data['started_at']
-            _logger.info('******** call.answered phone _number ********  : %s' % str(societe))
+            _logger.info('******** call.phone _number ********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
-            existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
             date = datetime.fromtimestamp(call_data['started_at'])
             subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
             # Get calls of DIGIMOOV using call number name from api response
-            started_at = call_data['started_at']
-            if started_at:
-                started_at = str(datetime.fromtimestamp(started_at))
-            ended_at = call_data['ended_at']
-            if ended_at:
-                ended_at = str(datetime.fromtimestamp(ended_at))
-            owner = ''
-            if "user" in call_data:
-                owner = str(call_data['user']['name'])
-            else:
-                owner = ""
-            entrant_sortant = ''
-            if (call_data['direction']) and call_data['direction'] == 'inbound':
-                entrant_sortant = 'Appel Entrant'
-            if (call_data['direction']) and call_data['direction'] == 'outbound':
-                entrant_sortant = 'Appel Sortant'
-
-            _logger.info(entrant_sortant)
-            _logger.info(started_at)
-            _logger.info(ended_at)
-            content = "<b>"     + entrant_sortant + " " + " " + started_at + " " + ended_at + "</b><br/>",
-
+            owner = str(call_data['user']['name'])
+            existee = request.env['call.detail'].sudo().search([('call_id', '=', call_data['id'])])
             if existee:
                 existee.call_recording = call_data['asset']
-                if not existee.call_recording:
-                    existee.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
                 existee.owner = owner
-
+                if existee.call_recording == False:
+                    existee.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
                 if not existee.call_contact:
                     existee.action_find_user_using_phone()
-                if existee.call_contact and existee.notes:
-                    message = request.env['mail.message'].sudo().search(
-                        [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
-                         ('res_id', '=', existee.call_contact.id), ('body', "ilike", str(existee.notes))])
-                    if not message:
-                        subject = + " " + str(started_at) + " "
-                        message = request.env['mail.message'].sudo().search(
-                            [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
-                             ('res_id', '=', existee.call_contact.id), ('subject', "=",
-                                                                        subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
-                        if message:
-                            _logger.info("aircall message found : %s" % (str(message.body)))
-                            if str(existee.notes) not in message.body:
-                                message.sudo().write({
-                                    'body': message.body + '\n' + str(existee.notes)
-                                })
-                    if not message:
-                        # Create new Note in view contact
-                        message = request.env['mail.message'].sudo().create({
-                            'subject': owner + " " + started_at + " " + ended_at,
-                            'model': 'res.partner',
-                            'res_id': existee.call_contact.id,
-                            'message_type': 'notification',
-                            'subtype_id': subtype_id,
-                            'body': str(content) + existee.notes,
-                        })
-
+                    existee.action_update_notes()
             if not existee:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
@@ -4076,22 +4025,21 @@ class AuthSignupHome(AuthSignupHome):
                                                                             'digits': call_data['number']['digits'],
                                                                             'company_name': call_data['number']['name'],
                                                                             })
-
                 comments = ''
                 comment = False
                 notes = ''
                 comm = call_data["comments"]
-                for note in comm:
-                    comments += note['content']
-                    comment = str(note['content'])
-                    notes += comment + '\n'
-                    new_call_detail.write({'notes': comment + '\n'})
+                if comm:
+                    for note in comm:
+                        comments += note['content']
+                        comment = str(note['content'])
+                        notes += comment + '\n'
+                        new_call_detail.write({'notes': comment + '\n'})
                 new_call_detail.owner = owner
                 if call_data['tags']:
                     tags = []
                     for tag in call_data['tags']:
                         _logger.info("odooooooooo tag : %s" % (tag))
-
                         odoo_tag = request.env['res.partner.category'].sudo().search(
                             ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
                         if not odoo_tag:
