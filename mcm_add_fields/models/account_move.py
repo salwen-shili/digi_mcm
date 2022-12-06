@@ -829,6 +829,57 @@ class AccountMove(models.Model):
                                 invoice.billed_cpf=True
 
 
+    def create_invoice_bolt(self):
+        emails=[
+            'djamalsang89@gmail.com',
+            'TRIKIHAMZA89@GMAIL.COM',
+            'ismail.toure@kisio.com',
+            'abdelyacine@outlook.fr',
+            'syrinelamine@gmail.com',
+            'jeremy.mgaya@yahoo.fr',
+            'brahimakberthe88@gmail.com',
+            'slamasalah89@gmail.com',
+            'abdelrahimtenes02@gmail.com',
+            'Terga2009@yahoo.fr',
+            'belhadjgacemabdelhadi@gmail.com',
+            'sofianejabri97@gmail.com',
+            'transportsbandb@gmail.com',
+            'montard7@gmail.com',
+            'rabs75@hotmail.fr',
+            'maximejules75@gmail.com',
+            'ylabriti@gmail.com',
+        ]
+        for email in emails:
+            partner =self.env['res.partner'].sudo().search([("email","=",'rijidi1126@dmonies.com')])
+            if partner:
+                _logger.info("partner %s" %str(partner.name))
+                sale_order=self.env['sale.order'].sudo().search([('partner_id',"=",partner.id),
+                                                                 ('module_id.product_id.default_code',"=","vtc_bolt")])
+                _logger.info("sale order %s" %str(sale_order.name))
+            else:
+                _logger.info('create new partner ')
+                user = self.env['res.users'].with_context(no_reset_password=True
+                ).sudo().create({
+                    'name': str(email),
+                    'login': str(email),
+                    'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
+                    'email': email,
+                    'notification_type': 'inbox',
+                    'website_id': 1,
+                    'company_ids': [1],
+                    'company_id': 1,
+
+                })
+                user.company_id = 1
+                user.partner_id.company_id = 1
+
+
+
+
+
+
+
+
 
 
 
