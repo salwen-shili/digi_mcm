@@ -815,7 +815,7 @@ class partner(models.Model):
                             partner.write({'state': 'en_formation'})
                             self.inscriteVTC(partner)
                         # Si l'apprenant achete le module de repasage vtc
-                        elif partner.module_id.product_id.default_codee == "examen_taxi":
+                        elif partner.module_id.product_id.default_code == "examen_taxi":
                             _logger.info("Repassage taxi")
                             _logger.info("partner.module_id.product_id.default_code")
                             partner.write({'state': 'en_formation'})
