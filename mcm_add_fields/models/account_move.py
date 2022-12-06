@@ -851,13 +851,13 @@ class AccountMove(models.Model):
         for email in emails:
             user = self.env['res.users'].sudo().search([("login", "=", email)])
             if user:
-                _logger.info("partner %s" % str(partner.name))
+                _logger.info("partner %s" % str(user.name))
                 sale_order = self.env['sale.order'].sudo().search([('partner_id', "=", user.partner_id.id),
                                                                    ('module_id.product_id.default_code', "=",
                                                                     "vtc_bolt")])
                 _logger.info("sale order %s" % str(sale_order.name))
             else:
-                _logger.info('create new partner ')
+                _logger.info('create new partner')
                 user = self.env['res.users'].with_context(no_reset_password=True
                                                           ).sudo().create({
                     'name': str(email),
@@ -886,7 +886,7 @@ class AccountMove(models.Model):
 
             if user:
 
-                session_ville = self.env['session.ville'].sudo().search([('name_villle', "=", "Hauts-de-France")])
+                session_ville = self.env['session.ville'].sudo().search([('name_ville', "=", "Hauts-de-France")])
                 date_time_str = '28/06/2022'
                 date_time_obj = datetime.strptime(date_time_str, "%d/%m/%Y")
                 product_id = self.env['product.template'].sudo().search(
@@ -934,7 +934,7 @@ class AccountMove(models.Model):
                             })
                             # Enreggistrement des valeurs de la facture
                             # Parser le pourcentage d'acompte
-                            # Creation de la fcture étape Finale
+                            # Creation de la facture étape Finale
                             # Facture comptabilisée
                             so.action_confirm()
                             so.module_id = module_id
