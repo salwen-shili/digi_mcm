@@ -847,6 +847,7 @@ class AccountMove(models.Model):
             'rabs75@hotmail.fr',
             'maximejules75@gmail.com',
             'ylabriti@gmail.com',
+            'ouellafhicham97@gmail.com',
         ]
         for email in emails:
             user = self.env['res.users'].sudo().search([("login", "=", email)])
