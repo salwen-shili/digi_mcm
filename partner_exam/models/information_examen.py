@@ -100,7 +100,7 @@ class NoteExamen(models.Model):
     def print_report_name_examen(self):
         """ La fonction sera utilisée dans les noms de rapport en format PDF de l'interface examen."""
         self.ensure_one()
-        return '- %s - %s - %s' % (self.display_name, self.ville_id.display_name, self.date_exam.strftime(
+        return '- %s - %s - %s' % (self.partner_id.display_name, self.session_id.session_ville_id.display_name, self.session_id.date_exam.strftime(
             '%d/%m/%Y'))
 
     @api.depends('partner_id.phone')
