@@ -2389,14 +2389,16 @@ class Payment3x(http.Controller):
         if instalment:
             if payment:
                 order.instalment = True
-                payment.instalment = True
+                # payment.sudo().write({
+                #     'instalment' : True,
+                # })
                 if order.company_id.id == 2 and order.pricelist_id.name == "ubereats":
                     for line in order.order_line:
                         if line.product_id.default_code == "access":
                             order.amount_total = 450
                             line.price_unit = 450
         else:
-            payment.instalment = False
+            # payment.instalment = False
             order.instalment = False
             if order.company_id.id == 2 and order.pricelist_id.name == "ubereats":
                 for line in order.order_line:
