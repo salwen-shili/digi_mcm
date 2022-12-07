@@ -4009,6 +4009,7 @@ class AuthSignupHome(AuthSignupHome):
             existee = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])])
             if existee:
                 existee.call_recording = call_data['asset']
+                existee.call_duration = call_data['duration']
                 comments = ''
                 comment = False
                 notes = ''
@@ -4029,6 +4030,7 @@ class AuthSignupHome(AuthSignupHome):
                     existee.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
                 if not existee.call_contact:
                     existee.action_find_user_using_phone()
+
             if not existee:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
@@ -4040,7 +4042,6 @@ class AuthSignupHome(AuthSignupHome):
                                                                             'company_name': call_data['number']['name'],
                                                                             })
                 if new_call_detail and new_call_detail.phone_number:
-
                     new_call_detail.action_find_user_using_phone()
                     new_call_detail.owner = call_data["user"]["name"]
 
@@ -4066,7 +4067,8 @@ class AuthSignupHome(AuthSignupHome):
                     tags = []
                     for tag in call_data['tags']:
                         _logger.info("odooooooooo tag : %s" % (tag))
-                        odoo_tag = request.env['res.partner.category'].sudo().search(['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
+                        odoo_tag = request.env['res.partner.category'].sudo().search(
+                            ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
                         if not odoo_tag:
                             odoo_tag = request.env['res.partner.category'].sudo().create({
                                 'call_tag_id': tag['id'],
@@ -4074,7 +4076,7 @@ class AuthSignupHome(AuthSignupHome):
                             })
                             _logger.info("odooooooooo tag : %s" % (odoo_tag))
                         _logger.info("odooooooooo tag : %s" % (odoo_tag))
-                        if odoo_tag :
+                        if odoo_tag:
                             tags.append(odoo_tag.id)
                     if tags:
                         new_call_detail.sudo().write({'air_call_tag': [(6, 0, tags)]})
