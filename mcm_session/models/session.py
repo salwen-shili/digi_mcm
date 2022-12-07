@@ -229,7 +229,7 @@ class Session(models.Model):
                 nbr_absence = examen.env['info.examen'].search_count(
                     [('session_id', "=", self.id), ('presence', "=", 'Absent'), ('temps_minute', "!=", 0)])
             total_absence = nbr_absence
-            return total_absence
+        return total_absence
 
     def pourcentage_absence(self, resultat):
         """ Pourcentage pour les absences par session"""
