@@ -4023,11 +4023,12 @@ class AuthSignupHome(AuthSignupHome):
 
                     _logger.info(" existeeee call_data comments : %s" % (str(comments)))
                     existee.write({'notes': comments})
+                    existee.action_update_notes()
+
                 if existee.call_recording == False:
                     existee.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
                 if not existee.call_contact:
                     existee.action_find_user_using_phone()
-                    existee.action_update_notes()
             if not existee:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
