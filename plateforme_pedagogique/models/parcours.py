@@ -159,7 +159,7 @@ class Parcours(models.Model):
                           date_split = str(endtime_str[0:18])
                           print(date_split,'dataaaa')
                           end_date = datetime.strptime(date_split, "%Y-%m-%dT%H:%M:%S")
-                          new_format = '%d %B, %Y'
+                          new_format = '%d %B %Y'
                           enddate = str(end_date.strftime(new_format))
                         mail = userStat['mail']
                         total_time=''
@@ -178,7 +178,7 @@ class Parcours(models.Model):
                           start_date_str=str(userStat['startTime'])
                           date_split = start_date_str[0:18]
                           start_date = datetime.strptime(date_split, "%Y-%m-%dT%H:%M:%S")
-                          new_format = '%d %B, %Y'
+                          new_format = '%d %B %Y'
                           startdate = str(start_date.strftime(new_format))
 
                         exist = False
