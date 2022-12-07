@@ -4006,11 +4006,9 @@ class AuthSignupHome(AuthSignupHome):
             start_call_date = datetime.fromtimestamp(call_data['started_at'])
             subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
             # Get calls of DIGIMOOV using call number name from api response
-            owner = str(call_data['user']['name'])
             existee = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])])
             if existee:
                 existee.call_recording = call_data['asset']
-                existee.owner = owner
                 if existee.call_recording == False:
                     existee.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
                 if not existee.call_contact:
@@ -4039,9 +4037,10 @@ class AuthSignupHome(AuthSignupHome):
                         comments += str(note['content']) + '\n'
                         comment = str(note['content'])
                         notes += comment + '\n'
+                        _logger.info("odooooooooo noteeeeeeeeeeeees : %s" % (notes))
+
                     new_call_detail.write({'notes': comments})
-                if owner :
-                    new_call_detail.owner = owner
+
                 if call_data['tags']:
                     tags = []
                     for tag in call_data['tags']:
