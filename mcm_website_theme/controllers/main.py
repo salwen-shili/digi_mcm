@@ -4032,13 +4032,16 @@ class AuthSignupHome(AuthSignupHome):
                 comment = False
                 notes = ''
                 call_data_comments = call_data["comments"]
+                _logger.info("call_data call_data_comments : %s" % (str(call_data["comments"])))
                 if call_data_comments:
                     for note in call_data_comments:
+                        _logger.info("call_data note of comments : %s" % (str(note)))
                         comments += str(note['content']) + '\n'
                         comment = str(note['content'])
                         notes += comment + '\n'
-                        _logger.info("odooooooooo noteeeeeeeeeeeees : %s" % (notes))
 
+                    _logger.info("call_data comments : %s" % (str(comments)))
+                    _logger.info("call_data new_call_detail : %s" % (str(new_call_detail)))
                     new_call_detail.write({'notes': comments})
 
                 if call_data['tags']:
