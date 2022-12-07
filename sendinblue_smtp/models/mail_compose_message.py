@@ -5,6 +5,11 @@ class MailComposeMessage(models.TransientModel):
     _inherit = 'mail.compose.message'
 
     def sb_create_or_update_template(self, values_dict, account=False):
+        list_template_exam = ["EXAMEN - DIGIMOOV RÉUSSITE À L'EXAMEN DE CAPACITÉ DE TRANSPORT DE MARCHANDISES -3,5T: Attestation de fin de formation",
+                              "EXAMEN: DIGIMOOV Attestation de fin de formation ajournement",
+                              "EXAMEN: Relevé de notes : Résultat Défavorable(Code Promo)",
+                              "EXAMEN: Relevé de notes : Résultat Favorable",
+                              "EXAMEN Relevé de notes: résultat Défavorable"]
         sender_obj = self.env['sendinblue.senders']
         odoo_sender_id = sender_obj
         template_id = values_dict.get('id')
@@ -19,8 +24,17 @@ class MailComposeMessage(models.TransientModel):
             list_model.append('account.move')
             lang = "${object.partner_id.lang}"
             report_template = self.env['ir.actions.report'].search([('report_name', "=", "account.report_invoice_with_payments")], limit=1)
-        elif template_name == "EXAMEN - DIGIMOOV RÉUSSITE À L'EXAMEN DE CAPACITÉ DE TRANSPORT DE MARCHANDISES -3,5T: Attestation de fin de formation":
-            list_model.append('info.examen')
+        elif template_name in list_template_exam:
+        #         "EXAMEN - DIGIMOOV RÉUSSITE À L'EXAMEN DE CAPACITÉ DE TRANSPORT DE MARCHANDISES -3,5T: Attestation de fin de formation":
+        #     list_model.append('info.examen')
+        # elif template_name == "EXAMEN: DIGIMOOV Attestation de fin de formation ajournement":
+        #     list_model.append('info.examen')
+        # elif template_name == "EXAMEN: Relevé de notes : Résultat Défavorable(Code Promo)":
+        #     list_model.append('info.examen')
+        # elif template_name == "EXAMEN: Relevé de notes : Résultat Favorable":
+        #     list_model.append('info.examen')
+        # elif template_name == "EXAMEN Relevé de notes: résultat Défavorable":
+             list_model.append('info.examen')
         else:
             list_model.append('res.partner')
             list_model.append('crm.lead')
