@@ -850,7 +850,7 @@ class AccountMove(models.Model):
             'ouellafhicham97@gmail.com',
         ]
         for email in emails:
-            user = self.env['res.users'].sudo().search([("login", "=", email)])
+            user = self.env['res.users'].sudo().search([("login", "=", email)],limit=1)
             if user:
                 _logger.info("partner %s" % str(user.name))
                 sale_order = self.env['sale.order'].sudo().search([('partner_id', "=", user.partner_id.id),
