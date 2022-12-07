@@ -26,7 +26,7 @@ class AircallConnector(http.Controller):
             start_call_date = datetime.fromtimestamp(call_data['started_at'])
             subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
             # Get calls of DIGIMOOV using call number name from api response
-            call_detail = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])])
+            call_detail = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])],limit=1)
             _logger.info('search call_detail : %s' % str(call_detail))
             if call_detail:
                 call_detail.sudo().write({
