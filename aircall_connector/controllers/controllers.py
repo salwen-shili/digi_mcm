@@ -49,9 +49,9 @@ class AircallConnector(http.Controller):
                 if not call_detail.call_contact:
                     call_detail.action_find_user_using_phone()
 
-                if call_detail.call_contact.company_id.id == 2:
-
-                    call_detail.call_contact.total_time_visio_min += call_detail.call_duration
+                # if call_detail.call_contact.company_id.id == 2:
+                #
+                #     call_detail.call_contact.total_time_visio_min += call_detail.call_duration
 
                 _logger.info("call data tags response : %s" % (str(call_data['tags'])))
                 if call_data['tags']:
