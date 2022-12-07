@@ -51,6 +51,7 @@ class AircallConnector(http.Controller):
 
                 if call_detail.call_contact.company_id.id == 2:
                     call_detail.call_contact.total_time_visio_hour += call_detail.duration
+                _logger.info("call data tags response : %s" % (str(call_data['tags'])))
                 if call_data['tags']:
                     tags = []
                     for tag in call_data['tags']:
@@ -97,7 +98,7 @@ class AircallConnector(http.Controller):
                     _logger.info("call_data comments : %s" % (str(comments)))
                     _logger.info("call_data new_call_detail : %s" % (str(new_call_detail)))
                     new_call_detail.sudo().write({'notes': comments})
-
+                _logger.info("call data tags response : %s" % (str(call_data['tags'])))
                 if call_data['tags']:
                     tags = []
                     for tag in call_data['tags']:
