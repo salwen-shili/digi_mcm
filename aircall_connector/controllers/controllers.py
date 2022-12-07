@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from odoo import http
 from odoo.http import request, _logger
 import dateutil
@@ -11,6 +11,7 @@ import odoo
 from odoo.tools import datetime
 
 _logger = logging.getLogger(__name__)
+
 
 class AircallConnector(http.Controller):
     @http.route(['/webhook-digi-mcm-aircall'], type='json', auth="public", csrf=False)
@@ -30,7 +31,7 @@ class AircallConnector(http.Controller):
             if call_detail:
                 call_detail.sudo().write({
                     'call_recording': call_data['asset'],
-                    'call_duration' : call_data['duration']
+                    'call_duration': call_data['duration']
                 })
                 comments = ''
                 call_data_comments = call_data["comments"]
@@ -48,6 +49,9 @@ class AircallConnector(http.Controller):
                 if not call_detail.call_contact:
                     call_detail.action_find_user_using_phone()
 
+                if call_detail.call_contact.comapny_id == 2:
+                    call_detail.call_contact.total_time_visio_hour += call_detail.duration
+
             if not call_detail:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
@@ -62,7 +66,7 @@ class AircallConnector(http.Controller):
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
                     new_call_detail.sudo().write({
-                        'owner' : call_data["user"]["name"],
+                        'owner': call_data["user"]["name"],
                     })
                 comments = ''
                 call_data_comments = call_data["comments"]
@@ -97,7 +101,6 @@ class AircallConnector(http.Controller):
 
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                if new_call_detail and new_call_detail.call_contact and new_call_detail.notes :
+                if new_call_detail and new_call_detail.call_contact and new_call_detail.notes:
                     new_call_detail.action_update_notes()
                 request.env.cr.commit()
-
