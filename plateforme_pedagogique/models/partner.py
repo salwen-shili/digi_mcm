@@ -32,11 +32,11 @@ class partner(models.Model):
     last_login = fields.Char(string="Derniere Activité")
     # learner_achivement=fields.Char(string="Réalisations des apprenants")
     averageScore = fields.Integer(string="Score Moyen", readonly=True)
-    totalTimeSpentInMinutes = fields.Char(string="temps passé en minutes", readonly=False)
+    totalTimeSpentInMinutes = fields.Char(string="temps passé en minutes", readonly=False, track_visibility='always')
     password360 = fields.Char()  # Champs pour stocker le mot de passe non crypté
     firstName = fields.Char()
     lastName = fields.Char()
-    date_creation = fields.Char(string="Date d'inscription")
+    date_creation = fields.Char(string="Date d'inscription", track_visibility='always')
     messages = fields.Char(string='Messages Postés')
     # publications = fields.Char(string='Cours ou programmes publiés')
     total_time_visio_min = fields.Integer()
@@ -53,7 +53,7 @@ class partner(models.Model):
     passage_exam = fields.Boolean("Examen passé", default=False)
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     second_email = fields.Char(string='Email secondaire', track_visibility='always')
-    temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
+    temps_minute = fields.Integer(string="Temps passé en minutes", track_visibility='always')  # Champs pour récuperer temps en minute par api360
     temps_update_minute = fields.Char()
     is_pole_emploi = fields.Boolean(
         string="Pole Emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
@@ -70,7 +70,7 @@ class partner(models.Model):
                                                 ('paid', 'Payé'),
                                                 ('not_paid', 'Non payées'),
                                                 ('in_payment', 'En paiement')],
-                                               string="Financement", default=False)
+                                               string="Financement", default=False, track_visibility='always')
     is_not_paid = fields.Boolean(default=False)
 
     @api.onchange('total_time_visio_min', 'total_time_appels_min', 'temps_minute')
