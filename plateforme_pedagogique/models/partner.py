@@ -117,7 +117,7 @@ class partner(models.Model):
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
         for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
             if rec.date_creation:
-                new_date_format = datetime.strptime(str(rec.date_creation), "%d %B %Y").date().strftime('%d/%m/%Y')
+                new_date_format = datetime.strptime(str(rec.date_creation), "%d %B, %Y").date().strftime('%d/%m/%Y')
                 rec.date_creation = new_date_format
 
     # Recuperer les utilisateurs de 360learning
@@ -168,8 +168,7 @@ class partner(models.Model):
                 if (len(lastlogin) > 0):
                     date_split = lastlogin[0:19]
                     date = datetime.strptime(date_split, "%Y-%m-%dT%H:%M:%S")
-                    new_format = '%d %B, %Y'
-                    new_format = '%d %B, %Y'
+                    new_format = '%d/%m/%Y'
                     last_login = str(date.strftime(new_format))
                 message = "0"
                 if ('messages' in table_user):
