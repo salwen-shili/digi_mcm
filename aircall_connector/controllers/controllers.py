@@ -49,7 +49,7 @@ class AircallConnector(http.Controller):
                 if not call_detail.call_contact:
                     call_detail.action_find_user_using_phone()
 
-                if call_detail.call_contact.company_id == 2:
+                if call_detail.call_contact.company_id.id == 2:
                     call_detail.call_contact.total_time_visio_hour += call_detail.duration
 
             if not call_detail:
