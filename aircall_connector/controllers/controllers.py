@@ -17,42 +17,38 @@ class AircallConnector(http.Controller):
     def webhook_import_calls(self, **kw):
         request.uid = odoo.SUPERUSER_ID
         call = json.loads(request.httprequest.data)
-        _logger.info("########callll api#############")
         if call["event"] in ["call.answered", "call.commented", "call.created", "call.tagged", "call.ended"]:
             call_data = call["data"]
             societe = call_data["number"]["name"]
             started_at = call_data['started_at']
-            _logger.info('******** call.phone _number ********  : %s' % str(societe))
             _logger.info(' call_data : %s' % str(call_data))
             start_call_date = datetime.fromtimestamp(call_data['started_at'])
             subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
             # Get calls of DIGIMOOV using call number name from api response
-            existee = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])])
-            if existee:
-                existee.call_recording = call_data['asset']
-                existee.call_duration = call_data['duration']
+            call_detail = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])])
+            _logger.info('search call_detail : %s' % str(call_detail))
+            if call_detail:
+                call_detail.sudo().write({
+                    'call_recording': call_data['asset'],
+                    'call_duration' : call_data['duration']
+                })
                 comments = ''
-                comment = False
-                notes = ''
                 call_data_comments = call_data["comments"]
-                _logger.info(" existeeee call_data call_data_comments : %s" % (str(call_data["comments"])))
+                _logger.info(" call_detail call_data call_data_comments : %s" % (str(call_data["comments"])))
                 if call_data_comments:
                     for note in call_data_comments:
                         _logger.info("call_data note of comments : %s" % (str(note)))
                         comments += str(note['content']) + '\n'
-                        comment = str(note['content'])
-                        notes += comment + '\n'
+                    _logger.info(" call_detail call_data comments : %s" % (str(comments)))
+                    call_detail.write({'notes': comments})
+                    call_detail.action_update_notes()
 
-                    _logger.info(" existeeee call_data comments : %s" % (str(comments)))
-                    existee.write({'notes': comments})
-                    existee.action_update_notes()
+                if call_detail.call_recording == False:
+                    call_detail.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
+                if not call_detail.call_contact:
+                    call_detail.action_find_user_using_phone()
 
-                if existee.call_recording == False:
-                    existee.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
-                if not existee.call_contact:
-                    existee.action_find_user_using_phone()
-
-            if not existee:
+            if not call_detail:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
                                                                             'call_direction': call_data['direction'],
@@ -65,47 +61,43 @@ class AircallConnector(http.Controller):
                                                                             })
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                    new_call_detail.owner = call_data["user"]["name"]
-
-                    # new_call_detail.action_update_notes()
-                    # request.env.cr.commit()
+                    new_call_detail.sudo().write({
+                        'owner' : call_data["user"]["name"],
+                    })
                 comments = ''
-                comment = False
-                notes = ''
                 call_data_comments = call_data["comments"]
                 _logger.info("call_data call_data_comments : %s" % (str(call_data["comments"])))
                 if call_data_comments:
                     for note in call_data_comments:
                         _logger.info("call_data note of comments : %s" % (str(note)))
                         comments += str(note['content']) + '\n'
-                        comment = str(note['content'])
-                        notes += comment + '\n'
 
                     _logger.info("call_data comments : %s" % (str(comments)))
                     _logger.info("call_data new_call_detail : %s" % (str(new_call_detail)))
-                    new_call_detail.write({'notes': comments})
+                    new_call_detail.sudo().write({'notes': comments})
 
-                if call_data['tags']:
-                    tags = []
-                    for tag in call_data['tags']:
-                        _logger.info("odooooooooo tag : %s" % (tag))
-                        odoo_tag = request.env['res.partner.category'].sudo().search(
-                            ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
-                        if not odoo_tag:
-                            odoo_tag = request.env['res.partner.category'].sudo().create({
-                                'call_tag_id': tag['id'],
-                                'name': tag['name'],
-                            })
-                            _logger.info("odooooooooo tag : %s" % (odoo_tag))
-                        _logger.info("odooooooooo tag : %s" % (odoo_tag))
-                        if odoo_tag:
-                            tags.append(odoo_tag.id)
-                    if tags:
-                        new_call_detail.sudo().write({'air_call_tag': [(6, 0, tags)]})
+                # if call_data['tags']:
+                #     tags = []
+                #     for tag in call_data['tags']:
+                #         _logger.info("odooooooooo tag : %s" % (tag))
+                #         odoo_tag = request.env['res.partner.category'].sudo().search(
+                #             ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
+                #         if not odoo_tag:
+                #             odoo_tag = request.env['res.partner.category'].sudo().create({
+                #                 'call_tag_id': tag['id'],
+                #                 'name': tag['name'],
+                #             })
+                #             _logger.info("odooooooooo tag : %s" % (odoo_tag))
+                #         _logger.info("odooooooooo tag : %s" % (odoo_tag))
+                #         if odoo_tag:
+                #             tags.append(odoo_tag.id)
+                #     if tags:
+                #         new_call_detail.sudo().write({'air_call_tag': [(6, 0, tags)]})
                 # request.env.cr.commit()
 
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
+                if new_call_detail and new_call_detail.call_contact and new_call_detail.notes :
                     new_call_detail.action_update_notes()
-                    request.env.cr.commit()
+                request.env.cr.commit()
 
