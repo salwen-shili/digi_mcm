@@ -197,127 +197,64 @@ class AirCall(models.Model):
 
     def call_details(self, call, record):
         if call:
-            if (call['number']['name'] == 'MCM ACADEMY'):
-                # Get calls of MCM ACADEMY using call number name from api response
-                # Creating a non existant contact
-                started_at = call['started_at']
-                if started_at:
-                    started_at = str(datetime.fromtimestamp(started_at))
-                ended_at = call['ended_at']
-                if ended_at:
-                    ended_at = str(datetime.fromtimestamp(ended_at))
+            # Get calls of MCM ACADEMY using call number name from api response
+            # Creating a non existant contact
+            started_at = call['started_at']
+            if started_at:
+                started_at = str(datetime.fromtimestamp(started_at))
+            ended_at = call['ended_at']
+            if ended_at:
+                ended_at = str(datetime.fromtimestamp(ended_at))
+            user_name = ''
+            if call['user']:
+                user_name = str(call['user']['name'])
+            else:
                 user_name = ''
-                if call['user']:
-                    user_name = str(call['user']['name'])
-                else:
-                    user_name = ''
-                comments = ''
-                comment = False
-                notes = ''
-                # check if call has new comments
-                for note in call['comments']:
-                    comments += str(note['content']) + '\n'
-                    comment = str(note['content'])
-                    notes += comment + '\n'
-                    subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
-                    entrant_sortant = ''
-                    if (call['direction']) and call['direction'] == 'inbound':
-                        entrant_sortant = 'Appel Entrant'
-                    if (call['direction']) and call['direction'] == 'outbound':
-                        entrant_sortant = 'Appel Sortant'
-                    content = "<b>" + user_name + " " + entrant_sortant + " " + " " + started_at + " " + ended_at + "</b><br/>"
-                    message = False
-                    if record.call_contact and subtype_id:
+            comments = ''
+            comment = False
+            notes = ''
+            # check if call has new comments
+            for note in call['comments']:
+                comments += str(note['content']) + '\n'
+                comment = str(note['content'])
+                notes += comment + '\n'
+                subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
+                entrant_sortant = ''
+                if (call['direction']) and call['direction'] == 'inbound':
+                    entrant_sortant = 'Appel Entrant'
+                if (call['direction']) and call['direction'] == 'outbound':
+                    entrant_sortant = 'Appel Sortant'
+                content = "<b>" + user_name + " " + entrant_sortant + " " + " " + started_at + " " + ended_at + "</b><br/>"
+                message = False
+                if record.call_contact and subtype_id:
+                    message = self.env['mail.message'].sudo().search(
+                        [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
+                         ('res_id', '=', record.call_contact.id), ('body', "ilike", comment)])
+                    _logger.info('aircall find message mcm %s : %s' % (
+                        str(record.call_contact), (str(message))))
+                    if not message:
+                        subject = user_name + " " + started_at + " " + ended_at
                         message = self.env['mail.message'].sudo().search(
                             [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
-                             ('res_id', '=', record.call_contact.id), ('body', "ilike", comment)])
-                        _logger.info('aircall find message mcm %s : %s' % (
-                            str(record.call_contact), (str(message))))
-                        if not message:
-                            subject = user_name + " " + started_at + " " + ended_at
-                            message = self.env['mail.message'].sudo().search(
-                                [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
-                                 ('res_id', '=', record.call_contact.id), ('subject', "=",
-                                                                           subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
-                            _logger.info('aircall find message mcm with subject %s : %s' % (
-                                str(record.call_contact), (str(subject))))
-                            if message:
-                                _logger.info("aircall message found : %s" % (str(message.body)))
-                                if str(note['content']) not in message.body:
-                                    message.sudo().write({
-                                        'body': message.body + '\n' + str(note['content'])
-                                    })
-                    if not message and record.call_contact:
-                        # Create new Note in view contact
-                        _logger.info('create new note in view contact mcm %s : %s' % (
-                            str(record.call_contact), (str(str(content) + str(note['content'])))))
-                        message = self.env['mail.message'].sudo().create({
-                            'subject': user_name + " " + started_at + " " + ended_at,
-                            'model': 'res.partner',
-                            'res_id': record.call_contact.id,
-                            'message_type': 'notification',
-                            'subtype_id': subtype_id,
-                            'body': str(content) + str(note['content']),
-                        })
-            if (call['number']['name'] == 'DIGIMOOV'):
-                # Get calls of DIGIMOOV using call number name from api response
-                started_at = call['started_at']
-                if started_at:
-                    started_at = str(datetime.fromtimestamp(started_at))
-                ended_at = call['ended_at']
-                if ended_at:
-                    ended_at = str(datetime.fromtimestamp(ended_at))
-                user_name = ''
-                if call['user']:
-                    user_name = str(call['user']['name'])
-                else:
-                    user_name = ''
-
-                # check if call has new comments
-                comments = ''
-                comment = False
-                notes = ''
-                for note in call['comments']:
-                    comments += str(note['content']) + '\n'
-                    comment = str(note['content'])
-                    notes += comment + '\n'
-                    # subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
-                    subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
-                    entrant_sortant = ''
-                    if (call['direction']) and call['direction'] == 'inbound':
-                        entrant_sortant = 'Appel Entrant'
-                    if (call['direction']) and call['direction'] == 'outbound':
-                        entrant_sortant = 'Appel Sortant'
-                    content = "<b>" + user_name + " " + entrant_sortant + " " + " " + started_at + " " + ended_at + "</b><br/>"
-                    entrant_sortant = ''
-                    if (call['direction']) and call['direction'] == 'inbound':
-                        entrant_sortant = 'Appel Entrant'
-                    if (call['direction']) and call['direction'] == 'outbound':
-                        entrant_sortant = 'Appel Sortant'
-                    message = False
-                    if record.call_contact and subtype_id:
-                        message = self.env['mail.message'].sudo().search(
-                            [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
-                             ('res_id', '=', record.call_contact.id), ('body', "ilike", comment)])
-                        if not message:
-                            subject = user_name + " " + started_at + " " + ended_at
-                            message = self.env['mail.message'].sudo().search(
-                                [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
-                                 ('res_id', '=', record.call_contact.id), ('subject', "=",
-                                                                           subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
-                            if message:
-                                _logger.info("aircall message found : %s" % (str(message.body)))
-                                if str(note['content']) not in message.body:
-                                    message.sudo().write({
-                                        'body': message.body + '\n' + str(note['content'])
-                                    })
-                        if not message:
-                            # Create new Note in view contact
-                            message = self.env['mail.message'].sudo().create({
-                                'subject': user_name + " " + started_at + " " + ended_at,
-                                'model': 'res.partner',
-                                'res_id': record.call_contact.id,
-                                'message_type': 'notification',
-                                'subtype_id': subtype_id,
-                                'body': content + note['content'],
-                            })
+                             ('res_id', '=', record.call_contact.id), ('subject', "=",
+                                                                       subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
+                        _logger.info('aircall find message mcm with subject %s : %s' % (
+                            str(record.call_contact), (str(subject))))
+                        if message:
+                            _logger.info("aircall message found : %s" % (str(message.body)))
+                            if str(note['content']) not in message.body:
+                                message.sudo().write({
+                                    'body': message.body + '\n' + str(note['content'])
+                                })
+                if not message and record.call_contact:
+                    # Create new Note in view contact
+                    _logger.info('create new note in view contact mcm %s : %s' % (
+                        str(record.call_contact), (str(str(content) + str(note['content'])))))
+                    message = self.env['mail.message'].sudo().create({
+                        'subject': user_name + " " + started_at + " " + ended_at,
+                        'model': 'res.partner',
+                        'res_id': record.call_contact.id,
+                        'message_type': 'notification',
+                        'subtype_id': subtype_id,
+                        'body': str(content) + str(note['content']),
+                    })
