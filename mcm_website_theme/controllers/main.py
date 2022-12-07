@@ -4009,6 +4009,20 @@ class AuthSignupHome(AuthSignupHome):
             existee = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])])
             if existee:
                 existee.call_recording = call_data['asset']
+                comments = ''
+                comment = False
+                notes = ''
+                call_data_comments = call_data["comments"]
+                _logger.info(" existeeee call_data call_data_comments : %s" % (str(call_data["comments"])))
+                if call_data_comments:
+                    for note in call_data_comments:
+                        _logger.info("call_data note of comments : %s" % (str(note)))
+                        comments += str(note['content']) + '\n'
+                        comment = str(note['content'])
+                        notes += comment + '\n'
+
+                    _logger.info(" existeeee call_data comments : %s" % (str(comments)))
+                    existee.write({'notes': comments})
                 if existee.call_recording == False:
                     existee.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
                 if not existee.call_contact:
@@ -4025,7 +4039,10 @@ class AuthSignupHome(AuthSignupHome):
                                                                             'company_name': call_data['number']['name'],
                                                                             })
                 if new_call_detail and new_call_detail.phone_number:
+
                     new_call_detail.action_find_user_using_phone()
+                    new_call_detail.owner = call_data["user"]["name"]
+
                     # new_call_detail.action_update_notes()
                     # request.env.cr.commit()
                 comments = ''
