@@ -194,7 +194,7 @@ class calendly_integration(models.Model):
             name = events['name']
             if '-' in name:
                 ownerr = name.split("-")
-                owner = ownerr[2]
+                owner = ownerr[1]
             else:
                 owner = name
             slug = events['slug']

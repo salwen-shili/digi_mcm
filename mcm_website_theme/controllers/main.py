@@ -2389,14 +2389,16 @@ class Payment3x(http.Controller):
         if instalment:
             if payment:
                 order.instalment = True
-                payment.instalment = True
+                # payment.sudo().write({
+                #     'instalment' : True,
+                # })
                 if order.company_id.id == 2 and order.pricelist_id.name == "ubereats":
                     for line in order.order_line:
                         if line.product_id.default_code == "access":
                             order.amount_total = 450
                             line.price_unit = 450
         else:
-            payment.instalment = False
+            # payment.instalment = False
             order.instalment = False
             if order.company_id.id == 2 and order.pricelist_id.name == "ubereats":
                 for line in order.order_line:
@@ -3386,14 +3388,14 @@ class AuthSignupHome(AuthSignupHome):
         # convert response of webhook to json format
         rawRequest = json.loads(rawRequest)
         _logger.info("rawRequest1 : %s" % (rawRequest))
-        email = str(rawRequest['q85_email']).lower().replace(' ','')
+        email = str(rawRequest['q85_email']).lower().replace(' ', '')
         _logger.info("email %s" % (str(email)))
         for partner_email in request.env['res.partner'].sudo().search(
                 [('email', "=", email)]):
-            _logger.info("find partner %s" %(str(partner_email)))
-            #add if Vous allez ajouter votre justificatif de domicile. Mais avant nous souhaitons savoir s'il est à votre nom
-            #if oui => 1 submission
-            #if non => 4 submission
+            _logger.info("find partner %s" % (str(partner_email)))
+            # add if Vous allez ajouter votre justificatif de domicile. Mais avant nous souhaitons savoir s'il est à votre nom
+            # if oui => 1 submission
+            # if non => 4 submission
             if rawRequest['q62_saisissezUne63'] == "Oui":
                 if rawRequest['justificatifDe64']:
                     url = rawRequest['justificatifDe64']
@@ -3416,11 +3418,11 @@ class AuthSignupHome(AuthSignupHome):
                                 _logger.info("not exist")
 
                                 document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                     'type': 'binary',
-                                                                                     'partner_id': partner.id,
-                                                                                     'folder_id': folder_id.id,
-                                                                                     'datas': image_binary,
-                                                                                     'state': 'waiting', })
+                                                                                            'type': 'binary',
+                                                                                            'partner_id': partner.id,
+                                                                                            'folder_id': folder_id.id,
+                                                                                            'datas': image_binary,
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -3467,11 +3469,11 @@ class AuthSignupHome(AuthSignupHome):
                                 _logger.info("not exist")
 
                                 document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                     'type': 'binary',
-                                                                                     'partner_id': partner.id,
-                                                                                     'folder_id': folder_id.id,
-                                                                                     'datas': image_binary,
-                                                                                     'state': 'waiting', })
+                                                                                            'type': 'binary',
+                                                                                            'partner_id': partner.id,
+                                                                                            'folder_id': folder_id.id,
+                                                                                            'datas': image_binary,
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -3518,11 +3520,11 @@ class AuthSignupHome(AuthSignupHome):
                                 _logger.info("not exist")
 
                                 document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                     'type': 'binary',
-                                                                                     'partner_id': partner.id,
-                                                                                     'folder_id': folder_id.id,
-                                                                                     'datas': image_binary,
-                                                                                     'state': 'waiting', })
+                                                                                            'type': 'binary',
+                                                                                            'partner_id': partner.id,
+                                                                                            'folder_id': folder_id.id,
+                                                                                            'datas': image_binary,
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -3567,11 +3569,11 @@ class AuthSignupHome(AuthSignupHome):
                                 _logger.info("not exist")
 
                                 document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                     'type': 'binary',
-                                                                                     'partner_id': partner.id,
-                                                                                     'folder_id': folder_id.id,
-                                                                                     'datas': image_binary,
-                                                                                     'state': 'waiting', })
+                                                                                            'type': 'binary',
+                                                                                            'partner_id': partner.id,
+                                                                                            'folder_id': folder_id.id,
+                                                                                            'datas': image_binary,
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -3614,13 +3616,12 @@ class AuthSignupHome(AuthSignupHome):
                                 _logger.info("not exist")
 
                                 document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                     'type': 'binary',
-                                                                                     'partner_id': partner.id,
-                                                                                     'folder_id': folder_id.id,
-                                                                                     'datas': image_binary,
-                                                                                     'state': 'waiting', })
+                                                                                            'type': 'binary',
+                                                                                            'partner_id': partner.id,
+                                                                                            'folder_id': folder_id.id,
+                                                                                            'datas': image_binary,
+                                                                                            'state': 'waiting', })
                                 request.env.cr.commit()
-
 
                                 # replace " " avec  %20 pour eliminer les espace
                                 # Ajout ticket pour notiifer le service examn pour changer mp
@@ -3990,3 +3991,98 @@ class AuthSignupHome(AuthSignupHome):
                     note_exam = note_exam * 5
                     odoo_contact.note_exam = str(note_exam)  # save the result of exam into client record
         return True
+
+    # @http.route(['/webhook-digi-mcm-aircall'], type='json', auth="public", csrf=False)
+    # def webhook_import_calls(self, **kw):
+    #     request.uid = odoo.SUPERUSER_ID
+    #     call = json.loads(request.httprequest.data)
+    #     _logger.info("########callll api#############")
+    #     if call["event"] in ["call.answered", "call.commented", "call.created", "call.tagged", "call.ended"]:
+    #         call_data = call["data"]
+    #         societe = call_data["number"]["name"]
+    #         started_at = call_data['started_at']
+    #         _logger.info('******** call.phone _number ********  : %s' % str(societe))
+    #         _logger.info(' call_data : %s' % str(call_data))
+    #         start_call_date = datetime.fromtimestamp(call_data['started_at'])
+    #         subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
+    #         # Get calls of DIGIMOOV using call number name from api response
+    #         existee = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])])
+    #         if existee:
+    #             existee.call_recording = call_data['asset']
+    #             existee.call_duration = call_data['duration']
+    #             comments = ''
+    #             comment = False
+    #             notes = ''
+    #             call_data_comments = call_data["comments"]
+    #             _logger.info(" existeeee call_data call_data_comments : %s" % (str(call_data["comments"])))
+    #             if call_data_comments:
+    #                 for note in call_data_comments:
+    #                     _logger.info("call_data note of comments : %s" % (str(note)))
+    #                     comments += str(note['content']) + '\n'
+    #                     comment = str(note['content'])
+    #                     notes += comment + '\n'
+    # 
+    #                 _logger.info(" existeeee call_data comments : %s" % (str(comments)))
+    #                 existee.write({'notes': comments})
+    #                 existee.action_update_notes()
+    # 
+    #             if existee.call_recording == False:
+    #                 existee.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
+    #             if not existee.call_contact:
+    #                 existee.action_find_user_using_phone()
+    # 
+    #         if not existee:
+    #             new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
+    #                                                                         'call_status': call_data['status'],
+    #                                                                         'call_direction': call_data['direction'],
+    #                                                                         'call_date': start_call_date,
+    #                                                                         'phone_number': call_data['raw_digits'],
+    #                                                                         'call_recording': call_data['asset'],
+    #                                                                         'digits': call_data['number']['digits'],
+    #                                                                         'company_name': call_data['number']['name'],
+    #                                                                         })
+    #             if new_call_detail and new_call_detail.phone_number:
+    #                 new_call_detail.action_find_user_using_phone()
+    #                 new_call_detail.owner = call_data["user"]["name"]
+    # 
+    #                 # new_call_detail.action_update_notes()
+    #                 # request.env.cr.commit()
+    #             comments = ''
+    #             comment = False
+    #             notes = ''
+    #             call_data_comments = call_data["comments"]
+    #             _logger.info("call_data call_data_comments : %s" % (str(call_data["comments"])))
+    #             if call_data_comments:
+    #                 for note in call_data_comments:
+    #                     _logger.info("call_data note of comments : %s" % (str(note)))
+    #                     comments += str(note['content']) + '\n'
+    #                     comment = str(note['content'])
+    #                     notes += comment + '\n'
+    # 
+    #                 _logger.info("call_data comments : %s" % (str(comments)))
+    #                 _logger.info("call_data new_call_detail : %s" % (str(new_call_detail)))
+    #                 new_call_detail.write({'notes': comments})
+    # 
+    #             if call_data['tags']:
+    #                 tags = []
+    #                 for tag in call_data['tags']:
+    #                     _logger.info("odooooooooo tag : %s" % (tag))
+    #                     odoo_tag = request.env['res.partner.category'].sudo().search(
+    #                         ['|', ('call_tag_id', '=', tag['id']), ('call_tag_id', '=', tag['name'])])
+    #                     if not odoo_tag:
+    #                         odoo_tag = request.env['res.partner.category'].sudo().create({
+    #                             'call_tag_id': tag['id'],
+    #                             'name': tag['name'],
+    #                         })
+    #                         _logger.info("odooooooooo tag : %s" % (odoo_tag))
+    #                     _logger.info("odooooooooo tag : %s" % (odoo_tag))
+    #                     if odoo_tag:
+    #                         tags.append(odoo_tag.id)
+    #                 if tags:
+    #                     new_call_detail.sudo().write({'air_call_tag': [(6, 0, tags)]})
+    #             # request.env.cr.commit()
+    # 
+    #             if new_call_detail and new_call_detail.phone_number:
+    #                 new_call_detail.action_find_user_using_phone()
+    #                 new_call_detail.action_update_notes()
+    #                 request.env.cr.commit()
