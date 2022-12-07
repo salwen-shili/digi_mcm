@@ -117,8 +117,11 @@ class partner(models.Model):
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
         for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
             if rec.date_creation:
-                new_date_format = datetime.strptime(str(rec.date_creation), "%d %B, %Y").date().strftime('%d/%m/%Y')
-                rec.date_creation = new_date_format
+                try:
+                    new_date_format = datetime.strptime(str(rec.date_creation), "%d %B, %Y").date().strftime('%d/%m/%Y')
+                    rec.date_creation = new_date_format
+                except Exception:
+                    _logger.info("Convertir date inscription except Exception: %s", rec.email)
 
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
