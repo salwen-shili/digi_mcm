@@ -56,6 +56,7 @@ class AircallConnector(http.Controller):
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
                                                                             'call_direction': call_data['direction'],
+                                                                            'call_duration': call_data['duration'],
                                                                             'call_date': start_call_date,
                                                                             'phone_number': call_data['raw_digits'],
                                                                             'call_recording': call_data['asset'],
