@@ -437,22 +437,22 @@ class Session(models.Model):
             if examen.module_id.product_id.default_code == "avancee" and examen.partner_id.statut == 'won':
                 nbr_from_examen_pro += 1
         # Appliquer regle si client a dépassé les 14 jours
-        nbr_partner_personel_annule_pro = self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
-             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled')])
-        nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
-             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
-             ('date_creation', ">", self.date_exam + timedelta(days=14))])
+        # nbr_partner_personel_annule_pro = self.env['partner.sessions'].sudo().search(
+        #     [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+        #      ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled')])
+        # nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
+        #     [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+        #      ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+        #      ('date_creation', ">", self.date_exam + timedelta(days=14))])
         count_per_an = False
         # Si le financement de client est personel
-        for sale in nbr_partner_personel_annule_pro:
-            if sale.client_id.signed_on > self.date_exam + timedelta(
-                    days=14) and sale.client_id.module_id.product_id.default_code == "avancee":
-                count_per_an += 1
-        counter_per_an = count_per_an
-        res_calc = counter_per_an + len(nbr_partner_cpf_annule)
-        tot = nbr_from_examen_pro + res_calc
+        # for sale in nbr_partner_personel_annule_pro:
+        #     if sale.client_id.signed_on > self.date_exam + timedelta(
+        #             days=14) and sale.client_id.module_id.product_id.default_code == "avancee":
+        #         count_per_an += 1
+        # counter_per_an = count_per_an
+        #res_calc = counter_per_an + len(nbr_partner_cpf_annule)
+        tot = nbr_from_examen_pro
         sum_pro_inscrit = tot
         return sum_pro_inscrit
 
