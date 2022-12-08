@@ -50,6 +50,7 @@ class AircallConnector(http.Controller):
                         _logger.info(" call_detail call_data comments : %s" % (str(comments)))
 
                         call_detail.write({'notes': comments})
+
                         call_detail.action_update_notes()
 
                 # add recording url using id call
