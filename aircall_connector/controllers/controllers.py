@@ -19,6 +19,7 @@ class AircallConnector(http.Controller):
 
         request.uid = odoo.SUPERUSER_ID
         call = json.loads(request.httprequest.data)
+        #add events
         if call["event"] in ["call.answered", "call.commented", "call.created", "call.tagged", "call.ended"]:
             call_data = call["data"]
             societe = call_data["number"]["name"]
@@ -26,10 +27,12 @@ class AircallConnector(http.Controller):
             _logger.info(' call_data : %s' % str(call_data))
             start_call_date = datetime.fromtimestamp(call_data['started_at'])
             subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
-            # Get calls of DIGIMOOV using call number name from api response
             call_detail = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])],limit=1)
             _logger.info('search call_detail : %s' % str(call_detail))
+            #if call  exist
             if call_detail:
+                # add recording and duration
+
                 call_detail.sudo().write({
                     'call_recording': call_data['asset'],
                     'call_duration': call_data['duration']
@@ -37,6 +40,8 @@ class AircallConnector(http.Controller):
                 comments = ''
                 call_data_comments = call_data["comments"]
                 _logger.info(" call_detail call_data call_data_comments : %s" % (str(call_data["comments"])))
+                # if comments
+                # add comments
                 if call_data_comments:
                     for note in call_data_comments:
                         _logger.info("call_data note of comments : %s" % (str(note)))
@@ -45,8 +50,10 @@ class AircallConnector(http.Controller):
                     call_detail.write({'notes': comments})
                     call_detail.action_update_notes()
 
+                # add recording url using id call
                 if call_detail.call_recording == False:
                     call_detail.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
+                # add client_id using phone number
                 if not call_detail.call_contact:
                     call_detail.action_find_user_using_phone()
 
@@ -56,6 +63,7 @@ class AircallConnector(http.Controller):
                 #     call_detail.call_contact.total_time_visio_min += call_detail.call_duration
 
                 _logger.info("call data tags response : %s" % (str(call_data['tags'])))
+                #add tags
                 if call_data['tags']:
                     tags = []
                     for tag in call_data['tags']:
@@ -74,7 +82,8 @@ class AircallConnector(http.Controller):
                     _logger.info("call data tags : %s" % (tags))
                     if tags:
                         call_detail.sudo().write({'air_call_tag': [(6, 0, tags)]})
-
+            #if not exist
+            # create nnew call_data and add data to partner
             if not call_detail:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
                                                                             'call_status': call_data['status'],
