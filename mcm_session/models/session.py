@@ -362,11 +362,14 @@ class Session(models.Model):
         count_per_an = False
         # Si le financement de client est personel
         for sale in nbr_partner_personel_annule:
-            if sale.client_id.signed_on > self.date_exam + timedelta(days=14) and sale.client_id.module_id.product_id.default_code == "basique":
+            # if sale.client_id.signed_on > self.date_exam + timedelta(
+            #         days=14) and sale.client_id.module_id.product_id.default_code == "basique":
+            #     count_per_an += 1
+            if sale.client_id.module_id.product_id.default_code == "basique":
                 count_per_an += 1
         counter_per_an = count_per_an
         res_calc = counter_per_an + len(nbr_partner_cpf_annule)
-        sum_solo_inscrit = nbr_from_examen + res_calc
+        sum_solo_inscrit = nbr_from_examen
         return sum_solo_inscrit
 
     def pack_solo_present(self, sum_solo_present):
