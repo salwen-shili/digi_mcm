@@ -598,7 +598,7 @@
                                             </t>
                                         </td>
                                     </t>
-                                    <t t-if="session.resultat == 'ajourne' and session.presence == 'Absent'">
+                                    <t t-if="session.resultat == 'ajourne' and session.presence != 'present'">
                                         <t t-if="int(session.temps_minute) &gt; 0">
                                             <td class="td" style="background-color:#E9967A;">
                                                 <strong>
@@ -607,13 +607,13 @@
                                             </td>
                                         </t>
                                     </t>
-                                    <t t-else="session.resultat == 'ajourne' and session.presence == 'absence_justifiee'">
-                                        <td class="td" style="background:#FFFF00;">
-                                            <strong>
-                                                <span>Absence justifiée</span>
-                                            </strong>
-                                        </td>
-                                    </t>
+                                    <t t-if="session.resultat == 'ajourne' and session.presence not in ('present', 'Absent')">
+                                            <td class="td" style="background:#FFFF00;">
+                                                <strong>
+                                                    <span>Absence justifiée</span>
+                                                </strong>
+                                            </td>
+                                        </t>
                                     <td class="td">
                                         <t t-set="session"
                                            t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
