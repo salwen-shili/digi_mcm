@@ -299,7 +299,7 @@ class Coach(models.Model):
                  ]):
             try:
                 if partner.mcm_session_id.date_exam:
-                    if (partner.mcm_session_id.date_exam.year <= todays_date.year):
+                    if (partner.mcm_session_id.date_exam.year >= todays_date.year):
                         if partner.coach_peda.id is False:
                             count_apprennat = count_apprennat + 1
                             # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
