@@ -97,23 +97,24 @@ class Session(models.Model):
          La fonction est utilisé dans la template de rapport jury"""
         nbr_inscrits = 0
         today = date.today()
-        nbr_partner_cpf_annule= self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('client_id.mode_de_financement','=', 'cpf'),('client_id.statut','=', 'canceled'),('date_creation', ">", self.date_exam + timedelta(days=14))])
-        _logger.info("nbr_partner_annule %s" % str(nbr_partner_cpf_annule))
+        #nbr_partner_cpf_annule= self.env['partner.sessions'].sudo().search(
+            #[('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('client_id.mode_de_financement','=', 'cpf'),('client_id.statut','=', 'canceled'),('date_creation', ">", self.date_exam + timedelta(days=14))])
+        #_logger.info("nbr_partner_annule %s" % str(nbr_partner_cpf_annule))
         nbr_partner_won_cpf = self.env['partner.sessions'].sudo().search(
             [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('client_id.statut','=', 'won')])
         _logger.info("nbr_partner_won_cpf %s" % str(nbr_partner_won_cpf))
 
-        nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('client_id.mode_de_financement','=', 'particulier'), ('client_id.statut','=', 'canceled')])
-        count_per_an = False
-        for sale in nbr_partner_personel_annule:
-
-            if sale.date_creation > self.date_exam + timedelta(days=14):
-                count_per_an += 1
-        counter_per_an = count_per_an
-        _logger.info("nbr_partner_personel_annule %s" % str(nbr_partner_personel_annule))
-        nbr_inscrits = len(nbr_partner_cpf_annule) + len(nbr_partner_won_cpf) + counter_per_an
+        #nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+            #[('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('client_id.mode_de_financement','=', 'particulier'), ('client_id.statut','=', 'canceled')])
+        # count_per_an = False
+        # for sale in nbr_partner_personel_annule:
+        #
+        #     if sale.date_creation > self.date_exam + timedelta(days=14):
+        #         count_per_an += 1
+        # counter_per_an = count_per_an
+        # _logger.info("nbr_partner_personel_annule %s" % str(nbr_partner_personel_annule))
+        #nbr_inscrits = len(nbr_partner_cpf_annule) + len(nbr_partner_won_cpf) + counter_per_an
+        nbr_inscrits = len(nbr_partner_won_cpf)
         return nbr_inscrits
         # for examen in nbr_partner_sessions:
         #     if nbr_partner_sessions.mode_de_financement == 'cpf' and nbr_partner_sessions.partner_id.statut == 'won':
