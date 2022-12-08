@@ -42,13 +42,15 @@ class AircallConnector(http.Controller):
                 _logger.info(" call_detail call_data call_data_comments : %s" % (str(call_data["comments"])))
                 # if comments
                 # add comments
-                if call_data_comments:
-                    for note in call_data_comments:
-                        _logger.info("call_data note of comments : %s" % (str(note)))
-                        comments += str(note['content']) + '\n'
-                    _logger.info(" call_detail call_data comments : %s" % (str(comments)))
-                    call_detail.write({'notes': comments})
-                    call_detail.action_update_notes()
+                if call["event"] == "call.commented":
+                    if call_data_comments:
+                        for note in call_data_comments:
+                            _logger.info("call_data note of comments : %s" % (str(note)))
+                            comments += str(note['content']) + '\n'
+                        _logger.info(" call_detail call_data comments : %s" % (str(comments)))
+
+                        call_detail.write({'notes': comments})
+                        call_detail.action_update_notes()
 
                 # add recording url using id call
                 if call_detail.call_recording == False:
