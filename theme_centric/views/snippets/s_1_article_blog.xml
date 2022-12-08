@@ -56,6 +56,108 @@
 
     </template>
 
+    <template id="s_article_blog_digimoov_sommaire" name="Article_sommaire">
+
+        <section class="blog-article-prototype">
+            <style>
+                .title-summary {
+                    line-height: 28px;
+                    font-weight: 600;
+                    color: #2c2c2c;
+                    font-size: 18.5px ;
+                    text-align: justify ;
+                  }
+                  .title-summary:hover {
+                    color: #1471cc;
+                  }
+                  .title3-summary {
+                    color: #000 ;
+                    margin-left: 16px;
+                    font-size: 17.5px;
+                    font-weight: 400;
+                  
+                  
+                  }
+                  
+                  .header {
+                    position: fixed;
+                    top: 0;
+                    width: 100%;
+                    z-index: 1;
+                  }
+                  
+                  .progress-container {
+                    background-color: rgba(150, 150, 150, 0.6);
+                    height: 10px;
+                    width: 100%;
+                  }
+                  
+                  .progress-bar {
+                    background-color: #2196f3;
+                    height: 10px;
+                    width: 0%;
+                  }
+                  
+                  .content {
+                    padding: 2em;
+                  }
+                  
+                  .center-div {
+                    display: flex;
+                    justify-content: center;
+                  }
+                  #sommaire {
+                   
+                    width: 99%;
+                
+                
+             
+                    background-color: #fff;
+                    border: 1px solid #dfdfe2;
+                    border-radius: 20px;
+                    padding: 32px;
+
+                    margin-bottom: 11px;
+              
+                    line-height: 28px!important;
+                    font-weight: 600;
+                    color: #202647!important;
+                    font-size: 30px!important;
+              
+                  }
+                  
+              
+              
+              </style>
+            
+            <div class="header">
+              <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+              </div>
+            </div>
+            
+            <div class="center-div">
+                <div id="sommaire">
+                    <div style="margin-bottom: 5px;color: #202647;" class="o_default_snippet_text">Sommaire:</div>
+                <div id="summary-article">
+                </div>
+              
+                </div>
+              </div>
+            
+            
+            
+            
+            <script>
+            
+                function progressBarScroll(){let e=document.body.scrollTop||document.documentElement.scrollTop,t=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById("progressBar")&amp;&amp;(document.getElementById("progressBar").style.width=e/t*100+"%")}function offsetAnchor(){0!==location.hash.length&amp;&amp;window.scrollTo(window.scrollX,window.scrollY-115)}document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("summary-article"),t=0,l=0,r=(r,o,a)=>{let n=document.createElement("a"),s=document.createElement("br"),c,m;n.className="title-summary","H2"==o&amp;&amp;(c=++t,m=document.createTextNode(c+". "+r),l=0),"H3"==o&amp;&amp;(c=++l,n.className="title-summary title3-summary",c=l,m=document.createTextNode(c+". "+r)),n.appendChild(m),n.setAttribute("href","#"+a),e.appendChild(n),e.appendChild(s)},o=document.querySelectorAll(".blog-article-prototype > *"),a=0,n="";for(let s of o)("H2"==s.tagName||"H3"==s.tagName)&amp;&amp;(n=s.tagName+a++,s.setAttribute("id",n),r(s.textContent,s.tagName,n))}),window.onscroll=function(){progressBarScroll()},window.addEventListener("hashchange",offsetAnchor),window.setTimeout(offsetAnchor,1);
+
+            </script>
+        </section>
+
+
+    </template>
+
     <template id="s_article_blog_digimoov_title_1" name="Article_title_1">
 
         <section class="blog-article-prototype">
@@ -167,7 +269,9 @@
     <template id="place_into_bar" inherit_id="website.snippets" name="Place into bar">
         <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="inside">
             <!-- <t t-snippet="theme_centric.s_article_blog_digimoov" t-thumbnail="/theme_centric/static/src/img/soft/snippet.png" /> -->
+           
             <t t-snippet="theme_centric.s_article_blog_digimoov_title_1" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="theme_centric.s_article_blog_digimoov_sommaire" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
 
             <t t-snippet="theme_centric.s_article_blog_digimoov_title_2" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
             <t t-snippet="theme_centric.s_article_blog_digimoov_title_3" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />

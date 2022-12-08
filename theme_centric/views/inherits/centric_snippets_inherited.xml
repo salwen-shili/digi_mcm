@@ -11,7 +11,7 @@
 					<t t-snippet="theme_centric.s_centric_banner" t-thumbnail="/theme_centric/static/src/img/snippet.png" />
 					<!-- article de blog Digimoov CUSTOM-->
 					<t t-snippet="theme_centric.s_article_blog_digimoov" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
-
+					<t t-snippet="theme_centric.s_article_blog_digimoov_sommaire" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
 					<t t-snippet="theme_centric.s_article_blog_digimoov_title_1" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
 					<t t-snippet="theme_centric.s_article_blog_digimoov_title_2" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
 					<t t-snippet="theme_centric.s_article_blog_digimoov_title_3" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
