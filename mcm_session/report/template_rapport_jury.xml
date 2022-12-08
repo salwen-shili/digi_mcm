@@ -606,14 +606,14 @@
                                                 </strong>
                                             </td>
                                         </t>
-                                        <t t-else="session.resultat == 'ajourne' and session.presence not in ('present', 'Absent')">
+                                    </t>
+                                    <t t-if="session.resultat == 'ajourne' and session.presence not in ('present', 'Absent')">
                                             <td class="td" style="background:#FFFF00;">
                                                 <strong>
                                                     <span>Absence justifiée</span>
                                                 </strong>
                                             </td>
                                         </t>
-                                    </t>
                                     <td class="td">
                                         <t t-set="session"
                                            t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
