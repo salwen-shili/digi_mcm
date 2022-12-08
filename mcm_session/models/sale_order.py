@@ -82,9 +82,6 @@ class SaleOrder(models.Model):
         if not acquirer_id and acquirer:
             vals['acquirer_id'] = acquirer.id
         amount = sum(self.mapped('amount_total'))
-        print('_create_payment_transaction')
-        print(self.instalment)
-        print(self.company_id.id)
         if self.instalment:
             amount=amount/int(self.instalment_number)
         vals.update({
