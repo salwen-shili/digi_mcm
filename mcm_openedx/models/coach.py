@@ -304,7 +304,8 @@ class Coach(models.Model):
                             count_apprennat = count_apprennat + 1
                             # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
                             message = self.env['mail.message'].search(
-                                [('res_id', "=", partner.id), ('author_id.est_coach', '=', 'True'),
+                                [('res_id', "=", partner.id),
+                                 ('author_id.est_coach', '=', 'True'),
                                  ('company_id', '=', 2)],
                                 order="create_date asc",
                                 limit=1)
