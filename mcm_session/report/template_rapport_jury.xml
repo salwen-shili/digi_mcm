@@ -607,7 +607,7 @@
                                             </td>
                                         </t>
                                     </t>
-                                    <t t-else="session.resultat == 'ajourne' and session.presence not in ('present', 'Absent')">
+                                    <t t-else="session.resultat == 'ajourne' and session.presence == 'absence_justifiee'">
                                         <td class="td" style="background:#FFFF00;">
                                             <strong>
                                                 <span>Absence justifiée</span>
