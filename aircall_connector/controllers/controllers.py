@@ -42,15 +42,14 @@ class AircallConnector(http.Controller):
                 _logger.info(" call_detail call_data call_data_comments : %s" % (str(call_data["comments"])))
                 # if comments
                 # add comments
-                if call["event"] == "call.commented":
-                    if call_data_comments:
-                        for note in call_data_comments:
-                            _logger.info("call_data note of comments : %s" % (str(note)))
-                            comments += str(note['content']) + '\n'
-                        _logger.info(" call_detail call_data comments : %s" % (str(comments)))
 
-                        call_detail.write({'notes': comments})
-
+                if call_data_comments:
+                    for note in call_data_comments:
+                        _logger.info("call_data note of comments : %s" % (str(note)))
+                        comments += str(note['content']) + '\n'
+                    _logger.info(" call_detail call_data comments : %s" % (str(comments)))
+                    call_detail.write({'notes': comments})
+                    if call["event"] == "call.commented":
                         call_detail.action_update_notes()
 
                 # add recording url using id call
@@ -137,5 +136,6 @@ class AircallConnector(http.Controller):
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
                 if new_call_detail and new_call_detail.call_contact and new_call_detail.notes:
-                    new_call_detail.action_update_notes()
+                    if call["event"] == "call.commented":
+                        new_call_detail.action_update_notes()
                 request.env.cr.commit()
