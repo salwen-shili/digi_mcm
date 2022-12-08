@@ -294,7 +294,7 @@ class Coach(models.Model):
         count_apprennat = 0
         todays_date = date.today()
         for partner in self.env['res.partner'].sudo().search(
-                [('statut', "=", "won"),('coach_peda','!=',False),
+                [('statut', "=", "won"),('coach_peda','=',False),
                  ('company_id', '=', 2)
 
                  ]):
