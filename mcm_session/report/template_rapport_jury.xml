@@ -606,13 +606,13 @@
                                                 </strong>
                                             </td>
                                         </t>
-                                        <t t-else="session.resultat == 'ajourne' and session.presence not in ('present', 'Absent')">
-                                            <td class="td" style="background:#FFFF00;">
-                                                <strong>
-                                                    <span>Absence justifiée</span>
-                                                </strong>
-                                            </td>
-                                        </t>
+                                    </t>
+                                    <t t-else="session.resultat == 'ajourne' and session.presence not in ('present', 'Absent')">
+                                        <td class="td" style="background:#FFFF00;">
+                                            <strong>
+                                                <span>Absence justifiée</span>
+                                            </strong>
+                                        </td>
                                     </t>
                                     <td class="td">
                                         <t t-set="session"
