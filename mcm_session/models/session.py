@@ -437,22 +437,22 @@ class Session(models.Model):
             if examen.module_id.product_id.default_code == "avancee" and examen.partner_id.statut == 'won':
                 nbr_from_examen_pro += 1
         # Appliquer regle si client a dépassé les 14 jours
-        nbr_partner_personel_annule_pro = self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
-             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled')])
-        nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
-             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
-             ('date_creation', ">", self.date_exam + timedelta(days=14))])
+        # nbr_partner_personel_annule_pro = self.env['partner.sessions'].sudo().search(
+        #     [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+        #      ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled')])
+        # nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
+        #     [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+        #      ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+        #      ('date_creation', ">", self.date_exam + timedelta(days=14))])
         count_per_an = False
         # Si le financement de client est personel
-        for sale in nbr_partner_personel_annule_pro:
-            if sale.client_id.signed_on > self.date_exam + timedelta(
-                    days=14) and sale.client_id.module_id.product_id.default_code == "avancee":
-                count_per_an += 1
-        counter_per_an = count_per_an
-        res_calc = counter_per_an + len(nbr_partner_cpf_annule)
-        tot = nbr_from_examen_pro + res_calc
+        # for sale in nbr_partner_personel_annule_pro:
+        #     if sale.client_id.signed_on > self.date_exam + timedelta(
+        #             days=14) and sale.client_id.module_id.product_id.default_code == "avancee":
+        #         count_per_an += 1
+        # counter_per_an = count_per_an
+        #res_calc = counter_per_an + len(nbr_partner_cpf_annule)
+        tot = nbr_from_examen_pro
         sum_pro_inscrit = tot
         return sum_pro_inscrit
 
@@ -465,22 +465,23 @@ class Session(models.Model):
             if examen.module_id.product_id.default_code == "premium" and examen.partner_id.statut == 'won':
                 nbr_from_examen_premium += 1
         # Appliquer regle si client a dépassé les 14 jours
-        nbr_partner_personel_annule_premium = self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
-             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
-             ('client_id.temps_minute', '=', 0)])
-        nbr_partner_cpf_annule_premium = self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
-             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
-             ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
-        count_per_an_premium = False
+        # nbr_partner_personel_annule_premium = self.env['partner.sessions'].sudo().search(
+        #     [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+        #      ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
+        #      ('client_id.temps_minute', '=', 0)])
+        # nbr_partner_cpf_annule_premium = self.env['partner.sessions'].sudo().search(
+        #     [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+        #      ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+        #      ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
+        # count_per_an_premium = False
         # Si le financement de client est personel
-        for sale in nbr_partner_personel_annule_premium:
-            if sale.client_id.signed_on > self.date_exam + timedelta(
-                    days=14) and sale.client_id.module_id.product_id.default_code == "premium":
-                count_per_an_premium += 1
-        counter_per_an = count_per_an_premium
-        res_calc_premium = counter_per_an + len(nbr_partner_cpf_annule_premium) + nbr_from_examen_premium
+        # for sale in nbr_partner_personel_annule_premium:
+        #     if sale.client_id.signed_on > self.date_exam + timedelta(
+        #             days=14) and sale.client_id.module_id.product_id.default_code == "premium":
+        #         count_per_an_premium += 1
+        # counter_per_an = count_per_an_premium
+        #res_calc_premium = counter_per_an + len(nbr_partner_cpf_annule_premium) + nbr_from_examen_premium
+        res_calc_premium = nbr_from_examen_premium
         sum_premium_inscrit = res_calc_premium
         return sum_premium_inscrit
 
@@ -492,21 +493,22 @@ class Session(models.Model):
             if examen.module_id.product_id.default_code == "examen" and examen.partner_id.statut == 'won':
                 nbr_from_examen += 1
         # Appliquer regle si client a dépassé les 14 jours
-        nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
-             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
-             ('client_id.temps_minute', '=', 0)])
-        nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
-            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
-             ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
-             ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
-        count_per_an = False
-        # Si le financement de client est personel
-        for sale in nbr_partner_personel_annule:
-            if sale.client_id.signed_on > self.date_exam + timedelta(
-                    days=14) and sale.client_id.module_id.product_id.default_code == "examen":
-                count_per_an += 1
-        sum_repassage_inscrit = count_per_an + len(nbr_partner_cpf_annule) + nbr_from_examen
+        # nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+        #     [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
+        #      ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
+        #      ('client_id.temps_minute', '=', 0)])
+        # nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
+        #     [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
+        #      ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
+        #      ('date_creation', ">", self.date_exam + timedelta(days=14)), ('client_id.temps_minute', '=', 0)])
+        # count_per_an = False
+        # # Si le financement de client est personel
+        # for sale in nbr_partner_personel_annule:
+        #     if sale.client_id.signed_on > self.date_exam + timedelta(
+        #             days=14) and sale.client_id.module_id.product_id.default_code == "examen":
+        #         count_per_an += 1
+        #sum_repassage_inscrit = count_per_an + len(nbr_partner_cpf_annule) + nbr_from_examen
+        sum_repassage_inscrit = nbr_from_examen
         return sum_repassage_inscrit
 
     def taux_de_presence_solo(self):
