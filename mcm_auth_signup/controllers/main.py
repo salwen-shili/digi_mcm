@@ -178,6 +178,9 @@ class Home(Home):
                                                         limit=1)
         order1 = request.website.sale_get_order()
         if redirect and request.website.is_public_user():
+            print('redireeeeeeeecccct :',redirect)
+            # if redirect.endswith('/shop/cart') and order1:
+                
             url = '/web/signup?redirect=%s' % (redirect)
             return werkzeug.utils.redirect(url, '301')
         if request.website.id == 1 or request.website.id == 2:
