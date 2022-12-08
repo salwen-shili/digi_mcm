@@ -109,7 +109,7 @@ class Session(models.Model):
         count_per_an = False
         for sale in nbr_partner_personel_annule:
 
-            if sale.client_id.signed_on > self.date_exam + timedelta(days=14):
+            if sale.date_creation > self.date_exam + timedelta(days=14):
                 count_per_an += 1
         counter_per_an = count_per_an
         _logger.info("nbr_partner_personel_annule %s" % str(nbr_partner_personel_annule))
