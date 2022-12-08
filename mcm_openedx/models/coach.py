@@ -296,6 +296,7 @@ class Coach(models.Model):
         for partner in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"),('coach_peda','!=',False),
                  ('company_id', '=', 2)
+
                  ]):
             if partner.mcm_session_id.date_exam:
                 if (partner.mcm_session_id.date_exam.year >= todays_date.year):
