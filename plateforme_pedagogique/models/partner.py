@@ -1335,7 +1335,7 @@ class partner(models.Model):
                                         user.partner_id.diplome = diplome
                                         if product_id:
                                             user.partner_id.id_edof = product_id.id_edof
-                                    if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism":
+                                    if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism" or state == "rejectedWithoutTitulaireSuite" or state == "rejected":
                                         if user.partner_id.numero_cpf == externalId:
                                             """Vérifier si le dossier en formation donc statut de dossier est abandonné si non annulé"""
                                             if user.partner_id.statut_cpf =="intraining" :
