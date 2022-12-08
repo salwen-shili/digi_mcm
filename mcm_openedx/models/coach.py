@@ -309,10 +309,7 @@ class Coach(models.Model):
                              ('company_id', '=', 2)],
                             order="create_date asc",
                             limit=1)
-                        # if (coaches.name, 'ilike', message.author_id.name):
-                        # print("coaches.name", coaches.name)
                         if message and partner.mcm_session_id.date_exam.month >= todays_date.month:
                             partner.coach_peda = message.author_id
-                        # partner.state = "en_formation"
 
             self.env.cr.commit()
