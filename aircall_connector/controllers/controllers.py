@@ -16,6 +16,7 @@ _logger = logging.getLogger(__name__)
 class AircallConnector(http.Controller):
     @http.route(['/webhook-digi-mcm-aircall'], type='json', auth="public", csrf=False)
     def webhook_import_calls(self, **kw):
+
         request.uid = odoo.SUPERUSER_ID
         call = json.loads(request.httprequest.data)
         if call["event"] in ["call.answered", "call.commented", "call.created", "call.tagged", "call.ended"]:
@@ -50,6 +51,7 @@ class AircallConnector(http.Controller):
                     call_detail.action_find_user_using_phone()
 
                 # if call_detail.call_contact.company_id.id == 2:
+                #
                 #
                 #     call_detail.call_contact.total_time_visio_min += call_detail.call_duration
 
