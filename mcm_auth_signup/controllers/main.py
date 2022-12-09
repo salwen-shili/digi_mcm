@@ -176,8 +176,37 @@ class Home(Home):
         partner = request.env['res.partner'].sudo().search([('email', "=", login)], limit=1)
         order = request.env['sale.order'].sudo().search([('partner_id', "=", partner.id)], order='create_date desc',
                                                         limit=1)
-        order1 = request.website.sale_get_order()
+        so = request.website.sale_get_order()
         if redirect and request.website.is_public_user():
+            if redirect.endswith('/shop/cart') and so: #check if redirect endswith /shop/cart ( add product to cart )
+                #check sale order and company _id
+                if so and so.company_id.id == 1:
+                    product_id = False
+                    if so:
+                        for line in so.order_line:
+                            product_id = line.product_id
+                    if product_id:
+                        slugname = (product_id.name).strip().strip(
+                            '-').replace(' ', '-').lower()
+                        if so.pricelist_id and so.pricelist_id.name in ['bolt']:
+                           redirect = redirect.replace("/shop/cart","/%s/%s/shop/cart/" % (slugname, so.pricelist_id.name))
+                        else:
+                           redirect = redirect.replace("/shop/cart","/%s/shop/cart/" % (slugname))
+                if so and so.company_id.id == 2:
+                    product_id = False
+                    if so:
+                        for line in so.order_line:
+                            product_id = line.product_id
+                        if product_id:
+                            slugname = (product_id.name).strip().strip(
+                                '-').replace(' ', '-').lower()
+                            if so.pricelist_id and so.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
+                                                                            'box2home', 'coursier2roues',
+                                                                            'eco-conduite', 'transport-routier']:
+                               redirect = redirect.replace("/shop/cart",
+                                                 "/%s/%s/shop/cart/" % (slugname, so.pricelist_id.name))
+                            else:
+                              redirect =  redirect.replace("/shop/cart", "/%s/shop/cart/" % (slugname))
             url = '/web/signup?redirect=%s' % (redirect)
             return werkzeug.utils.redirect(url, '301')
         if request.website.id == 1 or request.website.id == 2:
