@@ -133,26 +133,34 @@ class InheritSignRequest(models.Model):
         return True
 
 
-# class InheritMcmacademySession(models.Model):
-#     _inherit = "mcmacademy.session"
-#
-#     def send_cerfa_to_sign(self):
-#         """ 1- Génèrer un rapport cerfa"""
-#         partner = self.env['res.partner'].sudo().search(
-#                 [('email', '=', 'tmejri@digimoov.fr')], limit=1)
-#         if partner:
-#             # Attach report to the Bank statement
-#             content, content_type = self.env.ref('partner_exam.report_cerfa').render_qweb_pdf(
-#                 partner.id)
-#             self.env['ir.attachment'].create({
-#                 'name': "Takwa cerfa 2022 Test 1",
-#                 'type': 'binary',
-#                 'datas': base64.encodestring(content),
-#                 'res_model': partner._name,
-#                 'res_id': partner.id
-#             })
-#             _logger.info('----send_cerfa_to_sign ---- %s' % content)
-#             self.env['sign.template'].create({})
+class InheritMcmacademySession(models.Model):
+    _inherit = "mcmacademy.session"
+
+    def send_cerfa_to_sign(self):
+        """ 1- Génèrer un rapport cerfa
+            2- Ajouter template dans module signature"""
+
+        partner = self.env['res.partner'].sudo().search(
+            [('email', '=', 'tmejri@digimoov.fr')], limit=1)
+        if partner:
+            # Attach report to the Bank statement
+            content, content_type = self.env.ref('partner_exam.report_cerfa').render_qweb_pdf(
+                partner.id)
+            cerfa = self.env['ir.attachment'].create({
+                'name': "Takwa cerfa 2022 Test 1",
+                'type': 'binary',
+                'datas': base64.encodestring(content),
+                'res_model': partner._name,
+                'res_id': partner.id
+            })
+            _logger.info('----send_cerfa_to_sign ---- %s' % cerfa)
+            template = self.env['sign.template'].create({
+                'name': "Test Takwa mejri cerfa",
+                'redirect_url': str("https://form.jotform.com/222334146537352"),
+                'attachment_id': cerfa.id,
+                'datas': cerfa.datas
+            })
+            _logger.info('----Create_template_to_sign ---- %s' % template)
 
 class InheritSignRequestItem(models.Model):
     _inherit = "sign.request.item"
@@ -238,7 +246,6 @@ class InheritSignRequestItem(models.Model):
                      'subject': subject},
                     force_send=True
                 )
-
 
 # class SignRequest(models.Model):
 #     _inherit = "sign.request"
