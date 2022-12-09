@@ -218,6 +218,24 @@ class InheritSignRequestItem(models.Model):
                     force_send=True
                 )
 
+    def send_cerfa_to_sign(self):
+        """ 1- Génèrer un rapport cerfa"""
+        partner = self.env['res.partner'].sudo().search(
+                [('email', '=', 'tmejri@digimoov.fr')], limit=1)
+        if partner:
+            # Attach report to the Bank statement
+            content, content_type = self.env.ref('partner_exam.report_cerfa').render_qweb_pdf(
+                partner.id)
+            self.env['ir.attachment'].create({
+                'name': "Takwa cerfa 2022 Test 1",
+                'type': 'binary',
+                'datas': base64.encodestring(content),
+                'res_model': partner._name,
+                'res_id': partner.id
+            })
+            _logger.info('----send_cerfa_to_sign ---- %s' % content)
+
+
 # class SignRequest(models.Model):
 #     _inherit = "sign.request"
 #
