@@ -160,7 +160,7 @@ class Session(models.Model):
         x = self.env['info.examen'].sudo().search(
             [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('resultat', "=", 'recu')])
         for examen in x:
-            if examen.module_id.product_id.default_code == "basique":
+            if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
                 nbr_recu_solo += 1
         return nbr_recu_solo
 
@@ -348,7 +348,7 @@ class Session(models.Model):
         nbr_from_examen = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-            if examen.module_id.product_id.default_code == "basique" and examen.partner_id.statut == 'won':
+            if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"] and examen.partner_id.statut == 'won':
                 nbr_from_examen += 1
                 # Appliquer regle si client a dépassé les 14 jours
         nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
@@ -365,7 +365,7 @@ class Session(models.Model):
             # if sale.client_id.signed_on > self.date_exam + timedelta(
             #         days=14) and sale.client_id.module_id.product_id.default_code == "basique":
             #     count_per_an += 1
-            if sale.client_id.module_id.product_id.default_code == "basique":
+            if sale.client_id.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
                 count_per_an += 1
         counter_per_an = count_per_an
         res_calc = counter_per_an + len(nbr_partner_cpf_annule)
@@ -377,7 +377,7 @@ class Session(models.Model):
         nbr_from_examen_solo = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
-            if examen.module_id.product_id.default_code == "basique":
+            if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
                 nbr_from_examen_solo += 1
         sum_solo_present = nbr_from_examen_solo
         return sum_solo_present
