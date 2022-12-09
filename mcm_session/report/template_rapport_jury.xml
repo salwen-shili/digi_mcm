@@ -536,7 +536,7 @@
                                     </td>
                                     <td class="td">
                                         <t t-if="line.note_exam_id">
-                                            <t t-if="line.module_id.product_id.default_code == 'basique'">
+                                            <t t-if="line.module_id.product_id.default_code in ['basique', 'solo-ubereats']">
                                                 <span>Solo</span>
                                             </t>
                                             <t t-if="line.module_id.product_id.default_code == 'avancee'">
