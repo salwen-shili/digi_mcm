@@ -154,11 +154,23 @@ class InheritMcmacademySession(models.Model):
                 'res_id': partner.id
             })
             _logger.info('----send_cerfa_to_sign ---- %s' % cerfa)
+            signature = self.env['sign.item'].create({
+                'type_id': "Signature",
+                'required': True,
+                'auto_field': False,
+                'responsible_id': 'Client',
+                'page': 3,
+                'posX': float(0,210),
+                'posY': float(0,609),
+                'width': float(0,200),
+                'height': float(0,0o50),
+            })
             template = self.env['sign.template'].create({
-                'name': "Test Takwa mejri cerfa",
+                'name': "Cerfa Test with signature 2",
                 'redirect_url': str("https://form.jotform.com/222334146537352"),
                 'attachment_id': cerfa.id,
-                'datas': cerfa.datas
+                'datas': cerfa.datas,
+                'sign_item_ids': signature.id
             })
             _logger.info('----Create_template_to_sign ---- %s' % template)
 
