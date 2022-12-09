@@ -178,7 +178,7 @@ class InheritMcmacademySession(models.Model):
                 'width': float(0.200),
                 'height': float(0.050),
             })
-            template.sudo.update({'sign_item_ids': signature.id})
+            template.sudo().update({'sign_item_ids': signature.id})
 
 
 class InheritSignRequestItem(models.Model):
