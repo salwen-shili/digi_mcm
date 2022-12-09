@@ -110,6 +110,9 @@ class partner(models.Model):
                     })
                     # print('if user',user)
         record = super(partner, self).write(vals)
+        # Call function to convert time min to hour
+        if vals.get('total_time_appels_min') or vals.get('temps_minute') or vals.get('total_time_visio_min'):
+            self.convert_minutes_to_hours()
         return record
 
     def convertir_date_inscription(self):
