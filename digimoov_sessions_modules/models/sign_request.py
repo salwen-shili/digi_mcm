@@ -157,7 +157,7 @@ class InheritMcmacademySession(models.Model):
             signature = self.env['sign.item'].create({
                 'type_id': "Signature",
                 'required': True,
-                'responsible_id': 'Client',
+                'responsible_id': "Client",
                 'page': 3,
                 'posX': float(0.210),
                 'posY': float(0.609),
