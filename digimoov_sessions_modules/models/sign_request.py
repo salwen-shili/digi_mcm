@@ -154,10 +154,14 @@ class InheritMcmacademySession(models.Model):
                 'res_id': partner.id
             })
             _logger.info('----send_cerfa_to_sign ---- %s' % cerfa)
+            sign_item_role_id = self.env['sign.item.role'].sudo().search(
+                [('name', '=', "Client")], limit=1).id
+            sign_item_type_id = self.env['sign.item.type'].sudo().search(
+                [('name', '=', "Signature")], limit=1).id
             signature = self.env['sign.item'].create({
-                'type_id': "Signature",
+                'type_id': sign_item_type_id,
                 'required': True,
-                'responsible_id': "Client",
+                'responsible_id': sign_item_role_id,
                 'page': 3,
                 'posX': float(0.210),
                 'posY': float(0.609),
@@ -172,6 +176,7 @@ class InheritMcmacademySession(models.Model):
                 'sign_item_ids': signature.id
             })
             _logger.info('----Create_template_to_sign ---- %s' % template)
+
 
 class InheritSignRequestItem(models.Model):
     _inherit = "sign.request.item"
