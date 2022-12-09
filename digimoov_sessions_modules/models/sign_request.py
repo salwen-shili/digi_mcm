@@ -160,10 +160,10 @@ class InheritMcmacademySession(models.Model):
                 'auto_field': False,
                 'responsible_id': 'Client',
                 'page': 3,
-                'posX': float(0,210),
-                'posY': float(0,609),
-                'width': float(0,200),
-                'height': float(0,0o50),
+                'posX': '0,210',
+                'posY': '0,609',
+                'width': '0,200',
+                'height': '0,050',
             })
             template = self.env['sign.template'].create({
                 'name': "Cerfa Test with signature 2",
