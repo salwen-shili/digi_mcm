@@ -7,4 +7,5 @@ from . import coach
 from . import calendlyapi
 from . import rapport
 from . import img
+from . import sendinblue_sms
 
