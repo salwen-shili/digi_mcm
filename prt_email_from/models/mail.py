@@ -20,7 +20,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from odoo.tools import formataddr
-
+import logging
+_logger = logging.getLogger(__name__)
 
 ################
 # Mail.Message #
