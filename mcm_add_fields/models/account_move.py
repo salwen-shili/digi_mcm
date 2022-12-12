@@ -979,7 +979,7 @@ class AccountMove(models.Model):
                     ('sort', 'lastUpdate'),
                     ('limit', '150'),
                     ('page', 1),
-                    ('since', '2022-12-07'),
+    
 
                 )
                 headers = {
