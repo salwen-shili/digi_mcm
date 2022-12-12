@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='dates']" position="replace">
                 <group name="dates">
-                    <button string="Print report cerfa" name="send_cerfa_to_sign" type="object"
+                    <button string="Envoyer un mail de signature CERFA" name="send_cerfa_to_sign" type="object"
                             class="btn-primary"/>
                     <field name="domaine_formation"/>
                     <field name="date_debut" attrs="{'invisible': [('company_id', '=', 2)]}"/>

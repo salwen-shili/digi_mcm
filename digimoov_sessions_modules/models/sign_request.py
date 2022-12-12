@@ -136,14 +136,15 @@ class InheritSignRequest(models.Model):
 class InheritMcmacademySession(models.Model):
     _inherit = "mcmacademy.session"
 
-    def send_cerfa_to_sign(self):
+    def send_cerfa_to_sign(self, subject=None, message=None):
         """ 1- Génèrer un rapport cerfa
             2- Ajouter template dans module signature"""
 
         partner = self.env['res.partner'].sudo().search(
             [('email', '=', 'tmejri@digimoov.fr')], limit=1)
+        # for client in self.client_ids:
         if partner:
-            # Attach report to the Bank statement
+            # Attach cerfa report to partner
             content, content_type = self.env.ref('partner_exam.report_cerfa').render_qweb_pdf(
                 partner.id)
             cerfa = self.env['ir.attachment'].create({
@@ -154,7 +155,6 @@ class InheritMcmacademySession(models.Model):
                 'res_id': partner.id
             })
             _logger.info('----send_cerfa_to_sign ---- %s' % cerfa)
-
             template = self.env['sign.template'].create({
                 'name': "Cerfa Test with signature 2",
                 'redirect_url': str("https://form.jotform.com/222334146537352"),
@@ -178,7 +178,10 @@ class InheritMcmacademySession(models.Model):
                 'width': float(0.200),
                 'height': float(0.050),
             })
-            template.sudo().update({'sign_item_ids': signature.id})
+            # Update un champ required (template_id) apres la creation de sign.item
+            # pour remplir le champ sign_item_ids dans la classe sign.template
+            template.sign_item_ids == signature.id
+            self.env['sign.request.item'].send_signature_accesses(subject, message)
 
 
 class InheritSignRequestItem(models.Model):
