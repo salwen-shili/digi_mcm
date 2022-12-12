@@ -3,34 +3,57 @@ from urllib import parse
 
 import requests
 
-from odoo import models, fields
+from odoo import models, fields, api
 from odoo.tools import json
 
 import logging
 
 _logger = logging.getLogger(__name__)
+from odoo import api, fields, models, _
 
 
-class sms_sendinblue(models.Model):
+class sms_sendinblue(models.TransientModel):
     _name = 'sendinblue.sendinbluesms'
     _description = "Sendinblue"
 
-    sender = fields.Char(string="ID")
+    sender = fields.Char(string="Sender")
     recipient = fields.Char(string="Recipient")
-    content =fields.Text(string="Body")
+    content = fields.Text(string="Body")
     type = fields.Selection([('marketing', 'Marketing'),
                              ('transactional', ' Transactional'),
                              ])
-    def sendsms(self):
-        _logger.info("testttttttttttt")
-        url = "https://api.sendinblue.com/v3/transactionalSMS/sms"
+    # recipients
+    recipient_description = fields.Text('Recipients (Partners)', compute='_compute_recipients', compute_sudo=False)
+    recipient_count = fields.Integer('# Valid recipients', compute='_compute_recipients', compute_sudo=False)
+    recipient_invalid_count = fields.Integer('# Invalid recipients', compute='_compute_recipients', compute_sudo=False)
+    number_field_name = fields.Char(string='Field holding number')
+    partner_ids = fields.Many2many('res.partner')
+    numbers = fields.Char('Recipients (Numbers)')
+    sanitized_numbers = fields.Char('Sanitized Number', compute='_compute_sanitized_numbers', compute_sudo=False)
 
-        partner_data = self.env['res.partner'].sudo().search([('email','=', partner.email)])
+    @api.depends('partner_ids',
+                 'number_field_name', 'sanitized_numbers')
+    def _compute_recipients(self):
+        self.recipient_description = False
+        self.recipient_count = 0
+        self.recipient_invalid_count = 0
+
+        if self.partner_ids:
+            if len(self.partner_ids) == 1:
+                self.recipient_description = '%s (%s)' % (self.partner_ids[0].display_name,
+                                                          self.partner_ids[0].mobile or self.partner_ids[0].phone or _(
+                                                              'Missing number'))
+            self.recipient_count = len(self.partner_ids)
+
+
+    def sendsms(self):
+
+        _logger.info("sendinblue sms")
+        url = "https://api.sendinblue.com/v3/transactionalSMS/sms"
         payload = {
             "type": "marketing",
             "unicodeEnabled": False,
-            "sender":  partner_data.company_id.name,
-            "recipient":  partner_data.phone,
+
             "content": "test api sendinblue"
         }
         headers = {

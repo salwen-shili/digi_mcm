@@ -1,47 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-      <record model="ir.ui.view" id="wizard_form_view">
-            <field name="name">wizard.form</field>
-            <field name="model">sendinblue.sendinbluesms</field>
-            <field name="arch" type="xml">
-               <form string="Envoyer un SMS" modifiers="{}">
-	<sheet modifiers="{}">
-		<group modifiers="{}">
-
-			<div colspan="2" class="alert alert-info text-center mb-3" role="alert"    >
-				<p class="my-0" modifiers="{}">
-
+    <record model="ir.ui.view" id="wizard_form_view">
+        <field name="name">wizard.form</field>
+        <field name="model">sendinblue.sendinbluesms</field>
+        <field name="arch" type="xml">
+            <form string="Envoyer un SMS" modifiers="{}">
+                <sheet modifiers="{}">
+                    <group modifiers="{}">
                         <field name="sender"/>
+                        <field name="recipient_description"/>
                         <field name="recipient"/>
-                        <field name="content" widget="sms_widget"/>
-
-				</p>
-			</div>
-
-		</group>
-	</sheet>
-	<footer modifiers="{}">
-		<button string="Envoi de SMS" type="object"  name="sendsms" />
-
-    </footer>
+                        <div colspan="2" class="alert alert-info text-center mb-3" role="alert">
+                            <p class="my-0" modifiers="{}">
+                                 <field name="content" widget="sms_widget"/>
+                            </p>
+                        </div>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Envoi de SMS" type="object" name="sendsms"/>
+                </footer>
             </form>
-            </field>
-        </record>
+        </field>
+    </record>
+    <act_window name="send_sms sendonblueee"
+                res_model="sendinblue.sendinbluesms"
+                binding_model="res.partner"
+                view_mode="form"
+                binding_views="form"
+                target="new"
+                id="sendinblue_sms-form"
+    />
+    <act_window name="send_sms sendonblueee"
+                res_model="sendinblue.sendinbluesms"
+                binding_model="res.partner"
+                view_mode="form"
+                binding_views="list"
+                target="new"
+                id="sendinblue_sms-formn_list"
+    />
 
-   <act_window name="send_sms sendonblueee"
-            res_model="sendinblue.sendinbluesms"
-            binding_model="res.partner"
-            view_mode="form"
-            binding_views="form"
-            target="new"
-            id="sendinblue_sms-form"
-        />
-      <act_window   name="send_sms sendonblueee"
-           res_model="sendinblue.sendinbluesms"
-            binding_model="res.partner"
-            view_mode="form"
-            binding_views="list"
-            target="new"
-            id="sendinblue_sms-formn_list"
-        />
+
 </odoo>
