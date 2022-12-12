@@ -55,7 +55,6 @@
         'data/mail_data.xml',
         'data/automation_action_add_evalbox.xml',
         'views/dashboard.xml',
-        'views/sendinbluesms.xml',
 
     ],
 
