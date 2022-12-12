@@ -16,16 +16,16 @@ class sms_sendinblue(models.Model):
     _description = "Sendinblue"
 
     sender = fields.Char(string="ID")
-    recipient = fields.Char(string="ID")
-    content = fields.Char(string="ID")
+    recipient = fields.Char(string="Recipient")
+    content =fields.Text(string="Body")
     type = fields.Selection([('marketing', 'Marketing'),
                              ('transactional', ' Transactional'),
                              ])
     def sendsms(self):
         _logger.info("testttttttttttt")
-
         url = "https://api.sendinblue.com/v3/transactionalSMS/sms"
-        partner_data =self.env['res.partner'].sudo().search([])
+
+        partner_data = self.env['res.partner'].sudo().search([('email','=', partner.email)])
         payload = {
             "type": "marketing",
             "unicodeEnabled": False,
@@ -41,4 +41,4 @@ class sms_sendinblue(models.Model):
 
         response = requests.post(url, json=payload, headers=headers)
 
-        print(response.text)
+        _logger.info(response.text)
