@@ -967,7 +967,9 @@ class AccountMove(models.Model):
         companies = self.env['res.company'].sudo().search([])
         if companies:
             for company in companies:
+                i= 1
                 api_key = company.wedof_api_key
+
                 params_wedof = (
                     ('order', 'desc'),
                     ('type', 'all'),
@@ -975,8 +977,8 @@ class AccountMove(models.Model):
                     ('billingState', 'billed'),
                     ('certificationState', 'all'),
                     ('sort', 'lastUpdate'),
-                    ('limit', '3'),
-                    ('page', '1'),
+                    ('limit', '10'),
+                    ('page', i),
 
                 )
                 headers = {
@@ -987,6 +989,7 @@ class AccountMove(models.Model):
                 response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
                                         params=params_wedof)
                 registrations = response.json()
+                i=i+1
                 for dossier in registrations:
                     billnumero = dossier['billNumber']
                     billnumero = billnumero[:6] + "-" + billnumero[6:]
