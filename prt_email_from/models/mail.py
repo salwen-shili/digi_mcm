@@ -101,9 +101,9 @@ class MailThread(models.AbstractModel):
         _res_ids = res_ids or [False]  # always have a default value located in False
         try :
             alias_domain = self.env['ir.config_parameter'].sudo().get_param("mail.catchall.domain")
-        except Exception:
+        except Exception as e:
             alias_domain = False
-            _logger.exception("Failure get_param mail.catchall.domain")
+            _logger.exception("Failure get_param mail.catchall.domain %s" %(str(e)))
         result = dict.fromkeys(_res_ids, False)
         result_email = dict()
         doc_names = doc_names if doc_names else dict()
