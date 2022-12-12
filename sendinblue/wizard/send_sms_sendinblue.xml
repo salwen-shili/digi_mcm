@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record model="ir.ui.view" id="wizard_form_view">
+            <field name="name">wizard.form</field>
+            <field name="model">sendinblue.sendinbluesms</field>
+            <field name="arch" type="xml">
+                <form string="sendinblue.sendinbluesms">
+                    <group>
+
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_session_wizard"
+                    name="Add Attendees"
+                    binding_model="res.partner"
+                    res_model="openacademy.wizard"
+                    view_mode="form"
+                    target="new"
+                    />
+</odoo>
