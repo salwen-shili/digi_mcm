@@ -4,19 +4,41 @@
             <field name="name">wizard.form</field>
             <field name="model">sendinblue.sendinbluesms</field>
             <field name="arch" type="xml">
-                <form string="sendinblue.sendinbluesms">
-                    <group>
+               <form string="Envoyer un SMS" modifiers="{}">
+	<sheet modifiers="{}">
+		<group modifiers="{}">
 
-                    </group>
-                </form>
+			<div colspan="2" class="alert alert-info text-center mb-3" role="alert"    >
+				<p class="my-0" modifiers="{}">
+
+
+				</p>
+			</div>
+
+		</group>
+	</sheet>
+	<footer modifiers="{}">
+		<button string="Envoi de SMS"  />
+
+    </footer>
+            </form>
             </field>
         </record>
 
-        <act_window id="launch_session_wizard"
-                    name="Add Attendees"
-                    binding_model="res.partner"
-                    res_model="openacademy.wizard"
-                    view_mode="form"
-                    target="new"
-                    />
+   <act_window name="send_sms sendonblueee"
+            res_model="sendinblue.sendinbluesms"
+            binding_model="res.partner"
+            view_mode="form"
+            binding_views="form"
+            target="new"
+            id="sendinblue_sms-form"
+        />
+      <act_window   name="send_sms sendonblueee"
+           res_model="sendinblue.sendinbluesms"
+            binding_model="res.partner"
+            view_mode="form"
+            binding_views="list"
+            target="new"
+            id="sendinblue_sms-formn_list"
+        />
 </odoo>
