@@ -977,8 +977,9 @@ class AccountMove(models.Model):
                     ('billingState', 'billed'),
                     ('certificationState', 'all'),
                     ('sort', 'lastUpdate'),
-                    ('limit', '10'),
-                    ('page', i),
+                    ('limit', '150'),
+                    ('page', 1),
+                    ('since', '2022-12-07'),
 
                 )
                 headers = {

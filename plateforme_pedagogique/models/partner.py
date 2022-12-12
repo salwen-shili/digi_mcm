@@ -516,9 +516,9 @@ class partner(models.Model):
                                  "sendCredentials": "false"}
                     resp = requests.post(urluser, headers=headers, data=json.dumps(data_user))
                     _logger.info('data_user %s' % str(data_user))
-                    respo = str(json.loads(resp.text))
+                    #respo = str(json.loads(resp.text))
                     responce_api = json.loads(resp.text)
-                    _logger.info('response addd  %s' % respo)
+                    #_logger.info('response addd  %s' % respo)
                     if (resp.status_code == 200):
                         partner.write({'state': 'en_formation'})
                         if responce_api['status'] == 'user_reactivated':
