@@ -238,7 +238,7 @@
           </div>
         </section>
         <!-- repassage-->
-        <section class="s_newsletter_block pb64 oe_img_bg oe_custom_bg pt64 mb64" style="/* background-attachment: fixed; */background-size: cover;background-position: center;background-image: url('/digimoov_website_templates/static/img/sa.png');">
+        <section id="repassage" class="s_newsletter_block pb64 oe_img_bg oe_custom_bg pt64 mb64" style="/* background-attachment: fixed; */background-size: cover;background-position: center;background-image: url('/digimoov_website_templates/static/img/sa.png');">
           <div class="container">
             <div class="">
               <div class=" bg-white-75" style="
