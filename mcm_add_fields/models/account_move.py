@@ -52,16 +52,16 @@ class AccountMove(models.Model):
     def write(self, vals_list):
         #ajouter la facture à l'historique de session
         rslt = super(AccountMove, self).write(vals_list)
-        if  'session_id' in vals_list:
-
-            session_id = vals_list['session_id']
-            session = self.env['partner.sessions'].search([('client_id', '=', self.partner_id.id),
-                                                              ('session_id', '=', session_id)],limit=1)
-            if session:
-
-                    session.sudo().write({
-                        'invoice_id': self.id
-                    })
+        # if  'session_id' in vals_list:
+        # 
+        #     session_id = vals_list['session_id']
+        #     session = self.env['partner.sessions'].search([('client_id', '=', self.partner_id.id),
+        #                                                       ('session_id', '=', session_id)],limit=1)
+        #     if session:
+        # 
+        #             session.sudo().write({
+        #                 'invoice_id': self.id
+        #             })
 
 
         return rslt
