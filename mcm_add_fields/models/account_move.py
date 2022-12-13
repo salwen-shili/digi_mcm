@@ -1063,7 +1063,7 @@ class AccountMove(models.Model):
                                     [('numero_cpf', "=", externalId),
                                      ('state', "=", 'posted'),
                                      ('partner_id', "=", user.id)], limit=1)
-                                print('invoice', invoice.name, invoice.invoice_payments_widget)
+                                #print('invoice', invoice.name, invoice.invoice_payments_widget)
                                 if invoice:
                                     num = invoice.name
                                     invoice.module_id = user.module_id
