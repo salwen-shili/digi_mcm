@@ -4,7 +4,8 @@ from urllib import parse
 import requests
 
 from odoo import models, fields, api
-from odoo.tools import json
+from odoo.addons.test_convert.tests.test_env import odoo
+from odoo.tools import json, datetime
 
 import logging
 
@@ -73,3 +74,15 @@ class sms_sendinblue(models.TransientModel):
         _logger.info(self.content)
 
         _logger.info(response.text)
+        values = {
+            'record_name': self.current_user.name,
+            'model': 'res.partner',
+            'message_type': 'comment',
+            'subtype_id': self.current_user.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+            'res_id': self.current_user.id,
+            'author_id': self.current_user.env.user.partner_id.id,
+            'date': datetime.now(),
+            'subject': "📨📨 À  %s" % self.current_user.name,
+            'body':  self.content
+        }
+        self.current_user.env['mail.message'].sudo().create(values)
