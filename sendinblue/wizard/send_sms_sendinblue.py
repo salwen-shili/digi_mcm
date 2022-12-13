@@ -58,8 +58,8 @@ class sms_sendinblue(models.TransientModel):
         payload = {
             'type': "transactional",
             'unicodeEnabled': False,
-            'sender': "%s" %self.sender,
-            'recipient':  "%s" %self.recipient.replace(" ", ""),
+            'sender': "%s" % self.sender,
+            'recipient': "%s" % self.recipient.replace(" ", ""),
             'content': self.content
         }
         headers = {
@@ -73,16 +73,32 @@ class sms_sendinblue(models.TransientModel):
         _logger.info(self.recipient.replace(" ", ""))
         _logger.info(self.content)
 
+        note_tag = "<b>" + "📨📨 À :  " + self.current_user.name + " " "</b><br/>"
+        if (response.status_code == 200):
+            values = {
+                'record_name': self.current_user.name,
+                'model': 'res.partner',
+                'message_type': 'comment',
+                'subtype_id': self.current_user.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                'res_id': self.current_user.id,
+                'author_id': self.current_user.env.user.partner_id.id,
+                'date': datetime.now(),
+                'body': note_tag + "\n" + self.content
+            }
+            self.current_user.env['mail.message'].sudo().create(values)
+        else:
+            values = {
+                'record_name': self.current_user.name,
+                'model': 'res.partner',
+                'message_type': 'comment',
+                'subtype_id': self.current_user.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                'res_id': self.current_user.id,
+                'author_id': self.current_user.env.user.partner_id.id,
+                'date': datetime.now(),
+                'body': "Sms erreur" +response.text
+            }
+            self.current_user.env['mail.message'].sudo().create(values)
+
         _logger.info(response.text)
-        values = {
-            'record_name': self.current_user.name,
-            'model': 'res.partner',
-            'message_type': 'comment',
-            'subtype_id': self.current_user.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-            'res_id': self.current_user.id,
-            'author_id': self.current_user.env.user.partner_id.id,
-            'date': datetime.now(),
-            'subject': "📨📨 À  %s" % self.current_user.name,
-            'body':  self.content
-        }
-        self.current_user.env['mail.message'].sudo().create(values)
+        _logger.info(response.status_code)
+
