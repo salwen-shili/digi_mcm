@@ -63,7 +63,7 @@
                                     <ul id="progressbar" t-if="not name or not last_login" style="text-align: center;">
                                         <li class="active" id="account">
                                             <strong>Je crée mon compte
-</strong>
+                                            </strong>
                                         </li>
                                         <li id="personal">
                                             <strong>J'insère mes documents</strong>
@@ -130,7 +130,7 @@
 
                                     <div class="alert alert-danger" t-if="error" role="alert">
                                         <t t-esc="error"/>
-                                      
+
                                         <p>
                                             <a t-attf-href="/web/login?{{ keep_query() }}" class="btn btn-link"
                                                role="button">Connexion
@@ -143,47 +143,42 @@
                                     <style t-if="request.website.id == 1">
 
 
-                                                                    
-                                                                            
-                                                                                .rkmd-btn {
-                                                                                                                        
-                                                                                padding: 0 0.6rem !important;}
-                                                                    
+                                        .rkmd-btn {
 
-                                                                            
-                                    .tab {
-                                    display: none;
-                                    }
+                                        padding: 0 0.6rem !important;}
 
 
+                                        .tab {
+                                        display: none;
+                                        }
 
 
-                                    #prevBtn {
-                                    background-color: #bbbbbb;
-                                    }
+                                        #prevBtn {
+                                        background-color: #bbbbbb;
+                                        }
 
-                                    /* Make circles that indicate the steps of the form: */
-                                    .step {
-                                    height: 15px;
-                                    width: 15px;
-                                    margin: 0 2px;
-                                    background-color: #bbbbbb;
-                                    border: none;  
-                                    border-radius: 50%;
-                                    display: inline-block;
-                                    opacity: 0.5;
-                                    }
+                                        /* Make circles that indicate the steps of the form: */
+                                        .step {
+                                        height: 15px;
+                                        width: 15px;
+                                        margin: 0 2px;
+                                        background-color: #bbbbbb;
+                                        border: none;
+                                        border-radius: 50%;
+                                        display: inline-block;
+                                        opacity: 0.5;
+                                        }
 
-                                    .step.active {
-                                    opacity: 1;
-                                    }
+                                        .step.active {
+                                        opacity: 1;
+                                        }
 
-                                    /* Mark the steps that are finished and valid: */
-                                    .step.finish {
-                                    background-color: #04AA6D;
-                                    }
+                                        /* Mark the steps that are finished and valid: */
+                                        .step.finish {
+                                        background-color: #04AA6D;
+                                        }
                                     </style>
-                                    <fieldset class="tab" id="fields1" >
+                                    <fieldset class="tab" id="fields1">
                                         <div class="row" t-if="not login or not last_login">
                                             <div class="col-7">
                                                 <h2 class="fs-title mb16">Informations personnelles:</h2>
@@ -191,11 +186,12 @@
                                         </div>
 
                                         <!-- error-input-field -->
-                                        <div class="outlined-input-field bg-c  mb24" id="lastname_container" t-if="not name">
+                                        <div class="outlined-input-field bg-c  mb24" id="lastname_container"
+                                             t-if="not name">
                                             <input type="text" name="lastName" id="lastname" class="outlined-text-field"
                                                    autocomplete="off" t-att-value="lastName"
                                                    pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required"
-                                                   inputmode="latin-name" style="text-transform:uppercase" />
+                                                   inputmode="latin-name" style="text-transform:uppercase"/>
                                             <label for="lastname" style="font-size: 1rem; top: 1rem; padding: 0px;">Nom
                                                 *
                                             </label>
@@ -205,22 +201,25 @@
                                             </div>
 
                                         </div>
-                                    
 
-                                        <div class="outlined-input-field bg-c mb24" id="firstname_container" t-if="not name">
+
+                                        <div class="outlined-input-field bg-c mb24" id="firstname_container"
+                                             t-if="not name">
                                             <input type="text" id="firstname" name="firstname"
                                                    class="outlined-text-field" autocomplete="off"
                                                    t-att-value="firstname" pattern="[A-Z,a-z,À-ÿ '-]{2,}"
-                                                   required="required" inputmode="latin-name" style="text-transform:capitalize" />
+                                                   required="required" inputmode="latin-name"
+                                                   style="text-transform:capitalize"/>
                                             <label for="firstname">Prénom *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="firstname_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                       
 
-                                        <div class="outlined-input-field bg-c mb24" id="phone_container" t-if="not phone">
+
+                                        <div class="outlined-input-field bg-c mb24" id="phone_container"
+                                             t-if="not phone">
                                             <input type="text" id="phone" name="phone" class="outlined-text-field"
                                                    autocomplete="off" t-att-value="phone" maxlength="10"
                                                    pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric"/>
@@ -236,8 +235,8 @@
                                         </t> -->
                                         <div class="outlined-input-field bg-c mb24" id="phone_container" t-if="phone">
                                             <input type="hidden" id="firstname" t-att-value="firstname"/>
-                                            <input type="hidden" id="lastname" t-att-value="lastName" />
-                                     
+                                            <input type="hidden" id="lastname" t-att-value="lastName"/>
+
                                             <input type="text" id="phone" name="phone" class="outlined-text-field"
                                                    autocomplete="off" t-att-value="phone" maxlength="10"
                                                    pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric"
@@ -249,12 +248,13 @@
                                             <span>Vous ne pouvez pas modifier votre téléphone .</span>
 
                                         </div>
-                                       
 
-                                        <div class="outlined-input-field bg-c mb24" id="email_container" t-if="not name">
+
+                                        <div class="outlined-input-field bg-c mb24" id="email_container"
+                                             t-if="not name">
                                             <input type="email" id="email" class="outlined-text-field"
                                                    autocomplete="off" value="" required="required" inputmode="email"
-                                                   name="login" style="text-transform:lowercase" />
+                                                   name="login" style="text-transform:lowercase"/>
                                             <label for="email">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="email_helper">
@@ -266,14 +266,17 @@
                                                    autocomplete="off" t-att-value="login" required="required"
                                                    inputmode="email" name="login"
                                                    t-att-readonly="'readonly' if login else None"/>
-                                            <label for="email" style="top: -0.7rem;padding: 0.25rem; text-transform:lowercase">Email *</label>
+                                            <label for="email"
+                                                   style="top: -0.7rem;padding: 0.25rem; text-transform:lowercase">Email
+                                                *
+                                            </label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <span>Vous ne pouvez pas modifier votre email.</span>
 
 
                                         </div>
 
-                                      
+
                                         <div class="outlined-input-field bg-c mb24" id="confirm_email_container"
                                              t-if="not name">
                                             <input type="email" id="confirm_email" class="outlined-text-field"
@@ -285,22 +288,25 @@
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <div class="outlined-input-field bg-c mb24" id="confirm_email_container" t-if="name"
+                                        <div class="outlined-input-field bg-c mb24" id="confirm_email_container"
+                                             t-if="name"
                                              style="display:none">
                                             <input type="email" id="confirm_email" class="outlined-text-field"
                                                    name="confirm_email" autocomplete="off" t-att-value="login"
-                                                   required="required" inputmode="email" style="text-transform:lowercase"/>
+                                                   required="required" inputmode="email"
+                                                   style="text-transform:lowercase"/>
                                             <label for="confirm_email">Confirmer votre email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="confirm_email_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                      
+
                                         <!-- password signup-->
                                         <div class="outlined-input-field bg-c mb24" id="password_container">
                                             <input type="password" id="password" class="outlined-text-field"
-                                            maxlength="75" minlength="8" autocomplete="off" required="required" name="password"
+                                                   maxlength="75" minlength="8" autocomplete="off" required="required"
+                                                   name="password"
                                                    onfocus="showPasswordPopover()"/>
                                             <label for="password">Mot de passe *</label>
                                             <i class="toggle-password material-icons visibility " style="
@@ -387,7 +393,8 @@
                                                     <li class="">
                                                         <span class="checkpassword">
                                                             <i class="fa fa-check-circle fa-uncheck"></i>
-                                                             Votre mot de passe doit être différant de votre nom, prénom et adresse enail.
+                                                            Votre mot de passe doit être différant de votre nom, prénom
+                                                            et adresse enail.
                                                         </span>
                                                     </li>
                                                 </t>
@@ -396,11 +403,11 @@
                                         <!-- -->
                                         <br t-if="not name or not last_login"/>
                                         <br t-if="name"/>
-                                       
-                                    </fieldset>
-                                    
 
-                                    <fieldset id="fields2" class="tab"  t-if="not name or not last_login">
+                                    </fieldset>
+
+
+                                    <fieldset id="fields2" class="tab" t-if="not name or not last_login">
                                         <div class="row">
                                             <div class="col-7">
                                                 <h2 class="fs-title" style="margin-block-end: 19px">Votre adresse</h2>
@@ -420,7 +427,7 @@
                                                     <span></span>
                                                 </div>
                                             </div>
-                        
+
                                             <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container"
                                                  t-if="name">
                                                 <input type="text" id="zipcode" name="zip" class="outlined-text-field"
@@ -449,7 +456,7 @@
                                             </div>
                                             <div class="col-md-8 outlined-input-field bg-c" id="city_container"
                                                  aria-disabled="true" t-if="name">
-                        
+
                                                 <input class="outlined-text-field disabled" name="city" id="city"
                                                        t-att-value="city"/>
                                                 <label for="city"
@@ -463,8 +470,8 @@
                                             </div>
                                         </div>
                                         <br/>
-                        
-                        
+
+
                                         <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true"
                                              t-if="not name">
                                             <select class="outlined-text-field" name="voie" id="voie" disabled="true"
@@ -510,15 +517,15 @@
                                                 <span></span>
                                             </div>
                                         </div>
-                        
+
                                         <br/>
-                        
+
                                         <div class="outlined-input-field bg-c" id="nom_voie_container"
                                              aria-disabled="true" t-if="not nom_voie">
-                        
+
                                             <input type="text" name="nom_voie" id="nom_voie" class="outlined-text-field"
                                                    autocomplete="off" required="required"/>
-                        
+
                                             <label for="nom_voie">Nom de voie *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="nom_voie_helper">
@@ -537,7 +544,7 @@
                                             </div>
                                         </div>
                                         <br/>
-                        
+
                                         <div class="outlined-input-field bg-c" id="num_voie_container"
                                              t-if="not num_voie">
                                             <input type="text" id="num_voie" name="num_voie" class="outlined-text-field"
@@ -560,7 +567,7 @@
                                             </div>
                                         </div>
                                         <br/>
-                        
+
                                         <div class="outlined-input-field bg-c" id="comp_address_container"
                                              t-if="not street2">
                                             <input type="text" id="comp_address" name="street2"
@@ -594,7 +601,7 @@
                                         </label>
                                         <div class="outlined-input-field bg-c" id="question_signup_container"
                                              t-if="not question_signup">
-                        
+
                                             <select class="outlined-text-select" name="question_signup"
                                                     id="question_signup" required="required">
                                                 <option value="" disabled="disabled" selected="selected">Vous devez
@@ -609,14 +616,14 @@
                                                     ami/collègue/parent
                                                 </option>
                                             </select>
-                        
+
                                             <i class="material-icons error-icon"></i>
                                             <div class="helper-text bg-c" id="question_signup_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                        
-                        
+
+
                                         <br/>
                                         <!-- End question_signups-->
                                         <input type="hidden" name="redirect"
@@ -628,24 +635,23 @@
                                             >
                                           </label>
                                         </div> -->
-                        
+
                                         <!-- <input type="submit" value="Suivant" style=""/> -->
-                        
+
                                         <!-- <div class="mt-3" style="float: right">
                                           <button class="rkmd-btn btn-white ripple-effect ripple-yellow" id="button-submit" type="submit">
                                             Suivant<i class="fa fa-chevron-right"></i>
                                           </button>
                                         </div> -->
                                         <div class="text-center oe_login_buttons pt-5" style="margin-block-end: 3rem">
-                                            <a href="/web/login?" class="rkmd-btn green-shop ripple-effect ripple-yellow"
+                                            <a href="/web/login?"
+                                               class="rkmd-btn green-shop ripple-effect ripple-yellow"
                                                style="margin-right: 10px; display:none">
-                        
+
                                                 se connecter
                                             </a>
-                                           
-                        
-                                           
-                        
+
+
                                             <div class="o_login_auth" data-oe-model="ir.ui.view" data-oe-id="1730"
                                                  data-oe-field="arch"
                                                  data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/div[1]"></div>
@@ -669,102 +675,111 @@
                                         </button>
                                     </t>
                                     <t t-if="request.website.id == 2">
-                                       <div class="text-center mb24">
-                                        <button id="inscrire" type="submit" t-if="not name or not last_login"
-                                        class="rkmd-btn green-shop ripple-effect ripple-yellow" style="max-width: 250px;"
-                                        data-oe-model="ir.ui.view" data-oe-id="1730"
-                                        data-oe-field="arch"
-                                        data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
-                                    S'inscrire
-                                    <i class="material-icons right">send</i>
-                                </button>
-                                       </div>
+                                        <div class="text-center mb24">
+                                            <button id="inscrire" type="submit" t-if="not name or not last_login"
+                                                    class="rkmd-btn green-shop ripple-effect ripple-yellow"
+                                                    style="max-width: 250px;"
+                                                    data-oe-model="ir.ui.view" data-oe-id="1730"
+                                                    data-oe-field="arch"
+                                                    data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
+                                                S'inscrire
+                                                <i class="material-icons right">send</i>
+                                            </button>
+                                        </div>
                                         <button type="submit"
-                                                class="rkmd-btn btn-indigo ripple-effect ripple-yellow" style="width:200px;     place-self: center;"
+                                                class="rkmd-btn btn-indigo ripple-effect ripple-yellow"
+                                                style="width:200px;     place-self: center;"
                                                 t-if="last_login">
                                             Confirmer
                                         </button>
                                     </t>
                                     <div style="overflow:auto;">
                                         <div style="float:right;">
-                                          <t t-if="request.website.id == 1">
-                                            <button type="button" id="prevBtn" class="rkmd-btn btn-grey ripple-effect ripple-yellow" onclick="nextPrev(-1)"><i class="material-icons left">keyboard_arrow_left</i>Retour</button>
+                                            <t t-if="request.website.id == 1">
+                                                <button type="button" id="prevBtn"
+                                                        class="rkmd-btn btn-grey ripple-effect ripple-yellow"
+                                                        onclick="nextPrev(-1)"><i class="material-icons left">
+                                                    keyboard_arrow_left</i>Retour
+                                                </button>
 
-                                            <button type="button" class="rkmd-btn green-shop ripple-effect ripple-yellow" 
-                                            t-if="not name or not last_login" id="nextBtn" onclick="nextPrev(1)">Suivant  <i class="material-icons right">send</i></button>
+                                                <button type="button"
+                                                        class="rkmd-btn green-shop ripple-effect ripple-yellow"
+                                                        t-if="not name or not last_login" id="nextBtn"
+                                                        onclick="nextPrev(1)">Suivant
+                                                    <i class="material-icons right">send</i>
+                                                </button>
 
-                                          </t>
-                                          <!-- <t t-if="request.website.id == 2">
-                                            <button type="button" class="rkmd-btn green-shop ripple-effect ripple-yellow" t-if="not name or not last_login" id="nextBtn" onclick="nextPrev(1)">Suivant<i class="material-icons right">keyboard_arrow_right</i></button>
-                                          </t> -->
+                                            </t>
+                                            <!-- <t t-if="request.website.id == 2">
+                                              <button type="button" class="rkmd-btn green-shop ripple-effect ripple-yellow" t-if="not name or not last_login" id="nextBtn" onclick="nextPrev(1)">Suivant<i class="material-icons right">keyboard_arrow_right</i></button>
+                                            </t> -->
                                         </div>
-                                      </div>
-                                      <!-- Les points en bas du wizard -steps-->
-                                      <div style="text-align:center;margin-top:40px;" t-if="request.website.id == 1" >
+                                    </div>
+                                    <!-- Les points en bas du wizard -steps-->
+                                    <div style="text-align:center;margin-top:40px;" t-if="request.website.id == 1">
                                         <span class="step"></span>
                                         <span class="step"></span>
-                             
-                                      </div>
-                                                    <script t-if="name">
-                                                        $(`#zipcode`).animate(
-                                                        {
-                                                        fontSize: "0.8rem",
-                                                        top: "-0.7rem",
-                                                        padding: "0.25rem",
-                                                        },
-                                                        80
-                                                        );
-                                                        $(`#city`).animate(
-                                                        {
-                                                        fontSize: "0.8rem",
-                                                        top: "-0.7rem",
-                                                        padding: "0.25rem",
-                                                        },
-                                                        80
-                                                        );
-                                                        if (('#voie').val){
-                                                        $(`#voie`).animate(
-                                                        {
-                                                        fontSize: "0.8rem",
-                                                        top: "-0.7rem",
-                                                        padding: "0.25rem",
-                                                        },
-                                                        80
-                                                        );
-                                                        }
-                                                        $(`#nom_voie`).animate(
-                                                        {
-                                                        fontSize: "0.8rem",
-                                                        top: "-0.7rem",
-                                                        padding: "0.25rem",
-                                                        },
-                                                        80
-                                                        );
-                                                        $(`#num_voie`).animate(
-                                                        {
-                                                        fontSize: "0.8rem",
-                                                        top: "-0.7rem",
-                                                        padding: "0.25rem",
-                                                        },
-                                                        80
-                                                        );
-                                                        $(`#comp_address`).animate(
-                                                        {
-                                                        fontSize: "0.8rem",
-                                                        top: "-0.7rem",
-                                                        padding: "0.25rem",
-                                                        },
-                                                        80
-                                                        );
-                        
-                                                    </script>
+
+                                    </div>
+                                    <script t-if="name">
+                                        $(`#zipcode`).animate(
+                                        {
+                                        fontSize: "0.8rem",
+                                        top: "-0.7rem",
+                                        padding: "0.25rem",
+                                        },
+                                        80
+                                        );
+                                        $(`#city`).animate(
+                                        {
+                                        fontSize: "0.8rem",
+                                        top: "-0.7rem",
+                                        padding: "0.25rem",
+                                        },
+                                        80
+                                        );
+                                        if (('#voie').val){
+                                        $(`#voie`).animate(
+                                        {
+                                        fontSize: "0.8rem",
+                                        top: "-0.7rem",
+                                        padding: "0.25rem",
+                                        },
+                                        80
+                                        );
+                                        }
+                                        $(`#nom_voie`).animate(
+                                        {
+                                        fontSize: "0.8rem",
+                                        top: "-0.7rem",
+                                        padding: "0.25rem",
+                                        },
+                                        80
+                                        );
+                                        $(`#num_voie`).animate(
+                                        {
+                                        fontSize: "0.8rem",
+                                        top: "-0.7rem",
+                                        padding: "0.25rem",
+                                        },
+                                        80
+                                        );
+                                        $(`#comp_address`).animate(
+                                        {
+                                        fontSize: "0.8rem",
+                                        top: "-0.7rem",
+                                        padding: "0.25rem",
+                                        },
+                                        80
+                                        );
+
+                                    </script>
                                 </div>
                             </div>
                         </div>
                     </div>
-                
-                   
-                
+
+
                 </div>
                 <script t-if="name">
                     $(`#email`).animate(
@@ -786,26 +801,25 @@
 
                 </script>
                 <!-- Address Form -->
-              
+
                 <script defer="defer" type="text/javascript"
                         src="/fl_auth_signup/static/js/jquery.min.js"/>
 
 
                 <!-- <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/register_form.js" /> -->
-<!-- 
+                <!--
 
-                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.min.js"/> -->
-               
+                                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.min.js"/> -->
+
                 <script defer="defer" type="text/javascript"
                         src="/fl_auth_signup/static/js/validate_inscription_reset.js"
                         t-if="request.website.id == 2"/>
-        
+
                 <script defer="defer" type="text/javascript"
                         src="/fl_auth_signup/static/js/validate_inscription_reset_MCM.js"
                         t-if="request.website.id == 1"/>
-                        
+
                 <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.min.js"/>
-                
 
 
             </xpath>
@@ -899,32 +913,33 @@
                                     <t t-esc="error"/>
                                     
                                 </p> -->
-                                <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet" />
-                                    <link href="/fl_auth_signup/static/css/style.css" rel="stylesheet"/>
+                                <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet"/>
+                                <link href="/fl_auth_signup/static/css/style.css" rel="stylesheet"/>
 
-                                        <!-- Custom stlylesheet -->
-                                        <t t-if="error" role="alert">
-                                        <div id="notfound">
-                                            <div class="notfound">
-                                                <div class="notfound-404"></div>
-                                                <h1>OOPS! PAGE INTROUVABLE</h1>
-                                                <h2>Une erreur s'est produite</h2>
-                                                <p  >
-                                                    <spean t-esc="error" style="  margin-top:10px;  color: #bb2f2f;
-                                                    font-weight: 600;"/>   
-                                                </p>                                           
-                                                <div class="d-flex justify-content-between align-items-center small mt-2 mb16">
-                                                    <a style="font-size: 16px; color: #5850ec; text-decoration: underline !important;"
-                                                       t-if="not token" t-attf-href="/web/login?{{ keep_query() }}">Revenir à
-                                                        l’écran de connexion
-                                                    </a>
-                                                    <a style="font-size: 16px; color: #5850ec; text-decoration: underline !important;"
-                                                       t-if="invalid_token" href="/web/login">Revenir à l’écran de connexion
-                                                    </a>
-                                                </div>
+                                <!-- Custom stlylesheet -->
+                                <t t-if="error" role="alert">
+                                    <div id="notfound">
+                                        <div class="notfound">
+                                            <div class="notfound-404"></div>
+                                            <h1>OOPS! PAGE INTROUVABLE</h1>
+                                            <h2>Une erreur s'est produite</h2>
+                                            <p>
+                                                <spean t-esc="error" style="  margin-top:10px;  color: #bb2f2f;
+                                                    font-weight: 600;"/>
+                                            </p>
+                                            <div class="d-flex justify-content-between align-items-center small mt-2 mb16">
+                                                <a style="font-size: 16px; color: #5850ec; text-decoration: underline !important;"
+                                                   t-if="not token" t-attf-href="/web/login?{{ keep_query() }}">Revenir
+                                                    à
+                                                    l’écran de connexion
+                                                </a>
+                                                <a style="font-size: 16px; color: #5850ec; text-decoration: underline !important;"
+                                                   t-if="invalid_token" href="/web/login">Revenir à l’écran de connexion
+                                                </a>
                                             </div>
                                         </div>
-                                    </t>
+                                    </div>
+                                </t>
                                 <input type="hidden" name="redirect" t-att-value="redirect"/>
                                 <input type="hidden" name="token" t-att-value="token"/>
                                 <div class="clearfix oe_login_buttons">
@@ -982,8 +997,8 @@
 
                     <p class="alert alert-danger" t-if="error" role="alert" style="display:none !important">
                         <t t-esc="error"/>
-                        
-                        
+
+
                     </p>
                     <!--          <input type="hidden" name="redirect" t-att-value="'/charger_mes_documents'"/>-->
                     <input name="token" t-att-value="token" type="hidden"/>
@@ -1103,17 +1118,18 @@
                                 <div class="form-group field-password">
                                     <label for="password">Mot de passe</label>
 
-                                    <input type="password" maxlength="75" minlength="8"  placeholder="Password" name="password" id="password"
+                                    <input type="password" maxlength="75" minlength="8" placeholder="Password"
+                                           name="password" id="password"
                                            t-attf-class="form-control #{'form-control-sm' if form_small else ''}"
                                            required="required" autocomplete="current-password"
-                                           t-att-autofocus="'autofocus' if login else None" />
+                                           t-att-autofocus="'autofocus' if login else None"/>
 
                                 </div>
 
                                 <p class="alert alert-danger" t-if="error" role="alert">
                                     <t t-esc="error"/>
-                                  
-                                    
+
+
                                 </p>
                                 <p class="alert alert-success" t-if="message" role="status">
                                     <t t-esc="message"/>
@@ -1160,6 +1176,155 @@
 
 
             </xpath>
+        </template>
+        <template id="fl_auth_signup.custom_reset_password" name="Custom reset password">
+            <t t-call="web.login_layout">
+                <!--                <div t-if="message">-->
+                <!--                    <p class="alert alert-success" t-if="message" role="status">-->
+                <!--                        <t t-esc="message"/>-->
+                <!--                    </p>-->
+                <!--                    <a href="/web/login" class="btn btn-link float-right" role="button">Back to Login</a>-->
+                <!--                </div>-->
+
+                <form class="oe_reset_password_form" role="form" method="post" t-if="not message">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                    <!--                    <t t-if="token and not invalid_token">-->
+                    <!--                        <t t-call="auth_signup.fields">-->
+                    <!--                            <t t-set="only_passwords" t-value="1"/>-->
+                    <!--                        </t>-->
+                    <!--                    </t>-->
+                    <script defer="defer" type="text/javascript"
+                            src="/fl_auth_signup/static/js/validate_inscription_reset.js"
+                            t-if="request.website.id == 2"/>
+
+                    <script defer="defer" type="text/javascript"
+                            src="/fl_auth_signup/static/js/validate_inscription_reset_MCM.js"
+                            t-if="request.website.id == 1"/>
+                    <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.min.js"/>
+                    <div class="outlined-input-field bg-c mb24" id="password_container">
+                        <input type="password" id="password" class="outlined-text-field"
+                               maxlength="75" minlength="8" autocomplete="off" required="required"
+                               name="password"
+                               onfocus="showPasswordPopover()"/>
+                        <label for="password">Mot de passe *</label>
+                        <i class="toggle-password material-icons visibility " style="
+                                                display: initial;
+                                                position: absolute;
+                                                top: 1rem;
+                                                right: 1rem;
+                                                cursor:pointer;
+                                            ">visibility
+                        </i>
+                        <div class="helper-text bg-c" id="password_helper">
+                            <span></span>
+                        </div>
+
+
+                    </div>
+                    <!-- -->
+                    <div id="popover-password" class="hide">
+                        <div class="" style="
+                                                                clear: both;
+                                                                overflow: hidden;
+                                                                margin-block-start:10px;
+                                                            ">
+                            <div class="" style="
+                                                                                    float: left;
+                                                                                    font-weight: bold;
+                                                                                    width: 35%;
+                                                                                ">
+                                <div class="nivTxt">
+                                    Sécurité
+                                    <span class="nivLevel niv-level-1">faible</span>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="progress" style="
+                                                                margin-top: 5px;
+
+                                                                float: right;
+
+                                                                width: 50%;
+                                                            ">
+                                    <div id="password-strength" class="" role="progressbar"
+                                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                         style="width: 10%;display: block;height: 100%;border-radius: 5px;/* width: 0%; */"></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <div style="color: #000000d6; margin: 5px 0;">
+                            Pour votre sécurité, utilisez un mot de passe contenant :
+                        </div>
+                        <ul class="list-unstyled">
+                            <li class="">
+                                <span class="eight-character">
+                                    <i class="fa fa-check-circle fa-uncheck"></i>
+                                    Au minimum 8 caractères
+                                </span>
+                            </li>
+                            <li class="">
+                                <span class="low-upper-case">
+                                    <i class="fa fa-check-circle fa-uncheck"></i>
+                                    1 lettre minuscule et 1 lettre majuscule
+                                </span>
+                            </li>
+                            <li class="">
+                                <span class="one-number">
+                                    <i class="fa fa-check-circle fa-uncheck"></i>
+                                    1 chiffre (0-9)
+                                </span>
+                            </li>
+                            <t t-if="request.website.id == 1">
+                                <li class="">
+                                    <span class="one-special-char">
+                                        <i class="fa fa-check-circle fa-uncheck"></i>
+                                        Un caractère spécial (!@#$%^*)
+                                    </span>
+                                </li>
+                            </t>
+
+                            <t t-if="request.website.id == 1">
+                                <li class="">
+                                    <span class="checkpassword">
+                                        <i class="fa fa-check-circle fa-uncheck"></i>
+                                        Votre mot de passe doit être différant de votre nom, prénom
+                                        et adresse enail.
+                                    </span>
+                                </li>
+                            </t>
+                        </ul>
+                    </div>
+                    <t t-set="only_passwords" t-value="1"/>
+
+                    <!--                    <t t-if="not token">-->
+                    <!--                        <div class="form-group field-login">-->
+                    <!--                            <label for="login" class="col-form-label">Your Email</label>-->
+                    <!--                            <input type="text" name="login" t-att-value="login" id="login" class="form-control" autofocus="autofocus" required="required" autocapitalize="off"/>-->
+                    <!--                        </div>-->
+                    <!--                    </t>-->
+
+                    <!--                    <p class="alert alert-danger" t-if="error" role="alert">-->
+                    <!--                        <t t-esc="error"/>-->
+                    <!--                    </p>-->
+                    <!--                    <input type="hidden" name="redirect" t-att-value="redirect"/>-->
+                    <!--                    <input type="hidden" name="token" t-att-value="token"/>-->
+                    <!--                    <div class="clearfix oe_login_buttons">-->
+                    <!--                        <div class="d-flex justify-content-between align-items-center small">-->
+                    <!--                            <button type="submit" class="btn btn-primary btn-sm">Confirm</button>-->
+                    <!--                            <a t-if="not token" t-attf-href="/web/login?{{ keep_query() }}">Back to Login</a>-->
+                    <!--                            <a t-if="invalid_token" href="/web/login">Back to Login</a>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="o_login_auth"/>-->
+                    <!--                    </div>-->
+
+                </form>
+
+            </t>
         </template>
     </data>
 </odoo>
