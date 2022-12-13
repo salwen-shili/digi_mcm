@@ -24,7 +24,7 @@
             </form>
         </field>
     </record>
-    <act_window name="send_sms sendonblueee"
+    <act_window name="Send SMS Via Sendinblue"
                 res_model="sendinblue.sendinbluesms"
                 binding_model="res.partner"
                 view_mode="form"
@@ -32,7 +32,7 @@
                 target="new"
                 id="sendinblue_sms-form"
     />
-    <act_window name="send_sms sendonblueee"
+    <act_window name="Send SMS Via Sendinblue"
                 res_model="sendinblue.sendinbluesms"
                 binding_model="res.partner"
                 view_mode="form"

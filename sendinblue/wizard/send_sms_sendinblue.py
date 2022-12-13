@@ -51,7 +51,11 @@ class sms_sendinblue(models.TransientModel):
     sender = fields.Char(string="Sender", default=get_sneder)
 
     def sendsms(self):
+
         _logger.info("sendinblue sms")
+        api_key = self.env['sendinblue.accounts'].sudo().search([('api_key','!=',False)])
+        _logger.info(api_key.api_key)
+
 
         url = "https://api.sendinblue.com/v3/transactionalSMS/sms"
 
@@ -65,7 +69,7 @@ class sms_sendinblue(models.TransientModel):
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
-            "api-key": "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"
+            "api-key":   api_key.api_key
         }
 
         response = requests.post(url, json=payload, headers=headers)
@@ -95,10 +99,9 @@ class sms_sendinblue(models.TransientModel):
                 'res_id': self.current_user.id,
                 'author_id': self.current_user.env.user.partner_id.id,
                 'date': datetime.now(),
-                'body': "Sms erreur" +response.text
+                'body': "Sms erreur" + response.text
             }
             self.current_user.env['mail.message'].sudo().create(values)
 
         _logger.info(response.text)
         _logger.info(response.status_code)
-
