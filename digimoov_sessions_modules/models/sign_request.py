@@ -138,50 +138,65 @@ class InheritMcmacademySession(models.Model):
 
     def send_cerfa_to_sign(self, subject=None, message=None):
         """ 1- Génèrer un rapport cerfa
-            2- Ajouter template dans module signature"""
+            2- Ajouter template dans module signature
+            3- """
 
         partner = self.env['res.partner'].sudo().search(
-            [('email', '=', 'tmejri@digimoov.fr')], limit=1)
-        # for client in self.client_ids:
-        if partner:
-            # Attach cerfa report to partner
-            content, content_type = self.env.ref('partner_exam.report_cerfa').render_qweb_pdf(
-                partner.id)
-            cerfa = self.env['ir.attachment'].create({
-                'name': "Takwa cerfa 2022 Test 1",
-                'type': 'binary',
-                'datas': base64.encodestring(content),
-                'res_model': partner._name,
-                'res_id': partner.id
-            })
-            _logger.info('----send_cerfa_to_sign ---- %s' % cerfa)
-            template = self.env['sign.template'].create({
-                'name': "Cerfa Test with signature 2",
-                'redirect_url': str("https://form.jotform.com/222334146537352"),
-                'attachment_id': cerfa.id,
-                'datas': cerfa.datas,
-                'sign_item_ids': False
-            })
-            _logger.info('----Create_template_to_sign ---- %s' % template)
-            sign_item_role_id = self.env['sign.item.role'].sudo().search(
-                [('name', '=', "Client")], limit=1).id
-            sign_item_type_id = self.env['sign.item.type'].sudo().search(
-                [('name', '=', "Signature")], limit=1).id
-            signature = self.env['sign.item'].create({
-                'type_id': sign_item_type_id,
-                'required': True,
-                'responsible_id': sign_item_role_id,
-                'template_id': template.id,
-                'page': 3,
-                'posX': float(0.210),
-                'posY': float(0.609),
-                'width': float(0.200),
-                'height': float(0.050),
-            })
-            # Update un champ required (template_id) apres la creation de sign.item
-            # pour remplir le champ sign_item_ids dans la classe sign.template
-            template.sign_item_ids == signature.id
-            self.env['sign.request.item'].send_signature_accesses(subject, message)
+            [('email', '=', 'tmejri@digimoov.fr'), ('email', '=', 'houssemrando@gmail.com')], limit=1)
+        for client in partner:
+            if client:
+                # Attach cerfa report to partner
+                content, content_type = self.env.ref('partner_exam.report_cerfa').render_qweb_pdf(
+                    client.id)
+                cerfa = self.env['ir.attachment'].sudo().create({
+                    'name': client.name,
+                    'type': 'binary',
+                    'datas': base64.encodestring(content),
+                    'res_model': partner._name,
+                    'res_id': client.id
+                })
+                _logger.info('----send_cerfa_to_sign ---- %s' % cerfa)
+                template = self.env['sign.template'].sudo().create({
+                    'name': client.name,
+                    'redirect_url': str("https://form.jotform.com/222334146537352"),
+                    'attachment_id': cerfa.id,
+                    'datas': cerfa.datas,
+                    'sign_item_ids': False
+                })
+                _logger.info('----Create_template_to_sign ---- %s' % template)
+                sign_item_role_id = self.env['sign.item.role'].sudo().search(
+                    [('name', '=', "Client")], limit=1).id
+                sign_item_type_id = self.env['sign.item.type'].sudo().search(
+                    [('name', '=', "Signature")], limit=1).id
+                signature = self.env['sign.item'].sudo().create({
+                    'type_id': sign_item_type_id,
+                    'required': True,
+                    'responsible_id': sign_item_role_id,
+                    'template_id': template.id,
+                    'page': 3,
+                    'posX': float(0.210),
+                    'posY': float(0.609),
+                    'width': float(0.200),
+                    'height': float(0.050),
+                })
+                # Update un champ required (template_id) apres la creation de sign.item
+                # pour remplir le champ sign_item_ids dans la classe sign.template
+
+                sign_request = self.env['sign.request'].sudo().create({'reference': template.name,
+                                                                       'template_id': template.id,
+                                                                       'state': 'sent'})
+                sign_request_item = self.env['sign.request.item'].sudo().create({'partner_id': client.id,
+                                                                                 'role_id': sign_item_role_id,
+                                                                                 'signer_email': client.email,
+                                                                                 'signing_date': False,
+                                                                                 'sign_request_id': sign_request.id,
+                                                                                 'state': 'sent',})
+                sign_request_item.sudo().send_signature_accesses(subject=template.name, message=None)
+
+                res = sign_request
+                request = sign_request.browse(res['id'])
+                _logger.info('----request to_sign ---- %s' % sign_request_item.access_token)
+                request.go_to_document()
 
 
 class InheritSignRequestItem(models.Model):
