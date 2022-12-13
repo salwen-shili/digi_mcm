@@ -16,8 +16,11 @@ class sms_sendinblue(models.TransientModel):
     _name = 'sendinblue.sendinbluesms'
     _description = "Sendinblue"
 
-    recipient = fields.Char(string="Recipient")
-    content = fields.Text(string="Body")
+    def get_user_phone(self):
+        user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
+        return user_phone_number.phone
+
+    content = fields.Text(string="content")
     type = fields.Selection([('marketing', 'Marketing'),
                              ('transactional', ' Transactional'),
                              ])
@@ -27,15 +30,14 @@ class sms_sendinblue(models.TransientModel):
     sanitized_numbers = fields.Char('Sanitized Number', compute='_compute_sanitized_numbers', compute_sudo=False)
 
     def get_user_phone(self):
-        user_phone = self.env['res.partner'].browse(self.env.context.get('active_ids'))
-        return user_phone.phone
+        user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
+        return user_phone_number.phone
 
-    numbers = fields.Integer('Recipients (Numbers)', default=get_user_phone)
+    recipient = fields.Char('Recipients (Numbers)', default=get_user_phone)
 
     def get_user_id(self):
-        user_phone = self.env['res.partner'].browse(self.env.context.get('active_ids'))
-
-        return user_phone
+        current_user = self.env['res.partner'].browse(self.env.context.get('active_ids'))
+        return current_user
 
     current_user = fields.Many2one('res.partner', 'Current User', default=get_user_id)
 
@@ -43,23 +45,31 @@ class sms_sendinblue(models.TransientModel):
         sender_name = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         return sender_name.company_id.name
 
-    sender = fields.Char(string="Sender", default= get_sneder)
+    sender = fields.Char(string="Sender", default=get_sneder)
+
+    sender = fields.Char(string="Sender", default=get_sneder)
 
     def sendsms(self):
         _logger.info("sendinblue sms")
-        url = "https://api.sendinblue.com/v3/transactionalSMS/sms"
-        payload = {
-            "type": "marketing",
-            "unicodeEnabled": False,
 
-            "content": "test api sendinblue"
+        url = "https://api.sendinblue.com/v3/transactionalSMS/sms"
+
+        payload = {
+            'type': "transactional",
+            'unicodeEnabled': False,
+            'sender': "%s" %self.sender,
+            'recipient':  "%s" %self.recipient.replace(" ", ""),
+            'content': self.content
         }
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
-            "api-key": "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"
+            "api-key": "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"
         }
 
         response = requests.post(url, json=payload, headers=headers)
+        _logger.info(self.sender)
+        _logger.info(self.recipient.replace(" ", ""))
+        _logger.info(self.content)
 
         _logger.info(response.text)
