@@ -104,7 +104,11 @@ class MailMail(models.Model):
                 headers = {}
                 ICP = self.env['ir.config_parameter'].sudo()
                 bounce_alias = ICP.get_param("mail.bounce.alias")
-                catchall_domain = ICP.get_param("mail.catchall.domain")
+                try:
+                    catchall_domain = ICP.get_param("mail.catchall.domain")
+                except Exception as e:
+                    catchall_domain = False
+                    _logger.exception("Exception get_param mail catchall domain %s" %(str(e)))
                 if bounce_alias and catchall_domain:
                     if mail.mail_message_id.is_thread_message():
                         headers['Return-Path'] = '%s+%d-%s-%d@%s' % (bounce_alias, mail.id, mail.model, mail.res_id, catchall_domain)

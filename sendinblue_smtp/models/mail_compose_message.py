@@ -58,6 +58,8 @@ class MailComposeMessage(models.TransientModel):
                 existing_list.report_template = report_template if report_template else False
                 existing_list.auto_delete = True if report_template else False
                 existing_list.report_name = "Invoice_${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}" if report_template else False
+            if existing_list and existing_list.model_id.name == "res.partner":
+                existing_list.partner_to = "${object.id}"
         return True
 
     def sb_import_templates(self, account=False):
