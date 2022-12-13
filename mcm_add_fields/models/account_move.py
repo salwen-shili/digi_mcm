@@ -967,7 +967,6 @@ class AccountMove(models.Model):
         companies = self.env['res.company'].sudo().search([])
         if companies:
             for company in companies:
-                i= 1
                 api_key = company.wedof_api_key
 
                 params_wedof = (
@@ -978,7 +977,6 @@ class AccountMove(models.Model):
                     ('certificationState', 'all'),
                     ('sort', 'lastUpdate'),
                     ('limit', '150'),
-                    ('page', 1),
     
 
                 )
@@ -990,7 +988,6 @@ class AccountMove(models.Model):
                 response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
                                         params=params_wedof)
                 registrations = response.json()
-                i=i+1
                 for dossier in registrations:
                     billnumero = dossier['billNumber']
                     billnumero = billnumero[:6] + "-" + billnumero[6:]
@@ -1003,7 +1000,8 @@ class AccountMove(models.Model):
                     updatedate = datetime.strptime(billedDate, '%Y-%m-%dT%H:%M:%S.%fz')
                     dateform = updatedate.date()
                     _logger.info("last update %s" % str(date_to_compare))
-
+                    date_invoice_str = "07/12/2022"
+                    date_to_invoice = datetime.strptime(date_invoice_str, '%d/%m/%Y')
                     if dateform == date_to_compare:
                         _logger.info("if date")
                         externalId = dossier['externalId']
@@ -1052,8 +1050,8 @@ class AccountMove(models.Model):
                             _logger.info("userrrr******** %s" % user.numero_cpf)
                             module_id = self.env['mcmacademy.module'].sudo().search(
                                 [('company_id', "=", 2), ('session_ville_id', "=", user.session_ville_id.id),
-                                 ('date_exam', "=", user.date_examen_edof), ('product_id', "=", product_id.id),
-                                 ('session_id.number_places_available', '>', 0)], limit=1)
+                                 ('date_exam', "=", user.date_examen_edof), ('product_id', "=", product_id.id)
+                                 ], limit=1)
                             _logger.info('before if modulee %s' % str(module_id.name))
                             if module_id:
                                 _logger.info('if modulee %s' % str(module_id))
@@ -1065,15 +1063,18 @@ class AccountMove(models.Model):
                                     [('numero_cpf', "=", externalId),
                                      ('state', "=", 'posted'),
                                      ('partner_id', "=", user.id)], limit=1)
-                                print('invoice', invoice.name, invoice.invoice_payments_widget)
+                                #print('invoice', invoice.name, invoice.invoice_payments_widget)
                                 if invoice:
                                     num = invoice.name
                                     invoice.module_id = user.module_id
+                                    invoice.billed_cpf=True
+                                    invoice.invoice_date=date_to_invoice
                                     _logger.info('if invoice******** %s ' % str(invoice.module_id.name))
                                     _logger.info('if invoice******** %s ' % str(invoice.name))
                                     bill_num = num.replace('FA', '')
                                     bill_num = bill_num.replace('-', '')
                                     bill = invoice
+
                                 if not invoice:
                                     _logger.info('if  not invoice digi %s')
                                     so = self.env['sale.order'].sudo().create({
@@ -1130,6 +1131,8 @@ class AccountMove(models.Model):
                                             # move.cpf_invoice = True
                                             move.methodes_payment = 'cpf'
                                             move.sudo().write({'name': billnumero})
+                                            move.invoice_date=date_to_invoice
+                                            move.billed_cpf=True
                                             _logger.info("name invoice %s" % str(move.name))
                                             move.post()
                                             num = move.name
