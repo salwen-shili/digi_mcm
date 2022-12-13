@@ -7,8 +7,7 @@
             <form string="Envoyer un SMS" modifiers="{}">
                 <sheet modifiers="{}">
                     <group modifiers="{}">
-                        <field name="partner_ids" context="{'default_partner_ids':partner_ids}" />
-                         <field name="sender"/>
+                          <field name="sender"/>
                          <field name="current_user"/>
                         <field name="recipient"   context="{'default_partner_ids':partner_ids.phone}"
                         />
