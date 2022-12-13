@@ -23,28 +23,16 @@ class sms_sendinblue(models.TransientModel):
                              ('transactional', ' Transactional'),
                              ])
     # recipients
-    recipient_description = fields.Text('Recipients (Partners)', compute='_compute_recipients', compute_sudo=False)
-    recipient_count = fields.Integer('# Valid recipients', compute='_compute_recipients', compute_sudo=False)
-    recipient_invalid_count = fields.Integer('# Invalid recipients', compute='_compute_recipients', compute_sudo=False)
-    number_field_name = fields.Char(string='Field holding number')
-    partner_ids = fields.Many2many('res.partner')
+    partner_ids = fields.Many2one('res.users','Current User', default=lambda self: self.env.uid)
+
+    company_ids = fields.Many2many('res.company')
     numbers = fields.Char('Recipients (Numbers)')
     sanitized_numbers = fields.Char('Sanitized Number', compute='_compute_sanitized_numbers', compute_sudo=False)
 
-    @api.depends('partner_ids',
-                 'number_field_name', 'sanitized_numbers')
-    def _compute_recipients(self):
-        self.recipient_description = False
-        self.recipient_count = 0
-        self.recipient_invalid_count = 0
+    def get_user_id(record):
+        return record.env.uid
 
-        if self.partner_ids:
-            if len(self.partner_ids) == 1:
-                self.recipient_description = '%s (%s)' % (self.partner_ids[0].display_name,
-                                                          self.partner_ids[0].mobile or self.partner_ids[0].phone or _(
-                                                              'Missing number'))
-            self.recipient_count = len(self.partner_ids)
-
+    current_user = fields.Many2one('res.users', 'Current User', default= get_user_id)
 
     def sendsms(self):
 
