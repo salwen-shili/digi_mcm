@@ -31,6 +31,7 @@ class sms_sendinblue(models.TransientModel):
     sanitized_numbers = fields.Char('Sanitized Number', compute='_compute_sanitized_numbers', compute_sudo=False)
 
     def get_user_phone(self):
+
         user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         return user_phone_number.phone
 
