@@ -172,23 +172,17 @@ class AuthSignupHome(AuthSignupHome):
                 _logger.exception('error when resetting password')
             except Exception as e:
                 qcontext['error'] = str(e)
-
-        print(
-            '--------------------------------------------------------------------------------------------------------------------------------')
-        print(
-            '--------------------------------------------------------------------------------------------------------------------------------')
-        print('qcontext', qcontext)
-        print(
-            '--------------------------------------------------------------------------------------------------------------------------------')
-        print(
-            '--------------------------------------------------------------------------------------------------------------------------------')
-        if 'error' not in qcontext and 'token' in qcontext:
-            user = request.env['res.users'].sudo().search([('signup_token', "=", qcontext.get('token'))])
-            if user and user.state == 'active':
-                print('useeeeeeeeeeer and userrrrrrr active')
-                response = request.render('fl_auth_signup.custom_reset_password', qcontext)
-            else:
-                print('useeeeeeeeeeer and userrrrrrr jamais')
-                response = request.render('auth_signup.reset_password', qcontext)
+        if 'error' not in qcontext and 'token' in qcontext: #check if no error in reset password qcontext
+            user = request.env['res.users'].sudo().search([('signup_token', "=", qcontext.get('token'))]) #search user using token param
+            if user and user.state == 'active': #check state of user ( active)
+                response = request.render('fl_auth_signup.custom_reset_password', qcontext) # pass qcontext to custom reset password view
+                response.headers['X-Frame-Options'] = 'DENY'
+                return response
+            else: # user state new
+                response = request.render('auth_signup.reset_password', qcontext) # pass qcontext to default reset password view
+                response.headers['X-Frame-Options'] = 'DENY'
+                return response
+        response = request.render('auth_signup.reset_password', qcontext)
         response.headers['X-Frame-Options'] = 'DENY'
         return response
+            
