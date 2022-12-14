@@ -137,12 +137,13 @@ class InheritMcmacademySession(models.Model):
     _inherit = "mcmacademy.session"
 
     def send_cerfa_to_sign(self, subject=None, message=None):
-        """ 1- Génèrer un rapport cerfa
+        """ 1- Générer un rapport cerfa
             2- Ajouter template dans module signature
-            3- """
-
+            3- Envoyer une demande de signature aux clients gagnés """
         partner = self.env['res.partner'].sudo().search(
-            [('email', '=', 'tmejri@digimoov.fr'), ('email', '=', 'houssemrando@gmail.com')], limit=1)
+            [('email', 'in', ['tmejri@digimoov.fr', 'houssemrando@gmail.com'])])
+        folder_exist = self.env['documents.folder'].sudo().search(
+            [('name', '=', "CERFA")]).id
         for client in partner:
             if client:
                 # Attach cerfa report to partner
@@ -156,14 +157,37 @@ class InheritMcmacademySession(models.Model):
                     'res_id': client.id
                 })
                 _logger.info('----send_cerfa_to_sign ---- %s' % cerfa)
+                # Creation de template dans sign.template module signature
+                template_name = 'CERFA- %s - %s - %s' % (
+                    client.display_name, client.mcm_session_id.session_ville_id.display_name,
+                    client.mcm_session_id.date_exam.strftime(
+                        '%d/%m/%Y'))
                 template = self.env['sign.template'].sudo().create({
-                    'name': client.name,
+                    'name': template_name,
                     'redirect_url': str("https://form.jotform.com/222334146537352"),
                     'attachment_id': cerfa.id,
                     'datas': cerfa.datas,
                     'sign_item_ids': False
                 })
-                _logger.info('----Create_template_to_sign ---- %s' % template)
+                # Create a folder with date exam if not exist in document module to save signed document
+                if folder_exist:
+                    folder_name = template.name.split()
+                    f_name = folder_name[-1]
+                    f_name_date_exam = self.env['documents.folder'].sudo().search(
+                        [('name', '=', f_name)], limit=1).id
+                    # if folder exist
+                    if f_name_date_exam:
+                        template.folder_id = folder_exist
+                    else:
+                        folder_list = {
+                            'name': f_name,
+                            'parent_folder_id': folder_exist,
+                            'company_id': self.env.company.id,
+                        }
+                        create_folder = self.env['documents.folder'].sudo().create(folder_list)
+                        template.folder_id = create_folder
+                _logger.info('----Folder name---- %s' % f_name)
+                # Get id of the role = Client from role view in configuration menu
                 sign_item_role_id = self.env['sign.item.role'].sudo().search(
                     [('name', '=', "Client")], limit=1).id
                 sign_item_type_id = self.env['sign.item.type'].sudo().search(
@@ -190,8 +214,10 @@ class InheritMcmacademySession(models.Model):
                                                                                  'signer_email': client.email,
                                                                                  'signing_date': False,
                                                                                  'sign_request_id': sign_request.id,
-                                                                                 'state': 'sent',})
-                sign_request_item.sudo().send_signature_accesses(subject=template.name, message=None)
+                                                                                 'state': 'sent', })
+                # Inherit/call function send_signature_accesses
+                subject = "Demande de signature " + template_name
+                sign_request_item.sudo().send_signature_accesses(subject=subject, message=None)
 
                 res = sign_request
                 request = sign_request.browse(res['id'])
