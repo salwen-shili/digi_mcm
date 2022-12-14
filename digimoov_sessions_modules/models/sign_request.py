@@ -143,7 +143,7 @@ class InheritMcmacademySession(models.Model):
         partner = self.env['res.partner'].sudo().search(
             [('email', 'in', ['tmejri@digimoov.fr', 'houssemrando@gmail.com'])])
         folder_exist = self.env['documents.folder'].sudo().search(
-            [('name', '=', "CERFA")]).id
+            [('name', '=', "CERFA")])
         for client in partner:
             if client:
                 # Attach cerfa report to partner
@@ -175,13 +175,15 @@ class InheritMcmacademySession(models.Model):
                     f_name = folder_name[-1]
                     f_name_date_exam = self.env['documents.folder'].sudo().search(
                         [('name', '=', f_name)], limit=1).id
-                    # if folder exist
+                    template.folder_id = folder_exist.id
+                    # if folder CERFA exist
                     if f_name_date_exam:
-                        template.folder_id = folder_exist
+
+                        template.folder_id.parent_folder_id = f_name_date_exam
                     else:
                         folder_list = {
                             'name': f_name,
-                            'parent_folder_id': folder_exist,
+                            'parent_folder_id': folder_exist.id,
                             'company_id': self.env.company.id,
                         }
                         create_folder = self.env['documents.folder'].sudo().create(folder_list)
