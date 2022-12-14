@@ -27,8 +27,9 @@ class Sale(models.Model):
         pricelist_id=vals['pricelist_id']
         partner = self.env['res.partner'].sudo().search([('id', '=', partner_id)], limit=1)
         print('partner', partner)
-        if partner and partner.statut_cpf != "validated" and not partner.bolt  and self.module_id.product_id.default_code != "vtc_bolt":
-            self.change_stage_lead("Prospection", partner)
+        if partner and partner.statut_cpf != "validated" and not partner.bolt and self.module_id.product_id.default_code != "vtc_bolt":
+            self.change_stage_lead("Indécis", partner)
+
             # for so in self.order_line:
             print("order line",self.pricelist_id.name)
 
@@ -69,8 +70,8 @@ class Sale(models.Model):
             lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             if lead and _(lead.stage_id.name) != statut:
                 lead.sudo().write({
-                     'prenom': partner.firstName if partner.firstName else "",
-                     'nom': partner.lastName if partner.lastName else "",
+                    'prenom': partner.firstName if partner.firstName else "",
+                    'nom': partner.lastName if partner.lastName else "",
                     'name': partner.name if partner.name else "",
                     'partner_name': partner.name,
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
@@ -102,3 +103,12 @@ class Sale(models.Model):
                 lead.mcm_session_id = partner.mcm_session_id if partner.mcm_session_id else False
                 lead.module_id = partner.module_id if partner.module_id else False
                 lead.company_id = partner.company_id if partner.company_id else False
+                
+    #def changer_indecis(self,statut,partner):
+
+
+
+
+
+
+

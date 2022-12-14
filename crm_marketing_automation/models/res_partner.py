@@ -117,6 +117,11 @@ class Partner(models.Model):
         if 'statut' in vals:
             if vals['statut'] == 'canceled':
                 self.changestage("Annulé", self)
+            """si statut change à ganger on classer le client sur crm comme gagné"""
+            if vals['statut'] == 'won':
+                self.changestage("Gagné",self)
+            if vals['statut'] == "perdu":
+                self.changestage("Perdu",self)
         """si date d'inscription remplit il sera classé sous l'etape plateforme de formation"""
         if 'statut_cpf' in vals:
             # Si statut cpf non traité on classe l'apprenant dans le pipeline du crm  sous etat non traité
