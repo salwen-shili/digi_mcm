@@ -16,6 +16,7 @@
                 </sheet>
                 <footer>
                     <button string="Envoi SMS" type="object"   class="btn btn-outline-warning"  name="sendsms"/>
+<button type="object"  special="cancel"  class="btn btn-outline-danger"></button>
                 </footer>
             </form>
         </field>
