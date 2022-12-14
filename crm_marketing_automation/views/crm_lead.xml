@@ -53,6 +53,11 @@
                                     <field name="module_id"></field>
                                 </strong>
                             </div>
+                             <div>
+                                <strong class="o_kanban_record_title" style="font-weight: bold;">
+                                    <field name="conseiller"></field>
+                                </strong>
+                            </div>
                             <div>-</div>
                             <div>
                                 <i class="fa fa-address-book-o" attrs="{'invisible': [('num_dossier', '=', '')]}">

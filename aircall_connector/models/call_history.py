@@ -258,3 +258,7 @@ class AirCall(models.Model):
                         'subtype_id': subtype_id,
                         'body': str(content) + str(note['content']),
                     })
+                    lead=self.env['crm.lead'].sudo().search([('partner_id',"=",record.call_contact.id)])
+                    if lead :
+                        _logger.info('lead %s' %str(lead))
+                        lead.conseiller=user_name
