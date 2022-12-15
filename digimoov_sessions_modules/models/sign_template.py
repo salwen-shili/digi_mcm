@@ -30,7 +30,7 @@ class SignRequestTemplate(models.Model):
         # If folder CERFA exist
         if folder_exist:
             # if folder CERFA exist
-            res.template_id.folder_id = folder_exist.id
+            res.folder_id = folder_exist.id
         else:
             folder_list = {
                 'name': "CERFA",
@@ -40,13 +40,13 @@ class SignRequestTemplate(models.Model):
             cerfa_f_name = self.env['documents.folder'].sudo().create(folder_list)
         _logger.info('----Folder name---- %s' % folder_exist)
 
-        folder_name = res.template_id.name.split()
+        folder_name = res.name.split()
         # Get last text element(folder_name) = date exam
         f_name = folder_name[-1]
         f_name_date_exam = self.env['documents.folder'].sudo().search(
             [('name', '=', f_name)], limit=1).id
         if f_name_date_exam:
-            res.template_id.folder_id.parent_folder_id = f_name_date_exam
+            res.folder_id.parent_folder_id = f_name_date_exam
         else:
             folder_list = {
                 'name': f_name,
@@ -54,5 +54,5 @@ class SignRequestTemplate(models.Model):
                 'company_id': self.env.company.id,
             }
             create_folder = self.env['documents.folder'].sudo().create(folder_list)
-            res.template_id.folder_id = create_folder
+            res.folder_id = create_folder
         return res
