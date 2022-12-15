@@ -23,11 +23,10 @@ class SignRequestTemplate(models.Model):
             if not folder_exist:
                 n_folder_list = {
                     'name': "CERFA",
-                    'company_id': self.env.company.id,
                 }
-                create_folder = res.env['documents.folder'].sudo().create(n_folder_list)
-                res.folder_id = create_folder
-                _logger.info('----Folder name---- %s' % res.folder_id.parent_folder_id)
+                create_folder = self.env['documents.folder'].sudo().create(n_folder_list)
+                self.folder_id = create_folder
+                _logger.info('----Folder name---- %s' % self.folder_id.parent_folder_id)
         return res
 
     @api.model
