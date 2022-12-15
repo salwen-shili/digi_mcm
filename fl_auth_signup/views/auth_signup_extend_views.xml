@@ -394,7 +394,7 @@
                                                         <span class="checkpassword">
                                                             <i class="fa fa-check-circle fa-uncheck"></i>
                                                             Votre mot de passe doit être différant de votre nom, prénom
-                                                            et adresse enail.
+                                                            et adresse email.
                                                         </span>
                                                     </li>
                                                 </t>
@@ -1328,6 +1328,7 @@
                     <form class="oe_reset_password_form" role="form"  id="password_form" t-if="not message" t-attf-action="/web/login" method="post"
                     onsubmit="this.action = this.action + location.hash" >
                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                        
     
                         <!--                    <t t-if="token and not invalid_token">-->
                         <!--                        <t t-call="auth_signup.fields">-->
@@ -1336,9 +1337,7 @@
                         <!--                    </t>-->
          
     
-                        <script defer="defer" type="text/javascript"
-                            src="/fl_auth_signup/static/js/validate_inscription_reset_MCM.js"
-                            t-if="request.website.id == 1" />
+                
                         <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.min.js" />
     
     
@@ -1373,7 +1372,7 @@
                                             <li class="">
                                                 <span class="one-special-char">
                                                     <i class="fa fa-check-circle fa-uncheck"></i>
-                                                    Un caractère spécial (!@#$%^*)
+                                                    Contenir un caractère spécial (!@#$%^*.-/{]=+[})
                                                 </span>
                                             </li>
                                         </t>
@@ -1382,8 +1381,8 @@
                                             <li class="">
                                                 <span class="checkpassword">
                                                     <i class="fa fa-check-circle fa-uncheck"></i>
-                                                    Votre mot de passe doit être différant de votre nom, prénom
-                                                et adresse enail.
+                                                    Être différant de votre nom, prénom
+                                                et adresse email.
                                                 </span>
                                             </li>
                                         </t>
@@ -1524,38 +1523,18 @@
                   
     
     
-                    <!-- <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/register_form.js" /> -->
-                    <!--
-    
-                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.min.js"/> -->
+  
     
                     <script defer="defer" type="text/javascript"
-                        src="/fl_auth_signup/static/js/reset_password.js"
+                        src="/fl_auth_signup/static/js/reset_password_dig.js"
                         t-if="request.website.id == 2" />
     
                     <script defer="defer" type="text/javascript"
-                        src="/fl_auth_signup/static/js/validate_inscription_reset_MCM.js"
+                        src="/fl_auth_signup/static/js/reset_password_mcm.js"
                         t-if="request.website.id == 1" />
     
                     <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.min.js" />
-    <!-- <script>
-        $(`#confirm_password`).keyup(function (e) {
-          
-            const password = $('#confirm_password').val();
-            const errorMessage = checkConfirmPassword(password);
-            if (errorMessage === false) {
-              $(`#password_container `).removeClass('error-input-field');
-              $(`#password_helper `).append('');
-            } else {
-              // buttonInscrire.setAttribute("disabled", "disabled");
-        
-              $(`#password_container `).addClass('error-input-field');
-              $(`#password_helper span `).text(errorMessage);
-            }
-            checkStrength(password);
-          });
-
-    </script> -->
+  
                 
             </t>
 
