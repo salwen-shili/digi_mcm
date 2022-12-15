@@ -35,7 +35,7 @@ class sms_sendinblue(models.TransientModel):
         user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         return user_phone_number.phone
 
-    recipient = fields.Char('Destinataires', default=get_user_phone)
+    recipient = fields.Char('Destinataires',  readonly=True ,default=get_user_phone)
 
     def get_user_id(self):
         current_user = self.env['res.partner'].browse(self.env.context.get('active_ids'))
@@ -80,7 +80,7 @@ class sms_sendinblue(models.TransientModel):
         note_tag = "<b>" + "📨📨 À :  " + self.current_user.name + " " "</b><br/>"
         if (response.status_code == 201):
             values = {
-                'record_name': self.current_user.name,
+                'record_name': self.current_user.id.name,
                 'model': 'res.partner',
                 'message_type': 'comment',
                 'subtype_id': self.current_user.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
