@@ -20,8 +20,8 @@ class AuthSignupHome(AuthSignupHome):
     def do_signup(self, qcontext):
         """ Shared helper that creates a res.partner out of a token """
         values = {key: qcontext.get(key) for key in
-                  ('login', 'lastName','firstname', 'password', 'phone', "zip", "city", "voie", "nom_voie",
-                   "num_voie", 'street2','question_signup')} #get question_signup value
+                  ('login', 'lastName', 'firstname', 'password', 'phone', "zip", "city", "voie", "nom_voie",
+                   "num_voie", 'street2', 'question_signup')}  # get question_signup value
         values['login'] = values['login'].replace(' ', '').lower()
         if not values:
             raise UserError(_("Le formulaire n'est pas correctement rempli."))
@@ -46,7 +46,7 @@ class AuthSignupHome(AuthSignupHome):
             if request.website.id == 2:
                 values['company_ids'] = [1, 2]
                 values['company_id'] = 2
-        #values['step'] = "document"     
+        # values['step'] = "document"
         values['step'] = "coordonnées"
         values['notification_type'] = 'email'  # make default notificatication type by email for new users
         if values['firstname'] and values['lastName']:
@@ -66,9 +66,9 @@ class AuthSignupHome(AuthSignupHome):
         SIGN_UP_REQUEST_PARAMS.add('num_voie')
         SIGN_UP_REQUEST_PARAMS.add('street')
         SIGN_UP_REQUEST_PARAMS.add('street2')
-        SIGN_UP_REQUEST_PARAMS.add('question_signup') #add question_signup in params of signup
-        SIGN_UP_REQUEST_PARAMS.add('passerelle') #add question_signup in params of signup
-        #add keys to SIGN_UP_REQUEST_PARAMS to get datas from signup form
+        SIGN_UP_REQUEST_PARAMS.add('question_signup')  # add question_signup in params of signup
+        SIGN_UP_REQUEST_PARAMS.add('passerelle')  # add question_signup in params of signup
+        # add keys to SIGN_UP_REQUEST_PARAMS to get datas from signup form
         qcontext = {k: v for (k, v) in request.params.items() if k in SIGN_UP_REQUEST_PARAMS}
         qcontext.update(self.get_auth_signup_config())
         if not qcontext.get('token') and request.session.get('auth_signup_token'):
@@ -84,8 +84,6 @@ class AuthSignupHome(AuthSignupHome):
                 qcontext['invalid_token'] = True
         return qcontext
 
-     
-
     @http.route('/web/signup', type='http', auth='public', website=True, sitemap=False)
     def web_auth_signup(self, *args, **kw):
         qcontext = self.get_auth_signup_qcontext()
@@ -94,15 +92,15 @@ class AuthSignupHome(AuthSignupHome):
         qcontext['login'] = str(qcontext.get('login')).replace(' ', '').lower()
         if not qcontext.get('token') and not qcontext.get('signup_enabled'):
             raise werkzeug.exceptions.NotFound()
-        _logger.info("mcm auth signup finded user %s" %(str(qcontext.get("login"))))
-        if qcontext.get("login") and qcontext.get("login") != 'none': #check if qcontext of login != none
+        _logger.info("mcm auth signup finded user %s" % (str(qcontext.get("login"))))
+        if qcontext.get("login") and qcontext.get("login") != 'none':  # check if qcontext of login != none
             if request.env["res.users"].sudo().search(
                     [("login", "=", qcontext.get("login").replace(' ', '').lower())]):
                 qcontext["error"] = _("Another user is already registered using this email address.")
-        if 'error' not in qcontext :
+        if 'error' not in qcontext:
             res_users = request.env["res.users"]
-            user=res_users.find_user_with_phone(qcontext.get("phone"))
-            if user :
+            user = res_users.find_user_with_phone(qcontext.get("phone"))
+            if user:
                 qcontext["error"] = _("Another user is already registered using this phone number.")
         if 'error' not in qcontext and request.httprequest.method == 'POST':
             try:
@@ -139,10 +137,52 @@ class AuthSignupHome(AuthSignupHome):
                     if AssertionError:
                         _logger.error("name %s", AssertionError)
                     qcontext['error'] = _("Could not create a new account.")
-        print('qcontext:',qcontext)
+        print('qcontext:', qcontext)
         response = request.render('auth_signup.signup', qcontext)
         # response = request.render('mcm_website_theme.mcm_template', qcontext)
         _logger.info('STATUS %s', response.status_code)
         response.headers['X-Frame-Options'] = 'DENY'
         if response.status_code != 204:
             return response
+
+    @http.route('/web/reset_password', type='http', auth='public', website=True, sitemap=False)
+    def web_auth_reset_password(self, *args, **kw):
+        qcontext = self.get_auth_signup_qcontext()
+
+        if not qcontext.get('token') and not qcontext.get('reset_password_enabled'):
+            raise werkzeug.exceptions.NotFound()
+
+        if 'error' not in qcontext and request.httprequest.method == 'POST':
+            try:
+                if qcontext.get('token'):
+                    self.do_signup(qcontext)
+                    return self.web_login(*args, **kw)
+                else:
+                    login = qcontext.get('login')
+                    assert login, _("No login provided.")
+                    _logger.info(
+                        "Password reset attempt for <%s> by user <%s> from %s",
+                        login, request.env.user.login, request.httprequest.remote_addr)
+                    request.env['res.users'].sudo().reset_password(login)
+                    qcontext['message'] = _("An email has been sent with credentials to reset your password")
+            except UserError as e:
+                qcontext['error'] = e.name or e.value
+            except SignupError:
+                qcontext['error'] = _("Could not reset your password")
+                _logger.exception('error when resetting password')
+            except Exception as e:
+                qcontext['error'] = str(e)
+        if 'error' not in qcontext and 'token' in qcontext: #check if no error in reset password qcontext
+            user = request.env['res.users'].sudo().search([('signup_token', "=", qcontext.get('token'))]) #search user using token param
+            if user and user.state == 'active': #check state of user ( active)
+                response = request.render('fl_auth_signup.custom_reset_password', qcontext) # pass qcontext to custom reset password view
+                response.headers['X-Frame-Options'] = 'DENY'
+                return response
+            else: # user state new
+                response = request.render('auth_signup.reset_password', qcontext) # pass qcontext to default reset password view
+                response.headers['X-Frame-Options'] = 'DENY'
+                return response
+        response = request.render('auth_signup.reset_password', qcontext)
+        response.headers['X-Frame-Options'] = 'DENY'
+        return response
+            
