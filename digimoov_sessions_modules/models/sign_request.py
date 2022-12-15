@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 import base64
+import locale
 import time
 import logging
 
@@ -174,13 +175,18 @@ class InheritMcmacademySession(models.Model):
                 if folder_exist:
                     folder_name = template.name.split()
                     # Get last text element(folder_name) = date exam
-                    f_name = folder_name[-1]
+                    date_examen = folder_name[-1]
+                    # Convertir les mois ==> texte
+                    date_format = '%d %B %Y'
+                    locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+                    f_name = date_examen.strftime(date_format).title()
+
                     f_name_date_exam = self.env['documents.folder'].sudo().search(
                         [('name', '=', f_name)], limit=1).id
                     # if folder CERFA exist
                     if f_name_date_exam:
-                        template.folder_id = folder_exist.id
-                        template.folder_id.parent_folder_id = f_name_date_exam
+                        # template.folder_id = folder_exist.id
+                        template.folder_id = f_name_date_exam
                     else:
                         folder_list = {
                             'name': f_name,
@@ -188,7 +194,7 @@ class InheritMcmacademySession(models.Model):
                             'company_id': self.env.company.id,
                         }
                         create_folder = self.env['documents.folder'].sudo().create(folder_list)
-                        template.folder_id = create_folder
+                        # template.folder_id = create_folder
                 _logger.info('----Folder name---- %s' % f_name)
                 # Get id of the role = Client from role view in configuration menu
                 sign_item_role_id = self.env['sign.item.role'].sudo().search(
