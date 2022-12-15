@@ -21,7 +21,7 @@ class sms_sendinblue(models.TransientModel):
         user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         return user_phone_number.phone
 
-    content = fields.Text(string="content")
+    content = fields.Text(string="Message")
     type = fields.Selection([('marketing', 'Marketing'),
                              ('transactional', ' Transactional'),
                              ])
@@ -35,13 +35,13 @@ class sms_sendinblue(models.TransientModel):
         user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         return user_phone_number.phone
 
-    recipient = fields.Char('Recipients (Numbers)', default=get_user_phone)
+    recipient = fields.Char('Destinataires', default=get_user_phone)
 
     def get_user_id(self):
         current_user = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         return current_user
 
-    current_user = fields.Many2one('res.partner', 'Current User', default=get_user_id)
+    current_user = fields.Many2one('res.partner', 'Destinataires', default=get_user_id)
 
     def get_sneder(self):
         sender_name = self.env['res.partner'].browse(self.env.context.get('active_ids'))

@@ -7,15 +7,14 @@
             <form string="Envoyer un SMS" modifiers="{}">
                 <sheet modifiers="{}">
                     <group modifiers="{}">
-                        <field name="sender"/>
-                        <field name="current_user"/>
-                        <field name="recipient"
-                        />
+                        <field name="sender" invisible="1"/>
+                        <field name="current_user" invisible="1"/>
+                        <field name="recipient"      attrs="{'readonly': [('can_edit', '=', False)]}"                   />
                         <field name="content"  string="Body" widget="sms_widget"/>
                     </group>
                 </sheet>
                 <footer>
-                    <button string="Envoi SMS" type="object"   class="btn btn-outline-warning"  name="sendsms"/>
+                    <button string="Envoi SMS" type="object"      name="sendsms"/>
 <button type="object"  special="cancel"  class="btn btn-outline-danger"> Cancel</button>
                 </footer>
             </form>
