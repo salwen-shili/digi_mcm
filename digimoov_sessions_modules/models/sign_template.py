@@ -44,12 +44,12 @@ class SignRequestTemplate(models.Model):
                 [('name', '=', f_name)], limit=1).id
             if f_name_date_exam:
                 # if folder CERFA exist
-                res.folder_id.sudo().write({
+                a = res.folder_id.sudo().write({
                     'name': f_name_date_exam,
                     'parent_folder_id': cerfa_f_name,
                 })
                 #= f_name_date_exam
-                #res.folder_id.parent_folder_id = folder_exist.id
+                res.folder_id = a
             else:
                 folder_list = {
                     'name': f_name,
