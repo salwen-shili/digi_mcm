@@ -9,11 +9,26 @@ from odoo import fields, models, _, api, http
 _logger = logging.getLogger(__name__)
 
 
-
 class SignRequestTemplate(models.Model):
     _inherit = "sign.template"
 
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+
+    def write(self, values):
+        """ """
+        res = super(SignRequestTemplate, self).write(values)
+        if 'folder_id':
+            folder_exist = self.env['documents.folder'].sudo().search(
+                [('name', '=', "CERFA")], limit=1)
+            if not folder_exist:
+                n_folder_list = {
+                    'name': "CERFA",
+                    'company_id': self.env.company.id,
+                }
+                create_folder = res.env['documents.folder'].sudo().create(n_folder_list)
+                res.folder_id = create_folder
+                _logger.info('----Folder name---- %s' % res.folder_id.parent_folder_id)
+        return res
 
     @api.model
     def create(self, vals):
