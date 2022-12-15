@@ -20,7 +20,8 @@
             </form>
         </field>
     </record>
-    <act_window name="Send SMS Via Sendinblue"
+    <act_window name="Envoyer un SMS Sendinblue"
+                sequence="4"
                 res_model="sendinblue.sendinbluesms"
                 binding_model="res.partner"
                 view_mode="form"
