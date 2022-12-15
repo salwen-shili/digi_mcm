@@ -62,7 +62,7 @@ class sms_sendinblue(models.TransientModel):
         payload = {
             'type': "transactional",
             'unicodeEnabled': False,
-            'sender': self.sender.replace(" ", "-"),
+            'sender': self.sender.replace(" ", ""),
             'recipient': self.recipient.replace(" ", ""),
             'content': self.content
         }
