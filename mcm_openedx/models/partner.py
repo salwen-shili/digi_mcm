@@ -390,7 +390,8 @@ class partner(models.Model):
                                                                        ], limit=1, order="id desc")
                     _logger.info(sale_order.name)
 
-                    if (partner.numero_evalbox != False):
+                    if (partner.numero_evalbox != False and partner.statut == "won"):
+
                         bolt = partner.bolt
                         if (bolt):
                             self.ajouter_IOne_MCM(partner)
