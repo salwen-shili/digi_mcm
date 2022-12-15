@@ -79,7 +79,7 @@ class sms_sendinblue(models.TransientModel):
         _logger.info(self.content)
 
         note_tag = "<b>" + "📨📨 À :  " + self.current_user.name + " " "</b><br/>"
-        if (response.status_code == 200):
+        if (response.status_code == 201):
             values = {
                 'record_name': self.current_user.name,
                 'model': 'res.partner',
