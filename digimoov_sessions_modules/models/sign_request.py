@@ -3,11 +3,16 @@
 import base64
 import time
 import logging
+import datetime
+import locale
+
+from num2words import num2words
 
 from odoo import fields, models, _, api, http
 from odoo.exceptions import UserError
 from werkzeug.urls import url_join
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, formataddr
+
 
 _logger = logging.getLogger(__name__)
 
@@ -174,12 +179,17 @@ class InheritMcmacademySession(models.Model):
                 if folder_exist:
                     folder_name = template.name.split()
                     # Get last text element(folder_name) = date exam
-                    f_name = folder_name[-1]
+                    f_name_date = folder_name[-1]
+                    date = "%d %B %Y"
+                    locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+                    datetime_object = datetime.datetime.strptime(f_name_date, '%d/%m/%Y')
+                    f_name = str(datetime_object.strftime(date).title())
+                    _logger.info('----request f_name ---- %s' % f_name)
                     f_name_date_exam = self.env['documents.folder'].sudo().search(
                         [('name', '=', f_name)], limit=1).id
                     # if folder CERFA exist
                     if f_name_date_exam:
-                        #template.folder_id = folder_exist.id
+                        # template.folder_id = folder_exist.id
                         template.folder_id = f_name_date_exam
                     else:
                         folder_list = {
@@ -188,8 +198,8 @@ class InheritMcmacademySession(models.Model):
                             'company_id': self.env.company.id,
                         }
                         create_folder = self.env['documents.folder'].sudo().create(folder_list)
-                        #template.folder_id = create_folder
-                _logger.info('----Folder name---- %s' % f_name)
+                        # template.folder_id = create_folder
+
                 # Get id of the role = Client from role view in configuration menu
                 sign_item_role_id = self.env['sign.item.role'].sudo().search(
                     [('name', '=', "Client")], limit=1).id
