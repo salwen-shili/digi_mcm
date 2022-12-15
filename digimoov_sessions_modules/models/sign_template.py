@@ -35,23 +35,27 @@ class SignRequestTemplate(models.Model):
                 'company_id': self.env.company.id,
             }
             cerfa_f_name = self.env['documents.folder'].sudo().create(folder_list)
-        _logger.info('----Folder name---- %s' % folder_exist)
+            _logger.info('----Folder name---- %s' % folder_exist)
 
-        folder_name = res.name.split()
-        # Get last text element(folder_name) = date exam
-        f_name = folder_name[-1]
-        f_name_date_exam = self.env['documents.folder'].sudo().search(
-            [('name', '=', f_name)], limit=1).id
-        if f_name_date_exam:
-            # if folder CERFA exist
-            res.folder_id = folder_exist.id
-            res.folder_id.parent_folder_id = f_name_date_exam
-        else:
-            folder_list = {
-                'name': f_name,
-                'parent_folder_id': folder_exist.id,
-                'company_id': self.env.company.id,
-            }
-            create_folder = self.env['documents.folder'].sudo().create(folder_list)
-            res.folder_id = create_folder
+            folder_name = res.name.split()
+            # Get last text element(folder_name) = date exam
+            f_name = folder_name[-1]
+            f_name_date_exam = self.env['documents.folder'].sudo().search(
+                [('name', '=', f_name)], limit=1).id
+            if f_name_date_exam:
+                # if folder CERFA exist
+                res.folder_id.sudo().write({
+                    'name': f_name_date_exam,
+                    'parent_folder_id': cerfa_f_name,
+                })
+                #= f_name_date_exam
+                #res.folder_id.parent_folder_id = folder_exist.id
+            else:
+                folder_list = {
+                    'name': f_name,
+                    'parent_folder_id': folder_exist.id,
+                    'company_id': self.env.company.id,
+                }
+                create_folder = self.env['documents.folder'].sudo().create(folder_list)
+                res.folder_id = create_folder
         return res
