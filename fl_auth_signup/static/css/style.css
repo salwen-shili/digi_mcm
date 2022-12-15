@@ -21,6 +21,12 @@ body {
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
+@media only screen and (max-width: 450px){
+  .notfound h1 { 
+    font-size: 40px !important;
+  }
+}
+
 
 .notfound {
   max-width: 560px;
