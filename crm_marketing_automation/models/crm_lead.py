@@ -89,3 +89,13 @@ class CRM(models.Model):
                     duplicate_lead.append(dup.id)
                     _logger.info("duplicate_contacts %s" % dup.name)
         self.browse(duplicate_lead).unlink()
+
+    def write(self, vals):
+        write_result = super(Lead, self).write(vals)
+        aircall_detail=self.env['call.detail'].sudo().search([("call_contact.id","=", int(self.partner_id))],order="create_date asc",limit=1)
+        if aircall_detail:
+            _logger.info("aircall %s" %str(aircall_detail))
+            self.conseiller=aircall_detail.user_name
+            _logger.info("conseiller %s" %str(self.conseiller))
+
+        return write_result
