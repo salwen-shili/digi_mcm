@@ -142,7 +142,8 @@ class InheritMcmacademySession(models.Model):
             3- Envoyer une demande de signature aux clients gagnés """
         partner = self.env['res.partner'].sudo().search(
             [('email', 'in', ['tmejri@digimoov.fr', 'houssemrando@gmail.com'])])
-
+        folder_exist = self.env['documents.folder'].sudo().search(
+            [('name', '=', "CERFA")], limit=1)
         for client in partner:
             if client:
                 # Attach cerfa report to partner
@@ -168,7 +169,29 @@ class InheritMcmacademySession(models.Model):
                     'datas': cerfa.datas,
                     'sign_item_ids': False
                 })
-
+                # Create a folder with date exam if not exist in document module to save signed document
+                # If folder CERFA exist
+                if folder_exist:
+                    folder_name = template.name.split()
+                    # Get last text element(folder_name) = date exam
+                    f_name = folder_name[-1]
+                    f_name_date_exam = self.env['documents.folder'].sudo().search(
+                        [('name', '=', f_name)], limit=1).id
+                    # if folder CERFA exist
+                    if f_name_date_exam:
+                        template.folder_id = folder_exist.id
+                        template.folder_id.parent_folder_id = f_name_date_exam
+                    else:
+                        folder_list = {
+                            'name': f_name,
+                            'parent_folder_id': folder_exist.id,
+                            'company_id': self.env.company.id,
+                        }
+                        create_folder = self.env['documents.folder'].sudo().create(folder_list)
+                        template.folder_id = create_folder
+                else:
+                    print("hello")
+                _logger.info('----Folder name---- %s' % f_name)
                 # Get id of the role = Client from role view in configuration menu
                 sign_item_role_id = self.env['sign.item.role'].sudo().search(
                     [('name', '=', "Client")], limit=1).id
