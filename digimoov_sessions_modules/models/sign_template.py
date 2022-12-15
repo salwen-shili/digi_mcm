@@ -28,10 +28,7 @@ class SignRequestTemplate(models.Model):
 
         # Create a folder with date exam if not exist in document module to save signed document
         # If folder CERFA exist
-        if folder_exist:
-            # if folder CERFA exist
-            res.folder_id = folder_exist.id
-        else:
+        if not folder_exist:
             folder_list = {
                 'name': "CERFA",
                 'parent_folder_id': False,
@@ -46,6 +43,8 @@ class SignRequestTemplate(models.Model):
         f_name_date_exam = self.env['documents.folder'].sudo().search(
             [('name', '=', f_name)], limit=1).id
         if f_name_date_exam:
+            # if folder CERFA exist
+            res.folder_id = folder_exist.id
             res.folder_id.parent_folder_id = f_name_date_exam
         else:
             folder_list = {
