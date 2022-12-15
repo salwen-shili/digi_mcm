@@ -9,7 +9,7 @@
                     <group modifiers="{}">
                         <field name="sender" invisible="1"/>
                         <field name="current_user" invisible="1"/>
-                        <field name="recipient"      attrs="{'readonly': [('can_edit', '=', False)]}"                   />
+                        <field name="recipient"     readonly="1"                   />
                         <field name="content"  string="Body" widget="sms_widget"/>
                     </group>
                 </sheet>
