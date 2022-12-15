@@ -9,19 +9,18 @@
                     <group modifiers="{}">
                         <field name="sender" invisible="1"/>
                         <field name="current_user" invisible="1"/>
-                        <field name="recipient"     readonly="1"                   />
+                        <field name="recipient"       />
                         <field name="content"  string="Body" widget="sms_widget"/>
                     </group>
                 </sheet>
                 <footer>
-                    <button string="Envoi SMS" type="object"      name="sendsms"/>
+                    <button string="Envoi SMS" type="object"  class="oe_highlight"      name="sendsms"/>
 <button type="object"  special="cancel"  class="btn btn-outline-danger"> Cancel</button>
                 </footer>
             </form>
         </field>
     </record>
     <act_window name="Envoyer un SMS Sendinblue"
-                sequence="4"
                 res_model="sendinblue.sendinbluesms"
                 binding_model="res.partner"
                 view_mode="form"
