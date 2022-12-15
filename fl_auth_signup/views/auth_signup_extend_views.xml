@@ -1328,6 +1328,7 @@
                     <form class="oe_reset_password_form" role="form"  id="password_form" t-if="not message" t-attf-action="/web/login" method="post"
                     onsubmit="this.action = this.action + location.hash" >
                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                        <input type="hidden" id="email" name="login" t-att-value="login" />
                         
     
                         <!--                    <t t-if="token and not invalid_token">-->
@@ -1476,11 +1477,11 @@
                                 <div class="text-center mb24 mt24">
                                     <button id="inscrire" type="submit" t-if="not name or not last_login"
                                             class="rkmd-btn green-shop ripple-effect ripple-yellow"
-                                            style="max-width: 250px;"
+                                            style="max-width: 350px;"
                                             data-oe-model="ir.ui.view" data-oe-id="1730"
                                             data-oe-field="arch"
                                             data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
-                                        Confirmer
+                                        Modifier mon mot de passe
                                         <i class="material-icons right">send</i>
                                     </button>
                                 </div>

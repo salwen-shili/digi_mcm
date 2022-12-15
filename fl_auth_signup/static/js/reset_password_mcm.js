@@ -89,6 +89,7 @@ $(document).ready(function () {
   let lowUpperCase = document.querySelector(".low-upper-case i");
   let number = document.querySelector(".one-number i");
   let specialChar = document.querySelector('.one-special-char i');
+  let checkpassword = document.querySelector(".checkpassword i");
   let eightChar = document.querySelector(".eight-character i");
   let nivLevel = document.querySelector(".nivLevel");
   
