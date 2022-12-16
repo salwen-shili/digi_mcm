@@ -25,7 +25,7 @@ class SignRequestTemplate(models.Model):
                     'name': "CERFA",
                 }
                 create_folder = self.env['documents.folder'].sudo().create(n_folder_list)
-                self.folder_id.parent_folder_id = create_folder
+                self.folder_id = create_folder
                 _logger.info('----Folder name---- %s' % self.folder_id.parent_folder_id)
         return res
 
