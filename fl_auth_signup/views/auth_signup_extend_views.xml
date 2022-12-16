@@ -1249,6 +1249,14 @@
                         .oe_reset_password_form {
                         max-width: 100% !important;
                         }
+                        .rkmd-btn.green-shop {
+                            color: #fff;
+                            background-color: #005a00;
+                          }
+                          .rkmd-btn.green-shop:hover {
+                            color: #fff;
+                            background-color: #047404;
+                          }
                     </style>
                     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
                     <link href="/fl_auth_signup/static/css/password-check.min.css" rel="stylesheet" />
@@ -1379,7 +1387,7 @@
                                    
                                     <p class="corp-title">Pour votre sécurité, votre nouveau mot de passe doit :</p>
                                     
-                                    <ul class="list-unstyled" style="padding-left:16px; margin-bottom:45px;">
+                                    <ul class="list-unstyled" style="padding-left:16px; margin-bottom:20px;">
                                         <li class="">
                                             <span class="eight-character" style="color: #27303f;">
                                                 <i class="fa fa-check-circle fa-uncheck"></i>
@@ -1421,7 +1429,7 @@
                                         <div class="" style="
                                                         clear: both;
                                                         overflow: hidden;
-                                                        margin-block-start:10px;
+                                                        margin-block-end:20px;
                                                     ">
                                             <div class="" style="
                                                                             float: left;
@@ -1455,7 +1463,7 @@
                                     </div>
 
                                     <!-- password signup-->
-                                    <div class="outlined-input-field bg-c mb24" id="password_container">
+                                    <div class="outlined-input-field bg-c mb32" id="password_container">
                                         <input type="password" id="password" class="outlined-text-field"
                                             maxlength="75" minlength="8" autocomplete="off" required="required"
                                             name="password"
@@ -1477,7 +1485,7 @@
                                     </div>
                                     <!-- -->
                                    
-                                    <br/>
+                             
                                
                                 
 
