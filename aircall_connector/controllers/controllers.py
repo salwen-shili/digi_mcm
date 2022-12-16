@@ -19,7 +19,7 @@ class AircallConnector(http.Controller):
 
         request.uid = odoo.SUPERUSER_ID
         call = json.loads(request.httprequest.data)
-        #add events
+        # add events
         if call["event"] in ["call.answered", "call.commented", "call.created", "call.tagged", "call.ended"]:
             call_data = call["data"]
             societe = call_data["number"]["name"]
@@ -27,9 +27,9 @@ class AircallConnector(http.Controller):
             _logger.info(' call_data : %s' % str(call_data))
             start_call_date = datetime.fromtimestamp(call_data['started_at'])
             subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
-            call_detail = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])],limit=1)
+            call_detail = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])], limit=1)
             _logger.info('search call_detail : %s' % str(call_detail))
-            #if call  exist
+            # if call  exist
             if call_detail:
                 # add recording and duration
 
@@ -52,24 +52,25 @@ class AircallConnector(http.Controller):
                     if call["event"] == "call.commented":
                         call_detail.action_update_notes()
 
+
                 # add recording url using id call
                 if call_detail.call_recording == False:
                     call_detail.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
                 # add client_id using phone number
                 if not call_detail.call_contact:
                     call_detail.action_find_user_using_phone()
-
+                call_duration_min = call_detail.call_duration / 60
+                _logger.info("call calcul time: %s" % (round(call_duration_min)))
+                call_detail.call_duration = float(call_duration_min)
                 # if call_detail.call_contact.company_id.id == 2:
-                #
-                #
-                #     call_detail.call_contact.total_time_visio_min += call_detail.call_duration
-
+                #     call_detail.call_contact.total_time_appels_min += call_duration_min
                 _logger.info("call data tags response : %s" % (str(call_data['tags'])))
-                #add tags
+
+                # add tags
                 if call_data['tags']:
                     tags = []
                     for tag in call_data['tags']:
-                        _logger.info("odooooooooo tag : %s" % (tag))
+                        _logger.info("call data tags response : %s" % (tag))
                         odoo_tag = request.env['res.partner.category'].sudo().search(
                             ['|', ('call_tag_id', "=", tag['id']), ('call_tag_id', "=", tag['name'])])
                         if not odoo_tag:
@@ -77,14 +78,14 @@ class AircallConnector(http.Controller):
                                 'call_tag_id': tag['id'],
                                 'name': tag['name'],
                             })
-                            _logger.info("odooooooooo tag : %s" % (odoo_tag))
-                        _logger.info("odooooooooo tag : %s" % (odoo_tag))
+                            _logger.info("call data tagss: %s" % (odoo_tag))
+                        _logger.info("call data tag : %s" % (odoo_tag))
                         if odoo_tag:
                             tags.append(odoo_tag.id)
                     _logger.info("call data tags : %s" % (tags))
                     if tags:
                         call_detail.sudo().write({'air_call_tag': [(6, 0, tags)]})
-            #if not exist
+            # if not exist
             # create nnew call_data and add data to partner
             if not call_detail:
                 new_call_detail = request.env['call.detail'].sudo().create({'call_id': call_data['id'],
@@ -100,7 +101,8 @@ class AircallConnector(http.Controller):
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
                     new_call_detail.sudo().write({
-                        'owner': call_data["user"]["name"],
+                        'owner': call_data["user"]["name"] if call_data["user"] else False,
+
                     })
                 comments = ''
                 call_data_comments = call_data["comments"]
@@ -117,7 +119,7 @@ class AircallConnector(http.Controller):
                 if call_data['tags']:
                     tags = []
                     for tag in call_data['tags']:
-                        _logger.info("odooooooooo tag : %s" % (tag))
+                        _logger.info("call data tags response tag : %s" % (tag))
                         odoo_tag = request.env['res.partner.category'].sudo().search(
                             ['|', ('call_tag_id', "=", tag['id']), ('call_tag_id', "=", tag['name'])])
                         if not odoo_tag:
@@ -125,8 +127,8 @@ class AircallConnector(http.Controller):
                                 'call_tag_id': tag['id'],
                                 'name': tag['name'],
                             })
-                            _logger.info("odooooooooo tag : %s" % (odoo_tag))
-                        _logger.info("odooooooooo tag : %s" % (odoo_tag))
+                            _logger.info("call data tags response odoo tag : %s" % (odoo_tag))
+                        _logger.info("call data tags response odoo tag : %s" % (odoo_tag))
                         if odoo_tag:
                             tags.append(odoo_tag.id)
                     _logger.info("call data tags : %s" % (tags))
@@ -135,7 +137,5 @@ class AircallConnector(http.Controller):
 
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                if new_call_detail and new_call_detail.call_contact and new_call_detail.notes:
-                    if call["event"] == "call.commented":
-                        new_call_detail.action_update_notes()
-                request.env.cr.commit()
+
+            request.env.cr.commit()
