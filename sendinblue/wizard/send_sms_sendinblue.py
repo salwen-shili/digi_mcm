@@ -80,6 +80,7 @@ class sms_sendinblue(models.TransientModel):
 
         note_tag = "<b>" + "📨📨 À :  " + self.current_user.name + " " "</b><br/>"
         #if 201 message envoyée
+
         if (response.status_code == 201):
             values = {
                 'record_name': self.current_user.id.name,
@@ -93,7 +94,6 @@ class sms_sendinblue(models.TransientModel):
             }
             self.current_user.env['mail.message'].sudo().create(values)
         #if !201 message envoyée
-
         else:
             values = {
                 'record_name': self.current_user.name,
