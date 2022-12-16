@@ -805,7 +805,7 @@ class Services(http.Controller):
                     'description': str(description),
                     'name': 'Digimoov : ' + str(name),
                     'team_id': request.env['helpdesk.team'].sudo().search(
-                        [('name', 'like', 'Compta'), ('company_id', "=", 2)],
+                        [('name', 'like', 'Compta'), ('company_id', "=", 1)],
                         limit=1).id,
                 }
             elif request.website.id == 1:
