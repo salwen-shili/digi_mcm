@@ -98,11 +98,11 @@ class form_info(models.Model):
 
                                 if not existe_doc:
                                     document = self.env['documents.document'].sudo().create({'name': name,
-                                                                                      'type': 'binary',
-                                                                                      'partner_id': partner.id,
-                                                                                      'folder_id': folder_id.id,
-                                                                                      'datas': image_binary,
-                                                                                      'state': 'waiting', })
+                                                                                             'type': 'binary',
+                                                                                             'partner_id': partner.id,
+                                                                                             'folder_id': folder_id.id,
+                                                                                             'datas': image_binary,
+                                                                                             'state': 'waiting', })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
@@ -143,11 +143,11 @@ class form_info(models.Model):
 
                                 if not existe_doc:
                                     document = self.env['documents.document'].sudo().create({'name': name,
-                                                                                      'type': 'binary',
-                                                                                      'partner_id': partner.id,
-                                                                                      'folder_id': folder_id.id,
-                                                                                      'datas': image_binary,
-                                                                                      'state': 'waiting', })
+                                                                                             'type': 'binary',
+                                                                                             'partner_id': partner.id,
+                                                                                             'folder_id': folder_id.id,
+                                                                                             'datas': image_binary,
+                                                                                             'state': 'waiting', })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
@@ -187,11 +187,12 @@ class form_info(models.Model):
                                 # verifier les document si existe avec le nom jotform, et partner
                                 if not existe_doc:
                                     document = self.env['documents.document'].sudo().create({'name': name,
-                                                                                      'type': 'binary',
-                                                                                      'partner_id': partner.id,
-                                                                                      'folder_id': folder_id.id,
-                                                                                      'datas': image_binary,
-                                                                                      'state': 'waiting', })
+                                                                                             'type': 'binary',
+                                                                                             'partner_id': partner.id,
+                                                                                             'folder_id': folder_id.id,
+                                                                                             'datas': image_binary,
+                                                                                             'state': 'validated',
+                                                                                             })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
@@ -231,11 +232,11 @@ class form_info(models.Model):
                                 # verifier les document si existe avec le nom jotform, et partner
                                 if not existe_doc:
                                     document = self.env['documents.document'].sudo().create({'name': name,
-                                                                                      'type': 'binary',
-                                                                                      'partner_id': partner.id,
-                                                                                      'folder_id': folder_id.id,
-                                                                                      'datas': image_binary,
-                                                                                      'state': 'waiting', })
+                                                                                             'type': 'binary',
+                                                                                             'partner_id': partner.id,
+                                                                                             'folder_id': folder_id.id,
+                                                                                             'datas': image_binary,
+                                                                                             'state': 'waiting', })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
@@ -276,11 +277,11 @@ class form_info(models.Model):
                                 # verifier les document si existe avec le nom jotform, et partner
                                 if not existe_doc:
                                     document = self.env['documents.document'].sudo().create({'name': name,
-                                                                                      'type': 'binary',
-                                                                                      'partner_id': partner.id,
-                                                                                      'folder_id': folder_id.id,
-                                                                                      'datas': image_binary,
-                                                                                      'state': 'waiting', })
+                                                                                             'type': 'binary',
+                                                                                             'partner_id': partner.id,
+                                                                                             'folder_id': folder_id.id,
+                                                                                             'datas': image_binary,
+                                                                                             'state': 'waiting', })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
