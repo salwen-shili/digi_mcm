@@ -7,6 +7,7 @@ const listId = [
   'address',
   'email',
   'confirm_email',
+  'confirm_password',
   'password',
   'zipcode',
   'city',

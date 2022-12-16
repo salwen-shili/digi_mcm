@@ -56,3 +56,52 @@ main {
 #wrapwrap {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask2984%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='url(%23SvgjsLinearGradient2985)'%3e%3c/rect%3e%3cpath d='M1440 0L1184.3600000000001 0L1440 218.96z' fill='rgba(255%2c 255%2c 255%2c .1)'%3e%3c/path%3e%3cpath d='M1184.3600000000001 0L1440 218.96L1440 321.11L549.6500000000001 0z' fill='rgba(255%2c 255%2c 255%2c .075)'%3e%3c/path%3e%3cpath d='M549.65 0L1440 321.11L1440 352.6L500.12 0z' fill='rgba(255%2c 255%2c 255%2c .05)'%3e%3c/path%3e%3cpath d='M500.12 0L1440 352.6L1440 451.88L336.75 0z' fill='rgba(255%2c 255%2c 255%2c .025)'%3e%3c/path%3e%3cpath d='M0 560L195.85 560L0 373.22z' fill='rgba(0%2c 0%2c 0%2c .1)'%3e%3c/path%3e%3cpath d='M0 373.22L195.85 560L426.33 560L0 356.18z' fill='rgba(0%2c 0%2c 0%2c .075)'%3e%3c/path%3e%3cpath d='M0 356.18L426.33 560L916.62 560L0 161.76000000000002z' fill='rgba(0%2c 0%2c 0%2c .05)'%3e%3c/path%3e%3cpath d='M0 161.76L916.62 560L980.9 560L0 148.60999999999999z' fill='rgba(0%2c 0%2c 0%2c .025)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask2984'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='15.28%25' y1='-39.29%25' x2='84.72%25' y2='139.29%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient2985'%3e%3cstop stop-color='rgba(252%2c 211%2c 36%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(255%2c 255%2c 255%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(250%2c 250%2c 250%2c 1)' offset='0.3'%3e%3c/stop%3e%3cstop stop-color='rgba(255%2c 255%2c 255%2c 1)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
 }
+
+.head{
+  margin-top: 20px;
+  margin-left: 30px;
+}
+@media only screen and (max-width: 450px){
+  .head {
+  margin-top: 10px;
+  margin-left: 5px;
+  }
+}
+
+
+
+.head-title{
+text-align: left;
+
+
+}
+.head-title{
+  font-size: 36px;
+  font-weight: 700;
+}
+.sub-title{
+  font-size: 30px;
+  font-weight: 500;
+  border-left: solid 3px #000;
+  padding-left: 6px;
+}
+.corp{
+  background: transparent;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.corp-title {
+font-size: 18px;
+font-weight: 600;
+}
+.card{
+  background: transparent;
+  border: none;
+}
+
+
+
