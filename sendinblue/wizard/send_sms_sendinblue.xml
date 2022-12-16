@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="wizard_form_view">
+        <field name="name">wizard.form</field>
+        <field name="model">sendinblue.sendinbluesms</field>
+        <field name="arch" type="xml">
+            <form string="Envoyer un SMS" modifiers="{}">
+                <sheet modifiers="{}">
+                    <group modifiers="{}">
+                        <field name="sender" invisible="1"/>
+                        <field name="current_user" invisible="1"/>
+                        <field name="recipient"       />
+                        <field name="content"  string="Message" widget="sms_widget"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Envoi SMS" type="object"  class="oe_highlight"      name="sendsms"/>
+<button type="object"  special="cancel"  class="btn btn-outline-danger"> Cancel</button>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <act_window name="Envoyer un SMS Sendinblue"
+                res_model="sendinblue.sendinbluesms"
+                binding_model="res.partner"
+                view_mode="form"
+                binding_views="form"
+                target="new"
+                id="sendinblue_sms-form"
+    />
+
+
+</odoo>

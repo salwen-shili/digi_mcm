@@ -14,6 +14,7 @@
         'views/sendinblue_lists_view.xml',
         'views/sendinblue_folder_view.xml',
         'wizard/import_export_operation_view.xml',
+        'wizard/send_sms_sendinblue.xml',
         'views/mass_mailing_contact_view.xml',
         'views/mass_mailing_list_view.xml',
         'views/sendinblue_template_view.xml',
