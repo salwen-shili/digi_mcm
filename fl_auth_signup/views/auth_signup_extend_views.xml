@@ -1379,7 +1379,7 @@
                                    
                                     <p class="corp-title">Pour votre sécurité, votre nouveau mot de passe doit :</p>
                                     
-                                    <ul class="list-unstyled" style="padding-left:16px; margin-bottom:45px;">
+                                    <ul class="list-unstyled" style="padding-left:16px; margin-bottom:45px;    font-size: 16px;">
                                         <li class="">
                                             <span class="eight-character" style="color: #27303f;">
                                                 <i class="fa fa-check-circle fa-uncheck"></i>
@@ -1416,6 +1416,42 @@
                                                 </span>
                                             </li>
                                         </t>
+                                        <div id="popover-password" class="hide">
+                                            <div class="" style="
+                                                            clear: both;
+                                                            overflow: hidden;
+                                                            margin-block-start:10px;
+                                                        ">
+                                                <div class="" style="
+                                                                                float: left;
+                                                                                font-weight: bold;
+                                                                                width: 35%;
+                                                                            ">
+                                                    <div class="nivTxt" style="color:#27303f">
+                                                        Sécurité
+                                                        <span class="nivLevel niv-level-1">faible</span>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="progress" style="
+                                                            margin-top: 5px;
+        
+                                                            float: right;
+                                                        
+                                                            width: 50%;
+                                                        ">
+                                                        <div id="password-strength" class="" role="progressbar"
+                                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                                            style="width: 10%;display: block;height: 100%;border-radius: 5px;/* width: 0%; */"></div>
+                                                    </div>
+                                                </div>
+        
+        
+                                            </div>
+        
+        
+                                         
+                                        </div>
                                     </ul>
 
                                     <!-- password signup-->
@@ -1449,9 +1485,9 @@
                                             <div class="" style="
                                                                             float: left;
                                                                             font-weight: bold;
-                                                                            width: 35%;
+                                                                            width: 50%;
                                                                         ">
-                                                <div class="nivTxt" style="color:#27303f">
+                                                <div class="nivTxt" style="color:#27303f;font-size:17px">
                                                     Sécurité
                                                     <span class="nivLevel niv-level-1">faible</span>
                                                 </div>

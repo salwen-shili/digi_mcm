@@ -11,6 +11,14 @@ p {
   font-style: italic;
   letter-spacing: 0.5px;
 }
+.rkmd-btn.green-shop {
+  color: #fff;
+  background-color: #005a00;
+}
+.rkmd-btn.green-shop:hover {
+  color: #fff;
+  background-color: #047404;
+}
 
 .outlined-input-field i {
   position: absolute;
