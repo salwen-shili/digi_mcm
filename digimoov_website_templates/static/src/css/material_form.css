@@ -440,6 +440,14 @@ footer .footer-content span {
 .rkmd-btn.btn-amber:hover {
   background-color: #ffcb30;
 }
+.rkmd-btn.green-shop {
+  color: #fff;
+  background-color: #005a00;
+}
+.rkmd-btn.green-shop:hover {
+  color: #fff;
+  background-color: #047404;
+}
 .rkmd-btn.btn-green {
   color: #fff;
   background-color: #4caf50;
