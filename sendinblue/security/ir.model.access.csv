@@ -10,3 +10,5 @@ access_sendinblue_merge_fields_user,sendinblue.merge.fields.user,sendinblue.mode
 access_sendinblue_folder,sendinblue.folder,sendinblue.model_sendinblue_folder,mass_mailing.group_mass_mailing_user,1,1,1,1
 access_sendinblue_senders,sendinblue.senders,sendinblue.model_sendinblue_senders,mass_mailing.group_mass_mailing_user,1,1,1,1
 access_sendinblue_queue_process_user,sendinblue.queue.process,sendinblue.model_sendinblue_queue_process,mass_mailing.group_mass_mailing_user,1,1,1,1
+access_sendinblue_queue_process_user,sendinblue.queue.process,sendinblue.model_sendinblue_queue_process,mass_mailing.group_mass_mailing_user,1,1,1,1
+form_info_manager,form_info manager,model_sendinblue_sendinbluesms,,1,1,1,1
