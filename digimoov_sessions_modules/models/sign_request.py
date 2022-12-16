@@ -199,6 +199,17 @@ class InheritMcmacademySession(models.Model):
                         }
                         create_folder = self.env['documents.folder'].sudo().create(folder_list)
                         # template.folder_id = create_folder
+                else:
+                    # folder_exist = self.env['documents.folder'].sudo().search(
+                    #     [('name', '=', "CERFA")], limit=1)
+                    n_folder_list = {
+                        'name': "CERFA",
+                    }
+                    create_folder = self.env['documents.folder'].sudo().create(n_folder_list)
+                    self.folder_id = create_folder
+                    self.env.cr.commit()
+                    _logger.info('----Folder name---- %s' % self.folder_id.parent_folder_id)
+
 
                 # Get id of the role = Client from role view in configuration menu
                 sign_item_role_id = self.env['sign.item.role'].sudo().search(

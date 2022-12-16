@@ -14,20 +14,11 @@ class SignRequestTemplate(models.Model):
 
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
 
-    def write(self, values):
-        """ """
-        res = super(SignRequestTemplate, self).write(values)
-        if 'folder_id':
-            folder_exist = self.env['documents.folder'].sudo().search(
-                [('name', '=', "CERFA")], limit=1)
-            if not folder_exist:
-                n_folder_list = {
-                    'name': "CERFA",
-                }
-                create_folder = self.env['documents.folder'].sudo().create(n_folder_list)
-                self.folder_id = create_folder
-                _logger.info('----Folder name---- %s' % self.folder_id.parent_folder_id)
-        return res
+    # def write(self, values):
+    #     """ """
+    #     res = super(SignRequestTemplate, self).write(values)
+    #
+    #     return res
 
     @api.model
     def create(self, vals):
@@ -37,4 +28,15 @@ class SignRequestTemplate(models.Model):
         if "CERFA" in res.name:
             res.redirect_url = str("https://form.jotform.com/222334146537352")
             res.redirect_url_text = str("Importer vos documents")
+        # if vals.get('name'):
+        #     folder_exist = self.env['documents.folder'].sudo().search(
+        #         [('name', '=', "CERFA")], limit=1)
+        #     if not folder_exist:
+        #         n_folder_list = {
+        #             'name': "CERFA",
+        #         }
+        #         create_folder = self.env['documents.folder'].sudo().create(n_folder_list)
+        #         self.folder_id = create_folder
+        #         self.env.cr.commit()
+        #         _logger.info('----Folder name //// create ---- %s' % self.folder_id.parent_folder_id)
         return res
