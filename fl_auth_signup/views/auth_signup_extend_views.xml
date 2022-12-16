@@ -1417,29 +1417,6 @@
                                             </li>
                                         </t>
                                     </ul>
-
-                                    <!-- password signup-->
-                                    <div class="outlined-input-field bg-c mb24" id="password_container">
-                                        <input type="password" id="password" class="outlined-text-field"
-                                            maxlength="75" minlength="8" autocomplete="off" required="required"
-                                            name="password"
-                                            onfocus="showPasswordPopover()" />
-                                        <label for="password">Votre nouveau mot de passe *</label>
-                                        <i class="toggle-password material-icons visibility " style="
-                                        display: initial;
-                                        position: absolute;
-                                        top: 1rem;
-                                        right: 1rem;
-                                        cursor:pointer;
-                                    ">visibility
-                                    </i>
-                                        <div class="helper-text bg-c" id="password_helper">
-                                            <span></span>
-                                        </div>
-    
-    
-                                    </div>
-                                    <!-- -->
                                     <div id="popover-password" class="hide">
                                         <div class="" style="
                                                         clear: both;
@@ -1476,6 +1453,30 @@
     
                                      
                                     </div>
+
+                                    <!-- password signup-->
+                                    <div class="outlined-input-field bg-c mb24" id="password_container">
+                                        <input type="password" id="password" class="outlined-text-field"
+                                            maxlength="75" minlength="8" autocomplete="off" required="required"
+                                            name="password"
+                                            onfocus="showPasswordPopover()" />
+                                        <label for="password">Votre nouveau mot de passe *</label>
+                                        <i class="toggle-password material-icons visibility " style="
+                                        display: initial;
+                                        position: absolute;
+                                        top: 1rem;
+                                        right: 1rem;
+                                        cursor:pointer;
+                                    ">visibility
+                                    </i>
+                                        <div class="helper-text bg-c" id="password_helper">
+                                            <span></span>
+                                        </div>
+    
+    
+                                    </div>
+                                    <!-- -->
+                                   
                                     <br/>
                                
                                 
