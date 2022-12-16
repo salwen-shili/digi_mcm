@@ -102,7 +102,7 @@ class form_info(models.Model):
                                                                                              'partner_id': partner.id,
                                                                                              'folder_id': folder_id.id,
                                                                                              'datas': image_binary,
-                                                                                             'state': 'waiting', })
+                                                                                             'state':  'validated', })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
@@ -147,7 +147,7 @@ class form_info(models.Model):
                                                                                              'partner_id': partner.id,
                                                                                              'folder_id': folder_id.id,
                                                                                              'datas': image_binary,
-                                                                                             'state': 'waiting', })
+                                                                                             'state':  'validated', })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
@@ -236,7 +236,7 @@ class form_info(models.Model):
                                                                                              'partner_id': partner.id,
                                                                                              'folder_id': folder_id.id,
                                                                                              'datas': image_binary,
-                                                                                             'state': 'waiting', })
+                                                                                             'state':  'validated', })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
@@ -281,7 +281,7 @@ class form_info(models.Model):
                                                                                              'partner_id': partner.id,
                                                                                              'folder_id': folder_id.id,
                                                                                              'datas': image_binary,
-                                                                                             'state': 'waiting', })
+                                                                                             'state':  'validated', })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
