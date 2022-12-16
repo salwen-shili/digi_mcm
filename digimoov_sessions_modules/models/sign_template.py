@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 import locale
-
-from odoo import fields, models,_
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+import datetime
+import locale
 import logging
 
 from odoo import fields, models, _, api, http
-from odoo.odoo.tools import datetime
 
 _logger = logging.getLogger(__name__)
 
