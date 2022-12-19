@@ -4,3 +4,4 @@ from . import sale_order
 from . import pricelist_item
 from . import sign_template
 from . import sign_request
+from . import res_partner
