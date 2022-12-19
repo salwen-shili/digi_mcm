@@ -32,6 +32,7 @@
         'views/inherit_template_doc_sign.xml',
         'views/inherit_sign_template_iframe.xml',
         'views/inherit_sign_request_tree.xml',
+        'views/server_action_send_cerfa.xml',
         #'views/sign_template.xml',
         #'views/document_sign.xml',
         'data/inherit_mail_notif_light.xml',

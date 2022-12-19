@@ -7,8 +7,10 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='dates']" position="replace">
                 <group name="dates">
-<!--                    <button string="Print report cerfa" name="send_cerfa_to_sign" type="object"-->
-<!--                            class="btn-primary"/>-->
+<!--                    <button string="Envoyer un mail de signature CERFA" name="send_cerfa_to_sign" type="object"-->
+<!--                            class="btn-primary"-->
+<!--                            attrs="{'invisible': [('hide_import_note_evalbox', '=', False)]}"-->
+<!--                            groups="mcm_session.group_session_module_manager"/>-->
                     <field name="domaine_formation"/>
                     <field name="date_debut" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                     <field name="date_fin" attrs="{'invisible': [('company_id', '=', 2)]}"/>
