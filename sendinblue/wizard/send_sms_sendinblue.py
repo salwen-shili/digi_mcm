@@ -83,7 +83,7 @@ class sms_sendinblue(models.TransientModel):
 
         if (response.status_code == 201):
             values = {
-                'record_name': self.current_user.id.name,
+                'record_name': self.current_user.name,
                 'model': 'res.partner',
                 'message_type': 'comment',
                 'subtype_id': self.current_user.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
