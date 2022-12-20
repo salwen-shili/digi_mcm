@@ -113,3 +113,46 @@ class sms_sendinblue(models.TransientModel):
 
         _logger.info(response.text)
         _logger.info(response.status_code)
+
+        headers = {
+            'accept': 'application/json',
+            'api-key': api_key.api_key,
+        }
+
+        params = {
+            'limit': '50',
+            'offset': '0',
+            'sort': 'desc',
+        }
+
+        response = requests.get('https://api.sendinblue.com/v3/transactionalSMS/statistics/events', params=params,
+                                headers=headers)
+
+        events = response.json()
+        event_result = events["events"]
+        subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
+
+        for event in event_result:
+            if event["messageId"]:
+                if event["event"] == "replies":
+                    _logger.info(event["reply"])
+                    for sneder in self.env['res.partner'].sudo().search(
+                            [('phone', '=', event["phoneNumber"].replace("+", "00").replace(" ", ""))]):
+
+                        sms = self.env['mail.message'].sudo().search(
+                            [("body", "=", event["reply"]), ("res_id", "=", self.id)])
+                        if not sms:
+                            values = {
+                                'record_name': sneder.name,
+                                'model': 'res.partner',
+                                'message_type': 'comment',
+                                'subtype_id': sneder.env['mail.message.subtype'].search(
+                                    [('name', '=', 'Note')]).id,
+                                'res_id': sneder.id,
+                                'author_id': self.env.user.partner_id.id,
+                                'date': datetime.now(),
+                                'body': event["reply"]
+                            }
+                            self.current_user.env['mail.message'].sudo().create(values)
+                if event["event"]:
+                    _logger.info(event["event"])
