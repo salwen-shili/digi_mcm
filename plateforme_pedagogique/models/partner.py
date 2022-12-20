@@ -2134,7 +2134,7 @@ class partner(models.Model):
                                               '01/08/2022')]):  # Récupérer les clients qui sont gagnés et sont modes de financement carte bleu
                 if partner.mode_de_financement == 'particulier':
                     for invoice in self.env['account.move'].sudo().search(
-                            [('partner_id', "=", partner.id)], limit=1,
+                            [('partner_id', "=", partner.id), ('type', '=', 'out_invoice')], limit=1,
                             order='create_date asc'):
                         _logger.info(
                             "user invoice Partner id----------------°°°°°°°°°°°°°°° %s " % str(
