@@ -10,7 +10,7 @@ from odoo import _
 import locale
 from dateutil.relativedelta import relativedelta
 
-from odoo import models, fields, api, SUPERUSER_ID,exceptions
+from odoo import models, fields, api, SUPERUSER_ID, exceptions
 from odoo.exceptions import ValidationError
 from unidecode import unidecode
 import logging
@@ -53,7 +53,8 @@ class partner(models.Model):
     passage_exam = fields.Boolean("Examen passé", default=False)
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     second_email = fields.Char(string='Email secondaire', track_visibility='always')
-    temps_minute = fields.Integer(string="Temps passé en minutes", track_visibility='always')  # Champs pour récuperer temps en minute par api360
+    temps_minute = fields.Integer(string="Temps passé en minutes",
+                                  track_visibility='always')  # Champs pour récuperer temps en minute par api360
     temps_update_minute = fields.Char()
     is_pole_emploi = fields.Boolean(
         string="Pole Emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
@@ -129,7 +130,7 @@ class partner(models.Model):
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-        company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+        company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
         params = (
             ('company', company.plateforme_company_key),
             ('apiKey', company.plateforme_api_key),
@@ -138,7 +139,7 @@ class partner(models.Model):
         users = response.json()
         # Faire un parcours sur chaque user et extraire ses statistiques
         for user in users:
-            try :
+            try:
                 iduser = user['_id']
                 email = user['mail']
                 _logger.info('user %s' % str(user))
@@ -253,7 +254,7 @@ class partner(models.Model):
             #     api_key=company.wedof_api_key
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                                   ('statut_cpf', "!=", "canceled"),
-                                                                  ('mcm_session_id.date_exam','>',date.today())
+                                                                  ('mcm_session_id.date_exam', '>', date.today())
                                                                   ]):
                 try:
                     # Pour chaque apprenant chercher son contrat
@@ -306,7 +307,8 @@ class partner(models.Model):
                                     'X-API-KEY': partner.company_id.wedof_api_key,
                                 }
                                 responsesession = requests.get(
-                                    'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf, headers=headers)
+                                    'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
+                                    headers=headers)
                                 dossier = responsesession.json()
                                 _logger.info('session %s' % str(dossier))
                                 dateDebutSession_str = ""
@@ -319,8 +321,6 @@ class partner(models.Model):
                 except Exception:
                     self.env.cr.rollback()
                     _logger.exception("Failure with inscription 360")
-
-
 
     # Ajouter ione manuellement
     def ajouter_iOne_manuelle(self, partner):
@@ -452,7 +452,7 @@ class partner(models.Model):
                             self.ajouter_iOne(self)
 
     def ajouter_iOne(self, partner):
-        digimoov=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+        digimoov = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
         new_email = ""
         # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
         # du compte dans odoo
@@ -519,9 +519,9 @@ class partner(models.Model):
                                  "sendCredentials": "false"}
                     resp = requests.post(urluser, headers=headers, data=json.dumps(data_user))
                     _logger.info('data_user %s' % str(data_user))
-                    #respo = str(json.loads(resp.text))
+                    # respo = str(json.loads(resp.text))
                     responce_api = json.loads(resp.text)
-                    #_logger.info('response addd  %s' % respo)
+                    # _logger.info('response addd  %s' % respo)
                     if (resp.status_code == 200):
                         partner.write({'state': 'en_formation'})
                         if responce_api['status'] == 'user_reactivated':
@@ -764,14 +764,14 @@ class partner(models.Model):
 
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+            company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
             company_id = company.plateforme_company_key
             api_key = company.plateforme_api_key
             headers = CaseInsensitiveDict()
             headers["Accept"] = "*/*"
             params = (
                 ('company', company.plateforme_company_key),
-                ('apiKey',  company.plateforme_api_key),
+                ('apiKey', company.plateforme_api_key),
             )
             response = requests.get('https://app.360learning.com/api/v1/users', params=params)
             users = response.json()
@@ -801,13 +801,13 @@ class partner(models.Model):
                         _logger.info('liste à supprimé %s' % str(email))
                         url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
                         resp = requests.delete(url)
-                        if resp.status_code==204:
+                        if resp.status_code == 204:
                             partner.state = "supprimé"
 
     def supprimer_ione_manuelle(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+            company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
             company_id = company.plateforme_company_key
             api_key = company.plateforme_api_key
             headers = CaseInsensitiveDict()
@@ -815,7 +815,7 @@ class partner(models.Model):
             url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
             resp = requests.delete(url)
             if resp.status_code == 204:
-                self.state="supprimé"
+                self.state = "supprimé"
 
     # Extraire firstName et lastName à partir du champs name
     def diviser_nom(self, partner):
@@ -850,8 +850,8 @@ class partner(models.Model):
             api_key = ""
             if companies:
                 api_key = companies.wedof_api_key
-                plateforme_api_key=companies.plateforme_api_key
-                plateforme_company_key=companies.plateforme_company_key
+                plateforme_api_key = companies.plateforme_api_key
+                plateforme_company_key = companies.plateforme_company_key
 
             headers = {
                 'accept': 'application/json',
@@ -1216,7 +1216,7 @@ class partner(models.Model):
                                             params=params_wedof)
                     registrations = response.json()
                     for dossier in registrations:
-                        try :
+                        try:
                             print('dosssier', dossier['attendee']['address'])
                             externalId = dossier['externalId']
                             email = dossier['attendee']['email']
@@ -1278,7 +1278,8 @@ class partner(models.Model):
                                 [('id_edof', "=", str(training_id))], limit=1)
 
                             if state == "validated":
-                                print('validate', email, dossier['attendee']['lastName'], dossier['attendee']['firstName'])
+                                print('validate', email, dossier['attendee']['lastName'],
+                                      dossier['attendee']['firstName'])
                                 self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel,
                                                   code_postal, ville,
                                                   diplome, dossier['attendee']['lastName'],
@@ -1341,7 +1342,7 @@ class partner(models.Model):
                                     if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism" or state == "rejectedWithoutTitulaireSuite" or state == "rejected":
                                         if user.partner_id.numero_cpf == externalId:
                                             """Vérifier si le dossier en formation donc statut de dossier est abandonné si non annulé"""
-                                            if user.partner_id.statut_cpf =="intraining" :
+                                            if user.partner_id.statut_cpf == "intraining":
                                                 user.partner_id.statut = "abandon"
                                                 if user.partner_id.mcm_session_id and user.partner_id.module_id:
                                                     vals = {
@@ -1355,8 +1356,8 @@ class partner(models.Model):
                                                         'res.partner.session.wizard'].sudo().create(
                                                         vals)
                                                     session_wizard.action_modify_partner()
-                                            elif user.partner_id.statut_cpf !="canceled":
-                                                user.partner_id.statut="canceled"
+                                            elif user.partner_id.statut_cpf != "canceled":
+                                                user.partner_id.statut = "canceled"
                                                 if user.partner_id.mcm_session_id and user.partner_id.module_id:
                                                     vals = {
                                                         'partner_id': user.partner_id.id,
@@ -1369,7 +1370,7 @@ class partner(models.Model):
                                                         'res.partner.session.wizard'].sudo().create(
                                                         vals)
                                                     session_wizard.action_modify_partner()
-                                            user.partner_id.statut_cpf="canceled"
+                                            user.partner_id.statut_cpf = "canceled"
                                             user.partner_id.date_cpf = lastupd
                                             user.partner_id.diplome = diplome
                                             if product_id:
@@ -1377,6 +1378,7 @@ class partner(models.Model):
                         except Exception:
                             self.env.cr.rollback()
                             _logger.exception("Erreur de mise a jour des statuts")
+
     def cpf_validate(self, module, email, residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome,
                      nom,
                      prenom, dossier, lastupd):
@@ -1410,8 +1412,6 @@ class partner(models.Model):
             #             _logger.info('if not sms %s' %str(sms_body_contenu))
             #             self.send_sms(sms_body_contenu, user.partner_id)
 
-
-
             if not user:
                 # créer
                 exist = False
@@ -1440,7 +1440,7 @@ class partner(models.Model):
                         'website_id': 1,
                         'company_ids': [1],
                         'company_id': 1,
-                        'inscription_cpf':"moncompteformation.gouv.fr"
+                        'inscription_cpf': "moncompteformation.gouv.fr"
 
                     })
                     user.company_id = 1
@@ -1651,7 +1651,7 @@ class partner(models.Model):
                             user = False
                             users = self.env['res.users'].sudo().search([('login', "=", email)])
                             """si apprenant non trouvé par email on cherche par numero telephone"""
-                            _logger.info("tel******* %s" %str(tel))
+                            _logger.info("tel******* %s" % str(tel))
                             if not users:
                                 if tel:
                                     user = self.env["res.users"].sudo().search(
@@ -1659,7 +1659,6 @@ class partner(models.Model):
                                     if not user:
                                         res_users = self.env["res.users"]
                                         users = res_users.find_user_with_phone(str(tel))
-
 
                             if users and len(users) > 1:
                                 user = users[1]
@@ -1740,9 +1739,10 @@ class partner(models.Model):
                                     user.partner_id.company_id = 1
                                 if user:
                                     phone = str(tel.replace(' ', ''))[-9:]
-                                    phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                                                   5:7] + ' ' + phone[
-                                                                                                                                7:]  # convert the number in this format : +33 x xx xx xx xx
+                                    phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                                3:5] + ' ' + phone[
+                                                                                                             5:7] + ' ' + phone[
+                                                                                                                          7:]  # convert the number in this format : +33 x xx xx xx xx
                                     url = str(user.signup_url)  # get the signup_url
                                     short_url = pyshorteners.Shortener()
                                     short_url = short_url.tinyurl.short(
@@ -1767,7 +1767,8 @@ class partner(models.Model):
                                             [("id", "=", sms_id)], limit=1)
                                         if (sms):
                                             if sms.state == 'error':
-                                                body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
+                                                body = "Le SMS suivant n'a pas pu être envoyé : %s " % (
+                                                    sms_body_contenu)
                                         else:
                                             body = "Le SMS suivant a été bien envoyé : %s " % (sms_body_contenu)
                                         if body:
@@ -2004,7 +2005,8 @@ class partner(models.Model):
                                             short_url = pyshorteners.Shortener()
                                             short_url = short_url.tinyurl.short(
                                                 url)  # convert the url to be short using pyshorteners library
-                                            sms_body_ = "Afin d'intégrer notre plateforme de formation de suite, veuillez renoncer à votre droit de rétractation sur votre espace client %s" % (short_url)
+                                            sms_body_ = "Afin d'intégrer notre plateforme de formation de suite, veuillez renoncer à votre droit de rétractation sur votre espace client %s" % (
+                                                short_url)
                                             # content of sms
                                             sms = self.env['mail.message'].sudo().search(
                                                 [("body", "like", short_url), ("message_type", "=", "sms"),
@@ -2046,6 +2048,7 @@ class partner(models.Model):
                         except Exception:
                             self.env.cr.rollback()
                             _logger.exception("Erreur d'accepter")
+
     """Remplir champ numero cpf sur tout les factures cpf"""
 
     def num_cpf_facture(self):
@@ -2123,22 +2126,19 @@ class partner(models.Model):
                                     users.partner_id.etat_financement_cpf_cb = users.partner_id.statut_cpf
         except Exception:
             self.env.cr.rollback()
-            
 
         try:
-            #client with particulier mode
+            # client with particulier mode
             for partner in self.env['res.partner'].search(
-                    [('statut', "=", "won"), ('mcm_session_id.date_exam', '>', '01/05/2022')]):  # Récupérer les clients qui sont gagnés et sont modes de financement carte bleu
+                    [('statut', "=", "won"), ('mcm_session_id.date_exam', '>',
+                                              '01/08/2022')]):  # Récupérer les clients qui sont gagnés et sont modes de financement carte bleu
                 if partner.mode_de_financement == 'particulier':
                     for invoice in self.env['account.move'].sudo().search(
-                            [('partner_id', "=", partner.id)],
+                            [('partner_id', "=", partner.id)], limit=1,
                             order='create_date asc'):
                         _logger.info(
-                            "user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(
-                                invoice.invoice_payment_state))
-                        _logger.info(
-                            "user Partner id----------------°°°°°°°°°°°°°°° %s " % str(
-                                invoice.partner_id.display_name))
+                            "user invoice Partner id----------------°°°°°°°°°°°°°°° %s " % str(
+                                invoice.id))
                         if invoice and invoice.invoice_payment_state:
                             etat_financement_cpf_cb = invoice.invoice_payment_state
                             if invoice.invoice_payment_state == "in_payment":
@@ -2264,7 +2264,7 @@ class partner(models.Model):
                 # partner.email = new_email
 
     def test_api(self):
-        company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+        company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
         company_id = company.plateforme_company_key
         api_key = company.wedof_api_key
         headers = CaseInsensitiveDict()
@@ -2340,7 +2340,7 @@ class partner(models.Model):
     def send_email_manuel(self):
         """check if user added to plateform"""
         """send mail with button"""
-        company=self.env['res.company'].sudo().search([('id',"=",2)],limit=1)
+        company = self.env['res.company'].sudo().search([('id', "=", 2)], limit=1)
         company_id = company.plateforme_company_key
         api_key = company.wedof_api_key
         headers = CaseInsensitiveDict()
@@ -2430,8 +2430,3 @@ class partner(models.Model):
             if partner.phone:
                 partner.phone = '0' + str(partner.phone.replace(' ', ''))[
                                       -9:]
-
-   
-
-    
-
