@@ -35,7 +35,7 @@ class sms_sendinblue(models.TransientModel):
         user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         return user_phone_number.phone
 
-    recipient = fields.Char('Destinataires',  readonly=True ,default=get_user_phone)
+    recipient = fields.Char('Destinataires', readonly=True, default=get_user_phone)
 
     def get_user_id(self):
         current_user = self.env['res.partner'].browse(self.env.context.get('active_ids'))
@@ -47,16 +47,14 @@ class sms_sendinblue(models.TransientModel):
         sender_name = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         return sender_name.company_id.name
 
-
     sender = fields.Char(string="Sender", default=get_sneder)
 
     def sendsms(self):
 
         _logger.info("sendinblue sms")
-        #arecuperer les clé api
-        api_key = self.env['sendinblue.accounts'].sudo().search([('api_key','!=',False)])
+        # arecuperer les clé api
+        api_key = self.env['sendinblue.accounts'].sudo().search([('api_key', '!=', False)])
         _logger.info(api_key.api_key)
-
 
         url = "https://api.sendinblue.com/v3/transactionalSMS/sms"
 
@@ -70,7 +68,7 @@ class sms_sendinblue(models.TransientModel):
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
-            "api-key":   api_key.api_key
+            "api-key": "kookokkokoapi_key.api_key"
         }
 
         response = requests.post(url, json=payload, headers=headers)
@@ -80,9 +78,9 @@ class sms_sendinblue(models.TransientModel):
 
         note_tag = "<b>" + " Sent 📨📨 À :  " + self.current_user.name + " " "</b><br/>"
         # if 201 message envoyée
-        #add message id-track
+        # add message id-track
         response_text = response.json()
-        messeageid = response_text["messageId"]        #if 201 message envoyée
+        messeageid = response_text["messageId"]  # if 201 message envoyée
 
         if (response.status_code == 201):
             values = {
@@ -97,7 +95,7 @@ class sms_sendinblue(models.TransientModel):
                 'body': note_tag + "\n" + self.content
             }
             self.current_user.env['mail.message'].sudo().create(values)
-        #if !201 message envoyée
+        # if !201 message envoyée
         else:
             values = {
                 'record_name': self.current_user.name,
@@ -141,6 +139,8 @@ class sms_sendinblue(models.TransientModel):
 
                         sms = self.env['mail.message'].sudo().search(
                             [("body", "=", event["reply"]), ("res_id", "=", self.id)])
+                        note_tag = "<b>" + " Reply 📨📨 From :  " + self.current_user.name + " " "</b><br/>"
+
                         if not sms:
                             values = {
                                 'record_name': sneder.name,
@@ -151,7 +151,7 @@ class sms_sendinblue(models.TransientModel):
                                 'res_id': sneder.id,
                                 'author_id': self.env.user.partner_id.id,
                                 'date': datetime.now(),
-                                'body': event["reply"]
+                                'body': note_tag + event["reply"]
                             }
                             self.current_user.env['mail.message'].sudo().create(values)
                 if event["event"]:
