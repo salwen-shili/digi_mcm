@@ -57,7 +57,7 @@ class SignRequestTemplate(models.Model):
                 # if folder CERFA exist
                 if f_name_date_exam:
                     # template.folder_id = folder_exist.id
-                    self.folder_id = f_name_date_exam
+                    res.folder_id = f_name_date_exam
                     _logger.info('----Folder name test Takwa---- %s' % f_name_date_exam)
                 else:
                     folder_list = {

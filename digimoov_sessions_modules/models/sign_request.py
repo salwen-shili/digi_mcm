@@ -141,7 +141,7 @@ class InheritSignRequest(models.Model):
 class InheritMcmacademySession(models.Model):
     _inherit = "mcmacademy.session"
 
-    def send_cerfa_to_sign(self, subject=None, message=None):
+    def send_cerfa_to_sign_session(self, subject=None, message=None):
         """ 1- Générer un rapport cerfa
             2- Ajouter template dans module signature
             3- Envoyer une demande de signature aux clients gagnés """
