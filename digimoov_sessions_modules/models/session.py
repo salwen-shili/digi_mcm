@@ -31,7 +31,12 @@ class Session(models.Model):
             [('email', 'in', ['tmejri@digimoov.fr', 'houssemrando@gmail.com'])])
         folder_exist = self.env['documents.folder'].sudo().search(
             [('name', '=', "CERFA")], limit=1)
-        for client in partner:
+        model = self.model
+        if model == "res.partner":
+            self_model = self
+        elif model != "res.partner":
+            self_model = self.client_ids
+        for client in self_model:
             client.send_email_cerfa_sign(self_model)
             # if client:
             #     # Attach cerfa report to partner
