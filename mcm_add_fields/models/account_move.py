@@ -247,8 +247,8 @@ class AccountMove(models.Model):
                         _logger.info("userrrr******** %s" %user.numero_cpf)
                         module_id = self.env['mcmacademy.module'].sudo().search(
                             [('company_id', "=", 2), ('session_ville_id', "=", user.session_ville_id.id),
-                             ('date_exam', "=", user.date_examen_edof), ('product_id', "=", product_id.id),
-                             ('session_id.number_places_available', '>', 0)], limit=1)
+                             ('date_exam', "=", user.date_examen_edof), ('product_id', "=", product_id.id)
+                              ], limit=1)
                         _logger.info('before if modulee %s' %str(module_id.name))
                         if module_id:
                             _logger.info('if modulee %s'%str( module_id))
@@ -438,8 +438,8 @@ class AccountMove(models.Model):
                     elif user  and product_id and product_id.company_id.id == 1 and user.id_edof and user.date_examen_edof and user.session_ville_id:
                         module_id = self.env['mcmacademy.module'].sudo().search(
                             [('company_id', "=", 1), ('session_ville_id', "=", user.session_ville_id.id),
-                             ('date_exam', "=", user.date_examen_edof), ('product_id', "=", product_id.id),
-                             ('session_id.number_places_available', '>', 0)], limit=1)
+                             ('date_exam', "=", user.date_examen_edof), ('product_id', "=", product_id.id)
+                             ], limit=1)
                         print('before if modulee', module_id)
                         if module_id:
                             _logger.info('if modulee %s' %str(module_id))
@@ -838,24 +838,21 @@ class AccountMove(models.Model):
 
     def create_invoice_bolt(self):
         emails = [
-            'djamalsang89@gmail.com',
-            'TRIKIHAMZA89@GMAIL.COM',
-            'ismail.toure@kisio.com',
-            'abdelyacine@outlook.fr',
-            'syrinelamine@gmail.com',
-            'jeremy.mgaya@yahoo.fr',
-            'brahimakberthe88@gmail.com',
-            'slamasalah89@gmail.com',
-            'abdelrahimtenes02@gmail.com',
-            'Terga2009@yahoo.fr',
-            'belhadjgacemabdelhadi@gmail.com',
-            'sofianejabri97@gmail.com',
-            'transportsbandb@gmail.com',
-            'montard7@gmail.com',
-            'rabs75@hotmail.fr',
-            'maximejules75@gmail.com',
-            'ylabriti@gmail.com',
-            'ouellafhicham97@gmail.com',
+            'frankinam@hotmail.fr',
+            'tiemokodiomande42@gmail.com',
+            'krmkd@hotmail.com',
+            'hurkus61@gmail.com',
+            'theophiledongue2@yahoo.fr',
+            'dawod1996.22@yahoo.com',
+            'aberrak.06@gmail.com',
+            'rankinam@hotmail.fr',
+            'bretagnegirone@gmail.com',
+            'dj.arbouze@yahoo.fr',
+            'kadriidjassa199@gmail.com',
+            'theophiledongue2@yahoo.fr',
+            'borhencharkaoui@outlook.fr',
+            'soufien.awaida@gmail.com'
+
         ]
         for email in emails:
             user = self.env['res.users'].sudo().search([("login", "=", email)],limit=1)
@@ -882,6 +879,9 @@ class AccountMove(models.Model):
                 user.company_id = 1
                 user.partner_id.company_id = 1
                 user.partner_id.bolt = True
+
+
+            if user:
                 message = self.env["mail.message"].create(
                     {
                         "subject": "Client bolt de stripe",
@@ -893,8 +893,6 @@ class AccountMove(models.Model):
                     }
                 )
 
-            if user:
-
                 session_ville = self.env['session.ville'].sudo().search([('name_ville', "=", "Hauts-de-France")])
                 date_time_str = '28/06/2022'
                 date_time_obj = datetime.strptime(date_time_str, "%d/%m/%Y")
@@ -905,8 +903,8 @@ class AccountMove(models.Model):
                         [('company_id', "=", 1),
                          ('session_ville_id', "=", session_ville.id),
                          ('date_exam', "=", date_time_obj),
-                         ('product_id', "=", product_id.id),
-                         ('session_id.number_places_available', '>', 0)], limit=1)
+                         ('product_id', "=", product_id.id)
+                         ], limit=1)
                     _logger.info('before if modulee %s' % str(module_id))
                     if module_id:
                         _logger.info('if modulee %s' % str(module_id))
@@ -961,7 +959,9 @@ class AccountMove(models.Model):
                                 for line in move.invoice_line_ids:
                                     if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
                                         line.account_id = line.product_id.property_account_income_id
-                                move.post()
+                                 move.post()
+                            so.action_cancel()
+                            so.unlink()
 
     def create_invoice_billed(self):
         companies = self.env['res.company'].sudo().search([])
