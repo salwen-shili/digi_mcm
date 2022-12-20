@@ -98,7 +98,7 @@ class CRM(models.Model):
             if aircall_detail:
                 _logger.info("aircall %s" % str(aircall_detail.owner))
                 if aircall_detail.owner and not self.conseiller:
-                    _logger.info("consieller")
+                    #_logger.info("consieller")
                     vals['conseiller'] = str(aircall_detail.owner)
                     _logger.info("consieller")
         write_result = super(CRM, self).write(vals)
