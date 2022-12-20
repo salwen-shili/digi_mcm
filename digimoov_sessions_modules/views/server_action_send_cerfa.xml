@@ -7,7 +7,7 @@
             <field name="binding_model_id" ref="model_mcmacademy_session"/>
             <field name="binding_view_types">form</field>
             <field name="state">code</field>
-            <field name="code">records.client_ids.send_cerfa_to_sign_session(self_model)</field>
+            <field name="code">records.send_cerfa_to_sign_session(self_model)</field>
         </record>
 
 <!--        Action serveur pour envoyer demande de signature cerfa a partir de la vue partner-->

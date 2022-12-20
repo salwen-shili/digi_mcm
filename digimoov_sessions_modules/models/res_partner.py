@@ -18,7 +18,8 @@ class InheritResPartner(models.Model):
         folder_exist = self.env['documents.folder'].sudo().search(
             [('name', '=', "CERFA")], limit=1)
         if folder_exist:
-            raise ValidationError(_("Voulez-vous vraiment continuer à envoyer la demande de signature du CERFA ou non?"))
+            raise ValidationError(
+                _("Voulez-vous vraiment continuer à envoyer la demande de signature du CERFA ou non?"))
         model = self.model
         if model == "res.partner":
             self_model = self
@@ -92,5 +93,3 @@ class InheritResPartner(models.Model):
             request = sign_request.browse(res['id'])
             _logger.info('----request to_sign ---- %s' % sign_request_item.access_token)
             request.go_to_document()
-
-
