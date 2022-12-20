@@ -2,7 +2,7 @@ import base64
 import logging
 
 from odoo import fields, models, _, api, http
-from odoo.odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -19,9 +19,13 @@ class InheritResPartner(models.Model):
             [('email', 'in', ['tmejri@digimoov.fr', 'houssemrando@gmail.com'])])
         folder_exist = self.env['documents.folder'].sudo().search(
             [('name', '=', "CERFA")], limit=1)
-        if folder_exist:
-            raise ValidationError(_("The model name must start with 'x_'."))
-        for client in self:
+        raise ValidationError(_("Voulez-vous vraiment continuer à envoyer la demande de signature du CERFA ou non?"))
+        model = self.model
+        if model == "res.partner":
+            self_model = self
+        else:
+            self_model = self.client_ids
+        for client in self_model:
             if client:
                 # Attach cerfa report to partner
                 content, content_type = self.env.ref('partner_exam.report_cerfa').render_qweb_pdf(
