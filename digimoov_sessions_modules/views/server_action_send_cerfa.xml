@@ -13,8 +13,8 @@
 <!--        Action serveur pour envoyer demande de signature cerfa a partir de la vue partner-->
         <record model="ir.actions.server" id="action_send_cerfa_to_sign_partner">
             <field name="name">Envoyer une demande de signature cerfa</field>
-            <field name="model_id" ref="model_res_partner"/>
-            <field name="binding_model_id" ref="model_mcmacademy_session"/>
+            <field name="model_id" ref="model_mcmacademy_session"/>
+            <field name="binding_model_id" ref="model_res_partner"/>
             <field name="binding_view_types">list</field>
             <field name="state">code</field>
             <field name="code">records.send_cerfa_to_sign_res_partner()</field>
