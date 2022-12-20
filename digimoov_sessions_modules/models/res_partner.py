@@ -10,14 +10,15 @@ _logger = logging.getLogger(__name__)
 class InheritResPartner(models.Model):
     _inherit = "res.partner"
 
-    def send_cerfa_to_sign_res_partner(self, subject=None, message=None, self_model=False):
+    def send_cerfa_to_sign_res_partner(self, self_model, subject=None, message=None):
         """ 1- sélectionner partners
             2- Générer un rapport cerfa
             3- Ajouter template dans module signature
             4- Envoyer une demande de signature"""
         folder_exist = self.env['documents.folder'].sudo().search(
             [('name', '=', "CERFA")], limit=1)
-        raise ValidationError(_("Voulez-vous vraiment continuer à envoyer la demande de signature du CERFA ou non?"))
+        if folder_exist:
+            raise ValidationError(_("Voulez-vous vraiment continuer à envoyer la demande de signature du CERFA ou non?"))
         model = self.model
         if model == "res.partner":
             self_model = self
@@ -30,6 +31,7 @@ class InheritResPartner(models.Model):
         partner = self.env['res.partner'].sudo().search(
             [('email', 'in', ['tmejri@digimoov.fr', 'houssemrando@gmail.com'])])
         client = self_model
+        _logger.info('---- client ---- %s' % client)
         if client:
             # Attach cerfa report to partner
             content, content_type = self.env.ref('partner_exam.report_cerfa').render_qweb_pdf(
