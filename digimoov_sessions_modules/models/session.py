@@ -31,7 +31,7 @@ class Session(models.Model):
             [('email', 'in', ['tmejri@digimoov.fr', 'houssemrando@gmail.com'])])
         folder_exist = self.env['documents.folder'].sudo().search(
             [('name', '=', "CERFA")], limit=1)
-        model = self.model
+        model = self._context.get('active_model')
         if model == "res.partner":
             self_model = self
         elif model != "res.partner":

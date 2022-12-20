@@ -20,7 +20,7 @@ class InheritResPartner(models.Model):
         if folder_exist:
             raise ValidationError(
                 _("Voulez-vous vraiment continuer à envoyer la demande de signature du CERFA ou non?"))
-        model = self.model
+        model = self._context.get('active_model')
         if model == "res.partner":
             self_model = self
         elif model != "res.partner":
