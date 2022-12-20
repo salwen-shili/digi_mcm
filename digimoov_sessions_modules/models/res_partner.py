@@ -17,9 +17,6 @@ class InheritResPartner(models.Model):
             4- Envoyer une demande de signature"""
         folder_exist = self.env['documents.folder'].sudo().search(
             [('name', '=', "CERFA")], limit=1)
-        if folder_exist:
-            raise ValidationError(
-                _("Voulez-vous vraiment continuer à envoyer la demande de signature du CERFA ou non?"))
         model = self._context.get('active_model')
         if model == "res.partner":
             self_model = self
