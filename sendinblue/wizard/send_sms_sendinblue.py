@@ -80,6 +80,7 @@ class sms_sendinblue(models.TransientModel):
 
         note_tag = "<b>" + " Sent 📨📨 À :  " + self.current_user.name + " " "</b><br/>"
         # if 201 message envoyée
+        #add message id
         response_text = response.json()
         messeageid = response_text["messageId"]        #if 201 message envoyée
 
