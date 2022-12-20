@@ -78,13 +78,16 @@ class sms_sendinblue(models.TransientModel):
         _logger.info(self.recipient.replace(" ", ""))
         _logger.info(self.content)
 
-        note_tag = "<b>" + "📨📨 À :  " + self.current_user.name + " " "</b><br/>"
-        #if 201 message envoyée
+        note_tag = "<b>" + " Sent 📨📨 À :  " + self.current_user.name + " " "</b><br/>"
+        # if 201 message envoyée
+        response_text = response.json()
+        messeageid = response_text["messageId"]        #if 201 message envoyée
 
         if (response.status_code == 201):
             values = {
                 'record_name': self.current_user.name,
                 'model': 'res.partner',
+                'subject': messeageid,
                 'message_type': 'comment',
                 'subtype_id': self.current_user.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
                 'res_id': self.current_user.id,
