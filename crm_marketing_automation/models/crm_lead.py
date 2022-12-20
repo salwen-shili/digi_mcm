@@ -103,3 +103,4 @@ class CRM(models.Model):
                     _logger.info("consieller")
         write_result = super(CRM, self).write(vals)
         return write_result
+
