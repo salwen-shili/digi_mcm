@@ -959,7 +959,7 @@ class AccountMove(models.Model):
                                 for line in move.invoice_line_ids:
                                     if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
                                         line.account_id = line.product_id.property_account_income_id
-                                 move.post()
+                                move.post()
                             so.action_cancel()
                             so.unlink()
 
