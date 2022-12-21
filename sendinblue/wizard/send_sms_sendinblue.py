@@ -45,7 +45,7 @@ class sms_sendinblue(models.TransientModel):
 
     def get_sneder(self):
         sender_name = self.env['res.partner'].browse(self.env.context.get('active_ids'))
-        return sender_name.company_id.name
+        return sender_name.company_id.phone
 
     sender = fields.Char(string="Sender", default=get_sneder)
 
@@ -68,7 +68,7 @@ class sms_sendinblue(models.TransientModel):
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
-            "api-key": api_key.api_key
+            "api-key": "00000api_key.api_key"
         }
 
         response = requests.post(url, json=payload, headers=headers)
@@ -132,7 +132,7 @@ class sms_sendinblue(models.TransientModel):
         events = response.json()
         event_result = events["events"]
         subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
-        #chercher les event
+        # chercher les event
         for event in event_result:
             # si reponse a un sms
             if event["event"] == "replies":
@@ -174,7 +174,8 @@ class sms_sendinblue(models.TransientModel):
                     if recepteur.phone.replace("+", "").replace(" ", "") == numero_recepteur:
                         _logger.info(recepteur.phone)
                         date_event = event["date"].split('.')[0].replace("T", " ")
-                        commentaire = "<b>" + "Message" + " " + event["event"] + " " + "At" + " " + date_event + " " "</b><br/>"
+                        commentaire = "<b>" + "Message" + " " + event[
+                            "event"] + " " + "At" + " " + date_event + " " "</b><br/>"
                         sms = self.env['mail.message'].sudo().search(
                             [("body", "=", commentaire), ("res_id", "=", recepteur.id),
                              ])
