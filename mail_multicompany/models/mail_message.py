@@ -14,22 +14,30 @@ class MailMessage(models.Model):
     @api.model_create_multi
     def create(self, values_list):
         icp_domain = self.env["ir.config_parameter"].sudo().get_param("mail.catchall.domain")
-        _logger.info(" old ir config parameter is : %s "%(str(icp_domain)))
         if icp_domain != self.env.company.alias_domain :
-            alias=self.env['res.config.settings'].sudo().write({
-                'alias_domain':self.env.company.alias_domain,
-            })
-        alias_domain= self.env['ir.config_parameter'].sudo().search([('key', "=",'mail.catchall.domain')])
-        # if alias_domain:
-        #     alias_domain.sudo().write({'value':self.env.company.alias_domain})
-        icp_domain = self.env["ir.config_parameter"].sudo().get_param("mail.catchall.domain") #get mail.catchall.domain parameter
-        # if alias != icp_domain: #check difference between parametre mail.catchall.domain and alias domain
-        if icp_domain != self.env.company.alias_domain:
-            try :
-                self.env["ir.config_parameter"].sudo().set_param("mail.catchall.domain", self.env.company.alias_domain)
-                # self._cr.commit()
+           # We need to do this part here to avoid concurrent updates error.
+            try:
+                with self.env.cr.savepoint():
+                    query = "UPDATE res_config_settings SET "
+                    query += """
+                        alias_domain = %s
+                    """
+                    self.env.cr.execute(query, (self.env.company.alias_domain,), log_exceptions=False)
             except Exception:
-                _logger.exception("Failure to update mail catchall domain from %s to %s" %(str(icp_domain),str(self.env.company.alias_domain)))
+                pass
+        catchall_domain_key = "mail.catchall.domain"
+        if icp_domain != self.env.company.alias_domain:
+            # We need to do this part here to avoid concurrent updates error.
+            try :
+                with self.env.cr.savepoint():
+                    query = "UPDATE res_config_settings SET "
+                    query += """
+                        alias_domain = %s
+                         WHERE key = %s
+                    """
+                    self.env.cr.execute(query, (self.env.company.alias_domain, catchall_domain_key), log_exceptions=False)
+            except Exception:
+                    pass
                 
         for vals in values_list:
             if vals.get("model") and vals.get("res_id"):
