@@ -149,7 +149,21 @@
 	   	   	t-thumbnail="/sh_corpomate_theme/static/src/img/extra_addons/v_block_2.png"/> 
 	   	   	
 	  	  <t t-snippet="sh_corpomate_theme.sh_nb_notice_board_vertical_tmpl_3" 
-	   	   	t-thumbnail="/sh_corpomate_theme/static/src/img/extra_addons/v_block_3.png"/>  		   	   	 	   	   	   
+	   	   	t-thumbnail="/sh_corpomate_theme/static/src/img/extra_addons/v_block_3.png"/>  	
+			
+			<!-- BLOG CUSTOM SNIPPETS-->
+			<t t-snippet="sh_corpomate_theme.s_article_blog_mcm_title_1" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_sommaire" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_title_2" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_title_3" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_title_4" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_bloc_text" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_cta" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_img_center" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_img_right" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_ol" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_ul" t-thumbnail="/mcm_website_theme/static/src/img/logo-dig.png" />
 	   	   	
  	                            
 	  </xpath>
@@ -375,7 +389,3 @@
 	</template>
 	
 </odoo>
-
-
-
-
