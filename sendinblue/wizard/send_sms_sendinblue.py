@@ -37,11 +37,13 @@ class sms_sendinblue(models.TransientModel):
 
     recipient = fields.Char('Destinataires', readonly=True, default=get_user_phone)
 
+    #get current user (la personne que on va lui envoyer l'sms
     def get_user_id(self):
         current_user = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         return current_user
 
     current_user = fields.Many2one('res.partner', 'Destinataires', default=get_user_id)
+    #get sender (le nom de la societé)
 
     def get_sneder(self):
         sender_name = self.env['res.partner'].browse(self.env.context.get('active_ids'))
@@ -68,7 +70,7 @@ class sms_sendinblue(models.TransientModel):
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
-            "api-key": "00000api_key.api_key"
+            "api-key": "00000api_key.api_keyPPPPPPPP"
         }
 
         response = requests.post(url, json=payload, headers=headers)
@@ -80,9 +82,10 @@ class sms_sendinblue(models.TransientModel):
         # if 201 message envoyée
         # add message id-track
         response_text = response.json()
-        messeageid = response_text["messageId"]  # if 201 message envoyée
 
         if (response.status_code == 201):
+            messeageid = response_text["messageId"]  # if 201 message envoyée
+
             values = {
                 'record_name': self.current_user.name,
                 'model': 'res.partner',
