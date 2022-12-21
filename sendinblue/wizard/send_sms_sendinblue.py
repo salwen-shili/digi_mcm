@@ -35,7 +35,7 @@ class sms_sendinblue(models.TransientModel):
         user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         return user_phone_number.phone
 
-    recipient = fields.Char('Destinataires', readonly=True, default=get_user_phone)
+    recipient = fields.Char('Destinataires',  default=get_user_phone)
 
     #get current user (la personne que on va lui envoyer l'sms
     def get_user_id(self):
