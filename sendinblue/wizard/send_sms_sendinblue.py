@@ -68,7 +68,7 @@ class sms_sendinblue(models.TransientModel):
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
-            "api-key": "kookokkokoapi_key.api_key"
+            "api-key": api_key.api_key
         }
 
         response = requests.post(url, json=payload, headers=headers)
@@ -132,8 +132,9 @@ class sms_sendinblue(models.TransientModel):
         events = response.json()
         event_result = events["events"]
         subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
-
+        #chercher les event
         for event in event_result:
+            # si reponse a un sms
             if event["event"] == "replies":
                 _logger.info("reponse_logger %s" % event["reply"])
                 # chercher le recepteur de message a partir de numero de telephone
