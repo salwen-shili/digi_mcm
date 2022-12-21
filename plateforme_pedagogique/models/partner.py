@@ -2135,7 +2135,7 @@ class partner(models.Model):
                 if partner.mode_de_financement == 'particulier':
                     for invoice in self.env['account.move'].sudo().search(
                             [('partner_id', "=", partner.id), ('type', '=', 'out_invoice')], limit=1,
-                            order='create_date asc'):
+                            order='create_date desc'):
                         _logger.info(
                             "user invoice Partner id----------------°°°°°°°°°°°°°°° %s " % str(
                                 invoice.id))
