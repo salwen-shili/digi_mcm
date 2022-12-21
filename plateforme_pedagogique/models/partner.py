@@ -1654,9 +1654,9 @@ class partner(models.Model):
                             _logger.info("tel******* %s" % str(tel))
                             if not users:
                                 if tel:
-                                    user = self.env["res.users"].sudo().search(
+                                    users = self.env["res.users"].sudo().search(
                                         [("phone", "=", str(tel))], limit=1)
-                                    if not user:
+                                    if not users:
                                         res_users = self.env["res.users"]
                                         users = res_users.find_user_with_phone(str(tel))
 

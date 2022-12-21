@@ -466,9 +466,9 @@ class WebhookController(http.Controller):
         """si apprenant non trouvé par email on cherche par numero telephone"""
         if not users:
             if tel:
-                user = request.env["res.users"].sudo().search(
+                users = request.env["res.users"].sudo().search(
                     [("phone", "=", str(tel))], limit=1)
-                if not user:
+                if not users:
                     res_users = request.env["res.users"]
                     users = res_users.find_user_with_phone(str(tel))
 
