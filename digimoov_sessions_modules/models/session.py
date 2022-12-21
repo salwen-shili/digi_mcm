@@ -33,11 +33,10 @@ class Session(models.Model):
             [('name', '=', "CERFA")], limit=1)
 
         model = self._context.get('active_model')
-        for res_model in model:
-            if model == "res.partner":
-                self_model = res_model
-            elif model != "res.partner":
-                self_model = res_model.client_ids
+        if model == "res.partner":
+            self_model = self
+        elif model != "res.partner":
+            self_model = self.client_ids
         for client in self_model:
             client.send_email_cerfa_sign(self_model)
             # if client:
