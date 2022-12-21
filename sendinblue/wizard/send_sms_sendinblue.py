@@ -70,6 +70,7 @@ class sms_sendinblue(models.TransientModel):
             "api-key": api_key.api_key
         }
 
+
         response = requests.post(url, json=payload, headers=headers)
         _logger.info(self.sender)
         _logger.info(self.recipient.replace(" ", ""))
