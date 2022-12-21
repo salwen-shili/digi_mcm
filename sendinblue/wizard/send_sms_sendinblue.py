@@ -22,19 +22,15 @@ class sms_sendinblue(models.TransientModel):
         return user_phone_number.phone
 
     content = fields.Text(string="Message")
-    type = fields.Selection([('marketing', 'Marketing'),
-                             ('transactional', ' Transactional'),
-                             ])
-    # recipients
+    #recipients
     partner_ids = fields.Many2one('res.users', 'Current User', default=lambda self: self.env.uid)
-    company_ids = fields.Many2many('res.company')
-    sanitized_numbers = fields.Char('Sanitized Number', compute='_compute_sanitized_numbers', compute_sudo=False)
 
     def get_user_phone(self):
 
         user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
+        #modifier le numero de l'utilisateur pour qu'il soit accepter par l'api
         return user_phone_number.phone.replace("+", "00").replace(" ", "")
-
+    #get recipient from odoo
     recipient = fields.Char('Destinataires', default=get_user_phone)
 
     # get current user (la personne que on va lui envoyer l'sms
@@ -48,14 +44,14 @@ class sms_sendinblue(models.TransientModel):
 
     def get_sneder(self):
         sender_name = self.env['res.partner'].browse(self.env.context.get('active_ids'))
-        return sender_name.company_id.phone
+        return sender_name.company_id.phone.replace("+", "").replace(" ", "")
 
     sender = fields.Char(string="Sender", default=get_sneder)
 
     def sendsms(self):
 
         _logger.info("sendinblue sms")
-        # arecuperer les clé api
+        # recuperer les clé api
         api_key = self.env['sendinblue.accounts'].sudo().search([('api_key', '!=', False)])
         _logger.info(api_key.api_key)
 
@@ -71,7 +67,7 @@ class sms_sendinblue(models.TransientModel):
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
-            "api-key": "00000api_key.api_keyPPPPPPPP"
+            "api-key": api_key.api_key
         }
 
         response = requests.post(url, json=payload, headers=headers)
