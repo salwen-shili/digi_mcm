@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="metricool_tracking_web_layout" name="Metricool Tracking: Web Layout" inherit_id="web.layout">
+        <xpath expr="//head" position="inside">
+            <!-- Metricool Tracking Code -->
+            <script t-if="website and website.metricool_tracking_key">function loadScript(a){
+                var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"<t t-esc="website.metricool_tracking_key"/>"})});
+            </script>
+            <!-- END Metricool Tracking Code -->
+        </xpath>
+    </template>
+</odoo>
