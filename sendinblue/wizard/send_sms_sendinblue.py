@@ -33,17 +33,18 @@ class sms_sendinblue(models.TransientModel):
     def get_user_phone(self):
 
         user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
-        return user_phone_number.phone
+        return user_phone_number.phone.replace("+", "00").replace(" ", "")
 
-    recipient = fields.Char('Destinataires',  default=get_user_phone)
+    recipient = fields.Char('Destinataires', default=get_user_phone)
 
-    #get current user (la personne que on va lui envoyer l'sms
+    # get current user (la personne que on va lui envoyer l'sms
     def get_user_id(self):
         current_user = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         return current_user
 
     current_user = fields.Many2one('res.partner', 'Destinataires', default=get_user_id)
-    #get sender (le nom de la societé)
+
+    # get sender (le nom de la societé)
 
     def get_sneder(self):
         sender_name = self.env['res.partner'].browse(self.env.context.get('active_ids'))
