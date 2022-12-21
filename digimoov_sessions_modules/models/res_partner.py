@@ -2,6 +2,7 @@ import base64
 import logging
 
 from odoo import fields, models, _, api, http
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -9,18 +10,28 @@ _logger = logging.getLogger(__name__)
 class InheritResPartner(models.Model):
     _inherit = "res.partner"
 
-    def send_cerfa_to_sign_res_partner(self, subject=None, message=None):
+    def send_cerfa_to_sign_res_partner(self, self_model, subject=None, message=None):
         """ 1- sélectionner partners
             2- Générer un rapport cerfa
             3- Ajouter template dans module signature
             4- Envoyer une demande de signature"""
-        partner = self.env['res.partner'].sudo().search(
-            [('email', 'in', ['tmejri@digimoov.fr', 'houssemrando@gmail.com'])])
         folder_exist = self.env['documents.folder'].sudo().search(
             [('name', '=', "CERFA")], limit=1)
+        model = self._context.get('active_model')
+        if model == "res.partner":
+            self_model = self
+        elif model != "res.partner":
+            self_model = self.client_ids
+        for client in self_model:
+            client.send_email_cerfa_sign(self_model)
 
-        for client in self:
-            if client:
+    def send_email_cerfa_sign(self, self_model):
+        partner = self.env['res.partner'].sudo().search(
+            [('email', 'in', ['tmejri@digimoov.fr', 'houssemrando@gmail.com'])])
+        clients = self_model
+        _logger.info('---- client ---- %s' % clients)
+        if clients:
+            for client in clients:
                 # Attach cerfa report to partner
                 content, content_type = self.env.ref('partner_exam.report_cerfa').render_qweb_pdf(
                     client.id)
