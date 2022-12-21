@@ -112,6 +112,9 @@ class sms_sendinblue(models.TransientModel):
         _logger.info(response.text)
         _logger.info(response.status_code)
 
+    def action_sms(self):
+        api_key = self.env['sendinblue.accounts'].sudo().search([('api_key', '!=', False)])
+
         headers = {
             'accept': 'application/json',
             'api-key': api_key.api_key,
@@ -131,28 +134,60 @@ class sms_sendinblue(models.TransientModel):
         subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
 
         for event in event_result:
-            if event["messageId"]:
-                if event["event"] == "replies":
-                    _logger.info(event["reply"])
-                    for sneder in self.env['res.partner'].sudo().search(
-                            [('phone', '=', event["phoneNumber"].replace("+", "00").replace(" ", ""))]):
+            if event["event"] == "replies":
+                _logger.info("reponse_logger %s" % event["reply"])
+                # chercher le recepteur de message a partir de numero de telephone
+                numero_recepteur = event["phoneNumber"]
+                _logger.info("numeroo %s" % numero_recepteur)
 
+                for recepteur in self.env['res.partner'].sudo().search(
+                        [('phone', '!=', False)]):
+                    if recepteur.phone.replace("+", "00").replace(" ", "") == numero_recepteur:
+                        _logger.info(recepteur.phone)
+
+                        note_tag = "<b>" + " Reply 📨📨 From :  " + recepteur.name + " " "</b><br/>"
                         sms = self.env['mail.message'].sudo().search(
-                            [("body", "=", event["reply"]), ("res_id", "=", self.id)])
-                        note_tag = "<b>" + " Reply 📨📨 From :  " + self.current_user.name + " " "</b><br/>"
-
+                            [("body", "=", note_tag + event["reply"]), ("res_id", "=", recepteur.id),
+                             ])
                         if not sms:
                             values = {
-                                'record_name': sneder.name,
+                                'record_name': recepteur.name,
+                                'subject': event["messageId"],
                                 'model': 'res.partner',
                                 'message_type': 'comment',
-                                'subtype_id': sneder.env['mail.message.subtype'].search(
+                                'subtype_id': recepteur.env['mail.message.subtype'].search(
                                     [('name', '=', 'Note')]).id,
-                                'res_id': sneder.id,
+                                'res_id': recepteur.id,
                                 'author_id': self.env.user.partner_id.id,
                                 'date': datetime.now(),
                                 'body': note_tag + event["reply"]
                             }
-                            self.current_user.env['mail.message'].sudo().create(values)
-                if event["event"]:
-                    _logger.info(event["event"])
+                            recepteur.env['mail.message'].sudo().create(values)
+            if event["event"] != "replies" and event["event"] != "sent":
+                _logger.info("reponse_logger %s" % event["event"])
+                # chercher le recepteur de message a partir de numero de telephone
+                numero_recepteur = event["phoneNumber"]
+                _logger.info("numeroo %s" % numero_recepteur)
+                for recepteur in self.env['res.partner'].sudo().search(
+                        [('phone', '!=', False)]):
+                    if recepteur.phone.replace("+", "").replace(" ", "") == numero_recepteur:
+                        _logger.info(recepteur.phone)
+                        date_event = event["date"].split('.')[0].replace("T", " ")
+                        commentaire = "<b>" + "Message" + " " + event["event"] + " " + "At" + " " + date_event + " " "</b><br/>"
+                        sms = self.env['mail.message'].sudo().search(
+                            [("body", "=", commentaire), ("res_id", "=", recepteur.id),
+                             ])
+                        if not sms:
+                            values = {
+                                'record_name': recepteur.name,
+                                'subject': event["messageId"],
+                                'model': 'res.partner',
+                                'message_type': 'comment',
+                                'subtype_id': recepteur.env['mail.message.subtype'].search(
+                                    [('name', '=', 'Note')]).id,
+                                'res_id': recepteur.id,
+                                'author_id': self.env.user.partner_id.id,
+                                'date': datetime.now(),
+                                'body': commentaire
+                            }
+                            recepteur.env['mail.message'].sudo().create(values)
