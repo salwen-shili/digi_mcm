@@ -130,7 +130,9 @@
   }
   
   /* <a href="#" class="btn-wiggle button button-wiggle">test</a> */
-  
+  .article.o_wblog_post {
+    min-height: 51px;
+}
   .blog-article-prototype {
     font-family: 'Roboto', 'Odoo Unicode Support Noto', sans-serif !important;
   }
