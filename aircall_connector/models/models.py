@@ -376,6 +376,8 @@ class ResUser(models.Model):
                                             })
                             if not message and odoo_contact:
                                 # Create new Note in view contact
+                                _logger.info('createeeeee note ********************************')
+                                odoo_contact.changestage("Indécis appelé", odoo_contact)
                                 _logger.info('create new note in view contact mcm %s : %s' % (
                                 str(odoo_contact), (str(str(content) + str(note['content'])))))
                                 message = self.env['mail.message'].sudo().create({
