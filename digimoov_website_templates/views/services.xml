@@ -135,7 +135,7 @@
                 <option value="client">Service clientèle</option>
                 <option value="examen">Service examen</option>
                 <option value="coaching">Service pédagogique</option>
-                <option value="Comptabilité">Service financier</option>
+                <option value="Comptabilité">Financement</option>
                 <option value="it">Service Informatique</option>
                 <option value="others">Autres demandes</option>
             </select>
@@ -227,7 +227,7 @@
                 <option value="client">Service clientèle</option>
                 <option value="examen">Service examen</option>
                 <option value="coaching">Service pédagogique</option>
-                <option value="Comptabilité">Service financier</option>
+                <option value="Comptabilité">Financement</option>
                 <option value="it">Service Informatique</option>
                 <option value="others">Autres demandes</option>
             </select>
