@@ -208,7 +208,7 @@
             </b>
         </section>
     </template>
-    <template id="s_article_blog_mcm_cta_VTC" name="Art_CTA_VTC">
+    <template id="s_article_blog_mcm_cta_vtc" name="Art_CTA_VTC">
         <section
             data-name="Call To Action">
             <div class="container">
