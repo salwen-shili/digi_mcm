@@ -259,6 +259,8 @@ class AirCall(models.Model):
                         'body': str(content) + str(note['content']),
                     })
                     lead=self.env['crm.lead'].sudo().search([('partner_id',"=",record.call_contact.id)])
-                    if lead :
+                    if lead:
                         _logger.info('lead %s' %str(lead))
                         lead.conseiller=user_name
+                    _logger.info('createeeeee note ********************************')
+                    record.call_contact.changestage("Indécis appelé", record.call_contact)
