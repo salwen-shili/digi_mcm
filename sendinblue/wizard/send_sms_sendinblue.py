@@ -29,6 +29,7 @@ class sms_sendinblue(models.TransientModel):
 
         user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         #modifier le numero de l'utilisateur pour qu'il soit accepter par l'api
+               
         return user_phone_number.phone.replace("+", "00").replace(" ", "")
     #get recipient from odoo
     recipient = fields.Char('Destinataires', default=get_user_phone)
