@@ -9,7 +9,7 @@
                 .title-summary {
                 line-height: 28px;
                 font-weight: 600;
-                color: #2c2c2c;
+                color: #000000;
                 font-size: 18.5px ;
                 text-align: justify ;
                 }
