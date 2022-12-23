@@ -32,6 +32,7 @@ class Sale(models.Model):
             if aircall:
                 _logger.info("Indécis callled %s" %str(aircall))
             else:
+                _logger.info('pas de call')
                 self.change_stage_lead("Indécis non appelé", partner)
 
             # for so in self.order_line:
