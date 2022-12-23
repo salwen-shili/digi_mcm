@@ -90,6 +90,12 @@
                 </div>
             </div>
 
+            <script>
+            
+                function progressBarScroll(){let e=document.body.scrollTop||document.documentElement.scrollTop,t=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById("progressBar")&amp;&amp;(document.getElementById("progressBar").style.width=e/t*100+"%")}function offsetAnchor(){0!==location.hash.length&amp;&amp;window.scrollTo(window.scrollX,window.scrollY-115)}document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("summary-article"),t=0,l=0,r=(r,o,a)=>{let n=document.createElement("a"),s=document.createElement("br"),c,m;n.className="title-summary","H2"==o&amp;&amp;(c=++t,m=document.createTextNode(c+". "+r),l=0),"H3"==o&amp;&amp;(c=++l,n.className="title-summary title3-summary",c=l,m=document.createTextNode(c+". "+r)),n.appendChild(m),n.setAttribute("href","#"+a),e.appendChild(n),e.appendChild(s)},o=document.querySelectorAll(".blog-article-prototype > *"),a=0,n="";for(let s of o)("H2"==s.tagName||"H3"==s.tagName)&amp;&amp;(n=s.tagName+a++,s.setAttribute("id",n),r(s.textContent,s.tagName,n))}),window.onscroll=function(){progressBarScroll()},window.addEventListener("hashchange",offsetAnchor),window.setTimeout(offsetAnchor,1);
+
+            </script>
+
 
         </section>
 
