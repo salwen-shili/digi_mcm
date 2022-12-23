@@ -3,6 +3,7 @@
 {
     "name": "Corpomate Theme - Multipurpose Corporate Theme",
     "author": "Softhealer Technologies",
+    "edited by": "Salwen SHILI",
     "website": "https://www.softhealer.com",
     "support": "suppport@softhealer.com",
     'category': 'Theme/Corporate',
@@ -250,6 +251,7 @@
         "extra_addons/sh_notice_board/views/notice_board_view.xml",
         "extra_addons/sh_notice_board/views/assets_frontend.xml",
         "extra_addons/sh_notice_board/views/snippets.xml",
+        "extra_addons/sh_notice_board/views/custom_snippets_blog.xml",
 
         # HTML Snippet
         "extra_addons/sh_html_snippet/views/html_snippet.xml",

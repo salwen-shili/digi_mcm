@@ -149,7 +149,25 @@
 	   	   	t-thumbnail="/sh_corpomate_theme/static/src/img/extra_addons/v_block_2.png"/> 
 	   	   	
 	  	  <t t-snippet="sh_corpomate_theme.sh_nb_notice_board_vertical_tmpl_3" 
-	   	   	t-thumbnail="/sh_corpomate_theme/static/src/img/extra_addons/v_block_3.png"/>  		   	   	 	   	   	   
+	   	   	t-thumbnail="/sh_corpomate_theme/static/src/img/extra_addons/v_block_3.png"/>  	
+			
+			<!-- BLOG CUSTOM SNIPPETS-->
+			<t t-snippet="sh_corpomate_theme.s_article_blog_mcm_title_1" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_sommaire" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_title_2" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_title_3" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_title_4" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_bloc_text" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_cta" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_img_center" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_img_right" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_ol" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_ul" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+
+			<t t-snippet="sh_corpomate_theme.s_article_blog_mcm_cta_taxi" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_cta_vtc" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
+            <t t-snippet="sh_corpomate_theme.s_article_blog_mcm_cta_vmdtr" t-thumbnail="/digimoov_website_templates/static/img/habilitation-electrique/snippets-mcm.png" />
 	   	   	
  	                            
 	  </xpath>
@@ -375,7 +393,4 @@
 	</template>
 	
 </odoo>
-
-
-
-
+ 

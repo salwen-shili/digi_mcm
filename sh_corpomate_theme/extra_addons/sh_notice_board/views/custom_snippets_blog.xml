@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <template id="s_article_blog_mcm_sommaire" name="Article_sommaire">
+
+        <section class="blog-article-prototype">
+            <style>
+                .title-summary {
+                line-height: 28px;
+                font-weight: 600;
+                color: #000000;
+                font-size: 18.5px ;
+                text-align: justify ;
+                }
+                .title-summary:hover {
+                color: #1471cc;
+                }
+                .title3-summary {
+                color: #000 ;
+                margin-left: 16px;
+                font-size: 17.5px;
+                font-weight: 400;
+
+
+                }
+
+                .header {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1;
+                }
+
+                .progress-container {
+                background-color: rgba(150, 150, 150, 0.6);
+                height: 10px;
+                width: 100%;
+                }
+
+                .progress-bar {
+                background-color: #2196f3;
+                height: 10px;
+                width: 0%;
+                }
+
+                .content {
+                padding: 2em;
+                }
+
+                .center-div {
+                display: flex;
+                justify-content: center;
+                }
+                #sommaire {
+
+                width: 99%;
+
+
+                background-color: #fff;
+                border: 1px solid #dfdfe2;
+                border-radius: 20px;
+                padding: 32px;
+
+                margin-bottom: 11px;
+
+                line-height: 28px!important;
+                font-weight: 600;
+                color: #202647!important;
+                font-size: 30px!important;
+
+                }
+
+
+            </style>
+
+            <div class="header">
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="center-div">
+                <div id="sommaire">
+                    <div style="margin-bottom: 8px;color: #000;" class="o_default_snippet_text">
+                        Sommaire:</div>
+                    <div id="summary-article">
+                    </div>
+
+                </div>
+            </div>
+
+            <script>
+            
+                function progressBarScroll(){let e=document.body.scrollTop||document.documentElement.scrollTop,t=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById("progressBar")&amp;&amp;(document.getElementById("progressBar").style.width=e/t*100+"%")}function offsetAnchor(){0!==location.hash.length&amp;&amp;window.scrollTo(window.scrollX,window.scrollY-115)}document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("summary-article"),t=0,l=0,r=(r,o,a)=>{let n=document.createElement("a"),s=document.createElement("br"),c,m;n.className="title-summary","H2"==o&amp;&amp;(c=++t,m=document.createTextNode(c+". "+r),l=0),"H3"==o&amp;&amp;(c=++l,n.className="title-summary title3-summary",c=l,m=document.createTextNode(c+". "+r)),n.appendChild(m),n.setAttribute("href","#"+a),e.appendChild(n),e.appendChild(s)},o=document.querySelectorAll(".blog-article-prototype > *"),a=0,n="";for(let s of o)("H2"==s.tagName||"H3"==s.tagName)&amp;&amp;(n=s.tagName+a++,s.setAttribute("id",n),r(s.textContent,s.tagName,n))}),window.onscroll=function(){progressBarScroll()},window.addEventListener("hashchange",offsetAnchor),window.setTimeout(offsetAnchor,1);
+
+            </script>
+
+
+        </section>
+
+
+    </template>
+
+    <template id="s_article_blog_mcm_title_1" name="Article_title_1">
+
+        <section class="blog-article-prototype">
+            <h1>Titre 1 : Lorem ipsum dolor sit amet.</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut molestiae hic dicta
+                dignissimos! Recusandae amet quasi accusantium voluptas. Impedit natus officiis quam
+                sequi neque, sapiente earum nobis saepe autem possimus.
+            </p>
+        </section>
+
+
+    </template>
+
+    <template id="s_article_blog_mcm_title_2" name="Article_title_2">
+        <section class="blog-article-prototype">
+            <h2>Titre 2 : Lorem ipsum dolor sit amet.</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, quasi. Aliquam
+                repudiandae explicabo, delectus ipsam fugit reiciendis voluptatum totam aliquid
+                soluta, molestiae consequatur error sunt, necessitatibus accusantium odit itaque
+                amet.</p>
+        </section>
+    </template>
+
+    <template id="s_article_blog_mcm_title_3" name="Article_title_3">
+        <section class="blog-article-prototype">
+            <h3>Titre 3 : Lorem ipsum dolor sit amet.</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, quasi. Aliquam
+                repudiandae explicabo, delectus ipsam fugit reiciendis voluptatum totam aliquid
+                soluta, molestiae consequatur error sunt, necessitatibus accusantium odit itaque
+                amet.</p>
+        </section>
+    </template>
+
+    <template id="s_article_blog_mcm_title_4" name="Article_title_4">
+        <section class="blog-article-prototype">
+            <h4>Titre 4 : Lorem ipsum dolor sit amet.</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, quasi. Aliquam
+                repudiandae explicabo, delectus ipsam fugit reiciendis voluptatum totam aliquid
+                soluta, molestiae consequatur error sunt, necessitatibus accusantium odit itaque
+                amet.</p>
+        </section>
+    </template>
+
+    <template id="s_article_blog_mcm_bloc_text" name="Article_bloc_text">
+        <section class="blog-article-prototype">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, quasi. Aliquam
+                repudiandae explicabo, delectus ipsam fugit reiciendis voluptatum totam aliquid
+                soluta, molestiae consequatur error sunt, necessitatibus accusantium odit itaque
+                amet.</p>
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, quasi. Aliquam
+                repudiandae explicabo, delectus ipsam fugit reiciendis voluptatum totam aliquid
+                soluta, molestiae consequatur error sunt, necessitatibus accusantium odit itaque
+                amet.</p>
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, quasi. Aliquam
+                repudiandae explicabo, delectus ipsam fugit reiciendis voluptatum totam aliquid
+                soluta, molestiae consequatur error sunt, necessitatibus accusantium odit itaque
+                amet.</p>
+        </section>
+    </template>
+
+    <template id="s_article_blog_mcm_cta" name="Article_CTA">
+        <section>
+            <div class="row justify-content-center">
+                <div class="cta-action col-md-7 text-center pb16 col-lg-8">
+                    <div>Besoin d'une formation TAXI?</div>
+                    <p style="color: #000">
+                        Inscrivez-vous à la formation   100% à distance de MCM Academy
+                    </p>
+                    <a class="btn-wiggle button button-wiggle" href="/formation-taxi#pricing">
+                        Je m'inscris <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="s_article_blog_mcm_cta_taxi" name="Art__CTA_TAXI">
+        <section
+            data-name="Call To Action">
+            <div class="container">
+                <h2>
+                    <b>Besoin d'une formation TAXI?</b>
+                </h2>
+                <p class="text">
+                    <b>
+                        <font style="font-size: 18px;">Inscrivez-vous à la formation
+                        </font>
+                        <b style="color:#FFC107">
+                            <span class="typewrite" data-period="5000"
+                                data-type="[ &quot;100 % en ligne chez MCM Academy ?&quot; ]">
+                                <span class="wrap">
+                                    <font style="color: rgb(132, 99, 0); font-size: 18px;">100% à
+                                        distance de MCM Academy</font>
+                                </span>
+                            </span>
+                        </b>
+                    </b>
+                </p>
+                <b>
+                    <a class="animated-button-yellow" href="/formation-taxi#pricing"><span></span><span></span><span></span><span></span>
+                        JE M'INSCRIS</a>
+                </b>
+                <b>
+                </b>
+            </div>
+            <b>
+            </b>
+        </section>
+    </template>
+    <template id="s_article_blog_mcm_cta_vtc" name="Art_CTA_VTC">
+        <section
+            data-name="Call To Action">
+            <div class="container">
+                <h2>
+                    <b>Besoin d'une formation TAXI?</b>
+                </h2>
+                <p class="text">
+                    <b>
+                        <font style="font-size: 18px;">Inscrivez-vous à la formation
+                        </font>
+                        <b style="color:#FFC107">
+                            <span class="typewrite" data-period="5000"
+                                data-type="[ &quot;100 % en ligne chez MCM Academy ?&quot; ]">
+                                <span class="wrap">
+                                    <font style="color: rgb(132, 99, 0); font-size: 18px;">100% à
+                                        distance de MCM Academy</font>
+                                </span>
+                            </span>
+                        </b>
+                    </b>
+                </p>
+                <b>
+                    <a class="animated-button-yellow" href="/formation-moto-taxi#pricing"><span></span><span></span><span></span><span></span>
+                        JE M'INSCRIS</a>
+                </b>
+                <b>
+                </b>
+            </div>
+            <b>
+            </b>
+        </section>
+    </template>
+    <template id="s_article_blog_mcm_cta_vmdtr" name="Art_CTA_VMDTR">
+        <section
+            data-name="Call To Action">
+            <div class="container">
+                <h2>
+                    <b>Besoin d'une formation TAXI?</b>
+                </h2>
+                <p class="text">
+                    <b>
+                        <font style="font-size: 18px;">Inscrivez-vous à la formation
+                        </font>
+                        <b style="color:#FFC107">
+                            <span class="typewrite" data-period="5000"
+                                data-type="[ &quot;100 % en ligne chez MCM Academy ?&quot; ]">
+                                <span class="wrap">
+                                    <font style="color: rgb(132, 99, 0); font-size: 18px;">100% à
+                                        distance de MCM Academy</font>
+                                </span>
+                            </span>
+                        </b>
+                    </b>
+                </p>
+                <b>
+                    <a class="animated-button-yellow" href="/formation-taxi#pricing"><span></span><span></span><span></span><span></span>
+                        JE M'INSCRIS</a>
+                </b>
+                <b>
+                </b>
+            </div>
+            <b>
+            </b>
+        </section>
+    </template>
+
+    <template id="s_article_blog_mcm_img_center" name="Article_img_Center">
+        <section class="blog-article-prototype">
+
+            <div class="text-center">
+                <img class="img-fluid o_we_custom_image" width="500" height="400"
+                    src="https://www.mcm.fr/web/image/219095/1%20%281%29.png?access_token=e8b9c9ae-f582-44de-8505-796eb59bd2cc" />
+            </div>
+        </section>
+
+    </template>
+
+    <template id="s_article_blog_mcm_img_right" name="Article_img_right">
+        <section class="blog-article-prototype">
+
+            <img class="img-fluid o_we_custom_image float-right" width="500" height="500"
+                src="https://www.mcm.fr/web/image/285723/Transport-l%C3%A9ger-marchandise.png?access_token=913ebccd-015f-4684-8a76-07b5674ce670"
+                alt="impact de la crise sur le secteur des taxis et VTC" />
+        </section>
+    </template>
+
+    <template id="s_article_blog_mcm_ul" name="Article_Unordered_list">
+        <section class="blog-article-prototype">
+            <ul>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+            </ul>
+        </section>
+    </template>
+
+    <template id="s_article_blog_mcm_ol" name="Article_Ordred_list">
+        <section class="blog-article-prototype">
+            <ol>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+            </ol>
+        </section>
+    </template>
+
+
+</odoo>
