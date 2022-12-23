@@ -102,7 +102,7 @@ class form_info(models.Model):
                                                                                              'partner_id': partner.id,
                                                                                              'folder_id': folder_id.id,
                                                                                              'datas': image_binary,
-                                                                                             'state':  'validated', })
+                                                                                             'state': 'validated', })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
@@ -147,7 +147,7 @@ class form_info(models.Model):
                                                                                              'partner_id': partner.id,
                                                                                              'folder_id': folder_id.id,
                                                                                              'datas': image_binary,
-                                                                                             'state':  'validated', })
+                                                                                             'state': 'validated', })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
@@ -236,7 +236,7 @@ class form_info(models.Model):
                                                                                              'partner_id': partner.id,
                                                                                              'folder_id': folder_id.id,
                                                                                              'datas': image_binary,
-                                                                                             'state':  'validated', })
+                                                                                             'state': 'validated', })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
@@ -281,7 +281,7 @@ class form_info(models.Model):
                                                                                              'partner_id': partner.id,
                                                                                              'folder_id': folder_id.id,
                                                                                              'datas': image_binary,
-                                                                                             'state':  'validated', })
+                                                                                             'state': 'validated', })
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
@@ -310,19 +310,18 @@ class form_info(models.Model):
             'tag': 'reload',
         }
 
-
     def valider_form(self):
         count = 0
         for existe_doc in self.env['mcm_openedx.form_info'].sudo().search(
-            [('partner_id', '!=', False)]):
+                [('partner_id', '!=', False)]):
             for justif in self.env['documents.document'].sudo().search(
-                [('name', '=', "Justificatif de domicile de moins de 3 mois (les factures mobile ne sont pas acceptées"),   ('partner-id','=',existe_doc.partner_id)]):
-                count = count +1
+                    [('partner_id', '=', existe_doc.id)]):
+                _logger.info(justif.name)
+                if justif.state == "waiting":
+                    justif.state = "validated"
+                    self.env.cr.commit()
+
+            count = count + 1
+
         _logger.info(count)
-        _logger.info("Countttttttt")
-
-
-
-
-
-
+        _logger.info("Count")
