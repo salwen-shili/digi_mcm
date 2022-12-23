@@ -153,7 +153,7 @@
         <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
         <!--        <menuitem id="aircall_menu" name="AirCall" parent="base.menu_users" sequence="5"/>-->
         <menuitem id="aircall_menu" name="AirCall "
-                  groups="base.group_user" web_icon="aircall_connector,static/description/aircall.webp"/>
+                  groups="base.group_user" web_icon="aircall_connector,static/src/air.png"/>
         <!-- This Menu Item must have a parent and an action -->
         <menuitem id="aircall_menu_categ" name="AirCall Details" parent="aircall_menu" action="call_detail_action2"
                   sequence="3"/>
