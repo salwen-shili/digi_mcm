@@ -313,9 +313,9 @@ class form_info(models.Model):
     def valider_form(self):
         count = 0
         for existe_doc in self.env['mcm_openedx.form_info'].sudo().search(
-                [('partner_id', '!=', False)]):
+                []):
             for justif in self.env['documents.document'].sudo().search(
-                    [('partner_id', '=', existe_doc.id)]):
+                    [('partner_id.id', '=', existe_doc.partner_id.id)]):
                 _logger.info(justif.name)
                 if justif.state == "waiting":
                     justif.state = "validated"
