@@ -319,7 +319,6 @@ class form_info(models.Model):
                 _logger.info(justif.name)
                 if justif.state == "waiting":
                     justif.state = "validated"
-                    self.env.cr.commit()
 
             count = count + 1
 
