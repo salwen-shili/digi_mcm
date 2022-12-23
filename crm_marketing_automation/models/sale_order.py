@@ -28,7 +28,11 @@ class Sale(models.Model):
         partner = self.env['res.partner'].sudo().search([('id', '=', partner_id)], limit=1)
         print('partner', partner)
         if partner and partner.statut_cpf != "validated" and not partner.bolt and self.module_id.product_id.default_code != "vtc_bolt":
-            self.change_stage_lead("Indécis", partner)
+            aircall=self.env['call.detail'].sudo().search([("call_contact.id","=",int(partner))])
+            if aircall:
+                _logger.info("Indécis callled %s" %str(aircall))
+            else:
+                self.change_stage_lead("Indécis non appelé", partner)
 
             # for so in self.order_line:
             print("order line",self.pricelist_id.name)
