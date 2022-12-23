@@ -309,3 +309,20 @@ class form_info(models.Model):
             'type': 'ir.actions.client',
             'tag': 'reload',
         }
+
+
+    def valider_form(self):
+        count = 0
+        for existe_doc in self.env['mcm_openedx.form_info'].sudo().search(
+            [('partner_id', '!=', False)]):
+            for justif in self.env['documents.document'].sudo().search(
+                [('name', '=', "Justificatif de domicile de moins de 3 mois (les factures mobile ne sont pas acceptées"),   ('partner-id','=',existe_doc.partner_id)]):
+                count = count +1
+        _logger.info(count)
+        _logger.info("Countttttttt")
+
+
+
+
+
+
