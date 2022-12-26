@@ -1,10 +1,7 @@
 <odoo>
     <template id="mcm_website_theme.mcm_template" inherit_id="website.homepage">
         <xpath expr="//div[@id='wrap']" position="replace">
-            <div id="wrap" class="oe_structure oe_empty">
-                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
-                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
+
                 <div id="wrap" class="oe_structure oe_empty">
                     <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
                     <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
@@ -771,7 +768,7 @@
                                     </div>
                                     <div class="pt32" t-if="partenaire=='' or not partenaire ">
                                         <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
-                                            <img class="img-fluid lazy" style="width: 250px" data-src="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" title="Joel partenaire MCM ACADEMY" alt="Expert-comptable partenaire de MCM Academy" />
+                                            <img class="img-fluid lazy" style="width: 250px" data-src="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.webp" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" title="Joel partenaire MCM ACADEMY" alt="Expert-comptable partenaire de MCM Academy" />
                                         </a>
                                     </div>
                                 </div>
@@ -855,7 +852,7 @@
                         </section>
                     </div>
                 </div>
-            </div>
+    
         </xpath>
 
     </template>
