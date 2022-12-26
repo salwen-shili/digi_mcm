@@ -74,4 +74,5 @@ class InheritSmsComposer(models.TransientModel):
                     return self._action_send_sms_comment(records)
                 return self._action_send_sms_numbers()
             else:
+
                 return self._action_send_sms_mass(records)
