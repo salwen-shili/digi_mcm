@@ -22,16 +22,19 @@ class sms_sendinblue(models.TransientModel):
         return user_phone_number.phone
 
     content = fields.Text(string="Message")
-    #recipients
+    # recipients
     partner_ids = fields.Many2one('res.users', 'Current User', default=lambda self: self.env.uid)
 
     def get_user_phone(self):
 
         user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
-        #modifier le numero de l'utilisateur pour qu'il soit accepter par l'api
-               
-        return user_phone_number.phone.replace("+", "00").replace(" ", "")
-    #get recipient from odoo
+        # modifier le numero de l'utilisateur pour qu'il soit accepter par l'api
+
+        return user_phone_number.phone.replace("+", "00").replace(" ", "") or user_phone_number.phone.replace("0",
+                                                                                                              "33").replace(
+            " ", "")
+
+    # get recipient from odoo
     recipient = fields.Char('Destinataires', default=get_user_phone)
 
     # get current user (la personne que on va lui envoyer l'sms
@@ -67,9 +70,8 @@ class sms_sendinblue(models.TransientModel):
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
-            "api-key": api_key.api_key
+            "api-key": "dddapi_key.api_key"
         }
-
 
         response = requests.post(url, json=payload, headers=headers)
         _logger.info(self.sender)
@@ -144,7 +146,9 @@ class sms_sendinblue(models.TransientModel):
 
                 for recepteur in self.env['res.partner'].sudo().search(
                         [('phone', '!=', False)]):
-                    if recepteur.phone.replace("+", "00").replace(" ", "") == numero_recepteur:
+                    if recepteur.phone.replace("+", "00").replace(" ",
+                                                                  "") == numero_recepteur or recepteur.phone.replace(
+                            "0", "33").replace(" ", "") == numero_recepteur:
                         _logger.info(recepteur.phone)
 
                         note_tag = "<b>" + " Reply 📨📨 From :  " + recepteur.name + " " "</b><br/>"
@@ -172,7 +176,8 @@ class sms_sendinblue(models.TransientModel):
                 _logger.info("numeroo %s" % numero_recepteur)
                 for recepteur in self.env['res.partner'].sudo().search(
                         [('phone', '!=', False)]):
-                    if recepteur.phone.replace("+", "").replace(" ", "") == numero_recepteur:
+                    if recepteur.phone.replace("+", "").replace(" ", "") == numero_recepteur or recepteur.phone.replace(
+                            "0", "33").replace(" ", "") == numero_recepteur:
                         _logger.info(recepteur.phone)
                         date_event = event["date"].split('.')[0].replace("T", " ")
                         commentaire = "<b>" + "Message" + " " + event[
