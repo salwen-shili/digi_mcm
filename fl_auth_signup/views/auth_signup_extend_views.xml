@@ -1513,7 +1513,7 @@
     
                                 </div>
                                 <div class="text-center mb24 mt24">
-                                    <button id="inscrire" type="submit" t-if="not name or not last_login"
+                                    <button id="inscrire" type="submit" 
                                             class="rkmd-btn green-shop ripple-effect ripple-yellow"
                                             style="max-width: 350px;"
                                             data-oe-model="ir.ui.view" data-oe-id="1730"
