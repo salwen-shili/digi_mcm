@@ -84,6 +84,7 @@ class AuthSignupHome(AuthSignupHome):
         if 'error' not in qcontext and request.httprequest.method == 'POST':
             try:
                 qcontext['login'] = qcontext['login'].replace(' ', '').lower()
+                duplicate_partners = request.env["res.partner"].sudo().search([("email", "=", qcontext['login'])])
                 self.do_signup(qcontext)
                 # Send an account creation confirmation email
                 if qcontext.get('token'):
@@ -104,6 +105,19 @@ class AuthSignupHome(AuthSignupHome):
                 kw['login'] = qcontext.get('login').replace(' ', '').lower()
                 if 'passerelle' in qcontext:
                     kw['passerelle'] = True
+                user_created = request.env["res.users"].sudo().search([("login", "=", kw['login'])],limit=1, order="create_date desc")
+                if duplicate_partners:
+                    list = []
+                    for partner in duplicate_partners :
+                        list.append(partner.id)
+                    list.append(user_created.partner_id.id)
+                    vals = {
+                        'dst_partner_id': user_created.partner_id.id,
+                        'partner_ids': [(6, 0, list)],
+                        'group_by_email': True,
+                    }
+                    partner_merge_automatic_wizard = request.env['base.partner.merge.automatic.wizard'].sudo().create(
+                        vals)
                 return self.web_login(*args, **kw)
             except UserError as e:
                 qcontext['error'] = e.name or e.value
