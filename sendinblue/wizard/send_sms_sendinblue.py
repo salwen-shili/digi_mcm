@@ -175,7 +175,7 @@ class sms_sendinblue(models.TransientModel):
                                 'body': note_tag + event["reply"]
                             }
                             recepteur.env['mail.message'].sudo().create(values)
-            if event["event"] != "replies":
+            if event["event"] != "replies" and event["event"] != "sent":
                 _logger.info("reponse_logger %s" % event["event"])
                 # chercher le recepteur de message a partir de numero de telephone
                 numero_recepteur = event["phoneNumber"]

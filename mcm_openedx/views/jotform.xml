@@ -53,7 +53,7 @@
     </record>
 
 
-    <menuitem id="jotform_menu" name="JOTFORM" web_icon="mcm_openedx,static/src/jot.png"/>
+    <menuitem id="jotform_menu" name="JOTFORM" web_icon="mcm_openedx,static/src/jotf.png"/>
     <menuitem id="jotform_menu-sub" name="Formulaire" parent="jotform_menu" action="jotformm_list_action"/>
 
 </odoo>
