@@ -72,19 +72,20 @@ class AuthSignupHome(AuthSignupHome):
             raise werkzeug.exceptions.NotFound()
         # Generate an error when a user already uses this email
         _logger.info("mcm auth signup finded user %s" % (str(qcontext.get("login"))))
-        if qcontext.get("login") and qcontext.get("login") != 'none':#check if qcontext of login != none
+        if qcontext.get("login") and qcontext.get("login") != 'none':  # check if qcontext of login != none
             if request.env["res.users"].sudo().search(
                     [("login", "=", qcontext.get("login").replace(' ', '').lower())]):
                 qcontext["error"] = _("Another user is already registered using this email address.")
-        if 'error' not in qcontext :
+        if 'error' not in qcontext:
             res_users = request.env["res.users"]
-            user=res_users.find_user_with_phone(qcontext.get("phone"))
-            if user :
+            user = res_users.find_user_with_phone(qcontext.get("phone"))
+            if user:
                 qcontext["error"] = _("Another user is already registered using this phone number.")
         if 'error' not in qcontext and request.httprequest.method == 'POST':
             try:
                 qcontext['login'] = qcontext['login'].replace(' ', '').lower()
-                duplicate_partners = request.env["res.partner"].sudo().search([("email", "=", qcontext['login'])])
+                duplicate_partners_email = request.env["res.partner"].sudo().search(
+                    [("email", "=", qcontext['login'])])  # search for duplicates partner using email param
                 self.do_signup(qcontext)
                 # Send an account creation confirmation email
                 if qcontext.get('token'):
@@ -105,19 +106,25 @@ class AuthSignupHome(AuthSignupHome):
                 kw['login'] = qcontext.get('login').replace(' ', '').lower()
                 if 'passerelle' in qcontext:
                     kw['passerelle'] = True
-                user_created = request.env["res.users"].sudo().search([("login", "=", kw['login'])],limit=1, order="create_date desc")
-                if duplicate_partners:
+                user_created = request.env["res.users"].sudo().search([("login", "=", kw['login'])], limit=1,
+                                                                      order="create_date desc")  # get user created
+                if duplicate_partners_email:  # check if we get duplicated partners
                     list = []
-                    for partner in duplicate_partners :
+                    for partner in duplicate_partners:
                         list.append(partner.id)
-                    list.append(user_created.partner_id.id)
+                    list.append(
+                        user_created.partner_id.id)  # append list of partners && partner of user created to a new list
                     vals = {
                         'dst_partner_id': user_created.partner_id.id,
                         'partner_ids': [(6, 0, list)],
                         'group_by_email': True,
                     }
+                    # create new merge automatic wizard with vals
                     partner_merge_automatic_wizard = request.env['base.partner.merge.automatic.wizard'].sudo().create(
                         vals)
+                    if partner_merge_automatic_wizard:
+                        # call function of action merge
+                        partner_merge_automatic_wizard.action_merge()
                 return self.web_login(*args, **kw)
             except UserError as e:
                 qcontext['error'] = e.name or e.value
