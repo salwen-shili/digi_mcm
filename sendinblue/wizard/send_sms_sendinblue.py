@@ -30,7 +30,7 @@ class sms_sendinblue(models.TransientModel):
         user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         # modifier le numero de l'utilisateur pour qu'il soit accepter par l'api
         phone = str(user_phone_number.phone.replace(' ', ''))[-9:]
-        phone = '0033' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+        phone = '33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                                                                      3:5] + ' ' + phone[
                                                                                   5:7] + ' ' + phone[
                                                                                                7:]
