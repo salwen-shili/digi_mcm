@@ -55,7 +55,6 @@ class sms_sendinblue(models.TransientModel):
         # recuperer les clé api
         api_key = self.env['sendinblue.accounts'].sudo().search([('api_key', '!=', False)])
         _logger.info(api_key.api_key)
-
         url = "https://api.sendinblue.com/v3/transactionalSMS/sms"
 
         payload = {
@@ -166,7 +165,7 @@ class sms_sendinblue(models.TransientModel):
                                 'body': note_tag + event["reply"]
                             }
                             recepteur.env['mail.message'].sudo().create(values)
-            if event["event"] != "replies" and event["event"] != "sent":
+            if event["event"] != "replies":
                 _logger.info("reponse_logger %s" % event["event"])
                 # chercher le recepteur de message a partir de numero de telephone
                 numero_recepteur = event["phoneNumber"]
