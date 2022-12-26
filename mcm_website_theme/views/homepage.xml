@@ -486,41 +486,7 @@
                             </div>
                         </section>
                         <!-- End counter section-->
-                        <!-- section google avis-->
-                        <section id="sh_corpomate_theme_section_155" class="">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-6 align-items-center sh_animation_part js-scroll slide-left d-flex ">
-                                        <div class="sh_left_content">
-                                            <h2>Comment mobiliser mon CPF pour financer ma formation Taxi VTC ?</h2>
-                                            <p class="para">
-                                                Notre centre de formation offre à nos candidats la possibilité
-                                                de financer leurs formations Taxi VTC et VMDTR en mobilisant
-                                                leurs
-                                                <b>
-                                                    <a href="/mon-compte-de-formation-cpf">
-                                                        <u> Compte de formation Personnel</u>
-                                                    </a>
-                                                    .
-                                                </b>
-                                                &amp;nbsp;
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 sh_animation_part js-scroll slide-right ">
-                                        <div class="sh_content_right">
-                                            <div class="sh_img">
-                                                <div class="media_iframe_video" data-oe-expression="//www.youtube.com/embed/19BiYQVwZFs?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1">
-                                                    <div class="css_editable_mode_display" />
-                                                    <div class="media_iframe_video_size" />
-                                                    <iframe src="//www.youtube.com/embed/19BiYQVwZFs?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+                    
                         <!-- section - Comment financer ma formation ?-->
                         <section id="sh_corpomate_theme_section_60">
                             <div class="container">
