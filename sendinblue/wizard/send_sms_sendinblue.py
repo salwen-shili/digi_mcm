@@ -30,7 +30,7 @@ class sms_sendinblue(models.TransientModel):
         user_phone_number = self.env['res.partner'].browse(self.env.context.get('active_ids'))
         # modifier le numero de l'utilisateur pour qu'il soit accepter par l'api
         phone = str(user_phone_number.phone.replace(' ', ''))[-9:]
-        phone = '33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+        phone = '0033' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                                                                      3:5] + ' ' + phone[
                                                                                   5:7] + ' ' + phone[
                                                                                                7:]
@@ -73,7 +73,7 @@ class sms_sendinblue(models.TransientModel):
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
-            "api-key": api_key.api_key
+            "api-key": "dddapi_key.api_key"
         }
 
         response = requests.post(url, json=payload, headers=headers)
@@ -150,7 +150,7 @@ class sms_sendinblue(models.TransientModel):
                 for recepteur in self.env['res.partner'].sudo().search(
                         [('phone', '!=', False)]):
                     phone = str(recepteur.phone.replace(' ', ''))[-9:]
-                    phone = '33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                    phone = '0033' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                                                                                  3:5] + ' ' + phone[
                                                                                               5:7] + ' ' + phone[
                                                                                                            7:]
@@ -183,7 +183,7 @@ class sms_sendinblue(models.TransientModel):
                 for recepteur in self.env['res.partner'].sudo().search(
                         [('phone', '!=', False)]):
                     phone = str(recepteur.phone.replace(' ', ''))[-9:]
-                    phone = '33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                    phone = '0033' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                                                                                  3:5] + ' ' + phone[
                                                                                               5:7] + ' ' + phone[
                                                                                                            7:]
