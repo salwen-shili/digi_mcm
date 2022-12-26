@@ -63,7 +63,6 @@ class InheritSmsComposer(models.TransientModel):
 
     def _action_send_sms(self):
         if self.sendsms() == 201:
-
             return False
             _logger.info("_____________SMS.COMPoSER___________ %s", self.sendsms())
         else:
