@@ -150,7 +150,7 @@ class sms_sendinblue(models.TransientModel):
                 for recepteur in self.env['res.partner'].sudo().search(
                         [('phone', '!=', False)]):
                     phone = str(recepteur.phone.replace(' ', ''))[-9:]
-                    phone = '0033' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                    phone = '33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                                                                                  3:5] + ' ' + phone[
                                                                                               5:7] + ' ' + phone[
                                                                                                            7:]
@@ -183,7 +183,7 @@ class sms_sendinblue(models.TransientModel):
                 for recepteur in self.env['res.partner'].sudo().search(
                         [('phone', '!=', False)]):
                     phone = str(recepteur.phone.replace(' ', ''))[-9:]
-                    phone = '0033' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                    phone = '33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                                                                                  3:5] + ' ' + phone[
                                                                                               5:7] + ' ' + phone[
                                                                                                            7:]
