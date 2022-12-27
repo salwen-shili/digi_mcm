@@ -51,7 +51,7 @@ class sms_sendinblue(models.TransientModel):
 
     def get_sneder(self):
         sender_name = self.env['res.partner'].browse(self.env.context.get('active_ids'))
-        return sender_name.company_id.phone.replace("+", "").replace(" ", "")
+        return sender_name.company_id.name
 
     sender = fields.Char(string="Sender", default=get_sneder)
 

@@ -24,7 +24,7 @@ class InheritSmsComposer(models.TransientModel):
         payload = {
             'type': "transactional",
             'unicodeEnabled': False,
-            'sender': records.company_id.phone,
+            'sender': records.company_id.name,
             'recipient': self.partner_ids.mobile or self.partner_ids.phone or records.phone,
             'content': self.body
         }
