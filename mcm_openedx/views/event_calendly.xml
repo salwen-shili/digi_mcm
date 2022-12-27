@@ -21,18 +21,13 @@
             <tree>
 
                 <field name="owner"/>
-
                 <field name="event_name"/>
-                <field name="scheduling_url_created_at"/>
-                <field name="scheduling_url_updated_at"/>
                 <field name="location"/>
                 <field name="name_co"/>
                 <field name="start_at_char"/>
-                <field name="start_at"/>
                 <field name="status"/>
-                <field name="company"/>
-                <button name="send_invitation" confirm="Confirmer l'envoit" string="Envoyer Invitation"
-                        class="oe_highlight" type="object"  attrs="{'invisible': [('location', 'ilike', +33)]}"/>
+                <button name="send_invitation" string="Envoyer Invitation"
+                        class="oe_highlight" type="object"  />
 
             </tree>
         </field>

@@ -243,6 +243,10 @@ class calendly_integration(models.Model):
         self.type_event_digi_abirr()
         self.type_event_digi_selmine()
         self.type_event()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
 
 
 class event_calendly(models.Model):
@@ -792,3 +796,8 @@ class event_calendly(models.Model):
         self.event_abir()
         self.event_selmine()
         self.event_marwa()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+
