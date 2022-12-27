@@ -16,6 +16,7 @@ _logger = logging.getLogger(__name__)
 
 
 class JotformConnector(http.Controller):
+
     @http.route(['/webhook_digi_form'], type='http', auth="public", csrf=False)
     def importer_from_jotform_webhook(self, **kw):
         _logger.info("webhoook form jedom jotform %s" % (kw))
