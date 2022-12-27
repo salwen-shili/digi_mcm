@@ -58,7 +58,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'state': 'validated', })
 
                                 request.env.cr.commit()
 
@@ -109,7 +109,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'state': 'validated', })
 
                                 request.env.cr.commit()
 
@@ -160,7 +160,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'state': 'validated', })
 
                                 request.env.cr.commit()
 
@@ -209,7 +209,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'state': 'validated', })
 
                                 request.env.cr.commit()
 
@@ -256,7 +256,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'state': 'validated', })
                                 request.env.cr.commit()
 
                                 # replace " " avec  %20 pour eliminer les espace
@@ -305,7 +305,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'state': 'validated', })
 
                                 request.env.cr.commit()
 
