@@ -73,7 +73,7 @@ class sms_sendinblue(models.TransientModel):
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
-            "api-key": "dddapi_key.api_key"
+            "api-key": api_key.api_key
         }
 
         response = requests.post(url, json=payload, headers=headers)
