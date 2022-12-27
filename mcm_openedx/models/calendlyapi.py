@@ -315,6 +315,7 @@ class event_calendly(models.Model):
                 start_at_char = str(start_at_char).replace('T', ' ')
                 start_at_char = start_at_char.split(".")
                 start_at_char = start_at_char[0]
+
                 status = response['status']
                 cancel_url = response_inv[0]['cancel_url']
                 reschedule_url = response_inv[0]['reschedule_url']
