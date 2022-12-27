@@ -134,8 +134,7 @@
     </record>
 
 
-    <menuitem id="calendly_menu" name="Calendly" web_icon="mcm_openedx,static/src/calen.png"/>
-    <menuitem id="type_event_calendly_menu" name="Type Event" parent="calendly_menu"
-              action="calendly_type_event_list_action"/>
+    <menuitem id="calendly_menu" name="Calendly" parent="plateforme_pedagogique.main_learning_plateform_menu" action="calendly_type_event_list_action"/>
+
 
 </odoo>

@@ -26,8 +26,8 @@
                 <field name="name_co"/>
                 <field name="start_at_char"/>
                 <field name="status"/>
-                <button name="send_invitation" string="Envoyer Invitation"
-                        class="oe_highlight" type="object"  />
+                <button name="send_invitation" attrs="{'invisible': [('location[0:9]','!=', https://)]}" string="Envoyer Invitation"
+                        class="oe_highlight" type="object"/>
 
             </tree>
         </field>
@@ -73,6 +73,7 @@
     </record>
 
 
-    <menuitem id="event_calendly_menu" name="Event" parent="calendly_menu" action="calendly_event_list_action"/>
+    <menuitem id="event_calendly_menu" name="Event" parent="plateforme_pedagogique.main_learning_plateform_menu"
+              action="calendly_event_list_action"/>
 
 </odoo>
