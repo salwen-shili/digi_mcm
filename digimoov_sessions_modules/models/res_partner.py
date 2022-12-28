@@ -22,8 +22,7 @@ class InheritResPartner(models.Model):
             self_model = self
         elif model != "res.partner":
             self_model = self.client_ids
-        for client in self_model:
-            client.send_email_cerfa_sign(self_model)
+        self.send_email_cerfa_sign(self_model)
 
     def send_email_cerfa_sign(self, self_model):
         partner = self.env['res.partner'].sudo().search(

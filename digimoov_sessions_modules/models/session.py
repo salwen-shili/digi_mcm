@@ -37,8 +37,7 @@ class Session(models.Model):
             self_model = self
         elif model != "res.partner":
             self_model = self.client_ids
-        for client in self_model:
-            client.send_email_cerfa_sign(self_model)
+        self_model.send_email_cerfa_sign(self_model)
             # if client:
             #     # Attach cerfa report to partner
             #     content, content_type = self.env.ref('partner_exam.report_cerfa').render_qweb_pdf(
