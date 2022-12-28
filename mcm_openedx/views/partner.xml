@@ -59,7 +59,7 @@
                             type="object" confirm="Envoyer un Mail"
                             state="mail envoyé"></button>
 
-                    <field name="state" widget="statusbar" clickable="True" statusbar_visible="ancien,en_attente,en_formation,supprimé"
+                    <field name="state" widget="statusbar" clickable="1" statusbar_visible="ancien,en_attente,en_formation,supprimé"
                            />
 
                 </header>
