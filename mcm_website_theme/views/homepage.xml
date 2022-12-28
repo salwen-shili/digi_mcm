@@ -514,7 +514,7 @@
                                                 <div class="media_iframe_video" data-oe-expression="//www.youtube.com/embed/19BiYQVwZFs?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1">
                                                     <div class="css_editable_mode_display" />
                                                     <div class="media_iframe_video_size" />
-                                                    <iframe src="//www.youtube.com/embed/19BiYQVwZFs?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen" />
+                                                    <iframe loading="lazy" src="//www.youtube.com/embed/19BiYQVwZFs?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen" />
                                                 </div>
                                             </div>
                                         </div>
