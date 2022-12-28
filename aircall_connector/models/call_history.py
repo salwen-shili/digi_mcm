@@ -262,5 +262,5 @@ class AirCall(models.Model):
         for old_call in  self.env["call.detail"].sudo().search(
                                 [ ('call_recording','=',False)]):
             if old_call.call_recording == False:
-                old_call.call_recording = "https://assets.aircall.io/calls/%s/recording" % old_call.id
+                old_call.call_recording = "https://assets.aircall.io/calls/%s/recording" % old_call.call_id
 
