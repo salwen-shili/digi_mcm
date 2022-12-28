@@ -313,7 +313,11 @@ class event_calendly(models.Model):
                     owner = ownerr[2]
                 else:
                     owner = event_name
-                location = response['location']['location']
+                if response['location']['location'] == "https://us02web.zoom.us/":
+                    location = response['location']['location']
+                else:
+                    location = ""
+
                 start_at = response['start_time']
                 start_at_char = response['start_time']
                 start_at_char = str(start_at_char).replace('T', ' ')
@@ -403,8 +407,10 @@ class event_calendly(models.Model):
             if 'join_url' in response['location']:
                 location = response['location']['join_url']
             else:
-                location = response['location']['location']
-
+                if response['location']['location'] == "https://us02web.zoom.us/":
+                    location = response['location']['location']
+                else:
+                    location = ""
             start_at = response['start_time']
             start_at_char = response['start_time']
             start_at_char = str(start_at_char).replace('T', ' ')
@@ -484,7 +490,10 @@ class event_calendly(models.Model):
             if 'join_url' in response['location']:
                 location = response['location']['join_url']
             else:
-                location = response['location']['location']
+                if response['location']['location'] == "https://us02web.zoom.us/":
+                    location = response['location']['location']
+                else:
+                    location = ""
             start_at_char = str(start_at_char).replace('T', ' ')
             start_at_char = start_at_char.split(".")
             start_at_char = start_at_char[0]
@@ -509,7 +518,6 @@ class event_calendly(models.Model):
                         'location': location,
                         'company': company.name,
                         'name_co': "Selmine Tarchoun",
-
                         'start_at': start_at,
                         'start_at_char': start_at_char,
                         'status': status,
@@ -561,7 +569,10 @@ class event_calendly(models.Model):
             if 'join_url' in response['location']:
                 location = response['location']['join_url']
             else:
-                location = response['location']['location']
+                if response['location']['location'] == "https://us02web.zoom.us/":
+                    location = response['location']['location']
+                else:
+                    location = ""
             start_at_char = str(start_at_char).replace('T', ' ')
             start_at_char = start_at_char.split(".")
             start_at_char = start_at_char[0]
