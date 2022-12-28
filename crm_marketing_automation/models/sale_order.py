@@ -31,6 +31,10 @@ class Sale(models.Model):
             aircall=self.env['call.detail'].sudo().search([("call_contact.id","=",int(partner))])
             if aircall:
                 _logger.info("Indécis callled %s" %str(aircall))
+                for order_line in self.order_line:
+                    if "Repassage d'examen" not in order_line.product_id.name:
+                        self.change_stage_lead("Indécis appelé", partner)
+
             else:
                 _logger.info('pas de call')
                 self.change_stage_lead("Indécis non appelé", partner)
@@ -62,7 +66,7 @@ class Sale(models.Model):
                 if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id):
                     if not partner.bolt and self.module_id.product_id.default_code != "vtc_bolt":
                         self.change_stage_lead("Contrat Signé", partner)
-                    else :
+                    else:
                         """classer les apprenant de bolt"""
                         self.change_stage_lead("Bolt-Contrat Signé", partner)
         return record
@@ -92,8 +96,8 @@ class Sale(models.Model):
                 })
             if not lead:
                 lead = self.env['crm.lead'].sudo().create({
-                     'prenom': partner.firstName if partner.firstName else "",
-                     'nom': partner.lastName if partner.lastName else "",
+                    'prenom': partner.firstName if partner.firstName else "",
+                    'nom': partner.lastName if partner.lastName else "",
                     'name': partner.name if partner.name else "",
                     'partner_name': partner.name,
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",

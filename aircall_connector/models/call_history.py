@@ -40,6 +40,11 @@ class AirCall(models.Model):
     call_duration = fields.Integer(strng="Duration", required=False)
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
 
+
+    def create(self, values):
+
+        res = super(AirCall, self).create(values)
+        return res
     def write(self, values):
         res = super(AirCall, self).write(values)
         ax_api_id = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.ax_api_id')
