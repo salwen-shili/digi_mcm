@@ -19,3 +19,5 @@ class Adresse_Centre_Examen(models.Model):
                        help="Lien de plan d'accès au centre d'examen sur Google Map")
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
 
+    # Code wifi salle d'examen
+    code_wifi = fields.Char(help="Ajouter code wifi de la salle d'examen.")
