@@ -16,7 +16,6 @@ _logger = logging.getLogger(__name__)
 class AircallConnector(http.Controller):
     @http.route(['/webhook-digi-mcm-aircall'], type='json', auth="public", csrf=False)
     def webhook_import_calls(self, **kw):
-
         request.uid = odoo.SUPERUSER_ID
         call = json.loads(request.httprequest.data)
         # add events
@@ -32,7 +31,6 @@ class AircallConnector(http.Controller):
             # if call  exist
             if call_detail:
                 # add recording and duration
-
                 call_detail.sudo().write({
                     'call_recording': call_data['asset'],
                     'call_duration': call_data['duration']
@@ -42,7 +40,6 @@ class AircallConnector(http.Controller):
                 _logger.info(" call_detail call_data call_data_comments : %s" % (str(call_data["comments"])))
                 # if comments
                 # add comments
-
                 if call_data_comments:
                     for note in call_data_comments:
                         _logger.info("call_data note of comments : %s" % (str(note)))
@@ -51,8 +48,6 @@ class AircallConnector(http.Controller):
                     call_detail.write({'notes': comments})
                     if call["event"] == "call.commented":
                         call_detail.action_update_notes()
-
-
                 # add recording url using id call
                 if call_detail.call_recording == False:
                     call_detail.call_recording = "https://assets.aircall.io/calls/%s/recording" % call_data['id']
@@ -62,10 +57,11 @@ class AircallConnector(http.Controller):
                 call_duration_min = call_detail.call_duration / 60
                 _logger.info("call calcul time: %s" % (round(call_duration_min)))
                 call_detail.call_duration = float(call_duration_min)
-                if call_detail.call_contact.company_id.id == 2:
+                start_call_date = datetime.fromtimestamp(call_data['started_at'])
+
+                if call_detail.call_contact.company_id.id == 2 and call_detail.call_date != start_call_date:
                     call_detail.call_contact.total_time_appels_min += call_duration_min
                 _logger.info("call data tags response : %s" % (str(call_data['tags'])))
-
                 # add tags
                 if call_data['tags']:
                     tags = []
@@ -102,7 +98,6 @@ class AircallConnector(http.Controller):
                     new_call_detail.action_find_user_using_phone()
                     new_call_detail.sudo().write({
                         'owner': call_data["user"]["name"] if call_data["user"] else False,
-
                     })
                 comments = ''
                 call_data_comments = call_data["comments"]
