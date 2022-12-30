@@ -113,7 +113,6 @@
                                             <p></p>
                                         </t>
                                     </t>
-                                    <br/>
                                     <p>Merci de vous munir de la présente convocation, d'une pièce d'identité
                                         (passeport ou
                                         carte
@@ -134,7 +133,6 @@
                                             </a>
                                         </bold>
                                     </center>
-                                    <br/>
                                     <center>
                                         <center>
                                             <bold>
@@ -155,7 +153,6 @@
                                             </t>
                                         </center>
                                     </center>
-                                    <br/>
                                     <div class="row" style="padding-left:100px;padding-top:60px!important;">
                                         <table border="0" width="800">
                                             <thead>
@@ -182,7 +179,7 @@
                                         </table>
                                     </div>
                                     <div class="col-12">
-                                        <img src='/partner_exam/static/src/img/footer.png' height="170"
+                                        <img src='/partner_exam/static/src/img/footer.png' height="150"
                                              width="970"/>
                                     </div>
                                 </div>
