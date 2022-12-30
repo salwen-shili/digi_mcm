@@ -119,6 +119,18 @@
                                         d'identité) ainsi que d'un stylo bille noir ou bleu, d'un blanco et d'une
                                         calculatrice non scientifique.
                                     </p>
+                                    <t t-if="o.mcm_session_id.code_wifi != ''">
+                                        <bold>
+                                            <b>
+                                                <img src='/partner_exam/static/src/img/wifi.png'
+                                                             style="height: 20px; width: 20px;"/> Code wifi de la salle d'examen
+                                                <span t-field="o.mcm_session_id.code_wifi"/>
+                                            </b>
+                                        </bold>
+                                    </t>
+                                    <t t-else="">
+                                        <span></span>
+                                    </t>
                                     <p>
                                         <strong>NB : Aucun retard ne sera toléré.</strong>
                                     </p>
@@ -141,19 +153,6 @@
                                                 </a>
                                                 <b>pour consulter le plan d'accès au centre d'examen</b>
                                             </bold>
-                                        </center>
-                                        <center>
-                                            <t t-if="o.mcm_session_id.code_wifi != ''">
-                                                <bold>
-                                                    <b>
-                                                        Code wifi de la salle d'examen
-                                                        <span t-field="o.mcm_session_id.code_wifi"/>
-                                                    </b>
-                                                </bold>
-                                            </t>
-                                            <t t-else="">
-                                                <span></span>
-                                            </t>
                                         </center>
                                     </center>
                                     <div class="row" style="padding-left:100px;padding-top:60px!important;">
@@ -181,6 +180,7 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                    <br/>
                                     <div class="col-12">
                                         <img src='/partner_exam/static/src/img/footer.png' height="150"
                                              width="970"/>
