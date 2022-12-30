@@ -120,12 +120,10 @@
                                         calculatrice non scientifique.
                                     </p>
                                     <t t-if="o.mcm_session_id.code_wifi != ''">
-                                        <bold>
-                                            Code wifi de la salle d'examen
-                                            <b style="background-color:#D8BFD8;">
-                                                <span t-field="o.mcm_session_id.code_wifi"/>
-                                            </b>
-                                        </bold>
+                                        <b style="text-decoration : underline;">Code wifi de la salle d'examen:</b>
+                                        <b style="background-color:#D8BFD8;">
+                                            <span t-field="o.mcm_session_id.code_wifi"/>
+                                        </b>
                                     </t>
                                     <t t-else="">
                                         <span></span>
