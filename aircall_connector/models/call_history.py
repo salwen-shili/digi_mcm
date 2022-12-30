@@ -33,7 +33,7 @@ class AirCall(models.Model):
     company_name = fields.Char(string="Company Name", required=False)
     digits = fields.Char(string="Company Number", required=False)
     call_date = fields.Datetime(string="Call Date", required=False, )
-    _order = "call_date desc"
+    # _order = "call_date desc"
 
     is_imp_tag = fields.Boolean(string="is aircall tag")
     air_call_tag = fields.Many2many(comodel_name="res.partner.category", relation="call_tags_relation",
