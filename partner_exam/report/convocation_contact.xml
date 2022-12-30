@@ -121,9 +121,8 @@
                                     </p>
                                     <t t-if="o.mcm_session_id.code_wifi != ''">
                                         <bold>
-                                            <b>
-                                                <img src='/partner_exam/static/src/img/wifi.png'
-                                                             style="height: 20px; width: 20px;"/> Code wifi de la salle d'examen
+                                            Code wifi de la salle d'examen
+                                            <b style="background-color:#D8BFD8;">
                                                 <span t-field="o.mcm_session_id.code_wifi"/>
                                             </b>
                                         </bold>
