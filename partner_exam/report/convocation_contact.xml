@@ -143,13 +143,16 @@
                                             </bold>
                                         </center>
                                         <center>
-                                            <t t-if="o.mcm_session_id.code_wifi == ''">
+                                            <t t-if="o.mcm_session_id.code_wifi != ''">
                                                 <bold>
                                                     <b>
                                                         Code wifi
                                                         <span t-field="o.mcm_session_id.code_wifi"/>
                                                     </b>
                                                 </bold>
+                                            </t>
+                                            <t t-else="">
+                                                <span></span>
                                             </t>
                                         </center>
                                     </center>
