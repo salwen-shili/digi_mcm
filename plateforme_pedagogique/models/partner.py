@@ -44,7 +44,7 @@ class partner(models.Model):
     total_time_appels_min = fields.Integer()
     total_time_appels_hour = fields.Char(default="0h0min")
     total_time_min = fields.Integer()
-    total_time_hours = fields.Char(default="0h0min")
+    total_time_hours = fields.Char(default="0h0min",track_visibility='always')
     reactions = fields.Char()
     comments = fields.Char()
     renounce_request = fields.Boolean(
