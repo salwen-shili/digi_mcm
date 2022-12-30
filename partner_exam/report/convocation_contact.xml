@@ -60,7 +60,7 @@
                                         <span t-raw="'%s' % o.name if o.name else ''"/>
                                     </strong>
                                     <br/>
-                                    <strong>Code wifi :
+                                    <strong>Code evalbox :
                                         <span t-raw="'%s' % o.code_evalbox"/>
                                     </strong>
                                     <br/>
@@ -146,7 +146,7 @@
                                             <t t-if="o.mcm_session_id.code_wifi != ''">
                                                 <bold>
                                                     <b>
-                                                        Code wifi
+                                                        Code wifi de la salle d'examen
                                                         <span t-field="o.mcm_session_id.code_wifi"/>
                                                     </b>
                                                 </bold>
