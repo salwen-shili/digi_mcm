@@ -2122,8 +2122,6 @@ class partner(models.Model):
                                     users.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_validated'})
                                 elif etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
                                     users.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
-                                else:
-                                    users.partner_id.etat_financement_cpf_cb = users.partner_id.statut_cpf
         except Exception:
             self.env.cr.rollback()
 
@@ -2150,7 +2148,7 @@ class partner(models.Model):
                             elif invoice.invoice_payment_state == "not_paid":
                                 etat_financement_cpf_cb = invoice.invoice_payment_state
                                 invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
-                elif partner.etat_financement_cpf_cb is not True:
+                else:
                     if partner.statut_cpf == 'bill':
                         partner.sudo().write({'etat_financement_cpf_cb': 'bill'})
                     elif partner.statut_cpf == 'service_declared':
