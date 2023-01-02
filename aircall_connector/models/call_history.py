@@ -248,6 +248,8 @@ class AirCall(models.Model):
                                 message.sudo().write({
                                     'body': message.body + '\n' + str(note['content'])
                                 })
+                                self.env.cr.commit()
+
                 if not message and record.call_contact:
                     # Create new Note in view contact
                     _logger.info('create new note in view contact mcm %s : %s' % (
