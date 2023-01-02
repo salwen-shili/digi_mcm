@@ -243,6 +243,10 @@ class calendly_integration(models.Model):
         self.type_event_digi_abirr()
         self.type_event_digi_selmine()
         self.type_event()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
 
 
 class event_calendly(models.Model):
@@ -309,12 +313,17 @@ class event_calendly(models.Model):
                     owner = ownerr[2]
                 else:
                     owner = event_name
-                location = response['location']['location']
+                if response['location']['location'] == "https://us02web.zoom.us/":
+                    location = response['location']['location']
+                else:
+                    location = ""
+
                 start_at = response['start_time']
                 start_at_char = response['start_time']
                 start_at_char = str(start_at_char).replace('T', ' ')
                 start_at_char = start_at_char.split(".")
                 start_at_char = start_at_char[0]
+
                 status = response['status']
                 cancel_url = response_inv[0]['cancel_url']
                 reschedule_url = response_inv[0]['reschedule_url']
@@ -325,7 +334,7 @@ class event_calendly(models.Model):
                             print("existeee nameeeee")
                             existt.browse(existt.id).sudo().unlink()
                     existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                        [('event_name', '=', shevents['name']), ('start_at', '=', response['start_time'])])
+                        [ ('event_name', '=', shevents['name']),  ('start_at_char',"=",start_at_char), ('start_at', '=', response['start_time'])])
 
                     if not existe:
                         new = self.env['mcm_openedx.calendly_event'].sudo().create({
@@ -398,8 +407,10 @@ class event_calendly(models.Model):
             if 'join_url' in response['location']:
                 location = response['location']['join_url']
             else:
-                location = response['location']['location']
-
+                if response['location']['location'] == "https://us02web.zoom.us/":
+                    location = response['location']['location']
+                else:
+                    location = ""
             start_at = response['start_time']
             start_at_char = response['start_time']
             start_at_char = str(start_at_char).replace('T', ' ')
@@ -415,7 +426,7 @@ class event_calendly(models.Model):
                     if existt.start_at < date.today():
                         existt.browse(existt.id).sudo().unlink()
                 existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                    [('event_name', '=', shevents['name']), ('start_at', '=', response['start_time'])])
+                    [ ('event_name', '=', shevents['name']), ('start_at_char',"=",start_at_char),  ('start_at', '=', response['start_time'])])
 
                 if not existe:
                     new = self.env['mcm_openedx.calendly_event'].sudo().create({
@@ -479,7 +490,10 @@ class event_calendly(models.Model):
             if 'join_url' in response['location']:
                 location = response['location']['join_url']
             else:
-                location = response['location']['location']
+                if response['location']['location'] == "https://us02web.zoom.us/":
+                    location = response['location']['location']
+                else:
+                    location = ""
             start_at_char = str(start_at_char).replace('T', ' ')
             start_at_char = start_at_char.split(".")
             start_at_char = start_at_char[0]
@@ -492,7 +506,7 @@ class event_calendly(models.Model):
                         print("existeee nameeeee")
                         existt.browse(existt.id).sudo().unlink()
                 existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                    [('event_name', '=', shevents['name']), ('start_at', '=', response['start_time'])])
+                    [ ('event_name', '=', shevents['name']), ('start_at_char',"=",start_at_char),  ('start_at', '=', response['start_time'])])
                 if not existe:
                     print("dont exist")
                     new = self.env['mcm_openedx.calendly_event'].sudo().create({
@@ -504,7 +518,6 @@ class event_calendly(models.Model):
                         'location': location,
                         'company': company.name,
                         'name_co': "Selmine Tarchoun",
-
                         'start_at': start_at,
                         'start_at_char': start_at_char,
                         'status': status,
@@ -556,7 +569,10 @@ class event_calendly(models.Model):
             if 'join_url' in response['location']:
                 location = response['location']['join_url']
             else:
-                location = response['location']['location']
+                if response['location']['location'] == "https://us02web.zoom.us/":
+                    location = response['location']['location']
+                else:
+                    location = ""
             start_at_char = str(start_at_char).replace('T', ' ')
             start_at_char = start_at_char.split(".")
             start_at_char = start_at_char[0]
@@ -569,7 +585,7 @@ class event_calendly(models.Model):
                         print("existeee nameeeee")
                         existt.browse(existt.id).sudo().unlink()
                 existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                    [('event_name', '=', shevents['name']), ('start_at', '=', response['start_time'])])
+                    [ ('event_name', '=', shevents['name']), ('start_at_char',"=",start_at_char), ('start_at', '=', response['start_time'])])
                 if not existe:
                     print("dont exist")
                     new = self.env['mcm_openedx.calendly_event'].sudo().create({
@@ -791,3 +807,8 @@ class event_calendly(models.Model):
         self.event_abir()
         self.event_selmine()
         self.event_marwa()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+

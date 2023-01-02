@@ -32,6 +32,7 @@
                                 <field name="phone"/>
                                 <field name="email"/>
                                 <field name="lien" widget="url"/>
+                                <field name="code_wifi"/>
                             </group>
                         </group>
                     </sheet>
@@ -54,6 +55,7 @@
                     <field name="session_ville_id"/>
                     <field name="phone"/>
                     <field name="email"/>
+                    <field name="code_wifi"/>
                 </tree>
             </field>
         </record>

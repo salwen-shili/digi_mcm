@@ -51,7 +51,7 @@ class sms_sendinblue(models.TransientModel):
 
     def get_sneder(self):
         sender_name = self.env['res.partner'].browse(self.env.context.get('active_ids'))
-        return sender_name.company_id.phone.replace("+", "").replace(" ", "")
+        return sender_name.company_id.name
 
     sender = fields.Char(string="Sender", default=get_sneder)
 
@@ -101,19 +101,19 @@ class sms_sendinblue(models.TransientModel):
                 'body': note_tag + "\n" + self.content
             }
             self.current_user.env['mail.message'].sudo().create(values)
-        # if !201 message envoyée
-        else:
-            values = {
-                'record_name': self.current_user.name,
-                'model': 'res.partner',
-                'message_type': 'comment',
-                'subtype_id': self.current_user.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-                'res_id': self.current_user.id,
-                'author_id': self.current_user.env.user.partner_id.id,
-                'date': datetime.now(),
-                'body': "Sms erreur" + response.text
-            }
-            self.current_user.env['mail.message'].sudo().create(values)
+        # # if !201 message envoyée
+        # else:
+        #     values = {
+        #         'record_name': self.current_user.name,
+        #         'model': 'res.partner',
+        #         'message_type': 'comment',
+        #         'subtype_id': self.current_user.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+        #         'res_id': self.current_user.id,
+        #         'author_id': self.current_user.env.user.partner_id.id,
+        #         'date': datetime.now(),
+        #         'body': "Sms erreur" + response.text
+        #     }
+        #     self.current_user.env['mail.message'].sudo().create(values)
 
         _logger.info(response.text)
         _logger.info(response.status_code)

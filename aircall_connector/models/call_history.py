@@ -33,6 +33,8 @@ class AirCall(models.Model):
     company_name = fields.Char(string="Company Name", required=False)
     digits = fields.Char(string="Company Number", required=False)
     call_date = fields.Datetime(string="Call Date", required=False, )
+    # _order = "call_date desc"
+
     is_imp_tag = fields.Boolean(string="is aircall tag")
     air_call_tag = fields.Many2many(comodel_name="res.partner.category", relation="call_tags_relation",
                                     column1="call_tag_id", column2="call_id", string="Tags", )
@@ -258,3 +260,9 @@ class AirCall(models.Model):
                         'subtype_id': subtype_id,
                         'body': str(content) + str(note['content']),
                     })
+    def call_rec_old(self):
+        for old_call in  self.env["call.detail"].sudo().search(
+                                [ ('call_recording','=',False)]):
+            if old_call.call_recording == False:
+                old_call.call_recording = "https://assets.aircall.io/calls/%s/recording" % old_call.call_id
+
