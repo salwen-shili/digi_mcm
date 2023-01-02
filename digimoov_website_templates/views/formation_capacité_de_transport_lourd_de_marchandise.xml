@@ -414,7 +414,7 @@
                     <p style="padding-top: 17px;line-height: 1.4;font-weight: 700;font-size: 30px !important;">PREMIUM PLUS&amp;nbsp;<br/><font style="font-size: 24px;">Formation transport lourd</font></p>
                     <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
                       <b style="font-size: 33px;">
-                        <font style="font-size: 24px;">Éligible au CPF</font>
+                        <font style="font-size: 24px;">Éligible au CPF en 2023</font>
                       </b>
                     </p>
                     <br/>
@@ -463,7 +463,7 @@
                             </b>
                           </div>
                           <p class="medium text-center font-weight-bolder text-secondary" style="color: red !important; word-break: break-word; position: relative; z-index: 0;">
-                                                                                                        Paiement en 6 fois
+                            Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
                                                 </p>
                           <br/>
                           <button class="btn btn-block text-white" style="background-color: #6e209f; border-radius: 25px">
