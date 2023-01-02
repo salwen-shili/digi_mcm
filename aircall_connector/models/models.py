@@ -800,13 +800,19 @@ class ResPartner(models.Model):
         if ax_api_id and ax_api_token:
             for contact in self:
                 if contact.phone or contact.mobile:
-
                     phone_num = []
                     emails = []
+
                     if contact.phone:
-                        phone = contact.phone
+                        phone = str(contact.phone.replace(' ', ''))[-9:]
+                        phone = '33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                   3:5] + ' ' + phone[
+                                                                                                5:7] + ' ' + phone[
+                                                                                                             7:]
+
                         if phone[0] != '+':
                             phone = '+' + phone
+
                         phone_num.append({
                             "label": "Phone Number",
                             "value": phone.replace(')', '').replace('(', '').replace('-', '')
