@@ -268,4 +268,5 @@ class AirCall(models.Model):
                         _logger.info('lead %s' %str(lead))
                         lead.conseiller=user_name
                     _logger.info('createeeeee note ********************************')
-                    record.call_contact.changestage("Indécis appelé", record.call_contact)
+                    if record.call_contact.statut == "indecis":
+                        record.call_contact.changestage("Indécis appelé", record.call_contact)
