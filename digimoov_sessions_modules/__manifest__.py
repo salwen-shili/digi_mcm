@@ -44,7 +44,9 @@
     'qweb': [],
     'demo': [
     ],
-    'installable': False,
+    'test': [
+    ],
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
