@@ -28,7 +28,7 @@
         'views/inherit_info_exam.xml',
         'views/inherit_res_partner.xml',
         'views/res_country_state.xml',
-        'views/inherit_mcmacademy_module.xml',
+        # 'views/inherit_mcmacademy_module.xml',
         'views/res_partner_adresse_view.xml',
         'views/approval_number.xml',
     ],
