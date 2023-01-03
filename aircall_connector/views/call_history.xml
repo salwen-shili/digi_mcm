@@ -46,6 +46,19 @@
                 </form>
             </field>
         </record>
+
+
+        <record model="ir.ui.view" id="mcm_openedx_app_graph_view">
+            <field name="name">CALL</field>
+            <field name="model">call.detail</field>
+            <field name="arch" type="xml">
+                <graph string="iOne">
+
+
+                </graph>
+            </field>
+        </record>
+
         <!--        View tree of aircall call contains details of call -->
         <record id="call_detail_tree" model="ir.ui.view">
             <field name="name">call.detail.tree</field>
