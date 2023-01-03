@@ -44,7 +44,7 @@ class partner(models.Model):
     total_time_appels_min = fields.Integer()
     total_time_appels_hour = fields.Char(default="0h0min")
     total_time_min = fields.Integer()
-    total_time_hours = fields.Char(default="0h0min",track_visibility='always')
+    total_time_hours = fields.Char(default="0h0min", track_visibility='always')
     reactions = fields.Char()
     comments = fields.Char()
     renounce_request = fields.Boolean(
@@ -71,7 +71,7 @@ class partner(models.Model):
                                                 ('paid', 'Payé'),
                                                 ('not_paid', 'Non payées'),
                                                 ('in_payment', 'En paiement')],
-                                               string="Financement", default=False, track_visibility='always')
+                                               string="Financement", default=False)
     is_not_paid = fields.Boolean(default=False)
 
     @api.onchange('total_time_visio_min', 'total_time_appels_min', 'temps_minute')
@@ -1807,7 +1807,6 @@ class partner(models.Model):
                                 _logger.info('if digi %s' % str(product_id))
                                 if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
 
-                                    print('if product_id digimoov', product_id.id_edof, user.login)
                                     module_id = self.env['mcmacademy.module'].sudo().search(
                                         [('company_id', "=", 2),
                                          ('session_ville_id', "=", user.partner_id.session_ville_id.id),
@@ -2067,63 +2066,60 @@ class partner(models.Model):
     def update_carte_bleu_cpf_partner_field_financement(self):
         """ Tache cron pour remplir le champ financement dans la fiche client avec état de paiement
         de (paid, not paid, in paiement) à partir de la dernière facture de client"""
-        try:
-            companies = self.env['res.company'].sudo().search([])
-            if companies:
-                for company in companies:
-                    api_key = company.wedof_api_key
-                    params_wedof = (
-                        ('order', 'desc'),
-                        ('type', 'all'),
-                        ('state',
-                         'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
-                        ('billingState', 'all'),
-                        ('certificationState', 'all'),
-                        ('sort', 'lastUpdate'),
-                        ('limit', '100'),
-                        ('page', '1')
-                    )
-                    headers = {
-                        'accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'X-API-KEY': api_key,
-                    }
-                    response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
-                                            params=params_wedof)
-                    registrations = response.json()
-                    for dossier in registrations:
-                        print('dosssier', dossier['attendee']['address'])
-                        externalId = dossier['externalId']
-                        email = dossier['attendee']['email']
-                        email = email.replace("%", ".")  # remplacer % par .
-                        email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
-                        email = str(
-                            email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
-                        # Recherche dans la table utilisateur si login de wedof = email
-                        user = self.env["res.users"].sudo().search([("login", "=", email)])
-                        for users in user:
-                            if users and users.partner_id.mode_de_financement == "cpf":
-                                # Initialisation de champ etat_financement_cpf_cb
-                                etat_financement_cpf_cb = dossier['state']
-                                if etat_financement_cpf_cb == "untreated":
-                                    users.partner_id.sudo().write({
-                                        'etat_financement_cpf_cb': 'untreated'})  # write la valeur untreated dans le champ etat_financement_cpf_cb
-                                elif etat_financement_cpf_cb == "validated":
-                                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'validated'})
-                                elif etat_financement_cpf_cb == "accepted":
-                                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'accepted'})
-                                elif etat_financement_cpf_cb == "inTraining":
-                                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_training'})
-                                elif etat_financement_cpf_cb == "out_training":
-                                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'terminated'})
-                                elif etat_financement_cpf_cb == "serviceDoneDeclared":
-                                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
-                                elif etat_financement_cpf_cb == "serviceDoneValidated":
-                                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_validated'})
-                                elif etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
-                                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
-        except Exception:
-            self.env.cr.rollback()
+        companies = self.env['res.company'].sudo().search([])
+        if companies:
+            for company in companies:
+                api_key = company.wedof_api_key
+                params_wedof = (
+                    ('order', 'desc'),
+                    ('type', 'all'),
+                    ('state',
+                     'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
+                    ('billingState', 'all'),
+                    ('certificationState', 'all'),
+                    ('sort', 'lastUpdate'),
+                    ('limit', '100'),
+                    ('page', '1')
+                )
+                headers = {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-API-KEY': api_key,
+                }
+                response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                        params=params_wedof)
+                registrations = response.json()
+                for dossier in registrations:
+                    print('dosssier', dossier['attendee']['address'])
+                    externalId = dossier['externalId']
+                    email = dossier['attendee']['email']
+                    email = email.replace("%", ".")  # remplacer % par .
+                    email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
+                    email = str(
+                        email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
+                    # Recherche dans la table utilisateur si login de wedof = email
+                    user = self.env["res.users"].sudo().search([("login", "=", email)])
+                    for users in user:
+                        if users and users.partner_id.mode_de_financement == "cpf":
+                            # Initialisation de champ etat_financement_cpf_cb
+                            etat_financement_cpf_cb = dossier['state']
+                            if etat_financement_cpf_cb == "untreated":
+                                users.partner_id.sudo().write({
+                                    'etat_financement_cpf_cb': 'untreated'})  # write la valeur untreated dans le champ etat_financement_cpf_cb
+                            elif etat_financement_cpf_cb == "validated":
+                                users.partner_id.sudo().write({'etat_financement_cpf_cb': 'validated'})
+                            elif etat_financement_cpf_cb == "accepted":
+                                users.partner_id.sudo().write({'etat_financement_cpf_cb': 'accepted'})
+                            elif etat_financement_cpf_cb == "inTraining":
+                                users.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_training'})
+                            elif etat_financement_cpf_cb == "out_training":
+                                users.partner_id.sudo().write({'etat_financement_cpf_cb': 'terminated'})
+                            elif etat_financement_cpf_cb == "serviceDoneDeclared":
+                                users.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
+                            elif etat_financement_cpf_cb == "serviceDoneValidated":
+                                users.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_validated'})
+                            elif etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
+                                users.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
 
         try:
             # client with particulier mode
@@ -2134,9 +2130,6 @@ class partner(models.Model):
                     for invoice in self.env['account.move'].sudo().search(
                             [('partner_id', "=", partner.id), ('type', '=', 'out_invoice')], limit=1,
                             order='create_date desc'):
-                        _logger.info(
-                            "user invoice Partner id----------------°°°°°°°°°°°°°°° %s " % str(
-                                invoice.id))
                         if invoice and invoice.invoice_payment_state:
                             etat_financement_cpf_cb = invoice.invoice_payment_state
                             if invoice.invoice_payment_state == "in_payment":
@@ -2314,7 +2307,6 @@ class partner(models.Model):
             self = self.with_user(SUPERUSER_ID)
         if not partner.lang:
             partner.lang = 'fr_FR'
-        _logger.info('avant email %s' % str(partner.name))
         # message = self.env['mail.message'].search(
         #     [('res_id', "=", partner.id), ('subject', "ilike", "Digimoov - Accès à la plateforme en ligne")])
         # if not message:
@@ -2399,9 +2391,7 @@ class partner(models.Model):
 
     def send_sms(self, body, partner):
         """Changer format du numero de tel pour envoyer le sms"""
-        _logger.info("send  sms %s" % str(partner.email))
         if partner.phone:
-            _logger.info("send  sms %s" % str(partner.email))
             phone = str(partner.phone.replace(' ', ''))[-9:]
             phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                                                                         3:5] + ' ' + phone[
