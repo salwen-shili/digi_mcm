@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
+            <record id="aircall_search_view" model="ir.ui.view">
+        <field name="name">AirCALL</field>
+            <field name="model">call.detail</field>
+        <field name="arch" type="xml">
+            <search>
+                 <field name="phone_number" filter_domain="[('phone_number','ilike',self)]"></field>
+
+
+                <filter name="group_company_name" string="Societé" icon="terp-partner"
+                        context="{'group_by':'company_name'}"/>
+
+
+                <filter name="group_owner" string="Owner" icon="terp-partner"
+                        context="{'group_by':'owner'}"/>
+
+
+            </search>
+        </field>
+    </record>
+
         <!--        View form of aircall call contains details of call -->
         <record id="call_detail_form" model="ir.ui.view">
             <field name="name">call.detail.form</field>
@@ -159,7 +179,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">call.detail</field>
             <!--             <field name="domain">[('call_contact.id','=', active_id)]</field>-->
-            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
 
         </record>
 
