@@ -68,7 +68,7 @@
         </record>
 
 
-        <record model="ir.ui.view" id="mcm_openedx_app_graph_view">
+        <record model="ir.ui.view" id="aircall_app_graph_view">
             <field name="name">CALL</field>
             <field name="model">call.detail</field>
             <field name="arch" type="xml">

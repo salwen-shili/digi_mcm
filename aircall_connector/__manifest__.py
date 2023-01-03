@@ -26,6 +26,7 @@
         'security/aircall_security.xml',
         'views/call_history.xml',
         'views/views.xml',
+        'views/dashbord.xml',
         'views/aircall_setting.xml',
         'wizard/message_wizard.xml',
         'tools/schedulers.xml',
