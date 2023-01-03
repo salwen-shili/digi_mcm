@@ -9,6 +9,12 @@
         <field name="view_mode">graph</field>
         <field name="view_id" ref="aircall_app_graph_view"/>
     </record>
+    <record model="ir.actions.act_window" id="aircall_app_graph_soc">
+        <field name="name">AirCAll</field>
+        <field name="res_model">call.detail</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="aircall_app_graph_view"/>
+    </record>
     <record model="ir.actions.act_window" id="aircall_trimestre_app_graph">
         <field name="name">AirCAll</field>
         <field name="res_model">call.detail</field>
@@ -35,17 +41,22 @@
                                 domain="[]" name="%(aircall_app_graph_calls)d"
                                 string="Appel entrant/sortant par personne" view_mode="graph"
                                 modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'group_by': ['company_name', 'call_direction'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_name', 'call_direction'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[]" name="%(aircall_app_graph_soc)d" string="Entrant-Sortant /Digi/Mcm" view_mode="graph"
+                                modifiers="{}"/>
 
 
                     </column>
-<column>
-    			<action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'group_by': ['call_direction', 'call_date:quarter'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['call_direction', 'call_date:quarter'], 'dashboard_merge_domains_contexts': False}" domain="[]" name="%(aircall_trimestre_app_graph)d" string=" Call Date: Trimestre" view_mode="graph" modifiers="{}"/>
-   <action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'group_by': ['company_name', 'owner'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_name', 'owner'], 'dashboard_merge_domains_contexts': False}"
+                    <column>
+                        <action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'group_by': ['call_direction', 'call_date:quarter'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['call_direction', 'call_date:quarter'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[]" name="%(aircall_trimestre_app_graph)d" string=" Call Date: Trimestre"
+                                view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'group_by': ['company_name', 'owner'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_name', 'owner'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" name="%(aircall_app_graph)d" string="Call Details" view_mode="graph"
                                 modifiers="{}"/>
 
 
-</column>
+                    </column>
                 </board>
             </form>
         </field>
