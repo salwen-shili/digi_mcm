@@ -1032,20 +1032,11 @@ class partner(models.Model):
                     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                         self.desinscriteVTC(partner)
 
-    # def convertir_date_inscription(self):
-    #     """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
-    #     locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-    #     for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
-    #         if rec.inscrit_mcm:
-    #             new_date_format = datetime.strptime(str(rec.inscrit_mcm), "%d %B %Y").date().strftime(
-    #                 '%d/%m/%Y')
-    #             rec.inscrit_mcm = new_date_format
-    #
-    #         if rec.supprimerdemoocit:
-    #             new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
-    #             rec.supprimerdemoocit = new_date_format
 
     def update_all_notes(self):
-       for  sms in self.env['mail.message'].sudo().search(
-            [("parent_id", "!=", False), ("res_id", "=", self.id),('date','=',datetime.today())]):
-           _logger.info(sms)
+        _logger.info("helloo test helllo ")
+        _logger.info(date.today())
+        for note_ecrite in self.env['mail.message'].sudo().search(
+                [('parent_id', '!=', False)], limit=1):
+            _logger.info(note_ecrite.date)
+
