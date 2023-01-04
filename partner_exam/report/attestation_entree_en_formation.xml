@@ -173,6 +173,10 @@
                             <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                         </b>
                         <br/>
+                        <t t-if="o.company_id.name=='DIGIMOOV'">
+                            <img src='/partner_exam/static/src/img/signature_cnx.png'
+                                 style="height:110px;width:300px;padding-top:10px!important;"/>
+                        </t>
                         <!--Footer-->
                         <div class="col-12" style="color:#696969;position:absolute;bottom:-1250px;font-size:14px;">
                             <center>
