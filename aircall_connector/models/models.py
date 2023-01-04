@@ -379,7 +379,12 @@ class ResUser(models.Model):
                                 _logger.info('createeeeee note ********************************')
                                 if odoo_contact.statut=="indecis":
                                     odoo_contact.changestage("Indécis appelé", odoo_contact)
-                                    _logger.info('create new note in view contact mcm %s : %s' % (
+                                    lead = self.env['crm.lead'].sudo().search(
+                                        [('partner_id', "=", odoo_contact.id)])
+                                    if lead:
+                                        _logger.info('lead %s' % str(lead))
+                                        lead.conseiller = user_name
+                                _logger.info('create new note in view contact mcm %s : %s' % (
                                 str(odoo_contact), (str(str(content) + str(note['content'])))))
                                 message = self.env['mail.message'].sudo().create({
                                     'subject': user_name + " " + started_at + " " + ended_at,
