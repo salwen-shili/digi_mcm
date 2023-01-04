@@ -92,12 +92,28 @@
 
                         <br/>
                         <br/>
-                        Lieu de la formation:
+                        Mode de formation:
                         <b>À distance</b>
                         <br/>
-                        Période de formation: du
+                        Dates de formation: du
+
+                        <t t-set="sales"
+                           t-value="o.partner_id.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
                         <b>
                             <t t-if="o.company_id.name=='DIGIMOOV'">
+                                <t t-set="financement_mode"
+                                   t-value="o.partner_id.mode_de_financement == 'particulier'"/>
+                                <t t-if="sales and financement_mode">
+                                    <strong>
+                                        <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
+                                    </strong>
+                                </t>
+                                <t t-else="not sales">
+                                    <b>
+                                        <span t-esc="o.partner_id.date_creation"/>
+                                    </b>
+                                </t>
+
                                 <span t-field="o.date_creation"
                                       t-field-options='{"format": "dd/MM/yyyy"}'/>
                             </t>
@@ -125,7 +141,9 @@
                         <br/>
                         <t t-if="o.company_id.name!='DIGIMOOV'">
                             <h3>Objectifs de la formation</h3>
-                            <b>La formation comporte :</b>
+                            Maîtriser les connaissances et compétences nécessaires à l'exercice de la profession de
+                            taxi/VTC
+                            <b>Les modules de la formation sont:</b>
                             <br/>
                             A. - Droit du transport public particulier de personnes : T3P ;
                             <br/>
