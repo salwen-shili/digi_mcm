@@ -42,7 +42,8 @@
                                 string="Appel entrant/sortant par personne" view_mode="graph"
                                 modifiers="{}"/>
                         <action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'group_by': ['company_name', 'call_direction'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_name', 'call_direction'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[]" name="%(aircall_app_graph_soc)d" string="Entrant-Sortant /Digi/Mcm" view_mode="graph"
+                                domain="[]" name="%(aircall_app_graph_soc)d" string="Entrant-Sortant /Digi/Mcm"
+                                view_mode="graph"
                                 modifiers="{}"/>
 
 
@@ -51,9 +52,11 @@
                         <action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'group_by': ['call_direction', 'call_date:quarter'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['call_direction', 'call_date:quarter'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" name="%(aircall_trimestre_app_graph)d" string=" Call Date: Trimestre"
                                 view_mode="graph" modifiers="{}"/>
-                        <action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'group_by': ['company_name', 'owner'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_name', 'owner'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[]" name="%(aircall_app_graph)d" string="Call Details" view_mode="graph"
-                                modifiers="{}"/>
+
+
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'call_date', 'timeRange': ['&amp;', ['call_date', '&gt;=', '2023-01-01 23:00:00'], ['call_date', '&lt;', '2023-01-08 23:00:00']], 'timeRangeDescription': 'This Week', 'comparisonTimeRange': []}, 'group_by': ['company_name', 'owner'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_name', 'owner'], 'dashboard_merge_domains_contexts': False}"
+                                domain="['&amp;', '&amp;', ['company_name', '!=', 'Service Examen'], ['company_name', '!=', 'Administration'], ['owner', '!=', False]]"
+                                name="%(aircall_app_graph)d" string="Call Details" view_mode="graph" modifiers="{}"/>
 
 
                     </column>
