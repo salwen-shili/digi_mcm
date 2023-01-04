@@ -1044,3 +1044,8 @@ class partner(models.Model):
     #         if rec.supprimerdemoocit:
     #             new_date_format = datetime.strptime(str(rec.supprimerdemoocit), "%d %B %Y").date().strftime('%d/%m/%Y')
     #             rec.supprimerdemoocit = new_date_format
+
+    def update_all_notes(self):
+       for  sms in self.env['mail.message'].sudo().search(
+            [("parent_id", "!=", False), ("res_id", "=", self.id),('date','=',datetime.today())]):
+           _logger.info(sms)
