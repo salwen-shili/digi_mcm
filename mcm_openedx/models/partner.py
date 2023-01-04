@@ -1032,11 +1032,10 @@ class partner(models.Model):
                     elif (partner.module_id.product_id.default_code == "vtc_bolt"):
                         self.desinscriteVTC(partner)
 
-
     def update_all_notes(self):
         _logger.info("helloo test helllo ")
-        _logger.info(date.today())
+        date_today = date.today()
         for note_ecrite in self.env['mail.message'].sudo().search(
-                [('parent_id', '!=', False)], limit=1):
-            _logger.info(note_ecrite.date)
-
+                [('parent_id', '!=', False)]):
+            if note_ecrite.date.date() == date.today():
+                _logger.info(note_ecrite)
