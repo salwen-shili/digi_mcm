@@ -92,7 +92,7 @@
                         Mode de formation:
                         <b>À distance</b>
                         <br/>
-                        Dates de formation: du
+                        Date de formation: du
 
                         <t t-set="sales"
                            t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
