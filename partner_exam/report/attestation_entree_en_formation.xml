@@ -134,10 +134,11 @@
                         </b>
                         <br/>
                         Type d'action de formation:
-                        <b>Action d'adaptation et de développement des compétences des salariés</b>
+                        <b>Action d'adaptation et de développement des compétences des salariés.</b>
+                        <br/>
                         <br/>
                         <t t-if="o.company_id.name!='DIGIMOOV'">
-                            <h3>Objectifs de la formation</h3>
+                            <h2>Objectifs de la formation</h2>
                             Maîtriser les connaissances et compétences nécessaires à l'exercice de la profession de
                             TAXI/VTC.
                             <br/>
