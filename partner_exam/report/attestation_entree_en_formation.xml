@@ -138,7 +138,7 @@
                         <br/>
                         <br/>
                         <t t-if="o.company_id.name!='DIGIMOOV'">
-                            <h2>Objectifs de la formation</h2>
+                            <h4>Objectifs de la formation</h4>
                             Maîtriser les connaissances et compétences nécessaires à l'exercice de la profession de
                             TAXI/VTC.
                             <br/>
@@ -176,6 +176,7 @@
                             G. - Anglais.
                             <br/>
                         </t>
+                        <br/>
                         Fait à
                         <t t-if="o.company_id.name=='DIGIMOOV'">
                             <b>Paris</b>
@@ -195,7 +196,7 @@
                         </t>
                         <t t-if="o.company_id.name=='MCM ACADEMY'">
                             <img src='/partner_exam/static/src/img/mcm_sign.png'
-                                 style="height:130px;width:300px;padding-top:1px!important;"/>
+                                 style="height:140px;width:300px;padding-top:1px!important;"/>
                         </t>
                         <!--Footer-->
                         <div class="col-12" style="color:#696969;position:absolute;bottom:-1250px;font-size:14px;">
