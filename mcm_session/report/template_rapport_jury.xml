@@ -526,10 +526,6 @@
                                 </thead>
 
                                 <br/>
-                                <!--Takwa-->
-                                <t >
-                                    <t t-esc="obj.partner_id.name"/>
-                                </t>
                                 <tr t-foreach="request.env['info.examen'].search([('session_id', '=', o.id)])"
                                    t-as="obj">
                                     <td class="td">
