@@ -19,6 +19,7 @@
       'data/ir_cron.xml',
       'views/assets.xml',
       'views/partner.xml',
+      'views/dashbord.xml',
     ],
     'demo': [
     ],
