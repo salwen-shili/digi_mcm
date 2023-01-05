@@ -1035,30 +1035,65 @@ class partner(models.Model):
     def update_all_notes(self):
         _logger.info("helloo test helllo ")
         date_today = date.today()
+        for note_ecrite_doc in self.env['documents.document'].sudo().search(
+                []):
+            if note_ecrite_doc.create_date.date() == date.today():
+                _logger.info(note_ecrite_doc.partner_id.name)
+                for note_doc in self.env['mail.message'].sudo().search([('record_name', "=", note_ecrite_doc.name)]):
+                    _logger.info(note_doc.body)
+                    if note_doc.parent_id.author_id.name:
+                        note_tag = "<b>" + " Commentaire sur  :  " + note_doc.record_name + " " "</b><br/>"
+
+                        existe_note = self.env['mail.message'].sudo().search(
+                            [('body', '=',  note_tag + note_doc.body),
+                             ('res_id', '=', note_ecrite_doc.partner_id.id)])
+
+                        if not existe_note:
+                            values = {
+                                'record_name': note_ecrite_doc.partner_id.name,
+                                'model': 'res.partner',
+                                'message_type': 'comment',
+                                'subtype_id': note_ecrite_doc.partner_id.env['mail.message.subtype'].search(
+                                    [('name', '=', 'Note')]).id,
+                                'res_id': note_ecrite_doc.partner_id.id,
+                                'author_id': note_ecrite_doc.partner_id.env.user.partner_id.id,
+                                'date': datetime.now(),
+                                'body': note_tag + note_doc.body}
+
+                            note_ecrite_doc.partner_id.env['mail.message'].sudo().create(values)
+
+                            _logger.info(note_ecrite_doc.partner_id)
+
+                else:
+                    break
         for note_ecrite in self.env['mail.message'].sudo().search(
                 [('parent_id', '!=', False)]):
             if note_ecrite.date.date() == date.today():
                 for note in self.env['mail.message'].sudo().search([('record_name', '=', note_ecrite.record_name)]):
                     _logger.info(note.parent_id.author_id.name)
                     _logger.info(note.parent_id.author_id.id)
-                    existe_note = self.env['mail.message'].sudo().search(
-                        [('body', '=',note_ecrite.body),('res_id','=',note.author_id.id)])
+                    if note.parent_id.author_id.name:
+                        note_tag = "<b>" + " Commentaire sur  :  " + note_ecrite.record_name + " " "</b><br/>"
 
-                if not existe_note:
-                    values = {
-                        'record_name': note.parent_id.author_id.name,
-                        'model': 'res.partner',
-                        'message_type': 'comment',
-                        'subtype_id': note.parent_id.author_id.env['mail.message.subtype'].search(
-                            [('name', '=', 'Note')]).id,
-                        'res_id': note.author_id.id,
-                        'author_id': note.author_id.env.user.partner_id.id,
-                        'date': datetime.now(),
-                        'body': note_ecrite.body}
+                        existe_note = self.env['mail.message'].sudo().search(
+                            [('body', '=', note_tag + note_ecrite.body),
+                             ('res_id', '=', note.author_id.id)])
 
-                    note.parent_id.author_id.env['mail.message'].sudo().create(values)
+                        if not existe_note:
+                            values = {
+                                'record_name': note.parent_id.author_id.name,
+                                'model': 'res.partner',
+                                'message_type': 'comment',
+                                'subtype_id': note.parent_id.author_id.env['mail.message.subtype'].search(
+                                    [('name', '=', 'Note')]).id,
+                                'res_id': note.author_id.id,
+                                'author_id': note.author_id.env.user.partner_id.id,
+                                'date': datetime.now(),
+                                'body': note_tag + note_ecrite.body}
 
-                    _logger.info(note_ecrite.parent_id.author_id)
+                            note.parent_id.author_id.env['mail.message'].sudo().create(values)
 
-            else:
-                break
+                            _logger.info(note_ecrite.parent_id.author_id)
+
+                else:
+                    break
