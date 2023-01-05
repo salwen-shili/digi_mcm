@@ -232,24 +232,23 @@ class AirCall(models.Model):
                     message = self.env['mail.message'].sudo().search(
                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                          ('res_id', '=', record.call_contact.id), ('body', "ilike", comment)])
-                    if message.date.date() == date.today():
-                        _logger.info('aircall find message mcm %s : %s' % (
-                            str(record.call_contact), (str(message))))
-                        if not message:
-                            subject = user_name + " " + started_at + " " + ended_at
-                            message = self.env['mail.message'].sudo().search(
-                                [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
-                                 ('res_id', '=', record.call_contact.id), ('subject', "=",
-                                                                           subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
-                            _logger.info('aircall find message mcm with subject %s : %s' % (
-                                str(record.call_contact), (str(subject))))
-                            if message:
-                                _logger.info("aircall message found : %s" % (str(message.body)))
-                                if str(note['content']) not in message.body:
-                                    message.sudo().write({
-                                        'body': message.body + '\n' + str(note['content'])
-                                    })
-                                    self.env.cr.commit()
+                    _logger.info('aircall find message mcm %s : %s' % (
+                        str(record.call_contact), (str(message))))
+                    if not message:
+                        subject = user_name + " " + started_at + " " + ended_at
+                        message = self.env['mail.message'].sudo().search(
+                            [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
+                             ('res_id', '=', record.call_contact.id), ('subject', "=",
+                                                                       subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
+                        _logger.info('aircall find message mcm with subject %s : %s' % (
+                            str(record.call_contact), (str(subject))))
+                        if message:
+                            _logger.info("aircall message found : %s" % (str(message.body)))
+                            if str(note['content']) not in message.body:
+                                message.sudo().write({
+                                    'body': message.body + '\n' + str(note['content'])
+                                })
+                                self.env.cr.commit()
 
                     if not message and record.call_contact:
                         # Create new Note in view contact
