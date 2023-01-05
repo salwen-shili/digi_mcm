@@ -524,6 +524,18 @@
                                         <th class="th">Resultat</th>
                                     </tr>
                                 </thead>
+                                <t t-set="exam"
+                                   t-value="o.['info.examen'].filtered(lambda ex: ex.session_id == o.mcm_session_id)"/>
+                                <p>
+                                    <h2>Liste from exams</h2>
+                                    <t t-esc="exam.partner_id.name"/>
+                                </p>
+                                <br/>
+                                <!--Takwa-->
+                                <t t-foreach="request.env['info.examen'].search([('session_id', '=', o.mcm_session_id)]).ids"
+                                   t-as="obj">
+                                    <t t-esc="obj.partner_id.name"/>
+                                </t>
                                 <tr t-foreach='o.client_ids' t-as='line'>
                                     <td class="td">
                                         <span>
@@ -609,12 +621,12 @@
                                         </t>
                                     </t>
                                     <t t-if="session.resultat == 'ajourne' and session.presence not in ('present', 'Absent')">
-                                            <td class="td" style="background:#FFFF00;">
-                                                <strong>
-                                                    <span>Absence justifiée</span>
-                                                </strong>
-                                            </td>
-                                        </t>
+                                        <td class="td" style="background:#FFFF00;">
+                                            <strong>
+                                                <span>Absence justifiée</span>
+                                            </strong>
+                                        </td>
+                                    </t>
                                     <td class="td">
                                         <t t-set="session"
                                            t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
