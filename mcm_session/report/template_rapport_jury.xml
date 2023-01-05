@@ -526,132 +526,135 @@
                                 </thead>
 
                                 <br/>
+
                                 <tr t-foreach="request.env['info.examen'].search([('session_id', '=', o.id)])"
-                                   t-as="obj">
-                                    <td class="td">
-                                        <span>
+                                    t-as="obj">
+                                    <t t-if="obj.partner_id.statut in ['indecis','won']">
+                                        <td class="td">
+                                            <span>
+                                                <t t-if="obj">
+                                                    <strong>
+                                                        <span t-esc="obj.partner_id.display_name"/>
+                                                    </strong>
+                                                </t>
+                                            </span>
+                                        </td>
+                                        <td class="td">
                                             <t t-if="obj">
-                                                <strong>
-                                                    <span t-esc="obj.partner_id.display_name"/>
-                                                </strong>
+                                                <t t-if="obj.module_id.product_id.default_code in ['basique', 'solo-ubereats']">
+                                                    <span>Solo</span>
+                                                </t>
+                                                <t t-if="obj.module_id.product_id.default_code == 'avancee'">
+                                                    <span>Pro</span>
+                                                </t>
+                                                <t t-if="obj.module_id.product_id.default_code == 'premium'">
+                                                    <span>Premium</span>
+                                                </t>
+                                                <t t-if="obj.module_id.product_id.default_code == 'examen'">
+                                                    <span>Repassage</span>
+                                                </t>
                                             </t>
-                                        </span>
-                                    </td>
-                                    <td class="td">
-                                        <t t-if="obj">
-                                            <t t-if="obj.module_id.product_id.default_code in ['basique', 'solo-ubereats']">
-                                                <span>Solo</span>
-                                            </t>
-                                            <t t-if="obj.module_id.product_id.default_code == 'avancee'">
-                                                <span>Pro</span>
-                                            </t>
-                                            <t t-if="obj.module_id.product_id.default_code == 'premium'">
-                                                <span>Premium</span>
-                                            </t>
-                                            <t t-if="obj.module_id.product_id.default_code == 'examen'">
-                                                <span>Repassage</span>
-                                            </t>
-                                        </t>
-                                    </td>
-                                    <td class="td">
-                                        <t t-if="obj.presence == 'present'">
-                                            <!--<span t-esc="'%.0f' % session.epreuve_a"/>-->
-                                            <span t-esc="obj.epreuve_a"/>
-                                            <span>/100</span>
-                                        </t>
-                                        <t t-if="obj.epreuve_a == 0 and obj.epreuve_b == 0 and obj.presence != 'present'">
-                                            <span></span>
-                                        </t>
-                                    </td>
-                                    <td class="td">
-                                        <t t-if="obj.presence == 'present'">
-                                            <span t-esc="obj.epreuve_b"/>
-                                            <span>/100</span>
-                                        </t>
-                                        <t t-if="obj.epreuve_a == 0 and obj.epreuve_b == 0 and obj.presence != 'present'">
-                                            <span></span>
-                                        </t>
-                                    </td>
-                                    <t t-if="obj.resultat != 'ajourne' and obj.presence == 'present'">
+                                        </td>
                                         <td class="td">
-                                            <t t-if="obj.moyenne_generale != 0">
-                                                <span t-esc="obj.moyenne_generale"/>
-                                                <span>/200</span>
+                                            <t t-if="obj.presence == 'present'">
+                                                <!--<span t-esc="'%.0f' % session.epreuve_a"/>-->
+                                                <span t-esc="obj.epreuve_a"/>
+                                                <span>/100</span>
                                             </t>
-                                            <t t-else="">
+                                            <t t-if="obj.epreuve_a == 0 and obj.epreuve_b == 0 and obj.presence != 'present'">
                                                 <span></span>
                                             </t>
                                         </td>
-                                    </t>
-                                    <t t-if="obj.resultat == 'ajourne' and obj.presence == 'present'">
                                         <td class="td">
-                                            <t t-if="obj.moyenne_generale != 0">
-                                                <span t-esc="'%.0f' % obj.moyenne_generale"/>
-                                                <span>/200</span>
+                                            <t t-if="obj.presence == 'present'">
+                                                <span t-esc="obj.epreuve_b"/>
+                                                <span>/100</span>
                                             </t>
-                                            <t t-else="">
+                                            <t t-if="obj.epreuve_a == 0 and obj.epreuve_b == 0 and obj.presence != 'present'">
                                                 <span></span>
                                             </t>
                                         </td>
-                                    </t>
-                                    <t t-if="obj.resultat == 'ajourne' and obj.presence == 'Absent'">
-                                        <t t-if="int(obj.temps_minute) &gt; 0">
-                                            <td class="td" style="background-color:#E9967A;">
+                                        <t t-if="obj.resultat != 'ajourne' and obj.presence == 'present'">
+                                            <td class="td">
+                                                <t t-if="obj.moyenne_generale != 0">
+                                                    <span t-esc="obj.moyenne_generale"/>
+                                                    <span>/200</span>
+                                                </t>
+                                                <t t-else="">
+                                                    <span></span>
+                                                </t>
+                                            </td>
+                                        </t>
+                                        <t t-if="obj.resultat == 'ajourne' and obj.presence == 'present'">
+                                            <td class="td">
+                                                <t t-if="obj.moyenne_generale != 0">
+                                                    <span t-esc="'%.0f' % obj.moyenne_generale"/>
+                                                    <span>/200</span>
+                                                </t>
+                                                <t t-else="">
+                                                    <span></span>
+                                                </t>
+                                            </td>
+                                        </t>
+                                        <t t-if="obj.resultat == 'ajourne' and obj.presence == 'Absent'">
+                                            <t t-if="int(obj.temps_minute) &gt; 0">
+                                                <td class="td" style="background-color:#E9967A;">
+                                                    <strong>
+                                                        <span>Absent</span>
+                                                    </strong>
+                                                </td>
+                                            </t>
+                                        </t>
+                                        <t t-if="obj.resultat == 'ajourne' and obj.presence not in ('present', 'Absent')">
+                                            <td class="td" style="background:#FFFF00;">
                                                 <strong>
-                                                    <span>Absent</span>
+                                                    <span>Absence justifiée</span>
                                                 </strong>
                                             </td>
                                         </t>
-                                    </t>
-                                    <t t-if="obj.resultat == 'ajourne' and obj.presence not in ('present', 'Absent')">
-                                        <td class="td" style="background:#FFFF00;">
-                                            <strong>
-                                                <span>Absence justifiée</span>
-                                            </strong>
+                                        <td class="td">
+                                            <t>
+                                                <span t-esc="obj.nombre_de_passage"/>
+                                            </t>
                                         </td>
-                                    </t>
-                                    <td class="td">
-                                        <t>
-                                            <span t-esc="obj.nombre_de_passage"/>
-                                        </t>
-                                    </td>
-                                    <td class="td">
-                                        <t t-set="sales"
-                                           t-value="obj.partner_id.sale_order_ids.filtered(lambda sl: sl.state == 'sale')"/>
-                                        <t t-set="financement_mode"
-                                           t-value="obj.mode_de_financement == 'Personnel'"/>
-                                        <t t-if="sales and financement_mode">
-                                            <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
-                                        </t>
-                                        <t t-else="">
-                                            <t t-if="obj.partner_id.date_creation">
-                                                <span t-esc="datetime.datetime.strptime(str(obj.partner_id.date_creation),'%d/%m/%Y').date().strftime('%d/%m/%Y')"/>
+                                        <td class="td">
+                                            <t t-set="sales"
+                                               t-value="obj.partner_id.sale_order_ids.filtered(lambda sl: sl.state == 'sale')"/>
+                                            <t t-set="financement_mode"
+                                               t-value="obj.mode_de_financement == 'Personnel'"/>
+                                            <t t-if="sales and financement_mode">
+                                                <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
                                             </t>
                                             <t t-else="">
-                                                <span>.........</span>
+                                                <t t-if="obj.partner_id.date_creation">
+                                                    <span t-esc="datetime.datetime.strptime(str(obj.partner_id.date_creation),'%d/%m/%Y').date().strftime('%d/%m/%Y')"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span>.........</span>
+                                                </t>
                                             </t>
+                                            -
+                                            <span t-field="obj.module_id.date_exam"
+                                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                        </td>
+                                        <t t-if="obj.resultat == 'ajourne'">
+                                            <td class="td">
+                                                <span style="color:#B22222">
+                                                    <strong>
+                                                        <t t-esc="{False: False,'ajourne': 'Ajourné(e)'}[obj.mention]"></t>
+                                                    </strong>
+                                                </span>
+                                            </td>
                                         </t>
-                                        -
-                                        <span t-field="obj.module_id.date_exam"
-                                              t-field-options='{"format": "dd/MM/yyyy"}'/>
-                                    </td>
-                                    <t t-if="obj.resultat == 'ajourne'">
-                                        <td class="td">
-                                            <span style="color:#B22222">
-                                                <strong>
-                                                    <t t-esc="{False: False,'ajourne': 'Ajourné(e)'}[obj.mention]"></t>
-                                                </strong>
-                                            </span>
-                                        </td>
-                                    </t>
-                                    <t t-else="">
-                                        <td class="td">
-                                            <span style="color:#4CAF50;">
-                                                <strong>
-                                                    <t t-esc="{False: False, 'recu': 'Reçu(e)'}[obj.mention]"></t>
-                                                </strong>
-                                            </span>
-                                        </td>
+                                        <t t-else="">
+                                            <td class="td">
+                                                <span style="color:#4CAF50;">
+                                                    <strong>
+                                                        <t t-esc="{False: False, 'recu': 'Reçu(e)'}[obj.mention]"></t>
+                                                    </strong>
+                                                </span>
+                                            </td>
+                                        </t>
                                     </t>
                                 </tr>
                                 <tr>
