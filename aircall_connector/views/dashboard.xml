@@ -54,10 +54,8 @@
                                 view_mode="graph" modifiers="{}"/>
 
 
-                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'call_date', 'timeRange': ['&amp;', ['call_date', '&gt;=', '2022-12-27 23:00:00'], ['call_date', '&lt;', '2023-01-03 23:00:00']], 'timeRangeDescription': 'Les 7 derniers jours', 'comparisonTimeRange': []}, 'group_by': ['call_direction', 'owner'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['call_direction', 'owner'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[['call_direction', '=', 'inbound']]" name="%(aircall_app_graph)d"
-                                string="Appel en absence (indéfini)" view_mode="graph" modifiers="{}"/>
 
+			<action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': ['call_direction', 'company_name'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['call_direction', 'company_name'], 'dashboard_merge_domains_contexts': False}" domain="['&amp;', ['call_direction', 'ilike', 'inbound'], ['call_date', '&gt;', '2022-12-31 23:00:00']]" name="%(aircall_app_graph)d" string="Inbound Call" view_mode="graph" modifiers="{}"/>
 
                     </column>
                 </board>
