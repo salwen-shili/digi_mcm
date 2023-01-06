@@ -1039,17 +1039,15 @@ class partner(models.Model):
         for note_ecrite_doc in self.env['documents.document'].sudo().search(
                 [('create_date', '<=', datetime.today())], limit=100):
             for note_doc in self.env['mail.message'].sudo().search(
-                    [('record_name', "=", note_ecrite_doc.name), ('date', '<=', datetime.today())], limit=100,
-                    order="date desc"):
-                if note_doc.parent_id.author_id.name and note_doc.parent_id.author_id.name not in listnom:
+                    [('record_name', "=", note_ecrite_doc.name)] ):
+                if note_doc.parent_id.author_id.name :
                     note_tag = "<b>" + " Commentaire sur  :  " + note_doc.record_name + " " "</b><br/>"
                     existe_note = self.env['mail.message'].sudo().search(
                         [('body', '=', note_tag + note_doc.body),
                          ('res_id', '=', note_ecrite_doc.partner_id.id)])
                     if not existe_note and note_doc.body != False:
-                        _logger.info(note_ecrite_doc.partner_id)
-                        _logger.info( note_doc.body)
-
+                        _logger.info(note_doc.parent_id.author_id.name)
+                        _logger.info(note_ecrite_doc.body)
                         values = {
                             'record_name': note_ecrite_doc.partner_id.name,
                             'model': 'res.partner',
@@ -1064,10 +1062,9 @@ class partner(models.Model):
 
         listnom = ["MCM ACADEMY", "Support", "DIGIMOOV","Public user for DIGIMOOV","Public user"]
         for note_ecrite in self.env['mail.message'].sudo().search(
-                [('parent_id', '!=', False), ('date', '<=', datetime.today())], limit=100, order="date desc"):
+                [('parent_id', '!=', False), ('date', '<=', datetime.today())], limit=100, order="id desc"):
             for note in self.env['mail.message'].sudo().search(
-                    [('record_name', '=', note_ecrite.record_name), ('date', '<=', datetime.today())], limit=100,
-                    order="date desc"):
+                    [('record_name', '=', note_ecrite.record_name)] ):
 
                 if note.parent_id.author_id.name and note.parent_id.author_id.name not in listnom:
 
