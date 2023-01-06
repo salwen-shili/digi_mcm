@@ -248,6 +248,8 @@ class AirCall(models.Model):
                                 message.sudo().write({
                                     'body': message.body + '\n' + str(note['content'])
                                 })
+                                #self.env.cr.commit() commits the transaction's buffered write operations.
+
                                 self.env.cr.commit()
 
                     if not message and record.call_contact:
