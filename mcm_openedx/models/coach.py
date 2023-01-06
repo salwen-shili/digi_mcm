@@ -294,8 +294,8 @@ class Coach(models.Model):
         count_apprennat = 0
         todays_date = date.today()
         for partner in self.env['res.partner'].sudo().search(
-                [('statut', "=", "won"),('coach_peda','=',False),('state','=',"en_formation"),
-                 ('company_id', '=', 2) ]):
+                [('statut', "=", "won"), ('coach_peda', '=', False), ('state', '=', "en_formation"),
+                 ('company_id', '=', 2)]):
             if partner.mcm_session_id.date_exam:
                 if (partner.mcm_session_id.date_exam.year >= todays_date.year):
                     if partner.coach_peda.id is False:
@@ -309,5 +309,8 @@ class Coach(models.Model):
                             limit=1)
                         if message:
                             partner.coach_peda = message.author_id
+                            self.env.cr.commit()
+                        else:
+                            break
 
-            self.env.cr.commit()
+
