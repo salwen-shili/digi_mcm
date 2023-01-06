@@ -1047,7 +1047,6 @@ class partner(models.Model):
                          ('res_id', '=', note_ecrite_doc.partner_id.id)])
                     if not existe_note and note_doc.body != False:
                         _logger.info(note_doc.parent_id.author_id.name)
-                        _logger.info(note_ecrite_doc.body)
                         values = {
                             'record_name': note_ecrite_doc.partner_id.name,
                             'model': 'res.partner',
@@ -1076,7 +1075,6 @@ class partner(models.Model):
 
                     if not existe_note and note_ecrite.body!= False:
                         _logger.info(note.parent_id.author_id.name)
-                        _logger.info(note_ecrite.body)
                         values = {
                             'record_name': note.parent_id.author_id.name,
                             'model': 'res.partner',
