@@ -133,8 +133,7 @@
                                         </b>
                                     </t>
                                     <t t-if="not o.mcm_session_id.session_adresse_examen.code_wifi">
-                                        <b style="text-decoration:underline;">Code wifi de la salle
-                                            d'examen:
+                                        <b style="text-decoration:underline;">Accès Wifi de la salle d'examen:
                                         </b>
                                         Il vous sera communiqué le jour de l'examen.
                                     </t>
