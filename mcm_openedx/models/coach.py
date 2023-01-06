@@ -307,7 +307,7 @@ class Coach(models.Model):
                     if message:
                         partner.coach_peda = message.author_id
                         self.env.cr.commit()
-                    else:
-                        break
+                else:
+                    break
 
 
