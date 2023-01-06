@@ -305,9 +305,10 @@ class Coach(models.Model):
                         order="create_date asc",
                         limit=1)
                     if message:
+                        _logger.info(message.author_id)
+                        _logger.info("------coach aff -=====================")
                         partner.coach_peda = message.author_id
                         self.env.cr.commit()
                 else:
                     break
-
 
