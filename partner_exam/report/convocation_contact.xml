@@ -21,12 +21,11 @@
                                     <img src='/partner_exam/static/src/img/header_convocation.png' height="160"
                                          width="970"/>
                                     <img src="/partner_exam/static/src/img/header2.png"
-                                         style="position:absolute;z-index:3;width:100%;height:350px;margin-left:0px;margin-top:10px;"/>
-                                    <p style="position:absolute;z-index:3;margin-top:100px;margin-left:25px;margin-right:25px;"
-                                       align="center">
+                                         style="position:absolute;z-index:3;width:100%;height:330px;margin-left:0px;margin-top:9px;"/>
+                                    <p style="position:absolute;z-index:3;margin-top:80px;margin-left:25px;margin-right:25px;">
+                                        <center>
                                         DIGIMOOV centre de formation, organisateur du premier examen pour l’obtention
                                         de la capacité
-                                        <br/>
                                         professionnelle de transport routier léger de marchandises agréé
                                         par
                                         le préfet<br/>de la région
@@ -38,12 +37,14 @@
                                         <t t-else="">
                                             <span></span>
                                         </t>
-                                        <br/>
+                                        </center>
                                         <br/>
                                         <b>
-                                            Arrêté du 28 décembre 2011 relatif à la délivrance des attestations de
-                                            capacité professionnelle permettant
-                                            l’exercice de la profession de transporteur public routier, article 7
+                                            <center>
+                                                Arrêté du 28 décembre 2011 relatif à la délivrance des attestations de
+                                                capacité professionnelle permettant
+                                                l’exercice de la profession de transporteur public routier, article 7
+                                            </center>
                                         </b>
                                     </p>
                                 </div>
@@ -120,13 +121,18 @@
                                         calculatrice non scientifique.
                                     </p>
                                     <t t-if="o.mcm_session_id.session_adresse_examen.code_wifi">
-                                        <b style="text-decoration:underline;font-size:12px;">Code wifi de la salle d'examen:</b><br/>
-                                        <b style="background-color:#D8BFD8;font-size:10px;">
+                                        <b style="text-decoration:underline;">Code wifi de la salle
+                                            d'examen:
+                                        </b>
+                                        <br/>
+                                        <b style="background-color:#D8BFD8;line-height:1;">
                                             <span t-field="o.mcm_session_id.code_wifi"/>
                                         </b>
                                     </t>
                                     <t t-if="not o.mcm_session_id.session_adresse_examen.code_wifi">
-                                        <b style="text-decoration : underline;">Le code WiFi sera transmis dans la salle d'examen.</b>
+                                        <b style="text-decoration : underline;">Le code WiFi sera transmis dans la salle
+                                            d'examen.
+                                        </b>
                                     </t>
                                     <p>
                                         <strong>NB : Aucun retard ne sera toléré.</strong>
