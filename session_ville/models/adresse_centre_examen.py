@@ -20,4 +20,4 @@ class Adresse_Centre_Examen(models.Model):
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
 
     # Code wifi salle d'examen
-    code_wifi = fields.Char(help="Ajouter code wifi de la salle d'examen.")
+    code_wifi = fields.Text(help="Renseignements Wi-Fi sur la salle d'examen.")
