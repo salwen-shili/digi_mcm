@@ -127,12 +127,10 @@
                                         </b>
                                     </t>
                                     <t t-if="not o.mcm_session_id.session_adresse_examen.code_wifi">
-                                        <b style="text-decoration : underline;">Le code WiFi sera transmis dans la salle
-                                            d'examen.
-                                        </b>
+                                        <b style="text-decoration : underline;">Il vous sera communiqué le jour de l'examen.</b>
                                     </t>
                                     <p>
-                                        <strong>NB : Aucun retard ne sera toléré.</strong>
+                                        <strong>NB: Aucun retard ne sera toléré.</strong>
                                     </p>
                                     <center>
                                         <strong>Pour vous préparer, nous vous invitons à consulter le guide de
@@ -151,7 +149,7 @@
                                                 <a t-attf-href="#{o.mcm_session_id.lien}">
                                                     <b>Cliquer ici</b>
                                                 </a>
-                                                <b>pour consulter le plan d'accès au centre d'examen</b>
+                                                <b>pour consulter le plan d'accès au centre d'examen.</b>
                                             </bold>
                                         </center>
                                     </center>
