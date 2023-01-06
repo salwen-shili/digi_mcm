@@ -230,14 +230,14 @@ class AirCall(models.Model):
                 message = False
                 if record.call_contact and subtype_id:
                     message = self.env['mail.message'].sudo().search(
-                        [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
+                        [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),('date','=',date.today()),
                          ('res_id', '=', record.call_contact.id), ('body', "ilike", comment)])
                     _logger.info('aircall find message mcm %s : %s' % (
                         str(record.call_contact), (str(message))))
                     if not message:
                         subject = user_name + " " + started_at + " " + ended_at
                         message = self.env['mail.message'].sudo().search(
-                            [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
+                            [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),('date','=',date.today()),
                              ('res_id', '=', record.call_contact.id), ('subject', "=",
                                                                        subject)])  # add another condition of search message using subject ( the subject is concatenation between user name + start datetime of call + end datetime of call )
                         _logger.info('aircall find message mcm with subject %s : %s' % (
