@@ -1064,8 +1064,7 @@ class partner(models.Model):
 
                             _logger.info(note_ecrite_doc.partner_id)
 
-                    else:
-                        break
+
         for note_ecrite in self.env['mail.message'].sudo().search(
                 [('parent_id', '!=', False)]):
             if note_ecrite.date.date() == date.today():
@@ -1095,5 +1094,4 @@ class partner(models.Model):
 
                             _logger.info(note_ecrite.parent_id.author_id)
 
-                    else:
-                        break
+
