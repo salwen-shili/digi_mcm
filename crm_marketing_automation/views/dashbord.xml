@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
- <record model="ir.actions.act_window" id="crmt_graph">
+    <record model="ir.actions.act_window" id="crmt_graph">
         <field name="name">Les Apprenants</field>
-        <field name="res_model">res.partner</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id"
+               ref="crm.crm_lead_view_graph"/>
+    </record>
+    <record model="ir.actions.act_window" id="crmt22_graph">
+        <field name="name">Les Apprenants</field>
+        <field name="res_model">crm.lead</field>
         <field name="view_mode">graph</field>
         <field name="view_id"
                ref="crm.crm_lead_view_graph"/>
@@ -10,16 +17,21 @@
     <record model="ir.ui.view" id="crm_dashbord">
         <field name="name">My Dashboard</field>
         <field name="model">board.board</field>
-           <field name="arch" type="xml">
+        <field name="arch" type="xml">
 
             <form string="My Dashboard">
                 <board style="1-1">
                     <column>
-                        			<action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'default_type': 'opportunity', 'default_team_id': 1, 'group_by': ['stage_id'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['stage_id'], 'dashboard_merge_domains_contexts': False}" domain="['&amp;', ['type', '=', 'opportunity'], ['type', '=', 'opportunity']]"
-                                             name="%(crmt_graph)d"
-                                            string="Pipeline" view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'default_type': 'opportunity', 'default_team_id': 1, 'group_by': ['stage_id'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['stage_id'], 'dashboard_merge_domains_contexts': False}"
+                                domain="['&amp;', ['type', '=', 'opportunity'], ['type', '=', 'opportunity']]"
+                                name="%(crmt_graph)d"
+                                string="Pipeline" view_mode="graph" modifiers="{}"/>
 
 
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'default_type': 'opportunity', 'default_team_id': 1, 'group_by': ['conseiller', 'stage_id'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['conseiller', 'stage_id'], 'dashboard_merge_domains_contexts': False}"
+                                domain="['&amp;', '&amp;', ['type', '=', 'opportunity'], ['type', '=', 'opportunity'], '|', '|', ['stage_id', 'ilike', 'gagné'], ['stage_id', 'ilike', 'perdu'], ['stage_id', 'ilike', 'indécis']]"
+                                name="%(crmt22_graph)d" string="Évolution par conseiller" view_mode="graph"
+                                modifiers="{}"/>
 
                     </column>
                 </board>
@@ -27,7 +39,7 @@
         </field>
     </record>
 
-<record model="ir.actions.act_window" id="open_board_my_dash_action">
+    <record model="ir.actions.act_window" id="open_board_my_dash_action">
         <field name="name">My Dashboard</field>
         <field name="res_model">board.board</field>
         <field name="view_mode">form</field>
