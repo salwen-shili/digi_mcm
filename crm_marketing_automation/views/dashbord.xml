@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
+ <record model="ir.actions.act_window" id="crmt_graph">
+        <field name="name">Les Apprenants</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id"
+               ref="crm.crm_lead_view_graph"/>
+    </record>
     <record model="ir.ui.view" id="crm_dashbord">
         <field name="name">My Dashboard</field>
         <field name="model">board.board</field>
-        <field name="arch" type="xml">
+           <field name="arch" type="xml">
 
             <form string="My Dashboard">
                 <board style="1-1">
                     <column>
-                        <action name="%(actif_graph)d" string="Actif - Inactif" view_mode="graph"
-                                context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 1, 'allowed_company_ids': [1], 'params': {'action': 1963, 'cids': 1, 'menu_id': 1111, 'model': 'mcm_openedx.state', 'view_type': 'graph'}, 'group_by': ['statut'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['statut'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[]" modifiers="{}"/>
+                        			<action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'default_type': 'opportunity', 'default_team_id': 1, 'group_by': ['stage_id'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['stage_id'], 'dashboard_merge_domains_contexts': False}" domain="['&amp;', ['type', '=', 'opportunity'], ['type', '=', 'opportunity']]"
+                                             name="%(crmt_graph)d"
+                                            string="Pipeline" view_mode="graph" modifiers="{}"/>
 
-                        <action name="%(act_stat_graph)d" string="Statistiques Cours" view_mode="graph"
-                                context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'allowed_company_ids': [1, 1, 2], 'group_by': [], 'graph_measure': 'seconde', 'graph_mode': 'bar', 'graph_groupbys': ['idcour'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[['idcour', 'ilike', '02+2']]"  modifiers="{}"/>
-                    </column>
-                    <column>
 
-			<action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': ['company_id', 'state'], 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['company_id', 'state'], 'dashboard_merge_domains_contexts': False}" domain="[['company_id', '!=', False],['state', '!=', 'en_attente']]" name="%(app_graph)d"  string="DIGI/MCM" view_mode="graph" modifiers="{}"/>
-
-                        			<action  name="%(apprenant_graph)d" context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2,
-                        			 'group_by': ['company_id', 'coach_peda'], 'graph_measure': '__count__',
-                        			  'graph_mode': 'pie', 'graph_groupbys': ['company_id', 'coach_peda'],
-                        			  'dashboard_merge_domains_contexts': False}" domain="[['company_id', '!=', False],['coach_peda', '!=', False]]" string="Coches" view_mode="graph" modifiers="{}"/>
 
                     </column>
                 </board>
@@ -40,6 +35,6 @@
         <field name="view_id" ref="crm_dashbord"/>
     </record>
 
-    <menuitem id="main_dashbord" name="Dashbord" parent="crm_menu_config" action="open_board_my_dash_action"
+    <menuitem id="main_dashbord" name="Dashbord" parent="crm.menu_crm_config_lead" action="open_board_my_dash_action"
               sequence="1"/>
 </odoo>
