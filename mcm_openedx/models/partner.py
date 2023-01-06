@@ -1034,24 +1034,22 @@ class partner(models.Model):
 
     def update_all_notes(self):
         _logger.info("helloo test helllo ")
-        listnom = ["MCM ACADEMY", "Support", "DIGIMOOV"]
-
+        listnom = ["MCM ACADEMY", "Support", "DIGIMOOV","Public user for DIGIMOOV","Public user"]
         date_today = date.today()
         for note_ecrite_doc in self.env['documents.document'].sudo().search(
                 [('create_date', '<=', datetime.today())], limit=100):
-
             for note_doc in self.env['mail.message'].sudo().search(
                     [('record_name', "=", note_ecrite_doc.name), ('date', '<=', datetime.today())], limit=100,
                     order="date desc"):
-
-                if note_doc.parent_id.author_id.name and note_doc.parent_id.author_id.name != listnom:
+                if note_doc.parent_id.author_id.name and note_doc.parent_id.author_id.name not in listnom:
                     note_tag = "<b>" + " Commentaire sur  :  " + note_doc.record_name + " " "</b><br/>"
-
                     existe_note = self.env['mail.message'].sudo().search(
                         [('body', '=', note_tag + note_doc.body),
                          ('res_id', '=', note_ecrite_doc.partner_id.id)])
+                    if not existe_note and note_doc.body != False:
+                        _logger.info(note_ecrite_doc.partner_id)
+                        _logger.info( note_doc.body)
 
-                    if not existe_note:
                         values = {
                             'record_name': note_ecrite_doc.partner_id.name,
                             'model': 'res.partner',
@@ -1062,28 +1060,26 @@ class partner(models.Model):
                             'author_id': note_ecrite_doc.partner_id.env.user.partner_id.id,
                             'date': datetime.now(),
                             'body': note_tag + note_doc.body}
-
                         note_ecrite_doc.partner_id.env['mail.message'].sudo().create(values)
 
-                        _logger.info(note_ecrite_doc.partner_id)
-
-        listnom = ["MCM ACADEMY", "Support", "DIGIMOOV"]
+        listnom = ["MCM ACADEMY", "Support", "DIGIMOOV","Public user for DIGIMOOV","Public user"]
         for note_ecrite in self.env['mail.message'].sudo().search(
                 [('parent_id', '!=', False), ('date', '<=', datetime.today())], limit=100, order="date desc"):
             for note in self.env['mail.message'].sudo().search(
                     [('record_name', '=', note_ecrite.record_name), ('date', '<=', datetime.today())], limit=100,
                     order="date desc"):
 
-                if note.parent_id.author_id.name and note.parent_id.author_id.name != listnom:
-                    _logger.info(note.parent_id.author_id.name)
-                    _logger.info(note.parent_id.author_id.id)
+                if note.parent_id.author_id.name and note.parent_id.author_id.name not in listnom:
+
                     note_tag = "<b>" + " Commentaire sur  :  " + note_ecrite.record_name + " " "</b><br/>"
 
                     existe_note = self.env['mail.message'].sudo().search(
                         [('body', '=', note_tag + note_ecrite.body),
                          ('res_id', '=', note.author_id.id)])
 
-                    if not existe_note:
+                    if not existe_note and note_ecrite.body!= False:
+                        _logger.info(note.parent_id.author_id.name)
+                        _logger.info(note_ecrite.body)
                         values = {
                             'record_name': note.parent_id.author_id.name,
                             'model': 'res.partner',
@@ -1097,4 +1093,3 @@ class partner(models.Model):
 
                         note.parent_id.author_id.env['mail.message'].sudo().create(values)
 
-                        _logger.info(note_ecrite.parent_id.author_id)
