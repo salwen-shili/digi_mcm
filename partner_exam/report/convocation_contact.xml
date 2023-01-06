@@ -123,19 +123,21 @@
                                         calculatrice non scientifique.
                                     </p>
                                     <br/>
-                                    <b style="text-decoration:underline;">Code wifi de la salle
-                                        d'examen:
-                                    </b>
-                                    <br/>
+
                                     <t t-if="o.mcm_session_id.session_adresse_examen.code_wifi">
-                                        <b style="background-color:#D8BFD8;line-height:1;">
+                                        <b style="text-decoration:underline;">Code wifi de la salle
+                                            d'examen:
+                                        </b>
+                                        <br/>
+                                        <b style="line-height:1;">
                                             <span t-field="o.mcm_session_id.code_wifi"/>
                                         </b>
                                     </t>
                                     <t t-if="not o.mcm_session_id.session_adresse_examen.code_wifi">
-                                        <b style="text-decoration : underline;">Il vous sera communiqué le jour de
-                                            l'examen.
+                                        <b style="text-decoration:underline;">Code wifi de la salle
+                                            d'examen:
                                         </b>
+                                        Il vous sera communiqué le jour de l'examen.
                                     </t>
                                     <p>
                                         <strong>NB: Aucun retard ne sera toléré.</strong>
