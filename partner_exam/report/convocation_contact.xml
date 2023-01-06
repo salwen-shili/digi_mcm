@@ -22,9 +22,12 @@
                                          width="970"/>
                                     <img src="/partner_exam/static/src/img/header2.png"
                                          style="position:absolute;z-index:-1;width:100%;height:300px;margin-left:0px;margin-top:0px;"/>
-                                    <p style="position:absolute;z-index:3;margin-top:80px;margin-left:25px;margin-right:25px;" align="center">
+                                    <p style="position:absolute;z-index:3;margin-top:80px;margin-left:25px;margin-right:25px;"
+                                       align="center">
                                         DIGIMOOV centre de formation, organisateur du premier examen pour l’obtention
-                                        de la capacité professionnelle<br/> de transport routier léger de marchandises agréé
+                                        de la capacité professionnelle
+                                        <br/>
+                                        de transport routier léger de marchandises agréé
                                         par
                                         le préfet de la région
                                         <span t-field='o.mcm_session_id.state'/>
@@ -38,9 +41,11 @@
                                         <br/>
                                         <br/>
                                         <b>
-                                                Arrêté du 28 décembre 2011 relatif à la délivrance des attestations de
-                                                capacité professionnelle<br/> permettant
-                                                l’exercice de la profession de transporteur public routier, article 7
+                                            Arrêté du 28 décembre 2011 relatif à la délivrance des attestations de
+                                            capacité professionnelle
+                                            <br/>
+                                            permettant
+                                            l’exercice de la profession de transporteur public routier, article 7
                                         </b>
                                     </p>
                                 </div>
@@ -117,17 +122,20 @@
                                         d'identité) ainsi que d'un stylo bille noir ou bleu, d'un blanco et d'une
                                         calculatrice non scientifique.
                                     </p>
+                                    <br/>
+                                    <b style="text-decoration:underline;">Code wifi de la salle
+                                        d'examen:
+                                    </b>
+                                    <br/>
                                     <t t-if="o.mcm_session_id.session_adresse_examen.code_wifi">
-                                        <b style="text-decoration:underline;">Code wifi de la salle
-                                            d'examen:
-                                        </b>
-                                        <br/>
                                         <b style="background-color:#D8BFD8;line-height:1;">
                                             <span t-field="o.mcm_session_id.code_wifi"/>
                                         </b>
                                     </t>
                                     <t t-if="not o.mcm_session_id.session_adresse_examen.code_wifi">
-                                        <b style="text-decoration : underline;">Il vous sera communiqué le jour de l'examen.</b>
+                                        <b style="text-decoration : underline;">Il vous sera communiqué le jour de
+                                            l'examen.
+                                        </b>
                                     </t>
                                     <p>
                                         <strong>NB: Aucun retard ne sera toléré.</strong>
