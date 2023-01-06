@@ -296,19 +296,18 @@ class Coach(models.Model):
                 [('statut', "=", "won"), ('coach_peda', '=', False), ('state', '=', "en_formation"),
                  ('company_id', '=', 2)]):
             if partner.mcm_session_id.date_exam:
-                if (partner.mcm_session_id.date_exam.year >= todays_date.year):
-                    if partner.coach_peda.id is False:
-                        # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
-                        message = self.env['mail.message'].search(
-                            [('res_id', "=", partner.id),
-                             ('author_id.est_coach', '=', 'True'),
-                             ('company_id', '=', 2)],
-                            order="create_date asc",
-                            limit=1)
-                        if message:
-                            partner.coach_peda = message.author_id
-                            self.env.cr.commit()
-                        else:
-                            break
+                if partner.coach_peda.id is False:
+                    # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
+                    message = self.env['mail.message'].search(
+                        [('res_id', "=", partner.id),
+                         ('author_id.est_coach', '=', 'True'),
+                         ('company_id', '=', 2)],
+                        order="create_date asc",
+                        limit=1)
+                    if message:
+                        partner.coach_peda = message.author_id
+                        self.env.cr.commit()
+                    else:
+                        break
 
 
