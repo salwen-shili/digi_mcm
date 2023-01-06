@@ -291,7 +291,6 @@ class Coach(models.Model):
 
     # Faire des tests sur les fiches clients pour extraire le premier courriel qui a été envoyé et assigner le participant à celui qui a envoyé le courriel.
     def aff_coach(self):
-        count_apprennat = 0
         todays_date = date.today()
         for partner in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"), ('coach_peda', '=', False), ('state', '=', "en_formation"),
@@ -299,7 +298,6 @@ class Coach(models.Model):
             if partner.mcm_session_id.date_exam:
                 if (partner.mcm_session_id.date_exam.year >= todays_date.year):
                     if partner.coach_peda.id is False:
-                        count_apprennat = count_apprennat + 1
                         # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
                         message = self.env['mail.message'].search(
                             [('res_id', "=", partner.id),
