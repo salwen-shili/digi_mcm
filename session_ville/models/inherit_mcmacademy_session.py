@@ -11,7 +11,8 @@ class McmacademySessionVille(models.Model):
     session_adresse_examen = fields.Many2one('session.adresse.examen', "Adresse d'examen", track_visibility='always')
     phone = fields.Char(related="session_adresse_examen.phone")
     email = fields.Char(related="session_adresse_examen.email")
-    code_wifi = fields.Char(related="session_adresse_examen.code_wifi")
+    code_wifi = fields.Char(related="session_adresse_examen.code_wifi",
+                            help="Affichage des renseignements Wi-Fi sur la salle d'examen.")
     # Add new field "lien" contains link of center adress exam
     lien = fields.Char(related="session_adresse_examen.lien", string="Lien d'accées au centre d'examen")
     num_agrement_jury = fields.Many2one(related="session_ville_id.num_agrement_jury", copy=True)

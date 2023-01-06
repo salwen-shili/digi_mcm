@@ -119,14 +119,14 @@
                                         d'identité) ainsi que d'un stylo bille noir ou bleu, d'un blanco et d'une
                                         calculatrice non scientifique.
                                     </p>
-                                    <t t-if="o.mcm_session_id.code_wifi != ''">
+                                    <t t-if="o.mcm_session_id.session_adresse_examen.code_wifi != ''">
                                         <b style="text-decoration : underline;">Code wifi de la salle d'examen:</b>
                                         <b style="background-color:#D8BFD8;">
                                             <span t-field="o.mcm_session_id.code_wifi"/>
                                         </b>
                                     </t>
                                     <t t-else="">
-                                        <span></span>
+                                        <b style="text-decoration : underline;">Le code WiFi sera transmis dans la salle d'examen.</b>
                                     </t>
                                     <p>
                                         <strong>NB : Aucun retard ne sera toléré.</strong>
