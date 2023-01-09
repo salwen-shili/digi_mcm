@@ -27,10 +27,12 @@ class Sale(models.Model):
         pricelist_id=vals['pricelist_id']
         partner = self.env['res.partner'].sudo().search([('id', '=', partner_id)], limit=1)
         print('partner', partner)
+        """Create sale order and crm lead """
         if partner and partner.statut_cpf != "validated" and not partner.bolt and self.module_id.product_id.default_code != "vtc_bolt":
             if "public-user" not in partner.email:
                 aircall=self.env['call.detail'].sudo().search([("call_contact.id","=",int(partner))])
                 if aircall:
+                    """if there is aircall stage indécis appelé else indécis non appelé """
                     _logger.info("Indécis callled %s" %str(aircall))
                     for order_line in self.order_line:
                         if "Repassage d'examen" not in order_line.product_id.name:
