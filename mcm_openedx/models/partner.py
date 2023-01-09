@@ -1063,10 +1063,10 @@ class partner(models.Model):
                         note_ecrite_doc.partner_id.env['mail.message'].sudo().create(values)
         for note_ecrite in self.env['mail.message'].sudo().search(
                 [('parent_id', '!=', False), ('body', '!=', False), ('res_id', '!=', 0),
-                 ('date', '<=', datetime.today())], limit=100,
+                 ('date', '<=', datetime.today()), ('parent_id.author_id.name', 'not in', listnom)], limit=100,
                 order="id desc"):
             for note in self.env['mail.message'].sudo().search(
-                    [('record_name', "=", note_ecrite.record_name), ('parent_id.author_id.name', 'not in', listnom)]):
+                    [('record_name', "=", note_ecrite.record_name)]):
 
                 if note.parent_id.author_id.name and note.parent_id.author_id.name not in listnom:
                     note_tag = "<b>" + " Commentaire sur  :  " + note_ecrite.record_name + " " "</b><br/>"
