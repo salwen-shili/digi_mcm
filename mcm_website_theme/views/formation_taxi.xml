@@ -4,10 +4,9 @@
     <t t-call="website.layout">
       <div id="wrap" class="oe_structure oe_empty">
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.min.css"/>
-        <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" defer="defer"/>
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css"/>
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
-        <div id="wrap" class="oe_structure oe_empty">
+        
           <!-- section 1-->
           <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation chauffeur TAXI" style="word-break: break-word; position: relative; z-index: 0;">
             <div class="container-banner">
@@ -37,7 +36,7 @@
                 </div>
                 <div class="col-lg-6 pb48 pt16 js-scroll slide-right ">
                   <br/>
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.png" class="img img-fluid mx-auto text-center" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Chauffeur taxi" src="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.webp"/>
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.png" class="img img-fluid mx-auto text-center lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Chauffeur taxi" />
                 </div>
               </div>
             </div>
@@ -115,6 +114,7 @@
               </div>
             </div>
           </section>
+
           <section id="sh_corpomate_theme_section_52" style="word-break: break-word; position: relative; z-index: 0;" class="">
             <div class="container">
               <h3 class="text-center mbe js-scroll slide-left " style="margin-top: 52px; max-width: 100% !important">
@@ -181,7 +181,7 @@
             <div class="container">
               <div class="row align-items-center">
                 <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/formation-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/formation-taxi.png" class="img img-fluid mx-auto res_height text-center" alt="deux personnes en formation taxi" title="deux personnes en formation taxi" src="/mcm_website_theme/static/src/img/formation_taxi/formation-taxi.webp"/>
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/formation-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/formation-taxi.png" class="img img-fluid mx-auto res_height text-center lazy" alt="deux personnes en formation taxi" title="deux personnes en formation taxi" />
                 </div>
                 <div class="col-lg-6 js-scroll slide-right ">
                   <h2 class="pb16 s_title_default" style="font-size: 33px; font-weight: 700"> La formation taxi à distance</h2>
@@ -281,7 +281,7 @@
             <div class="container">
               <div class="row align-items-center">
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/formation-passerelle-vtc-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/formation-passerelle-vtc-taxi.png" class="img img-fluid mx-auto" alt="chauffeur taxi vtc" title="chauffeur taxi vtc" src="/mcm_website_theme/static/src/img/formation_taxi/formation-passerelle-vtc-taxi.webp"/>
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/formation-passerelle-vtc-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/formation-passerelle-vtc-taxi.png" class="img img-fluid mx-auto lazy" alt="chauffeur taxi vtc" title="chauffeur taxi vtc" />
                 </div>
                 <div class="col-lg-6 js-scroll slide-right ">
                   <h3>FORMATION ET EXAMEN PASSERELLE VTC TAXI</h3>
@@ -330,7 +330,7 @@
                   <mci-extension data-role="overlay" id="overlay-root"/>
                 </div>
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.png" class="img img-fluid mx-auto" alt="Chauffeur vtc femme mcm academy" src="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.webp"/>
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.png" class="img img-fluid mx-auto lazy" alt="Chauffeur vtc femme mcm academy" src="/mcm_website_theme/static/src/img/formation_taxi/Chauffeur vtc femme-mcm-academy.webp"/>
                 </div>
               </div>
             </div>
@@ -489,7 +489,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="/web/image/246715/couv%20taxi%202.png"/>
+                            <img data-src="/web/image/246715/couv%20taxi%202.png" data-srcSafari="/web/image/246715/couv%20taxi%202.png" class="img img-fluid mx-auto text-center lazy"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/>26 janvier, 2022</p>
@@ -502,7 +502,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/299010/Renouvellement%20carte%20pro.png"/>
+                            <img class="img img-fluid mx-auto text-center lazy" data-src="https://www.mcm-academy.fr/web/image/299010/Renouvellement%20carte%20pro.png" data-srcSafari="https://www.mcm-academy.fr/web/image/299010/Renouvellement%20carte%20pro.png"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 24 mai, 2022</p>
@@ -515,7 +515,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/352139/LICENCE%20ADS%20TAXI.png"/>
+                            <img class="img img-fluid mx-auto text-center lazy" data-srcsafari="https://www.mcm-academy.fr/web/image/352139/LICENCE%20ADS%20TAXI.png" data-src="https://www.mcm-academy.fr/web/image/352139/LICENCE%20ADS%20TAXI.png"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 2 septembre, 2022</p>
@@ -533,7 +533,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/299738/Macaron%20VTC.png"/>
+                            <img class="img img-fluid mx-auto text-center lazy" data-src="https://www.mcm-academy.fr/web/image/299738/Macaron%20VTC.png" data-srcSafari="https://www.mcm-academy.fr/web/image/299738/Macaron%20VTC.png"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 31 mai, 2022</p>
@@ -546,7 +546,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/232336/comment%20s%27inscrire%20au%20registre%20VTC%202.png"/>
+                            <img class="img img-fluid mx-auto text-center lazy" data-srcSafari="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png" data-src="https://www.mcm-academy.fr/web/image/232336/comment%20s%27inscrire%20au%20registre%20VTC%202.png" />
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/>23 décembre, 2021</p>
@@ -559,7 +559,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png"/>
+                            <img class="img img-fluid mx-auto text-center lazy" data-src="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png" data-srcsafari="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 17 janvier, 2022</p>
@@ -579,7 +579,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/282772/blog%207.png"/>
+                            <img data-src="https://www.mcm-academy.fr/web/image/282772/blog%207.png"  data-srcSafari="https://www.mcm-academy.fr/web/image/282772/blog%207.png" class="img img-fluid mx-auto text-center lazy"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 5 mai, 2022 </p>
@@ -593,7 +593,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/287348/VMDTR%202.png"/>
+                            <img class="img img-fluid mx-auto text-center lazy" data-src="https://www.mcm-academy.fr/web/image/287348/VMDTR%202.png" data-srcSafari="https://www.mcm-academy.fr/web/image/287348/VMDTR%202.png"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 13 mai, 2022</p>
@@ -606,7 +606,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/229858/MCMACADEMY%20-%20moto-taxi.png"/>
+                            <img class="img img-fluid mx-auto text-center lazy" data-srcSafari="https://www.mcm-academy.fr/web/image/229858/MCMACADEMY%20-%20moto-taxi.png" data-src="https://www.mcm-academy.fr/web/image/229858/MCMACADEMY%20-%20moto-taxi.png"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 20 septembre, 2021</p>
@@ -646,7 +646,7 @@
               </div>
             </div>
           </section>
-        </div>
+        
       </div>
     </t>
   </template>
