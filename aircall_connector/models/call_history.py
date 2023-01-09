@@ -42,6 +42,11 @@ class AirCall(models.Model):
     call_duration = fields.Float(strng="Duration", required=False)
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
 
+
+    def create(self, values):
+
+        res = super(AirCall, self).create(values)
+        return res
     def write(self, values):
         res = super(AirCall, self).write(values)
         ax_api_id = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.ax_api_id')
@@ -248,22 +253,32 @@ class AirCall(models.Model):
                                 message.sudo().write({
                                     'body': message.body + '\n' + str(note['content'])
                                 })
+                if not message and record.call_contact:
+                    # Create new Note in view contact
+                    _logger.info('create new note in view contact mcm %s : %s' % (
+                        str(record.call_contact), (str(str(content) + str(note['content'])))))
+                    message = self.env['mail.message'].sudo().create({
+                        'subject': user_name + " " + started_at + " " + ended_at,
+                        'model': 'res.partner',
+                        'res_id': record.call_contact.id,
+                        'message_type': 'notification',
+                        'subtype_id': subtype_id,
+                        'body': str(content) + str(note['content']),
+                    })
+                    lead=self.env['crm.lead'].sudo().search([('partner_id',"=",record.call_contact.id)])
+                    if lead:
+                        _logger.info('lead %s' %str(lead))
+                        lead.conseiller=user_name
+                    _logger.info('createeeeee note ********************************')
+                    if record.call_contact.statut == "indecis":
+
                                 #self.env.cr.commit() commits the transaction's buffered write operations.
 
                                 self.env.cr.commit()
+                                record.call_contact.changestage("Indécis appelé", record.call_contact)
 
-                    if not message and record.call_contact:
-                        # Create new Note in view contact
-                        _logger.info('create new note in view contact mcm %s : %s' % (
-                            str(record.call_contact), (str(str(content) + str(note['content'])))))
-                        message = self.env['mail.message'].sudo().create({
-                            'subject': user_name + " " + started_at + " " + ended_at,
-                            'model': 'res.partner',
-                            'res_id': record.call_contact.id,
-                            'message_type': 'notification',
-                            'subtype_id': subtype_id,
-                            'body': str(content) + str(note['content']),
-                        })
+
+
     def call_rec_old(self):
         for old_call in  self.env["call.detail"].sudo().search(
                                 [ ('call_recording','=',False)]):
