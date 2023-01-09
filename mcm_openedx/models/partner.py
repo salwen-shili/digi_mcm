@@ -1036,14 +1036,14 @@ class partner(models.Model):
         _logger.info("helloo test helllo ")
         listnom = ["MCM ACADEMY", "Support", "DIGIMOOV", "Public user for DIGIMOOV", "Public user"]
         date_today = date.today()
-        #add comments for documents
-        #search document using create date
-        #search mail.message
-        #add comments
+        # add comments for documents
+        # search document using create date
+        # search mail.message
+        # add comments
         for note_ecrite_doc in self.env['documents.document'].sudo().search(
                 [('create_date', '<=', datetime.today())], limit=100):
             for note_doc in self.env['mail.message'].sudo().search(
-                    [('record_name', "=", note_ecrite_doc.name), ('res_id', '!=', 0)]):
+                    [('record_name', "=", note_ecrite_doc.name), ('res_id', '!=', 0), ('parent_id.author_id.name', 'not in', listnom)]):
                 if note_doc.parent_id.author_id.name:
                     note_tag = "<b>" + " Commentaire sur  :  " + note_doc.record_name + " " "</b><br/>"
                     existe_note = self.env['mail.message'].sudo().search(
@@ -1062,28 +1062,29 @@ class partner(models.Model):
                             'body': note_tag + note_doc.body}
                         note_ecrite_doc.partner_id.env['mail.message'].sudo().create(values)
         for note_ecrite in self.env['mail.message'].sudo().search(
-                [('parent_id', '!=', False), ('body','!=',False),('res_id', '!=', 0), ('date', '<=', datetime.today())], limit=100,
+                [('parent_id', '!=', False), ('body', '!=', False), ('res_id', '!=', 0),
+                 ('date', '<=', datetime.today())], limit=100,
                 order="id desc"):
-            for note in self.env['helpdesk.ticket'].sudo().search(
-                    [('name', '=', note_ecrite.record_name)]):
-                _logger.info(note.author_id)
-                # if note.parent_id.author_id.name and note.parent_id.author_id.name not in listnom:
-                #     note_tag = "<b>" + " Commentaire sur  :  " + note_ecrite.record_name + " " "</b><br/>"
-                #
-                #     existe_note = self.env['mail.message'].sudo().search(
-                #         [('body', '=', note_tag + note_ecrite.body),
-                #          ('res_id', '=', note.author_id.id)])
-                #
-                #     if not existe_note and note_ecrite.body:
-                #         values = {
-                #             'record_name': note.parent_id.author_id.name,
-                #             'model': 'res.partner',
-                #             'message_type': 'comment',
-                #             'subtype_id': note.parent_id.author_id.env['mail.message.subtype'].search(
-                #                 [('name', '=', 'Note')]).id,
-                #             'res_id': note.author_id.id,
-                #             'author_id': note.author_id.env.user.partner_id.id,
-                #             'date': datetime.now(),
-                #             'body': note_tag + note_ecrite.body}
-                #
-                #         note.parent_id.author_id.env['mail.message'].sudo().create(values)
+            for note in self.env['mail.message'].sudo().search(
+                    [('record_name', "=", note_ecrite.record_name), ('parent_id.author_id.name', 'not in', listnom)]):
+
+                if note.parent_id.author_id.name and note.parent_id.author_id.name not in listnom:
+                    note_tag = "<b>" + " Commentaire sur  :  " + note_ecrite.record_name + " " "</b><br/>"
+
+                    existe_note = self.env['mail.message'].sudo().search(
+                        [('body', '=', note_tag + note_ecrite.body),
+                         ('res_id', '=', note.author_id.id)])
+
+                    if not existe_note and note_ecrite.body:
+                        values = {
+                            'record_name': note.parent_id.author_id.name,
+                            'model': 'res.partner',
+                            'message_type': 'comment',
+                            'subtype_id': note.parent_id.author_id.env['mail.message.subtype'].search(
+                                [('name', '=', 'Note')]).id,
+                            'res_id': note.author_id.id,
+                            'author_id': note.author_id.env.user.partner_id.id,
+                            'date': datetime.now(),
+                            'body': note_tag + note_ecrite.body}
+
+                        note.parent_id.author_id.env['mail.message'].sudo().create(values)
