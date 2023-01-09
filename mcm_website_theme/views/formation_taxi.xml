@@ -489,7 +489,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="/web/image/246715/couv%20taxi%202.png" class=""/>
+                            <img data-src="/web/image/246715/couv%20taxi%202.png" data-srcSafari="/web/image/246715/couv%20taxi%202.png" class="img img-fluid mx-auto text-center lazy"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/>26 janvier, 2022</p>
@@ -502,7 +502,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/299010/Renouvellement%20carte%20pro.png"/>
+                            <img class="img img-fluid mx-auto text-center lazy" data-src="https://www.mcm-academy.fr/web/image/299010/Renouvellement%20carte%20pro.png" data-srcSafari="https://www.mcm-academy.fr/web/image/299010/Renouvellement%20carte%20pro.png"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 24 mai, 2022</p>
@@ -515,7 +515,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/352139/LICENCE%20ADS%20TAXI.png"/>
+                            <img class="img img-fluid mx-auto text-center lazy" data-srcsafari="https://www.mcm-academy.fr/web/image/352139/LICENCE%20ADS%20TAXI.png" data-src="https://www.mcm-academy.fr/web/image/352139/LICENCE%20ADS%20TAXI.png"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 2 septembre, 2022</p>
@@ -533,7 +533,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/299738/Macaron%20VTC.png"/>
+                            <img class="img img-fluid mx-auto text-center lazy" data-src="https://www.mcm-academy.fr/web/image/299738/Macaron%20VTC.png" data-srcSafari="https://www.mcm-academy.fr/web/image/299738/Macaron%20VTC.png"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 31 mai, 2022</p>
@@ -546,7 +546,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/232336/comment%20s%27inscrire%20au%20registre%20VTC%202.png"/>
+                            <img class="img img-fluid mx-auto text-center lazy" data-srcSafari="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png" data-src="https://www.mcm-academy.fr/web/image/232336/comment%20s%27inscrire%20au%20registre%20VTC%202.png" />
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/>23 décembre, 2021</p>
@@ -559,7 +559,7 @@
                       <div class="col-md-4">
                         <div class="sh_content">
                           <div class="sh_img">
-                            <img src="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png"/>
+                            <img class="img img-fluid mx-auto text-center lazy" data-src="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png" data-srcsafari="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png"/>
                           </div>
                           <div class="sh_des">
                             <p class="o_default_snippet_text"><span class="fa fa-calendar"/> 17 janvier, 2022</p>
