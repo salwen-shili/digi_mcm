@@ -28,19 +28,20 @@ class Sale(models.Model):
         partner = self.env['res.partner'].sudo().search([('id', '=', partner_id)], limit=1)
         print('partner', partner)
         if partner and partner.statut_cpf != "validated" and not partner.bolt and self.module_id.product_id.default_code != "vtc_bolt":
-            aircall=self.env['call.detail'].sudo().search([("call_contact.id","=",int(partner))])
-            if aircall:
-                _logger.info("Indécis callled %s" %str(aircall))
-                for order_line in self.order_line:
-                    if "Repassage d'examen" not in order_line.product_id.name:
-                        self.change_stage_lead("Indécis appelé", partner)
+            if "public-user" not in partner.email:
+                aircall=self.env['call.detail'].sudo().search([("call_contact.id","=",int(partner))])
+                if aircall:
+                    _logger.info("Indécis callled %s" %str(aircall))
+                    for order_line in self.order_line:
+                        if "Repassage d'examen" not in order_line.product_id.name:
+                            self.change_stage_lead("Indécis appelé", partner)
 
-            else:
-                _logger.info('pas de call')
-                self.change_stage_lead("Indécis non appelé", partner)
+                else:
+                    _logger.info('pas de call')
+                    self.change_stage_lead("Indécis non appelé", partner)
 
-            # for so in self.order_line:
-            print("order line",self.pricelist_id.name)
+                # for so in self.order_line:
+                print("order line",self.pricelist_id.name)
 
         return res
     def write(self, vals):
