@@ -295,7 +295,7 @@ class Coach(models.Model):
         for partner in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"), ('coach_peda', '=', False), ('state', '=', "en_formation"),
                  ('company_id', '=', 2)]):
-            if partner.mcm_session_id.date_exam:
+            if partner.mcm_session_id.date_exam > date.today():
                 if partner.coach_peda.id is False:
                     # tester avec les commentaire ecrite si on trouve le nom des coache on les affecte
                     message = self.env['mail.message'].search(
