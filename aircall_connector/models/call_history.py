@@ -265,17 +265,13 @@ class AirCall(models.Model):
                         'subtype_id': subtype_id,
                         'body': str(content) + str(note['content']),
                     })
-                    lead=self.env['crm.lead'].sudo().search([('partner_id',"=",record.call_contact.id)])
-                    if lead:
-                        _logger.info('lead %s' %str(lead))
-                        lead.conseiller=user_name
-                    _logger.info('createeeeee note ********************************')
                     if record.call_contact.statut == "indecis":
-
-                                #self.env.cr.commit() commits the transaction's buffered write operations.
-
-                                self.env.cr.commit()
-                                record.call_contact.changestage("Indécis appelé", record.call_contact)
+                        record.call_contact.changestage("Indécis appelé", record.call_contact)
+                        lead = self.env['crm.lead'].sudo().search([('partner_id', "=", record.call_contact.id)])
+                        if lead:
+                            _logger.info('lead %s' % str(lead))
+                            lead.conseiller = user_name
+                        _logger.info('createeeeee note ********************************')
 
 
 
