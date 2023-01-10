@@ -1083,15 +1083,16 @@ class partner(models.Model):
         for note_doc in self.env['mail.message'].sudo().search(
                 [('create_date', '<=', datetime.today()),
                  ('res_id', '!=', 0),
-                 ],limit=50,order="id desc"):
+                 ], limit=50, order="id desc"):
             for note_ecrite_doc in self.env['documents.document'].sudo().search(
                     [('res_id', '=', note_doc.res_id)]):
+                _logger.info(note_ecrite_doc.partner_id.name)
                 if note_ecrite_doc.partner_id and note_doc.record_name:
-                    note_tag = "<b>" + " Commentaire sur  :  " + note_doc.record_name + " " "</b><br/>"
+                    note_tag = "<b>" + " Commentaire sur document  :  " + note_doc.record_name + " " "</b><br/>"
 
                     existe_note = self.env['mail.message'].sudo().search(
-                        [('body', '=', note_tag + note_ecrite_doc.body),
-                         ('res_id', '=', note_doc.author_id.id)])
+                        [('body', '=', note_tag + note_doc.body),
+                         ])
 
                     if not existe_note:
                         values = {
