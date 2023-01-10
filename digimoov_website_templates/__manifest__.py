@@ -4,7 +4,7 @@
 {
     'name': 'digimoov website templates',
     'description': " digimoov website templates ",
-    'author': "Houssem",
+    'author': "Houssem, SALWEN",
     'maintainer': 'DIGIMOOV',
     'category': 'website',
     'sequence': 15,
@@ -45,6 +45,7 @@
         'views/cart_progressbar.xml',
         'views/edit_info.xml',
         'views/nos-formations.xml',
+        'views/inscription_surveillants_examen_capacite_de_transport',
         # 'views/test1.xml',
         # 'views/test2.xml',
         # 'views/test3.xml',
