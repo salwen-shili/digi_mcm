@@ -1089,14 +1089,19 @@ class partner(models.Model):
                 if note_ecrite_doc.partner_id and note_doc.record_name:
                     note_tag = "<b>" + " Commentaire sur  :  " + note_doc.record_name + " " "</b><br/>"
 
-                    values = {
-                        'record_name': note_ecrite_doc.partner_id.name,
-                        'model': 'res.partner',
-                        'message_type': 'comment',
-                        'subtype_id': note_ecrite_doc.partner_id.env['mail.message.subtype'].search(
-                            [('name', '=', 'Note')]).id,
-                        'res_id': note_ecrite_doc.partner_id.id,
-                        'author_id': note_ecrite_doc.partner_id.env.user.partner_id.id,
-                        'date': datetime.now(),
-                        'body': note_tag + note_doc.body}
-                    note_ecrite_doc.partner_id.env['mail.message'].sudo().create(values)
+                    existe_note = self.env['mail.message'].sudo().search(
+                        [('body', '=', note_tag + note_ecrite_doc.body),
+                         ('res_id', '=', note_doc.author_id.id)])
+
+                    if not existe_note:
+                        values = {
+                            'record_name': note_ecrite_doc.partner_id.name,
+                            'model': 'res.partner',
+                            'message_type': 'comment',
+                            'subtype_id': note_ecrite_doc.partner_id.env['mail.message.subtype'].search(
+                                [('name', '=', 'Note')]).id,
+                            'res_id': note_ecrite_doc.partner_id.id,
+                            'author_id': note_ecrite_doc.partner_id.env.user.partner_id.id,
+                            'date': datetime.now(),
+                            'body': note_tag + note_doc.body}
+                        note_ecrite_doc.partner_id.env['mail.message'].sudo().create(values)
