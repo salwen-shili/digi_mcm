@@ -25,7 +25,7 @@ class CRM(models.Model):
     mcm_session_id = fields.Many2one('mcmacademy.session')
     numero_action = fields.Char(string="Identifiant interne d'action")
     motif=fields.Char(string="Motif de l'archivage")
-    conseiller=fields.Char( string="Conseiller")
+    conseiller=fields.Char( string="Conseiller", default='Inscription spontanée')
     
 
     # @api.model
@@ -97,10 +97,10 @@ class CRM(models.Model):
                                                                     ], order="create_date asc", limit=1)
             if aircall_detail:
                 _logger.info("aircall %s" % str(aircall_detail.owner))
-                if aircall_detail.owner and not self.conseiller:
-                    #_logger.info("consieller")
-                    vals['conseiller'] = str(aircall_detail.owner)
-                    _logger.info("consieller")
+                # if aircall_detail.owner and not self.conseiller:
+                #     #_logger.info("consieller")
+                #     vals['conseiller'] = str(aircall_detail.owner)
+                #     _logger.info("consieller")
         write_result = super(CRM, self).write(vals)
         return write_result
 
