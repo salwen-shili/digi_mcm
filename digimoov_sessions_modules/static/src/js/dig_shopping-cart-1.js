@@ -520,7 +520,7 @@ function verify_payment_method() {
         ) &&
         conditionlourd.checked == true
       ) {
-        window.open("https://bit.ly/3usw0BX", "_blank");
+        window.open("https://bit.ly/3k2ueVO", "_blank");
       }
     }
   }
