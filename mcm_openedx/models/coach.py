@@ -304,11 +304,10 @@ class Coach(models.Model):
                          ('company_id', '=', 2)],
                         order="create_date asc",
                         limit=1)
-                    if message:
+                    if message and partner.mcm_session_id.coach_id == message.author_id:
                         _logger.info(message.author_id)
                         _logger.info("------coach aff -=====================")
                         partner.coach_peda = message.author_id
                         self.env.cr.commit()
-                else:
-                    break
+
 
