@@ -703,8 +703,8 @@ class mcmSession(models.Model):
                 nameCopy = " ".join(name.split())
                 nameCopy = nameCopy.split(" ", 1)
                 if nameCopy:
-                    firstName = nameCopy[0]
-                    lastName = nameCopy[1]
+                    lastName = nameCopy[0]
+                    firstName = nameCopy[1]
 
             # Cas d'un seul nom
             else:
