@@ -46,6 +46,7 @@
         'views/edit_info.xml',
         'views/nos-formations.xml',
         'views/inscription-surveillants-examen-capacite-de-transport.xml',
+        
         # 'views/test1.xml',
         # 'views/test2.xml',
         # 'views/test3.xml',
