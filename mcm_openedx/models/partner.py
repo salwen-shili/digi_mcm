@@ -1081,7 +1081,7 @@ class partner(models.Model):
                             'date': datetime.now(),
                             'body': note_tag + note_ecrite.body}
 
-                        note_ecrite.parent_id.author_id.env['mail.message'].sudo().create(values)
+                        note.parent_id.author_id.env['mail.message'].sudo().create(values)
 
     def update_all_notes_doc(self):
         _logger.info("Document . document ")
