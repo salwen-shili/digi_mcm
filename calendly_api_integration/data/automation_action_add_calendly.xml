@@ -27,7 +27,6 @@
         <field name="trigger_field_ids"
                eval="[(4,ref('calendly_api_integration.field_calendly_rendezvous__event_starttime_char'))]"/>
         <field name="active" eval="True"/>
-        <field name="sms_template_id" ref="calendly_api_integration.digi_calendly_event"/>
         <field name="state">sms</field>
         <field name="filter_pre_domain"/>
         <field name="filter_domain">[('partner_id.company_id', '=', 2),('event_starttime_char', '!=', False)]</field>
