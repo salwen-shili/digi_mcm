@@ -1056,7 +1056,8 @@ class partner(models.Model):
                  ('date', '<=', datetime.today()), ('parent_id.author_id.name', 'not in', listnom)], limit=100,
                 order="id desc"):
             for note in self.env['mail.message'].sudo().search(
-                    [('record_name', "=", note_ecrite.record_name), ('res_id', '=', note_ecrite.res_id)],
+                    [('record_name', "=", note_ecrite.record_name), ('res_id', '=', note_ecrite.res_id)],limit=1,
+                order="id desc"
             ):
                 if note.date.date() == date_today:
                     _logger.info(note_ecrite.body)
