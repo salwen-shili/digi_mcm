@@ -132,11 +132,11 @@ class Website(Website):
     @http.route('/inscription-surveillants-examen-capacite-de-transport', type='http', auth='public', website=True)
     def inscription_surveillants_examen_capacite_de_transport(self, **kw, ):
         if request.website.id == 2:
-            # digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-            #                                                                  order="list_price")
-            # values = {
-            #     'digimoov_products': digimoov_products,
-            # }
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
             return request.render("digimoov_website_templates.inscription_surveillants_examen_capacite_de_transport",
                                   values)
         else:
