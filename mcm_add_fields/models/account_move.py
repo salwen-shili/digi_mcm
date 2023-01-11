@@ -1303,6 +1303,61 @@ class AccountMove(models.Model):
                     #                 so.unlink()
 
 
+    """récupérer les paiements cpf pour facture créé surodoo """
+    def get_paiement_cpf(self):
+        companies = self.env['res.company'].sudo().search([])
+        if companies:
+            for company in companies:
+                api_key = company.wedof_api_key
+                params_wedof = (
+                    ('order', 'desc'),
+                    ('billingState', 'paid'),
+                    ('sort', 'lastUpdate'),
+                    ('limit', '1000'),
+                )
+
+                headers = {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-API-KEY': api_key,
+                }
+
+                date_invoice_str = "01/01/2022"
+                date_to_invoice = datetime.strptime(date_invoice_str, '%d/%m/%Y')
+                invoices = self.env['account.move'].sudo().search([("methodes_payment","=","cpf"),
+                                                                   ("invoice_date",">=",date_to_invoice),
+                                                                   ("company_id.id","=",2)])
+
+                for invoice in invoices:
+                    _logger.info("invoice %s" %str(invoice))
+                    if invoice.numero_cpf:
+                        response = requests.get('https://www.wedof.fr/api/registrationFolders/' + invoice.numero_cpf,
+                                                headers=headers)
+                        registration = response.json()
+                        if registration and registration.billingState=="paid":
+                            _logger.info("registration folder %s" %str(registration))
+                            params_ = (
+                                ('order', 'desc'),
+                                ('state', 'issued'),
+                                ('registrationFolderId', invoice.numero_cpf),
+                                ('sort', 'lastUpdate'),
+                                ('limit', '1000')
+                            )
+
+                            response_paiement = requests.get('https://www.wedof.fr/api/payments/',
+                                                             headers=headers,
+                                                             params=params_)
+                            paiements = response_paiement.json()
+                            """Récupérer le paiement selon numero de dossier et type de paiement acompte  """
+                            for paiement in paiements:
+                                """Changer format date"""
+                                date_acompte = ""
+                                acompte_amount = paiement['amount']
+                                _logger.info("paiement %s" % str(paiement))
+
+
+
+
 
 
 
