@@ -1052,36 +1052,33 @@ class partner(models.Model):
         # search mail.message
         # add comments
         for note_ecrite in self.env['mail.message'].sudo().search(
-                [('parent_id', '!=', False), ('model', '!=', "res.partner"), ('body', '!=', False), ('res_id', '!=', 0),
-                 ('date', '<=', datetime.today()), ('parent_id.author_id.name', 'not in', listnom)], limit=100,
+                [('parent_id', '!=', False), ('model', '=', "helpdesk.ticket"), ('body', '!=', False),
+                ], limit=1,
                 order="id desc"):
-            for note in self.env['mail.message'].sudo().search(
-                    [('record_name', "=", note_ecrite.record_name), ('res_id', '=', note_ecrite.res_id)],limit=1,
-                order="id desc"
-            ):
-                if note.date.date() == date_today:
-                    _logger.info(note_ecrite.body)
-                    _logger.info(note_ecrite.parent_id.author_id.name)
+            for note in self.env['helpdesk.ticket'].sudo().search(
+                    [('id', "=", note_ecrite.res_id)], limit=1):
 
-                    note_tag = "<b>" + " Commentaire sur  :  " + note_ecrite.record_name + " " "</b><br/>"
+                _logger.info(note_ecrite.body)
+                _logger.info(note.partner_id.name)
 
-                    existe_note = self.env['mail.message'].sudo().search(
-                        [('body', '=', note_tag + note_ecrite.body),
-                         ('res_id', '=', note.author_id.id)])
+                note_tag = "<b>" + " Commentaire sur  :  " + note_ecrite.record_name + " " "</b><br/>"
+                existe_note = self.env['mail.message'].sudo().search(
+                    [('body', '=', note_tag + note_ecrite.body),
+                     ('res_id', '=', note.partner_id.id)])
 
-                    if not existe_note:
-                        values = {
-                            'record_name': note.parent_id.author_id.name,
-                            'model': 'res.partner',
-                            'message_type': 'comment',
-                            'subtype_id': note.parent_id.author_id.env['mail.message.subtype'].search(
-                                [('name', '=', 'Note')]).id,
-                            'res_id': note.author_id.id,
-                            'author_id': note.author_id.env.user.partner_id.id,
-                            'date': datetime.now(),
-                            'body': note_tag + note_ecrite.body}
+                if not existe_note:
+                    values = {
+                        'record_name': note.partner_id.name,
+                        'model': 'res.partner',
+                        'message_type': 'comment',
+                        'subtype_id':note.partner_id.env['mail.message.subtype'].search(
+                            [('name', '=', 'Note')]).id,
+                        'res_id': note.partner_id.id,
+                        'author_id': note.partner_id.env.user.partner_id.id,
+                        'date': datetime.now(),
+                        'body': note_tag + note_ecrite.body}
 
-                        note.parent_id.author_id.env['mail.message'].sudo().create(values)
+                    note.partner_id.env['mail.message'].sudo().create(values)
 
     def update_all_notes_doc(self):
         _logger.info("Document . document ")
