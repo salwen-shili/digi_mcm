@@ -130,7 +130,7 @@ class Website(Website):
     # Page de destination Marseille
 
     @http.route('/inscription-surveillants-examen-capacite-de-transport', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_destination_marseille(self, **kw, ):
+    def inscription_surveillants_examen_capacite_de_transport(self, **kw, ):
         if request.website.id == 2:
             # digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
             #                                                                  order="list_price")
