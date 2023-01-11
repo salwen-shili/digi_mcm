@@ -213,6 +213,7 @@ class partner(models.Model):
                        'course-v1:Digimoov+t3p_02+2,'
                        'course-v1:Digimoov+sec_rout_02+2,'
                        'course-v1:Digimoov+sec_rout_03+3,'
+                       'course-v1:Digimoov+onboard+1,'
 
                        'course-v1:Digimoov+ges02+2,'
                        'course-v1:Digimoov+angl_02+2,'
@@ -243,6 +244,7 @@ class partner(models.Model):
                        'course-v1:Digimoov+dev_com_02+2,'
                        'course-v1:Digimoov+sec_rout_02+2,'
                        'course-v1:Digimoov+sec_rout_03+3,'
+                       'course-v1:Digimoov+onboard+1,'
 
                        'course-v1:Digimoov+t3p_02+2,'
                        'course-v1:Digimoov+ges02+2,'
@@ -277,6 +279,7 @@ class partner(models.Model):
                        'course-v1:Digimoov+sec_rout_02+2,'
                        'course-v1:Digimoov+sec_rout_03+3,'
                        'course-v1:Digimoov+ges02+2,'
+                       'course-v1:Digimoov+onboard+1,'
                        'course-v1:Digimoov+angl_02+2,'
                        'course-v1:DIGIMOOV+CN02+2022,'
                        'course-v1:Digimoov+fr_02+2',
@@ -310,6 +313,7 @@ class partner(models.Model):
                 'course-v1:Digimoov+reg_taxi_02+2,'
                 'course-v1:Digimoov+sec_rout_02+2,'
                 'course-v1:Digimoov+sec_rout_03+3,'
+                'course-v1:Digimoov+onboard+1,'
 
                 'course-v1:Digimoov+t3p_02+2,'
                 'course-v1:Digimoov+fr_02+2',
