@@ -334,7 +334,8 @@ class event_calendly(models.Model):
                             print("existeee nameeeee")
                             existt.browse(existt.id).sudo().unlink()
                     existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                        [ ('event_name', '=', shevents['name']),  ('start_at_char',"=",start_at_char), ('start_at', '=', response['start_time'])])
+                        [('event_name', '=', shevents['name']), ('start_at_char', "=", start_at_char),
+                         ('start_at', '=', response['start_time'])])
 
                     if not existe:
                         new = self.env['mcm_openedx.calendly_event'].sudo().create({
@@ -426,7 +427,8 @@ class event_calendly(models.Model):
                     if existt.start_at < date.today():
                         existt.browse(existt.id).sudo().unlink()
                 existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                    [ ('event_name', '=', shevents['name']), ('start_at_char',"=",start_at_char),  ('start_at', '=', response['start_time'])])
+                    [('event_name', '=', shevents['name']), ('start_at_char', "=", start_at_char),
+                     ('start_at', '=', response['start_time'])])
 
                 if not existe:
                     new = self.env['mcm_openedx.calendly_event'].sudo().create({
@@ -506,7 +508,8 @@ class event_calendly(models.Model):
                         print("existeee nameeeee")
                         existt.browse(existt.id).sudo().unlink()
                 existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                    [ ('event_name', '=', shevents['name']), ('start_at_char',"=",start_at_char),  ('start_at', '=', response['start_time'])])
+                    [('event_name', '=', shevents['name']), ('start_at_char', "=", start_at_char),
+                     ('start_at', '=', response['start_time'])])
                 if not existe:
                     print("dont exist")
                     new = self.env['mcm_openedx.calendly_event'].sudo().create({
@@ -585,7 +588,8 @@ class event_calendly(models.Model):
                         print("existeee nameeeee")
                         existt.browse(existt.id).sudo().unlink()
                 existe = self.env['mcm_openedx.calendly_event'].sudo().search(
-                    [ ('event_name', '=', shevents['name']), ('start_at_char',"=",start_at_char), ('start_at', '=', response['start_time'])])
+                    [('event_name', '=', shevents['name']), ('start_at_char', "=", start_at_char),
+                     ('start_at', '=', response['start_time'])])
                 if not existe:
                     print("dont exist")
                     new = self.env['mcm_openedx.calendly_event'].sudo().create({
@@ -646,7 +650,8 @@ class event_calendly(models.Model):
                                             # Fiche Client odoo chercher si event
                                             exist_event = self.env['calendly.rendezvous'].sudo().search(
                                                 [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
-                                                 ('event_starttime', '=', existe.start_at)])
+                                                 ('event_starttime', '=', existe.start_at),
+                                                 ('event_starttime_char', '=', existe.event_starttime_char)])
                                             print("exist_event.name", exist_event.name)
                                             print(existe.event_name)
                                             if not exist_event:
@@ -672,7 +677,8 @@ class event_calendly(models.Model):
                                             # Fiche Client odoo chercher si event
                                             exist_event = self.env['calendly.rendezvous'].sudo().search(
                                                 [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
-                                                 ('event_starttime', '=', existe.start_at)])
+                                                 ('event_starttime', '=', existe.start_at),
+                                                 ('event_starttime_char', '=', existe.event_starttime_char)])
                                             print("exist_event.name", exist_event.name)
                                             print(existe.event_name)
                                             if not exist_event:
@@ -745,7 +751,8 @@ class event_calendly(models.Model):
                                             # Fiche Client odoo chercher si event
                                             exist_event = self.env['calendly.rendezvous'].sudo().search(
                                                 [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
-                                                 ('event_starttime', '=', existe.start_at)])
+                                                 ('event_starttime', '=', existe.start_at),
+                                                 ('event_starttime_char', '=', existe.event_starttime_char)])
                                             if not exist_event:
                                                 if existe.start_at == todays_date:
                                                     calendly = self.env['calendly.rendezvous'].sudo().create({
@@ -811,4 +818,3 @@ class event_calendly(models.Model):
             'type': 'ir.actions.client',
             'tag': 'reload',
         }
-
