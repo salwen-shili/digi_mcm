@@ -548,7 +548,7 @@ function closepopup(msg) {
     <input type="checkbox" id="checkbox_lourd" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
         <label for="conditions" style="display:inline">
             Je m'engage à régler le montant de reste à charge de
-            <b>190€</b>
+            <b>200€</b>
             une fois mon financement CPF de
             <b>2000€</b>
             accepté
