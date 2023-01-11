@@ -60,10 +60,7 @@
         </record>
 
 
-
-
-
-         <record id="digi_calendly_event" model="mail.template">
+        <record id="digi_calendly_event" model="mail.template">
             <field name="name">Contact : Digimoov-Cours en direct</field>
             <field name="model_id" ref="model_calendly_rendezvous"/>
             <field name="subject">Digimoov-Cours en direct
@@ -91,7 +88,7 @@
                             <br/>
                             <center>
                                 <a class="v1action"
-                                    href="${object.zoomlink}"
+                                   href="${object.zoomlink}"
 
                                    style="font-family:&quot;Proxima Nova&quot;, &quot;proxima-nova&quot;, Helvetica, Arial sans-serif; color: rgb(0, 105, 255); display: inline-block; min-width: 140px; margin: 10px 5px 0 5px; padding: 8px; text-align: center; text-decoration: none; background-color: rgb(0, 0, 0)
                                     ; border: 1px solid #d0d0d0; color: rgb(255, 255, 255);font-weight: bold;"
@@ -113,10 +110,10 @@
         </record>
 
 
-                <record id="sms_template_digi_calendly" model="sms.template">
+        <record id="sms_template_digi_calendly" model="sms.template">
             <field name="name">Customer: DIGIMOOV automated SMS</field>
             <field name="model_id" ref="model_calendly_rendezvous"/>
-            <field name="body">${object.name} avec  DIGIMOOV à
+            <field name="body">${object.name} avec DIGIMOOV à
                 ${object.event_starttime_char} cliquez => ${object.zoomlink} .
             </field>
         </record>
