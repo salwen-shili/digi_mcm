@@ -830,8 +830,8 @@ class partner(models.Model):
 
                     name = partner.name.split(" ", 1)
                     if name:
-                        partner.firstName = name[0]
-                        partner.lastName = name[1]
+                        partner.firstName = name[1]
+                        partner.lastName = name[0]
                 # Cas d'un seul nom
                 else:
 
