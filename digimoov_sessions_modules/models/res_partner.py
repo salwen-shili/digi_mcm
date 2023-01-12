@@ -53,14 +53,18 @@ class InheritResPartner(models.Model):
                 lastname = client.lastname
                 email = client.email
 
-                params = {'firstname': client.firstname, 'lastname': client.lastname, 'email':client.email}
+                params = {'firstName': client.firstname, 'lastName': client.lastname, 'email': client.email}
+                jotform = requests.get('https://form.jotform.com/222334146537352/', params=params)
+                url = jotform.url
+                _logger.info('----request jotform ---- %s' % jotform.url)
                 template = self.env['sign.template'].sudo().create({
                     'name': template_name,
-                    'redirect_url': requests.get(str('https://form.jotform.com/222334146537352/', params=params)),
+                    'redirect_url': url,
                     'attachment_id': cerfa.id,
                     'datas': cerfa.datas,
                     'sign_item_ids': False
                 })
+                _logger.info('----request URL ---- %s' % url)
                 # Get id of the role = Client from role view in configuration menu
                 sign_item_role_id = self.env['sign.item.role'].sudo().search(
                     [('name', '=', "Client")], limit=1).id
