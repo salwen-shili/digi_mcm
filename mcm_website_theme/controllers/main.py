@@ -1551,7 +1551,9 @@ class Routes_Site(http.Controller):
         if request.website.id == 2:
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
-            return request.render("mcm_website_theme.mcm_bolt", values)
+            return werkzeug.utils.redirect('/', 301)
+            #return request.render("mcm_website_theme.mcm_bolt", values)
+            
 
     @http.route("/get_data_user_connected", type="json", auth="user", methods=["POST"], website=True)
     def get_data_user_connected(self):
