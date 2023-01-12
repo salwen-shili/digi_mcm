@@ -1304,6 +1304,7 @@ class AccountMove(models.Model):
 
 
     """récupérer les paiements cpf pour facture créé surodoo """
+
     def get_paiement_cpf(self):
         companies = self.env['res.company'].sudo().search([])
         if companies:
@@ -1324,22 +1325,22 @@ class AccountMove(models.Model):
 
                 date_invoice_str = "01/01/2022"
                 date_to_invoice = datetime.strptime(date_invoice_str, '%d/%m/%Y')
-                invoices = self.env['account.move'].sudo().search([("methodes_payment","=","cpf"),
-                                                                   ("invoice_date",">=",date_to_invoice),
-                                                                   ("company_id.id","=",2)])
+                invoices = self.env['account.move'].sudo().search([("methodes_payment", "=", "cpf"),
+                                                                   ("invoice_date", ">=", date_to_invoice),
+                                                                   ("company_id.id", "=", 2)])
 
                 for invoice in invoices:
-                    _logger.info("invoice %s" %str(invoice))
+                    _logger.info("invoice %s" % str(invoice))
                     if invoice.numero_cpf:
                         response = requests.get('https://www.wedof.fr/api/registrationFolders/' + invoice.numero_cpf,
                                                 headers=headers)
                         registration = response.json()
-                        if registration and 'billingState' in registration and registration['billingState']=="paid":
-                            _logger.info("registration folder %s" %str(registration))
+                        if registration and 'billingState' in registration and registration['billingState'] == "paid":
+                            _logger.info("registration folder %s" % str(registration))
                             params_ = (
                                 ('order', 'desc'),
                                 ('state', 'issued'),
-                                ('type' ,'bill'),
+                                ('type', 'bill,deposit'),
                                 ('registrationFolderId', invoice.numero_cpf),
                                 ('sort', 'lastUpdate'),
                                 ('limit', '1000')
@@ -1355,20 +1356,29 @@ class AccountMove(models.Model):
                                 date_acompte = ""
                                 amount = paiement['amount']
                                 _logger.info("paiement %s" % str(paiement))
-                                if 'scheduledDate' in paiement:
-                                    journal_id = invoice.journal_id.id
-                                    acquirer = self.env['payment.acquirer'].sudo().search(
-                                        [('name', "=", _('stripe')), ('company_id', '=', 2)], limit=1)
-                                    if acquirer:
-                                        journal_id = acquirer.journal_id.id
+                                date_paiement = date.today()
+                                if 'scheduledDate' in paiement and paiement['scheduledDate']:
                                     transaction_date = paiement['scheduledDate']
                                     trdate = datetime.strptime(transaction_date,
                                                                '%Y-%m-%dT%H:%M:%S.%fz')
                                     newformat = "%d/%m/%Y"
                                     trdateform = trdate.strftime(newformat)
                                     date_paiement = datetime.strptime(trdateform, "%d/%m/%Y")
+
                                     _logger.info("paiement acompte %s" % str(amount))
 
+                                num = invoice.name
+                                bill_num = num.replace('FA', '')
+                                bill_num = bill_num.replace('-', '')
+                                _logger.info("bill_num %s" % str(bill_num))
+                                bill_num_cpf = paiement['billNumber']
+                                bill_num_cpf = bill_num_cpf.replace('-', '')
+                                if bill_num_cpf == bill_num:
+                                    journal_id = invoice.journal_id.id
+                                    acquirer = self.env['payment.acquirer'].sudo().search(
+                                        [('name', "=", _('stripe')), ('company_id', '=', 2)], limit=1)
+                                    if acquirer:
+                                        journal_id = acquirer.journal_id.id
                                     payment_method = self.env['account.payment.method'].sudo().search(
                                         [('code', 'ilike', 'electronic')])
                                     payment = self.env['account.payment'].sudo().create(
@@ -1388,7 +1398,6 @@ class AccountMove(models.Model):
                                     _logger.info('if not invoice %s ' % str(invoice.name))
 
                                     payment.post()
-
 
 
 
