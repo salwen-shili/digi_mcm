@@ -1303,7 +1303,7 @@ class AccountMove(models.Model):
                     #                 so.unlink()
 
 
-     """récupérer les paiements cpf pour facture créé surodoo """
+    """récupérer les paiements cpf pour facture créé surodoo """
     def get_paiement_cpf(self):
         companies = self.env['res.company'].sudo().search([])
         if companies:
