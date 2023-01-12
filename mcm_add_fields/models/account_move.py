@@ -1303,7 +1303,7 @@ class AccountMove(models.Model):
                     #                 so.unlink()
 
 
-    """récupérer les paiements cpf pour facture créé surodoo """
+     """récupérer les paiements cpf pour facture créé surodoo """
     def get_paiement_cpf(self):
         companies = self.env['res.company'].sudo().search([])
         if companies:
@@ -1334,11 +1334,12 @@ class AccountMove(models.Model):
                         response = requests.get('https://www.wedof.fr/api/registrationFolders/' + invoice.numero_cpf,
                                                 headers=headers)
                         registration = response.json()
-                        if registration and registration.billingState=="paid":
+                        if registration and 'billingState' in registration and registration['billingState']=="paid":
                             _logger.info("registration folder %s" %str(registration))
                             params_ = (
                                 ('order', 'desc'),
                                 ('state', 'issued'),
+                                ('type' ,'bill'),
                                 ('registrationFolderId', invoice.numero_cpf),
                                 ('sort', 'lastUpdate'),
                                 ('limit', '1000')
@@ -1352,8 +1353,42 @@ class AccountMove(models.Model):
                             for paiement in paiements:
                                 """Changer format date"""
                                 date_acompte = ""
-                                acompte_amount = paiement['amount']
+                                amount = paiement['amount']
                                 _logger.info("paiement %s" % str(paiement))
+                                if 'scheduledDate' in paiement:
+                                    journal_id = invoice.journal_id.id
+                                    acquirer = self.env['payment.acquirer'].sudo().search(
+                                        [('name', "=", _('stripe')), ('company_id', '=', 2)], limit=1)
+                                    if acquirer:
+                                        journal_id = acquirer.journal_id.id
+                                    transaction_date = paiement['scheduledDate']
+                                    trdate = datetime.strptime(transaction_date,
+                                                               '%Y-%m-%dT%H:%M:%S.%fz')
+                                    newformat = "%d/%m/%Y"
+                                    trdateform = trdate.strftime(newformat)
+                                    date_paiement = datetime.strptime(trdateform, "%d/%m/%Y")
+                                    _logger.info("paiement acompte %s" % str(amount))
+
+                                    payment_method = self.env['account.payment.method'].sudo().search(
+                                        [('code', 'ilike', 'electronic')])
+                                    payment = self.env['account.payment'].sudo().create(
+                                        {'payment_type': 'inbound',
+                                         'payment_method_id': payment_method.id,
+                                         'partner_type': 'customer',
+                                         'partner_id': invoice.partner_id.id,
+                                         'amount': amount,
+                                         'currency_id': invoice.currency_id.id,
+                                         'journal_id': journal_id,
+                                         'communication': False,
+                                         'payment_token_id': False,
+                                         'payment_date': date_paiement,
+                                         'invoice_ids': [(6, 0, invoice.ids)],
+                                         })
+                                    _logger.info("paiement %s" % str(payment))
+                                    _logger.info('if not invoice %s ' % str(invoice.name))
+
+                                    payment.post()
+
 
 
 
