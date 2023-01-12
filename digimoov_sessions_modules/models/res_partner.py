@@ -1,6 +1,8 @@
 import base64
 import logging
 
+import requests
+
 from odoo import fields, models, _, api, http
 from odoo.exceptions import ValidationError
 
@@ -47,9 +49,14 @@ class InheritResPartner(models.Model):
                     client.display_name, client.mcm_session_id.session_ville_id.display_name,
                     client.mcm_session_id.date_exam.strftime(
                         '%d/%m/%Y'))
+                firstname = client.firstname
+                lastname = client.lastname
+                email = client.email
+
+                params = {'firstname': client.firstname, 'lastname': client.lastname, 'email':client.email}
                 template = self.env['sign.template'].sudo().create({
                     'name': template_name,
-                    'redirect_url': str("https://form.jotform.com/222334146537352"),
+                    'redirect_url': requests.get(str('https://form.jotform.com/222334146537352/', params=params)),
                     'attachment_id': cerfa.id,
                     'datas': cerfa.datas,
                     'sign_item_ids': False
