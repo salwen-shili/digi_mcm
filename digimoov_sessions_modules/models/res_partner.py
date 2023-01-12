@@ -55,7 +55,7 @@ class InheritResPartner(models.Model):
                 
                 #Jotform params
 
-                params = {'nom84[first]': client.firstname, 'nom84[last]': client.lastname, 'email': client.email}
+                params = {'nom84[first]': client.firstName, 'nom84[last]': client.lastName, 'email': client.email}
                 
                 jotform = requests.get('https://form.jotform.com/222334146537352/', params=params)
                 url = jotform.url
