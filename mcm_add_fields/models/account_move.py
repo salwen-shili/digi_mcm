@@ -1312,7 +1312,7 @@ class AccountMove(models.Model):
                 api_key = company.wedof_api_key
                 params_wedof = (
                     ('order', 'desc'),
-                    ('billingState', 'paid'),
+                    ('billingState', 'billed'),
                     ('sort', 'lastUpdate'),
                     ('limit', '1000'),
                 )
@@ -1340,7 +1340,7 @@ class AccountMove(models.Model):
                             params_ = (
                                 ('order', 'desc'),
                                 ('state', 'issued'),
-                                ('type','bill'),
+                                ('type','deposit'),
                                 ('registrationFolderId', invoice.numero_cpf),
                                 ('sort', 'lastUpdate'),
                                 ('limit', '1000')
@@ -1374,31 +1374,31 @@ class AccountMove(models.Model):
                                         _logger.info("bill_num %s" % str(bill_num))
                                         bill_num_cpf = paiement['billNumber']
                                         bill_num_cpf = bill_num_cpf.replace('-', '')
-                                        if bill_num_cpf == bill_num:
-                                            journal_id = invoice.journal_id.id
-                                            acquirer = self.env['payment.acquirer'].sudo().search(
-                                                [('name', "=", _('stripe')), ('company_id', '=', 2)], limit=1)
-                                            if acquirer:
-                                                journal_id = acquirer.journal_id.id
-                                            payment_method = self.env['account.payment.method'].sudo().search(
-                                                [('code', 'ilike', 'electronic')])
-                                            payment = self.env['account.payment'].sudo().create(
-                                                {'payment_type': 'inbound',
-                                                 'payment_method_id': payment_method.id,
-                                                 'partner_type': 'customer',
-                                                 'partner_id': invoice.partner_id.id,
-                                                 'amount': amount,
-                                                 'currency_id': invoice.currency_id.id,
-                                                 'journal_id': journal_id,
-                                                 'communication': False,
-                                                 'payment_token_id': False,
-                                                 'payment_date': date_paiement,
-                                                 'invoice_ids': [(6, 0, invoice.ids)],
-                                                 })
-                                            _logger.info("paiement %s" % str(payment))
-                                            _logger.info('if not invoice %s ' % str(invoice.name))
+                                        #if bill_num_cpf == bill_num:
+                                        journal_id = invoice.journal_id.id
+                                        acquirer = self.env['payment.acquirer'].sudo().search(
+                                            [('name', "=", _('stripe')), ('company_id', '=', 2)], limit=1)
+                                        if acquirer:
+                                            journal_id = acquirer.journal_id.id
+                                        payment_method = self.env['account.payment.method'].sudo().search(
+                                            [('code', 'ilike', 'electronic')])
+                                        payment = self.env['account.payment'].sudo().create(
+                                            {'payment_type': 'inbound',
+                                             'payment_method_id': payment_method.id,
+                                             'partner_type': 'customer',
+                                             'partner_id': invoice.partner_id.id,
+                                             'amount': amount,
+                                             'currency_id': invoice.currency_id.id,
+                                             'journal_id': journal_id,
+                                             'communication': False,
+                                             'payment_token_id': False,
+                                             'payment_date': date_paiement,
+                                             'invoice_ids': [(6, 0, invoice.ids)],
+                                             })
+                                        _logger.info("paiement %s" % str(payment))
+                                        _logger.info('if not invoice %s ' % str(invoice.name))
 
-                                            payment.post()
+                                        payment.post()
 
 
 
