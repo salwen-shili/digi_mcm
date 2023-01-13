@@ -1326,7 +1326,7 @@ class AccountMove(models.Model):
                 date_invoice_str = "01/01/2022"
                 date_to_invoice = datetime.strptime(date_invoice_str, '%d/%m/%Y')
                 invoices = self.env['account.move'].sudo().search([("methodes_payment", "=", "cpf"),
-                                                                   ("invoice_date", ">=", date_to_invoice),
+                                                                   ("invoice_date", ">=", date_to_invoice),("invoice_payment_state","=","not_paid"),
                                                                    ("company_id.id", "=", 2)])
 
                 for invoice in invoices:
@@ -1340,7 +1340,7 @@ class AccountMove(models.Model):
                             params_ = (
                                 ('order', 'desc'),
                                 ('state', 'issued'),
-                                ('type', 'bill,deposit'),
+                                ('type','bill'),
                                 ('registrationFolderId', invoice.numero_cpf),
                                 ('sort', 'lastUpdate'),
                                 ('limit', '1000')
@@ -1364,40 +1364,41 @@ class AccountMove(models.Model):
                                     newformat = "%d/%m/%Y"
                                     trdateform = trdate.strftime(newformat)
                                     date_paiement = datetime.strptime(trdateform, "%d/%m/%Y")
-
+                                    year_paiement=date_paiement.year
+                                    _logger.info("yeaaarrr %s" %str(year_paiement))
                                     _logger.info("paiement acompte %s" % str(amount))
+                                    if str(year_paiement)=="2022":
+                                        num = invoice.name
+                                        bill_num = num.replace('FA', '')
+                                        bill_num = bill_num.replace('-', '')
+                                        _logger.info("bill_num %s" % str(bill_num))
+                                        bill_num_cpf = paiement['billNumber']
+                                        bill_num_cpf = bill_num_cpf.replace('-', '')
+                                        if bill_num_cpf == bill_num:
+                                            journal_id = invoice.journal_id.id
+                                            acquirer = self.env['payment.acquirer'].sudo().search(
+                                                [('name', "=", _('stripe')), ('company_id', '=', 2)], limit=1)
+                                            if acquirer:
+                                                journal_id = acquirer.journal_id.id
+                                            payment_method = self.env['account.payment.method'].sudo().search(
+                                                [('code', 'ilike', 'electronic')])
+                                            payment = self.env['account.payment'].sudo().create(
+                                                {'payment_type': 'inbound',
+                                                 'payment_method_id': payment_method.id,
+                                                 'partner_type': 'customer',
+                                                 'partner_id': invoice.partner_id.id,
+                                                 'amount': amount,
+                                                 'currency_id': invoice.currency_id.id,
+                                                 'journal_id': journal_id,
+                                                 'communication': False,
+                                                 'payment_token_id': False,
+                                                 'payment_date': date_paiement,
+                                                 'invoice_ids': [(6, 0, invoice.ids)],
+                                                 })
+                                            _logger.info("paiement %s" % str(payment))
+                                            _logger.info('if not invoice %s ' % str(invoice.name))
 
-                                num = invoice.name
-                                bill_num = num.replace('FA', '')
-                                bill_num = bill_num.replace('-', '')
-                                _logger.info("bill_num %s" % str(bill_num))
-                                bill_num_cpf = paiement['billNumber']
-                                bill_num_cpf = bill_num_cpf.replace('-', '')
-                                if bill_num_cpf == bill_num:
-                                    journal_id = invoice.journal_id.id
-                                    acquirer = self.env['payment.acquirer'].sudo().search(
-                                        [('name', "=", _('stripe')), ('company_id', '=', 2)], limit=1)
-                                    if acquirer:
-                                        journal_id = acquirer.journal_id.id
-                                    payment_method = self.env['account.payment.method'].sudo().search(
-                                        [('code', 'ilike', 'electronic')])
-                                    payment = self.env['account.payment'].sudo().create(
-                                        {'payment_type': 'inbound',
-                                         'payment_method_id': payment_method.id,
-                                         'partner_type': 'customer',
-                                         'partner_id': invoice.partner_id.id,
-                                         'amount': amount,
-                                         'currency_id': invoice.currency_id.id,
-                                         'journal_id': journal_id,
-                                         'communication': False,
-                                         'payment_token_id': False,
-                                         'payment_date': date_paiement,
-                                         'invoice_ids': [(6, 0, invoice.ids)],
-                                         })
-                                    _logger.info("paiement %s" % str(payment))
-                                    _logger.info('if not invoice %s ' % str(invoice.name))
-
-                                    payment.post()
+                                            payment.post()
 
 
 
