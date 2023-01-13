@@ -1312,7 +1312,7 @@ class AccountMove(models.Model):
                 api_key = company.wedof_api_key
                 params_wedof = (
                     ('order', 'desc'),
-                    ('billingState', 'billed'),
+                    ('billingState', 'paid'),
                     ('sort', 'lastUpdate'),
                     ('limit', '1000'),
                 )
@@ -1340,7 +1340,7 @@ class AccountMove(models.Model):
                             params_ = (
                                 ('order', 'desc'),
                                 ('state', 'issued'),
-                                ('type','deposit'),
+                                ('type','bill'),
                                 ('registrationFolderId', invoice.numero_cpf),
                                 ('sort', 'lastUpdate'),
                                 ('limit', '1000')
