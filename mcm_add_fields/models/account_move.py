@@ -1303,6 +1303,105 @@ class AccountMove(models.Model):
                     #                 so.unlink()
 
 
+    """récupérer les paiements cpf pour facture créé surodoo """
+
+    def get_paiement_cpf(self):
+        companies = self.env['res.company'].sudo().search([])
+        if companies:
+            for company in companies:
+                api_key = company.wedof_api_key
+                params_wedof = (
+                    ('order', 'desc'),
+                    ('billingState', 'paid'),
+                    ('sort', 'lastUpdate'),
+                    ('limit', '1000'),
+                )
+
+                headers = {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-API-KEY': api_key,
+                }
+
+                date_invoice_str = "01/01/2022"
+                date_to_invoice = datetime.strptime(date_invoice_str, '%d/%m/%Y')
+                invoices = self.env['account.move'].sudo().search([("methodes_payment", "=", "cpf"),
+                                                                   ("invoice_date", ">=", date_to_invoice),("invoice_payment_state","=","not_paid"),
+                                                                   ("company_id.id", "=", 2)])
+
+                for invoice in invoices:
+                    _logger.info("invoice %s" % str(invoice))
+                    if invoice.numero_cpf:
+                        response = requests.get('https://www.wedof.fr/api/registrationFolders/' + invoice.numero_cpf,
+                                                headers=headers)
+                        registration = response.json()
+                        if registration and 'billingState' in registration and registration['billingState'] == "paid":
+                            _logger.info("registration folder %s" % str(registration))
+                            params_ = (
+                                ('order', 'desc'),
+                                ('state', 'issued'),
+                                ('type','bill'),
+                                ('registrationFolderId', invoice.numero_cpf),
+                                ('sort', 'lastUpdate'),
+                                ('limit', '1000')
+                            )
+
+                            response_paiement = requests.get('https://www.wedof.fr/api/payments/',
+                                                             headers=headers,
+                                                             params=params_)
+                            paiements = response_paiement.json()
+                            """Récupérer le paiement selon numero de dossier et type de paiement acompte  """
+                            for paiement in paiements:
+                                """Changer format date"""
+                                date_acompte = ""
+                                amount = paiement['amount']
+                                _logger.info("paiement %s" % str(paiement))
+                                date_paiement = date.today()
+                                if 'scheduledDate' in paiement and paiement['scheduledDate']:
+                                    transaction_date = paiement['scheduledDate']
+                                    trdate = datetime.strptime(transaction_date,
+                                                               '%Y-%m-%dT%H:%M:%S.%fz')
+                                    newformat = "%d/%m/%Y"
+                                    trdateform = trdate.strftime(newformat)
+                                    date_paiement = datetime.strptime(trdateform, "%d/%m/%Y")
+                                    year_paiement=date_paiement.year
+                                    _logger.info("yeaaarrr %s" %str(year_paiement))
+                                    _logger.info("paiement acompte %s" % str(amount))
+                                    if str(year_paiement)=="2022":
+                                        num = invoice.name
+                                        bill_num = num.replace('FA', '')
+                                        bill_num = bill_num.replace('-', '')
+                                        _logger.info("bill_num %s" % str(bill_num))
+                                        bill_num_cpf = paiement['billNumber']
+                                        bill_num_cpf = bill_num_cpf.replace('-', '')
+                                        if bill_num_cpf == bill_num:
+                                            journal_id = invoice.journal_id.id
+                                            acquirer = self.env['payment.acquirer'].sudo().search(
+                                                [('name', "=", _('stripe')), ('company_id', '=', 2)], limit=1)
+                                            if acquirer:
+                                                journal_id = acquirer.journal_id.id
+                                            payment_method = self.env['account.payment.method'].sudo().search(
+                                                [('code', 'ilike', 'electronic')])
+                                            payment = self.env['account.payment'].sudo().create(
+                                                {'payment_type': 'inbound',
+                                                 'payment_method_id': payment_method.id,
+                                                 'partner_type': 'customer',
+                                                 'partner_id': invoice.partner_id.id,
+                                                 'amount': amount,
+                                                 'currency_id': invoice.currency_id.id,
+                                                 'journal_id': journal_id,
+                                                 'communication': False,
+                                                 'payment_token_id': False,
+                                                 'payment_date': date_paiement,
+                                                 'invoice_ids': [(6, 0, invoice.ids)],
+                                                 })
+                                            _logger.info("paiement %s" % str(payment))
+                                            _logger.info('if not invoice %s ' % str(invoice.name))
+
+                                            payment.post()
+
+
+
 
 
 
