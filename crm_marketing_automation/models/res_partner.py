@@ -128,8 +128,8 @@ class Partner(models.Model):
             if vals['statut_cpf'] == 'untreated':
                 self.changestage("Non traité", self)
             # Si statut cpf validé on classe l'apprenant dans le pipeline du crm  sous etat validé
-            if vals['statut_cpf'] == 'validated':
-                self.changestage("Validé", self)
+            # if vals['statut_cpf'] == 'validated':
+            #     self.changestage("Validé", self)
             if vals['statut_cpf'] == 'in_training':
                 self.changestage("En formation", self)
             if vals['statut_cpf'] == 'out_training':
@@ -140,14 +140,14 @@ class Partner(models.Model):
                 self.changestage("Service fait déclaré", self)
             if vals['statut_cpf'] == 'bill':
                 self.changestage("Facturé", self)
-            if vals['statut_cpf'] == 'accepted':
-                """Si statut cpf accepté et n'as pas encore choisi sa ville et sa date 
-                 on classe l'apprenant   sous statut  choix date d'examen"""
-                if not (self.session_ville_id) or not (self.date_examen_edof):
-                    self.changestage("Choix date d'examen - CPF", self)
-                else:
-                    """Si non on classe l'apprenant   sous statut  accepté"""
-                    self.changestage("Accepté", self)
+            # if vals['statut_cpf'] == 'accepted':
+            #     """Si statut cpf accepté et n'as pas encore choisi sa ville et sa date
+            #      on classe l'apprenant   sous statut  choix date d'examen"""
+            #     if not (self.session_ville_id) or not (self.date_examen_edof):
+            #         self.changestage("Choix date d'examen - CPF", self)
+            #     else:
+            #         """Si non on classe l'apprenant   sous statut  accepté"""
+            #         self.changestage("Accepté", self)
             # Si statut cpf annulé on classe l'apprenant dans le pipeline du crm  sous statut  annulé
             if vals['statut_cpf'] == 'canceled':
                 self.changestage("Annulé", self)
