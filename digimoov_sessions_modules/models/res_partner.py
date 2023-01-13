@@ -59,10 +59,10 @@ class InheritResPartner(models.Model):
                 
                 jotform = requests.get('https://form.jotform.com/222334146537352/', params=params)
                 url = jotform.url
-                _logger.info('----request jotform ---- %s' % jotform.url)
                 template = self.env['sign.template'].sudo().create({
                     'name': template_name,
                     'redirect_url': url,
+                    'redirect_url_text': "Importer vos documents",
                     'attachment_id': cerfa.id,
                     'datas': cerfa.datas,
                     'sign_item_ids': False
