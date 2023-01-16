@@ -12,7 +12,7 @@ class InheritSmsComposer(models.TransientModel):
     _inherit = 'sms.composer'
 
     def sendsms(self):
-
+        statut_code_sendinblue = 0
         _logger.info("sendinblue sms")
         # recuperer les clé api
         api_key = self.env['sendinblue.accounts'].sudo().search([('api_key', '!=', False)])
@@ -23,7 +23,7 @@ class InheritSmsComposer(models.TransientModel):
         selected_ids = self.env.context.get('active_ids', [])
         selected_records = self.env['res.partner'].browse(selected_ids)
         for i_sms in selected_records:
-            _logger.info(i_sms.name)
+            _logger.info("for i_sms in selected_records:  %s", % i_sms.name)
 
         for i_sms in selected_records:
             payload = {
@@ -60,6 +60,8 @@ class InheritSmsComposer(models.TransientModel):
                     'body': note_tag + "\n" + self.body
                 }
                 records.env['mail.message'].sudo().create(values)
+
+
             _logger.info(i_sms.name)
             _logger.info(i_sms.phone)
             _logger.info(response.status_code)
@@ -68,6 +70,7 @@ class InheritSmsComposer(models.TransientModel):
 
     def _action_send_sms(self):
         if self.sendsms() == 201:
+
             return False
         else:
             records = self._get_records()
