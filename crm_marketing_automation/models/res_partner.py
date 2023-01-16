@@ -154,19 +154,6 @@ class Partner(models.Model):
 
         return record
 
-    @api.model
-    def create(self, vals):
-        res = super(Partner, self).create(vals)
-        _logger.info('partnerrr %s' %str(vals))
-        if 'id' in vals and vals[id]:
-            _logger.info('if id %s' % str(vals))
-            partner=self.env['res.partner'].sudo().search([('id',"=",vals[id])])
-            if partner:
-                self.change_stage_lead("Indécis non appelé", partner)
-
-
-
-        return res
 
     def changestage(self, name, partner):
         if partner.name:
@@ -502,6 +489,20 @@ class Partner(models.Model):
 
 class User(models.Model):
     _inherit = 'res.users'
+
+    @api.model
+    def create(self, vals):
+        res = super(User, self).create(vals)
+        _logger.info('user %s' % str(vals))
+
+        if 'partner_id' in vals:
+            partner=self.env['res.partner'].sudo().search([('id',"=",int(vals['partner_id']))])
+            _logger.info('partner %s' % str(partner))
+            if partner:
+
+                self.changestage("Indécis non appelé", partner)
+
+        return res
 
     def _set_password(self):
         for user in self:
