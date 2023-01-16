@@ -650,8 +650,8 @@ class event_calendly(models.Model):
                                             # Fiche Client odoo chercher si event
                                             exist_event = self.env['calendly.rendezvous'].sudo().search(
                                                 [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
-                                                 ('event_starttime', '=', existe.start_at),
-                                                 ('start_at_char', '=', event_starttime_char)
+                                                 ('event_starttime', '=', existe.start_at),('event_starttime_char','=',existe.start_at_char)
+                                                 
                                                  ])
                                             print("exist_event.name", exist_event.name)
                                             print(existe.event_name)
@@ -678,8 +678,8 @@ class event_calendly(models.Model):
                                             # Fiche Client odoo chercher si event
                                             exist_event = self.env['calendly.rendezvous'].sudo().search(
                                                 [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
-                                                 ('event_starttime', '=', existe.start_at),
-                                                 ('start_at_char', '=', event_starttime_char)
+                                                 ('event_starttime', '=', existe.start_at),('event_starttime_char','=',existe.start_at_char)
+                                                 
                                                  ])
                                             print("exist_event.name", exist_event.name)
                                             print(existe.event_name)
@@ -753,8 +753,8 @@ class event_calendly(models.Model):
                                             # Fiche Client odoo chercher si event
                                             exist_event = self.env['calendly.rendezvous'].sudo().search(
                                                 [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
-                                                 ('event_starttime', '=', existe.start_at),
-                                                 ('start_at_char', '=', event_starttime_char)
+                                                 ('event_starttime', '=', existe.start_at),('event_starttime_char','=',existe.start_at_char)
+                                                 
                                                  ])
                                             if not exist_event:
                                                 if existe.start_at == todays_date:
