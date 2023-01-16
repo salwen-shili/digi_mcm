@@ -39,8 +39,8 @@ class SignRequestTemplate(models.Model):
         lors de creation d'un nouveau modéle cerfa dans sign.template """
         res = super(SignRequestTemplate, self).create(vals)
         if "CERFA" in res.name:
-            res.redirect_url = str("https://form.jotform.com/222334146537352")
-            res.redirect_url_text = str("Importer vos documents")
+            # res.redirect_url = str("https://form.jotform.com/222334146537352")
+            # res.redirect_url_text = str("Importer vos documents")
             folder_exist = res.env['documents.folder'].sudo().search(
                 [('name', '=', "CERFA")], limit=1)
             if folder_exist:
