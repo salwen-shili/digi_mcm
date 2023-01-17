@@ -67,11 +67,16 @@ class mcmSession(models.Model):
             if session.temps_convocation == "apres_midi"
             else session.heure_examen_matin
         )
-
+        
         startDate = ("%sT%s:00.000Z" % (str(session.date_exam), str(heureExam))).replace("H", ":")
         h = int((str(heureExam).split("H", 1)[0])) + 3
         endDate = "%sT%s:00:00.000Z" % (str(session.date_exam), h)
-
+        logger_info("session.heure_examen_apres_midi")
+        logger_info("=====>%s "%(str(session.heure_examen_apres_midi)))
+        logger_info("=====>%s "%(str(startDate)))
+        logger_info("=====>%s "%(str(heureExam)))
+        logger_info("=====>%s "%(str(checkCrouse["result"]["START"])))
+        
         checkCrouse = self.checkExistance("https://ext.edusign.fr/v1/course/", session.id_session_edusign, headers)
 
         if checkCrouse:

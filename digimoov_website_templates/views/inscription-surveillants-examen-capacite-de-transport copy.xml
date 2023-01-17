@@ -1,0 +1,247 @@
+<t name="Inscription surveillants" t-name="digimoov_website_templates.inscription_surveillants_examen_capacite_de_transport">
+  <t t-call="website.layout">
+    <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
+    <!-- TrustBox script -->
+    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async"/>
+    <!-- End TrustBox script -->
+    <link href="/digimoov_website_templates/static/src/css/style-landing.min.css" rel="stylesheet"/>
+    <div id="wrap" class="oe_empty oe_structure" style="word-break: break-word; position: relative; z-index: 0;">
+      <section class="s_one_page_half_img_para spacer" data-name="Image with paragraph and button">
+        <div class="feature22">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-8 text-center">
+                <h2 class="text-beta title">Chers surveillants, Bienvenue chez Digimoov&amp;nbsp;</h2>
+                <h6 class="subtitle">Vous souhaitez occuper le poste de surveillant(e) à l'examen Capacité de transport de marchandises ? <br/>Vous êtes au bon endroit !</h6>
+              </div>
+            </div>
+            <div class="row wrap-feature-22">
+              <div class="col-lg-6 col-md-6">
+                <img src="/web/image/387640/formation-surveillants-digimoov.png" class="rounded img-shadow img-responsive img img-fluid" alt="" data-original-title="" title="" aria-describedby="tooltip426889"/>
+              </div>
+              <div class="col-lg-6 col-md-6" style="border-style: none; border-width: 0px;">
+                <div class="text-box">
+                  <small class="text-epsilon font-medium">
+                    <font style="color: rgb(57, 132, 198); font-size: 36px;">
+                      <b>Faisons connaissance</b>
+                    </font>
+                    <font style="color: rgb(57, 132, 198);">&amp;nbsp;</font>
+                    <font style="color: rgb(57, 132, 198); font-size: 36px;">!</font>
+                  </small>
+                  <h3 class="font-light"><b>Digimoov</b> est un centre de formation 100% en ligne spécialisé dans la formation "capacité de transport de marchandises".</h3>
+                  <p class="custom_p">Notre start-up est leader dans la formation en ligne sur la capacité de transport léger et lourd de marchandises.</p>
+                  <p class="custom_p">Ce que nous offrons à nos candidats, c'est plus qu'une formation mais un suivi et un coaching personnalisé, afin de les&amp;nbsp;préparer au passage de l'examen de capacité professionnelle, et maximiser ainsi leurs chances de réussite.</p>
+                  <p class="custom_p">Aujourd'hui, nous avons décidé de nous intéresser de près à vous chers surveillants, afin d'offrir à nos candidats des conditions de passage d'examen assez favorables, et ce, en vous offrant à vous aussi la possibilité de vous former sur les différentes missions dont vous vous chargerez le jour de l'examen.&amp;nbsp;</p>
+                  <p class="custom_p">
+                    <b>Pour profiter de cette session de formation veuillez remplir le formulaire ci-présent.</b>
+                  </p>
+                </div>
+                <mci-extension data-role="overlay" id="overlay-root"/>
+                <mci-extension data-role="overlay" id="overlay-root"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_one_page_para_with_four_imgs bg-light-1 spacer" data-name="Left features and right side images">
+        <div class="feature12" id="service">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6" style="border-style: none; border-width: 0px;">
+                <h2 class="m-b-30 m-t-20 text-beta">Comment vous inscrire à la Formation "surveillants" ?</h2>
+                <h4 class="font-light text-muted">Nous avons préparé une formation e-learning, pour former les nouveaux surveillants, mais aussi, pour rafraîchir les connaissances des surveillants occasionnels. Pour en profiter suivez ces étapes !</h4>
+                <div class="row">
+                  <div class="col-md-6 m-t-30">
+                    <h5 class="font-medium">
+                      <font class="text-beta" style="">
+                        <b>1 - Remplissez le formulaire&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; d'inscription.</b>
+                      </font>
+                    </h5>
+                    <p class="custom_p">Remplissez le formulaire ci-dessus afin de créer votre compte en tant que "surveillant".</p>
+                  </div>
+                  <div class="col-md-6 m-t-30" style="border-style: none; border-width: 0px;">
+                    <h5 class="font-medium">
+                      <font class="text-beta" style="">
+                        <b>2 - Préparer votre carte&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;d'identité.</b>
+                      </font>
+                    </h5>
+                    <p class="custom_p">Lors de votre inscription vous aurez besoin de présenter une copie originale en recto/verso de votre carte d'identité.</p>
+                  </div>
+                  <div class="col-md-6 m-t-30" style="border-style: none; border-width: 0px;">
+                    <h5 class="font-medium">
+                      <b>
+                        <font class="text-beta" style="">3 - Choisissez votre ville et la&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; date d'examen.</font>
+                      </b>
+                    </h5>
+                    <p class="custom_p">Choisissez votre ville et la date d'examen à laquelle vous allez pouvoir participer.</p>
+                    <div class="s_btn pt16 pb16 text-right" data-name="Button">
+                      <a href="#" class="btn btn-epsilon" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip881116" lang="merciapp">Je m'inscris !</a>
+                    </div>
+                    <mci-extension data-role="overlay" id="overlay-root"/>
+                    <mci-extension data-role="overlay" id="overlay-root"/>
+                  </div>
+                  <div class="col-md-6 m-t-30">
+                    <h5 class="font-medium">
+                      <b>
+                        <font class="text-beta" style="">4 - Valider votre inscription</font>
+                      </b>
+                    </h5>
+                    <p class="custom_p">En cliquant sur le bouton je m'inscris,&amp;nbsp;votre dossier sera transféré à notre centre d'examen pour validation.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="row wrap-feature-12">
+                  <div class="col-md-6 ">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <img src="/web/image/387396/Comment%20financer%20ma%20formation.png" class="rounded img-shadow img-responsive img img-fluid" alt=""/>
+                      </div>
+                      <div class="col-md-12 ">
+                        <img src="/web/image/387705/les%20villes.png" class="rounded img-shadow img-responsive img img-fluid" alt=""/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 uneven-box ">
+                    <div class="row">
+                      <div class="col-md-12 ">
+                        <img src="/web/image/387704/carte%202.png" class="rounded img-shadow img-responsive img img-fluid" alt="" data-original-title="" title="" aria-describedby="tooltip287534"/>
+                      </div>
+                      <div class="col-md-12 ">
+                        <img src="/web/image/387707/validation.png" class="rounded img-shadow img-responsive img img-fluid" alt=""/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_one_page_para_with_bg_img" data-name="Background image with praragraph and numbers">
+        <div class="feature37 wrap-feature38-box container-fluid" id="about">
+          <div class="row">
+            <div class="col-lg-12" style="border-style: none; border-width: 0px;">
+              <div class=" card-shadow m-b-0">
+                <div class="container p-20">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4">
+                      <div class="d-flex no-block m-t-10 m-b-10">
+                        <div class="display-4 m-r-20">
+                          <span class="fa fa-file text-alpha" data-original-title="" title="" aria-describedby="tooltip28231" style=""/>
+                        </div>
+                        <div>
+                          <h2 class="m-b-0 font-light">1022</h2>
+                          <h6 class="subtitle">Nombre d'inscrits à l'examen en 2022</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                      <div class="d-flex no-block m-t-10 m-b-10">
+                        <div class="display-4 m-r-20">
+                          <span class="fa fa-star-half text-alpha" data-original-title="" title="" aria-describedby="tooltip596241" style=""/>
+                        </div>
+                        <div>
+                          <h2 class="m-b-0 font-light">70%</h2>
+                          <h6 class="subtitle">Taux de présence à l'examen</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4" style="border-style: none; border-width: 0px;">
+                      <div class="d-flex no-block m-t-10 m-b-10">
+                        <div class="display-4 m-r-20">
+                          <span class="fa fa-users text-alpha" data-original-title="" title="" aria-describedby="tooltip426633" style=""/>
+                        </div>
+                        <div>
+                          <h2 class="m-b-0 font-light">603</h2>
+                          <h6 class="subtitle">Nombre de présents à l'examen</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4" style="border-style: none; border-width: 0px;">
+                      <div class="d-flex no-block m-t-10 m-b-10">
+                        <div class="display-4 m-r-20">
+                          <span class="fa fa-star-o text-alpha" data-original-title="" title="" aria-describedby="tooltip426633" style=""/>
+                        </div>
+                        <div>
+                          <h2 class="m-b-0 font-light">65%</h2>
+                          <h6 class="subtitle">Taux de réussite en 2022</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_fitness_list_with_img" data-name="Image with lists">
+        <div class="spacer feature47">
+          <div class="container">
+            <div class="row wrap-feature47-box align-items-center">
+              <div class="col-md-6 align-self-center" style="border-style: none; border-width: 0px;">
+                <div class="max-500 m-auto">
+                  <h2 class="title font-medium text-beta">Les modules de la formation surveillants</h2>
+                  <h6 class="subtitle">La formation se déroulera sur une plateforme e-learning sous forme de vidéos explicatives qui seront portées sur les thèmes suivants :</h6>
+                  <ul class="list-block with-underline font-medium m-t-30 m-b-20 text-dark">
+                    <li>
+                      <span class="fa fa-check-circle-o mr-2 text-feature"/>
+                      <span>Les qualités personnelles requises pour le poste de surveillant(e)</span>
+                    </li>
+                    <li>
+                      <span class="fa fa-check-circle-o mr-2 text-feature"/>
+                      <span>Vos missions Avant/Pendant/Aprés Examen</span>
+                    </li>
+                    <li>
+                      <span class="fa fa-check-circle-o mr-2 text-feature"/>
+                      <span>Les applications à utiliser le jour de l'examen</span>
+                    </li>
+                    <li>
+                      <span class="fa fa-check-circle-o mr-2 text-feature"/>
+                      <span>Quiz de fin de formation</span>
+                    </li>
+                  </ul>
+                </div>
+                <mci-extension data-role="overlay" id="overlay-root"/>
+              </div>
+              <div class="col-md-5 ml-auto">
+                <section class="card card-shadow aos-init" data-aos="flip-up" data-aos-duration="1200">
+                  <div class="media_iframe_video card-img-top video-img" data-oe-expression="//www.youtube.com/embed/cBSrBUCw_Xc?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=cBSrBUCw_Xc&amp;modestbranding=1">
+                    <div class="css_editable_mode_display">&amp;nbsp;</div>
+                    <div class="media_iframe_video_size">&amp;nbsp;</div>
+                    <iframe src="//www.youtube.com/embed/cBSrBUCw_Xc?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=cBSrBUCw_Xc&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen"/>
+                  </div>
+                  <div class="embed-responsive hide embed-responsive-16by9" data-animation="animated fadeIn">
+                    <img src="/theme_centric/static/src/img/4.jpg" alt=" " class="img img-responsive"/>
+                  </div>
+                  <div class="card-body">
+                    <div class="p-20">
+                      <h3 class="font-light f-47-line" style="text-align: center; ">
+                        <b>Déroulement de l'examen capacité de transport de marchandises.</b>
+                      </h3>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_call_to_action bg-200 pt48 pb24" data-name="Call to Action">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-9 pb24">
+              <h3 style="text-align: center;"><b>Plus de 5000 candidats</b> nous ont fait confiance ! Découvrez la formation capacité de transport de marchandises.</h3>
+              <p class="lead o_default_snippet_text">Rejoignez-nous et passez à la vitesse supérieure.</p>
+            </div>
+            <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+              <a href="/contact" class="btn btn-primary btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;"> Contactez-nous <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1"/> </a>
+              <mci-extension data-role="overlay" id="overlay-root"/>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </t>
+</t>
