@@ -1216,7 +1216,7 @@ class partner(models.Model):
                                             params=params_wedof)
                     registrations = response.json()
                     for dossier in registrations:
-                        try:
+
                             print('dosssier', dossier['attendee']['address'])
                             externalId = dossier['externalId']
                             email = dossier['attendee']['email']
@@ -1375,9 +1375,9 @@ class partner(models.Model):
                                             user.partner_id.diplome = diplome
                                             if product_id:
                                                 user.partner_id.id_edof = product_id.id_edof
-                        except Exception:
-                            self.env.cr.rollback()
-                            _logger.exception("Erreur de mise a jour des statuts")
+                        # except Exception:
+                        #     self.env.cr.rollback()
+                        #     _logger.exception("Erreur de mise a jour des statuts")
 
     def cpf_validate(self, module, email, residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome,
                      nom,
