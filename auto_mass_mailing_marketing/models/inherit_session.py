@@ -15,7 +15,7 @@ class Session(models.Model):
         help="Choisir un temp pour la session si Matin ou Apres Midi")
 
     heure_examen_matin = fields.Char(default="09H00")
-    heure_examen_apres_midi = fields.Char(default="14H00")
+    heure_examen_apres_midi = fields.Char(default="14H00", track_visibility='always')
     date_exam = fields.Date(string="Date d'examen",copy=False,required=True,track_visibility='always') # add track visibility to show edit history of exam date field
     date_cloture_cma = fields.Date(string="Date de clôture de CMA",copy=False,required=False,track_visibility='always') # add track visibility to show edit history of cloture cma field
 
