@@ -44,7 +44,7 @@
               </div>
               <div class="col-lg-6 pb48 pt16 js-scroll slide-right ">
                 <br/>
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="chaffeur vtc devant sa voiture" title="Formation VTC" aria-describedby="tooltip202025" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp"/>
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto lazy" alt="chaffeur vtc devant sa voiture" title="Formation VTC" aria-describedby="tooltip202025" style="text-align: center" />
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
-                <img src="/mcm_website_theme/static/src/img/formation_vtc/formation-vtc.png" class="img img-fluid mx-auto" title="c'est quoi un chauffeur vtc ?" alt="chauffeur vtc dans sa voiture"/>
+                <img data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/formation-vtc.png" data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-vtc.webp" class="img img-fluid mx-auto lazy" title="c'est quoi un chauffeur vtc ?" alt="chauffeur vtc dans sa voiture"/>
               </div>
               <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                 <h2 style="max-width: 70%">c'est quoi un chauffeur vtc ?</h2>
@@ -190,7 +190,7 @@
                 <mci-extension data-role="overlay" id="overlay-root"/>
               </div>
               <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
-                <img src="/mcm_website_theme/static/src/img/formation_vtc/candidat-chauffeur-vtc.png" alt="chauffeur vtc" title="comment devenir chauffeur vtc" class="img img-fluid mx-auto"/>
+                <img data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/candidat-chauffeur-vtc.webp" data-src="/mcm_website_theme/static/src/img/formation_vtc/candidat-chauffeur-vtc.png" alt="chauffeur vtc" title="comment devenir chauffeur vtc" class="img img-fluid mx-auto lazy"/>
               </div>
             </div>
           </div>
@@ -253,7 +253,7 @@
             </div>
             <div class="row align-items-center">
               <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC" title="Chauffeur vtc dans sa voiture" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp"/>
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC" title="Chauffeur vtc dans sa voiture" style="text-align: center" />
               </div>
               <div class="col-lg-6 js-scroll slide-right " style="border-style: none; border-width: 0px">
                 <h3 style="                   font-size: 26px;                   color: rgb(0, 0, 0);                   margin-block-end: 1.2rem;                 ">
@@ -350,7 +350,7 @@
                 <mci-extension data-role="overlay" id="overlay-root"/>
               </div>
               <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png" class="img img-fluid mx-auto" alt="Candidat vtc suit une formation en ligne sur pc" title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp"/>
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png" class="img img-fluid mx-auto lazy" alt="Candidat vtc suit une formation en ligne sur pc" title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center" />
               </div>
             </div>
           </div>
@@ -528,7 +528,7 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/299738/Macaron%20VTC.png"/>
+                          <img data-srcSafari="https://www.mcm-academy.fr/web/image/299738/Macaron%20VTC.png" class="img img-fluid mx-auto lazy" data-src="https://www.mcm-academy.fr/web/image/299738/Macaron%20VTC.png"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
@@ -544,7 +544,7 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/232336/comment%20s%27inscrire%20au%20registre%20VTC%202.png"/>
+                          <img data-srcSafari="https://www.mcm-academy.fr/web/image/232336/comment%20s%27inscrire%20au%20registre%20VTC%202.png"  data-src="https://www.mcm-academy.fr/web/image/232336/comment%20s%27inscrire%20au%20registre%20VTC%202.png" class="img img-fluid mx-auto lazy"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
@@ -560,7 +560,7 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png"/>
+                          <img data-srcSafari="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png" data-src="https://www.mcm-academy.fr/web/image/218111/COUV%202%20vtccc.png" class="img img-fluid mx-auto lazy"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
@@ -582,7 +582,7 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="/web/image/246715/couv%20taxi%202.png"/>
+                          <img data-src="/web/image/246715/couv%20taxi%202.png" data-srcSafari="/web/image/246715/couv%20taxi%202.png" class="img img-fluid mx-auto lazy"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
@@ -598,7 +598,7 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/299010/Renouvellement%20carte%20pro.png"/>
+                          <img data-srcSafari="https://www.mcm-academy.fr/web/image/299010/Renouvellement%20carte%20pro.png" data-src="https://www.mcm-academy.fr/web/image/299010/Renouvellement%20carte%20pro.png" class="img img-fluid mx-auto lazy"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
@@ -614,7 +614,7 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/352139/LICENCE%20ADS%20TAXI.png"/>
+                          <img data-src="https://www.mcm-academy.fr/web/image/352139/LICENCE%20ADS%20TAXI.png" data-srcSafari="https://www.mcm-academy.fr/web/image/352139/LICENCE%20ADS%20TAXI.png" class="img img-fluid mx-auto lazy"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
@@ -637,7 +637,7 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/282772/blog%207.png"/>
+                          <img data-srcSafari="https://www.mcm-academy.fr/web/image/282772/blog%207.png" data-src="https://www.mcm-academy.fr/web/image/282772/blog%207.png" class="img img-fluid mx-auto lazy"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
@@ -654,7 +654,7 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/287348/VMDTR%202.png"/>
+                          <img data-srcSafari="https://www.mcm-academy.fr/web/image/287348/VMDTR%202.png" data-src="https://www.mcm-academy.fr/web/image/287348/VMDTR%202.png" class="img img-fluid mx-auto lazy"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
@@ -670,7 +670,7 @@
                     <div class="col-md-4">
                       <div class="sh_content">
                         <div class="sh_img">
-                          <img src="https://www.mcm-academy.fr/web/image/229858/MCMACADEMY%20-%20moto-taxi.png"/>
+                          <img data-srcSafari="https://www.mcm-academy.fr/web/image/229858/MCMACADEMY%20-%20moto-taxi.png" data-src="https://www.mcm-academy.fr/web/image/229858/MCMACADEMY%20-%20moto-taxi.png" class="img img-fluid mx-auto lazy"/>
                         </div>
                         <div class="sh_des">
                           <p class="o_default_snippet_text">
