@@ -128,8 +128,8 @@ class Partner(models.Model):
             if vals['statut_cpf'] == 'untreated':
                 self.changestage("Non traité", self)
             # Si statut cpf validé on classe l'apprenant dans le pipeline du crm  sous etat validé
-            if vals['statut_cpf'] == 'validated':
-                self.changestage("Validé", self)
+            # if vals['statut_cpf'] == 'validated':
+            #     self.changestage("Validé", self)
             if vals['statut_cpf'] == 'in_training':
                 self.changestage("En formation", self)
             if vals['statut_cpf'] == 'out_training':
@@ -140,19 +140,20 @@ class Partner(models.Model):
                 self.changestage("Service fait déclaré", self)
             if vals['statut_cpf'] == 'bill':
                 self.changestage("Facturé", self)
-            if vals['statut_cpf'] == 'accepted':
-                """Si statut cpf accepté et n'as pas encore choisi sa ville et sa date 
-                 on classe l'apprenant   sous statut  choix date d'examen"""
-                if not (self.session_ville_id) or not (self.date_examen_edof):
-                    self.changestage("Choix date d'examen - CPF", self)
-                else:
-                    """Si non on classe l'apprenant   sous statut  accepté"""
-                    self.changestage("Accepté", self)
+            # if vals['statut_cpf'] == 'accepted':
+            #     """Si statut cpf accepté et n'as pas encore choisi sa ville et sa date
+            #      on classe l'apprenant   sous statut  choix date d'examen"""
+            #     if not (self.session_ville_id) or not (self.date_examen_edof):
+            #         self.changestage("Choix date d'examen - CPF", self)
+            #     else:
+            #         """Si non on classe l'apprenant   sous statut  accepté"""
+            #         self.changestage("Accepté", self)
             # Si statut cpf annulé on classe l'apprenant dans le pipeline du crm  sous statut  annulé
             if vals['statut_cpf'] == 'canceled':
                 self.changestage("Annulé", self)
 
         return record
+
 
     def changestage(self, name, partner):
         if partner.name:
@@ -489,12 +490,28 @@ class Partner(models.Model):
 class User(models.Model):
     _inherit = 'res.users'
 
+    @api.model
+    def create(self, vals):
+        users = super(User, self).create(vals)
+
+        for user in users:
+            _logger.info('user********* %s' % str(user))
+
+            if user.partner_id:
+                partner = self.env['res.partner'].sudo().search([('id', "=", int(user.partner_id))])
+                _logger.info('partner********* %s' % str(partner))
+                if partner:
+                    partner.changestage("Indécis non appelé", partner)
+
+        return users
+
+
     def _set_password(self):
-        for user in self:
-            if not user.id_evalbox and not user.password_evalbox and user.bolt:  # when the client reset his password save the email and the new password into id evalbox and password evalbox for bolt clients
-                user.id_evalbox = user.email
-                user.password_evalbox = user.password
-        return super(User, self)._set_password()
+            for user in self:
+                if not user.id_evalbox and not user.password_evalbox and user.bolt:  # when the client reset his password save the email and the new password into id evalbox and password evalbox for bolt clients
+                    user.id_evalbox = user.email
+                    user.password_evalbox = user.password
+            return super(User, self)._set_password()
 
     def send_email_create_account_evalbox(self, user, password):
         # this function checks if user is bolt and if he is doesn't connected yet

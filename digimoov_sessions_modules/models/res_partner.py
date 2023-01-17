@@ -1,6 +1,8 @@
 import base64
 import logging
 
+import requests
+
 from odoo import fields, models, _, api, http
 from odoo.exceptions import ValidationError
 
@@ -47,13 +49,25 @@ class InheritResPartner(models.Model):
                     client.display_name, client.mcm_session_id.session_ville_id.display_name,
                     client.mcm_session_id.date_exam.strftime(
                         '%d/%m/%Y'))
+                firstname = client.firstname
+                lastname = client.lastname
+                email = client.email
+                
+                #Jotform params
+
+                params = {'nom84[first]': client.firstName, 'nom84[last]': client.lastName, 'email': client.email}
+                
+                jotform = requests.get('https://form.jotform.com/222334146537352/', params=params)
+                url = jotform.url
                 template = self.env['sign.template'].sudo().create({
                     'name': template_name,
-                    'redirect_url': str("https://form.jotform.com/222334146537352"),
+                    'redirect_url': url,
+                    'redirect_url_text': "Importer vos documents",
                     'attachment_id': cerfa.id,
                     'datas': cerfa.datas,
                     'sign_item_ids': False
                 })
+                _logger.info('----request URL ---- %s' % url)
                 # Get id of the role = Client from role view in configuration menu
                 sign_item_role_id = self.env['sign.item.role'].sudo().search(
                     [('name', '=', "Client")], limit=1).id
