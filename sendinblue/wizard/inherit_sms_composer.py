@@ -70,8 +70,8 @@ class InheritSmsComposer(models.TransientModel):
         return statut_code_sendinblue
 
     def _action_send_sms(self):
-        if self.sendsms() == 201:
-
+        fn = self.sendsms()
+        if fn == 201:
             return False
         else:
             records = self._get_records()

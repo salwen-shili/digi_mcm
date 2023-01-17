@@ -738,68 +738,68 @@ class event_calendly(models.Model):
                         [('company_id', '=', 2), ('state', '=', "en_formation"), ('statut', "=", "won"),
                          ('mcm_session_id.date_exam', '!=', False), ('coach_peda.name', '=', partner_connected.name)
                          ]):
-                    try:
-                        if partner.mcm_session_id.date_exam.year == todays_date.year:
-                            if partner.mcm_session_id.date_exam.month == todays_date.month:
-                                if partner.coach_peda.name == partner_connected.name:
-                                    count = count + 1
-                                    # APi si il existe des event
-                                    # APi si il existe des event
-                                    for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
-                                            [('id', '=', self.id)
-                                             ]):
-                                        name_coach = existe.owner.split(" ")
-                                        if partner_connected.name.split(".")[0] in name_coach:
-                                            # Fiche Client odoo chercher si event
-                                            exist_event = self.env['calendly.rendezvous'].sudo().search(
-                                                [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
-                                                 ('event_starttime', '=', existe.start_at),('event_starttime_char','=',existe.start_at_char)
-                                                 
-                                                 ])
-                                            if not exist_event:
-                                                if existe.start_at == todays_date:
-                                                    calendly = self.env['calendly.rendezvous'].sudo().create({
-                                                        'partner_id': partner.id,
-                                                        'email': partner.email,
-                                                        'phone': partner.phone,
-                                                        'name': existe.event_name,
-                                                        'zoomlink': existe.location,
-                                                    })
-                                                    calendly.event_starttime = existe.start_at
-                                                    calendly.event_starttime_char = existe.start_at_char
-                                                    calendly.event_endtime = existe.start_at
-                                                    self.env.cr.commit()
+
+                    if partner.mcm_session_id.date_exam.year == todays_date.year:
+                        if partner.mcm_session_id.date_exam.month == todays_date.month:
+                            if partner.coach_peda.name == partner_connected.name:
+                                count = count + 1
+                                # APi si il existe des event
+                                # APi si il existe des event
+                                for existe in self.env['mcm_openedx.calendly_event'].sudo().search(
+                                        [('id', '=', self.id)
+                                         ]):
+                                    name_coach = existe.owner.split(" ")
+                                    if partner_connected.name.split(".")[0] in name_coach:
+                                        # Fiche Client odoo chercher si event
+                                        exist_event = self.env['calendly.rendezvous'].sudo().search(
+                                            [('partner_id', '=', partner.id), ('name', '=', existe.event_name),
+                                             ('event_starttime', '=', existe.start_at),
+                                             ('event_starttime_char', '=', existe.start_at_char)
+
+                                             ])
+                                        if not exist_event:
+                                            if existe.start_at == todays_date:
+                                                calendly = self.env['calendly.rendezvous'].sudo().create({
+                                                    'partner_id': partner.id,
+                                                    'email': partner.email,
+                                                    'phone': partner.phone,
+                                                    'name': existe.event_name,
+                                                    'zoomlink': existe.location,
+                                                })
+                                                calendly.event_starttime = existe.start_at
+                                                calendly.event_starttime_char = existe.start_at_char
+                                                calendly.event_endtime = existe.start_at
+                                                self.env.cr.commit()
 
 
-                                                else:
-                                                    return {
-                                                        'type': 'ir.actions.client',
-                                                        'tag': 'display_notification',
-                                                        'params': {
-                                                            'title': _('Alert !!'),
-                                                            'message': _('date invalid! ️'),
-                                                            'sticky': False,
-                                                            'className': 'bg-danger'
-                                                        }
+                                            else:
+                                                return {
+                                                    'type': 'ir.actions.client',
+                                                    'tag': 'display_notification',
+                                                    'params': {
+                                                        'title': _('Alert !!'),
+                                                        'message': _('date invalid! ️'),
+                                                        'sticky': False,
+                                                        'className': 'bg-danger'
                                                     }
-                                else:
-                                    return {
-                                        'type': 'ir.actions.client',
-                                        'tag': 'display_notification',
-                                        'params': {
-                                            'title': _('Alert !!'),
-                                            'message': _(
-                                                'Vous ne pouvez pas envoyer invitation aux apprennats des autres! ️'),
-                                            'sticky': False,
-                                            'className': 'bg-danger'
-                                        }
+                                                }
+                            else:
+                                return {
+                                    'type': 'ir.actions.client',
+                                    'tag': 'display_notification',
+                                    'params': {
+                                        'title': _('Alert !!'),
+                                        'message': _(
+                                            'Vous ne pouvez pas envoyer invitation aux apprennats des autres! ️'),
+                                        'sticky': False,
+                                        'className': 'bg-danger'
                                     }
+                                }
 
-                                    # self.env.cr.rollback() cancels the transaction's write operations since the last commit, or all if no commit was done.
-                        _logger.info(count)
+                                # self.env.cr.rollback() cancels the transaction's write operations since the last commit, or all if no commit was done.
+                    _logger.info(count)
 
-                    except Exception:
-                        self.env.cr.rollback()
+
             else:
                 return {
                     'type': 'ir.actions.client',
