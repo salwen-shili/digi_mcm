@@ -492,24 +492,26 @@ class User(models.Model):
 
     @api.model
     def create(self, vals):
-        res = super(User, self).create(vals)
-        _logger.info('user %s' % str(vals))
+        users = super(User, self).create(vals)
 
-        if 'partner_id' in vals:
-            partner=self.env['res.partner'].sudo().search([('id',"=",int(vals['partner_id']))])
-            _logger.info('partner %s' % str(partner))
-            if partner:
+        for user in users:
+            _logger.info('user********* %s' % str(user))
 
-                self.changestage("Indécis non appelé", partner)
+            if user.partner_id:
+                partner = self.env['res.partner'].sudo().search([('id', "=", int(user.partner_id))])
+                _logger.info('partner********* %s' % str(partner))
+                if partner:
+                    partner.changestage("Indécis non appelé", partner)
 
-        return res
+        return users
+
 
     def _set_password(self):
-        for user in self:
-            if not user.id_evalbox and not user.password_evalbox and user.bolt:  # when the client reset his password save the email and the new password into id evalbox and password evalbox for bolt clients
-                user.id_evalbox = user.email
-                user.password_evalbox = user.password
-        return super(User, self)._set_password()
+            for user in self:
+                if not user.id_evalbox and not user.password_evalbox and user.bolt:  # when the client reset his password save the email and the new password into id evalbox and password evalbox for bolt clients
+                    user.id_evalbox = user.email
+                    user.password_evalbox = user.password
+            return super(User, self)._set_password()
 
     def send_email_create_account_evalbox(self, user, password):
         # this function checks if user is bolt and if he is doesn't connected yet
