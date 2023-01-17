@@ -1204,7 +1204,7 @@ class partner(models.Model):
                         ('billingState', 'all'),
                         ('certificationState', 'all'),
                         ('sort', 'lastUpdate'),
-                        ('limit', '100'),
+                        ('limit', '50'),
                         ('page', '1')
                     )
                     headers = {
@@ -1357,6 +1357,7 @@ class partner(models.Model):
                                                         vals)
                                                     session_wizard.action_modify_partner()
                                             elif user.partner_id.statut_cpf != "canceled":
+                                                user.partner_id.statut_cpf = "canceled"
                                                 user.partner_id.statut = "canceled"
                                                 if user.partner_id.mcm_session_id and user.partner_id.module_id:
                                                     vals = {
