@@ -271,7 +271,7 @@ class AirCall(models.Model):
                         if lead:
                             _logger.info('lead %s' % str(lead))
                             lead.conseiller = user_name
-                        _logger.info('createeeeee note ********************************')
+                        _logger.info('createeeeee2 note ********************************')
 
 
 
