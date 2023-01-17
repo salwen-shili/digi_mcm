@@ -735,8 +735,11 @@ class event_calendly(models.Model):
                 todays_date = date.today()
                 count = 0
                 for partner in self.env['res.partner'].sudo().search(
-                        [('company_id', '=', 2), ('state', '=', "en_formation"), ('statut', "=", "won"),
-                         ('mcm_session_id.date_exam', '!=', False), ('coach_peda.name', '=', partner_connected.name)
+                        [('company_id', '=', 2),
+                         ('state', '=', "en_formation"),
+                         ('statut', "=", "won"),
+                         ('mcm_session_id.date_exam', '!=', False),
+                         ('coach_peda.name', '=', partner_connected.name)
                          ]):
 
                     if partner.mcm_session_id.date_exam.year == todays_date.year:
@@ -769,7 +772,6 @@ class event_calendly(models.Model):
                                                 calendly.event_starttime = existe.start_at
                                                 calendly.event_starttime_char = existe.start_at_char
                                                 calendly.event_endtime = existe.start_at
-                                                self.env.cr.commit()
 
 
                                             else:

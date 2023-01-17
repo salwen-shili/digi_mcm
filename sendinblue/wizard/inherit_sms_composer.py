@@ -22,7 +22,9 @@ class InheritSmsComposer(models.TransientModel):
 
         url = "https://api.sendinblue.com/v3/transactionalSMS/sms"
         selected_ids = self.env.context.get('active_ids', [])
-        selected_records = self.env['res.partner'].browse(selected_ids)
+        rec = self.env['res.partner']
+        selected_records = rec.with_context(selected_records=selected_ids)
+        _logger.info("----------selected_records sendsms() sendinblue --------- :  %s" % selected_records )
         for i_sms in selected_records:
             _logger.info("for i_sms in selected_records:  %s" % i_sms.name)
 
@@ -31,8 +33,8 @@ class InheritSmsComposer(models.TransientModel):
                 'type': "transactional",
                 'unicodeEnabled': False,
                 'sender': i_sms.company_id.name,
-                'recipient': i_sms.phone ,
-                'content':self.body
+                'recipient': i_sms.phone,
+                'content': self.body
             }
             headers = {
                 "accept": "application/json",
@@ -62,7 +64,6 @@ class InheritSmsComposer(models.TransientModel):
                 }
                 records.env['mail.message'].sudo().create(values)
 
-                
             _logger.info(i_sms.name)
             _logger.info(i_sms.phone)
             _logger.info(response.status_code)
