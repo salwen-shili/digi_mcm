@@ -48,17 +48,19 @@ from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 
+
 class MailThreadInherit(models.AbstractModel):
-    
     _inherit = 'mail.thread'
-    
+
     @api.model
     def message_route(self, message, message_dict, model=None, thread_id=None, custom_values=None):
         if not isinstance(message, Message):
             raise TypeError('message must be an email.message.Message at this point')
         catchall_alias = self.env['ir.config_parameter'].sudo().get_param("mail.catchall.alias")
-        bounce_alias = self.env['ir.config_parameter'].sudo().get_param("mail.bounce.alias") #get no reply boucing alias from config parameter created on ovh mailing
-        bounce_domain = self.env['ir.config_parameter'].sudo().get_param("mail.catchall.domain") #get no reply boucing alias from config parameter created on ovh mailing
+        bounce_alias = self.env['ir.config_parameter'].sudo().get_param(
+            "mail.bounce.alias")  # get no reply boucing alias from config parameter created on ovh mailing
+        bounce_domain = self.env['ir.config_parameter'].sudo().get_param(
+            "mail.catchall.domain")  # get no reply boucing alias from config parameter created on ovh mailing
         fallback_model = model
 
         # get email.message.Message variables for future processing
@@ -70,7 +72,7 @@ class MailThreadInherit(models.AbstractModel):
         msg_references = [ref for ref in tools.mail_header_msgid_re.findall(thread_references) if 'reply_to' not in ref]
         mail_messages = self.env['mail.message'].sudo().search([('message_id', 'in', msg_references)], limit=1,
                                                                order='id desc, message_id')
-        _logger.info('message_route mail_messages : %s' %(str(mail_messages)))
+        _logger.info('message_route mail_messages : %s' % (str(mail_messages)))
         is_a_reply = bool(mail_messages)
         reply_model, reply_thread_id = mail_messages.model, mail_messages.res_id
 
@@ -79,8 +81,9 @@ class MailThreadInherit(models.AbstractModel):
         email_from_localpart = (tools.email_split(email_from) or [''])[0].split('@', 1)[0].lower()
         email_to = message_dict['to']
         email_to_localpart = (tools.email_split(email_to) or [''])[0].split('@', 1)[0].lower()
-        _logger.info('mail smtp imap by company : Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce',
-                     message_dict['email_from'], message_dict['to'], str(message_dict))
+        _logger.info(
+            'mail smtp imap by company : Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce',
+            message_dict['email_from'], message_dict['to'], str(message_dict))
         # Delivered-To is a safe bet in most modern MTAs, but we have to fallback on To + Cc values
         # for all the odd MTAs out there, as there is no standard header for the envelope's `rcpt_to` value.
         rcpt_tos_localparts = [e.split('@')[0].lower() for e in tools.email_split(message_dict['recipients'])]
@@ -95,39 +98,54 @@ class MailThreadInherit(models.AbstractModel):
         #       we also need to verify if the message come from "mailer-daemon"
         #    If not a bounce: reset bounce information
         bounced = False
-        if bounce_alias and bounce_alias in email_to_localpart: #check if email_to ( reply to ) contains no reply ( bounce_alias)
+        if bounce_alias and bounce_alias in email_to_localpart:  # check if email_to ( reply to ) contains no reply ( bounce_alias)
             bounce_re = re.compile("%s\+(\d+)-?([\w.]+)?-?(\d+)?" % re.escape(bounce_alias), re.UNICODE)
             bounce_match = bounce_re.search(email_to)
             company = 1
             if 'digimoov' in email_to:  # check if email_to contains digimoov
                 company = 2
             message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
-            body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
-                'message': message, 'message_company': message_company,
-            }, engine='ir.qweb')
-            company_bounce = "%s@%s" %(str(bounce_alias),str(message_company.alias_domain)) if message_company.alias_domain else "%s@%s" %(str(bounce_alias),str(bounce_domain)) # get no-reply ( bounce ) email from company and ir.config_parameter
+            # body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
+            #     'message': message, 'message_company': message_company,
+            # }, engine='ir.qweb')
+            if company == 2:
+                body = self.env['mail.template'].sudo().search(
+                    [('name', "=", "Bounced mail - Digimoov"), ('model_id.model', "=", 'res.partner')], limit=1)
+            else:
+                body = self.env['mail.template'].sudo().search(
+                    [('name', "=", "Bounced Mail - MCM Academy"), ('model_id.model', "=", 'res.partner')], limit=1)
+            company_bounce = "%s@%s" % (
+            str(bounce_alias), str(message_company.alias_domain)) if message_company.alias_domain else "%s@%s" % (
+            str(bounce_alias), str(bounce_domain))  # get no-reply ( bounce ) email from company and ir.config_parameter
             template_bounce = False
-            if company == 2 :
+            if company == 2:
                 template_bounce = self.env['mail.template'].sudo().search(
-                    [('name', "=", "Bounced mail - Digimoov"),('model_id.model',"=",'res.partner')], limit=1)
+                    [('name', "=", "Bounced mail - Digimoov"), ('model_id.model', "=", 'res.partner')], limit=1)
             else:
                 template_bounce = self.env['mail.template'].sudo().search(
                     [('name', "=", "Bounced Mail - MCM Academy"), ('model_id.model', "=", 'res.partner')], limit=1)
             if template_bounce:
-                self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(company_bounce)) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
+                self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(
+                    company_bounce))  # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
                 bounced = True
-            else :
+            else:
                 self._routing_create_bounce_email(email_from, body, message, reply_to=str(company_bounce))
                 bounced = True
             if bounce_match:
                 company = 1
-                if 'digimoov' in email_to: #check if email_to contains digimoov
+                if 'digimoov' in email_to:  # check if email_to contains digimoov
                     company = 2
                 message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
-                body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
-                    'message': message, 'message_company': message_company,
-                }, engine='ir.qweb')
-                if not bounced :
+                # body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
+                #     'message': message, 'message_company': message_company,
+                # }, engine='ir.qweb')
+                if company == 2:
+                    body = self.env['mail.template'].sudo().search(
+                        [('name', "=", "Bounced mail - Digimoov"), ('model_id.model', "=", 'res.partner')], limit=1)
+                else:
+                    body = self.env['mail.template'].sudo().search(
+                        [('name', "=", "Bounced Mail - MCM Academy"), ('model_id.model', "=", 'res.partner')], limit=1)
+                if not bounced:
                     if template_bounce:
                         self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(
                             company_bounce))  # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
@@ -138,7 +156,7 @@ class MailThreadInherit(models.AbstractModel):
             _logger.info('multipart/report')
             self._routing_handle_bounce(message, message_dict)
             return []
-        if not bounced :
+        if not bounced:
             self._routing_reset_bounce(message, message_dict)
 
         # 1. Handle reply
@@ -160,14 +178,14 @@ class MailThreadInherit(models.AbstractModel):
                 (reply_model, reply_thread_id, custom_values, user_id, dest_aliases),
                 raise_exception=False)
             if route:
-                _logger.info('message_route route : %s' %(str(route)))
+                _logger.info('message_route route : %s' % (str(route)))
                 _logger.info(
                     'Routing mail from %s to %s with Message-Id %s: direct reply to msg: model: %s, thread_id: %s, custom_values: %s, uid: %s',
                     email_from, email_to, message_id, reply_model, reply_thread_id, custom_values, self._uid)
                 reply_message = self.env['mail.message'].sudo().search([('message_id', "=", str(message_id))], limit=1,
-                                                               order='id desc, message_id')
-                if reply_message :
-                    _logger.info("message_route reply_message : %s" %(str(reply_message)))
+                                                                       order='id desc, message_id')
+                if reply_message:
+                    _logger.info("message_route reply_message : %s" % (str(reply_message)))
                 return [route]
             elif route is False:
                 return []
@@ -179,20 +197,25 @@ class MailThreadInherit(models.AbstractModel):
             # check it does not directly contact catchall
             if catchall_alias and catchall_alias in email_to_localpart:
                 _logger.info('Routing mail from %s to %s with Message-Id %s: direct write to catchall, bounce',
-                            email_from, email_to, message_id)
+                             email_from, email_to, message_id)
                 _logger.info('multipart/report')
                 _logger.info('multipart/report1 %s' % (str(email_to)))
                 company = 1
-                if 'digimoov' in email_to: #check if email_to contains digimoov
+                if 'digimoov' in email_to:  # check if email_to contains digimoov
                     company = 2
                 _logger.info('multipart/report1 %s' % (str(email_to)))
                 message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
-                body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
-                    'message': message, 'message_company': message_company,
-                }, engine='ir.qweb')
+                # body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
+                #     'message': message, 'message_company': message_company,
+                # }, engine='ir.qweb')
+                if company == 2:
+                    body = self.env['mail.template'].sudo().search(
+                        [('name', "=", "Bounced mail - Digimoov"), ('model_id.model', "=", 'res.partner')], limit=1)
+                else:
+                    body = self.env['mail.template'].sudo().search(
+                        [('name', "=", "Bounced Mail - MCM Academy"), ('model_id.model', "=", 'res.partner')], limit=1)
                 _logger.info('reply to :  %s' % (str(self.env.company.email)))
-                _logger.info('reply to1 :  %s' % (str(message_company.email)))
-                if not bounced :
+                if not bounced:
                     self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email)
                 return []
             alias_domain_id = self.env['alias.mail'].search([('domain_name', 'in', email_to_alias_domain_list)])
@@ -206,8 +229,9 @@ class MailThreadInherit(models.AbstractModel):
                 for alias in dest_aliases:
                     user_id = self._mail_find_user_for_gateway(email_from, alias=alias).id or self._uid
                     route = (
-                    alias.alias_model_id.model, alias.alias_force_thread_id, safe_eval(alias.alias_defaults), user_id,
-                    alias)
+                        alias.alias_model_id.model, alias.alias_force_thread_id, safe_eval(alias.alias_defaults),
+                        user_id,
+                        alias)
                     route = self._routing_check_route(message, message_dict, route, raise_exception=True)
                     if route:
                         _logger.info(
@@ -254,31 +278,34 @@ class MailThreadInherit(models.AbstractModel):
         _logger.info('_routing_create_bounce_email mail_values : %s' % (str(mail_values)))
         bounce_mail_values.update(mail_values)
         self.env['mail.mail'].create(bounce_mail_values).send()
-    
+
+
 class AliasMail(models.Model):
     _name = 'alias.mail'
     _rec_name = 'domain_name'
-    
+
     domain_name = fields.Char(string="Domain Name")
     company_id = fields.Many2one('res.company', string="Company")
 
+
 class Alias(models.Model):
     _inherit = "mail.alias"
-    
-    alias_domain = fields.Many2one('alias.mail',default=lambda self: self.env["alias.mail"].sudo().search([('company_id','=',self.env.user.company_id.id)],limit=1))
-#     name = fields.Char(related='alias_domain.domain_name', store=True)
-    
+
+    alias_domain = fields.Many2one('alias.mail', default=lambda self: self.env["alias.mail"].sudo().search(
+        [('company_id', '=', self.env.user.company_id.id)], limit=1))
+    #     name = fields.Char(related='alias_domain.domain_name', store=True)
+
     _sql_constraints = [
         ('alias_unique', 'Check(1=1)', "Unfortunately this email alias is already used, please choose a unique one !"),
     ]
-    
+
     @api.model
     def _clean_and_make_unique(self, name, alias_ids=False):
         # when an alias name appears to already be an email, we keep the local part only
         name = remove_accents(name).lower().split('@')[0]
         name = re.sub(r'[^\w+.]+', '-', name)
         return name
-    
+
     def name_get(self):
         """Return the mail alias display alias_name, including the implicit
            mail catchall domain if exists from config otherwise "New Alias".
@@ -293,7 +320,8 @@ class Alias(models.Model):
             else:
                 res.append((record['id'], _("Inactive Alias")))
         return res
-    
+
+
 # class Team(models.Model):
 #     _inherit = "crm.team"
 #     
@@ -308,29 +336,31 @@ class Alias(models.Model):
 # 
 class AccountJournal(models.Model):
     _inherit = "account.journal"
-    
-    alias_domain = fields.Many2one('alias.mail',related='alias_id.alias_domain')
-#     name = fields.Char(store=True)
-    
+
+    alias_domain = fields.Many2one('alias.mail', related='alias_id.alias_domain')
+
+    #     name = fields.Char(store=True)
+
     @api.model
     def create(self, vals):
         res = super(AccountJournal, self).create(vals)
         if 'alias_domain' in vals:
             if vals.get('alias_domain'):
-                res.alias_id.sudo().write({'alias_domain':vals.get('alias_domain')})
-                del(vals['alias_domain'])
+                res.alias_id.sudo().write({'alias_domain': vals.get('alias_domain')})
+                del (vals['alias_domain'])
             else:
-                alias = self.env["alias.mail"].sudo().search([('company_id','=',self.env.user.company_id.id)],limit=1)
+                alias = self.env["alias.mail"].sudo().search([('company_id', '=', self.env.user.company_id.id)],
+                                                             limit=1)
                 if alias:
-                    res.alias_id.sudo().write({'alias_domain':alias.id})
+                    res.alias_id.sudo().write({'alias_domain': alias.id})
         return res
-    
+
     def write(self, vals):
         for journal in self:
             if 'alias_domain' in vals:
-                journal.alias_id.sudo().write({'alias_domain':vals.get('alias_domain')})
+                journal.alias_id.sudo().write({'alias_domain': vals.get('alias_domain')})
                 if vals.get('alias_domain'):
-                    del(vals['alias_domain'])
+                    del (vals['alias_domain'])
         return super(AccountJournal, self).write(vals)
 # 
 # class Job(models.Model):
@@ -338,5 +368,3 @@ class AccountJournal(models.Model):
 #     
 #     alias_domain = fields.Many2one('alias.mail')
 #     name = fields.Char(store=True)
-    
-    
