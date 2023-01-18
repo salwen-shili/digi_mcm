@@ -71,11 +71,12 @@ class mcmSession(models.Model):
         startDate = ("%sT%s:00.000Z" % (str(session.date_exam), str(heureExam))).replace("H", ":")
         h = int((str(heureExam).split("H", 1)[0])) + 3
         endDate = "%sT%s:00:00.000Z" % (str(session.date_exam), h)
-        logger_info("session.heure_examen_apres_midi")
-        logger_info("=====>%s "%(str(session.heure_examen_apres_midi)))
-        logger_info("=====>%s "%(str(startDate)))
-        logger_info("=====>%s "%(str(heureExam)))
-        logger_info("=====>%s "%(str(checkCrouse["result"]["START"])))
+        _logger.info("session.heure_examen_apres_midi")
+        _logger.info("=====> Heure exam a partir de la session: %s "%(str(session.heure_examen_apres_midi)))
+        _logger.info("=====> Heure exam dans edusign: %s "%(str(heureExam)))
+        _logger.info("=====>Start date sent to Edusign:  %s"%(str(startDate)))
+       
+        
         
         checkCrouse = self.checkExistance("https://ext.edusign.fr/v1/course/", session.id_session_edusign, headers)
 
@@ -103,7 +104,7 @@ class mcmSession(models.Model):
                 checkCrouse["result"]["SCHOOL_GROUP"] != [session.id_group_edusign],
                 checkCrouse["result"]["API_ID"] != session.name,
             )
-
+            _logger.info("===== > Heure Exam from Edusign API %s"%(str(checkCrouse["result"]["START"])))
             if editCourse:
                 # -------------------------------------------------------------------------------
                 if date.today() <= session.date_exam:
@@ -727,7 +728,7 @@ class mcmSession(models.Model):
 
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
         checkDate = True
-        # checkUrl = True
+         # checkUrl = True
         checkUrl = "localhost" not in str(base_url) and "dev.odoo" not in str(base_url)
         if self.date_exam:
             checkDate = date.today() <= self.date_exam
