@@ -124,9 +124,19 @@ class MailThreadInherit(models.AbstractModel):
                 if 'digimoov' in email_to: #check if email_to contains digimoov
                     company = 2
                 message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
-                body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
-                    'message': message, 'message_company': message_company,
-                }, engine='ir.qweb')
+                # body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
+                #     'message': message, 'message_company': message_company,
+                # }, engine='ir.qweb')
+
+                if company == 2:
+                    template_bounce = self.env['mail.template'].sudo().search(
+                        [('name', "=", "Bounced mail - Digimoov"), ('model_id.model', "=", 'res.partner')], limit=1)
+                    _logger.info('-----template_bounce Digimoov ------:  %s' % template_bounce)
+                    _logger.info('-----template_bounce.body_html Digimoov ------:  %s' % template_bounce.body_html)
+                else:
+                    template_bounce = self.env['mail.template'].sudo().search(
+                        [('name', "=", "Bounced Mail - MCM Academy"), ('model_id.model', "=", 'res.partner')], limit=1)
+                    _logger.info('-----template_bounce MCM ------:  %s' % template_bounce)
                 if not bounced :
                     if template_bounce:
                         self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(
