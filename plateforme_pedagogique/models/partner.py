@@ -933,8 +933,9 @@ class partner(models.Model):
 
                                     """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
 
+
                                     product_id = self.env['product.template'].sudo().search(
-                                        [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
+                                        [('id_edof', "like", str(module)), ('company_id', "=", 2)], limit=1)
 
                                     if response_post.status_code == 200:
 
@@ -1275,7 +1276,7 @@ class partner(models.Model):
                                 prenom = unidecode(prenom)
                             diplome = dossier['trainingActionInfo']['title']
                             product_id = self.env['product.template'].sudo().search(
-                                [('id_edof', "=", str(training_id))], limit=1)
+                                [('id_edof', "like", str(training_id))], limit=1)
 
                             if state == "validated":
                                 print('validate', email, dossier['attendee']['lastName'],
@@ -1512,7 +1513,7 @@ class partner(models.Model):
                 if "digimoov" in str(module):
                     user.write({'company_ids': [1, 2], 'company_id': 2})
                     product_id = self.env['product.template'].sudo().search(
-                        [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
+                        [('id_edof', "like", str(module)), ('company_id', "=", 2)], limit=1)
                     print("product id validate digi", product_id.id_edof)
                     if product_id:
                         client.id_edof = product_id.id_edof
@@ -1549,7 +1550,7 @@ class partner(models.Model):
                 else:
                     user.write({'company_ids': [(4, 2)], 'company_id': 1})
                     product_id = self.env['product.template'].sudo().search(
-                        [('id_edof', "=", str(module)), ('company_id', "=", 1)], limit=1)
+                        [('id_edof', "like", str(module)), ('company_id', "=", 1)], limit=1)
                     print("product id validate mcm", product_id.id_edof)
                     if product_id:
                         client.id_edof = product_id.id_edof
@@ -1797,12 +1798,12 @@ class partner(models.Model):
                                 if 'digimoov' in str(training_id):
 
                                     product_id = self.env['product.template'].sudo().search(
-                                        [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
+                                        [('id_edof', "like", str(training_id)), ('company_id', "=", 2)], limit=1)
                                     if product_id:
                                         user.partner_id.id_edof = product_id.id_edof
                                 else:
                                     product_id = self.env['product.template'].sudo().search(
-                                        [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
+                                        [('id_edof', "like", str(training_id)), ('company_id', "=", 1)], limit=1)
                                     if product_id:
                                         user.partner_id.id_edof = product_id.id_edof
                                 _logger.info('if digi %s' % str(product_id))
