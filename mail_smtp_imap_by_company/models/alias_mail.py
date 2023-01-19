@@ -116,8 +116,8 @@ class MailThreadInherit(models.AbstractModel):
             if template_bounce:
                 self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(company_bounce)) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
                 bounced = True
-            else :
-                self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(company_bounce))
+            else:
+                self._routing_create_bounce_email(email_from, body, message, reply_to=str(company_bounce))
                 bounced = True
             if bounce_match:
                 company = 1
@@ -202,8 +202,18 @@ class MailThreadInherit(models.AbstractModel):
                 }, engine='ir.qweb')
                 _logger.info('reply to :  %s' % (str(self.env.company.email)))
                 _logger.info('reply to1 :  %s' % (str(message_company.email)))
-                if not bounced :
-                    self._routing_create_bounce_email(email_from, body, message, reply_to=message_company.email)
+
+                if company == 2:
+                    template_bounce = self.env['mail.template'].sudo().search(
+                        [('name', "=", "Bounced mail - Digimoov"), ('model_id.model', "=", 'res.partner')], limit=1)
+                    _logger.info('-----template_bounce Digimoov ------:  %s' % template_bounce)
+                    _logger.info('-----template_bounce.body_html Digimoov ------:  %s' % template_bounce.body_html)
+                else:
+                    template_bounce = self.env['mail.template'].sudo().search(
+                        [('name', "=", "Bounced Mail - MCM Academy"), ('model_id.model', "=", 'res.partner')], limit=1)
+                    _logger.info('-----template_bounce MCM ------:  %s' % template_bounce)
+                if not bounced:
+                    self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=message_company.email)
                 return []
             alias_domain_id = self.env['alias.mail'].search([('domain_name', 'in', email_to_alias_domain_list)])
             dest_aliases = False
