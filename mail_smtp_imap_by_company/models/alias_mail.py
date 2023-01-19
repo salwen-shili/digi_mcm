@@ -117,7 +117,7 @@ class MailThreadInherit(models.AbstractModel):
                 self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(company_bounce)) # send automatic bounce mail to client using default function of odoo _routing_create_bounce_email
                 bounced = True
             else :
-                self._routing_create_bounce_email(email_from, body, message, reply_to=str(company_bounce))
+                self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(company_bounce))
                 bounced = True
             if bounce_match:
                 company = 1
