@@ -200,7 +200,7 @@ class MailThreadInherit(models.AbstractModel):
                 company = 1
                 if 'digimoov' in email_to: #check if email_to contains digimoov
                     company = 2
-                elif 'mcm-academy' in email_to: #check if email_to contains Mcm-academy
+                if 'mcm-academy' in email_to: #check if email_to contains Mcm-academy
                     company = 1
                 _logger.info('multipart/report1 %s' % (str(email_to)))
                 message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
@@ -215,7 +215,7 @@ class MailThreadInherit(models.AbstractModel):
                         [('name', "=", "Bounced mail - Digimoov"), ('model_id.model', "=", 'res.partner')], limit=1)
                     _logger.info('-----template_bounce Digimoov ------:  %s' % template_bounce)
                     _logger.info('-----template_bounce.body_html Digimoov ------:  %s' % template_bounce.body_html)
-                elif company == 1:
+                if company == 1:
                     template_bounce = self.env['mail.template'].sudo().search(
                         [('name', "=", "Bounced Mail - MCM Academy"), ('model_id.model', "=", 'res.partner')], limit=1)
                     _logger.info('-----template_bounce MCM ------:  %s' % template_bounce)
