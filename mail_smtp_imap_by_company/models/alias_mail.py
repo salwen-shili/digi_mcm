@@ -263,11 +263,12 @@ class MailThreadInherit(models.AbstractModel):
             (email_from, email_to, message_id)
         )
 
-    def _routing_create_bounce_email(self, email_from, body_html, message, **mail_values):
+    def _routing_create_bounce_email(self, email_from, template_bounce, message, **mail_values):
         bounce_to = tools.decode_message_header(message, 'Return-Path') or email_from
         _logger.info('_routing_create_bounce_email bounce_to : %s' % (str(bounce_to)))
+        _logger.info('Test template bounce 333333 : %s' % (str(template_bounce)))
         bounce_mail_values = {
-            'body_html': body_html,
+            'body_html': template_bounce,
             'subject': 'Re: %s' % message.get('subject'),
             'email_to': bounce_to,
             'auto_delete': True,
