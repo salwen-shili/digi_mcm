@@ -199,8 +199,6 @@ class MailThreadInherit(models.AbstractModel):
                 company = 1
                 if 'digimoov' in email_to: #check if email_to contains digimoov
                     company = 2
-                if 'mcm-academy' in email_to: #check if email_to contains Mcm-academy
-                    company = 1
                 _logger.info('multipart/report1 %s' % (str(email_to)))
                 message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
                 # body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
@@ -213,7 +211,7 @@ class MailThreadInherit(models.AbstractModel):
                     template_bounce = self.env['mail.template'].sudo().search(
                         [('name', "=", "Bounced mail - Digimoov"), ('model_id.model', "=", 'res.partner')], limit=1)
                     _logger.info('-----template_bounce Digimoov ------:  %s' % template_bounce)
-                if company == 1:
+                elif company == 1:
                     template_bounce = self.env['mail.template'].sudo().search(
                         [('name', "=", "Bounced Mail - MCM Academy"), ('model_id.model', "=", 'res.partner')], limit=1)
                     _logger.info('-----template_bounce MCM 2222------:  %s' % template_bounce)
@@ -263,12 +261,11 @@ class MailThreadInherit(models.AbstractModel):
             (email_from, email_to, message_id)
         )
 
-    def _routing_create_bounce_email(self, email_from, template_bounce, message, **mail_values):
+    def _routing_create_bounce_email(self, email_from, body_html, message, **mail_values):
         bounce_to = tools.decode_message_header(message, 'Return-Path') or email_from
         _logger.info('_routing_create_bounce_email bounce_to : %s' % (str(bounce_to)))
-        _logger.info('Test template bounce 333333 : %s' % (str(template_bounce)))
         bounce_mail_values = {
-            'body_html': template_bounce,
+            'body_html': body_html,
             'subject': 'Re: %s' % message.get('subject'),
             'email_to': bounce_to,
             'auto_delete': True,
