@@ -196,10 +196,10 @@ class MailThreadInherit(models.AbstractModel):
                             email_from, email_to, message_id)
                 _logger.info('multipart/report')
                 _logger.info('multipart/report1 %s' % (str(email_to)))
+                message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
                 if 'digimoov' in message_company.email: #check if email_to contains digimoov
                     company = 2
                     _logger.info('multipart/report1 %s' % (str(email_to)))
-                    message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
                     # body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
                     #     'message': message, 'message_company': message_company,
                     # }, engine='ir.qweb')
