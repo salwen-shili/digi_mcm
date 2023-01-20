@@ -215,9 +215,10 @@ class MailThreadInherit(models.AbstractModel):
                     'message': message, 'message_company': message_company,
                 }, engine='ir.qweb')
                 _logger.info('reply to :  %s' % (str(self.env.company.email)))
-                _logger.info('reply to1 :  %s' % (str(message_company.email)))
+
 
                 if not bounced:
+                    _logger.info('reply to1 :  %s' % (str(message_company.email)))
                     self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=message_company.email)
                 return []
             alias_domain_id = self.env['alias.mail'].search([('domain_name', 'in', email_to_alias_domain_list)])
