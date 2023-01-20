@@ -99,9 +99,18 @@ class AircallConnector(http.Controller):
                     new_call_detail.sudo().write({
                         'owner': call_data["user"]["name"] if call_data["user"] else False,
                     })
+                    """change state for crm lead for every call detail creation"""
+                    if new_call_detail.call_contact.statut == "indecis":
+                        new_call_detail.call_contact.changestage("Indécis appelé", new_call_detail.call_contact)
+                        lead = self.env['crm.lead'].sudo().search([('partner_id', "=", new_call_detail.call_contact.id)])
+                        if lead:
+                            _logger.info('lead %s' % str(lead))
+                            lead.conseiller = call_data["user"]["name"]
+                        _logger.info('createeeeee webhook note ********************************')
                 comments = ''
                 call_data_comments = call_data["comments"]
                 _logger.info("call_data call_data_comments : %s" % (str(call_data["comments"])))
+
                 if call_data_comments:
                     for note in call_data_comments:
                         _logger.info("call_data note of comments : %s" % (str(note)))
