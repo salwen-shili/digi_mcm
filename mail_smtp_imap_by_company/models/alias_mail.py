@@ -196,7 +196,7 @@ class MailThreadInherit(models.AbstractModel):
                             email_from, email_to, message_id)
                 _logger.info('multipart/report')
                 _logger.info('multipart/report1 %s' % (str(email_to)))
-                if 'digimoov' in email_to: #check if email_to contains digimoov
+                if 'digimoov' in message_company.email: #check if email_to contains digimoov
                     company = 2
                     _logger.info('multipart/report1 %s' % (str(email_to)))
                     message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
@@ -214,7 +214,7 @@ class MailThreadInherit(models.AbstractModel):
                         self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=message_company.email)
                     return []
                 else:
-                    if 'mcm-academy' in email_to:  # check if email_to contains mcm
+                    if 'mcm-academy' in message_company.email:  # check if email_to contains mcm
                         company = 1
                         _logger.info('multipart/report1 %s' % (str(email_to)))
                         message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
