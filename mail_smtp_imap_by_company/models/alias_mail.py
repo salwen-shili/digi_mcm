@@ -197,7 +197,7 @@ class MailThreadInherit(models.AbstractModel):
                             email_from, email_to, message_id)
                 _logger.info('multipart/report')
                 _logger.info('multipart/report1 %s' % (str(email_to)))
-                company = 1
+                #company = 1
                 if 'digimoov' in email_to: #check if email_to contains digimoov
                     #company = 2
                     template_bounce = self.env['mail.template'].sudo().search(
