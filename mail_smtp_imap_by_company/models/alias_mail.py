@@ -98,7 +98,7 @@ class MailThreadInherit(models.AbstractModel):
         if bounce_alias and bounce_alias in email_to_localpart: #check if email_to ( reply to ) contains no reply ( bounce_alias)
             bounce_re = re.compile("%s\+(\d+)-?([\w.]+)?-?(\d+)?" % re.escape(bounce_alias), re.UNICODE)
             bounce_match = bounce_re.search(email_to)
-            company = 1
+            company = False
             if 'digimoov' in email_to:  # check if email_to contains digimoov
                 company = 2
             elif 'mcm-academy' in email_to:
@@ -123,10 +123,10 @@ class MailThreadInherit(models.AbstractModel):
                 self._routing_create_bounce_email(email_from, body, message, reply_to=str(company_bounce))
                 bounced = True
             if bounce_match:
-                company = 1
+                company = False
                 if 'digimoov' in email_to: #check if email_to contains digimoov
                     company = 2
-                elif 'mcm-academy' in email_to:
+                if 'mcm-academy' in email_to:
                     company = 1
                 message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
                 # body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
@@ -136,12 +136,11 @@ class MailThreadInherit(models.AbstractModel):
                 if company == 2:
                     template_bounce = self.env['mail.template'].sudo().search(
                         [('name', "=", "Bounced mail - Digimoov"), ('model_id.model', "=", 'res.partner')], limit=1)
-                    _logger.info('-----template_bounce Digimoov ------:  %s' % template_bounce)
-                    _logger.info('-----template_bounce.body_html Digimoov ------:  %s' % template_bounce.body_html)
-                else:
+                    _logger.info('-----template_bounce Digimoov 111------:  %s' % template_bounce)
+                if company == 1:
                     template_bounce = self.env['mail.template'].sudo().search(
                         [('name', "=", "Bounced Mail - MCM Academy"), ('model_id.model', "=", 'res.partner')], limit=1)
-                    _logger.info('-----template_bounce MCM ------:  %s' % company_bounce)
+                    _logger.info('-----template_bounce MCM 1111------:  %s' % company_bounce)
                 if not bounced :
                     if template_bounce:
                         self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(
@@ -204,9 +203,9 @@ class MailThreadInherit(models.AbstractModel):
                     company = 1
                 _logger.info('multipart/report1 %s' % (str(email_to)))
                 message_company = self.env['res.company'].search([('id', "=", company)], limit=1)
-                body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
-                    'message': message, 'message_company': message_company,
-                }, engine='ir.qweb')
+                # body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
+                #     'message': message, 'message_company': message_company,
+                # }, engine='ir.qweb')
                 _logger.info('reply to :  %s' % (str(self.env.company.email)))
                 _logger.info('reply to1 :  %s' % (str(message_company.email)))
 
@@ -214,11 +213,10 @@ class MailThreadInherit(models.AbstractModel):
                     template_bounce = self.env['mail.template'].sudo().search(
                         [('name', "=", "Bounced mail - Digimoov"), ('model_id.model', "=", 'res.partner')], limit=1)
                     _logger.info('-----template_bounce Digimoov ------:  %s' % template_bounce)
-                    _logger.info('-----template_bounce.body_html Digimoov ------:  %s' % template_bounce.body_html)
                 if company == 1:
                     template_bounce = self.env['mail.template'].sudo().search(
                         [('name', "=", "Bounced Mail - MCM Academy"), ('model_id.model', "=", 'res.partner')], limit=1)
-                    _logger.info('-----template_bounce MCM ------:  %s' % template_bounce)
+                    _logger.info('-----template_bounce MCM 2222------:  %s' % template_bounce)
                 if not bounced:
                     self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=message_company.email)
                 return []
