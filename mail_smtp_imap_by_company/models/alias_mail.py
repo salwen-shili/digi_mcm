@@ -197,9 +197,9 @@ class MailThreadInherit(models.AbstractModel):
                 _logger.info('multipart/report')
                 _logger.info('multipart/report1 %s' % (str(email_to)))
                 message_company_digi = self.env['res.company'].search([('id', "=", 2)], limit=1)
-                if 'digimoov' in message_company_digi.email: #check if email_to contains digimoov
+                if "digimoov" in str(self.env.company.email): #check if email_to contains digimoov
 
-                    _logger.info('multipart/report1 %s' % (str(email_to)))
+                    _logger.info('multipart/report2 %s' % (str(email_to)))
                     # body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
                     #     'message': message, 'message_company': message_company,
                     # }, engine='ir.qweb')
@@ -210,11 +210,11 @@ class MailThreadInherit(models.AbstractModel):
                         [('name', "=", "Bounced mail - Digimoov"), ('model_id.model', "=", 'res.partner')], limit=1)
                     _logger.info('-----template_bounce Digimoov 22222------:  %s' % template_bounce)
                     if not bounced:
-                        self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=message_company_digi.email)
+                        self._routing_create_bounce_email(email_from, template_bounce.body_html, message, reply_to=str(self.env.company.email))
                     return []
                 else:
                     message_company_mcm = self.env['res.company'].search([('id', "=", 1)], limit=1)
-                    if 'mcm-academy' in message_company_mcm.email:  # check if email_to contains mcm
+                    if 'mcm-academy' in str(self.env.company.email):  # check if email_to contains mcm
                         _logger.info('multipart/report1 %s' % (str(email_to)))
                         # body = self.env.ref('mail_smtp_imap_by_company.mail_bounce_catchall_by_company').render({
                         #     'message': message, 'message_company': message_company,
@@ -228,7 +228,7 @@ class MailThreadInherit(models.AbstractModel):
                         _logger.info('-----template_bounce MCM 2222------:  %s' % template_bounce)
                         if not bounced:
                             self._routing_create_bounce_email(email_from, template_bounce.body_html, message,
-                                                              reply_to=message_company_mcm.email)
+                                                              reply_to=str(self.env.company.email))
                         return []
             alias_domain_id = self.env['alias.mail'].search([('domain_name', 'in', email_to_alias_domain_list)])
             dest_aliases = False
