@@ -1510,43 +1510,47 @@ class partner(models.Model):
                 if not sms:
                     _logger.info('if not sms %s' % str(sms_body_))
                     self.send_sms(sms_body_, user.partner_id)
-                if "digimoov" in str(module):
-                    user.write({'company_ids': [1, 2], 'company_id': 2})
-                    product_id = self.env['product.template'].sudo().search(
-                        [('id_edof', "like", str(module)), ('company_id', "=", 2)], limit=1)
-                    print("product id validate digi", product_id.id_edof)
-                    if product_id:
-                        client.id_edof = product_id.id_edof
+                module = "digimoov_pro_paris"
+                _logger.info("hello")
+                user.write({'company_ids': [1, 2], 'company_id': 2})
+                product_ids = self.env['product.template'].sudo().search(
+                    [('company_id', "=", 2)])
+                for product_id in product_ids:
+                    if module in product_id.id_edof:
+                        _logger.info("id_edof %s" % str(product_id))
+                        print("product id validate digi", product_id.id_edof)
+                        if product_id:
+                            client.id_edof = product_id.id_edof
 
-                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
-                        sale = self.env['sale.order'].sudo().search([('partner_id', '=', client.id),
-                                                                     ('company_id', '=', 2),
-                                                                     ('website_id', '=', 2),
-                                                                     ('order_line.product_id', '=', product_id.id)])
+                            """Créer un devis et Remplir le panier par produit choisit sur edof"""
+                            sale = self.env['sale.order'].sudo().search([('partner_id', '=', client.id),
+                                                                         ('company_id', '=', 2),
+                                                                         ('website_id', '=', 2),
+                                                                         ('order_line.product_id', '=', product_id.id)])
 
-                        if not sale:
-                            so = self.env['sale.order'].sudo().create({
-                                'partner_id': client.id,
-                                'company_id': 2,
-                                'website_id': 2
-                            })
+                            if not sale:
+                                so = self.env['sale.order'].sudo().create({
+                                    'partner_id': client.id,
+                                    'company_id': 2,
+                                    'website_id': 2
+                                })
 
-                            so_line = self.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 2,
-                            })
-                            #
-                            # prix de la formation dans le devis
-                            amount_before_instalment = so.amount_total
-                            # so.amount_total = so.amount_total * 0.25
-                            for line in so.order_line:
-                                line.price_unit = so.amount_total
+                                so_line = self.env['sale.order.line'].sudo().create({
+                                    'name': product_id.name,
+                                    'product_id': product_id.id,
+                                    'product_uom_qty': 1,
+                                    'product_uom': product_id.uom_id.id,
+                                    'price_unit': product_id.list_price,
+                                    'order_id': so.id,
+                                    'tax_id': product_id.taxes_id,
+                                    'company_id': 2,
+                                })
+                                #
+                                # prix de la formation dans le devis
+                                amount_before_instalment = so.amount_total
+                                # so.amount_total = so.amount_total * 0.25
+                                for line in so.order_line:
+                                    line.price_unit = so.amount_total
                 else:
                     user.write({'company_ids': [(4, 2)], 'company_id': 1})
                     product_id = self.env['product.template'].sudo().search(
