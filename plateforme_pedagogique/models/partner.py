@@ -1511,7 +1511,7 @@ class partner(models.Model):
                     _logger.info('if not sms %s' % str(sms_body_))
                     self.send_sms(sms_body_, user.partner_id)
                 module = "digimoov_pro_paris"
-                _logger.info("hello")
+                _logger.info("helooo")
                 user.write({'company_ids': [1, 2], 'company_id': 2})
                 product_ids = self.env['product.template'].sudo().search(
                     [('company_id', "=", 2)])
