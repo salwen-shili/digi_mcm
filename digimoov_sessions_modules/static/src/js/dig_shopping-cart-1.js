@@ -26,6 +26,8 @@ var villeLeger = [
   "TOULOUSE",
   "MARSEILLE",
 ];
+var isLourd=false;;
+
 document.addEventListener("DOMContentLoaded", function () {
   windowUrl = window.location.href;
   console.log(
@@ -35,6 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
       windowUrl.includes("formation-premium")
   );
   if (windowUrl.includes("lourd")) {
+    isLourd = true;
+    
     var selectCenter = document.getElementById("centre_examen");
     indexOption = 0;
     Array.from(selectCenter.options).forEach(function (option_element) {
@@ -1230,7 +1234,7 @@ function modeFinancement(mode, index) {
 
     case "stripe_pm":
       onchangeTextButton1();
-      update_cartebleu(true);
+      update_cartebleu(true,saleOrderId,isLourd);
       hideError_no_method();
       if (index == 1) {
         checkPaiementInstalment(false)
@@ -1243,7 +1247,7 @@ function modeFinancement(mode, index) {
     case "cpf_pm":
       onchangeTextButton();
 
-      update_cpf(true);
+      update_cpf(true,saleOrderId,isLourd);
       showCpfDetails();
       fixDisplay();
       hideError_no_method();;
@@ -1270,11 +1274,13 @@ function modeFinancement(mode, index) {
 
 
 // send carte_bleu selection
-const update_cartebleu = (cartebleu) => {
+const update_cartebleu = (cartebleu,saleOrderId,isLourd) => {
   sendHttpRequest('POST', '/shop/payment/update_cartebleu',
     {
       params: {
         cartebleu: cartebleu,
+        
+        isLourd:isLourd
       }
     })
     .then((res) => {
@@ -1285,11 +1291,15 @@ const update_cartebleu = (cartebleu) => {
     });
 };
 
-// send cpf selection
-const update_cpf = (cpf) => {
+// send cpf selection + product 
+const update_cpf = (cpf,isLourd) => {
   sendHttpRequest('POST', '/shop/payment/update_cpf',
     {
-      params: { cpf: cpf }
+      params: { 
+        cpf: cpf, 
+        
+        isLourd:isLourd
+      }
     })
     .then((res) => {
       console.log(res);
@@ -1298,6 +1308,7 @@ const update_cpf = (cpf) => {
       console.log(err);
     });
 };
+
 
 function checkPaiementInstalment(check) {
   let checkbox = document.getElementById("checkbox_instalment")

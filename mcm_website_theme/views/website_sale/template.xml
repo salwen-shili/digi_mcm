@@ -88,10 +88,8 @@
 
         <xpath expr="//tr[@id='order_total_untaxed']" position="before">
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
-                
-                  
                     <tr t-if="line.product_id.product_tmpl_id" class="tr-product_name">
-                        <div style="    margin-right: 11px;">
+                        <div style="margin-right: 11px;">
                             <t t-call="website_sale.cart_line_product_link">
                                 <strong t-field="line.name_short"/>
                             </t>
@@ -99,15 +97,8 @@
                                 <a onclick="(function(){if (document.getElementById('js_delete_cart')){document.getElementById('js_delete_cart').click();}})()" href="#" aria-label="Remove from cart" title="Remove from cart" class="js_delete_product no-decoration"> <small><i class="fa fa-trash-o"/></small></a>
                             </span>
                         </div>
-                      
-                     
                     </tr>
-                   
-                  
-                    
-            
             </t>
-            
         </xpath>
         <xpath expr="//tr[@id='order_total']" position="after">
             <body>
@@ -158,6 +149,7 @@
             <p id="error_no_date" class="alert alert-warning" style="margin-left:0%;display:none;max-width:600px">
                 Pas de date disponible pour le moment.
             </p>
+            <input id="deivsId" type="hidden" t-att-value="website_sale_order"></input>
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
                 <!-- Mode de financement -->
                 <h3 class="" style="margin-top: 1rem; font-weight: 600;font-size:18px" >

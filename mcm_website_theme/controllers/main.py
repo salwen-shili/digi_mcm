@@ -2405,11 +2405,13 @@ class Payment3x(http.Controller):
                     if line.product_id.default_code == "access":
                         order.amount_total = 380
                         line.price_unit = 380
-        return True
+        return True 
 
     @http.route(["/shop/payment/update_cpf"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
-    def cart_update_cpf(self, cpf):
+    def cart_update_cpf(self, cpf, isLourd):
+        
         order = request.website.sale_get_order(force_create=1)
+        print("cpf: ",cpf, "saleOrderId: ",order, "isLourd: ",isLourd)
         if cpf and order.partner_id.statut != "won":
             # order.partner_id.date_cpf = datetime.now()
             order.partner_id.mode_de_financement = "cpf"
@@ -2417,6 +2419,7 @@ class Payment3x(http.Controller):
             # Si mode de financement est cpf, le champ pole emploi sur fiche client sera décoché
             order.partner_id.is_pole_emploi = False
         return True
+        
 
     """Route est appelé quand Pole emploi dans panier est coché """
 
