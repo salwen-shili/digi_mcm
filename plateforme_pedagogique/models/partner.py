@@ -1511,12 +1511,12 @@ class partner(models.Model):
                     _logger.info('if not sms %s' % str(sms_body_))
                     self.send_sms(sms_body_, user.partner_id)
                 module = "digimoov_pro_paris"
-                _logger.info("helooo")
+                _logger.info("helooo %s " % str(module))
                 user.write({'company_ids': [1, 2], 'company_id': 2})
                 product_ids = self.env['product.template'].sudo().search(
                     [('company_id', "=", 2)])
                 for product_id in product_ids:
-                    if module in product_id.id_edof:
+                    if product_id.id_edof and product_id.id_edof in module:
                         _logger.info("id_edof %s" % str(product_id))
                         print("product id validate digi", product_id.id_edof)
                         if product_id:
