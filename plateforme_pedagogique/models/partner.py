@@ -1558,7 +1558,7 @@ class partner(models.Model):
                 else:
                     user.write({'company_ids': [(4, 2)], 'company_id': 1})
                     product_ids = self.env['product.template'].sudo().search(
-                        [('company_id', "=", 2)])
+                        [('company_id', "=", 1)])
                     for product_id in product_ids:
                         if product_id.id_edof and product_id.id_edof in module:
                             _logger.info("id_edof %s" % str(product_id))
