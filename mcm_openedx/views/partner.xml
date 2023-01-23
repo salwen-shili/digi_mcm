@@ -13,7 +13,9 @@
                 <filter name="company" string="MCM Academy"
                         domain="[('company_id','=',1)]"
                 />
-
+     <field name="note_exam_mcm_id" string="Admis"
+                   filter_domain="[('note_exam_mcm_id.epreuve_theorique','ilike',self)]"
+            ></field>
                 <filter name="state" string="Statut de l'apprennat"
                         domain="[('state','ilike','en_formation')]"
                 />
@@ -28,6 +30,7 @@
                         context="{'group_by':'coach_peda'}"/>
                 <filter name="group_niveau" string="Niveau" icon="terp-partner"
                         context="{'group_by':'niveau'}"/>
+
 
 
             </search>
