@@ -319,78 +319,82 @@ class WebhookController(http.Controller):
                     user.partner_id.send_sms(sms_body_, user.partner_id)
                 if "digimoov" in str(module):
                     user.write({'company_ids': [1, 2], 'company_id': 2})
-                    product_id = request.env['product.template'].sudo().search(
-                        [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
-                    print("product id validate digi", product_id.id_edof)
-                    if product_id:
-                        client.id_edof = product_id.id_edof
+                    product_ids = request.env['product.template'].sudo().search(
+                        [('company_id', "=", 2)])
+                    for product_id in product_ids:
+                        if product_id.id_edof and product_id.id_edof in module:
+                            _logger.info("id_edof %s" % str(product_id))
+                            print("product id validate digi", product_id.id_edof)
+                            if product_id:
+                                client.id_edof = product_id.id_edof
+                                """Créer un devis et Remplir le panier par produit choisit sur edof"""
+                                sale = request.env['sale.order'].sudo().search([('partner_id', '=', client.id),
+                                                                             ('company_id', '=', 2),
+                                                                             ('website_id', '=', 2),
+                                                                             ('order_line.product_id', '=', product_id.id)])
 
-                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
-                        sale = request.env['sale.order'].sudo().search([('partner_id', '=', client.id),
-                                                                     ('company_id', '=', 2),
-                                                                     ('website_id', '=', 2),
-                                                                     ('order_line.product_id', '=', product_id.id)])
+                                if not sale:
+                                    so = request.env['sale.order'].sudo().create({
+                                        'partner_id': client.id,
+                                        'company_id': 2,
+                                        'website_id': 2
+                                    })
 
-                        if not sale:
-                            so = request.env['sale.order'].sudo().create({
-                                'partner_id': client.id,
-                                'company_id': 2,
-                                'website_id': 2
-                            })
-
-                            so_line = request.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 2,
-                            })
-                            #
-                            # prix de la formation dans le devis
-                            amount_before_instalment = so.amount_total
-                            # so.amount_total = so.amount_total * 0.25
-                            for line in so.order_line:
-                                line.price_unit = so.amount_total
+                                    so_line = request.env['sale.order.line'].sudo().create({
+                                        'name': product_id.name,
+                                        'product_id': product_id.id,
+                                        'product_uom_qty': 1,
+                                        'product_uom': product_id.uom_id.id,
+                                        'price_unit': product_id.list_price,
+                                        'order_id': so.id,
+                                        'tax_id': product_id.taxes_id,
+                                        'company_id': 2,
+                                    })
+                                    #
+                                    # prix de la formation dans le devis
+                                    amount_before_instalment = so.amount_total
+                                    # so.amount_total = so.amount_total * 0.25
+                                    for line in so.order_line:
+                                        line.price_unit = so.amount_total
                 else:
                     user.write({'company_ids': [(4, 2)], 'company_id': 1})
-                    product_id = request.env['product.template'].sudo().search(
-                        [('id_edof', "=", str(module)), ('company_id', "=", 1)], limit=1)
-                    print("product id validate mcm", product_id.id_edof)
-                    if product_id:
-                        client.id_edof = product_id.id_edof
+                    product_ids = request.env['product.template'].sudo().search(
+                        [('company_id', "=", 1)])
+                    for product_id in product_ids:
+                        if product_id.id_edof and product_id.id_edof in module:
+                            _logger.info("id_edof %s" % str(product_id))
+                            print("product id validate digi", product_id.id_edof)
+                            if product_id:
+                                client.id_edof = product_id.id_edof
+                                """Créer un devis et Remplir le panier par produit choisit sur edof"""
+                                sale = request.env['sale.order'].sudo().search([('partner_id', '=', client.id),
+                                                                             ('company_id', '=', 1),
+                                                                             ('website_id', '=', 1),
+                                                                             ('order_line.product_id', '=', product_id.id)])
 
-                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
-                        sale = request.env['sale.order'].sudo().search([('partner_id', '=', client.id),
-                                                                     ('company_id', '=', 1),
-                                                                     ('website_id', '=', 1),
-                                                                     ('order_line.product_id', '=', product_id.id)])
+                                if not sale:
+                                    so = request.env['sale.order'].sudo().create({
+                                        'partner_id': client.id,
+                                        'company_id': 1,
+                                        'website_id': 1
+                                    })
 
-                        if not sale:
-                            so = request.env['sale.order'].sudo().create({
-                                'partner_id': client.id,
-                                'company_id': 1,
-                                'website_id': 1
-                            })
-
-                            so_line = request.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 1,
-                            })
-                            #
-                            # prix de la formation dans le devis
-                            amount_before_instalment = so.amount_total
-                            # so.amount_total = so.amount_total * 0.25
-                            for line in so.order_line:
-                                line.price_unit = so.amount_total
+                                    so_line = request.env['sale.order.line'].sudo().create({
+                                        'name': product_id.name,
+                                        'product_id': product_id.id,
+                                        'product_uom_qty': 1,
+                                        'product_uom': product_id.uom_id.id,
+                                        'price_unit': product_id.list_price,
+                                        'order_id': so.id,
+                                        'tax_id': product_id.taxes_id,
+                                        'company_id': 1,
+                                    })
+                                    #
+                                    # prix de la formation dans le devis
+                                    amount_before_instalment = so.amount_total
+                                    # so.amount_total = so.amount_total * 0.25
+                                    for line in so.order_line:
+                                        line.price_unit = so.amount_total
 
         return True
 
@@ -612,362 +616,359 @@ class WebhookController(http.Controller):
             module_id = False
             product_id = False
             """chercher le produit sur odoo selon id edof de formation"""
-            if 'digimoov' in str(training_id):
-                product_id = request.env['product.template'].sudo().search(
-                    [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
-                if product_id:
-                    user.partner_id.id_edof = product_id.id_edof
-            else:
-                product_id = request.env['product.template'].sudo().search(
-                    [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
-                if product_id:
-                    user.partner_id.id_edof = product_id.id_edof
-            print('if digi ', product_id)
-            if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
+            product_ids = request.env['product.template'].sudo().search(
+                [])
+            for product_id in product_ids:
+                if product_id.id_edof and product_id.id_edof in training_id:
+                    _logger.info("id_edof %s" % str(product_id))
+                    print("product id validate digi", product_id.id_edof)
+                    if product_id:
+                        user.partner_id.id_edof = product_id.id_edof
+                        if product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
 
-                _logger.info('if product_id digimoov %s' %str(product_id.id_edof))
-                module_id = request.env['mcmacademy.module'].sudo().search(
-                    [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
-                     ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
-                     ('session_id.number_places_available', '>', 0)], limit=1)
-                print('before if modulee', module_id)
-                if module_id:
-                    _logger.info('if modulee %s' %str(module_id))
-                    user.partner_id.module_id = module_id
-                    user.partner_id.mcm_session_id = module_id.session_id
-                    product_id = request.env['product.product'].sudo().search(
-                        [('product_tmpl_id', '=', module_id.product_id.id)])
-                    user.partner_id.mcm_session_id = module_id.session_id
-                    user.partner_id.module_id = module_id
-                    request.env.user.company_id = 2
-                    """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                    # invoice = request.env['account.move'].sudo().search(
-                    #     [('numero_cpf', "=", externalId),
-                    #      ('state', "=", 'posted'),
-                    #      ('partner_id', "=", user.partner_id.id)], limit=1)
-                    # print('invoice', invoice.name)
-                    # if not invoice:
-                    #     print('if  not invoice digi ')
-                    #     so = request.env['sale.order'].sudo().create({
-                    #         'partner_id': user.partner_id.id,
-                    #         'company_id': 2,
-                    #     })
-                    #     so.module_id = module_id
-                    #     so.session_id = module_id.session_id
-                    #
-                    #     so_line = request.env['sale.order.line'].sudo().create({
-                    #         'name': product_id.name,
-                    #         'product_id': product_id.id,
-                    #         'product_uom_qty': 1,
-                    #         'product_uom': product_id.uom_id.id,
-                    #         'price_unit': product_id.list_price,
-                    #         'order_id': so.id,
-                    #         'tax_id': product_id.taxes_id,
-                    #         'company_id': 2,
-                    #     })
-                    #     # prix de la formation dans le devis
-                    #     amount_before_instalment = so.amount_total
-                    #     # so.amount_total = so.amount_total * 0.25
-                    #     for line in so.order_line:
-                    #         line.price_unit = so.amount_total
-                    #     so.action_confirm()
-                    #     ref = False
-                    #     # Creation de la Facture Cpf
-                    #     # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
-                    #     # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
-                    #
-                    #     if so.amount_total > 0 and so.order_line:
-                    #         moves = so._create_invoices(final=True)
-                    #         for move in moves:
-                    #             move.type_facture = 'interne'
-                    #             # move.cpf_acompte_invoice= True
-                    #             # move.cpf_invoice =True
-                    #             move.methodes_payment = 'cpf'
-                    #             move.numero_cpf = externalId
-                    #             move.pourcentage_acompte = 25
-                    #             move.module_id = so.module_id
-                    #             move.session_id = so.session_id
-                    #             if so.pricelist_id.code:
-                    #                 move.pricelist_id = so.pricelist_id
-                    #             move.company_id = so.company_id
-                    #             move.price_unit = so.amount_total
-                    #             # move.cpf_acompte_invoice=True
-                    #             # move.cpf_invoice = True
-                    #             move.methodes_payment = 'cpf'
-                    #             move.post()
-                    #             ref = move.name
-                    #
-                    #     so.action_cancel()
-                    #     so.unlink()
-                    user.partner_id.statut = 'won'
-                    # create vals of wizard change state
-                    vals = {
-                        'partner_id': user.partner_id.id,
-                        'statut': 'won',
-                        'session_id': module_id.session_id.id,
-                        'module_id': module_id.id,
-                    }
-                    session_wizard = request.env['res.partner.session.wizard'].sudo().create(
-                        vals) #create wizard with vals
-                    session_wizard.action_modify_partner() #call action of modify partner
-                    if not user.partner_id.renounce_request and product_id.default_code != 'habilitation-electrique':
-                        if user.partner_id.phone:
-                            phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
-                            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                                           5:7] + ' ' + phone[
-                                                                                                                        7:]
-                            user.partner_id.phone = phone
-                        url = 'https://www.digimoov.fr/my'
-                        body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
-                            user.partner_id.name, url)
-                        if body:
-                            composer = request.env['sms.composer'].with_context(
-                                default_res_model='res.partner',
-                                default_res_ids=user.partner_id.id,
-                                default_composition_mode='mass',
-                            ).sudo().create({
-                                'body': body,
-                                'mass_keep_log': True,
-                                'mass_force_send': True,
-                            })
-                            sms = request.env['mail.message'].sudo().search(
-                                [("body", "=", body), ("message_type", "=", 'sms'),
-                                 ("res_id", "=", user.partner_id.id)])
-                            if not sms:
-                                composer.action_send_sms()  # envoyer un sms de félicitation d'inscription
-                            if user.partner_id.phone:
-                                user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[-9:]
-                    """changer step à validé dans espace client """
-                    user.partner_id.step = 'finish'
-                    session = request.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
-                                                                   (
-                                                                       'session_id', '=', module_id.session_id.id)])
-                    if not session:
-                        new_history = request.env['partner.sessions'].sudo().create({
-                            'client_id': user.partner_id.id,
-                            'session_id': module_id.session_id.id,
-                            'module_id': module_id.id,
-                            'company_id': 2,
-                        })
+                            _logger.info('if product_id digimoov %s' %str(product_id.id_edof))
+                            module_id = request.env['mcmacademy.module'].sudo().search(
+                                [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
+                                 ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
+                                 ('session_id.number_places_available', '>', 0)], limit=1)
+                            print('before if modulee', module_id)
+                            if module_id:
+                                _logger.info('if modulee %s' %str(module_id))
+                                user.partner_id.module_id = module_id
+                                user.partner_id.mcm_session_id = module_id.session_id
+                                product_id = request.env['product.product'].sudo().search(
+                                    [('product_tmpl_id', '=', module_id.product_id.id)])
+                                user.partner_id.mcm_session_id = module_id.session_id
+                                user.partner_id.module_id = module_id
+                                request.env.user.company_id = 2
+                                """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
+                                # invoice = request.env['account.move'].sudo().search(
+                                #     [('numero_cpf', "=", externalId),
+                                #      ('state', "=", 'posted'),
+                                #      ('partner_id', "=", user.partner_id.id)], limit=1)
+                                # print('invoice', invoice.name)
+                                # if not invoice:
+                                #     print('if  not invoice digi ')
+                                #     so = request.env['sale.order'].sudo().create({
+                                #         'partner_id': user.partner_id.id,
+                                #         'company_id': 2,
+                                #     })
+                                #     so.module_id = module_id
+                                #     so.session_id = module_id.session_id
+                                #
+                                #     so_line = request.env['sale.order.line'].sudo().create({
+                                #         'name': product_id.name,
+                                #         'product_id': product_id.id,
+                                #         'product_uom_qty': 1,
+                                #         'product_uom': product_id.uom_id.id,
+                                #         'price_unit': product_id.list_price,
+                                #         'order_id': so.id,
+                                #         'tax_id': product_id.taxes_id,
+                                #         'company_id': 2,
+                                #     })
+                                #     # prix de la formation dans le devis
+                                #     amount_before_instalment = so.amount_total
+                                #     # so.amount_total = so.amount_total * 0.25
+                                #     for line in so.order_line:
+                                #         line.price_unit = so.amount_total
+                                #     so.action_confirm()
+                                #     ref = False
+                                #     # Creation de la Facture Cpf
+                                #     # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
+                                #     # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
+                                #
+                                #     if so.amount_total > 0 and so.order_line:
+                                #         moves = so._create_invoices(final=True)
+                                #         for move in moves:
+                                #             move.type_facture = 'interne'
+                                #             # move.cpf_acompte_invoice= True
+                                #             # move.cpf_invoice =True
+                                #             move.methodes_payment = 'cpf'
+                                #             move.numero_cpf = externalId
+                                #             move.pourcentage_acompte = 25
+                                #             move.module_id = so.module_id
+                                #             move.session_id = so.session_id
+                                #             if so.pricelist_id.code:
+                                #                 move.pricelist_id = so.pricelist_id
+                                #             move.company_id = so.company_id
+                                #             move.price_unit = so.amount_total
+                                #             # move.cpf_acompte_invoice=True
+                                #             # move.cpf_invoice = True
+                                #             move.methodes_payment = 'cpf'
+                                #             move.post()
+                                #             ref = move.name
+                                #
+                                #     so.action_cancel()
+                                #     so.unlink()
+                                user.partner_id.statut = 'won'
+                                # create vals of wizard change state
+                                vals = {
+                                    'partner_id': user.partner_id.id,
+                                    'statut': 'won',
+                                    'session_id': module_id.session_id.id,
+                                    'module_id': module_id.id,
+                                }
+                                session_wizard = request.env['res.partner.session.wizard'].sudo().create(
+                                    vals) #create wizard with vals
+                                session_wizard.action_modify_partner() #call action of modify partner
+                                if not user.partner_id.renounce_request and product_id.default_code != 'habilitation-electrique':
+                                    if user.partner_id.phone:
+                                        phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                                                                                                                       5:7] + ' ' + phone[
+                                                                                                                                    7:]
+                                        user.partner_id.phone = phone
+                                    url = 'https://www.digimoov.fr/my'
+                                    body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
+                                        user.partner_id.name, url)
+                                    if body:
+                                        composer = request.env['sms.composer'].with_context(
+                                            default_res_model='res.partner',
+                                            default_res_ids=user.partner_id.id,
+                                            default_composition_mode='mass',
+                                        ).sudo().create({
+                                            'body': body,
+                                            'mass_keep_log': True,
+                                            'mass_force_send': True,
+                                        })
+                                        sms = request.env['mail.message'].sudo().search(
+                                            [("body", "=", body), ("message_type", "=", 'sms'),
+                                             ("res_id", "=", user.partner_id.id)])
+                                        if not sms:
+                                            composer.action_send_sms()  # envoyer un sms de félicitation d'inscription
+                                        if user.partner_id.phone:
+                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                """changer step à validé dans espace client """
+                                user.partner_id.step = 'finish'
+                                session = request.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
+                                                                               (
+                                                                                   'session_id', '=', module_id.session_id.id)])
+                                if not session:
+                                    new_history = request.env['partner.sessions'].sudo().create({
+                                        'client_id': user.partner_id.id,
+                                        'session_id': module_id.session_id.id,
+                                        'module_id': module_id.id,
+                                        'company_id': 2,
+                                    })
 
-            elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
-                print('if product_id mcm', product_id, user.login)
-                user.partner_id.id_edof = product_id.id_edof
-                module_id = request.env['mcmacademy.module'].sudo().search(
-                    [('company_id', "=", 1), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
-                     ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
-                     ('session_id.number_places_available', '>', 0)], limit=1)
-                if module_id:
-                    user.partner_id.module_id = module_id
-                    user.partner_id.mcm_session_id = module_id.session_id
-                    product_id = request.env['product.product'].sudo().search(
-                        [('product_tmpl_id', '=', module_id.product_id.id)])
-                    user.partner_id.mcm_session_id = module_id.session_id
-                    user.partner_id.module_id = module_id
-                    request.env.user.company_id = 1
-                    today = date.today()
-                    date_min = today - relativedelta(months=2)
-                    """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                    # invoice = request.env['account.move'].sudo().search(
-                    #     [('numero_cpf', "=", externalId),
-                    #      ('state', "=", 'posted'),
-                    #      ('partner_id', "=", user.partner_id.id)], limit=1)
-                    # print('invoice', invoice)
-                    # if not invoice:
-                    #     print('if  not invoice mcm')
-                    #     so = request.env['sale.order'].sudo().create({
-                    #         'partner_id': user.partner_id.id,
-                    #         'company_id': 1,
-                    #     })
-                    #     request.env['sale.order.line'].sudo().create({
-                    #         'name': product_id.name,
-                    #         'product_id': product_id.id,
-                    #         'product_uom_qty': 1,
-                    #         'product_uom': product_id.uom_id.id,
-                    #         'price_unit': product_id.list_price,
-                    #         'order_id': so.id,
-                    #         'tax_id': product_id.taxes_id,
-                    #         'company_id': 1
-                    #     })
-                    #     # Enreggistrement des valeurs de la facture
-                    #     # Parser le pourcentage d'acompte
-                    #     # Creation de la fcture étape Finale
-                    #     # Facture comptabilisée
-                    #     so.action_confirm()
-                    #     so.module_id = module_id
-                    #     so.session_id = module_id.session_id
-                    #     moves = so._create_invoices(final=True)
-                    #     for move in moves:
-                    #         move.type_facture = 'interne'
-                    #         move.module_id = so.module_id
-                    #         # move.cpf_acompte_invoice=True
-                    #         # move.cpf_invoice =True
-                    #         move.methodes_payment = 'cpf'
-                    #         move.numero_cpf = externalId
-                    #         move.pourcentage_acompte = 25
-                    #         move.session_id = so.session_id
-                    #         move.company_id = so.company_id
-                    #         move.website_id = 1
-                    #         for line in move.invoice_line_ids:
-                    #             if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
-                    #                 line.account_id = line.product_id.property_account_income_id
-                    #         move.post()
-                    #     so.action_cancel()
-                    #     so.unlink()
-                    user.partner_id.statut = 'won'
-                    #create vals of wizard change state
-                    vals = {
-                        'partner_id': user.partner_id.id,
-                        'statut': 'won',
-                        'session_id': module_id.session_id.id,
-                        'module_id': module_id.id,
-                    }
-                    session_wizard = request.env['res.partner.session.wizard'].sudo().create(
-                        vals) #create wizard with vals
-                    session_wizard.action_modify_partner() #call action of modify partner
+                        elif  product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
+                            print('if product_id mcm', product_id, user.login)
+                            user.partner_id.id_edof = product_id.id_edof
+                            module_id = request.env['mcmacademy.module'].sudo().search(
+                                [('company_id', "=", 1), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
+                                 ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
+                                 ('session_id.number_places_available', '>', 0)], limit=1)
+                            if module_id:
+                                user.partner_id.module_id = module_id
+                                user.partner_id.mcm_session_id = module_id.session_id
+                                product_id = request.env['product.product'].sudo().search(
+                                    [('product_tmpl_id', '=', module_id.product_id.id)])
+                                user.partner_id.mcm_session_id = module_id.session_id
+                                user.partner_id.module_id = module_id
+                                request.env.user.company_id = 1
+                                today = date.today()
+                                date_min = today - relativedelta(months=2)
+                                """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
+                                # invoice = request.env['account.move'].sudo().search(
+                                #     [('numero_cpf', "=", externalId),
+                                #      ('state', "=", 'posted'),
+                                #      ('partner_id', "=", user.partner_id.id)], limit=1)
+                                # print('invoice', invoice)
+                                # if not invoice:
+                                #     print('if  not invoice mcm')
+                                #     so = request.env['sale.order'].sudo().create({
+                                #         'partner_id': user.partner_id.id,
+                                #         'company_id': 1,
+                                #     })
+                                #     request.env['sale.order.line'].sudo().create({
+                                #         'name': product_id.name,
+                                #         'product_id': product_id.id,
+                                #         'product_uom_qty': 1,
+                                #         'product_uom': product_id.uom_id.id,
+                                #         'price_unit': product_id.list_price,
+                                #         'order_id': so.id,
+                                #         'tax_id': product_id.taxes_id,
+                                #         'company_id': 1
+                                #     })
+                                #     # Enreggistrement des valeurs de la facture
+                                #     # Parser le pourcentage d'acompte
+                                #     # Creation de la fcture étape Finale
+                                #     # Facture comptabilisée
+                                #     so.action_confirm()
+                                #     so.module_id = module_id
+                                #     so.session_id = module_id.session_id
+                                #     moves = so._create_invoices(final=True)
+                                #     for move in moves:
+                                #         move.type_facture = 'interne'
+                                #         move.module_id = so.module_id
+                                #         # move.cpf_acompte_invoice=True
+                                #         # move.cpf_invoice =True
+                                #         move.methodes_payment = 'cpf'
+                                #         move.numero_cpf = externalId
+                                #         move.pourcentage_acompte = 25
+                                #         move.session_id = so.session_id
+                                #         move.company_id = so.company_id
+                                #         move.website_id = 1
+                                #         for line in move.invoice_line_ids:
+                                #             if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
+                                #                 line.account_id = line.product_id.property_account_income_id
+                                #         move.post()
+                                #     so.action_cancel()
+                                #     so.unlink()
+                                user.partner_id.statut = 'won'
+                                #create vals of wizard change state
+                                vals = {
+                                    'partner_id': user.partner_id.id,
+                                    'statut': 'won',
+                                    'session_id': module_id.session_id.id,
+                                    'module_id': module_id.id,
+                                }
+                                session_wizard = request.env['res.partner.session.wizard'].sudo().create(
+                                    vals) #create wizard with vals
+                                session_wizard.action_modify_partner() #call action of modify partner
 
-                    # mail_compose_message = request.env['mail.compose.message']
-                    # mail_compose_message.fetch_sendinblue_template()
-                    # template_id = request.env['mail.template'].sudo().search(
-                    #     [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
-                    #      ('model_id', "=", 'res.partner')],
-                    #     limit=1)  # when the webhook of wedof send the state accepted we send an email to client to register in CMA. we get the mail template from sendinblue
-                    # if template_id:
-                    #     message = request.env['mail.message'].sudo().search(
-                    #         [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
-                    #          ('model', "=", 'res.partner'), ('res_id', "=", request.env.user.partner_id.id)],
-                    #         limit=1)  # check if we have already sent the email
-                    #     if not message:
-                    #         user.partner_id.with_context(force_send=True).message_post_with_template(template_id.id,
-                    #                                                                          composition_mode='comment',
-                    #                                                                          )  # send the email to client
+                                # mail_compose_message = request.env['mail.compose.message']
+                                # mail_compose_message.fetch_sendinblue_template()
+                                # template_id = request.env['mail.template'].sudo().search(
+                                #     [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
+                                #      ('model_id', "=", 'res.partner')],
+                                #     limit=1)  # when the webhook of wedof send the state accepted we send an email to client to register in CMA. we get the mail template from sendinblue
+                                # if template_id:
+                                #     message = request.env['mail.message'].sudo().search(
+                                #         [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
+                                #          ('model', "=", 'res.partner'), ('res_id', "=", request.env.user.partner_id.id)],
+                                #         limit=1)  # check if we have already sent the email
+                                #     if not message:
+                                #         user.partner_id.with_context(force_send=True).message_post_with_template(template_id.id,
+                                #                                                                          composition_mode='comment',
+                                #                                                                          )  # send the email to client
 
-                    if not user.partner_id.renounce_request:
-                        if user.partner_id.phone:
-                            phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
-                            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
-                                                                                        3:5] + ' ' + phone[
-                                                                                                     5:7] + ' ' + phone[
-                                                                                                                  7:]
-                            user.partner_id.phone = phone
-                        url = 'https://www.mcm-academy.fr/my'
-                        body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
-                            user.partner_id.name, url)
-                        if body:
-                            composer = request.env['sms.composer'].with_context(
-                                default_res_model='res.partner',
-                                default_res_ids=user.partner_id.id,
-                                default_composition_mode='mass',
-                            ).sudo().create({
-                                'body': body,
-                                'mass_keep_log': True,
-                                'mass_force_send': True,
-                            })
-                            sms = request.env['mail.message'].sudo().search(
-                                [("body", "=", body), ("message_type", "=", 'sms'),
-                                 ("res_id", "=", user.partner_id.id)])
-                            if not sms:
-                                composer.action_send_sms()  # envoyer un sms de félicitation d'inscription
-                            if user.partner_id.phone:
-                                user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
-                                                              -9:]
-                    else:
-                        if not user.partner_id.bolt:
-                            if user.partner_id.phone:
-                                phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
-                                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
-                                                                                            3:5] + ' ' + phone[
-                                                                                                         5:7] + ' ' + phone[
-                                                                                                                      7:]
-                                user.partner_id.phone = phone
-                            url = 'https://bit.ly/3CZ2HtS'
-                            body = "MCM ACADEMY. Afin d'accéder à notre formation vous devez vous inscrire à l'examen auprès de la CMA de votre région via le lien suivant:%s" % (
-                                 url)
-                            if body:
-                                composer = request.env['sms.composer'].with_context(
-                                    default_res_model='res.partner',
-                                    default_res_id=user.partner_id.id,
-                                    default_composition_mode='comment',
-                                ).sudo().create({
-                                    'body': body,
-                                    'mass_keep_log': True,
-                                    'mass_force_send': False,
-                                    'use_active_domain': False,
-                                })
-                                sms = request.env['mail.message'].sudo().search(
-                                    [("body", "=", body), ("message_type", "=", 'sms'),
-                                     ("res_id", "=", user.partner_id.id)])
-                                if not sms:
-                                    
-                                    composer.action_send_sms()  # we send sms to client contains link to register in cma.
-                                if user.partner_id.phone:
-                                    user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
-                                                                  -9:]
-    
-                            mail_compose_message = request.env['mail.compose.message']
-                            mail_compose_message.fetch_sendinblue_template()
-                            template_id = False
-                            template_id = request.env['mail.template'].sudo().search(
-                                [('subject', "=", "Inscription examen chambre des métiers"),
-                                 ('model_id', "=", 'res.partner')],
-                                limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
-                            if not template_id:
-                                template_id = request.env['mail.template'].sudo().search(
-                                    [('name', "=", "MCM INSCRIPTION EXAMEN CMA"),
-                                     ('model_id', "=", 'res.partner')],
-                                    limit=1)
-                            if template_id:
-                                message = request.env['mail.message'].sudo().search(
-                                    [('subject', "=", "Inscription examen chambre des métiers"),
-                                     ('model', "=", 'res.partner'), ('res_id', "=", user.partner_id.id)],
-                                    limit=1)
-                                if not message:  # check if we have already sent the email
-                                    user.partner_id.with_context(force_send=True).message_post_with_template(
-                                        template_id.id,
-                                        composition_mode='comment',
-                                    )  # send the email to clien
-                    """changer step à validé dans espace client """
-                    user.partner_id.step = 'finish'
-                    session = request.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
-                                                                   (
-                                                                       'session_id', '=', module_id.session_id.id)])
-                    if not session:
-                        new_history = request.env['partner.sessions'].sudo().create({
-                            'client_id': user.partner_id.id,
-                            'session_id': module_id.session_id.id,
-                            'module_id': module_id.id,
-                            'company_id': 1,
-                        })
+                                if not user.partner_id.renounce_request:
+                                    if user.partner_id.phone:
+                                        phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                                    3:5] + ' ' + phone[
+                                                                                                                 5:7] + ' ' + phone[
+                                                                                                                              7:]
+                                        user.partner_id.phone = phone
+                                    url = 'https://www.mcm-academy.fr/my'
+                                    body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
+                                        user.partner_id.name, url)
+                                    if body:
+                                        composer = request.env['sms.composer'].with_context(
+                                            default_res_model='res.partner',
+                                            default_res_ids=user.partner_id.id,
+                                            default_composition_mode='mass',
+                                        ).sudo().create({
+                                            'body': body,
+                                            'mass_keep_log': True,
+                                            'mass_force_send': True,
+                                        })
+                                        sms = request.env['mail.message'].sudo().search(
+                                            [("body", "=", body), ("message_type", "=", 'sms'),
+                                             ("res_id", "=", user.partner_id.id)])
+                                        if not sms:
+                                            composer.action_send_sms()  # envoyer un sms de félicitation d'inscription
+                                        if user.partner_id.phone:
+                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
+                                                                          -9:]
+                                else:
+                                    if not user.partner_id.bolt:
+                                        if user.partner_id.phone:
+                                            phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                                        3:5] + ' ' + phone[
+                                                                                                                     5:7] + ' ' + phone[
+                                                                                                                                  7:]
+                                            user.partner_id.phone = phone
+                                        url = 'https://bit.ly/3CZ2HtS'
+                                        body = "MCM ACADEMY. Afin d'accéder à notre formation vous devez vous inscrire à l'examen auprès de la CMA de votre région via le lien suivant:%s" % (
+                                             url)
+                                        if body:
+                                            composer = request.env['sms.composer'].with_context(
+                                                default_res_model='res.partner',
+                                                default_res_id=user.partner_id.id,
+                                                default_composition_mode='comment',
+                                            ).sudo().create({
+                                                'body': body,
+                                                'mass_keep_log': True,
+                                                'mass_force_send': False,
+                                                'use_active_domain': False,
+                                            })
+                                            sms = request.env['mail.message'].sudo().search(
+                                                [("body", "=", body), ("message_type", "=", 'sms'),
+                                                 ("res_id", "=", user.partner_id.id)])
+                                            if not sms:
 
-            else:
-                if 'digimoov' in str(training_id):
-                    vals = {
-                        'description': 'CPF: vérifier la date et ville de %s' % (user.name),
-                        'name': 'CPF : Vérifier Date et Ville ',
-                        'team_id': request.env['helpdesk.team'].sudo().search(
-                            [('name', 'like', 'Client'), ('company_id', "=", 2)],
-                            limit=1).id,
-                    }
-                    description = "CPF: vérifier la date et ville de " + str(user.name)
-                    ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description)])
-                    if not ticket:
-                        new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                            vals)
-                else:
-                    vals = {
-                        'partner_email': '',
-                        'partner_id': False,
-                        'description': 'CPF: id module edof %s non trouvé' % (training_id),
-                        'name': 'CPF : ID module edof non trouvé ',
-                        'team_id': request.env['helpdesk.team'].sudo().search(
-                            [('name', "like", _('Client')), ('company_id', "=", 1)],
-                            limit=1).id,
-                    }
-                    description = 'CPF: id module edof ' + str(training_id) + ' non trouvé'
-                    ticket = request.env['helpdesk.ticket'].sudo().search([('description', 'ilike', description)])
-                    if not ticket:
-                        new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                            vals)
+                                                composer.action_send_sms()  # we send sms to client contains link to register in cma.
+                                            if user.partner_id.phone:
+                                                user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
+                                                                              -9:]
+
+                                        mail_compose_message = request.env['mail.compose.message']
+                                        mail_compose_message.fetch_sendinblue_template()
+                                        template_id = False
+                                        template_id = request.env['mail.template'].sudo().search(
+                                            [('subject', "=", "Inscription examen chambre des métiers"),
+                                             ('model_id', "=", 'res.partner')],
+                                            limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
+                                        if not template_id:
+                                            template_id = request.env['mail.template'].sudo().search(
+                                                [('name', "=", "MCM INSCRIPTION EXAMEN CMA"),
+                                                 ('model_id', "=", 'res.partner')],
+                                                limit=1)
+                                        if template_id:
+                                            message = request.env['mail.message'].sudo().search(
+                                                [('subject', "=", "Inscription examen chambre des métiers"),
+                                                 ('model', "=", 'res.partner'), ('res_id', "=", user.partner_id.id)],
+                                                limit=1)
+                                            if not message:  # check if we have already sent the email
+                                                user.partner_id.with_context(force_send=True).message_post_with_template(
+                                                    template_id.id,
+                                                    composition_mode='comment',
+                                                )  # send the email to clien
+                                """changer step à validé dans espace client """
+                                user.partner_id.step = 'finish'
+                                session = request.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
+                                                                               (
+                                                                                   'session_id', '=', module_id.session_id.id)])
+                                if not session:
+                                    new_history = request.env['partner.sessions'].sudo().create({
+                                        'client_id': user.partner_id.id,
+                                        'session_id': module_id.session_id.id,
+                                        'module_id': module_id.id,
+                                        'company_id': 1,
+                                    })
+
+                        else:
+                            if 'digimoov' in str(training_id):
+                                vals = {
+                                    'description': 'CPF: id module edof %s non trouvé' % (training_id),
+                                    'name': 'CPF : ID module edof non trouvé ',
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                        limit=1).id,
+                                }
+                                description = 'CPF: id module edof ' + str(training_id) + ' non trouvé'
+                                ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description)])
+                                if not ticket:
+                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
+                            else:
+                                vals = {
+                                    'partner_email': '',
+                                    'partner_id': False,
+                                    'description': 'CPF: id module edof %s non trouvé' % (training_id),
+                                    'name': 'CPF : ID module edof non trouvé ',
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', "like", _('Client')), ('company_id', "=", 1)],
+                                        limit=1).id,
+                                }
+                                description = 'CPF: id module edof ' + str(training_id) + ' non trouvé'
+                                ticket = request.env['helpdesk.ticket'].sudo().search([('description', 'ilike', description)])
+                                if not ticket:
+                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
         return True
     
     """Mettre à jour statut cpf apres chaque update sur edof """
@@ -1030,8 +1031,7 @@ class WebhookController(http.Controller):
             prenom = dossier['attendee']['lastName']
             prenom = unidecode(prenom)
         diplome = dossier['trainingActionInfo']['title']
-        product_id = request.env['product.template'].sudo().search(
-            [('id_edof', "=", str(training_id))], limit=1)
+        product_id=""
 
         if state == "validated":
             print('validate', email, dossier['attendee']['lastName'], dossier['attendee']['firstName'])
@@ -1056,85 +1056,87 @@ class WebhookController(http.Controller):
                 user.partner_id.mode_de_financement = 'cpf'  # update field mode de financement to cpf
                 user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
                 print(user.partner_id.date_cpf)
-
-                if state == "inTraining":
-                    print('intraining', email)
-                    user.partner_id.statut_cpf = "in_training"
-                    user.partner_id.numero_cpf = externalId
-                    user.partner_id.date_cpf = lastupd
-                    user.partner_id.diplome = diplome
-                    if product_id:
-                        user.partner_id.id_edof = product_id.id_edof
-
-                if state == "terminated":
-                    print('terminated', email)
-                    user.partner_id.statut_cpf = "out_training"
-                    user.partner_id.numero_cpf = externalId
-                    user.partner_id.diplome = diplome
-                    user.partner_id.date_cpf = lastupd
-                    if product_id:
-                        user.partner_id.id_edof = product_id.id_edof
-                if state == "serviceDoneDeclared":
-                    print('serviceDoneDeclared', email)
-                    user.partner_id.statut_cpf = "service_declared"
-                    user.partner_id.numero_cpf = externalId
-                    user.partner_id.date_cpf = lastupd
-                    user.partner_id.diplome = diplome
-                    if product_id:
-                        user.partner_id.id_edof = product_id.id_edof
-
-                if state == "serviceDoneValidated":
-                    print('serviceDoneValidated', email)
-
-                    user.partner_id.statut_cpf = "service_validated"
-                    user.partner_id.numero_cpf = externalId
-                    user.partner_id.date_cpf = lastupd
-                    user.partner_id.diplome = diplome
-                    if product_id:
-                        user.partner_id.id_edof = product_id.id_edof
-                if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism" or state == "rejectedWithoutTitulaireSuite" or state == "rejected":
-                    if user.partner_id.numero_cpf == externalId:
-                        """Vérifier si le dossier en formation donc statut de dossier est abandonné si non annulé"""
-                        if user.partner_id.statut_cpf == "intraining":
-                            user.partner_id.statut = "abandon"
-                            if user.partner_id.mcm_session_id and user.partner_id.module_id:
-                                vals = {
-                                    'partner_id': user.partner_id.id,
-                                    'statut': 'abandon',
-                                    'session_id': user.partner_id.mcm_session_id.id,
-                                    'module_id': user.partner_id.module_id.id,
-                                }
-
-                                session_wizard = request.env[
-                                    'res.partner.session.wizard'].sudo().create(
-                                    vals)
-                                session_wizard.action_modify_partner()
-                        elif user.partner_id.statut_cpf != "canceled":
-                            user.partner_id.statut = "canceled"
-                            if user.partner_id.mcm_session_id and user.partner_id.module_id:
-                                vals = {
-                                    'partner_id': user.partner_id.id,
-                                    'statut': 'canceled',
-                                    'session_id': user.partner_id.mcm_session_id.id,
-                                    'module_id': user.partner_id.module_id.id,
-                                }
-
-                                session_wizard = request.env[
-                                    'res.partner.session.wizard'].sudo().create(
-                                    vals)
-                                session_wizard.action_modify_partner()
-                        user.partner_id.statut_cpf = "canceled"
-                        user.partner_id.date_cpf = lastupd
-                        user.partner_id.diplome = diplome
+                """chercher le produit sur odoo selon id edof de formation"""
+                product_ids = request.env['product.template'].sudo().search(
+                    [])
+                for product_id in product_ids:
+                    if product_id.id_edof and product_id.id_edof in training_id:
+                        _logger.info("id_edof %s" % str(product_id))
+                        print("product id validate digi", product_id.id_edof)
                         if product_id:
                             user.partner_id.id_edof = product_id.id_edof
+                            if state == "inTraining":
+                                print('intraining', email)
+                                user.partner_id.statut_cpf = "in_training"
+                                user.partner_id.numero_cpf = externalId
+                                user.partner_id.date_cpf = lastupd
+                                user.partner_id.diplome = diplome
 
-                if state == "terminated":
-                    print('terminated', email)
-                    user.partner_id.statut_cpf = "out_training"
-                    user.partner_id.numero_cpf = externalId
-                    user.partner_id.diplome = diplome
-                    user.partner_id.date_cpf = lastupd
-                    if product_id:
-                        user.partner_id.id_edof = product_id.id_edof
+
+                            if state == "terminated":
+                                print('terminated', email)
+                                user.partner_id.statut_cpf = "out_training"
+                                user.partner_id.numero_cpf = externalId
+                                user.partner_id.diplome = diplome
+                                user.partner_id.date_cpf = lastupd
+
+                            if state == "serviceDoneDeclared":
+                                print('serviceDoneDeclared', email)
+                                user.partner_id.statut_cpf = "service_declared"
+                                user.partner_id.numero_cpf = externalId
+                                user.partner_id.date_cpf = lastupd
+                                user.partner_id.diplome = diplome
+
+
+                            if state == "serviceDoneValidated":
+                                print('serviceDoneValidated', email)
+
+                                user.partner_id.statut_cpf = "service_validated"
+                                user.partner_id.numero_cpf = externalId
+                                user.partner_id.date_cpf = lastupd
+                                user.partner_id.diplome = diplome
+
+                            if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism" or state == "rejectedWithoutTitulaireSuite" or state == "rejected":
+                                if user.partner_id.numero_cpf == externalId:
+                                    """Vérifier si le dossier en formation donc statut de dossier est abandonné si non annulé"""
+                                    if user.partner_id.statut_cpf == "intraining":
+                                        user.partner_id.statut = "abandon"
+                                        if user.partner_id.mcm_session_id and user.partner_id.module_id:
+                                            vals = {
+                                                'partner_id': user.partner_id.id,
+                                                'statut': 'abandon',
+                                                'session_id': user.partner_id.mcm_session_id.id,
+                                                'module_id': user.partner_id.module_id.id,
+                                            }
+
+                                            session_wizard = request.env[
+                                                'res.partner.session.wizard'].sudo().create(
+                                                vals)
+                                            session_wizard.action_modify_partner()
+                                    elif user.partner_id.statut_cpf != "canceled":
+                                        user.partner_id.statut = "canceled"
+                                        if user.partner_id.mcm_session_id and user.partner_id.module_id:
+                                            vals = {
+                                                'partner_id': user.partner_id.id,
+                                                'statut': 'canceled',
+                                                'session_id': user.partner_id.mcm_session_id.id,
+                                                'module_id': user.partner_id.module_id.id,
+                                            }
+
+                                            session_wizard = request.env[
+                                                'res.partner.session.wizard'].sudo().create(
+                                                vals)
+                                            session_wizard.action_modify_partner()
+                                    user.partner_id.statut_cpf = "canceled"
+                                    user.partner_id.date_cpf = lastupd
+                                    user.partner_id.diplome = diplome
+
+
+                            if state == "terminated":
+                                print('terminated', email)
+                                user.partner_id.statut_cpf = "out_training"
+                                user.partner_id.numero_cpf = externalId
+                                user.partner_id.diplome = diplome
+                                user.partner_id.date_cpf = lastupd
+
         return True

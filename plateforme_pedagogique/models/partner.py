@@ -933,32 +933,32 @@ class partner(models.Model):
 
                                     """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
 
+                                    product_ids = self.env['product.template'].sudo().search([('company_id',"=",2)])
+                                    for product_id in product_ids:
+                                        if product_id.id_edof and product_id.id_edof in module:
+                                            _logger.info("id_edof %s" % str(product_id))
+                                            if response_post.status_code == 200:
 
-                                    product_id = self.env['product.template'].sudo().search(
-                                        [('id_edof', "like", str(module)), ('company_id', "=", 2)], limit=1)
+                                                partner = self.env['res.partner'].sudo().search(
+                                                    [('numero_cpf', "=", str(externalId))])
 
-                                    if response_post.status_code == 200:
+                                                if len(partner) > 1:
+                                                    for part in partner:
+                                                        part_email = part.email
+                                                        if part_email.upper() == email.upper():
+                                                            _logger.info('if partner >1 %s' % partner.numero_cpf)
+                                                            partner.statut_cpf = "in_training"
+                                                            partner.date_cpf = lastupd
+                                                            if product_id:
+                                                                partner.id_edof = product_id.id_edof
 
-                                        partner = self.env['res.partner'].sudo().search(
-                                            [('numero_cpf', "=", str(externalId))])
-
-                                        if len(partner) > 1:
-                                            for part in partner:
-                                                part_email = part.email
-                                                if part_email.upper() == email.upper():
-                                                    _logger.info('if partner >1 %s' % partner.numero_cpf)
+                                                elif len(partner) == 1:
+                                                    _logger.info('if partner %s' % partner.numero_cpf)
                                                     partner.statut_cpf = "in_training"
                                                     partner.date_cpf = lastupd
+                                                    partner.diplome = diplome
                                                     if product_id:
                                                         partner.id_edof = product_id.id_edof
-
-                                        elif len(partner) == 1:
-                                            _logger.info('if partner %s' % partner.numero_cpf)
-                                            partner.statut_cpf = "in_training"
-                                            partner.date_cpf = lastupd
-                                            partner.diplome = diplome
-                                            if product_id:
-                                                partner.id_edof = product_id.id_edof
                             except Exception:
                                 self.env.cr.rollback()
                                 _logger.exception("Erreur d'enter en formation")
@@ -2026,13 +2026,13 @@ class partner(models.Model):
                                             else:
                                                 if 'digimoov' in str(training_id):
                                                     vals = {
-                                                        'description': 'CPF: vérifier la date et ville de %s' % (user.name),
-                                                        'name': 'CPF : Vérifier Date et Ville ',
+                                                        'description': 'CPF: id module edof %s non trouvé' % (training_id),
+                                                        'name': 'CPF : ID module edof non trouvé ',
                                                         'team_id': self.env['helpdesk.team'].sudo().search(
                                                             [('name', 'like', 'Client'), ('company_id', "=", 2)],
                                                             limit=1).id,
                                                     }
-                                                    description = "CPF: vérifier la date et ville de " + str(user.name)
+                                                    description =  'CPF: id module edof ' + str(training_id) + ' non trouvé'
                                                     ticket = self.env['helpdesk.ticket'].sudo().search(
                                                         [("description", "=", description)])
                                                     if not ticket:
