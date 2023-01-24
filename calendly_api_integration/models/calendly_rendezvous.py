@@ -17,12 +17,12 @@ class CalendlyRendezVous(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Rendez Vous Calendly"
 
-    partner_id = fields.Many2one('res.partner', readonly=True)
+    partner_id = fields.Many2one('res.partner')
     email = fields.Char('Email')
     phone = fields.Char('Phone')
     event_starttime = fields.Date('Date de début')
     event_starttime_char = fields.Char('Date de début')
 
-    event_endtime = fields.Date('Date de fin', readonly=True)
-    name = fields.Char("Nom de l'évènement", readonly=True)
+    event_endtime = fields.Date('Date de fin')
+    name = fields.Char("Nom de l'évènement")
     zoomlink = fields.Char("Lien de l'évènement")
