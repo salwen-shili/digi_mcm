@@ -14,4 +14,3 @@ class ModuleDetails(models.Model):
     module_id=fields.Many2one('mcmacademy.module','Module',ondelete='cascade') #ondelete='cascade'  the module details will be automatically deleted when the module to which it is attached is deleted
     currency_id = fields.Many2one('res.currency',related='company_id.currency_id')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
-    url_cpf = fields.Char('URL de redirection vers produit sur CPF')
