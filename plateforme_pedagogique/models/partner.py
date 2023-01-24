@@ -1275,112 +1275,110 @@ class partner(models.Model):
                                 prenom = dossier['attendee']['lastName']
                                 prenom = unidecode(prenom)
                             diplome = dossier['trainingActionInfo']['title']
-                            product_ids = self.env['product.template'].sudo().search(
-                                [('company_id', "=", 2)])
+                            product_ids = self.env['product.template'].sudo().search([])
                             for product_id in product_ids:
                                 if product_id.id_edof and product_id.id_edof in training_id:
                                     _logger.info("id_edof %s" % str(product_id))
                                     print("product id validate digi", product_id.id_edof)
+                                    if state == "validated":
+                                        print('validate', email, dossier['attendee']['lastName'],
+                                              dossier['attendee']['firstName'])
+                                        self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel,
+                                                          code_postal, ville,
+                                                          diplome, dossier['attendee']['lastName'],
+                                                          dossier['attendee']['firstName'],
+                                                          dossier['externalId'], lastupd)
+                                    else:
+                                        users = self.env['res.users'].sudo().search(
+                                            [('login', "=", email)])  # search user with same email sended
+                                        user = False
+                                        if users and len(users) > 1:
+                                            user = users[1]
+                                            print('userss', users)
+                                            for utilisateur in users:
+                                                if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id:  # if more than user ,check between them wich user is come from edof
+                                                    user = utilisateur
+                                                    print('if userssss', user.partner_id.email)
+                                        else:
+                                            user = users
+                                        if user:  # if user finded
+                                            print('if__________________user', user.partner_id.statut_cpf, user.partner_id.email)
+                                            # user.partner_id.mode_de_financement = 'cpf'  # update field mode de financement to cpf
+                                            user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
+                                            print(user.partner_id.date_cpf)
 
-                            if state == "validated":
-                                print('validate', email, dossier['attendee']['lastName'],
-                                      dossier['attendee']['firstName'])
-                                self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel,
-                                                  code_postal, ville,
-                                                  diplome, dossier['attendee']['lastName'],
-                                                  dossier['attendee']['firstName'],
-                                                  dossier['externalId'], lastupd)
-                            else:
-                                users = self.env['res.users'].sudo().search(
-                                    [('login', "=", email)])  # search user with same email sended
-                                user = False
-                                if users and len(users) > 1:
-                                    user = users[1]
-                                    print('userss', users)
-                                    for utilisateur in users:
-                                        if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id:  # if more than user ,check between them wich user is come from edof
-                                            user = utilisateur
-                                            print('if userssss', user.partner_id.email)
-                                else:
-                                    user = users
-                                if user:  # if user finded
-                                    print('if__________________user', user.partner_id.statut_cpf, user.partner_id.email)
-                                    # user.partner_id.mode_de_financement = 'cpf'  # update field mode de financement to cpf
-                                    user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
-                                    print(user.partner_id.date_cpf)
+                                            if state == "inTraining":
+                                                print('intraining', email)
+                                                user.partner_id.statut_cpf = "in_training"
+                                                user.partner_id.numero_cpf = externalId
+                                                user.partner_id.date_cpf = lastupd
+                                                user.partner_id.diplome = diplome
+                                                if product_id:
+                                                    user.partner_id.id_edof = product_id.id_edof
 
-                                    if state == "inTraining":
-                                        print('intraining', email)
-                                        user.partner_id.statut_cpf = "in_training"
-                                        user.partner_id.numero_cpf = externalId
-                                        user.partner_id.date_cpf = lastupd
-                                        user.partner_id.diplome = diplome
-                                        if product_id:
-                                            user.partner_id.id_edof = product_id.id_edof
+                                            if state == "terminated":
+                                                print('terminated', email)
+                                                user.partner_id.statut_cpf = "out_training"
+                                                user.partner_id.numero_cpf = externalId
+                                                user.partner_id.diplome = diplome
+                                                user.partner_id.date_cpf = lastupd
+                                                if product_id:
+                                                    user.partner_id.id_edof = product_id.id_edof
+                                            if state == "serviceDoneDeclared":
+                                                print('serviceDoneDeclared', email)
+                                                user.partner_id.statut_cpf = "service_declared"
+                                                user.partner_id.numero_cpf = externalId
+                                                user.partner_id.date_cpf = lastupd
+                                                user.partner_id.diplome = diplome
+                                                if product_id:
+                                                    user.partner_id.id_edof = product_id.id_edof
 
-                                    if state == "terminated":
-                                        print('terminated', email)
-                                        user.partner_id.statut_cpf = "out_training"
-                                        user.partner_id.numero_cpf = externalId
-                                        user.partner_id.diplome = diplome
-                                        user.partner_id.date_cpf = lastupd
-                                        if product_id:
-                                            user.partner_id.id_edof = product_id.id_edof
-                                    if state == "serviceDoneDeclared":
-                                        print('serviceDoneDeclared', email)
-                                        user.partner_id.statut_cpf = "service_declared"
-                                        user.partner_id.numero_cpf = externalId
-                                        user.partner_id.date_cpf = lastupd
-                                        user.partner_id.diplome = diplome
-                                        if product_id:
-                                            user.partner_id.id_edof = product_id.id_edof
+                                            if state == "serviceDoneValidated":
+                                                print('serviceDoneValidated', email)
 
-                                    if state == "serviceDoneValidated":
-                                        print('serviceDoneValidated', email)
+                                                user.partner_id.statut_cpf = "service_validated"
+                                                user.partner_id.numero_cpf = externalId
+                                                user.partner_id.date_cpf = lastupd
+                                                user.partner_id.diplome = diplome
+                                                if product_id:
+                                                    user.partner_id.id_edof = product_id.id_edof
+                                            if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism" or state == "rejectedWithoutTitulaireSuite" or state == "rejected":
+                                                if user.partner_id.numero_cpf == externalId:
+                                                    """Vérifier si le dossier en formation donc statut de dossier est abandonné si non annulé"""
+                                                    if user.partner_id.statut_cpf == "intraining":
+                                                        user.partner_id.statut = "abandon"
+                                                        if user.partner_id.mcm_session_id and user.partner_id.module_id:
+                                                            vals = {
+                                                                'partner_id': user.partner_id.id,
+                                                                'statut': 'abandon',
+                                                                'session_id': user.partner_id.mcm_session_id.id,
+                                                                'module_id': user.partner_id.module_id.id,
+                                                            }
 
-                                        user.partner_id.statut_cpf = "service_validated"
-                                        user.partner_id.numero_cpf = externalId
-                                        user.partner_id.date_cpf = lastupd
-                                        user.partner_id.diplome = diplome
-                                        if product_id:
-                                            user.partner_id.id_edof = product_id.id_edof
-                                    if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism" or state == "rejectedWithoutTitulaireSuite" or state == "rejected":
-                                        if user.partner_id.numero_cpf == externalId:
-                                            """Vérifier si le dossier en formation donc statut de dossier est abandonné si non annulé"""
-                                            if user.partner_id.statut_cpf == "intraining":
-                                                user.partner_id.statut = "abandon"
-                                                if user.partner_id.mcm_session_id and user.partner_id.module_id:
-                                                    vals = {
-                                                        'partner_id': user.partner_id.id,
-                                                        'statut': 'abandon',
-                                                        'session_id': user.partner_id.mcm_session_id.id,
-                                                        'module_id': user.partner_id.module_id.id,
-                                                    }
+                                                            session_wizard = self.env[
+                                                                'res.partner.session.wizard'].sudo().create(
+                                                                vals)
+                                                            session_wizard.action_modify_partner()
+                                                    elif user.partner_id.statut_cpf != "canceled":
+                                                        user.partner_id.statut_cpf = "canceled"
+                                                        user.partner_id.statut = "canceled"
+                                                        if user.partner_id.mcm_session_id and user.partner_id.module_id:
+                                                            vals = {
+                                                                'partner_id': user.partner_id.id,
+                                                                'statut': 'canceled',
+                                                                'session_id': user.partner_id.mcm_session_id.id,
+                                                                'module_id': user.partner_id.module_id.id,
+                                                            }
 
-                                                    session_wizard = self.env[
-                                                        'res.partner.session.wizard'].sudo().create(
-                                                        vals)
-                                                    session_wizard.action_modify_partner()
-                                            elif user.partner_id.statut_cpf != "canceled":
-                                                user.partner_id.statut_cpf = "canceled"
-                                                user.partner_id.statut = "canceled"
-                                                if user.partner_id.mcm_session_id and user.partner_id.module_id:
-                                                    vals = {
-                                                        'partner_id': user.partner_id.id,
-                                                        'statut': 'canceled',
-                                                        'session_id': user.partner_id.mcm_session_id.id,
-                                                        'module_id': user.partner_id.module_id.id,
-                                                    }
-
-                                                    session_wizard = self.env[
-                                                        'res.partner.session.wizard'].sudo().create(
-                                                        vals)
-                                                    session_wizard.action_modify_partner()
-                                            user.partner_id.statut_cpf = "canceled"
-                                            user.partner_id.date_cpf = lastupd
-                                            user.partner_id.diplome = diplome
-                                            if product_id:
-                                                user.partner_id.id_edof = product_id.id_edof
+                                                            session_wizard = self.env[
+                                                                'res.partner.session.wizard'].sudo().create(
+                                                                vals)
+                                                            session_wizard.action_modify_partner()
+                                                    user.partner_id.statut_cpf = "canceled"
+                                                    user.partner_id.date_cpf = lastupd
+                                                    user.partner_id.diplome = diplome
+                                                    if product_id:
+                                                        user.partner_id.id_edof = product_id.id_edof
                         # except Exception:
                         #     self.env.cr.rollback()
                         #     _logger.exception("Erreur de mise a jour des statuts")
@@ -1564,7 +1562,7 @@ class partner(models.Model):
                             _logger.info("id_edof %s" % str(product_id))
                             print("product id validate digi", product_id.id_edof)
                             if product_id:
-                                client.id_edof = product_id.id_edof
+                                user.partner_id.id_edof = product_id.id_edof
 
                                 """Créer un devis et Remplir le panier par produit choisit sur edof"""
                                 sale = self.env['sale.order'].sudo().search([('partner_id', '=', client.id),
@@ -1806,257 +1804,256 @@ class partner(models.Model):
                                 _logger.info('userrr %s' % str(user.partner_id.name))
                                 """chercher le produit sur odoo selon id edof de formation"""
 
-                                if 'digimoov' in str(training_id):
 
-                                    product_id = self.env['product.template'].sudo().search(
-                                        [('id_edof', "like", str(training_id)), ('company_id', "=", 2)], limit=1)
-                                    if product_id:
-                                        user.partner_id.id_edof = product_id.id_edof
-                                else:
-                                    product_id = self.env['product.template'].sudo().search(
-                                        [('id_edof', "like", str(training_id)), ('company_id', "=", 1)], limit=1)
-                                    if product_id:
-                                        user.partner_id.id_edof = product_id.id_edof
                                 _logger.info('if digi %s' % str(product_id))
-                                if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
+                                product_ids = self.env['product.template'].sudo().search(
+                                    [])
+                                for product_id in product_ids:
+                                    if product_id.id_edof and product_id.id_edof in training_id:
+                                        _logger.info("id_edof %s" % str(product_id))
+                                        print("product id validate digi", product_id.id_edof)
+                                        if product_id:
+                                            user.partner_id.id_edof = product_id.id_edof
 
-                                    module_id = self.env['mcmacademy.module'].sudo().search(
-                                        [('company_id', "=", 2),
-                                         ('session_ville_id', "=", user.partner_id.session_ville_id.id),
-                                         ('date_exam', "=", user.partner_id.date_examen_edof),
-                                         ('product_id', "=", product_id.id),
-                                         ('session_id.number_places_available', '>', 0)], limit=1)
-                                    _logger.info('before if modulee %s' % str(module_id))
-                                    if module_id:
-                                        _logger.info('if modulee %s' % str(module_id))
-                                        user.partner_id.module_id = module_id
-                                        user.partner_id.mcm_session_id = module_id.session_id
-                                        product_id = self.env['product.product'].sudo().search(
-                                            [('product_tmpl_id', '=', module_id.product_id.id)])
-                                        user.partner_id.mcm_session_id = module_id.session_id
-                                        user.partner_id.module_id = module_id
-                                        self.env.user.company_id = 2
-                                        # """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                                        # invoice = self.env['account.move'].sudo().search(
-                                        #     [('numero_cpf', "=", externalId),
-                                        #      ('state', "=", 'posted'),
-                                        #      ('partner_id', "=", user.partner_id.id)],limit=1)
-                                        # print('invoice',invoice.name)
-                                        # if not invoice :
-                                        #     print('if  not invoice digi ')
-                                        #     so = self.env['sale.order'].sudo().create({
-                                        #         'partner_id': user.partner_id.id,
-                                        #         'company_id': 2,
-                                        #     })
-                                        #     so.module_id = module_id
-                                        #     so.session_id = module_id.session_id
-                                        #
-                                        #     so_line = self.env['sale.order.line'].sudo().create({
-                                        #         'name': product_id.name,
-                                        #         'product_id': product_id.id,
-                                        #         'product_uom_qty': 1,
-                                        #         'product_uom': product_id.uom_id.id,
-                                        #         'price_unit': product_id.list_price,
-                                        #         'order_id': so.id,
-                                        #         'tax_id': product_id.taxes_id,
-                                        #         'company_id': 2,
-                                        #     })
-                                        #     # prix de la formation dans le devis
-                                        #     amount_before_instalment = so.amount_total
-                                        #     # so.amount_total = so.amount_total * 0.25
-                                        #     for line in so.order_line:
-                                        #         line.price_unit = so.amount_total
-                                        #     so.action_confirm()
-                                        #     ref = False
-                                        #     # Creation de la Facture Cpf
-                                        #     # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
-                                        #     # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
-                                        #
-                                        #     if so.amount_total > 0 and so.order_line:
-                                        #         moves = so._create_invoices(final=True)
-                                        #         for move in moves:
-                                        #             move.type_facture = 'interne'
-                                        #             # move.cpf_acompte_invoice= True
-                                        #             # move.cpf_invoice =True
-                                        #             move.methodes_payment = 'cpf'
-                                        #             move.numero_cpf = externalId
-                                        #             move.pourcentage_acompte = 25
-                                        #             move.module_id = so.module_id
-                                        #             move.session_id = so.session_id
-                                        #             if so.pricelist_id.code:
-                                        #                 move.pricelist_id = so.pricelist_id
-                                        #             move.company_id = so.company_id
-                                        #             move.price_unit = so.amount_total
-                                        #             # move.cpf_acompte_invoice=True
-                                        #             # move.cpf_invoice = True
-                                        #             move.methodes_payment = 'cpf'
-                                        #             move.post()
-                                        #             ref = move.name
-                                        #
-                                        #     so.action_cancel()
-                                        #     so.unlink()
-                                        user.partner_id.statut = 'won'
-                                        list = []
-                                        for client in module_id.session_id.client_ids:  # get list of existing clients ids
-                                            list.append(client.id)
-                                        list.append(user.partner_id.id)  # append partner to the list
-                                        module_id.session_id.write(
-                                            {'client_ids': [(6, 0, list)]})  # update the list of clients
-                                        """changer step à validé dans espace client """
-                                        user.partner_id.step = 'finish'
-                                        session = self.env['partner.sessions'].search(
-                                            [('client_id', '=', user.partner_id.id),
-                                             (
-                                                 'session_id', '=', module_id.session_id.id)])
-                                        if not session:
-                                            new_history = self.env['partner.sessions'].sudo().create({
-                                                'client_id': user.partner_id.id,
-                                                'session_id': module_id.session_id.id,
-                                                'module_id': module_id.id,
-                                                'company_id': 2,
-                                            })
-                                        if not user.partner_id.renounce_request:
-                                            """Envoyer SMS pour renoncer au droit de rétractation"""
-                                            url = '%smy' % str(user.partner_id.company_id.website)
-                                            short_url = pyshorteners.Shortener()
-                                            short_url = short_url.tinyurl.short(
-                                                url)  # convert the url to be short using pyshorteners library
-                                            sms_body_ = "Afin d'intégrer notre plateforme de formation de suite, veuillez renoncer à votre droit de rétractation sur votre espace client %s" % (
-                                                short_url)
-                                            # content of sms
-                                            sms = self.env['mail.message'].sudo().search(
-                                                [("body", "like", short_url), ("message_type", "=", "sms"),
-                                                 ('partner_ids', 'in', user.partner_id.id),
-                                                 ('model', "=", "res.partner")])
-                                            if not sms:
-                                                self.send_sms(sms_body_, user.partner_id)
+                                            if product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
 
-                                elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
-                                    _logger.info('if product_id mcm %s' % str(product_id))
-                                    user.partner_id.id_edof = product_id.id_edof
-                                    module_id = self.env['mcmacademy.module'].sudo().search(
-                                        [('company_id', "=", 1),
-                                         ('session_ville_id', "=", user.partner_id.session_ville_id.id),
-                                         ('date_exam', "=", user.partner_id.date_examen_edof),
-                                         ('product_id', "=", product_id.id),
-                                         ('session_id.number_places_available', '>', 0)], limit=1)
-                                    if module_id:
-                                        user.partner_id.module_id = module_id
-                                        user.partner_id.mcm_session_id = module_id.session_id
-                                        product_id = self.env['product.product'].sudo().search(
-                                            [('product_tmpl_id', '=', module_id.product_id.id)])
-                                        user.partner_id.mcm_session_id = module_id.session_id
-                                        user.partner_id.module_id = module_id
-                                        self.env.user.company_id = 1
-                                        today = date.today()
-                                        date_min = today - relativedelta(months=2)
-                                        """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                                        # invoice = self.env['account.move'].sudo().search(
-                                        #     [('numero_cpf', "=", externalId),
-                                        #      ('state', "=", 'posted'),
-                                        #      ('partner_id', "=", user.partner_id.id)], limit=1)
-                                        # print('invoice', invoice)
-                                        # if not invoice :
-                                        #     print('if  not invoice mcm')
-                                        #     so = self.env['sale.order'].sudo().create({
-                                        #         'partner_id': user.partner_id.id,
-                                        #         'company_id': 1,
-                                        #     })
-                                        #     self.env['sale.order.line'].sudo().create({
-                                        #         'name': product_id.name,
-                                        #         'product_id': product_id.id,
-                                        #         'product_uom_qty': 1,
-                                        #         'product_uom': product_id.uom_id.id,
-                                        #         'price_unit': product_id.list_price,
-                                        #         'order_id': so.id,
-                                        #         'tax_id': product_id.taxes_id,
-                                        #         'company_id': 1
-                                        #     })
-                                        #     # Enreggistrement des valeurs de la facture
-                                        #     # Parser le pourcentage d'acompte
-                                        #     # Creation de la fcture étape Finale
-                                        #     # Facture comptabilisée
-                                        #     so.action_confirm()
-                                        #     so.module_id = module_id
-                                        #     so.session_id = module_id.session_id
-                                        #     moves = so._create_invoices(final=True)
-                                        #     for move in moves:
-                                        #         move.type_facture = 'interne'
-                                        #         move.module_id = so.module_id
-                                        #         # move.cpf_acompte_invoice=True
-                                        #         # move.cpf_invoice =True
-                                        #         move.methodes_payment = 'cpf'
-                                        #         move.numero_cpf=externalId
-                                        #         move.pourcentage_acompte = 25
-                                        #         move.session_id = so.session_id
-                                        #         move.company_id = so.company_id
-                                        #         move.website_id = 1
-                                        #         for line in move.invoice_line_ids:
-                                        #             if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
-                                        #                 line.account_id = line.product_id.property_account_income_id
-                                        #         move.post()
-                                        #     so.action_cancel()
-                                        #     so.unlink()
-                                        user.partner_id.statut = 'won'
-                                        """changer step à validé dans espace client """
-                                        user.partner_id.step = 'finish'
-                                        session = self.env['partner.sessions'].search(
-                                            [('client_id', '=', user.partner_id.id),
-                                             (
-                                                 'session_id', '=', module_id.session_id.id)])
-                                        if not session:
-                                            new_history = self.env['partner.sessions'].sudo().create({
-                                                'client_id': user.partner_id.id,
-                                                'session_id': module_id.session_id.id,
-                                                'module_id': module_id.id,
-                                                'company_id': 1,
-                                            })
-                                        if not user.partner_id.renounce_request:
-                                            """Envoyer SMS pour renoncer au droit de rétractation"""
-                                            url = '%smy' % str(user.partner_id.company_id.website)
-                                            short_url = pyshorteners.Shortener()
-                                            short_url = short_url.tinyurl.short(
-                                                url)  # convert the url to be short using pyshorteners library
-                                            sms_body_ = "Afin d'intégrer notre plateforme de formation de suite, veuillez renoncer à votre droit de rétractation sur votre espace client %s" % (
-                                                short_url)
-                                            # content of sms
-                                            sms = self.env['mail.message'].sudo().search(
-                                                [("body", "like", short_url), ("message_type", "=", "sms"),
-                                                 ('partner_ids', 'in', user.partner_id.id),
-                                                 ('model', "=", "res.partner")])
-                                            if not sms:
-                                                self.send_sms(sms_body_, user.partner_id)
-                                else:
-                                    if 'digimoov' in str(training_id):
-                                        vals = {
-                                            'description': 'CPF: vérifier la date et ville de %s' % (user.name),
-                                            'name': 'CPF : Vérifier Date et Ville ',
-                                            'team_id': self.env['helpdesk.team'].sudo().search(
-                                                [('name', 'like', 'Client'), ('company_id', "=", 2)],
-                                                limit=1).id,
-                                        }
-                                        description = "CPF: vérifier la date et ville de " + str(user.name)
-                                        ticket = self.env['helpdesk.ticket'].sudo().search(
-                                            [("description", "=", description)])
-                                        if not ticket:
-                                            new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                                                vals)
-                                    else:
-                                        vals = {
-                                            'partner_email': '',
-                                            'partner_id': False,
-                                            'description': 'CPF: id module edof %s non trouvé' % (training_id),
-                                            'name': 'CPF : ID module edof non trouvé ',
-                                            'team_id': self.env['helpdesk.team'].sudo().search(
-                                                [('name', "like", _('Client')), ('company_id', "=", 1)],
-                                                limit=1).id,
-                                        }
-                                        description = 'CPF: id module edof ' + str(training_id) + ' non trouvé'
-                                        ticket = self.env['helpdesk.ticket'].sudo().search(
-                                            [('description', 'ilike', description)])
-                                        if not ticket:
-                                            new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                                                vals)
+                                                module_id = self.env['mcmacademy.module'].sudo().search(
+                                                    [('company_id', "=", 2),
+                                                     ('session_ville_id', "=", user.partner_id.session_ville_id.id),
+                                                     ('date_exam', "=", user.partner_id.date_examen_edof),
+                                                     ('product_id', "=", product_id.id),
+                                                     ('session_id.number_places_available', '>', 0)], limit=1)
+                                                _logger.info('before if modulee %s' % str(module_id))
+                                                if module_id:
+                                                    _logger.info('if modulee %s' % str(module_id))
+                                                    user.partner_id.module_id = module_id
+                                                    user.partner_id.mcm_session_id = module_id.session_id
+                                                    product_id = self.env['product.product'].sudo().search(
+                                                        [('product_tmpl_id', '=', module_id.product_id.id)])
+                                                    user.partner_id.mcm_session_id = module_id.session_id
+                                                    user.partner_id.module_id = module_id
+                                                    self.env.user.company_id = 2
+                                                    # """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
+                                                    # invoice = self.env['account.move'].sudo().search(
+                                                    #     [('numero_cpf', "=", externalId),
+                                                    #      ('state', "=", 'posted'),
+                                                    #      ('partner_id', "=", user.partner_id.id)],limit=1)
+                                                    # print('invoice',invoice.name)
+                                                    # if not invoice :
+                                                    #     print('if  not invoice digi ')
+                                                    #     so = self.env['sale.order'].sudo().create({
+                                                    #         'partner_id': user.partner_id.id,
+                                                    #         'company_id': 2,
+                                                    #     })
+                                                    #     so.module_id = module_id
+                                                    #     so.session_id = module_id.session_id
+                                                    #
+                                                    #     so_line = self.env['sale.order.line'].sudo().create({
+                                                    #         'name': product_id.name,
+                                                    #         'product_id': product_id.id,
+                                                    #         'product_uom_qty': 1,
+                                                    #         'product_uom': product_id.uom_id.id,
+                                                    #         'price_unit': product_id.list_price,
+                                                    #         'order_id': so.id,
+                                                    #         'tax_id': product_id.taxes_id,
+                                                    #         'company_id': 2,
+                                                    #     })
+                                                    #     # prix de la formation dans le devis
+                                                    #     amount_before_instalment = so.amount_total
+                                                    #     # so.amount_total = so.amount_total * 0.25
+                                                    #     for line in so.order_line:
+                                                    #         line.price_unit = so.amount_total
+                                                    #     so.action_confirm()
+                                                    #     ref = False
+                                                    #     # Creation de la Facture Cpf
+                                                    #     # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
+                                                    #     # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
+                                                    #
+                                                    #     if so.amount_total > 0 and so.order_line:
+                                                    #         moves = so._create_invoices(final=True)
+                                                    #         for move in moves:
+                                                    #             move.type_facture = 'interne'
+                                                    #             # move.cpf_acompte_invoice= True
+                                                    #             # move.cpf_invoice =True
+                                                    #             move.methodes_payment = 'cpf'
+                                                    #             move.numero_cpf = externalId
+                                                    #             move.pourcentage_acompte = 25
+                                                    #             move.module_id = so.module_id
+                                                    #             move.session_id = so.session_id
+                                                    #             if so.pricelist_id.code:
+                                                    #                 move.pricelist_id = so.pricelist_id
+                                                    #             move.company_id = so.company_id
+                                                    #             move.price_unit = so.amount_total
+                                                    #             # move.cpf_acompte_invoice=True
+                                                    #             # move.cpf_invoice = True
+                                                    #             move.methodes_payment = 'cpf'
+                                                    #             move.post()
+                                                    #             ref = move.name
+                                                    #
+                                                    #     so.action_cancel()
+                                                    #     so.unlink()
+                                                    user.partner_id.statut = 'won'
+                                                    list = []
+                                                    for client in module_id.session_id.client_ids:  # get list of existing clients ids
+                                                        list.append(client.id)
+                                                    list.append(user.partner_id.id)  # append partner to the list
+                                                    module_id.session_id.write(
+                                                        {'client_ids': [(6, 0, list)]})  # update the list of clients
+                                                    """changer step à validé dans espace client """
+                                                    user.partner_id.step = 'finish'
+                                                    session = self.env['partner.sessions'].search(
+                                                        [('client_id', '=', user.partner_id.id),
+                                                         (
+                                                             'session_id', '=', module_id.session_id.id)])
+                                                    if not session:
+                                                        new_history = self.env['partner.sessions'].sudo().create({
+                                                            'client_id': user.partner_id.id,
+                                                            'session_id': module_id.session_id.id,
+                                                            'module_id': module_id.id,
+                                                            'company_id': 2,
+                                                        })
+                                                    if not user.partner_id.renounce_request:
+                                                        """Envoyer SMS pour renoncer au droit de rétractation"""
+                                                        url = '%smy' % str(user.partner_id.company_id.website)
+                                                        short_url = pyshorteners.Shortener()
+                                                        short_url = short_url.tinyurl.short(
+                                                            url)  # convert the url to be short using pyshorteners library
+                                                        sms_body_ = "Afin d'intégrer notre plateforme de formation de suite, veuillez renoncer à votre droit de rétractation sur votre espace client %s" % (
+                                                            short_url)
+                                                        # content of sms
+                                                        sms = self.env['mail.message'].sudo().search(
+                                                            [("body", "like", short_url), ("message_type", "=", "sms"),
+                                                             ('partner_ids', 'in', user.partner_id.id),
+                                                             ('model', "=", "res.partner")])
+                                                        if not sms:
+                                                            self.send_sms(sms_body_, user.partner_id)
+
+                                            elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
+                                                _logger.info('if product_id mcm %s' % str(product_id))
+                                                user.partner_id.id_edof = product_id.id_edof
+                                                module_id = self.env['mcmacademy.module'].sudo().search(
+                                                    [('company_id', "=", 1),
+                                                     ('session_ville_id', "=", user.partner_id.session_ville_id.id),
+                                                     ('date_exam', "=", user.partner_id.date_examen_edof),
+                                                     ('product_id', "=", product_id.id),
+                                                     ('session_id.number_places_available', '>', 0)], limit=1)
+                                                if module_id:
+                                                    user.partner_id.module_id = module_id
+                                                    user.partner_id.mcm_session_id = module_id.session_id
+                                                    product_id = self.env['product.product'].sudo().search(
+                                                        [('product_tmpl_id', '=', module_id.product_id.id)])
+                                                    user.partner_id.mcm_session_id = module_id.session_id
+                                                    user.partner_id.module_id = module_id
+                                                    self.env.user.company_id = 1
+                                                    today = date.today()
+                                                    date_min = today - relativedelta(months=2)
+                                                    """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
+                                                    # invoice = self.env['account.move'].sudo().search(
+                                                    #     [('numero_cpf', "=", externalId),
+                                                    #      ('state', "=", 'posted'),
+                                                    #      ('partner_id', "=", user.partner_id.id)], limit=1)
+                                                    # print('invoice', invoice)
+                                                    # if not invoice :
+                                                    #     print('if  not invoice mcm')
+                                                    #     so = self.env['sale.order'].sudo().create({
+                                                    #         'partner_id': user.partner_id.id,
+                                                    #         'company_id': 1,
+                                                    #     })
+                                                    #     self.env['sale.order.line'].sudo().create({
+                                                    #         'name': product_id.name,
+                                                    #         'product_id': product_id.id,
+                                                    #         'product_uom_qty': 1,
+                                                    #         'product_uom': product_id.uom_id.id,
+                                                    #         'price_unit': product_id.list_price,
+                                                    #         'order_id': so.id,
+                                                    #         'tax_id': product_id.taxes_id,
+                                                    #         'company_id': 1
+                                                    #     })
+                                                    #     # Enreggistrement des valeurs de la facture
+                                                    #     # Parser le pourcentage d'acompte
+                                                    #     # Creation de la fcture étape Finale
+                                                    #     # Facture comptabilisée
+                                                    #     so.action_confirm()
+                                                    #     so.module_id = module_id
+                                                    #     so.session_id = module_id.session_id
+                                                    #     moves = so._create_invoices(final=True)
+                                                    #     for move in moves:
+                                                    #         move.type_facture = 'interne'
+                                                    #         move.module_id = so.module_id
+                                                    #         # move.cpf_acompte_invoice=True
+                                                    #         # move.cpf_invoice =True
+                                                    #         move.methodes_payment = 'cpf'
+                                                    #         move.numero_cpf=externalId
+                                                    #         move.pourcentage_acompte = 25
+                                                    #         move.session_id = so.session_id
+                                                    #         move.company_id = so.company_id
+                                                    #         move.website_id = 1
+                                                    #         for line in move.invoice_line_ids:
+                                                    #             if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
+                                                    #                 line.account_id = line.product_id.property_account_income_id
+                                                    #         move.post()
+                                                    #     so.action_cancel()
+                                                    #     so.unlink()
+                                                    user.partner_id.statut = 'won'
+                                                    """changer step à validé dans espace client """
+                                                    user.partner_id.step = 'finish'
+                                                    session = self.env['partner.sessions'].search(
+                                                        [('client_id', '=', user.partner_id.id),
+                                                         (
+                                                             'session_id', '=', module_id.session_id.id)])
+                                                    if not session:
+                                                        new_history = self.env['partner.sessions'].sudo().create({
+                                                            'client_id': user.partner_id.id,
+                                                            'session_id': module_id.session_id.id,
+                                                            'module_id': module_id.id,
+                                                            'company_id': 1,
+                                                        })
+                                                    if not user.partner_id.renounce_request:
+                                                        """Envoyer SMS pour renoncer au droit de rétractation"""
+                                                        url = '%smy' % str(user.partner_id.company_id.website)
+                                                        short_url = pyshorteners.Shortener()
+                                                        short_url = short_url.tinyurl.short(
+                                                            url)  # convert the url to be short using pyshorteners library
+                                                        sms_body_ = "Afin d'intégrer notre plateforme de formation de suite, veuillez renoncer à votre droit de rétractation sur votre espace client %s" % (
+                                                            short_url)
+                                                        # content of sms
+                                                        sms = self.env['mail.message'].sudo().search(
+                                                            [("body", "like", short_url), ("message_type", "=", "sms"),
+                                                             ('partner_ids', 'in', user.partner_id.id),
+                                                             ('model', "=", "res.partner")])
+                                                        if not sms:
+                                                            self.send_sms(sms_body_, user.partner_id)
+                                            else:
+                                                if 'digimoov' in str(training_id):
+                                                    vals = {
+                                                        'description': 'CPF: vérifier la date et ville de %s' % (user.name),
+                                                        'name': 'CPF : Vérifier Date et Ville ',
+                                                        'team_id': self.env['helpdesk.team'].sudo().search(
+                                                            [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                                            limit=1).id,
+                                                    }
+                                                    description = "CPF: vérifier la date et ville de " + str(user.name)
+                                                    ticket = self.env['helpdesk.ticket'].sudo().search(
+                                                        [("description", "=", description)])
+                                                    if not ticket:
+                                                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                                            vals)
+                                                else:
+                                                    vals = {
+                                                        'partner_email': '',
+                                                        'partner_id': False,
+                                                        'description': 'CPF: id module edof %s non trouvé' % (training_id),
+                                                        'name': 'CPF : ID module edof non trouvé ',
+                                                        'team_id': self.env['helpdesk.team'].sudo().search(
+                                                            [('name', "like", _('Client')), ('company_id', "=", 1)],
+                                                            limit=1).id,
+                                                    }
+                                                    description = 'CPF: id module edof ' + str(training_id) + ' non trouvé'
+                                                    ticket = self.env['helpdesk.ticket'].sudo().search(
+                                                        [('description', 'ilike', description)])
+                                                    if not ticket:
+                                                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                                            vals)
                         except Exception:
                             self.env.cr.rollback()
                             _logger.exception("Erreur d'accepter")
