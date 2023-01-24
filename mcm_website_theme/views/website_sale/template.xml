@@ -149,7 +149,7 @@
             <p id="error_no_date" class="alert alert-warning" style="margin-left:0%;display:none;max-width:600px">
                 Pas de date disponible pour le moment.
             </p>
-            <input id="deivsId" type="hidden" t-att-value="website_sale_order"></input>
+           
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
                 <!-- Mode de financement -->
                 <h3 class="" style="margin-top: 1rem; font-weight: 600;font-size:18px" >

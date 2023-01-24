@@ -397,10 +397,11 @@ function showPopup() {
     polechecked = paymentMethod == "pole_emploi_pm" ? true : false;
 
   }
+  // change btn text inside popup
   cpfChecked || polechecked
-    ? (textbtn = "Mobiliser mon CPF")
+    ? (isLourd ? textbtn="Je paye maintenant !" : textbtn = "Mobiliser mon CPF")
     : (textbtn = "Je paye maintenant !");
-
+  
   if (optionsDate != "all" && optionsDate != "") {
     if (document.getElementById("error_choix_date_popup")) {
       document.getElementById("error_choix_date_popup").style.display = "none";
@@ -524,7 +525,9 @@ function verify_payment_method() {
         ) &&
         conditionlourd.checked == true
       ) {
-        window.open("https://bit.ly/3k2ueVO", "_blank");
+        // Open /payment => Reste a charge 
+        // window.open("https://bit.ly/3k2ueVO", "_blank");
+        window.location.href = "/shop/checkout?express=1";
       }
     }
   }
@@ -1234,7 +1237,7 @@ function modeFinancement(mode, index) {
 
     case "stripe_pm":
       onchangeTextButton1();
-      update_cartebleu(true,saleOrderId,isLourd);
+      update_cartebleu(true,isLourd);
       hideError_no_method();
       if (index == 1) {
         checkPaiementInstalment(false)
@@ -1247,7 +1250,7 @@ function modeFinancement(mode, index) {
     case "cpf_pm":
       onchangeTextButton();
 
-      update_cpf(true,saleOrderId,isLourd);
+      update_cpf(true,isLourd);
       showCpfDetails();
       fixDisplay();
       hideError_no_method();;
@@ -1274,7 +1277,7 @@ function modeFinancement(mode, index) {
 
 
 // send carte_bleu selection
-const update_cartebleu = (cartebleu,saleOrderId,isLourd) => {
+const update_cartebleu = (cartebleu,isLourd) => {
   sendHttpRequest('POST', '/shop/payment/update_cartebleu',
     {
       params: {
