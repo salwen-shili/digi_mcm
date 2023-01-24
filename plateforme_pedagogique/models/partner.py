@@ -1204,7 +1204,7 @@ class partner(models.Model):
                         ('billingState', 'all'),
                         ('certificationState', 'all'),
                         ('sort', 'lastUpdate'),
-                        ('limit', '50'),
+                        ('limit', '100'),
                         ('page', '1')
                     )
                     headers = {
