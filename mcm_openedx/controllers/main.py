@@ -398,7 +398,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+   'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -438,7 +439,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -480,7 +482,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -536,7 +539,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -577,7 +581,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -617,7 +622,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -658,7 +664,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -699,7 +706,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -739,7 +747,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -779,7 +788,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -819,7 +829,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -860,7 +871,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -900,7 +912,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -945,7 +958,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -985,7 +999,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1027,7 +1042,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1083,7 +1099,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1124,7 +1141,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1164,7 +1182,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1205,7 +1224,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1246,7 +1266,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1286,7 +1307,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1326,7 +1348,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1366,7 +1389,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1407,7 +1431,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1447,7 +1472,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1491,7 +1517,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1531,7 +1558,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1573,7 +1601,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1629,7 +1658,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1670,7 +1700,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1710,7 +1741,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1751,7 +1783,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1792,7 +1825,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1832,7 +1866,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1872,7 +1907,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1912,7 +1948,8 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'state': 'waiting', })
+                                                                                                'examen': examen,
+  'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1953,7 +1990,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1993,7 +2031,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -2030,7 +2069,8 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'state': 'waiting', })
+                                                                                            'examen': examen,
+  'state': 'waiting', })
 
                                 request.env.cr.commit()
 
