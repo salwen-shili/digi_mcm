@@ -1,4 +1,5 @@
 var paymentMethod = 'all';
+var urlCpf = false;
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     document.getElementById("cover-spin").remove();
@@ -492,23 +493,27 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open("https://bit.ly/3uLde9W", "_blank");
+            window.open(urlCpf, "_blank");
 
             break;
         }
         return;
       }
-      if (cpf_pm.value == "Formation premium") {
+      if (cpf_pm.value == "[premium] Formation premium") {
         switch (true) {
           case state.includes("https://www.moncompteformation.gouv.fr/"):
+            
             window.open(state, "_blank");
             break;
           case state == "accepted":
+           
+            
             cpfAccepted();
             break;
 
           default:
-            window.open("https://bit.ly/3LJQLQP", "_blank");
+            
+            window.open(urlCpf, "_blank");
 
             break;
         }
@@ -1177,7 +1182,16 @@ const updateExamDate = (props) => {
       availableDate: props.availableDate,
     },
   })
-    .then((responseData) => {})
+    .then((responseData) => {
+    if (responseData.hasOwnProperty("result")){
+      if (responseData.result.hasOwnProperty("url_cpf")){
+        urlCpf = responseData.result.url_cpf ?? false;
+      }
+      console.log("Url cpf: ", urlCpf)
+      
+    }
+   
+  })
     .catch((err) => {});
 };
 

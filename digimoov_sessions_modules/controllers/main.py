@@ -1748,6 +1748,8 @@ class Date_Examen(http.Controller):
                 order.session_id = False
                 order.partner_id.date_examen_edof = False
                 order.partner_id.session_ville_id = False
+
+        print('url_cpf: ', url_cpf)
         return {'url_cpf': url_cpf}
 
     @http.route(['/cpf/update_exam_date'], type='json', auth="public", methods=['POST'], website=True)
