@@ -234,11 +234,11 @@
                                 <br/>
                                 <br/>
                                 <p style="font-size:18px;">
-                                    Je,
+                                    Moi,
                                     <strong>
                                         <span t-esc="o.display_name"/>
                                     </strong>
-                                    et présentant les garanties d'honorabilité suffisantes, demeurant au
+                                    présentant les garanties d'honorabilité suffisantes, demeurant au
                                     <strong>
                                         <span t-raw="'%s' % o.street if o.street else '..............'"/>
                                         <!--                                        <span t-raw="'%s' % o.zip if o.zip else '..............'"/>-->
@@ -247,7 +247,7 @@
                                     <br/>
                                     <br/>
                                     <br/>
-                                    soussigné(e) :
+                                    soussigné(e):
                                     <br/>
                                     Me suis rendu ce jour, le
                                     <b>
@@ -271,7 +271,7 @@
                                     <br/>
                                     <br/>
                                     <br/>
-                                    Je procède aux constatations qui suivent:
+                                    Je procède au compte rendu qui suit:
                                     <br/>
                                     <br/>
                                     Aucune difficulté n’est à mentionner, tout s’est bien déroulé.
@@ -332,7 +332,7 @@
                                 <br/>
                                 <div class="row" style="padding-top:60px;">
                                     <p style="font-size:18px;">
-                                        A ............................
+                                        À ............................
                                         , je procède à la lecture des règles, expliquant le déroulé de l’examen aux
                                         candidats.
                                     </p>
@@ -345,7 +345,7 @@
                                 <div class="row" style="font-size:18px;">
                                     Les sujets ont été distribués selon l’ordre chronologique d’arrivée.
                                     <br/>
-                                    A ...................... les candidats ont été notifiés qu’il leur restait 5 minutes
+                                    À ...................... les candidats ont été notifiés qu’il leur restait 5 minutes
                                     avant la
                                     fin
                                     de
@@ -353,7 +353,7 @@
                                 </div>
                                 <br/>
                                 <div class="row" style="font-size:18px;">
-                                    A ...................... j’ai procédé au ramassage des copies dans le même ordre que
+                                    À ...................... j’ai procédé au ramassage des copies dans le même ordre que
                                     mentionné
                                     précédemment.
                                     <br/>
@@ -380,16 +380,10 @@
                                     </div>
                                 </div>
                                 <p style="page-break-after:always;"/>
-                                <p style="font-size:18px;">Mes missions étant terminées, je me suis retiré.
+                                <p style="font-size:18px;padding_top:100px;">Mes missions étant terminées, je me suis retiré.
                                     <br/>
                                     <br/>
                                     Et de tout ce que dessus, j’ai dressé le présent procès-verbal de constat pour servir et valoir ce que de droit.
-                                    <br/>
-                                    <br/>
-                                    Et de tout ce que dessus, j’ai dressé le présent procès-verbal de constat pour
-                                    servir et
-                                    valoir
-                                    ce que de droit.
                                     <br/>
                                     <br/>
                                     À
