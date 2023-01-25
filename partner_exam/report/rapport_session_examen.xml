@@ -271,7 +271,7 @@
                                     <br/>
                                     <br/>
                                     <br/>
-                                    Je procède aux constatations qui suivent :
+                                    Je procède aux constatations qui suivent:
                                     <br/>
                                     <br/>
                                     Aucune difficulté n’est à mentionner, tout s’est bien déroulé.
@@ -283,7 +283,7 @@
                                 </style>
                                 <h3>
                                     <ol class="c">
-                                        <li>Constatations factuelles :</li>
+                                        <li>Éléments factuels:</li>
                                     </ol>
                                 </h3>
                                 <p style="font-size:18px;">
@@ -300,16 +300,12 @@
                                     <br/>
                                     Nous avons invité les candidats à entrer dans la salle d’examen à
                                     ...................
-                                    . Nous leurs avons demandé de présenter la convocation à l’examen envoyé par le
-                                    centre
-                                    ainsi
-                                    qu’une pièce d’identité.
+                                    . Nous leur avons demandé de présenter la convocation à l’examen envoyé par le
+                                    centre ainsi qu’une pièce d’identité.
                                     <br/>
                                     <br/>
-                                    Je demande à tous les candidats d’éteindre leur téléphone, de les disposer dans leur
-                                    sac
-                                    et
-                                    de remettre leur sac à proximité du tableau.
+                                    Je leur ai demandé d’éteindre leurs téléphones portables, de les disposer dans leurs
+                                    sacs et de les remettre leurs sacs, à proximité du tableau.
                                 </p>
                                 <br/>
                                 <div class="row">
@@ -349,7 +345,7 @@
                                 <div class="row" style="font-size:18px;">
                                     Les sujets ont été distribués selon l’ordre chronologique d’arrivée.
                                     <br/>
-                                    A ...................... les candidats ont été notifiés qu’ils leurs resté 5 minutes
+                                    A ...................... les candidats ont été notifiés qu’il leur restait 5 minutes
                                     avant la
                                     fin
                                     de
@@ -359,10 +355,12 @@
                                 <div class="row" style="font-size:18px;">
                                     A ...................... j’ai procédé au ramassage des copies dans le même ordre que
                                     mentionné
-                                    précédemment. J’ai ensuite procédé à la mise sous plis dans une enveloppe.
+                                    précédemment.
+                                    <br/>
+                                    J’ai ensuite procédé à la mise sous plis dans une enveloppe.
                                 </div>
                                 <br/>
-                                <div class="row" style="font-size:18px;padding-bottom:600px;">
+                                <div class="row" style="font-size:18px;padding-bottom:700px;">
                                     Autres remarques :
                                     <br/>
                                 </div>
@@ -381,11 +379,11 @@
                                         </center>
                                     </div>
                                 </div>
-                                 <p style="page-break-after:always;"/>
-                                <p style="font-size:18px;">Mes contestations étant terminées, je me suis retiré.
+                                <p style="page-break-after:always;"/>
+                                <p style="font-size:18px;">Mes missions étant terminées, je me suis retiré.
                                     <br/>
                                     <br/>
-                                    Telles sont mes constations.
+                                    Et de tout ce que dessus, j’ai dressé le présent procès-verbal de constat pour servir et valoir ce que de droit.
                                     <br/>
                                     <br/>
                                     Et de tout ce que dessus, j’ai dressé le présent procès-verbal de constat pour
@@ -394,7 +392,7 @@
                                     ce que de droit.
                                     <br/>
                                     <br/>
-                                    A
+                                    À
                                     <strong>
                                         <span t-raw="'%s' % o.mcm_session_id.session_ville_id.name_ville"/>
                                     </strong>
@@ -409,7 +407,7 @@
                                 </p>
                                 <div class="row">
                                     <div class="col-12"
-                                         style="color:#696969;position:absolute;bottom:200px;font-size:14px;">
+                                         style="color:#696969;position:absolute;bottom:-700px;font-size:14px;">
                                         <center style="font-size:12px;">
                                             <b>DIGIMOOV</b>
                                             <br/>
