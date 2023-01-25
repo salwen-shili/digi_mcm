@@ -1608,6 +1608,7 @@ class partner(models.Model):
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
 
     def change_statut_accepte(self):
+
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             companies = self.env['res.company'].sudo().search([])
