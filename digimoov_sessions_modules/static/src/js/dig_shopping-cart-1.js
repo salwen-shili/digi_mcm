@@ -26,7 +26,7 @@ var villeLeger = [
   "TOULOUSE",
   "MARSEILLE",
 ];
-var isLourd=false;;
+var isLourd=false;
 
 document.addEventListener("DOMContentLoaded", function () {
   windowUrl = window.location.href;
