@@ -17,6 +17,14 @@ class form_info(models.Model):
     partner_id = fields.Many2one('res.partner')
     email = fields.Char(string="EMAIL")
 
+    societe = fields.Char(string="Societe")
+    examen = fields.Selection([('premier', 'Premier passage dexamen TAXI/VTC/VMDTR'),
+                               ('repassage', 'Repassage dexamen TAXI/VTC/VMDTR'),
+                               ('pasrelle', 'Passerelle TAXI/VTC/VMDTR'),
+                               ],
+                              required=True, default=False, track_visibility='onchange',
+                              string="Choisir l’examen désiré : ")
+
     def form_sub(self):
         # parcourir la liste des submission dans le form Form Demande de Jdom + JDC v15/11/2022:
         response_form = requests.get(
