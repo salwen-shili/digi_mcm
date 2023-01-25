@@ -49,11 +49,14 @@ class form_info(models.Model):
                             existe_sub = self.env['mcm_openedx.form_info'].sudo().search(
                                 [('email', "like", form_info_sub["answers"][i]["answer"])])
                             existe_sub.partner_id = partner_email.id
+                            existe_sub.societe = "DIGIMOOV"
                             # verifier si la personne existe
                             # verifier fiche client
                             if not existe_sub:
                                 new = self.env['mcm_openedx.form_info'].sudo().create({
-                                    'email': form_info_sub["answers"][i]["answer"]
+                                    'email': form_info_sub["answers"][i]["answer"],
+                                    'societe': "DIGIMOOV"
+
                                 })
 
                     if form_info_sub["answers"][i]["name"] == "justificatifDe64":
