@@ -331,3 +331,15 @@ class JotformConnector(http.Controller):
                                     new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                         vals)
 
+    #Webhook MCM DOC
+
+    @http.route(['/webhook_mcm_form'], type='http', auth="public", csrf=False)
+    def importer_from_jotform_webhook(self, **kw):
+        _logger.info("webhoook Charger vos documents %s" % (kw))
+        rawRequest = kw['rawRequest']
+        # convert response of webhook to json format
+        rawRequest = json.loads(rawRequest)
+        _logger.info("rawRequest1 : %s" % (rawRequest))
+        email = str(rawRequest['email']).lower().replace(' ', '')
+
+
