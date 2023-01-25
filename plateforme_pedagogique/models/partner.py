@@ -1481,6 +1481,17 @@ class partner(models.Model):
             client = self.env['res.partner'].sudo().search(
                 [('id', '=', user.partner_id.id)], limit=1)
             if client:
+                module = "digimoov_pro_paris"
+                """get the chosen city from cpf """
+                city_cpf = ""
+                if "_" in module:
+                    idforma = module.split("_")
+                    if idforma:
+                        city_cpf = idforma[len(idforma) - 1]
+                city = self.env['session.ville'].sudo().search(
+                    [('name_ville', "=", city_cpf)], limit=1)
+                _logger.info("split***************** %s " % str(city_cpf))
+                client.session_ville_id = city if city else False
                 _logger.info("if client %s" % str(client.email))
                 _logger.info("dossier %s" % str(dossier))
                 client.mode_de_financement = 'cpf'
@@ -1512,7 +1523,7 @@ class partner(models.Model):
                 if not sms:
                     _logger.info('if not sms %s' % str(sms_body_))
                     self.send_sms(sms_body_, user.partner_id)
-                module = "digimoov_pro_paris"
+
                 _logger.info("helooo %s " % str(module))
                 user.write({'company_ids': [1, 2], 'company_id': 2})
                 product_ids = self.env['product.template'].sudo().search(
@@ -1794,6 +1805,16 @@ class partner(models.Model):
                             if user:
                                 """mettre à jour les informations sur fiche client"""
                                 _logger.info("if user", user.login, user.partner_id.statut_cpf)
+                                """get the chosen city from cpf """
+                                city_cpf = ""
+                                if "_" in training_id:
+                                    idforma = training_id.split("_")
+                                    if idforma:
+                                        city_cpf = idforma[len(idforma) - 1]
+                                city = self.env['session.ville'].sudo().search(
+                                    [('name_ville', "=", city_cpf)], limit=1)
+                                _logger.info("split***************** %s " % str(city_cpf))
+                                client.session_ville_id = city if city else False
                                 user.partner_id.mode_de_financement = 'cpf'
                                 user.partner_id.statut_cpf = 'accepted'
                                 user.partner_id.date_cpf = lastupd

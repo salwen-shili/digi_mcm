@@ -287,6 +287,16 @@ class WebhookController(http.Controller):
             client = request.env['res.partner'].sudo().search(
                 [('id', '=', user.partner_id.id)])
             if client:
+                """get the chosen city from cpf """
+                city_cpf = ""
+                if "_" in module:
+                    idforma = module.split("_")
+                    if idforma:
+                        city_cpf = idforma[len(idforma) - 1]
+                city = self.env['session.ville'].sudo().search(
+                    [('name_ville', "=", city_cpf)], limit=1)
+                _logger.info("split***************** %s " % str(city_cpf))
+                client.session_ville_id = city if city else False
                 _logger.info("if client %s" % str(client.email))
                 _logger.info("dossier %s" % str(dossier))
                 client.mode_de_financement = 'cpf'
@@ -597,6 +607,16 @@ class WebhookController(http.Controller):
         if user:
             """mettre à jour les informations sur fiche client"""
             _logger.info("if user %s " %str(user.login) )
+            """get the chosen city from cpf """
+            city_cpf = ""
+            if "_" in training_id:
+                idforma = training_id.split("_")
+                if idforma:
+                    city_cpf = idforma[len(idforma) - 1]
+            city = request.env['session.ville'].sudo().search(
+                [('name_ville', "=", city_cpf)], limit=1)
+            _logger.info("split***************** %s " % str(city_cpf))
+            user.partner_id.session_ville_id = city if city else False
             user.partner_id.mode_de_financement = 'cpf'
             user.partner_id.statut_cpf = 'accepted'
             user.partner_id.date_cpf = lastupd

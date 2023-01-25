@@ -1693,7 +1693,7 @@ class Date_Examen(http.Controller):
         print("exam_date_id : ", exam_date_id, "status :",
               status, 'availableDate: ', availableDate)
         order = request.website.sale_get_order()
-
+        url_cpf=""
         if exam_date_id and exam_date_id != 'all':
             module = request.env['mcmacademy.module'].sudo().search(
                 [('id', '=', exam_date_id)], limit=1)
@@ -1720,6 +1720,7 @@ class Date_Examen(http.Controller):
                     order.module_id = module
                     order.session_id = module.session_id
                     # if order.company_id.id == 1:
+                    url_cpf=order.module_id.url_cpf
             else:
                 subtype_id = request.env['ir.model.data'].xmlid_to_res_id(
                     'mt_note')
@@ -1747,6 +1748,7 @@ class Date_Examen(http.Controller):
                 order.session_id = False
                 order.partner_id.date_examen_edof = False
                 order.partner_id.session_ville_id = False
+        return {'url_cpf': url_cpf}
 
     @http.route(['/cpf/update_exam_date'], type='json', auth="public", methods=['POST'], website=True)
     def partner_update_exam_center(self, exam_date_id):
@@ -1762,6 +1764,7 @@ class Date_Examen(http.Controller):
     @http.route(['/shop/cart/update_exam_date_mcm'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_exam_center_mcm(self, exam_date_id):
         order = request.website.sale_get_order()
+        url_cpf = ""
         if exam_date_id and exam_date_id != 'all':
             module = request.env['mcmacademy.module'].sudo().search(
                 [('id', '=', exam_date_id)], limit=1)
@@ -1787,6 +1790,7 @@ class Date_Examen(http.Controller):
                 # if order.company_id.id == 1:
                 order.partner_id.date_examen_edof = module.date_exam
                 order.partner_id.session_ville_id = module.session_ville_id
+                url_cpf=order.module_id.url_cpf
 
         if exam_date_id and exam_date_id == 'all':
             if order:
@@ -1794,3 +1798,4 @@ class Date_Examen(http.Controller):
                 order.session_id = False
                 order.partner_id.date_examen_edof = False
                 order.partner_id.session_ville_id = False
+        return {'url_cpf': url_cpf}
