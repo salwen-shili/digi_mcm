@@ -224,7 +224,6 @@
                                      style="max-height:100px;float:left;"/>
                             </div>
                         </div>
-                        <br/>
                         <div class="row" style="padding-top:60px;">
                             <div class="col-12">
                                 <b>
@@ -315,7 +314,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-12"
-                                         style="color:#696969;position:absolute;margin-top:190px;font-size:14px;">
+                                         style="color:#696969;position:absolute;margin-top:180px;font-size:14px;">
                                         <center style="font-size:12px;">
                                             <b>DIGIMOOV</b>
                                             <br/>
@@ -334,8 +333,7 @@
                                              style="max-height:100px;float:left;"/>
                                     </div>
                                 </div>
-                                <br/>
-                                <br/>
+                                <p style="page-break-after:always;"/>
                                 <div class="row" style="padding-top:60px;">
                                     <p style="font-size:18px;">
                                         A ............................
@@ -371,7 +369,7 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-12"
-                                         style="color:#696969;position:absolute;bottom:-180px;font-size:14px;">
+                                         style="color:#696969;position:absolute;bottom:180px;font-size:14px;">
                                         <center style="font-size:12px;">
                                             <b>DIGIMOOV</b>
                                             <br/>
