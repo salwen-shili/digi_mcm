@@ -349,6 +349,7 @@ class JotformConnector(http.Controller):
             _logger.info("find partner %s" % (str(partner_email)))
         if examen == "Premier passage dexamen TAXI/VTC/VMDTR":
             examen = "premier"
+
             if doc_choisit == "Carte d'identité française ou européenne":
                 _logger.info("carte identite francaise")
                 if rawRequest['pieceDidentite']:
