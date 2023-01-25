@@ -499,7 +499,7 @@ function verify_payment_method() {
         }
         return;
       }
-      if (cpf_pm.value == "[premium] Formation premium") {
+      if (cpf_pm.value == "Formation premium") {
         switch (true) {
           case state.includes("https://www.moncompteformation.gouv.fr/"):
             
