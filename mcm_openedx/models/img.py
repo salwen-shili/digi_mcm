@@ -20,7 +20,7 @@ class img(models.Model):
     statut = fields.Char(string="Statut Formulaire")
     url = fields.Char(string="Titre Formulaire")
     partner_id = fields.Many2one('res.partner')
-    email = fields.Char(string="EMAIL")
+
 
     def get_form(self):
         _logger.info("----------ok-----------")
@@ -50,6 +50,14 @@ class form_info(models.Model):
     _description = "Jotform_sub"
     partner_id = fields.Many2one('res.partner')
     email = fields.Char(string="EMAIL")
+    email = fields.Char(string="EMAIL")
+    societe = fields.Char(string="Societe")
+    examen = fields.Selection([('premier', 'Premier passage dexamen TAXI/VTC/VMDTR'),
+                               ('repassage', 'Repassage dexamen TAXI/VTC/VMDTR'),
+                               ('pasrelle', 'Passerelle TAXI/VTC/VMDTR'),
+                               ],
+                              required=True, default=False, track_visibility='onchange',
+                              string="Choisir l’examen désiré : ")
 
     def form_sub(self):
         # parcourir la liste des submission dans le form Form Demande de Jdom + JDC v15/11/2022:
@@ -75,11 +83,14 @@ class form_info(models.Model):
                             existe_sub = self.env['mcm_openedx.form_info'].sudo().search(
                                 [('email', "like", form_info_sub["answers"][i]["answer"])])
                             existe_sub.partner_id = partner_email.id
+                            existe_sub.societe = "DIGIMOOV"
+
                             # verifier si la personne existe
                             # verifier fiche client
                             if not existe_sub:
                                 new = self.env['mcm_openedx.form_info'].sudo().create({
-                                    'email': form_info_sub["answers"][i]["answer"]
+                                    'email': form_info_sub["answers"][i]["answer"],
+                                    'societe': "DIGIMOOV"
                                 })
 
                     if form_info_sub["answers"][i]["name"] == "justificatifDe64":
