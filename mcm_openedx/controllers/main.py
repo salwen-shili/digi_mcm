@@ -348,7 +348,7 @@ class JotformConnector(http.Controller):
             _logger.info(partner_email)
             vals = {
 
-                'description': 'New document MCM  %s' % (name),
+                'description': 'New document MCM  %s',
                 'name': 'Merci de verifer le document de %s' % (partner.name),
                 'partner_id': partner.id,
 
@@ -491,23 +491,7 @@ class JotformConnector(http.Controller):
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
 
-                                    vals = {
-
-                                        'description': 'New document MCM  %s' % (name),
-                                        'name': 'Merci de verifer le document de %s' % (partner.name),
-                                        'partner_id': partner.id,
-
-                                        'team_id': request.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
-                                            limit=1).id,
-                                    }
-                                    description = "New document Jotform JDOM"
-                                    ticket = request.env['helpdesk.ticket'].sudo().search(
-                                        [("description", "=", description)])
-                                    if not ticket:
-                                        print("cree ticket")
-                                        new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                                            vals)
+                                     
                     if rawRequest['passeport87']:
                         url = rawRequest['passeport87']
                         if url:
@@ -1051,23 +1035,7 @@ class JotformConnector(http.Controller):
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
 
-                                    vals = {
-
-                                        'description': 'New document MCM  %s' % (name),
-                                        'name': 'Merci de verifer le document de %s' % (partner.name),
-                                        'partner_id': partner.id,
-
-                                        'team_id': request.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
-                                            limit=1).id,
-                                    }
-                                    description = "New document Jotform JDOM"
-                                    ticket = request.env['helpdesk.ticket'].sudo().search(
-                                        [("description", "=", description)])
-                                    if not ticket:
-                                        print("cree ticket")
-                                        new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                                            vals)
+                                     
                     if rawRequest['passeport87']:
                         url = rawRequest['passeport87']
                         if url:
@@ -1610,23 +1578,7 @@ class JotformConnector(http.Controller):
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
 
-                                    vals = {
-
-                                        'description': 'New document MCM  %s' % (name),
-                                        'name': 'Merci de verifer le document de %s' % (partner.name),
-                                        'partner_id': partner.id,
-
-                                        'team_id': request.env['helpdesk.team'].sudo().search(
-                                            [('name', 'like', 'Service Examen Digimoov'), ('company_id', "=", 2)],
-                                            limit=1).id,
-                                    }
-                                    description = "New document Jotform JDOM"
-                                    ticket = request.env['helpdesk.ticket'].sudo().search(
-                                        [("description", "=", description)])
-                                    if not ticket:
-                                        print("cree ticket")
-                                        new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                                            vals)
+                                     
                     if rawRequest['passeport87']:
                         url = rawRequest['passeport87']
                         if url:
