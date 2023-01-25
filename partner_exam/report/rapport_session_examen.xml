@@ -333,7 +333,7 @@
                                              style="max-height:100px;float:left;"/>
                                     </div>
                                 </div>
-                                <p style="page-break-after:always;"/>
+                                <br/>
                                 <div class="row" style="padding-top:60px;">
                                     <p style="font-size:18px;">
                                         A ............................
@@ -409,7 +409,7 @@
                                 </p>
                                 <div class="row">
                                     <div class="col-12"
-                                         style="color:#696969;position:absolute;bottom:-180px;font-size:14px;">
+                                         style="color:#696969;position:absolute;bottom:180px;font-size:14px;">
                                         <center style="font-size:12px;">
                                             <b>DIGIMOOV</b>
                                             <br/>
