@@ -407,9 +407,8 @@
                                     <br/>
                                     Signature
                                 </p>
-                                <div class="row">
-                                    <div class="col-12"
-                                         style="color:#696969;position:absolute;bottom:-200px;font-size:14px;">
+                                <div class="footer">
+                                    <div style="color:#696969;position:absolute;">
                                         <center style="font-size:12px;">
                                             <b>DIGIMOOV</b>
                                             <br/>
