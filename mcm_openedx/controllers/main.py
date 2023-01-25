@@ -340,6 +340,9 @@ class JotformConnector(http.Controller):
         # convert response of webhook to json format
         rawRequest = json.loads(rawRequest)
         _logger.info("rawRequest1 : %s" % (rawRequest))
-        email = str(rawRequest['email']).lower().replace(' ', '')
+        email = str(rawRequest['q54_email']).lower().replace(' ', '')
+        examen = str(rawRequest['q144_veuillezChoisir']).lower().replace(' ', '')
+        doc_choisit =str(rawRequest['q85_choisissezLun']).lower().replace(' ', '')
+
 
 
