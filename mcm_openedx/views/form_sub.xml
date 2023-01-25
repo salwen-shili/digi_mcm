@@ -47,7 +47,7 @@
         <field name="context">{'search_default_group_societe': 1}</field>
 
     </record>
-
-    <menuitem id="jotform_sub_menu" name="Submissions" parent="jotform_menu" action="jotform_sub_list_action"/>
+    <menuitem id="jotform_menu" name="JOTFORM" web_icon="mcm_openedx,static/src/jotf.png"/>
+     <menuitem id="jotform_sub_menu" name="Submissions" parent="jotform_menu" action="jotform_sub_list_action"/>
 
 </odoo>
