@@ -66,7 +66,7 @@
                             <hr/>
                             <br/>
                             Lieu de la formation :
-                            <b>A distance</b>
+                            <b>À distance</b>
                             <br/>
                             Dates de la formation : du
                             <t t-set="sales"
@@ -74,14 +74,20 @@
                             <t t-set="financement_mode"
                                t-value="o.mode_de_financement == 'particulier'"/>
                             <t t-if="sales and financement_mode">
-                                <strong><span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/></strong>
+                                <strong>
+                                    <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
+                                </strong>
                             </t>
                             <t t-else="not sales">
-                                <b><span t-esc="o.date_creation"/></b>
+                                <b>
+                                    <span t-esc="o.date_creation"/>
+                                </b>
                             </t>
                             au
-                            <strong><span t-field="o.module_id.date_exam"
-                                  t-field-options='{"format": "dd/MM/yyyy"}'/></strong>
+                            <strong>
+                                <span t-field="o.module_id.date_exam"
+                                      t-field-options='{"format": "dd/MM/yyyy"}'/>
+                            </strong>
                             <br/>
                             Date et lieu d'examen : Le
                             <strong>
@@ -92,18 +98,45 @@
                             </strong>
 
                             <br/>
-                            Durée effective de la formation : <span t-esc="o.total_time_hours"/>, dont :
+                            Durée effective de la formation :<span t-esc="o.total_time_hours"/>, dont :
                             <br/>
-                            -  <span t-esc="o.total_time_appels_hour"/> d’appels
-                            <br/>
-                            -  <span t-esc="o.total_time_visio_hour"/> de visioconférences
-                            <br/>
-                            - <t t-if="o.temps_update_minute">
-                            <span t-esc="o.temps_update_minute"/>
+                            <t t-if="o.note_exam_id[-1].ville_id.name_ville != 'Paris'">
+                                -
+                                <span t-esc="o.total_time_appels_hour"/>
+                                d’appels
+                                <br/>
+                                -
+                                <span t-esc="o.total_time_visio_hour"/>
+                                de visioconférences
+                                <br/>
+                                -
+                                <t t-if="o.temps_update_minute">
+                                    <span t-esc="o.temps_update_minute"/>
+                                </t>
+                                de temps passé sur la plateforme
                             </t>
                             <t t-else="not o.temps_update_minute">
-                                <span t-esc="o.totalTimeSpentInMinutes"/>
-                            </t> de temps passé sur la plateforme
+                            </t>
+
+                            <t t-else="not o.note_exam_id[-1].ville_id.name_ville != 'Paris'">
+                                <ul>
+                                    <li>Durée des appels téléphoniques</li>
+                                    <li>Durée des visioconférences</li>
+                                    <li>Nombre d’heures de formation à distance :</li>
+                                </ul>
+                                <pre>L’entreprise et son activité financière :
+                                    <br/>
+                                    L’entreprise et le droit civil et commercial :
+                                    <br/>
+                                    L’entreprise et la sécurité :
+                                    <br/>
+                                    L’entreprise et son activité commerciale :
+                                    <br/>
+                                    L’entreprise et le cadre réglementaire de l’activité de transport :
+                                    <br/>
+                                    L’entreprise et ses salariés :
+                                </pre>
+                            </t>
                             <br/>
                         </div>
                         <br/>
