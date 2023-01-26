@@ -11,6 +11,7 @@ from datetime import datetime, timedelta, date
 
 _logger = logging.getLogger(__name__)
 
+
 class Session(models.Model):
     _name = 'mcmacademy.session'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -37,7 +38,8 @@ class Session(models.Model):
                                              'prospect_id', string='', copy=False)
     panier_perdu_ids = fields.Many2many('res.partner', 'session_panier_perdu_rel', 'session_id', 'prospect_id',
                                         string='', copy=False)
-    abandon_ids=fields.Many2many('res.partner','session_abandon_rel','session_id','abandon_id',string='',copy=False)
+    abandon_ids = fields.Many2many('res.partner', 'session_abandon_rel', 'session_id', 'abandon_id', string='',
+                                   copy=False)
     stage_id = fields.Many2one('mcmacademy.stage', 'État', group_expand='_read_group_stage_ids')
     color = fields.Integer(string='Color Index', copy=True)
     date_debut = fields.Date('Date de debut de session', copy=False)
@@ -47,7 +49,7 @@ class Session(models.Model):
     count_client = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_stagiaires = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_perdu = fields.Integer('', compute='_compute_count_clients', copy=False)
-    count_abandon=fields.Integer('',compute='_compute_count_clients',copy=False)
+    count_abandon = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_annule = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_prospect = fields.Integer('', compute='_compute_count_clients', copy=False)
     count_panier_perdu = fields.Integer('', compute='_compute_count_clients', copy=False)
@@ -58,11 +60,10 @@ class Session(models.Model):
     adresse_jury_id = fields.Many2one('session.adresse.examen', "Adresse de jury")
     date_jury = fields.Date()
 
-
     @api.onchange('adresse_jury_id')
     def onchange_session_ville_id(self):
         """ Cette fonction pour afficher la liste des adresses de centre d'examen
-        liée par une seul ville choisi par l'utilisateur dans l'interface de session"""
+        liée par une seule ville choisi par l'utilisateur dans l'interface de session"""
         for rec in self:
             return {'domain': {'adresse_jury_id': [('adresse_jury_id', '=', rec.ville_jury_id.id)]}}
 
@@ -96,16 +97,16 @@ class Session(models.Model):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
          La fonction est utilisé dans la template de rapport jury"""
         nbr_inscrits = 0
-        #today = date.today()
-        #nbr_partner_cpf_annule= self.env['partner.sessions'].sudo().search(
-            #[('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('client_id.mode_de_financement','=', 'cpf'),('client_id.statut','=', 'canceled'),('date_creation', ">", self.date_exam + timedelta(days=14))])
-        #_logger.info("nbr_partner_annule %s" % str(nbr_partner_cpf_annule))
-        #nbr_partner_won_cpf = self.env['partner.sessions'].sudo().search_count(
-         #   [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('client_id.statut','=', 'won')])
-        #_logger.info("nbr_partner_won_cpf %s" % str(nbr_partner_won_cpf))
+        # today = date.today()
+        # nbr_partner_cpf_annule= self.env['partner.sessions'].sudo().search(
+        # [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('client_id.mode_de_financement','=', 'cpf'),('client_id.statut','=', 'canceled'),('date_creation', ">", self.date_exam + timedelta(days=14))])
+        # _logger.info("nbr_partner_annule %s" % str(nbr_partner_cpf_annule))
+        # nbr_partner_won_cpf = self.env['partner.sessions'].sudo().search_count(
+        #   [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('client_id.statut','=', 'won')])
+        # _logger.info("nbr_partner_won_cpf %s" % str(nbr_partner_won_cpf))
 
-        #nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
-            #[('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('client_id.mode_de_financement','=', 'particulier'), ('client_id.statut','=', 'canceled')])
+        # nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
+        # [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('client_id.mode_de_financement','=', 'particulier'), ('client_id.statut','=', 'canceled')])
         # count_per_an = False
         # for sale in nbr_partner_personel_annule:
         #
@@ -113,7 +114,7 @@ class Session(models.Model):
         #         count_per_an += 1
         # counter_per_an = count_per_an
         # _logger.info("nbr_partner_personel_annule %s" % str(nbr_partner_personel_annule))
-        #nbr_inscrits = len(nbr_partner_cpf_annule) + len(nbr_partner_won_cpf) + counter_per_an
+        # nbr_inscrits = len(nbr_partner_cpf_annule) + len(nbr_partner_won_cpf) + counter_per_an
         nbr_inscrits = self.count_stagiaires
         return nbr_inscrits
         # for examen in nbr_partner_sessions:
@@ -128,6 +129,7 @@ class Session(models.Model):
         #                                                         date.today())], limit=1)
         #     for sale in sale_order:
         #         sign_date = sale.signed_on
+
     #     nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu + self.count_perdu
 
     def nbr_present_par_session(self, nbr_present):
@@ -258,7 +260,8 @@ class Session(models.Model):
         """ Calculer nbr canceled state after 14 day 0min """
         nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
             [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id),
-             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'), ('client_id.temps_minute', '=', 0)])
+             ('client_id.mode_de_financement', '=', 'particulier'), ('client_id.statut', '=', 'canceled'),
+             ('client_id.temps_minute', '=', 0)])
         nbr_partner_cpf_annule = self.env['partner.sessions'].sudo().search(
             [('date_exam', "=", self.date_exam), ('session_id', "=", self.id),
              ('client_id.mode_de_financement', '=', 'cpf'), ('client_id.statut', '=', 'canceled'),
@@ -278,7 +281,8 @@ class Session(models.Model):
         for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
             if examen.temps_minute == 0:
                 zero_min += 1
-            zero_min_formation_gagne = zero_min + self.nbr_canceled_state_after_14_day_0min(self) #Somme nombre des clients gagnés avec nombre des clients annulés
+            zero_min_formation_gagne = zero_min + self.nbr_canceled_state_after_14_day_0min(
+                self)  # Somme nombre des clients gagnés avec nombre des clients annulés
             _logger.info("calculer_zero_min_formation_gagne_takwa %s" % str(zero_min_formation_gagne))
         return zero_min_formation_gagne
 
@@ -294,6 +298,7 @@ class Session(models.Model):
             else:
                 resultat = f'{res:.0f}'
                 return resultat
+
     def pourcentage_absence_justifiée(self, resultat):
         """ pourcentage absence justifiée """
         nbr_absence_justifiee = self.calculer_nombre_absence_justifiée(self)
@@ -348,7 +353,8 @@ class Session(models.Model):
         nbr_from_examen = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-            if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"] and examen.partner_id.statut == 'won':
+            if examen.module_id.product_id.default_code in ["basique",
+                                                            "solo-ubereats"] and examen.partner_id.statut == 'won':
                 nbr_from_examen += 1
                 # Appliquer regle si client a dépassé les 14 jours
         nbr_partner_personel_annule = self.env['partner.sessions'].sudo().search(
@@ -396,9 +402,10 @@ class Session(models.Model):
         """ Calculer le nombre du client present par session selon le pack premium """
         nbr_from_examen_premium = 0
         examen = self.env['info.examen'].search(
-                [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('presence', "=", 'present'), ('module_id.product_id.default_code', '=', "premium")])
-        #if examen.module_id.product_id.default_code == "premium":
-        #nbr_from_examen_premium += 1
+            [('date_exam', "=", self.date_exam), ('session_id.id', "=", self.id), ('presence', "=", 'present'),
+             ('module_id.product_id.default_code', '=', "premium")])
+        # if examen.module_id.product_id.default_code == "premium":
+        # nbr_from_examen_premium += 1
         sum_premium_present = len(examen)
         return sum_premium_present
 
@@ -451,7 +458,7 @@ class Session(models.Model):
         #             days=14) and sale.client_id.module_id.product_id.default_code == "avancee":
         #         count_per_an += 1
         # counter_per_an = count_per_an
-        #res_calc = counter_per_an + len(nbr_partner_cpf_annule)
+        # res_calc = counter_per_an + len(nbr_partner_cpf_annule)
         tot = nbr_from_examen_pro
         sum_pro_inscrit = tot
         return sum_pro_inscrit
@@ -480,7 +487,7 @@ class Session(models.Model):
         #             days=14) and sale.client_id.module_id.product_id.default_code == "premium":
         #         count_per_an_premium += 1
         # counter_per_an = count_per_an_premium
-        #res_calc_premium = counter_per_an + len(nbr_partner_cpf_annule_premium) + nbr_from_examen_premium
+        # res_calc_premium = counter_per_an + len(nbr_partner_cpf_annule_premium) + nbr_from_examen_premium
         res_calc_premium = nbr_from_examen_premium
         sum_premium_inscrit = res_calc_premium
         return sum_premium_inscrit
@@ -507,7 +514,7 @@ class Session(models.Model):
         #     if sale.client_id.signed_on > self.date_exam + timedelta(
         #             days=14) and sale.client_id.module_id.product_id.default_code == "examen":
         #         count_per_an += 1
-        #sum_repassage_inscrit = count_per_an + len(nbr_partner_cpf_annule) + nbr_from_examen
+        # sum_repassage_inscrit = count_per_an + len(nbr_partner_cpf_annule) + nbr_from_examen
         sum_repassage_inscrit = nbr_from_examen
         return sum_repassage_inscrit
 
@@ -698,7 +705,8 @@ class Session(models.Model):
             kanban view, even if they are empty
         """
         stage_ids = self.env['mcmacademy.stage'].search(
-            [('name', "!=", _('Planifiées')), ('name', "!=", _('Terminées'))])
+            [('name', "!=", _('Planifiées')), ('name', "!=", _('Terminées'))],
+            order="date_exam desc")
         return stage_ids
 
     @api.depends('client_ids', 'prospect_ids', 'canceled_prospect_ids')
@@ -718,8 +726,19 @@ class Session(models.Model):
 
     def write(self, values):
         for record in self:
+            _logger.info(
+                "°°°°°°°°°°°°°°°°°STAGE TAKWA TEST stages.date_exam°°°°°°°°°°°°°°°°°°°°°° %s" % str(record.date_exam))
+            newformat = "%Y-%m-%d"
+            date_exam = datetime.strptime(str(record.date_exam), newformat)
+            stage_date_exam = date_exam.strftime(newformat)
+            record.stage_id.date_exam = stage_date_exam
+            _logger.info(
+                "°°°°°°°°°°°°°°°°°2222222 TEST stages.date_exam°°°°°°°°°°°°°°°°°°°°°° %s" % str(record.stage_id.date_exam))
+            #record.stage_id.values['date_exam'] = date_exam.strftime(newformat)
+
             if 'stage_id' in values:
                 stages = self.env['mcmacademy.stage'].search([('id', "=", values['stage_id'])])
+
                 for stage in stages:
                     if stage.name in ['Archivées', 'Archivés'] and len(record.client_ids) > 0:
                         raise ValidationError(
@@ -736,7 +755,7 @@ class Session(models.Model):
                     "Impossible de supprimer une session qui contient des clients")  # raise validation error when we want to delete a session has clients
         return super(Session, self).unlink()
 
-    @api.depends('client_ids', 'prospect_ids', 'canceled_prospect_ids','abandon_ids')
+    @api.depends('client_ids', 'prospect_ids', 'canceled_prospect_ids', 'abandon_ids')
     def _compute_count_clients(self):
         for rec in self:
             client_counter = 0

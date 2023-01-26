@@ -3,11 +3,14 @@
 
 from odoo import api, fields, models
 
+
 class Module(models.Model):
     _name = 'mcmacademy.stage'
     _description = "Etats des sessions"
     _fold_name = 'folded'
 
-    name=fields.Char("Nom d'état")
+    name = fields.Char("Nom d'état")
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     folded = fields.Boolean('Folded in kanban view')
+    # Utiliser le champ pour mettre kanban order
+    date_exam = fields.Date('Date examen', copy=False)

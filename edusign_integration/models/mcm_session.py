@@ -1106,6 +1106,7 @@ class mcmSession(models.Model):
     # All logics are here for the button "Recuperer feuille de presence"
     def getPresenceList(self):
         if self.allowGetPresence("getPresenceList()") == True:
+            self.stage_id.folded = True
             print(
                 "################## ################## ################## ################## ################## ##################\n"
                 "#################                                                                               #################\n"
