@@ -891,7 +891,7 @@ class JotformConnector(http.Controller):
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
 
-            elif examen == "Repassage dexamen TAXI/VTC/VMDTR":
+            elif examen == "Repassage d'examen TAXI/VTC/VMDTR":
                 examen = "repassage"
                 if rawRequest['q85_choisissezLun'] == "Carte d'identité française ou européenne":
                     _logger.info("Carte d'identité française ou européenne")
