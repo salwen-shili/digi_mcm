@@ -346,23 +346,7 @@ class JotformConnector(http.Controller):
         for partner_email in request.env['res.partner'].sudo().search(
                 [('email', "=", email)]):
             _logger.info(partner_email)
-            vals = {
 
-                'description': 'New document MCM  %s',
-                'name': 'Merci de verifer le document de %s' % (partner.name),
-                'partner_id': partner.id,
-
-                'team_id': request.env['helpdesk.team'].sudo().search(
-                    [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
-                    limit=1).id,
-            }
-            description = "New document Jotform JDOM"
-            ticket = request.env['helpdesk.ticket'].sudo().search(
-                [("description", "=", description)])
-            if not ticket:
-                print("cree ticket")
-                new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                    vals)
             if examen == "Premier passage d'examen TAXI/VTC/VMDTR":
                 if rawRequest['q85_choisissezLun'] == "Carte d'identité française ou européenne":
                     _logger.info("Carte d'identité française ou européenne")
@@ -378,7 +362,8 @@ class JotformConnector(http.Controller):
 
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -399,14 +384,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-   'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
 
                     if rawRequest['pieceDidentite14']:
                         url = rawRequest['pieceDidentite14']
@@ -419,7 +403,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -440,7 +425,7 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -462,7 +447,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -483,7 +469,7 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -491,7 +477,6 @@ class JotformConnector(http.Controller):
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
 
-                                     
                     if rawRequest['passeport87']:
                         url = rawRequest['passeport87']
                         if url:
@@ -503,7 +488,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -524,7 +510,7 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -566,14 +552,13 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
                                 # replace " " avec  %20 pour eliminer les espace
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
-
 
                 if rawRequest['permisDe7']:
                     url = rawRequest['permisDe7']
@@ -607,14 +592,13 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
                                 # replace " " avec  %20 pour eliminer les espace
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
-
 
                 if rawRequest['q36_vousAllez'] == "Oui":
                     if rawRequest['justificatifDe']:
@@ -628,7 +612,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -649,7 +634,7 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -670,7 +655,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -691,14 +677,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
 
                     if rawRequest['attestationDhebergement']:
                         url = rawRequest['attestationDhebergement']
@@ -711,7 +696,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -732,14 +718,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
 
                     if rawRequest['siHeberge11']:
                         url = rawRequest['siHeberge11']
@@ -752,7 +737,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -773,14 +759,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
 
                     if rawRequest['pieceDidentite10']:
                         url = rawRequest['pieceDidentite10']
@@ -793,7 +778,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -814,15 +800,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
-
 
                 if rawRequest['fileUpload2']:
                     url = rawRequest['fileUpload2']
@@ -856,14 +840,13 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
                                 # replace " " avec  %20 pour eliminer les espace
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
-
 
                 if rawRequest['merciDe']:
                     url = rawRequest['merciDe']
@@ -897,14 +880,29 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
+                                vals = {
 
+                                    'description': 'New document MCM  %s',
+                                    'name': 'Merci de verifer le document de %s' % (partner.name),
+                                    'partner_id': partner.id,
+
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', 'like', 'Service Examen MCM'), ('company_id', "=", 1)],
+                                        limit=1).id,
+                                }
+                                description = "New document Jotform JDOM"
+                                ticket = request.env['helpdesk.ticket'].sudo().search(
+                                    [("description", "=", description)])
+                                if not ticket:
+                                    print("cree ticket")
+                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
                                 # replace " " avec  %20 pour eliminer les espace
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
-
 
             elif examen == "Repassage dexamen TAXI/VTC/VMDTR":
                 examen = "repassage"
@@ -922,7 +920,8 @@ class JotformConnector(http.Controller):
 
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -943,14 +942,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
 
                     if rawRequest['pieceDidentite14']:
                         url = rawRequest['pieceDidentite14']
@@ -963,7 +961,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -984,7 +983,7 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1006,7 +1005,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1027,7 +1027,7 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1035,7 +1035,6 @@ class JotformConnector(http.Controller):
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
 
-                                     
                     if rawRequest['passeport87']:
                         url = rawRequest['passeport87']
                         if url:
@@ -1047,7 +1046,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1068,7 +1068,7 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1110,14 +1110,13 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
                                 # replace " " avec  %20 pour eliminer les espace
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
-
 
                 if rawRequest['permisDe7']:
                     url = rawRequest['permisDe7']
@@ -1151,14 +1150,13 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
                                 # replace " " avec  %20 pour eliminer les espace
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
-
 
                 if rawRequest['q36_vousAllez'] == "Oui":
                     if rawRequest['justificatifDe']:
@@ -1172,7 +1170,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1193,7 +1192,7 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1214,7 +1213,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1235,14 +1235,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
 
                     if rawRequest['attestationDhebergement']:
                         url = rawRequest['attestationDhebergement']
@@ -1255,7 +1254,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1276,14 +1276,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
 
                     if rawRequest['siHeberge11']:
                         url = rawRequest['siHeberge11']
@@ -1296,7 +1295,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1317,14 +1317,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
 
                     if rawRequest['pieceDidentite10']:
                         url = rawRequest['pieceDidentite10']
@@ -1337,7 +1336,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1358,15 +1358,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
-
 
                 if rawRequest['fileUpload2']:
                     url = rawRequest['fileUpload2']
@@ -1400,14 +1398,13 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
                                 # replace " " avec  %20 pour eliminer les espace
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
-
 
                 if rawRequest['merciDe']:
                     url = rawRequest['merciDe']
@@ -1441,13 +1438,9 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
-
-
-
-
 
             elif examen == "Passerelle TAXI/VTC/VMDTR":
                 examen = "pasrelle"
@@ -1465,7 +1458,8 @@ class JotformConnector(http.Controller):
 
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1486,14 +1480,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
 
                     if rawRequest['pieceDidentite14']:
                         url = rawRequest['pieceDidentite14']
@@ -1506,7 +1499,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1527,7 +1521,7 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1549,7 +1543,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1570,7 +1565,7 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1578,7 +1573,6 @@ class JotformConnector(http.Controller):
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
 
-                                     
                     if rawRequest['passeport87']:
                         url = rawRequest['passeport87']
                         if url:
@@ -1590,7 +1584,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1611,7 +1606,7 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1653,14 +1648,13 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
                                 # replace " " avec  %20 pour eliminer les espace
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
-
 
                 if rawRequest['permisDe7']:
                     url = rawRequest['permisDe7']
@@ -1694,14 +1688,13 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
                                 # replace " " avec  %20 pour eliminer les espace
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
-
 
                 if rawRequest['q36_vousAllez'] == "Oui":
                     if rawRequest['justificatifDe']:
@@ -1715,7 +1708,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1736,7 +1730,7 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1757,7 +1751,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1778,14 +1773,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
 
                     if rawRequest['attestationDhebergement']:
                         url = rawRequest['attestationDhebergement']
@@ -1798,7 +1792,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1819,14 +1814,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
 
                     if rawRequest['siHeberge11']:
                         url = rawRequest['siHeberge11']
@@ -1839,7 +1833,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1860,14 +1855,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
 
                     if rawRequest['pieceDidentite10']:
                         url = rawRequest['pieceDidentite10']
@@ -1880,7 +1874,8 @@ class JotformConnector(http.Controller):
                                 [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                             for partner in request.env['res.partner'].sudo().search(
                                     [('email', '=', email)]):
-                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
                                 if not existe_sub:
                                     new = request.env['mcm_openedx.form_info'].sudo().create({
                                         'email': email,
@@ -1901,15 +1896,13 @@ class JotformConnector(http.Controller):
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
                                                                                                 'examen': examen,
-  'state': 'waiting', })
+                                                                                                'state': 'waiting', })
 
                                     request.env.cr.commit()
 
                                     # replace " " avec  %20 pour eliminer les espace
                                     # Ajout ticket pour notiifer le service examn pour changer mp
                                     # ajouter condition sur ticket
-
-
 
                 if rawRequest['fileUpload2']:
                     url = rawRequest['fileUpload2']
@@ -1943,14 +1936,13 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
 
                                 # replace " " avec  %20 pour eliminer les espace
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
-
 
                 if rawRequest['merciDe']:
                     url = rawRequest['merciDe']
@@ -1984,11 +1976,9 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
-
-
 
                 if rawRequest['envoiDe']:
                     url = rawRequest['envoiDe']
@@ -2022,14 +2012,8 @@ class JotformConnector(http.Controller):
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
                                                                                             'examen': examen,
-  'state': 'waiting', })
+                                                                                            'state': 'waiting', })
 
                                 request.env.cr.commit()
-
-
-
-
-
-
 
 
