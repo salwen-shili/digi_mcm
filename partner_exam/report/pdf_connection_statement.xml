@@ -113,9 +113,10 @@
                                 <t t-if="o.temps_update_minute">
                                     <span t-esc="o.temps_update_minute"/>
                                 </t>
-                                de temps passé sur la plateforme
                                 <t t-else="not o.temps_update_minute">
                                 </t>
+                                de temps passé sur la plateforme
+
                             </t>
 
                             <t t-else="not o.note_exam_id[-1].ville_id.name_ville != 'Paris'">
