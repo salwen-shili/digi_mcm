@@ -125,17 +125,17 @@
                                     <li>Durée des visioconférences</li>
                                     <li>Nombre d’heures de formation à distance :</li>
                                 </ul>
-                                &amp;emsp;&amp;emsp;L’entreprise et son activité financière :
+                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;L’entreprise et son activité financière :
                                 <br/>
-                                &amp;emsp;&amp;emsp;L’entreprise et le droit civil et commercial :
+                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;L’entreprise et le droit civil et commercial :
                                 <br/>
-                                &amp;emsp;&amp;emsp;L’entreprise et la sécurité :
+                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;L’entreprise et la sécurité :
                                 <br/>
-                                &amp;emsp;&amp;emsp;L’entreprise et son activité commerciale :
+                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;L’entreprise et son activité commerciale :
                                 <br/>
-                                &amp;emsp;&amp;emsp;L’entreprise et le cadre réglementaire de l’activité de transport :
+                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;L’entreprise et le cadre réglementaire de l’activité de transport :
                                 <br/>
-                                &amp;emsp;&amp;emsp;L’entreprise et ses salariés :
+                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;L’entreprise et ses salariés :
                             </t>
                             <br/>
                         </div>
@@ -157,7 +157,7 @@
                     <br/>
                     <br/>
                     <br/>
-                    <div class="col-12" style="padding-top:150px;">
+                    <div class="col-12" style="padding-top:110px;">
                         <img src='/partner_exam/static/src/img/footer_cnx.png' height="45" width="1000"/>
                     </div>
                 </t>
