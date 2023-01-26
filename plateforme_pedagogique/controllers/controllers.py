@@ -388,7 +388,7 @@ class WebhookController(http.Controller):
                                         'company_id': 1,
                                         'website_id': 1
                                     })
-
+                                    so.id_edof=module
                                     so_line = request.env['sale.order.line'].sudo().create({
                                         'name': product_id.name,
                                         'product_id': product_id.id,
