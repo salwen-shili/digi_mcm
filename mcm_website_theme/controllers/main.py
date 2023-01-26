@@ -2419,6 +2419,13 @@ class Payment3x(http.Controller):
             # Si mode de financement est cpf, le champ pole emploi sur fiche client sera décoché
             order.partner_id.is_pole_emploi = False
         return True
+    
+    @http.route(["/shop/payment/islourdpaid"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
+    def cart_is_lourd_paid(self,):
+        islourdpaid= False
+        print ("/shop/payment/islourdpaid, cart_is_lourd_paid :", islourdpaid)
+        
+        return {"islourdpaid": islourdpaid}
         
 
     """Route est appelé quand Pole emploi dans panier est coché """

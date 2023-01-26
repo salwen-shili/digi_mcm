@@ -1,4 +1,5 @@
 var paymentMethod = 'all';
+
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     document.getElementById("cover-spin").remove();
@@ -26,7 +27,11 @@ var villeLeger = [
   "TOULOUSE",
   "MARSEILLE",
 ];
-var isLourd=false;
+// Lourd Reste a charge 
+var isLourd = false;
+var isLourdPaid = false;
+
+// Need to get if it lourd has been paid 
 
 document.addEventListener("DOMContentLoaded", function () {
   windowUrl = window.location.href;
@@ -38,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   if (windowUrl.includes("lourd")) {
     isLourd = true;
+    //API call to check if the amount to be paid has been paid
+    getIsLourdPaid();
+    
     
     var selectCenter = document.getElementById("centre_examen");
     indexOption = 0;
@@ -337,6 +345,9 @@ function onChangeCheckButton() {
 
 //show popup if date is selected
 function showPopup() {
+
+
+  
     let optionsDate = document.getElementById('options-date');
     if (optionsDate != null){
       optionsDate=optionsDate.value
@@ -349,7 +360,7 @@ function showPopup() {
     let region = document.getElementById("centre_examen").value
     if (region != 'all') {
       document.getElementById('error_choix_centre_examen').style.display = 'none';
-      console.log("blingos")
+      
     } else {
       document.getElementById('error_choix_centre_examen').style.display = 'block';
       scrollToError();
@@ -401,7 +412,9 @@ function showPopup() {
   cpfChecked || polechecked
     ? (isLourd ? textbtn="Je paye maintenant !" : textbtn = "Mobiliser mon CPF")
     : (textbtn = "Je paye maintenant !");
-  
+  if (isLourdPaid){
+    textbtn = "Mobiliser mon CPF"
+  }
   if (optionsDate != "all" && optionsDate != "") {
     if (document.getElementById("error_choix_date_popup")) {
       document.getElementById("error_choix_date_popup").style.display = "none";
@@ -419,7 +432,16 @@ function showPopup() {
   //transport lourd
   if ((window.location.href.includes("lourd") && cpfChecked) || polechecked) {
     if (document.getElementById("input_lourd"))
+    // Si formation : Lourd 
+    // Voir si reste a charge est paye 
+    // Si oui masquer le reste a charge dans le le popup
+    console.log("============================================== islourdpaid:", isLourdPaid)
+    if (isLourdPaid){
+      document.getElementById("input_lourd").style.display = "none";
+    }else{
       document.getElementById("input_lourd").style.display = "block";
+    } 
+    
   }
 }
 
@@ -527,7 +549,13 @@ function verify_payment_method() {
       ) {
         // Open /payment => Reste a charge 
         // window.open("https://bit.ly/3k2ueVO", "_blank");
-        window.location.href = "/shop/checkout?express=1";
+       
+        // Si le rete a charge est paye, redirection vers cpf
+        if (isLourdPaid){
+          window.open("https://bit.ly/3k2ueVO", "_blank");
+        }else {
+          window.location.href = "/shop/checkout?express=1";
+        }
       }
     }
   }
@@ -1306,6 +1334,24 @@ const update_cpf = (cpf,isLourd) => {
     })
     .then((res) => {
       console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// Check if the amout to be paid for Lourd product has been paid
+// and update isLourdPaid 
+// send carte_bleu selection
+const getIsLourdPaid = () => {
+  sendHttpRequest('POST', '/shop/payment/islourdpaid',
+    {
+      params: {
+      }
+    })
+    .then((res) => {
+      console.log(res, "================================================= >");
+      isLourdPaid = res.result.islourdpaid
     })
     .catch((err) => {
       console.log(err);
