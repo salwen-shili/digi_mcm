@@ -335,7 +335,7 @@ function showPopup() {
     let region = document.getElementById("region_examen").value
     if (region != 'all') {
       document.getElementById('error_choix_region_examen').style.display = 'none';
-      console.log("blingos")
+      
     } else {
       document.getElementById('error_choix_region_examen').style.display = 'inline-block';
       scrollToError();

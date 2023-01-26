@@ -2429,6 +2429,13 @@ class Payment3x(http.Controller):
                so.module_id = order.partner_id.module_id
                so.session_id = order.partner_id.session_id
         return True
+    
+    @http.route(["/shop/payment/islourdpaid"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
+    def cart_is_lourd_paid(self,):
+        islourdpaid= False
+        print ("/shop/payment/islourdpaid, cart_is_lourd_paid :", islourdpaid)
+        
+        return {"islourdpaid": islourdpaid}
         
 
     """Route est appelé quand Pole emploi dans panier est coché """
