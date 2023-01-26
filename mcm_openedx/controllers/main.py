@@ -434,8 +434,8 @@ class JotformConnector(http.Controller):
 
                 elif rawRequest['q85_choisissezLun'] == "Passeport français ou européen":
                     _logger.info("Passeport français ou européen")
-                    if rawRequest['passeport"']:
-                        url = rawRequest['passeport"']
+                    if rawRequest ['passeport']:
+                        url = rawRequest ['passeport']
                         if url:
                             _logger.info("pieceDidentite%s" % (str(url)))
                             # 👉️ Check if my_var is not None (null)
@@ -979,8 +979,8 @@ class JotformConnector(http.Controller):
 
                 elif rawRequest['q85_choisissezLun'] == "Passeport français ou européen":
                     _logger.info("Passeport français ou européen")
-                    if rawRequest['passeport"']:
-                        url = rawRequest['passeport"']
+                    if rawRequest ['passeport']:
+                        url = rawRequest ['passeport']
                         if url:
                             _logger.info("pieceDidentite%s" % (str(url)))
                             # 👉️ Check if my_var is not None (null)
@@ -1504,8 +1504,8 @@ class JotformConnector(http.Controller):
 
                 elif rawRequest['q85_choisissezLun'] == "Passeport français ou européen":
                     _logger.info("Passeport français ou européen")
-                    if rawRequest['passeport"']:
-                        url = rawRequest['passeport"']
+                    if rawRequest ['passeport']:
+                        url = rawRequest ['passeport']
                         if url:
                             _logger.info("pieceDidentite%s" % (str(url)))
                             # 👉️ Check if my_var is not None (null)
