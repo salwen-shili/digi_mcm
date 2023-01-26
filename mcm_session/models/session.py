@@ -706,7 +706,7 @@ class Session(models.Model):
         """
         stage_ids = self.env['mcmacademy.stage'].search(
             [('name', "!=", _('Planifiées')), ('name', "!=", _('Terminées'))],
-            order="date_exam asc")
+            order="date_exam desc")
         return stage_ids
 
     @api.depends('client_ids', 'prospect_ids', 'canceled_prospect_ids')
