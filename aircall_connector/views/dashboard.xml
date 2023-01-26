@@ -48,21 +48,17 @@
             <form string="My Dashboard">
                 <board style="1-1">
                     <column>
+                        <action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'group_by': ['owner', 'call_direction', 'call_date:month'], 'graph_measure': 'call_duration', 'graph_mode': 'line', 'graph_groupbys': ['owner', 'call_direction', 'call_date:month'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['call_date', '&gt;', '2022-12-31 23:00:00']]"
+                                name="%(aircall_app_graph_calls)d" string="Call Duration/Personne  (Mois)"
+                                view_mode="graph" modifiers="{}" id="action_0_4"/>
 
-                        <action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'group_by': ['owner', 'call_direction'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['owner', 'call_direction'], 'dashboard_merge_domains_contexts': False}"
-                                domain="['|', '|', ['owner', 'ilike', 'nada'], ['owner', 'ilike', 'nour'], ['owner', 'ilike', 'kawther']]"
-                                name="%(aircall_duration)d" string="Service Client" view_mode="graph" modifiers="{}"/>
+                         <action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'group_by': ['owner', 'call_direction'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['owner', 'call_direction'], 'dashboard_merge_domains_contexts': False}" domain="['&amp;', '|', '|', ['owner', 'ilike', 'nada'], ['owner', 'ilike', 'nour'], ['owner', 'ilike', 'kawther'], ['call_date', '&gt;', '2022-12-31 23:00:00']]" name="%(aircall_duration)d"  string="Service Client - comptage" view_mode="graph" modifiers="{}"/>
 
                         <action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'group_by': ['company_name', 'owner', 'call_direction', 'call_date:quarter'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['company_name', 'owner', 'call_direction', 'call_date:quarter'], 'dashboard_merge_domains_contexts': False}"
                                 domain="['&amp;', '|', ['company_name', 'ilike', 'Administration'], ['company_name', 'ilike', 'Examen'], ['call_date', '&gt;', '2022-12-31 23:00:00']]"
                                 name="%(aircall_app_graph_calls_personne)d"
                                 string="Call Direction/ Service Examen-Administration" view_mode="graph"
-                                modifiers="{}"/>
-
-
-                        <action context="{'lang': 'fr_FR', 'tz': False, 'uid': 1, 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['call_direction', 'owner'], 'timeRangeMenuData': {'comparisonField': 'call_date', 'timeRange': ['&amp;', ['call_date', '&gt;=', '2023-01-10 23:00:00'], ['call_date', '&lt;', '2023-01-30 23:00:00']], 'timeRangeDescription': 'Les 7 derniers jours', 'comparisonTimeRange': []}, 'group_by': ['call_direction', 'owner'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[]" name="%(aircall_app_graph_calls)d"
-                                string="Appel entrant/sortant par personne" view_mode="graph"
                                 modifiers="{}"/>
 
 
