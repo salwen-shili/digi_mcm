@@ -63,10 +63,9 @@ class Session(models.Model):
     @api.onchange('adresse_jury_id')
     def onchange_session_ville_id(self):
         """ Cette fonction pour afficher la liste des adresses de centre d'examen
-        liée par une seul ville choisi par l'utilisateur dans l'interface de session"""
+        liée par une seule ville choisi par l'utilisateur dans l'interface de session"""
         for rec in self:
             return {'domain': {'adresse_jury_id': [('adresse_jury_id', '=', rec.ville_jury_id.id)]}}
-        _logger.info("°°°°°°°°°°°°°°°°°STAGE TAKWA TEST°°°°°°°°°°°°°°°°°°°°°° %s" % str(self.stage_id))
 
     # define a function in python to convert
     def date_to_text(self, yearformat, dayformat):
@@ -705,7 +704,6 @@ class Session(models.Model):
         """ Read group customization in order to display all the stages in the
             kanban view, even if they are empty
         """
-
         stage_ids = self.env['mcmacademy.stage'].search(
             [('name', "!=", _('Planifiées')), ('name', "!=", _('Terminées'))],
             order="create_date asc")
@@ -727,6 +725,7 @@ class Session(models.Model):
             print(rec.date_fin)
 
     def write(self, values):
+        _logger.info("°°°°°°°°°°°°°°°°°STAGE TAKWA TEST°°°°°°°°°°°°°°°°°°°°°° %s" % str(self.stage_id))
         for record in self:
             if 'stage_id' in values:
                 stages = self.env['mcmacademy.stage'].search([('id', "=", values['stage_id'])])
