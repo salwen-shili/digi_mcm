@@ -381,7 +381,7 @@
             <field name="model">mcmacademy.session</field>
             <field name="arch" type="xml">
                 <kanban class="o_kanban_small_column o_kanban_project_tasks" archivable="false" on_create="quick_create"
-                        default_group_by="stage_id" default_order="id DESC">
+                        default_group_by="stage_id" default_order="name">
                     <field name="color"/>
                     <field name="stage_id"/>
                     <field name="name"/>

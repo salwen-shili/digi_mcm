@@ -706,7 +706,7 @@ class Session(models.Model):
         """
         stage_ids = self.env['mcmacademy.stage'].search(
             [('name', "!=", _('Planifiées')), ('name', "!=", _('Terminées'))],
-            order="create_date asc")
+            order="date_exam asc")
         return stage_ids
 
     @api.depends('client_ids', 'prospect_ids', 'canceled_prospect_ids')
@@ -725,10 +725,20 @@ class Session(models.Model):
             print(rec.date_fin)
 
     def write(self, values):
-        _logger.info("°°°°°°°°°°°°°°°°°STAGE TAKWA TEST°°°°°°°°°°°°°°°°°°°°°° %s" % str(self.stage_id))
         for record in self:
+            _logger.info(
+                "°°°°°°°°°°°°°°°°°STAGE TAKWA TEST stages.date_exam°°°°°°°°°°°°°°°°°°°°°° %s" % str(record.date_exam))
+            newformat = "%Y-%m-%d"
+            date_exam = datetime.strptime(str(record.date_exam), newformat)
+            stage_date_exam = date_exam.strftime(newformat)
+            record.stage_id.date_exam = stage_date_exam
+            _logger.info(
+                "°°°°°°°°°°°°°°°°°2222222 TEST stages.date_exam°°°°°°°°°°°°°°°°°°°°°° %s" % str(record.stage_id.date_exam))
+            #record.stage_id.values['date_exam'] = date_exam.strftime(newformat)
+
             if 'stage_id' in values:
                 stages = self.env['mcmacademy.stage'].search([('id', "=", values['stage_id'])])
+
                 for stage in stages:
                     if stage.name in ['Archivées', 'Archivés'] and len(record.client_ids) > 0:
                         raise ValidationError(
