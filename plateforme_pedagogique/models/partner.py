@@ -1481,7 +1481,7 @@ class partner(models.Model):
             client = self.env['res.partner'].sudo().search(
                 [('id', '=', user.partner_id.id)], limit=1)
             if client:
-                module = "digimoov_pro_paris"
+                #module = "digimoov_pro_paris"
                 """get the chosen city from cpf """
                 city_cpf = ""
                 if "_" in module:
