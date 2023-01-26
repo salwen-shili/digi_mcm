@@ -499,7 +499,7 @@ function verify_payment_method() {
         }
         return;
       }
-      if (cpf_pm.value == "[premium] Formation premium") {
+      if (cpf_pm.value == "Formation premium") {
         switch (true) {
           case state.includes("https://www.moncompteformation.gouv.fr/"):
             
@@ -1342,4 +1342,86 @@ function poleEmploieFixDisplay() {
   showPoleEmploiDetails();
   sendPoleEmploiState(paymentMethod == "pole_emploi_pm");
 
+}
+
+//post request to /shop/cart/update_exam_date
+const getCpfUrl = (props) => {
+  sendHttpRequest("POST", "/shop/cart/get_cpf", {
+    params: {
+      exam_date_id: props.exam_date_id,
+      status: props.status,
+      availableDate: props.availableDate,
+      
+    },
+  })
+    .then((responseData) => {
+    if (responseData.hasOwnProperty("result")){
+      if (responseData.result.hasOwnProperty("url_cpf")){
+        urlCpf = responseData.result.url_cpf ?? false;
+      }
+      console.log("Url cpf: ", urlCpf)
+      
+    }
+   
+  })
+    .catch((err) => {});
+};
+
+// redirection to the adequate url 
+const postRedirection = (props) => {
+if (cpf_pm && props) {
+  // console.log(cpf_pm, 'cpf_pm');
+ var emploichecked = paymentMethod == "pole_emploi_pm" ? true : false;
+ if (cpf_pm.value == "Formation premium") {
+  switch (true) {
+    case state.includes("https://www.moncompteformation.gouv.fr/"):
+      
+      window.open(state, "_blank");
+      break;
+    case state == "accepted":
+     
+      
+      cpfAccepted();
+      break;
+
+    default:
+      
+      window.open(urlCpf, "_blank");
+
+      break;
+  }
+
+
+ if (paymentMethod == "cpf_pm" || emploichecked == true) {
+    if (cpf_pm.value == "Formation pro") {
+      switch (true) {
+        case state.includes("https://www.moncompteformation.gouv.fr/"):
+          window.open(state, "_blank");
+          break;
+       
+
+        default:
+          window.open(urlCpf, "_blank");
+
+          break;
+          case state == "accepted":
+            cpfAccepted();
+  
+            // document.getElementById('popupcontent').innerHTML = 'finished...';
+            break;
+      }
+      return;
+    }
+    
+    }
+    if (
+      cpf_pm.value.includes(
+        "Formation attestation de transport poids lourd"
+      ) &&
+      conditionlourd.checked == true
+    ) {
+      window.open("https://bit.ly/3k2ueVO", "_blank");
+    }
+  }
+}
 }
