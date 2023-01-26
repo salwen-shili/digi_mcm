@@ -27,7 +27,9 @@
         <field name="model">mcm_openedx.form_info</field>
         <field name="arch" type="xml">
             <form string="Course Form" delete="false">
+
                 <sheet>
+
                     <group>
                         <field name="email"/>
                         <field name="partner_id"/>
@@ -48,6 +50,6 @@
 
     </record>
     <menuitem id="jotform_menu" name="JOTFORM" web_icon="mcm_openedx,static/src/jotf.png"/>
-     <menuitem id="jotform_sub_menu" name="Submissions" parent="jotform_menu" action="jotform_sub_list_action"/>
+    <menuitem id="jotform_sub_menu" name="Submissions" parent="jotform_menu" action="jotform_sub_list_action"/>
 
 </odoo>
