@@ -2418,6 +2418,16 @@ class Payment3x(http.Controller):
             # order.partner_id.statut_cpf = 'untreated'
             # Si mode de financement est cpf, le champ pole emploi sur fiche client sera décoché
             order.partner_id.is_pole_emploi = False
+            """if product is 'transport lourd' Create new sale order for CPF payment 
+                               with product 'reste à charge-transport lourd' """
+            if isLourd == "true":
+               _logger.info("new sale order")
+               so = request.env['sale.order'].sudo().create({
+                   'partner_id': order.partner_id.id,
+                   'company_id': 2,
+               })
+               so.module_id = order.partner_id.module_id
+               so.session_id = order.partner_id.session_id
         return True
         
 
