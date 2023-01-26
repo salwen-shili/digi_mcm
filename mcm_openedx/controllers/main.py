@@ -383,8 +383,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -424,8 +423,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -468,8 +466,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -509,8 +506,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -551,8 +547,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -591,8 +586,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -633,8 +627,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -676,8 +669,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -717,8 +709,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -758,8 +749,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -799,8 +789,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -839,8 +828,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -879,8 +867,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
                                 vals = {
@@ -927,7 +914,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': '  repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -941,8 +928,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -968,7 +954,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': '  repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -982,8 +968,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1012,7 +997,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': '  repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1026,8 +1011,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1053,7 +1037,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': '  repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1067,8 +1051,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1095,7 +1078,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'premier',
+                                    'examen': '  repassage',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1109,8 +1092,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1135,7 +1117,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'premier',
+                                    'examen': '  repassage',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1149,8 +1131,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1177,7 +1158,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': '  repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1191,8 +1172,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1220,7 +1200,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': '  repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1234,8 +1214,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1261,7 +1240,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': '  repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1275,8 +1254,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1302,7 +1280,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': '  repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1316,8 +1294,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1343,7 +1320,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': '  repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1357,8 +1334,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1383,7 +1359,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'premier',
+                                    'examen': '  repassage',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1397,8 +1373,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1423,7 +1398,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'premier',
+                                    'examen': '  repassage',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1437,8 +1412,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1465,7 +1439,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': 'pasrelle',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1479,8 +1453,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1506,7 +1479,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': 'pasrelle',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1520,8 +1493,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1550,7 +1522,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': 'pasrelle',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1564,8 +1536,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1591,7 +1562,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': 'pasrelle',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1605,8 +1576,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1633,7 +1603,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'premier',
+                                    'examen': 'pasrelle',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1647,8 +1617,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1673,7 +1642,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'premier',
+                                    'examen': 'pasrelle',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1687,8 +1656,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1715,7 +1683,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': 'pasrelle',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1729,8 +1697,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1758,7 +1725,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': 'pasrelle',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1772,8 +1739,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1799,7 +1765,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': 'pasrelle',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1813,8 +1779,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1840,7 +1805,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': 'pasrelle',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1854,8 +1819,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1881,7 +1845,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'premier',
+                                        'examen': 'pasrelle',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1895,8 +1859,7 @@ class JotformConnector(http.Controller):
                                                                                                 'partner_id': partner.id,
                                                                                                 'folder_id': folder_id.id,
                                                                                                 'datas': image_binary,
-                                                                                                'examen': examen,
-                                                                                                'state': 'waiting', })
+                                                                                                     'state': 'waiting', })
 
                                     request.env.cr.commit()
 
@@ -1921,7 +1884,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'premier',
+                                    'examen': 'pasrelle',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1935,8 +1898,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1961,7 +1923,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'premier',
+                                    'examen': 'pasrelle',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -1975,8 +1937,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
 
@@ -1997,7 +1958,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'premier',
+                                    'examen': 'pasrelle',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -2011,8 +1972,7 @@ class JotformConnector(http.Controller):
                                                                                             'partner_id': partner.id,
                                                                                             'folder_id': folder_id.id,
                                                                                             'datas': image_binary,
-                                                                                            'examen': examen,
-                                                                                            'state': 'waiting', })
+                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
 
