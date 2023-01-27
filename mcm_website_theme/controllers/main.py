@@ -2419,14 +2419,14 @@ class Payment3x(http.Controller):
             order.partner_id.is_pole_emploi = False
 
             """if product is 'transport lourd' """
-            if isLourd == "true":
+            if isLourd == True:
                 """update order line with product lourd cpf"""
                 product = request.env['product.template'].sudo().search(
                     [('default_code', '=', 'transport-routier-cpf')], limit=1)
                 if product:
                     _logger.info('if product')
                     for line in order.order_line:
-                        line.sudo.unlink()
+                        line.sudo().unlink()
                     order_line = request.env['sale.order.line'].sudo().create({
                         'name': product.name,
                         'product_id': product.id,
