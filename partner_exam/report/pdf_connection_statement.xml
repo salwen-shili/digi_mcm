@@ -164,9 +164,6 @@
                                     </ul>
                                 </ul>
                                 <br/>
-                                <br/>
-                                <br/>
-                                <br/>
                                 Fait à
                                 <strong>
                                     <span t-field="o.note_exam_id[-1].session_id.session_ville_id.name_ville"/>
@@ -181,7 +178,7 @@
                                 <br/>
                                 <br/>
                                 <div class="col-12" style="padding-top:45px;">
-                                    <img src='/partner_exam/static/src/img/footer_cnx.png' height="45" width="1000"/>
+                                    <img src='/partner_exam/static/src/img/footer_cnx.png' height="35" width="1000"/>
                                 </div>
                             </t>
                             <br/>
