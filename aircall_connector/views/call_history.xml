@@ -35,10 +35,8 @@
                                 <field name="phone_number"/>
                                 <field name="company_name"/>
                                 <field name="owner"/>
-
                                 <field name="digits"/>
                                 <field name="call_recording" widget="url"/>
-                                <field name="call_direction"/>
                                 <field name="call_duration_char"/>
                                 <field name="call_date"/>
 
@@ -89,9 +87,7 @@
                     <field name="call_contact"/>
                     <field name="phone_number"/>
                     <field name="company_name"/>
-                    <field name="call_duration"/>
                     <field name="call_duration_char"/>
-
                     <field name="owner"/>
                     <field name="call_date"/>
                     <field name="call_recording" widget="url"/>
