@@ -2422,7 +2422,7 @@ class Payment3x(http.Controller):
             if isLourd == True:
                 """update order line with product lourd cpf"""
                 product = request.env['product.template'].sudo().search(
-                    [('default_code', '=', 'transport-routier-cpf')], limit=1)
+                    [('default_code', '=', 'transport-routier-cpf-reste')], limit=1)
                 if product:
                     _logger.info('if product')
                     for line in order.order_line:
@@ -2440,28 +2440,35 @@ class Payment3x(http.Controller):
                 """Create new sale order for CPF payment 
                 with product 'reste à charge-transport lourd'"""
                 _logger.info("new sale order")
-                so = request.env['sale.order'].sudo().create({
-                       'partner_id': order.partner_id.id,
-                       'company_id': 2,
-                   })
-                so.module_id = order.partner_id.module_id
-                so.session_id = order.partner_id.session_id
-                product_charge=request.env['product.template'].sudo().search([('default_code','=','transport-routier-cpf-reste')])
-
+                product_charge=request.env['product.template'].sudo().search([('default_code','=','transport-routier-cpf')])
+                sales =request.env['sale.order'].sudo().search([('partner_id','=',order.partner_id.id)])
                 if product_charge:
-                    order_line = request.env['sale.order.line'].sudo().create({
-                        'name': product_charge.name,
-                        'product_id': product_charge.id,
-                        'product_uom_qty': 1,
-                        'product_uom': product_charge.uom_id.id,
-                        'price_unit': product_charge.list_price,
-                        'order_id': so.id,
-                        'tax_id': product_charge.taxes_id,
-                        'company_id': 2
-                    })
-                    for line in so.order_line:
-                        line.price_unit = so.amount_total
-                    so.action_confirm()
+                    existe=False
+                    for sale in sales:
+                        if sale.module_id.product_id.id==product_charge.id:
+                            existe=True
+                    if not existe:
+                        so = request.env['sale.order'].sudo().create({
+                               'partner_id': order.partner_id.id,
+                               'company_id': 2,
+                           })
+                        so.module_id = order.partner_id.module_id
+                        so.session_id = order.partner_id.session_id
+
+                        if product_charge:
+                            order_line = request.env['sale.order.line'].sudo().create({
+                                'name': product_charge.name,
+                                'product_id': product_charge.id,
+                                'product_uom_qty': 1,
+                                'product_uom': product_charge.uom_id.id,
+                                'price_unit': product_charge.list_price,
+                                'order_id': so.id,
+                                'tax_id': product_charge.taxes_id,
+                                'company_id': 2
+                            })
+                            for line in so.order_line:
+                                line.price_unit = so.amount_total
+                            so.action_confirm()
 
 
         return True
