@@ -1,0 +1,37 @@
+<odoo>
+    <template id="digimoov_website_templates.reste_a_charge" name="Qui Sommes Nous | Digimoov">
+        <t t-call="website.layout">
+            <link rel="stylesheet" href="/digimoov_website_templates/static/src/css/popup-examen.min.css" />
+            <div id="wrap" class="oe_structure oe_empty">
+                <div id="popup1" class="overlay">
+                    <div class="popup" style="">
+                        <h2 class="text-left">
+                            <i class="fa fa-info-circle" style="color: #152856"></i>
+                        </h2>
+                        <a class="close" onclick="closePopup1()">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <div class="content">
+                            <p id="">
+                                Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès!
+                                <br />
+                                Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.
+                            </p>
+                            <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
+                                <div class="" style="margin-block-start: 1.5rem;">
+                                    <button class="rkmd-btn green-shop ripple-effect ripple-yellow" onclick="openPopup2()" >Continuer</button>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    document.getElementById("popup1").style.display = "unset";
+                </script>
+    
+            </div>
+        </t>
+    </template>
+
+</odoo>

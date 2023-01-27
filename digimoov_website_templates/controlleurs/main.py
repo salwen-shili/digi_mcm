@@ -165,6 +165,14 @@ class Website(Website):
             return werkzeug.utils.redirect('/capacite-de-transport-marseille', 301)
         else:
             raise werkzeug.exceptions.NotFound()
+    #redirection to cpf => reste a charge lourd
+    @http.route('/redirection_to_cpf', type='http', auth='public', website=True)
+    def redirection_to_cpf(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.reste_a_charge")                                 v)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
 
 
 class FAQ(http.Controller):
