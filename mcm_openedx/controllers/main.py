@@ -45,6 +45,13 @@ class JotformConnector(http.Controller):
                             [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                            if not existe_sub:
+                                new = request.env['mcm_openedx.form_info'].sudo().create({
+                                    'email': email,
+                                    'partner_id': partner.id,
+                                    'societe': "DIGIMOOV",
+                                })
 
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -96,6 +103,13 @@ class JotformConnector(http.Controller):
                             [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                            if not existe_sub:
+                                new = request.env['mcm_openedx.form_info'].sudo().create({
+                                    'email': email,
+                                    'partner_id': partner.id,
+                                    'societe': "DIGIMOOV",
+                                })
 
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -147,6 +161,13 @@ class JotformConnector(http.Controller):
                             [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                            if not existe_sub:
+                                new = request.env['mcm_openedx.form_info'].sudo().create({
+                                    'email': email,
+                                    'partner_id': partner.id,
+                                    'societe': "DIGIMOOV",
+                                })
 
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -197,6 +218,13 @@ class JotformConnector(http.Controller):
                             [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                            if not existe_sub:
+                                new = request.env['mcm_openedx.form_info'].sudo().create({
+                                    'email': email,
+                                    'partner_id': partner.id,
+                                    'societe': "DIGIMOOV",
+                                })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
                             # verifier les document si existe avec le nom jotform, et partner
@@ -244,6 +272,13 @@ class JotformConnector(http.Controller):
                             [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                            if not existe_sub:
+                                new = request.env['mcm_openedx.form_info'].sudo().create({
+                                    'email': email,
+                                    'partner_id': partner.id,
+                                    'societe': "DIGIMOOV",
+                                })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
                             # verifier les document si existe avec le nom jotform, et partner
@@ -293,6 +328,13 @@ class JotformConnector(http.Controller):
                             [('name', "=", ('Documents Digimoov')), ('company_id', "=", 2)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                            if not existe_sub:
+                                new = request.env['mcm_openedx.form_info'].sudo().create({
+                                    'email': email,
+                                    'partner_id': partner.id,
+                                    'societe': "DIGIMOOV",
+                                })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
                             # verifier les document si existe avec le nom jotform, et partner
@@ -330,4 +372,3 @@ class JotformConnector(http.Controller):
                                     print("cree ticket")
                                     new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                         vals)
-
