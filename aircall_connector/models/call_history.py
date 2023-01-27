@@ -40,6 +40,7 @@ class AirCall(models.Model):
                                     column1="call_tag_id", column2="call_id", string="Tags", )
     notes = fields.Text(strng="Notes", required=False)
     call_duration = fields.Float(strng="Duration", required=False)
+    call_duration_char = fields.Char(strng="CAll duration ", default="---",required=False)
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
 
 

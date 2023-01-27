@@ -14,6 +14,7 @@ _logger = logging.getLogger(__name__)
 
 
 class AircallConnector(http.Controller):
+
     @http.route(['/webhook-digi-mcm-aircall'], type='json', auth="public", csrf=False)
     def webhook_import_calls(self, **kw):
         request.uid = odoo.SUPERUSER_ID
@@ -55,8 +56,15 @@ class AircallConnector(http.Controller):
                 if not call_detail.call_contact:
                     call_detail.action_find_user_using_phone()
                 call_duration_min = call_detail.call_duration / 60
-                _logger.info("call calcul time: %s" % (round(call_duration_min)))
+                heure = int((call_detail.call_duration / 3600))
+                minute = int((call_detail.call_duration - (3600 * heure)) / 60)
+                secondes = int(call_detail.call_duration - (3600 * heure) - (60 * minute))
+                _logger.info(heure)
+                _logger.info(minute)
+                _logger.info(secondes)
+                _logger.info (str( " %s h :   %s  m:  %s s"  %(heure , minute, secondes)))
                 call_detail.call_duration = float(call_duration_min)
+                call_detail.call_duration_char =(str( " %s h :   %s  m:  %s s"  %(heure , minute, secondes)))
                 start_call_date = datetime.fromtimestamp(call_data['started_at'])
                 if call["event"] == "call.ended":
                     if call_detail.call_contact.company_id.id == 2:
@@ -96,13 +104,15 @@ class AircallConnector(http.Controller):
                                                                             })
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                    new_call_detail.sudo().write({
-                        'owner': call_data["user"]["name"] if call_data["user"] else False,
-                    })
+                    if "name" in  call_data["user"]:
+                        new_call_detail.sudo().write({
+                            'owner': call_data["user"]["name"] if call_data["user"] else False,
+                        })
                     """change state for crm lead for every call detail creation"""
                     if new_call_detail.call_contact.statut == "indecis":
                         new_call_detail.call_contact.changestage("Indécis appelé", new_call_detail.call_contact)
-                        lead = request.env['crm.lead'].sudo().search([('partner_id', "=", new_call_detail.call_contact.id)])
+                        lead = request.env['crm.lead'].sudo().search(
+                            [('partner_id', "=", new_call_detail.call_contact.id)])
                         _logger.info('createeeeee webhook note  before if********************************')
                         if lead:
                             _logger.info('lead %s' % str(lead))

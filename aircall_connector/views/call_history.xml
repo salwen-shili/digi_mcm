@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
-            <record id="aircall_search_view" model="ir.ui.view">
-        <field name="name">AirCALL</field>
+        <record id="aircall_search_view" model="ir.ui.view">
+            <field name="name">AirCALL</field>
             <field name="model">call.detail</field>
-        <field name="arch" type="xml">
-            <search>
-                 <field name="phone_number" filter_domain="[('phone_number','ilike',self)]"></field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="phone_number" filter_domain="[('phone_number','ilike',self)]"></field>
 
 
-                <filter name="group_company_name" string="Societé" icon="terp-partner"
-                        context="{'group_by':'company_name'}"/>
+                    <filter name="group_company_name" string="Societé" icon="terp-partner"
+                            context="{'group_by':'company_name'}"/>
 
 
-                <filter name="group_owner" string="Owner" icon="terp-partner"
-                        context="{'group_by':'owner'}"/>
+                    <filter name="group_owner" string="Owner" icon="terp-partner"
+                            context="{'group_by':'owner'}"/>
 
 
-            </search>
-        </field>
-    </record>
+                </search>
+            </field>
+        </record>
 
         <!--        View form of aircall call contains details of call -->
         <record id="call_detail_form" model="ir.ui.view">
@@ -35,10 +35,9 @@
                                 <field name="phone_number"/>
                                 <field name="company_name"/>
                                 <field name="owner"/>
-
                                 <field name="digits"/>
                                 <field name="call_recording" widget="url"/>
-                                <field name="call_direction"/>
+                                <field name="call_duration_char"/>
                                 <field name="call_date"/>
 
                             </group>
@@ -88,7 +87,7 @@
                     <field name="call_contact"/>
                     <field name="phone_number"/>
                     <field name="company_name"/>
-                    <field name="call_duration"/>
+                    <field name="call_duration_char"/>
                     <field name="owner"/>
                     <field name="call_date"/>
                     <field name="call_recording" widget="url"/>
