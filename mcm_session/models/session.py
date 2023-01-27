@@ -729,13 +729,14 @@ class Session(models.Model):
             _logger.info(
                 "°°°°°°°°°°°°°°°°°STAGE TAKWA TEST stages.date_exam°°°°°°°°°°°°°°°°°°°°°° %s" % str(record.date_exam))
             newformat = "%Y-%m-%d"
-            date_exam = datetime.strptime(str(record.date_exam), newformat)
-            stage_date_exam = date_exam.strftime(newformat)
-            record.stage_id.date_exam = stage_date_exam
-            _logger.info(
-                "°°°°°°°°°°°°°°°°°2222222 TEST stages.date_exam°°°°°°°°°°°°°°°°°°°°°° %s" % str(record.stage_id.date_exam))
-            #record.stage_id.values['date_exam'] = date_exam.strftime(newformat)
-
+            # Get session date exam to stage date_exam
+            if record.date_exam:
+                date_exam = datetime.strptime(str(record.date_exam), newformat)
+                stage_date_exam = date_exam.strftime(newformat)
+                if record.stage_id.date_exam is False: # If field date_exam is empty
+                    record.stage_id.date_exam = stage_date_exam
+                    _logger.info(
+                        "°°°°°°°°°°°°°°°°°INFO GET DATE EXAM VALUE IN STAGE DATE EXAM°°°°°°°°°°°°°°°°°°°°°° %s" % str(record.stage_id.date_exam))
             if 'stage_id' in values:
                 stages = self.env['mcmacademy.stage'].search([('id', "=", values['stage_id'])])
 
