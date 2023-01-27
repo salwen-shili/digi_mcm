@@ -8,158 +8,191 @@
                         .page {
                         line-height: 1.75 ;
                         font-size:18px ;
+                        li li {
+                        list-style-type: circle;
+                        }
 
                         }
                     </style>
                     <div class="page">
-                        <div class="oe_structure"/>
-                        <div class="row">
-                            <div class="col-4">
-                                <p style="float:left;">
-                                    <b>DIGIMOOV</b>
-                                    <br/>
-                                    10 rue de PENTHIEVRE
-                                    <br/>
-                                    75008 PARIS
-                                    <br/>
-                                    Email: hello@digimoov.fr
-                                    <br/>
-                                    Tel: 09 86 87 88 66
-                                </p>
-                            </div>
-                            <div class="col-4"></div>
-                            <div class="col-4">
-                                <img src='/partner_exam/static/src/img/logo_digimoov.png'
-                                     style="max-height:190px;float:right;padding-right:30px;"/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
+                    <div class="oe_structure"/>
+                    <div class="row">
+                        <div class="col-4">
+                            <p style="float:left;">
+                                <b>DIGIMOOV</b>
                                 <br/>
-                                <center>
-                                    <h2>
-                                        <b>Relevé de connexion</b>
-                                    </h2>
-                                </center>
-                            </div>
-                        </div>
-                        <br/>
-                        <br/>
-                        <div class="col-12">
-                            <p>Je, soussigné : <b>NASSERDDINE CHERIH</b>, représentant de l'organisme de formation <b>
-                                DIGIMOOV</b>,
+                                10 rue de PENTHIEVRE
+                                <br/>
+                                75008 PARIS
+                                <br/>
+                                Email: hello@digimoov.fr
+                                <br/>
+                                Tel: 09 86 87 88 66
                             </p>
-                            <br/>
-                            atteste que:
-                            <strong>
-                                <span t-field="o.name"/>
-                            </strong>
-                            <br/>
-                            a suivi la formation:
-                            <br/>
-                            <hr/>
-                            <center>
-                                <strong>
-                                    <span t-field="o.mcm_session_id.diplome_vise"/>
-                                </strong>
-                            </center>
-                            <hr/>
-                            <br/>
-                            Lieu de la formation :
-                            <b>À distance</b>
-                            <br/>
-                            Dates de la formation : du
-                            <t t-set="sales"
-                               t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
-                            <t t-set="financement_mode"
-                               t-value="o.mode_de_financement == 'particulier'"/>
-                            <t t-if="sales and financement_mode">
-                                <strong>
-                                    <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
-                                </strong>
-                            </t>
-                            <t t-else="not sales">
-                                <b>
-                                    <span t-esc="o.date_creation"/>
-                                </b>
-                            </t>
-                            au
-                            <strong>
-                                <span t-field="o.module_id.date_exam"
-                                      t-field-options='{"format": "dd/MM/yyyy"}'/>
-                            </strong>
-                            <br/>
-                            Date et lieu d'examen : Le
-                            <strong>
-                                <span t-field="o.note_exam_id[-1].session_id.date_exam"
-                                      t-field-options='{"format": "dd/MM/yyyy"}'/>
-                                -
-                                <span t-field="o.note_exam_id[-1].session_id.session_adresse_examen.adresse_centre_examen"/>
-                            </strong>
-
-                            <br/>
-                            Durée effective de la formation :<span t-esc="o.total_time_hours"/>, dont :
-                            <br/>
-                            <t t-if="o.note_exam_id[-1].ville_id.name_ville != 'Paris'">
-                                -
-                                <span t-esc="o.total_time_appels_hour"/>
-                                d’appels
-                                <br/>
-                                -
-                                <span t-esc="o.total_time_visio_hour"/>
-                                de visioconférences
-                                <br/>
-                                -
-                                <t t-if="o.temps_update_minute">
-                                    <span t-esc="o.temps_update_minute"/>
-                                </t>
-                                <t t-else="not o.temps_update_minute">
-                                </t>
-                                de temps passé sur la plateforme
-
-                            </t>
-
-                            <t t-else="not o.note_exam_id[-1].ville_id.name_ville != 'Paris'">
-                                <ul>
-                                    <li>Durée des appels téléphoniques</li>
-                                    <li>Durée des visioconférences</li>
-                                    <li>Nombre d’heures de formation à distance :</li>
-                                </ul>
-                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;L’entreprise et son activité financière :
-                                <br/>
-                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;L’entreprise et le droit civil et commercial :
-                                <br/>
-                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;L’entreprise et la sécurité :
-                                <br/>
-                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;L’entreprise et son activité commerciale :
-                                <br/>
-                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;L’entreprise et le cadre réglementaire de l’activité de transport :
-                                <br/>
-                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;L’entreprise et ses salariés :
-                            </t>
-                            <br/>
                         </div>
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <img src='/partner_exam/static/src/img/logo_digimoov.png'
+                                 style="max-height:190px;float:right;padding-right:30px;"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <br/>
+                            <center>
+                                <h2>
+                                    <b>Relevé de connexion</b>
+                                </h2>
+                            </center>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="col-12">
+                        <p>Je, soussigné : <b>NASSERDDINE CHERIH</b>, représentant de l'organisme de formation <b>
+                            DIGIMOOV</b>,
+                        </p>
                         <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        Fait à
+                        atteste que:
                         <strong>
-                            <span t-field="o.note_exam_id[-1].session_id.session_ville_id.name_ville"/>
+                            <span t-field="o.name"/>
                         </strong>
-                        , le
-                        <!-- date exam + 2-->
-                        <span t-esc="((o.note_exam_id[-1].session_id.date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
                         <br/>
-                        <img src='/partner_exam/static/src/img/signature_cnx.png'
-                             style="height:110px;width:300px;padding-top:10px!important;"/>
+                        a suivi la formation:
+                        <br/>
+                        <hr/>
+                        <center>
+                            <strong>
+                                <span t-field="o.mcm_session_id.diplome_vise"/>
+                            </strong>
+                        </center>
+                        <hr/>
+                        <br/>
+                        Lieu de la formation :
+                        <b>À distance</b>
+                        <br/>
+                        Dates de la formation : du
+                        <t t-set="sales"
+                           t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
+                        <t t-set="financement_mode"
+                           t-value="o.mode_de_financement == 'particulier'"/>
+                        <t t-if="sales and financement_mode">
+                            <strong>
+                                <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
+                            </strong>
+                        </t>
+                        <t t-else="not sales">
+                            <b>
+                                <span t-esc="o.date_creation"/>
+                            </b>
+                        </t>
+                        au
+                        <strong>
+                            <span t-field="o.module_id.date_exam"
+                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                        </strong>
+                        <br/>
+                        Date et lieu d'examen : Le
+                        <strong>
+                            <span t-field="o.note_exam_id[-1].session_id.date_exam"
+                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                            -
+                            <span t-field="o.note_exam_id[-1].session_id.session_adresse_examen.adresse_centre_examen"/>
+                        </strong>
+
+                        <br/>
+                        Durée effective de la formation :<span t-esc="o.total_time_hours"/>, dont :
+                        <br/>
+                        <t t-if="o.note_exam_id[-1].ville_id.name_ville != 'Paris'">
+                            -
+                            <span t-esc="o.total_time_appels_hour"/>
+                            d’appels
+                            <br/>
+                            -
+                            <span t-esc="o.total_time_visio_hour"/>
+                            de visioconférences
+                            <br/>
+                            -
+                            <t t-if="o.temps_update_minute">
+                                <span t-esc="o.temps_update_minute"/>
+                            </t>
+                            <t t-else="not o.temps_update_minute">
+                            </t>
+                            de temps passé sur la plateforme
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            Fait à
+                            <strong>
+                                <span t-field="o.note_exam_id[-1].session_id.session_ville_id.name_ville"/>
+                            </strong>
+                            , le
+                            <!-- date exam + 2-->
+                            <span t-esc="((o.note_exam_id[-1].session_id.date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
+                            <br/>
+                            <img src='/partner_exam/static/src/img/signature_cnx.png'
+                                 style="height:110px;width:300px;padding-top:10px!important;"/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="col-12" style="padding-top:150px;">
+                                <img src='/partner_exam/static/src/img/footer_cnx.png' height="45" width="1000"/>
+                            </div>
+                        </t>
+
+                        <t t-else="not o.note_exam_id[-1].ville_id.name_ville != 'Paris'">
+                            <ul>
+                                <li>Durée des appels téléphoniques</li>
+                                <li>Durée des visioconférences</li>
+                                <li>Nombre d’heures de formation à distance :</li>
+                                <br/>
+                                &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+                                <ul>
+                                    <li>L’entreprise et son activité financière :</li>
+                                    <br/>
+                                    &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+                                    <li>L’entreprise et le droit civil et commercial :</li>
+                                    <br/>
+                                    &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+                                    <li>L’entreprise et la sécurité :</li>
+                                    <br/>
+                                    &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+                                    <li>L’entreprise et son activité commerciale :</li>
+                                    <br/>
+                                    &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+                                    <li>L’entreprise et le cadre réglementaire de l’activité
+                                        de transport :
+                                    </li>
+                                    <br/>
+                                    &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+                                    <li>L’entreprise et ses salariés :</li>
+                                </ul>
+                            </ul>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            Fait à
+                            <strong>
+                                <span t-field="o.note_exam_id[-1].session_id.session_ville_id.name_ville"/>
+                            </strong>
+                            , le
+                            <!-- date exam + 2-->
+                            <span t-esc="((o.note_exam_id[-1].session_id.date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
+                            <br/>
+                            <img src='/partner_exam/static/src/img/signature_cnx.png'
+                                 style="height:110px;width:300px;padding-top:10px!important;"/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="col-12" style="padding-top:45px;">
+                                <img src='/partner_exam/static/src/img/footer_cnx.png' height="45" width="1000"/>
+                            </div>
+                        </t>
+                        <br/>
                     </div>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <div class="col-12" style="padding-top:45px;">
-                        <img src='/partner_exam/static/src/img/footer_cnx.png' height="45" width="1000"/>
-                    </div>
+
                 </t>
             </t>
         </t>
