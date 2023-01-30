@@ -2488,6 +2488,18 @@ class Payment3x(http.Controller):
         return {"islourdpaid": islourdpaid}
         
 
+
+    #Receive isLourd and payment Method 
+    # //paymentMethod in "stripe_pm" "stripe_pm" "pole_emploi_pm":
+    # isLourd: True or False
+    @http.route(["/shop/is_lourd_paymentmethod"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
+    def isLourdnPayment(self, paymentMethod, isLourd):
+        
+        print ("/shop/is_lourd_paymentmethod :", paymentMethod, isLourd )
+        
+        return True
+       
+
     """Route est appelé quand Pole emploi dans panier est coché """
 
     @http.route(

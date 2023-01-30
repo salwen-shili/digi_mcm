@@ -1,5 +1,5 @@
 <odoo>
-    <template id="digimoov_website_templates.reste_a_charge" name="Qui Sommes Nous | Digimoov">
+    <template id="digimoov_website_templates.reste_a_charge" name="">
         <t t-call="website.layout">
             <link rel="stylesheet" href="/digimoov_website_templates/static/src/css/popup-examen.min.css" />
             <div id="wrap" class="oe_structure oe_empty">
@@ -19,7 +19,7 @@
                             </p>
                             <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
                                 <div class="" style="margin-block-start: 1.5rem;">
-                                    <button class="rkmd-btn green-shop ripple-effect ripple-yellow" onclick="openPopup2()" >Continuer</button>
+                                    <button class="rkmd-btn green-shop ripple-effect ripple-yellow" onclick="window.location.href='https://bit.ly/3k2ueVO'" >Continuer</button>
                                 </div>
     
                             </div>

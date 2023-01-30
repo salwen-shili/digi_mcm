@@ -1,4 +1,7 @@
+ //Values in "stripe_pm" "stripe_pm" "pole_emploi_pm":
 var paymentMethod = 'all';
+
+
 
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
@@ -346,6 +349,8 @@ function onChangeCheckButton() {
 //show popup if date is selected
 function showPopup() {
 
+  
+
 
   
     let optionsDate = document.getElementById('options-date');
@@ -431,6 +436,8 @@ function showPopup() {
 
   //transport lourd
   if ((window.location.href.includes("lourd") && cpfChecked) || polechecked) {
+    //send islourd and payment method
+    isLourdnPayment(isLourd,paymentMethod)
     if (document.getElementById("input_lourd"))
     // Si formation : Lourd 
     // Voir si reste a charge est paye 
@@ -441,11 +448,12 @@ function showPopup() {
     }else{
       document.getElementById("input_lourd").style.display = "block";
     } 
-    
   }
+
 }
 
 function verify_payment_method() {
+
   //user can navigate #popup1 to the url directly so we need to secure
   //that he can't pass if he didn't choose a date
   if (!document.getElementById("options-date")) {
@@ -1274,8 +1282,7 @@ function modeFinancement(mode, index) {
         checkPaiementInstalment(true)
       }
 
-      break;
-    case "cpf_pm":
+      case "stripe_pm":
       onchangeTextButton();
 
       update_cpf(true,isLourd);
@@ -1305,13 +1312,13 @@ function modeFinancement(mode, index) {
 
 
 // send carte_bleu selection
-const update_cartebleu = (cartebleu,isLourd) => {
+const update_cartebleu = (cartebleu) => {
   sendHttpRequest('POST', '/shop/payment/update_cartebleu',
     {
       params: {
         cartebleu: cartebleu,
         
-        isLourd:isLourd
+ 
       }
     })
     .then((res) => {
@@ -1323,13 +1330,13 @@ const update_cartebleu = (cartebleu,isLourd) => {
 };
 
 // send cpf selection + product 
-const update_cpf = (cpf,isLourd) => {
+const update_cpf = (cpf) => {
   sendHttpRequest('POST', '/shop/payment/update_cpf',
     {
       params: { 
         cpf: cpf, 
         
-        isLourd:isLourd
+        
       }
     })
     .then((res) => {
@@ -1389,3 +1396,23 @@ function poleEmploieFixDisplay() {
   sendPoleEmploiState(paymentMethod == "pole_emploi_pm");
 
 }
+
+// send is lourd and payment method
+//paymentMethod  //Values in "stripe_pm" "stripe_pm" "pole_emploi_pm":
+const isLourdnPayment = (isLourd,paymentMethod) => {
+  sendHttpRequest('POST', '/shop/is_lourd_paymentmethod',
+    {
+      params: {
+        
+        
+        isLourd:isLourd,
+        paymentMethod: paymentMethod
+      }
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
