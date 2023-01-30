@@ -136,12 +136,21 @@ class CustomerPortal(CustomerPortal):
                                 if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']: # check if the client has paid with one of this pricelist ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues' ] for digimoov
                                     return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
                                 else:
-                                    return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                                    """if product paid is 'reste à charge lopurd' partner is redirected to 'cpf_premuim_plus_amount_paid' and not to sale order """
+                                    if product_id.default_code == "transport-routier-cpf-reste":
+                                        return request.redirect("/cpf_premuim_plus_amount_paid")
+                                    else:
+                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
                             else:
                                 if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
-                                    return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+                                     return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+
                         else:
-                            return request.redirect("/my/orders/%d?access_token=%s&message=%s" % (order_id,access_token,message))
+                            """if product paid is 'reste à charge lopurd' partner is redirected to 'cpf_premuim_plus_amount_paid' and not to sale order """
+                            if product_id.default_code == "transport-routier-cpf-reste":
+                                return request.redirect("/cpf_premuim_plus_amount_paid")
+                            else:
+                                return request.redirect("/my/orders/%d?access_token=%s&message=%s" % (order_id,access_token,message))
                     elif product and partenaire:
                         if product_id:
                             slugname = (product_id.name).strip().strip(
@@ -154,12 +163,20 @@ class CustomerPortal(CustomerPortal):
                                     if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
                                         return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
                                     else:
-                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                                        """if product paid is 'reste à charge lopurd' partner is redirected to 'cpf_premuim_plus_amount_paid' and not to sale order """
+                                        if product_id.default_code == "transport-routier-cpf-reste":
+                                            return request.redirect("/cpf_premuim_plus_amount_paid")
+                                        else :
+                                            return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
                                 else:
                                     if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
                                         return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
                                     else:
-                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                                        """if product paid is 'reste à charge lopurd' partner is redirected to 'cpf_premuim_plus_amount_paid' and not to sale order  """
+                                        if product_id.default_code == "transport-routier-cpf-reste":
+                                            return request.redirect("/cpf_premuim_plus_amount_paid")
+                                        else:
+                                            return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
                             else:
                                 pricelist = request.env['product.pricelist'].sudo().search(
                                     [('company_id', '=', 2), ('name', "=", str(partenaire))])
@@ -169,20 +186,33 @@ class CustomerPortal(CustomerPortal):
                                     if pricelist_id.name in ['bolt']:
                                         return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
                                     else:
-                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                                        """if product paid is 'reste à charge lopurd' partner is redirected to 'cpf_premuim_plus_amount_paid' and not to sale order  """
+                                        if product_id.default_code == "transport-routier-cpf-reste":
+                                            return request.redirect("/cpf_premuim_plus_amount_paid")
+                                        else:
+                                            return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
                                 else:
                                     if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
                                         if pricelist.name != order.pricelist_id.name:
                                             return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
                                     else:
-                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                                        """if product paid is 'reste à charge lopurd' partner is redirected to 'cpf_premuim_plus_amount_paid' and not to sale order  """
+                                        if product_id.default_code == "transport-routier-cpf-reste":
+                                            return request.redirect("/cpf_premuim_plus_amount_paid")
+                                        else:
+                                            return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
                         else:
                             pricelist = request.env['product.pricelist'].sudo().search(
                                 [('company_id', '=', 2), ('name', "=", str(partenaire))])
                             if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
                                 return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (pricelist.name,order_id,access_token,message))
                             else:
-                                return request.redirect("/my/orders/%d?access_token=%s&message=%s" % (order_id,access_token,message))
+                                """if product paid is 'reste à charge lopurd' partner is redirected to 'cpf_premuim_plus_amount_paid' and not to sale order  """
+                                product_id=request.env['product.template'].sudo().search([('default_code','=','transport-routier-cpf-reste')])
+                                if product_id  and product_id.default_code == "transport-routier-cpf-reste":
+                                    return request.redirect("/cpf_premuim_plus_amount_paid")
+                                else:
+                                    return request.redirect("/my/orders/%d?access_token=%s&message=%s" % (order_id,access_token,message))
                 if order and order.company_id.id == 1:
                     product_id = False
                     if order:
