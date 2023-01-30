@@ -2452,8 +2452,8 @@ class Payment3x(http.Controller):
                                'partner_id': order.partner_id.id,
                                'company_id': 2,
                            })
-                        so.module_id = order.partner_id.module_id
-                        so.session_id = order.partner_id.session_id
+                        so.module_id = order.module_id
+                        so.session_id = order.session_id
 
                         if product_charge:
                             order_line = request.env['sale.order.line'].sudo().create({
@@ -2468,15 +2468,23 @@ class Payment3x(http.Controller):
                             })
                             for line in so.order_line:
                                 line.price_unit = so.amount_total
-                            so.action_confirm()
+                            #so.action_confirm()
 
 
         return True
     
     @http.route(["/shop/payment/islourdpaid"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
-    def cart_is_lourd_paid(self,):
+    def cart_is_lourd_paid(self):
         islourdpaid= False
         print ("/shop/payment/islourdpaid, cart_is_lourd_paid :", islourdpaid)
+        partner=request.env.user.partner_id
+        product=request.env['product.template'].sudo().search([('default_code',"=","transport-routier-cpf-reste")])
+        """Search invoice """
+        invoice=request.env['account.move'].sudo().search([("partner_id","=",partner.id),
+                                                            ("module_id.product_id","=",product)])
+        if invoice and invoice.invoice_payment_state=="paid":
+            islourdpaid=True
+            _logger.info("islourdpaid %s" %str(islourdpaid))
         return {"islourdpaid": islourdpaid}
         
 
