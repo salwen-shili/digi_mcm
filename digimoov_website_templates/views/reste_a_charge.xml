@@ -8,14 +8,14 @@
                         <h2 class="text-left">
                             <i class="fa fa-info-circle" style="color: #152856"></i>
                         </h2>
-                        <a class="close" onclick="closePopup1()">
+                        <!-- <a class="close" onclick="closePopup1()">
                             <i class="fa fa-times"></i>
-                        </a>
+                        </a> -->
                         <div class="content">
                             <p id="">
                                 Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès!
                                 <br />
-                                Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.
+                                Vous pouvez maintenant finaliser votre inscription en cliquant sur continuer.
                             </p>
                             <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
                                 <div class="" style="margin-block-start: 1.5rem;">

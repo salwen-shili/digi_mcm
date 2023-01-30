@@ -166,7 +166,7 @@ class Website(Website):
         else:
             raise werkzeug.exceptions.NotFound()
     #redirection to cpf => reste a charge lourd
-    @http.route('/redirection_to_cpf', type='http', auth='public', website=True)
+    @http.route('/cpf_premuim_plus_amount_paid', type='http', auth='public', website=True)
     def redirection_to_cpf(self, **kw, ):
         if request.website.id == 2:
             return request.render("digimoov_website_templates.reste_a_charge")                                 
