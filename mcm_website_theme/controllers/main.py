@@ -2445,7 +2445,8 @@ class Payment3x(http.Controller):
         
         
         """if product is 'transport lourd' """
-        if isLourd == True and paymentMethod == "cpf_pm":
+        order = request.website.sale_get_order(force_create=1)
+        if isLourd == True and (paymentMethod == "cpf_pm" or paymentMethod == "pole_emploi_pm"):
             print ("/shop/is_lourd_paymentmethod :", paymentMethod, isLourd )
             """update order line with product lourd cpf"""
             product = request.env['product.template'].sudo().search(
@@ -2497,7 +2498,24 @@ class Payment3x(http.Controller):
                             line.price_unit = so.amount_total
                         #so.action_confirm()
 
-
+        if isLourd == True and paymentMethod == "stripe_pm":
+            """update order line with product lourd stripe"""
+            product = request.env['product.template'].sudo().search(
+                [('default_code', '=', 'transport-routier')], limit=1)
+            if product:
+                _logger.info('if product stripe')
+                for line in order.order_line:
+                    line.sudo().unlink()
+                order_line = request.env['sale.order.line'].sudo().create({
+                    'name': product.name,
+                    'product_id': product.id,
+                    'product_uom_qty': 1,
+                    'product_uom': product.uom_id.id,
+                    'price_unit': product.list_price,
+                    'order_id': order.id,
+                    'tax_id': product.taxes_id,
+                    'company_id': 2
+                })
         return True
        
 
