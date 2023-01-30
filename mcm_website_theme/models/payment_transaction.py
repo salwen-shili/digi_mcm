@@ -133,6 +133,11 @@ class PaymentTransaction(models.Model):
                         _logger.info('_invoice_sale_orders amount_residual : %s' % (str(invoice.amount_residual)))
                     sale.action_cancel()
                     sale.sale_action_sent()
+                    """If product is lourd rest à charge cancel the sale order """
+                    for line in sale.order_line:
+                        if line.product_id.default_code == "transport-routier-cpf-reste":
+                            sale.action_cancel()
+                            sale.action_draft()
 
                     if sale.partner_id.renounce_request == False:
                         """Envoyer sms pour renoncer au droit de rétractation """
