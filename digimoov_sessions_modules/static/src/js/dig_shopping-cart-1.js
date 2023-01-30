@@ -1,4 +1,4 @@
- //Values in "stripe_pm" "stripe_pm" "pole_emploi_pm":
+ //Values in "stripe_pm" "cpf_pm" "pole_emploi_pm":
 var paymentMethod = 'all';
 
 
@@ -1273,7 +1273,7 @@ function modeFinancement(mode, index) {
 
     case "stripe_pm":
       onchangeTextButton1();
-      update_cartebleu(true,isLourd);
+      update_cartebleu(true);
       hideError_no_method();
       if (index == 1) {
         checkPaiementInstalment(false)
@@ -1285,7 +1285,7 @@ function modeFinancement(mode, index) {
       case "stripe_pm":
       onchangeTextButton();
 
-      update_cpf(true,isLourd);
+      update_cpf(true);
       showCpfDetails();
       fixDisplay();
       hideError_no_method();;

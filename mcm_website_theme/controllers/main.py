@@ -2418,59 +2418,7 @@ class Payment3x(http.Controller):
             # Si mode de financement est cpf, le champ pole emploi sur fiche client sera décoché
             order.partner_id.is_pole_emploi = False
 
-            """if product is 'transport lourd' """
-            if isLourd == True:
-                """update order line with product lourd cpf"""
-                product = request.env['product.template'].sudo().search(
-                    [('default_code', '=', 'transport-routier-cpf-reste')], limit=1)
-                if product:
-                    _logger.info('if product')
-                    for line in order.order_line:
-                        line.sudo().unlink()
-                    order_line = request.env['sale.order.line'].sudo().create({
-                        'name': product.name,
-                        'product_id': product.id,
-                        'product_uom_qty': 1,
-                        'product_uom': product.uom_id.id,
-                        'price_unit': product.list_price,
-                        'order_id': order.id,
-                        'tax_id': product.taxes_id,
-                        'company_id': 2
-                    })
-                """Create new sale order for CPF payment 
-                with product 'reste à charge-transport lourd'"""
-                _logger.info("new sale order")
-                product_charge=request.env['product.template'].sudo().search([('default_code','=','transport-routier-cpf')])
-                sales =request.env['sale.order'].sudo().search([('partner_id','=',order.partner_id.id)])
-                if product_charge:
-                    existe=False
-                    for sale in sales:
-                        if sale.module_id.product_id.id==product_charge.id:
-                            existe=True
-                    if not existe:
-                        so = request.env['sale.order'].sudo().create({
-                               'partner_id': order.partner_id.id,
-                               'company_id': 2,
-                           })
-                        so.module_id = order.module_id
-                        so.session_id = order.session_id
-
-                        if product_charge:
-                            order_line = request.env['sale.order.line'].sudo().create({
-                                'name': product_charge.name,
-                                'product_id': product_charge.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_charge.uom_id.id,
-                                'price_unit': product_charge.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_charge.taxes_id,
-                                'company_id': 2
-                            })
-                            for line in so.order_line:
-                                line.price_unit = so.amount_total
-                            #so.action_confirm()
-
-
+            
         return True
     
     @http.route(["/shop/payment/islourdpaid"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
@@ -2490,13 +2438,66 @@ class Payment3x(http.Controller):
 
 
     #Receive isLourd and payment Method 
-    # //paymentMethod in "stripe_pm" "stripe_pm" "pole_emploi_pm":
+    # //paymentMethod in "stripe_pm" "cpf_pm" "pole_emploi_pm":
     # isLourd: True or False
     @http.route(["/shop/is_lourd_paymentmethod"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
     def isLourdnPayment(self, paymentMethod, isLourd):
         
-        print ("/shop/is_lourd_paymentmethod :", paymentMethod, isLourd )
         
+        """if product is 'transport lourd' """
+        if isLourd == True and paymentMethod == "cpf_pm":
+            print ("/shop/is_lourd_paymentmethod :", paymentMethod, isLourd )
+            """update order line with product lourd cpf"""
+            product = request.env['product.template'].sudo().search(
+                [('default_code', '=', 'transport-routier-cpf-reste')], limit=1)
+            if product:
+                _logger.info('if product')
+                for line in order.order_line:
+                    line.sudo().unlink()
+                order_line = request.env['sale.order.line'].sudo().create({
+                    'name': product.name,
+                    'product_id': product.id,
+                    'product_uom_qty': 1,
+                    'product_uom': product.uom_id.id,
+                    'price_unit': product.list_price,
+                    'order_id': order.id,
+                    'tax_id': product.taxes_id,
+                    'company_id': 2
+                })
+            """Create new sale order for CPF payment 
+            with product 'reste à charge-transport lourd'"""
+            _logger.info("new sale order")
+            product_charge=request.env['product.template'].sudo().search([('default_code','=','transport-routier-cpf')])
+            sales =request.env['sale.order'].sudo().search([('partner_id','=',order.partner_id.id)])
+            if product_charge:
+                existe=False
+                for sale in sales:
+                    if sale.module_id.product_id.id==product_charge.id:
+                        existe=True
+                if not existe:
+                    so = request.env['sale.order'].sudo().create({
+                            'partner_id': order.partner_id.id,
+                            'company_id': 2,
+                        })
+                    so.module_id = order.module_id
+                    so.session_id = order.session_id
+
+                    if product_charge:
+                        order_line = request.env['sale.order.line'].sudo().create({
+                            'name': product_charge.name,
+                            'product_id': product_charge.id,
+                            'product_uom_qty': 1,
+                            'product_uom': product_charge.uom_id.id,
+                            'price_unit': product_charge.list_price,
+                            'order_id': so.id,
+                            'tax_id': product_charge.taxes_id,
+                            'company_id': 2
+                        })
+                        for line in so.order_line:
+                            line.price_unit = so.amount_total
+                        #so.action_confirm()
+
+
         return True
        
 
