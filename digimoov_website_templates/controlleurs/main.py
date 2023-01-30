@@ -169,7 +169,7 @@ class Website(Website):
     @http.route('/redirection_to_cpf', type='http', auth='public', website=True)
     def redirection_to_cpf(self, **kw, ):
         if request.website.id == 2:
-            return request.render("digimoov_website_templates.reste_a_charge")                                 v)
+            return request.render("digimoov_website_templates.reste_a_charge")                                 
         else:
             raise werkzeug.exceptions.NotFound()
 
