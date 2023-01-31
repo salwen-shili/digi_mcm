@@ -2410,7 +2410,7 @@ class Payment3x(http.Controller):
     @http.route(["/shop/payment/update_cpf"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
     def cart_update_cpf(self, cpf):
         order = request.website.sale_get_order(force_create=1)
-        print("cpf: ",cpf, "saleOrderId: ",order, "isLourd: ",isLourd)
+        print("cpf: ",cpf, "saleOrderId: ",order)
         if cpf and order.partner_id.statut != "won":
             #order.partner_id.date_cpf = datetime.now()
             order.partner_id.mode_de_financement = "cpf"

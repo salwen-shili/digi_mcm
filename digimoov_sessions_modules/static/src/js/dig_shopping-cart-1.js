@@ -1282,7 +1282,7 @@ function modeFinancement(mode, index) {
         checkPaiementInstalment(true)
       }
 
-      case "stripe_pm":
+      case "cpf_pm":
       onchangeTextButton();
 
       update_cpf(true);
