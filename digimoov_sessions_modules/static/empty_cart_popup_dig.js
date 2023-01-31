@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-const getIsLourdPaid = () => {
+const getIsLourdPaidEmptyCart = () => {
   sendHttpRequestt('POST', '/shop/payment/islourdpaid',
     {
       params: {
