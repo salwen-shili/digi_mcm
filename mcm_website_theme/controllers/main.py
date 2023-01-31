@@ -2408,7 +2408,7 @@ class Payment3x(http.Controller):
         return True 
 
     @http.route(["/shop/payment/update_cpf"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
-    def cart_update_cpf(self, cpf, isLourd):
+    def cart_update_cpf(self, cpf):
         order = request.website.sale_get_order(force_create=1)
         print("cpf: ",cpf, "saleOrderId: ",order, "isLourd: ",isLourd)
         if cpf and order.partner_id.statut != "won":

@@ -1,6 +1,6 @@
  //Values in "stripe_pm" "cpf_pm" "pole_emploi_pm":
 var paymentMethod = 'all';
-
+var cpf_pm;
 
 
 document.onreadystatechange = function () {
