@@ -1,7 +1,7 @@
 //required values to check necessary action
 
 //API call to check if the amount to be paid has been paid
-var isLourdPaidEmptyCart = true;
+var isLourdPaidEmptyCart = false;
 
 getIsLourdPaid();
 //End API call to check if the amount to be paid has been paid
