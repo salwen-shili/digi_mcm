@@ -3,7 +3,7 @@
 //API call to check if the amount to be paid has been paid
 var isLourdPaidEmptyCart = false;
 
-getIsLourdPaid();
+getIsLourdPaidEmptyCart();
 //End API call to check if the amount to be paid has been paid
 var cartIsEmpty = false;
 
@@ -176,3 +176,46 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+const getIsLourdPaid = () => {
+  sendHttpRequestt('POST', '/shop/payment/islourdpaid',
+    {
+      params: {
+      }
+    })
+    .then((res) => {
+      console.log(res, "================================================= >");
+      isLourdPaid = res.result.islourdpaid
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+//xmlhttprequest
+const sendHttpRequestt = (method, url, data) => {
+  const promise = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+
+    xhr.responseType = "json";
+
+    if (data) {
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    }
+
+    xhr.onload = () => {
+      if (xhr.status >= 400) {
+        reject(xhr.response);
+      } else {
+        resolve(xhr.response);
+      }
+    };
+
+    xhr.onerror = () => {
+      reject("Something went wrong!");
+    };
+
+    xhr.send(JSON.stringify(data));
+  });
+  return promise;
+};
