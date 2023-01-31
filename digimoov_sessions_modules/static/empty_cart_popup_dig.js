@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-const getIsLourdPaidEmptyCart = () => {
+function getIsLourdPaidEmptyCart () {
   sendHttpRequestt('POST', '/shop/payment/islourdpaid',
     {
       params: {
@@ -192,7 +192,7 @@ const getIsLourdPaidEmptyCart = () => {
 };
 
 //xmlhttprequest
-const sendHttpRequestt = (method, url, data) => {
+function sendHttpRequestt (method, url, data)  {
   const promise = new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open(method, url);
