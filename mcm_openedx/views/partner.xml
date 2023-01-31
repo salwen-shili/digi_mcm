@@ -188,10 +188,12 @@
                             <div>
                                 <span class="o_stat_text">
                                     <i class="fa fa-thumbs-up"/>
-                                    Temps passé appels
+                                    Temps passé appels secondes
                                 </span>
                                 <br/>
-
+                                <span class="o_stat_text">
+                                    <field name="mooc_temps_passe_seconde"></field>
+                                </span>
                                 <br/>
 
 
@@ -199,9 +201,7 @@
                                     Temps passé par Seconde
                                 </span>
                                 <br/>
-                                <span class="o_stat_text">
-                                    <field name="mooc_temps_passe_seconde"></field>
-                                </span>
+
                                 <span class="o_stat_value">
                                     <field name="total_time_appels_hour"/>
                                 </span>

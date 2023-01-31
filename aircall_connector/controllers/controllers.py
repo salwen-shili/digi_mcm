@@ -71,8 +71,7 @@ class AircallConnector(http.Controller):
                         call_detail.call_contact.total_time_appels_min += call_duration_min
                     elif call_detail.call_contact.company_id.id == 1:
                         call_detail.call_contact.mooc_temps_passe_seconde += call_duration_min
-                        call_detail.call_contact.total_time_appels_hour = (
-                            str(" %s h :   %s  m:  %s s" % (heure, minute, secondes)))
+
                 _logger.info("call data tags response : %s" % (str(call_data['tags'])))
                 # add tags
                 if call_data['tags']:
