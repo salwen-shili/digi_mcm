@@ -54,15 +54,15 @@ class Cours_stat(models.Model):
                 # print("statteeeeeeeeeee", apprenant.state)
 
                 apprenant.date_imortation_stat = date.today()
-                apprenant.mooc_temps_passe_heure = heure
-                apprenant.mooc_temps_passe_min = minute
+                apprenant.mooc_temps_passe_heure = str(" %s h :   %s  m:  %s s" % (heure, minute, secondes))
+
                 apprenant.mooc_dernier_coonx = listjour[-1]
                 if (apprenant.inscrit_mcm == False):
                     apprenant.inscrit_mcm = listjour[0]
                 existt.partner = apprenant.id
                 apprenant.partner = existt.partner
-                apprenant.mooc_temps_passe_heure = heure
-                apprenant.mooc_temps_passe_min = minute
+                apprenant.mooc_temps_passe_heure = str(" %s h :   %s  m:  %s s" % (heure, minute, secondes))
+
                 todays_date = date.today()
                 if (apprenant.mooc_dernier_coonx):
                     if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx.year == todays_date.year):
