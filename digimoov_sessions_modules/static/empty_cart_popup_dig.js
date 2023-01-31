@@ -184,7 +184,7 @@ function getIsLourdPaidEmptyCart () {
     })
     .then((res) => {
       console.log(res, "================================================= >");
-      isLourdPaid = res.result.islourdpaid
+      isLourdPaidEmptyCart = res.result.islourdpaid
     })
     .catch((err) => {
       console.log(err);
