@@ -2427,16 +2427,18 @@ class Payment3x(http.Controller):
         print ("/shop/payment/islourdpaid, cart_is_lourd_paid :", islourdpaid)
         partner=request.env.user.partner_id
         product=request.env['product.template'].sudo().search([('default_code',"=","transport-routier-cpf-reste")])
-        """Search invoice """
+        """Search invoice"""
         if product:
             _logger.info("product %s" % str(product))
             invoice=request.env['account.move'].sudo().search([("partner_id","=",partner.id),
-                                                                ("module_id.product_id.id","=",product.id)])
+                                                                ],limit=1)
             _logger.info("invocie %s" % str(invoice))
 
-            if invoice and invoice.invoice_payment_state=="paid":
-                islourdpaid=True
-                _logger.info("islourdpaid %s" %str(islourdpaid))
+            if invoice:
+                for line in invoice.invoice_line_ids:
+                    if invoice.invoice_payment_state=="paid" and line.product_id.id==product.id:
+                        islourdpaid=True
+                        _logger.info("islourdpaid %s" %str(islourdpaid))
         return {"islourdpaid": islourdpaid}
         
 
