@@ -152,13 +152,7 @@
                                     <span>
                                         <i class="fa fa-clock-o"/>
                                     </span>
-                                    <span class="o_stat_text">
-                                        Temps passé par Minute
-                                    </span>
-                                    <br/>
-                                    <span class="o_stat_text">
-                                        <field name="mooc_temps_passe_min"></field>
-                                    </span>
+
                                     <br/>
                                     <span>
                                         <i class="fa fa-clock-o"/>
@@ -198,12 +192,11 @@
 
 
                                 <span class="o_stat_text">
-                                    Temps passé par Seconde
+                                    Temps passé par Minute
                                 </span>
                                 <br/>
-
-                                <span class="o_stat_value">
-                                    <field name="total_time_appels_hour"/>
+                                <span class="o_stat_text">
+                                    <field name="mooc_temps_passe_min"></field>
                                 </span>
 
                             </div>
