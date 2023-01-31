@@ -31,7 +31,7 @@ class partner(models.Model):
                              required=True, default='en_attente', track_visibility='onchange', string="Statut")
     mooc_dernier_coonx = fields.Date()
     mooc_temps_passe_heure = fields.Integer()
-    mooc_temps_passe_min = fields.Integer()
+    mooc_temps_passe_min = fields.Char()
     mooc_temps_passe_seconde = fields.Integer()
 
     date_imortation_stat = fields.Date()
@@ -41,7 +41,13 @@ class partner(models.Model):
                                ('niveau3', 'Niveau 3'),
                                ], track_visibility='onchange', groups="base.group_partner_manager")
 
-    # partner_id = fields.Many2one('res.partner', readonly=True)
+    @api.onchange('mooc_temps_passe_min', 'mooc_temps_passe_seconde')
+    def convert_seconde_to_hours(self):
+        heure = int((self.mooc_temps_passe_seconde/ 3600))
+        minute = int((self.mooc_temps_passe_seconde - (3600 * heure)) / 60)
+        secondes = int(self.mooc_temps_passe_seconde - (3600 * heure) - (60 * minute))
+        self.mooc_temps_passe_min = str(" %s h :   %s  m:  %s s" % (heure, minute, secondes))
+
 
     # Ajouter Des condition pour supprimer apprenant
     # Si absence justifiée  => ne sort pas de la formation
