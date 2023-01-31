@@ -30,7 +30,7 @@ class partner(models.Model):
                               ('supprimé', 'Supprimée')],
                              required=True, default='en_attente', track_visibility='onchange', string="Statut")
     mooc_dernier_coonx = fields.Date()
-    mooc_temps_passe_heure = fields.Integer()
+    mooc_temps_passe_heure = fields.Char()
     mooc_temps_passe_min = fields.Char()
     mooc_temps_passe_seconde = fields.Integer()
 
@@ -43,11 +43,10 @@ class partner(models.Model):
 
     @api.onchange('mooc_temps_passe_min', 'mooc_temps_passe_seconde')
     def convert_seconde_to_hours(self):
-        heure = int((self.mooc_temps_passe_seconde/ 3600))
+        heure = int((self.mooc_temps_passe_seconde / 3600))
         minute = int((self.mooc_temps_passe_seconde - (3600 * heure)) / 60)
         secondes = int(self.mooc_temps_passe_seconde - (3600 * heure) - (60 * minute))
         self.mooc_temps_passe_min = str(" %s h :   %s  m:  %s s" % (heure, minute, secondes))
-
 
     # Ajouter Des condition pour supprimer apprenant
     # Si absence justifiée  => ne sort pas de la formation
@@ -1060,7 +1059,7 @@ class partner(models.Model):
         # add comments
         for note_ecrite in self.env['mail.message'].sudo().search(
                 [('parent_id', '!=', False), ('model', '=', "helpdesk.ticket"), ('body', '!=', False),
-                ], limit=1,
+                 ], limit=1,
                 order="id desc"):
             for note in self.env['helpdesk.ticket'].sudo().search(
                     [('id', "=", note_ecrite.res_id)], limit=1):
@@ -1078,7 +1077,7 @@ class partner(models.Model):
                         'record_name': note.partner_id.name,
                         'model': 'res.partner',
                         'message_type': 'comment',
-                        'subtype_id':note.partner_id.env['mail.message.subtype'].search(
+                        'subtype_id': note.partner_id.env['mail.message.subtype'].search(
                             [('name', '=', 'Note')]).id,
                         'res_id': note.partner_id.id,
                         'author_id': note.partner_id.env.user.partner_id.id,
