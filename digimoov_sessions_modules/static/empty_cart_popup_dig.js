@@ -1,7 +1,8 @@
 //required values to check necessary action
 
 //API call to check if the amount to be paid has been paid
-var isLourdPaid = true;
+var isLourdPaidEmptyCart = true;
+
 getIsLourdPaid();
 //End API call to check if the amount to be paid has been paid
 var cartIsEmpty = false;
@@ -13,7 +14,6 @@ const messages = {
   isNotSigned: `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.`,
   emptyCartNoContract: `Votre panier est vide, veuillez cliquer sur continuer pour ajouter votre formation.`,
   isLourdPaid:`Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès!
-  <br />
   Vous pouvez maintenant finaliser votre inscription en cliquant sur continuer.`
 };
 var contract_uri = '/';
@@ -58,7 +58,7 @@ function setPopup() {
         //contract is not signed
         //get uri to sign contract
         if (document.getElementById('contract_uri').value !== '') {
-          if(isLourdPaid){
+          if(isLourdPaidEmptyCart){
            
        
           if (document.getElementById('btn-action')) {
