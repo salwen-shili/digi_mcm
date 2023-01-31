@@ -69,6 +69,8 @@ class AircallConnector(http.Controller):
                 if call["event"] == "call.ended":
                     if call_detail.call_contact.company_id.id == 2:
                         call_detail.call_contact.total_time_appels_min += call_duration_min
+                    elif call_detail.call_contact.company_id.id == 1:
+                        call_detail.call_contact.total_time_appels_min += call_duration_min
                 _logger.info("call data tags response : %s" % (str(call_data['tags'])))
                 # add tags
                 if call_data['tags']:
