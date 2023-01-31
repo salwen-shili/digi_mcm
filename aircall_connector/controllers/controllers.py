@@ -68,7 +68,7 @@ class AircallConnector(http.Controller):
                 start_call_date = datetime.fromtimestamp(call_data['started_at'])
                 if call["event"] == "call.ended":
                     if call_detail.call_contact.company_id.id == 2:
-                        call_detail.call_contact.total_time_appels_min += call_duration_min
+                        call_detail.call_contact.mooc_temps_passe_seconde += call_duration_min
                     elif call_detail.call_contact.company_id.id == 1:
                         call_detail.call_contact.mooc_temps_passe_seconde += call_duration_min
 
