@@ -62,15 +62,17 @@ class AircallConnector(http.Controller):
                 _logger.info(heure)
                 _logger.info(minute)
                 _logger.info(secondes)
-                _logger.info (str( " %s h :   %s  m:  %s s"  %(heure , minute, secondes)))
+                _logger.info(str(" %s h :   %s  m:  %s s" % (heure, minute, secondes)))
                 call_detail.call_duration = float(call_duration_min)
-                call_detail.call_duration_char =(str( " %s h :   %s  m:  %s s"  %(heure , minute, secondes)))
+                call_detail.call_duration_char = (str(" %s h :   %s  m:  %s s" % (heure, minute, secondes)))
                 start_call_date = datetime.fromtimestamp(call_data['started_at'])
                 if call["event"] == "call.ended":
                     if call_detail.call_contact.company_id.id == 2:
                         call_detail.call_contact.total_time_appels_min += call_duration_min
                     elif call_detail.call_contact.company_id.id == 1:
-                        call_detail.call_contact.total_time_appels_min += call_duration_min
+                        call_detail.call_contact.mooc_temps_passe_seconde += call_duration_min
+                        call_detail.call_contact.total_time_appels_hour = (
+                            str(" %s h :   %s  m:  %s s" % (heure, minute, secondes)))
                 _logger.info("call data tags response : %s" % (str(call_data['tags'])))
                 # add tags
                 if call_data['tags']:
@@ -106,7 +108,7 @@ class AircallConnector(http.Controller):
                                                                             })
                 if new_call_detail and new_call_detail.phone_number:
                     new_call_detail.action_find_user_using_phone()
-                    if "name" in  call_data["user"]:
+                    if "name" in call_data["user"]:
                         new_call_detail.sudo().write({
                             'owner': call_data["user"]["name"] if call_data["user"] else False,
                         })

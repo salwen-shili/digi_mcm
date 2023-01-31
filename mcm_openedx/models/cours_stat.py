@@ -37,6 +37,7 @@ class Cours_stat(models.Model):
         for existt in self.env['mcm_openedx.course_stat'].sudo().search(
                 [('email', "=", self.email)]):
             temppassetotale = existt.seconde + temppassetotale
+
             heure = int((temppassetotale / 3600))
             minute = int((temppassetotale - (3600 * heure)) / 60)
             secondes = int(temppassetotale - (3600 * heure) - (60 * minute))
@@ -51,10 +52,10 @@ class Cours_stat(models.Model):
                                                                     ('email', 'ilike', existt.email)]):
 
                 # print("statteeeeeeeeeee", apprenant.state)
+
                 apprenant.date_imortation_stat = date.today()
                 apprenant.mooc_temps_passe_heure = heure
                 apprenant.mooc_temps_passe_min = minute
-                apprenant.mooc_temps_passe_seconde = secondes
                 apprenant.mooc_dernier_coonx = listjour[-1]
                 if (apprenant.inscrit_mcm == False):
                     apprenant.inscrit_mcm = listjour[0]
@@ -62,7 +63,6 @@ class Cours_stat(models.Model):
                 apprenant.partner = existt.partner
                 apprenant.mooc_temps_passe_heure = heure
                 apprenant.mooc_temps_passe_min = minute
-                apprenant.mooc_temps_passe_seconde = secondes
                 todays_date = date.today()
                 if (apprenant.mooc_dernier_coonx):
                     if (apprenant.state != 'en_formation') and (apprenant.mooc_dernier_coonx.year == todays_date.year):

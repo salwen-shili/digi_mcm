@@ -33,6 +33,7 @@ class partner(models.Model):
     mooc_temps_passe_heure = fields.Integer()
     mooc_temps_passe_min = fields.Integer()
     mooc_temps_passe_seconde = fields.Integer()
+
     date_imortation_stat = fields.Date()
 
     niveau = fields.Selection([('niveau1', 'Niveau 1'),
