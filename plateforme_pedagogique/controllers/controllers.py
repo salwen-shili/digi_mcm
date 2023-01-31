@@ -364,6 +364,8 @@ class WebhookController(http.Controller):
                                     # prix de la formation dans le devis
                                     amount_before_instalment = so.amount_total
                                     # so.amount_total = so.amount_total * 0.25
+                                    so.id_edof=module
+
                                     for line in so.order_line:
                                         line.price_unit = so.amount_total
                 else:
@@ -388,7 +390,6 @@ class WebhookController(http.Controller):
                                         'company_id': 1,
                                         'website_id': 1
                                     })
-                                    so.id_edof=module
                                     so_line = request.env['sale.order.line'].sudo().create({
                                         'name': product_id.name,
                                         'product_id': product_id.id,
