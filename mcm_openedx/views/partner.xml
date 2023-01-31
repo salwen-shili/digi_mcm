@@ -173,8 +173,10 @@
 
                     </group>
                 </page>
-                <page string="Statistiques  MOOCit" name="calcul-seconde_plateforme"
-                >
+
+            </xpath>
+            <xpath expr="//page[@name='internal_notes']" position="before">
+                <page string="Statistiques  Call" name="calcul-seconde_plateforme"                >
                     <group col="8" colspan="4" string="Statistiques Calls">
                         <div>
                             <span class="o_stat_text">
