@@ -13,7 +13,7 @@ class InheritResPartner(models.Model):
 
     composer_ids = fields.Many2one('mail.message', string='Composer')
     last_internal_log = fields.Char(compute="_compute_get_last_internal_log", string="Commentaire Interne")
-    company_id = fields.Many2one('res.company', default=lambda self: self.env.company)
+    company_id = fields.Many2one('res.company', default=lambda self: self.env.company, track_visibility='always')
     presence = fields.Char(readonly=True, store=True, track_visibility='always')
     resultat = fields.Char(readonly=True, store=True, track_visibility='always')
     nombre_de_passage = fields.Char(readonly=True, store=True)
@@ -96,7 +96,8 @@ class InheritResPartner(models.Model):
                 self.is_recu = False
                 self.is_Absent = True
                 self.is_absence_justifiee = False
-            elif (self.presence == 'Absent(e)' and self.resultat == 'Ajourné(e)') or (self.presence == "_______" and self.resultat == 'Ajourné(e)'):
+            elif (self.presence == 'Absent(e)' and self.resultat == 'Ajourné(e)') or (
+                    self.presence == "_______" and self.resultat == 'Ajourné(e)'):
                 self.is_Absent = True if self.presence == 'Absent(e)' else False
                 self.is_ajourne = True
                 self.is_present = False

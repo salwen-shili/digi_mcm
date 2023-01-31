@@ -13,9 +13,9 @@
                 <filter name="company" string="MCM Academy"
                         domain="[('company_id','=',1)]"
                 />
-     <field name="note_exam_mcm_id" string="Admis"
-                   filter_domain="[('note_exam_mcm_id.epreuve_theorique','ilike',self)]"
-            ></field>
+                <field name="note_exam_mcm_id" string="Admis"
+                       filter_domain="[('note_exam_mcm_id.epreuve_theorique','ilike',self)]"
+                ></field>
                 <filter name="state" string="Statut de l'apprennat"
                         domain="[('state','ilike','en_formation')]"
                 />
@@ -30,7 +30,6 @@
                         context="{'group_by':'coach_peda'}"/>
                 <filter name="group_niveau" string="Niveau" icon="terp-partner"
                         context="{'group_by':'niveau'}"/>
-
 
 
             </search>
@@ -62,8 +61,9 @@
                             type="object" confirm="Envoyer un Mail"
                             state="mail envoyé"></button>
 
-                    <field name="state" widget="statusbar" clickable="1" statusbar_visible="ancien,en_attente,en_formation,supprimé"
-                           />
+                    <field name="state" widget="statusbar" clickable="1"
+                           statusbar_visible="ancien,en_attente,en_formation,supprimé"
+                    />
 
                 </header>
 
@@ -91,12 +91,12 @@
 
             </xpath>
 
-            <xpath expr="//page/group[@name='session']/group" position="inside" >
+            <xpath expr="//page/group[@name='session']/group" position="inside">
                 <field name="inscrit_mcm" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                 <field name="supprimerdemoocit" attrs="{'invisible': [('company_id', '=', 2)]}"/>
 
-                <field name="coach_peda" groups="base.group_partner_manager"  />
-                <field name="niveau" groups="base.group_partner_manager" />
+                <field name="coach_peda" groups="base.group_partner_manager"/>
+                <field name="niveau" groups="base.group_partner_manager"/>
 
 
             </xpath>
@@ -114,7 +114,7 @@
                         </group>
 
 
-                        <group col="8" colspan="4" string="Géneral">
+                        <group col="8" colspan="4" string="Statistiques MOOCIT">
                             <div>
                                 <span class="o_stat_text">
                                     <i class="fa fa-download"/>
@@ -174,6 +174,7 @@
                                 </span>
 
                             </div>
+
                             <div>
                                 <span>
                                     <i class="fa fa-sign-in" style="align:center"/>
@@ -187,8 +188,24 @@
                                     <field name="inscrit_mcm"></field>
                                 </span>
                             </div>
-                        </group>
 
+                        </group>
+                        <group col="8" colspan="4" string="Statistiques Calls">
+                            <div>
+                                <span class="o_stat_text">
+                                    <i class="fa fa-thumbs-up"/>
+                                    Temps passé appels
+                                </span>
+                                <br/>
+                                <span class="o_stat_value">
+                                    <field name="total_time_appels_min"/>
+                                </span>
+                                <br/>
+                                <span class="o_stat_value">
+                                    <field name="total_time_appels_hour"/>
+                                </span>
+                            </div>
+                        </group>
 
                     </group>
                 </page>
