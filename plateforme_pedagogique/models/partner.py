@@ -41,8 +41,9 @@ class partner(models.Model):
     # publications = fields.Char(string='Cours ou programmes publiés')
     total_time_visio_min = fields.Integer()
     total_time_visio_hour = fields.Char(default="0h0min")
-    total_time_appels_min = fields.Integer()
+    total_time_appels_min = fields.Integer(track_visibility='onchange')
     total_time_appels_hour = fields.Char(default="0h0min")
+
     total_time_min = fields.Integer()
     total_time_hours = fields.Char(default="0h0min", track_visibility='always')
     reactions = fields.Char()
@@ -59,6 +60,10 @@ class partner(models.Model):
     is_pole_emploi = fields.Boolean(
         string="Pole Emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
+
+    numero_pole_emploi = fields.Integer(string="numéro identique unique pôle emploi")
+    is_demandeur_emploi = fields.Boolean(
+        string="Demandeur emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
     etat_financement_cpf_cb = fields.Selection([('untreated', 'Non Traité'),
                                                 ('validated', 'Validé'),
                                                 ('accepted', 'Accepté'),
@@ -85,7 +90,7 @@ class partner(models.Model):
             hour = self.total_time_appels_min // 60
             min = self.total_time_appels_min % 60
             self.total_time_appels_hour = str(hour) + "h" + str(min) + "min"
-            # add field for update temps plateforme
+            # add field for update temps plateformegit a
             hour_temps_minute = self.temps_minute // 60
             min_temps_minute = self.temps_minute % 60
             self.temps_update_minute = str(hour_temps_minute) + "h" + str(min_temps_minute) + "min"
@@ -99,8 +104,8 @@ class partner(models.Model):
 
     def write(self, vals):
         """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
+        #self.convert_minutes_to_hours()
         if 'email' in vals and vals['email'] is not None:
-
             # Si email changé on change sur login
             users = self.env['res.users'].sudo().search([('partner_id', "=", self.id)])
             if users:
@@ -111,9 +116,6 @@ class partner(models.Model):
                     })
                     # print('if user',user)
         record = super(partner, self).write(vals)
-        # Call function to convert time min to hour
-        if vals.get('total_time_appels_min') or vals.get('temps_minute') or vals.get('total_time_visio_min'):
-            self.convert_minutes_to_hours()
         return record
 
     def convertir_date_inscription(self):
@@ -612,6 +614,7 @@ class partner(models.Model):
                             # Affecter apprenant à Digimoov-Révision
                             revision = "Digimoov - Pack Repassage Examen"
                             if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
+
                                 urlgrp_revision = ' https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
 
@@ -652,6 +655,8 @@ class partner(models.Model):
                     """"we send sms to client contains link to register in 360learning."""
                     body = "Digimoov vous confirme votre inscription à la Formation capacité de transport de marchandises. RDV sur notre plateforme https://www.digimoov.fr/r/SnB"
                     self.send_sms(body, partner)
+                    self.write({'state': 'en_formation'})
+
                     self.env.cr.commit()
                 if not (create):
                     """Créer des tickets contenant le message  d'erreur pour service client et service IT
@@ -1339,7 +1344,7 @@ class partner(models.Model):
                                         user.partner_id.diplome = diplome
                                         if product_id:
                                             user.partner_id.id_edof = product_id.id_edof
-                                    if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism" or state == "rejectedWithoutTitulaireSuite" or state == "rejected":
+                                    if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism":
                                         if user.partner_id.numero_cpf == externalId:
                                             """Vérifier si le dossier en formation donc statut de dossier est abandonné si non annulé"""
                                             if user.partner_id.statut_cpf == "intraining":
