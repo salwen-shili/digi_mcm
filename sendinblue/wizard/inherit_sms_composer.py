@@ -24,14 +24,13 @@ class InheritSmsComposer(models.TransientModel):
         selected_records = self.env['res.partner'].browse(selected_ids)
         for i_sms in selected_records:
             _logger.info(i_sms.name)
-            _logger.info("kouuuuuuuuuuuuuuuuuuuuuuuu")
             _logger.info(i_sms.phone)
             _logger.info(i_sms.company_id.name)
             payload = {
                 'type': "transactional",
                 'unicodeEnabled': False,
-                'sender': i_sms.company_id.name,
-                'recipient': i_sms.phone,
+                'sender': i_sms.company_id.name.replace(" ", ""),
+                'recipient': i_sms.phone.replace(" ", ""),
                 'content': self.body
             }
             headers = {
