@@ -9,6 +9,7 @@
                 <field name="session_id" string="Session"/>
                 <field name="module_id"
                        domain="[('session_id', '=', session_id)]"/>
+                <field name="id_edof" attrs="{'invisible': [('id_edof', '=',False)]}"/>
             </xpath>
             <xpath expr="//header//button[@name='action_draft']" position="after">
                 <button name="action_link_contract" type="object" string="Lier contrats avec modules"/>

@@ -564,218 +564,215 @@ class WebsiteSale(WebsiteSale):
             module_id = False
             product_id = False
             """chercher le produit sur odoo selon id edof de formation"""
-            if 'digimoov' in str(training_id):
+            product_ids = request.env['product.template'].sudo().search(
+                [])
+            for product_id in product_ids:
+                if product_id.id_edof and product_id.id_edof in training_id:
+                    _logger.info("id_edof %s" % str(product_id))
+                    print("product id validate digi", product_id.id_edof)
+                    if product_id:
+                        partner.id_edof = product_id.id_edof
 
-                product_id = request.env['product.template'].sudo().search(
-                    [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
-                if product_id:
-                    partner.id_edof = product_id.id_edof
-            else:
-                product_id = request.env['product.template'].sudo().search(
-                    [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
-                if product_id:
-                    partner.id_edof = product_id.id_edof
-            print('if digi ', product_id)
-            if product_id and product_id.company_id.id == 2 and partner.id_edof and partner.date_examen_edof and partner.session_ville_id:
+                        if product_id.company_id.id == 2 and partner.id_edof and partner.date_examen_edof and partner.session_ville_id:
 
-                print('if product_id digimoov', product_id.id_edof)
-                module_id = request.env['mcmacademy.module'].sudo().search(
-                    [('company_id', "=", 2), ('session_ville_id', "=", partner.session_ville_id.id),
-                     ('date_exam', "=", partner.date_examen_edof), ('product_id',
-                                                                    "=", product_id.id),
-                     ('session_id.number_places_available', '>', 0)], limit=1)
-                print('before if modulee', module_id)
-                if module_id:
-                    print('if modulee', module_id)
-                    partner.module_id = module_id
-                    partner.mcm_session_id = module_id.session_id
-                    product_id = request.env['product.product'].sudo().search(
-                        [('product_tmpl_id', '=', module_id.product_id.id)])
-                    partner.mcm_session_id = module_id.session_id
-                    partner.module_id = module_id
-                    request.env.user.company_id = 2
-                    # """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                    # invoice = request.env['account.move'].sudo().search(
-                    #     [('numero_cpf', "=", partner.numero_cpf),
-                    #      ('state', "=", 'posted'),
-                    #      ('partner_id', "=", partner.id)], limit=1)
-                    #
-                    # if not invoice :
-                    #     so = request.env['sale.order'].sudo().create({
-                    #         'partner_id': partner.id,
-                    #         'company_id': 2,
-                    #     })
-                    #     so.module_id = module_id
-                    #     so.session_id = module_id.session_id
-                    #
-                    #     so_line = request.env['sale.order.line'].sudo().create({
-                    #         'name': product_id.name,
-                    #         'product_id': product_id.id,
-                    #         'product_uom_qty': 1,
-                    #         'product_uom': product_id.uom_id.id,
-                    #         'price_unit': product_id.list_price,
-                    #         'order_id': so.id,
-                    #         'tax_id': product_id.taxes_id,
-                    #         'company_id': 2,
-                    #     })
-                    #     # prix de la formation dans le devis
-                    #     amount_before_instalment = so.amount_total
-                    #     # so.amount_total = so.amount_total * 0.25
-                    #     for line in so.order_line:
-                    #         line.price_unit = so.amount_total
-                    #     so.action_confirm()
-                    #     ref = False
-                    #     # Creation de la Facture Cpf
-                    #     # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
-                    #     # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
-                    #
-                    #     if so.amount_total > 0 and so.order_line:
-                    #         moves = so._create_invoices(final=True)
-                    #         for move in moves:
-                    #             move.type_facture = 'interne'
-                    #             # move.cpf_acompte_invoice= True
-                    #             # move.cpf_invoice =True
-                    #             move.methodes_payment = 'cpf'
-                    #             move.numero_cpf=partner.numero_cpf
-                    #             move.pourcentage_acompte = 25
-                    #             move.module_id = so.module_id
-                    #             move.session_id = so.session_id
-                    #             if so.pricelist_id.code:
-                    #                 move.pricelist_id = so.pricelist_id
-                    #             move.company_id = so.company_id
-                    #             move.price_unit = so.amount_total
-                    #             # move.cpf_acompte_invoice=True
-                    #             # move.cpf_invoice = True
-                    #             move.methodes_payment = 'cpf'
-                    #             move.post()
-                    #             ref = move.name
-                    #
-                    #     so.action_cancel()
-                    #     so.unlink()
-                    partner.statut = 'won'
-                    """changer step à validé dans espace client """
-                    partner.step = 'finish'
-                    """Créer un historique de ssession pour cet apprenant """
-                    session = request.env['partner.sessions'].search([('client_id', '=', partner.id),
-                                                                      ('session_id', '=', module_id.session_id.id)])
-                    if not session:
-                        new_history = request.env['partner.sessions'].sudo().create({
-                            'client_id': partner.id,
-                            'session_id': module_id.session_id.id,
-                            'module_id': module_id.id,
-                            'company_id': 2,
-                        })
+                            print('if product_id digimoov', product_id.id_edof)
+                            module_id = request.env['mcmacademy.module'].sudo().search(
+                                [('company_id', "=", 2), ('session_ville_id', "=", partner.session_ville_id.id),
+                                 ('date_exam', "=", partner.date_examen_edof), ('product_id',
+                                                                                "=", product_id.id),
+                                 ('session_id.number_places_available', '>', 0)], limit=1)
+                            print('before if modulee', module_id)
+                            if module_id:
+                                print('if modulee', module_id)
+                                partner.module_id = module_id
+                                partner.mcm_session_id = module_id.session_id
+                                product_id = request.env['product.product'].sudo().search(
+                                    [('product_tmpl_id', '=', module_id.product_id.id)])
+                                partner.mcm_session_id = module_id.session_id
+                                partner.module_id = module_id
+                                request.env.user.company_id = 2
+                                # """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
+                                # invoice = request.env['account.move'].sudo().search(
+                                #     [('numero_cpf', "=", partner.numero_cpf),
+                                #      ('state', "=", 'posted'),
+                                #      ('partner_id', "=", partner.id)], limit=1)
+                                #
+                                # if not invoice :
+                                #     so = request.env['sale.order'].sudo().create({
+                                #         'partner_id': partner.id,
+                                #         'company_id': 2,
+                                #     })
+                                #     so.module_id = module_id
+                                #     so.session_id = module_id.session_id
+                                #
+                                #     so_line = request.env['sale.order.line'].sudo().create({
+                                #         'name': product_id.name,
+                                #         'product_id': product_id.id,
+                                #         'product_uom_qty': 1,
+                                #         'product_uom': product_id.uom_id.id,
+                                #         'price_unit': product_id.list_price,
+                                #         'order_id': so.id,
+                                #         'tax_id': product_id.taxes_id,
+                                #         'company_id': 2,
+                                #     })
+                                #     # prix de la formation dans le devis
+                                #     amount_before_instalment = so.amount_total
+                                #     # so.amount_total = so.amount_total * 0.25
+                                #     for line in so.order_line:
+                                #         line.price_unit = so.amount_total
+                                #     so.action_confirm()
+                                #     ref = False
+                                #     # Creation de la Facture Cpf
+                                #     # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
+                                #     # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
+                                #
+                                #     if so.amount_total > 0 and so.order_line:
+                                #         moves = so._create_invoices(final=True)
+                                #         for move in moves:
+                                #             move.type_facture = 'interne'
+                                #             # move.cpf_acompte_invoice= True
+                                #             # move.cpf_invoice =True
+                                #             move.methodes_payment = 'cpf'
+                                #             move.numero_cpf=partner.numero_cpf
+                                #             move.pourcentage_acompte = 25
+                                #             move.module_id = so.module_id
+                                #             move.session_id = so.session_id
+                                #             if so.pricelist_id.code:
+                                #                 move.pricelist_id = so.pricelist_id
+                                #             move.company_id = so.company_id
+                                #             move.price_unit = so.amount_total
+                                #             # move.cpf_acompte_invoice=True
+                                #             # move.cpf_invoice = True
+                                #             move.methodes_payment = 'cpf'
+                                #             move.post()
+                                #             ref = move.name
+                                #
+                                #     so.action_cancel()
+                                #     so.unlink()
+                                partner.statut = 'won'
+                                """changer step à validé dans espace client """
+                                partner.step = 'finish'
+                                """Créer un historique de ssession pour cet apprenant """
+                                session = request.env['partner.sessions'].search([('client_id', '=', partner.id),
+                                                                                  ('session_id', '=', module_id.session_id.id)])
+                                if not session:
+                                    new_history = request.env['partner.sessions'].sudo().create({
+                                        'client_id': partner.id,
+                                        'session_id': module_id.session_id.id,
+                                        'module_id': module_id.id,
+                                        'company_id': 2,
+                                    })
 
-            elif product_id and product_id.company_id.id == 1 and partner.id_edof and partner.date_examen_edof and partner.session_ville_id:
-                print('if product_id mcm', product_id)
-                partner.id_edof = product_id.id_edof
-                module_id = request.env['mcmacademy.module'].sudo().search(
-                    [('company_id', "=", 1), ('session_ville_id', "=", partner.session_ville_id.id),
-                     ('date_exam', "=", partner.date_examen_edof), ('product_id',
-                                                                    "=", product_id.id),
-                     ('session_id.number_places_available', '>', 0)], limit=1)
-                if module_id:
-                    partner.module_id = module_id
-                    partner.mcm_session_id = module_id.session_id
-                    product_id = request.env['product.product'].sudo().search(
-                        [('product_tmpl_id', '=', module_id.product_id.id)])
-                    partner.mcm_session_id = module_id.session_id
-                    partner.module_id = module_id
-                    request.env.user.company_id = 1
-                    """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                    # invoice = request.env['account.move'].sudo().search(
-                    #     [('numero_cpf', "=", partner.numero_cpf),
-                    #      ('state', "=", 'posted'),
-                    #      ('partner_id', "=", partner.id)], limit=1)
-                    #
-                    # if not invoice:
-                    #     so = request.env['sale.order'].sudo().create({
-                    #         'partner_id': partner.id,
-                    #         'company_id': 1,
-                    #     })
-                    #     request.env['sale.order.line'].sudo().create({
-                    #         'name': product_id.name,
-                    #         'product_id': product_id.id,
-                    #         'product_uom_qty': 1,
-                    #         'product_uom': product_id.uom_id.id,
-                    #         'price_unit': product_id.list_price,
-                    #         'order_id': so.id,
-                    #         'tax_id': product_id.taxes_id,
-                    #         'company_id': 1
-                    #     })
-                    #     # Enreggistrement des valeurs de la facture
-                    #     # Parser le pourcentage d'acompte
-                    #     # Creation de la fcture étape Finale
-                    #     # Facture comptabilisée
-                    #     so.action_confirm()
-                    #     so.module_id = module_id
-                    #     so.session_id = module_id.session_id
-                    #     moves = so._create_invoices(final=True)
-                    #     for move in moves:
-                    #         move.type_facture = 'interne'
-                    #         move.module_id = so.module_id
-                    #         # move.cpf_acompte_invoice=True
-                    #         # move.cpf_invoice =True
-                    #         move.methodes_payment = 'cpf'
-                    #         move.numero_cpf = partner.numero_cpf
-                    #         move.pourcentage_acompte = 25
-                    #         move.session_id = so.session_id
-                    #         move.company_id = so.company_id
-                    #         move.website_id = 1
-                    #         for line in move.invoice_line_ids:
-                    #             if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
-                    #                 line.account_id = line.product_id.property_account_income_id
-                    #         move.post()
-                    #     so.action_cancel()
-                    #     so.unlink()
-                    partner.statut = 'won'
-                    """changer step à validé dans espace client """
-                    partner.step = 'finish'
-                    """Créer un historique de ssession pour cet apprenant """
-                    session = request.env['partner.sessions'].search([('client_id', '=', partner.id),
-                                                                      ('session_id', '=', module_id.session_id.id)])
-                    if not session:
-                        new_history = request.env['partner.sessions'].sudo().create({
-                            'client_id': partner.id,
-                            'session_id': module_id.session_id.id,
-                            'module_id': module_id.id,
-                            'company_id': 1,
-                        })
+                        elif product_id and product_id.company_id.id == 1 and partner.id_edof and partner.date_examen_edof and partner.session_ville_id:
+                            print('if product_id mcm', product_id)
+                            partner.id_edof = product_id.id_edof
+                            module_id = request.env['mcmacademy.module'].sudo().search(
+                                [('company_id', "=", 1), ('session_ville_id', "=", partner.session_ville_id.id),
+                                 ('date_exam', "=", partner.date_examen_edof), ('product_id',
+                                                                                "=", product_id.id),
+                                 ('session_id.number_places_available', '>', 0)], limit=1)
+                            if module_id:
+                                partner.module_id = module_id
+                                partner.mcm_session_id = module_id.session_id
+                                product_id = request.env['product.product'].sudo().search(
+                                    [('product_tmpl_id', '=', module_id.product_id.id)])
+                                partner.mcm_session_id = module_id.session_id
+                                partner.module_id = module_id
+                                request.env.user.company_id = 1
+                                """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
+                                # invoice = request.env['account.move'].sudo().search(
+                                #     [('numero_cpf', "=", partner.numero_cpf),
+                                #      ('state', "=", 'posted'),
+                                #      ('partner_id', "=", partner.id)], limit=1)
+                                #
+                                # if not invoice:
+                                #     so = request.env['sale.order'].sudo().create({
+                                #         'partner_id': partner.id,
+                                #         'company_id': 1,
+                                #     })
+                                #     request.env['sale.order.line'].sudo().create({
+                                #         'name': product_id.name,
+                                #         'product_id': product_id.id,
+                                #         'product_uom_qty': 1,
+                                #         'product_uom': product_id.uom_id.id,
+                                #         'price_unit': product_id.list_price,
+                                #         'order_id': so.id,
+                                #         'tax_id': product_id.taxes_id,
+                                #         'company_id': 1
+                                #     })
+                                #     # Enreggistrement des valeurs de la facture
+                                #     # Parser le pourcentage d'acompte
+                                #     # Creation de la fcture étape Finale
+                                #     # Facture comptabilisée
+                                #     so.action_confirm()
+                                #     so.module_id = module_id
+                                #     so.session_id = module_id.session_id
+                                #     moves = so._create_invoices(final=True)
+                                #     for move in moves:
+                                #         move.type_facture = 'interne'
+                                #         move.module_id = so.module_id
+                                #         # move.cpf_acompte_invoice=True
+                                #         # move.cpf_invoice =True
+                                #         move.methodes_payment = 'cpf'
+                                #         move.numero_cpf = partner.numero_cpf
+                                #         move.pourcentage_acompte = 25
+                                #         move.session_id = so.session_id
+                                #         move.company_id = so.company_id
+                                #         move.website_id = 1
+                                #         for line in move.invoice_line_ids:
+                                #             if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
+                                #                 line.account_id = line.product_id.property_account_income_id
+                                #         move.post()
+                                #     so.action_cancel()
+                                #     so.unlink()
+                                partner.statut = 'won'
+                                """changer step à validé dans espace client """
+                                partner.step = 'finish'
+                                """Créer un historique de ssession pour cet apprenant """
+                                session = request.env['partner.sessions'].search([('client_id', '=', partner.id),
+                                                                                  ('session_id', '=', module_id.session_id.id)])
+                                if not session:
+                                    new_history = request.env['partner.sessions'].sudo().create({
+                                        'client_id': partner.id,
+                                        'session_id': module_id.session_id.id,
+                                        'module_id': module_id.id,
+                                        'company_id': 1,
+                                    })
 
-            else:
-                if 'digimoov' in str(training_id):
-                    vals = {
-                        'description': 'CPF: vérifier la date et ville de %s' % (partner.name),
-                        'name': 'CPF : Vérifier Date et Ville ',
-                        'team_id': request.env['helpdesk.team'].sudo().search(
-                            [('name', 'like', 'Client'), ('company_id', "=", 2)],
-                            limit=1).id,
-                    }
-                    description = "CPF: vérifier la date et ville de " + \
-                                  str(partner.name)
-                    ticket = request.env['helpdesk.ticket'].sudo().search(
-                        [("description", "=", description)])
-                    if not ticket:
-                        new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                            vals)
-                else:
-                    vals = {
-                        'partner_email': '',
-                        'partner_id': False,
-                        'description': 'CPF: id module edof %s non trouvé' % (training_id),
-                        'name': 'CPF : ID module edof non trouvé ',
-                        'team_id': request.env['helpdesk.team'].sudo().search(
-                            [('name', "like", _('Client')),
-                             ('company_id', "=", 1)],
-                            limit=1).id,
-                    }
-                    description = 'CPF: id module edof ' + \
-                                  str(training_id) + ' non trouvé'
-                    ticket = request.env['helpdesk.ticket'].sudo().search(
-                        [('description', 'ilike', description)])
-                    if not ticket:
-                        new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                            vals)
+                        else:
+                            if 'digimoov' in str(training_id):
+                                vals = {
+                                    'description': 'CPF: id module edof %s non trouvé' % (training_id),
+                                    'name': 'CPF : ID module edof non trouvé ',
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                        limit=1).id,
+                                }
+                                description = 'CPF: id module edof ' + \
+                                              str(training_id) + ' non trouvé'
+                                ticket = request.env['helpdesk.ticket'].sudo().search(
+                                    [("description", "=", description)])
+                                if not ticket:
+                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
+                            else:
+                                vals = {
+                                    'partner_email': '',
+                                    'partner_id': False,
+                                    'description': 'CPF: id module edof %s non trouvé' % (training_id),
+                                    'name': 'CPF : ID module edof non trouvé ',
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', "like", _('Client')),
+                                         ('company_id', "=", 1)],
+                                        limit=1).id,
+                                }
+                                description = 'CPF: id module edof ' + \
+                                              str(training_id) + ' non trouvé'
+                                ticket = request.env['helpdesk.ticket'].sudo().search(
+                                    [('description', 'ilike', description)])
+                                if not ticket:
+                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
         return {'state': 'finished', }
 
     """ajouter l'apprenant sur 360 par api360"""
@@ -858,7 +855,7 @@ class WebsiteSale(WebsiteSale):
                             if user.company_id.id == 2:
                                 print(
                                     "****************************************ajouterrrr ione")
-                                return self.ajouter_iOne(partner)
+                                return partner.ajouter_iOne(partner)
                             if user.company_id.id == 1:
                                 "si créer envoyer le lien de la plateforme + suppression de panier  si non false"
                                 sale_order = request.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
@@ -945,7 +942,7 @@ class WebsiteSale(WebsiteSale):
         if not (partner.phone):
             partner.phone = ''
         # Extraire firstName et lastName à partir du champs name
-        self.diviser_nom(partner)
+        partner.diviser_nom(partner)
 
         new_format = '%d %B %Y'
         if (partner.mcm_session_id.date_exam) and (partner.mcm_session_id.session_ville_id.name_ville):
@@ -1256,27 +1253,7 @@ class WebsiteSale(WebsiteSale):
                         return {
                             'ajout': "Une erreur est survenue lors de votre connexion. Vous serez contacté par notre service client dans les 24h pour faciliter votre accès à notre plateforme."}
 
-    # Extraire firstName et lastName à partir du champs name
 
-    def diviser_nom(self, partner):
-        # _logger.info('name au debut  %s' %partner.name)
-        if partner.name == '':
-            partner.firstName = partner.name
-            partner.lastName = partner.name
-        # Cas d'un nom composé
-        else:
-            if " " in partner.name:
-                name = partner.name
-                name = " ".join(name.split())
-                name = name.split(" ", 1)
-                if name:
-                    partner.firstName = name[0]
-                    partner.lastName = name[1]
-            # Cas d'un seul nom
-            else:
-                partner.firstName = partner.name
-                partner.lastName = partner.name
-                print('first', partner.firstName)
 
     @http.route(['''/<string:product>/<string:partenaire>/shop/payment''', '''/<string:product>/shop/payment''',
                  '''/shop/payment'''], type='http', auth="user", website=True)
@@ -1716,7 +1693,7 @@ class Date_Examen(http.Controller):
         print("exam_date_id : ", exam_date_id, "status :",
               status, 'availableDate: ', availableDate)
         order = request.website.sale_get_order()
-
+        url_cpf=""
         if exam_date_id and exam_date_id != 'all':
             module = request.env['mcmacademy.module'].sudo().search(
                 [('id', '=', exam_date_id)], limit=1)
@@ -1743,6 +1720,7 @@ class Date_Examen(http.Controller):
                     order.module_id = module
                     order.session_id = module.session_id
                     # if order.company_id.id == 1:
+                    url_cpf=order.module_id.url_cpf
             else:
                 subtype_id = request.env['ir.model.data'].xmlid_to_res_id(
                     'mt_note')
@@ -1771,6 +1749,9 @@ class Date_Examen(http.Controller):
                 order.partner_id.date_examen_edof = False
                 order.partner_id.session_ville_id = False
 
+        print('url_cpf: ', url_cpf)
+        return {'url_cpf': url_cpf}
+
     @http.route(['/cpf/update_exam_date'], type='json', auth="public", methods=['POST'], website=True)
     def partner_update_exam_center(self, exam_date_id):
         partner = request.env.user.partner_id
@@ -1785,6 +1766,7 @@ class Date_Examen(http.Controller):
     @http.route(['/shop/cart/update_exam_date_mcm'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_exam_center_mcm(self, exam_date_id):
         order = request.website.sale_get_order()
+        url_cpf = ""
         if exam_date_id and exam_date_id != 'all':
             module = request.env['mcmacademy.module'].sudo().search(
                 [('id', '=', exam_date_id)], limit=1)
@@ -1810,6 +1792,7 @@ class Date_Examen(http.Controller):
                 # if order.company_id.id == 1:
                 order.partner_id.date_examen_edof = module.date_exam
                 order.partner_id.session_ville_id = module.session_ville_id
+                url_cpf=order.module_id.url_cpf
 
         if exam_date_id and exam_date_id == 'all':
             if order:
@@ -1817,3 +1800,4 @@ class Date_Examen(http.Controller):
                 order.session_id = False
                 order.partner_id.date_examen_edof = False
                 order.partner_id.session_ville_id = False
+        return {'url_cpf': url_cpf}
