@@ -43,10 +43,11 @@ class partner(models.Model):
 
     @api.onchange('mooc_temps_passe_min', 'mooc_temps_passe_seconde')
     def convert_seconde_to_hours(self):
-        if self.mooc_temps_passe_seconde or self.mooc_temps_passe_min:
+        if self.mooc_temps_passe_seconde:
             heure = int((self.mooc_temps_passe_seconde / 3600))
             minute = int((self.mooc_temps_passe_seconde - (3600 * heure)) / 60)
             secondes = int(self.mooc_temps_passe_seconde - (3600 * heure) - (60 * minute))
+        if self.mooc_temps_passe_min:
             self.mooc_temps_passe_min = str(" %s h :   %s  m:  %s s" % (heure, minute, secondes))
 
     # Ajouter Des condition pour supprimer apprenant
