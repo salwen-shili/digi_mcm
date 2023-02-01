@@ -22,13 +22,9 @@ class InheritSmsComposer(models.TransientModel):
 
         url = "https://api.sendinblue.com/v3/transactionalSMS/sms"
         selected_ids = self.env.context.get('active_ids', [])
-        rec = self.env['res.partner']
-        selected_records = rec.with_context(selected_records=selected_ids)
-        _logger.info("----------selected_records sendsms() sendinblue --------- :  %s" % selected_records )
+        selected_records = self.env['res.partner'].browse(selected_ids)
         for i_sms in selected_records:
-            _logger.info("for i_sms in selected_records:  %s" % i_sms.name)
-
-        for i_sms in selected_records:
+            _logger.info(i_sms.name)
             payload = {
                 'type': "transactional",
                 'unicodeEnabled': False,
@@ -72,6 +68,7 @@ class InheritSmsComposer(models.TransientModel):
 
     def _action_send_sms(self):
         fn = self.sendsms()
+
         if fn == 201:
             return False
         else:
