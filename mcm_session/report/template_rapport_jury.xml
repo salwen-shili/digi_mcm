@@ -224,7 +224,8 @@
                             </p>
                             <p>
                                 <b>Date :</b>
-                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                                <!--<span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>-->
+                                <span t-esc="(o.date_jury).strftime('%d/%m/%Y')"/>
                             </p>
                             <p>
                                 <b>Heure :</b>
