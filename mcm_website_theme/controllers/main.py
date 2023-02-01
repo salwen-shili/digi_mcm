@@ -2436,7 +2436,7 @@ class Payment3x(http.Controller):
     @http.route(
         ["/shop/cart/pole_emploi"], type="json", auth="public", methods=["POST"], website=True, csrf=False
     )
-    def cart_pole_emploi(self, numero_pole_emploi, is_demandeur_emploi):
+    def cart_pole_emploi_demendeur(self, numero_pole_emploi, is_demandeur_emploi):
         order = request.website.sale_get_order(force_create=1)
         print("order:", order, "numero_pole_emploi:", numero_pole_emploi)
         print("order:", order, "pis_demandeur_emploi:", is_demandeur_emploi)
