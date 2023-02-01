@@ -493,7 +493,7 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open(urlCpf, "_blank");
+            window.open("https://bit.ly/3uLde9W", "_blank");
 
             break;
         }
@@ -513,7 +513,7 @@ function verify_payment_method() {
 
           default:
             
-            window.open(urlCpf, "_blank");
+            window.open("https://bit.ly/3LJQLQP", "_blank");
 
             break;
         }
@@ -1386,7 +1386,7 @@ if (cpf_pm && props) {
 
     default:
       
-      window.open(urlCpf, "_blank");
+      window.open("https://bit.ly/3LJQLQP", "_blank");
 
       break;
   }
