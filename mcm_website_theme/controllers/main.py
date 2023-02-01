@@ -2433,6 +2433,8 @@ class Payment3x(http.Controller):
             order.partner_id.is_pole_emploi = pole_emploi_state
         return pole_emploi_state
 
+    """Route est appelé quand demandeur pole emploi est coché pour extraire le numero de l'apprennat  """
+
     @http.route(
         ["/shop/cart/pole_emploi"], type="json", auth="public", methods=["POST"], website=True, csrf=False
     )
@@ -2445,7 +2447,7 @@ class Payment3x(http.Controller):
         else:
             is_demandeur_emploi = False
 
-        return True
+        return (numero_pole_emploi, is_demandeur_emploi)
 
     @http.route(
         ["/shop/payment/update_cartebleu"], type="json", auth="public", methods=["POST"], website=True, csrf=False
