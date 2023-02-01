@@ -51,6 +51,7 @@ class Module(models.Model):
     ], string='Modalité Pédagogique')
     website_published = fields.Boolean('Publié en site web', default=True)
     contract_price=fields.Monetary('Ancien Tarif',default=lambda self: self.product_id.list_price)
+    url_cpf = fields.Char('URL de redirection vers produit sur CPF',required=True,track_visibility='always')
 
     @api.depends('duree')
     def _get_display_duration(self):

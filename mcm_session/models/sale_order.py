@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
     conditions =fields.Boolean(default=False)
     failures = fields.Boolean(default=False)
     accompagnement = fields.Boolean(default=False)
-
+    id_edof = fields.Char('Id Edof de produit')
     def action_link_contract(self):
         orders = self.env['sale.order'].sudo().search([])
         for order in orders:

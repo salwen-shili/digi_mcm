@@ -18,6 +18,8 @@
                                 <field name="session_id"/>
                                 <field name="product_id"/>
                                 <field name="modalite_pedagogique"/>
+                                <field name="url_cpf"/>
+
                                 <!--                                <field name="background_color" widget="color"/>-->
                             </group>
                             <group>
@@ -94,6 +96,7 @@
                     <field name="name"/>
                     <field name="product_id"/>
                     <field name="modalite_pedagogique"/>
+                    <field name="url_cpf"/>
                     <field name="date_debut"/>
                     <field name="date_fin"/>
                     <field name="display_duration"/>
