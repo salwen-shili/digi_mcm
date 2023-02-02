@@ -19,6 +19,9 @@ class SessionStatistics(models.Model):
     nbr_echec = fields.Char(string="Nombre d'échec", compute="_compute_nbr_echec",
                             store=True, help="Nombre d'échec.")
 
+    nbr_echec = fields.Char(string="Nombre d'échec", compute="_compute_nbr_echec",
+                            store=True, help="Nombre d'échec.")
+
     company_id = fields.Many2one('res.company', string='Société', change_default=True,
                                  default=lambda self: self.env.company)
 
