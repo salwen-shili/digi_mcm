@@ -2,19 +2,51 @@
 <odoo>
     <template id="pole_emplois">
         <t t-call="web.html_container">
-            <t t-call="web.basic_layout">
-                <style>
-                    .page {
-                    line-height:1.75;
-                    font-size:15px ;
-                    margin-left:20px;
-                    margin-right:20px;
-                    }
-                </style>
-                <div class="page">
+            <t t-foreach="docs" t-as="o">
+
+                <t t-call="web.basic_layout">
+                    <style>
+                        .page {
+                        line-height:1.75;
+                        font-size:15px ;
+                        margin-left:20px;
+                        margin-right:20px;
+                        }
+                    </style>
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-4">
+                                <p>
+                                    <strong>
+                                        <span t-esc="o.name"/>
+                                    </strong>
+                                </p>
+                                <br/>
+                                <p>
+                                    Références :
+                                    <span t-esc="o.numero_pole_emploi"/>
+                                </p>
+                            </div>
+                            <div class="row">
+                                <h3 align="center">-------------------- Formulaire à compléter et à retourner à
+                                    votre pôle emploi -----------------
+                                </h3>
+                                <div class="col-6">Référence:
+                                    <span t-esc="o.numero_pole_emploi"/>
+                                </div>
+                                <div class="col-2">
+                                    Nom Prénom:
+                                    <span t-esc="o.name"/>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
 
 
-                </div>
+                </t>
             </t>
         </t>
     </template>
