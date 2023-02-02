@@ -64,7 +64,7 @@
                             attrs="{'invisible': [('company_id', '=', 1)]}"
                             type="object" confirm="Êtes-vous sûr de vouloir supprimer cet apprenant de la plateforme?"
                             groups="crm_marketing_automation.group_user"/>
-                     <button name="ajouter_iOne_button" string="Ajouter sur 360Learning"
+                    <button name="ajouter_iOne_button" string="Ajouter sur 360Learning"
                             type="object" groups="crm_marketing_automation.group_user"
                             attrs="{'invisible': [('company_id', '=', 1)]}"></button>
                 </header>
@@ -126,7 +126,7 @@
                                     <i class="fa fa-clock-o"/>
                                 </span>
                                 <span class="o_stat_text">
-                                     Temps passé plateforme
+                                    Temps passé plateforme
                                 </span>
                                 <br/>
                                 <span class="o_stat_text">
@@ -195,15 +195,27 @@
         <field name="inherit_id" ref="mcm_cpf_partner.mcmacademy_cpf_view_res_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//group/field[@name='mode_de_financement']" position="after">
-                  <field name="inscription_cpf" string="Inscription"
-                   style="font-weight: 500;font-size:17;color:rgb(22, 64, 148);"
-                        attrs="{'invisible': [('inscription_cpf', '=', False)]}"></field>
+                <field name="inscription_cpf" string="Inscription"
+                       style="font-weight: 500;font-size:17;color:rgb(22, 64, 148);"
+                       attrs="{'invisible': [('inscription_cpf', '=', False)]}"></field>
                 <field name="is_pole_emploi" string="Pole Emploi"
                        attrs="{'invisible': ['|',('mode_de_financement', '!=', 'cpf'),('is_pole_emploi','=',False)]}"/>
             </xpath>
             <xpath expr="//group/field[@name='mode_de_financement']" position="before">
                 <field name="acompte_date"
                        attrs="{'invisible': ['|',('mode_de_financement', '!=', 'cpf'),('acompte_date','=',False)]}"></field>
+
+            </xpath>
+
+
+            <xpath expr="//field[@name='mode_de_financement']" position="after">
+
+                <field name="is_demandeur_emploi"/>
+
+            </xpath>
+            <xpath expr="//field[@name='is_demandeur_emploi']" position="after">
+
+                <field name="numero_pole_emploi"/>
 
             </xpath>
         </field>
@@ -224,7 +236,6 @@
               parent="statistique_menu"
               action="contact_list_action">
     </menuitem>
-
 
 
 </odoo>

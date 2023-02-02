@@ -38,9 +38,6 @@ class resPartner(models.Model):
     lastName = fields.Char()
     # choosed_product=fields.Integer('Produit choisi')
     inscription_cpf=fields.Char('Inscription')
-    numero_pole_emploi = fields.Integer(string="numéro identique unique pôle emploi")
-    is_demandeur_emploi = fields.Boolean(
-        string="Demandeur emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
 
     @api.constrains('code_pole_emploi')
     def _check_parent_id(self):
