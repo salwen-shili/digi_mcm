@@ -87,33 +87,11 @@
                                 </div>
                                 <div class="container o_kanban_card_content" t-if="!selection_mode">
                                     <div class="row">
-
                                         <div class="col-6 o_kanban_primary_right">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
-                                    <div class="row">
-                                        <div role="menuitem"
-                                             class="col-4 o_kanban_card_manage_section o_kanban_manage_to_do">
-                                            <div class="o_kanban_card_manage_title">
-                                                <span>To Do</span>
-                                            </div>
-                                        </div>
-                                        <div role="menuitem"
-                                             class="col-4 o_kanban_card_manage_section o_kanban_manage_to_approve">
-                                            <div class="o_kanban_card_manage_title">
-                                                <span>To Approve</span>
-                                            </div>
-                                        </div>
-                                        <div role="menuitem"
-                                             class="col-4 o_kanban_card_manage_section o_kanban_manage_reports">
-                                            <div class="o_kanban_card_manage_title">
-                                                <span>Reporting</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
                                         <div role="menuitem" aria-haspopup="true" class="col-8">
                                             <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>
@@ -123,7 +101,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </t>
                     </templates>
@@ -134,15 +111,14 @@
         <record id="action_session_statistics" model="ir.actions.act_window">
             <field name="name">Statestiques des sessions</field>
             <field name="res_model">session.statistics</field>
-            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_mode">kanban,tree,graph,form,calendar,pivot</field>
             <!--            <field name="search_view_id" ref="view_department_filter"/>-->
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Create a new statestique session
+                    Créer une nouvelle statestique session
                 </p>
                 <p>
-                    Statestique des sessions structure is used to manage all analysis
-                    related to IONE by company.
+                    La structure Session Statestics est utilisée pour gérer toutes les analyses liées à IONE par l'entreprise.
                 </p>
             </field>
         </record>

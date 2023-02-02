@@ -24,8 +24,10 @@ class SessionStatistics(models.Model):
 
     color = fields.Integer('Color Index')
 
+    @api.depends('session_id')
     def _compute_nbr_inscrit(self):
-        print("")
+        res = self.session_id.nbr_client_par_session()
+        self.nbr_inscrits = res
     def _compute_nbr_present(self):
         print("")
     def _compute_nbr_absence_justifiee(self):
