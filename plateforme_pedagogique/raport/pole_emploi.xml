@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="pole_emploi">
+            <t t-call="web.external_layout">
+                <h3 class="text-center">
+                    Contact details for
+                    <span t-field="doc.name"></span>
+                </h3>
+                <table class="table table-sm o_main_table">
+                    <tbody>
+                        <tr>
+                            <td>Name:</td>
+                            <td>
+                                <span t-field="doc.name"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Address:</td>
+                            <td>
+                                <span t-field="doc.street"></span>
+                                <span t-field="doc.street_number"></span>
+                                <t t-if="doc.street_number2">
+                                    <span t-field="doc.street_number2"></span>
+                                </t>
+                                <span t-field="doc.zip"></span>
+                                <span t-field="doc.city"></span>
+                                <span t-field="doc.country_id.name"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>E-mail:</td>
+                            <td>
+                                <span t-field="doc.email"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Phone:</td>
+                            <td>
+                                <span t-field="doc.phone"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mobile:</td>
+                            <td>
+                                <span t-field="doc.mobile"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Language:</td>
+                            <td>
+                                <span t-field="doc.lang"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Title:</td>
+                            <td>
+                                <span t-field="doc.title"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Function:</td>
+                            <td>
+                                <span t-field="doc.function"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+        </template>
+    </data>
+</odoo>

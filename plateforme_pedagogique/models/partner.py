@@ -61,7 +61,7 @@ class partner(models.Model):
         string="Pole Emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
 
-    numero_pole_emploi = fields.Integer(string="numéro identique unique pôle emploi")
+    numero_pole_emploi = fields.Integer(string="Numero pôle emploi")
     is_demandeur_emploi = fields.Boolean(
         string="Demandeur emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
     etat_financement_cpf_cb = fields.Selection([('untreated', 'Non Traité'),
@@ -104,7 +104,7 @@ class partner(models.Model):
 
     def write(self, vals):
         """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
-        #self.convert_minutes_to_hours()
+        # self.convert_minutes_to_hours()
         if 'email' in vals and vals['email'] is not None:
             # Si email changé on change sur login
             users = self.env['res.users'].sudo().search([('partner_id', "=", self.id)])
@@ -614,7 +614,6 @@ class partner(models.Model):
                             # Affecter apprenant à Digimoov-Révision
                             revision = "Digimoov - Pack Repassage Examen"
                             if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
-
                                 urlgrp_revision = ' https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
 
@@ -1222,168 +1221,168 @@ class partner(models.Model):
                     registrations = response.json()
                     for dossier in registrations:
 
-                            print('dosssier', dossier['attendee']['address'])
-                            externalId = dossier['externalId']
-                            email = dossier['attendee']['email']
-                            email = email.replace("%", ".")  # remplacer % par .
-                            email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
-                            email = str(
-                                email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
-                            # Takwa removed code of cpf mode financement to the cron with  personnel mode code
-                            idform = dossier['trainingActionInfo']['externalId']
-                            training_id = ""
-                            if "_" in idform:
-                                idforma = idform.split("_", 1)
-                                if idforma:
-                                    training_id = idforma[1]
+                        print('dosssier', dossier['attendee']['address'])
+                        externalId = dossier['externalId']
+                        email = dossier['attendee']['email']
+                        email = email.replace("%", ".")  # remplacer % par .
+                        email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
+                        email = str(
+                            email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
+                        # Takwa removed code of cpf mode financement to the cron with  personnel mode code
+                        idform = dossier['trainingActionInfo']['externalId']
+                        training_id = ""
+                        if "_" in idform:
+                            idforma = idform.split("_", 1)
+                            if idforma:
+                                training_id = idforma[1]
 
-                            print('training', training_id)
-                            state = dossier['state']
-                            lastupdatestr = str(dossier['lastUpdate'])
-                            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
-                            newformat = "%d/%m/%Y %H:%M:%S"
-                            lastupdateform = lastupdate.strftime(newformat)
-                            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
-                            num_voie = ""
-                            if "number" in dossier['attendee']['address']:
-                                num_voie = dossier['attendee']['address']['number']
+                        print('training', training_id)
+                        state = dossier['state']
+                        lastupdatestr = str(dossier['lastUpdate'])
+                        lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+                        newformat = "%d/%m/%Y %H:%M:%S"
+                        lastupdateform = lastupdate.strftime(newformat)
+                        lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+                        num_voie = ""
+                        if "number" in dossier['attendee']['address']:
+                            num_voie = dossier['attendee']['address']['number']
 
-                            voie = ""
-                            if "roadTypeLabel" in dossier['attendee']['address']:
-                                voie = dossier['attendee']['address']['roadTypeLabel']
-                            nom_voie = ""
-                            if "roadName" in dossier['attendee']['address']:
-                                nom_voie = dossier['attendee']['address']['roadName']
-                            street = str(num_voie) + ' ' + str(voie) + ' ' + str(nom_voie)
-                            tel = ""
-                            if "phoneNumber" in dossier['attendee']:
-                                tel = dossier['attendee']['phoneNumber']
+                        voie = ""
+                        if "roadTypeLabel" in dossier['attendee']['address']:
+                            voie = dossier['attendee']['address']['roadTypeLabel']
+                        nom_voie = ""
+                        if "roadName" in dossier['attendee']['address']:
+                            nom_voie = dossier['attendee']['address']['roadName']
+                        street = str(num_voie) + ' ' + str(voie) + ' ' + str(nom_voie)
+                        tel = ""
+                        if "phoneNumber" in dossier['attendee']:
+                            tel = dossier['attendee']['phoneNumber']
 
-                            code_postal = ""
-                            if "zipCode" in dossier['attendee']['address']:
-                                code_postal = dossier['attendee']['address']['zipCode']
+                        code_postal = ""
+                        if "zipCode" in dossier['attendee']['address']:
+                            code_postal = dossier['attendee']['address']['zipCode']
 
-                            ville = ""
-                            if "city" in dossier['attendee']['address']:
-                                ville = dossier['attendee']['address']['city']
-                            residence = ""
-                            if "residence" in dossier['attendee']['address']:
-                                residence = dossier['attendee']['address']['residence']
-                            nom = ""
-                            if 'firstName' in dossier['attendee']:
-                                nom = dossier['attendee']['firstName']
-                                nom = unidecode(nom)
+                        ville = ""
+                        if "city" in dossier['attendee']['address']:
+                            ville = dossier['attendee']['address']['city']
+                        residence = ""
+                        if "residence" in dossier['attendee']['address']:
+                            residence = dossier['attendee']['address']['residence']
+                        nom = ""
+                        if 'firstName' in dossier['attendee']:
+                            nom = dossier['attendee']['firstName']
+                            nom = unidecode(nom)
 
-                            prenom = ""
-                            if "lastName" in dossier['attendee']:
-                                prenom = dossier['attendee']['lastName']
-                                prenom = unidecode(prenom)
-                            diplome = dossier['trainingActionInfo']['title']
-                            product_id = self.env['product.template'].sudo().search(
-                                [('id_edof', "=", str(training_id))], limit=1)
+                        prenom = ""
+                        if "lastName" in dossier['attendee']:
+                            prenom = dossier['attendee']['lastName']
+                            prenom = unidecode(prenom)
+                        diplome = dossier['trainingActionInfo']['title']
+                        product_id = self.env['product.template'].sudo().search(
+                            [('id_edof', "=", str(training_id))], limit=1)
 
-                            if state == "validated":
-                                print('validate', email, dossier['attendee']['lastName'],
-                                      dossier['attendee']['firstName'])
-                                self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel,
-                                                  code_postal, ville,
-                                                  diplome, dossier['attendee']['lastName'],
-                                                  dossier['attendee']['firstName'],
-                                                  dossier['externalId'], lastupd)
+                        if state == "validated":
+                            print('validate', email, dossier['attendee']['lastName'],
+                                  dossier['attendee']['firstName'])
+                            self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel,
+                                              code_postal, ville,
+                                              diplome, dossier['attendee']['lastName'],
+                                              dossier['attendee']['firstName'],
+                                              dossier['externalId'], lastupd)
+                        else:
+                            users = self.env['res.users'].sudo().search(
+                                [('login', "=", email)])  # search user with same email sended
+                            user = False
+                            if users and len(users) > 1:
+                                user = users[1]
+                                print('userss', users)
+                                for utilisateur in users:
+                                    if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id:  # if more than user ,check between them wich user is come from edof
+                                        user = utilisateur
+                                        print('if userssss', user.partner_id.email)
                             else:
-                                users = self.env['res.users'].sudo().search(
-                                    [('login', "=", email)])  # search user with same email sended
-                                user = False
-                                if users and len(users) > 1:
-                                    user = users[1]
-                                    print('userss', users)
-                                    for utilisateur in users:
-                                        if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id:  # if more than user ,check between them wich user is come from edof
-                                            user = utilisateur
-                                            print('if userssss', user.partner_id.email)
-                                else:
-                                    user = users
-                                if user:  # if user finded
-                                    print('if__________________user', user.partner_id.statut_cpf, user.partner_id.email)
-                                    # user.partner_id.mode_de_financement = 'cpf'  # update field mode de financement to cpf
-                                    user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
-                                    print(user.partner_id.date_cpf)
+                                user = users
+                            if user:  # if user finded
+                                print('if__________________user', user.partner_id.statut_cpf, user.partner_id.email)
+                                # user.partner_id.mode_de_financement = 'cpf'  # update field mode de financement to cpf
+                                user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
+                                print(user.partner_id.date_cpf)
 
-                                    if state == "inTraining":
-                                        print('intraining', email)
-                                        user.partner_id.statut_cpf = "in_training"
-                                        user.partner_id.numero_cpf = externalId
-                                        user.partner_id.date_cpf = lastupd
-                                        user.partner_id.diplome = diplome
-                                        if product_id:
-                                            user.partner_id.id_edof = product_id.id_edof
+                                if state == "inTraining":
+                                    print('intraining', email)
+                                    user.partner_id.statut_cpf = "in_training"
+                                    user.partner_id.numero_cpf = externalId
+                                    user.partner_id.date_cpf = lastupd
+                                    user.partner_id.diplome = diplome
+                                    if product_id:
+                                        user.partner_id.id_edof = product_id.id_edof
 
-                                    if state == "terminated":
-                                        print('terminated', email)
-                                        user.partner_id.statut_cpf = "out_training"
-                                        user.partner_id.numero_cpf = externalId
-                                        user.partner_id.diplome = diplome
-                                        user.partner_id.date_cpf = lastupd
-                                        if product_id:
-                                            user.partner_id.id_edof = product_id.id_edof
-                                    if state == "serviceDoneDeclared":
-                                        print('serviceDoneDeclared', email)
-                                        user.partner_id.statut_cpf = "service_declared"
-                                        user.partner_id.numero_cpf = externalId
-                                        user.partner_id.date_cpf = lastupd
-                                        user.partner_id.diplome = diplome
-                                        if product_id:
-                                            user.partner_id.id_edof = product_id.id_edof
+                                if state == "terminated":
+                                    print('terminated', email)
+                                    user.partner_id.statut_cpf = "out_training"
+                                    user.partner_id.numero_cpf = externalId
+                                    user.partner_id.diplome = diplome
+                                    user.partner_id.date_cpf = lastupd
+                                    if product_id:
+                                        user.partner_id.id_edof = product_id.id_edof
+                                if state == "serviceDoneDeclared":
+                                    print('serviceDoneDeclared', email)
+                                    user.partner_id.statut_cpf = "service_declared"
+                                    user.partner_id.numero_cpf = externalId
+                                    user.partner_id.date_cpf = lastupd
+                                    user.partner_id.diplome = diplome
+                                    if product_id:
+                                        user.partner_id.id_edof = product_id.id_edof
 
-                                    if state == "serviceDoneValidated":
-                                        print('serviceDoneValidated', email)
+                                if state == "serviceDoneValidated":
+                                    print('serviceDoneValidated', email)
 
-                                        user.partner_id.statut_cpf = "service_validated"
-                                        user.partner_id.numero_cpf = externalId
-                                        user.partner_id.date_cpf = lastupd
-                                        user.partner_id.diplome = diplome
-                                        if product_id:
-                                            user.partner_id.id_edof = product_id.id_edof
-                                    if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism":
-                                        if user.partner_id.numero_cpf == externalId:
-                                            """Vérifier si le dossier en formation donc statut de dossier est abandonné si non annulé"""
-                                            if user.partner_id.statut_cpf == "intraining":
-                                                user.partner_id.statut = "abandon"
-                                                if user.partner_id.mcm_session_id and user.partner_id.module_id:
-                                                    vals = {
-                                                        'partner_id': user.partner_id.id,
-                                                        'statut': 'abandon',
-                                                        'session_id': user.partner_id.mcm_session_id.id,
-                                                        'module_id': user.partner_id.module_id.id,
-                                                    }
+                                    user.partner_id.statut_cpf = "service_validated"
+                                    user.partner_id.numero_cpf = externalId
+                                    user.partner_id.date_cpf = lastupd
+                                    user.partner_id.diplome = diplome
+                                    if product_id:
+                                        user.partner_id.id_edof = product_id.id_edof
+                                if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism":
+                                    if user.partner_id.numero_cpf == externalId:
+                                        """Vérifier si le dossier en formation donc statut de dossier est abandonné si non annulé"""
+                                        if user.partner_id.statut_cpf == "intraining":
+                                            user.partner_id.statut = "abandon"
+                                            if user.partner_id.mcm_session_id and user.partner_id.module_id:
+                                                vals = {
+                                                    'partner_id': user.partner_id.id,
+                                                    'statut': 'abandon',
+                                                    'session_id': user.partner_id.mcm_session_id.id,
+                                                    'module_id': user.partner_id.module_id.id,
+                                                }
 
-                                                    session_wizard = self.env[
-                                                        'res.partner.session.wizard'].sudo().create(
-                                                        vals)
-                                                    session_wizard.action_modify_partner()
-                                            elif user.partner_id.statut_cpf != "canceled":
-                                                user.partner_id.statut_cpf = "canceled"
-                                                user.partner_id.statut = "canceled"
-                                                if user.partner_id.mcm_session_id and user.partner_id.module_id:
-                                                    vals = {
-                                                        'partner_id': user.partner_id.id,
-                                                        'statut': 'canceled',
-                                                        'session_id': user.partner_id.mcm_session_id.id,
-                                                        'module_id': user.partner_id.module_id.id,
-                                                    }
-
-                                                    session_wizard = self.env[
-                                                        'res.partner.session.wizard'].sudo().create(
-                                                        vals)
-                                                    session_wizard.action_modify_partner()
+                                                session_wizard = self.env[
+                                                    'res.partner.session.wizard'].sudo().create(
+                                                    vals)
+                                                session_wizard.action_modify_partner()
+                                        elif user.partner_id.statut_cpf != "canceled":
                                             user.partner_id.statut_cpf = "canceled"
-                                            user.partner_id.date_cpf = lastupd
-                                            user.partner_id.diplome = diplome
-                                            if product_id:
-                                                user.partner_id.id_edof = product_id.id_edof
-                        # except Exception:
-                        #     self.env.cr.rollback()
-                        #     _logger.exception("Erreur de mise a jour des statuts")
+                                            user.partner_id.statut = "canceled"
+                                            if user.partner_id.mcm_session_id and user.partner_id.module_id:
+                                                vals = {
+                                                    'partner_id': user.partner_id.id,
+                                                    'statut': 'canceled',
+                                                    'session_id': user.partner_id.mcm_session_id.id,
+                                                    'module_id': user.partner_id.module_id.id,
+                                                }
+
+                                                session_wizard = self.env[
+                                                    'res.partner.session.wizard'].sudo().create(
+                                                    vals)
+                                                session_wizard.action_modify_partner()
+                                        user.partner_id.statut_cpf = "canceled"
+                                        user.partner_id.date_cpf = lastupd
+                                        user.partner_id.diplome = diplome
+                                        if product_id:
+                                            user.partner_id.id_edof = product_id.id_edof
+                    # except Exception:
+                    #     self.env.cr.rollback()
+                    #     _logger.exception("Erreur de mise a jour des statuts")
 
     def cpf_validate(self, module, email, residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome,
                      nom,
