@@ -1,0 +1,31 @@
+<odoo>
+    <!--    This is used to reformat paper format of report PDF Convocation-->
+    <record id="paperformat_poleemploi" model="report.paperformat">
+        <field name="name">Convocation</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Connection statement in partner (Générer pole emploi)-->
+    <report id="pole_emplois"
+            string="Pole emplois"
+            model="res.partner"
+            report_type="qweb-pdf"
+            name="partner.pole_emplois"
+            file="partner.pole_emplois"
+            print_report_name="'Pole emploi' + (object.print_report_name_examen())"
+            paperformat="partner_exam.paperformat_connection_statement"
+    />
+
+
+</odoo>
