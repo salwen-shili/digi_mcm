@@ -225,6 +225,7 @@
               parent="main_learning_plateform_menu"/>
 
 
+
     <record model="ir.actions.act_window" id="contact_list_action">
         <field name="name">Les Apprenants</field>
         <field name="res_model">res.partner</field>
