@@ -131,7 +131,7 @@
             </field>
         </record>
 
-        <record id="session_statistics" model="ir.actions.act_window">
+        <record id="action_session_statistics" model="ir.actions.act_window">
             <field name="name">Statestiques des sessions</field>
             <field name="res_model">session.statistics</field>
             <field name="view_mode">kanban,tree,form</field>
@@ -148,7 +148,9 @@
         </record>
 
         <menuitem id="statistics_session_menu" name="Statestiques"
-                  parent="mcm_academy_session_root_menu" sequence="41"
+                  parent="mcm_academy_session_root_menu"
+                  action="action_session_statistics"
+                  sequence="41"
                   groups="mcm_session.group_session_module_manager"/>
     </data>
 </odoo>
