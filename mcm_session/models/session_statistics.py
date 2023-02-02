@@ -26,11 +26,19 @@ class SessionStatistics(models.Model):
 
     @api.depends('session_id')
     def _compute_nbr_inscrit(self):
-        res = self.session_id.nbr_client_par_session()
+        nbr_inscrits = False
+        res = self.session_id.nbr_client_par_session(nbr_inscrits)
         self.nbr_inscrits = res
+
+    @api.depends('session_id')
     def _compute_nbr_present(self):
-        print("")
+        nbr_present = False
+        self.nbr_present = self.session_id.nbr_present_par_session(nbr_present)
+
     def _compute_nbr_absence_justifiee(self):
-        print("")
+        total_absence_justifiée = False
+        self.nbr_absence_justifiee = self.session_id.calculer_nombre_absence_justifiée(total_absence_justifiée)
+
     def _compute_nbr_echec(self):
-        print("")
+        nbr_echec = False
+        self.nbr_echec = self.session_id.nbr_echec(nbr_echec)
