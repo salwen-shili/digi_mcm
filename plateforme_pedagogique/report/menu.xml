@@ -21,10 +21,10 @@
             string="Pole emplois"
             model="res.partner"
             report_type="qweb-pdf"
-            name="partner.pole_emplois"
+            name="partner.id.pole_emplois"
             file="partner.pole_emplois"
             print_report_name="'Pole emploi' + (object.print_report_name_examen())"
-            paperformat="partner_exam.paperformat_connection_statement"
+            paperformat="partner.paperformat_poleemploi"
     />
 
 
