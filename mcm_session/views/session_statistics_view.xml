@@ -91,16 +91,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
-                                    <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
-                                        <div role="menuitem" aria-haspopup="true" class="col-8">
-                                            <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>
-                                        </div>
-                                        <div class="col-4 text-right">
-                                            <a role="menuitem" type="edit">Settings</a>
-                                        </div>
-                                    </div>
-                                </div>
+<!--                                <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">-->
+<!--                                    <div t-if="widget.editable" class="o_kanban_card_manage_settings row">-->
+<!--                                        <div role="menuitem" aria-haspopup="true" class="col-8">-->
+<!--                                            <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-4 text-right">-->
+<!--                                            <a role="menuitem" type="edit">Settings</a>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                             </div>
                         </t>
                     </templates>
@@ -111,7 +111,7 @@
         <record id="action_session_statistics" model="ir.actions.act_window">
             <field name="name">Statestiques des sessions</field>
             <field name="res_model">session.statistics</field>
-            <field name="view_mode">kanban,tree,graph,form,calendar,pivot</field>
+            <field name="view_mode">kanban,tree,graph,form,pivot</field>
             <!--            <field name="search_view_id" ref="view_department_filter"/>-->
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
