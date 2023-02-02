@@ -1,6 +1,6 @@
 <odoo>
     <!--    This is used to reformat paper format of report PDF Convocation-->
-    <record id="paperformat_poleemploi" model="report.paperformat">
+    <record id="paperformat_pole_emploi" model="report.paperformat">
         <field name="name">Convocation</field>
         <field name="default" eval="False"/>
         <field name="format">A4</field>
@@ -17,14 +17,14 @@
     </record>
 
     <!-- Connection statement in partner (Générer pole emploi)-->
-    <report id="pole_emplois"
-            string="Pole emplois"
+    <report id="rapport_pole_emplois"
             model="res.partner"
+            string="Pole emplois"
             report_type="qweb-pdf"
-            name="partner.id.pole_emplois"
-            file="partner.pole_emplois"
-            print_report_name="'Pole emploi' + (object.print_report_name_examen())"
-            paperformat="partner.paperformat_poleemploi"
+            name="plateforme_pedagogique.pole_emplois"
+            file="plateforme_pedagogique.plapole_emplois"
+            print_report_name="'pole emploi - %s' % (object.name)"
+            paperformat="plateforme_pedagogique.paperformat_pole_emploi"
     />
 
 
