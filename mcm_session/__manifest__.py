@@ -43,6 +43,7 @@ ajouter un ensemble des sessions et des modules lié au session
         'views/account_move.xml',
         'views/sale_order.xml',
         'views/res_partner_session_wizard.xml',
+        'views/session_statistics_view.xml',
         'data/payment_stripe_3X.xml',
         'security/ir.model.access.csv',
         'report/template_rapport_jury.xml',

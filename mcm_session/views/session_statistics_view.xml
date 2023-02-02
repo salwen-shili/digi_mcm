@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_session_statistics_form" model="ir.ui.view">
+            <field name="name">session.statistics.form</field>
+            <field name="model">session.statistics</field>
+            <field name="arch" type="xml">
+                <form string="Statestiques">
+                    <sheet>
+                        <group col="4">
+                            <field name="session_id" options="{'no_create': True}"/>
+                            <field name="company_id" options="{'no_create': True}"/>
+                            <field name="nbr_inscrits"/>
+                            <field name="nbr_present"/>
+                            <field name="nbr_absence_justifiee"/>
+                            <field name="nbr_echec"/>
+                        </group>
+                    </sheet>
+                    <!--<div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>-->
+                </form>
+            </field>
+        </record>
+
+        <record id="view_session_statistics_tree" model="ir.ui.view">
+            <field name="name">session.statistics.tree</field>
+            <field name="model">session.statistics</field>
+            <field name="arch" type="xml">
+                <tree string="session_statistics_tree">
+                    <field name="session_id"/>
+                    <field name="company_id" optional="show"/>
+                    <field name="nbr_inscrits"/>
+                    <field name="nbr_present"/>
+                    <field name="nbr_absence_justifiee"/>
+                    <field name="nbr_echec"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_session_statistics_filter" model="ir.ui.view">
+            <field name="name">session.statistics.search</field>
+            <field name="model">session.statistics</field>
+            <field name="arch" type="xml">
+                <search string="session_statistics_search">
+                    <field name="session_id" string="Session"/>
+                    <separator/>
+                    <field name="create_date" string="Date de création"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Session" name="session_id" context="{'group_by':'session_id'}"/>
+                        <filter string="Company" name="company" context="{'group_by':'company_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="session_statistics_view_kanban" model="ir.ui.view">
+            <field name="name">session.statistics.kanban</field>
+            <field name="model">session.statistics</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_hr_kanban">
+                    <field name="session_id"/>
+                    <field name="nbr_inscrits"/>
+                    <field name="nbr_present"/>
+                    <field name="nbr_absence_justifiee"/>
+                    <field name="nbr_echec"/>
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''}">
+                                <div t-attf-class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title">
+                                        <div class="o_primary">
+                                            <field name="session_id"/>
+                                        </div>
+                                        <div class="o_secondary">
+                                            <field name="company_id"/>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_manage_button_section" t-if="!selection_mode">
+                                        <a class="o_kanban_manage_toggle_button" href="#">
+                                            <i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="container o_kanban_card_content" t-if="!selection_mode">
+                                    <div class="row">
+                                        <!--<div class="col-6 o_kanban_primary_left">
+                                            <button class="btn btn-primary" name="%(act_employee_from_department)d" type="action">Employees</button>
+                                        </div>-->
+                                        <div class="col-6 o_kanban_primary_right">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
+                                    <div class="row">
+                                        <div role="menuitem"
+                                             class="col-4 o_kanban_card_manage_section o_kanban_manage_to_do">
+                                            <div class="o_kanban_card_manage_title">
+                                                <span>To Do</span>
+                                            </div>
+                                        </div>
+                                        <div role="menuitem"
+                                             class="col-4 o_kanban_card_manage_section o_kanban_manage_to_approve">
+                                            <div class="o_kanban_card_manage_title">
+                                                <span>To Approve</span>
+                                            </div>
+                                        </div>
+                                        <div role="menuitem"
+                                             class="col-4 o_kanban_card_manage_section o_kanban_manage_reports">
+                                            <div class="o_kanban_card_manage_title">
+                                                <span>Reporting</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
+                                        <div role="menuitem" aria-haspopup="true" class="col-8">
+                                            <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <a role="menuitem" type="edit">Settings</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="session_statistics" model="ir.actions.act_window">
+            <field name="name">Statestiques des sessions</field>
+            <field name="res_model">session.statistics</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="search_view_id" ref="view_department_filter"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new statestique session
+                </p>
+                <p>
+                    Statestique des sessions structure is used to manage all analysis
+                    related to IONE by company.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
