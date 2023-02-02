@@ -51,8 +51,6 @@
                 <page string="Financement" name="financement">
                     <group string="Financement" name="financement">
                         <field name="mode_de_financement" string="Mode de financement"/>
-                        <field name="is_demandeur_emploi" string="est demendeur d'emploi"/>
-                        <field name="numero_pole_emploi" string="Numero pole emploi"/>
                         <field name="code_pole_emploi" string="N° de la convention"
                                attrs="{'invisible': [('mode_de_financement', '!=', 'aif')]}"/>
                     </group>
@@ -153,7 +151,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group label-floating form-group-sm">
-                                        <label class="control-label" for="street" string="Adresse">Adresse</label>
+                                        <label class="control-label" for="street" string="Adresse :">Adresse</label>
                                         <field name="street"/>
                                     </div>
                                 </div>
