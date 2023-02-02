@@ -29,8 +29,8 @@ class InheritSmsComposer(models.TransientModel):
                                                                        3:5] + ' ' + phone[
                                                                                     5:7] + ' ' + phone[
                                                                                                  7:]
-            _logger.info(" phone to snd sms %s " % phone)
-            _logger.info(i_sms.company_id.name)
+            _logger.info("recipient => phone to snd sms %s " % phone.replace(" ", ""))
+            _logger.info(" i_sms.company_id.name.replace(" ", "") %s " %  i_sms.company_id.name.replace(" ", ""))
             payload = {
                 'type': "transactional",
                 'unicodeEnabled': False,
@@ -66,8 +66,7 @@ class InheritSmsComposer(models.TransientModel):
                 }
                 records.env['mail.message'].sudo().create(values)
 
-            _logger.info(i_sms.name)
-            _logger.info(i_sms.phone)
+
             _logger.info(response.status_code)
             statut_code_sendinblue = response.status_code
         return statut_code_sendinblue
@@ -75,7 +74,7 @@ class InheritSmsComposer(models.TransientModel):
     def _action_send_sms(self):
         fn = self.sendsms()
         _logger.info(fn)
-        _logger.info("testtttttttttttttt")
+        _logger.info("response statut code sms suivi")
 
         if fn == 201:
             return False
