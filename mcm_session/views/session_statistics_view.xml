@@ -21,9 +21,12 @@
                             <field name="nbr_pack_pro_present"/>
                             <field name="nbr_pack_premium_present"/>
                             <field name="nbr_pack_repassage_present"/>
+                            <field name="taux_solo_presence"/>
+                            <field name="taux_pro_presence"/>
+                            <field name="taux_premium_presence"/>
                             <field name="nbr_absence_justifiee"/>
                             <field name="nbr_echec"/>
-                            <field name="taux_echec"/>
+                            <field name="taux_echec" widget="maximum_rate"/>
                         </group>
                     </sheet>
                     <!--<div class="oe_chatter">
@@ -52,6 +55,9 @@
                     <field name="nbr_pack_pro_present"/>
                     <field name="nbr_pack_premium_present"/>
                     <field name="nbr_pack_repassage_present"/>
+                    <field name="taux_solo_presence"/>
+                    <field name="taux_pro_presence"/>
+                    <field name="taux_premium_presence"/>
                     <field name="nbr_absence_justifiee"/>
                     <field name="nbr_echec"/>
                     <field name="taux_echec"/>
