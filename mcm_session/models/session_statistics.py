@@ -24,15 +24,28 @@ class SessionStatistics(models.Model):
                                               compute="_compute_pack_solo_pro_prem_repassage_inscrit", store=True,
                                               help="Nombre Pack Premium Inscrit.")
 
-    nbr_pack_repassage_inscrit = fields.Integer(string="Nombre Pack Repassage Inscrit", help="Nombre Pack Repassage Inscrit.")
+    nbr_pack_repassage_inscrit = fields.Integer(string="Nombre Pack Repassage Inscrit",
+                                                compute="_compute_pack_solo_pro_prem_repassage_inscrit", store=True,
+                                                help="Nombre Pack Repassage Inscrit.")
 
-    nbr_pack_solo_present = fields.Integer(string="Nombre Pack Solo présent", help="Nombre Pack Solo Présent.")
+    nbr_pack_solo_present = fields.Integer(string="Nombre Pack Solo présent",
+                                           compute="_compute_nbr_pack_solo_pro_premium_repassage_present", store=True,
+                                           help="Nombre Pack Solo Présent.")
 
-    nbr_pack_pro_present = fields.Integer(string="Nombre Pack Pro Présent", help="Nombre Pack Pro Présent.")
+    nbr_pack_pro_present = fields.Integer(string="Nombre Pack Pro Présent",
+                                          compute="_compute_nbr_pack_solo_pro_premium_repassage_present",
+                                          store=True,
+                                          help="Nombre Pack Pro Présent.")
 
-    nbr_pack_premium_present = fields.Integer(string="Nombre Pack Premium Présent", help="Nombre Pack Premium Présent.")
+    nbr_pack_premium_present = fields.Integer(string="Nombre Pack Premium Présent",
+                                              compute="_compute_nbr_pack_solo_pro_premium_repassage_present",
+                                              store=True,
+                                              help="Nombre Pack Premium Présent.")
 
-    nbr_pack_repassage_present = fields.Integer(string="Nombre Pack Repassage Présent", help="Nombre Pack Repassage Présent.")
+    nbr_pack_repassage_present = fields.Integer(string="Nombre Pack Repassage Présent",
+                                                compute="_compute_nbr_pack_solo_pro_premium_repassage_present",
+                                                store=True,
+                                                help="Nombre Pack Repassage Présent.")
 
     nbr_present = fields.Integer(string="Nombre de présents", compute="_compute_nbr_present", store=True,
                                  help="Nombre de présents.")
