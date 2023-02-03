@@ -80,6 +80,12 @@ class SessionStatistics(models.Model):
         sum_premium_inscrit = False
         sum_repassage_inscrit = False
         self.nbr_pack_solo_inscrits = int(self.session_id.pack_solo_present(sum_solo_present))
+        nbr_from_examen_solo = 0
+        for examen in self.env['info.examen'].sudo().search(
+                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id), ('presence', "=", 'present')]):
+            if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
+                nbr_from_examen_solo += 1
+        self.nbr_pack_solo_present = nbr_from_examen_solo
         self.nbr_pack_pro_inscrit = int(self.session_id.pack_pro_inscrit(sum_pro_inscrit))
         self.nbr_pack_premium_inscrit = int(self.session_id.pack_premium_inscrit(sum_premium_inscrit))
         self.nbr_pack_repassage_inscrit = int(self.session_id.pack_repassage_inscrit(sum_repassage_inscrit))
