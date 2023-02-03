@@ -148,7 +148,7 @@ class SessionStatistics(models.Model):
 
         nbr_from_examen_repassage = 0
         for examen in self.env['info.examen'].search(
-                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
+                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id), ('presence', "=", 'present')]):
             if examen.module_id.product_id.default_code == "examen":
                 nbr_from_examen_repassage += 1
         self.nbr_pack_repassage_present = nbr_from_examen_repassage
@@ -156,12 +156,21 @@ class SessionStatistics(models.Model):
     @api.depends('session_id')
     def _compute_nbr_absence_justifiee(self):
         total_absence_justifiée = False
-        self.nbr_absence_justifiee = int(self.session_id.calculer_nombre_absence_justifiée(total_absence_justifiée))
+        #self.nbr_absence_justifiee = int(self.session_id.calculer_nombre_absence_justifiée(total_absence_justifiée))
+        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
+            if examen:
+                nbr_absence = examen.env['info.examen'].search_count(
+                    [('session_id', "=", self.session_id.id), ('presence', "=", 'absence_justifiee')])
+                self.nbr_absence_justifiee = nbr_absence
 
     @api.depends('session_id')
     def _compute_nbr_echec(self):
         nbr_echec = False
-        self.nbr_echec = int(self.session_id.nbr_echec(nbr_echec))
+        #self.nbr_echec = int(self.session_id.nbr_echec(nbr_echec))
+        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
+            nbr_absence = examen.env['info.examen'].search_count(
+                [('session_id', "=", self.session_id.id), ('presence', "=", 'present'), ('resultat', "=", 'ajourne')])
+            self.nbr_echec = nbr_absence
 
     @api.depends('session_id')
     def _compute_taux_echec(self):
