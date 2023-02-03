@@ -9,52 +9,52 @@ class SessionStatistics(models.Model):
 
     date_exam = fields.Date(string="Date examen")
 
-    nbr_inscrits = fields.Char(string="Nombre d'inscrits", compute="_compute_nbr_inscrit", store=True,
+    nbr_inscrits = fields.Integer(string="Nombre d'inscrits", compute="_compute_nbr_inscrit", store=True,
                                help="Nombre d'inscrits.")
 
-    nbr_pack_solo_inscrits = fields.Char(string="Pack Solo Inscrit",
+    nbr_pack_solo_inscrits = fields.Integer(string="Pack Solo Inscrit",
                                          compute="_compute_pack_solo_pro_prem_repassage_inscrit", store=True,
                                          help="Pack Solo Inscrit.")
 
-    nbr_pack_pro_inscrit = fields.Char(string="Nombre Pack Pro Inscrit",
+    nbr_pack_pro_inscrit = fields.Integer(string="Nombre Pack Pro Inscrit",
                                        compute="_compute_pack_solo_pro_prem_repassage_inscrit", store=True,
                                        help="Nombre Pack Pro Inscrit.")
 
-    nbr_pack_premium_inscrit = fields.Char(string="Nombre Pack Premium Inscrit",
+    nbr_pack_premium_inscrit = fields.Integer(string="Nombre Pack Premium Inscrit",
                                            compute="_compute_pack_solo_pro_prem_repassage_inscrit", store=True,
                                            help="Nombre Pack Premium Inscrit.")
 
-    nbr_pack_repassage_inscrit = fields.Char(string="Nombre Pack Repassage Inscrit",
+    nbr_pack_repassage_inscrit = fields.Integer(string="Nombre Pack Repassage Inscrit",
                                              compute="_compute_pack_solo_pro_prem_repassage_inscrit", store=True,
                                              help="Nombre Pack Repassage Inscrit.")
 
-    nbr_pack_solo_present = fields.Char(string="Nombre Pack Solo présent",
+    nbr_pack_solo_present = fields.Integer(string="Nombre Pack Solo présent",
                                         compute="_compute_nbr_pack_solo_pro_premium_repassage_present", store=True,
                                         help="Pack Solo Présent.")
 
-    nbr_pack_pro_present = fields.Char(string="Nombre Pack Pro Présent",
+    nbr_pack_pro_present = fields.Integer(string="Nombre Pack Pro Présent",
                                        compute="_compute_nbr_pack_solo_pro_premium_repassage_present",
                                        store=True,
                                        help="Nombre Pack Pro Présent.")
 
-    nbr_pack_premium_present = fields.Char(string="Nombre Pack Premium Présent",
+    nbr_pack_premium_present = fields.Integer(string="Nombre Pack Premium Présent",
                                            compute="_compute_nbr_pack_solo_pro_premium_repassage_present", store=True,
                                            help="Nombre Pack Premium Présent.")
 
-    nbr_pack_repassage_present = fields.Char(string="Nombre Pack Repassage Présent",
+    nbr_pack_repassage_present = fields.Integer(string="Nombre Pack Repassage Présent",
                                              compute="_compute_nbr_pack_solo_pro_premium_repassage_present", store=True,
                                              help="Nombre Pack Repassage Présent.")
 
-    nbr_present = fields.Char(string="Nombre de présents", compute="_compute_nbr_present", store=True,
+    nbr_present = fields.Integer(string="Nombre de présents", compute="_compute_nbr_present", store=True,
                               help="Nombre de présents.")
 
-    nbr_absence_justifiee = fields.Char(string="Nombre d'absence justifiée", compute="_compute_nbr_absence_justifiee",
+    nbr_absence_justifiee = fields.Integer(string="Nombre d'absence justifiée", compute="_compute_nbr_absence_justifiee",
                                         store=True, help="Nombre d'absence justifiée.")
 
-    nbr_echec = fields.Char(string="Nombre d'échec", compute="_compute_nbr_echec",
+    nbr_echec = fields.Integer(string="Nombre d'échec", compute="_compute_nbr_echec",
                             store=True, help="Nombre d'échec.")
 
-    taux_echec = fields.float(string="Taux d'échec", compute="_compute_taux_echec",
+    taux_echec = fields.Float(string="Taux d'échec", compute="_compute_taux_echec",
                               store=True, help="Taux d'échec %")
 
     company_id = fields.Many2one('res.company', string='Société', change_default=True,
