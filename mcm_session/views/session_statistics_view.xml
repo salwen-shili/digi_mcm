@@ -12,9 +12,18 @@
                             <field name="date_exam"/>
                             <field name="company_id" options="{'no_create': True}"/>
                             <field name="nbr_inscrits"/>
+                            <field name="nbr_pack_solo_inscrits"/>
+                            <field name="nbr_pack_pro_inscrit"/>
+                            <field name="nbr_pack_premium_inscrit"/>
+                            <field name="nbr_pack_repassage_inscrit"/>
                             <field name="nbr_present"/>
+                            <field name="nbr_pack_solo_present"/>
+                            <field name="nbr_pack_pro_present"/>
+                            <field name="nbr_pack_premium_present"/>
+                            <field name="nbr_pack_repassage_present"/>
                             <field name="nbr_absence_justifiee"/>
                             <field name="nbr_echec"/>
+                            <field name="taux_echec"/>
                         </group>
                     </sheet>
                     <!--<div class="oe_chatter">
@@ -34,7 +43,15 @@
                     <field name="date_exam"/>
                     <field name="company_id" optional="show"/>
                     <field name="nbr_inscrits"/>
+                    <field name="nbr_pack_solo_inscrits"/>
+                    <field name="nbr_pack_pro_inscrit"/>
+                    <field name="nbr_pack_premium_inscrit"/>
+                    <field name="nbr_pack_repassage_inscrit"/>
                     <field name="nbr_present"/>
+                    <field name="nbr_pack_solo_present"/>
+                    <field name="nbr_pack_pro_present"/>
+                    <field name="nbr_pack_premium_present"/>
+                    <field name="nbr_pack_repassage_present"/>
                     <field name="nbr_absence_justifiee"/>
                     <field name="nbr_echec"/>
                 </tree>
@@ -61,7 +78,7 @@
             <field name="name">session.statistics.kanban</field>
             <field name="model">session.statistics</field>
             <field name="arch" type="xml">
-                <kanban class="oe_background_grey o_kanban_dashboard" default_order="date_exam">
+                <kanban create="false" default_order="date_exam">
                     <field name="session_id"/>
                     <field name="date_exam"/>
                     <field name="nbr_inscrits"/>
@@ -71,39 +88,42 @@
                     <field name="color"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''}">
-                                <div t-attf-class="o_kanban_card_header">
-                                    <div class="o_kanban_card_header_title">
-                                        <div class="o_primary">
-                                            <field name="session_id"/>
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''}">
+                                    <div t-attf-class="o_kanban_card_header">
+                                        <div class="o_kanban_card_header_title">
+                                            <div class="o_primary">
+                                                <field name="session_id"/>
+                                            </div>
+                                            <div class="o_secondary">
+                                                <field name="company_id"/>
+                                                <field name="nbr_inscrits" widget="maximum_rate"/>
+                                            </div>
                                         </div>
-                                        <div class="o_secondary">
-                                            <field name="company_id"/>
-                                            <field name="nbr_inscrits" widget="maximum_rate"/>
+                                        <div class="o_kanban_manage_button_section" t-if="!selection_mode">
+                                            <a class="o_kanban_manage_toggle_button" href="#">
+                                                <i class="fa fa-ellipsis-v" role="img" aria-label="Manage"
+                                                   title="Manage"/>
+                                            </a>
                                         </div>
                                     </div>
-                                    <div class="o_kanban_manage_button_section" t-if="!selection_mode">
-                                        <a class="o_kanban_manage_toggle_button" href="#">
-                                            <i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/>
-                                        </a>
+                                    <div class="container o_kanban_card_content" t-if="!selection_mode">
+                                        <div class="row">
+                                            <div class="col-6 o_kanban_primary_right">
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!--                                <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">-->
+                                    <!--                                    <div t-if="widget.editable" class="o_kanban_card_manage_settings row">-->
+                                    <!--                                        <div role="menuitem" aria-haspopup="true" class="col-8">-->
+                                    <!--                                            <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>-->
+                                    <!--                                        </div>-->
+                                    <!--                                        <div class="col-4 text-right">-->
+                                    <!--                                            <a role="menuitem" type="edit">Settings</a>-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </div>-->
+                                    <!--                                </div>-->
                                 </div>
-                                <div class="container o_kanban_card_content" t-if="!selection_mode">
-                                    <div class="row">
-                                        <div class="col-6 o_kanban_primary_right">
-                                        </div>
-                                    </div>
-                                </div>
-<!--                                <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">-->
-<!--                                    <div t-if="widget.editable" class="o_kanban_card_manage_settings row">-->
-<!--                                        <div role="menuitem" aria-haspopup="true" class="col-8">-->
-<!--                                            <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-4 text-right">-->
-<!--                                            <a role="menuitem" type="edit">Settings</a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
                             </div>
                         </t>
                     </templates>
@@ -121,7 +141,8 @@
                     Créer une nouvelle statestique session
                 </p>
                 <p>
-                    La structure Session Statestics est utilisée pour gérer toutes les analyses liées à IONE par l'entreprise.
+                    La structure Session Statestics est utilisée pour gérer toutes les analyses liées à IONE par
+                    l'entreprise.
                 </p>
             </field>
         </record>
