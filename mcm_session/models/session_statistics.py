@@ -116,7 +116,7 @@ class SessionStatistics(models.Model):
     def _compute_nbr_present(self):
         nbr_present = False
         # self.nbr_present = int(self.session_id.nbr_present_par_session(nbr_present))
-        nbr_present = self.client_ids.filtered(lambda cl: cl.presence == 'Présent(e)')
+        nbr_present = self.session_id.client_ids.filtered(lambda cl: cl.presence == 'Présent(e)')
         self.nbr_present = len(nbr_present)
 
     @api.depends('session_id')
