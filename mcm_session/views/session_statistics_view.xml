@@ -63,6 +63,7 @@
             <field name="arch" type="xml">
                 <kanban class="oe_background_grey o_kanban_dashboard" default_order="date_exam">
                     <field name="session_id"/>
+                    <field name="date_exam"/>
                     <field name="nbr_inscrits"/>
                     <field name="nbr_present"/>
                     <field name="nbr_absence_justifiee"/>
@@ -113,7 +114,7 @@
         <record id="action_session_statistics" model="ir.actions.act_window">
             <field name="name">Statestiques des sessions</field>
             <field name="res_model">session.statistics</field>
-            <field name="view_mode">kanban,tree,graph,form,pivot</field>
+            <field name="view_mode">tree,graph,form,pivot</field>
             <!--            <field name="search_view_id" ref="view_department_filter"/>-->
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
