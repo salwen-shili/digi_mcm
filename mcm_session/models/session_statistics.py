@@ -80,37 +80,37 @@ class SessionStatistics(models.Model):
     def _compute_pack_solo_pro_prem_repassage_inscrit(self):
         # self.nbr_pack_solo_inscrits = int(self.session_id.pack_solo_present(sum_solo_present))
         nbr_from_examen_solo = 0
-        # for examen in self.env['info.examen'].sudo().search(
-        #         [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id),
-        #          ('presence', "=", 'present')]):
-        #     if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
-        #         nbr_from_examen_solo += 1
-        # self.nbr_pack_solo_present = nbr_from_examen_solo
-        # # self.nbr_pack_pro_inscrit = int(self.session_id.pack_pro_inscrit(sum_pro_inscrit))
-        # nbr_from_examen_pro = False
-        # for examen in self.env['info.examen'].search(
-        #         [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id)]):
-        #     if examen.module_id.product_id.default_code == "avancee" and examen.partner_id.statut == 'won':
-        #         nbr_from_examen_pro += 1
-        # tot = nbr_from_examen_pro
-        # self.nbr_pack_pro_inscrit = tot
-        # # self.nbr_pack_premium_inscrit = int(self.session_id.pack_premium_inscrit(sum_premium_inscrit))
-        # nbr_from_examen_premium = 0
-        # for examen in self.env['info.examen'].search(
-        #         [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id)]):
-        #     if examen.module_id.product_id.default_code == "premium" and examen.partner_id.statut == 'won':
-        #         nbr_from_examen_premium += 1
-        # res_calc_premium = nbr_from_examen_premium
-        # self.nbr_pack_premium_inscrit = res_calc_premium
-        # # self.nbr_pack_repassage_inscrit = int(self.session_id.pack_repassage_inscrit(sum_repassage_inscrit))
-        #
-        # nbr_from_examen = 0
-        # for examen in self.env['info.examen'].search(
-        #         [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-        #     if examen.module_id.product_id.default_code == "examen" and examen.partner_id.statut == 'won':
-        #         nbr_from_examen += 1
-        # sum_repassage_inscrit = nbr_from_examen
-        # self.nbr_pack_repassage_inscrit = sum_repassage_inscrit
+        for examen in self.env['info.examen'].sudo().search(
+                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id),
+                 ('presence', "=", 'present')]):
+            if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
+                nbr_from_examen_solo += 1
+        self.nbr_pack_solo_present = nbr_from_examen_solo
+        # self.nbr_pack_pro_inscrit = int(self.session_id.pack_pro_inscrit(sum_pro_inscrit))
+        nbr_from_examen_pro = False
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id)]):
+            if examen.module_id.product_id.default_code == "avancee" and examen.partner_id.statut == 'won':
+                nbr_from_examen_pro += 1
+        tot = nbr_from_examen_pro
+        self.nbr_pack_pro_inscrit = tot
+        # self.nbr_pack_premium_inscrit = int(self.session_id.pack_premium_inscrit(sum_premium_inscrit))
+        nbr_from_examen_premium = 0
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id)]):
+            if examen.module_id.product_id.default_code == "premium" and examen.partner_id.statut == 'won':
+                nbr_from_examen_premium += 1
+        res_calc_premium = nbr_from_examen_premium
+        self.nbr_pack_premium_inscrit = res_calc_premium
+        # self.nbr_pack_repassage_inscrit = int(self.session_id.pack_repassage_inscrit(sum_repassage_inscrit))
+
+        nbr_from_examen = 0
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
+            if examen.module_id.product_id.default_code == "examen" and examen.partner_id.statut == 'won':
+                nbr_from_examen += 1
+        sum_repassage_inscrit = nbr_from_examen
+        self.nbr_pack_repassage_inscrit = sum_repassage_inscrit
 
     @api.depends('session_id')
     def _compute_nbr_present(self):
@@ -166,3 +166,14 @@ class SessionStatistics(models.Model):
     def _compute_taux_echec(self):
         prc_echec = False
         #self.taux_echec = int(self.session_id.pourcentage_echec(prc_echec))
+
+        nbr_echec = self.session_id.nbr_echec(self)
+        nbr_present_tot = self.session_id.nbr_present_par_session(self)
+        if nbr_present_tot > 0:
+            res = (nbr_echec * 100 / nbr_present_tot)
+            if res > 0:
+                prc_echec = f'{res:.2f}'.replace('.00', '')
+                self.taux_echec = prc_echec
+            else:
+                prc_echec = f'{res:.0f}'
+                self.taux_echec = prc_echec
