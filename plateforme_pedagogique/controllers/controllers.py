@@ -293,7 +293,7 @@ class WebhookController(http.Controller):
                     idforma = module.split("_")
                     if idforma:
                         city_cpf = idforma[len(idforma) - 1]
-                city = self.env['session.ville'].sudo().search(
+                city = request.env['session.ville'].sudo().search(
                     [('name_ville', "=", city_cpf)], limit=1)
                 _logger.info("split***************** %s " % str(city_cpf))
                 client.session_ville_id = city if city else False
