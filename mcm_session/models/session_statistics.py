@@ -57,8 +57,7 @@ class SessionStatistics(models.Model):
     nbr_echec = fields.Integer(string="Nombre d'échec", compute="_compute_nbr_echec",
                                store=True, help="Nombre d'échec.")
 
-    # taux_echec = fields.Float(string="Taux d'échec", compute="_compute_taux_echec",
-    #                           store=True, help="Taux d'échec %")
+    taux_echec = fields.Float(string="Taux d'échec", help="Taux d'échec %")
 
     company_id = fields.Many2one('res.company', string='Société', change_default=True,
                                  default=lambda self: self.env.company)
