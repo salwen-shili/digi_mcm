@@ -71,7 +71,7 @@ class SessionStatistics(models.Model):
     def _compute_nbr_inscrit(self):
         nbr_inscrits = False
         res = self.session_id.nbr_client_par_session(nbr_inscrits)
-        self.nbr_inscrits = res
+        self.nbr_inscrits = int(res)
 
     @api.depends('session_id')
     def _compute_pack_solo_pro_prem_repassage_inscrit(self):
@@ -79,15 +79,15 @@ class SessionStatistics(models.Model):
         sum_pro_inscrit = False
         sum_premium_inscrit = False
         sum_repassage_inscrit = False
-        self.nbr_pack_solo_inscrits = self.session_id.pack_solo_present(sum_solo_present)
-        self.nbr_pack_pro_inscrit = self.session_id.pack_pro_inscrit(sum_pro_inscrit)
-        self.nbr_pack_premium_inscrit = self.session_id.pack_premium_inscrit(sum_premium_inscrit)
-        self.nbr_pack_repassage_inscrit = self.session_id.pack_repassage_inscrit(sum_repassage_inscrit)
+        self.nbr_pack_solo_inscrits = int(self.session_id.pack_solo_present(sum_solo_present))
+        self.nbr_pack_pro_inscrit = int(self.session_id.pack_pro_inscrit(sum_pro_inscrit))
+        self.nbr_pack_premium_inscrit = int(self.session_id.pack_premium_inscrit(sum_premium_inscrit))
+        self.nbr_pack_repassage_inscrit = int(self.session_id.pack_repassage_inscrit(sum_repassage_inscrit))
 
     @api.depends('session_id')
     def _compute_nbr_present(self):
         nbr_present = False
-        self.nbr_present = self.session_id.nbr_present_par_session(nbr_present)
+        self.nbr_present = int(self.session_id.nbr_present_par_session(nbr_present))
 
     @api.depends('session_id')
     def _compute_nbr_pack_solo_pro_premium_repassage_present(self):
@@ -95,22 +95,22 @@ class SessionStatistics(models.Model):
         sum_premium_present = False
         sum_pro_present = False
         sum_repassage_present = False
-        self.nbr_pack_solo_present = self.session_id.nbr_present_par_session(nbr_present)
-        self.nbr_pack_premium_present = self.session_id.pack_premium_present(sum_premium_present)
-        self.nbr_pack_pro_present = self.session_id.pack_pro_present(sum_pro_present)
-        self.nbr_pack_repassage_present = self.session_id.pack_repassage_present(sum_repassage_present)
+        self.nbr_pack_solo_present = int(self.session_id.nbr_present_par_session(nbr_present))
+        self.nbr_pack_premium_present = int(self.session_id.pack_premium_present(sum_premium_present))
+        self.nbr_pack_pro_present = int(self.session_id.pack_pro_present(sum_pro_present))
+        self.nbr_pack_repassage_present = int(self.session_id.pack_repassage_present(sum_repassage_present))
 
     @api.depends('session_id')
     def _compute_nbr_absence_justifiee(self):
         total_absence_justifiée = False
-        self.nbr_absence_justifiee = self.session_id.calculer_nombre_absence_justifiée(total_absence_justifiée)
+        self.nbr_absence_justifiee = int(self.session_id.calculer_nombre_absence_justifiée(total_absence_justifiée))
 
     @api.depends('session_id')
     def _compute_nbr_echec(self):
         nbr_echec = False
-        self.nbr_echec = self.session_id.nbr_echec(nbr_echec)
+        self.nbr_echec = int(self.session_id.nbr_echec(nbr_echec))
 
     @api.depends('session_id')
     def _compute_taux_echec(self):
         prc_echec = False
-        self.taux_echec = self.session_id.pourcentage_echec(prc_echec)
+        self.taux_echec = int(self.session_id.pourcentage_echec(prc_echec))
