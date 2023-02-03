@@ -134,7 +134,7 @@ class Session(models.Model):
 
     def nbr_present_par_session(self, nbr_present):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
-         La fonction est utilisé dans la template de rapport jury"""
+         La fonction est utilisée dans la template de rapport jury"""
         nbr_present = self.client_ids.filtered(lambda cl: cl.presence == 'Présent(e)')
         return len(nbr_present)
 
@@ -553,7 +553,7 @@ class Session(models.Model):
     def taux_de_presence_premium(self):
         """ Calculer taux de présence pour les packs premium;
         avec une condition pour enlever la partie décimale
-        si la résultat est égale à zéro"""
+        si le résultat est égale à zéro"""
         pack_premium_present = self.pack_premium_present(self)
         nbr_inscrit = self.pack_premium_inscrit(self)
         if nbr_inscrit > 0:
