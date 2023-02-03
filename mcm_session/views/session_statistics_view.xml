@@ -26,7 +26,7 @@
                             <field name="taux_premium_presence"/>
                             <field name="nbr_absence_justifiee"/>
                             <field name="nbr_echec"/>
-                            <field name="taux_echec" widget="maximum_rate"/>
+                            <field name="taux_echec" widget="progressbar"/>
                         </group>
                     </sheet>
                     <!--<div class="oe_chatter">
@@ -60,7 +60,7 @@
                     <field name="taux_premium_presence"/>
                     <field name="nbr_absence_justifiee"/>
                     <field name="nbr_echec"/>
-                    <field name="taux_echec"/>
+                    <field name="taux_echec" widget="progressbar"/>
                 </tree>
             </field>
         </record>
