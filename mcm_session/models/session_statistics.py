@@ -3,11 +3,11 @@ from odoo import api, fields, models, _
 
 class SessionStatistics(models.Model):
     _name = 'session.statistics'
-    _description = "Statestiques"
+    _description = "Statistiques"
 
     session_id = fields.Many2one('mcmacademy.session', 'Session', required=True, readonly=False)
 
-    date_exam = fields.Date('Date examen', related="session_id.date_exam", readonly=True)
+    date_exam = fields.Date(string="Date examen")
 
     nbr_inscrits = fields.Char(string="Nombre d'inscrits", compute="_compute_nbr_inscrit", store=True,
                                help="Nombre d'inscrits.")
@@ -28,6 +28,11 @@ class SessionStatistics(models.Model):
                                  default=lambda self: self.env.company)
 
     color = fields.Integer('Color Index')
+
+    @api.depends('session_id')
+    def _compute_date_examen(self):
+        date = self.session_id.date_exam
+        self.date_exam = date
 
     @api.depends('session_id')
     def _compute_nbr_inscrit(self):
