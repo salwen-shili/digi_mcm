@@ -381,7 +381,7 @@ class Session(models.Model):
     def pack_solo_present(self, sum_solo_present):
         """ Calculer le nombre du client present par session selon le pack solo """
         nbr_from_examen_solo = 0
-        for examen in self.env['info.examen'].search(
+        for examen in self.env['info.examen'].sudo().search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
             if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
                 nbr_from_examen_solo += 1
