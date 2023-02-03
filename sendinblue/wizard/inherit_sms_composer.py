@@ -14,7 +14,7 @@ class InheritSmsComposer(models.TransientModel):
     def send_sms(self):
         statut_code_sendinblue = 0
 
-        _logger.info("sendinblue sms")
+        _logger.info("sendinblue sms inherits ")
         # recuperer les clé api
         api_key = self.env['sendinblue.accounts'].sudo().search([('api_key', '!=', False)])
         _logger.info(api_key.api_key)
@@ -43,7 +43,7 @@ class InheritSmsComposer(models.TransientModel):
             headers = {
                 "accept": "application/json",
                 "content-type": "application/json",
-                "api-key": api_key
+                "api-key": api_key.api_key
             }
 
             response = requests.post(url, json=payload, headers=headers)
