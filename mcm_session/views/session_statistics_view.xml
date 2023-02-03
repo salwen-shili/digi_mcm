@@ -9,6 +9,7 @@
                     <sheet>
                         <group col="4">
                             <field name="session_id" options="{'no_create': True}"/>
+                            <field name="date_exam"/>
                             <field name="company_id" options="{'no_create': True}"/>
                             <field name="nbr_inscrits"/>
                             <field name="nbr_present"/>
@@ -30,6 +31,7 @@
             <field name="arch" type="xml">
                 <tree string="session_statistics_tree">
                     <field name="session_id"/>
+                    <field name="date_exam"/>
                     <field name="company_id" optional="show"/>
                     <field name="nbr_inscrits"/>
                     <field name="nbr_present"/>
@@ -46,11 +48,10 @@
                 <search string="session_statistics_search">
                     <field name="session_id" string="Session"/>
                     <separator/>
-                    <field name="create_date" string="Date de création"/>
-                    <separator/>
                     <group expand="0" string="Group By">
                         <filter string="Session" name="session_id" context="{'group_by':'session_id'}"/>
-                        <filter string="Company" name="company" context="{'group_by':'company_id'}"/>
+                        <filter string="Société" name="company" context="{'group_by':'company_id'}"/>
+                        <filter string="Date de création" name="create_date" context="{'group_by':'create_date'}"/>
                     </group>
                 </search>
             </field>
@@ -60,7 +61,7 @@
             <field name="name">session.statistics.kanban</field>
             <field name="model">session.statistics</field>
             <field name="arch" type="xml">
-                <kanban class="oe_background_grey o_kanban_dashboard o_hr_kanban">
+                <kanban class="oe_background_grey o_kanban_dashboard" default_order="date_exam">
                     <field name="session_id"/>
                     <field name="nbr_inscrits"/>
                     <field name="nbr_present"/>
@@ -77,6 +78,7 @@
                                         </div>
                                         <div class="o_secondary">
                                             <field name="company_id"/>
+                                            <field name="nbr_inscrits" widget="maximum_rate"/>
                                         </div>
                                     </div>
                                     <div class="o_kanban_manage_button_section" t-if="!selection_mode">

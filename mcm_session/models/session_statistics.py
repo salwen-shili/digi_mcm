@@ -7,6 +7,8 @@ class SessionStatistics(models.Model):
 
     session_id = fields.Many2one('mcmacademy.session', 'Session', required=True, readonly=False)
 
+    date_exam = fields.Date('Date examen', related="session_id.date_exam", readonly=True)
+
     nbr_inscrits = fields.Char(string="Nombre d'inscrits", compute="_compute_nbr_inscrit", store=True,
                                help="Nombre d'inscrits.")
 
@@ -38,10 +40,12 @@ class SessionStatistics(models.Model):
         nbr_present = False
         self.nbr_present = self.session_id.nbr_present_par_session(nbr_present)
 
+    @api.depends('session_id')
     def _compute_nbr_absence_justifiee(self):
         total_absence_justifiée = False
         self.nbr_absence_justifiee = self.session_id.calculer_nombre_absence_justifiée(total_absence_justifiée)
 
+    @api.depends('session_id')
     def _compute_nbr_echec(self):
         nbr_echec = False
         self.nbr_echec = self.session_id.nbr_echec(nbr_echec)
