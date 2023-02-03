@@ -57,7 +57,8 @@ class SessionStatistics(models.Model):
     nbr_echec = fields.Integer(string="Nombre d'échec", compute="_compute_nbr_echec",
                                store=True, help="Nombre d'échec.")
 
-    taux_echec = fields.Float(string="Taux d'échec", help="Taux d'échec %")
+    taux_echec = fields.Float(string="Taux d'échec", compute="_compute_taux_echec",
+                              store=True, help="Taux d'échec %")
 
     company_id = fields.Many2one('res.company', string='Société', change_default=True,
                                  default=lambda self: self.env.company)
@@ -134,15 +135,16 @@ class SessionStatistics(models.Model):
              ('presence', "=", 'present'),
              ('module_id.product_id.default_code', '=', "premium")])
         self.nbr_pack_premium_present = len(examen)
-        #self.nbr_pack_pro_present = int(self.session_id.pack_pro_present(sum_pro_present))
+        # self.nbr_pack_pro_present = int(self.session_id.pack_pro_present(sum_pro_present))
 
         nbr_from_examen_pro = 0
         for examen in self.env['info.examen'].search(
-                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id), ('presence', "=", 'present')]):
+                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id),
+                 ('presence', "=", 'present')]):
             if examen.module_id.product_id.default_code == "avancee":
                 nbr_from_examen_pro += 1
         self.nbr_pack_pro_present = nbr_from_examen_pro
-        #self.nbr_pack_repassage_present = int(self.session_id.pack_repassage_present(sum_repassage_present))
+        # self.nbr_pack_repassage_present = int(self.session_id.pack_repassage_present(sum_repassage_present))
 
         nbr_from_examen_repassage = 0
         for examen in self.env['info.examen'].search(
@@ -164,7 +166,7 @@ class SessionStatistics(models.Model):
     @api.depends('session_id')
     def _compute_taux_echec(self):
         prc_echec = False
-        #self.taux_echec = int(self.session_id.pourcentage_echec(prc_echec))
+        # self.taux_echec = int(self.session_id.pourcentage_echec(prc_echec))
 
         nbr_echec = self.session_id.nbr_echec(self)
         nbr_present_tot = self.session_id.nbr_present_par_session(self)
