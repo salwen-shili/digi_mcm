@@ -24,28 +24,15 @@ class SessionStatistics(models.Model):
                                               compute="_compute_pack_solo_pro_prem_repassage_inscrit", store=True,
                                               help="Nombre Pack Premium Inscrit.")
 
-    nbr_pack_repassage_inscrit = fields.Integer(string="Nombre Pack Repassage Inscrit",
-                                                compute="_compute_pack_solo_pro_prem_repassage_inscrit", store=True,
-                                                help="Nombre Pack Repassage Inscrit.")
+    nbr_pack_repassage_inscrit = fields.Integer(string="Nombre Pack Repassage Inscrit", help="Nombre Pack Repassage Inscrit.")
 
-    nbr_pack_solo_present = fields.Integer(string="Nombre Pack Solo présent",
-                                           compute="_compute_nbr_pack_solo_pro_premium_repassage_present", store=True,
-                                           help="Nombre Pack Solo Présent.")
+    nbr_pack_solo_present = fields.Integer(string="Nombre Pack Solo présent", help="Nombre Pack Solo Présent.")
 
-    nbr_pack_pro_present = fields.Integer(string="Nombre Pack Pro Présent",
-                                          compute="_compute_nbr_pack_solo_pro_premium_repassage_present",
-                                          store=True,
-                                          help="Nombre Pack Pro Présent.")
+    nbr_pack_pro_present = fields.Integer(string="Nombre Pack Pro Présent", help="Nombre Pack Pro Présent.")
 
-    nbr_pack_premium_present = fields.Integer(string="Nombre Pack Premium Présent",
-                                              compute="_compute_nbr_pack_solo_pro_premium_repassage_present",
-                                              store=True,
-                                              help="Nombre Pack Premium Présent.")
+    nbr_pack_premium_present = fields.Integer(string="Nombre Pack Premium Présent", help="Nombre Pack Premium Présent.")
 
-    nbr_pack_repassage_present = fields.Integer(string="Nombre Pack Repassage Présent",
-                                                compute="_compute_nbr_pack_solo_pro_premium_repassage_present",
-                                                store=True,
-                                                help="Nombre Pack Repassage Présent.")
+    nbr_pack_repassage_present = fields.Integer(string="Nombre Pack Repassage Présent", help="Nombre Pack Repassage Présent.")
 
     nbr_present = fields.Integer(string="Nombre de présents", compute="_compute_nbr_present", store=True,
                                  help="Nombre de présents.")
@@ -57,8 +44,8 @@ class SessionStatistics(models.Model):
     nbr_echec = fields.Integer(string="Nombre d'échec", compute="_compute_nbr_echec",
                                store=True, help="Nombre d'échec.")
 
-    taux_echec = fields.Float(string="Taux d'échec", compute="_compute_taux_echec",
-                              store=True, help="Taux d'échec %")
+    # taux_echec = fields.Float(string="Taux d'échec", compute="_compute_taux_echec",
+    #                           store=True, help="Taux d'échec %")
 
     company_id = fields.Many2one('res.company', string='Société', change_default=True,
                                  default=lambda self: self.env.company)
@@ -80,37 +67,37 @@ class SessionStatistics(models.Model):
     def _compute_pack_solo_pro_prem_repassage_inscrit(self):
         # self.nbr_pack_solo_inscrits = int(self.session_id.pack_solo_present(sum_solo_present))
         nbr_from_examen_solo = 0
-        for examen in self.env['info.examen'].sudo().search(
-                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id),
-                 ('presence', "=", 'present')]):
-            if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
-                nbr_from_examen_solo += 1
-        self.nbr_pack_solo_present = nbr_from_examen_solo
-        # self.nbr_pack_pro_inscrit = int(self.session_id.pack_pro_inscrit(sum_pro_inscrit))
-        nbr_from_examen_pro = False
-        for examen in self.env['info.examen'].search(
-                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id)]):
-            if examen.module_id.product_id.default_code == "avancee" and examen.partner_id.statut == 'won':
-                nbr_from_examen_pro += 1
-        tot = nbr_from_examen_pro
-        self.nbr_pack_pro_inscrit = tot
-        # self.nbr_pack_premium_inscrit = int(self.session_id.pack_premium_inscrit(sum_premium_inscrit))
-        nbr_from_examen_premium = 0
-        for examen in self.env['info.examen'].search(
-                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id)]):
-            if examen.module_id.product_id.default_code == "premium" and examen.partner_id.statut == 'won':
-                nbr_from_examen_premium += 1
-        res_calc_premium = nbr_from_examen_premium
-        self.nbr_pack_premium_inscrit = res_calc_premium
-        # self.nbr_pack_repassage_inscrit = int(self.session_id.pack_repassage_inscrit(sum_repassage_inscrit))
-
-        nbr_from_examen = 0
-        for examen in self.env['info.examen'].search(
-                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
-            if examen.module_id.product_id.default_code == "examen" and examen.partner_id.statut == 'won':
-                nbr_from_examen += 1
-        sum_repassage_inscrit = nbr_from_examen
-        self.nbr_pack_repassage_inscrit = sum_repassage_inscrit
+        # for examen in self.env['info.examen'].sudo().search(
+        #         [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id),
+        #          ('presence', "=", 'present')]):
+        #     if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
+        #         nbr_from_examen_solo += 1
+        # self.nbr_pack_solo_present = nbr_from_examen_solo
+        # # self.nbr_pack_pro_inscrit = int(self.session_id.pack_pro_inscrit(sum_pro_inscrit))
+        # nbr_from_examen_pro = False
+        # for examen in self.env['info.examen'].search(
+        #         [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id)]):
+        #     if examen.module_id.product_id.default_code == "avancee" and examen.partner_id.statut == 'won':
+        #         nbr_from_examen_pro += 1
+        # tot = nbr_from_examen_pro
+        # self.nbr_pack_pro_inscrit = tot
+        # # self.nbr_pack_premium_inscrit = int(self.session_id.pack_premium_inscrit(sum_premium_inscrit))
+        # nbr_from_examen_premium = 0
+        # for examen in self.env['info.examen'].search(
+        #         [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id)]):
+        #     if examen.module_id.product_id.default_code == "premium" and examen.partner_id.statut == 'won':
+        #         nbr_from_examen_premium += 1
+        # res_calc_premium = nbr_from_examen_premium
+        # self.nbr_pack_premium_inscrit = res_calc_premium
+        # # self.nbr_pack_repassage_inscrit = int(self.session_id.pack_repassage_inscrit(sum_repassage_inscrit))
+        #
+        # nbr_from_examen = 0
+        # for examen in self.env['info.examen'].search(
+        #         [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
+        #     if examen.module_id.product_id.default_code == "examen" and examen.partner_id.statut == 'won':
+        #         nbr_from_examen += 1
+        # sum_repassage_inscrit = nbr_from_examen
+        # self.nbr_pack_repassage_inscrit = sum_repassage_inscrit
 
     @api.depends('session_id')
     def _compute_nbr_present(self):
@@ -165,4 +152,4 @@ class SessionStatistics(models.Model):
     @api.depends('session_id')
     def _compute_taux_echec(self):
         prc_echec = False
-        self.taux_echec = int(self.session_id.pourcentage_echec(prc_echec))
+        #self.taux_echec = int(self.session_id.pourcentage_echec(prc_echec))
