@@ -11,7 +11,7 @@ _logger = logging.getLogger(__name__)
 class InheritSmsComposer(models.TransientModel):
     _inherit = 'sms.composer'
 
-    def sendsms(self):
+    def send_sms(self):
         statut_code_sendinblue = 0
 
         _logger.info("sendinblue sms")
@@ -32,7 +32,7 @@ class InheritSmsComposer(models.TransientModel):
                                                                                     5:7] + ' ' + phone[
                                                                                                  7:]
             _logger.info("recipient => phone to snd sms %s " % phone.replace(" ", ""))
-            _logger.info(" i_sms.company_id.name.replace(" ", "") %s " % i_sms.company_id.name.replace(" ", ""))
+            _logger.info("i_sms.company_id.name.replace(" ", "") %s " % i_sms.company_id.name.replace(" ", ""))
             payload = {
                 'type': "transactional",
                 'unicodeEnabled': False,
@@ -73,7 +73,7 @@ class InheritSmsComposer(models.TransientModel):
         return statut_code_sendinblue
 
     def _action_send_sms(self):
-        fn = self.sendsms()
+        fn = self.send_sms()
         _logger.info(fn)
         _logger.info("response statut code sms suivi")
 
