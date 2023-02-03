@@ -23,7 +23,7 @@
                             <field name="nbr_pack_repassage_present"/>
                             <field name="nbr_absence_justifiee"/>
                             <field name="nbr_echec"/>
-<!--                            <field name="taux_echec"/>-->
+                            <field name="taux_echec"/>
                         </group>
                     </sheet>
                     <!--<div class="oe_chatter">
@@ -54,6 +54,7 @@
                     <field name="nbr_pack_repassage_present"/>
                     <field name="nbr_absence_justifiee"/>
                     <field name="nbr_echec"/>
+                    <field name="taux_echec"/>
                 </tree>
             </field>
         </record>

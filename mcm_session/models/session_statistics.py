@@ -50,6 +50,10 @@ class SessionStatistics(models.Model):
     nbr_present = fields.Integer(string="Nombre de présents", compute="_compute_nbr_present", store=True,
                                  help="Nombre de présents.")
 
+    taux_solo_presence = fields.Integer(string="Taux Solo Présent", help="Taux Solo Présent.")
+    taux_pro_presence = fields.Integer(string="Taux Pro Présent", help="Taux Pro Présent.")
+    taux_premium_presence = fields.Integer(string="Taux Premium Présent", help="Taux Premium Présent.")
+
     nbr_absence_justifiee = fields.Integer(string="Nombre d'absence justifiée",
                                            compute="_compute_nbr_absence_justifiee",
                                            store=True, help="Nombre d'absence justifiée.")
