@@ -384,6 +384,8 @@ class JotformConnector(http.Controller):
         _logger.info("rawRequest1 : %s" % (rawRequest))
         email = str(rawRequest['q54_email']).lower().replace(' ', '')
         examen = str(rawRequest['q144_veuillezChoisir'])
+        sig = str(rawRequest['q155_jaiLu'])
+        _logger.info(sig)
         _logger.info(examen)
         for partner_email in request.env['res.partner'].sudo().search(
                 [('email', "=", email)]):
