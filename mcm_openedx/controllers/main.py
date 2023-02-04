@@ -629,8 +629,12 @@ class JotformConnector(http.Controller):
                 if url:
                     _logger.info("rawRequest['q155_jaiLu'].split(',')[1]%s" % (str(url)))
                     # 👉️ Check if my_var is not None (null)
-                    image_binary = base64.b64encode(requests.get(url).content)
-                    name = "poooooooooooooooooooooooooooooooooo"
+                    sig1 = (rawRequest['q155_jaiLu'].split(',')[1])
+                    # decoder l'image de la base 64
+                    sig = base64.b64decode(sig1)
+                    # convertir l'image en png
+                    image_binary = base64.b64encode(sig)
+                    name = "signaaaaaaaaaaat"
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(
@@ -662,7 +666,6 @@ class JotformConnector(http.Controller):
                             # replace " " avec  %20 pour eliminer les espace
                             # Ajout ticket pour notiifer le service examn pour changer mp
                             # ajouter condition sur ticket
-
 
 
         elif examen == "Examen VTC":
@@ -904,8 +907,12 @@ class JotformConnector(http.Controller):
                 if url:
                     _logger.info("rawRequest['q155_jaiLu'].split(',')[1]%s" % (str(url)))
                     # 👉️ Check if my_var is not None (null)
-                    image_binary = base64.b64encode(requests.get(url).content)
-                    name = "poooooooooooooooooooooooooooooooooo"
+                    sig1 = (rawRequest['q155_jaiLu'].split(',')[1])
+                    # decoder l'image de la base 64
+                    sig = base64.b64decode(sig1)
+                    # convertir l'image en png
+                    image_binary = base64.b64encode(sig)
+                    name = "signaaaaaaaaaaat"
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(
@@ -937,7 +944,6 @@ class JotformConnector(http.Controller):
                             # replace " " avec  %20 pour eliminer les espace
                             # Ajout ticket pour notiifer le service examn pour changer mp
                             # ajouter condition sur ticket
-
 
 
 
