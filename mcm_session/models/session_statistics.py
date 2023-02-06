@@ -277,8 +277,8 @@ class SessionStatistics(models.Model):
             if nbr_inscrit > 0:
                 taux_de_presence = pack_repassage_present * 100 / nbr_inscrit
                 if taux_de_presence > 0:
-                    self.taux_repassage_presence = taux_de_presence
+                    rec.taux_repassage_presence = taux_de_presence
                 else:
-                    self.taux_repassage_presence = taux_de_presence
+                    rec.taux_repassage_presence = taux_de_presence
             else:
-                self.taux_repassage_presence = 0
+                rec.taux_repassage_presence = 0
