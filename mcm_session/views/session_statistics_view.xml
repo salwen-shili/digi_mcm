@@ -26,9 +26,9 @@
                                 <field name="nbr_pack_pro_present"/>
                                 <field name="nbr_pack_premium_present"/>
                                 <field name="nbr_pack_repassage_present"/>
-                                <field name="taux_solo_presence"/>
-                                <field name="taux_pro_presence"/>
-                                <field name="taux_premium_presence"/>
+                                <field name="taux_solo_presence" widget="progressbar"/>
+                                <field name="taux_pro_presence" widget="progressbar"/>
+                                <field name="taux_premium_presence" widget="progressbar"/>
                             </group>
                             <field name="nbr_absence_justifiee"/>
                             <group string="IOne Echecs" col="4">

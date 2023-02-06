@@ -13,46 +13,47 @@ class SessionStatistics(models.Model):
                                   help="Nombre d'inscrits.")
 
     nbr_pack_solo_inscrits = fields.Integer(string="Pack Solo Inscrit",
-                                            compute="_compute_pack_solo_pro_prem_repassage_inscrit", store=True,
+                                            compute="_compute_pack_solo_inscrit", store=True,
                                             help="Pack Solo Inscrit.")
 
     nbr_pack_pro_inscrit = fields.Integer(string="Nombre Pack Pro Inscrit",
-                                          compute="_compute_pack_solo_pro_prem_repassage_inscrit", store=True,
+                                          compute="_compute_pack_pro_inscrit", store=True,
                                           help="Nombre Pack Pro Inscrit.")
 
     nbr_pack_premium_inscrit = fields.Integer(string="Nombre Pack Premium Inscrit",
-                                              compute="_compute_pack_solo_pro_prem_repassage_inscrit", store=True,
+                                              compute="_compute_pack_premium_inscrit", store=True,
                                               help="Nombre Pack Premium Inscrit.")
 
     nbr_pack_repassage_inscrit = fields.Integer(string="Nombre Pack Repassage Inscrit",
-                                                compute="_compute_pack_solo_pro_prem_repassage_inscrit", store=True,
+                                                compute="_compute_pack_repassage_inscrit", store=True,
                                                 help="Nombre Pack Repassage Inscrit.")
 
     nbr_pack_solo_present = fields.Integer(string="Nombre Pack Solo présent",
-                                           compute="_compute_nbr_pack_solo_pro_premium_repassage_present", store=True,
+                                           compute="_compute_nbr_pack_solo_present", store=True,
                                            help="Nombre Pack Solo Présent.")
 
     nbr_pack_pro_present = fields.Integer(string="Nombre Pack Pro Présent",
-                                          compute="_compute_nbr_pack_solo_pro_premium_repassage_present",
+                                          compute="_compute_nbr_pack_pro_present",
                                           store=True,
                                           help="Nombre Pack Pro Présent.")
 
     nbr_pack_premium_present = fields.Integer(string="Nombre Pack Premium Présent",
-                                              compute="_compute_nbr_pack_solo_pro_premium_repassage_present",
+                                              compute="_compute_nbr_pack_premium_present",
                                               store=True,
                                               help="Nombre Pack Premium Présent.")
 
     nbr_pack_repassage_present = fields.Integer(string="Nombre Pack Repassage Présent",
-                                                compute="_compute_nbr_pack_solo_pro_premium_repassage_present",
+                                                compute="_compute_nbr_pack_repassage_present",
                                                 store=True,
                                                 help="Nombre Pack Repassage Présent.")
 
     nbr_present = fields.Integer(string="Nombre de présents", compute="_compute_nbr_present", store=True,
                                  help="Nombre de présents.")
 
-    taux_solo_presence = fields.Integer(string="Taux Solo Présent", help="Taux Solo Présent.")
-    taux_pro_presence = fields.Integer(string="Taux Pro Présent", help="Taux Pro Présent.")
-    taux_premium_presence = fields.Integer(string="Taux Premium Présent", help="Taux Premium Présent.")
+    taux_solo_presence = fields.Integer(string="Taux Solo Présent", compute="_compute_taux_de_presence_pro", help="Taux Solo Présent.")
+    taux_pro_presence = fields.Integer(string="Taux Pro Présent", compute="_compute_taux_de_presence_pro", help="Taux Pro Présent.")
+    taux_premium_presence = fields.Integer(string="Taux Premium Présent", compute="_compute_taux_de_presence_premium", help="Taux Premium Présent.")
+    taux_repassage_presence = fields.Integer(string="Taux Repassage Présent", help="Taux Repassage Présent.")
 
     nbr_absence_justifiee = fields.Integer(string="Nombre d'absence justifiée",
                                            compute="_compute_nbr_absence_justifiee",
@@ -81,7 +82,7 @@ class SessionStatistics(models.Model):
         self.nbr_inscrits = int(res)
 
     @api.depends('session_id')
-    def _compute_pack_solo_pro_prem_repassage_inscrit(self):
+    def _compute_pack_solo_inscrit(self):
         # self.nbr_pack_solo_inscrits = int(self.session_id.pack_solo_present(sum_solo_present))
         nbr_from_examen_solo = 0
         for examen in self.env['info.examen'].sudo().search(
@@ -90,6 +91,9 @@ class SessionStatistics(models.Model):
             if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
                 nbr_from_examen_solo += 1
         self.nbr_pack_solo_present = nbr_from_examen_solo
+
+    @api.depends('session_id')
+    def _compute_pack_pro_inscrit(self):
         # self.nbr_pack_pro_inscrit = int(self.session_id.pack_pro_inscrit(sum_pro_inscrit))
         nbr_from_examen_pro = False
         for examen in self.env['info.examen'].search(
@@ -98,6 +102,9 @@ class SessionStatistics(models.Model):
                 nbr_from_examen_pro += 1
         tot = nbr_from_examen_pro
         self.nbr_pack_pro_inscrit = tot
+
+    @api.depends('session_id')
+    def _compute_pack_premium_inscrit(self):
         # self.nbr_pack_premium_inscrit = int(self.session_id.pack_premium_inscrit(sum_premium_inscrit))
         nbr_from_examen_premium = 0
         for examen in self.env['info.examen'].search(
@@ -106,6 +113,9 @@ class SessionStatistics(models.Model):
                 nbr_from_examen_premium += 1
         res_calc_premium = nbr_from_examen_premium
         self.nbr_pack_premium_inscrit = res_calc_premium
+
+    @api.depends('session_id')
+    def _compute_pack_repassage_inscrit(self):
         # self.nbr_pack_repassage_inscrit = int(self.session_id.pack_repassage_inscrit(sum_repassage_inscrit))
 
         nbr_from_examen = 0
@@ -116,6 +126,9 @@ class SessionStatistics(models.Model):
         sum_repassage_inscrit = nbr_from_examen
         self.nbr_pack_repassage_inscrit = sum_repassage_inscrit
 
+
+
+
     @api.depends('session_id')
     def _compute_nbr_present(self):
         nbr_present = False
@@ -124,7 +137,7 @@ class SessionStatistics(models.Model):
         self.nbr_present = len(nbr_present)
 
     @api.depends('session_id')
-    def _compute_nbr_pack_solo_pro_premium_repassage_present(self):
+    def _compute_nbr_pack_solo_present(self):
         nbr_from_examen_solo = 0
         for examen in self.env['info.examen'].sudo().search(
                 [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id),
@@ -132,6 +145,9 @@ class SessionStatistics(models.Model):
             if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
                 nbr_from_examen_solo += 1
         self.nbr_pack_solo_present = nbr_from_examen_solo
+
+    @api.depends('session_id')
+    def _compute_nbr_pack_premium_present(self):
         # self.nbr_pack_premium_present = int(self.session_id.pack_premium_present(sum_premium_present))
         # Pack Premium Présent
         examen = self.env['info.examen'].search(
@@ -139,8 +155,10 @@ class SessionStatistics(models.Model):
              ('presence', "=", 'present'),
              ('module_id.product_id.default_code', '=', "premium")])
         self.nbr_pack_premium_present = len(examen)
-        # self.nbr_pack_pro_present = int(self.session_id.pack_pro_present(sum_pro_present))
 
+    @api.depends('session_id')
+    def _compute_nbr_pack_pro_present(self):
+        # self.nbr_pack_pro_present = int(self.session_id.pack_pro_present(sum_pro_present))
         nbr_from_examen_pro = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id),
@@ -148,6 +166,9 @@ class SessionStatistics(models.Model):
             if examen.module_id.product_id.default_code == "avancee":
                 nbr_from_examen_pro += 1
         self.nbr_pack_pro_present = nbr_from_examen_pro
+
+    @api.depends('session_id')
+    def _compute_nbr_pack_repassage_present(self):
         # self.nbr_pack_repassage_present = int(self.session_id.pack_repassage_present(sum_repassage_present))
 
         nbr_from_examen_repassage = 0
@@ -191,3 +212,46 @@ class SessionStatistics(models.Model):
             else:
                 prc_echec = f'{res:.0f}'
                 self.taux_echec = prc_echec
+
+    @api.depends('session_id')
+    def _compute_taux_de_presence_pro(self):
+        """ Calculer taux de presence par session selon le pack pro """
+        pack_pro_present = self._compute_nbr_pack_pro_present(self)
+        nbr_inscrit_pro = self._compute_pack_pro_inscrit(self)
+        if nbr_inscrit_pro > 0:
+            taux_de_presence = pack_pro_present * 100 / nbr_inscrit_pro
+            if taux_de_presence > 0:
+                taux_de_presence_pro = taux_de_presence
+                self.taux_pro_presence = taux_de_presence_pro
+            else:
+                self.taux_pro_presence = taux_de_presence
+        else:
+            self.taux_pro_presence = 0
+
+    def _compute_taux_de_presence_premium(self):
+        """ Calculer taux de présence pour les packs premium;
+        avec une condition pour enlever la partie décimale
+        si le résultat est égale à zéro"""
+        pack_premium_present = self._compute_nbr_pack_premium_present(self)
+        nbr_inscrit = self._compute_pack_premium_inscrit(self)
+        if nbr_inscrit > 0:
+            taux_de_presence = pack_premium_present * 100 / nbr_inscrit
+            if taux_de_presence > 0:
+                self.taux_premium_presence = taux_de_presence
+            else:
+                self.taux_premium_presence = taux_de_presence
+        else:
+            self.taux_premium_presence = 0
+
+    def _compute_taux_de_presence_pro(self):
+        """ Calculer taux de presence par session selon le pack pro """
+        pack_pro_present = self._compute_nbr_pack_pro_present(self)
+        nbr_inscrit_pro = self._compute_pack_pro_inscrit(self)
+        if nbr_inscrit_pro > 0:
+            taux_de_presence = pack_pro_present * 100 / nbr_inscrit_pro
+            if taux_de_presence > 0:
+                self.taux_pro_presence = taux_de_presence
+            else:
+                self.taux_pro_presence = taux_de_presence
+        else:
+            self.taux_pro_presence = 0
