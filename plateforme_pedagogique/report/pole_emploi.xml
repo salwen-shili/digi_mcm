@@ -18,7 +18,8 @@
                     <div class="page">
                         <div class="oe_structure"/>
 
-
+                        <br/>
+                        <br/>
                         <div class="row">
                             <div class="col-12">
                                 <div class="col-6">
@@ -41,48 +42,57 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="col-6" style="position:fixed">
-                                        Nom Prénom:
-                                        <span t-esc="o.name"/>
-                                    </div>
-                                    <div class="col-6" style="position:absolute;right: 10px;">
                                         Référence:
                                         <span t-esc="o.numero_pole_emploi"/>
+                                    </div>
+                                    <div class="col-6" style="position:absolute;right: 10px;">
+
+
+                                        Nom Prénom:
+                                        <span t-esc="o.name"/>
                                     </div>
                                 </div>
                                 <br/>
                                 <br/>
                                 <p>
-                                    <h4>Date de début de stage :
-                                        <span t-esc="o.date_creation"/>
-                                    </h4>
+                                    Date de début de stage :
+                                    <span t-esc="o.date_creation"/>
 
-                                    <h4>Date de fin de stage :
-                                        <span t-esc="o.date_creation"/>
-                                    </h4>
-                                    <h4>Nombre d'heures :
-                                        <span t-esc="o.total_time_hours"/>
-                                    </h4>
+                                    <br/>
 
-                                    <h4>Type de rémunération :</h4>
+                                    Date de fin de stage :
+                                    <span t-esc="o.date_creation"/>
+                                    <br/>
 
-                                    <h4>Organisme payeur:</h4>
+                                    Nombre d'heures :
+                                    <span t-esc="o.total_time_hours"/>
 
+                                    <br/>
 
-                                    <h4>Ce stage a t-il débuté alors que vous étiez en contrat de sécurisation
-                                        professionnelle ?
-                                        <ul>
-                                            <li>OUI</li>
-                                            <li>Non</li>
-                                        </ul>
-                                    </h4>
+                                    Type de rémunération :
+                                    <br/>
 
+                                    Organisme payeur:
 
-                                    <h4>S'agit-il de cours du soir ?
-                                        <ul>
-                                            <li>OUI</li>
-                                            <li>Non</li>
-                                        </ul>
-                                    </h4>
+                                    <br/>
+                                    <br/>
+
+                                    Ce stage a t-il débuté alors que vous étiez en contrat de sécurisation
+                                    professionnelle ?
+                                    <ul>
+
+                                        &#160; &#160; OUI □ &#160;&#160; &#160;  &#160;  Non □
+
+                                    </ul>
+
+                                    <br/>
+
+                                    S'agit-il de cours du soir ?
+                                    <ul>
+
+                                        &#160; &#160; OUI □ &#160;&#160; &#160;  &#160; Non □
+
+                                    </ul>
                                 </p>
 
                             </div>
@@ -91,20 +101,23 @@
                         </div>
 
                     </div>
-                    <div  style="position:fixed">
+                    <div style="position:fixed">
                         Le
                         <!-- date système-->
                         <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                     </div>
                     <br/>
-                     <div  style="position:fixed">
+                    <div style="position:fixed">
+                        <br/>
+                        <br/>
+
                         Signature
                         <!-- date système-->
-                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                     </div>
 
                     <div style="position:absolute;right: 10px;">
                         <th style="max-height:190px;float:right;padding-right:30px;">Cachet de l'organisme de formation
+                            <br/>
                             <br/>
 
                             <img src='/partner_exam/static/src/img/signature.png'
