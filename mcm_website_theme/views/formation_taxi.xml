@@ -458,9 +458,9 @@
                                   Je m'inscris
                                 </a>
                               <div>
-                                <span style="color: red !important;font-size: 17px;font-weight: 600;">
-                                                              Paiement 1<t t-if="product.instalment_number&gt;1"> ou <t t-esc="product.instalment_number"/></t>&amp;nbsp;fois
-                                </span>
+                                <span style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
+                                  Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
+                                  </span>
                               </div>
                             </div>
                           </form>
