@@ -55,6 +55,7 @@ add css and js files to website model
         'views/blog/blog_sidebar.xml',
         'views/inscription_bolt.xml',
         'views/evalbox_templates.xml',
+        'views/pricing_table_templates.xml',
     ],
 
     'installable': True,
