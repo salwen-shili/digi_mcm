@@ -634,7 +634,7 @@ class JotformConnector(http.Controller):
                     sig = base64.b64decode(sig1)
                     # convertir l'image en png
                     image_binary = base64.b64encode(sig)
-                    name = "signaaaaaaaaaaat"
+                    name = "J'ai lu et j'accepte les conditions de la formation" 
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(
@@ -912,7 +912,7 @@ class JotformConnector(http.Controller):
                     sig = base64.b64decode(sig1)
                     # convertir l'image en png
                     image_binary = base64.b64encode(sig)
-                    name = "signaaaaaaaaaaat"
+                    name = "J'ai lu et j'accepte les conditions de la formation" 
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(
@@ -1189,7 +1189,7 @@ class JotformConnector(http.Controller):
                     sig = base64.b64decode(sig1)
                     # convertir l'image en png
                     image_binary = base64.b64encode(sig)
-                    name = "signaaaaaaaaaaat"
+                    name = "J'ai lu et j'accepte les conditions de la formation" 
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(
