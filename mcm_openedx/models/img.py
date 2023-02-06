@@ -18,9 +18,9 @@ class form_info(models.Model):
     email = fields.Char(string="EMAIL")
 
     societe = fields.Char(string="Societe")
-    examen = fields.Selection([('premier', 'Premier passage dexamen TAXI/VTC/VMDTR'),
-                               ('repassage', 'Repassage dexamen TAXI/VTC/VMDTR'),
-                               ('pasrelle', 'Passerelle TAXI/VTC/VMDTR'),
+    examen = fields.Selection([('premier', 'TAXI'),
+                               ('repassage', 'VTC'),
+                               ('pasrelle', 'VMDTR'),
                                ],
                               required=True, default=False, track_visibility='onchange',
                               string="Choisir l’examen désiré : ")

@@ -22,21 +22,71 @@ class InheritSmsComposer(models.TransientModel):
         url = "https://api.sendinblue.com/v3/transactionalSMS/sms"
         selected_ids = self.env.context.get('active_ids', [])
         selected_records = self.env['res.partner'].browse(selected_ids)
-        _logger.info("selected_records %s " % selected_records)
+        if selected_records !=  False:
+            _logger.info("selected_records %s " % selected_records)
+    
+            for i_sms in selected_records:
+    
+                phone = str(i_sms.phone.replace(' ', ''))[-9:]
+                phone = '33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                           3:5] + ' ' + phone[
+                                                                                        5:7] + ' ' + phone[
+                                                                                                     7:]
+                _logger.info("recipient => phone to snd sms %s " % phone.replace(" ", ""))
+                _logger.info("i_sms.company_id.name %s " % i_sms.company_id.name.replace(" ", ""))
+                payload = {
+                    'type': "transactional",
+                    'unicodeEnabled': False,
+                    'sender': i_sms.company_id.name.replace(" ", ""),
+                    'recipient': phone.replace(" ", ""),
+                    'content': self.body
+                }
+                headers = {
+                    "accept": "application/json",
+                    "content-type": "application/json",
+                    "api-key": api_key.api_key
+                }
+    
+                response = requests.post(url, json=payload, headers=headers)
+                note_tag = "<b>" + " Sent 📨📨 À :  " + i_sms.name + " " "</b><br/>"
+                # if 201 message envoyée
+                # add message id-track
+                response_text = response.json()
+    
+                if (response.status_code == 201):
+                    messeageid = response_text["messageId"]  # if 201 message envoyée
+    
+                    values = {
+                        'record_name': i_sms.name,
+                        'model': 'res.partner',
+                        'subject': messeageid,
+                        'message_type': 'comment',
+                        'subtype_id': i_sms.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                        'res_id': i_sms.id,
+                        'author_id': i_sms.env.user.partner_id.id,
+                        'date': datetime.now(),
+                        'body': note_tag + "\n" + self.body
+                    }
+                    records.env['mail.message'].sudo().create(values)
+    
+                _logger.info(response.status_code)
+                statut_code_sendinblue = response.status_code
+        else:
+            _logger.info("self.phone %s " % selected_records)
 
-        for i_sms in selected_records:
+            
 
-            phone = str(i_sms.phone.replace(' ', ''))[-9:]
+            phone = str(self.phone.replace(' ', ''))[-9:]
             phone = '33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                                                                        3:5] + ' ' + phone[
                                                                                     5:7] + ' ' + phone[
                                                                                                  7:]
             _logger.info("recipient => phone to snd sms %s " % phone.replace(" ", ""))
-            _logger.info("i_sms.company_id.name.replace(" ", "") %s " % i_sms.company_id.name.replace(" ", ""))
+            _logger.info("i_sms.company_id.name %s " % self.company_id.name.replace(" ", ""))
             payload = {
                 'type': "transactional",
                 'unicodeEnabled': False,
-                'sender': i_sms.company_id.name.replace(" ", ""),
+                'sender': self.company_id.name.replace(" ", ""),
                 'recipient': phone.replace(" ", ""),
                 'content': self.body
             }
@@ -47,7 +97,7 @@ class InheritSmsComposer(models.TransientModel):
             }
 
             response = requests.post(url, json=payload, headers=headers)
-            note_tag = "<b>" + " Sent 📨📨 À :  " + i_sms.name + " " "</b><br/>"
+            note_tag = "<b>" + " Sent 📨📨 À :  " + self.name + " " "</b><br/>"
             # if 201 message envoyée
             # add message id-track
             response_text = response.json()
@@ -56,13 +106,13 @@ class InheritSmsComposer(models.TransientModel):
                 messeageid = response_text["messageId"]  # if 201 message envoyée
 
                 values = {
-                    'record_name': i_sms.name,
+                    'record_name':self.name,
                     'model': 'res.partner',
                     'subject': messeageid,
                     'message_type': 'comment',
-                    'subtype_id': i_sms.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-                    'res_id': i_sms.id,
-                    'author_id': i_sms.env.user.partner_id.id,
+                    'subtype_id': self.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                    'res_id': self.id,
+                    'author_id': self.env.user.partner_id.id,
                     'date': datetime.now(),
                     'body': note_tag + "\n" + self.body
                 }
