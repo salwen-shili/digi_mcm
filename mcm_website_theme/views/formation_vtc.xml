@@ -452,7 +452,7 @@
                         <form action="/shop/cart/update" method="post" id="form-vtc-premium">
                           <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id"/>
                           <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
-                          <h3 style="max-width: 100%; font-size:35px;">PACK VTC PREMIUM</h3>
+                          <h3 style="max-width: 100%; font-size:35px;">FORMATION VTC PREMIUM</h3>
                           <h5 class="el-cpf">
                             <t t-if="product.cpf_available == true" style="margin-top: 36px;">Éligible au CPF </t>
                             <t t-else="">
