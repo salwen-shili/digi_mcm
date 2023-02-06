@@ -29,6 +29,7 @@
                                 <field name="taux_solo_presence" widget="progressbar"/>
                                 <field name="taux_pro_presence" widget="progressbar"/>
                                 <field name="taux_premium_presence" widget="progressbar"/>
+                                <field name="taux_repassage_presence" widget="progressbar"/>
                             </group>
                             <field name="nbr_absence_justifiee"/>
                             <group string="IOne Echecs" col="4">
@@ -53,22 +54,23 @@
                     <field name="session_id"/>
                     <field name="date_exam"/>
                     <field name="company_id" optional="show"/>
-                    <field name="nbr_inscrits"/>
-                    <field name="nbr_pack_solo_inscrits"/>
-                    <field name="nbr_pack_pro_inscrit"/>
-                    <field name="nbr_pack_premium_inscrit"/>
-                    <field name="nbr_pack_repassage_inscrit"/>
-                    <field name="nbr_present"/>
-                    <field name="nbr_pack_solo_present"/>
-                    <field name="nbr_pack_pro_present"/>
-                    <field name="nbr_pack_premium_present"/>
-                    <field name="nbr_pack_repassage_present"/>
-                    <field name="taux_solo_presence"/>
-                    <field name="taux_pro_presence"/>
-                    <field name="taux_premium_presence"/>
-                    <field name="nbr_absence_justifiee"/>
-                    <field name="nbr_echec"/>
-                    <field name="taux_echec" widget="progressbar"/>
+                    <field name="nbr_inscrits" optional="show"/>
+                    <field name="nbr_pack_solo_inscrits" optional="show"/>
+                    <field name="nbr_pack_pro_inscrit" optional="show"/>
+                    <field name="nbr_pack_premium_inscrit" optional="show"/>
+                    <field name="nbr_pack_repassage_inscrit" optional="show"/>
+                    <field name="nbr_present" optional="show"/>
+                    <field name="nbr_pack_solo_present" optional="show"/>
+                    <field name="nbr_pack_pro_present" optional="show"/>
+                    <field name="nbr_pack_premium_present" optional="show"/>
+                    <field name="nbr_pack_repassage_present" optional="show"/>
+                    <field name="taux_solo_presence" widget="progressbar" optional="show"/>
+                    <field name="taux_pro_presence" widget="progressbar" optional="show"/>
+                    <field name="taux_premium_presence" widget="progressbar" optional="show"/>
+                    <field name="taux_repassage_presence" widget="progressbar" optional="show"/>
+                    <field name="nbr_absence_justifiee" optional="show"/>
+                    <field name="nbr_echec" optional="show"/>
+                    <field name="taux_echec" widget="progressbar" optional="show"/>
                 </tree>
             </field>
         </record>
