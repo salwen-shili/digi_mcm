@@ -411,7 +411,10 @@
                                   <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                   <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                   <h4>FORMATION PASSERELLE VTC</h4>
-                                  <h5 class="el-cpf">&amp;nbsp; &amp;nbsp;&amp;nbsp; &amp;nbsp;</h5>
+                                  <h5 class="el-cpf">
+                                    <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
+                   
+                                </h5>
                                   <h4>
                                       <span t-esc="round(product.list_price)" />
                                       <span class="prod-cur" t-esc="product.currency_id.symbol" />
@@ -454,10 +457,8 @@
                           <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
                           <h3 style="max-width: 100%; font-size:35px;">FORMATION VTC PREMIUM</h3>
                           <h5 class="el-cpf">
-                            <t t-if="product.cpf_available == true" style="margin-top: 36px;">Éligible au CPF </t>
-                            <t t-else="">
-                                &amp;nbsp;
-                            </t>
+                            <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
+           
                         </h5>
                           <h4>
                             <span t-esc="round(product.list_price)"/>
@@ -500,7 +501,10 @@
                                   <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                   <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                   <h4>FORMATION VTC SOLO</h4>
-                                  <h5 class="el-cpf">&amp;nbsp; &amp;nbsp;&amp;nbsp; &amp;nbsp;</h5>
+                                  <h5 class="el-cpf">
+                                    <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
+                   
+                                </h5>
                                   <h4>
                                       <span t-esc="round(product.list_price)" />
                                       <span class="prod-cur" t-esc="product.currency_id.symbol" />
