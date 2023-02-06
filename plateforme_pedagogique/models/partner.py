@@ -1816,7 +1816,8 @@ class partner(models.Model):
                                 city = self.env['session.ville'].sudo().search(
                                     [('name_ville', "=", city_cpf)], limit=1)
                                 _logger.info("split***************** %s " % str(city_cpf))
-                                user.partner_id.session_ville_id = city if city else False
+                                if not user.partner_id.session_ville_id :
+                                    user.partner_id.session_ville_id = city if city else False
                                 user.partner_id.mode_de_financement = 'cpf'
                                 user.partner_id.statut_cpf = 'accepted'
                                 user.partner_id.date_cpf = lastupd
