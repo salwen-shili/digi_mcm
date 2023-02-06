@@ -1,0 +1,29 @@
+<odoo>
+<template id="mcm_website_theme.pricing_table_content_all" name="pack premium content">
+    <ul class="">
+        <li>Formation 35h (100 % en ligne)</li>
+        <li><b>Inscription à l'examen auprès de la CMA</b></li>
+        <li>Accès à 12 examens Blancs avec correction</li>
+        <li>Assistance par mail</li>
+        <li>Assistance par téléphone</li>
+        <li>Assistance par visioconférence</li>
+        <li>Lives avec les formateurs pour explications</li>
+        <li>Révision du programme avant examen</li>
+        <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
+    </ul>
+
+</template>
+<template id="mcm_website_theme.pricing_table_taxi_solo" name="FORMATION TAXI SOLO content">
+    <ul class="">
+        <li>Formation 35 h (100 % en ligne)</li>
+        <li>Accès à + de 10 examens d'entraînement</li>
+        <li>Assistance par mail</li>
+        <li>Assistance par téléphone</li>
+        <li>Assistance par visioconférence</li>
+        <li>Lives avec les formateurs pour explications</li>
+        <li>Révision du programme avant examen</li>
+        <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
+    </ul>
+
+</template>
+</odoo>
