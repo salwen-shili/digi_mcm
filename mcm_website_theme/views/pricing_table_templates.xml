@@ -1,6 +1,6 @@
 <odoo>
 <template id="mcm_website_theme.pricing_table_content_all" name="pack premium content">
-    <ul class="">
+    <ul class="text-left">
         <li><i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation 35h (100 % en ligne)</li>
         <li><i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>Inscription à l'examen auprès de la CMA</b></li>
         <li><i class="fa fa-check-circle fa-lg mr-2 text-success" />Accès à 12 examens Blancs avec correction</li>
@@ -14,11 +14,11 @@
 
 </template>
 <template id="mcm_website_theme.pricing_table_solo" name="FORMATION TAXI VTC SOLO content">
-    <ul class="">
-        <li>Formation 35 h (100 % en ligne)</li>
-        <li>Accès à + de 10 examens d'entraînement</li>
-        <li>Assistance par mail</li>
-        <li>Assistance par téléphone</li>
+    <ul class="text-left">
+        <li><i class="fa fa-check-circle fa-lg mr-2 text-success" /> Formation 35 h (100 % en ligne)</li>
+        <li><i class="fa fa-check-circle fa-lg mr-2 text-success" /> Accès à + de 10 examens d'entraînement</li>
+        <li><i class="fa fa-check-circle fa-lg mr-2 text-success" /> Assistance par mail</li>
+        <li><i class="fa fa-check-circle fa-lg mr-2 text-success" /> Assistance par téléphone</li>
         <li> <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Assistance par visioconférence</li>
         <li> <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Lives avec les formateurs pour explications</li>
         <li> <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Révision du programme avant examen</li>
@@ -28,7 +28,7 @@
 
 </template>
 <template id="mcm_website_theme.pricing_table_passerelle" name="PASSERELLE PRICING content">
-    <ul class="">
+    <ul class="text-left">
         <li><i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation 15 h (100 % en ligne)</li>
         <li><i class="fa fa-check-circle fa-lg mr-2 text-success" />Accès à 4 examens Blancs avec correction</li>
         <li><i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par mail</li>
