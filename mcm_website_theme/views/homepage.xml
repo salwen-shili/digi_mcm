@@ -668,7 +668,7 @@
                                                                         <span t-esc="round(product.list_price)" />
                                                                         <span class="prod-cur" t-esc="product.currency_id.symbol" />
                                                                     </h4>
-                                                                    <t t-call="mcm_website_theme.pricing_table_taxi_solo" />
+                                                                    <t t-call="mcm_website_theme.pricing_table_solo" />
                                                                     <br />
                                                                     <br />
                                                                     <t t-if="promo">
