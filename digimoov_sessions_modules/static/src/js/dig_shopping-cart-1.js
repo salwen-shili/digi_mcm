@@ -114,6 +114,9 @@ document.addEventListener("DOMContentLoaded", function () {
   var checkboxEvent =  document.getElementById("checkbox_instalment")
   if(checkboxEvent){
 checkboxEvent = checkboxEvent.addEventListener("click", function () {
+  if (document.getElementById('checkbox_instalment').checked){
+    hidePromo();
+  }else {showPromo()}
   displayInstalmentPayment();
   
 });
