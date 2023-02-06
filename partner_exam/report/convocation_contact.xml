@@ -57,7 +57,7 @@
                                         marchandises
                                         léger.
                                     </p>
-                                    <strong>
+                                    <strong >
                                         Nom et Prénom :
                                         <span t-raw="'%s' % o.name if o.name else ''"/>
                                     </strong>
