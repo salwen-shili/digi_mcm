@@ -7,26 +7,34 @@
             <field name="arch" type="xml">
                 <form string="Statestiques">
                     <sheet>
-                        <group col="4">
-                            <field name="session_id" options="{'no_create': True}"/>
-                            <field name="date_exam"/>
-                            <field name="company_id" options="{'no_create': True}"/>
-                            <field name="nbr_inscrits"/>
-                            <field name="nbr_pack_solo_inscrits"/>
-                            <field name="nbr_pack_pro_inscrit"/>
-                            <field name="nbr_pack_premium_inscrit"/>
-                            <field name="nbr_pack_repassage_inscrit"/>
-                            <field name="nbr_present"/>
-                            <field name="nbr_pack_solo_present"/>
-                            <field name="nbr_pack_pro_present"/>
-                            <field name="nbr_pack_premium_present"/>
-                            <field name="nbr_pack_repassage_present"/>
-                            <field name="taux_solo_presence"/>
-                            <field name="taux_pro_presence"/>
-                            <field name="taux_premium_presence"/>
+                        <group name="infos_session" string="Statistiques par Session">
+                            <group string="Informations générales" col="4">
+                                <field name="session_id" options="{'no_create': True}"/>
+                                <field name="date_exam"/>
+                                <field name="company_id" options="{'no_create': True}"/>
+                            </group>
+                            <group string="IOne Inscrits" col="4">
+                                <field name="nbr_inscrits"/>
+                                <field name="nbr_pack_solo_inscrits"/>
+                                <field name="nbr_pack_pro_inscrit"/>
+                                <field name="nbr_pack_premium_inscrit"/>
+                                <field name="nbr_pack_repassage_inscrit"/>
+                            </group>
+                            <group string="IOne Présents" col="4">
+                                <field name="nbr_present"/>
+                                <field name="nbr_pack_solo_present"/>
+                                <field name="nbr_pack_pro_present"/>
+                                <field name="nbr_pack_premium_present"/>
+                                <field name="nbr_pack_repassage_present"/>
+                                <field name="taux_solo_presence"/>
+                                <field name="taux_pro_presence"/>
+                                <field name="taux_premium_presence"/>
+                            </group>
                             <field name="nbr_absence_justifiee"/>
-                            <field name="nbr_echec"/>
-                            <field name="taux_echec" widget="progressbar"/>
+                            <group string="IOne Echecs" col="4">
+                                <field name="nbr_echec"/>
+                                <field name="taux_echec" widget="progressbar"/>
+                            </group>
                         </group>
                     </sheet>
                     <!--<div class="oe_chatter">
