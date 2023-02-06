@@ -474,6 +474,7 @@
                                     <t t-call="mcm_website_theme.pricing_table_solo" />
                                     <br />
                                     <br />
+                                    <br />
                                     <t t-if="promo">
                                         <p class="text-center font-weight-bolder text-secondary">
                                             <b style="font-size: 50%">
@@ -481,7 +482,7 @@
                                             </b>
                                         </p>
                                     </t>
-                                    <div class="sh_btn">
+                                    <div style="margin-top: 46px;" class="sh_btn">
                             
                                         <a class="animated-button-yellow" href="#pricing" onClick="(function(){ document.getElementById('form-taxi-solo').submit();return false;})();return false;">
                                             <span />

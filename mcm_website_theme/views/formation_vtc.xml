@@ -454,7 +454,7 @@
                           <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
                           <h3 style="max-width: 100%; font-size:35px;">PACK VTC PREMIUM</h3>
                           <h5 class="el-cpf">
-                            <t t-if="product.cpf_available == true">Éligible au CPF </t>
+                            <t t-if="product.cpf_available == true" style="margin-top: 36px;">Éligible au CPF </t>
                             <t t-else="">
                                 &amp;nbsp;
                             </t>
@@ -464,6 +464,7 @@
                             <span style="color: #fdd105" t-esc="product.currency_id.symbol"/>
                           </h4>
                           <t t-call="mcm_website_theme.pricing_table_content_all"/>
+                          <br/>
                           <div class="sh_btn">
                             <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                             Je m'inscris
