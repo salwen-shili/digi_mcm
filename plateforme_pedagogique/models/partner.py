@@ -1491,7 +1491,7 @@ class partner(models.Model):
                 city = self.env['session.ville'].sudo().search(
                     [('name_ville', "=", city_cpf)], limit=1)
                 _logger.info("split***************** %s " % str(city_cpf))
-                client.session_ville_id = city if city else False
+                client.session_ville_id = city if city else client.session_ville_id
                 _logger.info("if client %s" % str(client.email))
                 _logger.info("dossier %s" % str(dossier))
                 client.mode_de_financement = 'cpf'
@@ -1525,46 +1525,48 @@ class partner(models.Model):
                     self.send_sms(sms_body_, user.partner_id)
 
                 _logger.info("helooo %s " % str(module))
-                user.write({'company_ids': [1, 2], 'company_id': 2})
-                product_ids = self.env['product.template'].sudo().search(
-                    [('company_id', "=", 2)])
-                for product_id in product_ids:
-                    if product_id.id_edof and product_id.id_edof in module:
-                        _logger.info("id_edof %s" % str(product_id))
-                        print("product id validate digi", product_id.id_edof)
-                        if product_id:
-                            client.id_edof = product_id.id_edof
+                if "digimoov" in str(module):
+                    user.write({'company_ids': [1, 2], 'company_id': 2})
+                    product_ids = self.env['product.template'].sudo().search(
+                        [('company_id', "=", 2)])
+                    for product_id in product_ids:
+                        if product_id.id_edof and product_id.id_edof in module:
+                            _logger.info("id_edof %s" % str(product_id))
+                            print("product id validate digi", product_id.id_edof)
+                            if product_id:
+                                client.id_edof = product_id.id_edof
+                                """Créer un devis et Remplir le panier par produit choisit sur edof"""
+                                sale = self.env['sale.order'].sudo().search([('partner_id', '=', client.id),
+                                                                                ('company_id', '=', 2),
+                                                                                ('website_id', '=', 2),
+                                                                                ('order_line.product_id', '=',
+                                                                                 product_id.id)])
 
-                            """Créer un devis et Remplir le panier par produit choisit sur edof"""
-                            sale = self.env['sale.order'].sudo().search([('partner_id', '=', client.id),
-                                                                         ('company_id', '=', 2),
-                                                                         ('website_id', '=', 2),
-                                                                         ('order_line.product_id', '=', product_id.id)])
+                                if not sale:
+                                    so = self.env['sale.order'].sudo().create({
+                                        'partner_id': client.id,
+                                        'company_id': 2,
+                                        'website_id': 2
+                                    })
 
-                            if not sale:
-                                so = self.env['sale.order'].sudo().create({
-                                    'partner_id': client.id,
-                                    'company_id': 2,
-                                    'website_id': 2
-                                })
+                                    so_line = self.env['sale.order.line'].sudo().create({
+                                        'name': product_id.name,
+                                        'product_id': product_id.id,
+                                        'product_uom_qty': 1,
+                                        'product_uom': product_id.uom_id.id,
+                                        'price_unit': product_id.list_price,
+                                        'order_id': so.id,
+                                        'tax_id': product_id.taxes_id,
+                                        'company_id': 2,
+                                    })
+                                    #
+                                    # prix de la formation dans le devis
+                                    amount_before_instalment = so.amount_total
+                                    # so.amount_total = so.amount_total * 0.25
+                                    so.id_edof = module
 
-                                so_line = self.env['sale.order.line'].sudo().create({
-                                    'name': product_id.name,
-                                    'product_id': product_id.id,
-                                    'product_uom_qty': 1,
-                                    'product_uom': product_id.uom_id.id,
-                                    'price_unit': product_id.list_price,
-                                    'order_id': so.id,
-                                    'tax_id': product_id.taxes_id,
-                                    'company_id': 2,
-                                })
-                                #
-                                # prix de la formation dans le devis
-                                amount_before_instalment = so.amount_total
-                                # so.amount_total = so.amount_total * 0.25
-                                so.id_edof = module
-                                for line in so.order_line:
-                                    line.price_unit = so.amount_total
+                                    for line in so.order_line:
+                                        line.price_unit = so.amount_total
                 else:
                     user.write({'company_ids': [(4, 2)], 'company_id': 1})
                     product_ids = self.env['product.template'].sudo().search(
@@ -1574,13 +1576,13 @@ class partner(models.Model):
                             _logger.info("id_edof %s" % str(product_id))
                             print("product id validate digi", product_id.id_edof)
                             if product_id:
-                                user.partner_id.id_edof = product_id.id_edof
-
+                                client.id_edof = product_id.id_edof
                                 """Créer un devis et Remplir le panier par produit choisit sur edof"""
                                 sale = self.env['sale.order'].sudo().search([('partner_id', '=', client.id),
-                                                                             ('company_id', '=', 1),
-                                                                             ('website_id', '=', 1),
-                                                                             ('order_line.product_id', '=', product_id.id)])
+                                                                                ('company_id', '=', 1),
+                                                                                ('website_id', '=', 1),
+                                                                                ('order_line.product_id', '=',
+                                                                                 product_id.id)])
 
                                 if not sale:
                                     so = self.env['sale.order'].sudo().create({
@@ -1588,7 +1590,6 @@ class partner(models.Model):
                                         'company_id': 1,
                                         'website_id': 1
                                     })
-                                    so.id_edof=module
                                     so_line = self.env['sale.order.line'].sudo().create({
                                         'name': product_id.name,
                                         'product_id': product_id.id,
@@ -1816,7 +1817,7 @@ class partner(models.Model):
                                 city = self.env['session.ville'].sudo().search(
                                     [('name_ville', "=", city_cpf)], limit=1)
                                 _logger.info("split***************** %s " % str(city_cpf))
-                                client.session_ville_id = city if city else False
+                                client.session_ville_id = city if city else client.session_ville_id
                                 user.partner_id.mode_de_financement = 'cpf'
                                 user.partner_id.statut_cpf = 'accepted'
                                 user.partner_id.date_cpf = lastupd
