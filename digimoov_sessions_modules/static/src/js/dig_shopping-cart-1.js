@@ -496,7 +496,12 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open("https://bit.ly/3uLde9W", "_blank");
+            if (urlCpf)
+          window.open(urlCpf, "_blank");
+          else{
+            window.open("https://bit.ly/3LJQLQP", "_blank");
+  
+          }
 
             break;
         }
@@ -516,7 +521,12 @@ function verify_payment_method() {
 
           default:
             
-            window.open("https://bit.ly/3LJQLQP", "_blank");
+          if (urlCpf)
+          window.open(urlCpf, "_blank");
+          else{
+            window.open("https://bit.ly/3uLde9W", "_blank");
+  
+          }
 
             break;
         }
@@ -528,7 +538,12 @@ function verify_payment_method() {
         ) &&
         conditionlourd.checked == true
       ) {
-        window.open("https://bit.ly/3k2ueVO", "_blank");
+        if (urlCpf)
+        window.open(urlCpf, "_blank");
+        else{
+          window.open("https://bit.ly/3k2ueVO", "_blank");
+
+        }
       }
     }
   }
