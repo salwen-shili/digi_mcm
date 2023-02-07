@@ -74,19 +74,19 @@ class InheritSmsComposer(models.TransientModel):
         else:
             _logger.info("self.phone %s " % selected_records)
 
-            
+            records = self._get_records()
 
-            phone = str(self.phone.replace(' ', ''))[-9:]
+            phone = str(records.phone.replace(' ', ''))[-9:]
             phone = '33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                                                                        3:5] + ' ' + phone[
                                                                                     5:7] + ' ' + phone[
                                                                                                  7:]
             _logger.info("recipient => phone to snd sms %s " % phone.replace(" ", ""))
-            _logger.info("i_sms.company_id.name %s " % self.company_id.name.replace(" ", ""))
+            _logger.info("i_sms.company_id.name %s " % records.company_id.name.replace(" ", ""))
             payload = {
                 'type': "transactional",
                 'unicodeEnabled': False,
-                'sender': self.company_id.name.replace(" ", ""),
+                'sender': records.company_id.name.replace(" ", ""),
                 'recipient': phone.replace(" ", ""),
                 'content': self.body
             }
