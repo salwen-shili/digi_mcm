@@ -372,7 +372,7 @@ class JotformConnector(http.Controller):
                                     print("cree ticket")
                                     new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                         vals)
-
+            _logger.info("###############################")
             if partner_email.street != rawRequest["Adresse de domicile complète"]:
                 _logger.info(rawRequest["Adresse de domicile complète"])
             if partner_email.zip != rawRequest["Code postal"]:
