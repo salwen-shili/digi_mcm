@@ -51,19 +51,15 @@ class AircallConnector(http.Controller):
                 # add client_id using phone number
                 if not call_detail.call_contact:
                     call_detail.action_find_user_using_phone()
-                call_duration_min = call_detail.call_duration / 60
                 heure = int((call_detail.call_duration / 3600))
                 minute = int((call_detail.call_duration - (3600 * heure)) / 60)
                 secondes = int(call_detail.call_duration - (3600 * heure) - (60 * minute))
-
-                call_detail.call_duration = float(call_duration_min)
                 call_detail.call_duration_char = (str(" %s h :   %s  m:  %s s" % (heure, minute, secondes)))
                 start_call_date = datetime.fromtimestamp(call_data['started_at'])
-                if call["event"] == "call.ended":
-                    if call_detail.call_contact.company_id.id == 2:
-                        call_detail.call_contact.mooc_temps_passe_seconde += call_detail.call_duration
-                    elif call_detail.call_contact.company_id.id == 1:
-                        call_detail.call_contact.mooc_temps_passe_seconde += call_detail.call_duration
+                if call_detail.call_contact.company_id.id == 2:
+                    call_detail.call_contact.mooc_temps_passe_seconde =  int(call_detail.call_contact.mooc_temps_passe_seconde)+int(call_detail.call_duration)
+                elif call_detail.call_contact.company_id.id == 1:
+                    call_detail.call_contact.mooc_temps_passe_seconde =  int(call_detail.call_contact.mooc_temps_passe_seconde)+int(call_detail.call_duration)
 
                 # add tags
                 if call_data['tags']:
