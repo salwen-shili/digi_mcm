@@ -4,6 +4,12 @@
       <t t-call="website.layout">
         <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px; word-break: break-word; position: relative; z-index: 0; line-height: 21px;">
           <style>
+            .paratext {
+                color: #6a6c72 !imporant;
+                font-size: 18px !imporant;;
+                font-weight: 500 !imporant;;
+                line-height: 1.7 !imporant;;
+            }
                     .trustbox-trustpilot {
                         max-width: 181px!important;
                         margin-block-start: 40px!important;
@@ -42,23 +48,24 @@
                 <div class="col-lg-6 pt16 pb16">
                   <h2 style="text-align: left;">
                     Formation capacité de transport poids lourd &amp;nbsp;</h2>
-                  <blockquote>
+               
                     <div style="text-align: justify;">
-                      <div style="text-align: left;">
-                        <span style="font-size: 18px;">Optez pour notre formation 100 % en ligne sur la capacité de transport lourd de marchandises !</span>
-                      </div>
-                      <div style="text-align: left;">
-                        <br/>
-                      </div>
+                     <p class="paratext">
+                       Optez pour notre formation 100 % en ligne sur la capacité de transport lourd de marchandises !
+                     </p>
+                     <p class="paratext">
+                      Une formation complète de 210 heures, délivrée par des experts du métier, qui vous permettra une préparation optimale à l’examen annuel sur la capacité professionnelle de transport lourd de marchandises, et maximisera vos chances de réussite !
+
+                     </p>
+
                     </div>
-                    <font style="font-size: 18px;">
-                      <div style="text-align: left;">Une formation complète de 210 heures, délivrée par des experts du métier, qui vous permettra une préparation optimale à l’examen annuel sur la capacité professionnelle de transport lourd de marchandises, et maximisera vos chances de réussite !</div>
-                    </font>
-                  </blockquote>
+
+                      
+               
                   <div class="s_btn text-left pt16 pb16" data-name="Button">
                     <a href="#" class="btn btn-outline-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0; line-height: 21px;" data-original-title="" title="" aria-describedby="tooltip631147">Je m'inscris</a>
                   </div>
-                  <mci-extension data-role="overlay" id="overlay-root"/>
+    
                 </div>
               </div>
             </div>
@@ -170,9 +177,13 @@
                 </div>
                 <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
                   <h2>C'est quoi une attestation de transport lourd de marchandise ?</h2>
-                  <p style="text-align: left;">L’attestation de capacité de transport poids lourd est un document obligatoire pour toute personne souhaitant devenir capacitaire.</p>
-                  <p style="text-align: left;"> Elle s’adresse à toute personne qui souhaite s’installer comme transporteur routier de marchandises (avec des véhicules de plus de 3.5 t), ou qui souhaite être reconnue dans la profession.<br/></p>
-                  <mci-extension data-role="overlay" id="overlay-root"/>
+                  <p class="paratext">
+                    L’attestation de capacité de transport poids lourd est un document obligatoire pour toute personne souhaitant devenir capacitaire.
+
+                  </p>
+                  <p class="paratext">
+                    Elle s’adresse à toute personne qui souhaite s’installer comme transporteur routier de marchandises (avec des véhicules de plus de 3.5 t), ou qui souhaite être reconnue dans la profession.
+                  </p>
                 </div>
               </div>
             </div>
@@ -268,30 +279,19 @@
                     <div class="max-box">
                       <h2 class="title m-t-20 text-beta" style="text-align: left;">Comment se déroule l’examen de capacité de transport lourd de marchandises ?
                                             </h2>
-                      <blockquote style="text-align: justify;">
-                        <font style="color: rgb(99, 99, 99); font-size: 18px;">C’est la DREAL/DREAT de votre département qui s’occupera de la gestion de votre inscription et du déroulement de l’examen. </font>
-                        <font style="color: rgb(99, 99, 99); font-size: 18px;">Les inscriptions sont généralement ouvertes jusqu'à la fin du mois de juillet de chaque année, tandis que l’examen se déroule souvent au début du mois d’octobre. </font>
-                      </blockquote>
-                      <blockquote>
-                        <div style="text-align: justify;">
-                          <span style="color: rgb(99, 99, 99); font-size: 18px;">Cet examen a pour vocation d'évaluer votre maîtrise de la profession de transport poids lourd ainsi que votre capacité à gérer une exploitation de transport poids lourd.</span>
-                        </div>
-                        <font style="">
-                          <div style="text-align: justify;">
-                            <font color="#636363">
-                              <span style="font-size: 18px;">
-                                <br/>
-                              </span>
-                            </font>
-                          </div>
-                        </font>
-                        <div style="text-align: justify;">
-                          <span style="color: rgb(99, 99, 99); font-size: 18px;">Celui-ci, décliné en deux épreuves, se présente sous la forme qu’un QCM ainsi qu’une série de tests écrits au cours desquels il vous faudra rédiger une réponse.</span>
-                        </div>
-                        <font style="color: rgb(99, 99, 99); font-size: 18px;"><br/>
-                                                        La durée totale des épreuves est fixée à quatre heures.&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
-                                                        <br/><div style="text-align: justify;">Sont déclarés reçus, les candidats qui ont obtenu pour l’ensemble des épreuves une note au moins égale à 120 sur 200, sous réserve qu’ils aient obtenu au moins 50 points pour le questionnaire à choix multiples et 40 points pour l’épreuve à réponses rédigées.</div></font>
-                      </blockquote>
+                     <p class="paratext">
+C’est la DREAL/DREAT de votre département qui s’occupera de la gestion de votre inscription et du déroulement de l’examen. Les inscriptions sont généralement ouvertes jusqu'à la fin du mois de juillet de chaque année, tandis que l’examen se déroule souvent au début du mois d’octobre.
+                     </p>
+                     <p class="paratext">
+Cet examen a pour vocation d'évaluer votre maîtrise de la profession de transport poids lourd ainsi que votre capacité à gérer une exploitation de transport poids lourd.
+                     </p>
+                    <p class="paratext">
+Celui-ci, décliné en deux épreuves, se présente sous la forme qu’un QCM ainsi qu’une série de tests écrits au cours desquels il vous faudra rédiger une réponse.
+                     </p>
+                     <p class="paratext">
+La durée totale des épreuves est fixée à quatre heures.                    
+Sont déclarés reçus, les candidats qui ont obtenu pour l’ensemble des épreuves une note au moins égale à 120 sur 200, sous réserve qu’ils aient obtenu au moins 50 points pour le questionnaire à choix multiples et 40 points pour l’épreuve à réponses rédigées.
+                     </p>
                     </div>
                   </div>
                   <div class="col-md-5 col-md-5">
@@ -306,52 +306,18 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 pt16 pb0" style="border-style: none; border-width: 0px">
                   <h2> Comment m'inscrire à l'examen capacité de transport poids lourd de marchandises ?</h2>
-                  <h4/>
-                  <blockquote style="text-align: justify;">
-                    <span style="background-color: transparent;">
-                      <span style="font-size: 18px;"> À partir de la session 2023, l’inscription à l'examen de capacité professionnelle de transport lourd de marchandises, est soumise au paiement d’une <b>redevance de 30 € non remboursable</b>, qui inclut les prestations nécessaires à un passage unique de cette épreuve et qui&amp;nbsp;</span>
-                    </span>
-                    <span style="color: rgb(99, 99, 99); font-size: 18px;">constitue une formalité préalable à l’inscription à chaque examen. (Réf : Arrêté Ministériel TRAT2207718A du 1er avril 2022). </span>
-                  </blockquote>
-                  <blockquote>
-                    <div style="text-align: justify;">
-                      <span style="color: rgb(99, 99, 99); background-color: transparent; font-size: 18px;">Ce paiement s’effectue uniquement, en ligne et par carte bancaire. Le justificatif de paiement devra être enregistré ou imprimé et sera obligatoirement à joindre à la demande d’</span>
-                      <span style="color: rgb(99, 99, 99); background-color: transparent; font-size: 18px; position: relative; z-index: 0;">inscription à l’examen 
-                      </span>
-                      <span style="color: rgb(99, 99, 99); background-color: transparent; font-size: 18px;">.
-                    </span>
-                    </div>
-                    <span style="background-color: transparent;">
-                      <font color="#636363"><a href="https://capapro-transport.developpement-durable.gouv.fr" target="_blank" spellcheck="false" data-mci-spellchecked="true" style="font-size: 18px; word-break: break-word; position: relative; z-index: 0; line-height: 21px;" data-original-title="" title="" aria-describedby="tooltip186416">Lien d’accès au paiement de la redevance</a>&amp;nbsp;<span style="font-size: 18px;">.</span></font>
-                    </span>
-                    <br/>
-                    <span style="background-color: transparent;">
-                      <font color="#636363">
-                        <br/>
-                        <b style="font-size: 18px;">Les inscriptions sont ouvertes en ligne jusqu’au </b>
-                        <span style="font-size: 18px;">
-                          <b>Vendredi 04 août 2023 à 12h00.</b>
-                        </span>
-                        <b style="font-size: 18px;">&amp;nbsp;</b>
-                        <br/>
-                      </font>
-                      <font color="#636363">
-                        <span style="font-size: 18px;">Tout</span>
-                      </font>
-                    </span>
-                    <span style="color: rgb(99, 99, 99); font-size: 18px;">&amp;nbsp;dossier transmis hors délai ou incomplet passé cette date, sera refusé.</span>
-                    <span style="background-color: transparent;">
-                      <font color="#636363">
-                        <span style="font-size: 18px;">
-                          <br/>
-                          <br/>
-                        </span>
-                        <br/>
-                      </font>
-                    </span>
-                  </blockquote>
-                  <p/>
-                  <mci-extension data-role="overlay" id="overlay-root"/>
+                 <p class="paratext">
+                    À partir de la session 2023, l’inscription à l'examen de capacité professionnelle de transport lourd de marchandises, est soumise au paiement d’une <b>redevance de 30 € non remboursable</b>, qui inclut les prestations nécessaires à un passage unique de cette épreuve et qui  constitue une formalité préalable à l’inscription à chaque examen. (Réf : Arrêté Ministériel TRAT2207718A du 1er avril 2022).
+                 </p>
+                   <p class="paratext">
+                    Ce paiement s’effectue uniquement, en ligne et par carte bancaire. Le justificatif de paiement devra être enregistré ou imprimé et sera obligatoirement à joindre à la demande d’ inscription à l’examen .
+<a href="https://capapro-transport.developpement-durable.gouv.fr/candidat/accueil">Lien d’accès au paiement de la redevance .</a> 
+                   </p>
+                     <p class="paratext">
+<b>Les inscriptions sont ouvertes en ligne jusqu’au Vendredi 04 août 2023 à 12h00.</b>  
+Tout  dossier transmis hors délai ou incomplet passé cette date, sera refusé.
+                     </p>
+                  
                 </div>
                 <div class="col-lg-6">
                   <img src="/web/image/385085/1.png" class="img img-fluid mx-auto" title="CAPACITÉ TRANSPORT LOURD" alt="CAPACITÉ TRANSPORT LOURD"/>
@@ -359,6 +325,10 @@
               </div>
             </div>
           </section>
+
+
+
+
           <section class="mt96 mb48">
             <div class="container">
               <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr" style="position: relative;">
@@ -366,6 +336,101 @@
               </div>
             </div>
           </section>
+
+          <!-- Pricing Table-->
+          <div class="container pt64 pb32" id="pricing">
+            <div class="row" style="place-content: center;">
+              <div class="col-lg-5 col-md-8 col-sm-12">
+                <div class="card border-0 shadow " style="border-radius: 25px 25px">
+                  <!-- <div class="text-center text-white border-0" style="
+                                                                        background-color: #6e209f;
+                                                                        border-top-left-radius: 25px;
+                                                                        border-top-right-radius: 25px;
+                                                                    ">
+                                                <br />
+                                                <p>
+                                                    <strong style="color: white">
+                                                        <font style="font-size: 30px">Capacité transport routier</font>
+                                                    </strong>
+                                                </p>
+                                                <p>
+                                                    <b></b>
+                                                </p>
+                                                <br />
+                                            </div> -->
+                                                <t t-foreach="digimoov_products" t-as="product">
+                    <t t-if="product.default_code=='transport-routier'">
+                  <div class="text-center text-white border-0" style="background-color: rgb(110, 32, 159); border-top-left-radius: 25px; border-top-right-radius: 25px; word-break: break-word; position: relative; z-index: 0;">
+                    <p style="padding-top: 17px;line-height: 1.4;font-weight: 700;font-size: 30px !important;">PREMIUM PLUS&amp;nbsp;<br/><font style="font-size: 24px;">Formation transport lourd</font></p>
+                    <p t-att-class="'blink-soft'if product.cpf_available else 'blink-soft solo-non-cpf' ">
+                      <b style="font-size: 33px;">
+                        <font style="font-size: 24px;">Éligible au CPF en 2023</font>
+                      </b>
+                    </p>
+                    <br/>
+                  </div>
+              
+                      <form action="/shop/cart/update" method="post" id="form-transport-routier">
+                        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden"/>
+                        <input type="hidden" class="product_id" name="product_id" t-att-value="product.id"/>
+                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
+                        <div class="card-body p-card-pricing" style="background-color: white">
+                          <ul class="list-unstyled" style="word-break: break-word; position: relative; z-index: 0; ">
+                            <li class="mb-4" style="font-size: 15px !important;"><i class="fa fa-check-circle fa-lg mr-2 text-success"/>210 h&amp;nbsp;de formation (100% en ligne<br/></li>
+                            <li class="mb-4" style="font-size: 15px !important;"><i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                                    Assistance par mail
+                                                                </li>
+                            <li class="mb-4" style="font-size: 15px !important;"><i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                                    Assistance par téléphone
+                                                                </li>
+                            <li class="mb-4" style="font-size: 15px !important;"><span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em;"/>
+                                        Plus de 14 examens blancs avec corrigés</li>
+                            <li class="mb-4" style="font-size: 15px !important;"><i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                        210h de cours en Live avec un expert métier</li>
+                            <li class="mb-4" style="font-size: 15px !important;"><i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                        Révision du programme avant l'examen.
+                                    </li>
+                            <li class="mb-4" style="font-size: 15px !important;">
+                              <br/>
+                            </li>
+                          </ul>
+                          <br/>
+                          <br/>
+                          <br/>
+                          <div class="text-center ">
+                            <b style="font-size:54px !important; color:#000000" t-if="not promo">
+                              <span t-esc="round(product.list_price)"/>
+                              <span t-esc="product.currency_id.symbol"/>
+                            </b>
+                            <b style="font-size:60px !important; color:#000000" t-if="promo">
+                              <t t-foreach="promo.item_ids" t-as="item">
+                                <t t-if="item.product_id.id==product.id">
+                                  <span t-esc="round(item.fixed_price)"/>
+                                  <span t-esc="product.currency_id.symbol"/>
+                                </t>
+                              </t>
+                            </b>
+                          </div>
+                          <p class="medium text-center font-weight-bolder text-secondary" style="color: red !important; word-break: break-word; position: relative; z-index: 0;">
+                            Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
+                                                </p>
+                          <br/>
+                          <button class="btn btn-block text-white" style="background-color: #6e209f; border-radius: 25px">
+            Je m'inscris
+                                                </button>
+                        </div>
+                      </form>
+                    </t>
+                  </t>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
           <style>
                     .truncate-p {
                       overflow: hidden;
