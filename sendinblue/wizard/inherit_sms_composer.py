@@ -74,9 +74,9 @@ class InheritSmsComposer(models.TransientModel):
         else:
             _logger.info("self.phone %s " % selected_records)
 
-            
+            records = self._get_records()
 
-            phone = str(self.phone.replace(' ', ''))[-9:]
+            phone = str(records.phone.replace(' ', ''))[-9:]
             phone = '33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                                                                        3:5] + ' ' + phone[
                                                                                     5:7] + ' ' + phone[
