@@ -110,14 +110,21 @@
                     <div style="position:fixed">
                         <br/>
                         <br/>
-
-                        Signature
-                         <img src='/partner_exam/static/src/img/signature.png'
+                        <strong>
+                            Signature
+                        </strong>
+                        <br/>
+                        <br/>
+                        <img src='/partner_exam/static/src/img/signature.png'
                              style="height:100px; width:200px;"/>
                     </div>
 
                     <div style="position:absolute;right: 10px;">
-                        <th style="max-height:190px;float:right;padding-right:30px;">Cachet de l'organisme de formation
+                        <th style="max-height:190px;float:right;padding-right:30px;">
+                            <strong>
+
+                                Cachet de l'organisme de formation
+                            </strong>
                             <br/>
                             <br/>
 
