@@ -99,7 +99,7 @@
             <field name="name">info.examen.tree</field>
             <field name="model">info.examen</field>
             <field name="arch" type="xml">
-                <tree create="1" string="Notes des examens Tree" default_order="create_date desc">
+                <tree string="Notes des examens Tree" default_order="create_date desc">
                     <field name="partner_id"/>
                     <field name="etat_formation" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                     <field name="code_evalbox" attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"/>
