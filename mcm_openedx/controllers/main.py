@@ -372,6 +372,18 @@ class JotformConnector(http.Controller):
                                     print("cree ticket")
                                     new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                         vals)
+            _logger.info("###############################")
+            if partner_email.street != rawRequest["q103_adresseDe103"]:
+                partner_email.street = rawRequest["q103_adresseDe103"]
+
+                _logger.info(rawRequest["q103_adresseDe103"])
+            if partner_email.zip != rawRequest["q104_codePostal104"]:
+                partner_email.zip = rawRequest["q104_codePostal104"]
+                _logger.info(rawRequest["q104_codePostal104"])
+
+            if partner_email.city != rawRequest["q105_adresseDe105"]:
+                partner_email.city = rawRequest["q105_adresseDe105"]
+                _logger.info(rawRequest["q105_adresseDe105"])
 
     # Webhook MCM DOC
 
@@ -634,7 +646,7 @@ class JotformConnector(http.Controller):
                     sig = base64.b64decode(sig1)
                     # convertir l'image en png
                     image_binary = base64.b64encode(sig)
-                    name = "J'ai lu et j'accepte les conditions de la formation" 
+                    name = "J'ai lu et j'accepte les conditions de la formation"
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(
@@ -912,7 +924,7 @@ class JotformConnector(http.Controller):
                     sig = base64.b64decode(sig1)
                     # convertir l'image en png
                     image_binary = base64.b64encode(sig)
-                    name = "J'ai lu et j'accepte les conditions de la formation" 
+                    name = "J'ai lu et j'accepte les conditions de la formation"
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(
@@ -1189,7 +1201,7 @@ class JotformConnector(http.Controller):
                     sig = base64.b64decode(sig1)
                     # convertir l'image en png
                     image_binary = base64.b64encode(sig)
-                    name = "J'ai lu et j'accepte les conditions de la formation" 
+                    name = "J'ai lu et j'accepte les conditions de la formation"
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(

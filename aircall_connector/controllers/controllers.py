@@ -28,7 +28,6 @@ class AircallConnector(http.Controller):
             start_call_date = datetime.fromtimestamp(call_data['started_at'])
             subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
             call_detail = request.env['call.detail'].sudo().search([('call_id', "=", call_data['id'])], limit=1)
-            _logger.info('search call_detail : %s' % str(call_detail))
             # if call  exist
             if call_detail:
                 # add recording and duration
@@ -38,14 +37,11 @@ class AircallConnector(http.Controller):
                 })
                 comments = ''
                 call_data_comments = call_data["comments"]
-                _logger.info(" call_detail call_data call_data_comments : %s" % (str(call_data["comments"])))
                 # if comments
                 # add comments
                 if call_data_comments:
                     for note in call_data_comments:
-                        _logger.info("call_data note of comments : %s" % (str(note)))
                         comments += str(note['content']) + '\n'
-                    _logger.info(" call_detail call_data comments : %s" % (str(comments)))
                     call_detail.write({'notes': comments})
                     if call["event"] == "call.commented":
                         call_detail.action_update_notes()
@@ -55,29 +51,20 @@ class AircallConnector(http.Controller):
                 # add client_id using phone number
                 if not call_detail.call_contact:
                     call_detail.action_find_user_using_phone()
-                call_duration_min = call_detail.call_duration / 60
                 heure = int((call_detail.call_duration / 3600))
                 minute = int((call_detail.call_duration - (3600 * heure)) / 60)
                 secondes = int(call_detail.call_duration - (3600 * heure) - (60 * minute))
-                _logger.info(heure)
-                _logger.info(minute)
-                _logger.info(secondes)
-                _logger.info(str(" %s h :   %s  m:  %s s" % (heure, minute, secondes)))
-                call_detail.call_duration = float(call_duration_min)
                 call_detail.call_duration_char = (str(" %s h :   %s  m:  %s s" % (heure, minute, secondes)))
                 start_call_date = datetime.fromtimestamp(call_data['started_at'])
-                if call["event"] == "call.ended":
-                    if call_detail.call_contact.company_id.id == 2:
-                        call_detail.call_contact.mooc_temps_passe_seconde += call_duration_min
-                    elif call_detail.call_contact.company_id.id == 1:
-                        call_detail.call_contact.mooc_temps_passe_seconde += call_duration_min
+                if call_detail.call_contact.company_id.id == 2:
+                    call_detail.call_contact.mooc_temps_passe_seconde =  int(call_detail.call_contact.mooc_temps_passe_seconde)+int(call_detail.call_duration)
+                elif call_detail.call_contact.company_id.id == 1:
+                    call_detail.call_contact.mooc_temps_passe_seconde =  int(call_detail.call_contact.mooc_temps_passe_seconde)+int(call_detail.call_duration)
 
-                _logger.info("call data tags response : %s" % (str(call_data['tags'])))
                 # add tags
                 if call_data['tags']:
                     tags = []
                     for tag in call_data['tags']:
-                        _logger.info("call data tags response : %s" % (tag))
                         odoo_tag = request.env['res.partner.category'].sudo().search(
                             ['|', ('call_tag_id', "=", tag['id']), ('call_tag_id', "=", tag['name'])])
                         if not odoo_tag:
@@ -85,11 +72,8 @@ class AircallConnector(http.Controller):
                                 'call_tag_id': tag['id'],
                                 'name': tag['name'],
                             })
-                            _logger.info("call data tagss: %s" % (odoo_tag))
-                        _logger.info("call data tag : %s" % (odoo_tag))
                         if odoo_tag:
                             tags.append(odoo_tag.id)
-                    _logger.info("call data tags : %s" % (tags))
                     if tags:
                         call_detail.sudo().write({'air_call_tag': [(6, 0, tags)]})
             # if not exist
@@ -124,21 +108,16 @@ class AircallConnector(http.Controller):
                                 _logger.info('createeeeee webhook note ********************************')
                 comments = ''
                 call_data_comments = call_data["comments"]
-                _logger.info("call_data call_data_comments : %s" % (str(call_data["comments"])))
 
                 if call_data_comments:
                     for note in call_data_comments:
-                        _logger.info("call_data note of comments : %s" % (str(note)))
                         comments += str(note['content']) + '\n'
 
-                    _logger.info("call_data comments : %s" % (str(comments)))
-                    _logger.info("call_data new_call_detail : %s" % (str(new_call_detail)))
                     new_call_detail.sudo().write({'notes': comments})
-                _logger.info("call data tags response : %s" % (str(call_data['tags'])))
+
                 if call_data['tags']:
                     tags = []
                     for tag in call_data['tags']:
-                        _logger.info("call data tags response tag : %s" % (tag))
                         odoo_tag = request.env['res.partner.category'].sudo().search(
                             ['|', ('call_tag_id', "=", tag['id']), ('call_tag_id', "=", tag['name'])])
                         if not odoo_tag:
@@ -146,8 +125,7 @@ class AircallConnector(http.Controller):
                                 'call_tag_id': tag['id'],
                                 'name': tag['name'],
                             })
-                            _logger.info("call data tags response odoo tag : %s" % (odoo_tag))
-                        _logger.info("call data tags response odoo tag : %s" % (odoo_tag))
+
                         if odoo_tag:
                             tags.append(odoo_tag.id)
                     _logger.info("call data tags : %s" % (tags))

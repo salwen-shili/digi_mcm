@@ -34,8 +34,8 @@ class partner(models.Model):
     averageScore = fields.Integer(string="Score Moyen", readonly=True)
     totalTimeSpentInMinutes = fields.Char(string="temps passé en minutes", readonly=False, track_visibility='always')
     password360 = fields.Char()  # Champs pour stocker le mot de passe non crypté
-    firstName = fields.Char()
-    lastName = fields.Char()
+    firstName = fields.Char(track_visibility='always')
+    lastName = fields.Char(track_visibility='always')
     date_creation = fields.Char(string="Date d'inscription", track_visibility='always')
     messages = fields.Char(string='Messages Postés')
     # publications = fields.Char(string='Cours ou programmes publiés')
