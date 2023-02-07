@@ -499,7 +499,7 @@ function verify_payment_method() {
             if (urlCpf)
           window.open(urlCpf, "_blank");
           else{
-            window.open("https://bit.ly/3LJQLQP", "_blank");
+            window.open("https://bit.ly/3uLde9W", "_blank");
   
           }
 
@@ -524,7 +524,7 @@ function verify_payment_method() {
           if (urlCpf)
           window.open(urlCpf, "_blank");
           else{
-            window.open("https://bit.ly/3uLde9W", "_blank");
+            window.open("https://bit.ly/3LJQLQP", "_blank");
   
           }
 
