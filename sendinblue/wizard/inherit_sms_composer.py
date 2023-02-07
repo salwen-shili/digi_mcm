@@ -22,7 +22,7 @@ class InheritSmsComposer(models.TransientModel):
         url = "https://api.sendinblue.com/v3/transactionalSMS/sms"
         selected_ids = self.env.context.get('active_ids', [])
         selected_records = self.env['res.partner'].browse(selected_ids)
-        if selected_records !=  False:
+        if selected_records:
             _logger.info("selected_records %s " % selected_records)
     
             for i_sms in selected_records:
