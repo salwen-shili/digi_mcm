@@ -72,7 +72,6 @@ class InheritSmsComposer(models.TransientModel):
                 _logger.info(response.status_code)
                 statut_code_sendinblue = response.status_code
         else:
-            _logger.info("self.phone %s " % selected_records)
 
             records = self._get_records()
 
@@ -97,7 +96,7 @@ class InheritSmsComposer(models.TransientModel):
             }
 
             response = requests.post(url, json=payload, headers=headers)
-            note_tag = "<b>" + " Sent 📨📨 À :  " + self.name + " " "</b><br/>"
+            note_tag = "<b>" + " Sent 📨📨 À :  " + records.name + " " "</b><br/>"
             # if 201 message envoyée
             # add message id-track
             response_text = response.json()
@@ -106,13 +105,13 @@ class InheritSmsComposer(models.TransientModel):
                 messeageid = response_text["messageId"]  # if 201 message envoyée
 
                 values = {
-                    'record_name':self.name,
+                    'record_name':records.name,
                     'model': 'res.partner',
                     'subject': messeageid,
                     'message_type': 'comment',
-                    'subtype_id': self.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
-                    'res_id': self.id,
-                    'author_id': self.env.user.partner_id.id,
+                    'subtype_id': records.env['mail.message.subtype'].search([('name', '=', 'Note')]).id,
+                    'res_id': records.id,
+                    'author_id': records.env.user.partner_id.id,
                     'date': datetime.now(),
                     'body': note_tag + "\n" + self.body
                 }
