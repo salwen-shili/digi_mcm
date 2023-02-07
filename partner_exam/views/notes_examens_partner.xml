@@ -15,7 +15,7 @@
             <field name="name">info.examen.form</field>
             <field name="model">info.examen</field>
             <field name="arch" type="xml">
-                <form string="Notes des examens Form">
+                <form create="0" string="Notes des examens Form">
                     <sheet>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
@@ -97,8 +97,8 @@
         <record id="collecte_info_tree_view" model="ir.ui.view">
             <field name="name">info.examen.tree</field>
             <field name="model">info.examen</field>
-            <field name="arch" type="xml">
-                <tree string="Notes des examens Tree" default_order="create_date desc">
+            <field name="arch" create="0" type="xml">
+                <tree create="0" string="Notes des examens Tree" default_order="create_date desc">
                     <field name="partner_id"/>
                     <field name="etat_formation" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                     <field name="code_evalbox" attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"/>
