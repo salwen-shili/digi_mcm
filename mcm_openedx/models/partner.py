@@ -47,7 +47,6 @@ class partner(models.Model):
             heure = int((self.mooc_temps_passe_seconde / 3600))
             minute = int((self.mooc_temps_passe_seconde - (3600 * heure)) / 60)
             secondes = int(self.mooc_temps_passe_seconde - (3600 * heure) - (60 * minute))
-
             self.mooc_temps_passe_min = str(" %s h :   %s  m:  %s s" % (heure, minute, secondes))
 
     # Ajouter Des condition pour supprimer apprenant

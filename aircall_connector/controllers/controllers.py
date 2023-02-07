@@ -61,9 +61,9 @@ class AircallConnector(http.Controller):
                 start_call_date = datetime.fromtimestamp(call_data['started_at'])
                 if call["event"] == "call.ended":
                     if call_detail.call_contact.company_id.id == 2:
-                        call_detail.call_contact.mooc_temps_passe_seconde += call_duration_min
+                        call_detail.call_contact.mooc_temps_passe_seconde += call_detail.call_duration
                     elif call_detail.call_contact.company_id.id == 1:
-                        call_detail.call_contact.mooc_temps_passe_seconde += call_duration_min
+                        call_detail.call_contact.mooc_temps_passe_seconde += call_detail.call_duration
 
                 # add tags
                 if call_data['tags']:
@@ -116,7 +116,6 @@ class AircallConnector(http.Controller):
                 if call_data_comments:
                     for note in call_data_comments:
                         comments += str(note['content']) + '\n'
-
 
                     new_call_detail.sudo().write({'notes': comments})
 
