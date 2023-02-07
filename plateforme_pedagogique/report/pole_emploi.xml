@@ -14,6 +14,7 @@
                         margin-top:20px;
                         }
 
+
                     </style>
                     <div class="page">
                         <div class="oe_structure"/>
@@ -46,8 +47,6 @@
                                         <span t-esc="o.numero_pole_emploi"/>
                                     </div>
                                     <div class="col-6" style="position:absolute;right: 10px;">
-
-
                                         Nom Prénom:
                                         <span t-esc="o.name"/>
                                     </div>
@@ -68,38 +67,24 @@
                                     <span t-esc="o.total_time_hours"/>
 
                                     <br/>
-
                                     Type de rémunération :
                                     <br/>
-
                                     Organisme payeur:
-
                                     <br/>
                                     <br/>
-
                                     Ce stage a t-il débuté alors que vous étiez en contrat de sécurisation
                                     professionnelle ?
                                     <ul>
-
                                         &#160; &#160; OUI □ &#160;&#160; &#160; &#160; Non ☑
-
                                     </ul>
-
                                     <br/>
-
                                     S'agit-il de cours du soir ?
                                     <ul>
-
                                         &#160; &#160; OUI □ &#160;&#160; &#160; &#160; Non ☑
-
                                     </ul>
                                 </p>
-
                             </div>
-
-
                         </div>
-
                     </div>
                     <div style="position:fixed">
                         Le
@@ -122,7 +107,6 @@
                     <div style="position:absolute;right: 10px;">
                         <th style="max-height:190px;float:right;padding-right:30px;">
                             <strong>
-
                                 Cachet de l'organisme de formation
                             </strong>
                             <br/>
@@ -133,15 +117,51 @@
                         </th>
 
                     </div>
-                    <strong>
-                        <hr/>
-                    </strong>
-                    <centre>POLE EMPLOI</centre>
-                    <centre>POLE EMPLOI</centre>
-                    <centre>www.pole-emploi.fr-
-                        <img src='/partner_exam/static/src/img/pole.png'
-                             style="height:100px; width:200px;"/>
-                    </centre>
+
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <div align="center">
+
+                            <hr/>
+
+                        <h5>POLE EMPLOI</h5>
+
+                        <h5>www.pole-emploi.fr -
+                            <img src="data:image/jpeg;base64,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" style="height:50px; width:100px;"/>
+                        </h5>
+
+
+                        <h6>OUVERT DU LUNDI AU VENDREDI DE 08H30 A 12H30. RECEPTION UNIQUEMENT SUR RENDEZ VOUS
+                            L'APRES
+                            MIDI DU LUNDI AU JEUDI DE 12H30 A 16H15.
+                        </h6>
+                    </div>
+
                 </t>
             </t>
         </t>
