@@ -431,16 +431,15 @@
                             <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id"/>
                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
                             <h4>FORMATION TAXI PREMIUM</h4>
-                           
                             <h5 class="el-cpf">
                               <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
-             
-                          </h5>
+                            </h5>
                             <h4>
                               <span t-esc="round(product.list_price)"/>
                               <span style="color: #fdd105" t-esc="product.currency_id.symbol"/>
                             </h4>
                             <t t-call="mcm_website_theme.pricing_table_content_all"/>
+                            <br />
                             <t t-if="promo">
                               <p class="text-center font-weight-bolder text-secondary">
                                   <b style="font-size: 50%">
@@ -487,8 +486,7 @@
                                     </h4>
                                     <t t-call="mcm_website_theme.pricing_table_solo" />
                                     <br />
-                                    <br />
-                                    <br />
+                           
                                     <t t-if="promo">
                                         <p class="text-center font-weight-bolder text-secondary">
                                             <b style="font-size: 50%">

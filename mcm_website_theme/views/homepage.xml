@@ -671,7 +671,7 @@
                                                                 </h4>
                                                                 <t t-call="mcm_website_theme.pricing_table_solo"/>
                                                                 <br/>
-                                                                <br/>
+                                                       
                                                                 <t t-if="promo">
                                                                     <p class="text-center font-weight-bolder text-secondary">
                                                                         <b style="font-size: 50%">
