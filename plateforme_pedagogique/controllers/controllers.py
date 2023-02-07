@@ -49,7 +49,8 @@ class WebhookController(http.Controller):
         if company:
             api_key = company.wedof_api_key
         return self.validate_folder_cpf(dossier, event, api_key)
-    
+
+
     def validate_folder_cpf(self,dossier,event,api_key):
         request.uid = odoo.SUPERUSER_ID
         externalid = dossier['externalId']
@@ -175,7 +176,21 @@ class WebhookController(http.Controller):
                                          diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
                                          dossier['externalId'], lastupd)
         return True
-    
+
+    @http.route(['/validate_digi_cpf_lourd'], type='json', auth="public", methods=['POST'])
+    def validate_cpf_lourd(self, **kw):
+        request.uid = odoo.SUPERUSER_ID
+        dossier = json.loads(request.httprequest.data)
+        event = request.httprequest.headers.get('X-Wedof-Event')
+        _logger.info("webhoooooooooook digi %s" % str(dossier))
+        _logger.info("header %s" % str(event))
+        """recuperer l'api_key de wedof pour digimoov"""
+        company = request.env['res.company'].sudo().search([('id', "=", 2)])
+        api_key = ""
+        if company:
+            api_key = company.wedof_api_key
+        formation= dossier['']
+        return self.validate_folder_cpf(dossier, event, api_key)
     
     """faire la mise à jour de statut cpf sur fiche client """
     def cpf_validate(self, module, email, residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome,
