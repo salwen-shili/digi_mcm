@@ -81,7 +81,7 @@
                                     professionnelle ?
                                     <ul>
 
-                                        &#160; &#160; OUI □ &#160;&#160; &#160;  &#160;  Non □
+                                        &#160; &#160; OUI □ &#160;&#160; &#160; &#160; Non □
 
                                     </ul>
 
@@ -90,7 +90,7 @@
                                     S'agit-il de cours du soir ?
                                     <ul>
 
-                                        &#160; &#160; OUI □ &#160;&#160; &#160;  &#160; Non □
+                                        &#160; &#160; OUI □ &#160;&#160; &#160; &#160; Non □
 
                                     </ul>
                                 </p>
@@ -112,7 +112,8 @@
                         <br/>
 
                         Signature
-                        <!-- date système-->
+                        <img src='/partner_exam/static/src/img/signature.png'
+                             style="height:100px; width:200px;"/>
                     </div>
 
                     <div style="position:absolute;right: 10px;">
