@@ -81,7 +81,7 @@
                                     professionnelle ?
                                     <ul>
 
-                                        &#160; &#160; OUI □ &#160;&#160; &#160; &#160; Non □
+                                        &#160; &#160; OUI □ &#160;&#160; &#160; &#160; Non ☑
 
                                     </ul>
 
@@ -90,7 +90,7 @@
                                     S'agit-il de cours du soir ?
                                     <ul>
 
-                                        &#160; &#160; OUI □ &#160;&#160; &#160; &#160; Non □
+                                        &#160; &#160; OUI □ &#160;&#160; &#160; &#160; Non ☑
 
                                     </ul>
                                 </p>
@@ -133,6 +133,15 @@
                         </th>
 
                     </div>
+                    <strong>
+                        <hr/>
+                    </strong>
+                    <centre>POLE EMPLOI</centre>
+                    <centre>POLE EMPLOI</centre>
+                    <centre>www.pole-emploi.fr-
+                        <img src='/partner_exam/static/src/img/pole.png'
+                             style="height:100px; width:200px;"/>
+                    </centre>
                 </t>
             </t>
         </t>
