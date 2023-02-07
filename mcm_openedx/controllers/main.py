@@ -373,13 +373,17 @@ class JotformConnector(http.Controller):
                                     new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                         vals)
             _logger.info("###############################")
-            if partner_email.street != rawRequest["Adresse de domicile complète"]:
-                _logger.info(rawRequest["Adresse de domicile complète"])
-            if partner_email.zip != rawRequest["Code postal"]:
-                _logger.info(rawRequest["Code postal"])
+            if partner_email.street != rawRequest["q103_adresseDe103"]:
+                partner_email.street = rawRequest["q103_adresseDe103"]
 
-            if partner_email.city != rawRequest["Ville"]:
-                _logger.info(rawRequest["Ville"])
+                _logger.info(rawRequest["q103_adresseDe103"])
+            if partner_email.zip != rawRequest["q104_codePostal104"]:
+                partner_email.zip = rawRequest["q104_codePostal104"]
+                _logger.info(rawRequest["q104_codePostal104"])
+
+            if partner_email.city != rawRequest["q105_adresseDe105"]:
+                partner_email.city = rawRequest["q105_adresseDe105"]
+                _logger.info(rawRequest["q105_adresseDe105"])
 
     # Webhook MCM DOC
 
