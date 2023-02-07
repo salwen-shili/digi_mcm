@@ -239,7 +239,7 @@ class SessionStatistics(models.Model):
         si le résultat est égale à zéro"""
         for rec in self:
             pack_premium_present = rec.nbr_pack_premium_present
-            nbr_inscrit = rec._compute_pack_premium_inscrit()
+            nbr_inscrit = rec.nbr_pack_premium_inscrit
             if nbr_inscrit is None:
                 nbr_inscrit = 0
             if nbr_inscrit > 0:
