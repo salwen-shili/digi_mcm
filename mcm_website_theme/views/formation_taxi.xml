@@ -494,7 +494,7 @@
                                             </b>
                                         </p>
                                     </t>
-                                    <div style="margin-top: 46px;" class="sh_btn">
+                                    <div  class="sh_btn">
                             
                                         <a class="animated-button-yellow" href="#pricing" onClick="(function(){ document.getElementById('form-taxi-solo').submit();return false;})();return false;">
                                             <span />
