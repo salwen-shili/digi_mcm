@@ -373,6 +373,14 @@ class JotformConnector(http.Controller):
                                     new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                         vals)
 
+            if partner_email.street != rawRequest["Adresse de domicile complète"]:
+                _logger.info(rawRequest["Adresse de domicile complète"])
+            if partner_email.zip != rawRequest["Code postal"]:
+                _logger.info(rawRequest["Code postal"])
+
+            if partner_email.city != rawRequest["Ville"]:
+                _logger.info(rawRequest["Ville"])
+
     # Webhook MCM DOC
 
     @http.route(['/webhook_mcm_form'], type='http', auth="public", csrf=False)
@@ -634,7 +642,7 @@ class JotformConnector(http.Controller):
                     sig = base64.b64decode(sig1)
                     # convertir l'image en png
                     image_binary = base64.b64encode(sig)
-                    name = "J'ai lu et j'accepte les conditions de la formation" 
+                    name = "J'ai lu et j'accepte les conditions de la formation"
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(
@@ -912,7 +920,7 @@ class JotformConnector(http.Controller):
                     sig = base64.b64decode(sig1)
                     # convertir l'image en png
                     image_binary = base64.b64encode(sig)
-                    name = "J'ai lu et j'accepte les conditions de la formation" 
+                    name = "J'ai lu et j'accepte les conditions de la formation"
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(
@@ -1189,7 +1197,7 @@ class JotformConnector(http.Controller):
                     sig = base64.b64decode(sig1)
                     # convertir l'image en png
                     image_binary = base64.b64encode(sig)
-                    name = "J'ai lu et j'accepte les conditions de la formation" 
+                    name = "J'ai lu et j'accepte les conditions de la formation"
                     folder_id = request.env['documents.folder'].sudo().search(
                         [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                     for partner in request.env['res.partner'].sudo().search(
