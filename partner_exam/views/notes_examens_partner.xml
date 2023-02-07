@@ -93,6 +93,7 @@
                 </form>
             </field>
         </record>
+
         <!-- Tree View -->
         <record id="collecte_info_tree_view" model="ir.ui.view">
             <field name="name">info.examen.tree</field>
