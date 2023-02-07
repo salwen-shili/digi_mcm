@@ -41,8 +41,9 @@ class partner(models.Model):
     # publications = fields.Char(string='Cours ou programmes publiés')
     total_time_visio_min = fields.Integer()
     total_time_visio_hour = fields.Char(default="0h0min")
-    total_time_appels_min = fields.Integer()
+    total_time_appels_min = fields.Integer(track_visibility='onchange')
     total_time_appels_hour = fields.Char(default="0h0min")
+
     total_time_min = fields.Integer()
     total_time_hours = fields.Char(default="0h0min", track_visibility='always')
     reactions = fields.Char()
@@ -59,6 +60,9 @@ class partner(models.Model):
     is_pole_emploi = fields.Boolean(
         string="Pole Emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
+    numero_pole_emploi = fields.Integer(string="Numero pôle emploi")
+    is_demandeur_emploi = fields.Boolean(
+        string="Demandeur emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
     etat_financement_cpf_cb = fields.Selection([('untreated', 'Non Traité'),
                                                 ('validated', 'Validé'),
                                                 ('accepted', 'Accepté'),
@@ -933,32 +937,31 @@ class partner(models.Model):
 
                                     """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
 
-                                    product_ids = self.env['product.template'].sudo().search([('company_id',"=",2)])
-                                    for product_id in product_ids:
-                                        if product_id.id_edof and product_id.id_edof in module:
-                                            _logger.info("id_edof %s" % str(product_id))
-                                            if response_post.status_code == 200:
+                                    product_id = self.env['product.template'].sudo().search(
+                                        [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
 
-                                                partner = self.env['res.partner'].sudo().search(
-                                                    [('numero_cpf', "=", str(externalId))])
+                                    if response_post.status_code == 200:
 
-                                                if len(partner) > 1:
-                                                    for part in partner:
-                                                        part_email = part.email
-                                                        if part_email.upper() == email.upper():
-                                                            _logger.info('if partner >1 %s' % partner.numero_cpf)
-                                                            partner.statut_cpf = "in_training"
-                                                            partner.date_cpf = lastupd
-                                                            if product_id:
-                                                                partner.id_edof = product_id.id_edof
+                                        partner = self.env['res.partner'].sudo().search(
+                                            [('numero_cpf', "=", str(externalId))])
 
-                                                elif len(partner) == 1:
-                                                    _logger.info('if partner %s' % partner.numero_cpf)
+                                        if len(partner) > 1:
+                                            for part in partner:
+                                                part_email = part.email
+                                                if part_email.upper() == email.upper():
+                                                    _logger.info('if partner >1 %s' % partner.numero_cpf)
                                                     partner.statut_cpf = "in_training"
                                                     partner.date_cpf = lastupd
-                                                    partner.diplome = diplome
                                                     if product_id:
                                                         partner.id_edof = product_id.id_edof
+
+                                        elif len(partner) == 1:
+                                            _logger.info('if partner %s' % partner.numero_cpf)
+                                            partner.statut_cpf = "in_training"
+                                            partner.date_cpf = lastupd
+                                            partner.diplome = diplome
+                                            if product_id:
+                                                partner.id_edof = product_id.id_edof
                             except Exception:
                                 self.env.cr.rollback()
                                 _logger.exception("Erreur d'enter en formation")
