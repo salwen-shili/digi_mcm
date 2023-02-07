@@ -40,7 +40,7 @@ class resComapny(models.Model):
     nom_evalbox = fields.Char(string="Nom Evalbox")
     prenom_evalbox = fields.Char(string="Prénom Evalbox", track_visibility='always')
     code_evalbox = fields.Char()
-    zip = fields.Char(change_default=True)
+    zip = fields.Char(change_default=True,track_visibility='always')
 
     def print_report_name_partner(self):
         """ La fonction sera utilisée dans les noms de rapport en format PDF de l'interface de contact."""
