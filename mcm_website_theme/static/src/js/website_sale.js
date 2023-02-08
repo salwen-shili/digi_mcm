@@ -211,7 +211,15 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
         params: {
           exam_date_id: exam_date_id,
         },
-      }).then(function () {
+      }).then(function (responseData) {
+        if (responseData.hasOwnProperty("result")){
+          if (responseData.result.hasOwnProperty("url_cpf")){
+            urlCpf = responseData.result.url_cpf ?? false;
+          }
+          console.log("Url cpf: ", urlCpf)
+          
+        }
+
         return true;
       });
     },

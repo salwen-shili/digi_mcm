@@ -1,10 +1,13 @@
 var paymentMethod = 'all';
 var productName = ""
+var urlCpf = false;
+var isPremium = false;
+var showResteCharge = false;
+var conditionResteCharge= false;
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     document.getElementById("cover-spin").remove();
     tourguide.start();
-
   }
 }
 document.addEventListener('DOMContentLoaded', function () {
@@ -13,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     productName=document.getElementById("productname").value
   }
   console.log(productName)
+  isPremium = (productName.toUpperCase() == "TAXI" || productName.toUpperCase() == "VTC" ) ?  true : false;
  
 
 
@@ -216,6 +220,7 @@ function verify_payment_method() {
   //if condition de vente (checkbox_conditions) is checked - passer ou paiment ou mobiliser mon cpf
 
   var conditionCheckbox;
+  var conditionResteCharge;
   if (document.getElementById('checkbox_conditions')) {
     conditionCheckbox = document.getElementById('checkbox_conditions');
     var error = document.getElementById('error_conditions');
@@ -232,6 +237,10 @@ function verify_payment_method() {
       return;
     }
   }
+  if (document.getElementById("input_reste_charge")) {
+    conditionResteCharge =  document.getElementById("checkbox_reste_charge");
+  }
+  
 
   var stripe_pm = document.getElementById('stripe_pm');
 
@@ -258,7 +267,7 @@ function verify_payment_method() {
     var emploichecked = paymentMethod == "pole_emploi_pm" ? true : false;
 
     if (paymentMethod == "cpf_pm" || emploichecked == true) {
-      if (productName.toUpperCase() == 'TAXI') {
+      if (productName.toUpperCase() == 'TAXI' && conditionResteCharge.checked == true) {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             window.open(state, '_blank');
@@ -269,7 +278,13 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open('https://bit.ly/3GjhHn7', '_blank');
+            
+            if (urlCpf)
+            window.open(urlCpf, "_blank");
+            else{
+              window.open("https://bit.ly/3GjhHn7", "_blank");
+    
+            }
 
             break;
         }
@@ -287,14 +302,19 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open('https://bit.ly/3FCYXxK', '_blank');
-
+            
+            if (urlCpf)
+            window.open(urlCpf, "_blank");
+            else{
+              window.open('https://bit.ly/3FCYXxK', '_blank');
+    
+            }
             break;
         }
 
         return;
       }
-      if (productName.toUpperCase() == 'VTC') {
+      if (productName.toUpperCase() == 'VTC' && conditionResteCharge.checked == true) {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             window.open(state, '_blank');
@@ -306,7 +326,13 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open('https://bit.ly/3452CaC', '_blank');
+            
+            if (urlCpf)
+            window.open(urlCpf, "_blank");
+            else{
+              window.open('https://bit.ly/3452CaC', '_blank');
+    
+            }
 
             break;
         }
@@ -331,6 +357,7 @@ function scrollToError() {
 // responsable of showing the popup
 // if all conditions are required to show the popup 
 function showPopup() {
+  
   let optionsDate = document.getElementById('options-date');
   if (optionsDate) optionsDate = optionsDate.value
   let cpfChecked = false;
@@ -399,10 +426,15 @@ function showPopup() {
 
   }
   cpfChecked || polechecked
-    ? (textbtn = 'Mobiliser mon CPF')
-    : (textbtn = 'Je paye maintenant !');
+    ? (textbtn = 'Mobiliser mon CPF', showResteCharge = true)
+    : (textbtn = 'Je paye maintenant !',showResteCharge = false);
 
-
+if (showResteCharge && isPremium){
+  if (document.getElementById("input_reste_charge")){
+   
+  document.getElementById("input_reste_charge").style.display = "block";
+}
+}
 
 
 
@@ -417,6 +449,19 @@ function closepopup(msg) {
     window.location.href = msg;
     return;
   }
+  let reste = ""
+  if (isPremium){
+    reste = `                  <div  class="input checkbox" id="input_reste_charge" style="display:block;margin-top: 12px;">
+    <input type="checkbox" id="checkbox_reste_charge" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
+        <label for="conditions" style="display:inline">
+            Je m'engage à régler le montant de reste à charge de
+            <b>100€</b>
+            une fois mon financement CPF est accepté
+        </label>
+    </input>
+
+</div>`
+  }
   document.getElementById('popupcontent').innerHTML = `
   <p id="notifMessage">
                             <div class="input checkbox" style="width:90%">
@@ -429,6 +474,7 @@ function closepopup(msg) {
                                     </label>
                                 </input>
                             </div>
+                            ${reste}
                             <div class="input checkbox" style="margin-top: 12px;">
                                 <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
                                     <label for="conditions" style="display:inline">
@@ -1164,6 +1210,29 @@ const update_cpf = (cpf) => {
       console.log(err);
     });
 };
+
+
+
+//post request to /shop/cart/update_exam_date
+// const updateExamDate = (exam_date_id) => {
+//   sendHttpRequest("POST", "/shop/cart/update_exam_date_mcm", {
+//     params: {
+//       exam_date_id: exam_date_id,
+      
+//     },
+//   })
+//     .then((responseData) => {
+//     if (responseData.hasOwnProperty("result")){
+//       if (responseData.result.hasOwnProperty("url_cpf")){
+//         urlCpf = responseData.result.url_cpf ?? false;
+//       }
+//       console.log("Url cpf: ", urlCpf)
+      
+//     }
+   
+//   })
+//     .catch((err) => {});
+// };
 
 
 
