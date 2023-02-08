@@ -74,12 +74,12 @@
                                     Ce stage a t-il débuté alors que vous étiez en contrat de sécurisation
                                     professionnelle ?
                                     <ul>
-                                        &#160; &#160; OUI □ &#160;&#160; &#160; &#160; Non ☑
+                                        &#160; &#160; OUI □ &#160;&#160;&#160; &#160; &#160; Non ☑
                                     </ul>
                                     <br/>
                                     S'agit-il de cours du soir ?
                                     <ul>
-                                        &#160; &#160; OUI □ &#160;&#160; &#160; &#160; Non ☑
+                                        &#160; &#160; OUI □ &#160;&#160;&#160; &#160; &#160; Non ☑
                                     </ul>
                                 </p>
                             </div>
@@ -109,7 +109,8 @@
                                     <br/>
                                     <br/>
 
-                                    <img src='plateforme_pedagogique/static/img/sig_na.png'
+
+                                    <img src='/plateforme_pedagogique/report/sig_nasser.png'
                                          style="max-height:100px;max-width:200px;"/>
                                 </th>
                             </div>
@@ -161,8 +162,9 @@
                             <hr style="border:1px solid;"></hr>
                             <h5>POLE EMPLOI</h5>
                             <h5>www.pole-emploi.fr -
-                                <img src='plateforme_pedagogique/static/img/pole_e.png'
-                                     style="max-height:100px;max-width:200px;"/>
+
+                                    <img src='https://www.pole-emploi.fr/files/live/sites/guadeloupe/files/guadeloupe/mediatheque/images/3949_pics31321.png'
+                                         style="max-height:20px;max-width:200px;"/>
                             </h5>
                             <h6>OUVERT DU LUNDI AU VENDREDI DE 08H30 A 12H30. RECEPTION UNIQUEMENT SUR RENDEZ VOUS
                                 L'APRES
