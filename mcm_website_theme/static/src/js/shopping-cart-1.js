@@ -1,13 +1,19 @@
 var paymentMethod = 'all';
+var productName = ""
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     document.getElementById("cover-spin").remove();
-
     tourguide.start();
 
   }
 }
 document.addEventListener('DOMContentLoaded', function () {
+  //Assign product Name
+  if (document.getElementById("productname")){
+    productName=document.getElementById("productname").value
+  }
+  console.log(productName)
+ 
 
 
   displayInstalmentPayment();
@@ -252,7 +258,7 @@ function verify_payment_method() {
     var emploichecked = paymentMethod == "pole_emploi_pm" ? true : false;
 
     if (paymentMethod == "cpf_pm" || emploichecked == true) {
-      if (cpf_pm.value == 'Formation à distance TAXI') {
+      if (productName.toUpperCase() == 'TAXI') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             window.open(state, '_blank');
@@ -270,7 +276,7 @@ function verify_payment_method() {
 
         return;
       }
-      if (cpf_pm.value == 'Formation à distance VMDTR') {
+      if (productName.toUpperCase() == 'VMDTR') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             window.open(state, '_blank');
@@ -288,7 +294,7 @@ function verify_payment_method() {
 
         return;
       }
-      if (cpf_pm.value == 'Formation à distance VTC') {
+      if (productName.toUpperCase() == 'VTC') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             window.open(state, '_blank');
@@ -950,6 +956,15 @@ function showDepartement() {
 
 //   }
 
+
+//sleep function 
+const sleep = () => new Promise(r => {
+  const ms = Math.random() * 10;
+  console.log("timeoutllll",ms);
+  setTimeout(r, ms);
+});
+
+
 // Base function mode de financement
 
 function modeFinancement(mode, index) {
@@ -962,6 +977,8 @@ function modeFinancement(mode, index) {
       update_cartebleu(true);
       hideError_no_method();
       if (index == 1) {
+     
+        
         checkPaiementInstalment(false)
       } else {
         checkPaiementInstalment(true)
@@ -1154,6 +1171,7 @@ const update_cpf = (cpf) => {
 
 //xmlhttprequest
 const sendHttpRequest = (method, url, data) => {
+ 
   const promise = new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open(method, url);
