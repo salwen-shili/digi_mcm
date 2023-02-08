@@ -434,6 +434,9 @@ if (showResteCharge && isPremium){
    
   document.getElementById("input_reste_charge").style.display = "block";
 }
+}else {
+  document.getElementById("input_reste_charge").style.display = "none";
+
 }
 
 
