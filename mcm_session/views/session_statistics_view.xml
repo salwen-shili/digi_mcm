@@ -156,6 +156,16 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="session_app_graph_view">
+            <field name="name">Session</field>
+            <field name="model">session.statistics</field>
+            <field name="arch" type="xml">
+                <graph string="Session IOne">
+
+                </graph>
+            </field>
+        </record>
+
         <record id="action_session_statistics" model="ir.actions.act_window">
             <field name="name">Statestiques des sessions</field>
             <field name="res_model">session.statistics</field>
