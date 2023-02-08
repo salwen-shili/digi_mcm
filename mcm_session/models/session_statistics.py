@@ -5,9 +5,15 @@ class SessionStatistics(models.Model):
     _name = 'session.statistics'
     _description = "Statistiques"
 
+    @api.model
+    def _default_date_exam(self):
+        if self.session_id:
+            date = self.session_id.date_exam
+            return date
+
     session_id = fields.Many2one('mcmacademy.session', 'Session', required=True, readonly=False)
 
-    date_exam = fields.Date(string="Date examen", related="session_id.date_exam")
+    date_exam = fields.Date(string="Date examen", default=_default_date_exam)
 
     nbr_inscrits = fields.Integer(string="Nombre Inscrits", compute="_compute_nbr_inscrit", store=True,
                                   help="Nombre d'inscrits.")
