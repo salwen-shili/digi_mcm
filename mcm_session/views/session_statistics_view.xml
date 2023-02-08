@@ -38,13 +38,12 @@
                                 <field name="nbr_echec"/>
                                 <field name="taux_echec" widget="progressbar"/>
                             </group>
-
-                            <group string="Liste IOne Présents" col="8">
-                                <field name="partner_id"/>
-                            </group>
-                            <group string="Liste IOne Absents" col="8">
-                                <field name="partner_id"/>
-                            </group>
+                        </group>
+                        <group string="Liste IOne Présents" >
+                            <field name="partner_id" nolabel="1"/>
+                        </group>
+                        <group string="Liste IOne Absents" col="12">
+                            <field name="partner_id" nolabel="1"/>
                         </group>
                     </sheet>
                     <!--<div class="oe_chatter">
