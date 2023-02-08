@@ -81,7 +81,7 @@ class SessionStatistics(models.Model):
 
     color = fields.Integer('Color Index')
 
-    partner_id = fields.Many2many('res.partner', readonly=True)
+    partner_id = fields.Many2many('res.partner', compute="_compute_liste_client_present", readonly=True)
 
     @api.depends('session_id')
     def _compute_date_examen(self):
@@ -294,6 +294,7 @@ class SessionStatistics(models.Model):
             else:
                 rec.taux_repassage_presence = 0
 
+    @api.depends('session_id')
     def _compute_liste_client_present(self):
         for liste in self:
             if liste.session_id:
