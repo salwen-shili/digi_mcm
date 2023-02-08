@@ -8,6 +8,7 @@ import random
 from num2words import num2words
 
 from datetime import datetime, timedelta, date
+import time
 
 _logger = logging.getLogger(__name__)
 
@@ -726,6 +727,7 @@ class Session(models.Model):
 
     def write(self, values):
         for record in self:
+            time.sleep(random.random()*1.1)
             _logger.info(
                 "°°°°°°°°°°°°°°°°°STAGE TAKWA TEST stages.date_exam°°°°°°°°°°°°°°°°°°°°°° %s" % str(record.date_exam))
             newformat = "%Y-%m-%d"
