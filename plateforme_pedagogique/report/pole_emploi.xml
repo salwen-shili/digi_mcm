@@ -109,7 +109,7 @@
                                     <br/>
                                     <br/>
 
-                                    <img src='plateforme_pedagogique/static/img/pole.png'
+                                    <img src='plateforme_pedagogique/static/img/sig_nasser.png'
                                          style="max-height:100px;max-width:200px;"/>
                                 </th>
                             </div>
@@ -156,7 +156,7 @@
                         <br/>
                         <br/>
 
-                        <div align="center" style="position:absolute; margin:0px; padding:0px;margin-left:-15px;">
+                        <div align="center" style="position:absolute;">
 
                             <hr style="border:1px solid;"></hr>
                             <h5>POLE EMPLOI</h5>
