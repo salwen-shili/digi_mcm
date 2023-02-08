@@ -11,7 +11,6 @@
                         font-size:15px ;
                         margin-left:20px;
                         margin-right:20px;
-                        margin-top:20px;
                         }
 
 
@@ -100,17 +99,21 @@
                         <br/>
                         <div class="col-12">
                             <div style="position:fixed">
+
                                 <th style="max-height:190px;float:right;padding-right:30px;">
+                                    <br/>
+                                    <br/>
                                     <strong>
                                         Signature
                                     </strong>
                                     <br/>
+                                    <br/>
 
-                                    <img src='/partner_exam/static/src/img/sig_nasser.png'
-                                         style="height:100px; width:200px;"/>
+                                    <img src='plateforme_pedagogique/static/img/pole.png'
+                                         style="max-height:100px;max-width:200px;"/>
                                 </th>
                             </div>
-                            <div style="position:absolute;right: 10px;">
+                            <div style="position:absolute;right:10px;">
                                 <th style="max-height:190px;float:right;padding-right:30px;">
                                     <br/>
                                     <br/>
@@ -121,7 +124,7 @@
                                     <br/>
 
                                     <img src='/partner_exam/static/src/img/signature_cnx.png'
-                                         style="height:100px; width:200px;"/>
+                                         style="max-height:100px;max-width:200px;"/>
                                 </th>
                             </div>
                         </div>
@@ -147,26 +150,20 @@
                         <br/>
                         <br/>
                         <br/>
-                        <br/>
-                        <br/>
-                        <br/>
+
                         <br/>
                         <br/>
                         <br/>
                         <br/>
 
-                        <div align="center">
+                        <div align="center" style="position:absolute; margin:0px; padding:0px;margin-left:-15px;">
 
-                            <hr style="border: 5px solid;"></hr>
-
+                            <hr style="border:1px solid;"></hr>
                             <h5>POLE EMPLOI</h5>
-
                             <h5>www.pole-emploi.fr -
-                                <img src='/partner_exam/static/src/img/pole.png'
-                                     style="height:30px; width:300px;"/>
+                                <img src='plateforme_pedagogique/static/img/pole.png'
+                                     style="max-height:100px;max-width:200px;"/>
                             </h5>
-
-
                             <h6>OUVERT DU LUNDI AU VENDREDI DE 08H30 A 12H30. RECEPTION UNIQUEMENT SUR RENDEZ VOUS
                                 L'APRES
                                 MIDI DU LUNDI AU JEUDI DE 12H30 A 16H15.
