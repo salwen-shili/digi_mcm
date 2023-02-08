@@ -297,9 +297,8 @@ class SessionStatistics(models.Model):
     @api.depends('session_id')
     def _compute_liste_client_present(self):
         for liste in self:
-            if liste.session_id:
-                # list = []
-                for examen in liste.env['info.examen'].search(
-                        [('date_exam', "=", liste.session_id.date_exam), ('session_id', "=", liste.session_id.id),
-                         ('presence', "=", 'present')]):
-                    liste.partner_id = [(4, examen.id)]
+            # list = []
+            for examen in liste.env['info.examen'].search(
+                    [('date_exam', "=", liste.session_id.date_exam), ('session_id', "=", liste.session_id.id),
+                     ('presence', "=", 'present')]):
+                self.sudo().write({'partner_id': [(6, 0, examen.id)]})
