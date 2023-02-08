@@ -256,7 +256,7 @@ class sendinblueLists(models.Model):
                 if not contact_id:
                     if not self.account_id.auto_create_member:
                         continue
-                    self.update_partner_detail(name, member.get('email'), prepared_vals_for_create_partner)
+                    #self.update_partner_detail(name, member.get('email'), prepared_vals_for_create_partner)
                     update_partner_required = False
                     contact_id = mailing_contact_obj.create(
                         {'name': name,
@@ -265,8 +265,8 @@ class sendinblueLists(models.Model):
                          'sendinblue_id':member.get('id',False)})
                 if contact_id:
                     md5_email = hashlib.md5(member.get('email').encode('utf-8')).hexdigest()
-                    if update_partner_required:
-                        self.update_partner_detail(name, member.get('email'), prepared_vals_for_create_partner)
+                    #if update_partner_required:
+                        #self.update_partner_detail(name, member.get('email'), prepared_vals_for_create_partner)
                     vals = {'list_id': self.odoo_list_id.id, 'contact_id': contact_id.id,
                             'sendinblue_id': member.get('id'), 'sendinblue_md5_email': md5_email}
                     existing_define_list = contact_id.subscription_list_ids.filtered(
