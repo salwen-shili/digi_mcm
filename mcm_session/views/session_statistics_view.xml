@@ -13,28 +13,49 @@
                                 <field name="date_exam"/>
                                 <field name="company_id" options="{'no_create': True}"/>
                             </group>
-                            <group string="IOne Inscrits" col="4">
+                            <group string="Nombre IOne Inscrits" col="4">
                                 <field name="nbr_inscrits"/>
                                 <field name="nbr_pack_solo_inscrits"/>
                                 <field name="nbr_pack_pro_inscrit"/>
                                 <field name="nbr_pack_premium_inscrit"/>
                                 <field name="nbr_pack_repassage_inscrit"/>
                             </group>
-                            <group string="IOne Présents" col="4">
+                            <group string="Nombre IOne Présents" col="4">
                                 <field name="nbr_present"/>
                                 <field name="nbr_pack_solo_present"/>
                                 <field name="nbr_pack_pro_present"/>
                                 <field name="nbr_pack_premium_present"/>
                                 <field name="nbr_pack_repassage_present"/>
+                            </group>
+                            <group string="Taux IOne Présents" col="4">
                                 <field name="taux_solo_presence" widget="progressbar"/>
                                 <field name="taux_pro_presence" widget="progressbar"/>
                                 <field name="taux_premium_presence" widget="progressbar"/>
                                 <field name="taux_repassage_presence" widget="progressbar"/>
                             </group>
                             <field name="nbr_absence_justifiee"/>
-                            <group string="IOne Echecs" col="4">
+                            <group string="Nombre IOne Echecs" col="4">
                                 <field name="nbr_echec"/>
                                 <field name="taux_echec" widget="progressbar"/>
+                            </group>
+
+                            <group string="Liste IOne Présents" col="8">
+                                <field name="partner_present_id">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="presence"/>
+                                        <field name="resultat"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group string="Liste IOne Absents" col="8">
+                                <field name="partner_absent_id">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="presence"/>
+                                        <field name="resultat"/>
+                                    </tree>
+                                </field>
                             </group>
                         </group>
                     </sheet>

@@ -7,47 +7,47 @@ class SessionStatistics(models.Model):
 
     session_id = fields.Many2one('mcmacademy.session', 'Session', required=True, readonly=False)
 
-    date_exam = fields.Date(string="Date examen")
+    date_exam = fields.Date(string="Date examen", related="session_id.date_exam")
 
-    nbr_inscrits = fields.Integer(string="Nombre d'inscrits", compute="_compute_nbr_inscrit", store=True,
+    nbr_inscrits = fields.Integer(string="Nombre Inscrits", compute="_compute_nbr_inscrit", store=True,
                                   help="Nombre d'inscrits.")
 
-    nbr_pack_solo_inscrits = fields.Integer(string="Pack Solo Inscrit",
+    nbr_pack_solo_inscrits = fields.Integer(string="Solo Inscrit",
                                             compute="_compute_pack_solo_inscrit", store=True,
-                                            help="Pack Solo Inscrit.")
+                                            help="Solo Inscrit.")
 
-    nbr_pack_pro_inscrit = fields.Integer(string="Nombre Pack Pro Inscrit",
+    nbr_pack_pro_inscrit = fields.Integer(string="Pro Inscrit",
                                           compute="_compute_pack_pro_inscrit", store=True,
-                                          help="Nombre Pack Pro Inscrit.")
+                                          help="Pro Inscrit.")
 
-    nbr_pack_premium_inscrit = fields.Integer(string="Nombre Pack Premium Inscrit",
+    nbr_pack_premium_inscrit = fields.Integer(string="Premium Inscrit",
                                               compute="_compute_pack_premium_inscrit", store=True,
                                               help="Nombre Pack Premium Inscrit.")
 
-    nbr_pack_repassage_inscrit = fields.Integer(string="Nombre Pack Repassage Inscrit",
+    nbr_pack_repassage_inscrit = fields.Integer(string="Repassage Inscrit",
                                                 compute="_compute_pack_repassage_inscrit", store=True,
                                                 help="Nombre Pack Repassage Inscrit.")
 
-    nbr_pack_solo_present = fields.Integer(string="Nombre Pack Solo présent",
+    nbr_pack_solo_present = fields.Integer(string="Solo présent",
                                            compute="_compute_nbr_pack_solo_present", store=True,
                                            help="Nombre Pack Solo Présent.")
 
-    nbr_pack_pro_present = fields.Integer(string="Nombre Pack Pro Présent",
+    nbr_pack_pro_present = fields.Integer(string="Pro Présent",
                                           compute="_compute_nbr_pack_pro_present",
                                           store=True,
                                           help="Nombre Pack Pro Présent.")
 
-    nbr_pack_premium_present = fields.Integer(string="Nombre Pack Premium Présent",
+    nbr_pack_premium_present = fields.Integer(string="Premium Présent",
                                               compute="_compute_nbr_pack_premium_present",
                                               store=True,
                                               help="Nombre Pack Premium Présent.")
 
-    nbr_pack_repassage_present = fields.Integer(string="Nombre Pack Repassage Présent",
+    nbr_pack_repassage_present = fields.Integer(string="Repassage Présent",
                                                 compute="_compute_nbr_pack_repassage_present",
                                                 store=True,
                                                 help="Nombre Pack Repassage Présent.")
 
-    nbr_present = fields.Integer(string="Nombre de présents", compute="_compute_nbr_present", store=True,
+    nbr_present = fields.Integer(string="Présents", compute="_compute_nbr_present", store=True,
                                  help="Nombre de présents.")
 
     taux_solo_presence = fields.Integer(string="Taux Solo Présent", compute="_compute_taux_de_presence_solo", help="Taux Solo Présent.")
@@ -55,7 +55,7 @@ class SessionStatistics(models.Model):
     taux_premium_presence = fields.Integer(string="Taux Premium Présent", compute="_compute_taux_de_presence_premium", help="Taux Premium Présent.")
     taux_repassage_presence = fields.Integer(string="Taux Repassage Présent", compute="_compute_taux_de_presence_repassage", help="Taux Repassage Présent.")
 
-    nbr_absence_justifiee = fields.Integer(string="Nombre d'absence justifiée",
+    nbr_absence_justifiee = fields.Integer(string="Absence justifiée",
                                            compute="_compute_nbr_absence_justifiee",
                                            store=True, help="Nombre d'absence justifiée.")
 
@@ -65,10 +65,13 @@ class SessionStatistics(models.Model):
     taux_echec = fields.Float(string="Taux d'échec", compute="_compute_taux_echec",
                               store=True, help="Taux d'échec %")
 
-    company_id = fields.Many2one('res.company', string='Société', change_default=True,
+    company_id = fields.Many2one('res.company', string='Société',
                                  default=lambda self: self.env.company)
 
     color = fields.Integer('Color Index')
+
+    partner_present_id = fields.Many2many('res.partner', string='Liste Présents')
+    partner_absent_id = fields.Many2many('res.partner', string='Liste Absents')
 
     @api.depends('session_id')
     def _compute_date_examen(self):
