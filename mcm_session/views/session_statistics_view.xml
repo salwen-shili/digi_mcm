@@ -40,13 +40,7 @@
                             </group>
 
                             <group string="Liste IOne Présents" col="8">
-                                <field name="partner_id">
-                                    <tree>
-                                        <field name="name"/>
-                                        <field name="presence"/>
-                                        <field name="resultat"/>
-                                    </tree>
-                                </field>
+                                <field name="partner_id"/>
                             </group>
                             <group string="Liste IOne Absents" col="8">
                                 <field name="partner_id"/>
