@@ -56,10 +56,15 @@ class SessionStatistics(models.Model):
     nbr_present = fields.Integer(string="Présents", compute="_compute_nbr_present", store=True,
                                  help="Nombre de présents.")
 
-    taux_solo_presence = fields.Integer(string="Taux Solo Présent", compute="_compute_taux_de_presence_solo", help="Taux Solo Présent.")
-    taux_pro_presence = fields.Integer(string="Taux Pro Présent", compute="_compute_taux_de_presence_pro", help="Taux Pro Présent.")
-    taux_premium_presence = fields.Integer(string="Taux Premium Présent", compute="_compute_taux_de_presence_premium", help="Taux Premium Présent.")
-    taux_repassage_presence = fields.Integer(string="Taux Repassage Présent", compute="_compute_taux_de_presence_repassage", help="Taux Repassage Présent.")
+    taux_solo_presence = fields.Integer(string="Taux Solo Présent", compute="_compute_taux_de_presence_solo",
+                                        help="Taux Solo Présent.")
+    taux_pro_presence = fields.Integer(string="Taux Pro Présent", compute="_compute_taux_de_presence_pro",
+                                       help="Taux Pro Présent.")
+    taux_premium_presence = fields.Integer(string="Taux Premium Présent", compute="_compute_taux_de_presence_premium",
+                                           help="Taux Premium Présent.")
+    taux_repassage_presence = fields.Integer(string="Taux Repassage Présent",
+                                             compute="_compute_taux_de_presence_repassage",
+                                             help="Taux Repassage Présent.")
 
     nbr_absence_justifiee = fields.Integer(string="Absence justifiée",
                                            compute="_compute_nbr_absence_justifiee",
@@ -77,6 +82,7 @@ class SessionStatistics(models.Model):
     color = fields.Integer('Color Index')
 
     partner_id = fields.Many2many('res.partner', readonly=True)
+
     @api.depends('session_id')
     def _compute_date_examen(self):
         date = self.session_id.date_exam
@@ -133,9 +139,6 @@ class SessionStatistics(models.Model):
         sum_repassage_inscrit = nbr_from_examen
         self.nbr_pack_repassage_inscrit = sum_repassage_inscrit
 
-
-
-
     @api.depends('session_id')
     def _compute_nbr_present(self):
         nbr_present = False
@@ -183,7 +186,8 @@ class SessionStatistics(models.Model):
 
             nbr_from_examen_repassage = 0
             for examen in rec.env['info.examen'].search(
-                    [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id), ('presence', "=", 'present')]):
+                    [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id),
+                     ('presence', "=", 'present')]):
                 if examen.module_id.product_id.default_code == "examen":
                     nbr_from_examen_repassage += 1
             rec.nbr_pack_repassage_present = nbr_from_examen_repassage
@@ -201,7 +205,7 @@ class SessionStatistics(models.Model):
     @api.depends('session_id')
     def _compute_nbr_echec(self):
         nbr_echec = False
-        #self.nbr_echec = int(self.session_id.nbr_echec(nbr_echec))
+        # self.nbr_echec = int(self.session_id.nbr_echec(nbr_echec))
         for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
             nbr_absence = examen.env['info.examen'].search_count(
                 [('session_id', "=", self.session_id.id), ('presence', "=", 'present'), ('resultat', "=", 'ajourne')])
@@ -289,3 +293,12 @@ class SessionStatistics(models.Model):
                     rec.taux_repassage_presence = taux_de_presence
             else:
                 rec.taux_repassage_presence = 0
+
+    def _compute_liste_client_present(self):
+        for liste in self:
+            if liste.session_id:
+                # list = []
+                for examen in liste.env['info.examen'].search(
+                        [('date_exam', "=", liste.session_id.date_exam), ('session_id', "=", liste.session_id.id),
+                         ('presence', "=", 'present')]):
+                    liste.partner_id = [(4, examen.id)]
