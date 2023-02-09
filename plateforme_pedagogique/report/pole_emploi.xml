@@ -1,171 +1,176 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-         <template id="pole_emplois">
-            <t t-call="web.html_container">
-                <t t-foreach="docs" t-as="o">
+    <template id="pole_emplois">
+   <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
 
-                    <t t-call="web.basic_layout">
-                        <style>
-                            .page {
-                            line-height:1.75;
-                            font-size:15px ;
-                            }
+                <t t-call="web.basic_layout">
+                    <style>
+                        .page {
+                        line-height:1.75;
+                        font-size:15px ;
+                        }
 
-                        </style>
-                        <div class="page">
-                            <div class="oe_structure"/>
-                            <div class="row">
-                                <div class="col-12">
-                                    Nom Prénom:
-                                    <span t-esc="o.name"/>
-                                    <br/>
-                                    <br/>
-                                    Référence:
-                                    <span t-esc="o.numero_pole_emploi"/>
-                                </div>
-
+                    </style>
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-12">
+                                Nom Prénom:
+                                <span t-esc="o.name"/>
+                                <br/>
+                                <br/>
+                                Référence:
+                                <span t-esc="o.numero_pole_emploi"/>
                             </div>
-                            <br/>
-                            <br/>
-                            <div class="row">
+
+                        </div>
+                        <br/>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-12">
                                 <h5 align="center">---------------- Formulaire à compléter et à retourner à
                                     votre pôle emploi ---------------
                                 </h5>
                                 <br/>
                                 <br/>
-                            </div>
-                            <div class="row">
                                 <div class="col-12">
-                                    <div class="col-12">
-                                        <div class="col-6" style="position:fixed">
+                                    <div style="position:fixed">
+
+                                        <th style="max-height:190px;float:right;padding-right:30px;">
+
                                             Référence:
                                             <span t-esc="o.numero_pole_emploi"/>
-                                        </div>
-                                        <div class="col-6" style="position:absolute;right: 5px;">
+                                        </th>
+                                    </div>
+                                    <div style="position:absolute;right:10px;">
+                                        <th style="max-height:190px;float:right;padding-right:30px;">
+
                                             Nom Prénom:
                                             <span t-esc="o.name"/>
-                                        </div>
-
-                                        <br/>
-                                        <br/>
-                                        <p>
-                                            Date de début de stage :
-                                            <span t-esc="o.date_creation"/>
-
-                                            <br/>
-
-                                            Date de fin de stage :
-                                            <span t-esc="o.date_creation"/>
-                                            <br/>
-
-                                            Nombre d'heures :
-                                            <span t-esc="o.total_time_hours"/>
-
-                                            <br/>
-                                            Type de rémunération :
-                                            <br/>
-                                            Organisme payeur:
-                                            <br/>
-                                            <br/>
-                                            Ce stage a t-il débuté alors que vous étiez en contrat de sécurisation
-                                            professionnelle ?
-                                            <ul>
-                                                &#160; &#160; OUI □ &#160;&#160;&#160; &#160; &#160; Non ☑
-                                            </ul>
-                                            <br/>
-                                            S'agit-il de cours du soir ?
-                                            <ul>
-                                                &#160; &#160; OUI □ &#160;&#160;&#160; &#160; &#160; Non ☑
-                                            </ul>
-                                        </p>
+                                        </th>
                                     </div>
-                                </div>
 
 
-                                <div style="position:fixed">
-                                    Le
-                                    <!-- date système-->
-                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
-                                </div>
-                            </div>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <div class="col-12">
-                                <div style="position:fixed">
 
-                                    <th style="max-height:190px;float:right;padding-right:30px;">
-                                        <br/>
-                                        <br/>
-                                        <strong>
-                                            Signature
-                                        </strong>
-                                        <br/>
+                                    <br/>
+                                    <br/>
+                                    <p>
+                                        Date de début de stage :
+                                        <span t-esc="o.date_creation"/>
+
                                         <br/>
 
-
-                                        <img src='/plateforme_pedagogique/static/img/sig_nasser.png'
-                                             alt="signature" style="max-height:100px;max-width:200px;"
-                                        />
-                                    </th>
-                                </div>
-                                <div style="position:absolute;right:10px;">
-                                    <th style="max-height:190px;float:right;padding-right:30px;">
-                                        <br/>
-                                        <br/>
-                                        <strong>
-                                            Cachet de l'organisme de formation
-                                        </strong>
-                                        <br/>
+                                        Date de fin de stage :
+                                        <span t-esc="o.date_creation"/>
                                         <br/>
 
-                                        <img src='/partner_exam/static/src/img/signature_cnx.png'
-                                             style="max-height:100px;max-width:200px;"/>
-                                    </th>
+                                        Nombre d'heures :
+                                        <span t-esc="o.total_time_hours"/>
+
+                                        <br/>
+                                        Type de rémunération :
+                                        <br/>
+                                        Organisme payeur:
+                                        <br/>
+                                        <br/>
+                                        Ce stage a t-il débuté alors que vous étiez en contrat de sécurisation
+                                        professionnelle ?
+                                        <ul>
+                                            &#160; &#160; OUI □ &#160;&#160;&#160; &#160; &#160; Non ☑
+                                        </ul>
+                                        <br/>
+                                        S'agit-il de cours du soir ?
+                                        <ul>
+                                            &#160; &#160; OUI □ &#160;&#160;&#160; &#160; &#160; Non ☑
+                                        </ul>
+                                    </p>
                                 </div>
                             </div>
 
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
 
-                            <div align="center" style="position:absolute;">
-
-                                <hr style="border:1px solid;"></hr>
-                                <h6>POLE EMPLOI</h6>
-                                <h6>www.pole-emploi.fr -
-
-                                    <img src='/partner_exam/static/src/img/pole.png'
-                                         style="max-height:20px;max-width:400px;"/>
-                                </h6>
-                                OUVERT DU LUNDI AU VENDREDI DE 08H30 A 12H30. RECEPTION UNIQUEMENT SUR RENDEZ
-                                VOUS
-                                L'APRES
-                                MIDI DU LUNDI AU JEUDI DE 12H30 A 16H15.
-
+                            <div style="position:fixed">
+                                Le
+                                <!-- date système-->
+                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                             </div>
                         </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="col-12">
+                            <div style="position:fixed">
+
+                                <th style="max-height:190px;float:right;padding-right:30px;">
+                                    <br/>
+                                    <br/>
+                                    <strong>
+                                        Signature
+                                    </strong>
+                                    <br/>
+                                    <br/>
 
 
-                    </t>
+                                    <img src='/plateforme_pedagogique/static/img/sig_nasser.png'
+                                         alt="signature" style="max-height:200px;max-width:400px;"
+                                    />
+                                </th>
+                            </div>
+                            <div style="position:absolute;right:10px;">
+                                <th style="max-height:190px;float:right;padding-right:30px;">
+                                    <br/>
+                                    <br/>
+                                    <strong>
+                                        Cachet de l'organisme de formation
+                                    </strong>
+                                    <br/>
+                                    <br/>
+
+                                    <img src='/partner_exam/static/src/img/signature_cnx.png'
+                                         style="max-height:100px;max-width:200px;"/>
+                                </th>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <div align="center" style="position:absolute;">
+
+                            <hr style="border:1px solid;"></hr>
+                            <h6>POLE EMPLOI</h6>
+                            <h6>www.pole-emploi.fr -
+
+                                <img src='/partner_exam/static/src/img/pole.png'
+                                     style="max-height:20px;max-width:400px;"/>
+                            </h6>
+                            OUVERT DU LUNDI AU VENDREDI DE 08H30 A 12H30. RECEPTION UNIQUEMENT SUR RENDEZ
+                            VOUS
+                            L'APRES
+                            MIDI DU LUNDI AU JEUDI DE 12H30 A 16H15.
+
+                        </div>
+                    </div>
+
+
                 </t>
             </t>
-        </template>
- </odoo>
+        </t>
+    </template>
+</odoo>
