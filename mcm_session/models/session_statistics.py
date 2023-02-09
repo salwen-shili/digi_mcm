@@ -305,5 +305,5 @@ class SessionStatistics(models.Model):
             for examen in liste.env['info.examen'].search(
                     [('date_exam', "=", liste.session_id.date_exam), ('session_id', "=", liste.session_id.id),
                      ('presence', "=", 'present')]):
-                list.append(examen.partner_present_id.id)
-            self.sudo().write({'partner_id': [(6, 0, list)]})
+                list.append(examen.partner_id.id)
+            self.sudo().write({'partner_present_id': [(6, 0, list)]})
