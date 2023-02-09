@@ -63,7 +63,7 @@
                                         <br/>
 
                                         Date de fin de stage :
-                                        <span t-esc="o.date_creation"/>
+                                        <span t-esc="o.mcm_session_id.date_exam"/>
                                         <br/>
 
                                         Nombre d'heures :
