@@ -39,10 +39,16 @@
                                 <field name="taux_echec" widget="progressbar"/>
                             </group>
                         </group>
-                        <group string="Liste IOne Présents" >
-                            <field name="partner_id" nolabel="1"/>
+                        <group string="Liste IOne Présents" col="8">
+                            <field name="partner_id" nolabel="1" widget="many2many">
+                                <tree string="partner_list">
+                                    <field name="name" invisible="0"/>
+                                    <field name="email" invisible="1"/>
+                                    <field name="last_internal_log" invisible="1"/>
+                                </tree>
+                            </field>
                         </group>
-                        <group string="Liste IOne Absents" col="12">
+                        <group string="Liste IOne Absents" col="8">
                             <field name="partner_id" nolabel="1"/>
                         </group>
                     </sheet>
