@@ -41,7 +41,7 @@
                             </group>
                         </group>
                         <group string="Liste IOne Présents" col="8">
-                            <field name="partner_id" nolabel="1" widget="one2many">
+                            <field name="partner_present_id" nolabel="1" widget="one2many">
                                 <tree string="partner_list">
                                     <field name="name" invisible="0"/>
                                     <field name="email" invisible="1"/>
@@ -49,7 +49,7 @@
                             </field>
                         </group>
                         <group string="Liste IOne Absents" col="8">
-                            <field name="partner_id" nolabel="1"/>
+                            <field name="partner_absent_id" nolabel="1"/>
                         </group>
                     </sheet>
                     <!--<div class="oe_chatter">
