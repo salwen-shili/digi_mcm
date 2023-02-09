@@ -1364,9 +1364,7 @@ figure.snip1256.hover figcaption {
   animation-play-state: running;
 }
 
-.rounded.img-responsive {
-  transform: scaleX(0.78) scaleY(0.85);
-}
+
 
 .font-medium {
   text-align: center;
@@ -1505,7 +1503,7 @@ figure.snip1256.hover figcaption {
   padding-right: 67px !important;
 }
 .scooter-pos {
-  transform: scaleX(0.78) scaleY(0.85);
+  transform: scaleX(0.99) scaleY(0.99);
 }
 .img-3-style {
   animation-name: o_anim_zoom_in;
@@ -1513,10 +1511,10 @@ figure.snip1256.hover figcaption {
   animation-play-state: running;
 }
 .voiture-pos {
-  transform: scaleX(0.85) scaleY(0.89);
+  transform: scaleX(0.99) scaleY(0.99);
 }
 .camionnette-pos {
-  transform: scaleX(0.89) scaleY(0.9);
+  transform: scaleX(0.99) scaleY(0.99);
 }
 .parallax-section {
   background-image: url('/digimoov_website_templates/static/img/Monter boite de transport.png');
