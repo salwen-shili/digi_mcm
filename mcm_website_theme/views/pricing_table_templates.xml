@@ -9,6 +9,8 @@
         <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par visioconférence</li>
         <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Lives avec les formateurs pour explications</li>
         <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Révision du programme avant examen</li>
+        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>100€ de reste à charge remboursable en cas de réussite à l'examen</b></li>
+
         <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
     </ul>
 
@@ -24,13 +26,14 @@
         <li style="font-size: 15.3px;"> <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Lives avec les formateurs pour explications</li>
         <li style="font-size: 15.3px;"> <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Révision du programme avant examen</li>
         <li style="font-size: 15.3px;"> &amp;nbsp;</li>
+        <li style="font-size: 15.3px;"> &amp;nbsp;</li>
         <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
     </ul>
 
 </template>
 <template id="mcm_website_theme.pricing_table_passerelle" name="PASSERELLE PRICING content">
     <ul class="text-left" style="    margin-left: -12px">
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation 14 h (100 % en ligne)</li>
+        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation 15 h (100 % en ligne)</li>
         <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>Inscription à l'examen auprès de la CMA</b></li>
         <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Accès à 4 examens Blancs avec correction</li>
         <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par mail</li>
@@ -38,6 +41,7 @@
         <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par visioconférence</li>
         <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Lives avec les formateurs pour explications</li>
         <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Révision du programme avant examen</li>
+        <li style="font-size: 15.3px;"> &amp;nbsp;</li>
         <!-- <li style="font-size: 15.3px;"> &amp;nbsp;</li> -->
         <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
     </ul>
