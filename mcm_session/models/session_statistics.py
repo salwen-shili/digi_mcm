@@ -92,6 +92,8 @@ class SessionStatistics(models.Model):
 
     partner_absent_ids = fields.One2many('res.partner', 'statistics_session_id', readonly=True)
 
+    totalTimeSpentInMinutes = fields.Char(string="temps passé en minutes")
+
     @api.depends('session_id')
     def _compute_date_examen(self):
         date = self.session_id.date_exam

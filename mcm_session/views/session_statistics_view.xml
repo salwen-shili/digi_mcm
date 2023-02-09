@@ -42,6 +42,7 @@
                         </group>
                         <group string="Liste IOne Présents" col="6">
                             <field name="partner_present_ids" nolabel="1">
+                                <field name="totalTimeSpentInMinutes"/>
                                 <tree string="partner_list" limit="5">
                                     <field name="name" />
                                     <field name="totalTimeSpentInMinutes"/>
