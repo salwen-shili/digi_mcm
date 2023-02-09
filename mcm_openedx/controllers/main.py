@@ -396,7 +396,7 @@ class JotformConnector(http.Controller):
         _logger.info("rawRequest1 : %s" % (rawRequest))
         email = str(rawRequest['q54_email']).lower().replace(' ', '')
         examen = str(rawRequest['q144_veuillezChoisir'])
-        sig0 = str(rawRequest['q155_jaiLu'].split(',')[0])
+        sig0 = str(rawRequest['q180_signature'].split(',')[0])
         _logger.info(examen)
         # for partner_email in request.env['res.partner'].sudo().search(
         #         [('email', "=", email)]):
@@ -636,12 +636,12 @@ class JotformConnector(http.Controller):
                                                                                         'state': 'waiting', })
 
                             request.env.cr.commit()
-            if rawRequest['q155_jaiLu']:
-                url = rawRequest['q155_jaiLu'].split(',')[1]
+            if rawRequest['q180_signature']:
+                url = rawRequest['q180_signature'].split(',')[1]
                 if url:
-                    _logger.info("rawRequest['q155_jaiLu'].split(',')[1]%s" % (str(url)))
+                    _logger.info("rawRequest['q180_signature'].split(',')[1]%s" % (str(url)))
                     # 👉️ Check if my_var is not None (null)
-                    sig1 = (rawRequest['q155_jaiLu'].split(',')[1])
+                    sig1 = (rawRequest['q180_signature'].split(',')[1])
                     # decoder l'image de la base 64
                     sig = base64.b64decode(sig1)
                     # convertir l'image en png
@@ -914,12 +914,12 @@ class JotformConnector(http.Controller):
                                                                                         'state': 'waiting', })
 
                             request.env.cr.commit()
-            if rawRequest['q155_jaiLu']:
-                url = rawRequest['q155_jaiLu'].split(',')[1]
+            if rawRequest['q180_signature']:
+                url = rawRequest['q180_signature'].split(',')[1]
                 if url:
-                    _logger.info("rawRequest['q155_jaiLu'].split(',')[1]%s" % (str(url)))
+                    _logger.info("rawRequest['q180_signature'].split(',')[1]%s" % (str(url)))
                     # 👉️ Check if my_var is not None (null)
-                    sig1 = (rawRequest['q155_jaiLu'].split(',')[1])
+                    sig1 = (rawRequest['q180_signature'].split(',')[1])
                     # decoder l'image de la base 64
                     sig = base64.b64decode(sig1)
                     # convertir l'image en png
@@ -1191,12 +1191,12 @@ class JotformConnector(http.Controller):
                                                                                         'state': 'waiting', })
 
                             request.env.cr.commit()
-            if rawRequest['q155_jaiLu']:
-                url = rawRequest['q155_jaiLu'].split(',')[1]
+            if rawRequest['q180_signature']:
+                url = rawRequest['q180_signature'].split(',')[1]
                 if url:
-                    _logger.info("rawRequest['q155_jaiLu'].split(',')[1]%s" % (str(url)))
+                    _logger.info("rawRequest['q180_signature'].split(',')[1]%s" % (str(url)))
                     # 👉️ Check if my_var is not None (null)
-                    sig1 = (rawRequest['q155_jaiLu'].split(',')[1])
+                    sig1 = (rawRequest['q180_signature'].split(',')[1])
                     # decoder l'image de la base 64
                     sig = base64.b64decode(sig1)
                     # convertir l'image en png
