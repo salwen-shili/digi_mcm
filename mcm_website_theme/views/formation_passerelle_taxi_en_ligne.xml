@@ -192,7 +192,16 @@
                                 <h1 class="h1-size">
                                     FORMATION PASSERELLE TAXI
                                     EN LIGNE À
-                          
+                                   <t t-foreach="mcm_products" t-as="product">
+                            <t t-if="product.default_code=='passerelle-taxi'">
+                                <span style="
+                                color: #fdd105;
+                            " t-esc="round(product.list_price)" />
+                                <span style="
+                                color: #fdd105;
+                            "  t-esc="product.currency_id.symbol" />
+                            </t>
+                        </t>
                                    
                                 </h1>
                                 <blockquote style="word-break: break-word; position: relative; z-index: 0;" class="">
