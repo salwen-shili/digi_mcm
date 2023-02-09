@@ -31,6 +31,9 @@
         'views/users_stats.xml',
         'data/mail_data.xml',
         'views/company.xml',
+        'report/pole_emploi.xml',
+        'report/menu.xml',
+
         # 'data/automated_action_send_mail.xml',
         'data/automated_action_add_iOne.xml',
 

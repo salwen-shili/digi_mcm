@@ -2433,6 +2433,22 @@ class Payment3x(http.Controller):
             order.partner_id.is_pole_emploi = pole_emploi_state
         return pole_emploi_state
 
+    """Route est appelé quand demandeur pole emploi est coché pour extraire le numero de l'apprennat  """
+
+    @http.route(
+        ["/shop/cart/pole_emploi"], type="json", auth="public", methods=["POST"], website=True, csrf=False
+    )
+    def cart_pole_emploi_demendeur(self, numero_pole_emploi, is_demandeur_emploi):
+        order = request.website.sale_get_order(force_create=1)
+        print("order:", order, "numero_pole_emploi:", numero_pole_emploi)
+        print("order:", order, "pis_demandeur_emploi:", is_demandeur_emploi)
+        if is_demandeur_emploi:
+            order.partner_id.numero_pole_emploi = numero_pole_emploi
+        else:
+            is_demandeur_emploi = False
+
+        return (numero_pole_emploi, is_demandeur_emploi)
+
     @http.route(
         ["/shop/payment/update_cartebleu"], type="json", auth="public", methods=["POST"], website=True, csrf=False
     )
@@ -3268,7 +3284,7 @@ class MCM_SIGNUP(http.Controller):
 
         if request.website.id == 1:
             return werkzeug.utils.redirect('/', 301)
-            #return request.render("mcm_website_theme.mcm_bolt_documents_new_process")
+            # return request.render("mcm_website_theme.mcm_bolt_documents_new_process")
         else:
             raise werkzeug.exceptions.NotFound()
 
@@ -3381,7 +3397,6 @@ class AuthSignupHome(AuthSignupHome):
                 odoo_contact.lang = 'fr_FR'
                 odoo_contact.state_id = department_id if department_id else False
         return True
-
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
     def webhook_integration_examen(self, **kw):
