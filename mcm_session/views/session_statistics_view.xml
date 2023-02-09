@@ -44,7 +44,7 @@
                             <field name="partner_present_ids" nolabel="1">
                                 <tree string="partner_list" limit="5">
                                     <field name="name" />
-                                    <field name="email"/>
+                                    <field name="totalTimeSpentInMinutes"/>
                                 </tree>
                             </field>
                         </group>
