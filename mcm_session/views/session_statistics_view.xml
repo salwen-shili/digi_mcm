@@ -26,6 +26,7 @@
                                 <field name="nbr_pack_pro_present"/>
                                 <field name="nbr_pack_premium_present"/>
                                 <field name="nbr_pack_repassage_present"/>
+                                <field name="nbr_absence_justifiee"/>
                             </group>
                             <group string="Taux IOne Présents" col="4">
                                 <field name="taux_solo_presence" widget="progressbar"/>
@@ -33,14 +34,14 @@
                                 <field name="taux_premium_presence" widget="progressbar"/>
                                 <field name="taux_repassage_presence" widget="progressbar"/>
                             </group>
-                            <field name="nbr_absence_justifiee"/>
+
                             <group string="Nombre IOne Echecs" col="4">
                                 <field name="nbr_echec"/>
                                 <field name="taux_echec" widget="progressbar"/>
                             </group>
                         </group>
                         <group string="Liste IOne Présents" col="8">
-                            <field name="partner_id" nolabel="1" widget="many2many">
+                            <field name="partner_id" nolabel="1" widget="one2many">
                                 <tree string="partner_list">
                                     <field name="name" invisible="0"/>
                                     <field name="email" invisible="1"/>

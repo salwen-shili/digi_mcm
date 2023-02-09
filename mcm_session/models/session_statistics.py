@@ -81,7 +81,11 @@ class SessionStatistics(models.Model):
 
     color = fields.Integer('Color Index')
 
-    partner_id = fields.Many2many('res.partner', compute="_compute_liste_client_present", readonly=True)
+    partner_present_id = fields.Many2many('res.partner', 'statics_session_present_rel', 'session_id',
+                                             'present_id', compute="_compute_liste_client_present", readonly=True)
+
+    partner_absent_id = fields.Many2many('res.partner', 'statics_session_absent_rel', 'session_id',
+                                             'absent_id', compute="_compute_liste_client_present", readonly=True)
 
     @api.depends('session_id')
     def _compute_date_examen(self):
