@@ -30,7 +30,7 @@
 </template>
 <template id="mcm_website_theme.pricing_table_passerelle" name="PASSERELLE PRICING content">
     <ul class="text-left" style="    margin-left: -12px">
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation 15 h (100 % en ligne)</li>
+        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation 14 h (100 % en ligne)</li>
         <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>Inscription à l'examen auprès de la CMA</b></li>
         <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Accès à 4 examens Blancs avec correction</li>
         <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par mail</li>
