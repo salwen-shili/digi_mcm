@@ -4,7 +4,6 @@
         <record id="view_session_statistics_form" model="ir.ui.view">
             <field name="name">session.statistics.form</field>
             <field name="model">session.statistics</field>
-            <field name="inherit_id" ref="partner_exam.mcmacademy_partner_department__view_res_partner_form"/>
             <field name="arch" type="xml">
                 <form string="Statestiques">
                     <sheet>
@@ -41,18 +40,22 @@
                                 <field name="taux_echec" widget="progressbar"/>
                             </group>
                         </group>
-                        <group string="Liste IOne Présents" col="8">
-                            <field name="partner_present_id" nolabel="1" widget="one2many">
+                        <group string="Liste IOne Présents" col="6">
+                            <field name="partner_present_id" nolabel="1">
                                 <tree string="partner_list" limit="5">
                                     <field name="name" invisible="0"/>
-                                    <field name="name" />
                                     <field name="presence"/>
                                 </tree>
                             </field>
                         </group>
-<!--                        <group string="Liste IOne Absents" col="8">-->
-<!--                            <field name="partner_absent_id" nolabel="1"/>-->
-<!--                        </group>-->
+                        <group string="Liste IOne Absents" col="6">
+                            <field name="partner_absent_id" nolabel="1">
+                                <tree string="partner_absent_list" limit="5">
+                                    <field name="name"/>
+                                    <field name="presence"/>
+                                </tree>
+                            </field>
+                        </group>
                     </sheet>
                     <!--<div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>

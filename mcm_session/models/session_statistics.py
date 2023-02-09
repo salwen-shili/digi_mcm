@@ -1,6 +1,12 @@
 from odoo import api, fields, models, _
 
 
+class InheritResPartner(models.Model):
+    _inherit = "res.partner"
+
+    statistics_session_id = fields.Many2one('session.statistics')
+
+
 class SessionStatistics(models.Model):
     _name = 'session.statistics'
     _description = "Statistiques"
@@ -81,11 +87,10 @@ class SessionStatistics(models.Model):
 
     color = fields.Integer('Color Index')
 
-    partner_present_id = fields.Many2many('res.partner', 'statics_session_present_rel', 'session_id',
-                                          'present_id', compute="_compute_liste_client_present", readonly=True)
+    partner_present_id = fields.One2many('res.partner', 'statistics_session_id',
+                                         compute="_compute_liste_client_present", readonly=True)
 
-    partner_absent_id = fields.Many2many('res.partner', 'statics_session_absent_rel', 'session_id', 'absent_id',
-                                         readonly=True)
+    partner_absent_id = fields.One2many('res.partner', 'statistics_session_id', compute="", readonly=True)
 
     @api.depends('session_id')
     def _compute_date_examen(self):
@@ -306,4 +311,13 @@ class SessionStatistics(models.Model):
                     [('date_exam', "=", liste.session_id.date_exam), ('session_id', "=", liste.session_id.id),
                      ('presence', "=", 'present')]):
                 list.append(examen.partner_id.id)
-            self.sudo().write({'partner_present_id': [(6, 0, list)]})
+            self.sudo().write({'partner_present_id': [(6, 0, list)]})\
+
+    @api.depends('session_id')
+    def _compute_liste_client_present(self):
+        list = []
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id),
+                 ('presence', "=", 'Absent')]):
+            list.append(examen.partner_id.id)
+        self.sudo().write({'partner_absent_id': [(6, 0, list)]})
