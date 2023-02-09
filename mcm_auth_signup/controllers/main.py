@@ -110,7 +110,7 @@ class AuthSignupHome(AuthSignupHome):
                                                                       order="create_date desc")  # get user created
                 if duplicate_partners_email:  # check if we get duplicated partners
                     list = []
-                    for partner in duplicate_partners:
+                    for partner in duplicate_partners_email:
                         list.append(partner.id)
                     list.append(
                         user_created.partner_id.id)  # append list of partners && partner of user created to a new list
