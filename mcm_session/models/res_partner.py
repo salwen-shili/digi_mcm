@@ -39,7 +39,6 @@ class resPartner(models.Model):
     # choosed_product=fields.Integer('Produit choisi')
     inscription_cpf=fields.Char('Inscription')
 
-
     @api.constrains('code_pole_emploi')
     def _check_parent_id(self):
         for record in self:
