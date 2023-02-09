@@ -111,7 +111,8 @@
 
 
                                     <img src='/plateforme_pedagogique/report/sig_nasser.png'
-                                         style="max-height:100px;max-width:200px;"/>
+                                         alt="signature"
+                                    />
                                 </th>
                             </div>
                             <div style="position:absolute;right:10px;">
@@ -163,8 +164,8 @@
                             <h5>POLE EMPLOI</h5>
                             <h5>www.pole-emploi.fr -
 
-                                    <img src='https://www.pole-emploi.fr/files/live/sites/guadeloupe/files/guadeloupe/mediatheque/images/3949_pics31321.png'
-                                         style="max-height:20px;max-width:200px;"/>
+                                <img src='https://www.pole-emploi.fr/files/live/sites/guadeloupe/files/guadeloupe/mediatheque/images/3949_pics31321.png'
+                                     style="max-height:20px;max-width:400px;"/>
                             </h5>
                             <h6>OUVERT DU LUNDI AU VENDREDI DE 08H30 A 12H30. RECEPTION UNIQUEMENT SUR RENDEZ VOUS
                                 L'APRES
