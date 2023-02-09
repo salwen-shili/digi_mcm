@@ -44,7 +44,6 @@
                                 <tree string="partner_list">
                                     <field name="name" invisible="0"/>
                                     <field name="email" invisible="1"/>
-                                    <field name="last_internal_log" invisible="1"/>
                                 </tree>
                             </field>
                         </group>
