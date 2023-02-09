@@ -41,18 +41,18 @@
                             </group>
                         </group>
                         <group string="Liste IOne Présents" col="6">
-                            <field name="partner_present_id" nolabel="1">
+                            <field name="partner_present_ids" nolabel="1">
                                 <tree string="partner_list" limit="5">
-                                    <field name="name" invisible="0"/>
-                                    <field name="presence"/>
+                                    <field name="name" />
+                                    <field name="email"/>
                                 </tree>
                             </field>
                         </group>
                         <group string="Liste IOne Absents" col="6">
-                            <field name="partner_absent_id" nolabel="1">
+                            <field name="partner_absent_ids" nolabel="1">
                                 <tree string="partner_absent_list" limit="5">
                                     <field name="name"/>
-                                    <field name="presence"/>
+                                    <field name="email"/>
                                 </tree>
                             </field>
                         </group>
