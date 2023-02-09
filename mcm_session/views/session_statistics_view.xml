@@ -4,6 +4,7 @@
         <record id="view_session_statistics_form" model="ir.ui.view">
             <field name="name">session.statistics.form</field>
             <field name="model">session.statistics</field>
+            <field name="view_id" ref="partner_exam.mcmacademy_partner_department__view_res_partner_form"/>
             <field name="arch" type="xml">
                 <form string="Statestiques">
                     <sheet>
