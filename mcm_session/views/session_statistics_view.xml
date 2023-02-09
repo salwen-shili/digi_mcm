@@ -42,9 +42,9 @@
                         </group>
                         <group string="Liste IOne Présents" col="8">
                             <field name="partner_present_id" nolabel="1" widget="one2many">
-                                <tree string="partner_list">
+                                <tree string="partner_list" limit="5">
                                     <field name="name" invisible="0"/>
-                                    <field name="email" invisible="1"/>
+                                    <field name="presence" invisible="1"/>
                                 </tree>
                             </field>
                         </group>
