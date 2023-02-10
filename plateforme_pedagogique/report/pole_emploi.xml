@@ -64,10 +64,10 @@
                                         Date de fin de stage :
                                         <span t-field="o.mcm_session_id.date_exam"
                                               t-field-options='{"format": "dd/MM/yyyy"}'/>
-
+                                        <br/>
 
                                         Nombre d'heures :
-                                         102 Heures
+                                        102 Heures
 
                                         <br/>
                                         Type de rémunération :
