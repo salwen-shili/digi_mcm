@@ -60,7 +60,7 @@ class partner(models.Model):
     is_pole_emploi = fields.Boolean(
         string="Pole Emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
-    numero_pole_emploi = fields.Integer(string="Numero pôle emploi")
+    numero_pole_emploi = fields.Char(string="Numero pôle emploi")
     is_demandeur_emploi = fields.Boolean(
         string="Demandeur emploi")  # champ pour distinguer le mode de financement
     # cpf+pole emploi
