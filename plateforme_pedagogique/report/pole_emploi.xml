@@ -62,8 +62,9 @@
                                         <br/>
 
                                         Date de fin de stage :
-                                        <span t-esc="o.mcm_session_id.date_exam"        t-field-options='{"format": "dd/MM/yyyy"}'/>
-                                        <br/>
+                                        <span t-field="o.mcm_session_id.date_exam"
+                                              t-field-options='{"format": "dd/MM/yyyy"}'/>
+
 
                                         Nombre d'heures :
                                          102 Heures
