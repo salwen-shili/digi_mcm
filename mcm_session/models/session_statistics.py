@@ -87,8 +87,7 @@ class SessionStatistics(models.Model):
 
     color = fields.Integer('Color Index')
 
-    partner_present_ids = fields.One2many('res.partner', 'statistics_session_id',
-                                         compute="_compute_liste_client_present", readonly=True)
+    partner_present_ids = fields.One2many('res.partner', 'statistics_session_id', readonly=True)
 
     partner_absent_ids = fields.One2many('res.partner', 'statistics_session_id', readonly=True)
 
@@ -305,7 +304,6 @@ class SessionStatistics(models.Model):
             else:
                 rec.taux_repassage_presence = 0
 
-    @api.depends('session_id')
     def _compute_liste_client_present(self):
         for liste in self:
             list = []
@@ -313,9 +311,9 @@ class SessionStatistics(models.Model):
                     [('date_exam', "=", liste.session_id.date_exam), ('session_id', "=", liste.session_id.id),
                      ('presence', "=", 'present')]):
                 list.append(examen.partner_id.id)
-            liste.sudo().write({'partner_present_ids': [(6, 0, list)]})\
+                for l in list:
+                    liste.sudo().write({'partner_present_ids': [(6, 0, l)]})
 
-    @api.depends('session_id')
     def _compute_liste_client_present(self):
         for rec in self:
             list = []
@@ -323,4 +321,5 @@ class SessionStatistics(models.Model):
                     [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id),
                      ('presence', "=", 'Absent')]):
                 list.append(examen.partner_id.id)
-            rec.sudo().write({'partner_absent_ids': [(6, 0, list)]})
+                for l in list:
+                    rec.sudo().write({'partner_absent_ids': [(6, 0, l)]})

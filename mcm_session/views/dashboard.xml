@@ -32,9 +32,19 @@
     </record>
 
 
-    <menuitem id="main_statistics_session_menu" name="Statestiques"
+    <menuitem id="main_statistics_session_menu" name="Dashboard"
                   parent="mcm_academy_session_root_menu"
-                  action="action_dashboard_session_statistics"
                   sequence="1"/>
+     <menuitem id="main_statistics_session_menu" name="Dashboard"
+                  parent="main_statistics_session_menu"
+                  sequence="1" action="action_dashboard_session_statistics" groups="mcm_session.group_session_module_manager"/>
+
+    <menuitem id="statistics_session_menu" name="Statestiques"
+                  parent="main_statistics_session_menu"
+                  action="action_session_statistics"
+                  sequence="2"
+                  groups="mcm_session.group_session_module_manager"/>
+
+
 
 </odoo>
