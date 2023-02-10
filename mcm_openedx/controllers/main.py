@@ -1235,14 +1235,13 @@ class JotformConnector(http.Controller):
                                 # ajouter condition sur ticket
 
             _logger.info("###############################")
-            if partner_email.street != rawRequest["adressePostale"]:
-                partner_email.street = rawRequest["adressePostale"]
+            if partner_email.street != rawRequest["q168_adressePostale"]:
+                partner_email.street = rawRequest["q168_adressePostale"]
+                _logger.info(rawRequest["q168_adressePostale"])
+            if partner_email.zip != rawRequest["q169_codePostal"]:
+                partner_email.zip = rawRequest["q169_codePostal"]
+                _logger.info(rawRequest["q169_codePostal"])
 
-                _logger.info(rawRequest["adressePostale"])
-            if partner_email.zip != rawRequest["codePostal"]:
-                partner_email.zip = rawRequest["codePostal"]
-                _logger.info(rawRequest["codePostal"])
-
-            if partner_email.city != rawRequest["ville"]:
-                partner_email.city = rawRequest["ville"]
-                _logger.info(rawRequest["ville"])
+            if partner_email.city != rawRequest["q170_ville"]:
+                partner_email.city = rawRequest["q170_ville"]
+                _logger.info(rawRequest["q170_ville"])
