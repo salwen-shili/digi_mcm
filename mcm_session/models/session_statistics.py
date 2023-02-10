@@ -1,10 +1,10 @@
 from odoo import api, fields, models, _
 
 
-class InheritInfosExamen(models.Model):
-    _inherit = "info.examen"
-
-    stat_info_exam_id = fields.Many2one('session.statistics')
+# class InheritInfosExamen(models.Model):
+#     _inherit = "info.examen"
+#
+#     stat_info_exam_id = fields.Many2one('session.statistics')
 
 
 class SessionStatistics(models.Model):
@@ -87,11 +87,10 @@ class SessionStatistics(models.Model):
 
     color = fields.Integer('Color Index')
 
-    partner_present_ids = fields.One2many('info.examen', 'stat_info_exam_id', readonly=True)
+    # partner_present_ids = fields.One2many('info.examen', 'stat_info_exam_id', readonly=True)
+    #
+    # partner_absent_ids = fields.One2many('info.examen', 'stat_info_exam_id', readonly=True)
 
-    partner_absent_ids = fields.One2many('info.examen', 'stat_info_exam_id', readonly=True)
-
-    totalTimeSpentInMinutes = fields.Char(string="temps passé en minutes")
 
     @api.depends('session_id')
     def _compute_date_examen(self):
@@ -305,22 +304,22 @@ class SessionStatistics(models.Model):
                 rec.taux_repassage_presence = 0
 
 
-    @api.depends('session_id')
-    def _compute_liste_client_present(self):
-        for liste in self:
-            list = []
-            for examen in liste.env['info.examen'].search(
-                    [('date_exam', "=", liste.session_id.date_exam), ('session_id', "=", liste.session_id.id),
-                     ('presence', "=", 'present')]):
-                list.append(examen.partner_id.id)
-            liste.sudo().write({'partner_present_ids': [(6, 0, list)]})
-
-    @api.depends('session_id')
-    def _compute_liste_client_absent(self):
-        for rec in self:
-            list = []
-            for examen in rec.env['info.examen'].search(
-                    [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id),
-                     ('presence', "=", 'Absent')]):
-                list.append(examen.partner_id.id)
-            self.sudo().write({'partner_absent_ids': [(6, 0, list)]})
+    # @api.depends('session_id')
+    # def _compute_liste_client_present(self):
+    #     for liste in self:
+    #         list = []
+    #         for examen in liste.env['info.examen'].search(
+    #                 [('date_exam', "=", liste.session_id.date_exam), ('session_id', "=", liste.session_id.id),
+    #                  ('presence', "=", 'present')]):
+    #             list.append(examen.partner_id.id)
+    #         liste.sudo().write({'partner_present_ids': [(6, 0, list)]})
+    #
+    # @api.depends('session_id')
+    # def _compute_liste_client_absent(self):
+    #     for rec in self:
+    #         list = []
+    #         for examen in rec.env['info.examen'].search(
+    #                 [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id),
+    #                  ('presence', "=", 'Absent')]):
+    #             list.append(examen.partner_id.id)
+    #         self.sudo().write({'partner_absent_ids': [(6, 0, list)]})
