@@ -184,6 +184,7 @@
                         <h4>
                             <span t-esc="round(product.list_price)" />
                             <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                            <span class="">*</span>
                         </h4>
                         <t t-call="mcm_website_theme.pricing_table_content_all" />
                         <br />
@@ -373,6 +374,7 @@
                         <h4 t-if="not promo">
                             <span t-esc="round(product.list_price)" />
                             <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                            <span class="">*</span>
                         </h4>
                         <h4 t-if="promo">
                             <t t-foreach="promo.item_ids" t-as="item">
