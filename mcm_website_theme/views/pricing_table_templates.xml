@@ -148,8 +148,8 @@
                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />Révision
     du programme avant examen
             </li>
-            <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>100€ remboursable à la réussite à l'examen</b></li>
-            <!-- <li style="font-size: 15.3px;"> &amp;nbsp;</li> -->
+            
+            <li style="font-size: 15.3px;"> &amp;nbsp;</li>
             <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
         </ul>
     </template>
