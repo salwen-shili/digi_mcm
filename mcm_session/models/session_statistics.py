@@ -313,7 +313,7 @@ class SessionStatistics(models.Model):
                     [('date_exam', "=", liste.session_id.date_exam), ('session_id', "=", liste.session_id.id),
                      ('presence', "=", 'present')]):
                 list.append(examen.partner_id.id)
-            self.sudo().write({'partner_present_ids': [(6, 0, list)]})\
+            liste.sudo().write({'partner_present_ids': [(6, 0, list)]})\
 
     @api.depends('session_id')
     def _compute_liste_client_present(self):
@@ -323,4 +323,4 @@ class SessionStatistics(models.Model):
                     [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id),
                      ('presence', "=", 'Absent')]):
                 list.append(examen.partner_id.id)
-            self.sudo().write({'partner_absent_ids': [(6, 0, list)]})
+            rec.sudo().write({'partner_absent_ids': [(6, 0, list)]})
