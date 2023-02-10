@@ -16,12 +16,20 @@
             <form string="Dashboard">
                 <board style="1-1">
                     <column>
-                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': [], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': [], 'dashboard_merge_domains_contexts': False}"
-                                domain="[]" name="1774" string="Statestiques des sessions" view_mode="graph"
-                                modifiers="{}"/>
-                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': ['resultat', 'session_id'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['resultat', 'session_id'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[]" name="1271" string="Examen Informations" view_mode="graph" modifiers="{}"
-                                id="action_0_0"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': ['presence'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['presence'], 'dashboard_merge_domains_contexts': False}"
+                                domain="['&amp;', ['date_exam', '&gt;', '2023-01-01'], ['company_id', 'ilike', 'DIGIMOOV']]"
+                                name="1271" string="Etat de présence" view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': ['module_id'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['module_id'], 'dashboard_merge_domains_contexts': False}"
+                                domain="['&amp;', ['date_exam', '&gt;', '2023-01-01'], ['company_id', 'ilike', 'DIGIMOOV']]"
+                                name="1271" string="Pack" view_mode="graph" modifiers="{}"/>
+                    </column>
+                    <column>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': ['date_exam:quarter', 'nombre_de_passage'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['date_exam:quarter', 'nombre_de_passage'], 'dashboard_merge_domains_contexts': False}"
+                                domain="['&amp;', ['date_exam', '&gt;', '2023-01-01'], ['company_id', 'ilike', 'DIGIMOOV']]"
+                                name="1271" string="Nombre de passage" view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': ['mode_de_financement'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['mode_de_financement'], 'dashboard_merge_domains_contexts': False}"
+                                domain="['&amp;', ['date_exam', '&gt;', '2023-01-01'], ['company_id', 'ilike', 'DIGIMOOV']]"
+                                name="1271" string="Mode de paiement" view_mode="graph" modifiers="{}"/>
                     </column>
                 </board>
             </form>
