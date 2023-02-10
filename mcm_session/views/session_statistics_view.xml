@@ -40,23 +40,12 @@
                                 <field name="taux_echec" widget="progressbar"/>
                             </group>
                         </group>
-<!--                        <group string="Liste IOne Présents" col="6">-->
-<!--                            <field name="partner_present_ids" nolabel="1">-->
-<!--                                <field name="totalTimeSpentInMinutes"/>-->
-<!--                                <tree string="partner_list" limit="5">-->
-<!--                                    <field name="name" />-->
-<!--                                    <field name="totalTimeSpentInMinutes"/>-->
-<!--                                </tree>-->
-<!--                            </field>-->
-<!--                        </group>-->
-<!--                        <group string="Liste IOne Absents" col="6">-->
-<!--                            <field name="partner_absent_ids" nolabel="1">-->
-<!--                                <tree string="partner_absent_list" limit="5">-->
-<!--                                    <field name="name"/>-->
-<!--                                    <field name="email"/>-->
-<!--                                </tree>-->
-<!--                            </field>-->
-<!--                        </group>-->
+                        <group string="Liste IOne Présents" col="6">
+                            <field name="partner_present_ids" nolabel="1"/>
+                        </group>
+                        <group string="Liste IOne Absents" col="6">
+                            <field name="partner_absent_ids" nolabel="1"/>
+                        </group>
                     </sheet>
                     <!--<div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>

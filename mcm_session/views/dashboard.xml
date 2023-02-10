@@ -16,7 +16,9 @@
             <form string="Dashboard">
                 <board style="1-1">
                     <column>
-                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': [], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': [], 'dashboard_merge_domains_contexts': False}" domain="[]" name="1774" string="Statestiques des sessions" view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': [], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': [], 'dashboard_merge_domains_contexts': False}"
+                                domain="[]" name="1774" string="Statestiques des sessions" view_mode="graph"
+                                modifiers="{}"/>
                     </column>
                 </board>
             </form>
@@ -33,18 +35,17 @@
 
 
     <menuitem id="main_statistics_session_menu" name="Dashboard"
-                  parent="mcm_academy_session_root_menu"
-                  sequence="1"/>
-     <menuitem id="main_statistics_session_menu" name="Dashboard"
-                  parent="main_statistics_session_menu"
-                  sequence="1" action="action_dashboard_session_statistics" groups="mcm_session.group_session_module_manager"/>
+              parent="mcm_academy_session_root_menu"
+              sequence="1"/>
+    <menuitem id="main_statistics_session_examen_menu_id" name="Dashboard Examen"
+              parent="main_statistics_session_menu"
+              action="action_dashboard_session_statistics"
+              groups="mcm_session.group_session_module_manager"/>
 
-    <menuitem id="statistics_session_menu" name="Statestiques"
-                  parent="main_statistics_session_menu"
-                  action="action_session_statistics"
-                  sequence="2"
-                  groups="mcm_session.group_session_module_manager"/>
-
+    <menuitem id="statistics_session_menu_id" name="Statestiques"
+              parent="main_statistics_session_menu"
+              action="mcm_session.action_session_statistics"
+              groups="mcm_session.group_session_module_manager"/>
 
 
 </odoo>
