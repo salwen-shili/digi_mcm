@@ -1,50 +1,612 @@
 <odoo>
-<template id="mcm_website_theme.pricing_table_content_all" name="pack premium content">
-    <ul class="text-left" style="    margin-left: -12px">
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation 35h (100 % en ligne)</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>Inscription à l'examen auprès de la CMA</b></li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Accès à 12 examens Blancs avec correction</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par mail</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par téléphone</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par visioconférence</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Lives avec les formateurs pour explications</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Révision du programme avant examen</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>100€ remboursable a la réussite à l'examen</b></li>
+    <!-- mcm_website_theme.pricing_table_content_all PREMIUM-->
+    <template id="mcm_website_theme.pricing_table_content_all" name="pack premium content">
+        <ul class="text-left" style="    margin-left: -12px">
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation
+    35h (100 % en ligne)
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>Inscription à l'examen auprès de la CMA</b>
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Accès
+    à 12 examens Blancs avec correction
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance
+    par mail
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance
+    par téléphone
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance
+    par visioconférence
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Lives
+    avec les formateurs pour explications
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Révision
+    du programme avant examen
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>100€ remboursable à la réussite à l'examen</b></li>
+            <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
+        </ul>
+    </template>
+    <!-- content VMDTR-->
+    <template id="mcm_website_theme.pricing_table_content_vmdtr" name="pack premium content">
+        <ul class="text-left" style="    margin-left: -12px">
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation
+    35h (100 % en ligne)
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>Inscription à l'examen auprès de la CMA</b>
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Accès
+    à 12 examens Blancs avec correction
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance
+    par mail
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance
+    par téléphone
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance
+    par visioconférence
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Lives
+    avec les formateurs pour explications
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Révision
+    du programme avant examen
+            </li>
+            <li style="font-size: 15.3px;"> &amp;nbsp;</li>
+            <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
+        </ul>
+    </template>
+    <!-- mcm_website_theme.pricing_table_solo-->
+    <template
+        id="mcm_website_theme.pricing_table_solo" name="FORMATION TAXI VTC SOLO content">
+        <ul class="text-left" style="    margin-left: -12px">
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+    Formation 35 h (100 % en ligne)
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+    Accès à + de 10 examens d'entraînement
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+    Assistance par mail
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+    Assistance par téléphone
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Assistance par
+    visioconférence
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Lives avec les formateurs
+    pour explications
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Révision du programme avant
+    examen
+            </li>
+            <li style="font-size: 15.3px;"> &amp;nbsp;</li>
+            <li style="font-size: 15.3px;"> &amp;nbsp;</li>
+            <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
+        </ul>
+    </template>
+    <!-- mcm_website_theme.pricing_table_passerelle-->
+    <template
+        id="mcm_website_theme.pricing_table_passerelle" name="PASSERELLE PRICING content">
+        <ul class="text-left" style="    margin-left: -12px">
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation
+    15 h (100 % en ligne)
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                <b>Inscription à l'examen auprès de la CMA</b>
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Accès
+    à 4 examens Blancs avec correction
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance
+    par mail
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance
+    par téléphone
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance
+    par visioconférence
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Lives
+    avec les formateurs pour explications
+            </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Révision
+    du programme avant examen
+            </li>
+            <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>100€ remboursable à la réussite à l'examen</b></li>
+            <!-- <li style="font-size: 15.3px;"> &amp;nbsp;</li> -->
+            <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
+        </ul>
+    </template>
+    <!-- _______________________________Templates for Pricing Table
+    Packs______________________________________-->
+    <!--
+    __________________________________TAXI__________________________________________________________________-->
+    <!--FORMATION
+    TAXI PREMIUM -->
+    <template id="mcm_website_theme.pack_taxi_premium">
+        <!-- Will be added in side the div commented below-->
+        <!-- <div class="col-md-4 sh_animation_part js-scroll fade-in-top"> -->
+        <t t-foreach="mcm_products" t-as="product">
+            <t t-if="product.default_code=='taxi'">
+                <div class="sh_pricing">
+                    <form action="/shop/cart/update" method="post" id="form-pack-taxi-premium">
+                        <input type="hidden" class="product_id" name="product_id" id="taxi_product"
+                            t-att-value="product.id" />
+                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                        <h4 style="padding-bottom:0px !important">FORMATION TAXI PREMIUM</h4>
+                        <span
+                            style="margin-top: 0px;padding: 0px;font-weight: 600;color: #060606 !important;background: #fdd105f7;padding: 0 5px;font-size: 18px;">
+                            Frais d'examen inclus
+                        </span>
+                        <h5 style="margin-top: 20px !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 18px !important;">
+                            <b>
+                                <t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF 
+                            </b>
+                        </h5>
+                        <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                        </h4>
+                        <t t-call="mcm_website_theme.pricing_table_content_all" />
+                        <br />
+                        <t t-if="promo">
+                            <p class="text-center font-weight-bolder text-secondary">
+                                <b style="font-size: 50%">
+                                    <t />
+                                </b>
+                            </p>
+                        </t>
+                        <div class="sh_btn">
+                            <a class="animated-button-yellow" href="#pricing"
+                                onClick="(function(){ document.getElementById('form-pack-taxi-premium').submit();return false;})();return false;">
+                                <span />
+                                <span />
+                                <span />
+                                <span /> Je m'inscris 
+                            </a>
+                            <div>
+                                <span
+                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
+    Paiement 1 
+                                    <t t-if="product.instalment_number&gt;1"> ou 
+                                        <t t-esc="product.instalment_number" /></t>
+    &amp;nbsp;fois 
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <span style="
+            
+            font-size: 13px;
+        ">* 100€ à payer par
+    carte bancaire + 650€ à financer par CPF</span>
+            </t>
+        </t>
+    </template>
+    <!-- Formation TAXI SOLO-->
+    <!-- Will be added in side the div commented below-->
+    <!-- <div class="col-md-4 sh_animation_part js-scroll fade-in-top"> -->
+    <template
+        id="mcm_website_theme.pack_taxi_solo">
+        <div class="sh_pricing">
+            <t t-foreach="mcm_products" t-as="product">
+                <t t-if="product.default_code=='taxi-solo'">
+                    <form action="/shop/cart/update" method="post" id="form-taxi-solo">
+                        <input type="hidden" class="product_id" name="product_id"
+                            t-att-value="product.id" />
+                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                        <h4 style="padding-bottom:0px !important">FORMATION TAXI SOLO</h4>
+                        <span
+                        style="margin-top: 0px;padding: 0px;padding: 0 5px">
+                        &amp;nbsp;
+                    </span>
+                        <h5 style="margin-top: 20px !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 18px !important;">
+                            <b>
+                                <t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF
+                            </b>
+                        </h5>
+                        <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                        </h4>
+                        <t t-call="mcm_website_theme.pricing_table_solo" />
+                        <br />
+                        <t t-if="promo">
+                            <p class="text-center font-weight-bolder text-secondary">
+                                <b style="font-size: 50%">
+                                    <t />
+                                </b>
+                            </p>
+                        </t>
+                        <div style="margin-top: 36px;" class="sh_btn">
+                            <a class="animated-button-yellow" href="#pricing"
+                                onClick="(function(){ document.getElementById('form-taxi-solo').submit();return false;})();return false;">
+                                <span />
+                                <span />
+                                <span />
+                                <span /> Je m'inscris 
+                            </a>
+                            <div>
+                                <span
+                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
+    Paiement 1
+                                    <t t-if="product.instalment_number>1"> ou 
+                                        <t t-esc="product.instalment_number"></t>
+                                    </t>
+    &amp;nbsp;fois
+                    
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </t>
+            </t>
+        </div>
+    </template>
+    <!-- FORMATION PASSERELLE TAXI-->
+    <template
+        id="mcm_website_theme.pack_passerelle_taxi">
+        <div class="sh_pricing">
+            <t t-foreach="mcm_products" t-as="product">
+                <t t-if="product.default_code=='passerelle-taxi'">
+                    <form action="/shop/cart/update" method="post" id="form-1-3">
+                        <input type="hidden" class="product_id" name="product_id"
+                            t-att-value="product.id" />
+                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                        <h4 style="padding-bottom:0px !important">FORMATION PASSERELLE TAXI</h4>
+                        <span
+                        style="margin-top: 0px;padding: 0px;font-weight: 600;color: #060606 !important;background: #fdd105f7;padding: 0 5px;font-size: 18px;">
+                        Frais d'examen inclus
+                    </span>
+                        <h5 style="margin-top: 20px !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 18px !important;">
+                            <b>
+                                <t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF
+                            </b>
+                        </h5>
+                        <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                        </h4>
+                        <t t-call="mcm_website_theme.pricing_table_passerelle" />
+                        <br />
+                        <t t-if="promo">
+                            <p class="text-center font-weight-bolder text-secondary">
+                                <b style="font-size: 50%">
+                                    <t />
+                                </b>
+                            </p>
+                        </t>
+                        <div  class="sh_btn">
+                            <a class="animated-button-yellow" href="#pricing"
+                                onClick="(function(){ document.getElementById('form-1-3').submit();return false;})();return false;">
+                                <span />
+                                <span />
+                                <span />
+                                <span /> Je m'inscris 
+                            </a>
+                            <div>
+                                <span
+                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
+    Paiement 1
+                                    <t t-if="product.instalment_number>1"> ou 
+                                        <t t-esc="product.instalment_number"></t>
+                                    </t>
+    &amp;nbsp;fois
+                    
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </t>
+            </t>
+        </div>
+    </template>
+    <!-- ______________________VTC____________________________________-->
+    <!-- VTC PREMIUM-->
+    <template
+        id="mcm_website_theme.pack_vtc_premium">
+        <!--FORMATION
+        VTC PREMIUM -->
+        <t t-foreach="mcm_products" t-as="product">
+            <t t-if="product.default_code=='vtc'">
+                <div class="sh_pricing">
+                    <form action="/shop/cart/update" method="post" id="form-pack-vtc-premium">
+                        <input type="hidden" class="product_id" name="product_id" id="vtc_product"
+                            t-att-value="product.id" />
+                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                        <h4 style="padding-bottom:0px !important">FORMATION VTC PREMIUM</h4>
+                        <span
+                        style="margin-top: 0px;padding: 0px;padding: 0 5px">
+                        &amp;nbsp;
+                    </span>
+                        <span
+                            style="margin-top: 0px;padding: 0px;font-weight: 600;color: #060606 !important;background: #fdd105f7;padding: 0 5px;font-size: 18px;">
+    Frais d'examen inclus
+                        </span>
+                        <h5 style="margin-top: 20px !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 18px !important;">
+                            <b>
+                                <t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF 
+                            </b>
+                        </h5>
+                        <h4 t-if="not promo">
+                            <span t-esc="round(product.list_price)" />
+                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                        </h4>
+                        <h4 t-if="promo">
+                            <t t-foreach="promo.item_ids" t-as="item">
+                                <t t-if="item.product_id.id==product.id">
+                                    <span t-esc="round(item.fixed_price)" />
+                                    <span t-esc="product.currency_id.symbol" class="prod-cur" />
+                                </t>
+                            </t>
+                        </h4>
+                        <t t-call="mcm_website_theme.pricing_table_content_all" />
+                        <br />
+                        <t t-if="promo">
+                            <p class="text-center font-weight-bolder text-secondary">
+                                <b style="font-size: 50%">
+                                    <t>90</t>
+                                    <span t-esc="product.currency_id.symbol" class="prod-cur" />
+                                    <span style="text-transform: none !important">avec le code</span>
+                                    <t t-esc="promo.code" />
+                                </b>
+                            </p>
+                        </t>
+                        <div class="sh_btn">
+                            <!-- <a class="btn btn-primary sh_btn_cm_8"
+                            aria-describedby="tooltip357369"
+                            onClick="(function(){document.getElementById('form-pack-vtc-premium').submit();return
+                            false;})();return false;">
+Je m'inscris
+                    </a> -->
+                            <!-- Call Mircorsoft ads script onclick-->
+                            <a class="animated-button-yellow" href="#pricing"
+                                onClick="(function(){  document.getElementById('form-pack-vtc-premium').submit();return false;})();return false;">
+                                <span />
+                                <span />
+                                <span />
+                                <span /> Je m'inscris 
+                            </a>
+                            <div>
+                                <span
+                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
+    Paiement 1 
+                                    <t t-if="product.instalment_number&gt;1"> ou 
+                                        <t t-esc="product.instalment_number" /></t>
+    &amp;nbsp;fois 
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <span style="
 
-        <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
-    </ul>
+                font-size: 13px;
+            ">* 100€ à payer par
+    carte bancaire + 500€ à financer par CPF</span>
+            </t>
+        </t>
+    </template>
+    <!-- Pack Formation VTC SOLO-->
+    <!-- Will be added in side the div commented below-->
+    <!-- <div class="col-md-4 sh_animation_part js-scroll fade-in-top"> -->
+    <template
+        id="mcm_website_theme.pack_vtc_solo">
+        <div class="sh_pricing">
+            <t t-foreach="mcm_products" t-as="product">
+                <t t-if="product.default_code=='vtc-solo'">
+                    <form action="/shop/cart/update" method="post" id="form-vtc-solo">
+                        <input type="hidden" class="product_id" name="product_id"
+                            t-att-value="product.id" />
+                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                        <h4 style="padding-bottom:0px !important">FORMATION VTC SOLO</h4>
+                        <span
+                        style="margin-top: 0px;padding: 0px;padding: 0 5px">
+                        &amp;nbsp;
+                    </span>
+                        <h5 style="margin-top: 20px !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 18px !important;">
+                            <b>
+                                <t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF
+                            </b>
+                        </h5>
+                        <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                        </h4>
+                        <t t-call="mcm_website_theme.pricing_table_solo" />
+                        <br />
+                        <t t-if="promo">
+                            <p class="text-center font-weight-bolder text-secondary">
+                                <b style="font-size: 50%">
+                                    <t />
+                                </b>
+                            </p>
+                        </t>
+                        <div style="margin-top: 36px;" class="sh_btn">
+                            <a class="animated-button-yellow" href="#pricing"
+                                onClick="(function(){ document.getElementById('form-vtc-solo').submit();return false;})();return false;">
+                                <span />
+                                <span />
+                                <span />
+                                <span /> Je m'inscris 
+                            </a>
+                            <div>
+                                <span
+                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
+    Paiement 1
+                                    <t t-if="product.instalment_number>1"> ou 
+                                        <t t-esc="product.instalment_number"></t>
+                                    </t>
+    &amp;nbsp;fois
+                    
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </t>
+            </t>
+        </div>
+    </template>
+    <!-- FORMATION PASSERELLE VTC-->
+    <template
+        id="mcm_website_theme.pack_passerelle_vtc">
+        <div class="sh_pricing">
+            <t t-foreach="mcm_products" t-as="product">
+                <t t-if="product.default_code=='passerelle-vtc'">
+                    <form action="/shop/cart/update" method="post" id="form-passerelle-vtc">
+                        <input type="hidden" class="product_id" name="product_id"
+                            t-att-value="product.id" />
+                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                        <h4 style="padding-bottom:0px !important">FORMATION PASSERELLE VTC</h4>
+                        <span
+                            style="margin-top: 0px;padding: 0px;font-weight: 600;color: #060606 !important;background: #fdd105f7;padding: 0 5px;font-size: 18px;">
+                            Frais d'examen inclus
+                        </span>
+                        <h5 style="margin-top: 20px !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 18px !important;">
+                            <b>
+                                <t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF
+                            </b>
+                        </h5>
+                        <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                        </h4>
+                        <t t-call="mcm_website_theme.pricing_table_passerelle" />
+                        <br />
+                        <t t-if="promo">
+                            <p class="text-center font-weight-bolder text-secondary">
+                                <b style="font-size: 50%">
+                                    <t />
+                                </b>
+                            </p>
+                        </t>
+                        <div  class="sh_btn">
+                            <a class="animated-button-yellow" href="#pricing"
+                                onClick="(function(){ document.getElementById('form-passerelle-vtc').submit();return false;})();return false;">
+                                <span />
+                                <span />
+                                <span />
+                                <span /> Je m'inscris 
+                            </a>
+                            <div>
+                                <span
+                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
+    Paiement 1
+                                    <t t-if="product.instalment_number>1"> ou 
+                                        <t t-esc="product.instalment_number"></t>
+                                    </t>
+    &amp;nbsp;fois
+                    
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </t>
+            </t>
+        </div>
+    </template>
+    <!-- _________________________________VMDTR_________________________________________-->
+    <template
+        id="mcm_website_theme.pack_vmdtr">
+        <t t-foreach="mcm_products" t-as="product">
+            <t t-if="product.default_code=='vmdtr'">
+            <div class="sh_pricing">
+               
+                        <form action="/shop/cart/update" method="post" id="form-pack-vmdtr">
+                            <input type="hidden" class="product_id" name="product_id"
+                                id="vmdtr_product" t-att-value="product.id" />
+                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                            <h4 style="padding-bottom:0px !important">PACK TAXI-MOTO</h4>
+                            <span
+                            style="margin-top: 0px;padding: 0px;padding: 0 5px">
+                            &amp;nbsp;
+                        </span>
+                        
 
-</template>
-<template id="mcm_website_theme.pricing_table_solo" name="FORMATION TAXI VTC SOLO content">
-    <ul class="text-left" style="    margin-left: -12px">
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" /> Formation 35 h (100 % en ligne)</li>
-        
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" /> Accès à + de 10 examens d'entraînement</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" /> Assistance par mail</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" /> Assistance par téléphone</li>
-        <li style="font-size: 15.3px;"> <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Assistance par visioconférence</li>
-        <li style="font-size: 15.3px;"> <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Lives avec les formateurs pour explications</li>
-        <li style="font-size: 15.3px;"> <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Révision du programme avant examen</li>
-        <li style="font-size: 15.3px;"> &amp;nbsp;</li>
-        <li style="font-size: 15.3px;"> &amp;nbsp;</li>
-        <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
-    </ul>
-
-</template>
-<template id="mcm_website_theme.pricing_table_passerelle" name="PASSERELLE PRICING content">
-    <ul class="text-left" style="    margin-left: -12px">
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation 15 h (100 % en ligne)</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>Inscription à l'examen auprès de la CMA</b></li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Accès à 4 examens Blancs avec correction</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par mail</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par téléphone</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par visioconférence</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Lives avec les formateurs pour explications</li>
-        <li style="font-size: 15.3px;"><i class="fa fa-check-circle fa-lg mr-2 text-success" />Révision du programme avant examen</li>
-        <li style="font-size: 15.3px;"> &amp;nbsp;</li>
-        <!-- <li style="font-size: 15.3px;"> &amp;nbsp;</li> -->
-        <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
-    </ul>
-
-</template>
+                            <h5 style="margin-top: 20px !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 18px !important;">
+                                <b>
+                                    <t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF
+                                </b>
+                            </h5>
+                            <h4>
+                                <span t-esc="round(product.list_price)" />
+                                <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
+                            </h4>
+                            <t t-call="mcm_website_theme.pricing_table_content_vmdtr" />
+                            <br />
+                            <div class="sh_btn">
+                                <a class="animated-button-yellow" href="#pricing"
+                                    onClick="(function(){document.getElementById('form-pack-vmdtr').submit();return false;})();return false;">
+                                    <span />
+                                    <span />
+                                    <span />
+                                    <span />
+    Je m'inscris 
+                                </a>
+                                <div>
+                                    <span
+                                        style="color: red !important;font-size: 17px;font-weight: 600;">
+    Paiement 1 ou 3 fois
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+              
+            </div>
+        </t>
+    </t>
+     
+    </template>
 </odoo>

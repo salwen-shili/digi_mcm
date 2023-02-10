@@ -378,140 +378,17 @@
               
                 <div class="row" style="justify-content: center !important">
                   <div class="col-md-4 sh_animation_part ">
-                    <div class="sh_pricing">
-                        <t t-foreach="mcm_products" t-as="product">
-                            <t t-if="product.default_code=='passerelle-taxi'">
-                                <form action="/shop/cart/update" method="post" id="form-1-3">
-                                    <input type="hidden" class="product_id" name="product_id"  t-att-value="product.id" />
-                                    <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                    <h4>FORMATION PASSERELLE TAXI</h4>
-                                    <h5 class="el-cpf">
-                                      <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
-                     
-                                  </h5>
-                                    <h4>
-                                        <span t-esc="round(product.list_price)" />
-                                        <span class="prod-cur" t-esc="product.currency_id.symbol" />
-                                    </h4>
-                                    <t t-call="mcm_website_theme.pricing_table_passerelle"/>
-                                    <br />
-                                    <t t-if="promo">
-                                        <p class="text-center font-weight-bolder text-secondary">
-                                            <b style="font-size: 50%">
-                                                <t />
-                                            </b>
-                                        </p>
-                                    </t>
-                                    <div class="sh_btn">
-                            
-                                        <a class="animated-button-yellow" href="#pricing" onClick="(function(){ document.getElementById('form-1-3').submit();return false;})();return false;">
-                                            <span />
-                                            <span />
-                                            <span />
-                                            <span />
-                                            Je m'inscris
-                                        </a>
-                                        <div>
-                                            <span style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
-                                    Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
-                                    </span>
-                                        </div>
-                                    </div>
-                                </form>
-                            </t>
-                        </t>
-                    </div>
+                    <!-- Passerlle Taxi-->
+                    <t t-call="mcm_website_theme.pack_passerelle_taxi" />
+                   
                 </div>
                 <!-- TAXI PREMIUM-->
                   <div class="col-md-4 sh_animation_part">
-                    <div class="sh_pricing">
-                      <t t-foreach="mcm_products" t-as="product">
-                        <t t-if="product.default_code=='taxi'">
-                          <form action="/shop/cart/update" method="post" id="form-taxi-premium">
-                            <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id"/>
-                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
-                            <h4>FORMATION TAXI PREMIUM</h4>
-                            <h5 class="el-cpf">
-                              <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
-                            </h5>
-                            <h4>
-                              <span t-esc="round(product.list_price)"/>
-                              <span style="color: #fdd105" t-esc="product.currency_id.symbol"/>
-                            </h4>
-                            <t t-call="mcm_website_theme.pricing_table_content_all"/>
-                            <br />
-                            <t t-if="promo">
-                              <p class="text-center font-weight-bolder text-secondary">
-                                  <b style="font-size: 50%">
-                                      <t />
-                                  </b>
-                              </p>
-                          </t>
-                    
-                            <div class="sh_btn">
-                              <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
-                              Je m'inscris
-                                                  </a> -->
-                              <a class="animated-button-yellow" href="#pricing" onClick="(function(){document.getElementById('form-taxi-premium').submit();return false;})();return false;"><span/><span/><span/><span/>
-                                  Je m'inscris
-                                </a>
-                              <div>
-                                <span style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
-                                  Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
-                                  </span>
-                              </div>
-                            </div>
-                          </form>
-                        </t>
-                      </t>
-                    </div>
+                    <t t-call="mcm_website_theme.pack_taxi_premium" />
                   </div>
-               
+               <!-- TAXI SOLO-->
                   <div class="col-md-4 sh_animation_part">
-                    <div class="sh_pricing">
-                        <t t-foreach="mcm_products" t-as="product">
-                            <t t-if="product.default_code=='taxi-solo'">
-                                <form action="/shop/cart/update" method="post" id="form-taxi-solo">
-                                    <input type="hidden" class="product_id" name="product_id"  t-att-value="product.id" />
-                                    <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                    <h4>FORMATION TAXI SOLO</h4>
-                                   
-                                    <h5 class="el-cpf">
-                                      <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>                     
-                                  </h5>
-                                    <h4>
-                                        <span t-esc="round(product.list_price)" />
-                                        <span class="prod-cur" t-esc="product.currency_id.symbol" />
-                                    </h4>
-                                    <t t-call="mcm_website_theme.pricing_table_solo" />
-                                    <br />
-                           
-                                    <t t-if="promo">
-                                        <p class="text-center font-weight-bolder text-secondary">
-                                            <b style="font-size: 50%">
-                                                <t />
-                                            </b>
-                                        </p>
-                                    </t>
-                                    <div  class="sh_btn">
-                            
-                                        <a class="animated-button-yellow" href="#pricing" onClick="(function(){ document.getElementById('form-taxi-solo').submit();return false;})();return false;">
-                                            <span />
-                                            <span />
-                                            <span />
-                                            <span />
-                                            Je m'inscris
-                                        </a>
-                                        <div>
-                                            <span style="color: #005a00 !important;font-size: 17px;font-weight: 600;">
-                                    Paiement 1<t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t></t>&amp;nbsp;fois
-                                    </span>
-                                        </div>
-                                    </div>
-                                </form>
-                            </t>
-                        </t>
-                    </div>
+                    <t t-call="mcm_website_theme.pack_taxi_solo" />
                 </div>
                 </div>
               </div>
