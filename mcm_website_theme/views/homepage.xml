@@ -540,20 +540,19 @@
                                 <div class="row justify-content-center">
                                         <!--FORMATION VTC PREMIUM -->
                                     <div class="col-md-4 sh_animation_part js-scroll slide-left">
-                                        <div class="sh_pricing">
-                                            <t t-foreach="mcm_products" t-as="product">
-                                                <t t-if="product.default_code=='vtc'">
+                                        <t t-foreach="mcm_products" t-as="product">
+                                            <t t-if="product.default_code=='vtc'">
+                                        <div  class="sh_pricing">
+                                            
+                                                
                                                     <form action="/shop/cart/update" method="post" id="form-1-1">
                                                         <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id"/>
                                                         <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
                                                         <h4 style="padding-bottom:0px !important">FORMATION VTC PREMIUM</h4>
-                                                        <span style="margin-top: 0px;
-                                                        padding: 0px;
-                                                        font-weight: 600;
-                                                        color: #005a00 !important;
-                                                        font-size: 18px;">
-                                                        Frais d'examen inclus
-                                                        </span>
+                                                       
+                                                        <span style="margin-top: 0px;padding: 0px;font-weight: 600;color: #060606 !important;background: #fdd105f7;padding: 0 5px;font-size: 18px;" >
+                                                            Frais d'examen inclus
+                                                            </span>
                                                         <h5 class="el-cpf">
                                                             <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
                                            
@@ -606,29 +605,27 @@
                                                             </div>
                                                         </div>
                                                     </form>
-                                                </t>
-                                            </t>
+                                           
                                         </div>
                                         <span style="
     font-weight: 600;
     font-size: 13px;
 ">100€ à payer par carte bancaire + 500€ à financer par CPF</span>
+</t>
+</t>
                                     </div>
                                     <!--FORMATION TAXI PREMIUM -->
                                     <div class="col-md-4 sh_animation_part js-scroll fade-in-top">
+                                        <t t-foreach="mcm_products" t-as="product">
+                                            <t t-if="product.default_code=='taxi'">
                                         <div class="sh_pricing">
-                                            <t t-foreach="mcm_products" t-as="product">
-                                                <t t-if="product.default_code=='taxi'">
+                                        
                                                     <form action="/shop/cart/update" method="post" id="form-1-2">
                                                         <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id"/>
                                                         <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
                                                         <h4 style="padding-bottom:0px !important">FORMATION TAXI PREMIUM</h4>
-                                                        <span style="margin-top: 0px;
-                                                        padding: 0px;
-                                                        font-weight: 600;
-                                                        color: #005a00 !important;
-                                                        font-size: 18px;">
-                                                        Frais d'examen inclus
+                                                        <span style="margin-top: 0px;padding: 0px;font-weight: 600;color: #060606 !important;background: #fdd105f7;padding: 0 5px;font-size: 18px;" >
+                                                            Frais d'examen inclus
                                                         </span>
                                                         <h5 class="el-cpf">
                                                             <b><t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF</b>
@@ -667,13 +664,14 @@
                                                             </div>
                                                         </div>
                                                     </form>
-                                                </t>
-                                            </t>
+                                           
                                         </div>
                                         <span style="
-    font-weight: 600;
-    font-size: 13px;
-">100€ à payer par carte bancaire + 500€ à financer par CPF</span>
+                                        font-weight: 600;
+                                        font-size: 13px;
+                                    ">100€ à payer par carte bancaire + 650€ à financer par CPF</span>
+                                    </t>
+                                    </t>
                                     </div>
                                     <!-- <div class="col-md-4 sh_animation_part js-scroll slide-right">
                                        
