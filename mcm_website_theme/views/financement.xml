@@ -338,10 +338,10 @@
                 <div class="col-md-4 sh_animation_part js-scroll fade-in-top">
                   <t t-call="mcm_website_theme.pack_taxi_premium" />
                 </div>
-                <div class="col-md-4 sh_animation_part js-scroll slide-right">
-                  <!-- vtc-->
+                <!-- <div class="col-md-4 sh_animation_part js-scroll slide-right">
+                 
                  <t t-call="mcm_website_theme.pack_vmdtr" />
-                </div>
+                </div> -->
               </div>
             </div>
           </section>
