@@ -123,7 +123,7 @@ class WebhookController(http.Controller):
         datemin = date_session_min.json()
         date_debutstr = datemin.get('cpfSessionMinDate')
         date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
-
+        state_cpf = "untreated"
         if str(event) == "registrationFolder.created":
             """chercher user sur odoo par tel ou par email """
             user = request.env['res.users'].sudo().search([('login', "=", email)], limit=1)
@@ -136,10 +136,20 @@ class WebhookController(http.Controller):
                     """si l'apprenant n'est pas sur odoo, date debut de session sera celle de cpfSessionMinDate"""
                     date_debutstr = datemin.get('cpfSessionMinDate')
                     date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
+                    datefin = str(date_debut + relativedelta(months=3) + timedelta(days=1))
+                    datedebutstr = str(date_debut)
                     _logger.info("cpf")
-            if user:
-                _logger.info("if userrr++++++++ %s" %str(user.email))
-                """Si pole emploi coché , l'apprenant commence sa formation apres 21 jours"""
+                    """if the chosen training is lourd  create partner before validation"""
+                    if "premium_plus" in str(training_id):
+                        state_cpf="untreated"
+                    else:
+                        """Validate folder  state in cpf"""
+                        statusValidated = self.validate_folder_cpf(headers, datedebutstr, datefin, externalid)
+                        if str(statusValidated) == "200":
+                            state_cpf = "validated"
+
+        if user:
+                """Si pole emploi coché, l'apprenant commence sa formation apres 21 jours"""
                 if user.partner_id.is_pole_emploi:
                     date_debutstr = datemin.get('poleEmploiSessionMinDate')
                     date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
@@ -149,32 +159,51 @@ class WebhookController(http.Controller):
                     date_debutstr = datemin.get('cpfSessionMinDate')
                     date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
                     _logger.info("cpf")
+                _logger.info("if userrr++++++++ %s" % str(user.email))
+                datefin = str(date_debut + relativedelta(months=3) + timedelta(days=1))
+                datedebutstr = str(date_debut)
+                """check the remaining payment of lourd training case"""
+                if "premium_plus" in str(training_id):
+                    invoices = request.env['account.move'].sudo().search([(
+                        "partner_id", "=", user.partner_id.id),
+                        "invoice_payment_state", "=", "paid"
+                    ])
+                    for invoice in invoices:
+                        for line in invoice.invoice_line_ids:
+                            if line.product_id.default_code == "transport-routier-cpf-reste":
+                                """Validate folder state in cpf"""
+                                statusValidated = self.validate_folder_cpf(headers, datedebutstr, datefin, externalid)
+                                if str(statusValidated) == "200":
+                                    state_cpf = "validated"
 
-            datefin = str(date_debut + relativedelta(months=3) + timedelta(days=1))
-            datedebutstr = str(date_debut)
-            data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
-            dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
-            response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
-                                        headers=headers, data=data)
+        # data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
+        # dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
+        # response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
+        #                             headers=headers, data=data)
+        #
+        # status = str(response_put.status_code)
+        # statuss = str(json.loads(response_put.text))
+        # _logger.info("validate put _________ %s" % str(status))
+        # _logger.info("validate_________ %s" % str(statuss))
+        # response_post = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
+        #                               headers=headers, data=dat)
+        # status = str(response_post.status_code)
+        # statuss = str(json.loads(response_post.text))
+        # _logger.info("validate_________ %s" % str(status))
+        # _logger.info("validate_________ %s" % str(statuss))
+        # """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
+        # if status == "200":
+        print('validate', email)
+        self.cpf_validate(training_id, state_cpf, email, residence, num_voie, nom_voie, voie,
+                          street,
+                          tel,
+                          code_postal,
+                          ville,
+                          diplome, dossier['attendee']['lastName'],
+                          dossier['attendee']['firstName'],
+                          dossier['externalId'], lastupd)
 
-            status = str(response_put.status_code)
-            statuss = str(json.loads(response_put.text))
-            _logger.info("validate put _________ %s" % str(status))
-            _logger.info("validate_________ %s" % str(statuss))
-            response_post = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
-                                          headers=headers, data=dat)
-            status = str(response_post.status_code)
-            statuss = str(json.loads(response_post.text))
-            _logger.info("validate_________ %s" % str(status))
-            _logger.info("validate_________ %s" % str(statuss))
-            """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
-            if status == "200":
-                print('validate', email)
-                return self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel,
-                                         code_postal,
-                                         ville,
-                                         diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
-                                         dossier['externalId'], lastupd)
+
         return True
 
     @http.route(['/validate_digi_cpf_lourd'], type='json', auth="public", methods=['POST'])
@@ -189,11 +218,13 @@ class WebhookController(http.Controller):
         api_key = ""
         if company:
             api_key = company.wedof_api_key
-        formation= dossier['']
-        return self.validate_folder_cpf(dossier, event, api_key)
+        diplomeExternalId = dossier['trainingActionInfo']['title']
+        if "premium_plus" in str(diplomeExternalId):
+            self.create_partner()
+            return self.validate_folder_cpf(dossier, event, api_key)
     
     """faire la mise à jour de statut cpf sur fiche client """
-    def cpf_validate(self, module, email, residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome,
+    def cpf_validate(self, module, state_cpf,email, residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome,
                      nom,
                      prenom, dossier, lastupd):
         _logger.info('cpf validate 2')
@@ -317,7 +348,7 @@ class WebhookController(http.Controller):
                 client.mode_de_financement = 'cpf'
                 client.funding_type = 'cpf'
                 client.numero_cpf = dossier
-                client.statut_cpf = 'validated'
+                client.statut_cpf = state_cpf
                 client.statut = 'indecis'
                 client.street2 = residence
                 client.phone = '0' + str(tel.replace(' ', ''))[-9:]
@@ -333,15 +364,16 @@ class WebhookController(http.Controller):
                 client.name = str(prenom) + " " + str(nom)
                 module_id = False
                 product_id = False
-                """Envoyez un SMS aux apprenants pour accepter leurs dossiers cpf."""
-                sms_body_ = "%s! Votre demande de financement par CPF a été validée. Connectez-vous sur moncompteformation.gouv.fr en partant dans l’onglet. Dossiers, Proposition de l’organisme, Financement, ensuite confirmer mon inscription." % (
-                    user.partner_id.company_id.name)  # content of sms
-                sms = request.env['mail.message'].sudo().search(
-                    [("body", "like", sms_body_), ("message_type", "=", 'sms'),
-                     ('partner_ids', 'in', user.partner_id.id),
-                     ('model', "=", "res.partner")])
-                if not sms:
-                    user.partner_id.send_sms(sms_body_, user.partner_id)
+                if state_cpf == "validated":
+                    """Envoyez un SMS aux apprenants pour accepter leurs dossiers cpf si dossier validé."""
+                    sms_body_ = "%s! Votre demande de financement par CPF a été validée. Connectez-vous sur moncompteformation.gouv.fr en partant dans l’onglet. Dossiers, Proposition de l’organisme, Financement, ensuite confirmer mon inscription." % (
+                        user.partner_id.company_id.name)  # content of sms
+                    sms = request.env['mail.message'].sudo().search(
+                        [("body", "like", sms_body_), ("message_type", "=", 'sms'),
+                         ('partner_ids', 'in', user.partner_id.id),
+                         ('model', "=", "res.partner")])
+                    if not sms:
+                        user.partner_id.send_sms(sms_body_, user.partner_id)
                 if "digimoov" in str(module):
                     user.write({'company_ids': [1, 2], 'company_id': 2})
                     product_ids = request.env['product.template'].sudo().search(
@@ -1176,3 +1208,27 @@ class WebhookController(http.Controller):
                                 user.partner_id.date_cpf = lastupd
 
         return True
+
+
+    """validate cpf folder"""
+    def validate_folder_cpf(self,headers,datedebutstr,datefin,externalid):
+        data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
+        dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
+        response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
+                                    headers=headers, data=data)
+
+        status = str(response_put.status_code)
+        statuss = str(json.loads(response_put.text))
+        _logger.info("validate put _________ %s" % str(status))
+        _logger.info("validate_________ %s" % str(statuss))
+        response_post = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
+                                      headers=headers, data=dat)
+        status = str(response_post.status_code)
+        statuss = str(json.loads(response_post.text))
+        _logger.info("validate_________ %s" % str(status))
+        _logger.info("validate_________ %s" % str(statuss))
+        """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
+        if status == "200":
+            _logger.info('validate')
+
+        return status
