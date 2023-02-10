@@ -190,6 +190,16 @@
                             </div>
 
                         </group>
+
+                    </group>
+                </page>
+                <page string="Statistiques  Call" name="mcm_call"
+                     >
+                    <group>
+                        <group col="12">
+                        </group>
+
+
                         <group col="8" colspan="4" string="Statistiques Calls">
                             <div>
                                 <span class="o_stat_text">
@@ -206,6 +216,7 @@
                                 </span>
                             </div>
                         </group>
+
 
                     </group>
                 </page>

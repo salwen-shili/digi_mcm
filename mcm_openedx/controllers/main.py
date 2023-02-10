@@ -398,342 +398,183 @@ class JotformConnector(http.Controller):
         examen = str(rawRequest['q144_veuillezChoisir'])
         sig0 = str(rawRequest['q180_signature'].split(',')[0])
         _logger.info(examen)
-        # for partner_email in request.env['res.partner'].sudo().search(
-        #         [('email', "=", email)]):
-        #     _logger.info(partner_email)
+        for partner_email in request.env['res.partner'].sudo().search(
+                [('email', "=", email)]):
+            _logger.info(partner_email)
 
-        if examen == "Examen TAXI":
-            _logger.info("taxiiii")
+            if examen == "Examen TAXI":
+                _logger.info("taxiiii")
 
-            if rawRequest['q36_vousAllez'] == "Oui":
-                if rawRequest['justificatifDe']:
-                    url = rawRequest['justificatifDe']
+                if rawRequest['q36_vousAllez'] == "Oui":
+                    if rawRequest['justificatifDe']:
+                        url = rawRequest['justificatifDe']
+                        if url:
+
+                            _logger.info("justificatifDe %s" % (str(url)))
+                            # 👉️ Check if my_var is not None (null)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                            name = " Justificatif de domicile de moins de 3 mois"
+                            folder_id = request.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in request.env['res.partner'].sudo().search(
+                                    [('email', '=', email)]):
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
+                                if not existe_sub:
+                                    new = request.env['mcm_openedx.form_info'].sudo().create({
+                                        'email': email,
+                                        'partner_id': partner.id,
+                                        'societe': "MCM ACADEMY",
+                                        'examen': 'pasrelle',
+                                    })
+                                existe_doc = request.env['documents.document'].sudo().search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
+                                if not existe_doc:
+                                    _logger.info("not exist")
+
+                                    document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                                'type': 'binary',
+                                                                                                'partner_id': partner.id,
+                                                                                                'folder_id': folder_id.id,
+                                                                                                'datas': image_binary,
+                                                                                                'state': 'waiting', })
+
+                                    request.env.cr.commit()
+                else:
+                    if rawRequest['justificatifDe']:
+                        url = rawRequest['justificatifDe']
+                        if url:
+                            _logger.info("justificatifDe %s" % (str(url)))
+                            # 👉️ Check if my_var is not None (null)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                            name = " Justificatif de domicile de moins de 3 mois"
+                            folder_id = request.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in request.env['res.partner'].sudo().search(
+                                    [('email', '=', email)]):
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
+                                if not existe_sub:
+                                    new = request.env['mcm_openedx.form_info'].sudo().create({
+                                        'email': email,
+                                        'partner_id': partner.id,
+                                        'societe': "MCM ACADEMY",
+                                        'examen': 'pasrelle',
+                                    })
+                                existe_doc = request.env['documents.document'].sudo().search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
+                                if not existe_doc:
+                                    _logger.info("not exist")
+
+                                    document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                                'type': 'binary',
+                                                                                                'partner_id': partner.id,
+                                                                                                'folder_id': folder_id.id,
+                                                                                                'datas': image_binary,
+                                                                                                'state': 'waiting', })
+
+                                    request.env.cr.commit()
+
+                                    # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                    if rawRequest['attestationDhebergement']:
+                        url = rawRequest['attestationDhebergement']
+                        if url:
+                            _logger.info("attestationDhebergement  %s" % (str(url)))
+                            # 👉️ Check if my_var is not None (null)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                            name = "  Attestation d'hébergement"
+                            folder_id = request.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in request.env['res.partner'].sudo().search(
+                                    [('email', '=', email)]):
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
+                                if not existe_sub:
+                                    new = request.env['mcm_openedx.form_info'].sudo().create({
+                                        'email': email,
+                                        'partner_id': partner.id,
+                                        'societe': "MCM ACADEMY",
+                                        'examen': 'pasrelle',
+                                    })
+                                existe_doc = request.env['documents.document'].sudo().search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
+                                if not existe_doc:
+                                    _logger.info("not exist")
+
+                                    document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                                'type': 'binary',
+                                                                                                'partner_id': partner.id,
+                                                                                                'folder_id': folder_id.id,
+                                                                                                'datas': image_binary,
+                                                                                                'state': 'waiting', })
+
+                                    request.env.cr.commit()
+
+                                    # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                    if rawRequest['siHeberge11']:
+                        url = rawRequest['siHeberge11']
+                        if url:
+                            _logger.info("siHeberge11 %s" % (str(url)))
+                            # 👉️ Check if my_var is not None (null)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                            name = "Pièce d'identité de l'hébergeur - Face arrière"
+                            folder_id = request.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in request.env['res.partner'].sudo().search(
+                                    [('email', '=', email)]):
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
+                                if not existe_sub:
+                                    new = request.env['mcm_openedx.form_info'].sudo().create({
+                                        'email': email,
+                                        'partner_id': partner.id,
+                                        'societe': "MCM ACADEMY",
+                                        'examen': 'pasrelle',
+                                    })
+                                existe_doc = request.env['documents.document'].sudo().search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
+                                if not existe_doc:
+                                    _logger.info("not exist")
+
+                                    document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                                'type': 'binary',
+                                                                                                'partner_id': partner.id,
+                                                                                                'folder_id': folder_id.id,
+                                                                                                'datas': image_binary,
+                                                                                                'state': 'waiting', })
+
+                                    request.env.cr.commit()
+
+                                    # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                if rawRequest['fileUpload2']:
+                    url = rawRequest['fileUpload2']
                     if url:
-
-                        _logger.info("justificatifDe %s" % (str(url)))
+                        _logger.info("fileUpload2 %s" % (str(url)))
                         # 👉️ Check if my_var is not None (null)
                         image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = " Justificatif de domicile de moins de 3 mois"
+                        name = "Photo d'identité officielle"
                         folder_id = request.env['documents.folder'].sudo().search(
                             [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
-                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                                [('email', "like", email)])
-                            if not existe_sub:
-                                new = request.env['mcm_openedx.form_info'].sudo().create({
-                                    'email': email,
-                                    'partner_id': partner.id,
-                                    'societe': "MCM ACADEMY",
-                                    'examen': 'pasrelle',
-                                })
-                            existe_doc = request.env['documents.document'].sudo().search(
-                                [('name', '=', name), ('partner_id', '=', partner.id)])
-                            # verifier les document si existe avec le nom jotform, et partner
-
-                            if not existe_doc:
-                                _logger.info("not exist")
-
-                                document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                            'type': 'binary',
-                                                                                            'partner_id': partner.id,
-                                                                                            'folder_id': folder_id.id,
-                                                                                            'datas': image_binary,
-                                                                                            'state': 'waiting', })
-
-                                request.env.cr.commit()
-            else:
-                if rawRequest['justificatifDe']:
-                    url = rawRequest['justificatifDe']
-                    if url:
-                        _logger.info("justificatifDe %s" % (str(url)))
-                        # 👉️ Check if my_var is not None (null)
-                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = " Justificatif de domicile de moins de 3 mois"
-                        folder_id = request.env['documents.folder'].sudo().search(
-                            [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                        for partner in request.env['res.partner'].sudo().search(
-                                [('email', '=', email)]):
-                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                                [('email', "like", email)])
-                            if not existe_sub:
-                                new = request.env['mcm_openedx.form_info'].sudo().create({
-                                    'email': email,
-                                    'partner_id': partner.id,
-                                    'societe': "MCM ACADEMY",
-                                    'examen': 'pasrelle',
-                                })
-                            existe_doc = request.env['documents.document'].sudo().search(
-                                [('name', '=', name), ('partner_id', '=', partner.id)])
-                            # verifier les document si existe avec le nom jotform, et partner
-
-                            if not existe_doc:
-                                _logger.info("not exist")
-
-                                document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                            'type': 'binary',
-                                                                                            'partner_id': partner.id,
-                                                                                            'folder_id': folder_id.id,
-                                                                                            'datas': image_binary,
-                                                                                            'state': 'waiting', })
-
-                                request.env.cr.commit()
-
-                                # replace " " avec  %20 pour eliminer les espace
-                                # Ajout ticket pour notiifer le service examn pour changer mp
-                                # ajouter condition sur ticket
-
-                if rawRequest['attestationDhebergement']:
-                    url = rawRequest['attestationDhebergement']
-                    if url:
-                        _logger.info("attestationDhebergement  %s" % (str(url)))
-                        # 👉️ Check if my_var is not None (null)
-                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = "  Attestation d'hébergement"
-                        folder_id = request.env['documents.folder'].sudo().search(
-                            [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                        for partner in request.env['res.partner'].sudo().search(
-                                [('email', '=', email)]):
-                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                                [('email', "like", email)])
-                            if not existe_sub:
-                                new = request.env['mcm_openedx.form_info'].sudo().create({
-                                    'email': email,
-                                    'partner_id': partner.id,
-                                    'societe': "MCM ACADEMY",
-                                    'examen': 'pasrelle',
-                                })
-                            existe_doc = request.env['documents.document'].sudo().search(
-                                [('name', '=', name), ('partner_id', '=', partner.id)])
-                            # verifier les document si existe avec le nom jotform, et partner
-
-                            if not existe_doc:
-                                _logger.info("not exist")
-
-                                document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                            'type': 'binary',
-                                                                                            'partner_id': partner.id,
-                                                                                            'folder_id': folder_id.id,
-                                                                                            'datas': image_binary,
-                                                                                            'state': 'waiting', })
-
-                                request.env.cr.commit()
-
-                                # replace " " avec  %20 pour eliminer les espace
-                                # Ajout ticket pour notiifer le service examn pour changer mp
-                                # ajouter condition sur ticket
-
-                if rawRequest['siHeberge11']:
-                    url = rawRequest['siHeberge11']
-                    if url:
-                        _logger.info("siHeberge11 %s" % (str(url)))
-                        # 👉️ Check if my_var is not None (null)
-                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = "Pièce d'identité de l'hébergeur - Face arrière"
-                        folder_id = request.env['documents.folder'].sudo().search(
-                            [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                        for partner in request.env['res.partner'].sudo().search(
-                                [('email', '=', email)]):
-                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                                [('email', "like", email)])
-                            if not existe_sub:
-                                new = request.env['mcm_openedx.form_info'].sudo().create({
-                                    'email': email,
-                                    'partner_id': partner.id,
-                                    'societe': "MCM ACADEMY",
-                                    'examen': 'pasrelle',
-                                })
-                            existe_doc = request.env['documents.document'].sudo().search(
-                                [('name', '=', name), ('partner_id', '=', partner.id)])
-                            # verifier les document si existe avec le nom jotform, et partner
-
-                            if not existe_doc:
-                                _logger.info("not exist")
-
-                                document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                            'type': 'binary',
-                                                                                            'partner_id': partner.id,
-                                                                                            'folder_id': folder_id.id,
-                                                                                            'datas': image_binary,
-                                                                                            'state': 'waiting', })
-
-                                request.env.cr.commit()
-
-                                # replace " " avec  %20 pour eliminer les espace
-                                # Ajout ticket pour notiifer le service examn pour changer mp
-                                # ajouter condition sur ticket
-
-            if rawRequest['fileUpload2']:
-                url = rawRequest['fileUpload2']
-                if url:
-                    _logger.info("fileUpload2 %s" % (str(url)))
-                    # 👉️ Check if my_var is not None (null)
-                    image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                    name = "Photo d'identité officielle"
-                    folder_id = request.env['documents.folder'].sudo().search(
-                        [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                    for partner in request.env['res.partner'].sudo().search(
-                            [('email', '=', email)]):
-                        existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
-                        if not existe_sub:
-                            new = request.env['mcm_openedx.form_info'].sudo().create({
-                                'email': email,
-                                'partner_id': partner.id,
-                                'societe': "MCM ACADEMY",
-                                'examen': 'pasrelle',
-                            })
-                        existe_doc = request.env['documents.document'].sudo().search(
-                            [('name', '=', name), ('partner_id', '=', partner.id)])
-                        # verifier les document si existe avec le nom jotform, et partner
-
-                        if not existe_doc:
-                            _logger.info("not exist")
-
-                            document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                        'type': 'binary',
-                                                                                        'partner_id': partner.id,
-                                                                                        'folder_id': folder_id.id,
-                                                                                        'datas': image_binary,
-                                                                                        'state': 'waiting', })
-
-                            request.env.cr.commit()
-
-                            # replace " " avec  %20 pour eliminer les espace
-                            # Ajout ticket pour notiifer le service examn pour changer mp
-                            # ajouter condition sur ticket
-
-            if rawRequest['merciDe']:
-                url = rawRequest['merciDe']
-                if url:
-                    _logger.info("merciDe %s" % (str(url)))
-                    # 👉️ Check if my_var is not None (null)
-                    image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                    name = "Photo de  signature sur papier blanc"
-                    folder_id = request.env['documents.folder'].sudo().search(
-                        [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                    for partner in request.env['res.partner'].sudo().search(
-                            [('email', '=', email)]):
-                        existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
-                        if not existe_sub:
-                            new = request.env['mcm_openedx.form_info'].sudo().create({
-                                'email': email,
-                                'partner_id': partner.id,
-                                'societe': "MCM ACADEMY",
-                                'examen': 'pasrelle',
-                            })
-                        existe_doc = request.env['documents.document'].sudo().search(
-                            [('name', '=', name), ('partner_id', '=', partner.id)])
-                        # verifier les document si existe avec le nom jotform, et partner
-
-                        if not existe_doc:
-                            _logger.info("not exist")
-
-                            document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                        'type': 'binary',
-                                                                                        'partner_id': partner.id,
-                                                                                        'folder_id': folder_id.id,
-                                                                                        'datas': image_binary,
-                                                                                        'state': 'waiting', })
-
-                            request.env.cr.commit()
-            if rawRequest['q180_signature']:
-                url = rawRequest['q180_signature'].split(',')[1]
-                if url:
-                    _logger.info("rawRequest['q180_signature'].split(',')[1]%s" % (str(url)))
-                    # 👉️ Check if my_var is not None (null)
-                    sig1 = (rawRequest['q180_signature'].split(',')[1])
-                    # decoder l'image de la base 64
-                    sig = base64.b64decode(sig1)
-                    # convertir l'image en png
-                    image_binary = base64.b64encode(sig)
-                    name = "J'ai lu et j'accepte les conditions de la formation"
-                    folder_id = request.env['documents.folder'].sudo().search(
-                        [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                    for partner in request.env['res.partner'].sudo().search(
-                            [('email', '=', email)]):
-                        existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
-                        if not existe_sub:
-                            new = request.env['mcm_openedx.form_info'].sudo().create({
-                                'email': email,
-                                'partner_id': partner.id,
-                                'societe': "MCM ACADEMY",
-                                'examen': 'pasrelle',
-                            })
-                        existe_doc = request.env['documents.document'].sudo().search(
-                            [('name', '=', name), ('partner_id', '=', partner.id)])
-                        # verifier les document si existe avec le nom jotform, et partner
-
-                        if not existe_doc:
-                            _logger.info("not exist")
-
-                            document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                        'type': 'binary',
-                                                                                        'partner_id': partner.id,
-                                                                                        'folder_id': folder_id.id,
-                                                                                        'datas': image_binary,
-                                                                                        'state': 'waiting', })
-
-                            request.env.cr.commit()
-
-                            # replace " " avec  %20 pour eliminer les espace
-                            # Ajout ticket pour notiifer le service examn pour changer mp
-                            # ajouter condition sur ticket
-
-
-        elif examen == "Examen VTC":
-
-            _logger.info("vtcc")
-
-            if rawRequest['q36_vousAllez'] == "Oui":
-                if rawRequest['justificatifDe']:
-                    url = rawRequest['justificatifDe']
-                    if url:
-                        _logger.info("justificatifDe %s" % (str(url)))
-                        # 👉️ Check if my_var is not None (null)
-                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = " Justificatif de domicile de moins de 3 mois"
-                        folder_id = request.env['documents.folder'].sudo().search(
-                            [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                        for partner in request.env['res.partner'].sudo().search(
-                                [('email', '=', email)]):
-                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                                [('email', "like", email)])
-                            if not existe_sub:
-                                new = request.env['mcm_openedx.form_info'].sudo().create({
-                                    'email': email,
-                                    'partner_id': partner.id,
-                                    'societe': "MCM ACADEMY",
-                                    'examen': 'pasrelle',
-                                })
-                            existe_doc = request.env['documents.document'].sudo().search(
-                                [('name', '=', name), ('partner_id', '=', partner.id)])
-                            # verifier les document si existe avec le nom jotform, et partner
-
-                            if not existe_doc:
-                                _logger.info("not exist")
-
-                                document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                            'type': 'binary',
-                                                                                            'partner_id': partner.id,
-                                                                                            'folder_id': folder_id.id,
-                                                                                            'datas': image_binary,
-                                                                                            'state': 'waiting', })
-
-                                request.env.cr.commit()
-            else:
-                if rawRequest['justificatifDe']:
-                    url = rawRequest['justificatifDe']
-                    if url:
-                        _logger.info("justificatifDe %s" % (str(url)))
-                        # 👉️ Check if my_var is not None (null)
-                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = " Justificatif de domicile de moins de 3 mois"
-                        folder_id = request.env['documents.folder'].sudo().search(
-                            [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                        for partner in request.env['res.partner'].sudo().search(
-                                [('email', '=', email)]):
-                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                                [('email', "like", email)])
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
                             if not existe_sub:
                                 new = request.env['mcm_openedx.form_info'].sudo().create({
                                     'email': email,
@@ -761,19 +602,56 @@ class JotformConnector(http.Controller):
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
 
-                if rawRequest['attestationDhebergement']:
-                    url = rawRequest['attestationDhebergement']
+                if rawRequest['merciDe']:
+                    url = rawRequest['merciDe']
                     if url:
-                        _logger.info("attestationDhebergement  %s" % (str(url)))
+                        _logger.info("merciDe %s" % (str(url)))
                         # 👉️ Check if my_var is not None (null)
                         image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = "  Attestation d'hébergement"
+                        name = "Photo de  signature sur papier blanc"
                         folder_id = request.env['documents.folder'].sudo().search(
                             [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
-                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                                [('email', "like", email)])
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                            if not existe_sub:
+                                new = request.env['mcm_openedx.form_info'].sudo().create({
+                                    'email': email,
+                                    'partner_id': partner.id,
+                                    'societe': "MCM ACADEMY",
+                                    'examen': 'pasrelle',
+                                })
+                            existe_doc = request.env['documents.document'].sudo().search(
+                                [('name', '=', name), ('partner_id', '=', partner.id)])
+                            # verifier les document si existe avec le nom jotform, et partner
+
+                            if not existe_doc:
+                                _logger.info("not exist")
+
+                                document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                            'type': 'binary',
+                                                                                            'partner_id': partner.id,
+                                                                                            'folder_id': folder_id.id,
+                                                                                            'datas': image_binary,
+                                                                                            'state': 'waiting', })
+
+                                request.env.cr.commit()
+                if rawRequest['q180_signature']:
+                    url = rawRequest['q180_signature'].split(',')[1]
+                    if url:
+                        _logger.info("rawRequest['q180_signature'].split(',')[1]%s" % (str(url)))
+                        # 👉️ Check if my_var is not None (null)
+                        sig1 = (rawRequest['q180_signature'].split(',')[1])
+                        # decoder l'image de la base 64
+                        sig = base64.b64decode(sig1)
+                        # convertir l'image en png
+                        image_binary = base64.b64encode(sig)
+                        name = "J'ai lu et j'accepte les conditions de la formation"
+                        folder_id = request.env['documents.folder'].sudo().search(
+                            [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                        for partner in request.env['res.partner'].sudo().search(
+                                [('email', '=', email)]):
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
                             if not existe_sub:
                                 new = request.env['mcm_openedx.form_info'].sudo().create({
                                     'email': email,
@@ -801,19 +679,180 @@ class JotformConnector(http.Controller):
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
 
-                if rawRequest['siHeberge11']:
-                    url = rawRequest['siHeberge11']
+
+            elif examen == "Examen VTC":
+
+                _logger.info("vtcc")
+
+                if rawRequest['q36_vousAllez'] == "Oui":
+                    if rawRequest['justificatifDe']:
+                        url = rawRequest['justificatifDe']
+                        if url:
+                            _logger.info("justificatifDe %s" % (str(url)))
+                            # 👉️ Check if my_var is not None (null)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                            name = " Justificatif de domicile de moins de 3 mois"
+                            folder_id = request.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in request.env['res.partner'].sudo().search(
+                                    [('email', '=', email)]):
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
+                                if not existe_sub:
+                                    new = request.env['mcm_openedx.form_info'].sudo().create({
+                                        'email': email,
+                                        'partner_id': partner.id,
+                                        'societe': "MCM ACADEMY",
+                                        'examen': 'pasrelle',
+                                    })
+                                existe_doc = request.env['documents.document'].sudo().search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
+                                if not existe_doc:
+                                    _logger.info("not exist")
+
+                                    document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                                'type': 'binary',
+                                                                                                'partner_id': partner.id,
+                                                                                                'folder_id': folder_id.id,
+                                                                                                'datas': image_binary,
+                                                                                                'state': 'waiting', })
+
+                                    request.env.cr.commit()
+                else:
+                    if rawRequest['justificatifDe']:
+                        url = rawRequest['justificatifDe']
+                        if url:
+                            _logger.info("justificatifDe %s" % (str(url)))
+                            # 👉️ Check if my_var is not None (null)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                            name = " Justificatif de domicile de moins de 3 mois"
+                            folder_id = request.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in request.env['res.partner'].sudo().search(
+                                    [('email', '=', email)]):
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
+                                if not existe_sub:
+                                    new = request.env['mcm_openedx.form_info'].sudo().create({
+                                        'email': email,
+                                        'partner_id': partner.id,
+                                        'societe': "MCM ACADEMY",
+                                        'examen': 'pasrelle',
+                                    })
+                                existe_doc = request.env['documents.document'].sudo().search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
+                                if not existe_doc:
+                                    _logger.info("not exist")
+
+                                    document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                                'type': 'binary',
+                                                                                                'partner_id': partner.id,
+                                                                                                'folder_id': folder_id.id,
+                                                                                                'datas': image_binary,
+                                                                                                'state': 'waiting', })
+
+                                    request.env.cr.commit()
+
+                                    # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                    if rawRequest['attestationDhebergement']:
+                        url = rawRequest['attestationDhebergement']
+                        if url:
+                            _logger.info("attestationDhebergement  %s" % (str(url)))
+                            # 👉️ Check if my_var is not None (null)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                            name = "  Attestation d'hébergement"
+                            folder_id = request.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in request.env['res.partner'].sudo().search(
+                                    [('email', '=', email)]):
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
+                                if not existe_sub:
+                                    new = request.env['mcm_openedx.form_info'].sudo().create({
+                                        'email': email,
+                                        'partner_id': partner.id,
+                                        'societe': "MCM ACADEMY",
+                                        'examen': 'pasrelle',
+                                    })
+                                existe_doc = request.env['documents.document'].sudo().search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
+                                if not existe_doc:
+                                    _logger.info("not exist")
+
+                                    document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                                'type': 'binary',
+                                                                                                'partner_id': partner.id,
+                                                                                                'folder_id': folder_id.id,
+                                                                                                'datas': image_binary,
+                                                                                                'state': 'waiting', })
+
+                                    request.env.cr.commit()
+
+                                    # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                    if rawRequest['siHeberge11']:
+                        url = rawRequest['siHeberge11']
+                        if url:
+                            _logger.info("siHeberge11 %s" % (str(url)))
+                            # 👉️ Check if my_var is not None (null)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                            name = "Pièce d'identité de l'hébergeur - Face arrière"
+                            folder_id = request.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in request.env['res.partner'].sudo().search(
+                                    [('email', '=', email)]):
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
+                                if not existe_sub:
+                                    new = request.env['mcm_openedx.form_info'].sudo().create({
+                                        'email': email,
+                                        'partner_id': partner.id,
+                                        'societe': "MCM ACADEMY",
+                                        'examen': 'pasrelle',
+                                    })
+                                existe_doc = request.env['documents.document'].sudo().search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
+                                if not existe_doc:
+                                    _logger.info("not exist")
+
+                                    document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                                'type': 'binary',
+                                                                                                'partner_id': partner.id,
+                                                                                                'folder_id': folder_id.id,
+                                                                                                'datas': image_binary,
+                                                                                                'state': 'waiting', })
+
+                                    request.env.cr.commit()
+
+                                    # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                if rawRequest['fileUpload2']:
+                    url = rawRequest['fileUpload2']
                     if url:
-                        _logger.info("siHeberge11 %s" % (str(url)))
+                        _logger.info("fileUpload2 %s" % (str(url)))
                         # 👉️ Check if my_var is not None (null)
                         image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = "Pièce d'identité de l'hébergeur - Face arrière"
+                        name = "Photo d'identité officielle"
                         folder_id = request.env['documents.folder'].sudo().search(
                             [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
-                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                                [('email', "like", email)])
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
                             if not existe_sub:
                                 new = request.env['mcm_openedx.form_info'].sudo().create({
                                     'email': email,
@@ -841,140 +880,18 @@ class JotformConnector(http.Controller):
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
 
-            if rawRequest['fileUpload2']:
-                url = rawRequest['fileUpload2']
-                if url:
-                    _logger.info("fileUpload2 %s" % (str(url)))
-                    # 👉️ Check if my_var is not None (null)
-                    image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                    name = "Photo d'identité officielle"
-                    folder_id = request.env['documents.folder'].sudo().search(
-                        [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                    for partner in request.env['res.partner'].sudo().search(
-                            [('email', '=', email)]):
-                        existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
-                        if not existe_sub:
-                            new = request.env['mcm_openedx.form_info'].sudo().create({
-                                'email': email,
-                                'partner_id': partner.id,
-                                'societe': "MCM ACADEMY",
-                                'examen': 'pasrelle',
-                            })
-                        existe_doc = request.env['documents.document'].sudo().search(
-                            [('name', '=', name), ('partner_id', '=', partner.id)])
-                        # verifier les document si existe avec le nom jotform, et partner
-
-                        if not existe_doc:
-                            _logger.info("not exist")
-
-                            document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                        'type': 'binary',
-                                                                                        'partner_id': partner.id,
-                                                                                        'folder_id': folder_id.id,
-                                                                                        'datas': image_binary,
-                                                                                        'state': 'waiting', })
-
-                            request.env.cr.commit()
-
-                            # replace " " avec  %20 pour eliminer les espace
-                            # Ajout ticket pour notiifer le service examn pour changer mp
-                            # ajouter condition sur ticket
-
-            if rawRequest['merciDe']:
-                url = rawRequest['merciDe']
-                if url:
-                    _logger.info("merciDe %s" % (str(url)))
-                    # 👉️ Check if my_var is not None (null)
-                    image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                    name = "Photo de  signature sur papier blanc"
-                    folder_id = request.env['documents.folder'].sudo().search(
-                        [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                    for partner in request.env['res.partner'].sudo().search(
-                            [('email', '=', email)]):
-                        existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
-                        if not existe_sub:
-                            new = request.env['mcm_openedx.form_info'].sudo().create({
-                                'email': email,
-                                'partner_id': partner.id,
-                                'societe': "MCM ACADEMY",
-                                'examen': 'pasrelle',
-                            })
-                        existe_doc = request.env['documents.document'].sudo().search(
-                            [('name', '=', name), ('partner_id', '=', partner.id)])
-                        # verifier les document si existe avec le nom jotform, et partner
-
-                        if not existe_doc:
-                            _logger.info("not exist")
-
-                            document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                        'type': 'binary',
-                                                                                        'partner_id': partner.id,
-                                                                                        'folder_id': folder_id.id,
-                                                                                        'datas': image_binary,
-                                                                                        'state': 'waiting', })
-
-                            request.env.cr.commit()
-            if rawRequest['q180_signature']:
-                url = rawRequest['q180_signature'].split(',')[1]
-                if url:
-                    _logger.info("rawRequest['q180_signature'].split(',')[1]%s" % (str(url)))
-                    # 👉️ Check if my_var is not None (null)
-                    sig1 = (rawRequest['q180_signature'].split(',')[1])
-                    # decoder l'image de la base 64
-                    sig = base64.b64decode(sig1)
-                    # convertir l'image en png
-                    image_binary = base64.b64encode(sig)
-                    name = "J'ai lu et j'accepte les conditions de la formation"
-                    folder_id = request.env['documents.folder'].sudo().search(
-                        [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                    for partner in request.env['res.partner'].sudo().search(
-                            [('email', '=', email)]):
-                        existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
-                        if not existe_sub:
-                            new = request.env['mcm_openedx.form_info'].sudo().create({
-                                'email': email,
-                                'partner_id': partner.id,
-                                'societe': "MCM ACADEMY",
-                                'examen': 'pasrelle',
-                            })
-                        existe_doc = request.env['documents.document'].sudo().search(
-                            [('name', '=', name), ('partner_id', '=', partner.id)])
-                        # verifier les document si existe avec le nom jotform, et partner
-
-                        if not existe_doc:
-                            _logger.info("not exist")
-
-                            document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                        'type': 'binary',
-                                                                                        'partner_id': partner.id,
-                                                                                        'folder_id': folder_id.id,
-                                                                                        'datas': image_binary,
-                                                                                        'state': 'waiting', })
-
-                            request.env.cr.commit()
-
-                            # replace " " avec  %20 pour eliminer les espace
-                            # Ajout ticket pour notiifer le service examn pour changer mp
-                            # ajouter condition sur ticket
-
-
-
-        elif examen == "Examen VMDTR":
-            _logger.info("eeee")
-            if rawRequest['q36_vousAllez'] == "Oui":
-                if rawRequest['justificatifDe']:
-                    url = rawRequest['justificatifDe']
+                if rawRequest['merciDe']:
+                    url = rawRequest['merciDe']
                     if url:
-                        _logger.info("justificatifDe %s" % (str(url)))
+                        _logger.info("merciDe %s" % (str(url)))
                         # 👉️ Check if my_var is not None (null)
                         image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = " Justificatif de domicile de moins de 3 mois"
+                        name = "Photo de  signature sur papier blanc"
                         folder_id = request.env['documents.folder'].sudo().search(
                             [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
-                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                                [('email', "like", email)])
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
                             if not existe_sub:
                                 new = request.env['mcm_openedx.form_info'].sudo().create({
                                     'email': email,
@@ -997,20 +914,22 @@ class JotformConnector(http.Controller):
                                                                                             'state': 'waiting', })
 
                                 request.env.cr.commit()
-            else:
-                if rawRequest['justificatifDe']:
-                    url = rawRequest['justificatifDe']
+                if rawRequest['q180_signature']:
+                    url = rawRequest['q180_signature'].split(',')[1]
                     if url:
-                        _logger.info("justificatifDe %s" % (str(url)))
+                        _logger.info("rawRequest['q180_signature'].split(',')[1]%s" % (str(url)))
                         # 👉️ Check if my_var is not None (null)
-                        image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = " Justificatif de domicile de moins de 3 mois"
+                        sig1 = (rawRequest['q180_signature'].split(',')[1])
+                        # decoder l'image de la base 64
+                        sig = base64.b64decode(sig1)
+                        # convertir l'image en png
+                        image_binary = base64.b64encode(sig)
+                        name = "J'ai lu et j'accepte les conditions de la formation"
                         folder_id = request.env['documents.folder'].sudo().search(
                             [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
-                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                                [('email', "like", email)])
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
                             if not existe_sub:
                                 new = request.env['mcm_openedx.form_info'].sudo().create({
                                     'email': email,
@@ -1038,19 +957,179 @@ class JotformConnector(http.Controller):
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
 
-                if rawRequest['attestationDhebergement']:
-                    url = rawRequest['attestationDhebergement']
+
+
+            elif examen == "Examen VMDTR":
+                _logger.info("eeee")
+                if rawRequest['q36_vousAllez'] == "Oui":
+                    if rawRequest['justificatifDe']:
+                        url = rawRequest['justificatifDe']
+                        if url:
+                            _logger.info("justificatifDe %s" % (str(url)))
+                            # 👉️ Check if my_var is not None (null)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                            name = " Justificatif de domicile de moins de 3 mois"
+                            folder_id = request.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in request.env['res.partner'].sudo().search(
+                                    [('email', '=', email)]):
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
+                                if not existe_sub:
+                                    new = request.env['mcm_openedx.form_info'].sudo().create({
+                                        'email': email,
+                                        'partner_id': partner.id,
+                                        'societe': "MCM ACADEMY",
+                                        'examen': 'pasrelle',
+                                    })
+                                existe_doc = request.env['documents.document'].sudo().search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
+                                if not existe_doc:
+                                    _logger.info("not exist")
+
+                                    document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                                'type': 'binary',
+                                                                                                'partner_id': partner.id,
+                                                                                                'folder_id': folder_id.id,
+                                                                                                'datas': image_binary,
+                                                                                                'state': 'waiting', })
+
+                                    request.env.cr.commit()
+                else:
+                    if rawRequest['justificatifDe']:
+                        url = rawRequest['justificatifDe']
+                        if url:
+                            _logger.info("justificatifDe %s" % (str(url)))
+                            # 👉️ Check if my_var is not None (null)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                            name = " Justificatif de domicile de moins de 3 mois"
+                            folder_id = request.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in request.env['res.partner'].sudo().search(
+                                    [('email', '=', email)]):
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
+                                if not existe_sub:
+                                    new = request.env['mcm_openedx.form_info'].sudo().create({
+                                        'email': email,
+                                        'partner_id': partner.id,
+                                        'societe': "MCM ACADEMY",
+                                        'examen': 'pasrelle',
+                                    })
+                                existe_doc = request.env['documents.document'].sudo().search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
+                                if not existe_doc:
+                                    _logger.info("not exist")
+
+                                    document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                                'type': 'binary',
+                                                                                                'partner_id': partner.id,
+                                                                                                'folder_id': folder_id.id,
+                                                                                                'datas': image_binary,
+                                                                                                'state': 'waiting', })
+
+                                    request.env.cr.commit()
+
+                                    # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                    if rawRequest['attestationDhebergement']:
+                        url = rawRequest['attestationDhebergement']
+                        if url:
+                            _logger.info("attestationDhebergement  %s" % (str(url)))
+                            # 👉️ Check if my_var is not None (null)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                            name = "  Attestation d'hébergement"
+                            folder_id = request.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in request.env['res.partner'].sudo().search(
+                                    [('email', '=', email)]):
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
+                                if not existe_sub:
+                                    new = request.env['mcm_openedx.form_info'].sudo().create({
+                                        'email': email,
+                                        'partner_id': partner.id,
+                                        'societe': "MCM ACADEMY",
+                                        'examen': 'pasrelle',
+                                    })
+                                existe_doc = request.env['documents.document'].sudo().search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
+                                if not existe_doc:
+                                    _logger.info("not exist")
+
+                                    document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                                'type': 'binary',
+                                                                                                'partner_id': partner.id,
+                                                                                                'folder_id': folder_id.id,
+                                                                                                'datas': image_binary,
+                                                                                                'state': 'waiting', })
+
+                                    request.env.cr.commit()
+
+                                    # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                    if rawRequest['siHeberge11']:
+                        url = rawRequest['siHeberge11']
+                        if url:
+                            _logger.info("siHeberge11 %s" % (str(url)))
+                            # 👉️ Check if my_var is not None (null)
+                            image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
+                            name = "Pièce d'identité de l'hébergeur - Face arrière"
+                            folder_id = request.env['documents.folder'].sudo().search(
+                                [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                            for partner in request.env['res.partner'].sudo().search(
+                                    [('email', '=', email)]):
+                                existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
+                                    [('email', "like", email)])
+                                if not existe_sub:
+                                    new = request.env['mcm_openedx.form_info'].sudo().create({
+                                        'email': email,
+                                        'partner_id': partner.id,
+                                        'societe': "MCM ACADEMY",
+                                        'examen': 'pasrelle',
+                                    })
+                                existe_doc = request.env['documents.document'].sudo().search(
+                                    [('name', '=', name), ('partner_id', '=', partner.id)])
+                                # verifier les document si existe avec le nom jotform, et partner
+
+                                if not existe_doc:
+                                    _logger.info("not exist")
+
+                                    document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                                'type': 'binary',
+                                                                                                'partner_id': partner.id,
+                                                                                                'folder_id': folder_id.id,
+                                                                                                'datas': image_binary,
+                                                                                                'state': 'waiting', })
+
+                                    request.env.cr.commit()
+
+                                    # replace " " avec  %20 pour eliminer les espace
+                                    # Ajout ticket pour notiifer le service examn pour changer mp
+                                    # ajouter condition sur ticket
+
+                if rawRequest['fileUpload2']:
+                    url = rawRequest['fileUpload2']
                     if url:
-                        _logger.info("attestationDhebergement  %s" % (str(url)))
+                        _logger.info("fileUpload2 %s" % (str(url)))
                         # 👉️ Check if my_var is not None (null)
                         image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = "  Attestation d'hébergement"
+                        name = "Photo d'identité officielle"
                         folder_id = request.env['documents.folder'].sudo().search(
                             [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
-                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                                [('email', "like", email)])
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
                             if not existe_sub:
                                 new = request.env['mcm_openedx.form_info'].sudo().create({
                                     'email': email,
@@ -1078,19 +1157,56 @@ class JotformConnector(http.Controller):
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
 
-                if rawRequest['siHeberge11']:
-                    url = rawRequest['siHeberge11']
+                if rawRequest['merciDe']:
+                    url = rawRequest['merciDe']
                     if url:
-                        _logger.info("siHeberge11 %s" % (str(url)))
+                        _logger.info("merciDe %s" % (str(url)))
                         # 👉️ Check if my_var is not None (null)
                         image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                        name = "Pièce d'identité de l'hébergeur - Face arrière"
+                        name = "Photo de  signature sur papier blanc"
                         folder_id = request.env['documents.folder'].sudo().search(
                             [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
                         for partner in request.env['res.partner'].sudo().search(
                                 [('email', '=', email)]):
-                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search(
-                                [('email', "like", email)])
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
+                            if not existe_sub:
+                                new = request.env['mcm_openedx.form_info'].sudo().create({
+                                    'email': email,
+                                    'partner_id': partner.id,
+                                    'societe': "MCM ACADEMY",
+                                    'examen': 'pasrelle',
+                                })
+                            existe_doc = request.env['documents.document'].sudo().search(
+                                [('name', '=', name), ('partner_id', '=', partner.id)])
+                            # verifier les document si existe avec le nom jotform, et partner
+
+                            if not existe_doc:
+                                _logger.info("not exist")
+
+                                document = request.env['documents.document'].sudo().create({'name': name,
+                                                                                            'type': 'binary',
+                                                                                            'partner_id': partner.id,
+                                                                                            'folder_id': folder_id.id,
+                                                                                            'datas': image_binary,
+                                                                                            'state': 'waiting', })
+
+                                request.env.cr.commit()
+                if rawRequest['q180_signature']:
+                    url = rawRequest['q180_signature'].split(',')[1]
+                    if url:
+                        _logger.info("rawRequest['q180_signature'].split(',')[1]%s" % (str(url)))
+                        # 👉️ Check if my_var is not None (null)
+                        sig1 = (rawRequest['q180_signature'].split(',')[1])
+                        # decoder l'image de la base 64
+                        sig = base64.b64decode(sig1)
+                        # convertir l'image en png
+                        image_binary = base64.b64encode(sig)
+                        name = "J'ai lu et j'accepte les conditions de la formation"
+                        folder_id = request.env['documents.folder'].sudo().search(
+                            [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
+                        for partner in request.env['res.partner'].sudo().search(
+                                [('email', '=', email)]):
+                            existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
                             if not existe_sub:
                                 new = request.env['mcm_openedx.form_info'].sudo().create({
                                     'email': email,
@@ -1118,118 +1234,14 @@ class JotformConnector(http.Controller):
                                 # Ajout ticket pour notiifer le service examn pour changer mp
                                 # ajouter condition sur ticket
 
-            if rawRequest['fileUpload2']:
-                url = rawRequest['fileUpload2']
-                if url:
-                    _logger.info("fileUpload2 %s" % (str(url)))
-                    # 👉️ Check if my_var is not None (null)
-                    image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                    name = "Photo d'identité officielle"
-                    folder_id = request.env['documents.folder'].sudo().search(
-                        [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                    for partner in request.env['res.partner'].sudo().search(
-                            [('email', '=', email)]):
-                        existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
-                        if not existe_sub:
-                            new = request.env['mcm_openedx.form_info'].sudo().create({
-                                'email': email,
-                                'partner_id': partner.id,
-                                'societe': "MCM ACADEMY",
-                                'examen': 'pasrelle',
-                            })
-                        existe_doc = request.env['documents.document'].sudo().search(
-                            [('name', '=', name), ('partner_id', '=', partner.id)])
-                        # verifier les document si existe avec le nom jotform, et partner
+            _logger.info("###############################")
+            if partner_email.street != rawRequest["q168_adressePostale"]:
+                partner_email.street = rawRequest["q168_adressePostale"]
+                _logger.info(rawRequest["q168_adressePostale"])
+            if partner_email.zip != rawRequest["q169_codePostal"]:
+                partner_email.zip = rawRequest["q169_codePostal"]
+                _logger.info(rawRequest["q169_codePostal"])
 
-                        if not existe_doc:
-                            _logger.info("not exist")
-
-                            document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                        'type': 'binary',
-                                                                                        'partner_id': partner.id,
-                                                                                        'folder_id': folder_id.id,
-                                                                                        'datas': image_binary,
-                                                                                        'state': 'waiting', })
-
-                            request.env.cr.commit()
-
-                            # replace " " avec  %20 pour eliminer les espace
-                            # Ajout ticket pour notiifer le service examn pour changer mp
-                            # ajouter condition sur ticket
-
-            if rawRequest['merciDe']:
-                url = rawRequest['merciDe']
-                if url:
-                    _logger.info("merciDe %s" % (str(url)))
-                    # 👉️ Check if my_var is not None (null)
-                    image_binary = base64.b64encode(requests.get(url[0].replace(" ", "%20")).content)
-                    name = "Photo de  signature sur papier blanc"
-                    folder_id = request.env['documents.folder'].sudo().search(
-                        [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                    for partner in request.env['res.partner'].sudo().search(
-                            [('email', '=', email)]):
-                        existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
-                        if not existe_sub:
-                            new = request.env['mcm_openedx.form_info'].sudo().create({
-                                'email': email,
-                                'partner_id': partner.id,
-                                'societe': "MCM ACADEMY",
-                                'examen': 'pasrelle',
-                            })
-                        existe_doc = request.env['documents.document'].sudo().search(
-                            [('name', '=', name), ('partner_id', '=', partner.id)])
-                        # verifier les document si existe avec le nom jotform, et partner
-
-                        if not existe_doc:
-                            _logger.info("not exist")
-
-                            document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                        'type': 'binary',
-                                                                                        'partner_id': partner.id,
-                                                                                        'folder_id': folder_id.id,
-                                                                                        'datas': image_binary,
-                                                                                        'state': 'waiting', })
-
-                            request.env.cr.commit()
-            if rawRequest['q180_signature']:
-                url = rawRequest['q180_signature'].split(',')[1]
-                if url:
-                    _logger.info("rawRequest['q180_signature'].split(',')[1]%s" % (str(url)))
-                    # 👉️ Check if my_var is not None (null)
-                    sig1 = (rawRequest['q180_signature'].split(',')[1])
-                    # decoder l'image de la base 64
-                    sig = base64.b64decode(sig1)
-                    # convertir l'image en png
-                    image_binary = base64.b64encode(sig)
-                    name = "J'ai lu et j'accepte les conditions de la formation"
-                    folder_id = request.env['documents.folder'].sudo().search(
-                        [('name', "=", ('Documents MCM ACADEMY')), ('company_id', "=", 1)], limit=1)
-                    for partner in request.env['res.partner'].sudo().search(
-                            [('email', '=', email)]):
-                        existe_sub = request.env['mcm_openedx.form_info'].sudo().search([('email', "like", email)])
-                        if not existe_sub:
-                            new = request.env['mcm_openedx.form_info'].sudo().create({
-                                'email': email,
-                                'partner_id': partner.id,
-                                'societe': "MCM ACADEMY",
-                                'examen': 'pasrelle',
-                            })
-                        existe_doc = request.env['documents.document'].sudo().search(
-                            [('name', '=', name), ('partner_id', '=', partner.id)])
-                        # verifier les document si existe avec le nom jotform, et partner
-
-                        if not existe_doc:
-                            _logger.info("not exist")
-
-                            document = request.env['documents.document'].sudo().create({'name': name,
-                                                                                        'type': 'binary',
-                                                                                        'partner_id': partner.id,
-                                                                                        'folder_id': folder_id.id,
-                                                                                        'datas': image_binary,
-                                                                                        'state': 'waiting', })
-
-                            request.env.cr.commit()
-
-                            # replace " " avec  %20 pour eliminer les espace
-                            # Ajout ticket pour notiifer le service examn pour changer mp
-                            # ajouter condition sur ticket
+            if partner_email.city != rawRequest["q170_ville"]:
+                partner_email.city = rawRequest["q170_ville"]
+                _logger.info(rawRequest["q170_ville"])

@@ -19,7 +19,7 @@
     <!-- Connection statement in partner (Générer pole emploi)-->
     <report id="rapport_pole_emplois"
             model="res.partner"
-            string="Pole emplois"
+            string="Pole emploi"
             report_type="qweb-pdf"
             name="plateforme_pedagogique.pole_emplois"
             file="plateforme_pedagogique.plapole_emplois"
