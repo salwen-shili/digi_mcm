@@ -49,7 +49,8 @@ class InheritSmsComposer(models.TransientModel):
                     "api-key": api_key.api_key
                 }
                 sms = self.env['mail.message'].sudo().search(
-                    [("body", "=", note_tag + self.body), ("res_id", "=", i_sms.id),
+                    [("body", "ilike", note_tag + self.body), ("res_id", "=",i_sms.name),
+                     ('date', '=', datetime.today())
                      ])
                 if not sms:
                     response = requests.post(url, json=payload, headers=headers)
@@ -102,7 +103,7 @@ class InheritSmsComposer(models.TransientModel):
                 "api-key": api_key.api_key
             }
             sms = self.env['mail.message'].sudo().search(
-                [("body", "=", note_tag + self.body), ("res_id", "=", records.id),
+                [("body", "ilike", note_tag + self.body), ("res_id", "=", records.name), ('date', '=', datetime.today())
                  ])
             if not sms:
                 response = requests.post(url, json=payload, headers=headers)
