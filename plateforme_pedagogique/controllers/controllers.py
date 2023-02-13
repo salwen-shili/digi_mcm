@@ -374,6 +374,16 @@ class WebhookController(http.Controller):
                          ('model', "=", "res.partner")])
                     if not sms:
                         user.partner_id.send_sms(sms_body_, user.partner_id)
+                if state_cpf == "untreated" and "premium_plus" in module:
+                    """Envoyez un SMS aux apprenants pour payer le reste à charge."""
+                    sms_body_ = "%s! Votre demande de financement par CPF a été validée. Connectez-vous sur moncompteformation.gouv.fr en partant dans l’onglet. Dossiers, Proposition de l’organisme, Financement, ensuite confirmer mon inscription." % (
+                        user.partner_id.company_id.name)  # content of sms
+                    sms = request.env['mail.message'].sudo().search(
+                        [("body", "like", sms_body_), ("message_type", "=", 'sms'),
+                         ('partner_ids', 'in', user.partner_id.id),
+                         ('model', "=", "res.partner")])
+                    if not sms:
+                        user.partner_id.send_sms(sms_body_, user.partner_id)
                 if "digimoov" in str(module):
                     user.write({'company_ids': [1, 2], 'company_id': 2})
                     product_ids = request.env['product.template'].sudo().search(
