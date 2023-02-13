@@ -727,7 +727,7 @@ class Session(models.Model):
 
     def write(self, values):
         for record in self:
-            time.sleep(0.3)
+
             _logger.info(
                 "°°°°°°°°°°°°°°°°°STAGE TAKWA TEST stages.date_exam°°°°°°°°°°°°°°°°°°°°°° %s" % str(record.date_exam))
             newformat = "%Y-%m-%d"
