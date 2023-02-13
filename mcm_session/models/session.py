@@ -726,29 +726,26 @@ class Session(models.Model):
             print(rec.date_fin)
 
     def write(self, values):
-        for record in self:
-
-            _logger.info(
-                "°°°°°°°°°°°°°°°°°STAGE TAKWA TEST stages.date_exam°°°°°°°°°°°°°°°°°°°°°° %s" % str(record.date_exam))
+        if 'date_exam' in values:
             newformat = "%Y-%m-%d"
             # Get session date exam to stage date_exam
-            if record.date_exam:
-                date_exam = datetime.strptime(str(record.date_exam), newformat)
-                stage_date_exam = date_exam.strftime(newformat)
-                if record.stage_id.date_exam is False: # If field date_exam is empty
-                    record.stage_id.date_exam = stage_date_exam
-                    _logger.info(
-                        "°°°°°°°°°°°°°°°°°INFO GET DATE EXAM VALUE IN STAGE DATE EXAM°°°°°°°°°°°°°°°°°°°°°° %s" % str(record.stage_id.date_exam))
-            if 'stage_id' in values:
-                stages = self.env['mcmacademy.stage'].search([('id', "=", values['stage_id'])])
+            date_exam = datetime.strptime(str(self.date_exam), newformat)
+            stage_date_exam = date_exam.strftime(newformat)
+            if self.stage_id.date_exam is False: # If field date_exam is empty
+                self.stage_id.date_exam = stage_date_exam
+                _logger.info(
+                    "°°°°°°°°°°°°°°°°°INFO GET DATE EXAM VALUE IN STAGE DATE EXAM°°°°°°°°°°°°°°°°°°°°°° %s" % str(self.stage_id.date_exam))
+            for record in self:
+                if 'stage_id' in values:
+                    stages = self.env['mcmacademy.stage'].search([('id', "=", values['stage_id'])])
 
-                for stage in stages:
-                    if stage.name in ['Archivées', 'Archivés'] and len(record.client_ids) > 0:
-                        raise ValidationError(
-                            "Impossible d'archiver une session qui contient des clients")  # raise validation error when we edit the session to stage 'Archivées or Archivés' and the session has won clients
-                    elif stage.name in ['Archivées', 'Archivés'] and len(record.client_ids) == 0:
-                        values[
-                            'max_number_places'] = 0  # edit the max number of places to 0 when we edit the session to stage  ['Archivées','Archivés'] and session has no clients
+                    for stage in stages:
+                        if stage.name in ['Archivées', 'Archivés'] and len(record.client_ids) > 0:
+                            raise ValidationError(
+                                "Impossible d'archiver une session qui contient des clients")  # raise validation error when we edit the session to stage 'Archivées or Archivés' and the session has won clients
+                        elif stage.name in ['Archivées', 'Archivés'] and len(record.client_ids) == 0:
+                            values[
+                                'max_number_places'] = 0  # edit the max number of places to 0 when we edit the session to stage  ['Archivées','Archivés'] and session has no clients
         return super(Session, self).write(values)
 
     def unlink(self):
