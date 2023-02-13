@@ -75,7 +75,8 @@
                       </div>
                     </div>
                     <div class="col-lg-6 pt16 pb16">
-                      <img src="/digimoov_website_templates/static/img/examen/1.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image"/>
+                      <img src="/digimoov_website_templates/static/img/examen/1.png" class="img img-fluid mx-auto" alt="Examen capacité professionnelle en transport routier de marchandises
+                      Description : candidats à l'examen capacité de transport de marchandises"/>
                     </div>
                   </div>
                 </div>
@@ -84,7 +85,8 @@
                 <div class="container">
                   <div class="row align-items-center">
                     <div class="col-lg-6 pt16 pb16">
-                      <img src="/digimoov_website_templates/static/img/examen/2.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte"/>
+                      <img src="/digimoov_website_templates/static/img/examen/2.png" class="img img-fluid mx-auto" alt="examen de capacité de transport léger de marchandises
+                      Description : examen capacité de transport"/>
                     </div>
                     <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
                       <h2 style="text-align: left; margin: 10px auto 0px; font-weight: 700; color: white; font-size: 38px; max-width: 700px;">
@@ -204,7 +206,8 @@
                 <div class="container">
                   <div class="row align-items-center">
                     <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
-                      <img src="/digimoov_website_templates/static/img/examen/3.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte"/>
+                      <img src="/digimoov_website_templates/static/img/examen/3.png" class="img img-fluid mx-auto" alt="repassage examen capacité de transport de marchandises
+                      Description : surveillante examen capacité de transport"/>
                     </div>
                     <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
                       <h2>
@@ -235,7 +238,8 @@
                       <mci-extension data-role="overlay" id="overlay-root"/>
                     </div>
                     <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
-                      <img src="/digimoov_website_templates/static/img/examen/4.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip170926" style=""/>
+                      <img src="/digimoov_website_templates/static/img/examen/4.png" class="img img-fluid mx-auto" alt="résultat examen capacité de transport
+                      Description :Jury examen capacité" data-original-title="" title="" aria-describedby="tooltip170926" style=""/>
                     </div>
                   </div>
                 </div>
