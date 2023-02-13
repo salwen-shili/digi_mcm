@@ -48,7 +48,7 @@ class InheritSmsComposer(models.TransientModel):
                     "api-key": api_key.api_key
                 }
                 sms = self.env['mail.message'].sudo().search(
-                    [("body", "like", self.body), ("message_type", "=", 'comment'),
+                    [("body", "ilike", self.body), ("message_type", "=", 'comment'),
 
                      ('model', "=", "res.partner")])
 
@@ -107,7 +107,7 @@ class InheritSmsComposer(models.TransientModel):
                 "api-key": api_key.api_key
             }
             sms = self.env['mail.message'].sudo().search(
-                [("body", "like", self.body), ("message_type", "=", 'comment'),
+                [("body", "ilike", self.body), ("message_type", "=", 'comment'),
 
                  ('model', "=", "res.partner")])
 
