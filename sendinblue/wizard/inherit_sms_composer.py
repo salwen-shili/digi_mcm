@@ -27,7 +27,6 @@ class InheritSmsComposer(models.TransientModel):
             _logger.info("selected_records %s " % selected_records)
 
             for i_sms in selected_records:
-
                 phone = str(i_sms.phone.replace(' ', ''))[-9:]
                 phone = '33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                                                                            3:5] + ' ' + phone[
@@ -49,17 +48,22 @@ class InheritSmsComposer(models.TransientModel):
                     "api-key": api_key.api_key
                 }
                 sms = self.env['mail.message'].sudo().search(
-                    [("body", "ilike", note_tag + self.body), ("res_id", "=",i_sms.name),
-                     ('date', '=', datetime.today())
-                     ])
+                    [("body", "like", self.body), ("message_type", "=", 'comment'),
+
+                     ('model', "=", "res.partner")])
+
+                _logger.info("sms")
+
                 if not sms:
+                    _logger.info("not exist")
+
                     response = requests.post(url, json=payload, headers=headers)
                     note_tag = "<b>" + " Sent 📨📨 À :  " + i_sms.name + " " "</b><br/>"
                     # if 201 message envoyée
                     # add message id-track
                     response_text = response.json()
 
-                    if (response.status_code == 201):
+                    if (response.status_code != 201):
                         messeageid = response_text["messageId"]  # if 201 message envoyée
 
                         values = {
@@ -103,15 +107,21 @@ class InheritSmsComposer(models.TransientModel):
                 "api-key": api_key.api_key
             }
             sms = self.env['mail.message'].sudo().search(
-                [("body", "ilike", note_tag + self.body), ("res_id", "=", records.name), ('date', '=', datetime.today())
-                 ])
+                [("body", "like", self.body), ("message_type", "=", 'comment'),
+
+                 ('model', "=", "res.partner")])
+
+            _logger.info("okkkkkkk")
+
             if not sms:
+                _logger.info("not exist")
+
                 response = requests.post(url, json=payload, headers=headers)
                 # if 201 message envoyée
                 # add message id-track
                 response_text = response.json()
 
-                if (response.status_code == 201):
+                if (response.status_code != 201):
                     messeageid = response_text["messageId"]  # if 201 message envoyée
 
                     values = {
@@ -136,7 +146,7 @@ class InheritSmsComposer(models.TransientModel):
         _logger.info(fn)
         _logger.info("response statut code sms suivi")
 
-        if fn == 201:
+        if fn != 201:
             return False
         else:
             records = self._get_records()
