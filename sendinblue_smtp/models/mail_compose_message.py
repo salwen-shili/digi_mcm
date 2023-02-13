@@ -41,7 +41,7 @@ class MailComposeMessage(models.TransientModel):
                 'sb_sender_id': odoo_sender_id.id,
                 'email_from': odoo_sender_id and '%s <%s>' % (odoo_sender_id.name, odoo_sender_id.email) or '',
                 'body_html': body_html,
-                'partner_to':values_dict.get('toField',''),
+                'partner_to': values_dict.get('toField','${object.id}'),
                 'reply_to':values_dict.get('replyTo','') if 'DEFAULT_REPLY_TO' not in values_dict.get('replyTo','') else False,
                 'sb_template_id' : template_id,
                 'name':values_dict.get('name',''),
