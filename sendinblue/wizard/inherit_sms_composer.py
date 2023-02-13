@@ -63,7 +63,7 @@ class InheritSmsComposer(models.TransientModel):
                     # add message id-track
                     response_text = response.json()
 
-                    if (response.status_code != 201):
+                    if (response.status_code == 201):
                         messeageid = response_text["messageId"]  # if 201 message envoyée
 
                         values = {
@@ -121,7 +121,7 @@ class InheritSmsComposer(models.TransientModel):
                 # add message id-track
                 response_text = response.json()
 
-                if (response.status_code != 201):
+                if (response.status_code == 201):
                     messeageid = response_text["messageId"]  # if 201 message envoyée
 
                     values = {
@@ -146,7 +146,7 @@ class InheritSmsComposer(models.TransientModel):
         _logger.info(fn)
         _logger.info("response statut code sms suivi")
 
-        if fn != 201:
+        if fn == 201:
             return False
         else:
             records = self._get_records()
