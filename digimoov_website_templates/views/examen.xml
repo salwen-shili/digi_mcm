@@ -2,34 +2,34 @@
     <template id="digimoov_website_templates.digimoov_template_examen" name="examen Digimoov">
 
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/examen.min.js"/>
-            <link rel="stylesheet" href="/digimoov_website_templates/static/src/css/popup-examen.min.css"/>
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/examen.min.js" />
+            <link rel="stylesheet" href="/digimoov_website_templates/static/src/css/popup-examen.min.css" />
             <!-- popup-->
-            <input type="hidden" t-att-value="default"/>
+            <input type="hidden" t-att-value="default" />
             <div t-if="default == 'False'">
-              <input type="hidden" t-att-value="url" id="url"/>
-              <input type="hidden" t-att-value="message" id="message"/>
-              <!-- popup-->
-              <div id="popup1" class="overlay">
-                <div class="popup">
-                  <h2 class="text-left">
-                    <i class="fa fa-info-circle" style="color: #152856"/>
-                  </h2>
-                  <a class="close" onclick="closePopup()">
-                    <i class="fa fa-times"/>
-                  </a>
-                  <div class="content">
-                    <p id="notifMessage" style="text-align: center; font-size: 16px"/>
-                    <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
-                      <div id="echec_examen">
-                        <a target="_blank" id="btnRepassage">
-                          <button class="action-button">Continuer</button>
+                <input type="hidden" t-att-value="url" id="url" />
+                <input type="hidden" t-att-value="message" id="message" />
+                <!-- popup-->
+                <div id="popup1" class="overlay">
+                    <div class="popup">
+                        <h2 class="text-left">
+                            <i class="fa fa-info-circle" style="color: #152856" />
+                        </h2>
+                        <a class="close" onclick="closePopup()">
+                            <i class="fa fa-times" />
                         </a>
-                      </div>
+                        <div class="content">
+                            <p id="notifMessage" style="text-align: center; font-size: 16px" />
+                            <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
+                                <div id="echec_examen">
+                                    <a target="_blank" id="btnRepassage">
+                                        <button class="action-button">Continuer</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
             <!-- end popup-->
             <div id="wrap" class="oe_empty oe_structure" style="word-break: break-word; position: relative; z-index: 0">
@@ -50,6 +50,9 @@
                             scaleY(1.92) !important;
                             }
                             }
+                            .card{
+                                height: 381px;
+                            }
                         </style>
               <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
               <section class="s_text_image pt32 pb32" data-name="Text - Image">
@@ -68,7 +71,7 @@
                       <p>Les questions sont proposées sous forme de QCM (questions à choix multiples) et de Questions rédigées. </p>
                       <p>Découvrez tous les détails de l’examen Capacité de transport léger et lourd de marchandises avec Digimoov.<br/></p>
                       <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                        <a href="#" class="btn btn-primary o_default_snippet_text">En savoir plus</a>
+                        <a href="#en-savoir-plus-examen" class="btn btn-primary o_default_snippet_text">En savoir plus</a>
                       </div>
                     </div>
                     <div class="col-lg-6 pt16 pb16">
@@ -101,7 +104,7 @@
                   </div>
                 </div>
               </section>
-              <section class="s_accounting_four_blocks bg-light-1" data-name="Four block with paragraph ">
+              <section id="en-savoir-plus-examen" class="s_accounting_four_blocks bg-light-1" data-name="Four block with paragraph ">
                 <div class="spacer feature3">
                   <div class="container">
                     <div class="row justify-content-center">
@@ -123,8 +126,8 @@
                             <div class="align-self-center">
                               <div class="s_btn" data-name="Link Align">
                                 <h5 class="font-medium">
-                                  <a href="#" class="linking" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip322293">Les documents requis pour l'inscription<br/>
-                                </a>
+                                    Les documents requis pour l'inscription
+                               
                                 </h5>
                               </div>
                               <p class="custom_p m-t-20">Une copie de la <b>pièce d'identité</b> en cours de validité. </p>
@@ -144,8 +147,8 @@
                             <div class="align-self-center">
                               <div class="s_btn" data-name="Link Align">
                                 <h5 class="font-medium">
-                                  <a href="#" class="linking" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip575080">Les conditions administratives<br/>
-                                </a>
+                                  Les conditions administratives
+                             
                                 </h5>
                               </div>
                               <p class="custom_p m-t-20">La présence du stagiaire à l’intégralité de la <b>formation</b> est une condition indispensable à sa présentation à l’examen. </p>
@@ -164,8 +167,7 @@
                             <div class="align-self-center">
                               <div class="s_btn" data-name="Link Align">
                                 <h5 class="font-medium">
-                                  <a href="#" class="linking" data-original-title="" title="" aria-describedby="tooltip374865" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" lang="merciapp">
-                                  Le jour de l'examen</a>
+                                  Le jour de l'examen
                                 </h5>
                               </div>
                               <p class="m-t-20 custom_p">Afin d'assurer le bon déroulement de l'examen, les candidats doivent se présenter <b>45 minutes à l'avance pour passer leur examen </b>(Cette&amp;nbsp; instruction est mentionnée dans les convocations). Ils doivent aussi être accompagnés par leurs CNI et leurs convocations.</p>
@@ -184,8 +186,8 @@
                             <div class="align-self-center">
                               <div class="s_btn" data-name="Link Align">
                                 <h5 class="font-medium">
-                                  <a href="#" class="linking" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip176880">Les conditions d'obtention du diplôme<br/>
-                                </a>
+                                 Les conditions d'obtention du diplôme<br/>
+                          
                                 </h5>
                               </div>
                               <p class="m-t-20 custom_p">Pour réussir son examen, le candidat doit obtenir au moins <b>un total de 120 points sur 200</b>, c'est-à-dire une <b>moyenne de 12/20,</b> avec des notes minimales de 50/100 sur la partie QCM et de 40/100 sur la partie Questions à Réponses Courtes.</p>
@@ -211,7 +213,7 @@
                         </b>
                       </h2>
                       <p><font class="text-delta" style=""><b>Le premier passage :&amp;nbsp;</b></font>Légalement, il ne faut pas dépasser 4 mois entre la date d'inscription à la formation et le passage du premier examen.</p>
-                      <p><font class="text-delta" style=""><b>Repassage d'examen à 200€ :</b></font> En cas d'absence ou d'échec à votre premier examen et que vous souhaitez le repasser, il suffit de réserver votre nouvelle tentative à 200€, sachant qu'il ne faut pas dépasser un délai de 6 mois entre le premier examen et les deux autres repassages (C'est-à-dire le deuxième et le troisième passage). </p>
+                      <p><font class="text-delta" style=""><b>Repassage d'examen à 200€ :</b></font> En cas d'absence ou d'échec à votre premier examen et que vous souhaitez le repasser, il suffit de <a href="#examen-fond-2">réserver votre nouvelle tentative à 200€</a>, sachant qu'il ne faut pas dépasser un délai de 6 mois entre le premier examen et les deux autres repassages (C'est-à-dire le deuxième et le troisième passage). </p>
                       <p>Aucune demande de report sans frais ne pourra être acceptée sauf en cas de force majeure accompagnée d'un justificatif, à condition qu'elle soit envoyée 72h avant la date de l'examen et que vous ayez un avancement de 80% dans la formation. </p>
                       <p>Une seule demande de report sans frais sera étudiée. </p>
                       <p>Si l'une de ces conditions n'est pas remplie, nous n'accepterons pas le report sans frais. Il faut tenir compte que pour chaque examen que vous soyez présent, absent ou que ça soit un report un passage sera automatiquement décompté.<br/></p>
@@ -244,6 +246,62 @@
               <section class="centric_template" data-name="Subscriber" style=""/>
               <ul/>
               <ol/>
+
+                 <!-- repassage-->
+                 <section id="examen-fond-2" class="s_newsletter_block oe_img_bg o_animate pb40 pt40 o_anim_zoom_in oe_custom_bg" style="background-image: url(&quot;/digimoov_website_templates/static/img/fond.webp&quot;); animation-name: o_anim_zoom_in; visibility: visible; animation-play-state: paused; background-position: 75.48% 30.96%;" data-name="Newsletter block">
+                    <div class="container" id="nouvelle-tentative">
+                        <div class="row">
+                            <div class="bg-white-75 col-lg-12 pt16 pb16">
+                                <div class="text-center">
+                                    <h1 class="text-uppercase font-weight-bold">
+                                        <font style="color: rgb(103, 67, 148); font-size: 24px;">Et si vous souhaitez
+                                            réserver votre nouvelle tentative d'examen ?
+                                        </font>
+                                    </h1>
+                                    <p>
+                                        <span class="fa fa-check" />
+                                        <font style="color: rgb(0, 0, 0); font-size: 18px;">&amp;nbsp;Dispense des 102 h
+                                            de formation
+                                        </font>
+                                        <span class="fa fa-check" />
+                                        <font style="color: rgb(0, 0, 0); font-size: 18px;">Jusqu'à 2 tentatives</font>
+                                        <span class="fa fa-check" />
+                                        <font style="color: rgb(0, 0, 0); font-size: 18px;">&amp;nbsp;Paiement en une
+                                            fois
+                                        </font>
+                                        <br />
+                                    </p>
+                                    <div class="pb16 pt16 s_btn text-center" data-name="Button">
+                                        <!-- Comparer si période < 6 mois  -->
+                                        <t t-if="default == 'True' ">
+                                            <form action="/shop/cart/update" method="post">
+                                                <input type="hidden" class="product_id" name="product_id" t-att-value="echec_examen.id" />
+                                                <td>
+                                                    <button type="submit" class="btn btn-alpha o_anim_fade_in_up o_animate" style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
+                                                                Réservez votre tentative
+                                                            </button>
+                                                </td>
+                                            </form>
+                                        </t>
+                                        <!-- <form action="/shop/cart/update" method="post">
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="echec_examen.id" />
+
+
+                                        </form> -->
+                                        <!-- display popup -->
+                                        <td t-if="default == 'False'">
+                                            <button onclick="openPopup()" id="btnRepassage" class="btn btn-alpha o_anim_fade_in_up o_animate" style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
+                                                Réservez votre tentative
+                                            </button>
+                                        </td>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
               <style>
                                   .truncate-p {
                                     overflow: hidden;
@@ -531,7 +589,7 @@
                 </div>
               </section>
             </div>
-          </t>
+        </t>
 
 
     </template>
