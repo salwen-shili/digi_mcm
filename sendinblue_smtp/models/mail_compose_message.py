@@ -37,11 +37,12 @@ class MailComposeMessage(models.TransientModel):
                     account.import_senders()
                     odoo_sender_id = sender_obj.search([('account_id', '=', account.id), ('sendinblue_id', '=', values_dict.get('sender').get('id'))])
             body_html = self.env['mail.thread']._replace_local_links(values_dict.get('htmlContent'))
+            #'partner_to': values_dict.get('toField', '${object.id}'),
             vals = {
                 'sb_sender_id': odoo_sender_id.id,
                 'email_from': odoo_sender_id and '%s <%s>' % (odoo_sender_id.name, odoo_sender_id.email) or '',
                 'body_html': body_html,
-                'partner_to': values_dict.get('toField','${object.id}'),
+                'partner_to': "${object.id}",
                 'reply_to':values_dict.get('replyTo','') if 'DEFAULT_REPLY_TO' not in values_dict.get('replyTo','') else False,
                 'sb_template_id' : template_id,
                 'name':values_dict.get('name',''),
