@@ -149,7 +149,7 @@
             <div class="container js-scroll fade-in-top scrolled">
               <div class="center-logo mt32">
                 <div>
-                      ?<img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid pos-cpf" title="Formation éligible au CPF" alt="logo mon compte de formation" src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp"/>
+                      <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid pos-cpf" title="Formation éligible au CPF" alt="logo mon compte de formation" src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp"/>
                     </div>
                 <div class="pt32">
                   <img class="img-fluid pos-qualopi" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi" src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp"/>
@@ -384,7 +384,7 @@
                           </ul>
                           <br/>
                           <br/>
-                          <br/>
+                         
                           <div class="text-center ">
                             <b style="font-size:54px !important; color:#000000" t-if="not promo">
                               <span t-esc="round(product.list_price)"/>
@@ -399,6 +399,7 @@
                               </t>
                             </b>
                           </div>
+                          <br/>
                           <p class="medium text-center font-weight-bolder text-secondary" style="color: red !important; word-break: break-word; position: relative; z-index: 0;">
                                 Paiement 1<t t-if="product.instalment_number&gt;1"> ou <t t-esc="product.instalment_number"/></t>&amp;nbsp;fois
                                                     </p>
