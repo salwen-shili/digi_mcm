@@ -2,6 +2,8 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
@@ -69,7 +71,10 @@ class SaleOrder(models.Model):
             })
             for order in self:
                 order.partner_id.step = 'finish'
-            if not self.partner_id.renounce_request:
+            if not self.partner_id.renounce_request and self.partner_id.sale_order.order_line.product_id.name in ["solo" or "vmdtr"]:
+                _logger.info("CMAAAAAA")
+                _logger.info(self.partner_id.sale_order.order_line.product_id.name)
+                _logger.info(self.partner_id.sale_order.order_line.product_id.default_code)
                 if self.partner_id.phone:
                     phone = str(self.partner_id.phone.replace(' ', ''))[-9:]
                     phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
