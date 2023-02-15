@@ -138,7 +138,7 @@ class SaleOrder(models.Model):
                             or self.partner_id.module_id.name == "Repassage formation VTC" \
                             or self.partner_id.module_id.name == "Formation à distance VMDTR"\
                             or self.partner_id.module_id.name == "Repassage formation TAXI":
-                        _logger.info("CMAA")
+                        _logger.info(" soloooooooooooooo solo test")
                         _logger.info(self.partner_id.module_id.name)
                         _logger.info(self.partner_id.module_id.id)
 
@@ -161,9 +161,11 @@ class SaleOrder(models.Model):
                                     template_id.id,
                                     composition_mode='comment',
                                 )  # send the email to client
-                    if self.partner_id.module_id.name == "Formation passerelle Taxi" or self.partner_id.module_id.name == "Formation passerelle VTC" \
-                            or self.partner_id.module_id.name == "Formation Taxi Premium" or    self.partner_id.module_id.name == "Formation VTC Premium":
-                        _logger.info("CMAA")
+                    if self.partner_id.module_id.name == "Formation passerelle Taxi" or\
+                            self.partner_id.module_id.name == "Formation passerelle VTC" \
+                            or self.partner_id.module_id.name == "Formation Taxi Premium" or\
+                            self.partner_id.module_id.name == "Formation VTC Premium":
+                        _logger.info("PremiumPremiumPremiumPremium")
                         _logger.info(self.partner_id.module_id.name)
                         _logger.info(self.partner_id.module_id.id)
 
