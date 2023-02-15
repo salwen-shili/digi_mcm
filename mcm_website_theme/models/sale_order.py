@@ -133,59 +133,61 @@ class SaleOrder(models.Model):
                     mail_compose_message = self.env['mail.compose.message']
                     mail_compose_message.fetch_sendinblue_template()
                     template_id = False
-                    # if self.partner_id.module_id.name == "Formation Taxi Solo" \
-                    #         or self.partner_id.module_id.name == "Formation VTC Solo" \
-                    #         or self.partner_id.module_id.name == "Repassage formation VTC" \
-                    #         or self.partner_id.module_id.name == "Formation à distance VMDTR"\
-                    #         or self.partner_id.module_id.name == "Repassage formation TAXI":
-                    _logger.info(" soloooooooooooooo solo test")
-                    _logger.info(self.partner_id.module_id.name)
-                    _logger.info(self.partner_id.module_id.id)
+                    if self.partner_id.module_id.name == "Formation Taxi Solo" \
+                            or self.partner_id.module_id.name == "Formation VTC Solo" \
+                            or self.partner_id.module_id.name == "Repassage formation VTC" \
+                            or self.partner_id.module_id.name == "Formation à distance VMDTR" \
+                            or self.partner_id.module_id.name == "Repassage formation TAXI":
+                        _logger.info(" soloooooooooooooo solo test")
 
-                    template_id = self.env['mail.template'].sudo().search(
-                        [('subject', "=", "Inscription examen chambre des métiers"),
-                         ('model_id', "=", 'res.partner')],
-                        limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
-                    if not template_id:
                         template_id = self.env['mail.template'].sudo().search(
-                            [('name', "=", "MCM INSCRIPTION EXAMEN CMA 2023"),
-                             ('model_id', "=", 'res.partner')],
-                            limit=1)
-                    if template_id:
-                        message = self.env['mail.message'].sudo().search(
                             [('subject', "=", "Inscription examen chambre des métiers"),
-                             ('model', "=", 'res.partner'), ('res_id', "=", self.partner_id.id)],
-                            limit=1)
-                        if not message:  # check if we have already sent the email
-                            self.partner_id.with_context(force_send=True).message_post_with_template(
-                                template_id.id,
-                                composition_mode='comment',
-                            )  # send the email to client
-                    # elif self.partner_id.module_id.name == "Formation passerelle Taxi" or\
-                    #         self.partner_id.module_id.name == "Formation passerelle VTC" \
-                    #         or self.partner_id.module_id.name == "Formation Taxi Premium" or\
-                    #         self.partner_id.module_id.name == "Formation VTC Premium":
-                    #     _logger.info("PremiumPremiumPremiumPremium")
-                    #     _logger.info(self.partner_id.module_id.name)
-                    #     _logger.info(self.partner_id.module_id.id)
-                    #
-                    #     template_id = self.env['mail.template'].sudo().search(
-                    #         [('subject', "=", "Inscription examen chambre des métiers"),
-                    #          ('model_id', "=", 'res.partner')],
-                    #         limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
-                    #     if not template_id:
-                    #         template_id = self.env['mail.template'].sudo().search(
-                    #             [('name', "=", "MCM INSCRIPTION EXAMEN CMA 2023 : PREMIUM"),
-                    #              ('model_id', "=", 'res.partner')],
-                    #             limit=1)
-                    #     if template_id:
-                    #         message = self.env['mail.message'].sudo().search(
-                    #             [('subject', "=", "Inscription examen chambre des métiers"),
-                    #              ('model', "=", 'res.partner'), ('res_id', "=", self.partner_id.id)],
-                    #             limit=1)
-                    #         if not message:  # check if we have already sent the email
-                    #             self.partner_id.with_context(force_send=True).message_post_with_template(
-                    #                 template_id.id,
-                    #                 composition_mode='comment',
-                    #             )  # send the email to client
+                             ('model_id', "=", 'res.partner')],
+                            limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
+                        if not template_id:
+                            template_id = self.env['mail.template'].sudo().search(
+                                [('name', "=", "MCM INSCRIPTION EXAMEN CMA 2023"),
+                                 ('model_id', "=", 'res.partner')],
+                                limit=1)
+                        if template_id:
+                            message = self.env['mail.message'].sudo().search(
+                                [('subject', "=", "Inscription examen chambre des métiers"),
+                                 ('model', "=", 'res.partner'), ('res_id', "=", self.partner_id.id)],
+                                limit=1)
+                            if not message:  # check if we have already sent the email
+                                self.partner_id.with_context(force_send=True).message_post_with_template(
+                                    template_id.id,
+                                    composition_mode='comment',
+                                )  # send the email to client
+                            _logger.info("maillllllllll sen solooo t")
+
+                    elif self.partner_id.module_id.name == "Formation passerelle Taxi" or \
+                            self.partner_id.module_id.name == "Formation passerelle VTC" \
+                            or self.partner_id.module_id.name == "Formation Taxi Premium" or \
+                            self.partner_id.module_id.name == "Formation VTC Premium":
+                        _logger.info("PremiumPremiumPremiumPremium")
+                        _logger.info(self.partner_id.module_id.name)
+                        _logger.info(self.partner_id.module_id.id)
+
+                        template_id = self.env['mail.template'].sudo().search(
+                            [('subject', "=", "Inscription examen chambre des métiers"),
+                             ('model_id', "=", 'res.partner')],
+                            limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
+                        if not template_id:
+                            template_id = self.env['mail.template'].sudo().search(
+                                [('name', "=", "MCM INSCRIPTION EXAMEN CMA 2023 : PREMIUM"),
+                                 ('model_id', "=", 'res.partner')],
+                                limit=1)
+                        if template_id:
+                            message = self.env['mail.message'].sudo().search(
+                                [('subject', "=", "Inscription examen chambre des métiers"),
+                                 ('model', "=", 'res.partner'), ('res_id', "=", self.partner_id.id)],
+                                limit=1)
+                            if not message:  # check if we have already sent the email
+                                self.partner_id.with_context(force_send=True).message_post_with_template(
+                                    template_id.id,
+                                    composition_mode='comment',
+                                )  # send the email to client
+                            _logger.info("maillllllllll premuinimmmmm")
+
         return order
