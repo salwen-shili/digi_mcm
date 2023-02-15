@@ -170,7 +170,7 @@ class SaleOrder(models.Model):
                         _logger.info(self.partner_id.module_id.id)
 
                         template_id = self.env['mail.template'].sudo().search(
-                            [('subject', "=", "Inscription examen chambre des métiers"),
+                            [('subject', "=", "Inscription examen chambre des métiers:PREMIUM"),
                              ('model_id', "=", 'res.partner')],
                             limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
                         if not template_id:
@@ -180,7 +180,7 @@ class SaleOrder(models.Model):
                                 limit=1)
                         if template_id:
                             message = self.env['mail.message'].sudo().search(
-                                [('subject', "=", "Inscription examen chambre des métiers"),
+                                [('subject', "=",  "Inscription examen chambre des métiers:PREMIUM"),
                                  ('model', "=", 'res.partner'), ('res_id', "=", self.partner_id.id)],
                                 limit=1)
                             if not message:  # check if we have already sent the email
