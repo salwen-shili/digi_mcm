@@ -56,10 +56,13 @@ class AircallConnector(http.Controller):
                 secondes = int(call_detail.call_duration - (3600 * heure) - (60 * minute))
                 call_detail.call_duration_char = (str(" %s h :   %s  m:  %s s" % (heure, minute, secondes)))
                 start_call_date = datetime.fromtimestamp(call_data['started_at'])
-                if call_detail.call_contact.company_id.id == 2:
-                    call_detail.call_contact.mooc_temps_passe_seconde =  int(call_detail.call_contact.mooc_temps_passe_seconde)+int(call_detail.call_duration)
-                elif call_detail.call_contact.company_id.id == 1:
-                    call_detail.call_contact.mooc_temps_passe_seconde =  int(call_detail.call_contact.mooc_temps_passe_seconde)+int(call_detail.call_duration)
+                if call["event"] == "call.ended":
+                    if call_detail.call_contact.company_id.id == 2:
+                        call_detail.call_contact.mooc_temps_passe_seconde = int(
+                            call_detail.call_contact.mooc_temps_passe_seconde) + int(call_detail.call_duration)
+                    elif call_detail.call_contact.company_id.id == 1:
+                        call_detail.call_contact.mooc_temps_passe_seconde = int(
+                            call_detail.call_contact.mooc_temps_passe_seconde) + int(call_detail.call_duration)
 
                 # add tags
                 if call_data['tags']:

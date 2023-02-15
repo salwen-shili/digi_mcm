@@ -12,7 +12,7 @@
         <field name="state">code</field>
         <field name="filter_domain">[('company_id', '=', 1)]</field>
         <field name="filter_pre_domain">[('company_id', '=', 1)]</field>
-        <field name="code">model.ajouter_IOne_MCM(record)</field>
+        <field name="code">model.ajoutMoocit_manuelle_eval_box(record)</field>
     </record>
 
 
