@@ -726,15 +726,15 @@ class Session(models.Model):
             print(rec.date_fin)
 
     def write(self, values):
-        if 'date_exam' in values:
-            newformat = "%Y-%m-%d"
-            # Get session date exam to stage date_exam
-            date_exam = datetime.strptime(str(self.date_exam), newformat)
-            stage_date_exam = date_exam.strftime(newformat)
-            if self.stage_id.date_exam is False: # If field date_exam is empty
-                self.stage_id.date_exam = stage_date_exam
-                _logger.info(
-                    "°°°°°°°°°°°°°°°°°INFO GET DATE EXAM VALUE IN STAGE DATE EXAM°°°°°°°°°°°°°°°°°°°°°° %s" % str(self.stage_id.date_exam))
+        # if 'date_exam' in values:
+        #     newformat = "%Y-%m-%d"
+        #     # Get session date exam to stage date_exam
+        #     date_exam = datetime.strptime(str(self.date_exam), newformat)
+        #     stage_date_exam = date_exam.strftime(newformat)
+        #     if self.stage_id.date_exam is False: # If field date_exam is empty
+        #         self.stage_id.date_exam = stage_date_exam
+        #         _logger.info(
+        #             "°°°°°°°°°°°°°°°°°INFO GET DATE EXAM VALUE IN STAGE DATE EXAM°°°°°°°°°°°°°°°°°°°°°° %s" % str(self.stage_id.date_exam))
             for record in self:
                 if 'stage_id' in values:
                     stages = self.env['mcmacademy.stage'].search([('id', "=", values['stage_id'])])
