@@ -32,7 +32,14 @@
                                 name="1271" string="Mode de paiement" view_mode="graph" modifiers="{}"/>
                     </column>
                     <column>
-                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': ['company_id'], 'orderedBy': [], 'dashboard_merge_domains_contexts': False}" domain="[]" name="1760" string="Statistiques des sessions par société" view_mode="list" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2024-01-01']], 'timeRangeDescription': 'Cette année', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'presence'], 'orderedBy': [{'name': 'create_date', 'asc': False}], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'presence'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271"
+                                string="Nombre d'absence / Présence /  Absence Justifiée" view_mode="graph"
+                                modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': [], 'orderedBy': [], 'dashboard_merge_domains_contexts': False}"
+                                domain="['&amp;', ['date_exam', '&gt;', '2023-01-01'], ['company_id', 'ilike', 'DIGIMOOV']]"
+                                name="1760" string="Statestiques Taux Présents" view_mode="list"
+                                modifiers="{}"/>
                     </column>
                 </board>
             </form>
