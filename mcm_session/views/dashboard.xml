@@ -23,8 +23,8 @@
                                 domain="['&amp;', ['date_exam', '&gt;', '2023-01-01'], ['company_id', 'ilike', 'DIGIMOOV']]"
                                 name="1271" string="Pack" view_mode="graph" modifiers="{}"/>
                         <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': [], 'orderedBy': [], 'dashboard_merge_domains_contexts': False}"
-                                domain="[]" name="1760" string="Taux de Présence Par Pack" view_mode="list"
-                                modifiers="{}"/>
+                            domain="[]" name="1760" string="Taux de Présence Par Pack" view_mode="list"
+                            modifiers="{}"/>
                     </column>
                     <column>
                         <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': ['date_exam:quarter', 'nombre_de_passage'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['date_exam:quarter', 'nombre_de_passage'], 'dashboard_merge_domains_contexts': False}"
