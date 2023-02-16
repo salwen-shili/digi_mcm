@@ -31,6 +31,9 @@
                                 domain="['&amp;', ['date_exam', '&gt;', '2023-01-01'], ['company_id', 'ilike', 'DIGIMOOV']]"
                                 name="1271" string="Mode de paiement" view_mode="graph" modifiers="{}"/>
                     </column>
+                    <column>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': ['company_id'], 'orderedBy': [], 'dashboard_merge_domains_contexts': False}" domain="[]" name="1760" string="Statistiques des sessions par société" view_mode="list" modifiers="{}"/>
+                    </column>
                 </board>
             </form>
         </field>
@@ -57,6 +60,5 @@
               parent="main_statistics_session_menu"
               action="mcm_session.action_session_statistics"
               groups="mcm_session.group_session_module_manager"/>
-
 
 </odoo>
