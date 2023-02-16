@@ -19,6 +19,8 @@
                 <field name="email"/>
                 <field name="partner_id"/>
                 <field name="societe"/>
+                <field name="examen"/>
+
             </tree>
         </field>
     </record>
@@ -34,6 +36,7 @@
                         <field name="email"/>
                         <field name="partner_id"/>
                         <field name="societe"/>
+                        <field name="examen"/>
 
                     </group>
                 </sheet>
@@ -49,6 +52,7 @@
         <field name="context">{'search_default_group_societe': 1}</field>
 
     </record>
-    <menuitem id="jotform_sub_menu" name="Jotform" action="jotform_sub_list_action" web_icon="mcm_openedx,static/src/jotf.png"/>
+    <menuitem id="jotform_sub_menu" name="Jotform" action="jotform_sub_list_action"
+              web_icon="mcm_openedx,static/src/jotf.png"/>
 
 </odoo>
