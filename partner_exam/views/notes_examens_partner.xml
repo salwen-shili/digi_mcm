@@ -169,6 +169,7 @@
                     <group expand="1" string="Group By">
                         <filter string="Résultat" name="resultat" context="{'group_by':'resultat'}"/>
                         <filter string="Présence" name="presence" context="{'group_by':'presence'}"/>
+                        <filter string="Pack" name="module_id" context="{'group_by':'module_id'}"/>
                     </group>
                 </search>
             </field>
@@ -179,7 +180,6 @@
             <field name="model">info.examen</field>
             <field name="arch" type="xml">
                 <graph string="Examen">
-
                 </graph>
             </field>
         </record>
