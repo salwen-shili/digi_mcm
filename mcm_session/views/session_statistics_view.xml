@@ -61,7 +61,7 @@
             <field name="arch" type="xml">
                 <tree string="session_statistics_tree">
                     <field name="session_id"/>
-                    <field name="date_exam"/>
+                    <field name="date_exam" invisible="1"/>
                     <field name="company_id" optional="show" invisible="1"/>
                     <field name="nbr_inscrits" optional="show"/>
                     <field name="nbr_pack_solo_inscrits" optional="show" invisible="1"/>
