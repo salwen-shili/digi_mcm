@@ -425,7 +425,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'pasrelle',
+                                        'examen': 'premier',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -461,7 +461,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'pasrelle',
+                                        'examen': 'premier',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -501,7 +501,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'pasrelle',
+                                        'examen': 'premier',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -541,7 +541,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'pasrelle',
+                                        'examen': 'premier',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -580,7 +580,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'pasrelle',
+                                    'examen': 'premier',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -619,7 +619,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'pasrelle',
+                                    'examen': 'premier',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -657,7 +657,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'pasrelle',
+                                    'examen': 'premier',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -703,7 +703,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'pasrelle',
+                                        'examen': 'repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -739,7 +739,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'pasrelle',
+                                        'examen': 'repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -779,7 +779,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'pasrelle',
+                                        'examen': 'repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -819,7 +819,7 @@ class JotformConnector(http.Controller):
                                         'email': email,
                                         'partner_id': partner.id,
                                         'societe': "MCM ACADEMY",
-                                        'examen': 'pasrelle',
+                                        'examen': 'repassage',
                                     })
                                 existe_doc = request.env['documents.document'].sudo().search(
                                     [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -858,7 +858,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'pasrelle',
+                                    'examen': 'repassage',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -897,7 +897,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'pasrelle',
+                                    'examen': 'repassage',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
@@ -935,7 +935,7 @@ class JotformConnector(http.Controller):
                                     'email': email,
                                     'partner_id': partner.id,
                                     'societe': "MCM ACADEMY",
-                                    'examen': 'pasrelle',
+                                    'examen': 'repassage',
                                 })
                             existe_doc = request.env['documents.document'].sudo().search(
                                 [('name', '=', name), ('partner_id', '=', partner.id)])
