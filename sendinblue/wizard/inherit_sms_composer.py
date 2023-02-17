@@ -47,10 +47,11 @@ class InheritSmsComposer(models.TransientModel):
                     "content-type": "application/json",
                     "api-key": api_key.api_key
                 }
+                partner_rmspace =  i_sms.id.replace("", " ")[1: -1]
                 sms = self.env['mail.message'].sudo().search(
-                    [("body", "ilike", self.body), ("message_type", "=", 'comment'),
+                    [("body", "ilike", self.body), ("message_type", "=", 'comment'),('res_id','=', partner_rmspace),
+                     ('model', "=", "res.partner"),('record_name','like', i_sms.name)])
 
-                     ('model', "=", "res.partner")])
 
                 _logger.info("sms")
 
