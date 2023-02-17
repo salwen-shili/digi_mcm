@@ -14,13 +14,12 @@
         <field name="model">board.board</field>
         <field name="arch" type="xml">
             <form string="Dashboard">
-                <board style="1-1">
+                <board style="2-1">
                     <field name=""/>
                     <column>
-                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2024-01-01']], 'timeRangeDescription': 'Cette année', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'presence'], 'orderedBy': [{'name': 'create_date', 'asc': False}], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'presence'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271"
-                                string="Nombre d'absence / Présence /  Absence Justifiée" view_mode="graph"
-                                modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'params': {'action': 1271, 'cids': 2, 'menu_id': 508, 'model': 'info.examen', 'view_type': 'graph'}, 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'resultat', 'presence', 'nombre_de_passage', 'mode_de_financement'], 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'resultat', 'presence', 'nombre_de_passage', 'mode_de_financement'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[]" name="1271" string="Résultat, Présent, Nombre passage et Financement  "
+                                view_mode="graph" modifiers="{}"/>
                         <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-17'], ['date_exam', '&lt;', '2023-02-16']], 'timeRangeDescription': 'Les 30 derniers jours', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'module_id'], 'graph_measure': 'epreuve_a', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'module_id'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[]" name="1271" string="QCM" view_mode="graph" modifiers="{}"/>
                         <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': ['module_id'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['module_id'], 'dashboard_merge_domains_contexts': False}"
