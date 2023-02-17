@@ -5,8 +5,7 @@
             <li style="font-size: 15.3px;">
                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation 35h (100 % en ligne) </li>
             <li style="font-size: 15.3px;">
-                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                <b>Inscription à l'examen auprès de la CMA</b>
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>Inscription à l'examen auprès de la CMA</b>
             </li>
             <li style="font-size: 15.3px;">
                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />Accès à 12 examens Blancs avec correction </li>
@@ -20,10 +19,9 @@
                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />Lives avec les formateurs pour explications </li>
             <li style="font-size: 15.3px;">
                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />Révision du programme avant examen </li>
-            <!-- <li style="font-size: 15.3px;">
-                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                <b>100€ remboursable à la réussite à l'examen</b>
-            </li> -->
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>100€ remboursable à la réussite à l'examen*</b>
+            </li>
             <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
         </ul>
     </template>
@@ -32,6 +30,7 @@
         <ul class="text-left" style="    margin-left: -12px">
             <li style="font-size: 15.3px;">
                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation 35h (100 % en ligne) </li>
+
             <li style="font-size: 15.3px;">
                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />Accès à 12 examens Blancs avec correction </li>
             <li style="font-size: 15.3px;">
@@ -54,23 +53,23 @@
         id="mcm_website_theme.pricing_table_solo" name="FORMATION TAXI VTC SOLO content">
         <ul class="text-left" style="    margin-left: -12px">
             <li style="font-size: 15.3px;">
-                <i class="fa fa-check-circle fa-lg mr-2 text-success" /> Formation 35 h (100 % en ligne) </li>
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Formation 35 h (100 % en ligne) </li>
             <li style="font-size: 15.3px;">
-                <i class="fa fa-check-circle fa-lg mr-2 text-success" /> Accès à + de 10 examens d'entraînement </li>
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Accès à + de 10 examens d'entraînement </li>
             <li style="font-size: 15.3px;">
-                <i class="fa fa-check-circle fa-lg mr-2 text-success" /> Assistance par mail </li>
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par mail </li>
             <li style="font-size: 15.3px;">
-                <i class="fa fa-check-circle fa-lg mr-2 text-success" /> Assistance par téléphone </li>
+                <i class="fa fa-check-circle fa-lg mr-2 text-success" />Assistance par téléphone </li>
             <li style="font-size: 15.3px;">
                 <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Assistance par visioconférence </li>
             <li style="font-size: 15.3px;">
                 <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Lives avec les formateurs pour explications </li>
             <li style="font-size: 15.3px;">
                 <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Révision du programme avant examen </li>
-                <li style="font-size: 15.3px;">
-                    <i class="fa fa-check-circle fa-lg mr-2 text-success" /><b>100€ remboursable à la réussite à l'examen</b>
-                </li>
+            <li style="font-size: 15.3px;">
+                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />Frais d'examen non inclus </li>
             <!-- <li style="font-size: 15.3px;"> &amp;nbsp;</li> -->
+            <li style="font-size: 15.3px;"> &amp;nbsp;</li>
             <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
         </ul>
     </template>
@@ -97,7 +96,7 @@
             <li style="font-size: 15.3px;">
                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />Révision du programme avant examen </li>
 
-            <!-- <li style="font-size: 15.3px;"> &amp;nbsp;</li> -->
+            <li style="font-size: 15.3px;"> &amp;nbsp;</li>
             <!-- <li style="font-weight: 900 !important;">Frais d'examen inclus*</li> -->
         </ul>
     </template>
@@ -122,14 +121,16 @@
                             style="margin-top: 0px;padding: 0px;font-weight: 600;color: #060606 !important;background: #fdd105f7;padding: 0 5px;font-size: 18px;">
                             Frais d'examen inclus
                         </span>
-                        <h5 style="margin-top: 20px !important;margin-bottom: 0.5rem !important;font-size: 18px !important;">
+                        <h5 style="margin-top: 20px !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 18px !important;">
                             <b>
                                 <t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF </b>
                         </h5>
                         <h4>
                             <span t-esc="round(product.list_price)" />
                             <span class="prod-cur" t-esc="product.currency_id.symbol" />
-                            
+                            <!-- <span class="">*</span> -->
                         </h4>
                         <t t-call="mcm_website_theme.pricing_table_content_all" />
                         <br />
@@ -149,11 +150,17 @@
                                 <span /> Je m'inscris </a>
                             <div>
                                 <span
-                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;"> Paiement 1 <t t-if="product.instalment_number&gt;1"> ou <t
-                                            t-esc="product.instalment_number" /></t> &amp;nbsp;fois </span>
+                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;"> Paiement 1 <t t-if="product.instalment_number&gt;1"> ou <t t-esc="product.instalment_number" /></t>
+                                    &amp;nbsp;fois </span>
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="text-center">
+                    <span style="
+                    font-weight: 600;
+                    font-size: 13px;
+                ">* Offre valable pour les paiements par carte bleu</span>
                 </div>
             </t>
         </t>
@@ -175,7 +182,9 @@
                             style="margin-top: 0px;padding: 0px;padding: 0 5px">
                             &amp;nbsp;
                         </span>
-                        <h5 style="margin-top: 20px !important;margin-bottom: 0.5rem !important;font-size: 18px !important;">
+                        <h5 style="margin-top: 20px !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 18px !important;">
                             <b>
                                 <t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF </b>
                         </h5>
@@ -201,9 +210,9 @@
                                 <span /> Je m'inscris </a>
                             <div>
                                 <span
-                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;"> Paiement 1 <t t-if="product.instalment_number>1"> ou <t
-                                            t-esc="product.instalment_number"></t>
-                                    </t> &amp;nbsp;fois </span>
+                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;"> Paiement 1 <t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t>
+                                    </t>
+                                    &amp;nbsp;fois </span>
                             </div>
                         </div>
                     </form>
@@ -226,7 +235,9 @@
                             style="margin-top: 0px;padding: 0px;font-weight: 600;color: #060606 !important;background: #fdd105f7;padding: 0 5px;font-size: 18px;">
                             Frais d'examen inclus
                         </span>
-                        <h5 style="margin-top: 20px !important;margin-bottom: 0.5rem !important;font-size: 18px !important;">
+                        <h5 style="margin-top: 20px !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 18px !important;">
                             <b>
                                 <t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF </b>
                         </h5>
@@ -252,9 +263,9 @@
                                 <span /> Je m'inscris </a>
                             <div>
                                 <span
-                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;"> Paiement 1 <t t-if="product.instalment_number>1"> ou <t
-                                            t-esc="product.instalment_number"></t>
-                                    </t> &amp;nbsp;fois </span>
+                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;"> Paiement 1 <t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t>
+                                    </t>
+                                    &amp;nbsp;fois </span>
                             </div>
                         </div>
                     </form>
@@ -290,7 +301,7 @@
                         <h4 t-if="not promo">
                             <span t-esc="round(product.list_price)" />
                             <span class="prod-cur" t-esc="product.currency_id.symbol" />
-                            
+                            <!-- <span class="">*</span> -->
                         </h4>
                         <h4 t-if="promo">
                             <t t-foreach="promo.item_ids" t-as="item">
@@ -328,17 +339,18 @@ Je m'inscris
                                 <span /> Je m'inscris </a>
                             <div>
                                 <span
-                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;"> Paiement 1 <t t-if="product.instalment_number&gt;1"> ou <t
-                                            t-esc="product.instalment_number" /></t> &amp;nbsp;fois </span>
+                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;"> Paiement 1 <t t-if="product.instalment_number&gt;1"> ou <t t-esc="product.instalment_number" /></t>
+                                    &amp;nbsp;fois </span>
                             </div>
                         </div>
                     </form>
                 </div>
-                <!-- <span style="
-
-                font-size: 13px;
-            ">* 100€ à payer par
-                    carte bancaire + 500€ à financer par CPF</span> -->
+                <div class="text-center">
+                    <span style="
+                    font-weight: 600;
+                    font-size: 13px;
+                ">* Offre valable pour les paiements par carte bleu</span>
+                </div>
             </t>
         </t>
     </template>
@@ -359,7 +371,9 @@ Je m'inscris
                             style="margin-top: 0px;padding: 0px;padding: 0 5px">
                             &amp;nbsp;
                         </span>
-                        <h5 style="margin-top: 20px !important;margin-bottom: 0.5rem !important;font-size: 18px !important;">
+                        <h5 style="margin-top: 20px !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 18px !important;">
                             <b>
                                 <t t-if="product.cpf_available == false">NON </t>ELIGIBLE AU CPF </b>
                         </h5>
@@ -385,9 +399,9 @@ Je m'inscris
                                 <span /> Je m'inscris </a>
                             <div>
                                 <span
-                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;"> Paiement 1 <t t-if="product.instalment_number>1"> ou <t
-                                            t-esc="product.instalment_number"></t>
-                                    </t> &amp;nbsp;fois </span>
+                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;"> Paiement 1 <t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t>
+                                    </t>
+                                    &amp;nbsp;fois </span>
                             </div>
                         </div>
                     </form>
@@ -438,9 +452,9 @@ Je m'inscris
                                 <span /> Je m'inscris </a>
                             <div>
                                 <span
-                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;"> Paiement 1 <t t-if="product.instalment_number>1"> ou <t
-                                            t-esc="product.instalment_number"></t>
-                                    </t> &amp;nbsp;fois </span>
+                                    style="color: #005a00 !important;font-size: 17px;font-weight: 600;"> Paiement 1 <t t-if="product.instalment_number>1"> ou <t t-esc="product.instalment_number"></t>
+                                    </t>
+                                    &amp;nbsp;fois </span>
                             </div>
                         </div>
                     </form>
