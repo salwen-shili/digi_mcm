@@ -43,8 +43,7 @@ class partner(models.Model):
 
     @api.onchange('mooc_temps_passe_min', 'mooc_temps_passe_seconde')
     def convert_seconde_to_hours(self):
-        if self.mooc_temps_passe_seconde or self.mooc_temps_passe_min:
-
+        if self.mooc_temps_passe_seconde:
             heure = int((self.mooc_temps_passe_seconde / 3600))
             minute = int((self.mooc_temps_passe_seconde - (3600 * heure)) / 60)
             secondes = int(self.mooc_temps_passe_seconde - (3600 * heure) - (60 * minute))
@@ -220,7 +219,6 @@ class partner(models.Model):
                        'course-v1:Digimoov+dev_com_02+2,'
                        'course-v1:Digimoov+t3p_02+2,'
                        'course-v1:Digimoov+sec_rout_02+2,'
-                       'course-v1:Digimoov+sec_rout_03+3,'
                        'course-v1:Digimoov+onboard+1,'
 
                        'course-v1:Digimoov+ges02+2,'
@@ -251,7 +249,6 @@ class partner(models.Model):
             'courses': 'course-v1:Digimoov+reg_vtc_02+2,'
                        'course-v1:Digimoov+dev_com_02+2,'
                        'course-v1:Digimoov+sec_rout_02+2,'
-                       'course-v1:Digimoov+sec_rout_03+3,'
                        'course-v1:Digimoov+onboard+1,'
 
                        'course-v1:Digimoov+t3p_02+2,'
@@ -285,7 +282,6 @@ class partner(models.Model):
                        'course-v1:Digimoov+conn_loc_calais_02+2,'
                        'course-v1:Digimoov+conn_loc_nord_02+2,'
                        'course-v1:Digimoov+sec_rout_02+2,'
-                       'course-v1:Digimoov+sec_rout_03+3,'
                        'course-v1:Digimoov+ges02+2,'
                        'course-v1:Digimoov+onboard+1,'
                        'course-v1:Digimoov+angl_02+2,'
@@ -629,7 +625,7 @@ class partner(models.Model):
                 }
             }
 
-    # Vérification client Bolt ou MCM
+
     def Bolt(self):
         todays_date = date.today()
         for user in self.env['res.partner'].sudo().search(

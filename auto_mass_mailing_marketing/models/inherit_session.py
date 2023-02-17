@@ -16,8 +16,10 @@ class Session(models.Model):
 
     heure_examen_matin = fields.Char(default="09H00")
     heure_examen_apres_midi = fields.Char(default="14H00", track_visibility='always')
-    date_exam = fields.Date(string="Date d'examen",copy=False,required=True,track_visibility='always') # add track visibility to show edit history of exam date field
-    date_cloture_cma = fields.Date(string="Date de clôture de CMA",copy=False,required=False,track_visibility='always') # add track visibility to show edit history of cloture cma field
+    date_exam = fields.Date(string="Date d'examen", copy=False,
+                            track_visibility='always')  # add track visibility to show edit history of exam date field
+    date_cloture_cma = fields.Date(string="Date de clôture de CMA", copy=False, required=False,
+                                   track_visibility='always')  # add track visibility to show edit history of cloture cma field
 
     # date_convocation = fields.Date(string="Date d'envoi de convocation", default=datetime.today())
     horaire_email = fields.Char(compute="_compute_auto_horaire_email", string="Horaire Email",
@@ -77,15 +79,17 @@ class Session(models.Model):
             'domain': [('id', 'in', [x.id for x in self.client_ids])],
             'context': "{'create': True}"
         }
-    def write(self,values):
-        session=super(Session,self).write(values)
-        modules = self.env['mcmacademy.module'].search([('session_id', "=",self.id)]) #get list of modules linked to self session
+
+    def write(self, values):
+        session = super(Session, self).write(values)
+        modules = self.env['mcmacademy.module'].search(
+            [('session_id', "=", self.id)])  # get list of modules linked to self session
         if modules:
-            for module in modules :
-                module.date_exam = self.date_exam #copy date exam of session in module
-                module.ville = self.ville #copy ville of session in module
-                module.max_number_places = self.max_number_places #copy nombre des places disponibles of session in module
+            for module in modules:
+                module.date_exam = self.date_exam  # copy date exam of session in module
+                module.ville = self.ville  # copy ville of session in module
+                module.max_number_places = self.max_number_places  # copy nombre des places disponibles of session in module
                 if self.date_exam:
-                    module.date_debut = self.date_exam - timedelta(days=120) #start_date = date_exam - 120 days
-                module.date_fin = self.date_exam #end_date  = date_exam 
+                    module.date_debut = self.date_exam - timedelta(days=120)  # start_date = date_exam - 120 days
+                module.date_fin = self.date_exam  # end_date  = date_exam
         return session

@@ -53,6 +53,8 @@ class InheritSmsComposer(models.TransientModel):
                      ('model', "=", "res.partner")])
 
                 _logger.info("sms")
+                if sms:
+                    statut_code_sendinblue = "300"
 
                 if not sms:
                     _logger.info("not exist")
@@ -112,6 +114,8 @@ class InheritSmsComposer(models.TransientModel):
                  ('model', "=", "res.partner")])
 
             _logger.info("okkkkkkk")
+            if sms:
+                statut_code_sendinblue = "300"
 
             if not sms:
                 _logger.info("not exist")
@@ -146,8 +150,9 @@ class InheritSmsComposer(models.TransientModel):
         _logger.info(fn)
         _logger.info("response statut code sms suivi")
 
-        if fn == 201:
+        if fn == 201 or fn == 300:
             return False
+
         else:
             records = self._get_records()
             if self.composition_mode == 'numbers':

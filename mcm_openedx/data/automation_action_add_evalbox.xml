@@ -3,17 +3,6 @@
     <!-- automated action to execute l'ajout d'ione lorsque le client ajout une date exman
      lors de modificatio sur le champs evalbox l'ajout automatique va etre declanché automatiquement
      -->
-    <record id="ajout sur moocitt" model="base.automation">
-        <field name="name">Base Automation: Ajout a moocit lors de l'ajout de field evalbox testt</field>
-        <field name="model_id" ref="base.model_res_partner"/>
-        <field name="trigger">on_create_or_write</field>
-        <field name="trigger_field_ids" eval="[(4,ref('crm_marketing_automation.field_res_partner__numero_evalbox'))]"/>
-        <field name="active" eval="True"/>
-        <field name="state">code</field>
-        <field name="filter_domain">[('company_id', '=', 1)]</field>
-        <field name="filter_pre_domain">[('company_id', '=', 1)]</field>
-        <field name="code">model.ajouter_IOne_MCM(record)</field>
-    </record>
 
 
     <record id="inscri_mcm_envoit_mail" model="base.automation">

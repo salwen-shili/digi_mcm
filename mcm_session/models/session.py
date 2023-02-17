@@ -135,7 +135,7 @@ class Session(models.Model):
 
     def nbr_present_par_session(self, nbr_present):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
-         La fonction est utilisé dans la template de rapport jury"""
+         La fonction est utilisée dans la template de rapport jury"""
         nbr_present = self.client_ids.filtered(lambda cl: cl.presence == 'Présent(e)')
         return len(nbr_present)
 
@@ -382,7 +382,7 @@ class Session(models.Model):
     def pack_solo_present(self, sum_solo_present):
         """ Calculer le nombre du client present par session selon le pack solo """
         nbr_from_examen_solo = 0
-        for examen in self.env['info.examen'].search(
+        for examen in self.env['info.examen'].sudo().search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
             if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
                 nbr_from_examen_solo += 1
@@ -554,7 +554,7 @@ class Session(models.Model):
     def taux_de_presence_premium(self):
         """ Calculer taux de présence pour les packs premium;
         avec une condition pour enlever la partie décimale
-        si la résultat est égale à zéro"""
+        si le résultat est égale à zéro"""
         pack_premium_present = self.pack_premium_present(self)
         nbr_inscrit = self.pack_premium_inscrit(self)
         if nbr_inscrit > 0:
@@ -726,15 +726,15 @@ class Session(models.Model):
             print(rec.date_fin)
 
     def write(self, values):
-        if 'date_exam' in values:
-            newformat = "%Y-%m-%d"
-            # Get session date exam to stage date_exam
-            date_exam = datetime.strptime(str(self.date_exam), newformat)
-            stage_date_exam = date_exam.strftime(newformat)
-            if self.stage_id.date_exam is False: # If field date_exam is empty
-                self.stage_id.date_exam = stage_date_exam
-                _logger.info(
-                    "°°°°°°°°°°°°°°°°°INFO GET DATE EXAM VALUE IN STAGE DATE EXAM°°°°°°°°°°°°°°°°°°°°°° %s" % str(self.stage_id.date_exam))
+        # if 'date_exam' in values:
+        #     newformat = "%Y-%m-%d"
+        #     # Get session date exam to stage date_exam
+        #     date_exam = datetime.strptime(str(self.date_exam), newformat)
+        #     stage_date_exam = date_exam.strftime(newformat)
+        #     if self.stage_id.date_exam is False: # If field date_exam is empty
+        #         self.stage_id.date_exam = stage_date_exam
+        #         _logger.info(
+        #             "°°°°°°°°°°°°°°°°°INFO GET DATE EXAM VALUE IN STAGE DATE EXAM°°°°°°°°°°°°°°°°°°°°°° %s" % str(self.stage_id.date_exam))
             for record in self:
                 if 'stage_id' in values:
                     stages = self.env['mcmacademy.stage'].search([('id', "=", values['stage_id'])])
@@ -746,7 +746,7 @@ class Session(models.Model):
                         elif stage.name in ['Archivées', 'Archivés'] and len(record.client_ids) == 0:
                             values[
                                 'max_number_places'] = 0  # edit the max number of places to 0 when we edit the session to stage  ['Archivées','Archivés'] and session has no clients
-        return super(Session, self).write(values)
+            return super(Session, self).write(values)
 
     def unlink(self):
         for record in self:
