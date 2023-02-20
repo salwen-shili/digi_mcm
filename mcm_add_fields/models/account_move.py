@@ -971,13 +971,9 @@ class AccountMove(models.Model):
 
                 params_wedof = (
                     ('order', 'desc'),
-                    ('type', 'all'),
-                    ('state', 'all'),
                     ('billingState', 'billed'),
                     ('certificationState', 'all'),
-                    ('sort', 'lastUpdate'),
-                    ('limit', '150'),
-    
+                    ('limit', '300'),
 
                 )
                 headers = {
@@ -999,84 +995,87 @@ class AccountMove(models.Model):
                     date_to_compare = date_to_compare.date()
                     updatedate = datetime.strptime(billedDate, '%Y-%m-%dT%H:%M:%S.%fz')
                     dateform = updatedate.date()
-                    _logger.info("last update %s" % str(date_to_compare))
+                    _logger.info("last update %s" % str(dateform))
                     date_invoice_str = "31/12/2022"
                     date_to_invoice = datetime.strptime(date_invoice_str, '%d/%m/%Y')
-                    if dateform == date_to_compare:
-                        _logger.info("if date")
-                        externalId = dossier['externalId']
-                        amountCGU = dossier['amountCGU']
-                        amount_ht = dossier['amountHt']
-                        print("CGU", amountCGU, dossier)
-                        bill_num = ""
-                        bill = False
-                        email = dossier['attendee']['email']
-                        email = email.replace("%", ".")  # remplacer % par .
-                        email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
-                        email = str(
-                            email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
-                        print('dossier', dossier)
-                        idform = dossier['trainingActionInfo']['externalId']
-                        _logger.info('dossier %s' % str(dossier))
-                        training_id = ""
-                        if "_" in idform:
-                            idforma = idform.split("_", 1)
-                            if idforma:
-                                training_id = idforma[1]
-                        state = dossier['state']
-                        _logger.info('training %s' % str(training_id))
+                    _logger.info("if date %s" % str(dossier['trainingActionInfo']['externalId']))
+                    externalId = dossier['externalId']
+                    amountCGU = dossier['amountCGU']
+                    amount_ht = dossier['amountHt']
+                    print("CGU", amountCGU, dossier)
+                    bill_num = ""
+                    bill = False
+                    email = dossier['attendee']['email']
+                    email = email.replace("%", ".")  # remplacer % par .
+                    email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
+                    email = str(
+                        email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
+                    print('dossier', dossier)
+                    idform = dossier['trainingActionInfo']['externalId']
+                    _logger.info('dossier %s' % str(dossier))
+                    training_id = ""
+                    if "_" in idform:
+                        idforma = idform.split("_", 1)
+                        if idforma:
+                            training_id = idforma[1]
+                    state = dossier['state']
+                    _logger.info('training %s' % str(training_id))
 
-                        user = self.env['res.partner'].sudo().search([('numero_cpf', "=", externalId)], limit=1)
+                    user = self.env['res.partner'].sudo().search([('numero_cpf', "=", externalId)], limit=1)
 
-                        product_id = ""
-                        if 'digimoov' in str(training_id):
+                    product_id = ""
+                    if 'digimoov' in str(training_id):
+                        product_id = self.env['product.product'].sudo().search(
+                            [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
+                        _logger.info('if digi %s' % str(product_id))
+                        _logger.info('edof %s' % str(user.id_edof))
+                        _logger.info('date %s' % str(user.date_examen_edof))
+                        _logger.info('ville %s' % str(user.session_ville_id))
+
+                    else:
+                        print('if digi ', product_id)
+                        product_id = self.env['product.product'].sudo().search(
+                            [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
+                        _logger.info('if not digi %s' % str(product_id))
+                        _logger.info('edof %s' % str(user.id_edof))
+                        _logger.info('date %s' % str(user.date_examen_edof))
+                        _logger.info('ville %s' % str(user.session_ville_id))
+
+                    if user and product_id and product_id.company_id.id == 2 and user.id_edof and user.date_examen_edof and user.session_ville_id:
+                        _logger.info("userrrr******** %s" % user.numero_cpf)
+                        module_id = self.env['mcmacademy.module'].sudo().search(
+                            [('company_id', "=", 2), ('session_ville_id', "=", user.session_ville_id.id),
+                             ('date_exam', "=", user.date_examen_edof), ('product_id', "=", product_id.id)
+                             ], limit=1)
+                        _logger.info('before if modulee %s' % str(module_id.name))
+                        if module_id:
+                            _logger.info('if modulee %s' % str(module_id))
                             product_id = self.env['product.product'].sudo().search(
-                                [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
-                            _logger.info('if digi %s' % str(product_id))
-                            _logger.info('edof %s' % str(user.id_edof))
-                            _logger.info('date %s' % str(user.date_examen_edof))
-                            _logger.info('ville %s' % str(user.session_ville_id))
+                                [('product_tmpl_id', '=', module_id.product_id.id)])
+                            self.env.user.company_id = 2
+                            """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
+                            invoice = self.env['account.move'].sudo().search(
+                                [('numero_cpf', "=", externalId),
+                                 ('state', "=", 'posted'),
+                                 ('partner_id', "=", user.id)], limit=1)
+                            # print('invoice', invoice.name, invoice.invoice_payments_widget)
+                            if invoice:
+                                num = invoice.name
+                                invoice.module_id = module_id
+                                invoice.billed_cpf = True
+                                invoice.invoice_date = dateform
+                                _logger.info('if invoice******** %s ' % str(invoice.module_id.name))
+                                _logger.info('if invoice******** %s ' % str(invoice.name))
+                                bill_num = num.replace('FA', '')
+                                bill_num = bill_num.replace('-', '')
+                                bill = invoice
 
-                        else:
-                            print('if digi ', product_id)
-                            product_id = self.env['product.product'].sudo().search(
-                                [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
-                            _logger.info('if not digi %s' % str(product_id))
-                            _logger.info('edof %s' % str(user.id_edof))
-                            _logger.info('date %s' % str(user.date_examen_edof))
-                            _logger.info('ville %s' % str(user.session_ville_id))
+                            if not invoice:
+                                invoices = self.env['account.move'].sudo().search(
+                                    [('name', "=", billnumero)])
 
-                        if user and product_id and product_id.company_id.id == 2 and user.id_edof and user.date_examen_edof and user.session_ville_id:
-                            _logger.info("userrrr******** %s" % user.numero_cpf)
-                            module_id = self.env['mcmacademy.module'].sudo().search(
-                                [('company_id', "=", 2), ('session_ville_id', "=", user.session_ville_id.id),
-                                 ('date_exam', "=", user.date_examen_edof), ('product_id', "=", product_id.id)
-                                 ], limit=1)
-                            _logger.info('before if modulee %s' % str(module_id.name))
-                            if module_id:
-                                _logger.info('if modulee %s' % str(module_id))
-                                product_id = self.env['product.product'].sudo().search(
-                                    [('product_tmpl_id', '=', module_id.product_id.id)])
-                                self.env.user.company_id = 2
-                                """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                                invoice = self.env['account.move'].sudo().search(
-                                    [('numero_cpf', "=", externalId),
-                                     ('state', "=", 'posted'),
-                                     ('partner_id', "=", user.id)], limit=1)
-                                #print('invoice', invoice.name, invoice.invoice_payments_widget)
-                                if invoice:
-                                    num = invoice.name
-                                    invoice.module_id = module_id
-                                    invoice.billed_cpf=True
-                                    invoice.invoice_date=date_to_invoice
-                                    _logger.info('if invoice******** %s ' % str(invoice.module_id.name))
-                                    _logger.info('if invoice******** %s ' % str(invoice.name))
-                                    bill_num = num.replace('FA', '')
-                                    bill_num = bill_num.replace('-', '')
-                                    bill = invoice
-
-                                if not invoice:
-                                    _logger.info('if  not invoice digi %s')
+                                _logger.info('if  not invoice digi %s' % invoices)
+                                if not invoices:
                                     so = self.env['sale.order'].sudo().create({
                                         'partner_id': user.id,
                                         'company_id': 2,
@@ -1131,8 +1130,8 @@ class AccountMove(models.Model):
                                             # move.cpf_invoice = True
                                             move.methodes_payment = 'cpf'
                                             move.sudo().write({'name': billnumero})
-                                            move.invoice_date=date_to_invoice
-                                            move.billed_cpf=True
+                                            move.invoice_date = dateform
+                                            move.billed_cpf = True
                                             _logger.info("name invoice %s" % str(move.name))
                                             move.post()
                                             num = move.name
@@ -1301,7 +1300,6 @@ class AccountMove(models.Model):
                     #                         ref = move.name
                     #                 so.action_cancel()
                     #                 so.unlink()
-
 
     """récupérer les paiements cpf pour facture créé surodoo """
 
