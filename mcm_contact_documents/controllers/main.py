@@ -769,10 +769,10 @@ class CustomerPortal(CustomerPortal):
 
     @http.route('/charger_mes_documents', type="http", auth="user", website=True)
     def create_documents_digimoov(self, **kw):
-        # if request.website.id == 2:
-        return werkzeug.utils.redirect("/charger_documents", 301)
-        # else:
-        #     return werkzeug.utils.redirect("/charger_mes_documents_manual", 301)
+        if request.website.id == 2:
+            return werkzeug.utils.redirect("/charger_documents", 301)
+        else:
+             return werkzeug.utils.redirect("/charger_mes_documents_manual", 301)
         #     name = http.request.env.user.name
         #     email = http.request.env.user.email
         #     partner_id = http.request.env.user.partner_id
