@@ -175,6 +175,11 @@ class WebhookController(http.Controller):
                                 statusValidated = self.validate_folder_cpf(headers, datedebutstr, datefin, externalid)
                                 if str(statusValidated) == "200":
                                     state_cpf = "validated"
+                else:
+                    """Validate folder state in cpf"""
+                    statusValidated = self.validate_folder_cpf(headers, datedebutstr, datefin, externalid)
+                    if str(statusValidated) == "200":
+                        state_cpf = "validated"
 
         # data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
         # dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
@@ -369,7 +374,7 @@ class WebhookController(http.Controller):
                     sms_body_ = "%s! Votre demande de financement par CPF a été validée. Connectez-vous sur moncompteformation.gouv.fr en partant dans l’onglet. Dossiers, Proposition de l’organisme, Financement, ensuite confirmer mon inscription." % (
                         user.partner_id.company_id.name)  # content of sms
                     sms = request.env['mail.message'].sudo().search(
-                        [("body", "like", sms_body_), ("message_type", "=", 'sms'),
+                        [("body", "like", sms_body_), ("message_type", "in",("sms", "comment")),
                          ('partner_ids', 'in', user.partner_id.id),
                          ('model', "=", "res.partner")])
                     if not sms:
