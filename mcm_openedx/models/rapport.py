@@ -62,7 +62,7 @@ class rapport(models.Model):
                     [('email', '=', existe.customer_email)]):
                 sale_order = self.env['sale.order'].sudo().search(
                     [('partner_id', '=', partner.id)],
-                    order="id desc", limit=1)
+                    order="date_order desc", limit=1)
 
                 if existe.type_financement == "stripe":
                     if partner.email == existe.customer_email and sale_order.date_order.date() == existe.created:
