@@ -994,13 +994,13 @@ class AccountMove(models.Model):
                     billnumero = "FA" + billnumero
                     _logger.info("bill num %s" % str(billnumero))
                     billedDate = dossier['history']['billedDate']
-                    date_to_compare_str = "2022-12-07"
+                    date_to_compare_str = "2022-12-31"
                     date_to_compare = datetime.strptime(date_to_compare_str, '%Y-%m-%d')
                     date_to_compare = date_to_compare.date()
                     updatedate = datetime.strptime(billedDate, '%Y-%m-%dT%H:%M:%S.%fz')
                     dateform = updatedate.date()
                     _logger.info("last update %s" % str(date_to_compare))
-                    date_invoice_str = "07/12/2022"
+                    date_invoice_str = "31/12/2022"
                     date_to_invoice = datetime.strptime(date_invoice_str, '%d/%m/%Y')
                     if dateform == date_to_compare:
                         _logger.info("if date")
@@ -1066,7 +1066,7 @@ class AccountMove(models.Model):
                                 #print('invoice', invoice.name, invoice.invoice_payments_widget)
                                 if invoice:
                                     num = invoice.name
-                                    invoice.module_id = user.module_id
+                                    invoice.module_id = module_id
                                     invoice.billed_cpf=True
                                     invoice.invoice_date=date_to_invoice
                                     _logger.info('if invoice******** %s ' % str(invoice.module_id.name))
@@ -1081,7 +1081,7 @@ class AccountMove(models.Model):
                                         'partner_id': user.id,
                                         'company_id': 2,
                                     })
-                                    so.module_id = user.module_id
+                                    so.module_id = module_id
                                     _logger.info("SO module id %s " % str(so.module_id.name))
                                     so.session_id = user.mcm_session_id
                                     """Créer une ligne de vente avec le montant CGU récupéré depuis cpf"""
