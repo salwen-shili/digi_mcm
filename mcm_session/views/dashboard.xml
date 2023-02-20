@@ -14,7 +14,7 @@
         <field name="model">board.board</field>
         <field name="arch" type="xml">
             <form string="Dashboard">
-                <board style="2-1">
+                <board style="1-2">
                     <field name=""/>
                     <column>
                         <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'params': {'action': 1271, 'cids': 2, 'menu_id': 508, 'model': 'info.examen', 'view_type': 'graph'}, 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'resultat', 'presence', 'nombre_de_passage', 'mode_de_financement'], 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'resultat', 'presence', 'nombre_de_passage', 'mode_de_financement'], 'dashboard_merge_domains_contexts': False}"
