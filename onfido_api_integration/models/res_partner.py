@@ -96,7 +96,7 @@ class ResPartner(models.Model):
         return token_sdk['token']
 
     def workflow_run(self, applicant_id, token, workflow_id):
-        url_workflow = "https://api.eu.onfido.com/v4/workflow_runs/"
+        url_workflow = "https://api.eu.onfido.com/v3.6/workflow_runs/"
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
@@ -114,7 +114,7 @@ class ResPartner(models.Model):
 
     def get_workflow_runs(self, workflow_run_id, token):
         """recuperer workflow_runs activé """
-        url_wrkflow = "https://api.eu.onfido.com/v4/workflow_runs/" + workflow_run_id
+        url_wrkflow = "https://api.eu.onfido.com/v3.6/workflow_runs/" + workflow_run_id
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
@@ -213,7 +213,7 @@ class ResPartner(models.Model):
 
     def get_checks(self, applicant_id, token):
         """get checks information"""
-        url_check = "https://api.eu.onfido.com/v3.1/checks?applicant_id=" + applicant_id
+        url_check = "https://api.eu.onfido.com/v3.6/checks?applicant_id=" + applicant_id
         headers = {
             'Authorization': 'Token token=' + token,
         }
