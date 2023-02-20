@@ -235,3 +235,18 @@ class ResPartner(models.Model):
         type_data = type(response_report)
         _logger.info('repooorttttttt %s' % str(report))
         return report
+
+
+
+    def get_doc_by_applicant(self,applicant_id,token):
+        identity_documents = ["national_identity_card","driving_licence","passport","voter_id","work_permit"]
+        """recupérer les informations lié aux document apartir de applicant id"""
+        url_applicant = "https://api.eu.onfido.com/v3.6/documents?applicant_id=" + applicant_id
+        headers = {
+            'Authorization': 'Token token=' + token,
+
+        }
+        response_applicant = requests.get(url_applicant, headers=headers)
+        applicant = response_applicant.json()
+        _logger.info('applicant documentssssss %s' % str(applicant))
+        return applicant

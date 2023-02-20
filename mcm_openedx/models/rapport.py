@@ -61,8 +61,8 @@ class rapport(models.Model):
             for partner in self.env['res.partner'].search(
                     [('email', '=', existe.customer_email)]):
                 sale_order = self.env['sale.order'].sudo().search(
-                    [('partner_id', '=', partner.id)], limit=1,
-                    order="id desc")
+                    [('partner_id', '=', partner.id)],
+                    order="id desc",limit=1)
                 if existe.type_financement == "stripe":
                     if partner.email == existe.customer_email:
                         existe.company = partner.company_id.name
