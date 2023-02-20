@@ -61,11 +61,11 @@ class rapport(models.Model):
             for partner in self.env['res.partner'].search(
                     [('email', '=', existe.customer_email)]):
                 sale_order = self.env['sale.order'].sudo().search(
-                    [('partner_id', '=', partner.id),('date_order','=',date.today().year)],
-                    order="id desc",limit=1)
+                    [('partner_id', '=', partner.id)],
+                    order="id desc", limit=1)
 
                 if existe.type_financement == "stripe":
-                    if partner.email == existe.customer_email:
+                    if partner.email == existe.customer_email and sale_order.date_order.date() == existe.created:
                         existe.company = partner.company_id.name
                         existe.partner_id = partner.id
                         existe.name = partner.name
@@ -118,7 +118,7 @@ class rapport(models.Model):
                 date_ = datetime.strptime(date_split, "%Y-%m-%d")
                 dateFormation = date_.date()
                 numero_formation = dossier['trainingActionInfo']['sessionId']
-                #print("oaoaoaoaooaoa", numero_formation.split("/")[0].split("_", 1)[1])
+                # print("oaoaoaoaooaoa", numero_formation.split("/")[0].split("_", 1)[1])
                 count = 0
                 today = date.today()
                 lastupdatestr = str(dossier['lastUpdate'])
