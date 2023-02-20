@@ -61,6 +61,7 @@ class NoteExamen(models.Model):
     is_Absent = fields.Boolean(default=False)
     is_absence_justifiee = fields.Boolean(default=False)
     phone = fields.Char(related="partner_id.phone")
+    genre = fields.Char(related="partner_id.title.name", store=True)
     mobile = fields.Char(compute="_compute_phone_value_to_mobile", store=True)
     module_id = fields.Many2one("mcmacademy.module")
     # Champ Mcm-academy
