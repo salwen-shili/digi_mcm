@@ -49,7 +49,7 @@ class InheritSmsComposer(models.TransientModel):
                 }
                 sms = self.env['mail.message'].sudo().search(
                     [("body", "ilike", self.body), ("message_type", "=", 'comment'),
-                     ('model', "=", "res.partner")])
+                     ('model', "=", "res.partner"), ('res_id','=',i_sms.id)])
 
 
                 _logger.info("sms")
