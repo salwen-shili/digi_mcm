@@ -26,7 +26,7 @@ class ResPartner(models.Model):
 
     def create_applicant(self, partner, token):
         """Creer un nouveau applicant avec api Onfido"""
-        url_post = "https://api.eu.onfido.com/v3.5/applicants"
+        url_post = "https://api.eu.onfido.com/v3.6/applicants"
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
@@ -59,7 +59,7 @@ class ResPartner(models.Model):
 
     def get_applicant(self,applicant_id,token):
         """recupérer les informations lié au applicant"""
-        url_applicant = "https://api.eu.onfido.com/v3.5/applicants/" + applicant_id
+        url_applicant = "https://api.eu.onfido.com/v3.6/applicants/" + applicant_id
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
@@ -73,7 +73,7 @@ class ResPartner(models.Model):
         """Génerer un sdk token avec API pour chaque applicant """
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         _logger.info("base urll %s" % str(base_url))
-        url_sdk = "https://api.eu.onfido.com/v3.4/sdk_token"
+        url_sdk = "https://api.eu.onfido.com/v3.6/sdk_token"
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
@@ -127,7 +127,7 @@ class ResPartner(models.Model):
 
     def get_listDocument(self, applicant_id, token):
         """recuperer le workflow """
-        url_documents = "https://api.eu.onfido.com/v3.4/documents"
+        url_documents = "https://api.eu.onfido.com/v3.6/documents"
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
@@ -144,7 +144,7 @@ class ResPartner(models.Model):
 
     def getDocmument(self, token, documentid):
         """recupérer les informations lié aux documents chargés"""
-        url_document = "https://api.eu.onfido.com/v3.4/documents/" + documentid
+        url_document = "https://api.eu.onfido.com/v3.6/documents/" + documentid
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
@@ -157,7 +157,7 @@ class ResPartner(models.Model):
 
     def downloadDocument(self, document_id, token):
         """récupérer la version binaire des documents"""
-        url_documentdownload = "https://api.eu.onfido.com/v3.4/documents/" + document_id + "/download"
+        url_documentdownload = "https://api.eu.onfido.com/v3.6/documents/" + document_id + "/download"
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
@@ -170,7 +170,7 @@ class ResPartner(models.Model):
 
     def downloadFace(self, applicant_id, token):
         """récupérer la version binaire de face photo """
-        url_face_download = "https://api.eu.onfido.com/v3.4/applicants/" + applicant_id + "/face/download"
+        url_face_download = "https://api.eu.onfido.com/v3.6/applicants/" + applicant_id + "/face/download"
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
@@ -182,7 +182,7 @@ class ResPartner(models.Model):
         return face
     def downloadLivephoto(self,live_photo_id,token):
         """récupérer la version binaire de face photo """
-        url_face_download = "https://api.eu.onfido.com/v3.4/live_photos/"+live_photo_id +"/download"
+        url_face_download = "https://api.eu.onfido.com/v3.6/live_photos/"+live_photo_id +"/download"
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
@@ -196,7 +196,7 @@ class ResPartner(models.Model):
 
     def autofill(self, document_id, token):
         """récupérer les informations récupérées à partir des documents"""
-        url_extraction = "https://api.eu.onfido.com/v3.4/extractions"
+        url_extraction = "https://api.eu.onfido.com/v3.6/extractions"
         headers = {
             'Authorization': 'Token token=' + token,
             # Already added when you pass json= but not when you pass data=
@@ -225,7 +225,7 @@ class ResPartner(models.Model):
 
     def get_report(self, report_id, token):
         """récupérer le rapport de document"""
-        url_rapport = "https://api.eu.onfido.com/v3.4/reports/" + report_id
+        url_rapport = "https://api.eu.onfido.com/v3.6/reports/" + report_id
         headers = {
             'Authorization': 'Token token=' + token,
 
