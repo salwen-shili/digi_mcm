@@ -1,5 +1,7 @@
 var paymentMethod = 'all';
 var urlCpf = false;
+let demandeurEmploi = false;
+var numeroPoleEmploi = ""
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     document.getElementById("cover-spin").remove();
@@ -28,6 +30,13 @@ var villeLeger = [
   "MARSEILLE",
 ];
 document.addEventListener("DOMContentLoaded", function () {
+  //demandeur emploi
+
+  if (document.getElementById("radio1")){
+    
+  }
+
+  //
   windowUrl = window.location.href;
   console.log(
     windowUrl,
@@ -337,6 +346,39 @@ function onChangeCheckButton() {
 
 //show popup if date is selected
 function showPopup() {
+  if (document.getElementById("input-pole-emploie")){
+    numeroPoleEmploi = document.getElementById("input-pole-emploie").value
+  }
+//demandeur d'emploi
+if (isDemandeurEmploiReplied()){
+  hideDemandeurEmploiQuestionError()
+  if (demandeurEmploi){
+    if (isNumeroEmploieEmpty() == true){
+     return showDemandeurEmploiNumeroError()
+    }else{
+      if (!verifyNumEmploi(numeroPoleEmploi)) {
+        hideDemandeurEmploiNumeroError();
+        return showWithId("num_emploi_helper")
+      }
+      hideWithId("num_emploi_helper")
+      hideDemandeurEmploiNumeroError()
+      sendDemandeurEmploi(numeroPoleEmploi,demandeurEmploi)
+    }
+    
+    
+  }
+}else{
+  hideDemandeurEmploiNumeroError()
+  hideWithId("num_emploi_helper")
+  return showDemandeurEmploiQuestionError()
+  
+}
+
+
+//End //demandeur d'emploi
+
+
+
     let optionsDate = document.getElementById('options-date');
     if (optionsDate != null){
       optionsDate=optionsDate.value
@@ -349,7 +391,7 @@ function showPopup() {
     let region = document.getElementById("centre_examen").value
     if (region != 'all') {
       document.getElementById('error_choix_centre_examen').style.display = 'none';
-      console.log("blingos")
+      
     } else {
       document.getElementById('error_choix_centre_examen').style.display = 'block';
       scrollToError();
@@ -1361,85 +1403,105 @@ function poleEmploieFixDisplay() {
   sendPoleEmploiState(paymentMethod == "pole_emploi_pm");
 
 }
-
-//post request to /shop/cart/update_exam_date
-const getCpfUrl = (props) => {
-  sendHttpRequest("POST", "/shop/cart/get_cpf", {
-    params: {
-      exam_date_id: props.exam_date_id,
-      status: props.status,
-      availableDate: props.availableDate,
-      
-    },
-  })
-    .then((responseData) => {
-    if (responseData.hasOwnProperty("result")){
-      if (responseData.result.hasOwnProperty("url_cpf")){
-        urlCpf = responseData.result.url_cpf ?? false;
+// Send numero et si demandeur d'emploi
+const sendDemandeurEmploi = (numeroPoleEmploi,demandeurEmploi) => {
+  if (demandeurEmploi){
+    sendHttpRequest("POST", "/shop/cart/get_demandeur_pole_emploi", {
+      params: {
+        numero_pole_emploi: numeroPoleEmploi, 
+        is_demandeur_emploi: demandeurEmploi,
+        
+      },
+    }).then((responseData) => {
+      if (responseData.hasOwnProperty("result")){
+        console.log("pole-emploi ", responseData)
       }
-      console.log("Url cpf: ", urlCpf)
-      
-    }
-   
-  })
-    .catch((err) => {});
-};
-
-// redirection to the adequate url 
-const postRedirection = (props) => {
-if (cpf_pm && props) {
-  // console.log(cpf_pm, 'cpf_pm');
- var emploichecked = paymentMethod == "pole_emploi_pm" ? true : false;
- if (cpf_pm.value == "Formation premium") {
-  switch (true) {
-    case state.includes("https://www.moncompteformation.gouv.fr/"):
-      
-      window.open(state, "_blank");
-      break;
-    case state == "accepted":
      
-      
-      cpfAccepted();
-      break;
-
-    default:
-      
-      window.open("https://bit.ly/3LJQLQP", "_blank");
-
-      break;
+    })
+      .catch((err) => {});
+  };
   }
 
+  function handleClickDemandeurEmploi(prop){
+   
+    if(prop.value=="oui"){
+      hideDemandeurEmploiQuestionError()
+      demandeurEmploi = true
+    }else if(prop.value=="non"){
+      demandeurEmploi = false
+      hideWithId("num_emploi_helper")
+      hideDemandeurEmploiNumeroError()
+      hideDemandeurEmploiQuestionError()
+    }
+    console.log("demandeurEmploi",demandeurEmploi)
+   
+    //si demandeur d'emploi
+    if (demandeurEmploi){
+      document.getElementById("input-pole-emploie").style.display="block"
+    }else{
+      document.getElementById("input-pole-emploie").style.display="none"
+    }
+  }
+  function showDemandeurEmploiQuestionError(){
+    if (document.getElementById("error_choix_demandeur_emploi")){
+      document.getElementById("error_choix_demandeur_emploi").style.display="block"
+      hideWithId("num_emploi_helper")
+    }
+  }
+  function hideDemandeurEmploiQuestionError(){
+    if (document.getElementById("error_choix_demandeur_emploi")){
+      document.getElementById("error_choix_demandeur_emploi").style.display="none"
+    }
+  }
 
- if (paymentMethod == "cpf_pm" || emploichecked == true) {
-    if (cpf_pm.value == "Formation pro") {
-      switch (true) {
-        case state.includes("https://www.moncompteformation.gouv.fr/"):
-          window.open(state, "_blank");
-          break;
-       
+  function showDemandeurEmploiNumeroError(){
+    if (document.getElementById("error_numero_demandeur_emploi")){
+      document.getElementById("error_numero_demandeur_emploi").style.display="block"
+      hideWithId("num_emploi_helper")
+    }
+  }
+  function hideDemandeurEmploiNumeroError(){
+    if (document.getElementById("error_numero_demandeur_emploi")){
+      document.getElementById("error_numero_demandeur_emploi").style.display="none"
+     
+    }
+  }
 
-        default:
-          window.open(urlCpf, "_blank");
+  function isDemandeurEmploiReplied(){
+    if (document.querySelector('input[name="radio-demandeur-emploi"]:checked')){
+      return true
+    }else return false
+  }
 
-          break;
-          case state == "accepted":
-            cpfAccepted();
-  
-            // document.getElementById('popupcontent').innerHTML = 'finished...';
-            break;
-      }
-      return;
+  function isNumeroEmploieEmpty(){
+    if (document.getElementById("input-pole-emploie")){
+      if (document.getElementById("input-pole-emploie").value){
+        return false
+      }else return true
+      
+    }
+  }
+
+ 
+function verifyNumEmploi(val){
+ 
+    
+    console.log(val, val.length)
+    if (val.length>7 && val.length<12){
+      return true
     }
     
-    }
-    if (
-      cpf_pm.value.includes(
-        "Formation attestation de transport poids lourd"
-      ) &&
-      conditionlourd.checked == true
-    ) {
-      window.open("https://bit.ly/3k2ueVO", "_blank");
-    }
+ 
+  return false
+}
+
+function hideWithId(id){
+  if (document.getElementById(id)){
+    document.getElementById(id).style.display="none"
   }
 }
+function showWithId(id){
+  if (document.getElementById(id)){
+    document.getElementById(id).style.display="block"
+  }
 }
