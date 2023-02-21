@@ -4,6 +4,8 @@ var urlCpf = false;
 var isPremium = false;
 var showResteCharge = false;
 // var conditionResteCharge= false;
+let demandeurEmploi = false;
+var numeroPoleEmploi = ""
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     document.getElementById("cover-spin").remove();
@@ -357,6 +359,36 @@ function scrollToError() {
 // responsable of showing the popup
 // if all conditions are required to show the popup 
 function showPopup() {
+if (document.getElementById("input-pole-emploie")){
+  numeroPoleEmploi = document.getElementById("input-pole-emploie").value
+}
+
+//demandeur d'emploi
+if (isDemandeurEmploiReplied()){
+  hideDemandeurEmploiQuestionError()
+  if (demandeurEmploi){
+    if (isNumeroEmploieEmpty() == true){
+     return showDemandeurEmploiNumeroError()
+    }else{
+      if (!verifyNumEmploi(numeroPoleEmploi)) {
+        hideDemandeurEmploiNumeroError();
+        return showWithId("num_emploi_helper")
+      }
+      hideWithId("num_emploi_helper")
+      hideDemandeurEmploiNumeroError()
+    } 
+  }
+}else{
+  hideDemandeurEmploiNumeroError()
+  hideWithId("num_emploi_helper")
+  return showDemandeurEmploiQuestionError()
+  
+}
+sendDemandeurEmploi(numeroPoleEmploi,demandeurEmploi)
+
+
+//
+
   
   let optionsDate = document.getElementById('options-date');
   if (optionsDate) optionsDate = optionsDate.value
@@ -368,7 +400,7 @@ function showPopup() {
     let region = document.getElementById("region_examen").value
     if (region != 'all') {
       document.getElementById('error_choix_region_examen').style.display = 'none';
-      console.log("blingos")
+     
     } else {
       document.getElementById('error_choix_region_examen').style.display = 'inline-block';
       scrollToError();
@@ -429,15 +461,15 @@ function showPopup() {
     ? (textbtn = 'Mobiliser mon CPF', showResteCharge = true)
     : (textbtn = 'Je paye maintenant !',showResteCharge = false);
 
-if (showResteCharge && isPremium){
-  if (document.getElementById("input_reste_charge")){
+// if (showResteCharge && isPremium){
+//   if (document.getElementById("input_reste_charge")){
    
-  document.getElementById("input_reste_charge").style.display = "block";
-}
-}else {
-  document.getElementById("input_reste_charge").style.display = "none";
+//   document.getElementById("input_reste_charge").style.display = "block";
+// }
+// }else {
+//   document.getElementById("input_reste_charge").style.display = "none";
 
-}
+// }
 
 
 
@@ -1292,5 +1324,110 @@ function checkPaiementInstalment(check) {
   }
   else return
   
+}
+
+// Send numero et si demandeur d'emploi
+const sendDemandeurEmploi = (numeroPoleEmploi,demandeurEmploi) => {
+
+
+    sendHttpRequest("POST", "/shop/cart/get_demandeur_pole_emploi", {
+      params: {
+        numero_pole_emploi: numeroPoleEmploi, 
+        is_demandeur_emploi: demandeurEmploi,
+        
+      },
+    }).then((responseData) => {
+      if (responseData.hasOwnProperty("result")){
+        console.log("pole-emploi ", responseData)
+      }
+     
+    })
+      .catch((err) => {});
+
+  }
+  
+  
+  function handleClickDemandeurEmploi(prop){
+   
+    if(prop.value=="oui"){
+      hideDemandeurEmploiQuestionError()
+      demandeurEmploi = true
+    }else if(prop.value=="non"){
+      demandeurEmploi = false
+      hideWithId("num_emploi_helper")
+      hideDemandeurEmploiNumeroError()
+      hideDemandeurEmploiQuestionError()
+    }
+    console.log("demandeurEmploi",demandeurEmploi)
+   
+    //si demandeur d'emploi
+    if (demandeurEmploi){
+      document.getElementById("input-pole-emploie").style.display="block"
+    }else{
+      document.getElementById("input-pole-emploie").style.display="none"
+    }
+  }
+  function showDemandeurEmploiQuestionError(){
+    if (document.getElementById("error_choix_demandeur_emploi")){
+      document.getElementById("error_choix_demandeur_emploi").style.display="block"
+      hideWithId("num_emploi_helper")
+    }
+  }
+  function hideDemandeurEmploiQuestionError(){
+    if (document.getElementById("error_choix_demandeur_emploi")){
+      document.getElementById("error_choix_demandeur_emploi").style.display="none"
+    }
+  }
+
+  function showDemandeurEmploiNumeroError(){
+    if (document.getElementById("error_numero_demandeur_emploi")){
+      document.getElementById("error_numero_demandeur_emploi").style.display="block"
+      hideWithId("num_emploi_helper")
+    }
+  }
+  function hideDemandeurEmploiNumeroError(){
+    if (document.getElementById("error_numero_demandeur_emploi")){
+      document.getElementById("error_numero_demandeur_emploi").style.display="none"
+     
+    }
+  }
+
+  function isDemandeurEmploiReplied(){
+    if (document.querySelector('input[name="radio-demandeur-emploi"]:checked')){
+      return true
+    }else return false
+  }
+
+  function isNumeroEmploieEmpty(){
+    if (document.getElementById("input-pole-emploie")){
+      if (document.getElementById("input-pole-emploie").value){
+        return false
+      }else return true
+      
+    }
+  }
+
+ 
+function verifyNumEmploi(val){
+ 
+    
+    console.log(val, val.length)
+    if (val.length>7 && val.length<12){
+      return true
+    }
+    
+ 
+  return false
+}
+
+function hideWithId(id){
+  if (document.getElementById(id)){
+    document.getElementById(id).style.display="none"
+  }
+}
+function showWithId(id){
+  if (document.getElementById(id)){
+    document.getElementById(id).style.display="block"
+  }
 }
 

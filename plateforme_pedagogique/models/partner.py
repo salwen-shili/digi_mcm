@@ -57,12 +57,10 @@ class partner(models.Model):
     temps_minute = fields.Integer(string="Temps passé en minutes",
                                   track_visibility='always')  # Champs pour récuperer temps en minute par api360
     temps_update_minute = fields.Char()
-    is_pole_emploi = fields.Boolean(
-        string="Pole Emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
+    is_pole_emploi = fields.Boolean(string="Pole Emploi")  # champ pour distinguer le mode de financement cpf+pole emploi
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
     numero_pole_emploi = fields.Char(string="Numero pôle emploi")
-    is_demandeur_emploi = fields.Boolean(
-        string="Demandeur emploi")  # champ pour distinguer le mode de financement
+    is_demandeur_emploi = fields.Boolean(string="Demandeur emploi")  # champ pour distinguer le mode de financement
     # cpf+pole emploi
     etat_financement_cpf_cb = fields.Selection([('untreated', 'Non Traité'),
                                                 ('validated', 'Validé'),

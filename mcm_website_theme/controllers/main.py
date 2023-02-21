@@ -2436,16 +2436,20 @@ class Payment3x(http.Controller):
     """Route est appelé quand demandeur pole emploi est coché pour extraire le numero de l'apprennat  """
 
     @http.route(
-        ["/shop/cart/pole_emploi"], type="json", auth="public", methods=["POST"], website=True, csrf=False
+        ["/shop/cart/get_demandeur_pole_emploi"], type="json", auth="public", methods=["POST"], website=True, csrf=False
     )
     def cart_pole_emploi_demendeur(self, numero_pole_emploi, is_demandeur_emploi):
         order = request.website.sale_get_order(force_create=1)
+        _logger.info("/shop/cart/get_demandeur_pole_emploi numero_pole_emploi= %s is_demandeur_emploi=%s",numero_pole_emploi, is_demandeur_emploi)
         print("order:", order, "numero_pole_emploi:", numero_pole_emploi)
-        print("order:", order, "pis_demandeur_emploi:", is_demandeur_emploi)
+        print("order:", order, "is_demandeur_emploi:", is_demandeur_emploi)
+        order.partner_id.is_demandeur_emploi = is_demandeur_emploi
         if is_demandeur_emploi:
-            order.partner_id.numero_pole_emploi = numero_pole_emploi
-        else:
-            is_demandeur_emploi = False
+            print("", order.partner_id.is_demandeur_emploi, order.partner_id)
+            if (numero_pole_emploi != order.partner_id.numero_pole_emploi):
+                order.partner_id.numero_pole_emploi = numero_pole_emploi
+        
+           
 
         return (numero_pole_emploi, is_demandeur_emploi)
 

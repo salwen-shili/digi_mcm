@@ -6,8 +6,62 @@
                 #pm_shop_check {
                 visibility: hidden;
                 }
+                .input-pole-emploie{
+                    display: unset;
+                    padding: 21px 10px;;
+                    color: black;
+                }
+                input::placeholder {
+                    font-weight: bold;
+                    opacity: 0.5;
+                    color: #495057;
+                }
             </style>
             <div style="margin: auto; background-color: #fff; border-color: #585959" t-if="request.website.is_public_user()==False and modules_digimoov" id="centre_date_examen">
+                <!-- Demandeur d'emploi-->
+                <section t-if="modules_digimoov and not from_habilitation_electrique" id="Section-demandeurd'emploi">
+
+               
+                <div class="row align-baseline" style="place-items: baseline;">
+                    <div class="col-4">
+                        <h3  class="" style="margin-top: 1rem; font-weight: 600; font-size:19px">
+                            Demandeur d'emploi ? 
+                        </h3>
+                       
+                    </div>
+                 
+                   
+                    <div class="col-8">
+                        <input type="radio" id="radio1" name="radio-demandeur-emploi" value="oui" onclick="handleClickDemandeurEmploi(this)" />
+                        <label style="margin-right: 14px;" for="radio1" value="non" ><strong>Oui</strong></label>
+                            
+                        <input type="radio" id="radio2" name="radio-demandeur-emploi" value="non" onclick="handleClickDemandeurEmploi(this)" />
+                        <label for="radio2"><strong>Non</strong></label>
+                    </div>
+                    <div style="    max-width: 600px;
+                    width: 100%;">
+                    <p id="error_choix_demandeur_emploi" class="alert alert-warning" style="    
+                    display:none;  margin-top: 10px; margin-left: 2%; max-width: 600px;">
+                        Vous devez répondre à la question.
+                    </p>
+                    </div>
+                    
+                </div>
+                <div>
+                    <input class="form-control search-slt input-pole-emploie digimoov" style="display:none" id="input-pole-emploie" placeholder="Saisir votre numéro Pôle emploi"/>
+                   
+                    <div class="alert alert-warning" style="display:none;  margin-top: 10px; margin-left: 0%; max-width: 600px;" id="num_emploi_helper">
+                        <span>Veuillez vérifier votre numéro d'emploi. Il doit contenir de 8 à 12 caractères</span>
+                    </div>
+                </div>
+          
+                <div>
+                    <p id="error_numero_demandeur_emploi" class="alert alert-warning" style=" display:none;  margin-top: 10px; margin-left: 0%; max-width: 600px;">
+                        Vous devez saisir votre numero d'emploi
+                    </p>
+                </div>
+                 </section>
+                <!-- -->
                 <h3 t-if="modules_digimoov and not from_habilitation_electrique" class="" style="margin-top: 1rem; font-weight: 600; font-size:19px">
                     Sélectionnez votre ville d'examen
                 </h3>

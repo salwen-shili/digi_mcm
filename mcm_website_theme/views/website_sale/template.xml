@@ -589,8 +589,56 @@
         <div id="cover-spin"></div>
            <!-- End SPINNER -->
           
-        
+           
+             <!-- Demandeur d'emploi-->
+             <section t-if="request.website.is_public_user()==False and modules_mcm" class="demandeur_emploie MCM">
+                <div  class="row align-baseline" style="place-items: baseline;">
+            
+                    <div class="col-4">
+                        <h3  class="" style="margin-top: 1rem; font-weight: 600; font-size:19px">
+                            Demandeur d'emploi ? 
+                        </h3>
+                       
+                    </div>
+                 
+                   
+                    <div class="col-8">
+                        <input type="radio" id="radio1" name="radio-demandeur-emploi" value="oui" onclick="handleClickDemandeurEmploi(this)" />
+                        <label style="margin-right: 14px;" for="radio1" value="non" ><strong>Oui</strong></label>
+                            
+                        <input type="radio" id="radio2" name="radio-demandeur-emploi" value="non" onclick="handleClickDemandeurEmploi(this)" />
+                        <label for="radio2"><strong>Non</strong></label>
+                    </div>
+                    <div style="    max-width: 600px;
+                    width: 100%;">
+                    <p id="error_choix_demandeur_emploi" class="alert alert-warning" style="    
+                    display:none;  margin-top: 10px; margin-left: 2%; max-width: 600px;">
+                        Vous devez répondre à la question.
+                    </p>
+                    </div>
+                    
+                </div>
+               <div>
+                <input class="form-control search-slt input-pole-emploie mcm" style="display:none" id="input-pole-emploie" placeholder="Saisir votre numéro Pôle emploi"/>
+               
+                <div class="alert alert-warning" style="display:none;  margin-top: 10px; margin-left: 0%; max-width: 600px;" id="num_emploi_helper">
+                    <span>Veuillez vérifier votre numéro d'emploi. Il doit contenir de 8 à 12 caractères</span>
+                </div>
+               </div>
+          
+                <div>
+                    <p id="error_numero_demandeur_emploi" class="alert alert-warning" style=" display:none;  margin-top: 10px; margin-left: 0%; max-width: 600px;">
+                        Veuillez saisir votre numéro d'emploi
+                    </p>
+                    <p id="error_validation_numero_demandeur_emploi" class="alert alert-warning" style=" display:none;  margin-top: 10px; margin-left: 0%; max-width: 600px;">
+                        Veuillez vérifier votre numéro d'emploi
+                    </p>
+                </div>
+             </section>
+            
+            <!-- -->
             <div style="margin:auto;background-color:#fff;border-color:#585959;" t-if="request.website.is_public_user()==False and modules_mcm" id="region_date_examen">
+                 
 
                 <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;;font-size:18px" >
                     Sélectionnez votre région d'examen
@@ -600,6 +648,9 @@
                 <input id="state" type="hidden" t-att-value="state" />
                 <p t-if="modules_mcm">
                     <b>
+                
+               
+                
                         <div style="margin-left:0%;" id="exam_center">
                             
                             <select name="region_examen" id="region_examen" class="form-control search-slt " style="font-size: 15px;font-weight: 600;"  t-if="modules_mcm" onclick="showDepartement()" data-tour="step: 1; title: Région d'examen; content: Vous commencez par choisir votre région">
