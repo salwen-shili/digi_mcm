@@ -91,7 +91,6 @@ class SessionStatistics(models.Model):
     #
     # partner_absent_ids = fields.One2many('info.examen', 'stat_info_exam_id', readonly=True)
 
-
     @api.depends('session_id')
     def _compute_date_examen(self):
         date = self.session_id.date_exam
@@ -303,7 +302,6 @@ class SessionStatistics(models.Model):
             else:
                 rec.taux_repassage_presence = 0
 
-
     # @api.depends('session_id')
     # def _compute_liste_client_present(self):
     #     for liste in self:
@@ -323,3 +321,16 @@ class SessionStatistics(models.Model):
     #                  ('presence', "=", 'Absent')]):
     #             list.append(examen.partner_id.id)
     #         self.sudo().write({'partner_absent_ids': [(6, 0, list)]})
+
+    def create_session_stats(self):
+        """ Generer la fonction pour creer les statestiques des sessions"""
+        for stats in self:
+            session = self.env['mcmacademy.session'].sudo().search([])
+            for rec in session:
+                if rec.session_id.company_id.id == 1:
+                    stats.create({
+                        'session_id': rec.session_id,
+                        'company_id': rec.session_id.company_id.id,
+                        'date_exam': rec.session_id.date_exam,
+                    })
+
