@@ -376,10 +376,7 @@ if (isDemandeurEmploiReplied()){
       }
       hideWithId("num_emploi_helper")
       hideDemandeurEmploiNumeroError()
-      sendDemandeurEmploi(numeroPoleEmploi,demandeurEmploi)
-    }
-    
-    
+    } 
   }
 }else{
   hideDemandeurEmploiNumeroError()
@@ -387,6 +384,7 @@ if (isDemandeurEmploiReplied()){
   return showDemandeurEmploiQuestionError()
   
 }
+sendDemandeurEmploi(numeroPoleEmploi,demandeurEmploi)
 
 
 //
@@ -1330,7 +1328,8 @@ function checkPaiementInstalment(check) {
 
 // Send numero et si demandeur d'emploi
 const sendDemandeurEmploi = (numeroPoleEmploi,demandeurEmploi) => {
-  if (demandeurEmploi){
+
+
     sendHttpRequest("POST", "/shop/cart/get_demandeur_pole_emploi", {
       params: {
         numero_pole_emploi: numeroPoleEmploi, 
@@ -1344,7 +1343,7 @@ const sendDemandeurEmploi = (numeroPoleEmploi,demandeurEmploi) => {
      
     })
       .catch((err) => {});
-  };
+
   }
   
   
