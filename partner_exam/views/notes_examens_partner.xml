@@ -29,6 +29,11 @@
                                 <label for="mobile"/>
                                 <div class="o_row">
                                     <field name="mobile" widget="phone" options="{'enable_sms': True}"/>
+
+                                </div>
+                                <div>
+                                    <label for="genre"/>
+                                    <field name="genre"/>
                                 </div>
                             </h2>
                         </div>
