@@ -48,7 +48,7 @@
                     
                 </div>
                 <div>
-                    <input class="form-control search-slt input-pole-emploie digimoov" style="display:" id="input-pole-emploie" placeholder="Saisir votre numéro Pôle emploi"/>
+                    <input class="form-control search-slt input-pole-emploie digimoov" style="display:none" id="input-pole-emploie" placeholder="Saisir votre numéro Pôle emploi"/>
                    
                     <div class="alert alert-warning" style="display:none;  margin-top: 10px; margin-left: 0%; max-width: 600px;" id="num_emploi_helper">
                         <span>Veuillez vérifier votre numéro d'emploi. Il doit contenir de 8 à 12 caractères</span>
