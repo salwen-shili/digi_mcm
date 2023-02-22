@@ -66,6 +66,7 @@
                                              <span t-field="o.inscrit_mcm"
                                                   t-field-options='{"format": "dd/MM/yyyy"}'/>
 
+
                                         </t>
 
                                         <br/>
