@@ -179,8 +179,8 @@
                         <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                         <h4 style="padding-bottom:0px !important">FORMATION TAXI SOLO</h4>
                         <span
-                            style="margin-top: 0px;padding: 0px;padding: 0 5px">
-                            &amp;nbsp;
+                            style="margin-top: 0px;padding: 0px;font-weight: 600;color: #060606 !important;background: #fdd105f7;padding: 0 5px;font-size: 18px;">
+                            Frais d'examen non inclus
                         </span>
                         <h5 style="margin-top: 20px !important;
     margin-bottom: 0.5rem !important;
@@ -368,8 +368,8 @@ Je m'inscris
                         <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                         <h4 style="padding-bottom:0px !important">FORMATION VTC SOLO</h4>
                         <span
-                            style="margin-top: 0px;padding: 0px;padding: 0 5px">
-                            &amp;nbsp;
+                            style="margin-top: 0px;padding: 0px;font-weight: 600;color: #060606 !important;background: #fdd105f7;padding: 0 5px;font-size: 18px;">
+                            Frais d'examen non inclus
                         </span>
                         <h5 style="margin-top: 20px !important;
     margin-bottom: 0.5rem !important;
