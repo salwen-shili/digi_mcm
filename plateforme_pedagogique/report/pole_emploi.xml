@@ -57,7 +57,17 @@
                                     <br/>
                                     <p>
                                         Date de début de stage :
-                                        <span t-esc="o.date_creation"/>
+                                        <t t-if="o.company_id.name=='DIGIMOOV'">
+
+                                            <span t-field="o.date_creation"
+                                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                        </t>
+                                        <t t-if="o.company_id.name=='MCM ACADEMY'">
+                                             <span t-field="o.inscrit_mcm"
+                                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+
+
+                                        </t>
 
                                         <br/>
 
