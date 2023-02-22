@@ -1,6 +1,8 @@
 from odoo import api, fields, models, _
 
+import logging
 
+_logger = logging.getLogger(__name__)
 # class InheritInfosExamen(models.Model):
 #     _inherit = "info.examen"
 #
@@ -98,71 +100,76 @@ class SessionStatistics(models.Model):
 
     @api.depends('session_id')
     def _compute_nbr_inscrit(self):
-        nbr_inscrits = False
-        res = self.session_id.nbr_client_par_session(nbr_inscrits)
-        self.nbr_inscrits = int(res)
+        for rec in self:
+            examen = rec.env['info.examen'].search_count(
+                    [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id)])
+            rec.nbr_inscrits = examen
 
     @api.depends('session_id')
     def _compute_pack_solo_inscrit(self):
         # self.nbr_pack_solo_inscrits = int(self.session_id.pack_solo_present(sum_solo_present))
-        nbr_from_examen_solo = 0
-        for examen in self.env['info.examen'].sudo().search(
-                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id),
-                 ('presence', "=", 'present')]):
-            if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
-                nbr_from_examen_solo += 1
-        self.nbr_pack_solo_inscrits = nbr_from_examen_solo
+        for rec in self:
+            nbr_from_examen_solo = 0
+            for examen in rec.env['info.examen'].sudo().search(
+                    [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id),
+                     ('presence', "=", 'present')]):
+                if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
+                    nbr_from_examen_solo += 1
+            self.nbr_pack_solo_inscrits = nbr_from_examen_solo
 
     @api.depends('session_id')
     def _compute_pack_pro_inscrit(self):
         # self.nbr_pack_pro_inscrit = int(self.session_id.pack_pro_inscrit(sum_pro_inscrit))
-        nbr_from_examen_pro = False
         for rec in self:
-            for examen in self.env['info.examen'].search(
+            nbr_from_examen_pro = 0
+            for examen in rec.env['info.examen'].sudo().search(
                     [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id)]):
                 if examen.module_id.product_id.default_code == "avancee" and examen.partner_id.statut == 'won':
                     nbr_from_examen_pro += 1
-            self.nbr_pack_pro_inscrit = nbr_from_examen_pro
+            rec.nbr_pack_pro_inscrit = nbr_from_examen_pro
 
     @api.depends('session_id')
     def _compute_pack_premium_inscrit(self):
         # self.nbr_pack_premium_inscrit = int(self.session_id.pack_premium_inscrit(sum_premium_inscrit))
-        nbr_from_examen_premium = 0
-        for examen in self.env['info.examen'].search(
-                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id)]):
-            if examen.module_id.product_id.default_code == "premium" and examen.partner_id.statut == 'won':
-                nbr_from_examen_premium += 1
-        res_calc_premium = nbr_from_examen_premium
-        self.nbr_pack_premium_inscrit = res_calc_premium
+        for rec in self:
+            nbr_from_examen_premium = 0
+            for examen in rec.env['info.examen'].search(
+                    [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id)]):
+                if examen.module_id.product_id.default_code == "premium" and examen.partner_id.statut == 'won':
+                    nbr_from_examen_premium += 1
+            rec.nbr_pack_premium_inscrit = nbr_from_examen_premium
 
     @api.depends('session_id')
     def _compute_pack_repassage_inscrit(self):
         # self.nbr_pack_repassage_inscrit = int(self.session_id.pack_repassage_inscrit(sum_repassage_inscrit))
-
-        nbr_from_examen = 0
-        for examen in self.env['info.examen'].search(
-                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id)]):
-            if examen.module_id.product_id.default_code == "examen" and examen.partner_id.statut == 'won':
-                nbr_from_examen += 1
-        sum_repassage_inscrit = nbr_from_examen
-        self.nbr_pack_repassage_inscrit = sum_repassage_inscrit
+        for rec in self:
+            nbr_from_examen = 0
+            for examen in rec.env['info.examen'].search(
+                    [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id)]):
+                if examen.module_id.product_id.default_code == "examen" and examen.partner_id.statut == 'won':
+                    nbr_from_examen += 1
+            rec.nbr_pack_repassage_inscrit = nbr_from_examen
 
     @api.depends('session_id')
     def _compute_nbr_present(self):
-        nbr_present = False
+        nbr_present = 0
         # self.nbr_present = int(self.session_id.nbr_present_par_session(nbr_present))
-        nbr_present = self.session_id.client_ids.filtered(lambda cl: cl.presence == 'Présent(e)')
-        self.nbr_present = len(nbr_present)
+        for rec in self:
+            examen = rec.env['info.examen'].search_count(
+                    [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id),
+                     ('presence', "=", 'present'), ('company_id',"=", 2)])
+            rec.nbr_present = examen
 
     @api.depends('session_id')
     def _compute_nbr_pack_solo_present(self):
-        nbr_from_examen_solo = 0
-        for examen in self.env['info.examen'].sudo().search(
-                [('date_exam', "=", self.session_id.date_exam), ('session_id', "=", self.session_id.id),
-                 ('presence', "=", 'present')]):
-            if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
-                nbr_from_examen_solo += 1
-        self.nbr_pack_solo_present = nbr_from_examen_solo
+        for rec in self:
+            nbr_from_examen_solo = 0
+            for examen in rec.env['info.examen'].sudo().search(
+                    [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id),
+                     ('presence', "=", 'present')]):
+                if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
+                    nbr_from_examen_solo += 1
+            rec.nbr_pack_solo_present = nbr_from_examen_solo
 
     @api.depends('session_id')
     def _compute_nbr_pack_premium_present(self):
@@ -178,8 +185,8 @@ class SessionStatistics(models.Model):
     @api.depends('session_id')
     def _compute_nbr_pack_pro_present(self):
         # self.nbr_pack_pro_present = int(self.session_id.pack_pro_present(sum_pro_present))
-        nbr_from_examen_pro = 0
         for rec in self:
+            nbr_from_examen_pro = 0
             for examen in rec.env['info.examen'].search(
                     [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id),
                      ('presence', "=", 'present')]):
@@ -191,7 +198,6 @@ class SessionStatistics(models.Model):
     def _compute_nbr_pack_repassage_present(self):
         for rec in self:
             # self.nbr_pack_repassage_present = int(self.session_id.pack_repassage_present(sum_repassage_present))
-
             nbr_from_examen_repassage = 0
             for examen in rec.env['info.examen'].search(
                     [('date_exam', "=", rec.session_id.date_exam), ('session_id', "=", rec.session_id.id),
@@ -204,36 +210,38 @@ class SessionStatistics(models.Model):
     def _compute_nbr_absence_justifiee(self):
         total_absence_justifiée = False
         # self.nbr_absence_justifiee = int(self.session_id.calculer_nombre_absence_justifiée(total_absence_justifiée))
-        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
-            if examen:
-                nbr_absence = examen.env['info.examen'].search_count(
-                    [('session_id', "=", self.session_id.id), ('presence', "=", 'absence_justifiee')])
-                self.nbr_absence_justifiee = nbr_absence
+        for rec in self:
+            for examen in rec.env['info.examen'].search([('date_exam', "=", rec.date_exam)]):
+                if examen:
+                    nbr_absence = examen.env['info.examen'].search_count(
+                        [('session_id', "=", rec.session_id.id), ('presence', "=", 'absence_justifiee')])
+                    rec.nbr_absence_justifiee = nbr_absence
 
     @api.depends('session_id')
     def _compute_nbr_echec(self):
         nbr_echec = False
-        # self.nbr_echec = int(self.session_id.nbr_echec(nbr_echec))
-        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
-            nbr_absence = examen.env['info.examen'].search_count(
-                [('session_id', "=", self.session_id.id), ('presence', "=", 'present'), ('resultat', "=", 'ajourne')])
-            self.nbr_echec = nbr_absence
+        for rec in self:
+            # self.nbr_echec = int(self.session_id.nbr_echec(nbr_echec))
+            for examen in rec.env['info.examen'].search([('date_exam', "=", rec.date_exam)]):
+                nbr_absence = examen.env['info.examen'].search_count(
+                    [('session_id', "=", rec.session_id.id), ('presence', "=", 'present'), ('resultat', "=", 'ajourne')])
+                rec.nbr_echec = nbr_absence
 
     @api.depends('session_id')
     def _compute_taux_echec(self):
         prc_echec = False
         # self.taux_echec = int(self.session_id.pourcentage_echec(prc_echec))
-
-        nbr_echec = self.session_id.nbr_echec(self)
-        nbr_present_tot = self.session_id.nbr_present_par_session(self)
-        if nbr_present_tot > 0:
-            res = (nbr_echec * 100 / nbr_present_tot)
-            if res > 0:
-                prc_echec = f'{res:.2f}'.replace('.00', '')
-                self.taux_echec = prc_echec
-            else:
-                prc_echec = f'{res:.0f}'
-                self.taux_echec = prc_echec
+        for rec in self:
+            nbr_echec = rec.nbr_echec
+            nbr_present_tot = rec.nbr_present
+            if nbr_present_tot > 0:
+                res = (nbr_echec * 100 / nbr_present_tot)
+                if res > 0:
+                    prc_echec = f'{res:.2f}'.replace('.00', '')
+                    rec.taux_echec = prc_echec
+                else:
+                    prc_echec = f'{res:.0f}'
+                    rec.taux_echec = prc_echec
 
     @api.depends('session_id')
     def _compute_taux_de_presence_pro(self):
@@ -324,13 +332,12 @@ class SessionStatistics(models.Model):
 
     def create_session_stats(self):
         """ Generer la fonction pour creer les statestiques des sessions"""
-        for stats in self:
-            session = self.env['mcmacademy.session'].sudo().search([])
-            for rec in session:
-                if rec.session_id.company_id.id == 1:
-                    stats.create({
-                        'session_id': rec.session_id,
-                        'company_id': rec.session_id.company_id.id,
-                        'date_exam': rec.session_id.date_exam,
-                    })
+        session = self.env['mcmacademy.session'].sudo().search([('company_id', '=', 2)])
+        for rec in session:
+            _logger.info('-------Create Session Stats------ %s', rec)
+            self.env['session.statistics'].sudo().create({
+                'session_id': rec.id,
+                'company_id': rec.company_id.id,
+                'date_exam': rec.date_exam,
+            })
 

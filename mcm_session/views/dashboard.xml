@@ -14,31 +14,30 @@
         <field name="model">board.board</field>
         <field name="arch" type="xml">
             <form string="Dashboard">
-                <board style="2-1">
+                <board style="1-1">
                     <column>
-                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'params': {'action': 1271, 'cids': 2, 'menu_id': 508, 'model': 'info.examen', 'view_type': 'graph'}, 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'resultat', 'presence', 'nombre_de_passage', 'mode_de_financement'], 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'resultat', 'presence', 'nombre_de_passage', 'mode_de_financement'], 'dashboard_merge_domains_contexts': False}"
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'resultat'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'resultat'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271"
-                                string="Résultat, Présent, Nombre passage et Financement  "
-                                view_mode="graph" modifiers="{}"/>
-                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'module_id', 'resultat', 'presence'], 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'module_id', 'resultat', 'presence'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271"
-                                string="Trimestre, Ville, Pack, Résultat, Présence" view_mode="graph" modifiers="{}"/>
+                                string="Résultat (Reçu/Ajourné)" view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'presence'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'presence'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[]" name="1271" string="Présence " view_mode="graph" modifiers="{}"/>
                         <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['ville_id', 'genre', 'date_exam:day'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['ville_id', 'genre', 'date_exam:day'], 'dashboard_merge_domains_contexts': False}"
-                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271" string="Civilité par ville" view_mode="graph" modifiers="{}"/>
-                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'group_by': [], 'orderedBy': [], 'dashboard_merge_domains_contexts': False}"
-                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1760"
-                                string="Taux de Présence Par Pack" view_mode="list"
-                                modifiers="{}"/>
+                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271" string="Civilité par ville"
+                                view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'params': {'action': 1271, 'cids': 2, 'menu_id': 508, 'model': 'info.examen', 'view_type': 'graph'}, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'module_id'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'module_id'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271" string="Pack par ville"
+                                view_mode="graph" modifiers="{}"/>
                     </column>
                     <column>
-                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['date_exam:day', 'resultat', 'presence'], 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['date_exam:day', 'resultat', 'presence'], 'dashboard_merge_domains_contexts': False}"
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'params': {'action': 1271, 'cids': 2, 'menu_id': 508, 'model': 'info.examen', 'view_type': 'graph'}, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['mode_de_financement', 'ville_id'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['mode_de_financement', 'ville_id'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271"
-                                string="Date examen, Résultat, Présence" view_mode="graph"
-                                modifiers="{}"/>
-                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'graph_measure': '__count__', 'graph_mode': 'pie', 'graph_groupbys': ['date_exam:day', 'module_id', 'presence'], 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['date_exam:day', 'module_id', 'presence'], 'dashboard_merge_domains_contexts': False}"
+                                string="Financement (CPF/Personnel) par ville" view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'params': {'action': 1271, 'cids': 2, 'menu_id': 508, 'model': 'info.examen', 'view_type': 'graph'}, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'nombre_de_passage'], 'graph_measure': '__count__', 'graph_mode': 'line', 'graph_groupbys': ['session_id', 'nombre_de_passage'], 'dashboard_merge_domains_contexts': False}"
                                 domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271"
-                                string="Date examen, Pack, Présence" view_mode="graph"
-                                modifiers="{}"/>
+                                string="Nombre de passage par session" view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['ville_id', 'genre', 'date_exam:day'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['ville_id', 'genre', 'date_exam:day'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271" string="Civilité par ville"
+                                view_mode="graph" modifiers="{}"/>
                     </column>
 
                 </board>
