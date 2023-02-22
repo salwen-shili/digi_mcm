@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <record model="ir.actions.act_window" id="session_app_graph">
+        <field name="name">Session</field>
+        <field name="res_model">session.statistics</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="session_app_graph_view"/>
+    </record>
+
+    <!--My Dashboard-->
+    <record model="ir.ui.view" id="session_dashbord_id">
+        <field name="name">Dashboard</field>
+        <field name="model">board.board</field>
+        <field name="arch" type="xml">
+            <form string="Dashboard">
+                <board style="1-1">
+                    <column>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'resultat'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'resultat'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271"
+                                string="Résultat (Reçu/Ajourné)" view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'presence'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'presence'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[]" name="1271" string="Présence " view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id'], 'graph_measure': 'moyenne_generale', 'graph_mode': 'line', 'graph_groupbys': ['session_id'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271"
+                                string="Total Moyenne générale par session" view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'params': {'action': 1271, 'cids': 2, 'menu_id': 508, 'model': 'info.examen', 'view_type': 'graph'}, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id'], 'graph_measure': 'epreuve_a', 'graph_mode': 'line', 'graph_groupbys': ['session_id'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271"
+                                string="Total QCM par session" view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'params': {'action': 1271, 'cids': 2, 'menu_id': 508, 'model': 'info.examen', 'view_type': 'graph'}, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id'], 'graph_measure': 'epreuve_b', 'graph_mode': 'line', 'graph_groupbys': ['session_id'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271"
+                                string="Total QRO par session" view_mode="graph" modifiers="{}"/>
+                    </column>
+                    <column>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'params': {'action': 1271, 'cids': 2, 'menu_id': 508, 'model': 'info.examen', 'view_type': 'graph'}, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'nombre_de_passage'], 'graph_measure': '__count__', 'graph_mode': 'line', 'graph_groupbys': ['session_id', 'nombre_de_passage'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271"
+                                string="Nombre de passage par session" view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['ville_id', 'mode_de_financement'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['ville_id', 'mode_de_financement'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[]" name="1271" string="Financement (CPF/Personnel) par ville" view_mode="graph"
+                                modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'params': {'action': 1271, 'cids': 2, 'menu_id': 508, 'model': 'info.examen', 'view_type': 'graph'}, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['session_id', 'module_id'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['session_id', 'module_id'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271" string="Pack par ville"
+                                view_mode="graph" modifiers="{}"/>
+                        <action context="{'lang': 'fr_FR', 'tz': 'Europe/Paris', 'uid': 2, 'timeRangeMenuData': {'comparisonField': 'date_exam', 'timeRange': ['&amp;', ['date_exam', '&gt;=', '2023-01-01'], ['date_exam', '&lt;', '2023-04-01']], 'timeRangeDescription': 'Ce trimestre', 'comparisonTimeRange': []}, 'group_by': ['ville_id', 'genre', 'date_exam:day'], 'graph_measure': '__count__', 'graph_mode': 'bar', 'graph_groupbys': ['ville_id', 'genre', 'date_exam:day'], 'dashboard_merge_domains_contexts': False}"
+                                domain="[['company_id', 'ilike', 'DIGIMOOV']]" name="1271" string="Civilité par ville"
+                                view_mode="graph" modifiers="{}"/>
+                    </column>
+                </board>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_dashboard_session_statistics">
+        <field name="name">Dashboard</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="session_dashbord_id"/>
+    </record>
+
+
+    <menuitem id="main_statistics_session_menu" name="Dashboard"
+              parent="mcm_academy_session_root_menu"
+              sequence="1"/>
+    <menuitem id="main_statistics_session_examen_menu_id" name="Dashboard Examen"
+              parent="main_statistics_session_menu"
+              action="action_dashboard_session_statistics"
+              groups="mcm_session.group_session_module_manager"/>
+
+    <menuitem id="statistics_session_menu_id" name="Statestiques"
+              parent="main_statistics_session_menu"
+              action="mcm_session.action_session_statistics"
+              groups="mcm_session.group_session_module_manager"/>
+
+</odoo>

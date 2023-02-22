@@ -4,7 +4,7 @@
         <record id="action_info_examen" model="ir.actions.act_window">
             <field name="name">Examen Informations</field>
             <field name="res_model">info.examen</field>
-            <field name="view_mode">tree,form,pivot</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create the first Information</p>
             </field>
@@ -29,6 +29,11 @@
                                 <label for="mobile"/>
                                 <div class="o_row">
                                     <field name="mobile" widget="phone" options="{'enable_sms': True}"/>
+
+                                </div>
+                                <div>
+                                    <label for="genre"/>
+                                    <field name="genre"/>
                                 </div>
                             </h2>
                         </div>
@@ -170,8 +175,19 @@
                     <group expand="1" string="Group By">
                         <filter string="Résultat" name="resultat" context="{'group_by':'resultat'}"/>
                         <filter string="Présence" name="presence" context="{'group_by':'presence'}"/>
+                        <filter string="Civilité" name="genre" context="{'group_by':'genre'}"/>
+                        <filter string="Pack" name="module_id" context="{'group_by':'module_id'}"/>
                     </group>
                 </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="exam_app_graph_view">
+            <field name="name">Examen</field>
+            <field name="model">info.examen</field>
+            <field name="arch" type="xml">
+                <graph string="Examen">
+                </graph>
             </field>
         </record>
 
