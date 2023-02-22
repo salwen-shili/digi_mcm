@@ -115,7 +115,7 @@ class SessionStatistics(models.Model):
                      ('presence', "=", 'present')]):
                 if examen.module_id.product_id.default_code in ["basique", "solo-ubereats"]:
                     nbr_from_examen_solo += 1
-            self.nbr_pack_solo_inscrits = nbr_from_examen_solo
+            rec.nbr_pack_solo_inscrits = nbr_from_examen_solo
 
     @api.depends('session_id')
     def _compute_pack_pro_inscrit(self):
