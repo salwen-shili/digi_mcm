@@ -146,7 +146,7 @@ class SaleOrder(models.Model):
                             limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
                         if not template_id:
                             template_id = self.env['mail.template'].sudo().search(
-                                [('name', "=", "MCM INSCRIPTION EXAMEN CMA 2023"),
+                                [('name', "=", "MCM ACADEMY -  INSCRIPTION EXAMEN CMA : SOLO"),
                                  ('model_id', "=", 'res.partner')],
                                 limit=1)
                         if template_id:
@@ -170,12 +170,12 @@ class SaleOrder(models.Model):
                         _logger.info(self.partner_id.module_id.id)
 
                         template_id = self.env['mail.template'].sudo().search(
-                            [('subject', "=", "Inscription examen chambre des métiers:PREMIUM"),
+                            [('subject', "=", "Inscription examen de la chambre des métiers et de l'artisanat"),
                              ('model_id', "=", 'res.partner')],
                             limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
                         if not template_id:
                             template_id = self.env['mail.template'].sudo().search(
-                                [('name', "=", "MCM INSCRIPTION EXAMEN CMA 2023 : PREMIUM"),
+                                [('name', "=", "MCM ACADEMY - INSCRIPTION EXAMEN CMA : PREMIUM"),
                                  ('model_id', "=", 'res.partner')],
                                 limit=1)
                         if template_id:
