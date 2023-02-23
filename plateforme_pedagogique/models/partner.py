@@ -2454,3 +2454,6 @@ class partner(models.Model):
             if partner.phone:
                 partner.phone = '0' + str(partner.phone.replace(' ', ''))[
                                       -9:]
+
+
+
