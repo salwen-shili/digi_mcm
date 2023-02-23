@@ -145,6 +145,12 @@ class PaymentTransaction(models.Model):
                     sale.action_cancel()
                     if sale.module_id.product_id.default_code != "transport-routier-cpf-reste":
                         sale.sale_action_sent()
+                   
+                    """If product is lourd rest à charge cancel the sale order """
+                    for line in sale.order_line:
+                        if line.product_id.default_code == "transport-routier-cpf-reste":
+                            sale.action_cancel()
+                            sale.action_draft()
 
                     if sale.partner_id.renounce_request == False:
                         """Envoyer sms pour renoncer au droit de rétractation """

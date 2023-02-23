@@ -47,6 +47,7 @@
         'views/nos-formations.xml',
         'views/inscription-surveillants-examen-capacite-de-transport.xml',
         'views/pricing_tables_digimoov.xml',
+        'views/reste_a_charge.xml',
         
         # 'views/test1.xml',
         # 'views/test2.xml',

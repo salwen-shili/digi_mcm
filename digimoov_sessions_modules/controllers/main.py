@@ -1721,6 +1721,9 @@ class Date_Examen(http.Controller):
                     order.session_id = module.session_id
                     # if order.company_id.id == 1:
                     url_cpf=order.module_id.url_cpf
+
+
+
             else:
                 subtype_id = request.env['ir.model.data'].xmlid_to_res_id(
                     'mt_note')

@@ -401,6 +401,7 @@ sendDemandeurEmploi(numeroPoleEmploi,demandeurEmploi)
     if (region != 'all') {
       document.getElementById('error_choix_region_examen').style.display = 'none';
      
+      
     } else {
       document.getElementById('error_choix_region_examen').style.display = 'inline-block';
       scrollToError();

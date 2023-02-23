@@ -1,7 +1,11 @@
+ //Values in "stripe_pm" "cpf_pm" "pole_emploi_pm":
 var paymentMethod = 'all';
 var urlCpf = false;
 let demandeurEmploi = false;
 var numeroPoleEmploi = ""
+var cpf_pm;
+
+
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     document.getElementById("cover-spin").remove();
@@ -29,6 +33,12 @@ var villeLeger = [
   "TOULOUSE",
   "MARSEILLE",
 ];
+// Lourd Reste a charge 
+var isLourd = false;
+var isLourdPaid = false;
+
+// Need to get if it lourd has been paid 
+
 document.addEventListener("DOMContentLoaded", function () {
   //demandeur emploi
 
@@ -45,6 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
       windowUrl.includes("formation-premium")
   );
   if (windowUrl.includes("lourd")) {
+    isLourd = true;
+    //API call to check if the amount to be paid has been paid
+    getIsLourdPaid();
+    
+    
     var selectCenter = document.getElementById("centre_examen");
     indexOption = 0;
     Array.from(selectCenter.options).forEach(function (option_element) {
@@ -441,10 +456,13 @@ sendDemandeurEmploi(numeroPoleEmploi,demandeurEmploi)
     polechecked = paymentMethod == "pole_emploi_pm" ? true : false;
 
   }
+  // change btn text inside popup
   cpfChecked || polechecked
-    ? (textbtn = "Mobiliser mon CPF")
+    ? (isLourd ? textbtn="Je paye maintenant !" : textbtn = "Mobiliser mon CPF")
     : (textbtn = "Je paye maintenant !");
-
+  if (isLourdPaid){
+    textbtn = "Mobiliser mon CPF"
+  }
   if (optionsDate != "all" && optionsDate != "") {
     if (document.getElementById("error_choix_date_popup")) {
       document.getElementById("error_choix_date_popup").style.display = "none";
@@ -461,12 +479,24 @@ sendDemandeurEmploi(numeroPoleEmploi,demandeurEmploi)
 
   //transport lourd
   if ((window.location.href.includes("lourd") && cpfChecked) || polechecked) {
+    //send islourd and payment method
+    isLourdnPayment(isLourd,paymentMethod)
     if (document.getElementById("input_lourd"))
+    // Si formation : Lourd 
+    // Voir si reste a charge est paye 
+    // Si oui masquer le reste a charge dans le le popup
+    console.log("============================================== islourdpaid:", isLourdPaid)
+    if (isLourdPaid){
+      document.getElementById("input_lourd").style.display = "none";
+    }else{
       document.getElementById("input_lourd").style.display = "block";
+    } 
   }
+
 }
 
 function verify_payment_method() {
+
   //user can navigate #popup1 to the url directly so we need to secure
   //that he can't pass if he didn't choose a date
   if (!document.getElementById("options-date")) {
@@ -582,15 +612,23 @@ function verify_payment_method() {
         ) &&
         conditionlourd.checked == true
       ) {
-        if (urlCpf)
-        window.open(urlCpf, "_blank");
-        else{
-          window.open("https://bit.ly/3k2ueVO", "_blank");
-
+        if (!urlCpf){
+          urlCpf="https://bit.ly/3k2ueVO"
         }
-      }
+    
+
+        // Open /payment => Reste a charge 
+        // window.open("https://bit.ly/3k2ueVO", "_blank");
+       
+        // Si le rete a charge est paye, redirection vers cpf
+        if (isLourdPaid){
+          window.open(urlCpf, "_blank");
+        }else {
+          window.location.href = "/shop/checkout?express=1";
+        }
     }
   }
+}
 }
 
 function hideError_no_method() {
@@ -1315,8 +1353,7 @@ function modeFinancement(mode, index) {
         checkPaiementInstalment(true)
       }
 
-      break;
-    case "cpf_pm":
+      case "cpf_pm":
       onchangeTextButton();
 
       update_cpf(true);
@@ -1351,6 +1388,8 @@ const update_cartebleu = (cartebleu) => {
     {
       params: {
         cartebleu: cartebleu,
+        
+ 
       }
     })
     .then((res) => {
@@ -1361,11 +1400,15 @@ const update_cartebleu = (cartebleu) => {
     });
 };
 
-// send cpf selection
+// send cpf selection + product 
 const update_cpf = (cpf) => {
   sendHttpRequest('POST', '/shop/payment/update_cpf',
     {
-      params: { cpf: cpf }
+      params: { 
+        cpf: cpf, 
+        
+        
+      }
     })
     .then((res) => {
       console.log(res);
@@ -1374,6 +1417,25 @@ const update_cpf = (cpf) => {
       console.log(err);
     });
 };
+
+// Check if the amout to be paid for Lourd product has been paid
+// and update isLourdPaid 
+// send carte_bleu selection
+const getIsLourdPaid = () => {
+  sendHttpRequest('POST', '/shop/payment/islourdpaid',
+    {
+      params: {
+      }
+    })
+    .then((res) => {
+      console.log(res, "================================================= >");
+      isLourdPaid = res.result.islourdpaid
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 
 function checkPaiementInstalment(check) {
   let checkbox = document.getElementById("checkbox_instalment")
@@ -1406,21 +1468,20 @@ function poleEmploieFixDisplay() {
 
 }
 // Send numero et si demandeur d'emploi
-const sendDemandeurEmploi = (numeroPoleEmploi,demandeurEmploi) => {
+  function sendDemandeurEmploi(numeroPoleEmploi, demandeurEmploi) {
 
     sendHttpRequest("POST", "/shop/cart/get_demandeur_pole_emploi", {
       params: {
-        numero_pole_emploi: numeroPoleEmploi, 
+        numero_pole_emploi: numeroPoleEmploi,
         is_demandeur_emploi: demandeurEmploi,
-        
       },
     }).then((responseData) => {
-      if (responseData.hasOwnProperty("result")){
-        console.log("pole-emploi ", responseData)
+      if (responseData.hasOwnProperty("result")) {
+        console.log("pole-emploi ", responseData);
       }
-     
+
     })
-      .catch((err) => {});
+      .catch((err) => { });
 
   }
 
@@ -1507,3 +1568,23 @@ function showWithId(id){
     document.getElementById(id).style.display="block"
   }
 }
+
+// send is lourd and payment method
+//paymentMethod  //Values in "stripe_pm" "stripe_pm" "pole_emploi_pm":
+const isLourdnPayment = (isLourd,paymentMethod) => {
+  sendHttpRequest('POST', '/shop/is_lourd_paymentmethod',
+    {
+      params: {
+        
+        
+        isLourd:isLourd,
+        paymentMethod: paymentMethod
+      }
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

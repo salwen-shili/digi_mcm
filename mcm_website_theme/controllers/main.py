@@ -2405,18 +2405,125 @@ class Payment3x(http.Controller):
                     if line.product_id.default_code == "access":
                         order.amount_total = 380
                         line.price_unit = 380
-        return True
+        return True 
 
     @http.route(["/shop/payment/update_cpf"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
     def cart_update_cpf(self, cpf):
         order = request.website.sale_get_order(force_create=1)
+        print("cpf: ",cpf, "saleOrderId: ",order)
         if cpf and order.partner_id.statut != "won":
-            # order.partner_id.date_cpf = datetime.now()
+            #order.partner_id.date_cpf = datetime.now()
             order.partner_id.mode_de_financement = "cpf"
             # order.partner_id.statut_cpf = 'untreated'
             # Si mode de financement est cpf, le champ pole emploi sur fiche client sera décoché
             order.partner_id.is_pole_emploi = False
+
+            
         return True
+    
+    @http.route(["/shop/payment/islourdpaid"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
+    def cart_is_lourd_paid(self):
+        islourdpaid= False
+        print ("/shop/payment/islourdpaid, cart_is_lourd_paid :", islourdpaid)
+        partner=request.env.user.partner_id
+        product=request.env['product.template'].sudo().search([('default_code',"=","transport-routier-cpf-reste")])
+        """Search invoice"""
+        if product:
+            _logger.info("product %s" % str(product))
+            invoice=request.env['account.move'].sudo().search([("partner_id","=",partner.id),
+                                                                ],limit=1)
+            _logger.info("invocie %s" % str(invoice))
+
+            if invoice:
+                for line in invoice.invoice_line_ids:
+                    if invoice.invoice_payment_state=="paid" and line.product_id.id==product.id:
+                        islourdpaid=True
+                        _logger.info("islourdpaid %s" %str(islourdpaid))
+        return {"islourdpaid": islourdpaid}
+        
+
+
+    #Receive isLourd and payment Method 
+    # //paymentMethod in "stripe_pm" "cpf_pm" "pole_emploi_pm":
+    # isLourd: True or False
+    @http.route(["/shop/is_lourd_paymentmethod"], type="json", auth="public", methods=["POST"], website=True, csrf=False)
+    def isLourdnPayment(self, paymentMethod, isLourd):
+        
+        
+        """if product is 'transport lourd' """
+        order = request.website.sale_get_order(force_create=1)
+        if isLourd == True and (paymentMethod == "cpf_pm" or paymentMethod == "pole_emploi_pm"):
+            print ("/shop/is_lourd_paymentmethod :", paymentMethod, isLourd )
+            """update order line with product lourd cpf"""
+            product = request.env['product.template'].sudo().search(
+                [('default_code', '=', 'transport-routier-cpf-reste')], limit=1)
+            if product:
+                _logger.info('if product')
+                for line in order.order_line:
+                    line.sudo().unlink()
+                order_line = request.env['sale.order.line'].sudo().create({
+                    'name': product.name,
+                    'product_id': product.id,
+                    'product_uom_qty': 1,
+                    'product_uom': product.uom_id.id,
+                    'price_unit': product.list_price,
+                    'order_id': order.id,
+                    'tax_id': product.taxes_id,
+                    'company_id': 2
+                })
+            """Create new sale order for CPF payment 
+            with product 'reste à charge-transport lourd'"""
+            _logger.info("new sale order")
+            product_charge=request.env['product.template'].sudo().search([('default_code','=','transport-routier-cpf')])
+            sales =request.env['sale.order'].sudo().search([('partner_id','=',order.partner_id.id)])
+            if product_charge:
+                existe=False
+                for sale in sales:
+                    if sale.module_id.product_id.id==product_charge.id:
+                        existe=True
+                if not existe:
+                    so = request.env['sale.order'].sudo().create({
+                            'partner_id': order.partner_id.id,
+                            'company_id': 2,
+                        })
+                    so.module_id = order.module_id
+                    so.session_id = order.session_id
+
+                    if product_charge:
+                        order_line = request.env['sale.order.line'].sudo().create({
+                            'name': product_charge.name,
+                            'product_id': product_charge.id,
+                            'product_uom_qty': 1,
+                            'product_uom': product_charge.uom_id.id,
+                            'price_unit': product_charge.list_price,
+                            'order_id': so.id,
+                            'tax_id': product_charge.taxes_id,
+                            'company_id': 2
+                        })
+                        for line in so.order_line:
+                            line.price_unit = so.amount_total
+                        #so.action_confirm()
+
+        if isLourd == True and paymentMethod == "stripe_pm":
+            """update order line with product lourd stripe"""
+            product = request.env['product.template'].sudo().search(
+                [('default_code', '=', 'transport-routier')], limit=1)
+            if product:
+                _logger.info('if product stripe')
+                for line in order.order_line:
+                    line.sudo().unlink()
+                order_line = request.env['sale.order.line'].sudo().create({
+                    'name': product.name,
+                    'product_id': product.id,
+                    'product_uom_qty': 1,
+                    'product_uom': product.uom_id.id,
+                    'price_unit': product.list_price,
+                    'order_id': order.id,
+                    'tax_id': product.taxes_id,
+                    'company_id': 2
+                })
+        return True
+       
 
     """Route est appelé quand Pole emploi dans panier est coché """
 
