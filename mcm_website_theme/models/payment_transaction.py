@@ -120,6 +120,7 @@ class PaymentTransaction(models.Model):
                     if sale.module_id.product_id.default_code == "transport-routier-cpf-reste":
                         """change payment methode to cpf and validate folder cpf if exist"""
                         sale.partner_id.mode_de_financement = 'cpf'
+                        _logger.info("if lourd****************")
                         return {
                             'type': 'ir.actions.act_url',
                             'target': 'self',

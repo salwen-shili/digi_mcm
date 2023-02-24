@@ -371,7 +371,7 @@ class WebhookController(http.Controller):
                 product_id = False
                 if state_cpf == "validated":
                     """Envoyez un SMS aux apprenants pour accepter leurs dossiers cpf si dossier validé."""
-                    sms_body_ = "%s! Votre demande de financement par CPF a été validée. Connectez-vous sur moncompteformation.gouv.fr en partant dans l’onglet. Dossiers, Proposition de l’organisme, Financement, ensuite confirmer mon inscription." % (
+                    sms_body_ = "Afin de valider votre dossier de financement de votre formation par CPF nous vous invitons à régler un montant de 200€ de reste à charge en cliquant sur ce lien %s" % (
                         user.partner_id.company_id.name)  # content of sms
                     sms = request.env['mail.message'].sudo().search(
                         [("body", "like", sms_body_), ("message_type", "in",("sms", "comment")),
