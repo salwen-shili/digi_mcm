@@ -999,6 +999,7 @@ class partner(models.Model):
                     registrations = response.json()
                     for dossier in registrations:
                         _logger.info("validate_________ %s" % str(dossier))
+                        state_cpf = "untreated"
                         externalid = dossier['externalId']
                         email = dossier['attendee']['email']
                         email = email.replace("%", ".")  # remplacer % par .
@@ -1149,6 +1150,15 @@ class partner(models.Model):
                                 date_debutstr = datemin.get('cpfSessionMinDate')
                                 date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
                                 print('cpf')
+                                """if the chosen training is lourd  create partner before validation"""
+                                if "premium_plus" in str(training_id):
+                                    state_cpf = "untreated"
+                                else:
+                                    """Validate folder  state in cpf"""
+                                    statusValidated = self.validate_folder_cpf(headers, datedebutstr, datefin,
+                                                                               externalid)
+                                    if str(statusValidated) == "200":
+                                        state_cpf = "validated"
                         if user:
                             print('if userrr++++++++', user.email)
                             """Si pole emploi coché , l'apprenant commence sa formation apres 21 jours"""
@@ -1166,29 +1176,41 @@ class partner(models.Model):
                         datedebutstr = str(date_debut)
                         data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
                         dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
-                        """Avant validation modifier les dates de session selon le mode de financement pole emploi/cpf """
-                        response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
-                                                    headers=headers, data=data)
+                        # """Avant validation modifier les dates de session selon le mode de financement pole emploi/cpf """
+                        # response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
+                        #                             headers=headers, data=data)
+                        #
+                        # status = str(response_put.status_code)
+                        # statuss = str(json.loads(response_put.text))
+                        # _logger.info("validate put _________ %s" % str(status))
+                        # _logger.info("validate_________ %s" % str(statuss))
+                        # response_post = requests.post(
+                        #     'https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
+                        #     headers=headers, data=dat)
+                        # status = str(response_post.status_code)
+                        # statuss = str(json.loads(response_post.text))
+                        # _logger.info("validate_________ %s" % str(status))
+                        # _logger.info("validate_________ %s" % str(statuss))
+                        """check the remaining payment of lourd training case"""
+                        if "premium_plus" in str(training_id):
+                            invoices = self.env['account.move'].sudo().search([(
+                                "partner_id", "=", user.partner_id.id),
+                                "invoice_payment_state", "=", "paid"
+                            ])
+                            for invoice in invoices:
+                                for line in invoice.invoice_line_ids:
+                                    if line.product_id.default_code == "transport-routier-cpf-reste":
+                                        """Validate folder state in cpf"""
+                                        statusValidated = self.validate_folder_cpf(headers, datedebutstr, datefin,
+                                                                                   externalid)
+                                        if str(statusValidated) == "200":
+                                            state_cpf = "validated"
+                        else:
+                            """Validate folder state in cpf"""
+                            statusValidated = self.validate_folder_cpf(headers, datedebutstr, datefin, externalid)
+                            if str(statusValidated) == "200":
+                                state_cpf = "validated"
 
-                        status = str(response_put.status_code)
-                        statuss = str(json.loads(response_put.text))
-                        _logger.info("validate put _________ %s" % str(status))
-                        _logger.info("validate_________ %s" % str(statuss))
-                        response_post = requests.post(
-                            'https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
-                            headers=headers, data=dat)
-                        status = str(response_post.status_code)
-                        statuss = str(json.loads(response_post.text))
-                        _logger.info("validate_________ %s" % str(status))
-                        _logger.info("validate_________ %s" % str(statuss))
-                        """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
-                        if status == "200":
-                            print('validate', email)
-                            self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel,
-                                              code_postal, ville,
-                                              diplome, dossier['attendee']['lastName'],
-                                              dossier['attendee']['firstName'],
-                                              dossier['externalId'], lastupd)
 
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
 
@@ -2456,4 +2478,28 @@ class partner(models.Model):
                                       -9:]
 
 
+"""validate cpf folder"""
+
+
+def validate_folder_cpf(self, headers, datedebutstr, datefin, externalid):
+    data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
+    dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
+    response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
+                                headers=headers, data=data)
+
+    status = str(response_put.status_code)
+    statuss = str(json.loads(response_put.text))
+    _logger.info("validate put _________ %s" % str(status))
+    _logger.info("validate_________ %s" % str(statuss))
+    response_post = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
+                                  headers=headers, data=dat)
+    status = str(response_post.status_code)
+    statuss = str(json.loads(response_post.text))
+    _logger.info("validate_________ %s" % str(status))
+    _logger.info("validate_________ %s" % str(statuss))
+    """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
+    if status == "200":
+        _logger.info('validate')
+
+    return status
 
