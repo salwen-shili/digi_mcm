@@ -116,19 +116,6 @@ class PaymentTransaction(models.Model):
                     sale.partner_id.mcm_session_id = sale.session_id
                     sale.partner_id.module_id = sale.module_id
                     sale.partner_id.sudo().write({'statut': 'won'})
-                    """Check the remaining payment of lourd training case"""
-                    if sale.module_id.product_id.default_code == "transport-routier-cpf-reste":
-                        """change payment methode to cpf and validate folder cpf if exist"""
-                        sale.partner_id.mode_de_financement = 'cpf'
-                        _logger.info("if lourd****************")
-                        return {
-                            'type': 'ir.actions.act_url',
-                            'target': 'self',
-                            'url': sale.partner_id.website+'/validate_cpf_digi',
-                        }
-
-                    else:
-                        sale.partner_id.mode_de_financement = 'particulier'
                     for invoice in trans.invoice_ids : #fill in the additional fields of the invoice ( session,module,type_facture, methodes_payment ... etc)
                         invoice.post()
                         invoice.type_facture='web'
@@ -144,14 +131,8 @@ class PaymentTransaction(models.Model):
                         _logger.info('_invoice_sale_orders invoice_payment_state :%s' % (str(invoice.invoice_payment_state)))
                         _logger.info('_invoice_sale_orders amount_residual : %s' % (str(invoice.amount_residual)))
                     sale.action_cancel()
-                    if sale.module_id.product_id.default_code != "transport-routier-cpf-reste":
-                        sale.sale_action_sent()
-                   
-                    """If product is lourd rest à charge cancel the sale order """
-                    for line in sale.order_line:
-                        if line.product_id.default_code == "transport-routier-cpf-reste":
-                            sale.action_cancel()
-                            sale.action_draft()
+                    sale.sale_action_sent()
+
 
                     if sale.partner_id.renounce_request == False:
                         """Envoyer sms pour renoncer au droit de rétractation """
@@ -163,5 +144,22 @@ class PaymentTransaction(models.Model):
                             short_url) # content of sms
 
                         sale.partner_id.send_sms(sms_body_, sale.partner_id)
+                    lourd=False
+                    """Check the remaining payment of lourd training case"""
+                    for line in sale.order_line:
+                        if line.product_id.default_code == "transport-routier-cpf-reste":
+                            lourd=True
+                    if lourd==True:
+                        """change payment methode to cpf and validate folder cpf if exist"""
+                        sale.partner_id.mode_de_financement = 'cpf'
+                        _logger.info("if lourd****************")
+                        return {
+                            'type': 'ir.actions.act_url',
+                            'target': 'self',
+                            'url': sale.partner_id.website + '/validate_cpf_digi',
+                        }
+                    else:
+                        sale.partner_id.mode_de_financement = 'particulier'
+
 
         return res
