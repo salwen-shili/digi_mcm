@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   const current = document.getElementById('step_value');
-  //console.log(current.value);
+  console.log(current.value);
 
   const finish = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
                             <div class="row justify-content-center">
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 
   var step = 1;
-  //console.log('step', current.value);
+  console.log('step', current.value);
   switch (current.value) {
     case 'coordonnées':
      

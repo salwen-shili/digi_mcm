@@ -4,6 +4,7 @@ var urlCpf = false;
 let demandeurEmploi = false;
 var numeroPoleEmploi = ""
 var cpf_pm;
+var productDefaultCode= ""
 
 
 document.onreadystatechange = function () {
@@ -40,11 +41,15 @@ var isLourdPaid = false;
 // Need to get if it lourd has been paid 
 
 document.addEventListener("DOMContentLoaded", function () {
-  //demandeur emploi
 
-  if (document.getElementById("radio1")){
+  //demandeur emploi
+  productDefaultCode = document.getElementById("productname")
+  if (productDefaultCode){
+    productDefaultCode = productDefaultCode.value.toUpperCase()
     
   }
+  
+
 
   //
   windowUrl = window.location.href;
@@ -54,10 +59,12 @@ document.addEventListener("DOMContentLoaded", function () {
       windowUrl.includes("formation-solo") ||
       windowUrl.includes("formation-premium")
   );
-  if (windowUrl.includes("lourd")) {
+  if (productDefaultCode.includes("transport-routier".toUpperCase())) {
     isLourd = true;
     //API call to check if the amount to be paid has been paid
+    console.log("START")
     getIsLourdPaid();
+    
     
     
     var selectCenter = document.getElementById("centre_examen");
@@ -145,6 +152,10 @@ checkboxEvent = checkboxEvent.addEventListener("click", function () {
   
 });
   }
+  
+  
+
+
   
     
 });
@@ -1428,13 +1439,74 @@ const getIsLourdPaid = () => {
       }
     })
     .then((res) => {
-      console.log(res, "================================================= >");
-      isLourdPaid = res.result.islourdpaid
+      isLourdPaid = res.result.islourdpaid 
+      console.log(res, "================================================= >", isLourdPaid);
+        //If product is reste_a_charge and not paid 
+        //show the popup directly
+        if (!isLourdPaid) showPopupLourd()
+
     })
     .catch((err) => {
       console.log(err);
     });
 };
+//function reste a charge 
+// double popup because of different conditions 
+function checkboxResteAcharge(){
+  //verifier les conditions sont coches sur le popup du reste a charge 
+  // afficher des warnings 
+  let checkboxCondition = false
+  if (document.getElementById("checkbox_conditions_reste_charge")){
+    if (document.getElementById("checkbox_conditions_reste_charge").checked){
+      checkboxCondition = document.getElementById("checkbox_conditions_reste_charge").checked
+       document.getElementById("error_conditions_reste_charge").style.display = "none"
+    } else document.getElementById("error_conditions_reste_charge").style.display = "block"
+    
+  }
+
+  // 
+  let checkbox = false
+  if (document.getElementById("checkbox_lourd_reste_charge")){
+    if (document.getElementById("checkbox_lourd_reste_charge").checked){
+      document.getElementById("error_reste_charge").style.display = "none"
+      checkbox = document.getElementById("checkbox_lourd_reste_charge").checked
+    }
+   
+    else document.getElementById("error_reste_charge").style.display = "block"
+  }
+  return checkbox && checkboxCondition
+
+}
+function showPopupLourd(){
+  console.log("called")
+ 
+   
+  
+    //transport lourd
+
+      //send islourd and payment method
+  
+      if (document.getElementById("input_lourd"))
+      // Si formation : Lourd 
+      // Voir si reste a charge est paye 
+      // Si oui masquer le reste a charge dans le le popup
+      console.log("============================================== islourdpaid:", isLourdPaid)
+      if (isLourdPaid){
+        document.getElementById("input_lourd").style.display = "none";
+      }else{
+        document.getElementById("input_lourd").style.display = "block";
+        document.getElementById("popupResteCharge").style.display = "unset"
+  
+      }
+      
+    
+  
+
+}
+function redirectionResteCharge(){
+if (checkboxResteAcharge())
+  window.location.href = "/shop/payment"
+}
 
 
 function checkPaiementInstalment(check) {
