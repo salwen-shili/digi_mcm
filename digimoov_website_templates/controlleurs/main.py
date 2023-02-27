@@ -169,6 +169,9 @@ class Website(Website):
     @http.route('/cpf_premuim_plus_amount_paid', type='http', auth='public', website=True)
     def redirection_to_cpf(self, **kw, ):
         if request.website.id == 2:
+            partner=request.env.user.partner_id
+            _logger.info("cpf_premuim_plus_amount_paid partner********** %s" %str(partner))
+            partner.change_state_wedof_validate()
             return request.render("digimoov_website_templates.reste_a_charge")                                 
         else:
             raise werkzeug.exceptions.NotFound()
