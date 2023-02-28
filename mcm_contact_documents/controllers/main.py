@@ -127,6 +127,29 @@ class CustomerPortal(CustomerPortal):
             for line in order.order_line:
                 if order.partner_id.bolt == True and line.product_id.default_code != "vtc_bolt":
                     boltWrongProduct = "True"
+        #show/hide contract for transport lourd
+        showContract = "True"
+        conditionLourd = 0
+        urlCpfLourd = "https://www.moncompteformation.gouv.fr/"
+        
+        partner_orders_lourd = request.env['sale.order'].sudo().search(
+            [('partner_id', '=', request.env.user.partner_id.id), ('company_id', '=', 2)],order="id desc",limit=2)
+        print("======================+>order",partner_orders_lourd)
+        if partner_orders_lourd:
+            for order in partner_orders_lourd:
+                if order.order_line:
+                    for line in order.order_line:
+                        if (line.product_id.default_code == 'transport-routier-cpf-reste'):
+                            urlCpfLourd = order.module_id.url_cpf
+                            conditionLourd = conditionLourd + 1
+                        elif(line.product_id.default_code == 'transport-routier-cpf'):
+                            conditionLourd = conditionLourd + 1
+                        print("======================+>",line.product_id.default_code)
+                        if (conditionLourd == 2):
+                            showContract = "False"
+        print("======================+>",showContract)
+
+
         values.update({
             'rdvIsBooked': rdvIsBooked,
             'cartIsEmpty': cartIsEmpty,
@@ -135,6 +158,8 @@ class CustomerPortal(CustomerPortal):
             'exam_state': exam_state,
             'boltWrongProduct': boltWrongProduct,
             'partner': request.env.user.partner_id,
+            'showContract':showContract,
+            'urlCpfLourd':urlCpfLourd
         })
         if request.env.user.company_id.id == 2 and sale_order :
             values['bolt_contract_uri'] = "/my/orders/%s?access_token=%s" % (

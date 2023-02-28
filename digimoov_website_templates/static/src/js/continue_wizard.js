@@ -1,4 +1,21 @@
+var showContract;
+var list;
 document.addEventListener('DOMContentLoaded', function () {
+  showContract = document.getElementById("showContract");
+   list = document.querySelectorAll(".o_portal_docs.list-group");
+  if (showContract) showContract = showContract.value
+  else showContract = null
+  if (list && showContract=="False"){
+    if (list[0].children){
+      Array.from(list[0].children).forEach((card) => {
+        if (card.title == "Contrats non signés" || card.title == "Contrats signés"){
+          card.remove()
+        }
+      })
+
+    }
+  }
+  
   const current = document.getElementById('step_value');
   console.log(current.value);
 
@@ -175,6 +192,19 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
           if (document.getElementById('button-continuer')) {
+            if (showContract == "False"){
+              document.getElementsByClassName('progress-bar')[0].style.width = step * 25 + '%';
+              textDescription.textContent = `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en cliquant sur continuer.`;
+            
+            btnContinuer.innerHTML = `<button class="rkmd-btn green-shop ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
+            <i class="material-icons right">send</i>
+            Continuer
+        </button>` ;
+           
+            btnContinuer.setAttribute('href', document.getElementById('urlCpfLourd').value);
+
+            }else{
+
             textDescription.textContent = `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.`;
             
             btnContinuer.innerHTML = `<button class="rkmd-btn green-shop ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
@@ -183,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </button>` ;
            
             btnContinuer.setAttribute('href', document.getElementById('contract_uri').value);
+            }
           }
         } 
 

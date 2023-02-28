@@ -25,7 +25,7 @@
         <xpath expr="//t[@t-if='quotation_count']" position="replace">
             <t t-if="quotation_count" t-call="portal.portal_docs_entry">
                 <!-- Test if lourd and ispaid-->
-                <t t-set="title">Contrats non signés</t>
+                <span id="contract-not-signed"><t t-set="title">Contrats non signés</t></span>
                 <t t-set="url" t-value="'/my/quotes'"/>
                 <t t-set="count" t-value="quotation_count"/>
             </t>

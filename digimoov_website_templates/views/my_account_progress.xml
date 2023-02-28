@@ -15,6 +15,10 @@
                 <input id="cartIsEmpty" type="hidden" t-att-value="cartIsEmpty" />
                 <input id="isSigned" type="hidden" t-att-value="isSigned" />
                 <input id="contract_uri" type="hidden" t-att-value="bolt_contract_uri" />
+                <input id="showContract" type="hidden" t-att-value="showContract" />
+                <!-- URLC CPF pour le lourd-->
+                <input type="hidden" id="urlCpf-id"  t-att-value="urlCpfLourd"></input>
+           
                 <!-- -->
                 <div class="container-fluid">
 
