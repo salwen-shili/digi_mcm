@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     var selectCenter = document.getElementById("centre_examen");
     indexOption = 0;
-    Array.from(selectCenter.options).forEach(function (option_element) {
+   if (selectCenter){ Array.from(selectCenter.options).forEach(function (option_element) {
       let option_text = option_element.text;
       index = villeLourd.indexOf(option_text.toUpperCase());
       if (
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
         indexOption--;
       }
       indexOption++;
-    });
+    });}
   }
 
   if (
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ) {
     var selectCenter = document.getElementById("centre_examen");
     indexOption = 0;
-    Array.from(selectCenter.options).forEach(function (option_element) {
+    if (selectCenter){Array.from(selectCenter.options).forEach(function (option_element) {
       let option_text = option_element.text;
 
       index = villeLeger.indexOf(option_text.toUpperCase());
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       indexOption++;
-    });
+    });}
   }
 
   displayInstalmentPayment();
@@ -1493,9 +1493,14 @@ function showPopupLourd(){
       console.log("============================================== islourdpaid:", isLourdPaid)
       if (isLourdPaid){
         document.getElementById("input_lourd").style.display = "none";
+        document.getElementById("popupResteCharge").style.visibility = "hidden";
+        document.getElementById("popupResteCharge").style.opacity = "0";
       }else{
         document.getElementById("input_lourd").style.display = "block";
-        document.getElementById("popupResteCharge").style.display = "unset"
+        document.getElementById("popupResteCharge").style.display = "unset";
+        document.getElementById("popupResteCharge").style.visibility = "unset";
+        document.getElementById("popupResteCharge").style.opacity = "1";
+        
   
       }
       
