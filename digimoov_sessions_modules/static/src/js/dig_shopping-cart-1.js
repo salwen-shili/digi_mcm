@@ -116,12 +116,12 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("checkbox_conditions")
     .addEventListener("change", function () {
-      var condition = document.getElementById("checkbox_conditions");
+      const condition = document.getElementById("checkbox_conditions");
       if (condition){
-        var condition = condition.checked;
+         condition = condition.checked;
       }
-      var error = document.getElementById("error_conditions");
-      var continueBtn = document.getElementById("continueBtn");
+      const error = document.getElementById("error_conditions");
+      const continueBtn = document.getElementById("continueBtn");
       if (condition) {
         continueBtn.removeAttribute("disabled");
         continueBtn.classList.remove("disabled");
@@ -136,6 +136,70 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   //end
+
+  //update condition reste a charge lourd 
+  document
+    .getElementById("checkbox_lourd_reste_charge")
+    .addEventListener("change", function () {
+      const conditionResteCharge = document.getElementById("checkbox_lourd_reste_charge");
+      if (conditionResteCharge){
+         conditionResteCharge = conditionResteCharge.checked;
+      }
+     
+      if (conditionResteCharge) {
+        
+        
+        updateconditionResteCharge(conditionResteCharge);
+      } else {
+        
+        updateconditionResteCharge(conditionResteCharge);
+      }
+    });
+
+      //Popup reste a charge;
+  document
+  .getElementById("checkbox_conditionspopupResteCharge")
+  .addEventListener("change", function () {
+    let condition = document.getElementById("checkbox_conditionspopupResteCharge");
+    if (condition){
+       condition = condition.checked;
+    }
+    const error = document.getElementById("error_conditions_reste_charge");
+    
+    if (condition) {
+     
+      error.style.display = "none";
+
+      updateCondition(condition);
+    } else {
+
+      error.style.display = "block";
+      updateCondition(condition);
+    }
+  });
+
+
+//update condition reste a charge lourd   //Popup reste a charge;
+document
+  .getElementById("checkbox_lourd_reste_chargepopupResteCharge")
+  .addEventListener("change", function () {
+    let conditionResteCharge = document.getElementById("checkbox_lourd_reste_chargepopupResteCharge");
+    if (conditionResteCharge){
+       conditionResteCharge = conditionResteCharge.checked;
+    }
+    
+    if (conditionResteCharge) {
+      
+      
+      updateconditionResteCharge(conditionResteCharge);
+    } else {
+      
+      updateconditionResteCharge(conditionResteCharge);
+    }
+  });
+
+  //end popup reste a charge
+
 
   // document
   //   .getElementById("cpf_video")
@@ -216,6 +280,15 @@ const updateCondition = (condition) => {
   })
     .then((responseData) => {})
     .catch((err) => {});
+};
+const updateconditionResteCharge = (condition) => {
+  sendHttpRequest("POST", "/shop/payment/update_condition_reste_a_charge_lourd", {
+    params: {
+      condition: condition,
+    },
+  })
+    .then((responseData) => {})
+    .catch((err) => {console.log(err)});
 };
 
 //adduserplateform
@@ -546,7 +619,7 @@ function verify_payment_method() {
     }
   }
   if (document.getElementById("input_lourd")) {
-    conditionlourd = document.getElementById("checkbox_lourd");
+    conditionlourd = document.getElementById("checkbox_lourd_reste_charge");
   }
 
   //redirection stripe
@@ -661,7 +734,7 @@ function closepopup(msg) {
   let lourd = ""
   if (window.location.href.includes("lourd")){
     lourd = `   <div class="input checkbox" id="input_lourd" style="display:none;margin-top: 12px;">
-    <input type="checkbox" id="checkbox_lourd" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
+    <input type="checkbox" id="checkbox_lourd_reste_charge" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
         <label for="conditions" style="display:inline">
             Je m'engage à régler le montant de reste à charge de
             <b>200€</b>
@@ -1443,7 +1516,7 @@ const getIsLourdPaid = () => {
       console.log(res, "================================================= >", isLourdPaid);
         //If product is reste_a_charge and not paid 
         //show the popup directly
-        if (!isLourdPaid) showPopupLourd()
+        if (!isLourdPaid && productDefaultCode.toLocaleUpperCase()== "transport-routier-cpf-reste".toUpperCase()) showPopupLourd()
 
     })
     .catch((err) => {
@@ -1455,26 +1528,35 @@ const getIsLourdPaid = () => {
 function checkboxResteAcharge(){
   //verifier les conditions sont coches sur le popup du reste a charge 
   // afficher des warnings 
-  let checkboxCondition = false
-  if (document.getElementById("checkbox_conditions_reste_charge")){
-    if (document.getElementById("checkbox_conditions_reste_charge").checked){
-      checkboxCondition = document.getElementById("checkbox_conditions_reste_charge").checked
-       document.getElementById("error_conditions_reste_charge").style.display = "none"
-    } else document.getElementById("error_conditions_reste_charge").style.display = "block"
-    
-  }
-
-  // 
+  let checkboxConditionResteCharge = false
   let checkbox = false
-  if (document.getElementById("checkbox_lourd_reste_charge")){
-    if (document.getElementById("checkbox_lourd_reste_charge").checked){
-      document.getElementById("error_reste_charge").style.display = "none"
-      checkbox = document.getElementById("checkbox_lourd_reste_charge").checked
-    }
+
+  if (document.getElementById("checkbox_conditionspopupResteCharge")) checkboxConditionResteCharge = document.getElementById("checkbox_conditionspopupResteCharge").checked
+  if (document.getElementById("checkbox_lourd_reste_chargepopupResteCharge")) checkbox = document.getElementById("checkbox_lourd_reste_chargepopupResteCharge").checked
+
+
+      
+    if (checkboxConditionResteCharge){
+        document.getElementById("error_conditions_reste_charge").style.display = "none"
+      }else document.getElementById("error_conditions_reste_charge").style.display = "block"
+       
+    
+    
+
+
+
+  
+ 
+      if (checkbox) {
+        document.getElementById("error_reste_charge_popupResteCharge").style.display = "none"
+      }else document.getElementById("error_reste_charge_popupResteCharge").style.display = "block"
+    
    
-    else document.getElementById("error_reste_charge").style.display = "block"
-  }
-  return checkbox && checkboxCondition
+    
+  
+  console.log(checkbox)
+  console.log(checkboxConditionResteCharge)
+  return checkbox && checkboxConditionResteCharge
 
 }
 function showPopupLourd(){

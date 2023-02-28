@@ -2583,6 +2583,18 @@ class Conditions(http.Controller):
             else:
                 order.conditions = False
         return True
+    @http.route(["/shop/payment/update_condition_reste_a_charge_lourd"], type="json", auth="public", methods=["POST"], website=True)
+    def cart_update_condition_reste_charge(self, condition):
+        """This route is called when changing conditions in shop cart of checkbox Engagement reste a charge de 200 Euro"""
+        print("POST request @ /shop/payment/update_condition_reste_a_charge_lourd")
+        _logger.info("POST request @ /shop/payment/update_condition_reste_a_charge_lourd => %s",condition)
+        order = request.website.sale_get_order(force_create=0)
+        if order:
+            if condition:
+                order.conditionsResteChargeLourd = True
+            else:
+                order.conditionsResteChargeLourd = False
+        return order
 
     @http.route(["/shop/payment/update_failures"], type="json", auth="public", methods=["POST"], website=True)
     def cart_update_failures(self, failures):

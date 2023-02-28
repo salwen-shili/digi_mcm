@@ -16,6 +16,7 @@
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="conditions" string="Conditions de paiement"/>
+                <field name="conditionsResteChargeLourd" string="Condition de paiement reste à charge (Lourd) " />
                 <field name="failures" string="Renonce de droit de rétractation"/>
             </xpath>
         </field>

@@ -495,7 +495,7 @@
                             </div> -->
 
                             <div class="input checkbox" id="input_lourd" style="display:none;margin-top: 12px;">
-                                <input type="checkbox" id="checkbox_lourd" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
+                                <input type="checkbox" id="checkbox_lourd_reste_charge" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditionsResteChargeLourd" t-att-value="website_sale_order.conditionsResteChargeLourd">
                                     <label for="conditions" style="display:inline">
                                         Je m'engage à régler le montant de reste à charge de
                                         <b>200€</b>
@@ -582,7 +582,7 @@
                             </div> -->
 
                             <div class="input checkbox" id="input_lourd" style="display:block;margin-top: 12px;">
-                                <input type="checkbox" id="checkbox_lourd_reste_charge" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
+                                <input type="checkbox" id="checkbox_lourd_reste_chargepopupResteCharge" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditionsResteChargeLourd" t-att-value="website_sale_order.conditionsResteChargeLourd">
                                     <label for="conditions" style="display:inline">
                                         Je m'engage à régler le montant de reste à charge de
                                         <b>200€</b>
@@ -593,7 +593,7 @@
                                 </input>
 
                             </div>
-                            <p id="error_reste_charge" class="alert alert-warning" style="margin-left:0%;display:none;">
+                            <p id="error_reste_charge_popupResteCharge" class="alert alert-warning" style="margin-left:0%;display:none;">
                                 Vous devez acceptez la condition pour continuer
                             </p>
 
@@ -601,7 +601,7 @@
                         
 
                             <div class="input checkbox" style="margin-top: 12px;">
-                                <input type="checkbox" id="checkbox_conditions_reste_charge" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
+                                <input type="checkbox" id="checkbox_conditionspopupResteCharge" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
                                     <label for="conditions" style="display:inline">
                                         J'ai lu et j'accepte les
                                         <a href="/conditions" target="blank" style="font-weight: 600; color: #000;">
@@ -616,9 +616,7 @@
                                 Vous devez acceptez les conditions générales de ventes
                             </p>
 
-                            <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;max-width:600px">
-                                Vous devez fermer cette fenêtre et selectionner votre date d'examen
-                            </p>
+                           
                         </p>
                         
                         <div style="text-align:center">
