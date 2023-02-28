@@ -116,12 +116,12 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("checkbox_conditions")
     .addEventListener("change", function () {
-      const condition = document.getElementById("checkbox_conditions");
+      let condition = document.getElementById("checkbox_conditions");
       if (condition){
          condition = condition.checked;
       }
-      const error = document.getElementById("error_conditions");
-      const continueBtn = document.getElementById("continueBtn");
+      let error = document.getElementById("error_conditions");
+      let continueBtn = document.getElementById("continueBtn");
       if (condition) {
         continueBtn.removeAttribute("disabled");
         continueBtn.classList.remove("disabled");
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("checkbox_lourd_reste_charge")
     .addEventListener("change", function () {
-      const conditionResteCharge = document.getElementById("checkbox_lourd_reste_charge");
+      let conditionResteCharge = document.getElementById("checkbox_lourd_reste_charge");
       if (conditionResteCharge){
          conditionResteCharge = conditionResteCharge.checked;
       }
